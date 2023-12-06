@@ -5,7 +5,7 @@
 
 # topwr
 
-A new Flutter project in KN Solvro, introducing ToPWR in Flutter
+Introducing ToPWR in Flutter
 
 ## Getting Started
 
