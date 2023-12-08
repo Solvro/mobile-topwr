@@ -5,7 +5,7 @@
 
 # topwr
 
-New Flutter project in KN Solvro, introducing ToPWR in Flutter
+New Flutter project in KN Solvro, introducing ToPWR in Flutter. Great project!
 
 ## Getting Started
 
