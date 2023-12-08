@@ -22,6 +22,8 @@ samples, guidance on mobile development, and a full API reference.
 
 
 ## Working with git
+### SSH
+Connecting to GH(GitHub) repository via SSH on Windows, tutorial: https://www.youtube.com/watch?v=vExsOTgIOGw 
 ### Building new feature
 1. git checkout main -> checkout main branch
 2. git pull origin main -> pull current changes from main branch
