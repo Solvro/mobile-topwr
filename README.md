@@ -40,6 +40,6 @@ Connecting to Github(Gh) repository via SSH on Windows, tutorial: https://www.yo
 * remote branch - this is branch with our code in github's servers
 * After code review which was successful, we can merge from our feature branch to main branch. After merging we should clean after ourself.
 1. git branch -d  MOBILE-x_my_feature_branch -> deletes our local branch
-2. git push origin --delete  MOBILE-x_my_feature_branch -> deletes our remote server branch
+2. git push origin --delete  MOBILE-x_my_feature_branch -> delete our remote branch
  
 
