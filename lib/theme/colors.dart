@@ -19,15 +19,17 @@ abstract class ColorsConsts {
   // Azure #3F6499
   static const blueAzure = Color(0xff3f6499);
 
-  // ToPwr LinearGradient #f67448, #ee6644, #df371b
+  // ToPwr LinearGradient #f67448, #ee6645, #df371b
   static const toPwrGradient = LinearGradient(
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight,
+    begin: Alignment(-1.0, -0.1),
+    end: Alignment(1.0, 0.1),
     colors: [
       Color(0xfff67448),
-      Color(0xffee6644),
+      Color(0xffee6645),
       Color(0xffdf371b),
     ],
+    stops: [0.0, 0.25, 0.72],
+    tileMode: TileMode.clamp,
   );
 
   //Department's gradients are supposed to be pulled from server
