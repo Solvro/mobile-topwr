@@ -1,0 +1,8 @@
+targets:
+  $default:
+    builders:
+      theme_tailor:
+        options:
+          themes: [baseTheme]
+          theme_getter: on_build_context_props
+          require_static_const: true
