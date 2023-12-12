@@ -13,6 +13,7 @@ class FadeInSplashGradient extends FadeInGradientAnimation {
           gradientStart: const LinearGradient(colors: [
             _androidNativeSplashColor,
             _androidNativeSplashColor,
+            _androidNativeSplashColor,
           ]),
           gradientStop: ColorsConsts.toPwrGradient,
           duration: _animDuration,
