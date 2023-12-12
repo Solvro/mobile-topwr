@@ -41,6 +41,7 @@ context.textTheme.boldBodyOrange
 #### Available fields in `AppTextTheme`:
 
 Object has defined text styles used anywhere in the design project:
+_All text styles use `Rubik` font and 1.2 line height scale_
 
 ```dart
     TextStyle headline          // fontSize: 17px, weight: w500, blackMirage
