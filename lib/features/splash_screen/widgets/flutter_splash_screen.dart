@@ -10,20 +10,21 @@ class FlutterSplashScreen extends StatelessWidget {
   static const _androidSplashSizeInDp = 288.0;
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        const Positioned.fill(
-          child: FadeInSplashGradient(),
-        ),
-        Center(
-            child: SizedBox(
-          height: _androidSplashSizeInDp,
-          width: _androidSplashSizeInDp,
-          child: Image.asset(
-            "assets/splash_screen/splash_logo.png",
-          ),
-        )),
-      ],
+    return Directionality(
+      textDirection: TextDirection.ltr,
+      child: Stack(
+        children: [
+          const Positioned.fill(child: FadeInSplashGradient()),
+          Center(
+              child: SizedBox(
+            height: _androidSplashSizeInDp,
+            width: _androidSplashSizeInDp,
+            child: Image.asset(
+              "assets/splash_screen/splash_logo.png",
+            ),
+          )),
+        ],
+      ),
     );
   }
 }

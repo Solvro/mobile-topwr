@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'features/splash_screen/splash_screen.dart';
+import 'features/splash_screen/splash_screen_controller.dart';
 import 'theme/app_theme.dart';
 
 void main() async {
+  SplashScreenController.preserveNativeSplashScreen();
   runApp(
     const ProviderScope(
       child: SplashScreen(
-        additionalWaitDuration: Duration(seconds: 2),
+        additionalWaitDuration: Duration(seconds: 1),
         child: MyApp(),
       ),
     ),
