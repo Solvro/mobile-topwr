@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:topwr/theme/hex_color.dart';
 
 abstract class ColorsConsts {
   // Mirage #293241
-  static const blackMirage = Color(0xff293241);
+  static const blackMirage = HexColor.consts(0xff293241);
 
   // Soap #FFFDFC
-  static const whiteSoap = Color(0xfffffdfc);
+  static const whiteSoap = HexColor.consts(0xfffffdfc);
 
   // Pomegranade #E43D32
-  static const orangePomegranade = Color(0xffe43d32);
+  static const orangePomegranade = HexColor.consts(0xffe43d32);
 
   // Pigeon #77859D
-  static const greyPigeon = Color(0xff76859d);
+  static const greyPigeon = HexColor.consts(0xff76859d);
 
   // Grey #F7F7F8
-  static const greyLight = Color(0xfff7f7f8);
+  static const greyLight = HexColor.consts(0xfff7f7f8);
 
   // Azure #3F6499
-  static const blueAzure = Color(0xff3f6499);
+  static const blueAzure = HexColor.consts(0xff3f6499);
 
   // ToPwr LinearGradient #f67448, #ee6645, #df371b
   static const toPwrGradient = LinearGradient(

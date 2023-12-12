@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
+import 'package:topwr/theme/hex_color.dart';
 
 import 'colors.dart';
 
@@ -18,17 +19,17 @@ class AppColorTheme extends ThemeExtension<AppColorTheme>
     this.toPwrGradient = ColorsConsts.toPwrGradient,
   });
   @override
-  final Color blackMirage;
+  final HexColor blackMirage;
   @override
-  final Color whiteSoap;
+  final HexColor whiteSoap;
   @override
-  final Color orangePomegranade;
+  final HexColor orangePomegranade;
   @override
-  final Color greyPigeon;
+  final HexColor greyPigeon;
   @override
-  final Color greyLight;
+  final HexColor greyLight;
   @override
-  final Color blueAzure;
+  final HexColor blueAzure;
   @override
   final LinearGradient toPwrGradient;
 }
