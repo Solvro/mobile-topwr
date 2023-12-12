@@ -23,6 +23,7 @@ class SplashScreenController extends _$SplashScreenController {
     hideNativeSplashScreen();
   }
 
+  /// Whether preserves native splash or show flutter one
   static get _preserveNativeSplash => kIsWeb || !Platform.isAndroid;
 
   /// Preserves native splash screen, except of Android, where FlutterSplashScreen is showed as soon as possible
