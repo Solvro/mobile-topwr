@@ -25,6 +25,8 @@ dart run build_runner watch
 2.  ### It's now possible to run or build the app in the usual way
     _Rebuilds are necessary after any updates or changes to affected files (`watch` command does it for you)_
 
+#### Additional notes:
+1. App's custom theme usage instructions: https://github.com/Solvro/topwr-mobile/tree/main/lib/theme
 # topwr
 
 New Flutter project in KN Solvro, introducing ToPWR in Flutter. Great project!
