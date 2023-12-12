@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'features/home_view/home_view.dart';
 import 'features/splash_screen/splash_screen.dart';
 import 'features/splash_screen/splash_screen_controller.dart';
 import 'theme/app_theme.dart';
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'ToPwr',
       theme: ThemeData(extensions: const [AppTheme()]),
-      home: const Placeholder(),
+      home: const HomeView(),
     );
   }
 }
