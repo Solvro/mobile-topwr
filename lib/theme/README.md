@@ -11,7 +11,7 @@ Defines Colors and TextStyles for project with `ThemeExtension`s.
 context.colorTheme
 
 // To access some color's value:
-context.appTheme.orangePomegranade
+context.colorTheme.orangePomegranade
 ```
 
 #### Available fields in `AppColorTheme`:
@@ -40,7 +40,7 @@ context.textTheme.boldBodyOrange
 
 #### Available fields in `AppTextTheme`:
 
-Object has defined text styles used anywhere in the design project:
+Object has defined text styles used anywhere in the design project:  
 _All text styles use `Rubik` font and 1.2 line height scale_
 
 ```dart
