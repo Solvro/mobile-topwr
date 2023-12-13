@@ -8,7 +8,6 @@ class BodyTextStyle extends TextStyle {
           fontFamily: 'Rubik',
           fontSize: fontSize ?? 13.0,
           fontWeight: fontWeight ?? FontWeight.w400,
-          // height: 1.2,
           letterSpacing: 0,
           color: color ?? ColorsConsts.blackMirage,
         );
