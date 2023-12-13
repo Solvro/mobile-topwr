@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'config.dart';
 import 'features/home_view/home_view.dart';
 import 'features/splash_screen/splash_screen.dart';
 import 'features/splash_screen/splash_screen_controller.dart';
@@ -11,7 +12,6 @@ void main() async {
   runApp(
     const ProviderScope(
       child: SplashScreen(
-        additionalWaitDuration: Duration(seconds: 1),
         child: MyApp(),
       ),
     ),
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'ToPwr',
+      title: MyAppConfig.title,
       theme: ThemeData(extensions: const [AppTheme()]),
       home: const HomeView(),
     );

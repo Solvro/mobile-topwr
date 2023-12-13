@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../config.dart';
 import '../home_view/widgets/logo_app_bar.dart';
 
 part 'splash_screen_controller.g.dart';
@@ -20,9 +21,9 @@ class SplashScreenController extends _$SplashScreenController {
   }
 
   @override
-  Future<void> build(Duration additionalWaitDuration) async {
+  Future<void> build() async {
     await _initializationLogic();
-    await Future.delayed(additionalWaitDuration);
+    await Future.delayed(SplashScreenConfig.additionalWaitDuration);
     hideNativeSplashScreen();
   }
 

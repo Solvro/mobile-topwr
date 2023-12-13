@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../config.dart';
 import 'fade_in_splash_gradient.dart';
 
 class FlutterSplashScreen extends StatelessWidget {
@@ -7,7 +8,6 @@ class FlutterSplashScreen extends StatelessWidget {
     super.key,
   });
 
-  static const _androidSplashSizeInDp = 288.0;
   @override
   Widget build(BuildContext context) {
     return Directionality(
@@ -17,10 +17,10 @@ class FlutterSplashScreen extends StatelessWidget {
           const Positioned.fill(child: FadeInSplashGradient()),
           Center(
               child: SizedBox(
-            height: _androidSplashSizeInDp,
-            width: _androidSplashSizeInDp,
+            height: SplashScreenConfig.androidSplashSizeInDp,
+            width: SplashScreenConfig.androidSplashSizeInDp,
             child: Image.asset(
-              "assets/splash_screen/splash_logo.png",
+              SplashScreenConfig.logoAssetName,
             ),
           )),
         ],

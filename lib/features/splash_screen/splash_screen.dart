@@ -8,15 +8,12 @@ class SplashScreen extends ConsumerWidget {
   const SplashScreen({
     super.key,
     required this.child,
-    this.additionalWaitDuration = Duration.zero,
   });
-  final Duration additionalWaitDuration;
   final Widget child;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final controller =
-        ref.watch(splashScreenControllerProvider.call(additionalWaitDuration));
+    final controller = ref.watch(splashScreenControllerProvider);
     return switch (controller) {
       AsyncLoading() => const FlutterSplashScreen(),
       _ => child,
