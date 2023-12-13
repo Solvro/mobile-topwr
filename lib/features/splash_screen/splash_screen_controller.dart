@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../home_view/widgets/logo_app_bar.dart';
+
 part 'splash_screen_controller.g.dart';
 
 @riverpod
@@ -14,6 +16,7 @@ class SplashScreenController extends _$SplashScreenController {
       Insert here any initialization async logic or operations 
       to be performed, when SplashScreen is showed.
     */
+    AppBarLogo.precacheImageIfAbsent();
   }
 
   @override

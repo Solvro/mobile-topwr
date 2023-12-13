@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:topwr/config.dart';
 
+import '../../../config.dart';
 import '../../../theme/app_theme.dart';
 
 class LogoAppBar extends AppBar {
@@ -10,7 +10,7 @@ class LogoAppBar extends AppBar {
     BuildContext context, {
     super.key,
   }) : super(
-          title: const _AppBarLogo(),
+          title: const AppBarLogo(),
           centerTitle: false,
           titleSpacing: 0,
           backgroundColor: context.colorTheme.whiteSoap,
@@ -18,9 +18,14 @@ class LogoAppBar extends AppBar {
         );
 }
 
-class _AppBarLogo extends StatelessWidget {
+class AppBarLogo extends StatelessWidget {
   /// ToPwr Appbar svg colorful themed logo
-  const _AppBarLogo();
+  const AppBarLogo({super.key});
+
+  static void precacheImageIfAbsent() {
+    const loader = SvgAssetLoader(AppBarConfig.logoAssetName);
+    svg.cache.putIfAbsent(loader.cacheKey(null), () => loader.loadBytes(null));
+  }
 
   @override
   Widget build(BuildContext context) {
