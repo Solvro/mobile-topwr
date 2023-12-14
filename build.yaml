@@ -10,3 +10,7 @@ targets:
         generate_for:
           include:
             - lib/api_base/env.dart
+      graphql_codegen:
+        options:
+          clients:
+            - graphql
