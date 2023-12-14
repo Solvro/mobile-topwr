@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:graphql/client.dart';
 import 'package:path_provider/path_provider.dart';
 
-Future<void> initHiveForGrapqlCache() async {
+Future<void> initHiveForGraphqlCache() async {
   WidgetsFlutterBinding.ensureInitialized();
   if (kIsWeb) return;
   var appDir = await getApplicationDocumentsDirectory();

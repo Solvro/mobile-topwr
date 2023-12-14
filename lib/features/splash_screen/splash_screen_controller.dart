@@ -18,7 +18,7 @@ class SplashScreenController extends _$SplashScreenController {
       Insert here any initialization async logic or operations 
       to be performed, when SplashScreen is showed.
     */
-    await initHiveForGrapqlCache();
+    await initHiveForGraphqlCache();
     AppBarLogo.precacheImageIfAbsent();
   }
 
