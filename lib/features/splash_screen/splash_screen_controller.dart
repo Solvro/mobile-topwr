@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../api_base/hive_init.dart';
 import '../../config.dart';
 import '../home_view/widgets/logo_app_bar.dart';
 
@@ -17,6 +18,7 @@ class SplashScreenController extends _$SplashScreenController {
       Insert here any initialization async logic or operations 
       to be performed, when SplashScreen is showed.
     */
+    await initHiveForGrapqlCache();
     AppBarLogo.precacheImageIfAbsent();
   }
 
