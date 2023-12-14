@@ -35,6 +35,7 @@ dart run build_runner watch
 #### Additional notes:
 
 1. App's custom theme usage instructions: https://github.com/Solvro/topwr-mobile/tree/main/lib/theme
+2. Api helper module instructions: https://github.com/Solvro/topwr-mobile/tree/main/lib/api_base
 
 # topwr
 
