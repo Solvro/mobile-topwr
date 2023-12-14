@@ -14,3 +14,10 @@ targets:
         options:
           clients:
             - graphql
+          scalars:
+            Date:
+              type: DateTime
+            DateTime:
+              type: DateTime
+            JSON:
+              type: Map<String, dynamic>
