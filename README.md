@@ -27,6 +27,7 @@ dart run build_runner watch
 
 #### Additional notes:
 1. App's custom theme usage instructions: https://github.com/Solvro/topwr-mobile/tree/main/lib/theme
+2. Introductions to internationalizing flutter apps (making them available in different languages): https://docs.flutter.dev/ui/accessibility-and-internationalization/internationalization
 # topwr
 
 New Flutter project in KN Solvro, introducing ToPWR in Flutter. Great project!
