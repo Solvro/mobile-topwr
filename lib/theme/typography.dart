@@ -29,3 +29,10 @@ class TitleTextStyle extends BoldBodyTextStyle {
 class LightTitleTextStyle extends BodyTextStyle {
   const LightTitleTextStyle({Color? color}) : super(fontSize: 15, color: color);
 }
+
+class GreetingTextStyle extends BodyTextStyle{
+  const GreetingTextStyle({Color? color}) : super(fontSize: 20, color: color, fontWeight: FontWeight.w400);
+}
+class GreetingBoldTextStyle extends BoldBodyTextStyle{
+  const GreetingBoldTextStyle({Color? color}) : super(fontSize: 20, color: color);
+}

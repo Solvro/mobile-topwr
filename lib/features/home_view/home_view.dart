@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:topwr/features/home_view/widgets/home_screen_greeting.dart';
 import '../../theme/app_theme.dart';
 import 'widgets/logo_app_bar.dart';
 
@@ -11,7 +11,7 @@ class HomeView extends StatelessWidget {
     return Scaffold(
       backgroundColor: context.colorTheme.whiteSoap,
       appBar: LogoAppBar(context),
-      body: const _Placeholders(),
+      body: ListView(children: const [Greeting()]),
     );
   }
 }

@@ -1,0 +1,16 @@
+{
+  "@@locale": "pl",
+  "home_screen_greeting": "Cześć, miło Cię widzieć",
+  "monday": "Poniedziałek",
+  "tuesday": "Wtorek",
+  "wednesday": "Środę",
+  "thursday": "Czwartek",
+  "friday": "Piątek",
+  "saturday": "Sobotę",
+  "sunday": "Niedzielę",
+  "even": "w Parzysty",
+  "even_f": "w Parzystą",
+  "odd": "w Nieparzysty",
+  "odd_f": "w Nieparzystą",
+  "unknown_day": "w ten piękny dzień!"
+}
