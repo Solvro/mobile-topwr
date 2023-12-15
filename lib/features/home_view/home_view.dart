@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:topwr/features/home_view/widgets/exam_session_countdown.dart';
 
 import '../../theme/app_theme.dart';
 import 'widgets/logo_app_bar.dart';
@@ -22,12 +23,10 @@ class _Placeholders extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-        children: List.generate(
-            15,
-            (index) => const SizedBox(
-                  height: 200,
-                  child: Placeholder(),
-                )));
+    return Column(
+      children: [
+        ExamSessionCountdown(examDate: DateTime(2024, 01,14),),
+      ],
+    );
   }
 }
