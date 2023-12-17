@@ -6,3 +6,18 @@ targets:
           themes: [baseTheme]
           theme_getter: on_build_context_props
           require_static_const: true
+      envied_generator:envied:
+        generate_for:
+          include:
+            - lib/api_base/config.dart
+      graphql_codegen:
+        options:
+          clients:
+            - graphql
+          scalars:
+            Date:
+              type: DateTime
+            DateTime:
+              type: DateTime
+            JSON:
+              type: Map<String, dynamic>

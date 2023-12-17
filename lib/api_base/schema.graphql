@@ -1,0 +1,2192 @@
+# Downloaded from our server
+
+input FileInfoInput {
+  name: String
+  alternativeText: String
+  caption: String
+}
+
+type UsersPermissionsMe {
+  id: ID!
+  username: String!
+  email: String!
+  confirmed: Boolean
+  blocked: Boolean
+  role: UsersPermissionsMeRole
+}
+
+type UsersPermissionsMeRole {
+  id: ID!
+  name: String!
+  description: String
+  type: String
+}
+
+input UsersPermissionsRegisterInput {
+  username: String!
+  email: String!
+  password: String!
+}
+
+input UsersPermissionsLoginInput {
+  identifier: String!
+  password: String!
+  provider: String = "local"
+}
+
+type UsersPermissionsLoginPayload {
+  jwt: String
+  user: UsersPermissionsMe!
+}
+
+type UserPermissionsPasswordPayload {
+  ok: Boolean!
+}
+
+type AboutUs {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  content: String
+  photo: UploadFile
+}
+
+input AboutUsInput {
+  content: String
+  photo: ID
+  created_by: ID
+  updated_by: ID
+}
+
+input editAboutUsInput {
+  content: String
+  photo: ID
+  created_by: ID
+  updated_by: ID
+}
+
+input updateAboutUsInput {
+  data: editAboutUsInput
+}
+
+type updateAboutUsPayload {
+  aboutUs: AboutUs
+}
+
+type deleteAboutUsPayload {
+  aboutUs: AboutUs
+}
+
+type AcademicYearEndDate {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  endDate: Date
+  published_at: DateTime
+}
+
+input AcademicYearEndDateInput {
+  endDate: Date
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editAcademicYearEndDateInput {
+  endDate: Date
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input updateAcademicYearEndDateInput {
+  data: editAcademicYearEndDateInput
+}
+
+type updateAcademicYearEndDatePayload {
+  academicYearEndDate: AcademicYearEndDate
+}
+
+type deleteAcademicYearEndDatePayload {
+  academicYearEndDate: AcademicYearEndDate
+}
+
+type Department {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  name: String!
+  code: String!
+  website: String
+  fieldsOfStudy: [ComponentFieldOfStudyFieldOfStudy]
+  logo: UploadFile
+  color: ComponentColorColor
+  description: String
+  latitude: Float!
+  longitude: Float!
+  infoSection: [ComponentInfoSectionInfoSection]
+  addres: String
+  displayOrder: Int!
+  locale: String
+  published_at: DateTime
+  scientific_circles(
+    sort: String
+    limit: Int
+    start: Int
+    where: JSON
+  ): [ScientificCircle]
+  localizations(sort: String, limit: Int, start: Int, where: JSON): [Department]
+}
+
+type DepartmentConnection {
+  values: [Department]
+  groupBy: DepartmentGroupBy
+  aggregate: DepartmentAggregator
+}
+
+type DepartmentAggregator {
+  count: Int
+  totalCount: Int
+  sum: DepartmentAggregatorSum
+  avg: DepartmentAggregatorAvg
+  min: DepartmentAggregatorMin
+  max: DepartmentAggregatorMax
+}
+
+type DepartmentAggregatorSum {
+  latitude: Float
+  longitude: Float
+  displayOrder: Float
+}
+
+type DepartmentAggregatorAvg {
+  latitude: Float
+  longitude: Float
+  displayOrder: Float
+}
+
+type DepartmentAggregatorMin {
+  latitude: Float
+  longitude: Float
+  displayOrder: Float
+}
+
+type DepartmentAggregatorMax {
+  latitude: Float
+  longitude: Float
+  displayOrder: Float
+}
+
+type DepartmentGroupBy {
+  id: [DepartmentConnectionId]
+  created_at: [DepartmentConnectionCreated_at]
+  updated_at: [DepartmentConnectionUpdated_at]
+  name: [DepartmentConnectionName]
+  code: [DepartmentConnectionCode]
+  website: [DepartmentConnectionWebsite]
+  logo: [DepartmentConnectionLogo]
+  color: [DepartmentConnectionColor]
+  description: [DepartmentConnectionDescription]
+  latitude: [DepartmentConnectionLatitude]
+  longitude: [DepartmentConnectionLongitude]
+  addres: [DepartmentConnectionAddres]
+  displayOrder: [DepartmentConnectionDisplayOrder]
+  locale: [DepartmentConnectionLocale]
+  published_at: [DepartmentConnectionPublished_at]
+}
+
+type DepartmentConnectionId {
+  key: ID
+  connection: DepartmentConnection
+}
+
+type DepartmentConnectionCreated_at {
+  key: DateTime
+  connection: DepartmentConnection
+}
+
+type DepartmentConnectionUpdated_at {
+  key: DateTime
+  connection: DepartmentConnection
+}
+
+type DepartmentConnectionName {
+  key: String
+  connection: DepartmentConnection
+}
+
+type DepartmentConnectionCode {
+  key: String
+  connection: DepartmentConnection
+}
+
+type DepartmentConnectionWebsite {
+  key: String
+  connection: DepartmentConnection
+}
+
+type DepartmentConnectionLogo {
+  key: ID
+  connection: DepartmentConnection
+}
+
+type DepartmentConnectionColor {
+  key: ID
+  connection: DepartmentConnection
+}
+
+type DepartmentConnectionDescription {
+  key: String
+  connection: DepartmentConnection
+}
+
+type DepartmentConnectionLatitude {
+  key: Float
+  connection: DepartmentConnection
+}
+
+type DepartmentConnectionLongitude {
+  key: Float
+  connection: DepartmentConnection
+}
+
+type DepartmentConnectionAddres {
+  key: String
+  connection: DepartmentConnection
+}
+
+type DepartmentConnectionDisplayOrder {
+  key: Int
+  connection: DepartmentConnection
+}
+
+type DepartmentConnectionLocale {
+  key: String
+  connection: DepartmentConnection
+}
+
+type DepartmentConnectionPublished_at {
+  key: DateTime
+  connection: DepartmentConnection
+}
+
+input DepartmentInput {
+  name: String!
+  code: String!
+  website: String
+  fieldsOfStudy: [ComponentFieldOfStudyFieldOfStudyInput]
+  scientific_circles: [ID]
+  logo: ID
+  color: ComponentColorColorInput
+  description: String
+  latitude: Float!
+  longitude: Float!
+  infoSection: [ComponentInfoSectionInfoSectionInput]
+  addres: String
+  displayOrder: Int!
+  localizations: [ID]
+  locale: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editDepartmentInput {
+  name: String
+  code: String
+  website: String
+  fieldsOfStudy: [editComponentFieldOfStudyFieldOfStudyInput]
+  scientific_circles: [ID]
+  logo: ID
+  color: editComponentColorColorInput
+  description: String
+  latitude: Float
+  longitude: Float
+  infoSection: [editComponentInfoSectionInfoSectionInput]
+  addres: String
+  displayOrder: Int
+  localizations: [ID]
+  locale: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createDepartmentInput {
+  data: DepartmentInput
+}
+
+type createDepartmentPayload {
+  department: Department
+}
+
+input updateDepartmentInput {
+  where: InputID
+  data: editDepartmentInput
+}
+
+type updateDepartmentPayload {
+  department: Department
+}
+
+input deleteDepartmentInput {
+  where: InputID
+}
+
+type deleteDepartmentPayload {
+  department: Department
+}
+
+type Info {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  title: String!
+  shortDescription: String
+  photo: UploadFile
+  infoSection: [ComponentInfoSectionInfoSection]
+  description: String
+  locale: String
+  published_at: DateTime
+  localizations(sort: String, limit: Int, start: Int, where: JSON): [Info]
+}
+
+type InfoConnection {
+  values: [Info]
+  groupBy: InfoGroupBy
+  aggregate: InfoAggregator
+}
+
+type InfoAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type InfoGroupBy {
+  id: [InfoConnectionId]
+  created_at: [InfoConnectionCreated_at]
+  updated_at: [InfoConnectionUpdated_at]
+  title: [InfoConnectionTitle]
+  shortDescription: [InfoConnectionShortDescription]
+  photo: [InfoConnectionPhoto]
+  description: [InfoConnectionDescription]
+  locale: [InfoConnectionLocale]
+  published_at: [InfoConnectionPublished_at]
+}
+
+type InfoConnectionId {
+  key: ID
+  connection: InfoConnection
+}
+
+type InfoConnectionCreated_at {
+  key: DateTime
+  connection: InfoConnection
+}
+
+type InfoConnectionUpdated_at {
+  key: DateTime
+  connection: InfoConnection
+}
+
+type InfoConnectionTitle {
+  key: String
+  connection: InfoConnection
+}
+
+type InfoConnectionShortDescription {
+  key: String
+  connection: InfoConnection
+}
+
+type InfoConnectionPhoto {
+  key: ID
+  connection: InfoConnection
+}
+
+type InfoConnectionDescription {
+  key: String
+  connection: InfoConnection
+}
+
+type InfoConnectionLocale {
+  key: String
+  connection: InfoConnection
+}
+
+type InfoConnectionPublished_at {
+  key: DateTime
+  connection: InfoConnection
+}
+
+input InfoInput {
+  title: String!
+  shortDescription: String
+  photo: ID
+  infoSection: [ComponentInfoSectionInfoSectionInput]
+  description: String
+  localizations: [ID]
+  locale: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editInfoInput {
+  title: String
+  shortDescription: String
+  photo: ID
+  infoSection: [editComponentInfoSectionInfoSectionInput]
+  description: String
+  localizations: [ID]
+  locale: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createInfoInput {
+  data: InfoInput
+}
+
+type createInfoPayload {
+  info: Info
+}
+
+input updateInfoInput {
+  where: InputID
+  data: editInfoInput
+}
+
+type updateInfoPayload {
+  info: Info
+}
+
+input deleteInfoInput {
+  where: InputID
+}
+
+type deleteInfoPayload {
+  info: Info
+}
+
+type Map {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  name: String!
+  code: String!
+  latitude: Float!
+  longitude: Float!
+  description: String
+  photo: UploadFile
+  infoSection: [ComponentInfoSectionInfoSection]
+  addres: String
+  locale: String
+  published_at: DateTime
+  localizations(sort: String, limit: Int, start: Int, where: JSON): [Map]
+}
+
+type MapConnection {
+  values: [Map]
+  groupBy: MapGroupBy
+  aggregate: MapAggregator
+}
+
+type MapAggregator {
+  count: Int
+  totalCount: Int
+  sum: MapAggregatorSum
+  avg: MapAggregatorAvg
+  min: MapAggregatorMin
+  max: MapAggregatorMax
+}
+
+type MapAggregatorSum {
+  latitude: Float
+  longitude: Float
+}
+
+type MapAggregatorAvg {
+  latitude: Float
+  longitude: Float
+}
+
+type MapAggregatorMin {
+  latitude: Float
+  longitude: Float
+}
+
+type MapAggregatorMax {
+  latitude: Float
+  longitude: Float
+}
+
+type MapGroupBy {
+  id: [MapConnectionId]
+  created_at: [MapConnectionCreated_at]
+  updated_at: [MapConnectionUpdated_at]
+  name: [MapConnectionName]
+  code: [MapConnectionCode]
+  latitude: [MapConnectionLatitude]
+  longitude: [MapConnectionLongitude]
+  description: [MapConnectionDescription]
+  photo: [MapConnectionPhoto]
+  addres: [MapConnectionAddres]
+  locale: [MapConnectionLocale]
+  published_at: [MapConnectionPublished_at]
+}
+
+type MapConnectionId {
+  key: ID
+  connection: MapConnection
+}
+
+type MapConnectionCreated_at {
+  key: DateTime
+  connection: MapConnection
+}
+
+type MapConnectionUpdated_at {
+  key: DateTime
+  connection: MapConnection
+}
+
+type MapConnectionName {
+  key: String
+  connection: MapConnection
+}
+
+type MapConnectionCode {
+  key: String
+  connection: MapConnection
+}
+
+type MapConnectionLatitude {
+  key: Float
+  connection: MapConnection
+}
+
+type MapConnectionLongitude {
+  key: Float
+  connection: MapConnection
+}
+
+type MapConnectionDescription {
+  key: String
+  connection: MapConnection
+}
+
+type MapConnectionPhoto {
+  key: ID
+  connection: MapConnection
+}
+
+type MapConnectionAddres {
+  key: String
+  connection: MapConnection
+}
+
+type MapConnectionLocale {
+  key: String
+  connection: MapConnection
+}
+
+type MapConnectionPublished_at {
+  key: DateTime
+  connection: MapConnection
+}
+
+input MapInput {
+  name: String!
+  code: String!
+  latitude: Float!
+  longitude: Float!
+  description: String
+  photo: ID
+  infoSection: [ComponentInfoSectionInfoSectionInput]
+  addres: String
+  localizations: [ID]
+  locale: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editMapInput {
+  name: String
+  code: String
+  latitude: Float
+  longitude: Float
+  description: String
+  photo: ID
+  infoSection: [editComponentInfoSectionInfoSectionInput]
+  addres: String
+  localizations: [ID]
+  locale: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createMapInput {
+  data: MapInput
+}
+
+type createMapPayload {
+  map: Map
+}
+
+input updateMapInput {
+  where: InputID
+  data: editMapInput
+}
+
+type updateMapPayload {
+  map: Map
+}
+
+input deleteMapInput {
+  where: InputID
+}
+
+type deleteMapPayload {
+  map: Map
+}
+
+type Notice {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  title: String!
+  photo: UploadFile
+  link: String
+  infoSection: [ComponentInfoSectionInfoSection]
+  date: DateTime
+  description: String
+  locale: String
+  published_at: DateTime
+  localizations(sort: String, limit: Int, start: Int, where: JSON): [Notice]
+}
+
+type NoticeConnection {
+  values: [Notice]
+  groupBy: NoticeGroupBy
+  aggregate: NoticeAggregator
+}
+
+type NoticeAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type NoticeGroupBy {
+  id: [NoticeConnectionId]
+  created_at: [NoticeConnectionCreated_at]
+  updated_at: [NoticeConnectionUpdated_at]
+  title: [NoticeConnectionTitle]
+  photo: [NoticeConnectionPhoto]
+  link: [NoticeConnectionLink]
+  date: [NoticeConnectionDate]
+  description: [NoticeConnectionDescription]
+  locale: [NoticeConnectionLocale]
+  published_at: [NoticeConnectionPublished_at]
+}
+
+type NoticeConnectionId {
+  key: ID
+  connection: NoticeConnection
+}
+
+type NoticeConnectionCreated_at {
+  key: DateTime
+  connection: NoticeConnection
+}
+
+type NoticeConnectionUpdated_at {
+  key: DateTime
+  connection: NoticeConnection
+}
+
+type NoticeConnectionTitle {
+  key: String
+  connection: NoticeConnection
+}
+
+type NoticeConnectionPhoto {
+  key: ID
+  connection: NoticeConnection
+}
+
+type NoticeConnectionLink {
+  key: String
+  connection: NoticeConnection
+}
+
+type NoticeConnectionDate {
+  key: DateTime
+  connection: NoticeConnection
+}
+
+type NoticeConnectionDescription {
+  key: String
+  connection: NoticeConnection
+}
+
+type NoticeConnectionLocale {
+  key: String
+  connection: NoticeConnection
+}
+
+type NoticeConnectionPublished_at {
+  key: DateTime
+  connection: NoticeConnection
+}
+
+input NoticeInput {
+  title: String!
+  photo: ID
+  link: String
+  infoSection: [ComponentInfoSectionInfoSectionInput]
+  date: DateTime
+  description: String
+  localizations: [ID]
+  locale: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editNoticeInput {
+  title: String
+  photo: ID
+  link: String
+  infoSection: [editComponentInfoSectionInfoSectionInput]
+  date: DateTime
+  description: String
+  localizations: [ID]
+  locale: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createNoticeInput {
+  data: NoticeInput
+}
+
+type createNoticePayload {
+  notice: Notice
+}
+
+input updateNoticeInput {
+  where: InputID
+  data: editNoticeInput
+}
+
+type updateNoticePayload {
+  notice: Notice
+}
+
+input deleteNoticeInput {
+  where: InputID
+}
+
+type deleteNoticePayload {
+  notice: Notice
+}
+
+type ScientificCircle {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  name: String!
+  department: Department
+  description: String!
+  photo: UploadFile
+  backgroundPhoto: UploadFile
+  infoSection: [ComponentInfoSectionInfoSection]
+  locale: String
+  published_at: DateTime
+  tags(sort: String, limit: Int, start: Int, where: JSON): [Tag]
+  localizations(
+    sort: String
+    limit: Int
+    start: Int
+    where: JSON
+  ): [ScientificCircle]
+}
+
+type ScientificCircleConnection {
+  values: [ScientificCircle]
+  groupBy: ScientificCircleGroupBy
+  aggregate: ScientificCircleAggregator
+}
+
+type ScientificCircleAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type ScientificCircleGroupBy {
+  id: [ScientificCircleConnectionId]
+  created_at: [ScientificCircleConnectionCreated_at]
+  updated_at: [ScientificCircleConnectionUpdated_at]
+  name: [ScientificCircleConnectionName]
+  department: [ScientificCircleConnectionDepartment]
+  description: [ScientificCircleConnectionDescription]
+  photo: [ScientificCircleConnectionPhoto]
+  backgroundPhoto: [ScientificCircleConnectionBackgroundPhoto]
+  locale: [ScientificCircleConnectionLocale]
+  published_at: [ScientificCircleConnectionPublished_at]
+}
+
+type ScientificCircleConnectionId {
+  key: ID
+  connection: ScientificCircleConnection
+}
+
+type ScientificCircleConnectionCreated_at {
+  key: DateTime
+  connection: ScientificCircleConnection
+}
+
+type ScientificCircleConnectionUpdated_at {
+  key: DateTime
+  connection: ScientificCircleConnection
+}
+
+type ScientificCircleConnectionName {
+  key: String
+  connection: ScientificCircleConnection
+}
+
+type ScientificCircleConnectionDepartment {
+  key: ID
+  connection: ScientificCircleConnection
+}
+
+type ScientificCircleConnectionDescription {
+  key: String
+  connection: ScientificCircleConnection
+}
+
+type ScientificCircleConnectionPhoto {
+  key: ID
+  connection: ScientificCircleConnection
+}
+
+type ScientificCircleConnectionBackgroundPhoto {
+  key: ID
+  connection: ScientificCircleConnection
+}
+
+type ScientificCircleConnectionLocale {
+  key: String
+  connection: ScientificCircleConnection
+}
+
+type ScientificCircleConnectionPublished_at {
+  key: DateTime
+  connection: ScientificCircleConnection
+}
+
+input ScientificCircleInput {
+  name: String!
+  department: ID
+  description: String!
+  photo: ID
+  backgroundPhoto: ID
+  infoSection: [ComponentInfoSectionInfoSectionInput]
+  tags: [ID]
+  localizations: [ID]
+  locale: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editScientificCircleInput {
+  name: String
+  department: ID
+  description: String
+  photo: ID
+  backgroundPhoto: ID
+  infoSection: [editComponentInfoSectionInfoSectionInput]
+  tags: [ID]
+  localizations: [ID]
+  locale: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createScientificCircleInput {
+  data: ScientificCircleInput
+}
+
+type createScientificCirclePayload {
+  scientificCircle: ScientificCircle
+}
+
+input updateScientificCircleInput {
+  where: InputID
+  data: editScientificCircleInput
+}
+
+type updateScientificCirclePayload {
+  scientificCircle: ScientificCircle
+}
+
+input deleteScientificCircleInput {
+  where: InputID
+}
+
+type deleteScientificCirclePayload {
+  scientificCircle: ScientificCircle
+}
+
+type Tag {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  name: String
+  scientific_circles(
+    sort: String
+    limit: Int
+    start: Int
+    where: JSON
+  ): [ScientificCircle]
+}
+
+type TagConnection {
+  values: [Tag]
+  groupBy: TagGroupBy
+  aggregate: TagAggregator
+}
+
+type TagAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type TagGroupBy {
+  id: [TagConnectionId]
+  created_at: [TagConnectionCreated_at]
+  updated_at: [TagConnectionUpdated_at]
+  name: [TagConnectionName]
+}
+
+type TagConnectionId {
+  key: ID
+  connection: TagConnection
+}
+
+type TagConnectionCreated_at {
+  key: DateTime
+  connection: TagConnection
+}
+
+type TagConnectionUpdated_at {
+  key: DateTime
+  connection: TagConnection
+}
+
+type TagConnectionName {
+  key: String
+  connection: TagConnection
+}
+
+input TagInput {
+  name: String
+  scientific_circles: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input editTagInput {
+  name: String
+  scientific_circles: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input createTagInput {
+  data: TagInput
+}
+
+type createTagPayload {
+  tag: Tag
+}
+
+input updateTagInput {
+  where: InputID
+  data: editTagInput
+}
+
+type updateTagPayload {
+  tag: Tag
+}
+
+input deleteTagInput {
+  where: InputID
+}
+
+type deleteTagPayload {
+  tag: Tag
+}
+
+type Version {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  uuid: String!
+}
+
+input VersionInput {
+  uuid: String!
+  created_by: ID
+  updated_by: ID
+}
+
+input editVersionInput {
+  uuid: String
+  created_by: ID
+  updated_by: ID
+}
+
+input updateVersionInput {
+  data: editVersionInput
+}
+
+type updateVersionPayload {
+  version: Version
+}
+
+type deleteVersionPayload {
+  version: Version
+}
+
+type WeekDayExceptions {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  weekday: [ComponentWeekdayWeekday]
+  published_at: DateTime
+}
+
+input WeekDayExceptionInput {
+  weekday: [ComponentWeekdayWeekdayInput]
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editWeekDayExceptionInput {
+  weekday: [editComponentWeekdayWeekdayInput]
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input updateWeekDayExceptionInput {
+  data: editWeekDayExceptionInput
+}
+
+type updateWeekDayExceptionPayload {
+  weekDayException: WeekDayExceptions
+}
+
+type deleteWeekDayExceptionPayload {
+  weekDayException: WeekDayExceptions
+}
+
+type I18NLocale {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  name: String
+  code: String
+}
+
+input LocaleInput {
+  name: String
+  code: String
+  created_by: ID
+  updated_by: ID
+}
+
+input editLocaleInput {
+  name: String
+  code: String
+  created_by: ID
+  updated_by: ID
+}
+
+type UploadFile {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  name: String!
+  alternativeText: String
+  caption: String
+  width: Int
+  height: Int
+  formats: JSON
+  hash: String!
+  ext: String
+  mime: String!
+  size: Float!
+  url: String!
+  previewUrl: String
+  provider: String!
+  provider_metadata: JSON
+  related(sort: String, limit: Int, start: Int, where: JSON): [Morph]
+}
+
+type UploadFileConnection {
+  values: [UploadFile]
+  groupBy: UploadFileGroupBy
+  aggregate: UploadFileAggregator
+}
+
+type UploadFileAggregator {
+  count: Int
+  totalCount: Int
+  sum: UploadFileAggregatorSum
+  avg: UploadFileAggregatorAvg
+  min: UploadFileAggregatorMin
+  max: UploadFileAggregatorMax
+}
+
+type UploadFileAggregatorSum {
+  width: Float
+  height: Float
+  size: Float
+}
+
+type UploadFileAggregatorAvg {
+  width: Float
+  height: Float
+  size: Float
+}
+
+type UploadFileAggregatorMin {
+  width: Float
+  height: Float
+  size: Float
+}
+
+type UploadFileAggregatorMax {
+  width: Float
+  height: Float
+  size: Float
+}
+
+type UploadFileGroupBy {
+  id: [UploadFileConnectionId]
+  created_at: [UploadFileConnectionCreated_at]
+  updated_at: [UploadFileConnectionUpdated_at]
+  name: [UploadFileConnectionName]
+  alternativeText: [UploadFileConnectionAlternativeText]
+  caption: [UploadFileConnectionCaption]
+  width: [UploadFileConnectionWidth]
+  height: [UploadFileConnectionHeight]
+  formats: [UploadFileConnectionFormats]
+  hash: [UploadFileConnectionHash]
+  ext: [UploadFileConnectionExt]
+  mime: [UploadFileConnectionMime]
+  size: [UploadFileConnectionSize]
+  url: [UploadFileConnectionUrl]
+  previewUrl: [UploadFileConnectionPreviewUrl]
+  provider: [UploadFileConnectionProvider]
+  provider_metadata: [UploadFileConnectionProvider_metadata]
+}
+
+type UploadFileConnectionId {
+  key: ID
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionCreated_at {
+  key: DateTime
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionUpdated_at {
+  key: DateTime
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionName {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionAlternativeText {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionCaption {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionWidth {
+  key: Int
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionHeight {
+  key: Int
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionFormats {
+  key: JSON
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionHash {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionExt {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionMime {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionSize {
+  key: Float
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionUrl {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionPreviewUrl {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionProvider {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionProvider_metadata {
+  key: JSON
+  connection: UploadFileConnection
+}
+
+input FileInput {
+  name: String!
+  alternativeText: String
+  caption: String
+  width: Int
+  height: Int
+  formats: JSON
+  hash: String!
+  ext: String
+  mime: String!
+  size: Float!
+  url: String!
+  previewUrl: String
+  provider: String!
+  provider_metadata: JSON
+  related: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input editFileInput {
+  name: String
+  alternativeText: String
+  caption: String
+  width: Int
+  height: Int
+  formats: JSON
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  previewUrl: String
+  provider: String
+  provider_metadata: JSON
+  related: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input deleteFileInput {
+  where: InputID
+}
+
+type deleteFilePayload {
+  file: UploadFile
+}
+
+type UsersPermissionsPermission {
+  id: ID!
+  type: String!
+  controller: String!
+  action: String!
+  enabled: Boolean!
+  policy: String
+  role: UsersPermissionsRole
+}
+
+type UsersPermissionsRole {
+  id: ID!
+  name: String!
+  description: String
+  type: String
+  permissions(
+    sort: String
+    limit: Int
+    start: Int
+    where: JSON
+  ): [UsersPermissionsPermission]
+  users(
+    sort: String
+    limit: Int
+    start: Int
+    where: JSON
+  ): [UsersPermissionsUser]
+}
+
+type UsersPermissionsRoleConnection {
+  values: [UsersPermissionsRole]
+  groupBy: UsersPermissionsRoleGroupBy
+  aggregate: UsersPermissionsRoleAggregator
+}
+
+type UsersPermissionsRoleAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type UsersPermissionsRoleGroupBy {
+  id: [UsersPermissionsRoleConnectionId]
+  name: [UsersPermissionsRoleConnectionName]
+  description: [UsersPermissionsRoleConnectionDescription]
+  type: [UsersPermissionsRoleConnectionType]
+}
+
+type UsersPermissionsRoleConnectionId {
+  key: ID
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnectionName {
+  key: String
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnectionDescription {
+  key: String
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnectionType {
+  key: String
+  connection: UsersPermissionsRoleConnection
+}
+
+input RoleInput {
+  name: String!
+  description: String
+  type: String
+  permissions: [ID]
+  users: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input editRoleInput {
+  name: String
+  description: String
+  type: String
+  permissions: [ID]
+  users: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input createRoleInput {
+  data: RoleInput
+}
+
+type createRolePayload {
+  role: UsersPermissionsRole
+}
+
+input updateRoleInput {
+  where: InputID
+  data: editRoleInput
+}
+
+type updateRolePayload {
+  role: UsersPermissionsRole
+}
+
+input deleteRoleInput {
+  where: InputID
+}
+
+type deleteRolePayload {
+  role: UsersPermissionsRole
+}
+
+type UsersPermissionsUser {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  username: String!
+  email: String!
+  provider: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: UsersPermissionsRole
+}
+
+type UsersPermissionsUserConnection {
+  values: [UsersPermissionsUser]
+  groupBy: UsersPermissionsUserGroupBy
+  aggregate: UsersPermissionsUserAggregator
+}
+
+type UsersPermissionsUserAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type UsersPermissionsUserGroupBy {
+  id: [UsersPermissionsUserConnectionId]
+  created_at: [UsersPermissionsUserConnectionCreated_at]
+  updated_at: [UsersPermissionsUserConnectionUpdated_at]
+  username: [UsersPermissionsUserConnectionUsername]
+  email: [UsersPermissionsUserConnectionEmail]
+  provider: [UsersPermissionsUserConnectionProvider]
+  confirmed: [UsersPermissionsUserConnectionConfirmed]
+  blocked: [UsersPermissionsUserConnectionBlocked]
+  role: [UsersPermissionsUserConnectionRole]
+}
+
+type UsersPermissionsUserConnectionId {
+  key: ID
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionCreated_at {
+  key: DateTime
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionUpdated_at {
+  key: DateTime
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionUsername {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionEmail {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionProvider {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionConfirmed {
+  key: Boolean
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionBlocked {
+  key: Boolean
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionRole {
+  key: ID
+  connection: UsersPermissionsUserConnection
+}
+
+input UserInput {
+  username: String!
+  email: String!
+  provider: String
+  password: String
+  resetPasswordToken: String
+  confirmationToken: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: ID
+  created_by: ID
+  updated_by: ID
+}
+
+input editUserInput {
+  username: String
+  email: String
+  provider: String
+  password: String
+  resetPasswordToken: String
+  confirmationToken: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: ID
+  created_by: ID
+  updated_by: ID
+}
+
+input createUserInput {
+  data: UserInput
+}
+
+type createUserPayload {
+  user: UsersPermissionsUser
+}
+
+input updateUserInput {
+  where: InputID
+  data: editUserInput
+}
+
+type updateUserPayload {
+  user: UsersPermissionsUser
+}
+
+input deleteUserInput {
+  where: InputID
+}
+
+type deleteUserPayload {
+  user: UsersPermissionsUser
+}
+
+type ComponentAddressAddress {
+  id: ID!
+  Address: String
+}
+
+input ComponentAddressAddressInput {
+  Address: String
+}
+
+input editComponentAddressAddressInput {
+  id: ID
+  Address: String
+}
+
+type ComponentColorColor {
+  id: ID!
+  gradientFirst: String
+  gradientSecond: String
+}
+
+input ComponentColorColorInput {
+  gradientFirst: String
+  gradientSecond: String
+}
+
+input editComponentColorColorInput {
+  id: ID
+  gradientFirst: String
+  gradientSecond: String
+}
+
+type ComponentFieldOfStudyFieldOfStudy {
+  id: ID!
+  name: String!
+}
+
+input ComponentFieldOfStudyFieldOfStudyInput {
+  name: String!
+}
+
+input editComponentFieldOfStudyFieldOfStudyInput {
+  id: ID
+  name: String
+}
+
+type ComponentInfoSectionInfoSection {
+  id: ID!
+  name: String
+  info: [ComponentInfoInfo]
+}
+
+input ComponentInfoSectionInfoSectionInput {
+  name: String
+  info: [ComponentInfoInfoInput]
+}
+
+input editComponentInfoSectionInfoSectionInput {
+  id: ID
+  name: String
+  info: [editComponentInfoInfoInput]
+}
+
+enum ENUM_COMPONENTINFOINFO_TYPE {
+  PhoneNumber
+  Addres
+  Website
+  Email
+}
+
+type ComponentInfoInfo {
+  id: ID!
+  value: String!
+  icon: UploadFile
+  type: ENUM_COMPONENTINFOINFO_TYPE
+  visibleText: String
+}
+
+input ComponentInfoInfoInput {
+  value: String!
+  icon: ID
+  type: ENUM_COMPONENTINFOINFO_TYPE
+  visibleText: String
+}
+
+input editComponentInfoInfoInput {
+  id: ID
+  value: String
+  icon: ID
+  type: ENUM_COMPONENTINFOINFO_TYPE
+  visibleText: String
+}
+
+enum ENUM_COMPONENTTAGTAG_NAME {
+  IT
+  Chemia
+}
+
+type ComponentTagTag {
+  id: ID!
+  Name: ENUM_COMPONENTTAGTAG_NAME
+}
+
+input ComponentTagTagInput {
+  Name: ENUM_COMPONENTTAGTAG_NAME
+}
+
+input editComponentTagTagInput {
+  id: ID
+  Name: ENUM_COMPONENTTAGTAG_NAME
+}
+
+enum ENUM_COMPONENTWEEKDAYWEEKDAY_PARITY {
+  Even
+  Odd
+}
+
+enum ENUM_COMPONENTWEEKDAYWEEKDAY_DAYOFTHEWEEK {
+  Mon
+  Tue
+  Wed
+  Thu
+  Fri
+  Sat
+  Sun
+}
+
+type ComponentWeekdayWeekday {
+  id: ID!
+  date: Date!
+  parity: ENUM_COMPONENTWEEKDAYWEEKDAY_PARITY!
+  dayOfTheWeek: ENUM_COMPONENTWEEKDAYWEEKDAY_DAYOFTHEWEEK!
+}
+
+input ComponentWeekdayWeekdayInput {
+  date: Date!
+  parity: ENUM_COMPONENTWEEKDAYWEEKDAY_PARITY!
+  dayOfTheWeek: ENUM_COMPONENTWEEKDAYWEEKDAY_DAYOFTHEWEEK!
+}
+
+input editComponentWeekdayWeekdayInput {
+  id: ID
+  date: Date
+  parity: ENUM_COMPONENTWEEKDAYWEEKDAY_PARITY
+  dayOfTheWeek: ENUM_COMPONENTWEEKDAYWEEKDAY_DAYOFTHEWEEK
+}
+
+union Morph =
+    UsersPermissionsMe
+  | UsersPermissionsMeRole
+  | UsersPermissionsLoginPayload
+  | UserPermissionsPasswordPayload
+  | AboutUs
+  | updateAboutUsPayload
+  | deleteAboutUsPayload
+  | AcademicYearEndDate
+  | updateAcademicYearEndDatePayload
+  | deleteAcademicYearEndDatePayload
+  | Department
+  | DepartmentConnection
+  | DepartmentAggregator
+  | DepartmentAggregatorSum
+  | DepartmentAggregatorAvg
+  | DepartmentAggregatorMin
+  | DepartmentAggregatorMax
+  | DepartmentGroupBy
+  | DepartmentConnectionId
+  | DepartmentConnectionCreated_at
+  | DepartmentConnectionUpdated_at
+  | DepartmentConnectionName
+  | DepartmentConnectionCode
+  | DepartmentConnectionWebsite
+  | DepartmentConnectionLogo
+  | DepartmentConnectionColor
+  | DepartmentConnectionDescription
+  | DepartmentConnectionLatitude
+  | DepartmentConnectionLongitude
+  | DepartmentConnectionAddres
+  | DepartmentConnectionDisplayOrder
+  | DepartmentConnectionLocale
+  | DepartmentConnectionPublished_at
+  | createDepartmentPayload
+  | updateDepartmentPayload
+  | deleteDepartmentPayload
+  | Info
+  | InfoConnection
+  | InfoAggregator
+  | InfoGroupBy
+  | InfoConnectionId
+  | InfoConnectionCreated_at
+  | InfoConnectionUpdated_at
+  | InfoConnectionTitle
+  | InfoConnectionShortDescription
+  | InfoConnectionPhoto
+  | InfoConnectionDescription
+  | InfoConnectionLocale
+  | InfoConnectionPublished_at
+  | createInfoPayload
+  | updateInfoPayload
+  | deleteInfoPayload
+  | Map
+  | MapConnection
+  | MapAggregator
+  | MapAggregatorSum
+  | MapAggregatorAvg
+  | MapAggregatorMin
+  | MapAggregatorMax
+  | MapGroupBy
+  | MapConnectionId
+  | MapConnectionCreated_at
+  | MapConnectionUpdated_at
+  | MapConnectionName
+  | MapConnectionCode
+  | MapConnectionLatitude
+  | MapConnectionLongitude
+  | MapConnectionDescription
+  | MapConnectionPhoto
+  | MapConnectionAddres
+  | MapConnectionLocale
+  | MapConnectionPublished_at
+  | createMapPayload
+  | updateMapPayload
+  | deleteMapPayload
+  | Notice
+  | NoticeConnection
+  | NoticeAggregator
+  | NoticeGroupBy
+  | NoticeConnectionId
+  | NoticeConnectionCreated_at
+  | NoticeConnectionUpdated_at
+  | NoticeConnectionTitle
+  | NoticeConnectionPhoto
+  | NoticeConnectionLink
+  | NoticeConnectionDate
+  | NoticeConnectionDescription
+  | NoticeConnectionLocale
+  | NoticeConnectionPublished_at
+  | createNoticePayload
+  | updateNoticePayload
+  | deleteNoticePayload
+  | ScientificCircle
+  | ScientificCircleConnection
+  | ScientificCircleAggregator
+  | ScientificCircleGroupBy
+  | ScientificCircleConnectionId
+  | ScientificCircleConnectionCreated_at
+  | ScientificCircleConnectionUpdated_at
+  | ScientificCircleConnectionName
+  | ScientificCircleConnectionDepartment
+  | ScientificCircleConnectionDescription
+  | ScientificCircleConnectionPhoto
+  | ScientificCircleConnectionBackgroundPhoto
+  | ScientificCircleConnectionLocale
+  | ScientificCircleConnectionPublished_at
+  | createScientificCirclePayload
+  | updateScientificCirclePayload
+  | deleteScientificCirclePayload
+  | Tag
+  | TagConnection
+  | TagAggregator
+  | TagGroupBy
+  | TagConnectionId
+  | TagConnectionCreated_at
+  | TagConnectionUpdated_at
+  | TagConnectionName
+  | createTagPayload
+  | updateTagPayload
+  | deleteTagPayload
+  | Version
+  | updateVersionPayload
+  | deleteVersionPayload
+  | WeekDayExceptions
+  | updateWeekDayExceptionPayload
+  | deleteWeekDayExceptionPayload
+  | I18NLocale
+  | UploadFile
+  | UploadFileConnection
+  | UploadFileAggregator
+  | UploadFileAggregatorSum
+  | UploadFileAggregatorAvg
+  | UploadFileAggregatorMin
+  | UploadFileAggregatorMax
+  | UploadFileGroupBy
+  | UploadFileConnectionId
+  | UploadFileConnectionCreated_at
+  | UploadFileConnectionUpdated_at
+  | UploadFileConnectionName
+  | UploadFileConnectionAlternativeText
+  | UploadFileConnectionCaption
+  | UploadFileConnectionWidth
+  | UploadFileConnectionHeight
+  | UploadFileConnectionFormats
+  | UploadFileConnectionHash
+  | UploadFileConnectionExt
+  | UploadFileConnectionMime
+  | UploadFileConnectionSize
+  | UploadFileConnectionUrl
+  | UploadFileConnectionPreviewUrl
+  | UploadFileConnectionProvider
+  | UploadFileConnectionProvider_metadata
+  | deleteFilePayload
+  | UsersPermissionsPermission
+  | UsersPermissionsRole
+  | UsersPermissionsRoleConnection
+  | UsersPermissionsRoleAggregator
+  | UsersPermissionsRoleGroupBy
+  | UsersPermissionsRoleConnectionId
+  | UsersPermissionsRoleConnectionName
+  | UsersPermissionsRoleConnectionDescription
+  | UsersPermissionsRoleConnectionType
+  | createRolePayload
+  | updateRolePayload
+  | deleteRolePayload
+  | UsersPermissionsUser
+  | UsersPermissionsUserConnection
+  | UsersPermissionsUserAggregator
+  | UsersPermissionsUserGroupBy
+  | UsersPermissionsUserConnectionId
+  | UsersPermissionsUserConnectionCreated_at
+  | UsersPermissionsUserConnectionUpdated_at
+  | UsersPermissionsUserConnectionUsername
+  | UsersPermissionsUserConnectionEmail
+  | UsersPermissionsUserConnectionProvider
+  | UsersPermissionsUserConnectionConfirmed
+  | UsersPermissionsUserConnectionBlocked
+  | UsersPermissionsUserConnectionRole
+  | createUserPayload
+  | updateUserPayload
+  | deleteUserPayload
+  | ComponentAddressAddress
+  | ComponentColorColor
+  | ComponentFieldOfStudyFieldOfStudy
+  | ComponentInfoSectionInfoSection
+  | ComponentInfoInfo
+  | ComponentTagTag
+  | ComponentWeekdayWeekday
+
+input InputID {
+  id: ID!
+}
+
+enum PublicationState {
+  LIVE
+  PREVIEW
+}
+
+type AdminUser {
+  id: ID!
+  username: String
+  firstname: String!
+  lastname: String!
+}
+
+type Query {
+  aboutUs(publicationState: PublicationState): AboutUs
+  academicYearEndDate(publicationState: PublicationState): AcademicYearEndDate
+  department(id: ID!, publicationState: PublicationState): Department
+  departments(
+    sort: String
+    limit: Int
+    start: Int
+    where: JSON
+    publicationState: PublicationState
+    locale: String
+  ): [Department]
+  departmentsConnection(
+    sort: String
+    limit: Int
+    start: Int
+    where: JSON
+    locale: String
+  ): DepartmentConnection
+  info(id: ID!, publicationState: PublicationState): Info
+  infos(
+    sort: String
+    limit: Int
+    start: Int
+    where: JSON
+    publicationState: PublicationState
+    locale: String
+  ): [Info]
+  infosConnection(
+    sort: String
+    limit: Int
+    start: Int
+    where: JSON
+    locale: String
+  ): InfoConnection
+  map(id: ID!, publicationState: PublicationState): Map
+  maps(
+    sort: String
+    limit: Int
+    start: Int
+    where: JSON
+    publicationState: PublicationState
+    locale: String
+  ): [Map]
+  mapsConnection(
+    sort: String
+    limit: Int
+    start: Int
+    where: JSON
+    locale: String
+  ): MapConnection
+  notice(id: ID!, publicationState: PublicationState): Notice
+  notices(
+    sort: String
+    limit: Int
+    start: Int
+    where: JSON
+    publicationState: PublicationState
+    locale: String
+  ): [Notice]
+  noticesConnection(
+    sort: String
+    limit: Int
+    start: Int
+    where: JSON
+    locale: String
+  ): NoticeConnection
+  scientificCircle(
+    id: ID!
+    publicationState: PublicationState
+  ): ScientificCircle
+  scientificCircles(
+    sort: String
+    limit: Int
+    start: Int
+    where: JSON
+    publicationState: PublicationState
+    locale: String
+  ): [ScientificCircle]
+  scientificCirclesConnection(
+    sort: String
+    limit: Int
+    start: Int
+    where: JSON
+    locale: String
+  ): ScientificCircleConnection
+  tag(id: ID!, publicationState: PublicationState): Tag
+  tags(
+    sort: String
+    limit: Int
+    start: Int
+    where: JSON
+    publicationState: PublicationState
+  ): [Tag]
+  tagsConnection(
+    sort: String
+    limit: Int
+    start: Int
+    where: JSON
+  ): TagConnection
+  version(publicationState: PublicationState): Version
+  weekDayException(publicationState: PublicationState): WeekDayExceptions
+  files(
+    sort: String
+    limit: Int
+    start: Int
+    where: JSON
+    publicationState: PublicationState
+  ): [UploadFile]
+  filesConnection(
+    sort: String
+    limit: Int
+    start: Int
+    where: JSON
+  ): UploadFileConnection
+  role(id: ID!, publicationState: PublicationState): UsersPermissionsRole
+
+  # Retrieve all the existing roles. You can't apply filters on this query.
+  roles(
+    sort: String
+    limit: Int
+    start: Int
+    where: JSON
+    publicationState: PublicationState
+  ): [UsersPermissionsRole]
+  rolesConnection(
+    sort: String
+    limit: Int
+    start: Int
+    where: JSON
+  ): UsersPermissionsRoleConnection
+  user(id: ID!, publicationState: PublicationState): UsersPermissionsUser
+  users(
+    sort: String
+    limit: Int
+    start: Int
+    where: JSON
+    publicationState: PublicationState
+  ): [UsersPermissionsUser]
+  usersConnection(
+    sort: String
+    limit: Int
+    start: Int
+    where: JSON
+  ): UsersPermissionsUserConnection
+  me: UsersPermissionsMe
+}
+
+type Mutation {
+  updateAboutUs(input: updateAboutUsInput): updateAboutUsPayload
+  deleteAboutUs: deleteAboutUsPayload
+  updateAcademicYearEndDate(
+    input: updateAcademicYearEndDateInput
+  ): updateAcademicYearEndDatePayload
+  deleteAcademicYearEndDate: deleteAcademicYearEndDatePayload
+  createDepartment(input: createDepartmentInput): createDepartmentPayload
+  updateDepartment(input: updateDepartmentInput): updateDepartmentPayload
+  deleteDepartment(input: deleteDepartmentInput): deleteDepartmentPayload
+  createInfo(input: createInfoInput): createInfoPayload
+  updateInfo(input: updateInfoInput): updateInfoPayload
+  deleteInfo(input: deleteInfoInput): deleteInfoPayload
+  createMap(input: createMapInput): createMapPayload
+  updateMap(input: updateMapInput): updateMapPayload
+  deleteMap(input: deleteMapInput): deleteMapPayload
+  createNotice(input: createNoticeInput): createNoticePayload
+  updateNotice(input: updateNoticeInput): updateNoticePayload
+  deleteNotice(input: deleteNoticeInput): deleteNoticePayload
+  createScientificCircle(
+    input: createScientificCircleInput
+  ): createScientificCirclePayload
+  updateScientificCircle(
+    input: updateScientificCircleInput
+  ): updateScientificCirclePayload
+  deleteScientificCircle(
+    input: deleteScientificCircleInput
+  ): deleteScientificCirclePayload
+  createTag(input: createTagInput): createTagPayload
+  updateTag(input: updateTagInput): updateTagPayload
+  deleteTag(input: deleteTagInput): deleteTagPayload
+  updateVersion(input: updateVersionInput): updateVersionPayload
+  deleteVersion: deleteVersionPayload
+  updateWeekDayException(
+    input: updateWeekDayExceptionInput
+  ): updateWeekDayExceptionPayload
+  deleteWeekDayException: deleteWeekDayExceptionPayload
+
+  # Delete one file
+  deleteFile(input: deleteFileInput): deleteFilePayload
+
+  # Create a new role
+  createRole(input: createRoleInput): createRolePayload
+
+  # Update an existing role
+  updateRole(input: updateRoleInput): updateRolePayload
+
+  # Delete an existing role
+  deleteRole(input: deleteRoleInput): deleteRolePayload
+
+  # Create a new user
+  createUser(input: createUserInput): createUserPayload
+
+  # Update an existing user
+  updateUser(input: updateUserInput): updateUserPayload
+
+  # Delete an existing user
+  deleteUser(input: deleteUserInput): deleteUserPayload
+  createDepartmentLocalization(input: updateDepartmentInput!): Department!
+  createInfoLocalization(input: updateInfoInput!): Info!
+  createMapLocalization(input: updateMapInput!): Map!
+  createNoticeLocalization(input: updateNoticeInput!): Notice!
+  createScientificCircleLocalization(
+    input: updateScientificCircleInput!
+  ): ScientificCircle!
+  upload(
+    refId: ID
+    ref: String
+    field: String
+    source: String
+    info: FileInfoInput
+    file: Upload!
+  ): UploadFile!
+  multipleUpload(
+    refId: ID
+    ref: String
+    field: String
+    source: String
+    files: [Upload]!
+  ): [UploadFile]!
+  updateFileInfo(id: ID!, info: FileInfoInput!): UploadFile!
+  login(input: UsersPermissionsLoginInput!): UsersPermissionsLoginPayload!
+  register(input: UsersPermissionsRegisterInput!): UsersPermissionsLoginPayload!
+  forgotPassword(email: String!): UserPermissionsPasswordPayload
+  resetPassword(
+    password: String!
+    passwordConfirmation: String!
+    code: String!
+  ): UsersPermissionsLoginPayload
+  emailConfirmation(confirmation: String!): UsersPermissionsLoginPayload
+}
+
+# The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+scalar JSON
+
+# A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+scalar DateTime
+
+# A time string with format: HH:mm:ss.SSS
+scalar Time
+
+# A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+scalar Date
+
+# The `Long` scalar type represents 52-bit integers
+scalar Long
+
+# The `Upload` scalar type represents a file upload.
+scalar Upload
