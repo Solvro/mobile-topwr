@@ -12,7 +12,13 @@ class HomeView extends StatelessWidget {
     return Scaffold(
       backgroundColor: context.colorTheme.whiteSoap,
       appBar: LogoAppBar(context),
-      body: ListView(children: const [Greeting(),   ExamSessionCountdown(),),
+      body: ListView(children: const [
+        Greeting(),
+        SizedBox(
+          height: 32,
+        ),
+        ExamSessionCountdown(),
+      ]),
     );
   }
 }
