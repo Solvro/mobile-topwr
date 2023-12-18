@@ -15,3 +15,9 @@ abstract class SplashScreenConfig {
   static const androidSplashSizeInDp = 288.0;
   static const androidNativeSplashColor = Color(0xFFEE6644);
 }
+
+abstract class ExamSessionCountdownConfig {
+  static const daysString = 'dni';
+  static const toStartSessionString = 'do rozpoczęcia sesji';
+  static const defaultDigit = '0';
+}
