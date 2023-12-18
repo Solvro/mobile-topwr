@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:topwr/features/home_view/widgets/home_screen_greeting.dart';
-import '../../theme/app_theme.dart';
+import 'widgets/home_screen_greeting.dart';
 import 'widgets/logo_app_bar.dart';
+import '../../theme/app_theme.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
