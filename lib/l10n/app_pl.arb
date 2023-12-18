@@ -12,5 +12,7 @@
   "even_f": "w Parzystą",
   "odd": "w Nieparzysty",
   "odd_f": "w Nieparzystą",
-  "unknown_day": "w ten piękny dzień!"
+  "unknown_day": "w ten piękny dzień!",
+  "days": "dni",
+  "to_start_session": "do rozpoczęcia sesji"
 }
