@@ -28,7 +28,7 @@ class ExamSessionCountdown extends ConsumerWidget {
                 BoxShadow(
                   spreadRadius: 6,
                   blurRadius: 11,
-                  color: Color(0x29646529),
+                  color: Color(0x28fa6465),
                   offset: Offset(0, 0),
                 ),
               ],

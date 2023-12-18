@@ -41,7 +41,7 @@ class IntBox extends StatelessWidget {
         borderRadius: BorderRadius.circular(4),
         boxShadow: const [
           BoxShadow(
-            color: Color(0x66C62D2E),
+            color: Color(0x66c62d2e),
             offset: Offset(-1, 1),
             blurRadius: 4,
             spreadRadius: 0,
