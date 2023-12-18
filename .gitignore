@@ -144,3 +144,13 @@ app.*.symbols
 *.freezed.dart
 *.graphql.dart
 *.tailor.dart
+
+
+
+#Env setup
+*.env
+.env
+*.env.dev
+.env.dev
+env.g.dart
+**/env.g.dart
