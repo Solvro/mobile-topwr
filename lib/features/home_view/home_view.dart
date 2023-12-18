@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:topwr/features/home_view/widgets/exam_session_countdown.dart';
 
 import '../../theme/app_theme.dart';
+import 'widgets/exam_session_countdown.dart';
 import 'widgets/logo_app_bar.dart';
 
 class HomeView extends StatelessWidget {
@@ -13,7 +13,7 @@ class HomeView extends StatelessWidget {
       backgroundColor: context.colorTheme.whiteSoap,
       appBar: LogoAppBar(context),
       body: ListView(
-        children: [
+        children: const [
           ExamSessionCountdown(),
         ],
       ),
