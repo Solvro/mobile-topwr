@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'widgets/home_screen_greeting.dart';
 import '../../theme/app_theme.dart';
 import 'widgets/exam_session_countdown.dart';
 import 'widgets/logo_app_bar.dart';
@@ -12,11 +12,7 @@ class HomeView extends StatelessWidget {
     return Scaffold(
       backgroundColor: context.colorTheme.whiteSoap,
       appBar: LogoAppBar(context),
-      body: ListView(
-        children: const [
-          ExamSessionCountdown(),
-        ],
-      ),
+      body: ListView(children: const [Greeting(),   ExamSessionCountdown(),),
     );
   }
 }

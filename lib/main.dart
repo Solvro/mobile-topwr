@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import 'config.dart';
 import 'features/home_view/home_view.dart';
 import 'features/splash_screen/splash_screen.dart';
 import 'features/splash_screen/splash_screen_controller.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'theme/app_theme.dart';
 
 void main() async {
@@ -24,6 +24,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: MyAppConfig.title,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       theme: ThemeData(extensions: const [AppTheme()]),
       home: const HomeView(),
     );

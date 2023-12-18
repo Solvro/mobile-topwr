@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
-
 import 'colors.dart';
 import 'typography.dart';
 
@@ -63,4 +62,18 @@ class AppTextTheme extends ThemeExtension<AppTextTheme>
   final TextStyle boldBody;
   @override
   final TextStyle boldBodyOrange;
+}
+
+@tailorMixinComponent
+class GreetingTheme extends ThemeExtension<GreetingTheme>
+    with _$GreetingThemeTailorMixin {
+
+  @override
+  final TextStyle textStyle;
+  @override
+  final TextStyle boldTextStyle;
+
+  const GreetingTheme(
+      {this.textStyle = const GreetingTextStyle(),
+        this.boldTextStyle = const GreetingBoldTextStyle()});
 }
