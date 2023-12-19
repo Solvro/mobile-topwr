@@ -16,6 +16,10 @@ abstract class SplashScreenConfig {
   static const androidNativeSplashColor = Color(0xFFEE6644);
 }
 
+abstract class ExamSessionCountdownConfig {
+  static const defaultDigit = '0';
+}
+
 abstract class BottomNavBarConfig {
   static const homeIcon = "assets/bottom_nav_bar/home_icon.svg";
   static const mapIcon = "assets/bottom_nav_bar/map_icon.svg";
@@ -23,3 +27,4 @@ abstract class BottomNavBarConfig {
   static const scientificCircleIcon = "assets/bottom_nav_bar/scientific_circle_icon.svg";
   static const infoIcon = "assets/bottom_nav_bar/info_icon.svg";
 }
+
