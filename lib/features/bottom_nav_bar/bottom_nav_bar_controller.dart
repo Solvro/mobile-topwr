@@ -1,15 +1,15 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'navigation_states.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'nav_bar_enum.dart';
+part 'bottom_nav_bar_controller.g.dart';
 
-
-class BottomNavBarController extends StateNotifier<NavigationStates> {
-  BottomNavBarController() : super(const NavigationStates());
+@riverpod
+class BottomNavBarController extends _$BottomNavBarController {
+  @override
+  NavBarEnum build() {
+    return NavBarEnum.home;
+  }
 
   void onIndexChanged(int index) {
-    state = state.copyWith(index: index);
+    state = NavBarEnum.values[index];
   }
 }
-
-final navigationControllerProvider =
-    StateNotifierProvider<BottomNavBarController, NavigationStates>(
-        (ref) => BottomNavBarController());

@@ -1,65 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/svg.dart';
-
-import '../../config.dart';
 import '../../theme/app_theme.dart';
 import '../home_view/home_view.dart';
 import 'bottom_nav_bar_controller.dart';
-import 'icon_model.dart';
+import 'nav_bar_enum.dart';
 
-class BottomNavBar extends ConsumerStatefulWidget {
-  const BottomNavBar({Key? key}) : super(key: key);
 
-  @override
-  ConsumerState<BottomNavBar> createState() => _BottomNavBarState();
-}
+class BottomNavBar extends ConsumerWidget {
+  const BottomNavBar({super.key});
 
-class _BottomNavBarState extends ConsumerState<BottomNavBar> {
-  static final List<Widget> _widgetOptions = <Widget>[
-    const HomeView(),
-    const _PlaceholderView("Map"),
-    const _PlaceholderView("Faculties"),
-    const _PlaceholderView("Scientific Circles"),
-    const _PlaceholderView("Info"),
-  ];
+  static const _widgetOptions = UnmodifiableNavBarEnumMap(
+    home: HomeView(),
+    mapp: _PlaceholderView("Map"),
+    faculties: _PlaceholderView("Faculties"),
+    sciCircles: _PlaceholderView("Scientific Circles"),
+    info: _PlaceholderView("Info"),
+  );
 
-  List<BottomNavigationBarItem> getNavigationBarItems(navigationIndex) {
-    List<IconModel> listIconModel = [
-      IconModel(icon: BottomNavBarConfig.homeIcon, label: 'Home'),
-      IconModel(icon: BottomNavBarConfig.mapIcon, label: 'Map'),
-      IconModel(icon: BottomNavBarConfig.schoolIcon, label: 'Faculties'),
-      IconModel(
-          icon: BottomNavBarConfig.scientificCircleIcon,
-          label: 'Scientific Circles'),
-      IconModel(icon: BottomNavBarConfig.infoIcon, label: 'Info'),
-    ];
-
-    return listIconModel
-        .asMap()
-        .map((index, iconModel) {
-          return MapEntry(
-            index,
-            BottomNavigationBarItem(
-                icon: SvgPicture.asset(iconModel.icon,
-                    colorFilter: ColorFilter.mode(
-                        index == navigationIndex
-                            ? context.colorTheme.orangePomegranade
-                            : context.colorTheme.blackMirage.withOpacity(.16),
-                        BlendMode.srcIn)),
-                label: iconModel.label),
-          );
-        })
-        .values
+  List<BottomNavigationBarItem> getNavigationBarItems(
+    BuildContext context,
+    NavBarEnum navigationIndex,
+  ) {
+    return NavBarEnum.values
+        .map((e) => BottomNavigationBarItem(
+              icon: Icon(
+                e.icon,
+                color: e == navigationIndex
+                    ? context.colorTheme.orangePomegranade
+                    : context.colorTheme.blackMirage.withOpacity(.16),
+                size: e.size,
+              ),
+              label: e.label,
+            ))
         .toList();
   }
 
   @override
-  Widget build(BuildContext context) {
-    var navigationIndex = ref.watch(navigationControllerProvider);
+  Widget build(BuildContext context, WidgetRef ref) {
+    var navigationIndex = ref.watch(bottomNavBarControllerProvider);
     return Scaffold(
         body: Center(
-          child: _widgetOptions[navigationIndex.index],
+          child: _widgetOptions[navigationIndex],
         ),
         bottomNavigationBar: Theme(
             data: Theme.of(context).copyWith(
@@ -78,17 +59,14 @@ class _BottomNavBarState extends ConsumerState<BottomNavBar> {
                 ),
                 child: BottomNavigationBar(
                   currentIndex: navigationIndex.index,
-                  onTap: (value) {
-                    ref
-                        .read(navigationControllerProvider.notifier)
-                        .onIndexChanged(value);
-                  },
+                  onTap: ref
+                      .watch(bottomNavBarControllerProvider.notifier)
+                      .onIndexChanged,
                   backgroundColor: context.colorTheme.greyLight,
                   showSelectedLabels: false,
                   showUnselectedLabels: false,
                   type: BottomNavigationBarType.fixed,
-                  iconSize: 26,
-                  items: getNavigationBarItems(navigationIndex.index),
+                  items: getNavigationBarItems(context, navigationIndex),
                 )
             )
         )
@@ -107,7 +85,7 @@ class _PlaceholderView extends StatelessWidget {
     return Scaffold(
         body: Center(
           child: Text(text),
-        )
+      )
     );
   }
 }
