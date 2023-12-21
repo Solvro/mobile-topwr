@@ -5,7 +5,7 @@ import 'search_provider.dart';
 
 final filteredListProvider =
       Provider<List<FacultyModel>>((ref) {
-    final List<FacultyModel> originalList = Faculties().faculties;
+    final List<FacultyModel> originalList = Faculties().getFaculties();
     final query = ref.watch(searchControllerProvider).text.toLowerCase();
 
     List<FacultyModel> filteredList = originalList
@@ -13,7 +13,6 @@ final filteredListProvider =
             element.sectionName.toLowerCase().contains(query) ||
             element.sectionShortcut.toLowerCase().contains(query))
         .toList();
-    print(filteredList);
 
     return filteredList;
   });
