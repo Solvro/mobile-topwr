@@ -19,3 +19,5 @@ abstract class SplashScreenConfig {
 abstract class ExamSessionCountdownConfig {
   static const defaultDigit = '0';
 }
+
+
