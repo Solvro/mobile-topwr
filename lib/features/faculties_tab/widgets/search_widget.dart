@@ -5,22 +5,17 @@ import '../../../theme/app_theme.dart';
 import '../../../utils/context_extensions.dart';
 import '../repositories/search_provider.dart';
 
-class SearchWidget extends ConsumerStatefulWidget {
+class SearchWidget extends ConsumerWidget {
   const SearchWidget({super.key});
 
   @override
-  ConsumerState<SearchWidget> createState() => _SearchWidgetState();
-}
-
-class _SearchWidgetState extends ConsumerState<SearchWidget> {
-  @override
-  Widget build(BuildContext context) {
-    final searchController = ref.read(searchControllerProvider);
+  Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
       padding: const EdgeInsets.only(left: 10),
       child: TextField(
-        controller: searchController,
-        onChanged: (query) {},
+        onChanged: (query){
+          ref.read(searchTextControllerProvider.notifier).onTextChanged(query);
+        },
         decoration: InputDecoration(
           contentPadding: EdgeInsets.zero,
           hintText: '${context.localize!.search}...',
