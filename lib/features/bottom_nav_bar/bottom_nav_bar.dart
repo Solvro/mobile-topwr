@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../theme/app_theme.dart';
 import '../home_view/home_view.dart';
 import 'bottom_nav_bar_controller.dart';
-import 'nav_bar_enum.dart';
+import 'nav_bar_config.dart';
 
 
 class BottomNavBar extends ConsumerWidget {
@@ -19,13 +19,13 @@ class BottomNavBar extends ConsumerWidget {
 
   List<BottomNavigationBarItem> getNavigationBarItems(
     BuildContext context,
-    NavBarEnum navigationIndex,
+    NavBarEnum selectedTab,
   ) {
     return NavBarEnum.values
         .map((e) => BottomNavigationBarItem(
               icon: Icon(
                 e.icon,
-                color: e == navigationIndex
+                color: e == selectedTab
                     ? context.colorTheme.orangePomegranade
                     : context.colorTheme.blackMirage.withOpacity(.16),
                 size: e.size,
@@ -37,10 +37,10 @@ class BottomNavBar extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var navigationIndex = ref.watch(bottomNavBarControllerProvider);
+    var selectedTab = ref.watch(bottomNavBarControllerProvider);
     return Scaffold(
         body: Center(
-          child: _widgetOptions[navigationIndex],
+          child: _widgetOptions[selectedTab],
         ),
         bottomNavigationBar: Theme(
             data: Theme.of(context).copyWith(
@@ -58,7 +58,7 @@ class BottomNavBar extends ConsumerWidget {
                   ],
                 ),
                 child: BottomNavigationBar(
-                  currentIndex: navigationIndex.index,
+                  currentIndex: selectedTab.index,
                   onTap: ref
                       .watch(bottomNavBarControllerProvider.notifier)
                       .onIndexChanged,
@@ -66,7 +66,7 @@ class BottomNavBar extends ConsumerWidget {
                   showSelectedLabels: false,
                   showUnselectedLabels: false,
                   type: BottomNavigationBarType.fixed,
-                  items: getNavigationBarItems(context, navigationIndex),
+                  items: getNavigationBarItems(context, selectedTab),
                 )
             )
         )

@@ -2,7 +2,7 @@ import 'package:enum_map/enum_map.dart';
 import 'package:flutter/material.dart';
 
 import 'bottom_nav_bar_icon_icons.dart';
-part 'nav_bar_enum.g.dart';
+part 'nav_bar_config.g.dart';
 
 @unmodifiableEnumMap
 enum NavBarEnum {
