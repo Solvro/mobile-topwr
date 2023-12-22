@@ -1,12 +1,17 @@
+// ignore_for_file: invalid_use_of_internal_member
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../theme/app_theme.dart';
-import '../../../utils/context_extensions.dart';
-import '../repositories/search_provider.dart';
+import '../theme/app_theme.dart';
+import '../utils/context_extensions.dart';
+import '../features/departments_tab/repositories/search_provider.dart';
+
 
 class SearchWidget extends ConsumerWidget {
-  const SearchWidget({super.key});
+  final AutoDisposeNotifierProviderImpl<SearchTextController, String> controller;
+  const SearchWidget(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -14,7 +19,7 @@ class SearchWidget extends ConsumerWidget {
       padding: const EdgeInsets.only(left: 10),
       child: TextField(
         onChanged: (query){
-          ref.read(searchTextControllerProvider.notifier).onTextChanged(query);
+          ref.read(controller.notifier).onTextChanged(query);
         },
         decoration: InputDecoration(
           contentPadding: EdgeInsets.zero,

@@ -5,9 +5,9 @@ import '../../../repositories/getDepartments.graphql.dart';
 import '../../../theme/app_theme.dart';
 import '../../../widgets/loading_widget.dart';
 
-class FacultyCard extends StatelessWidget {
-  final Query$GetDepartments$departments? faculty;
-  const FacultyCard({super.key, required this.faculty});
+class DepartmentCard extends StatelessWidget {
+  final Query$GetDepartments$departments? department;
+  const DepartmentCard({super.key, required this.department});
 
   @override
   Widget build(BuildContext context) {
@@ -34,14 +34,14 @@ class FacultyCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  faculty!.code,
+                  department!.code,
                   style: context.textTheme.headlineWhite,
                 ),
                 const SizedBox(
                   height: 8,
                 ),
                 Text(
-                  faculty!.name,
+                  department!.name,
                   style: context.textTheme.bodyWhite,
                 )
               ],

@@ -4,10 +4,10 @@ import '../../../repositories/departments_repository.dart';
 import '../../../repositories/getDepartments.graphql.dart';
 import 'search_provider.dart';
 
-part 'faculties_list_provider.g.dart';
+part 'departments_list_provider.g.dart';
 
 @riverpod
-AsyncValue<List<Department?>> filteredList(FilteredListRef ref) {
+AsyncValue<List<Department?>> departmentList(DepartmentListRef ref) {
   final originalList = ref.watch(departmentsRepositoryProvider);
   final query = ref.watch(searchTextControllerProvider);
   if (originalList.runtimeType == AsyncLoading<List<Query$GetDepartments$departments?>?>) {

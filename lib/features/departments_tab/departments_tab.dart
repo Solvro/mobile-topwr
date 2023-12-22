@@ -4,16 +4,17 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../theme/app_theme.dart';
 import '../../utils/context_extensions.dart';
 import '../../widgets/loading_widget.dart';
-import 'repositories/faculties_list_provider.dart';
-import 'widgets/faculty_card.dart';
-import 'widgets/search_widget.dart';
+import 'repositories/departments_list_provider.dart';
+import 'repositories/search_provider.dart';
+import 'widgets/department_card.dart';
+import '../../widgets/search_widget.dart';
 
-class FacultiesTab extends ConsumerWidget {
-  const FacultiesTab({super.key});
+class DepartmentTab extends ConsumerWidget {
+  const DepartmentTab({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(filteredListProvider);
+    final state = ref.watch(departmentListProvider);
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(24.0),
@@ -26,7 +27,7 @@ class FacultiesTab extends ConsumerWidget {
               style: context.textTheme.headline,
             ),
             const SizedBox(height: 16),
-            const SearchWidget(),
+            SearchWidget(searchTextControllerProvider),
             const SizedBox(height: 47),
             switch (state) {
               AsyncLoading() => const LoadingWidget(),
@@ -43,9 +44,9 @@ class FacultiesTab extends ConsumerWidget {
                         ]
                       : value
                           .map(
-                            (faculty) => Column(
+                            (department) => Column(
                               children: [
-                                FacultyCard(faculty: faculty),
+                                DepartmentCard(department: department),
                                 const SizedBox(height: 16),
                               ],
                             ),
