@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
+import '../../../repositories/getDepartments.graphql.dart';
 import '../../../theme/app_theme.dart';
 
-class FacultyBox extends StatelessWidget {
-  final String code;
-  final String sectionName;
-  const FacultyBox(
-      {super.key, required this.code, required this.sectionName});
+class DepartmentBox extends StatelessWidget {
+  final Query$GetDepartments$departments? department;
+  const DepartmentBox(
+      {super.key, this.department});
 
   @override
   Widget build(BuildContext context) {
@@ -26,16 +26,16 @@ class FacultyBox extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                code,
+                department!.code,
                 style: context.textTheme.titleWhite,
               ),
               const SizedBox(
                 height: 8,
               ),
               Text(
-                sectionName.length > 32
-                    ? '${sectionName.substring(0, 28)}...'
-                    : sectionName,
+                department!.name.length > 32
+                    ? '${department!.name.substring(0, 28)}...'
+                    : department!.name,
                 style: context.textTheme.bodyWhite,
               ),
             ],

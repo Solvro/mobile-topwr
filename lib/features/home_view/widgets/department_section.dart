@@ -6,10 +6,10 @@ import '../../../theme/app_theme.dart';
 import '../../../utils/context_extensions.dart';
 import '../../../widgets/loading_widget.dart';
 import '../../bottom_nav_bar/bottom_nav_bar_controller.dart';
-import 'faculty_box.dart';
+import 'deparment_box.dart';
 
-class FacultySection extends ConsumerWidget {
-  const FacultySection({super.key});
+class DepartmentSection extends ConsumerWidget {
+  const DepartmentSection({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -63,9 +63,8 @@ class FacultySection extends ConsumerWidget {
                     scrollDirection: Axis.horizontal,
                     itemCount: value!.length,
                     itemBuilder: (context, index) {
-                      return FacultyBox(
-                        sectionName: value[index]!.name,
-                        code: value[index]!.code,
+                      return DepartmentBox(
+                        department: value[index],
                       );
                     },
                   ),
