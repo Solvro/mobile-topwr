@@ -7,23 +7,26 @@ import 'search_provider.dart';
 part 'faculties_list_provider.g.dart';
 
 @riverpod
-List<Department?> filteredList(FilteredListRef ref) {
+AsyncValue<List<Department?>> filteredList(FilteredListRef ref) {
   final originalList = ref.watch(departmentsRepositoryProvider);
   final query = ref.watch(searchTextControllerProvider);
-  if (originalList.runtimeType ==
-      AsyncLoading<List<Query$GetDepartments$departments?>?>) {
-    return [];
+  if (originalList.runtimeType == AsyncLoading<List<Query$GetDepartments$departments?>?>) {
+    return const AsyncValue.loading();
   }
   return originalList.when(
     data: (data) {
-      final filteredList = originalList.value!
-          .where((element) =>
-              element!.name.toLowerCase().contains(query.toLowerCase()) ||
-              element.code.toLowerCase().contains(query.toLowerCase()))
-          .toList();
-      return filteredList;
+      try {
+        final filteredList = originalList.value!
+            .where((element) =>
+                element!.name.toLowerCase().contains(query.toLowerCase()) ||
+                element.code.toLowerCase().contains(query.toLowerCase()))
+            .toList();
+        return AsyncValue.data(filteredList);
+      } catch (error) {
+        return AsyncValue.error(error, StackTrace.current); 
+      }
     },
-    error: (_, __) => [],
-    loading: ()=>[null],
+    error: (error, __) => AsyncValue.error(error, __), 
+    loading: () => const AsyncValue.loading(), 
   );
 }

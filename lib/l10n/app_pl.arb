@@ -15,6 +15,7 @@
   "unknown_day": "w ten piękny dzień!",
   "days": "dni",
   "to_start_session": "do rozpoczęcia sesji",
-  "faculties": "Wydziały",
-  "search": "Szukaj"
+  "departments": "Wydziały",
+  "search": "Szukaj",
+  "department_not_found": "Nie znaleziono wydziału"
 }

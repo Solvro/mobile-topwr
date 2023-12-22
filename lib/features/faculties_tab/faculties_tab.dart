@@ -24,7 +24,7 @@ class FacultiesTab extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final faculties = ref.watch(filteredListProvider);
+    final state = ref.watch(filteredListProvider);
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(24.0),
@@ -33,34 +33,36 @@ class FacultiesTab extends ConsumerWidget {
           children: [
             const SizedBox(height: 24),
             Text(
-              context.localize!.faculties,
+              context.localize!.departments,
               style: context.textTheme.headline,
             ),
             const SizedBox(height: 16),
             const SearchWidget(),
             const SizedBox(height: 47),
-            switch (checkState(faculties)) {
-              'empty' => Center(
-                  child: Text(
-                    'Pusta lista',
-                    style: context.textTheme.body,
-                  ),
+            switch (state) {
+              AsyncLoading() => const LoadingWidget(),
+              AsyncError(:final error) => ErrorWidget(error),
+              AsyncValue(:final value) => Column(
+                  children: value!.isEmpty
+                      ? [
+                          Center(
+                            child: Text(
+                              context.localize!.department_not_found,
+                              style: context.textTheme.body,
+                            ),
+                          )
+                        ]
+                      : value
+                          .map(
+                            (faculty) => Column(
+                              children: [
+                                FacultyCard(faculty: faculty),
+                                const SizedBox(height: 16),
+                              ],
+                            ),
+                          )
+                          .toList(),
                 ),
-              'loading' => const LoadingWidget(),
-              'error' => ErrorWidget('Error'),
-              'ready' => Column(
-                  children: faculties
-                      .map(
-                        (faculty) => Column(
-                          children: [
-                            FacultyCard(faculty: faculty),
-                            const SizedBox(height: 16),
-                          ],
-                        ),
-                      )
-                      .toList(),
-                ),
-              String() => ErrorWidget('Different error'),
             }
           ],
         ),
