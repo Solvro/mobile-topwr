@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../repositories/getDepartments.graphql.dart';
 import '../../../theme/app_theme.dart';
+import '../../../theme/hex_color.dart';
 
 class DepartmentBox extends StatelessWidget {
   final Query$GetDepartments$departments? department;
@@ -17,10 +18,10 @@ class DepartmentBox extends StatelessWidget {
         width: 120,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
-          gradient: const LinearGradient(
+          gradient: LinearGradient(
             colors: [
-              Colors.green,
-              Colors.blue,
+              HexColor('#868585'),
+              HexColor('#BFBEBE'),
             ],
             begin: Alignment.bottomLeft,
             end: Alignment.topRight,
@@ -31,7 +32,8 @@ class DepartmentBox extends StatelessWidget {
           child: Stack(
             children: [
               CachedNetworkImage(
-                imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/1200px-Google_%22G%22_logo.svg.png',
+                imageUrl:
+                    'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/1200px-Google_%22G%22_logo.svg.png',
                 color: Colors.white.withOpacity(.12),
                 fit: BoxFit.cover,
                 height: double.infinity,
