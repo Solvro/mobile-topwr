@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'config.dart';
 import 'features/bottom_nav_bar/bottom_nav_bar.dart';
-import 'features/home_view/home_view.dart';
 import 'features/splash_screen/splash_screen.dart';
 import 'features/splash_screen/splash_screen_controller.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';

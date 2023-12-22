@@ -1,0 +1,6 @@
+query GetDepartments {
+  departments {
+    name
+    code
+  }
+}
