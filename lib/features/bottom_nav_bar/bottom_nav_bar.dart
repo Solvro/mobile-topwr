@@ -6,7 +6,6 @@ import '../home_view/home_view.dart';
 import 'bottom_nav_bar_controller.dart';
 import 'nav_bar_config.dart';
 
-
 class BottomNavBar extends ConsumerWidget {
   const BottomNavBar({super.key});
 
@@ -40,9 +39,7 @@ class BottomNavBar extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     var selectedTab = ref.watch(bottomNavBarControllerProvider);
     return Scaffold(
-        body: Center(
-          child: _widgetOptions[selectedTab],
-        ),
+        body: _widgetOptions[selectedTab],
         bottomNavigationBar: Theme(
             data: Theme.of(context).copyWith(
               splashColor: Colors.transparent,
@@ -68,10 +65,7 @@ class BottomNavBar extends ConsumerWidget {
                   showUnselectedLabels: false,
                   type: BottomNavigationBarType.fixed,
                   items: getNavigationBarItems(context, selectedTab),
-                )
-            )
-        )
-    );
+                ))));
   }
 }
 
@@ -85,8 +79,7 @@ class _PlaceholderView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Center(
-          child: Text(text),
-      )
-    );
+      child: Text(text),
+    ));
   }
 }
