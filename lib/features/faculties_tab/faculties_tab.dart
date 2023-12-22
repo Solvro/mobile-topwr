@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../models/faculty_model.dart';
+import '../../repositories/getDepartments.graphql.dart';
 import '../../theme/app_theme.dart';
 import '../../utils/context_extensions.dart';
 import 'repositories/faculties_list_provider.dart';
@@ -14,8 +14,7 @@ class FacultiesTab extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final faculties = ref.watch(filteredListProvider);
-    return SafeArea(
-      child: SingleChildScrollView(
+    return SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(24.0),
           child: Column(
@@ -29,7 +28,7 @@ class FacultiesTab extends ConsumerWidget {
               const SizedBox(height: 16),
               const SearchWidget(),
               const SizedBox(height: 47),
-              for (FacultyModel faculty in faculties)
+              for (Query$GetDepartments$departments? faculty in faculties)
                 Column(
                   children: [
                     FacultyCard(faculty: faculty),
@@ -39,7 +38,6 @@ class FacultiesTab extends ConsumerWidget {
             ],
           ),
         ),
-      ),
-    );
+      );
   }
 }

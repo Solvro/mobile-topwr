@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../../models/faculty_model.dart';
+import '../../../repositories/getDepartments.graphql.dart';
 import '../../../theme/app_theme.dart';
 
 class FacultyCard extends StatelessWidget {
-  final FacultyModel faculty;
+  final Query$GetDepartments$departments? faculty;
   const FacultyCard({super.key, required this.faculty});
 
   @override
@@ -23,14 +23,14 @@ class FacultyCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              faculty.sectionShortcut,
+              faculty!.code,
               style: context.textTheme.headlineWhite,
             ),
             const SizedBox(
               height: 8,
             ),
             Text(
-              faculty.sectionName,
+              faculty!.name,
               style: context.textTheme.bodyWhite,
             )
           ],
