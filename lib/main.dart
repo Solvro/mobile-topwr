@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'config.dart';
-import 'features/faculties_tab/faculties_tab.dart';
+import 'features/bottom_nav_bar/bottom_nav_bar.dart';
 import 'features/home_view/home_view.dart';
 import 'features/splash_screen/splash_screen.dart';
 import 'features/splash_screen/splash_screen_controller.dart';
@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
       supportedLocales: AppLocalizations.supportedLocales,
       theme: ThemeData(extensions: const [AppTheme()]),
       debugShowCheckedModeBanner: false,
-      home: const Scaffold(body: FacultiesTab()),
+      home: const BottomNavBar(),
     );
   }
 }

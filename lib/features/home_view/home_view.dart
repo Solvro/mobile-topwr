@@ -14,10 +14,10 @@ class HomeView extends StatelessWidget {
       appBar: LogoAppBar(context),
       body: ListView(children: const [
         Greeting(),
-        SizedBox(
-          height: 32,
-        ),
+        SizedBox(height: 32),
         ExamSessionCountdown(),
+        SizedBox(height: 32),
+        
       ]),
     );
   }
