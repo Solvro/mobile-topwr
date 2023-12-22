@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import '../../../theme/app_theme.dart';
 
 class FacultyBox extends StatelessWidget {
-  final String sectionShortcut;
+  final String code;
   final String sectionName;
   const FacultyBox(
-      {super.key, required this.sectionShortcut, required this.sectionName});
+      {super.key, required this.code, required this.sectionName});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class FacultyBox extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                sectionShortcut,
+                code,
                 style: context.textTheme.titleWhite,
               ),
               const SizedBox(
