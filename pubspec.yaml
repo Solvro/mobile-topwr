@@ -45,6 +45,7 @@ dependencies:
   path_provider: ^2.1.1
   equatable: ^2.0.5
   enum_map: ^0.3.0
+  cached_network_image: ^3.3.0
 
 dependency_overrides:
     analyzer: ^6.0.0
