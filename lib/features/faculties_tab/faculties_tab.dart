@@ -11,17 +11,6 @@ import 'widgets/search_widget.dart';
 class FacultiesTab extends ConsumerWidget {
   const FacultiesTab({super.key});
 
-  String checkState(List faculties) {
-    if (faculties.isEmpty) {
-      return 'empty';
-    } else if (faculties[0] == null) {
-      return 'loading';
-    } else if (faculties.isNotEmpty && faculties[0] != null) {
-      return 'ready';
-    }
-    return 'error';
-  }
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(filteredListProvider);
