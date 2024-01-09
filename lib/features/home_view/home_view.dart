@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'widgets/buildings_section/buildings_section.dart';
 import 'widgets/home_screen_greeting.dart';
 import '../../theme/app_theme.dart';
 import 'widgets/exam_session_countdown.dart';
@@ -18,6 +19,8 @@ class HomeView extends StatelessWidget {
           height: 32,
         ),
         ExamSessionCountdown(),
+        SizedBox(height: 32),
+        BuildingsSection(),
       ]),
     );
   }

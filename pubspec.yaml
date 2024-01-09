@@ -75,6 +75,7 @@ flutter:
   assets:
     - assets/splash_screen/splash_logo.png
     - assets/logo_app_bar.svg
+    - assets/placeholder/c13.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
