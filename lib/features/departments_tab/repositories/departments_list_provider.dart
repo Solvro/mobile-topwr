@@ -1,7 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../repositories/departments_repository.dart';
-import '../../../repositories/getDepartments.graphql.dart';
+import 'departments_repository.dart';
+import 'getDepartments.graphql.dart';
 import 'search_provider.dart';
 
 part 'departments_list_provider.g.dart';
