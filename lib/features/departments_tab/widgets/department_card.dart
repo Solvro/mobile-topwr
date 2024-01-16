@@ -10,22 +10,6 @@ class DepartmentCard extends StatelessWidget {
   final Query$GetDepartments$departments? department;
   const DepartmentCard({super.key, required this.department});
 
-
-  String cutText(String text) {
-    if (text.length > 28) {
-      int currentIndex = 0;
-      int lastSpace = 0;
-      while (currentIndex < text.length) {
-        if (text[currentIndex] == ' ') {
-          lastSpace = currentIndex;
-        }
-        currentIndex++;
-      }
-      return '${text.substring(0,lastSpace)}\n${text.substring(lastSpace+1)}';
-    }
-    return text;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -44,10 +28,9 @@ class DepartmentCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 14.0, horizontal: 16),
+            padding: const EdgeInsets.only(top: 14.0, bottom: 14, left: 16),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,9 +41,12 @@ class DepartmentCard extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                 ),
 
-                Text(
-                  cutText(department!.name),
-                  style: context.textTheme.bodyWhite,
+                SizedBox(
+                  width: 191,
+                  child: Text(
+                    'Wydział ${department!.name}',
+                    style: context.textTheme.bodyWhite,
+                  ),
                 )
               ],
             ),
@@ -68,6 +54,7 @@ class DepartmentCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(right: 10),
             child: CachedNetworkImage(
+              maxWidthDiskCache: 108,
               imageUrl: department?.logo?.url ??
                   'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/1200px-Google_%22G%22_logo.svg.png',
               height: double.infinity,
