@@ -1,7 +1,0 @@
- query GetDepartments {
-     departments {
-       name
-       updated_at
-       code
-     }
-   }

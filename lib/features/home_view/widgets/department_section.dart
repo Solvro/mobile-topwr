@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../repositories/departments_repository.dart';
 import '../../../theme/app_theme.dart';
 import '../../../utils/context_extensions.dart';
 import '../../../widgets/loading_widget.dart';
 import '../../bottom_nav_bar/bottom_nav_bar_controller.dart';
+import '../repositories/departments_repository.dart';
 import 'deparment_box.dart';
 
 class DepartmentSection extends ConsumerWidget {
@@ -63,8 +63,15 @@ class DepartmentSection extends ConsumerWidget {
                     scrollDirection: Axis.horizontal,
                     itemCount: value!.length,
                     itemBuilder: (context, index) {
-                      return DepartmentBox(
-                        department: value[index],
+                      return Row(
+                        children: [
+                          DepartmentBox(
+                            department: value[index],
+                          ),
+                          const SizedBox(
+                            width: 16,
+                          ),
+                        ],
                       );
                     },
                   ),

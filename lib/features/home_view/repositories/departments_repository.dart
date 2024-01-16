@@ -1,7 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../api_base/gql_client_provider.dart';
-import '../api_base/watch_query_adapter.dart';
+import '../../../api_base/gql_client_provider.dart';
+import '../../../api_base/watch_query_adapter.dart';
 import 'getDepartments.graphql.dart';
 
 part 'departments_repository.g.dart';
