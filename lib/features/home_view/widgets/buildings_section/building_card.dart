@@ -1,11 +1,22 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../theme/app_theme.dart';
 import '../../../../theme/hex_color.dart';
+import '../../../../widgets/loading_widget.dart';
+import '../../../splash_screen/widgets/flutter_splash_screen.dart';
 
-class BuildingButton extends StatelessWidget {
-  const BuildingButton({Key? key, required this.onPressed}) : super(key: key);
-  final VoidCallback onPressed;
+class BuildingCard extends StatelessWidget {
+  const BuildingCard({
+    Key? key,
+    required this.onTap,
+    required this.buildingName,
+    required this.imageUrl,
+  }) : super(key: key);
+
+  final VoidCallback onTap;
+  final String buildingName;
+  final String imageUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -15,22 +26,26 @@ class BuildingButton extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(8.0),
         child: Stack(
+          fit: StackFit.expand,
           children: [
-            Image.asset(
-              'assets/placeholder/c13.png',
+            CachedNetworkImage(
+              imageUrl: imageUrl,
               fit: BoxFit.cover,
+              placeholder: (context, url) => const LoadingWidget(),
+              errorWidget: (context, url, error) => const FlutterSplashScreen(),
             ),
             Positioned.fill(
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8.0),
-                  gradient: context.colorTheme.buildingsGradient,
-                ),
-              ),
+              child: imageUrl == ""
+                  ? Container()
+                  : Container(
+                      decoration: BoxDecoration(
+                        gradient: context.colorTheme.buildingsGradient,
+                      ),
+                    ),
             ),
             Container(
               margin: const EdgeInsets.only(left: 16, top: 84),
-              child: Text("C-13",
+              child: Text(buildingName,
                   style: context.textTheme.headlineWhite.copyWith(shadows: [
                     const Shadow(
                       color: HexColor.consts(0x6621334D66),
@@ -40,11 +55,9 @@ class BuildingButton extends StatelessWidget {
                   ])),
             ),
             Material(
-              borderRadius: BorderRadius.circular(8.0),
               color: Colors.transparent,
               child: InkWell(
-                borderRadius: BorderRadius.circular(8.0),
-                onTap: onPressed,
+                onTap: onTap,
                 child: Container(
                   color: Colors.transparent,
                 ),

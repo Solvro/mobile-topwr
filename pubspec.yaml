@@ -45,6 +45,7 @@ dependencies:
   path_provider: ^2.1.1
   equatable: ^2.0.5
   enum_map: ^0.3.0
+  cached_network_image: ^3.3.1
 
 dependency_overrides:
     analyzer: ^6.0.0
@@ -75,7 +76,6 @@ flutter:
   assets:
     - assets/splash_screen/splash_logo.png
     - assets/logo_app_bar.svg
-    - assets/placeholder/c13.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
