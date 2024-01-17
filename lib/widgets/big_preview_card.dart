@@ -1,14 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import '../../../theme/app_theme.dart';
-import '../../../utils/context_extensions.dart';
+import '../config.dart';
+import '../theme/app_theme.dart';
+import '../utils/context_extensions.dart';
 
-
-class ScrollableRowItem extends StatelessWidget {
-  const ScrollableRowItem({
+class BigPreviewCard extends StatelessWidget {
+  const BigPreviewCard({
     super.key,
     required this.title,
-    required this.id,
     required this.shortDescription,
     required this.photoUrl,
     this.date = "",
@@ -16,11 +15,10 @@ class ScrollableRowItem extends StatelessWidget {
   });
 
   final String title;
-  final String id;
   final String shortDescription;
   final String photoUrl;
   final String date;
-  final Function(String val) onClick;
+  final void Function() onClick;
 
   @override
   Widget build(BuildContext context) {
@@ -35,17 +33,17 @@ class ScrollableRowItem extends StatelessWidget {
           Expanded(
             flex: 1,
             child: Container(
-                width: double.infinity,
-                height: 140,
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.vertical(top: Radius.circular(8)),
-                  image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: CachedNetworkImageProvider(photoUrl)),
-                ),
-                child: Visibility(
-                  visible: date.isNotEmpty,
-                  child: Align(
+              width: double.infinity,
+              decoration: BoxDecoration(
+                borderRadius:
+                    const BorderRadius.vertical(top: Radius.circular(8)),
+                image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: CachedNetworkImageProvider(photoUrl.isNotEmpty ? photoUrl : BigPreviewCardConfig.placeHolderUrl)),
+              ),
+              child: date.isEmpty
+                  ? const SizedBox.shrink()
+                  : Align(
                       alignment: Alignment.topRight,
                       child: Container(
                         padding: const EdgeInsets.symmetric(horizontal: 6.0),
@@ -58,7 +56,7 @@ class ScrollableRowItem extends StatelessWidget {
                           style: context.textTheme.bodyWhite,
                         ),
                       )),
-                )),
+            ),
           ),
           Expanded(
             flex: 2,
@@ -80,7 +78,7 @@ class ScrollableRowItem extends StatelessWidget {
                   ),
                   MaterialButton(
                     padding: const EdgeInsets.all(8),
-                    onPressed: onClick(id),
+                    onPressed: onClick,
                     color: context.colorTheme.orangePomegranade,
                     textColor: context.colorTheme.whiteSoap,
                     shape: RoundedRectangleBorder(
