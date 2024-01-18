@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import '../../../widgets/loading_widget.dart';
+import '../../../widgets/my_error_widget.dart';
 import '../repositories/exam_date_repository.dart';
 import '../../../theme/app_theme.dart';
 import '../../../config.dart';
@@ -15,7 +15,7 @@ class ExamSessionCountdown extends ConsumerWidget {
     final state = ref.watch(examSessionCountdownRepositoryProvider);
     return switch (state) {
       AsyncLoading() => const LoadingWidget(),
-      AsyncError(:final error) => ErrorWidget(error),
+      AsyncError(:final error) => MyErrorWidget(error),
       AsyncValue(:final value) => Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24),
           child: Container(

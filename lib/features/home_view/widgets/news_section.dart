@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:intl/intl.dart';
 import '../../../config.dart';
 import '../../../widgets/loading_widget.dart';
 import '../../../widgets/big_preview_card.dart';
 import '../../../theme/app_theme.dart';
 import '../../../utils/context_extensions.dart';
+import '../../../widgets/my_error_widget.dart';
 import '../repositories/infos_repository/infos_preview_repository.dart';
 
 class NewsSection extends ConsumerWidget {
@@ -17,7 +17,7 @@ class NewsSection extends ConsumerWidget {
     return switch (state) {
       AsyncLoading() => const LoadingWidget(),
       AsyncError(:final error) =>
-          ErrorWidget('An error occurred in NewsSection $error'),
+          MyErrorWidget(NewsSectionConfig.errorMsg + error.toString()),
       AsyncValue(:final value) =>
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -28,7 +28,7 @@ class NewsSection extends ConsumerWidget {
                     style: context.textTheme.headline),
               ),
               SizedBox(
-                  height: 360,
+                  height: BigPreviewCardConfig.cardHeight,
                   child: ListView.builder(
                       padding: const EdgeInsets.only(left: 24),
                       cacheExtent: 4,
@@ -40,14 +40,13 @@ class NewsSection extends ConsumerWidget {
                           padding:
                           const EdgeInsets.only(top : 8.0, right : 16.0, bottom : 8.0),
                           child: value == null
-                              ? ErrorWidget("An error occurred in NewsSection's scrollable row")
+                              ? const MyErrorWidget(NewsSectionConfig.errorMsg)
                               : BigPreviewCard(
                             title: value[index]?.title ?? "",
                             shortDescription:
                             value[index]?.shortDescription ?? "",
-                            photoUrl: value[index]?.photo?.previewUrl ?? "",
-                            date: DateFormat(HomeNewsSubsectionConfig.dateTimeFormat).format(
-                                value[index]?.published_at ?? DateTime.now()),
+                            photoUrl: value[index]?.photo?.previewUrl,
+                            date: value[index]?.published_at,
                             onClick: () {},
                           ),
                         );

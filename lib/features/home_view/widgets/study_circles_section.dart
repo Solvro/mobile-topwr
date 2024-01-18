@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../config.dart';
 import '../../../widgets/loading_widget.dart';
+import '../../../widgets/my_error_widget.dart';
 import '../repositories/study_circles_repository/study_circles_repository.dart';
 import '../../../widgets/big_preview_card.dart';
 import '../../../theme/app_theme.dart';
@@ -15,13 +17,13 @@ class StudyCirclesSection extends ConsumerWidget {
     return switch (state) {
       AsyncLoading() => const LoadingWidget(),
       AsyncError(:final error) =>
-        ErrorWidget('An error occurred in StudyCirclesSection $error'),
+        MyErrorWidget(StudyCirclesSectionConfig.errorMsg + error.toString()),
       AsyncValue(:final value) => Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const _SubsectionHeader(),
             SizedBox(
-                height: 360,
+                height: BigPreviewCardConfig.cardHeight,
                 child: ListView.builder(
                     padding: const EdgeInsets.only(left: 24),
                     cacheExtent: 4,
@@ -33,13 +35,12 @@ class StudyCirclesSection extends ConsumerWidget {
                         padding: const EdgeInsets.only(
                             top: 8.0, right: 16.0, bottom: 8.0),
                         child: value == null
-                            ? ErrorWidget(
-                                "An error occurred in StudyCirclesSection's scrollable row")
+                            ? const MyErrorWidget(StudyCirclesSectionConfig.errorMsg)
                             : BigPreviewCard(
                                 title: value[index]?.name ?? "",
                                 shortDescription:
                                     value[index]?.description ?? "",
-                                photoUrl: value[index]?.photo?.previewUrl ?? "",
+                                photoUrl: value[index]?.photo?.previewUrl,
                                 onClick: () {},
                               ),
                       );

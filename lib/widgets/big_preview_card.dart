@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../config.dart';
 import '../theme/app_theme.dart';
 import '../utils/context_extensions.dart';
+import 'date_chip.dart';
 
 class BigPreviewCard extends StatelessWidget {
   const BigPreviewCard({
@@ -10,14 +11,14 @@ class BigPreviewCard extends StatelessWidget {
     required this.title,
     required this.shortDescription,
     required this.photoUrl,
-    this.date = "",
+    this.date,
     required this.onClick,
   });
 
   final String title;
   final String shortDescription;
-  final String photoUrl;
-  final String date;
+  final String? photoUrl;
+  final DateTime? date;
   final void Function() onClick;
 
   @override
@@ -31,37 +32,25 @@ class BigPreviewCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
-            flex: 1,
+            flex: 145,
             child: Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                borderRadius:
-                    const BorderRadius.vertical(top: Radius.circular(8)),
-                image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: CachedNetworkImageProvider(photoUrl.isNotEmpty ? photoUrl : BigPreviewCardConfig.placeHolderUrl)),
-              ),
-              child: date.isEmpty
-                  ? const SizedBox.shrink()
-                  : Align(
-                      alignment: Alignment.topRight,
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 6.0),
-                        margin: const EdgeInsets.all(8.0),
-                        decoration: BoxDecoration(
-                            color: context.colorTheme.blackMirage,
-                            borderRadius: BorderRadius.circular(20)),
-                        child: Text(
-                          date,
-                          style: context.textTheme.bodyWhite,
-                        ),
-                      )),
-            ),
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  borderRadius:
+                      const BorderRadius.vertical(top: Radius.circular(8)),
+                  image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: CachedNetworkImageProvider(
+                          photoUrl ?? BigPreviewCardConfig.placeHolderUrl)),
+                ),
+                child: date != null
+                    ? DateChip(date: date!)
+                    : const SizedBox.shrink()),
           ),
           Expanded(
-            flex: 2,
+            flex: 215,
             child: Container(
-              padding: const EdgeInsets.all(8),
+              padding: const EdgeInsets.all(16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
