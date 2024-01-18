@@ -45,12 +45,17 @@ dependencies:
   path_provider: ^2.1.1
   cached_network_image: ^3.3.1
   logger: ^2.0.2+1
+  equatable: ^2.0.5
+  enum_map: ^0.3.0
+
+dependency_overrides:
+    analyzer: ^6.0.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
   flutter_lints: ^2.0.0
+  enum_map_gen: ^0.3.0
   build_runner: ^2.4.7
   theme_tailor: ^2.0.2
   riverpod_generator: ^2.3.9
@@ -81,6 +86,9 @@ flutter:
     - family: Schyler
       fonts:
         - asset: assets/fonts/Rubik-VariableFont_wght.ttf
+    - family:  BottomNavBarIcon
+      fonts:
+       - asset: assets/fonts/BottomNavBarIcon.ttf
 
 flutter_native_splash:
   background_image: assets/splash_screen/native_splash_bg.png
@@ -89,3 +97,5 @@ flutter_native_splash:
   android_12:
     color: "#EE6644"
     image: assets/splash_screen/splash_logo.png
+
+

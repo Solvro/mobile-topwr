@@ -17,11 +17,8 @@ abstract class SplashScreenConfig {
 }
 
 abstract class ExamSessionCountdownConfig {
-  static const daysString = 'dni';
-  static const toStartSessionString = 'do rozpoczęcia sesji';
   static const defaultDigit = '0';
 }
-
 
 abstract class DateChipConfig{
   static const dateTimeFormat = 'dd.MM.yyyy';
@@ -41,4 +38,5 @@ abstract class BigPreviewCardConfig {
   static const double cardHeight = 360;
 
 }
+
 

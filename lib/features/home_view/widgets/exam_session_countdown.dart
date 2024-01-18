@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../utils/context_extensions.dart';
 import '../../../widgets/loading_widget.dart';
 import '../../../widgets/my_error_widget.dart';
 import '../repositories/exam_date_repository.dart';
 import '../../../theme/app_theme.dart';
-import '../../../config.dart';
 import 'digits_widgets.dart';
 
 class ExamSessionCountdown extends ConsumerWidget {
@@ -45,11 +45,11 @@ class ExamSessionCountdown extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      ExamSessionCountdownConfig.daysString,
+                      context.localize!.days,
                       style: context.textTheme.headlineWhite,
                     ),
                     Text(
-                      ExamSessionCountdownConfig.toStartSessionString,
+                      context.localize!.to_start_session,
                       style: context.textTheme.bodyWhite,
                     ),
                   ],
