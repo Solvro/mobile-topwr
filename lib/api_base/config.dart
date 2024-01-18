@@ -1,5 +1,4 @@
 import 'package:envied/envied.dart';
-
 part 'config.g.dart';
 
 abstract class ApiBaseConfig {
