@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../theme/app_theme.dart';
 import '../../utils/context_extensions.dart';
+import '../../widgets/error_widget.dart';
 import '../../widgets/loading_widget.dart';
 import 'departments_tab_controller.dart';
 import 'repositories/departments_repository.dart';
@@ -37,7 +38,7 @@ class DepartmentTab extends ConsumerWidget {
             const SizedBox(height: 47),
             switch (state) {
               AsyncLoading() => const LoadingWidget(),
-              AsyncError(:final error) => ErrorWidget(error),
+              AsyncError(:final error) => MyErrorWidget(error),
               AsyncValue(:final value) => value?.isEmpty == true
                   ? Center(
                       child: Text(

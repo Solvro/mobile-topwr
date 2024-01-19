@@ -1,10 +1,10 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+import '../../../config.dart';
 import '../../../theme/app_theme.dart';
 import '../../../theme/hex_color.dart';
 import '../../../utils/context_extensions.dart';
-import '../../../widgets/loading_widget.dart';
+import '../../../widgets/my_cached_image.dart';
 import '../repositories/departments_repository.dart';
 
 class DepartmentCard extends StatelessWidget {
@@ -19,8 +19,8 @@ class DepartmentCard extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            HexColor(department?.color?.gradientSecond ?? '#BFBEBE'),
-            HexColor(department?.color?.gradientFirst ?? '#BFBEBE'),
+            HexColor(department?.color?.gradientSecond ?? DepartmentsConfig.defaultColorFirst),
+            HexColor(department?.color?.gradientFirst ?? DepartmentsConfig.defaultColorSecond),
           ],
           begin: Alignment.bottomLeft,
           end: Alignment.topRight,
@@ -54,16 +54,7 @@ class DepartmentCard extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.only(right: 10),
-            child: CachedNetworkImage(
-              maxWidthDiskCache: 108,
-              imageUrl: department?.logo?.url ??
-                  'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/1200px-Google_%22G%22_logo.svg.png',
-              height: double.infinity,
-              fit: BoxFit.cover,
-              placeholder: (context, url) => const LoadingWidget(),
-              errorWidget: (context, url, error) => ErrorWidget(error),
-              color: Colors.white.withOpacity(.5),
-            ),
+            child: MyCachedImage(department?.logo?.url)
           ),
         ],
       ),
