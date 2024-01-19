@@ -4,8 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../theme/app_theme.dart';
 import '../../utils/context_extensions.dart';
 import '../../widgets/loading_widget.dart';
-import 'repositories/departments_list_provider.dart';
-import 'repositories/search_provider.dart';
+import 'departments_tab_controller.dart';
+import 'repositories/departments_repository.dart';
 import 'widgets/department_card.dart';
 import '../../widgets/search_widget.dart';
 
@@ -27,32 +27,32 @@ class DepartmentTab extends ConsumerWidget {
               style: context.textTheme.headline,
             ),
             const SizedBox(height: 16),
-            SearchWidget(searchTextControllerProvider),
+            SearchWidget(
+              onQueryChanged: (query) {
+                ref
+                    .read(searchDepartmentsControllerProvider.notifier)
+                    .onTextChanged(query);
+              },
+            ),
             const SizedBox(height: 47),
             switch (state) {
               AsyncLoading() => const LoadingWidget(),
               AsyncError(:final error) => ErrorWidget(error),
-              AsyncValue(:final value) => Column(
-                  children: value!.isEmpty
-                      ? [
-                          Center(
-                            child: Text(
-                              context.localize!.department_not_found,
-                              style: context.textTheme.body,
-                            ),
-                          )
-                        ]
-                      : value
-                          .map(
-                            (department) => Column(
-                              children: [
-                                DepartmentCard(department: department),
-                                const SizedBox(height: 16),
-                              ],
-                            ),
-                          )
-                          .toList(),
-                ),
+              AsyncValue(:final value) => value?.isEmpty == true
+                  ? Center(
+                      child: Text(
+                        context.localize!.department_not_found,
+                        style: context.textTheme.body,
+                      ),
+                    )
+                  : Column(children: [
+                      for (var department in value ?? <Department>[])
+                        if (department != null)
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 16),
+                            child: DepartmentCard(department),
+                          ),
+                    ]),
             }
           ],
         ),

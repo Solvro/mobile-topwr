@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 
 import '../../../theme/app_theme.dart';
 import '../../../theme/hex_color.dart';
+import '../../../utils/context_extensions.dart';
 import '../../../widgets/loading_widget.dart';
-import '../repositories/getDepartments.graphql.dart';
+import '../repositories/departments_repository.dart';
 
 class DepartmentCard extends StatelessWidget {
-  final Query$GetDepartments$departments? department;
-  const DepartmentCard({super.key, required this.department});
+  final Department? department;
+  const DepartmentCard(this.department, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +45,7 @@ class DepartmentCard extends StatelessWidget {
                 SizedBox(
                   width: 191,
                   child: Text(
-                    'Wydział ${department!.name}',
+                    '${context.localize!.department} ${department!.name}',
                     style: context.textTheme.bodyWhite,
                   ),
                 )

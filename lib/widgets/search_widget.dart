@@ -1,31 +1,33 @@
-// ignore_for_file: invalid_use_of_internal_member
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../theme/app_theme.dart';
 import '../utils/context_extensions.dart';
-import '../features/departments_tab/repositories/search_provider.dart';
 
 
 class SearchWidget extends ConsumerWidget {
-  final AutoDisposeNotifierProviderImpl<SearchTextController, String> controller;
-  const SearchWidget(this.controller, {super.key});
+  final void Function(String query) onQueryChanged;
+  const SearchWidget({super.key, required this.onQueryChanged});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
       padding: const EdgeInsets.only(left: 10),
       child: TextField(
-        onChanged: (query){
-          ref.read(controller.notifier).onTextChanged(query);
-        },
+
+        onChanged: onQueryChanged,
         decoration: InputDecoration(
           contentPadding: EdgeInsets.zero,
+          filled: true,
+          fillColor: context.colorTheme.greyLight,
+          prefix: Icon(
+            Icons.search_outlined,
+            size: 14,
+            color: context.colorTheme.blackMirage,
+          ),
           hintText: '${context.localize!.search}...',
           hintStyle: TextStyle(
-            color: context.colorTheme.blackMirage,
+            color: context.colorTheme.greyPigeon,
             fontWeight: FontWeight.w400,
             fontSize: 15,
           ),
@@ -42,7 +44,7 @@ class SearchWidget extends ConsumerWidget {
           icon: Icon(
             Icons.search_outlined,
             size: 14,
-            color: context.colorTheme.blackMirage,
+            color: context.colorTheme.greyPigeon,
           ),
           border: InputBorder.none,
         ),
