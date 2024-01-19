@@ -1,13 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+import '../../../config.dart';
 import '../../../theme/app_theme.dart';
 import '../../../theme/hex_color.dart';
-import '../repositories/getDepartments.graphql.dart';
+import '../repositories/departments_repository.dart';
 
 class DepartmentBox extends StatelessWidget {
-  final Query$GetDepartments$departments? department;
-  const DepartmentBox({super.key, this.department});
+  final Department department;
+  const DepartmentBox(this.department, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +21,10 @@ class DepartmentBox extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
           gradient: LinearGradient(
             colors: [
-              HexColor(department?.color?.gradientSecond ?? '#BFBEBE'),
-              HexColor(department?.color?.gradientFirst ?? '#BFBEBE'),
+              HexColor(department.color?.gradientSecond ??
+                  DepartmentBoxConfig.defaultColorFirst),
+              HexColor(department.color?.gradientFirst ??
+                  DepartmentBoxConfig.defaultColorSecond),
             ],
             begin: Alignment.bottomLeft,
             end: Alignment.topRight,
@@ -32,8 +35,8 @@ class DepartmentBox extends StatelessWidget {
           child: Stack(
             children: [
               CachedNetworkImage(
-                imageUrl: department?.logo?.url ??
-                    'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/1200px-Google_%22G%22_logo.svg.png',
+                imageUrl:
+                    department.logo?.url ?? DepartmentBoxConfig.defaultUrl,
                 color: Colors.white.withOpacity(.12),
                 fit: BoxFit.cover,
                 height: double.infinity,
@@ -43,18 +46,17 @@ class DepartmentBox extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    department!.code,
+                    department.code,
                     style: context.textTheme.titleWhite,
                   ),
                   const SizedBox(
                     height: 8,
                   ),
                   Text(
-                    department!.name.length > 24
-                        ? 'Wydział ${department!.name.substring(0, 21)}...'
-                        : 'Wydział ${department!.name}',
+                    'Wydział ${department.name}',
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
                     style: context.textTheme.bodyWhite,
-                    overflow: TextOverflow.visible,
                   ),
                 ],
               ),

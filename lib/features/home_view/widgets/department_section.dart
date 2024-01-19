@@ -18,42 +18,7 @@ class DepartmentSection extends ConsumerWidget {
       padding: const EdgeInsets.only(left: 24.0),
       child: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.only(right: 24.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  context.localize!.departments,
-                  style: context.textTheme.headline,
-                ),
-                TextButton(
-                  onPressed: () {
-                    ref
-                        .read(bottomNavBarControllerProvider.notifier)
-                        .onIndexChanged(2);
-                  },
-                  child: Row(
-                    children: [
-                      Text(
-                        context.localize!.list,
-                        style: context.textTheme.boldBodyOrange,
-                      ),
-                      const SizedBox(width: 12),
-                      Icon(
-                        Icons.arrow_forward_ios_outlined,
-                        color: context.colorTheme.orangePomegranade,
-                        size: 8,
-                      )
-                    ],
-                  ),
-                )
-              ],
-            ),
-          ),
-          const SizedBox(
-            height: 16,
-          ),
+          const _SubsectionHeader(),
           SizedBox(
               height: 120,
               child: switch (state) {
@@ -63,19 +28,56 @@ class DepartmentSection extends ConsumerWidget {
                     scrollDirection: Axis.horizontal,
                     itemCount: value!.length,
                     itemBuilder: (context, index) {
-                      return Row(
-                        children: [
-                          DepartmentBox(
-                            department: value[index],
-                          ),
-                          const SizedBox(
-                            width: 16,
-                          ),
-                        ],
+                     final department = value[index];
+                      if (department == null) return const SizedBox.shrink();
+                      return Padding(
+                        padding: const EdgeInsets.only(right: 16.0),
+                        child: DepartmentBox(department),
                       );
                     },
                   ),
               })
+        ],
+      ),
+    );
+  }
+}
+
+class _SubsectionHeader extends ConsumerWidget {
+  const _SubsectionHeader();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Padding(
+      padding: const EdgeInsets.only(right: 24.0, bottom: 16.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            context.localize!.departments,
+            style: context.textTheme.headline,
+          ),
+          TextButton(
+            onPressed: () {
+              ref
+                  .read(bottomNavBarControllerProvider.notifier)
+                  .onIndexChanged(2);
+            },
+            child: Row(
+              children: [
+                Text(
+                  context.localize!.list,
+                  style: context.textTheme.boldBodyOrange,
+                ),
+                const SizedBox(width: 12),
+                Icon(
+                  Icons.arrow_forward_ios_outlined,
+                  color: context.colorTheme.orangePomegranade,
+                  size: 8,
+                )
+              ],
+            ),
+          )
         ],
       ),
     );
