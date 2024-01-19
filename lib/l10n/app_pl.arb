@@ -18,5 +18,10 @@
   "study_circles" : "Koła Naukowe",
   "see_list" : "Lista  >"
   "days": "dni",
-  "to_start_session": "do rozpoczęcia sesji"
+  "to_start_session": "do rozpoczęcia sesji",
+  "sections": "Wydziały",
+  "list": "Lista",
+  "departments": "Wydziały",
+  "department": "Wydział",
+  "search": "Szukaj"
 }
