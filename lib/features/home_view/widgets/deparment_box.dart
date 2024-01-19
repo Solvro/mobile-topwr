@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../../../config.dart';
 import '../../../theme/app_theme.dart';
 import '../../../theme/hex_color.dart';
+import '../../../utils/context_extensions.dart';
 import '../repositories/departments_repository.dart';
 
 class DepartmentBox extends StatelessWidget {
@@ -22,9 +23,9 @@ class DepartmentBox extends StatelessWidget {
           gradient: LinearGradient(
             colors: [
               HexColor(department.color?.gradientSecond ??
-                  DepartmentBoxConfig.defaultColorFirst),
+                  DepartmentsConfig.defaultColorFirst),
               HexColor(department.color?.gradientFirst ??
-                  DepartmentBoxConfig.defaultColorSecond),
+                  DepartmentsConfig.defaultColorSecond),
             ],
             begin: Alignment.bottomLeft,
             end: Alignment.topRight,
@@ -36,7 +37,7 @@ class DepartmentBox extends StatelessWidget {
             children: [
               CachedNetworkImage(
                 imageUrl:
-                    department.logo?.url ?? DepartmentBoxConfig.defaultUrl,
+                    department.logo?.url ?? DepartmentsConfig.defaultUrl,
                 color: Colors.white.withOpacity(.12),
                 fit: BoxFit.cover,
                 height: double.infinity,
@@ -53,7 +54,7 @@ class DepartmentBox extends StatelessWidget {
                     height: 8,
                   ),
                   Text(
-                    'Wydział ${department.name}',
+                    '${context.localize!.department} ${department.name}',
                     maxLines: 3,
                     overflow: TextOverflow.ellipsis,
                     style: context.textTheme.bodyWhite,
