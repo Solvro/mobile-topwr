@@ -5,6 +5,7 @@ import '../../../config.dart';
 import '../../../theme/app_theme.dart';
 import '../../../theme/hex_color.dart';
 import '../../../utils/context_extensions.dart';
+import '../../../widgets/my_cached_image.dart';
 import '../repositories/departments_repository.dart';
 
 class DepartmentBox extends StatelessWidget {
@@ -35,13 +36,7 @@ class DepartmentBox extends StatelessWidget {
           padding: const EdgeInsets.all(16.0),
           child: Stack(
             children: [
-              CachedNetworkImage(
-                imageUrl:
-                    department.logo?.url ?? DepartmentsConfig.defaultUrl,
-                color: Colors.white.withOpacity(.12),
-                fit: BoxFit.cover,
-                height: double.infinity,
-              ),
+              MyCachedImage(department.logo?.url),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
