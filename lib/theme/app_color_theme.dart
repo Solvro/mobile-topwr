@@ -17,6 +17,7 @@ class AppColorTheme extends ThemeExtension<AppColorTheme>
     this.greyLight = ColorsConsts.greyLight,
     this.blueAzure = ColorsConsts.blueAzure,
     this.toPwrGradient = ColorsConsts.toPwrGradient,
+    this.buildingsGradient = ColorsConsts.buildingsGradient,
   });
   @override
   final HexColor blackMirage;
@@ -32,4 +33,6 @@ class AppColorTheme extends ThemeExtension<AppColorTheme>
   final HexColor blueAzure;
   @override
   final LinearGradient toPwrGradient;
+  @override
+  final LinearGradient buildingsGradient;
 }

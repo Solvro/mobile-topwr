@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:topwr/theme/hex_color.dart';
+import 'hex_color.dart';
 
 abstract class ColorsConsts {
   // Mirage #293241
@@ -31,6 +31,17 @@ abstract class ColorsConsts {
     ],
     stops: [0.0, 0.25, 0.72],
     tileMode: TileMode.clamp,
+  );
+
+  static const buildingsGradient = LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [
+      Color.fromRGBO(96, 130, 180, 0),
+      Color.fromRGBO(33, 45, 63, 0.36),
+      Color.fromRGBO(22, 37, 58, 0.36),
+    ],
+    stops: [0.0, 0.7396, 1.0],
   );
 
   //Department's gradients are supposed to be pulled from server

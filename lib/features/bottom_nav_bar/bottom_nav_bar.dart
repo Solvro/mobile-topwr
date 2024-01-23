@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../theme/app_theme.dart';
 import '../home_view/home_view.dart';
+import '../student_research_group_tab/student_research_group_tab.dart';
 import 'bottom_nav_bar_controller.dart';
 import 'nav_bar_config.dart';
 
@@ -13,7 +14,7 @@ class BottomNavBar extends ConsumerWidget {
     home: HomeView(),
     mapp: _PlaceholderView("Map"),
     faculties: _PlaceholderView("Faculties"),
-    sciCircles: _PlaceholderView("Scientific Circles"),
+    sciCircles: StudentResearchGroupTab(),
     info: _PlaceholderView("Info"),
   );
 

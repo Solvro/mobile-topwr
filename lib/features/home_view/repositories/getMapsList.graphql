@@ -1,0 +1,9 @@
+query GetMapsList{
+    maps {
+        id
+        code
+        photo{
+            url
+        }
+    }
+}
