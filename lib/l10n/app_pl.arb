@@ -13,8 +13,17 @@
   "odd": "w Nieparzysty",
   "odd_f": "w Nieparzystą",
   "unknown_day": "w ten piękny dzień!",
+  "read_more": "Czytaj dalej",
+  "whats_up": "Co słychać?",
+  "study_circles" : "Koła Naukowe",
+  "see_list" : "Lista  >",
   "days": "dni",
   "to_start_session": "do rozpoczęcia sesji",
   "map_button": "Mapa",
-  "buildings_title": "Budynki"
+  "buildings_title": "Budynki",
+  "sections": "Wydziały",
+  "list": "Lista",
+  "departments": "Wydziały",
+  "department": "Wydział",
+  "search": "Szukaj"
 }

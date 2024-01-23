@@ -1,0 +1,12 @@
+
+query GetInfosPreview{
+    infos{
+        id
+        shortDescription,
+        title,
+        photo {
+            previewUrl
+        }
+        published_at
+    }
+}

@@ -1,0 +1,11 @@
+
+query  GetStudyCirclesPreview{
+    scientificCircles{
+        id
+        description
+        name
+        photo {
+                previewUrl
+        }
+    }
+}
