@@ -1,18 +1,16 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../theme/app_theme.dart';
 import '../../../../theme/hex_color.dart';
-import '../../../../widgets/loading_widget.dart';
-import '../../../splash_screen/widgets/flutter_splash_screen.dart';
+import '../../../../widgets/my_cached_image.dart';
 
 class BuildingCard extends StatelessWidget {
   const BuildingCard({
-    Key? key,
+    super.key,
     required this.onTap,
     required this.buildingName,
     required this.imageUrl,
-  }) : super(key: key);
+  });
 
   final VoidCallback onTap;
   final String buildingName;
@@ -28,21 +26,15 @@ class BuildingCard extends StatelessWidget {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            CachedNetworkImage(
-              imageUrl: imageUrl,
-              fit: BoxFit.cover,
-              placeholder: (context, url) => const LoadingWidget(),
-              errorWidget: (context, url, error) => const FlutterSplashScreen(),
-            ),
-            Positioned.fill(
-              child: imageUrl == ""
-                  ? Container()
-                  : Container(
-                      decoration: BoxDecoration(
-                        gradient: context.colorTheme.buildingsGradient,
-                      ),
-                    ),
-            ),
+            MyCachedImage(imageUrl),
+            if (imageUrl.isNotEmpty)
+              Positioned.fill(
+                child: Container(
+                  decoration: BoxDecoration(
+                    gradient: context.colorTheme.buildingsGradient,
+                  ),
+                ),
+              ),
             Container(
               margin: const EdgeInsets.only(left: 16, top: 84),
               child: Text(buildingName,

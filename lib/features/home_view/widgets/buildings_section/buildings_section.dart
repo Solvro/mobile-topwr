@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../theme/app_theme.dart';
 import '../../../../utils/context_extensions.dart';
 import '../../../../widgets/loading_widget.dart';
+import '../../../../widgets/my_error_widget.dart';
 import '../../repositories/maps_list_repository.dart';
 import 'building_card.dart';
 
@@ -24,7 +25,7 @@ class _BuildingsList extends ConsumerWidget {
     final state = ref.watch(mapsListRepositoryProvider);
     return switch (state) {
       AsyncLoading() => const LoadingWidget(),
-      AsyncError(:final error) => ErrorWidget(error),
+      AsyncError(:final error) => MyErrorWidget(error),
       AsyncValue(:final value) => Padding(
           padding: const EdgeInsets.only(left: 24, top: 16),
           child: SizedBox(
