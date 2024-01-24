@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../theme/app_theme.dart';
 import '../home_view/home_view.dart';
-import '../student_research_group_tab/student_research_group_tab.dart';
 import 'bottom_nav_bar_controller.dart';
 import 'nav_bar_config.dart';
-
 
 class BottomNavBar extends ConsumerWidget {
   const BottomNavBar({super.key});
@@ -14,7 +12,7 @@ class BottomNavBar extends ConsumerWidget {
     home: HomeView(),
     mapp: _PlaceholderView("Map"),
     faculties: _PlaceholderView("Faculties"),
-    sciCircles: StudentResearchGroupTab(),
+    sciCircles: _PlaceholderView("Placehold"),
     info: _PlaceholderView("Info"),
   );
 
@@ -68,10 +66,7 @@ class BottomNavBar extends ConsumerWidget {
                   showUnselectedLabels: false,
                   type: BottomNavigationBarType.fixed,
                   items: getNavigationBarItems(context, selectedTab),
-                )
-            )
-        )
-    );
+                ))));
   }
 }
 
@@ -85,8 +80,7 @@ class _PlaceholderView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Center(
-          child: Text(text),
-      )
-    );
+      child: Text(text),
+    ));
   }
 }
