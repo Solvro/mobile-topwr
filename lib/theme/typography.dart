@@ -10,6 +10,7 @@ class BodyTextStyle extends TextStyle {
           fontWeight: fontWeight ?? FontWeight.w400,
           letterSpacing: 0,
           color: color ?? ColorsConsts.blackMirage,
+          height: 1.2,
         );
 }
 
@@ -30,9 +31,12 @@ class LightTitleTextStyle extends BodyTextStyle {
   const LightTitleTextStyle({Color? color}) : super(fontSize: 15, color: color);
 }
 
-class GreetingTextStyle extends BodyTextStyle{
-  const GreetingTextStyle({Color? color}) : super(fontSize: 20, color: color, fontWeight: FontWeight.w400);
+class GreetingTextStyle extends BodyTextStyle {
+  const GreetingTextStyle({Color? color})
+      : super(fontSize: 20, color: color, fontWeight: FontWeight.w400);
 }
-class GreetingBoldTextStyle extends BoldBodyTextStyle{
-  const GreetingBoldTextStyle({Color? color}) : super(fontSize: 20, color: color);
+
+class GreetingBoldTextStyle extends BoldBodyTextStyle {
+  const GreetingBoldTextStyle({Color? color})
+      : super(fontSize: 20, color: color);
 }

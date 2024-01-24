@@ -32,7 +32,7 @@ class BigPreviewCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
-            flex: 145,
+            flex: 135,
             child: Container(
                 width: double.infinity,
                 decoration: BoxDecoration(
@@ -48,23 +48,32 @@ class BigPreviewCard extends StatelessWidget {
                     : const SizedBox.shrink()),
           ),
           Expanded(
-            flex: 215,
+            flex: 210,
             child: Container(
               padding: const EdgeInsets.all(16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Text(
-                    title,
-                    style: context.textTheme.title,
-                  ),
-                  Text(
-                    shortDescription,
-                    maxLines: 5,
-                    style: context.textTheme.body,
+                  RichText(
+                    maxLines: 8,
                     overflow: TextOverflow.ellipsis,
+                    text: TextSpan(children: [
+                      TextSpan(
+                        text: "$title\n",
+                        style: context.textTheme.title,
+                      ),
+                      const TextSpan(
+                        text: "\n", // padding workaround
+                        style: TextStyle(fontSize: 7, height: 1),
+                      ),
+                      TextSpan(
+                        text: shortDescription,
+                        style: context.textTheme.body,
+                      ),
+                    ]),
                   ),
+                  const Spacer(),
                   MaterialButton(
                     padding: const EdgeInsets.all(8),
                     onPressed: onClick,
