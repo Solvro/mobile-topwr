@@ -19,8 +19,10 @@ class DepartmentCard extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            HexColor(department?.color?.gradientSecond ?? DepartmentsConfig.defaultColorFirst),
-            HexColor(department?.color?.gradientFirst ?? DepartmentsConfig.defaultColorSecond),
+            HexColor(department?.color?.gradientSecond ??
+                DepartmentsConfig.defaultColorFirst),
+            HexColor(department?.color?.gradientFirst ??
+                DepartmentsConfig.defaultColorSecond),
           ],
           begin: Alignment.bottomLeft,
           end: Alignment.topRight,
@@ -41,11 +43,10 @@ class DepartmentCard extends StatelessWidget {
                   style: context.textTheme.headlineWhite,
                   overflow: TextOverflow.ellipsis,
                 ),
-
                 SizedBox(
                   width: 191,
                   child: Text(
-                    '${context.localize!.department} ${department!.name}',
+                    department!.name,
                     style: context.textTheme.bodyWhite,
                   ),
                 )
@@ -54,7 +55,13 @@ class DepartmentCard extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.only(right: 10),
-            child: MyCachedImage(department?.logo?.url)
+            child: SizedBox(
+              width: 92,
+              child: Opacity(
+                opacity: .5,
+                child: MyCachedImage(department?.logo?.url),
+              ),
+            ),
           ),
         ],
       ),

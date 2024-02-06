@@ -34,7 +34,7 @@ class SearchWidget extends ConsumerWidget {
             borderRadius: BorderRadius.circular(8),
             gapPadding: 0,
           ),
-          icon: Icon(
+          prefixIcon: Icon(
             Icons.search_outlined,
             size: 14,
             color: context.colorTheme.greyPigeon,
