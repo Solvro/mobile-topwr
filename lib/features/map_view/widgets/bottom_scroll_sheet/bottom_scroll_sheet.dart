@@ -4,13 +4,16 @@ import '../../../../config.dart';
 import '../../../../theme/app_theme.dart';
 import 'bottom_sheet_header.dart';
 
-class BottomScrollSheet extends StatelessWidget {
+typedef ItemFromListBuilder<T> = Widget Function(BuildContext context, T index);
+
+class BottomScrollSheet<T> extends StatelessWidget {
   const BottomScrollSheet({
     super.key,
-    required this.children,
+    required this.itemBuilder,
+    required this.collection,
   });
-  final List<Widget> children;
-
+  final ItemFromListBuilder<T> itemBuilder;
+  final List<T> collection;
   @override
   Widget build(BuildContext context) {
     return DraggableScrollableSheet(
@@ -30,9 +33,11 @@ class BottomScrollSheet extends StatelessWidget {
             children: [
               const BottomSheetHeader(),
               Expanded(
-                child: ListView(
+                child: ListView.builder(
                   controller: scrollController,
-                  children: children,
+                  itemCount: collection.length,
+                  itemBuilder: (context, index) =>
+                      itemBuilder(context, collection[index]),
                 ),
               ),
             ],

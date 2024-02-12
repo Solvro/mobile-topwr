@@ -6,6 +6,7 @@ import '../../../widgets/loading_widget.dart';
 import '../../../widgets/wide_tile_card.dart';
 import '../controllers/map_chosen_pin_contrl.dart';
 import '../controllers/map_view_controller.dart';
+import '../repository/map_buildings_repo.dart';
 import 'bottom_scroll_sheet/bottom_scroll_sheet.dart';
 
 class BuildingsScrollSheet extends ConsumerWidget {
@@ -18,21 +19,17 @@ class BuildingsScrollSheet extends ConsumerWidget {
       AsyncLoading() => const LoadingWidget(),
       AsyncError(:final error) => ErrorWidget(error),
       AsyncValue(:final value) => BottomScrollSheet(
-          children: [
-            for (var building in value.whereNonNull)
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
-                child: WideTileCard(
-                  title: building.name,
-                  subtitle: building.addres
-                      ?.replaceFirst(",", "\n")
-                      .replaceAll("\n ", "\n"),
-                  isActive:
-                      building == ref.watch(mapChosenPinControllerProvider),
-                ),
-              ),
-          ],
+          collection: value.whereNonNull.toList(),
+          itemBuilder: (BuildContext context, Building building) => Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+            child: WideTileCard(
+              title: building.name,
+              subtitle: building.addres
+                  ?.replaceFirst(",", "\n")
+                  .replaceAll("\n ", "\n"),
+              isActive: building == ref.watch(mapChosenPinControllerProvider),
+            ),
+          ),
         )
     };
   }
