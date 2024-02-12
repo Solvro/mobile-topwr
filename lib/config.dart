@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 abstract class MyAppConfig {
   static const title = "ToPwr";
@@ -55,4 +56,16 @@ abstract class WideTileCardConfig {
   static const basePadding = 16.0;
   static const minWidthForExtraPadding = 375;
   static const extraPaddingFactor = 0.33;
+}
+
+abstract class MapWidgetConfig {
+  static const defaultCameraPosition = CameraPosition(
+    target: LatLng(51.10738, 17.05964),
+    zoom: 16,
+  );
+  static const mapType = MapType.normal;
+
+  static const mapMarkerAssetName = "assets/map_markers/map_marker.png";
+  static const activeMapMarkerAssetName =
+      "assets/map_markers/active_map_marker.png";
 }
