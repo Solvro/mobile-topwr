@@ -20,8 +20,11 @@ class BuildingsScrollSheet extends ConsumerWidget {
       AsyncError(:final error) => ErrorWidget(error),
       AsyncValue(:final value) => BottomScrollSheet(
           collection: value.whereNonNull.toList(),
-          itemBuilder: (BuildContext context, Building building) => Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+          itemBuilder: (BuildContext context, Building building, int indx) =>
+              Padding(
+            padding: indx == 0
+                ? const EdgeInsets.only(left: 24, right: 24, bottom: 8)
+                : const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
             child: WideTileCard(
               title: building.name,
               subtitle: building.addres
