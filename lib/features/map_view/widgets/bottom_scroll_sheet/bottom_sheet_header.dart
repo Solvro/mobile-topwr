@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../theme/app_theme.dart';
-import '../../../utils/context_extensions.dart';
+import '../../../../theme/app_theme.dart';
+import '../../../../utils/context_extensions.dart';
 import 'drag_handle_section.dart';
 
 class BottomSheetHeader extends StatelessWidget {

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../theme/app_theme.dart';
-import 'widgets/bottom_scroll_sheet.dart';
+import 'widgets/bottom_scroll_sheet/bottom_scroll_sheet.dart';
+import 'widgets/buildings_scroll_sheet.dart';
 
 class MapView extends StatelessWidget {
   const MapView({super.key});
@@ -12,7 +13,7 @@ class MapView extends StatelessWidget {
       backgroundColor: context.colorTheme.whiteSoap,
       body: const Stack(children: [
         Placeholder(color: Colors.red),
-        BottomScrollSheet(),
+        BuildingsScrollSheet(),
       ]),
     );
   }
