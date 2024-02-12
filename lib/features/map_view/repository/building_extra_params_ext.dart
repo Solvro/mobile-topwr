@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-import '../controllers/map_chosen_pin_contrl.dart';
+import '../controllers/map_active_marker_cntrl.dart';
 import '../controllers/map_widget_controller.dart';
 import 'map_buildings_repo.dart';
 
@@ -13,7 +13,7 @@ extension BuildingExtraParamsExt on Building {
   MarkerId get markerId => MarkerId(id);
 
   bool isActive(RefReadOrWatch<Building?> refReadOrWatch) =>
-      refReadOrWatch(mapChosenPinControllerProvider) == this;
+      refReadOrWatch(mapActiveMarkerControllerProvider) == this;
 
   BitmapDescriptor mapMarkerIcon(RefReadOrWatch<Building?> refReadOrWatch) =>
       isActive(refReadOrWatch)

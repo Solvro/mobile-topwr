@@ -7,7 +7,8 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../config.dart';
 import '../repository/building_extra_params_ext.dart';
 import '../repository/map_buildings_repo.dart';
-import 'map_chosen_pin_contrl.dart';
+import 'map_active_marker_cntrl.dart';
+import 'map_view_controller.dart';
 
 part "map_widget_controller.g.dart";
 
@@ -39,7 +40,7 @@ class MapWidgetController extends _$MapWidgetController {
     _controller.complete(controller);
   }
 
-  void selectBuildingMarker(Building building) {
+  void zoomOnMarker(Building building) {
     state.value?.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
       target: building.location,
       zoom: MapWidgetConfig.defaultMarkerZoom,
@@ -47,9 +48,17 @@ class MapWidgetController extends _$MapWidgetController {
   }
 
   void onMarkerTap(Building building) {
-    ref.read(mapChosenPinControllerProvider.notifier).toggleBuilding(building);
+    ref
+        .read(mapActiveMarkerControllerProvider.notifier)
+        .toggleBuilding(building);
     if (building.isActive(ref.read)) {
-      selectBuildingMarker(building);
+      zoomOnMarker(building);
     }
+    ref.watch(bottomSheetControllerProvider).reset();
+  }
+
+  void onMapBgTap(LatLng _) {
+    ref.read(mapActiveMarkerControllerProvider.notifier).unselect();
+    ref.read(bottomSheetControllerProvider).reset();
   }
 }

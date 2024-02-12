@@ -11,13 +11,11 @@ import '../repository/map_buildings_repo.dart';
 
 class BuildingsListView extends ConsumerWidget {
   const BuildingsListView(
-    this.scrollController,
-    this.sheetController, {
+    this.scrollController, {
     super.key,
   });
 
   final ScrollController scrollController;
-  final DraggableScrollableController sheetController;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -31,17 +29,9 @@ class BuildingsListView extends ConsumerWidget {
             controller: scrollController,
             itemCount: buildingsList.length,
             itemBuilder: (context, index) => Padding(
-              padding: index == 0
-                  ? const EdgeInsets.only(left: 24, right: 24, bottom: 8)
-                  : const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+              padding: const EdgeInsets.only(left: 24, right: 24, bottom: 16),
               child: _BuildingTile(
                 buildingsList[index],
-                onTap: () {
-                  ref
-                      .read(mapWidgetControllerProvider.notifier)
-                      .onMarkerTap(buildingsList[index]);
-                  sheetController.reset();
-                },
               ),
             ),
           );
@@ -51,17 +41,20 @@ class BuildingsListView extends ConsumerWidget {
 }
 
 class _BuildingTile extends ConsumerWidget {
-  const _BuildingTile(this.building, {required this.onTap});
+  const _BuildingTile(
+    this.building,
+  );
 
   final Building building;
-  final VoidCallback onTap;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return WideTileCard(
       title: building.name,
       subtitle: building.addresFormatted,
       isActive: building.isActive(ref.watch),
-      onTap: onTap,
+      onTap: () {
+        ref.read(mapWidgetControllerProvider.notifier).onMarkerTap(building);
+      },
     );
   }
 }

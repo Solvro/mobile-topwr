@@ -1,10 +1,11 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../repository/map_buildings_repo.dart';
-part "map_chosen_pin_contrl.g.dart";
+
+part "map_active_marker_cntrl.g.dart";
 
 @riverpod
-class MapChosenPinController extends _$MapChosenPinController {
+class MapActiveMarkerController extends _$MapActiveMarkerController {
   @override
   Building? build() {
     return null;

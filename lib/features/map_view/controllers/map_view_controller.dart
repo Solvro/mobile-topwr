@@ -1,7 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../repository/map_buildings_repo.dart';
-import 'map_chosen_pin_contrl.dart';
+import 'map_active_marker_cntrl.dart';
 
 part "map_view_controller.g.dart";
 
@@ -11,15 +12,13 @@ class MapViewController extends _$MapViewController {
 
   @override
   Future<Iterable<Building?>?> build() async {
-    final buildingSelected = ref.watch(mapChosenPinControllerProvider);
+    final buildingSelected = ref.watch(mapActiveMarkerControllerProvider);
     if (buildingSelected != null) {
-      return [buildingSelected];
+      return [buildingSelected]; // shows only selected building
     }
 
-    return ref
-        .watch(mapBuildingsRepositoryProvider)
-        .valueOrNull
-        ?.where(_filterMethod);
+    return ref.watch(mapBuildingsRepositoryProvider).valueOrNull?.where(
+        _filterMethod); // or elsewhere a whole list, filtered by text field
   }
 
   bool _filterMethod(Building? building) {
@@ -35,3 +34,8 @@ class MapViewController extends _$MapViewController {
     ref.invalidateSelf();
   }
 }
+
+@riverpod
+DraggableScrollableController bottomSheetController(
+        BottomSheetControllerRef ref) =>
+    DraggableScrollableController();

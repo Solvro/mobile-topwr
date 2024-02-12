@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../config.dart';
 import '../../../../theme/app_theme.dart';
+import '../../controllers/map_view_controller.dart';
 import '../building_list_view.dart';
 import 'bottom_sheet_header.dart';
 
 typedef ItemFromListBuilder<T> = Widget Function(
     BuildContext context, T element, int index);
 
-class BottomScrollSheet<T> extends StatelessWidget {
+class BottomScrollSheet<T> extends ConsumerWidget {
   const BottomScrollSheet({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final sheetController = DraggableScrollableController();
+  Widget build(BuildContext context, WidgetRef ref) {
     return DraggableScrollableSheet(
-      controller: sheetController,
+      controller: ref.watch(bottomSheetControllerProvider),
       initialChildSize: 0.4,
       maxChildSize: 1,
       minChildSize: 0.2,
@@ -30,7 +31,7 @@ class BottomScrollSheet<T> extends StatelessWidget {
             children: [
               const BottomSheetHeader(),
               Expanded(
-                child: BuildingsListView(scrollController, sheetController),
+                child: BuildingsListView(scrollController),
               ),
             ],
           ),
