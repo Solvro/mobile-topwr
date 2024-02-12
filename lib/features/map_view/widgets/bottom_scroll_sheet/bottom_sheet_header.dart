@@ -15,7 +15,7 @@ class BottomSheetHeader extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(
             left: 24,
-            bottom: 16,
+            //bottom: 16,
             right: 18,
           ),
           child: Row(

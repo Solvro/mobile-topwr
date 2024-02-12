@@ -50,3 +50,8 @@ abstract class BigPreviewCardConfig {
 abstract class MapViewConfig {
   static const bottomSheetRadius = Radius.circular(24);
 }
+
+abstract class WideTileCardConfig {
+  static const minWidthForExtraPadding = 375;
+  static const extraPaddingFactor = 0.33;
+}

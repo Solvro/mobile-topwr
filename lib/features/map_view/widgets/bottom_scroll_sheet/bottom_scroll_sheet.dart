@@ -15,7 +15,7 @@ class BottomScrollSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return DraggableScrollableSheet(
       // key: _sheet,
-      initialChildSize: 0.2,
+      initialChildSize: 0.4,
       maxChildSize: 1,
       minChildSize: 0.2,
       expand: true,
@@ -30,9 +30,12 @@ class BottomScrollSheet extends StatelessWidget {
             children: [
               const BottomSheetHeader(),
               Expanded(
-                child: ListView(
-                  controller: scrollController,
-                  children: children,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: ListView(
+                    controller: scrollController,
+                    children: children,
+                  ),
                 ),
               ),
             ],

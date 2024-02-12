@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../utils/where_non_null_iterable.dart';
 import '../../../widgets/loading_widget.dart';
 import '../../../widgets/wide_tile_card.dart';
 import '../controllers/map_chosen_pin_contrl.dart';
 import '../controllers/map_view_controller.dart';
-import '../repository/map_buildings_repo.dart';
 import 'bottom_scroll_sheet/bottom_scroll_sheet.dart';
 
 class BuildingsScrollSheet extends ConsumerWidget {
@@ -19,10 +19,12 @@ class BuildingsScrollSheet extends ConsumerWidget {
       AsyncError(:final error) => ErrorWidget(error),
       AsyncValue(:final value) => BottomScrollSheet(
           children: [
-            for (var building in (value ?? <Building?>[]))
+            for (var building in value.whereNonNull)
               WideTileCard(
-                title: building?.name ?? "",
-                subtitle: building?.addres ?? "",
+                title: building.name,
+                subtitle: building.addres
+                    ?.replaceFirst(",", "\n")
+                    .replaceAll("\n ", "\n"),
                 isActive: building == ref.watch(mapChosenPinControllerProvider),
               ),
           ],

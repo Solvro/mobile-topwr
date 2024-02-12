@@ -26,5 +26,6 @@
   "departments": "Wydziały",
   "department": "Wydział",
   "search": "Szukaj",
-  "navigate" : "Nawiguj"
+  "navigate" : "Nawiguj",
+  "building_prefix": "Budynek"
 }
