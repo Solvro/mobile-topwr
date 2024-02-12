@@ -20,12 +20,17 @@ class BuildingsScrollSheet extends ConsumerWidget {
       AsyncValue(:final value) => BottomScrollSheet(
           children: [
             for (var building in value.whereNonNull)
-              WideTileCard(
-                title: building.name,
-                subtitle: building.addres
-                    ?.replaceFirst(",", "\n")
-                    .replaceAll("\n ", "\n"),
-                isActive: building == ref.watch(mapChosenPinControllerProvider),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+                child: WideTileCard(
+                  title: building.name,
+                  subtitle: building.addres
+                      ?.replaceFirst(",", "\n")
+                      .replaceAll("\n ", "\n"),
+                  isActive:
+                      building == ref.watch(mapChosenPinControllerProvider),
+                ),
               ),
           ],
         )

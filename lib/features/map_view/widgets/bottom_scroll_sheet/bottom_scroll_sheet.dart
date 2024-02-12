@@ -30,12 +30,9 @@ class BottomScrollSheet extends StatelessWidget {
             children: [
               const BottomSheetHeader(),
               Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
-                  child: ListView(
-                    controller: scrollController,
-                    children: children,
-                  ),
+                child: ListView(
+                  controller: scrollController,
+                  children: children,
                 ),
               ),
             ],

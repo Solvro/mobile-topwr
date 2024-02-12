@@ -52,6 +52,7 @@ abstract class MapViewConfig {
 }
 
 abstract class WideTileCardConfig {
+  static const basePadding = 16.0;
   static const minWidthForExtraPadding = 375;
   static const extraPaddingFactor = 0.33;
 }
