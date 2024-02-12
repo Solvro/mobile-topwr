@@ -5,6 +5,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../config.dart';
+import '../repository/building_extra_params_ext.dart';
 import '../repository/map_buildings_repo.dart';
 import 'map_chosen_pin_contrl.dart';
 
@@ -36,5 +37,19 @@ class MapWidgetController extends _$MapWidgetController {
 
   void onMapCreated(GoogleMapController controller) {
     _controller.complete(controller);
+  }
+
+  void selectBuildingMarker(Building building) {
+    state.value?.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
+      target: building.location,
+      zoom: MapWidgetConfig.defaultMarkerZoom,
+    )));
+  }
+
+  void onMarkerTap(Building building) {
+    ref.read(mapChosenPinControllerProvider.notifier).toggleBuilding(building);
+    if (building.isActive(ref.read)) {
+      selectBuildingMarker(building);
+    }
   }
 }

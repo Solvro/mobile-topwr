@@ -2,22 +2,20 @@ import 'package:flutter/material.dart';
 
 import '../../../../config.dart';
 import '../../../../theme/app_theme.dart';
+import '../building_list_view.dart';
 import 'bottom_sheet_header.dart';
 
 typedef ItemFromListBuilder<T> = Widget Function(
     BuildContext context, T element, int index);
 
 class BottomScrollSheet<T> extends StatelessWidget {
-  const BottomScrollSheet({
-    super.key,
-    required this.itemBuilder,
-    required this.collection,
-  });
-  final ItemFromListBuilder<T> itemBuilder;
-  final List<T> collection;
+  const BottomScrollSheet({super.key});
+
   @override
   Widget build(BuildContext context) {
+    final sheetController = DraggableScrollableController();
     return DraggableScrollableSheet(
+      controller: sheetController,
       initialChildSize: 0.4,
       maxChildSize: 1,
       minChildSize: 0.2,
@@ -32,12 +30,7 @@ class BottomScrollSheet<T> extends StatelessWidget {
             children: [
               const BottomSheetHeader(),
               Expanded(
-                child: ListView.builder(
-                  controller: scrollController,
-                  itemCount: collection.length,
-                  itemBuilder: (context, index) =>
-                      itemBuilder(context, collection[index], index),
-                ),
+                child: BuildingsListView(scrollController, sheetController),
               ),
             ],
           ),

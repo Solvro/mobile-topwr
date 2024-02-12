@@ -59,6 +59,7 @@ abstract class WideTileCardConfig {
 }
 
 abstract class MapWidgetConfig {
+  static const defaultMarkerZoom = 17.0;
   static const defaultCameraPosition = CameraPosition(
     target: LatLng(51.10738, 17.05964),
     zoom: 16,

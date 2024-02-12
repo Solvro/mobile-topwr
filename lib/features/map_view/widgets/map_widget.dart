@@ -6,6 +6,7 @@ import '../../../config.dart';
 import '../../../utils/where_non_null_iterable.dart';
 import '../controllers/map_chosen_pin_contrl.dart';
 import '../controllers/map_widget_controller.dart';
+import '../repository/building_extra_params_ext.dart';
 import '../repository/map_buildings_repo.dart';
 
 class MapWidget extends ConsumerWidget {
@@ -29,12 +30,11 @@ class MapWidget extends ConsumerWidget {
         markers: {
           for (var building in buildingsState)
             Marker(
-              markerId: MarkerId(building.id),
-              position: LatLng(building.latitude, building.longitude),
-              icon: building == ref.watch(mapChosenPinControllerProvider)
-                  ? MapWidgetController.activeMapMarker
-                  : MapWidgetController.mapMarker,
-              onTap: () => chosenPinController.toggleBuilding(building),
+              consumeTapEvents: true,
+              markerId: building.markerId,
+              position: building.location,
+              icon: building.mapMarkerIcon(ref.watch),
+              onTap: () => mapController.onMarkerTap(building),
             ),
         });
   }

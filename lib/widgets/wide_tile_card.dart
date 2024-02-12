@@ -9,11 +9,12 @@ import 'my_cached_image.dart';
 
 class WideTileCard extends StatelessWidget {
   const WideTileCard({
-    this.isActive = false,
     required this.title,
     this.subtitle,
-    super.key,
     this.photoUrl,
+    this.onTap,
+    this.isActive = false,
+    super.key,
   });
 
   final String title;
@@ -22,32 +23,36 @@ class WideTileCard extends StatelessWidget {
 
   final bool isActive;
 
+  final VoidCallback? onTap;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        gradient: isActive ? context.colorTheme.toPwrGradient : null,
-        color: context.colorTheme.greyLight,
-        borderRadius: const BorderRadius.all(Radius.circular(8)),
-        boxShadow: isActive
-            ? const [
-                BoxShadow(
-                  color: Color.fromRGBO(250, 100, 101, 0.16),
-                  blurRadius: 11.0,
-                  spreadRadius: 6.0,
-                )
-              ]
-            : null,
-      ),
-      clipBehavior: Clip.antiAlias,
-      child: Row(
-        children: [
-          _TitlesColumn(title, subtitle, isActive),
-          SizedBox.square(
-            dimension: 92,
-            child: MyCachedImage(photoUrl),
-          ),
-        ],
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        decoration: BoxDecoration(
+          gradient: isActive ? context.colorTheme.toPwrGradient : null,
+          color: context.colorTheme.greyLight,
+          borderRadius: const BorderRadius.all(Radius.circular(8)),
+          boxShadow: isActive
+              ? const [
+                  BoxShadow(
+                    color: Color.fromRGBO(250, 100, 101, 0.16),
+                    blurRadius: 11.0,
+                    spreadRadius: 6.0,
+                  )
+                ]
+              : null,
+        ),
+        clipBehavior: Clip.antiAlias,
+        child: Row(
+          children: [
+            _TitlesColumn(title, subtitle, isActive),
+            SizedBox.square(
+              dimension: 92,
+              child: MyCachedImage(photoUrl),
+            ),
+          ],
+        ),
       ),
     );
   }
