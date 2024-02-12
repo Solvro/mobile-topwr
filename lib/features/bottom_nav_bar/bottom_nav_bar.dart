@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../theme/app_theme.dart';
 import '../home_view/home_view.dart';
+import '../map_view/map_view.dart';
 import 'bottom_nav_bar_controller.dart';
 import 'nav_bar_config.dart';
 
@@ -10,7 +11,7 @@ class BottomNavBar extends ConsumerWidget {
 
   static const _widgetOptions = UnmodifiableNavBarEnumMap(
     home: HomeView(),
-    mapp: _PlaceholderView("Map"),
+    mapp: MapView(),
     faculties: _PlaceholderView("Faculties"),
     sciCircles: _PlaceholderView("sciCircles"),
     info: _PlaceholderView("Info"),
