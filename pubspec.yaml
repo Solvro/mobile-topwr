@@ -47,9 +47,10 @@ dependencies:
   logger: ^2.0.2+1
   equatable: ^2.0.5
   enum_map: ^0.3.0
+  google_maps_flutter: ^2.5.3
 
 dependency_overrides:
-    analyzer: ^6.0.0
+  analyzer: ^6.0.0
 
 dev_dependencies:
   flutter_test:
@@ -86,9 +87,9 @@ flutter:
     - family: Schyler
       fonts:
         - asset: assets/fonts/Rubik-VariableFont_wght.ttf
-    - family:  BottomNavBarIcon
+    - family: BottomNavBarIcon
       fonts:
-       - asset: assets/fonts/BottomNavBarIcon.ttf
+        - asset: assets/fonts/BottomNavBarIcon.ttf
 
 flutter_native_splash:
   background_image: assets/splash_screen/native_splash_bg.png
@@ -97,5 +98,3 @@ flutter_native_splash:
   android_12:
     color: "#EE6644"
     image: assets/splash_screen/splash_logo.png
-
-
