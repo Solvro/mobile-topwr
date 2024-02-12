@@ -5,28 +5,36 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../../../config.dart';
 import '../../../utils/where_non_null_iterable.dart';
 import '../controllers/map_chosen_pin_contrl.dart';
-import '../controllers/map_view_controller.dart';
 import '../controllers/map_widget_controller.dart';
+import '../repository/map_buildings_repo.dart';
 
 class MapWidget extends ConsumerWidget {
   const MapWidget({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final buildings = ref.watch(mapViewControllerProvider).value.whereNonNull;
+    final buildingsState =
+        ref.watch(mapBuildingsRepositoryProvider).value.whereNonNull;
+
+    final mapController = ref.watch(mapWidgetControllerProvider.notifier);
+
+    final chosenPinController =
+        ref.watch(mapChosenPinControllerProvider.notifier);
+
     return GoogleMap(
         mapType: MapWidgetConfig.mapType,
         initialCameraPosition: MapWidgetConfig.defaultCameraPosition,
-        onMapCreated: (GoogleMapController contrl) =>
-            ref.read(mapWidgetControllerProvider.notifier).onMapCreated(contrl),
+        onMapCreated: mapController.onMapCreated,
+        onTap: (_) => chosenPinController.unselect(),
         markers: {
-          for (var building in buildings)
+          for (var building in buildingsState)
             Marker(
               markerId: MarkerId(building.id),
               position: LatLng(building.latitude, building.longitude),
               icon: building == ref.watch(mapChosenPinControllerProvider)
                   ? MapWidgetController.activeMapMarker
                   : MapWidgetController.mapMarker,
+              onTap: () => chosenPinController.toggleBuilding(building),
             ),
         });
   }

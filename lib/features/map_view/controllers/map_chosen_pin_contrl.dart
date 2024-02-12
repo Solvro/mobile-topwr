@@ -17,4 +17,12 @@ class MapChosenPinController extends _$MapChosenPinController {
   void unselect() {
     state = null;
   }
+
+  void toggleBuilding(Building building) {
+    if (state == building) {
+      unselect();
+    } else {
+      selectBuilding(building);
+    }
+  }
 }

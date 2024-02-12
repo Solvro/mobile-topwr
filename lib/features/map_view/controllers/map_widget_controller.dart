@@ -5,6 +5,8 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../config.dart';
+import '../repository/map_buildings_repo.dart';
+import 'map_chosen_pin_contrl.dart';
 
 part "map_widget_controller.g.dart";
 
