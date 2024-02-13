@@ -7,13 +7,13 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../config.dart';
 import '../repository/building_extra_params_ext.dart';
 import '../repository/map_buildings_repo.dart';
-import 'map_active_marker_cntrl.dart';
-import 'map_view_controller.dart';
+import 'active_map_marker_cntrl.dart';
+import 'buildings_listview_controller.dart';
 
-part "map_widget_controller.g.dart";
+part "map_controller.g.dart";
 
 @riverpod
-class MapWidgetController extends _$MapWidgetController {
+class MapController extends _$MapController {
   static late final BitmapDescriptor mapMarker;
   static late final BitmapDescriptor activeMapMarker;
 
@@ -49,16 +49,16 @@ class MapWidgetController extends _$MapWidgetController {
 
   void onMarkerTap(Building building) {
     ref
-        .read(mapActiveMarkerControllerProvider.notifier)
+        .read(activeMapMarkerControllerProvider.notifier)
         .toggleBuilding(building);
     if (building.isActive(ref.read)) {
       zoomOnMarker(building);
     }
-    ref.watch(bottomSheetControllerProvider).reset();
+    ref.read(bottomSheetControllerProvider).reset();
   }
 
   void onMapBgTap(LatLng _) {
-    ref.read(mapActiveMarkerControllerProvider.notifier).unselect();
+    ref.read(activeMapMarkerControllerProvider.notifier).unselect();
     ref.read(bottomSheetControllerProvider).reset();
   }
 }

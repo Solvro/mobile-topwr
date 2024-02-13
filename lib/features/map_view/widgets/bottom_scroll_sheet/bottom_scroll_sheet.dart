@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../config.dart';
 import '../../../../theme/app_theme.dart';
-import '../../controllers/map_view_controller.dart';
+import '../../controllers/buildings_listview_controller.dart';
 import '../building_list_view.dart';
 import 'bottom_sheet_header.dart';
 
@@ -17,9 +17,9 @@ class BottomScrollSheet<T> extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return DraggableScrollableSheet(
       controller: ref.watch(bottomSheetControllerProvider),
-      initialChildSize: 0.4,
+      initialChildSize: 0.3,
       maxChildSize: 1,
-      minChildSize: 0.2,
+      minChildSize: 0.3,
       expand: true,
       snap: true,
       snapSizes: const [0.5, 0.75],

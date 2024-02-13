@@ -2,10 +2,10 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../repository/map_buildings_repo.dart';
 
-part "map_active_marker_cntrl.g.dart";
+part "active_map_marker_cntrl.g.dart";
 
 @riverpod
-class MapActiveMarkerController extends _$MapActiveMarkerController {
+class ActiveMapMarkerController extends _$ActiveMapMarkerController {
   @override
   Building? build() {
     return null;

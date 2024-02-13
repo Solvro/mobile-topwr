@@ -4,7 +4,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../../config.dart';
 import '../../../utils/where_non_null_iterable.dart';
-import '../controllers/map_widget_controller.dart';
+import '../controllers/map_controller.dart';
 import '../repository/building_extra_params_ext.dart';
 import '../repository/map_buildings_repo.dart';
 
@@ -15,7 +15,7 @@ class MapWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final buildingsState =
         ref.watch(mapBuildingsRepositoryProvider).value.whereNonNull;
-    final mapController = ref.watch(mapWidgetControllerProvider.notifier);
+    final mapController = ref.watch(mapControllerProvider.notifier);
 
     return GoogleMap(
         mapType: MapWidgetConfig.mapType,

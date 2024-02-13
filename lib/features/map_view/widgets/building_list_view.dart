@@ -4,8 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../utils/where_non_null_iterable.dart';
 import '../../../widgets/loading_widget.dart';
 import '../../../widgets/wide_tile_card.dart';
-import '../controllers/map_view_controller.dart';
-import '../controllers/map_widget_controller.dart';
+import '../controllers/buildings_listview_controller.dart';
+import '../controllers/map_controller.dart';
 import '../repository/building_extra_params_ext.dart';
 import '../repository/map_buildings_repo.dart';
 
@@ -19,7 +19,7 @@ class BuildingsListView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final buildingsState = ref.watch(mapViewControllerProvider);
+    final buildingsState = ref.watch(buildingsListViewControllerProvider);
     return switch (buildingsState) {
       AsyncLoading() => const LoadingWidget(),
       AsyncError(:final error) => ErrorWidget(error),
@@ -67,7 +67,7 @@ class _BuildingTile extends ConsumerWidget {
       subtitle: building.addresFormatted,
       isActive: building.isActive(ref.watch),
       onTap: () {
-        ref.read(mapWidgetControllerProvider.notifier).onMarkerTap(building);
+        ref.read(mapControllerProvider.notifier).onMarkerTap(building);
       },
     );
   }

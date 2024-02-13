@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../repository/map_buildings_repo.dart';
-import 'map_active_marker_cntrl.dart';
+import 'active_map_marker_cntrl.dart';
 
-part "map_view_controller.g.dart";
+part "buildings_listview_controller.g.dart";
 
 @riverpod
-class MapViewController extends _$MapViewController {
+class BuildingsListViewController extends _$BuildingsListViewController {
   String _textFieldFilterText = "";
 
   @override
   Future<Iterable<Building?>?> build() async {
-    final buildingSelected = ref.watch(mapActiveMarkerControllerProvider);
+    final buildingSelected = ref.watch(activeMapMarkerControllerProvider);
     if (buildingSelected != null) {
       return [buildingSelected]; // shows only selected building
     }
