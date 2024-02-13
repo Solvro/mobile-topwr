@@ -48,14 +48,18 @@ abstract class BigPreviewCardConfig {
   static const double cardHeight = 360;
 }
 
-abstract class MapViewConfig {
-  static const bottomSheetRadius = Radius.circular(24);
-}
-
 abstract class WideTileCardConfig {
   static const basePadding = 16.0;
   static const minWidthForExtraPadding = 375;
   static const extraPaddingFactor = 0.33;
+}
+
+abstract class MapViewBottomSheetConfig {
+  static const bottomSheetRadius = Radius.circular(24);
+  static const recomendedSheetHeight = 357;
+  static const minSheetHeight = 122;
+  static const extraSnapPointFraction1 = 0.5;
+  static const extraSnapPointFraction2 = 0.8;
 }
 
 abstract class MapWidgetConfig {

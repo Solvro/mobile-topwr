@@ -12,14 +12,25 @@ class BottomScrollSheet<T> extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final screenHeight = MediaQuery.sizeOf(context).height;
+    final recomendedSheetFraction =
+        MapViewBottomSheetConfig.recomendedSheetHeight / screenHeight;
+    final minSheetFraction =
+        MapViewBottomSheetConfig.minSheetHeight / screenHeight;
+
     return DraggableScrollableSheet(
       controller: ref.watch(bottomSheetControllerProvider),
-      initialChildSize: 0.3,
-      maxChildSize: 1,
-      minChildSize: 0.3,
+      initialChildSize: recomendedSheetFraction,
+      maxChildSize: 1, // factor 1 means 100% available height
+      minChildSize: minSheetFraction,
       expand: true,
       snap: true,
-      snapSizes: const [0.5, 0.75],
+      snapSizes: [
+        if (recomendedSheetFraction >
+            MapViewBottomSheetConfig.extraSnapPointFraction1)
+          MapViewBottomSheetConfig.extraSnapPointFraction1,
+        MapViewBottomSheetConfig.extraSnapPointFraction2,
+      ],
       builder: (BuildContext context, ScrollController scrollController) {
         return DecoratedBox(
           decoration:
@@ -42,8 +53,8 @@ class _RoundedTopDecoration extends BoxDecoration {
   const _RoundedTopDecoration({super.color})
       : super(
           borderRadius: const BorderRadius.only(
-            topLeft: MapViewConfig.bottomSheetRadius,
-            topRight: MapViewConfig.bottomSheetRadius,
+            topLeft: MapViewBottomSheetConfig.bottomSheetRadius,
+            topRight: MapViewBottomSheetConfig.bottomSheetRadius,
           ),
         );
 }
