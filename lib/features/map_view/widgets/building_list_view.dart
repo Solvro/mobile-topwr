@@ -23,20 +23,34 @@ class BuildingsListView extends ConsumerWidget {
     return switch (buildingsState) {
       AsyncLoading() => const LoadingWidget(),
       AsyncError(:final error) => ErrorWidget(error),
-      AsyncValue(:final value) => Builder(builder: (context) {
-          final buildingsList = value.whereNonNull.toList();
-          return ListView.builder(
-            controller: scrollController,
-            itemCount: buildingsList.length,
-            itemBuilder: (context, index) => Padding(
-              padding: const EdgeInsets.only(left: 24, right: 24, bottom: 16),
-              child: _BuildingTile(
-                buildingsList[index],
-              ),
-            ),
-          );
-        })
+      AsyncValue(:final value) => _DataListView(
+          buildingsList: value.whereNonNull.toList(),
+          scrollController: scrollController)
     };
+  }
+}
+
+class _DataListView extends StatelessWidget {
+  const _DataListView({
+    required this.buildingsList,
+    required this.scrollController,
+  });
+
+  final List<Building> buildingsList;
+  final ScrollController scrollController;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      controller: scrollController,
+      itemCount: buildingsList.length,
+      itemBuilder: (context, index) => Padding(
+        padding: const EdgeInsets.only(left: 24, right: 24, bottom: 16),
+        child: _BuildingTile(
+          buildingsList[index],
+        ),
+      ),
+    );
   }
 }
 
