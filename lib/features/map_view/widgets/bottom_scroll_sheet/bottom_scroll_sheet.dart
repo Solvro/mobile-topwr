@@ -7,9 +7,6 @@ import '../../controllers/buildings_listview_controller.dart';
 import '../building_list_view.dart';
 import 'bottom_sheet_header.dart';
 
-typedef ItemFromListBuilder<T> = Widget Function(
-    BuildContext context, T element, int index);
-
 class BottomScrollSheet<T> extends ConsumerWidget {
   const BottomScrollSheet({super.key});
 
