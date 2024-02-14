@@ -1,12 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-import '../../../config.dart';
-import '../../../theme/app_theme.dart';
-import '../../../theme/hex_color.dart';
-import '../../../utils/context_extensions.dart';
-import '../../../widgets/my_cached_image.dart';
-import '../repositories/departments_repository.dart';
+import '../../../../config.dart';
+import '../../../../theme/app_theme.dart';
+import '../../../../theme/hex_color.dart';
+import '../../../../utils/context_extensions.dart';
+import '../../../../widgets/my_cached_image.dart';
+import '../../repositories/departments_repository/departments_repository.dart';
 
 class DepartmentBox extends StatelessWidget {
   final Department department;
@@ -23,11 +23,10 @@ class DepartmentBox extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
           gradient: LinearGradient(
             colors: [
-              HexColor(department.color?.gradientSecond ??
-                  DepartmentsConfig.defaultColorFirst),
-              HexColor(department.color?.gradientFirst ??
-                  DepartmentsConfig.defaultColorSecond),
+              HexColor(department.color?.gradientSecond ?? DepartmentsConfig.defaultColorFirst) ,// Darker color
+              HexColor(department.color?.gradientFirst ?? DepartmentsConfig.defaultColorSecond)// Darker color
             ],
+
             begin: Alignment.bottomLeft,
             end: Alignment.topRight,
           ),
@@ -49,7 +48,7 @@ class DepartmentBox extends StatelessWidget {
                     height: 8,
                   ),
                   Text(
-                    '${context.localize!.department} ${department.name}',
+                    department.name,
                     maxLines: 3,
                     overflow: TextOverflow.ellipsis,
                     style: context.textTheme.bodyWhite,

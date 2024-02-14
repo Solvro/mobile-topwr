@@ -3,9 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../config.dart';
 import '../../../widgets/loading_widget.dart';
 import '../../../widgets/big_preview_card.dart';
-import '../../../theme/app_theme.dart';
 import '../../../utils/context_extensions.dart';
 import '../../../widgets/my_error_widget.dart';
+import '../../../widgets/subsection_header.dart';
 import '../repositories/infos_repository/infos_preview_repository.dart';
 
 class NewsSection extends ConsumerWidget {
@@ -17,20 +17,16 @@ class NewsSection extends ConsumerWidget {
     return switch (state) {
       AsyncLoading() => const LoadingWidget(),
       AsyncError(:final error) =>
-          MyErrorWidget(NewsSectionConfig.errorMsg + error.toString()),
-      AsyncValue(:final value) =>
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding:  const EdgeInsets.only(left: 24, top:16, right: 24, bottom: 4),
-                child: Text(context.localize!.whats_up,
-                    style: context.textTheme.headline),
-              ),
-              SizedBox(
+        MyErrorWidget(NewsSectionConfig.errorMsg + error.toString()),
+      AsyncValue(:final value) => Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SubsectionHeader(title: context.localize!.whats_up),
+            Padding(
+              padding: const EdgeInsets.only(left: 6, top: 16),
+              child: SizedBox(
                   height: BigPreviewCardConfig.cardHeight,
                   child: ListView.builder(
-                      padding: const EdgeInsets.only(left: 24),
                       cacheExtent: 4,
                       shrinkWrap: true,
                       scrollDirection: Axis.horizontal,
@@ -38,21 +34,22 @@ class NewsSection extends ConsumerWidget {
                       itemBuilder: (BuildContext context, int index) {
                         return Padding(
                           padding:
-                          const EdgeInsets.only(top : 8.0, right : 16.0, bottom : 8.0),
+                              const EdgeInsets.only(left: 16.0),
                           child: value == null
                               ? const MyErrorWidget(NewsSectionConfig.errorMsg)
                               : BigPreviewCard(
-                            title: value[index]?.title ?? "",
-                            shortDescription:
-                            value[index]?.shortDescription ?? "",
-                            photoUrl: value[index]?.photo?.previewUrl,
-                            date: value[index]?.published_at,
-                            onClick: () {},
-                          ),
+                                  title: value[index]?.title ?? "",
+                                  shortDescription:
+                                      value[index]?.shortDescription ?? "",
+                                  photoUrl: value[index]?.photo?.previewUrl,
+                                  date: value[index]?.published_at,
+                                  onClick: () {},
+                                ),
                         );
-                      }))
-            ],
-          )
+                      })),
+            )
+          ],
+        )
     };
   }
 }

@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import '../config.dart';
+import '../features/home_view/widgets/my_cached_image.dart';
+import '../features/splash_screen/widgets/flutter_splash_screen.dart';
 import '../theme/app_theme.dart';
 import '../utils/context_extensions.dart';
 import 'date_chip.dart';
@@ -32,21 +34,20 @@ class BigPreviewCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
-            flex: 135,
-            child: Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  borderRadius:
-                      const BorderRadius.vertical(top: Radius.circular(8)),
-                  image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: CachedNetworkImageProvider(
-                          photoUrl ?? BigPreviewCardConfig.placeHolderUrl)),
+              flex: 135,
+              child: ClipRRect(
+                borderRadius:
+                    const BorderRadius.vertical(top: Radius.circular(8)),
+                child: Stack(
+                  alignment: Alignment.topRight,
+                  children: [
+                    MyCachedImage(photoUrl),
+                    date != null
+                        ? DateChip(date: date!)
+                        : const SizedBox.shrink()
+                  ],
                 ),
-                child: date != null
-                    ? DateChip(date: date!)
-                    : const SizedBox.shrink()),
-          ),
+              )),
           Expanded(
             flex: 210,
             child: Container(
@@ -75,6 +76,7 @@ class BigPreviewCard extends StatelessWidget {
                   ),
                   const Spacer(),
                   MaterialButton(
+                    elevation: 1,
                     padding: const EdgeInsets.all(8),
                     onPressed: onClick,
                     color: context.colorTheme.orangePomegranade,
