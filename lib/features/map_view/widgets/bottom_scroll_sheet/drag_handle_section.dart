@@ -9,12 +9,9 @@ class DragHandleSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: context.colorTheme.whiteSoap,
-      height: 48,
-      child: const Center(
-        child: _LineHandle(),
-      ),
+    return const Padding(
+      padding: EdgeInsets.symmetric(vertical: 16),
+      child: _LineHandle(),
     );
   }
 }
