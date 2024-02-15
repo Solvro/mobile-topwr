@@ -33,7 +33,8 @@ class BottomScrollSheet<T> extends ConsumerWidget {
         MapViewBottomSheetConfig.extraSnapPointFraction2,
       ],
       builder: (BuildContext context, ScrollController scrollController) {
-        return DecoratedBox(
+        return Container(
+          clipBehavior: Clip.antiAlias,
           decoration:
               _RoundedTopDecoration(color: context.colorTheme.whiteSoap),
           child: SheetStickyHeader(
