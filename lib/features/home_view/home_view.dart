@@ -21,7 +21,6 @@ class HomeView extends StatelessWidget {
       const StudyCirclesSection(),
       const DepartmentSection(),
     ];
-
     return Scaffold(
       backgroundColor: context.colorTheme.whiteSoap,
       appBar: LogoAppBar(context),

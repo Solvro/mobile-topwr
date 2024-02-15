@@ -1,11 +1,8 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import '../config.dart';
-import '../features/home_view/widgets/my_cached_image.dart';
-import '../features/splash_screen/widgets/flutter_splash_screen.dart';
 import '../theme/app_theme.dart';
 import '../utils/context_extensions.dart';
 import 'date_chip.dart';
+import 'my_cached_image.dart';
 
 class BigPreviewCard extends StatelessWidget {
   const BigPreviewCard({

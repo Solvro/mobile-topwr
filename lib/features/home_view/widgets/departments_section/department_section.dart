@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import '../../../../utils/context_extensions.dart';
-import '../../../../widgets/loading_widget.dart';
+import '../../../../widgets/shimmer_loading.dart';
 import '../../../../widgets/subsection_header.dart';
 import '../../repositories/departments_repository/departments_repository.dart';
 import 'deparment_box.dart';
@@ -25,7 +24,18 @@ class DepartmentSection extends ConsumerWidget {
           child: SizedBox(
               height: 120,
               child: switch (state) {
-                AsyncLoading() => const LoadingWidget(),
+                AsyncLoading() => Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: ShimmeringEffect(
+                      child: Container(
+                        width: double.maxFinite,
+                        height: 120,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                      )),
+                ),
                 AsyncError(:final error) => ErrorWidget(error),
                 AsyncValue(:final value) => ListView.builder(
                     scrollDirection: Axis.horizontal,
