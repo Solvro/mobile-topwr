@@ -17,7 +17,13 @@ Stream<List<Department?>?> departmentsRepository(DepartmentsRepositoryRef ref) a
         eagerlyFetchResults: true, 
     ),
   );
-  yield* stream.map(
+
+  yield* stream.asyncMap((event) async {
+    await Future.delayed(const Duration(seconds: 40));
+    return event?.departments;
+  });
+
+/*  yield* stream.map(
     (event) => event?.departments,
-  );
+  );*/
 }
