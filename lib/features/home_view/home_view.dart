@@ -16,7 +16,16 @@ class HomeView extends StatelessWidget {
     return Scaffold(
       backgroundColor: context.colorTheme.whiteSoap,
       appBar: LogoAppBar(context),
-      body: ListView(children:  const [Greeting(),   ExamSessionCountdown(), NewsSection(), BuildingsSection(), StudyCirclesSection(), DepartmentSection()]),
+      body: ListView(
+        children: const [
+          Greeting(),
+          ExamSessionCountdown(),
+          NewsSection(),
+          BuildingsSection(),
+          StudyCirclesSection(),
+          DepartmentSection(),
+        ],
+      ),
     );
   }
 }

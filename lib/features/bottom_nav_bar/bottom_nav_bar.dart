@@ -13,7 +13,7 @@ class BottomNavBar extends ConsumerWidget {
   static const _widgetOptions = UnmodifiableNavBarEnumMap(
     home: HomeView(),
     mapp: MapView(),
-    faculties: _PlaceholderView("Faculties"),
+    faculties: DepartmentTab(),
     sciCircles: _PlaceholderView("sciCircles"),
     info: _PlaceholderView("Info"),
   );

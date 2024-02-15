@@ -27,6 +27,6 @@
   "department": "Wydział",
   "search": "Szukaj",
   "navigate" : "Nawiguj",
-  "building_prefix": "Budynek"
+  "building_prefix": "Budynek",
   "department_not_found": "Nie znaleziono wydziału"
 }
