@@ -23,10 +23,10 @@ class BuildingsListViewController extends _$BuildingsListViewController {
 
   bool _filterMethod(Building? building) {
     if (building == null) return false;
-    final filter = _textFieldFilterText;
-    return building.name.contains(filter) ||
-        building.code.contains(filter) ||
-        (building.addres?.contains(filter) ?? false);
+    final filter = _textFieldFilterText.toLowerCase();
+    return building.name.toLowerCase().contains(filter) ||
+        building.code.toLowerCase().contains(filter) ||
+        (building.addres?.toLowerCase().contains(filter) ?? false);
   }
 
   void updateSearchText(String newText) {
