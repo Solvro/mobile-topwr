@@ -4,8 +4,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../config.dart';
 import '../../../../theme/app_theme.dart';
 import '../../controllers/buildings_listview_controller.dart';
-import '../building_list_view.dart';
+import '../buildings_list.dart';
 import 'bottom_sheet_header.dart';
+import 'sheet_sticky_header.dart';
 
 class BottomScrollSheet<T> extends ConsumerWidget {
   const BottomScrollSheet({super.key});
@@ -23,7 +24,7 @@ class BottomScrollSheet<T> extends ConsumerWidget {
       initialChildSize: recomendedSheetFraction,
       maxChildSize: 1, // factor 1 means 100% available height
       minChildSize: minSheetFraction,
-      expand: true,
+      //expand: true,
       snap: true,
       snapSizes: [
         if (recomendedSheetFraction >
@@ -35,13 +36,10 @@ class BottomScrollSheet<T> extends ConsumerWidget {
         return DecoratedBox(
           decoration:
               _RoundedTopDecoration(color: context.colorTheme.whiteSoap),
-          child: Column(
-            children: [
-              const BottomSheetHeader(),
-              Expanded(
-                child: BuildingsListView(scrollController),
-              ),
-            ],
+          child: SheetStickyHeader(
+            scrollController: scrollController,
+            header: const BottomSheetHeader(),
+            body: const BuildingsList(),
           ),
         );
       },

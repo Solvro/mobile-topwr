@@ -11,34 +11,37 @@ class BottomSheetHeader extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Column(
-      children: [
-        const DragHandleSection(),
-        Padding(
-          padding: const EdgeInsets.only(
-            left: 24,
-            //bottom: 16,
-            right: 18,
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                context.localize?.buildings_title ?? "",
-                style: context.textTheme.headline,
-              ),
-              if (ref.watch(activeMapMarkerControllerProvider) != null)
-                TextButton(
-                  onPressed: () {},
-                  child: Text(
-                    context.localize?.navigate ?? "",
-                    style: context.textTheme.boldBodyOrange,
-                  ),
+    return DecoratedBox(
+      decoration: BoxDecoration(color: context.colorTheme.whiteSoap),
+      child: Column(
+        children: [
+          const DragHandleSection(),
+          Padding(
+            padding: const EdgeInsets.only(
+              left: 24,
+              bottom: 16,
+              right: 18,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  context.localize?.buildings_title ?? "",
+                  style: context.textTheme.headline,
                 ),
-            ],
+                if (ref.watch(activeMapMarkerControllerProvider) != null)
+                  TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      context.localize?.navigate ?? "",
+                      style: context.textTheme.boldBodyOrange,
+                    ),
+                  ),
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

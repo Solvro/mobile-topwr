@@ -9,13 +9,8 @@ import '../controllers/map_controller.dart';
 import '../repository/building_extra_params_ext.dart';
 import '../repository/map_buildings_repo.dart';
 
-class BuildingsListView extends ConsumerWidget {
-  const BuildingsListView(
-    this.scrollController, {
-    super.key,
-  });
-
-  final ScrollController scrollController;
+class BuildingsList extends ConsumerWidget {
+  const BuildingsList({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -23,34 +18,16 @@ class BuildingsListView extends ConsumerWidget {
     return switch (buildingsState) {
       AsyncLoading() => const LoadingWidget(),
       AsyncError(:final error) => ErrorWidget(error),
-      AsyncValue(:final value) => _DataListView(
-          buildingsList: value.whereNonNull.toList(),
-          scrollController: scrollController)
+      AsyncValue(:final value) => Column(
+          children: [
+            for (var building in value.whereNonNull)
+              Padding(
+                padding: const EdgeInsets.only(left: 24, right: 24, bottom: 16),
+                child: _BuildingTile(building),
+              ),
+          ],
+        )
     };
-  }
-}
-
-class _DataListView extends StatelessWidget {
-  const _DataListView({
-    required this.buildingsList,
-    required this.scrollController,
-  });
-
-  final List<Building> buildingsList;
-  final ScrollController scrollController;
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      controller: scrollController,
-      itemCount: buildingsList.length,
-      itemBuilder: (context, index) => Padding(
-        padding: const EdgeInsets.only(left: 24, right: 24, bottom: 16),
-        child: _BuildingTile(
-          buildingsList[index],
-        ),
-      ),
-    );
   }
 }
 
