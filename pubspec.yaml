@@ -80,6 +80,8 @@ flutter:
     - assets/logo_app_bar.svg
     - assets/map_markers/map_marker.png
     - assets/map_markers/active_map_marker.png
+    - assets/search_box/vectorsearch.svg
+    - assets/search_box/close.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

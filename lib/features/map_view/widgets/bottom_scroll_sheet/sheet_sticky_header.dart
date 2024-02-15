@@ -20,6 +20,7 @@ class SheetStickyHeader extends ConsumerWidget {
       slivers: [
         SliverAppBar(
           pinned: true,
+          toolbarHeight: 95,
           flexibleSpace: header,
         ),
         SliverToBoxAdapter(child: body),

@@ -48,6 +48,10 @@ abstract class BigPreviewCardConfig {
   static const double cardHeight = 360;
 }
 
+abstract class SearchWidgetConfig {
+  static const searchIconName = "assets/search_box/vectorsearch.svg";
+}
+
 abstract class WideTileCardConfig {
   static const basePadding = 16.0;
   static const minWidthForExtraPadding = 375;
