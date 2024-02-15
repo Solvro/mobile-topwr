@@ -8,8 +8,8 @@ import '../../controllers/active_map_marker_cntrl.dart';
 import '../../controllers/buildings_listview_controller.dart';
 import 'drag_handle_section.dart';
 
-class BottomSheetHeader extends ConsumerWidget {
-  const BottomSheetHeader({super.key});
+class SheetHeader extends ConsumerWidget {
+  const SheetHeader({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
