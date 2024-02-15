@@ -22,9 +22,7 @@ class SheetStickyHeader extends ConsumerWidget {
           pinned: true,
           flexibleSpace: header,
         ),
-        SliverList(
-          delegate: SliverChildListDelegate([body]),
-        ),
+        SliverToBoxAdapter(child: body),
       ],
     );
   }
