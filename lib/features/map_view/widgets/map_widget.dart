@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../../config.dart';
+import '../../../utils/context_extensions.dart';
 import '../../../utils/where_non_null_iterable.dart';
 import '../controllers/map_controller.dart';
 import '../repository/building_extra_params_ext.dart';
@@ -19,19 +20,35 @@ class MapWidget extends ConsumerWidget {
     final mapController = ref.watch(mapControllerProvider.notifier);
 
     return GoogleMap(
-        mapType: MapWidgetConfig.mapType,
-        initialCameraPosition: MapWidgetConfig.defaultCameraPosition,
-        onMapCreated: mapController.onMapCreated,
-        onTap: mapController.onMapBgTap,
-        markers: {
-          for (var building in buildingsState)
-            Marker(
-              consumeTapEvents: true,
-              markerId: building.markerId,
-              position: building.location,
-              icon: ref.watchMapIcon(building),
-              onTap: () => mapController.onMarkerTap(building),
-            ),
-        });
+      mapType: MapWidgetConfig.mapType,
+      initialCameraPosition: MapWidgetConfig.defaultCameraPosition,
+      onMapCreated: mapController.onMapCreated,
+      onTap: (_) {
+        context.unfocus();
+        mapController.onMapBgTap();
+      },
+      markers: {
+        for (var building in buildingsState)
+          Marker(
+            consumeTapEvents: true,
+            markerId: building.markerId,
+            position: building.location,
+            icon: ref.watchMapIcon(building),
+            onTap: () {
+              context.unfocus();
+              mapController.onMarkerTap(building);
+            },
+          ),
+      },
+      myLocationEnabled: true,
+      myLocationButtonEnabled: true,
+      mapToolbarEnabled: true,
+      zoomControlsEnabled: true,
+      zoomGesturesEnabled: true,
+      compassEnabled: true,
+      padding: const EdgeInsets.only(
+        bottom: 300,
+      ),
+    );
   }
 }

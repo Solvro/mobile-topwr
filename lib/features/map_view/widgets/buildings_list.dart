@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../config.dart';
+import '../../../utils/context_extensions.dart';
 import '../../../utils/where_non_null_iterable.dart';
 import '../../../widgets/loading_widget.dart';
 import '../../../widgets/wide_tile_card.dart';
@@ -49,6 +50,7 @@ class _BuildingTile extends ConsumerWidget {
       subtitle: building.addresFormatted,
       isActive: ref.watchIsActive(building),
       onTap: () {
+        context.unfocus();
         ref.read(mapControllerProvider.notifier).onMarkerTap(building);
       },
     );
