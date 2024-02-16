@@ -50,6 +50,7 @@ abstract class BigPreviewCardConfig {
 
 abstract class SearchWidgetConfig {
   static const searchIconName = "assets/search_box/vectorsearch.svg";
+  static const height = 36.0;
 }
 
 abstract class WideTileCardConfig {
@@ -64,6 +65,7 @@ abstract class MapViewBottomSheetConfig {
   static const minSheetHeight = 122;
   static const extraSnapPointFraction1 = 0.5;
   static const extraSnapPointFraction2 = 0.8;
+  static const lineHandleSectionHeight = 36.0;
 }
 
 abstract class MapWidgetConfig {

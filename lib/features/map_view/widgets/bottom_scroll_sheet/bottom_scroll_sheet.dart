@@ -5,10 +5,9 @@ import '../../../../config.dart';
 import '../../../../theme/app_theme.dart';
 import '../../controllers/buildings_listview_controller.dart';
 import '../buildings_list.dart';
-import 'sheet_header.dart';
-import 'sheet_sticky_header.dart';
+import 'custom_sheet_scroll_view.dart';
 
-class BottomScrollSheet<T> extends ConsumerWidget {
+class BottomScrollSheet extends ConsumerWidget {
   const BottomScrollSheet({super.key});
 
   @override
@@ -37,9 +36,8 @@ class BottomScrollSheet<T> extends ConsumerWidget {
           clipBehavior: Clip.antiAlias,
           decoration:
               _RoundedTopDecoration(color: context.colorTheme.whiteSoap),
-          child: SheetStickyHeader(
+          child: CustomSheetScrollView(
             scrollController: scrollController,
-            header: const SheetHeader(),
             body: const BuildingsList(),
           ),
         );

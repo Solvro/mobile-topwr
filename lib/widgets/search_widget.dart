@@ -36,7 +36,7 @@ class _SearchWidgetState extends ConsumerState<SearchWidget> {
       controller: controller,
       onChanged: onChanged,
       decoration: InputDecoration(
-        constraints: const BoxConstraints(maxHeight: 36),
+        constraints: const BoxConstraints(maxHeight: SearchWidgetConfig.height),
         contentPadding: EdgeInsets.zero,
         filled: true,
         fillColor: context.colorTheme.greyLight,
