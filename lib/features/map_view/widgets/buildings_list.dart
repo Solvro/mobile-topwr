@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../config.dart';
 import '../../../utils/where_non_null_iterable.dart';
 import '../../../widgets/loading_widget.dart';
 import '../../../widgets/wide_tile_card.dart';
@@ -22,7 +23,11 @@ class BuildingsList extends ConsumerWidget {
           children: [
             for (var building in value.whereNonNull)
               Padding(
-                padding: const EdgeInsets.only(left: 24, right: 24, bottom: 16),
+                padding: const EdgeInsets.only(
+                  left: MapViewBottomSheetConfig.horizontalPadding,
+                  right: MapViewBottomSheetConfig.horizontalPadding,
+                  bottom: 16,
+                ),
                 child: _BuildingTile(building),
               ),
           ],
@@ -42,7 +47,7 @@ class _BuildingTile extends ConsumerWidget {
     return WideTileCard(
       title: building.name,
       subtitle: building.addresFormatted,
-      isActive: building.isActive(ref.watch),
+      isActive: ref.watchIsActive(building),
       onTap: () {
         ref.read(mapControllerProvider.notifier).onMarkerTap(building);
       },

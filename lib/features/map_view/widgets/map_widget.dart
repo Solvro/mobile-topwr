@@ -15,6 +15,7 @@ class MapWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final buildingsState =
         ref.watch(mapBuildingsRepositoryProvider).value.whereNonNull;
+
     final mapController = ref.watch(mapControllerProvider.notifier);
 
     return GoogleMap(
@@ -28,7 +29,7 @@ class MapWidget extends ConsumerWidget {
               consumeTapEvents: true,
               markerId: building.markerId,
               position: building.location,
-              icon: building.mapMarkerIcon(ref.watch),
+              icon: ref.watchMapIcon(building),
               onTap: () => mapController.onMarkerTap(building),
             ),
         });

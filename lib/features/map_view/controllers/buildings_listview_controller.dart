@@ -29,8 +29,9 @@ class BuildingsListViewController extends _$BuildingsListViewController {
         (building.addres?.toLowerCase().contains(filter) ?? false);
   }
 
-  void updateSearchText(String newText) {
+  void onSearchQueryChanged(String newText) {
     _textFieldFilterText = newText;
+    ref.read(activeMapMarkerControllerProvider.notifier).unselect();
     ref.invalidateSelf();
   }
 }

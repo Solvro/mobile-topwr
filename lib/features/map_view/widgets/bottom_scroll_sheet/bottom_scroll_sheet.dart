@@ -23,7 +23,6 @@ class BottomScrollSheet extends ConsumerWidget {
       initialChildSize: recomendedSheetFraction,
       maxChildSize: 1, // factor 1 means 100% available height
       minChildSize: minSheetFraction,
-      //expand: true,
       snap: true,
       snapSizes: [
         if (recomendedSheetFraction >

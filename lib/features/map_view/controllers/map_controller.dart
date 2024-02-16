@@ -41,17 +41,21 @@ class MapController extends _$MapController {
   }
 
   void zoomOnMarker(Building building) {
-    state.value?.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
-      target: building.location,
-      zoom: MapWidgetConfig.defaultMarkerZoom,
-    )));
+    state.value?.animateCamera(
+      CameraUpdate.newCameraPosition(
+        CameraPosition(
+          target: building.location,
+          zoom: MapWidgetConfig.defaultMarkerZoom,
+        ),
+      ),
+    );
   }
 
   void onMarkerTap(Building building) {
     ref
         .read(activeMapMarkerControllerProvider.notifier)
         .toggleBuilding(building);
-    if (building.isActive(ref.read)) {
+    if (ref.read(activeMapMarkerControllerProvider) == building) {
       zoomOnMarker(building);
     }
     ref.read(bottomSheetControllerProvider).reset();

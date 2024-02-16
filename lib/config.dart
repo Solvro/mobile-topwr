@@ -66,6 +66,7 @@ abstract class MapViewBottomSheetConfig {
   static const extraSnapPointFraction1 = 0.5;
   static const extraSnapPointFraction2 = 0.8;
   static const lineHandleSectionHeight = 36.0;
+  static const horizontalPadding = 24.0;
 }
 
 abstract class MapWidgetConfig {

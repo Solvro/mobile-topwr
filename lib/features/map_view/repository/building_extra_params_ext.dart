@@ -5,21 +5,28 @@ import '../controllers/active_map_marker_cntrl.dart';
 import '../controllers/map_controller.dart';
 import 'map_buildings_repo.dart';
 
-typedef RefReadOrWatch<T> = T Function(ProviderListenable<T> provider);
-
 extension BuildingExtraParamsExt on Building {
   LatLng get location => LatLng(latitude, longitude);
 
   MarkerId get markerId => MarkerId(id);
 
-  bool isActive(RefReadOrWatch<Building?> refReadOrWatch) =>
-      refReadOrWatch(activeMapMarkerControllerProvider) == this;
-
-  BitmapDescriptor mapMarkerIcon(RefReadOrWatch<Building?> refReadOrWatch) =>
-      isActive(refReadOrWatch)
-          ? MapController.activeMapMarker
-          : MapController.mapMarker;
-
   String? get addresFormatted =>
       addres?.replaceFirst(",", "\n").replaceAll("\n ", "\n");
+
+  BitmapDescriptor getMapMarker(bool isActive) =>
+      isActive ? MapController.activeMapMarker : MapController.mapMarker;
+}
+
+extension IsBuildingActive on WidgetRef {
+  bool watchIsActive(Building building) =>
+      watch(activeMapMarkerControllerProvider) == building;
+
+  bool readIsActive(Building building) =>
+      read(activeMapMarkerControllerProvider) == building;
+
+  BitmapDescriptor watchMapIcon(Building building) =>
+      building.getMapMarker(watchIsActive(building));
+
+  BitmapDescriptor readMapIcon(Building building) =>
+      building.getMapMarker(readIsActive(building));
 }

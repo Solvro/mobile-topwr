@@ -33,11 +33,9 @@ class CustomSheetScrollView extends ConsumerWidget {
             context,
             primary: false,
             title: context.localize?.buildings_title ?? "",
-            onQueryChanged: (query) {
-              ref
-                  .read(buildingsListViewControllerProvider.notifier)
-                  .updateSearchText(query);
-            },
+            onQueryChanged: ref
+                .watch(buildingsListViewControllerProvider.notifier)
+                .onSearchQueryChanged,
             actions: [
               if (ref.watch(activeMapMarkerControllerProvider) != null)
                 const _NavigateButton(),
