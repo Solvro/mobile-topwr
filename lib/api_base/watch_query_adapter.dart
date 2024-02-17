@@ -8,12 +8,13 @@ extension WatchQueryStreamAdapter on Ref {
   ) {
     final observableQuery = client.watchQuery(watchQueryOptions);
     onDispose(observableQuery.close);
-    return observableQuery.stream
-        .where(
-          (event) => event.isNotLoading,
-        )
-        .map(
-          (event) => event.parsedData,
-        );
+    return observableQuery.stream.where(
+      (event) {
+        if (event.hasException) throw Exception(event.exception);
+        return event.isNotLoading;
+      },
+    ).map(
+      (event) => event.parsedData,
+    );
   }
 }
