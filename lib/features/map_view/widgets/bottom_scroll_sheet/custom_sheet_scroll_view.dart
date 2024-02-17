@@ -5,6 +5,7 @@ import '../../../../theme/app_theme.dart';
 import '../../../../utils/context_extensions.dart';
 import '../../../../widgets/search_box_app_bar.dart';
 import '../../controllers/active_map_marker_cntrl.dart';
+import '../../controllers/bottom_sheet_controller.dart';
 import '../../controllers/buildings_listview_controller.dart';
 import 'drag_handle.dart';
 
@@ -27,6 +28,8 @@ class CustomSheetScrollView extends ConsumerWidget {
       onQueryChanged: ref
           .watch(buildingsListViewControllerProvider.notifier)
           .onSearchQueryChanged,
+      onSearchboxTap:
+          ref.watch(bottomSheetPixelsProvider.notifier).onSearchBoxTap,
       actions: [
         if (ref.watch(activeMapMarkerControllerProvider) != null)
           const _NavigateButton(),

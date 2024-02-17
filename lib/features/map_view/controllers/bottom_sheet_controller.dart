@@ -1,4 +1,4 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part "bottom_sheet_controller.g.dart";
@@ -22,5 +22,16 @@ class BottomSheetPixels extends _$BottomSheetPixels {
 
   void _update() {
     state = ref.read(bottomSheetControllerProvider).pixels;
+  }
+
+  void onSearchBoxTap() {
+    const fullScreenFrac = 1.0;
+    if (ref.read(bottomSheetControllerProvider).size < fullScreenFrac) {
+      ref.read(bottomSheetControllerProvider).animateTo(
+            fullScreenFrac,
+            duration: Durations.medium2,
+            curve: Curves.decelerate,
+          );
+    }
   }
 }

@@ -24,11 +24,23 @@ class _SearchWidgetState extends ConsumerState<SearchWidget> {
   final focusNode = FocusNode();
   var showCloseIcon = false;
 
-  void onChanged(String query) {
+  void _onChanged(String query) {
     setState(() {
       showCloseIcon = query != "";
     });
     widget.onQueryChanged(query);
+  }
+
+  void _clearButtonAction() {
+    context.unfocus();
+    controller.clear();
+    _onChanged("");
+  }
+
+  void _onTapOutside(_) {
+    if (focusNode.hasFocus) {
+      focusNode.unfocus();
+    }
   }
 
   @override
@@ -37,13 +49,9 @@ class _SearchWidgetState extends ConsumerState<SearchWidget> {
     return TextField(
       controller: controller,
       focusNode: focusNode,
-      onChanged: onChanged,
+      onChanged: _onChanged,
       onTap: widget.onTap,
-      onTapOutside: (_) {
-        if (focusNode.hasFocus) {
-          focusNode.unfocus();
-        }
-      },
+      onTapOutside: _onTapOutside,
       decoration: InputDecoration(
         constraints: const BoxConstraints(maxHeight: SearchWidgetConfig.height),
         contentPadding: EdgeInsets.zero,
@@ -66,10 +74,7 @@ class _SearchWidgetState extends ConsumerState<SearchWidget> {
                   color: context.colorTheme.blackMirage,
                   size: 19,
                 ),
-                onPressed: () {
-                  controller.clear();
-                  onChanged("");
-                },
+                onPressed: _clearButtonAction,
               )
             : null,
       ),

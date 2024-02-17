@@ -15,6 +15,7 @@ class SearchBoxAppBar extends AppBar {
     super.actions,
     super.primary,
     super.key,
+    VoidCallback? onSearchboxTap,
   }) : super(
           title: Text(title),
           titleTextStyle: context.textTheme.headline,
@@ -33,6 +34,7 @@ class SearchBoxAppBar extends AppBar {
               ),
               child: SearchWidget(
                 onQueryChanged: onQueryChanged,
+                onTap: onSearchboxTap,
               ),
             ),
           ),
