@@ -51,5 +51,10 @@
 		<false />
 		<key>NSLocationWhenInUseUsageDescription</key>
 		<string>Your location allows us to show your location on the map and buildings nearby</string>
+		<key>LSApplicationQueriesSchemes</key>
+		<array>
+			<string>googlechromes</string>
+			<string>comgooglemaps</string>
+		</array>
 	</dict>
 </plist>
