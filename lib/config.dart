@@ -80,4 +80,6 @@ abstract class MapWidgetConfig {
   static const mapMarkerAssetName = "assets/map_markers/map_marker.png";
   static const activeMapMarkerAssetName =
       "assets/map_markers/active_map_marker.png";
+  static const mapMarkerOriginWidth = 28;
+  static const activeMapMarkerOriginWidth = 40;
 }
