@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../config.dart';
 import '../../../../theme/app_theme.dart';
 import '../../controllers/bottom_sheet_controller.dart';
-import '../buildings_list.dart';
+import 'buildings_list.dart';
 import 'custom_sheet_scroll_view.dart';
 
 class BottomScrollSheet extends ConsumerWidget {
