@@ -20,6 +20,9 @@ class MapWidget extends ConsumerWidget {
 
     final mapController = ref.watch(mapControllerProvider.notifier);
 
+    final c = createLocalImageConfiguration(context);
+    print(c.devicePixelRatio);
+
     return GoogleMap(
       mapType: MapWidgetConfig.mapType,
       initialCameraPosition: MapWidgetConfig.defaultCameraPosition,

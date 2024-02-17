@@ -9,6 +9,7 @@ import '../../api_base/hive_init.dart';
 import '../../config.dart';
 import '../home_view/widgets/logo_app_bar.dart';
 import '../map_view/controllers/map_controller.dart';
+import '../map_view/map_marker_utils.dart';
 
 part 'splash_screen_controller.g.dart';
 
@@ -21,7 +22,7 @@ class SplashScreenController extends _$SplashScreenController {
     */
     await initHiveForGraphqlCache();
     AppBarLogo.precacheImageIfAbsent();
-    await MapController.loadMapMarkerAssets();
+    await MapMarkerUtils.loadMapMarkerAssets();
     await MapController.initializeGoogleMapsRenderingAndroid();
   }
 
