@@ -21,7 +21,8 @@ class SplashScreenController extends _$SplashScreenController {
     */
     await initHiveForGraphqlCache();
     AppBarLogo.precacheImageIfAbsent();
-    MapController.loadMapMarkerAssets();
+    await MapController.loadMapMarkerAssets();
+    await MapController.initializeGoogleMapsRenderingAndroid();
   }
 
   @override

@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/widgets.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:google_maps_flutter_android/google_maps_flutter_android.dart';
+import 'package:google_maps_flutter_platform_interface/google_maps_flutter_platform_interface.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../config.dart';
@@ -26,6 +28,15 @@ class MapController extends _$MapController {
       ImageConfiguration.empty,
       MapWidgetConfig.activeMapMarkerAssetName,
     );
+  }
+
+  static Future<void> initializeGoogleMapsRenderingAndroid() async {
+    final GoogleMapsFlutterPlatform mapsImpl =
+        GoogleMapsFlutterPlatform.instance;
+    if (mapsImpl is GoogleMapsFlutterAndroid) {
+      mapsImpl.useAndroidViewSurface = true;
+      await mapsImpl.initializeWithRenderer(AndroidMapRenderer.latest);
+    }
   }
 
   final Completer<GoogleMapController> _controller =
