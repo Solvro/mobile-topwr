@@ -37,9 +37,9 @@ class MapWidget extends ConsumerWidget {
           ),
       },
       myLocationEnabled: true,
-      myLocationButtonEnabled: true,
+      myLocationButtonEnabled: false,
       mapToolbarEnabled: false,
-      zoomControlsEnabled: true,
+      zoomControlsEnabled: false,
       zoomGesturesEnabled: true,
       compassEnabled: true,
       padding: EdgeInsets.only(
