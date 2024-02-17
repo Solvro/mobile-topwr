@@ -6,17 +6,16 @@ import '../../../../widgets/search_box_app_bar.dart';
 import '../../controllers/active_map_marker_cntrl.dart';
 import '../../controllers/bottom_sheet_controller.dart';
 import '../../controllers/buildings_listview_controller.dart';
+import 'buildings_list.dart';
 import 'drag_handle.dart';
 import 'navigate_button.dart';
 
 class SheetLayoutScheme extends ConsumerWidget {
   const SheetLayoutScheme({
-    super.key,
-    required this.body,
     required this.scrollController,
+    super.key,
   });
 
-  final Widget body;
   final ScrollController scrollController;
 
   @override
@@ -49,7 +48,7 @@ class SheetLayoutScheme extends ConsumerWidget {
           toolbarHeight: appBar.preferredSize.height,
           flexibleSpace: appBar,
         ),
-        SliverToBoxAdapter(child: body),
+        const SliverToBoxAdapter(child: BuildingsList()),
       ],
     );
   }
