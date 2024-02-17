@@ -16,10 +16,8 @@ class SearchBoxAppBar extends AppBar {
     super.primary,
     super.key,
   }) : super(
-          title: Text(
-            title,
-            style: context.textTheme.headline,
-          ),
+          title: Text(title),
+          titleTextStyle: context.textTheme.headline,
           backgroundColor: context.colorTheme.whiteSoap,
           scrolledUnderElevation: 0,
           centerTitle: false,

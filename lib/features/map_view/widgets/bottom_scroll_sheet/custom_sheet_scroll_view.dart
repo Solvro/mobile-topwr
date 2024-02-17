@@ -20,6 +20,19 @@ class CustomSheetScrollView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final appBar = SearchBoxAppBar(
+      context,
+      primary: false,
+      title: context.localize?.buildings_title ?? "",
+      onQueryChanged: ref
+          .watch(buildingsListViewControllerProvider.notifier)
+          .onSearchQueryChanged,
+      actions: [
+        if (ref.watch(activeMapMarkerControllerProvider) != null)
+          const _NavigateButton(),
+      ],
+    );
+
     return CustomScrollView(
       controller: scrollController,
       slivers: [
@@ -28,19 +41,10 @@ class CustomSheetScrollView extends ConsumerWidget {
           delegate: DragHandle(),
         ),
         SliverAppBar(
+          primary: false,
           pinned: true,
-          flexibleSpace: SearchBoxAppBar(
-            context,
-            primary: false,
-            title: context.localize?.buildings_title ?? "",
-            onQueryChanged: ref
-                .watch(buildingsListViewControllerProvider.notifier)
-                .onSearchQueryChanged,
-            actions: [
-              if (ref.watch(activeMapMarkerControllerProvider) != null)
-                const _NavigateButton(),
-            ],
-          ),
+          toolbarHeight: appBar.preferredSize.height,
+          flexibleSpace: appBar,
         ),
         SliverToBoxAdapter(child: body),
       ],
