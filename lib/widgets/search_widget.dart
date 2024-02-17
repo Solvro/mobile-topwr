@@ -58,6 +58,7 @@ class _SearchWidgetState extends ConsumerState<SearchWidget> {
                   size: 19,
                 ),
                 onPressed: () {
+                  context.unfocus();
                   controller.clear();
                   onChanged("");
                 },
