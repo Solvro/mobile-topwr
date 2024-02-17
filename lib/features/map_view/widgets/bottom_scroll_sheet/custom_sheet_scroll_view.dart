@@ -7,6 +7,7 @@ import '../../../../widgets/search_box_app_bar.dart';
 import '../../controllers/active_map_marker_cntrl.dart';
 import '../../controllers/bottom_sheet_controller.dart';
 import '../../controllers/buildings_listview_controller.dart';
+import '../../utils/google_maps_link_utils.dart';
 import 'drag_handle.dart';
 
 class CustomSheetScrollView extends ConsumerWidget {
@@ -55,15 +56,18 @@ class CustomSheetScrollView extends ConsumerWidget {
   }
 }
 
-class _NavigateButton extends StatelessWidget {
+class _NavigateButton extends ConsumerWidget {
   const _NavigateButton();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
       padding: const EdgeInsets.only(right: 13),
       child: TextButton(
-        onPressed: () {},
+        onPressed: () {
+          final active = ref.read(activeMapMarkerControllerProvider);
+          if (active != null) GoogleMapsLinkUtils.navigateTo(active);
+        },
         child: Text(
           context.localize?.navigate ?? "",
           style: context.textTheme.boldBodyOrange,
