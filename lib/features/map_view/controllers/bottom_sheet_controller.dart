@@ -17,7 +17,7 @@ class BottomSheetPixels extends _$BottomSheetPixels {
     ref.onDispose(() {
       controller.removeListener(_update);
     });
-    return 0;
+    return 0; // controller is not yet attached so 0 as some initial value
   }
 
   void _update() {
@@ -26,12 +26,13 @@ class BottomSheetPixels extends _$BottomSheetPixels {
 
   void onSearchBoxTap() {
     const fullScreenFrac = 1.0;
-    if (ref.read(bottomSheetControllerProvider).size < fullScreenFrac) {
-      ref.read(bottomSheetControllerProvider).animateTo(
-            fullScreenFrac,
-            duration: Durations.medium2,
-            curve: Curves.decelerate,
-          );
+    final controller = ref.read(bottomSheetControllerProvider);
+    if (controller.size < fullScreenFrac) {
+      controller.animateTo(
+        fullScreenFrac,
+        duration: Durations.medium2,
+        curve: Curves.decelerate,
+      );
     }
   }
 }
