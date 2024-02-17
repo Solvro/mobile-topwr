@@ -61,8 +61,8 @@ abstract class WideTileCardConfig {
 
 abstract class MapViewBottomSheetConfig {
   static const bottomSheetRadius = Radius.circular(24);
-  static const recomendedSheetHeight = 357;
-  static const minSheetHeight = 150;
+  static const recomendedSheetHeight = 357.0;
+  static const minSheetHeight = 150.0;
   static const extraSnapPointFraction1 = 0.5;
   static const extraSnapPointFraction2 = 0.8;
   static const lineHandleSectionHeight = 36.0;

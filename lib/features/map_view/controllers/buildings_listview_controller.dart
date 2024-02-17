@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../repository/map_buildings_repo.dart';
@@ -35,8 +34,3 @@ class BuildingsListViewController extends _$BuildingsListViewController {
     ref.invalidateSelf();
   }
 }
-
-@riverpod
-DraggableScrollableController bottomSheetController(
-        BottomSheetControllerRef ref) =>
-    DraggableScrollableController();

@@ -8,7 +8,7 @@ import '../../../config.dart';
 import '../repository/building_extra_params_ext.dart';
 import '../repository/map_buildings_repo.dart';
 import 'active_map_marker_cntrl.dart';
-import 'buildings_listview_controller.dart';
+import 'bottom_sheet_controller.dart';
 
 part "map_controller.g.dart";
 
