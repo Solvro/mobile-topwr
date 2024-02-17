@@ -24,10 +24,7 @@ class MapWidget extends ConsumerWidget {
       mapType: MapWidgetConfig.mapType,
       initialCameraPosition: MapWidgetConfig.defaultCameraPosition,
       onMapCreated: mapController.onMapCreated,
-      onTap: (_) {
-        context.unfocus();
-        mapController.onMapBgTap();
-      },
+      onTap: mapController.onMapBgTap,
       markers: {
         for (var building in buildingsState)
           Marker(
@@ -36,7 +33,6 @@ class MapWidget extends ConsumerWidget {
             position: building.location,
             icon: ref.watchMapIcon(building),
             onTap: () {
-              context.unfocus();
               mapController.onMarkerTap(building);
             },
           ),

@@ -8,10 +8,11 @@ import '../utils/context_extensions.dart';
 
 class SearchWidget extends ConsumerStatefulWidget {
   final void Function(String query) onQueryChanged;
-
+  final VoidCallback? onTap;
   const SearchWidget({
     super.key,
     required this.onQueryChanged,
+    this.onTap,
   });
 
   @override
@@ -20,6 +21,7 @@ class SearchWidget extends ConsumerStatefulWidget {
 
 class _SearchWidgetState extends ConsumerState<SearchWidget> {
   final controller = TextEditingController();
+  final focusNode = FocusNode();
   var showCloseIcon = false;
 
   void onChanged(String query) {
@@ -34,7 +36,14 @@ class _SearchWidgetState extends ConsumerState<SearchWidget> {
     final color = context.colorTheme.blackMirage.withOpacity(0.48);
     return TextField(
       controller: controller,
+      focusNode: focusNode,
       onChanged: onChanged,
+      onTap: widget.onTap,
+      onTapOutside: (_) {
+        if (focusNode.hasFocus) {
+          focusNode.unfocus();
+        }
+      },
       decoration: InputDecoration(
         constraints: const BoxConstraints(maxHeight: SearchWidgetConfig.height),
         contentPadding: EdgeInsets.zero,
@@ -58,7 +67,6 @@ class _SearchWidgetState extends ConsumerState<SearchWidget> {
                   size: 19,
                 ),
                 onPressed: () {
-                  context.unfocus();
                   controller.clear();
                   onChanged("");
                 },

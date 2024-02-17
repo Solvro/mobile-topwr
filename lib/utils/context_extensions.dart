@@ -5,8 +5,4 @@ extension BuildContextShortcutExtension on BuildContext {
   AppLocalizations? get localize {
     return AppLocalizations.of(this);
   }
-
-  void unfocus() {
-    FocusScope.of(this).unfocus();
-  }
 }

@@ -57,7 +57,7 @@ class MapController extends _$MapController {
     ref.read(bottomSheetControllerProvider).reset();
   }
 
-  void onMapBgTap() {
+  void onMapBgTap(_) {
     ref.read(activeMapMarkerControllerProvider.notifier).unselect();
     ref.read(bottomSheetControllerProvider).reset();
   }
