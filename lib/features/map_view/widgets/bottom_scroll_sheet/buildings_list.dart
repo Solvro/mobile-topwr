@@ -10,29 +10,40 @@ import '../../controllers/map_controller.dart';
 import '../../repository/building_extra_params_ext.dart';
 import '../../repository/map_buildings_repo.dart';
 
-class BuildingsList extends ConsumerWidget {
-  const BuildingsList({super.key});
+class BuildingsSliverList extends ConsumerWidget {
+  const BuildingsSliverList({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final buildingsState = ref.watch(buildingsListViewControllerProvider);
     return switch (buildingsState) {
-      AsyncLoading() => const LoadingWidget(),
-      AsyncError(:final error) => ErrorWidget(error),
-      AsyncValue(:final value) => Column(
-          children: [
-            for (var building in value.whereNonNull)
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: MapViewBottomSheetConfig.horizontalPadding,
-                  right: MapViewBottomSheetConfig.horizontalPadding,
-                  bottom: 16,
-                ),
-                child: _BuildingTile(building),
-              ),
-          ],
-        )
+      AsyncLoading() => const SliverToBoxAdapter(child: LoadingWidget()),
+      AsyncError(:final error) => SliverToBoxAdapter(child: ErrorWidget(error)),
+      AsyncValue(:final value) => _DataSliverList(value.whereNonNull.toList())
     };
+  }
+}
+
+class _DataSliverList extends StatelessWidget {
+  const _DataSliverList(this.buildings);
+
+  final List<Building> buildings;
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverList.builder(
+      itemCount: buildings.length,
+      itemBuilder: (context, index) {
+        return Padding(
+          padding: const EdgeInsets.only(
+            left: MapViewBottomSheetConfig.horizontalPadding,
+            right: MapViewBottomSheetConfig.horizontalPadding,
+            bottom: 16,
+          ),
+          child: _BuildingTile(buildings[index]),
+        );
+      },
+    );
   }
 }
 

@@ -48,7 +48,7 @@ class SheetLayoutScheme extends ConsumerWidget {
           toolbarHeight: appBar.preferredSize.height,
           flexibleSpace: appBar,
         ),
-        const SliverToBoxAdapter(child: BuildingsList()),
+        const BuildingsSliverList(),
       ],
     );
   }
