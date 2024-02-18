@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_flutter_android/google_maps_flutter_android.dart';
 import 'package:google_maps_flutter_platform_interface/google_maps_flutter_platform_interface.dart';
@@ -51,10 +52,10 @@ class MapController extends _$MapController {
     ref
         .read(activeMapMarkerControllerProvider.notifier)
         .toggleBuilding(building);
-    if (ref.read(activeMapMarkerControllerProvider) == building) {
-      zoomOnMarker(building);
-    }
     ref.read(bottomSheetControllerProvider).reset();
+    if (ref.read(activeMapMarkerControllerProvider) == building) {
+      Future.delayed(Durations.short1, () => zoomOnMarker(building));
+    }
   }
 
   void onMapBgTap(_) {

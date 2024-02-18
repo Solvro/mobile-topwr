@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../../config.dart';
+
 part "bottom_sheet_controller.g.dart";
 
 @riverpod
@@ -17,7 +19,7 @@ class BottomSheetPixels extends _$BottomSheetPixels {
     ref.onDispose(() {
       controller.removeListener(_update);
     });
-    return 0; // controller is not yet attached so 0 as some initial value
+    return MapViewBottomSheetConfig.recomendedSheetHeight;
   }
 
   void _update() {
