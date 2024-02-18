@@ -31,7 +31,7 @@ class _NavigationLaunchLink {
 
   String get _locationStr => "${building.latitude},${building.longitude}";
 
-  String get _androidLink => "google.navigation:q=$_locationStr&mode=d";
+  String get _androidLink => "google.navigation:q=$_locationStr";
   String get _iosLink =>
       "comgooglemaps://?saddr=&daddr=$_locationStr&directionsmode=driving";
 

@@ -12,21 +12,13 @@ extension BuildingExtraParamsExt on Building {
 
   String? get addresFormatted =>
       addres?.replaceFirst(",", "\n").replaceAll("\n ", "\n");
-
-  BitmapDescriptor getMapMarker(bool isActive) =>
-      isActive ? MapMarkerUtils.activeMapMarker : MapMarkerUtils.mapMarker;
 }
 
-extension IsBuildingActive on WidgetRef {
+extension IsBuildingActiveExt on WidgetRef {
   bool watchIsActive(Building building) =>
       watch(activeMapMarkerControllerProvider) == building;
 
-  bool readIsActive(Building building) =>
-      read(activeMapMarkerControllerProvider) == building;
-
-  BitmapDescriptor watchMapIcon(Building building) =>
-      building.getMapMarker(watchIsActive(building));
-
-  BitmapDescriptor readMapIcon(Building building) =>
-      building.getMapMarker(readIsActive(building));
+  BitmapDescriptor watchMapIcon(Building building) => watchIsActive(building)
+      ? MapMarkerUtils.activeMapMarker
+      : MapMarkerUtils.mapMarker;
 }
