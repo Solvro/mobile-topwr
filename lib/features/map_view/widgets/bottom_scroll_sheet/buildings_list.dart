@@ -45,6 +45,7 @@ class _BuildingTile extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return WideTileCard(
+      photoUrl: building.photo?.url,
       title: building.name,
       subtitle: building.addresFormatted,
       isActive: ref.watchIsActive(building),
