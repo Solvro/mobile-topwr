@@ -22,8 +22,6 @@ abstract class ExamSessionCountdownConfig {
 }
 
 abstract class DepartmentsConfig {
-  static const defaultUrl =
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/1200px-Google_%22G%22_logo.svg.png';
   static const defaultColorFirst = '#BFBEBE';
   static const defaultColorSecond = '#999898';
 }
