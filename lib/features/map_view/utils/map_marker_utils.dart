@@ -1,5 +1,6 @@
 import 'dart:ui' as ui;
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -11,7 +12,8 @@ class MapMarkerUtils {
   static late final BitmapDescriptor activeMapMarker;
 
   static Future<void> loadMapMarkerAssets(BuildContext context) async {
-    final pixelRatio = MediaQuery.devicePixelRatioOf(context).toInt();
+    final pixelRatio =
+        kIsWeb ? 1 : MediaQuery.devicePixelRatioOf(context).toInt();
 
     mapMarker = await _AssetScaledLoader.loadScaledBitmapDescriptor(
       MapWidgetConfig.mapMarkerAssetName,

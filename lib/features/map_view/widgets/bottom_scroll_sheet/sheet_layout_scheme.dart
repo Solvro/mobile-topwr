@@ -12,11 +12,11 @@ import 'navigate_button.dart';
 
 class SheetLayoutScheme extends ConsumerWidget {
   const SheetLayoutScheme({
-    required this.scrollController,
+    this.scrollController,
     super.key,
   });
 
-  final ScrollController scrollController;
+  final ScrollController? scrollController;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

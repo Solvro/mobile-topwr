@@ -46,7 +46,7 @@ class WideTileCard extends StatelessWidget {
         clipBehavior: Clip.antiAlias,
         child: Row(
           children: [
-            _TitlesColumn(title, subtitle, isActive),
+            Expanded(child: _TitlesColumn(title, subtitle, isActive)),
             SizedBox.square(
               dimension: 92,
               child: MyCachedImage(photoUrl),
@@ -70,15 +70,13 @@ class _TitlesColumn extends StatelessWidget {
   final bool isActive;
   @override
   Widget build(BuildContext context) {
-    const basePadding = WideTileCardConfig.basePadding;
-    final extraLeftPadding = max(
-            MediaQuery.sizeOf(context).width -
-                WideTileCardConfig.minWidthForExtraPadding,
-            0) *
-        WideTileCardConfig.extraPaddingFactor;
-
-    return Expanded(
-      child: Padding(
+    return LayoutBuilder(builder: (context, constraints) {
+      const basePadding = WideTileCardConfig.basePadding;
+      final extraLeftPadding = max(
+              constraints.maxWidth - WideTileCardConfig.minWidthForExtraPadding,
+              0) *
+          WideTileCardConfig.extraPaddingFactor;
+      return Padding(
         padding: EdgeInsets.only(
           left: extraLeftPadding + basePadding,
           top: basePadding,
@@ -103,7 +101,7 @@ class _TitlesColumn extends StatelessWidget {
               ),
           ],
         ),
-      ),
-    );
+      );
+    });
   }
 }

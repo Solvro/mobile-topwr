@@ -52,7 +52,7 @@ class MapController extends _$MapController {
     ref
         .read(activeMapMarkerControllerProvider.notifier)
         .toggleBuilding(building);
-    ref.read(bottomSheetControllerProvider).reset();
+    ref.read(bottomSheetControllerProvider)?.reset();
     if (ref.read(activeMapMarkerControllerProvider) == building) {
       Future.delayed(Durations.short1, () => zoomOnMarker(building));
     }
@@ -60,6 +60,6 @@ class MapController extends _$MapController {
 
   void onMapBgTap(_) {
     ref.read(activeMapMarkerControllerProvider.notifier).unselect();
-    ref.read(bottomSheetControllerProvider).reset();
+    ref.read(bottomSheetControllerProvider)?.reset();
   }
 }
