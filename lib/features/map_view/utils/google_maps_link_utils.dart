@@ -33,7 +33,7 @@ class _NavigationLaunchLink {
 
   String get _androidLink => "google.navigation:q=$_locationStr&mode=d";
   String get _iosLink =>
-      "comgooglemaps://?q=_locationStr&directionsmode=driving";
+      "comgooglemaps://?saddr=&daddr=$_locationStr&directionsmode=driving";
 
   String get adaptiveLink => Platform.isAndroid ? _androidLink : _iosLink;
 
