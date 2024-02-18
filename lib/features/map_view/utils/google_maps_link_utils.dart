@@ -1,23 +1,17 @@
 import 'dart:io';
 
 import 'package:logger/logger.dart';
-import 'package:url_launcher/url_launcher.dart';
 
+import '../../../utils/launch_url_util.dart';
 import '../repository/map_buildings_repo.dart';
 
 class GoogleMapsLinkUtils {
-  static Future<bool> _launch(String uriStr) async {
-    final uri = Uri.parse(uriStr);
-    if (await canLaunchUrl(uri)) {
-      return await launchUrl(uri);
-    }
-    return false;
-  }
-
   static Future<void> navigateTo(Building building) async {
     final link = _NavigationLaunchLink(building);
-    if (!await _launch(link.adaptiveLink)) {
-      if (!await _launch(link.backupLink)) {
+    final launchedFirst = await LaunchUrlUtil.launch(link.adaptiveLink);
+    if (!launchedFirst) {
+      final launchedBackup = await LaunchUrlUtil.launch(link.backupLink);
+      if (!launchedBackup) {
         Logger().e('Could not launch any directions');
       }
     }
