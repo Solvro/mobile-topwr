@@ -32,13 +32,17 @@ class _AssetScaledLoader {
     String assetName, {
     required int width,
   }) async {
-    final data = await rootBundle.load(assetName);
-    final codec = await ui.instantiateImageCodec(
-      data.buffer.asUint8List(),
-      targetWidth: width,
-    );
-    final fi = await codec.getNextFrame();
-    final decode = await fi.image.toByteData(format: ui.ImageByteFormat.png);
-    return BitmapDescriptor.fromBytes(decode!.buffer.asUint8List());
+    try {
+      final data = await rootBundle.load(assetName);
+      final codec = await ui.instantiateImageCodec(
+        data.buffer.asUint8List(),
+        targetWidth: width,
+      );
+      final fi = await codec.getNextFrame();
+      final decode = await fi.image.toByteData(format: ui.ImageByteFormat.png);
+      return BitmapDescriptor.fromBytes(decode!.buffer.asUint8List());
+    } catch (e) {
+      return BitmapDescriptor.defaultMarker; // fallback
+    }
   }
 }
