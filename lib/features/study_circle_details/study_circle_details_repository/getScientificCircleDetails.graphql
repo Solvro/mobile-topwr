@@ -1,0 +1,24 @@
+query GetScientificCircleDetails($id: ID!) {
+    scientificCircle(id: $id) {
+        name,
+        department {
+            name
+        },
+        description,
+        backgroundPhoto {
+            url
+        },
+        photo {
+            url
+        },
+        infoSection {
+            info {
+                value,
+                icon {
+                    url
+                }
+                visibleText
+            }
+        }
+    }
+}

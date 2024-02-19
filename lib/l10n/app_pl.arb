@@ -26,5 +26,7 @@
   "departments": "Wydziały",
   "department": "Wydział",
   "search": "Szukaj",
-  "department_not_found": "Nie znaleziono wydziału"
+  "department_not_found": "Nie znaleziono wydziału",
+  "contact": "Kontakt",
+  "about_us": "O nas"
 }

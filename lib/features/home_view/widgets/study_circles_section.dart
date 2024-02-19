@@ -1,8 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../config.dart';
 import '../../../widgets/loading_widget.dart';
 import '../../../widgets/my_error_widget.dart';
+import '../../study_circle_details/study_circle_details.dart';
 import '../repositories/study_circles_repository/study_circles_repository.dart';
 import '../../../widgets/big_preview_card.dart';
 import '../../../theme/app_theme.dart';
@@ -35,13 +37,24 @@ class StudyCirclesSection extends ConsumerWidget {
                         padding: const EdgeInsets.only(
                             top: 8.0, right: 16.0, bottom: 8.0),
                         child: value == null
-                            ? const MyErrorWidget(StudyCirclesSectionConfig.errorMsg)
+                            ? const MyErrorWidget(
+                                StudyCirclesSectionConfig.errorMsg)
                             : BigPreviewCard(
                                 title: value[index]?.name ?? "",
                                 shortDescription:
                                     value[index]?.description ?? "",
                                 photoUrl: value[index]?.photo?.previewUrl,
-                                onClick: () {},
+                                onClick: () {
+                                  Navigator.push(
+                                    context,
+                                    CupertinoPageRoute(
+                                      builder: (context) =>
+                                          const StudyCircleDetails(),
+                                      settings: RouteSettings(
+                                          arguments: value[index]?.id ?? ""),
+                                    ),
+                                  );
+                                },
                               ),
                       );
                     }))

@@ -24,6 +24,7 @@ class AppTextTheme extends ThemeExtension<AppTextTheme>
     this.body = const BodyTextStyle(),
     this.bodyWhite = const BodyTextStyle(color: ColorsConsts.whiteSoap),
     this.bodyGrey = const BodyTextStyle(color: ColorsConsts.greyPigeon),
+    this.bodyOrange = const BodyTextStyle(color: ColorsConsts.orangePomegranade),
 
     // TitleLight 15px, w400
     this.lightTitle = const LightTitleTextStyle(),
@@ -62,6 +63,8 @@ class AppTextTheme extends ThemeExtension<AppTextTheme>
   final TextStyle boldBody;
   @override
   final TextStyle boldBodyOrange;
+  @override
+  final TextStyle bodyOrange;
 }
 
 @tailorMixinComponent
