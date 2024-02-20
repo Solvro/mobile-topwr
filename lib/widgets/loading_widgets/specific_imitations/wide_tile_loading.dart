@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../config.dart';
-import '../wide_tile_card.dart';
-import 'preview_square_card_loading.dart';
-import 'preview_text_prototype.dart';
-import 'shimmer_loading.dart';
+import '../../../config.dart';
+import '../../wide_tile_card.dart';
+import '../shimmer_loading.dart';
+import '../simple_previews/preview_card_loading.dart';
+import '../simple_previews/preview_text_prototype.dart';
 
 class WideTileLoading extends StatelessWidget {
   const WideTileLoading({super.key});
@@ -21,7 +21,7 @@ class WideTileLoading extends StatelessWidget {
         child: const Row(
           children: [
             Expanded(child: ShimmerLoadingItem(child: _TitlesColumnLoading())),
-            PreviewSquareCardLoading(size: WideTileCardConfig.imageSize),
+            PreviewCardLoading(size: WideTileCardConfig.imageSize),
           ],
         ),
       ),

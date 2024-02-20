@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../config.dart';
-import 'preview_text_prototype.dart';
-import 'shimmer_loading.dart';
+import '../../../config.dart';
+import '../simple_previews/preview_text_prototype.dart';
+import '../shimmer_loading.dart';
 
 class BigPreviewCardLoading extends StatelessWidget {
   const BigPreviewCardLoading({super.key});

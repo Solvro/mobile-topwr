@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'shimmer_loading.dart';
+import '../shimmer_loading.dart';
 
-class PreviewSquareCardLoading extends StatelessWidget {
-  const PreviewSquareCardLoading({super.key, required this.size});
+class PreviewCardLoading extends StatelessWidget {
+  const PreviewCardLoading({super.key, required this.size});
 
   final double size;
 

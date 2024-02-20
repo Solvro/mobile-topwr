@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
-import '../../../../widgets/loading_widgets/preview_square_card_loading.dart';
-import '../../../../widgets/loading_widgets/scrolable_loader.dart';
+import '../../../../widgets/loading_widgets/scrolable_loader_builder.dart';
+import '../../../../widgets/loading_widgets/simple_previews/preview_card_loading.dart';
 import '../paddings.dart';
 
 class ScrollableSectionLoading extends StatelessWidget {
@@ -9,13 +9,13 @@ class ScrollableSectionLoading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScrollableLoader(
+    return ScrollableLoaderBuilder(
       mainAxisItemSize: 120,
       crossAxisForcedSize: 120,
       scrollDirection: Axis.horizontal,
       itemBuilder: (context, index) {
         return const MediumLeftPadding(
-          child: PreviewSquareCardLoading(size: 120),
+          child: PreviewCardLoading(size: 120),
         );
       },
     );

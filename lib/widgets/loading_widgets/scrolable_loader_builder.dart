@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class ScrollableLoader extends StatelessWidget {
-  const ScrollableLoader({
+class ScrollableLoaderBuilder extends StatelessWidget {
+  const ScrollableLoaderBuilder({
     super.key,
     required this.itemBuilder,
     required this.mainAxisItemSize,
-    this.scrollDirection = Axis.horizontal,
+    required this.scrollDirection,
     this.crossAxisForcedSize,
   });
   final Widget? Function(BuildContext, int) itemBuilder;

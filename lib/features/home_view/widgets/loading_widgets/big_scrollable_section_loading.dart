@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 
 import '../../../../config.dart';
-import '../../../../widgets/loading_widgets/big_preview_card_loading.dart';
-import '../../../../widgets/loading_widgets/scrolable_loader.dart';
+import '../../../../widgets/loading_widgets/specific_imitations/big_preview_card_loading.dart';
+import '../../../../widgets/loading_widgets/scrolable_loader_builder.dart';
 import '../paddings.dart';
 
 class BigScrollableSectionLoading extends StatelessWidget {
@@ -12,7 +12,7 @@ class BigScrollableSectionLoading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScrollableLoader(
+    return ScrollableLoaderBuilder(
       crossAxisForcedSize: 220,
       mainAxisItemSize: BigPreviewCardConfig.cardWidth,
       scrollDirection: Axis.horizontal,
