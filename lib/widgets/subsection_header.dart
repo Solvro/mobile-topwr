@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import '../features/home_view/widgets/my_text_button.dart';
+
 import '../theme/app_theme.dart';
+import 'my_text_button.dart';
 
 class SubsectionHeader extends StatelessWidget {
   const SubsectionHeader(
@@ -20,14 +21,11 @@ class SubsectionHeader extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(title, style: context.textTheme.headline),
-            actionTitle != null
-                ? MyTextButton(onClick: onClick, actionTitle: actionTitle!)
-                : const SizedBox.shrink()
+            if (actionTitle != null)
+              MyTextButton(onClick: onClick, actionTitle: "$actionTitle >")
           ],
         ),
       ),
     );
   }
 }
-
-
