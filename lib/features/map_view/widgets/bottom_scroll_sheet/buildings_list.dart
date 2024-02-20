@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../config.dart';
 import '../../../../utils/where_non_null_iterable.dart';
-import '../../../../widgets/loading_widget.dart';
+import '../../../../widgets/loading_widgets/my_loading_widget.dart';
 import '../../../../widgets/wide_tile_card.dart';
 import '../../controllers/buildings_listview_controller.dart';
 import '../../controllers/map_controller.dart';

@@ -18,8 +18,7 @@ class BuildingCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(right: 16),
+    return SizedBox(
       width: 120,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(8.0),

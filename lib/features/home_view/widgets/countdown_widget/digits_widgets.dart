@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-
-import '../../../config.dart';
-import '../../../utils/days_left_digits.dart';
-import '../../../theme/app_theme.dart';
+import '../../../../config.dart';
+import '../../../../utils/days_left_digits.dart';
+import '../../../../theme/app_theme.dart';
 
 class DigitsRow extends StatelessWidget {
   const DigitsRow(this.endDate, {super.key});
