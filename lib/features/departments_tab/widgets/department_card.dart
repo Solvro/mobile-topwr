@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../../../config.dart';
 import '../../../theme/app_theme.dart';
 import '../../../theme/hex_color.dart';
-import '../../../utils/context_extensions.dart';
 import '../../../widgets/my_cached_image.dart';
 import '../repositories/departments_repository.dart';
 

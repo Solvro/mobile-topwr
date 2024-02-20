@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'shimmer_loading.dart';
+
 import '../../config.dart';
+import 'shimmer_loading.dart';
 
 class BigPreviewCardLoading extends StatelessWidget {
   const BigPreviewCardLoading({super.key});
@@ -28,9 +29,7 @@ class BigPreviewCardLoading extends StatelessWidget {
 }
 
 class _LoadingText extends StatelessWidget {
-  const _LoadingText({
-    super.key,
-  });
+  const _LoadingText();
 
   @override
   Widget build(BuildContext context) {

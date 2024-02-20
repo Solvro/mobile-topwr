@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../utils/context_extensions.dart';
+import '../../../../utils/where_non_null_iterable.dart';
 import '../../../../widgets/my_error_widget.dart';
 import '../../../../widgets/subsection_header.dart';
 import '../../repositories/departments_repository/departments_repository.dart';
@@ -18,9 +19,10 @@ class DepartmentSection extends ConsumerWidget {
     return Column(
       children: [
         SubsectionHeader(
-            title: context.localize?.departments ?? '',
-            actionTitle: context.localize!.list,
-            onClick: () {}),
+          title: context.localize?.departments ?? '',
+          actionTitle: context.localize?.list ?? '',
+          onClick: () {},
+        ),
         SmallLeftPadding(
           child: SizedBox(
               height: 120,
@@ -29,19 +31,27 @@ class DepartmentSection extends ConsumerWidget {
                     child: ScrollableSectionLoading(),
                   ),
                 AsyncError(:final error) => MyErrorWidget(error),
-                AsyncValue(:final value) => ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: value?.length ?? 0,
-                    itemBuilder: (context, index) {
-                      final department = value?[index];
-                      if (department == null) return const SizedBox.shrink();
-                      return MediumLeftPadding(
-                          child: DepartmentBox(department));
-                    },
-                  ),
+                AsyncValue(:final value) =>
+                  _DepartmentsDataList(value.whereNonNull.toList()),
               }),
         )
       ],
+    );
+  }
+}
+
+class _DepartmentsDataList extends StatelessWidget {
+  const _DepartmentsDataList(this.departments);
+
+  final List<Department> departments;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      scrollDirection: Axis.horizontal,
+      itemCount: departments.length,
+      itemBuilder: (context, index) =>
+          MediumLeftPadding(child: DepartmentBox(departments[index])),
     );
   }
 }

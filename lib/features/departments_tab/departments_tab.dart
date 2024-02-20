@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../theme/app_theme.dart';
 import '../../utils/context_extensions.dart';
+import '../../utils/where_non_null_iterable.dart';
 import '../../widgets/loading_widgets/my_loading_widget.dart';
 import '../../widgets/my_error_widget.dart';
 import '../../widgets/search_box_app_bar.dart';
@@ -48,14 +49,24 @@ class _DepartmentsTabListBody extends ConsumerWidget {
                     style: context.textTheme.body,
                   ),
                 )
-              : ListView(children: [
-                  for (var department in value ?? <Department>[])
-                    if (department != null)
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 16),
-                        child: DepartmentCard(department),
-                      ),
-                ]),
+              : _DepartmntsDataView(value.whereNonNull.toList()),
         });
+  }
+}
+
+class _DepartmntsDataView extends StatelessWidget {
+  const _DepartmntsDataView(this.departments);
+
+  final List<Department> departments;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemCount: departments.length,
+      itemBuilder: (context, index) => Padding(
+        padding: const EdgeInsets.only(bottom: 16),
+        child: DepartmentCard(departments[index]),
+      ),
+    );
   }
 }

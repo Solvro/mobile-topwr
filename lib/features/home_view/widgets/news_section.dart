@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../../../config.dart';
-import '../../../widgets/big_preview_card.dart';
 import '../../../utils/context_extensions.dart';
+import '../../../utils/where_non_null_iterable.dart';
+import '../../../widgets/big_preview_card.dart';
 import '../../../widgets/my_error_widget.dart';
 import '../../../widgets/subsection_header.dart';
 import '../repositories/infos_repository/infos_preview_repository.dart';
@@ -45,28 +47,36 @@ class _NewsList extends ConsumerWidget {
                   top: HomeScreenConfig.paddingMedium),
               child: SizedBox(
                   height: BigPreviewCardConfig.cardHeight,
-                  child: ListView.builder(
-                      cacheExtent: 4,
-                      shrinkWrap: true,
-                      scrollDirection: Axis.horizontal,
-                      itemCount: value?.length ?? 0,
-                      itemBuilder: (BuildContext context, int index) {
-                        return MediumLeftPadding(
-                          child: value == null
-                              ? const MyErrorWidget(NewsSectionConfig.errorMsg)
-                              : BigPreviewCard(
-                                  title: value[index]?.title ?? "",
-                                  shortDescription:
-                                      value[index]?.shortDescription ?? "",
-                                  photoUrl: value[index]?.photo?.previewUrl,
-                                  date: value[index]?.published_at,
-                                  onClick: () {},
-                                ),
-                        );
-                      })),
+                  child: _NewsDataList(value.whereNonNull.toList())),
             )
           ],
         )
     };
+  }
+}
+
+class _NewsDataList extends StatelessWidget {
+  const _NewsDataList(this.value);
+
+  final List<InfosPreview> value;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+        cacheExtent: 4,
+        shrinkWrap: true,
+        scrollDirection: Axis.horizontal,
+        itemCount: value.length,
+        itemBuilder: (BuildContext context, int index) {
+          return MediumLeftPadding(
+            child: BigPreviewCard(
+              title: value[index].title,
+              shortDescription: value[index].shortDescription ?? "",
+              photoUrl: value[index].photo?.previewUrl,
+              date: value[index].published_at,
+              onClick: () {},
+            ),
+          );
+        });
   }
 }

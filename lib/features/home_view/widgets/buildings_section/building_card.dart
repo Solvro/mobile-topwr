@@ -9,12 +9,12 @@ class BuildingCard extends StatelessWidget {
     super.key,
     required this.onTap,
     required this.buildingName,
-    required this.imageUrl,
+    this.imageUrl,
   });
 
   final VoidCallback onTap;
   final String buildingName;
-  final String imageUrl;
+  final String? imageUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class BuildingCard extends StatelessWidget {
           fit: StackFit.expand,
           children: [
             MyCachedImage(imageUrl),
-            if (imageUrl.isNotEmpty)
+            if (imageUrl != null)
               Positioned.fill(
                 child: Container(
                   decoration: BoxDecoration(
