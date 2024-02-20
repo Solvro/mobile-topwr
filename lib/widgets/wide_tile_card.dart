@@ -32,7 +32,7 @@ class WideTileCard extends StatelessWidget {
         decoration: BoxDecoration(
           gradient: isActive ? context.colorTheme.toPwrGradient : null,
           color: context.colorTheme.greyLight,
-          borderRadius: const BorderRadius.all(Radius.circular(8)),
+          borderRadius: const BorderRadius.all(WideTileCardConfig.radius),
           boxShadow: isActive
               ? const [
                   BoxShadow(
@@ -48,7 +48,7 @@ class WideTileCard extends StatelessWidget {
           children: [
             Expanded(child: _TitlesColumn(title, subtitle, isActive)),
             SizedBox.square(
-              dimension: 92,
+              dimension: WideTileCardConfig.imageSize,
               child: MyCachedImage(photoUrl),
             ),
           ],
@@ -58,7 +58,8 @@ class WideTileCard extends StatelessWidget {
   }
 }
 
-class _TitlesColumn extends StatelessWidget {
+class _TitlesColumn extends StatelessWidget
+    with WideTileCardCalcExtraPaddingLeft {
   const _TitlesColumn(
     this.title,
     this.subtitle,
@@ -72,13 +73,9 @@ class _TitlesColumn extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       const basePadding = WideTileCardConfig.basePadding;
-      final extraLeftPadding = max(
-              constraints.maxWidth - WideTileCardConfig.minWidthForExtraPadding,
-              0) *
-          WideTileCardConfig.extraPaddingFactor;
       return Padding(
         padding: EdgeInsets.only(
-          left: extraLeftPadding + basePadding,
+          left: calcExtraLeftPadding(constraints) + basePadding,
           top: basePadding,
           bottom: basePadding,
           right: basePadding,
@@ -103,5 +100,15 @@ class _TitlesColumn extends StatelessWidget {
         ),
       );
     });
+  }
+}
+
+mixin WideTileCardCalcExtraPaddingLeft {
+  double calcExtraLeftPadding(BoxConstraints constraints) {
+    return max(
+          constraints.maxWidth - WideTileCardConfig.minWidthForExtraPadding,
+          0,
+        ) *
+        WideTileCardConfig.extraPaddingFactor;
   }
 }

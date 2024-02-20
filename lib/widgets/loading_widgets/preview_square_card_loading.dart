@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
-import '../../../../widgets/loading_widgets/shimmer_loading.dart';
 
-class PreviewCardLoading extends StatelessWidget {
-  const PreviewCardLoading({super.key});
+import 'shimmer_loading.dart';
+
+class PreviewSquareCardLoading extends StatelessWidget {
+  const PreviewSquareCardLoading({super.key, required this.size});
+
+  final double size;
 
   @override
   Widget build(BuildContext context) {
     return ShimmeringEffect(
       child: Container(
-        width: 120,
-        height: 120,
+        width: size,
+        height: size,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(8),

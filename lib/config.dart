@@ -57,6 +57,9 @@ abstract class WideTileCardConfig {
   static const basePadding = 16.0;
   static const minWidthForExtraPadding = 375;
   static const extraPaddingFactor = 0.33;
+
+  static const imageSize = 92.0;
+  static const radius = Radius.circular(8);
 }
 
 abstract class MapViewBottomSheetConfig {

@@ -3,13 +3,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../config.dart';
 import '../../../../utils/where_non_null_iterable.dart';
-import '../../../../widgets/loading_widgets/my_loading_widget.dart';
 import '../../../../widgets/my_error_widget.dart';
 import '../../../../widgets/wide_tile_card.dart';
 import '../../controllers/buildings_listview_controller.dart';
 import '../../controllers/map_controller.dart';
 import '../../repository/building_extra_params_ext.dart';
 import '../../repository/map_buildings_repo.dart';
+import 'buildings_list_loading.dart';
 
 class BuildingsSliverList extends ConsumerWidget {
   const BuildingsSliverList({super.key});
@@ -18,7 +18,7 @@ class BuildingsSliverList extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final buildingsState = ref.watch(buildingsListViewControllerProvider);
     return switch (buildingsState) {
-      AsyncLoading() => const SliverToBoxAdapter(child: LoadingWidget()),
+      AsyncLoading() => const BuildingsListLoading(),
       AsyncError(:final error) =>
         SliverToBoxAdapter(child: MyErrorWidget(error)),
       AsyncValue(:final value) => _DataSliverList(value.whereNonNull.toList())
