@@ -7,6 +7,7 @@ import '../../../widgets/subsection_header.dart';
 import '../repositories/study_circles_repository/study_circles_repository.dart';
 import '../../../widgets/big_preview_card.dart';
 import '../../../utils/context_extensions.dart';
+import 'paddings.dart';
 
 class StudyCirclesSection extends StatelessWidget {
   const StudyCirclesSection({super.key});
@@ -17,7 +18,7 @@ class StudyCirclesSection extends StatelessWidget {
           SubsectionHeader(
               title: context.localize!.study_circles,
               actionTitle: context.localize!.list,
-              onClick: () => {}),
+              onClick: (){}),
           const _StudyCirclesList()
         ],
       );
@@ -31,7 +32,7 @@ class _StudyCirclesList extends ConsumerWidget {
     final state = ref.watch(studyCirclesRepositoryProvider);
     return switch (state) {
       AsyncLoading() => const Padding(
-        padding: EdgeInsets.only(left: 16, top : 16),
+        padding: EdgeInsets.only(left: HomeScreenConfig.paddingMedium, top : HomeScreenConfig.paddingMedium),
         child: BigScrollableSectionLoading(),
       ),
       AsyncError(:final error) =>
@@ -40,7 +41,7 @@ class _StudyCirclesList extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 6, top: 16),
+              padding: const EdgeInsets.only(left: HomeScreenConfig.paddingSmall, top: HomeScreenConfig.paddingMedium),
               child: SizedBox(
                   height: BigPreviewCardConfig.cardHeight,
                   child: ListView.builder(
@@ -49,8 +50,7 @@ class _StudyCirclesList extends ConsumerWidget {
                       scrollDirection: Axis.horizontal,
                       itemCount: value?.length ?? 0,
                       itemBuilder: (BuildContext context, int index) {
-                        return Padding(
-                          padding: const EdgeInsets.only(left: 16.0),
+                        return MediumLeftPadding(
                           child: value == null
                               ? const MyErrorWidget(
                                   StudyCirclesSectionConfig.errorMsg)

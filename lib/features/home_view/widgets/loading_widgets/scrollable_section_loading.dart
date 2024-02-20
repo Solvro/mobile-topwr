@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import '../paddings.dart';
 import 'preview_card_loading.dart';
 
 class ScrollableSectionLoading extends StatelessWidget {
@@ -14,8 +15,7 @@ class ScrollableSectionLoading extends StatelessWidget {
           physics: const NeverScrollableScrollPhysics(),
           itemCount: (MediaQuery.of(context).size.width ~/ 120) + 1,
           itemBuilder: (context, index) {
-            return const Padding(
-              padding: EdgeInsets.only(right: 16),
+            return const MediumLeftPadding(
               child: PreviewCardLoading(),
             );
           },

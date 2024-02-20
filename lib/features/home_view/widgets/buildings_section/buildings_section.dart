@@ -5,6 +5,7 @@ import '../../../../widgets/my_error_widget.dart';
 import '../loading_widgets/scrollable_section_loading.dart';
 import '../../../../widgets/subsection_header.dart';
 import '../../repositories/maps_list_repository/maps_list_repository.dart';
+import '../paddings.dart';
 import 'building_card.dart';
 
 class BuildingsSection extends StatelessWidget {
@@ -16,7 +17,7 @@ class BuildingsSection extends StatelessWidget {
           SubsectionHeader(
               title: context.localize!.buildings_title,
               actionTitle: context.localize!.map_button,
-              onClick: () => {}),
+              onClick: (){}),
           const _BuildingsList()
         ],
       );
@@ -29,21 +30,18 @@ class _BuildingsList extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(mapsListRepositoryProvider);
     return switch (state) {
-      AsyncLoading() => const Padding(
-        padding: EdgeInsets.only(left: 16),
+      AsyncLoading() => const MediumLeftPadding(
         child: ScrollableSectionLoading(),
       ),
       AsyncError(:final error) => MyErrorWidget(error),
-      AsyncValue(:final value) => Padding(
-          padding: const EdgeInsets.only(left: 6),
+      AsyncValue(:final value) => SmallLeftPadding(
           child: SizedBox(
             height: 120,
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: [
                 for (final mapItem in value ?? [])
-                  Padding(
-                    padding: const EdgeInsets.only(left: 16.0),
+                  MediumLeftPadding(
                     child: BuildingCard(
                       buildingName: mapItem?.code ?? "",
                       imageUrl: mapItem?.photo?.url ?? "",

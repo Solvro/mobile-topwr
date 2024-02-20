@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../utils/context_extensions.dart';
 import '../../../../widgets/my_error_widget.dart';
-import '../../../../widgets/shimmer_loading.dart';
+import '../../../../widgets/loading_widgets/shimmer_loading.dart';
 import '../../repositories/exam_date_repository/exam_date_repository.dart';
 import '../../../../theme/app_theme.dart';
 import 'digits_widgets.dart';
@@ -14,18 +14,9 @@ class ExamSessionCountdown extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(examSessionCountdownRepositoryProvider);
     return switch (state) {
-      AsyncLoading() => Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: ShimmeringEffect(
-              child: Container(
-            width: double.maxFinite,
-            height: 69,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(8.0),
-            ),
-          )),
-        ),
+      AsyncLoading() => const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16),
+          child: _LoadingExamSessionCountdown()),
       AsyncError(:final error) => MyErrorWidget(error),
       AsyncValue(:final value) => Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -70,5 +61,24 @@ class ExamSessionCountdown extends ConsumerWidget {
           ),
         )
     };
+  }
+}
+
+class _LoadingExamSessionCountdown extends StatelessWidget {
+  const _LoadingExamSessionCountdown({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ShimmeringEffect(
+        child: Container(
+      width: double.maxFinite,
+      height: 69,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+    ));
   }
 }

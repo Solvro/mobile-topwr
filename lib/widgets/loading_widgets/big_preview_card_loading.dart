@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'shimmer_loading.dart';
-import '../config.dart';
+import '../../config.dart';
 
 class BigPreviewCardLoading extends StatelessWidget {
   const BigPreviewCardLoading({super.key});
@@ -21,12 +21,19 @@ class BigPreviewCardLoading extends StatelessWidget {
                 ),
               ),
             ),
-            ShimmerLoadingItem(child: _loadingText())
+            const ShimmerLoadingItem(child: _LoadingText())
           ],
         ));
   }
+}
 
-  Widget _loadingText() {
+class _LoadingText extends StatelessWidget {
+  const _LoadingText({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       const SizedBox(height: 16),
       Container(

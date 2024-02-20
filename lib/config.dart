@@ -36,6 +36,11 @@ abstract class NewsSectionConfig{
   static const errorMsg = "An error occurred in NewsSection's scrollable row";
 }
 
+abstract class HomeScreenConfig {
+  static const paddingSmall = 6.0;
+  static const paddingMedium = 16.0;
+}
+
 abstract class BigPreviewCardConfig {
   static const double cardHeight = 360;
   static const double cardWidth = 240;

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../config.dart';
 import 'widgets/departments_section/department_section.dart';
 import 'widgets/news_section.dart';
 import 'widgets/study_circles_section.dart';
@@ -27,7 +28,7 @@ class HomeView extends StatelessWidget {
       body: ListView.separated(
         padding: const EdgeInsets.only(bottom: 48),
         itemBuilder: (context, index) => sections[index],
-        separatorBuilder: (context, index) => const SizedBox(height: 16),
+        separatorBuilder: (context, index) => const SizedBox(height: HomeScreenConfig.paddingMedium),
         itemCount: sections.length,
       ),
     );

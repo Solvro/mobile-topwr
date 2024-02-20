@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'shimmer_loading.dart';
+import 'loading_widgets/shimmer_loading.dart';
 import '../features/splash_screen/widgets/flutter_splash_screen.dart';
 
 class MyCachedImage extends StatelessWidget {
