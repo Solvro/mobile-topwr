@@ -1,9 +1,9 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import '../config.dart';
 import '../theme/app_theme.dart';
 import '../utils/context_extensions.dart';
 import 'date_chip.dart';
+import 'my_cached_image.dart';
 
 class BigPreviewCard extends StatelessWidget {
   const BigPreviewCard({
@@ -27,45 +27,54 @@ class BigPreviewCard extends StatelessWidget {
       decoration: BoxDecoration(
           color: context.colorTheme.greyLight,
           borderRadius: BorderRadius.circular(8)),
-      width: 240,
+      width: BigPreviewCardConfig.cardWidth,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
-            flex: 145,
-            child: Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  borderRadius:
-                      const BorderRadius.vertical(top: Radius.circular(8)),
-                  image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: CachedNetworkImageProvider(
-                          photoUrl ?? BigPreviewCardConfig.placeHolderUrl)),
+              flex: 135,
+              child: ClipRRect(
+                borderRadius:
+                    const BorderRadius.vertical(top: Radius.circular(8)),
+                child: Stack(
+                  alignment: Alignment.topRight,
+                  children: [
+                    MyCachedImage(photoUrl),
+                    date != null
+                        ? DateChip(date: date!)
+                        : const SizedBox.shrink()
+                  ],
                 ),
-                child: date != null
-                    ? DateChip(date: date!)
-                    : const SizedBox.shrink()),
-          ),
+              )),
           Expanded(
-            flex: 215,
+            flex: 210,
             child: Container(
               padding: const EdgeInsets.all(16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Text(
-                    title,
-                    style: context.textTheme.title,
-                  ),
-                  Text(
-                    shortDescription,
-                    maxLines: 5,
-                    style: context.textTheme.body,
+                  RichText(
+                    maxLines: 8,
                     overflow: TextOverflow.ellipsis,
+                    text: TextSpan(children: [
+                      TextSpan(
+                        text: "$title\n",
+                        style: context.textTheme.title,
+                      ),
+                      const TextSpan(
+                        text: "\n", // padding workaround
+                        style: TextStyle(fontSize: 7, height: 1),
+                      ),
+                      TextSpan(
+                        text: shortDescription,
+                        style: context.textTheme.body,
+                      ),
+                    ]),
                   ),
+                  const Spacer(),
                   MaterialButton(
+                    elevation: 1,
                     padding: const EdgeInsets.all(8),
                     onPressed: onClick,
                     color: context.colorTheme.orangePomegranade,
