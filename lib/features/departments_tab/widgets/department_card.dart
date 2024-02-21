@@ -1,68 +1,47 @@
 import 'package:flutter/material.dart';
 
 import '../../../config.dart';
-import '../../../theme/app_theme.dart';
 import '../../../theme/hex_color.dart';
 import '../../../widgets/my_cached_image.dart';
+import '../../../widgets/wide_tile_card.dart';
 import '../repositories/departments_repository.dart';
 
 class DepartmentCard extends StatelessWidget {
-  final Department? department;
+  final Department department;
   const DepartmentCard(this.department, {super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 92,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            HexColor(department?.color?.gradientSecond ??
-                DepartmentsConfig.defaultColorFirst),
-            HexColor(department?.color?.gradientFirst ??
-                DepartmentsConfig.defaultColorSecond),
-          ],
-          begin: Alignment.bottomLeft,
-          end: Alignment.topRight,
+    final gradient = LinearGradient(
+      colors: [
+        HexColor(department.color?.gradientSecond ??
+            DepartmentsConfig.defaultColorFirst),
+        HexColor(department.color?.gradientFirst ??
+            DepartmentsConfig.defaultColorSecond),
+      ],
+      begin: Alignment.bottomLeft,
+      end: Alignment.topRight,
+    );
+
+    return WideTileCard(
+      isActive: true,
+      title: department.code,
+      subtitle: department.name,
+      activeShadows: null,
+      activeGradient: gradient,
+      trailing: Padding(
+        padding: const EdgeInsets.only(right: 10),
+        child: SizedBox.square(
+          dimension: WideTileCardConfig.imageSize,
+          child: Opacity(
+            opacity: .5,
+            child: MyCachedImage(
+              department.logo?.url,
+              boxFit: BoxFit.contain,
+              noShimmeringLoading: true,
+            ),
+          ),
         ),
-        color: Colors.green,
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Row(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 14.0, bottom: 14, left: 16),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  department!.code,
-                  style: context.textTheme.headlineWhite,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                SizedBox(
-                  width: 191,
-                  child: Text(
-                    department!.name,
-                    style: context.textTheme.bodyWhite,
-                  ),
-                )
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(right: 10),
-            child: SizedBox(
-              width: 92,
-              child: Opacity(
-                opacity: .5,
-                child: MyCachedImage(department?.logo?.url),
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }

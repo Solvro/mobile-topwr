@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../config.dart';
-import '../../wide_tile_card.dart';
 import '../shimmer_loading.dart';
 import '../simple_previews/preview_card_loading.dart';
 import '../simple_previews/preview_text_prototype.dart';
@@ -29,8 +28,7 @@ class WideTileLoading extends StatelessWidget {
   }
 }
 
-class _TitlesColumnLoading extends StatelessWidget
-    with WideTileCardCalcExtraPaddingLeft {
+class _TitlesColumnLoading extends StatelessWidget {
   const _TitlesColumnLoading();
 
   static const _firstTextLoadingWidthFraction = 0.8;
@@ -40,17 +38,16 @@ class _TitlesColumnLoading extends StatelessWidget
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       return Padding(
-        padding: EdgeInsets.only(
-          left: calcExtraLeftPadding(constraints) +
-              WideTileCardConfig.basePadding,
-        ),
+        padding: const EdgeInsets.only(
+            left: WideTileCardConfig.basePadding,
+            top: WideTileCardConfig.basePadding),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             PreviewTextPrototype(
               width: constraints.maxWidth * _firstTextLoadingWidthFraction,
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: WideTileCardConfig.titlesSpacing),
             PreviewTextPrototype(
               width: constraints.maxWidth * _secondTextLoadingWidthFraction,
             ),

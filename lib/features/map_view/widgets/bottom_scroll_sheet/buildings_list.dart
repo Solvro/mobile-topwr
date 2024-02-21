@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../config.dart';
+import '../../../../theme/app_theme.dart';
+import '../../../../utils/context_extensions.dart';
 import '../../../../utils/where_non_null_iterable.dart';
 import '../../../../widgets/my_error_widget.dart';
 import '../../../../widgets/wide_tile_card.dart';
@@ -57,9 +59,10 @@ class _BuildingTile extends ConsumerWidget {
   final Building building;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return WideTileCard(
+    return PhotoTrailingWideTileCard(
+      activeGradient: context.colorTheme.toPwrGradient,
       photoUrl: building.photo?.url,
-      title: building.name,
+      title: "${context.localize?.building_prefix} ${building.name}",
       subtitle: building.addresFormatted,
       isActive: ref.watchIsActive(building),
       onTap: () {

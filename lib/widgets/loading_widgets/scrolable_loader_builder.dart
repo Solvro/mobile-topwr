@@ -7,6 +7,7 @@ class ScrollableLoaderBuilder extends StatelessWidget {
     required this.mainAxisItemSize,
     required this.scrollDirection,
     this.crossAxisForcedSize,
+    this.itemsSpacing = 0.0,
   });
   final Widget? Function(BuildContext, int) itemBuilder;
 
@@ -15,6 +16,8 @@ class ScrollableLoaderBuilder extends StatelessWidget {
   final double? crossAxisForcedSize;
 
   final Axis scrollDirection;
+
+  final double itemsSpacing;
   @override
   Widget build(BuildContext context) {
     final isHorizontal = scrollDirection == Axis.horizontal;
@@ -25,16 +28,18 @@ class ScrollableLoaderBuilder extends StatelessWidget {
         height: !isHorizontal ? double.infinity : crossAxisSize,
         child: LayoutBuilder(builder: (context, constraints) {
           final mainAxisAvailableSpace =
-              isHorizontal ? constraints.maxWidth : constraints.maxWidth;
+              isHorizontal ? constraints.maxWidth : constraints.maxHeight;
 
           final numberOfVisibleItems =
               (mainAxisAvailableSpace ~/ mainAxisItemSize) + 1;
 
-          return ListView.builder(
+          return ListView.separated(
             scrollDirection: scrollDirection,
             physics: const NeverScrollableScrollPhysics(),
             itemCount: numberOfVisibleItems,
             itemBuilder: itemBuilder,
+            separatorBuilder: (context, index) =>
+                SizedBox(width: itemsSpacing, height: itemsSpacing),
           );
         }));
   }

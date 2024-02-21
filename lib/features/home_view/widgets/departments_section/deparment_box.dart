@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../../config.dart';
 import '../../../../theme/app_theme.dart';
 import '../../../../theme/hex_color.dart';
@@ -20,10 +21,11 @@ class DepartmentBox extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
           gradient: LinearGradient(
             colors: [
-              HexColor(department.color?.gradientSecond ?? DepartmentsConfig.defaultColorFirst) ,// Darker color
-              HexColor(department.color?.gradientFirst ?? DepartmentsConfig.defaultColorSecond)// Darker color
+              HexColor(department.color?.gradientSecond ??
+                  DepartmentsConfig.defaultColorFirst), // Darker color
+              HexColor(department.color?.gradientFirst ??
+                  DepartmentsConfig.defaultColorSecond) // Darker color
             ],
-
             begin: Alignment.bottomLeft,
             end: Alignment.topRight,
           ),
@@ -32,7 +34,10 @@ class DepartmentBox extends StatelessWidget {
           padding: const EdgeInsets.all(16.0),
           child: Stack(
             children: [
-              MyCachedImage(department.logo?.url),
+              MyCachedImage(
+                department.logo?.url,
+                noShimmeringLoading: true,
+              ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -24,6 +24,16 @@ abstract class ExamSessionCountdownConfig {
 abstract class DepartmentsConfig {
   static const defaultColorFirst = '#BFBEBE';
   static const defaultColorSecond = '#999898';
+
+  static const listSeparatorSize = 16.0;
+
+  static const departmentsTabGridDelegate =
+      SliverGridDelegateWithMaxCrossAxisExtent(
+    maxCrossAxisExtent: 600,
+    mainAxisExtent: 92,
+    crossAxisSpacing: 16,
+    mainAxisSpacing: 16,
+  );
 }
 
 abstract class DateChipConfig {
@@ -55,11 +65,20 @@ abstract class SearchWidgetConfig {
 
 abstract class WideTileCardConfig {
   static const basePadding = 16.0;
+  static const titlesSpacing = 8.0;
   static const minWidthForExtraPadding = 375;
   static const extraPaddingFactor = 0.33;
 
   static const imageSize = 92.0;
   static const radius = Radius.circular(8);
+
+  static const defaultActiveShadows = [
+    BoxShadow(
+      color: Color.fromRGBO(250, 100, 101, 0.16),
+      blurRadius: 11.0,
+      spreadRadius: 6.0,
+    )
+  ];
 }
 
 abstract class MapViewBottomSheetConfig {
