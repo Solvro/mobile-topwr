@@ -31,12 +31,19 @@ class DepartmentBox extends StatelessWidget {
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(10.0),
           child: Stack(
             children: [
-              MyCachedImage(
-                department.logo?.url,
-                noShimmeringLoading: true,
+              Opacity(
+                opacity: .4,
+                child: SizedBox.square(
+                  dimension: 100,
+                  child: MyCachedImage(
+                    department.logo?.url,
+                    noShimmeringLoading: true,
+                    boxFit: BoxFit.contain,
+                  ),
+                ),
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

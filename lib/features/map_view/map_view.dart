@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -30,13 +32,14 @@ class HorizontalWebLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    final panelWidth = min(350.0, MediaQuery.sizeOf(context).width);
+    return Row(
       children: [
         SizedBox(
-          width: 350,
-          child: SheetLayoutScheme(),
+          width: panelWidth,
+          child: const SheetLayoutScheme(),
         ),
-        Expanded(child: MapWidget())
+        const Expanded(child: MapWidget())
       ],
     );
   }
