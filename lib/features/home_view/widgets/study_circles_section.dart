@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../config.dart';
+import '../../study_circle_details/study_circle_details.dart';
 import 'loading_widgets/big_scrollable_section_loading.dart';
 import '../../../widgets/my_error_widget.dart';
 import '../../../widgets/subsection_header.dart';
@@ -59,7 +61,17 @@ class _StudyCirclesList extends ConsumerWidget {
                                   shortDescription:
                                       value[index]?.description ?? "",
                                   photoUrl: value[index]?.photo?.previewUrl,
-                                  onClick: () {},
+                                  onClick: () {
+                                    Navigator.push(
+                                      context,
+                                      CupertinoPageRoute(
+                                        builder: (context) =>
+                                        const StudyCircleDetails(),
+                                        settings: RouteSettings(
+                                            arguments: value[index]?.id ?? ""),
+                                      ),
+                                    );
+                                  },
                                 ),
                         );
                       })),

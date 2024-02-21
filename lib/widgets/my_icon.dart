@@ -1,7 +1,6 @@
-
 import 'package:flutter/material.dart';
-import '../features/home_view/widgets/my_cached_image.dart';
 import '../theme/app_theme.dart';
+import 'my_cached_image.dart';
 
 class MyIcon extends StatelessWidget {
   const MyIcon({

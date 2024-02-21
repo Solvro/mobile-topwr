@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../widgets/loading_widgets/my_loading_widget.dart';
 import 'study_circle_details_contact_section.dart';
 import '../../utils/context_extensions.dart';
-import '../../widgets/loading_widget.dart';
 import '../../widgets/my_error_widget.dart';
 import 'study_circle_details_repository/study_circle_repository.dart';
 import 'study_circle_details_header.dart';

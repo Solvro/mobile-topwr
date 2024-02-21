@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../theme/app_theme.dart';
 import '../../utils/context_extensions.dart';
-import '../../widgets/loading_widget.dart';
+import '../../widgets/loading_widgets/my_loading_widget.dart';
 import '../../widgets/my_error_widget.dart';
 import 'departments_tab_controller.dart';
 import 'repositories/departments_repository.dart';
