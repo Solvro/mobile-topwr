@@ -27,5 +27,7 @@
   "search": "Szukaj",
   "navigate" : "Nawiguj",
   "building_prefix": "Budynek",
-  "department_not_found": "Nie znaleziono wydziału"
+  "department_not_found": "Nie znaleziono wydziału",
+  "building_not_found": "Nie znaleziono budynku"
+
 }

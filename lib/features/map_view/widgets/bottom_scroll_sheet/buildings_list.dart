@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../config.dart';
 import '../../../../theme/app_theme.dart';
 import '../../../../utils/context_extensions.dart';
+import '../../../../utils/is_empty_nullable.dart';
 import '../../../../utils/where_non_null_iterable.dart';
 import '../../../../widgets/my_error_widget.dart';
 import '../../../../widgets/wide_tile_card.dart';
@@ -23,7 +24,9 @@ class BuildingsSliverList extends ConsumerWidget {
       AsyncLoading() => const BuildingsListLoading(),
       AsyncError(:final error) =>
         SliverToBoxAdapter(child: MyErrorWidget(error)),
-      AsyncValue(:final value) => _DataSliverList(value.whereNonNull.toList())
+      AsyncValue(:final value) => value.isEmptyNullable
+          ? const _EmptyBuildings()
+          : _DataSliverList(value.whereNonNull.toList())
     };
   }
 }
@@ -68,6 +71,28 @@ class _BuildingTile extends ConsumerWidget {
       onTap: () {
         ref.read(mapControllerProvider.notifier).onMarkerTap(building);
       },
+    );
+  }
+}
+
+class _EmptyBuildings extends StatelessWidget {
+  const _EmptyBuildings();
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverToBoxAdapter(
+      child: Align(
+        alignment: Alignment.topCenter,
+        child: Padding(
+          padding: const EdgeInsets.only(
+            top: 24,
+          ),
+          child: Text(
+            context.localize!.department_not_found,
+            style: context.textTheme.body,
+          ),
+        ),
+      ),
     );
   }
 }
