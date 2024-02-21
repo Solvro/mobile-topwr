@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../config.dart';
 import '../../theme/app_theme.dart';
 import '../../utils/context_extensions.dart';
-import '../../utils/is_empty_nullable.dart';
 import '../../utils/where_non_null_iterable.dart';
 import '../../widgets/my_error_widget.dart';
 import '../../widgets/search_box_app_bar.dart';
@@ -44,14 +43,8 @@ class _DepartmentsTabListBody extends ConsumerWidget {
         child: switch (state) {
           AsyncLoading() => const DepartmentsListLoading(),
           AsyncError(:final error) => MyErrorWidget(error),
-          AsyncValue(:final value) => value.isEmptyNullable
-              ? Center(
-                  child: Text(
-                    context.localize?.department_not_found ?? "",
-                    style: context.textTheme.body,
-                  ),
-                )
-              : _DepartmntsDataView(value.whereNonNull.toList()),
+          AsyncValue(:final value) =>
+            _DepartmntsDataView(value.whereNonNull.toList()),
         });
   }
 }
@@ -63,6 +56,14 @@ class _DepartmntsDataView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (departments.isEmpty) {
+      return Center(
+        child: Text(
+          context.localize?.department_not_found ?? "",
+          style: context.textTheme.body,
+        ),
+      );
+    }
     return GridView.builder(
       gridDelegate: DepartmentsConfig.departmentsTabGridDelegate,
       itemCount: departments.length,
