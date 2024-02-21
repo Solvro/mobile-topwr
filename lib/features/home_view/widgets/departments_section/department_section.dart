@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../repositories/departments_repository/departments_repository.dart';
 import '../../../../utils/context_extensions.dart';
 import '../../../../utils/where_non_null_iterable.dart';
 import '../../../../widgets/my_error_widget.dart';
 import '../../../../widgets/subsection_header.dart';
-import '../../repositories/departments_repository/departments_repository.dart';
 import '../loading_widgets/scrollable_section_loading.dart';
 import '../paddings.dart';
 import 'deparment_box.dart';

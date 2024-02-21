@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../../../config.dart';
-import '../../../theme/hex_color.dart';
+import '../../../repositories/departments_repository/departments_extra_params_ext.dart';
+import '../../../repositories/departments_repository/departments_repository.dart';
 import '../../../widgets/my_cached_image.dart';
 import '../../../widgets/wide_tile_card.dart';
-import '../repositories/departments_repository.dart';
 
 class DepartmentCard extends StatelessWidget {
   final Department department;
@@ -12,23 +12,12 @@ class DepartmentCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final gradient = LinearGradient(
-      colors: [
-        HexColor(department.color?.gradientSecond ??
-            DepartmentsConfig.defaultColorFirst),
-        HexColor(department.color?.gradientFirst ??
-            DepartmentsConfig.defaultColorSecond),
-      ],
-      begin: Alignment.bottomLeft,
-      end: Alignment.topRight,
-    );
-
     return WideTileCard(
       isActive: true,
       title: department.code,
       subtitle: department.name,
       activeShadows: null,
-      activeGradient: gradient,
+      activeGradient: department.gradient,
       trailing: Padding(
         padding: const EdgeInsets.only(right: 10),
         child: SizedBox.square(
