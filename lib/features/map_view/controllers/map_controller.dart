@@ -7,8 +7,8 @@ import 'package:google_maps_flutter_platform_interface/google_maps_flutter_platf
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../config.dart';
-import '../repository/building_extra_params_ext.dart';
-import '../repository/map_buildings_repo.dart';
+import '../../../repositories/buildings_repository/building_extra_params_ext.dart';
+import '../../../repositories/buildings_repository/map_buildings_repo.dart';
 import 'active_map_marker_cntrl.dart';
 import 'bottom_sheet_controller.dart';
 
@@ -33,8 +33,13 @@ class MapController extends _$MapController {
     return await _controller.future;
   }
 
-  void onMapCreated(GoogleMapController controller) {
+  void onMapCreated(GoogleMapController controller) async {
     _controller.complete(controller);
+
+    await _controller.future; // wait for proper completion
+
+    final activeMarker = ref.read(activeMapMarkerControllerProvider);
+    if (activeMarker != null) zoomOnMarker(activeMarker);
   }
 
   void zoomOnMarker(Building building) {

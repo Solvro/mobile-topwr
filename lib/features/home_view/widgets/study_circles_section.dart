@@ -7,20 +7,26 @@ import '../../../utils/where_non_null_iterable.dart';
 import '../../../widgets/big_preview_card.dart';
 import '../../../widgets/my_error_widget.dart';
 import '../../../widgets/subsection_header.dart';
+import '../../bottom_nav_bar/bottom_nav_bar_controller.dart';
+import '../../bottom_nav_bar/nav_bar_config.dart';
 import '../repositories/study_circles_repository/study_circles_repository.dart';
 import 'loading_widgets/big_scrollable_section_loading.dart';
 import 'paddings.dart';
 
-class StudyCirclesSection extends StatelessWidget {
+class StudyCirclesSection extends ConsumerWidget {
   const StudyCirclesSection({super.key});
 
   @override
-  Widget build(BuildContext context) => Column(
+  Widget build(BuildContext context, WidgetRef ref) => Column(
         children: [
           SubsectionHeader(
               title: context.localize!.study_circles,
               actionTitle: context.localize!.list,
-              onClick: () {}),
+              onClick: () {
+                ref
+                    .read(bottomNavBarControllerProvider.notifier)
+                    .goTo(NavBarEnum.sciCircles);
+              }),
           const _StudyCirclesList()
         ],
       );

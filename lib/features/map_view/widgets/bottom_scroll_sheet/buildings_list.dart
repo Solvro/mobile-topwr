@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../config.dart';
+import '../../../../repositories/buildings_repository/building_extra_params_ext.dart';
+import '../../../../repositories/buildings_repository/map_buildings_repo.dart';
 import '../../../../theme/app_theme.dart';
 import '../../../../utils/context_extensions.dart';
 import '../../../../utils/where_non_null_iterable.dart';
@@ -9,8 +11,6 @@ import '../../../../widgets/my_error_widget.dart';
 import '../../../../widgets/wide_tile_card.dart';
 import '../../controllers/buildings_listview_controller.dart';
 import '../../controllers/map_controller.dart';
-import '../../repository/building_extra_params_ext.dart';
-import '../../repository/map_buildings_repo.dart';
 import 'buildings_list_loading.dart';
 
 class BuildingsSliverList extends ConsumerWidget {

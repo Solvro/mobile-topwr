@@ -1,25 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../repositories/buildings_repository/map_buildings_repo.dart';
 import '../../../../utils/context_extensions.dart';
 import '../../../../utils/where_non_null_iterable.dart';
 import '../../../../widgets/my_error_widget.dart';
 import '../../../../widgets/subsection_header.dart';
-import '../../repositories/maps_list_repository/maps_list_repository.dart';
+import '../../../bottom_nav_bar/bottom_nav_bar_controller.dart';
+import '../../../bottom_nav_bar/nav_bar_config.dart';
+import '../../../map_view/controllers/active_map_marker_cntrl.dart';
 import '../loading_widgets/scrollable_section_loading.dart';
 import '../paddings.dart';
 import 'building_card.dart';
 
-class BuildingsSection extends StatelessWidget {
+class BuildingsSection extends ConsumerWidget {
   const BuildingsSection({super.key});
 
+  static void goToMapTab(WidgetRef ref) =>
+      ref.read(bottomNavBarControllerProvider.notifier).goTo(NavBarEnum.mapp);
+
   @override
-  Widget build(BuildContext context) => Column(
+  Widget build(BuildContext context, WidgetRef ref) => Column(
         children: [
           SubsectionHeader(
-              title: context.localize!.buildings_title,
-              actionTitle: context.localize!.map_button,
-              onClick: () {}),
+            title: context.localize!.buildings_title,
+            actionTitle: context.localize!.map_button,
+            onClick: () => BuildingsSection.goToMapTab(ref),
+          ),
           const _BuildingsList()
         ],
       );
@@ -30,7 +37,7 @@ class _BuildingsList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(mapsListRepositoryProvider);
+    final state = ref.watch(mapBuildingsRepositoryProvider);
     return switch (state) {
       AsyncLoading() => const MediumLeftPadding(
           child: ScrollableSectionLoading(),
@@ -46,13 +53,13 @@ class _BuildingsList extends ConsumerWidget {
   }
 }
 
-class _DataListBuildingsTiles extends StatelessWidget {
+class _DataListBuildingsTiles extends ConsumerWidget {
   const _DataListBuildingsTiles(this.buildings);
 
-  final List<Maps> buildings;
+  final List<Building> buildings;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return ListView.builder(
       scrollDirection: Axis.horizontal,
       itemCount: buildings.length,
@@ -62,7 +69,12 @@ class _DataListBuildingsTiles extends StatelessWidget {
           child: BuildingCard(
             buildingName: mapItem.code,
             imageUrl: mapItem.photo?.url,
-            onTap: () {},
+            onTap: () {
+              BuildingsSection.goToMapTab(ref);
+              ref
+                  .watch(activeMapMarkerControllerProvider.notifier)
+                  .selectBuilding(mapItem);
+            },
           ),
         );
       },

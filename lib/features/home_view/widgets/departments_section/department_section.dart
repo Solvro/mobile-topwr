@@ -6,6 +6,8 @@ import '../../../../utils/context_extensions.dart';
 import '../../../../utils/where_non_null_iterable.dart';
 import '../../../../widgets/my_error_widget.dart';
 import '../../../../widgets/subsection_header.dart';
+import '../../../bottom_nav_bar/bottom_nav_bar_controller.dart';
+import '../../../bottom_nav_bar/nav_bar_config.dart';
 import '../loading_widgets/scrollable_section_loading.dart';
 import '../paddings.dart';
 import 'deparment_box.dart';
@@ -21,7 +23,11 @@ class DepartmentSection extends ConsumerWidget {
         SubsectionHeader(
           title: context.localize?.departments ?? '',
           actionTitle: context.localize?.list ?? '',
-          onClick: () {},
+          onClick: () {
+            ref
+                .read(bottomNavBarControllerProvider.notifier)
+                .goTo(NavBarEnum.faculties);
+          },
         ),
         SmallLeftPadding(
           child: SizedBox(

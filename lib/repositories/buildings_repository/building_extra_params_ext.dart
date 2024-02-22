@@ -1,8 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-import '../controllers/active_map_marker_cntrl.dart';
-import '../utils/map_marker_utils.dart';
+import '../../features/map_view/controllers/active_map_marker_cntrl.dart';
+import '../../features/map_view/utils/map_marker_utils.dart';
 import 'map_buildings_repo.dart';
 
 extension BuildingExtraParamsExt on Building {
