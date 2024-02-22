@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -11,30 +13,35 @@ class BottomScrollSheet extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final screenHeight = MediaQuery.sizeOf(context).height;
-    final recomendedSheetFraction =
-        MapViewBottomSheetConfig.recomendedSheetHeight / screenHeight;
-    final minSheetFraction =
-        MapViewBottomSheetConfig.minSheetHeight / screenHeight;
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final screenHeight = constraints.maxHeight;
 
-    return DraggableScrollableSheet(
-      controller: ref.watch(bottomSheetControllerProvider),
-      initialChildSize: recomendedSheetFraction,
-      maxChildSize: 1, // factor 1 means 100% available height
-      minChildSize: minSheetFraction,
-      snap: true,
-      snapSizes: [
-        if (recomendedSheetFraction >
-            MapViewBottomSheetConfig.extraSnapPointFraction1)
-          MapViewBottomSheetConfig.extraSnapPointFraction1,
-        MapViewBottomSheetConfig.extraSnapPointFraction2,
-      ],
-      builder: (BuildContext context, ScrollController scrollController) {
-        return Container(
-          clipBehavior: Clip.antiAlias,
-          decoration:
-              _RoundedTopDecoration(color: context.colorTheme.whiteSoap),
-          child: SheetLayoutScheme(scrollController: scrollController),
+        final recomendedSheetFraction = min(
+            1.0, MapViewBottomSheetConfig.recomendedSheetHeight / screenHeight);
+        final minSheetFraction =
+            min(0.25, MapViewBottomSheetConfig.minSheetHeight / screenHeight);
+
+        return DraggableScrollableSheet(
+          controller: ref.watch(bottomSheetControllerProvider),
+          initialChildSize: recomendedSheetFraction,
+          maxChildSize: 1, // factor 1 means 100% available height
+          minChildSize: minSheetFraction,
+          snap: true,
+          snapSizes: [
+            if (recomendedSheetFraction >
+                MapViewBottomSheetConfig.extraSnapPointFraction1)
+              MapViewBottomSheetConfig.extraSnapPointFraction1,
+            MapViewBottomSheetConfig.extraSnapPointFraction2,
+          ],
+          builder: (BuildContext context, ScrollController scrollController) {
+            return Container(
+              clipBehavior: Clip.antiAlias,
+              decoration:
+                  _RoundedTopDecoration(color: context.colorTheme.whiteSoap),
+              child: SheetLayoutScheme(scrollController: scrollController),
+            );
+          },
         );
       },
     );

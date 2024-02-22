@@ -36,18 +36,20 @@ class _DataSliverList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (buildings.isEmpty) return const _EmptyBuildings();
-    return SliverList.builder(
-      itemCount: buildings.length,
-      itemBuilder: (context, index) {
-        return Padding(
-          padding: const EdgeInsets.only(
-            left: MapViewBottomSheetConfig.horizontalPadding,
-            right: MapViewBottomSheetConfig.horizontalPadding,
-            bottom: 16,
-          ),
-          child: _BuildingTile(buildings[index]),
-        );
-      },
+    return SliverPadding(
+      padding: const EdgeInsets.only(
+        left: MapViewBottomSheetConfig.horizontalPadding,
+        right: MapViewBottomSheetConfig.horizontalPadding,
+      ),
+      sliver: SliverList.builder(
+        itemCount: buildings.length,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: const EdgeInsets.only(bottom: 16),
+            child: _BuildingTile(buildings[index]),
+          );
+        },
+      ),
     );
   }
 }

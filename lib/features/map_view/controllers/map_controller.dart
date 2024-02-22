@@ -25,29 +25,27 @@ class MapController extends _$MapController {
     }
   }
 
-  final Completer<GoogleMapController> _controller =
-      Completer<GoogleMapController>();
-
   @override
-  Future<GoogleMapController> build() async {
-    return await _controller.future;
+  GoogleMapController? build() {
+    return null;
   }
 
   void onMapCreated(GoogleMapController controller) async {
-    _controller.complete(controller);
-
-    await _controller.future; // wait for proper completion
-
+    ref.invalidate(bottomSheetPixelsProvider);
+    state = controller;
     final activeMarker = ref.read(activeMapMarkerControllerProvider);
     if (activeMarker != null) zoomOnMarker(activeMarker);
   }
 
   void zoomOnMarker(Building building) {
-    state.value?.animateCamera(
-      CameraUpdate.newCameraPosition(
-        CameraPosition(
-          target: building.location,
-          zoom: MapWidgetConfig.defaultMarkerZoom,
+    Future.delayed(
+      Durations.short1,
+      () => state?.animateCamera(
+        CameraUpdate.newCameraPosition(
+          CameraPosition(
+            target: building.location,
+            zoom: MapWidgetConfig.defaultMarkerZoom,
+          ),
         ),
       ),
     );
@@ -57,14 +55,14 @@ class MapController extends _$MapController {
     ref
         .read(activeMapMarkerControllerProvider.notifier)
         .toggleBuilding(building);
-    ref.read(bottomSheetControllerProvider)?.reset();
+    ref.read(bottomSheetControllerProvider).resetSafe();
     if (ref.read(activeMapMarkerControllerProvider) == building) {
-      Future.delayed(Durations.short1, () => zoomOnMarker(building));
+      zoomOnMarker(building);
     }
   }
 
   void onMapBgTap(_) {
     ref.read(activeMapMarkerControllerProvider.notifier).unselect();
-    ref.read(bottomSheetControllerProvider)?.reset();
+    ref.read(bottomSheetControllerProvider).resetSafe();
   }
 }

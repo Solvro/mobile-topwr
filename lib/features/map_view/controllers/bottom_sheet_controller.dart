@@ -1,36 +1,44 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
-import '../../../config.dart';
 
 part "bottom_sheet_controller.g.dart";
 
 @riverpod
-DraggableScrollableController? bottomSheetController(
+DraggableScrollableController bottomSheetController(
         BottomSheetControllerRef ref) =>
-    kIsWeb ? null : DraggableScrollableController();
+    DraggableScrollableController();
+
+extension SafeDraggableScrollableControllerWrapper
+    on DraggableScrollableController {
+  void resetSafe() {
+    if (isAttached) reset();
+  }
+
+  double get pixelsSafe => isAttached ? pixels : 0;
+}
 
 @riverpod
 class BottomSheetPixels extends _$BottomSheetPixels {
   @override
   double build() {
     final controller = ref.watch(bottomSheetControllerProvider);
-    controller?.addListener(_update);
+    controller.addListener(_update);
     ref.onDispose(() {
-      controller?.removeListener(_update);
+      controller.removeListener(_update);
     });
-    return MapViewBottomSheetConfig.recomendedSheetHeight;
+    return controller.pixelsSafe;
   }
 
   void _update() {
-    state = ref.read(bottomSheetControllerProvider)?.pixels ?? 0;
+    Future.microtask(
+      () => state = ref.read(bottomSheetControllerProvider).pixelsSafe,
+    );
   }
 
   void onSearchBoxTap() {
     const fullScreenFrac = 1.0;
     final controller = ref.read(bottomSheetControllerProvider);
-    if (controller != null && controller.size < fullScreenFrac) {
+    if (controller.isAttached && controller.size < fullScreenFrac) {
       controller.animateTo(
         fullScreenFrac,
         duration: Durations.medium2,

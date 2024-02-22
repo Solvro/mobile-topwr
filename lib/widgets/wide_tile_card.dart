@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 import '../config.dart';
@@ -92,18 +90,10 @@ class _TitlesColumn extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       const basePadding = WideTileCardConfig.basePadding;
-      final extraLeftPadding = max(
-            constraints.maxWidth - WideTileCardConfig.minWidthForExtraPadding,
-            0,
-          ) *
-          WideTileCardConfig.extraPaddingFactor;
 
       return Padding(
-        padding: EdgeInsets.only(
-          left: extraLeftPadding + basePadding,
-          top: basePadding,
-          right: basePadding,
-        ),
+        padding: const EdgeInsets.only(
+            left: basePadding, top: basePadding, right: basePadding),
         child: DualTextMaxLines(
           title: title,
           titleStyle:
