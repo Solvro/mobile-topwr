@@ -1,24 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../../../config.dart';
-import 'loading_widgets/big_scrollable_section_loading.dart';
+import '../../../utils/context_extensions.dart';
+import '../../../utils/where_non_null_iterable.dart';
+import '../../../widgets/big_preview_card.dart';
 import '../../../widgets/my_error_widget.dart';
 import '../../../widgets/subsection_header.dart';
+import '../../bottom_nav_bar/bottom_nav_bar_controller.dart';
+import '../../bottom_nav_bar/nav_bar_config.dart';
 import '../repositories/study_circles_repository/study_circles_repository.dart';
-import '../../../widgets/big_preview_card.dart';
-import '../../../utils/context_extensions.dart';
+import 'loading_widgets/big_scrollable_section_loading.dart';
 import 'paddings.dart';
 
-class StudyCirclesSection extends StatelessWidget {
+class StudyCirclesSection extends ConsumerWidget {
   const StudyCirclesSection({super.key});
 
   @override
-  Widget build(BuildContext context) => Column(
+  Widget build(BuildContext context, WidgetRef ref) => Column(
         children: [
           SubsectionHeader(
               title: context.localize!.study_circles,
               actionTitle: context.localize!.list,
-              onClick: (){}),
+              onClick: () {
+                ref
+                    .read(bottomNavBarControllerProvider.notifier)
+                    .goTo(NavBarEnum.sciCircles);
+              }),
           const _StudyCirclesList()
         ],
       );
@@ -32,40 +40,47 @@ class _StudyCirclesList extends ConsumerWidget {
     final state = ref.watch(studyCirclesRepositoryProvider);
     return switch (state) {
       AsyncLoading() => const Padding(
-        padding: EdgeInsets.only(left: HomeScreenConfig.paddingMedium, top : HomeScreenConfig.paddingMedium),
-        child: BigScrollableSectionLoading(),
-      ),
+          padding: EdgeInsets.only(
+              left: HomeScreenConfig.paddingMedium,
+              top: HomeScreenConfig.paddingMedium),
+          child: BigScrollableSectionLoading(),
+        ),
       AsyncError(:final error) =>
         MyErrorWidget(StudyCirclesSectionConfig.errorMsg + error.toString()),
-      AsyncValue(:final value) => Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: HomeScreenConfig.paddingSmall, top: HomeScreenConfig.paddingMedium),
-              child: SizedBox(
-                  height: BigPreviewCardConfig.cardHeight,
-                  child: ListView.builder(
-                      cacheExtent: 4,
-                      shrinkWrap: true,
-                      scrollDirection: Axis.horizontal,
-                      itemCount: value?.length ?? 0,
-                      itemBuilder: (BuildContext context, int index) {
-                        return MediumLeftPadding(
-                          child: value == null
-                              ? const MyErrorWidget(
-                                  StudyCirclesSectionConfig.errorMsg)
-                              : BigPreviewCard(
-                                  title: value[index]?.name ?? "",
-                                  shortDescription:
-                                      value[index]?.description ?? "",
-                                  photoUrl: value[index]?.photo?.previewUrl,
-                                  onClick: () {},
-                                ),
-                        );
-                      })),
-            )
-          ],
+      AsyncValue(:final value) => Container(
+          padding: const EdgeInsets.only(
+            left: HomeScreenConfig.paddingSmall,
+            top: HomeScreenConfig.paddingMedium,
+          ),
+          height: BigPreviewCardConfig.cardHeight,
+          child: _StudyCirclesDataList(value.whereNonNull.toList()),
         )
     };
+  }
+}
+
+class _StudyCirclesDataList extends StatelessWidget {
+  const _StudyCirclesDataList(this.studyCircles);
+
+  final List<InfosPreview> studyCircles;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+        cacheExtent: 4,
+        shrinkWrap: true,
+        scrollDirection: Axis.horizontal,
+        itemCount: studyCircles.length,
+        itemBuilder: (BuildContext context, int index) {
+          final circle = studyCircles[index];
+          return MediumLeftPadding(
+            child: BigPreviewCard(
+              title: circle.name,
+              shortDescription: circle.description,
+              photoUrl: circle.photo?.previewUrl,
+              onClick: () {},
+            ),
+          );
+        });
   }
 }

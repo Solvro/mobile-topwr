@@ -4,15 +4,23 @@
 - ToPWR Figma: https://www.figma.com/file/y51BgMlrSDipXPceEHHZt4/ToPWR?type=design&node-id=964-1703&mode=design&t=7ibW653dM6z0TZ1J-0
 
 # How to run and development (Code Generation)
+1. ### Google maps API key  
+   There are google maps api keys already defined, but their usage is restricted on Google Maps Panel to specific package/bundle ids.
 
-1. Before you start, you need to add `.env` file to project's root with appropriate content:
+   #### Android only
+
+   On Android, apart from package id, restriction is for specific signing key's SHA1 fingerprints. So to test on Android, your debug signing key's fingerprint must be added to the maps panel. (Contact @simon-the-shark to include yours)
+
+   Web key is restricted for localhost usage only
+
+2. ### Before you start, you need to add `.env` file to project's root with appropriate content:
 
 ```bash
 API_URL="https://<our-server-url>/graphql"
 API_KEY="<Your api token>"
 ```
 
-2.  ### Code generation
+3.  ### Code generation
     Some of app's dependecies utilize code generation feature and generated files **are not currently included** to control version and this github repository, so before building, running or developing application, it's crucial to run code generation (to generate all needed files) in terminal with:
 
 - For one-time generation:
@@ -29,7 +37,7 @@ dart run build_runner build
 dart run build_runner watch
 ```
 
-3.  ### It's now possible to run or build the app in the usual way
+4.  ### It's now possible to run or build the app in the usual way
     _Rebuilds are necessary after any updates or changes to affected files (`watch` command does it for you)_
 
 #### Additional notes:

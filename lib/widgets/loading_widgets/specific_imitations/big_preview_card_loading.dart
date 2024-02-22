@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'shimmer_loading.dart';
-import '../../config.dart';
+
+import '../../../config.dart';
+import '../simple_previews/preview_text_prototype.dart';
+import '../shimmer_loading.dart';
 
 class BigPreviewCardLoading extends StatelessWidget {
   const BigPreviewCardLoading({super.key});
@@ -28,31 +30,18 @@ class BigPreviewCardLoading extends StatelessWidget {
 }
 
 class _LoadingText extends StatelessWidget {
-  const _LoadingText({
-    super.key,
-  });
+  const _LoadingText();
 
   @override
   Widget build(BuildContext context) {
-    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      const SizedBox(height: 16),
-      Container(
-        width: BigPreviewCardConfig.cardWidth,
-        height: 20,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(16),
-        ),
-      ),
-      const SizedBox(height: 16),
-      Container(
-        width: BigPreviewCardConfig.cardWidth / 1.5,
-        height: 20,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(16),
-        ),
-      ),
-    ]);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SizedBox(height: 16),
+        PreviewTextPrototype(width: BigPreviewCardConfig.cardWidth),
+        const SizedBox(height: 16),
+        PreviewTextPrototype(width: BigPreviewCardConfig.cardWidth / 1.5)
+      ],
+    );
   }
 }

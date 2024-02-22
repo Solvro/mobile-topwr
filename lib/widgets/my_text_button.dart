@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../theme/app_theme.dart';
+import '../theme/app_theme.dart';
 
 class MyTextButton extends StatelessWidget {
   const MyTextButton({
@@ -20,7 +20,7 @@ class MyTextButton extends StatelessWidget {
           padding: EdgeInsets.zero,
         ),
         child: Text(
-          "$actionTitle >",
+          actionTitle,
           style: context.textTheme.boldBodyOrange,
         ));
   }

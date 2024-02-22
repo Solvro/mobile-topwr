@@ -47,10 +47,11 @@ dependencies:
   logger: ^2.0.2+1
   equatable: ^2.0.5
   enum_map: ^0.3.0
-  cached_network_image: ^3.3.0
+  google_maps_flutter: ^2.5.3
+  url_launcher: ^6.2.4
 
 dependency_overrides:
-    analyzer: ^6.0.0
+  analyzer: ^6.0.0
 
 dev_dependencies:
   flutter_test:
@@ -78,6 +79,9 @@ flutter:
   assets:
     - assets/splash_screen/splash_logo.png
     - assets/logo_app_bar.svg
+    - assets/map_markers/map_marker.png
+    - assets/map_markers/active_map_marker.png
+    - assets/search_box/vectorsearch.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
@@ -87,9 +91,9 @@ flutter:
     - family: Schyler
       fonts:
         - asset: assets/fonts/Rubik-VariableFont_wght.ttf
-    - family:  BottomNavBarIcon
+    - family: BottomNavBarIcon
       fonts:
-       - asset: assets/fonts/BottomNavBarIcon.ttf
+        - asset: assets/fonts/BottomNavBarIcon.ttf
 
 flutter_native_splash:
   background_image: assets/splash_screen/native_splash_bg.png
@@ -98,5 +102,3 @@ flutter_native_splash:
   android_12:
     color: "#EE6644"
     image: assets/splash_screen/splash_logo.png
-
-
