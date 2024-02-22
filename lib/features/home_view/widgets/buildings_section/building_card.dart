@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../theme/app_theme.dart';
 import '../../../../theme/hex_color.dart';
 import '../../../../widgets/my_cached_image.dart';
-import '../tile_splash.dart';
+import '../../../../widgets/tile_splash.dart';
 
 class BuildingCard extends StatelessWidget {
   const BuildingCard({

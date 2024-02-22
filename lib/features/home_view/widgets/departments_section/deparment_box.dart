@@ -4,7 +4,7 @@ import '../../../../repositories/departments_repository/departments_extra_params
 import '../../../../repositories/departments_repository/departments_repository.dart';
 import '../../../../theme/app_theme.dart';
 import '../../../../widgets/my_cached_image.dart';
-import '../tile_splash.dart';
+import '../../../../widgets/tile_splash.dart';
 
 class DepartmentBox extends StatelessWidget {
   final Department department;
