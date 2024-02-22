@@ -17,7 +17,8 @@ query GetScientificCircleDetails($id: ID!) {
                 icon {
                     url
                 }
-                visibleText
+                visibleText,
+                type,
             }
         }
     }

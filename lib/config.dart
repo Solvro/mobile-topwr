@@ -46,4 +46,7 @@ abstract class BigPreviewCardConfig {
   static const double cardWidth = 240;
 }
 
+abstract class DetailsScreenConfig{
+  static const double spacerHeight = 16;
+}
 

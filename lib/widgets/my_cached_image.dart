@@ -3,6 +3,8 @@ import 'loading_widgets/shimmer_loading.dart';
 import 'package:flutter/material.dart';
 import '../features/splash_screen/widgets/flutter_splash_screen.dart';
 
+//TODO: catch exception when imageUrl is empty
+
 class MyCachedImage extends StatelessWidget {
   const MyCachedImage(this.imageUrl, {super.key});
 

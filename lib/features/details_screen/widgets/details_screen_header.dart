@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import '../../theme/app_theme.dart';
-import '../../widgets/my_cached_image.dart';
+import '../../../theme/app_theme.dart';
+import '../../../widgets/my_cached_image.dart';
 
-class StudyCircleDetailsHeader extends StatelessWidget {
-  const StudyCircleDetailsHeader(
+class HeaderSection extends StatelessWidget {
+  const HeaderSection(
       {super.key,
-        required this.logoImageUrl,
-        required this.title,
-        required this.department, required this.backgroundImageUrl});
+      required this.logoImageUrl,
+      required this.title,
+      required this.department,
+      required this.backgroundImageUrl});
 
   final String logoImageUrl;
   final String backgroundImageUrl;
@@ -23,7 +24,10 @@ class StudyCircleDetailsHeader extends StatelessWidget {
           alignment: Alignment.center,
           clipBehavior: Clip.none,
           children: [
-            SizedBox(height: 250, width : double.maxFinite, child: MyCachedImage(backgroundImageUrl)),
+            SizedBox(
+                height: 250,
+                width: double.maxFinite,
+                child: MyCachedImage(backgroundImageUrl)),
             Positioned(
               top: 185,
               child: Card(
@@ -32,16 +36,24 @@ class StudyCircleDetailsHeader extends StatelessWidget {
                 child: SizedBox(
                     width: 130,
                     height: 130,
-                    child: ClipOval(child: MyCachedImage(logoImageUrl))
-                ),
+                    child: ClipOval(child: MyCachedImage(logoImageUrl))),
               ),
             ),
           ],
         ),
         const SizedBox(height: 84),
-        Text(title, style: context.textTheme.headline),
+        Text(
+          title,
+          style: context.textTheme.headline,
+          textAlign: TextAlign.center,
+          maxLines: 2,
+        ),
         const SizedBox(height: 12),
-        Text(department, style: context.textTheme.body)
+        Text(
+          department,
+          style: context.textTheme.body,
+          textAlign: TextAlign.center,
+        )
       ],
     );
   }
