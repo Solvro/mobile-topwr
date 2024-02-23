@@ -74,7 +74,7 @@ class _HomeViewScreen extends StatelessWidget {
       const ExamSessionCountdown(),
       const NewsSection(),
       const BuildingsSection(),
-      StudyCirclesSection(onNavigate: onNavigate),
+      StudyCirclesSection(onNavigate),
       const DepartmentSection(),
     ];
 

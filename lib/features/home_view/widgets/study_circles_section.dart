@@ -14,7 +14,9 @@ import 'loading_widgets/big_scrollable_section_loading.dart';
 import 'paddings.dart';
 
 class StudyCirclesSection extends ConsumerWidget {
-  const StudyCirclesSection({super.key});
+  const StudyCirclesSection(this.onNavigate, {super.key});
+
+  final Function(String) onNavigate;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) => Column(
@@ -27,13 +29,15 @@ class StudyCirclesSection extends ConsumerWidget {
                     .read(bottomNavBarControllerProvider.notifier)
                     .goTo(NavBarEnum.sciCircles);
               }),
-          const _StudyCirclesList()
+          _StudyCirclesList(onNavigate)
         ],
       );
 }
 
 class _StudyCirclesList extends ConsumerWidget {
-  const _StudyCirclesList();
+  const _StudyCirclesList(this.onNavigate);
+
+  final Function(String) onNavigate;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -53,14 +57,16 @@ class _StudyCirclesList extends ConsumerWidget {
             top: HomeScreenConfig.paddingMedium,
           ),
           height: BigPreviewCardConfig.cardHeight,
-          child: _StudyCirclesDataList(value.whereNonNull.toList()),
+          child: _StudyCirclesDataList(value.whereNonNull.toList(), onNavigate),
         )
     };
   }
 }
 
 class _StudyCirclesDataList extends StatelessWidget {
-  const _StudyCirclesDataList(this.studyCircles);
+  const _StudyCirclesDataList(this.studyCircles, this.onNavigate);
+
+  final Function(String) onNavigate;
 
   final List<InfosPreview> studyCircles;
 
@@ -78,7 +84,7 @@ class _StudyCirclesDataList extends StatelessWidget {
               title: circle.name,
               shortDescription: circle.description,
               photoUrl: circle.photo?.previewUrl,
-              onClick: () {},
+              onClick: onNavigate(circle.id),
             ),
           );
         });
