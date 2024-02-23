@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'widgets/loading_widgets/about_us_section_loading.dart';
@@ -17,8 +18,11 @@ import 'widgets/details_screen_header.dart';
 class StudyCircleDetails extends ConsumerWidget {
   const StudyCircleDetails({super.key});
 
+
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+
     final itemId = ModalRoute.of(context)?.settings.arguments as String;
     final state = ref.watch(studyCircleRepositoryProvider(itemId));
 
