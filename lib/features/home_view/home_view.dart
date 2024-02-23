@@ -14,11 +14,13 @@ import 'widgets/news_section.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return _HomeViewNavigator();
   }
 }
+
 class _HomeViewNavigator extends StatelessWidget {
   _HomeViewNavigator({super.key});
 
@@ -26,7 +28,6 @@ class _HomeViewNavigator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return PopScope(
       canPop: _navigatorKey.currentState?.canPop() ?? false,
       onPopInvoked: (bool isPop) {
@@ -40,8 +41,8 @@ class _HomeViewNavigator extends StatelessWidget {
           WidgetBuilder builder;
           switch (settings.name) {
             case _Routes.home:
-              builder = (BuildContext _) =>
-                  _HomeViewScreen(onNavigate: navigateToStudyCircleDetails);
+              builder = (BuildContext _) => _HomeViewScreenContent(
+                  onNavigate: (id) => {navigateToStudyCircleDetails(id)});
               break;
             case _Routes.studyCircleDetails:
               builder = (BuildContext _) => const StudyCircleDetails();
@@ -62,8 +63,8 @@ class _HomeViewNavigator extends StatelessWidget {
   }
 }
 
-class _HomeViewScreen extends StatelessWidget {
-  const _HomeViewScreen({super.key, required this.onNavigate});
+class _HomeViewScreenContent extends StatelessWidget {
+  const _HomeViewScreenContent({super.key, required this.onNavigate});
 
   final Function(String) onNavigate;
 
@@ -74,7 +75,7 @@ class _HomeViewScreen extends StatelessWidget {
       const ExamSessionCountdown(),
       const NewsSection(),
       const BuildingsSection(),
-      StudyCirclesSection(onNavigate: onNavigate),
+      StudyCirclesSection((id)=>{onNavigate(id)}),
       const DepartmentSection(),
     ];
 
