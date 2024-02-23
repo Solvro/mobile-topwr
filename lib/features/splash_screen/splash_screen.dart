@@ -13,7 +13,7 @@ class SplashScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final controller = ref.watch(splashScreenControllerProvider);
+    final controller = ref.watch(splashScreenControllerProvider.call(context));
     return switch (controller) {
       AsyncLoading() => const FlutterSplashScreen(),
       _ => child,

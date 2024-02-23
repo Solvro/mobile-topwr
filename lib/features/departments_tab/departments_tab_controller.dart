@@ -1,15 +1,15 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'repositories/departments_repository.dart';
+import '../../repositories/departments_repository/departments_repository.dart';
 
 part 'departments_tab_controller.g.dart';
 
 @riverpod
 class SearchDepartmentsController extends _$SearchDepartmentsController {
-  @override 
+  @override
   String build() => "";
 
-  void onTextChanged(String newValue){
+  void onTextChanged(String newValue) {
     state = newValue;
   }
 }

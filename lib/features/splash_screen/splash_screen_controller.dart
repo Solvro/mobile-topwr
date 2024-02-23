@@ -8,23 +8,27 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../api_base/hive_init.dart';
 import '../../config.dart';
 import '../home_view/widgets/logo_app_bar.dart';
+import '../map_view/controllers/map_controller.dart';
+import '../map_view/utils/map_marker_utils.dart';
 
 part 'splash_screen_controller.g.dart';
 
 @riverpod
 class SplashScreenController extends _$SplashScreenController {
-  Future<void> _initializationLogic() async {
+  Future<void> _initializationLogic(BuildContext context) async {
     /*
       Insert here any initialization async logic or operations 
       to be performed, when SplashScreen is showed.
     */
+    await MapMarkerUtils.loadMapMarkerAssets(context);
     await initHiveForGraphqlCache();
     AppBarLogo.precacheImageIfAbsent();
+    await MapController.initializeGoogleMapsRenderingAndroid();
   }
 
   @override
-  Future<void> build() async {
-    await _initializationLogic();
+  Future<void> build(BuildContext context) async {
+    await _initializationLogic(context);
     await Future.delayed(SplashScreenConfig.additionalWaitDuration);
     hideNativeSplashScreen();
   }

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+
 import '../config.dart';
 import '../theme/app_theme.dart';
 import '../utils/context_extensions.dart';
 import 'date_chip.dart';
+import 'dual_text_max_lines.dart';
 import 'my_cached_image.dart';
 
 class BigPreviewCard extends StatelessWidget {
@@ -54,23 +56,13 @@ class BigPreviewCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  RichText(
-                    maxLines: 8,
-                    overflow: TextOverflow.ellipsis,
-                    text: TextSpan(children: [
-                      TextSpan(
-                        text: "$title\n",
-                        style: context.textTheme.title,
-                      ),
-                      const TextSpan(
-                        text: "\n", // padding workaround
-                        style: TextStyle(fontSize: 7, height: 1),
-                      ),
-                      TextSpan(
-                        text: shortDescription,
-                        style: context.textTheme.body,
-                      ),
-                    ]),
+                  DualTextMaxLines(
+                    title: title,
+                    titleStyle: context.textTheme.title,
+                    subtitle: shortDescription,
+                    subtitleStyle: context.textTheme.body,
+                    spacing: 7,
+                    maxTotalLines: 8,
                   ),
                   const Spacer(),
                   MaterialButton(

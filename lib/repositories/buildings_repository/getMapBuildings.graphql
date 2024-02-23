@@ -1,0 +1,13 @@
+query GetMapBuildings {
+  maps {
+    id
+    latitude
+    longitude
+    name
+    code
+    addres
+    photo {
+      url
+    }
+  }
+}

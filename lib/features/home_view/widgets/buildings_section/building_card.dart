@@ -3,18 +3,19 @@ import 'package:flutter/material.dart';
 import '../../../../theme/app_theme.dart';
 import '../../../../theme/hex_color.dart';
 import '../../../../widgets/my_cached_image.dart';
+import '../../../../widgets/tile_splash.dart';
 
 class BuildingCard extends StatelessWidget {
   const BuildingCard({
     super.key,
     required this.onTap,
     required this.buildingName,
-    required this.imageUrl,
+    this.imageUrl,
   });
 
   final VoidCallback onTap;
   final String buildingName;
-  final String imageUrl;
+  final String? imageUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,7 @@ class BuildingCard extends StatelessWidget {
           fit: StackFit.expand,
           children: [
             MyCachedImage(imageUrl),
-            if (imageUrl.isNotEmpty)
+            if (imageUrl != null)
               Positioned.fill(
                 child: Container(
                   decoration: BoxDecoration(
@@ -45,15 +46,7 @@ class BuildingCard extends StatelessWidget {
                     ),
                   ])),
             ),
-            Material(
-              color: Colors.transparent,
-              child: InkWell(
-                onTap: onTap,
-                child: Container(
-                  color: Colors.transparent,
-                ),
-              ),
-            )
+            TileSplash(onTap: onTap),
           ],
         ),
       ),
