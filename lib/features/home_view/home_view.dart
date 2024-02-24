@@ -41,8 +41,8 @@ class _HomeViewNavigator extends StatelessWidget {
           WidgetBuilder builder;
           switch (settings.name) {
             case _Routes.home:
-              builder = (BuildContext _) => _HomeViewScreenContent(
-                  onNavigate: (id) => {navigateToStudyCircleDetails(id)});
+              builder = (BuildContext _) =>
+                  _HomeViewScreenContent(onNavigate: navigateToStudyCircleDetails);
               break;
             case _Routes.studyCircleDetails:
               builder = (BuildContext _) => const StudyCircleDetails();
