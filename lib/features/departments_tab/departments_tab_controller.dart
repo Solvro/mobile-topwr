@@ -15,16 +15,13 @@ class SearchDepartmentsController extends _$SearchDepartmentsController {
 }
 
 @riverpod
-AsyncValue<List<Department?>?> departmentList(DepartmentListRef ref) {
-  final originalList = ref.watch(departmentsRepositoryProvider);
+Future<List<Department?>?> departmentList(DepartmentListRef ref) async {
+  final originalList = await ref.watch(departmentsRepositoryProvider.future);
   final query = ref.watch(searchDepartmentsControllerProvider);
-  if (originalList.isLoading) return const AsyncLoading();
-  return originalList.whenData((value) {
-    return value
-        ?.where((element) =>
-            element == null ||
-            element.name.toLowerCase().contains(query.toLowerCase()) ||
-            element.code.toLowerCase().contains(query.toLowerCase()))
-        .toList();
-  });
+  return originalList
+      ?.where((element) =>
+          element == null ||
+          element.name.toLowerCase().contains(query.toLowerCase()) ||
+          element.code.toLowerCase().contains(query.toLowerCase()))
+      .toList();
 }

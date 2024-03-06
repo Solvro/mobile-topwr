@@ -10,18 +10,17 @@ class BuildingsListViewController extends _$BuildingsListViewController {
   String _textFieldFilterText = "";
 
   @override
-  AsyncValue<Iterable<Building?>?> build() {
+  Future<Iterable<Building?>?> build() async {
     final buildingSelected = ref.watch(activeMapMarkerControllerProvider);
     if (buildingSelected != null) {
-      return AsyncData([buildingSelected]); // shows only selected building
+      return [buildingSelected]; // shows only selected building
     }
 
-    final buildingsData = ref.watch(mapBuildingsRepositoryProvider);
-    if (buildingsData.isLoading) return const AsyncLoading();
+    final buildingsData =
+        await ref.watch(mapBuildingsRepositoryProvider.future);
 
-    return AsyncData(
-      buildingsData.valueOrNull?.where(_filterMethod),
-    ); // or elsewhere a whole list, filtered by text field
+    return buildingsData?.where(
+        _filterMethod); // or elsewhere a whole list, filtered by text field
   }
 
   bool _filterMethod(Building? building) {
