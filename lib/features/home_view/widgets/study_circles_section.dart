@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../config.dart';
+import '../../../navigator.dart';
 import '../../../utils/context_extensions.dart';
 import '../../../utils/where_non_null_iterable.dart';
 import '../../../widgets/big_preview_card.dart';
@@ -14,9 +15,7 @@ import 'loading_widgets/big_scrollable_section_loading.dart';
 import 'paddings.dart';
 
 class StudyCirclesSection extends ConsumerWidget {
-  const StudyCirclesSection(this.onNavigate, {super.key});
-
-  final Function(String) onNavigate;
+  const StudyCirclesSection( {super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) => Column(
@@ -29,15 +28,13 @@ class StudyCirclesSection extends ConsumerWidget {
                     .read(bottomNavBarControllerProvider.notifier)
                     .goTo(NavBarEnum.sciCircles);
               }),
-          _StudyCirclesList(onNavigate)
+          const _StudyCirclesList()
         ],
       );
 }
 
 class _StudyCirclesList extends ConsumerWidget {
-  const _StudyCirclesList(this.onNavigate);
-
-  final Function(String) onNavigate;
+  const _StudyCirclesList();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -57,9 +54,9 @@ class _StudyCirclesList extends ConsumerWidget {
             top: HomeScreenConfig.paddingMedium,
           ),
           height: BigPreviewCardConfig.cardHeight,
-          child: _StudyCirclesDataList(value.whereNonNull.toList(), onNavigate),
+          child: _StudyCirclesDataList(value.whereNonNull.toList(), ref.watch(navigatorProvider).navigateToStudyCircleDetails
         )
-    };
+      )};
   }
 }
 

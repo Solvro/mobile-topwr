@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../config.dart';
+import '../../../../widgets/loading_widgets/scrolable_loader_builder.dart';
 import '../../../../widgets/loading_widgets/shimmer_loading.dart';
 
 class AboutUsSectionLoading extends StatelessWidget {
@@ -7,8 +8,6 @@ class AboutUsSectionLoading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    final numberOfVisibleItems = ((MediaQuery.of(context).size.height/10) ~/ 20);
 
     return Padding(
       padding: const EdgeInsets.all(24),
@@ -27,13 +26,14 @@ class AboutUsSectionLoading extends StatelessWidget {
           ),
           const SizedBox(height: DetailsScreenConfig.spacerHeight),
           SizedBox(
-            height: MediaQuery.of(context).size.height/10,
-            width: double.maxFinite,
+            height: MediaQuery.of(context).size.height / 10,
             child: ShimmerLoadingItem(
-              child: ListView.separated(
-                physics: const NeverScrollableScrollPhysics(),
+              child: ScrollableLoaderBuilder(
+                mainAxisItemSize: 16,
+                itemsSpacing: 4,
+                scrollDirection: Axis.vertical,
                 itemBuilder: (BuildContext context, int index) {
-                  return  Container(
+                  return Container(
                     height: 16,
                     width: MediaQuery.of(context).size.width,
                     decoration: BoxDecoration(
@@ -42,10 +42,6 @@ class AboutUsSectionLoading extends StatelessWidget {
                     ),
                   );
                 },
-                separatorBuilder: (BuildContext context, int index) {
-                  return const SizedBox(height: 4);
-                },
-                itemCount: numberOfVisibleItems,
               ),
             ),
           ),

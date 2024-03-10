@@ -1,51 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
-import 'package:logger/logger.dart';
-import 'package:url_launcher/url_launcher.dart';
-import '../../../api_base/schema.graphql.dart';
 import '../../../theme/app_theme.dart';
 import '../../../utils/context_extensions.dart';
+import '../../../utils/launch_url_util.dart';
 import '../../../widgets/my_icon.dart';
-
-class ContactSectionData {
-  String? iconUrl;
-  String? text;
-  String? url;
-  Enum$ENUM_COMPONENTINFOINFO_TYPE? type;
-
-  ContactSectionData({
-    required this.iconUrl,
-    required this.text,
-    required this.url,
-    required this.type,
-  }) {
-    if (url != null) {
-      _invalidateUrl();
-    }
-  }
-
-  void _invalidateUrl() {
-    String t;
-    switch (type) {
-      case Enum$ENUM_COMPONENTINFOINFO_TYPE.Email:
-        t = 'mailto:';
-        break;
-      case Enum$ENUM_COMPONENTINFOINFO_TYPE.PhoneNumber:
-        t = 'tel:';
-        break;
-      case Enum$ENUM_COMPONENTINFOINFO_TYPE.Website:
-        t = 'https://';
-        break;
-      default:
-        t = '';
-        break;
-    }
-    if (!(url?.startsWith(t) ?? false)) {
-      Logger().w("Following url: $url not properly formatted.");
-      url = t + url!;
-    }
-  }
-}
+import '../models/contact_section_data.dart';
 
 class ContactSection extends StatelessWidget {
   const ContactSection({super.key, required this.list});
@@ -63,16 +22,15 @@ class ContactSection extends StatelessWidget {
           Text(context.localize?.contact ?? '',
               style: context.textTheme.headline),
           const SizedBox(height: 16),
-          ...list
-              .map((item) => Padding(
-                    padding: const EdgeInsets.only(bottom: 16),
-                    child: _IconWithUrl(
-                      url: Uri.parse(item.url ?? ''),
-                      text: item.text ?? '',
-                      iconPath: item.iconUrl ?? '',
-                    ),
-                  ))
-              .toList(),
+          for (final item in list)
+            Padding(
+              padding: const EdgeInsets.only(bottom: 16),
+              child: _IconWithUrl(
+                url: item.url ?? '',
+                text: item.text ?? '',
+                iconPath: item.iconUrl ?? '',
+              ),
+            )
         ],
       ),
     );
@@ -86,7 +44,7 @@ class _IconWithUrl extends StatelessWidget {
     required this.text,
   });
 
-  final Uri url;
+  final String url;
   final String text;
   final String iconPath;
 
@@ -105,7 +63,7 @@ class _IconWithUrl extends StatelessWidget {
                 style: context.textTheme.bodyOrange
                     .copyWith(decoration: TextDecoration.underline),
                 recognizer: TapGestureRecognizer()
-                  ..onTap = () => launchUrl(url),
+                  ..onTap = () => LaunchUrlUtil.launch(url),
               )),
         )
       ],

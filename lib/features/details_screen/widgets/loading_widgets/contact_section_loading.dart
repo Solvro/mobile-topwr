@@ -31,6 +31,7 @@ class ContactSectionLoading extends StatelessWidget {
               width: double.maxFinite,
               height: 116,
               child: ListView.separated(
+                physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (BuildContext context, int index) {
                   return const _IconWithUrlLoading();
                 },

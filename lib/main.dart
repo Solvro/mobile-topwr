@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'config.dart';
-import 'features/bottom_nav_bar/bottom_nav_bar.dart';
 import 'features/splash_screen/splash_screen.dart';
 import 'features/splash_screen/splash_screen_controller.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'navigator.dart';
 import 'theme/app_theme.dart';
 
 void main() async {
@@ -18,17 +18,18 @@ void main() async {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context,WidgetRef ref){
     return MaterialApp(
       title: MyAppConfig.title,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       theme: ThemeData(extensions: const [AppTheme()]),
       debugShowCheckedModeBanner: false,
-      home: const BottomNavBar(),
+      onGenerateRoute: AppNavigator.onGenerateRoute, //this
+      navigatorKey: ref.watch(navigatorProvider).navigatorKey,
     );
   }
 }
