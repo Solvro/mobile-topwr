@@ -25,6 +25,8 @@
   "departments": "Wydziały",
   "department": "Wydział",
   "search": "Szukaj",
+  "contact": "Kontakt",
+  "about_us": "O nas",
   "navigate" : "Nawiguj",
   "building_prefix": "Budynek",
   "department_not_found": "Nie znaleziono wydziału",

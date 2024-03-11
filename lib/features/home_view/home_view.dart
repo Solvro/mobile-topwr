@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../config.dart';
 import '../../theme/app_theme.dart';
 import 'widgets/buildings_section/buildings_section.dart';
@@ -30,7 +29,7 @@ class HomeView extends StatelessWidget {
         padding: const EdgeInsets.only(bottom: 48),
         itemBuilder: (context, index) => sections[index],
         separatorBuilder: (context, index) =>
-            const SizedBox(height: HomeScreenConfig.paddingMedium),
+        const SizedBox(height: HomeScreenConfig.paddingMedium),
         itemCount: sections.length,
       ),
     );
