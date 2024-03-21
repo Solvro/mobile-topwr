@@ -110,3 +110,19 @@ abstract class MapWidgetConfig {
   static const mapMarkerOriginWidth = 28;
   static const activeMapMarkerOriginWidth = 40;
 }
+
+
+abstract class ResearchGroupConfig {
+  static const defaultColorFirst = '#BFBEBE';
+  static const defaultColorSecond = '#999898';
+
+  static const listSeparatorSize = 16.0;
+
+  static const researchGroupTabGridDelegate =
+  SliverGridDelegateWithMaxCrossAxisExtent(
+    maxCrossAxisExtent: 600,
+    mainAxisExtent: 92,
+    crossAxisSpacing: 16,
+    mainAxisSpacing: 16,
+  );
+}

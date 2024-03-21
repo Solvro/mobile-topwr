@@ -30,6 +30,9 @@
   "navigate" : "Nawiguj",
   "building_prefix": "Budynek",
   "department_not_found": "Nie znaleziono wydziału",
-  "building_not_found": "Nie znaleziono budynku"
+  "building_not_found": "Nie znaleziono budynku",
+  "type_sci_circle": "Wpisz nazwę koła naukowego",
+  "sci_circle_not_found": "Nie znaleziono koła naukowego"
+
 
 }

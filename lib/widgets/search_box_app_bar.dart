@@ -12,10 +12,11 @@ class SearchBoxAppBar extends AppBar {
     BuildContext context, {
     required String title,
     required void Function(String query) onQueryChanged,
-    super.actions,
-    super.primary,
-    super.key,
-    VoidCallback? onSearchboxTap,
+        bool tagsBelow = false,
+        super.actions,
+        super.primary,
+        super.key,
+        VoidCallback? onSearchboxTap,
   }) : super(
           title: Text(title),
           titleTextStyle: context.textTheme.headline,
@@ -24,11 +25,12 @@ class SearchBoxAppBar extends AppBar {
           centerTitle: false,
           titleSpacing: horizontalPadding,
           bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(
-                SearchWidgetConfig.height + bottomPadding),
+            preferredSize:  Size.fromHeight(
+                SearchWidgetConfig.height + (tagsBelow ? 16.0: bottomPadding )
+            ),
             child: Padding(
-              padding: const EdgeInsets.only(
-                bottom: bottomPadding,
+              padding:  EdgeInsets.only(
+                bottom: (tagsBelow ? 16.0: bottomPadding ),
                 left: horizontalPadding,
                 right: horizontalPadding,
               ),
