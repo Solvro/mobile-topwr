@@ -15,26 +15,26 @@ class ResearchGroupCard extends StatelessWidget {
       isActive: false,
       title: sciCircle.name,
       subtitle: sciCircle.department?.name ?? "",
+      secondSubtitle:
+          sciCircle.tags?.map((tag) => '#${tag!.name}').toList().join(', '),
       activeShadows: null,
       trailing: Padding(
         padding: const EdgeInsets.only(right: 2, top: 2, bottom: 2),
         child: SizedBox.square(
           dimension: WideTileCardConfig.imageSize,
-            child: Container(
-              clipBehavior: Clip.antiAlias,
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
+          child: Container(
+            clipBehavior: Clip.antiAlias,
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.only(
                   topRight: WideTileCardConfig.radius,
-                  bottomRight: WideTileCardConfig.radius
-                ),
-              ),
-              child:
-                MyCachedImage(
+                  bottomRight: WideTileCardConfig.radius),
+            ),
+            child: MyCachedImage(
               sciCircle.photo?.url,
               boxFit: BoxFit.contain,
               noShimmeringLoading: true,
             ),
-            ),
+          ),
         ),
       ),
     );

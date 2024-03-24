@@ -113,10 +113,15 @@ abstract class MapWidgetConfig {
 
 
 abstract class ResearchGroupConfig {
-  static const defaultColorFirst = '#BFBEBE';
-  static const defaultColorSecond = '#999898';
+  // static const defaultColorFirst = '#BFBEBE';
+  // static const defaultColorSecond = '#999898';
 
   static const listSeparatorSize = 16.0;
+  static const microPadding = 4.0;
+  static const smallPadding = 16.0;
+  static const mediumPadding = 24.0;
+
+  static const buttonBorderRadius = 100.0;
 
   static const researchGroupTabGridDelegate =
   SliverGridDelegateWithMaxCrossAxisExtent(
