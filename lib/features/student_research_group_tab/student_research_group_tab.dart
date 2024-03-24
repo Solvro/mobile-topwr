@@ -9,6 +9,7 @@ import '../../utils/context_extensions.dart';
 import '../../utils/where_non_null_iterable.dart';
 import '../../widgets/my_error_widget.dart';
 import '../../widgets/search_box_app_bar.dart';
+import '../details_screen/study_circle_details.dart';
 import 'student_research_group_tab_controller.dart';
 import 'widgets/research_group_card.dart';
 import 'widgets/research_group_loading.dart';
@@ -175,7 +176,20 @@ class _ResearchGroupDataView extends StatelessWidget {
       gridDelegate: ResearchGroupConfig.researchGroupTabGridDelegate,
       itemCount: filteredCircles.length,
       itemBuilder: (context, index) =>
-          ResearchGroupCard(filteredCircles[index]),
+          ResearchGroupCard(
+        filteredCircles[index],
+         () {
+           Navigator.push(
+               context,
+               MaterialPageRoute(
+                 builder: (context) => const StudyCircleDetails(),
+                 settings: RouteSettings(
+                   arguments: filteredCircles[index].id,
+                 ),
+
+               ));
+         }
+    ),
     );
   }
 }

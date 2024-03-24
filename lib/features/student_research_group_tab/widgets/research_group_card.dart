@@ -7,7 +7,8 @@ import '../../../widgets/wide_tile_card.dart';
 
 class ResearchGroupCard extends StatelessWidget {
   final ScientificCircle sciCircle;
-  const ResearchGroupCard(this.sciCircle, {super.key});
+  final VoidCallback? onTap;
+  const ResearchGroupCard(this.sciCircle, this.onTap, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +16,7 @@ class ResearchGroupCard extends StatelessWidget {
       isActive: false,
       title: sciCircle.name,
       subtitle: sciCircle.department?.name ?? "",
+      onTap: onTap,
       secondSubtitle:
           sciCircle.tags?.map((tag) => '#${tag!.name}').toList().join(', '),
       activeShadows: null,
