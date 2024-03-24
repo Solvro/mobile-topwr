@@ -21,7 +21,10 @@ class ResearchGroupCard extends StatelessWidget {
           sciCircle.tags?.map((tag) => '#${tag!.name}').toList().join(', '),
       activeShadows: null,
       trailing: Padding(
-        padding: const EdgeInsets.only(right: 2, top: 2, bottom: 2),
+        padding: const EdgeInsets.only(
+            right: ScientificCircleCardConfig.trailingPadding,
+            top: ScientificCircleCardConfig.trailingPadding,
+            bottom: ScientificCircleCardConfig.trailingPadding),
         child: SizedBox.square(
           dimension: WideTileCardConfig.imageSize,
           child: Container(

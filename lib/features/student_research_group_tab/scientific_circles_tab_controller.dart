@@ -1,7 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../repositories/scientific_circles/scientific_circles_repository.dart';
 
-part 'student_research_group_tab_controller.g.dart';
+part 'scientific_circles_tab_controller.g.dart';
 
 @riverpod
 class SearchScientificCirclesController extends _$SearchScientificCirclesController {

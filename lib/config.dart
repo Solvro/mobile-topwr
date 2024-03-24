@@ -112,9 +112,7 @@ abstract class MapWidgetConfig {
 }
 
 
-abstract class ResearchGroupConfig {
-  // static const defaultColorFirst = '#BFBEBE';
-  // static const defaultColorSecond = '#999898';
+abstract class ScientificCirclesTabConfig {
 
   static const listSeparatorSize = 16.0;
   static const microPadding = 4.0;
@@ -130,4 +128,16 @@ abstract class ResearchGroupConfig {
     crossAxisSpacing: 16,
     mainAxisSpacing: 16,
   );
+
+  static const tagsGridDelegate =
+  SliverGridDelegateWithMaxCrossAxisExtent(
+    maxCrossAxisExtent: 100,
+    mainAxisExtent: 92,
+    crossAxisSpacing: 8,
+    mainAxisSpacing: 16,
+  );
+}
+
+abstract class ScientificCircleCardConfig {
+  static const trailingPadding = 2.0;
 }

@@ -10,12 +10,13 @@ import '../../utils/where_non_null_iterable.dart';
 import '../../widgets/my_error_widget.dart';
 import '../../widgets/search_box_app_bar.dart';
 import '../details_screen/study_circle_details.dart';
-import 'student_research_group_tab_controller.dart';
-import 'widgets/research_group_card.dart';
-import 'widgets/research_group_loading.dart';
+import 'scientific_circles_tab_controller.dart';
+import 'widgets/scientific_circle_card.dart';
+import 'widgets/scientific_circle_loading.dart';
+import 'widgets/tags_loading.dart';
 
-class StudentResearchGroupTab extends ConsumerWidget {
-  const StudentResearchGroupTab({
+class ScientificCirclesTab extends ConsumerWidget {
+  const ScientificCirclesTab({
     super.key,
   });
 
@@ -32,14 +33,14 @@ class StudentResearchGroupTab extends ConsumerWidget {
                 .onTextChanged(query);
           },
         ),
-        body: const _CategoryList());
+        body: const _ScientificCirclesBody());
   }
 }
 
 final selectedCategoryProvider = StateProvider<String?>((ref) => null);
 
-class _CategoryList extends ConsumerWidget {
-  const _CategoryList();
+class _ScientificCirclesBody extends ConsumerWidget {
+  const _ScientificCirclesBody();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -55,65 +56,65 @@ class _CategoryList extends ConsumerWidget {
       SizedBox(
         height: 76.0,
         child: switch (categories) {
-          AsyncLoading() => const ResearchGroupLoading(),
+          AsyncLoading() => const TagsLoading(),
           AsyncError(:final error) => MyErrorWidget(error),
           AsyncValue(:final value) => _TagsDataView(
-              handleCategorySelected: handleCategorySelected,
-              selectedCategory: selectedCategory,
-              allCategories: value.whereNonNull.toList(),
+              handleTagSelected: handleCategorySelected,
+              selectedTag: selectedCategory,
+              allTags: value.whereNonNull.toList(),
             )
         },
       ),
-      _ResearchGroupListBody(selectedTag: selectedCategory)
+      _ScientificCirclesListBody(selectedTag: selectedCategory)
     ]);
   }
 }
 
 class _TagsDataView extends ConsumerWidget {
-  final void Function(String, WidgetRef) handleCategorySelected;
-  final String? selectedCategory;
-  final List<Tag> allCategories;
+  final void Function(String, WidgetRef) handleTagSelected;
+  final String? selectedTag;
+  final List<Tag> allTags;
   const _TagsDataView(
-      {required this.handleCategorySelected,
-      required this.selectedCategory,
-      required this.allCategories});
+      {required this.handleTagSelected,
+      required this.selectedTag,
+      required this.allTags});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    if (allCategories.isNotEmpty &&
-        !allCategories.contains(Tag(name: context.localize!.all))) {
-      allCategories.insert(0, Tag(name: context.localize!.all));
+    if (allTags.isNotEmpty &&
+        !allTags.contains(Tag(name: context.localize!.all))) {
+      allTags.insert(0, Tag(name: context.localize!.all));
     }
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Padding(
         padding: const EdgeInsets.only(
-            left: ResearchGroupConfig.smallPadding,
-            right: ResearchGroupConfig.smallPadding,
-            bottom: ResearchGroupConfig.smallPadding),
+            left: ScientificCirclesTabConfig.smallPadding,
+            right: ScientificCirclesTabConfig.smallPadding,
+            bottom: ScientificCirclesTabConfig.smallPadding),
         child: Row(
-          children: allCategories
+          children: allTags
               .map(
                 (category) => Padding(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: ResearchGroupConfig.microPadding),
+                        horizontal: ScientificCirclesTabConfig.microPadding),
                     child: ChoiceChip(
                       showCheckmark: false,
                       label: Text(category.name!),
-                      selected: selectedCategory == category.name,
+                      selected: selectedTag == category.name,
                       onSelected: (bool selected) {
-                        handleCategorySelected(category.name!, ref);
+                        handleTagSelected(category.name!, ref);
                       },
                       selectedColor: context.colorTheme.blueAzure,
                       backgroundColor: Colors.transparent,
                       labelStyle: TextStyle(
-                          color: selectedCategory == category.name!
+                          color: selectedTag == category.name!
                               ? Colors.white
                               : context.colorTheme.blueAzure),
                       side: BorderSide(color: context.colorTheme.blueAzure),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(
-                              ResearchGroupConfig.buttonBorderRadius)),
+                              ScientificCirclesTabConfig.buttonBorderRadius)),
                     )),
               )
               .toList(),
@@ -123,9 +124,9 @@ class _TagsDataView extends ConsumerWidget {
   }
 }
 
-class _ResearchGroupListBody extends ConsumerWidget {
+class _ScientificCirclesListBody extends ConsumerWidget {
   final String? selectedTag;
-  const _ResearchGroupListBody({this.selectedTag});
+  const _ScientificCirclesListBody({this.selectedTag});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -133,9 +134,9 @@ class _ResearchGroupListBody extends ConsumerWidget {
     return Expanded(
         child: Padding(
             padding: const EdgeInsets.symmetric(
-                horizontal: ResearchGroupConfig.mediumPadding),
+                horizontal: ScientificCirclesTabConfig.mediumPadding),
             child: switch (state) {
-              AsyncLoading() => const ResearchGroupLoading(),
+              AsyncLoading() => const ScientificCirclesLoading(),
               AsyncError(:final error) => MyErrorWidget(error),
               AsyncValue(:final value) => _ResearchGroupDataView(
                   value.whereNonNull.toList(), selectedTag),
@@ -172,24 +173,21 @@ class _ResearchGroupDataView extends StatelessWidget {
       );
     }
     return GridView.builder(
-      padding: const EdgeInsets.only(bottom: ResearchGroupConfig.mediumPadding),
-      gridDelegate: ResearchGroupConfig.researchGroupTabGridDelegate,
+      padding: const EdgeInsets.only(
+          bottom: ScientificCirclesTabConfig.mediumPadding),
+      gridDelegate: ScientificCirclesTabConfig.researchGroupTabGridDelegate,
       itemCount: filteredCircles.length,
       itemBuilder: (context, index) =>
-          ResearchGroupCard(
-        filteredCircles[index],
-         () {
-           Navigator.push(
-               context,
-               MaterialPageRoute(
-                 builder: (context) => const StudyCircleDetails(),
-                 settings: RouteSettings(
-                   arguments: filteredCircles[index].id,
-                 ),
-
-               ));
-         }
-    ),
+          ResearchGroupCard(filteredCircles[index], () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const StudyCircleDetails(),
+              settings: RouteSettings(
+                arguments: filteredCircles[index].id,
+              ),
+            ));
+      }),
     );
   }
 }
