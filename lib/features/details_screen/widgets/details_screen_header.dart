@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import '../../../config.dart';
 import '../../../theme/app_theme.dart';
 import '../../../widgets/my_cached_image.dart';
 
@@ -61,6 +62,7 @@ class HeaderSection extends StatelessWidget {
 }
 
 class SliverHeaderSection extends SliverPersistentHeaderDelegate {
+
   final double minTopBarHeight = 0;
   final double maxTopBarHeight = 250;
 
@@ -77,7 +79,7 @@ class SliverHeaderSection extends SliverPersistentHeaderDelegate {
       bool overlapsContent,
       ) {
     var shrinkFactor = min(1, shrinkOffset / (maxExtent - minExtent));
-    var shrinkFactorLogo = min(1, shrinkOffset / (130));
+    var shrinkFactorLogo = min(1, shrinkOffset / (DetailsScreenHeaderConfig.logoSize));
 
     var topBar = Positioned(
       top: 0,
@@ -107,15 +109,15 @@ class SliverHeaderSection extends SliverPersistentHeaderDelegate {
           Align(
               alignment: Alignment.bottomCenter,
               child: Container(
-                width: max(130 * (1 - shrinkFactorLogo * 0.3), 0),
-                height: max(130 * (1 - shrinkFactorLogo * 0.3), 0),
+                width: max(DetailsScreenHeaderConfig.logoSize * (1 - shrinkFactorLogo * 0.3), 0),
+                height: max(DetailsScreenHeaderConfig.logoSize * (1 - shrinkFactorLogo * 0.3), 0),
                 alignment: Alignment.center,
                 child: Card(
                   elevation: 3,
                   shape: const CircleBorder(),
                   child: SizedBox(
-                    width: 130,
-                    height: 130,
+                    width: DetailsScreenHeaderConfig.logoSize,
+                    height: DetailsScreenHeaderConfig.logoSize,
                     child: ClipOval(
                         child: MyCachedImage(logoImageUrl)),
                   ),

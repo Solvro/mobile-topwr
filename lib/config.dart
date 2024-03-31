@@ -84,6 +84,11 @@ abstract class WideTileCardConfig {
 abstract class DetailsScreenConfig{
   static const double spacerHeight = 16;
 }
+
+abstract class DetailsScreenHeaderConfig{
+  static const double logoSize = 130;
+}
+
 abstract class MapViewBottomSheetConfig {
   static const bottomSheetRadius = Radius.circular(24);
   static const recomendedSheetHeight = 357.0;
