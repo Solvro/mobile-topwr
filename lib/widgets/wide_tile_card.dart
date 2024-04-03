@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../config.dart';
 import '../theme/app_theme.dart';
-import 'dual_text_max_lines.dart';
 import 'my_cached_image.dart';
-import 'triple_text_max_lines.dart';
+import 'ensure_visible_tags.dart';
 
 class PhotoTrailingWideTileCard extends WideTileCard {
   PhotoTrailingWideTileCard({
@@ -96,34 +95,23 @@ class _TitlesColumn extends StatelessWidget {
       return Padding(
           padding: const EdgeInsets.only(
               left: basePadding, top: basePadding, right: basePadding),
-          child: secondSubtitle == null
-              ? DualTextMaxLines(
-                  title: title,
-                  titleStyle: isActive
-                      ? context.textTheme.titleWhite
-                      : context.textTheme.title,
-                  subtitle: subtitle,
-                  subtitleStyle: isActive
-                      ? context.textTheme.bodyWhite
-                      : context.textTheme.body,
-                  spacing: WideTileCardConfig.titlesSpacing,
-                  maxTotalLines: 5,
-                )
-              : TripleTextMaxLines(
-                  title: title,
-                  titleStyle: isActive
-                      ? context.textTheme.titleWhite
-                      : context.textTheme.title,
-                  subtitle: subtitle,
-                  subtitleStyle: isActive
-                      ? context.textTheme.bodyWhite
-                      : context.textTheme.body,
-                  spacing: 4,
-                  secondSubtitle: secondSubtitle,
-                  secondSubtitleStyle: isActive
-                      ? context.textTheme.bodyWhite
-                      : context.textTheme.bodyBlue,
-                  maxTotalLines: 5));
+          child:
+          EnsureVisibleTags(
+            title: title,
+            titleStyle:
+            isActive ? context.textTheme.titleWhite : context.textTheme.title,
+            subtitle: subtitle,
+            subtitleStyle:
+            isActive ? context.textTheme.bodyWhite : context.textTheme.body,
+            spacing:
+            secondSubtitle == null ? WideTileCardConfig.titlesSpacing : 4,
+            secondSubtitle: secondSubtitle,
+            secondSubtitleStyle: isActive
+                ? context.textTheme.bodyWhite
+                : context.textTheme.bodyBlue,
+            maxTotalLines: 5,
+          ),
+      );
     });
   }
 }

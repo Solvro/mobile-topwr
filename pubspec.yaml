@@ -49,6 +49,7 @@ dependencies:
   enum_map: ^0.3.0
   google_maps_flutter: ^2.5.3
   url_launcher: ^6.2.4
+  list_ext: ^1.0.6
 
 dependency_overrides:
   analyzer: ^6.0.0
