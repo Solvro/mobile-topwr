@@ -1,0 +1,15 @@
+query GetScientificCircles {
+    scientificCircles {
+        id
+        name
+        department {
+            name
+        }
+        tags {
+            name
+        }
+        photo {
+            url
+        }
+    }
+}
