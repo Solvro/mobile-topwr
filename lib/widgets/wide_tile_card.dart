@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../config.dart';
 import '../theme/app_theme.dart';
 import 'my_cached_image.dart';
-import 'ensure_visible_tags.dart';
+import '../features/student_research_group_tab/widgets/ensure_visible_tags.dart';
 
 class PhotoTrailingWideTileCard extends WideTileCard {
   PhotoTrailingWideTileCard({
@@ -104,7 +104,7 @@ class _TitlesColumn extends StatelessWidget {
             subtitleStyle:
             isActive ? context.textTheme.bodyWhite : context.textTheme.body,
             spacing:
-            secondSubtitle == null ? WideTileCardConfig.titlesSpacing : 4,
+            secondSubtitle == null ? WideTileCardConfig.titlesSpacing : 2,
             secondSubtitle: secondSubtitle,
             secondSubtitleStyle: isActive
                 ? context.textTheme.bodyWhite

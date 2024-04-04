@@ -2,8 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-import '../utils/calc_lines.dart';
-import 'dual_text_max_lines.dart';
+import '../../../utils/calc_lines.dart';
+import '../../../widgets/dual_text_max_lines.dart';
 
 class EnsureVisibleTags extends DualTextMaxLines {
   /// DualTextMaxLines with third text row that must have at least one line

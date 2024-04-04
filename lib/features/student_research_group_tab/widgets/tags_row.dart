@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../config.dart';
 import '../../../theme/app_theme.dart';
-import '../../../utils/context_extensions.dart';
 import '../repositories/selected_tag_controller.dart';
 import '../repositories/tags_repository.dart';
 
@@ -13,8 +12,7 @@ class TagsRow extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final String selectedTag =
-        ref.watch(selectedTagControllerProvider) ?? context.localize!.all;
+    final selectedTag = ref.watch(selectedTagControllerProvider);
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Padding(
@@ -34,7 +32,7 @@ class _TagsRowItem extends ConsumerWidget {
   const _TagsRowItem({required this.tag, required this.selectedTag});
 
   final Tag tag;
-  final String selectedTag;
+  final String? selectedTag;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
@@ -52,7 +50,7 @@ class _TagsRowItem extends ConsumerWidget {
           selectedColor: context.colorTheme.blueAzure,
           backgroundColor: Colors.transparent,
           labelStyle: TextStyle(
-              color: selectedTag == tag.name!
+              color: selectedTag == tag.name
                   ? Colors.white
                   : context.colorTheme.blueAzure),
           side: BorderSide(color: context.colorTheme.blueAzure),

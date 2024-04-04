@@ -8,7 +8,7 @@ part 'selected_tag_controller.g.dart';
 class SelectedTagController extends _$SelectedTagController {
   @override
   String? build() {
-    return null;
+    return ref.watch(allTagSingletonProvider).name;
   }
 
   void handleTagSelected(Tag newValue) {
