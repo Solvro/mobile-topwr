@@ -13,7 +13,7 @@ class FetchPlacesCommand extends DelegatingMap {
 }
 
 class FetchChartCommand extends DelegatingMap {
-  FetchChartCommand(int index)
+  FetchChartCommand(String index)
       : super({
           "o": "get_today_chart",
           "i": index,
