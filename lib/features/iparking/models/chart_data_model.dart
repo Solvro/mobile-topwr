@@ -21,7 +21,7 @@ class ChartData with _$ChartData {
       _$ChartDataFromJson(json);
 }
 
-extension ChartsUtilities on ChartData {
+extension FlChartUtilities on ChartData {
   static const chartMargin = 20;
 
   Text getLabelForIndex(double index, _) {
@@ -29,9 +29,9 @@ extension ChartsUtilities on ChartData {
   }
 
   FlSpot? getPointForIndex(int index, _) {
-    final numerOfPlaces = double.tryParse(data[index]);
-    if (numerOfPlaces == null) return null;
-    return FlSpot(index.toDouble(), numerOfPlaces);
+    final freePlacesNumber = double.tryParse(data[index]);
+    if (freePlacesNumber == null) return null;
+    return FlSpot(index.toDouble(), freePlacesNumber);
   }
 
   double get maxX => max(0, labels.length - 1).toDouble();
