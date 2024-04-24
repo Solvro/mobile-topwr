@@ -22,6 +22,8 @@ class ChartData with _$ChartData {
 }
 
 extension ChartsUtilities on ChartData {
+  static const chartMargin = 20;
+
   Text getLabelForIndex(double index, _) {
     return Text(labels[index.toInt()]);
   }
@@ -36,6 +38,6 @@ extension ChartsUtilities on ChartData {
 
   double maxY(ParkingPlace parkingPlace) => max(
         double.tryParse(parkingPlace.places) ?? 0,
-        data.map((e) => double.tryParse(e) ?? 0).toList().max + 10,
+        data.map((e) => double.tryParse(e) ?? 0).toList().max + chartMargin,
       );
 }

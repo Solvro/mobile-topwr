@@ -7,7 +7,6 @@ class FetchPlacesCommand extends DelegatingMap {
   FetchPlacesCommand(DateTime timestamp)
       : super({
           "o": "get_parks",
-          // "ts": "1665147767564"
           "ts": timestamp.millisecondsSinceEpoch.toString()
         });
 }
