@@ -5,8 +5,11 @@ import 'models/parking_model.dart';
 import 'parking_chart.dart';
 
 class ParkingCard extends StatelessWidget {
+  /// Placeholder widget to show how to use parking's repository
   const ParkingCard(this.parking, {super.key});
+
   final ParkingPlace parking;
+
   @override
   Widget build(BuildContext context) {
     return Card(

@@ -11,8 +11,12 @@ import 'models/parking_model.dart';
 import 'repositories/chart_repo.dart';
 
 class ParkingChart extends ConsumerWidget {
+  /// Placeholder widget to show how to use chart repository
+
   const ParkingChart(this.parkingPlace, {super.key});
+
   final ParkingPlace parkingPlace;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final chartData = ref.watch(chartRepoProvider.call(parkingPlace));
@@ -27,6 +31,8 @@ class ParkingChart extends ConsumerWidget {
 }
 
 class _Chart extends StatelessWidget {
+  /// Placeholder widget with example simple graph from ChartData (using FlChartUtilities extension)
+
   const _Chart(this.chartData, this.parkingPlace);
 
   final ChartData chartData;
