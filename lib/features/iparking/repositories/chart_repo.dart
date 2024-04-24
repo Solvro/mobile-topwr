@@ -9,7 +9,7 @@ part "chart_repo.g.dart";
 @riverpod
 Future<ChartData> chartRepo(ChartRepoRef ref, ParkingPlace parkingPlace) async {
   final response = await ref.postIParkingCommand(
-    FetchChartCommand(parkingPlace.lp),
+    FetchChartCommand(parkingPlace.id),
   );
   return ChartData.fromJson(response.data["slots"] as Map<String, dynamic>);
 }

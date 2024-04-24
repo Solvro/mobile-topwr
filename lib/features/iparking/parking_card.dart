@@ -14,9 +14,10 @@ class ParkingCard extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(
-            height: 120,
+            height: 150,
             child: _ParkingContent(parking),
           ),
+          const SizedBox(height: 20),
           SizedBox(height: 200, child: ParkingChart(parking)),
         ],
       ),
