@@ -2,50 +2,51 @@ import 'package:flutter/material.dart';
 
 import '../../theme/app_theme.dart';
 import 'models/parking_model.dart';
+import 'parking_chart.dart';
 
 class ParkingCard extends StatelessWidget {
   const ParkingCard(this.parking, {super.key});
   final ParkingPlace parking;
   @override
   Widget build(BuildContext context) {
-    print(
-      parking.iParkPhotoUrl,
-    );
-    final style = context.textTheme.titleWhite.copyWith(fontSize: 20);
     return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      child: Column(
+        children: [
+          SizedBox(
+            height: 120,
+            child: _ParkingContent(parking),
+          ),
+          SizedBox(height: 200, child: ParkingChart(parking)),
+        ],
       ),
-      child: SizedBox(
-        height: 120,
-        child: Stack(
+    );
+  }
+}
+
+class _ParkingContent extends StatelessWidget {
+  const _ParkingContent(this.parking);
+
+  final ParkingPlace parking;
+
+  @override
+  Widget build(BuildContext context) {
+    final style = context.textTheme.titleWhite.copyWith(fontSize: 20);
+
+    return Stack(
+      fit: StackFit.expand,
+      children: [
+        Image.network(parking.iParkPhotoUrl, fit: BoxFit.cover),
+        const ModalBarrier(color: Colors.black26),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Positioned.fill(
-              child: Image.network(parking.iParkPhotoUrl, fit: BoxFit.cover),
-            ),
-            const ModalBarrier(color: Colors.black26),
-            Positioned.fill(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Text(
-                    parking.name,
-                    style: style,
-                  ),
-                  Text(
-                    parking.numberOfPlaces,
-                    style: style,
-                  ),
-                  Text(
-                    parking.measurementTime,
-                    style: style,
-                  ),
-                ],
-              ),
-            ),
+            Text(parking.name, style: style),
+            Text(parking.numberOfPlaces, style: style),
+            Text(parking.measurementTime, style: style),
           ],
         ),
-      ),
+      ],
     );
   }
 }
