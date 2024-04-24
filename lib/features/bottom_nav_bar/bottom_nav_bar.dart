@@ -1,23 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'nested_navigator.dart';
 import '../../theme/app_theme.dart';
-import '../departments_tab/departments_tab.dart';
-import '../home_view/home_view.dart';
-import '../map_view/map_view.dart';
 import 'bottom_nav_bar_controller.dart';
 import 'nav_bar_config.dart';
 
-class BottomNavBar extends ConsumerWidget {
-  const BottomNavBar({super.key});
-
-  static const _widgetOptions = UnmodifiableNavBarEnumMap(
-    home: HomeView(),
-    mapp: MapView(),
-    faculties: DepartmentTab(),
-    sciCircles: _PlaceholderView("sciCircles"),
-    info: _PlaceholderView("Info"),
-  );
+class RootViewWithBottomNavBar extends ConsumerWidget {
+  const RootViewWithBottomNavBar({super.key});
 
   List<BottomNavigationBarItem> getNavigationBarItems(
     BuildContext context,
@@ -39,9 +29,14 @@ class BottomNavBar extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var selectedTab = ref.watch(bottomNavBarControllerProvider);
+    final selectedTab = ref.watch(bottomNavBarControllerProvider);
+    final navigator = ref.watch(navigatorProvider);
     return Scaffold(
-        body: _widgetOptions[selectedTab],
+        body: Navigator(
+          // here we nest the navigator to navigate with overlaing bottom navigation bar on top of everything
+          key: navigator.navigatorKey,
+          onGenerateRoute: navigator.onGenerateRoute,
+        ),
         bottomNavigationBar: Theme(
             data: Theme.of(context).copyWith(
               splashColor: Colors.transparent,
@@ -68,20 +63,5 @@ class BottomNavBar extends ConsumerWidget {
                   type: BottomNavigationBarType.fixed,
                   items: getNavigationBarItems(context, selectedTab),
                 ))));
-  }
-}
-
-class _PlaceholderView extends StatelessWidget {
-  /// Placeholder view created to test navigation between pages
-  const _PlaceholderView(this.text);
-
-  final String text;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        body: Center(
-      child: Text(text),
-    ));
   }
 }

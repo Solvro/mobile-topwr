@@ -9,6 +9,7 @@ import '../../../widgets/my_error_widget.dart';
 import '../../../widgets/subsection_header.dart';
 import '../../bottom_nav_bar/bottom_nav_bar_controller.dart';
 import '../../bottom_nav_bar/nav_bar_config.dart';
+import '../../bottom_nav_bar/nested_navigator.dart';
 import '../repositories/study_circles_repository/study_circles_repository.dart';
 import 'loading_widgets/big_scrollable_section_loading.dart';
 import 'paddings.dart';
@@ -53,19 +54,20 @@ class _StudyCirclesList extends ConsumerWidget {
             top: HomeScreenConfig.paddingMedium,
           ),
           height: BigPreviewCardConfig.cardHeight,
-          child: _StudyCirclesDataList(value.whereNonNull.toList()),
-        )
+          child: _StudyCirclesDataList(
+            value.whereNonNull.toList(),
+          ))
     };
   }
 }
 
-class _StudyCirclesDataList extends StatelessWidget {
+class _StudyCirclesDataList extends ConsumerWidget {
   const _StudyCirclesDataList(this.studyCircles);
 
   final List<InfosPreview> studyCircles;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return ListView.builder(
         cacheExtent: 4,
         shrinkWrap: true,
@@ -75,11 +77,14 @@ class _StudyCirclesDataList extends StatelessWidget {
           final circle = studyCircles[index];
           return MediumLeftPadding(
             child: BigPreviewCard(
-              title: circle.name,
-              shortDescription: circle.description,
-              photoUrl: circle.photo?.previewUrl,
-              onClick: () {},
-            ),
+                title: circle.name,
+                shortDescription: circle.description,
+                photoUrl: circle.photo?.previewUrl,
+                onClick: () {
+                  ref
+                      .read(navigatorProvider)
+                      .navigateToStudyCircleDetails(circle.id);
+                }),
           );
         });
   }

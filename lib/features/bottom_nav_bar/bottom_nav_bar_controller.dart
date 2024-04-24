@@ -1,6 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'nav_bar_config.dart';
+import 'nested_navigator.dart';
 
 part 'bottom_nav_bar_controller.g.dart';
 
@@ -12,6 +13,13 @@ class BottomNavBarController extends _$BottomNavBarController {
   }
 
   void onIndexChanged(int index) {
+    if (index == state.index) {
+      return; // prevents potencial popping of a nested view, when clicked on a current tab
+    }
+    ref
+        .read(navigatorProvider)
+        .popUntilRoot(); // pops nested views if we've went to different tab
+
     state = NavBarEnum.values[index];
   }
 

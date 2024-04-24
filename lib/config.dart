@@ -81,6 +81,9 @@ abstract class WideTileCardConfig {
   ];
 }
 
+abstract class DetailsScreenConfig{
+  static const double spacerHeight = 16;
+}
 abstract class MapViewBottomSheetConfig {
   static const bottomSheetRadius = Radius.circular(24);
   static const recomendedSheetHeight = 357.0;
@@ -106,4 +109,35 @@ abstract class MapWidgetConfig {
       "assets/map_markers/active_map_marker.png";
   static const mapMarkerOriginWidth = 28;
   static const activeMapMarkerOriginWidth = 40;
+}
+
+
+abstract class ScientificCirclesTabConfig {
+
+  static const listSeparatorSize = 16.0;
+  static const microPadding = 4.0;
+  static const smallPadding = 16.0;
+  static const mediumPadding = 24.0;
+
+  static const buttonBorderRadius = 100.0;
+
+  static const researchGroupTabGridDelegate =
+  SliverGridDelegateWithMaxCrossAxisExtent(
+    maxCrossAxisExtent: 600,
+    mainAxisExtent: 92,
+    crossAxisSpacing: 16,
+    mainAxisSpacing: 16,
+  );
+
+  static const tagsGridDelegate =
+  SliverGridDelegateWithMaxCrossAxisExtent(
+    maxCrossAxisExtent: 100,
+    mainAxisExtent: 92,
+    crossAxisSpacing: 8,
+    mainAxisSpacing: 16,
+  );
+}
+
+abstract class ScientificCircleCardConfig {
+  static const trailingPadding = 2.0;
 }
