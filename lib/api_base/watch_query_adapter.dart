@@ -36,6 +36,8 @@ extension TTLWatchQueryAdapter on AutoDisposeStreamProviderRef {
     yield* watchQueryStreamAdapter(
       apiClient,
       newOptions,
-    ).asyncMap(read(ttlService.notifier).interceptAndSaveTimestamps);
+    )
+        .asyncMap(read(ttlService.notifier).interceptAndSaveTimestamps)
+        .map((event) => event.parsedData);
   }
 }

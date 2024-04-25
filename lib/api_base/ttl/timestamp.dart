@@ -18,7 +18,7 @@ class Timestamp extends DateTime {
 
   Future<Duration> get timeLeft async {
     final timeAgo = await this.timeAgo;
-    return timeAgo - ttl;
+    return ttl - timeAgo;
   }
 
   Future<bool> get isCacheUpToDate async {
