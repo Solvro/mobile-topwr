@@ -1,5 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../../../api_base/ttl/ttl_config.dart';
 import '../../../../api_base/watch_query_adapter.dart';
 import 'getInfosPreview.graphql.dart';
 
@@ -12,7 +13,7 @@ Stream<List<InfosPreview?>?> infosPreviewRepository(
     InfosPreviewRepositoryRef ref) async* {
   final stream = ref.watchQueryWithCache(
     WatchOptions$Query$GetInfosPreview(eagerlyFetchResults: true),
-    "InfosPreviewRepositoryRef",
+    TtlKey.infosPreviewRepository,
   );
   yield* stream.map((event) => event?.infos);
 }

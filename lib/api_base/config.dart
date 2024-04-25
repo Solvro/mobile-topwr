@@ -4,6 +4,7 @@ part 'config.g.dart';
 abstract class ApiBaseConfig {
   static const hiveCacheBoxName = "hiveCacheBoxForGraphQL";
   static const authHeaderPrefix = "Bearer ";
+  static const ttlPrefsPrefix = "TTL_CACHE_TIMESTAMP_PREFX_";
 }
 
 @Envied(

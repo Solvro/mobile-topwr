@@ -64,7 +64,7 @@ class _StudyCirclesList extends ConsumerWidget {
 class _StudyCirclesDataList extends ConsumerWidget {
   const _StudyCirclesDataList(this.studyCircles);
 
-  final List<InfosPreview> studyCircles;
+  final List<SciCirclePreview> studyCircles;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

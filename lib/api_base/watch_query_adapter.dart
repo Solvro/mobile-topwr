@@ -2,34 +2,40 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:graphql/client.dart';
 
 import 'gql_client_provider.dart';
-import 'ttl_manager.dart';
+import 'ttl/ttl_config.dart';
+import 'ttl/ttl_service.dart';
 
 extension _WatchQueryStreamAdapter on Ref {
-  Stream<QueryResult<T>> streamAdapter<T>(
-      GraphQLClient client, WatchQueryOptions<T> options) {
+  Stream<QueryResult<T>> watchQueryStreamAdapter<T>(
+    GraphQLClient client,
+    WatchQueryOptions<T> options,
+  ) {
     final observableQuery = client.watchQuery(options);
     onDispose(observableQuery.close);
-    return observableQuery.stream.where(
-      (event) {
-        if (event.hasException) {
-          throw Exception(event.exception); //rethrow GraphQL Errors
-        }
-        return event.isNotLoading;
-      },
+    return observableQuery.stream.map((event) {
+      if (event.hasException) {
+        throw Exception(
+            event.exception); //rethrow GraphQL Errors as not silent ones
+      }
+      return event;
+    }).where(
+      (event) => event.isNotLoading,
     );
   }
 }
 
-extension TTLAutodisposeWatchQueryAdapter on AutoDisposeStreamProviderRef {
+extension TTLWatchQueryAdapter on AutoDisposeStreamProviderRef {
   Stream<T?> watchQueryWithCache<T>(
-      WatchQueryOptions<T> watchQueryOptions, String key) async* {
+      WatchQueryOptions<T> watchQueryOptions, TtlKey ttlKey) async* {
     final apiClient = await watch(gqlClientProvider);
-    final ttlProv = tTLManagerProvider.call(key);
-    final ttlFetchPolicy = await watch(ttlProv.future);
+    final ttlService = ttlServiceProvider.call(ttlKey);
+    final ttlFetchPolicy = await watch(ttlService.future);
 
-    final options = watchQueryOptions.copyWithFetchPolicy(ttlFetchPolicy);
+    final newOptions = watchQueryOptions.copyWithFetchPolicy(ttlFetchPolicy);
 
-    yield* streamAdapter(apiClient, options)
-        .asyncMap(read(ttlProv.notifier).saveNetworkTimestamps);
+    yield* watchQueryStreamAdapter(
+      apiClient,
+      newOptions,
+    ).asyncMap(read(ttlService.notifier).interceptAndSaveTimestamps);
   }
 }

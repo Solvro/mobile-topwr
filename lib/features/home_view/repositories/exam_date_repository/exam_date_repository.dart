@@ -1,5 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../../../api_base/ttl/ttl_config.dart';
 import '../../../../api_base/watch_query_adapter.dart';
 import 'getExamDate.graphql.dart';
 
@@ -10,7 +11,7 @@ Stream<DateTime?> examSessionCountdownRepository(
     ExamSessionCountdownRepositoryRef ref) async* {
   final stream = ref.watchQueryWithCache(
     WatchOptions$Query$GetExamDate(eagerlyFetchResults: true),
-    "ExamSessionCountdownRepositoryRef",
+    TtlKey.examSessionCountdownRepository,
   );
   yield* stream.map(
     (event) => event?.academicYearEndDate?.endDate,
