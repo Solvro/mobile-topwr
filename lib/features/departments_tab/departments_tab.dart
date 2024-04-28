@@ -21,11 +21,9 @@ class DepartmentTab extends ConsumerWidget {
       appBar: SearchBoxAppBar(
         context,
         title: context.localize.departments,
-        onQueryChanged: (query) {
-          ref
-              .read(searchDepartmentsControllerProvider.notifier)
-              .onTextChanged(query);
-        },
+        onQueryChanged: ref
+            .watch(searchDepartmentsControllerProvider.notifier)
+            .onTextChanged,
       ),
       body: const _DepartmentsTabListBody(),
     );
