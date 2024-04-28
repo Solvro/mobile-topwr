@@ -30,11 +30,16 @@ class LocalTimestampRepo {
   }
 }
 
+@Riverpod(keepAlive: true)
+Future<SharedPreferences> _prefs(_PrefsRef ref) async {
+  return await SharedPreferences.getInstance();
+}
+
 @riverpod
 Future<LocalTimestampRepo> localTimestampRepo(
   LocalTimestampRepoRef ref,
   TtlKey key,
 ) async {
-  final prefs = await SharedPreferences.getInstance();
+  final prefs = await ref.watch(_prefsProvider.future);
   return LocalTimestampRepo(key, prefs);
 }
