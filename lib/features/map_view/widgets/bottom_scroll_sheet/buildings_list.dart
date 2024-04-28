@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../config.dart';
-import '../../../../repositories/buildings_repository/building_extra_params_ext.dart';
-import '../../../../repositories/buildings_repository/map_buildings_repo.dart';
+import '../../../../shared_repositories/buildings_repository/building_extra_params_ext.dart';
+import '../../../../shared_repositories/buildings_repository/map_buildings_repo.dart';
 import '../../../../theme/app_theme.dart';
 import '../../../../utils/context_extensions.dart';
 import '../../../../utils/where_non_null_iterable.dart';

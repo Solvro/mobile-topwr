@@ -1,6 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../repositories/departments_repository/departments_repository.dart';
+import '../../shared_repositories/departments_repository/departments_repository.dart';
 
 part 'departments_tab_controller.g.dart';
 

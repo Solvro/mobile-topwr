@@ -1,6 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../repositories/buildings_repository/map_buildings_repo.dart';
+import '../../../shared_repositories/buildings_repository/map_buildings_repo.dart';
 import 'active_map_marker_cntrl.dart';
 
 part "buildings_listview_controller.g.dart";

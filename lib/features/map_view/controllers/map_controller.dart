@@ -7,8 +7,8 @@ import 'package:google_maps_flutter_platform_interface/google_maps_flutter_platf
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../config.dart';
-import '../../../repositories/buildings_repository/building_extra_params_ext.dart';
-import '../../../repositories/buildings_repository/map_buildings_repo.dart';
+import '../../../shared_repositories/buildings_repository/building_extra_params_ext.dart';
+import '../../../shared_repositories/buildings_repository/map_buildings_repo.dart';
 import 'active_map_marker_cntrl.dart';
 import 'bottom_sheet_controller.dart';
 

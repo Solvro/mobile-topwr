@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../repositories/departments_repository/departments_extra_params_ext.dart';
-import '../../../../repositories/departments_repository/departments_repository.dart';
+import '../../../../shared_repositories/departments_repository/departments_extra_params_ext.dart';
+import '../../../../shared_repositories/departments_repository/departments_repository.dart';
 import '../../../../theme/app_theme.dart';
 import '../../../../widgets/my_cached_image.dart';
 import '../../../../widgets/tile_splash.dart';

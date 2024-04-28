@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:logger/logger.dart';
 
-import '../../../repositories/buildings_repository/map_buildings_repo.dart';
+import '../../../shared_repositories/buildings_repository/map_buildings_repo.dart';
 import '../../../utils/launch_url_util.dart';
 
 class GoogleMapsLinkUtils {

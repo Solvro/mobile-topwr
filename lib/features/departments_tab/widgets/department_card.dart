@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../../config.dart';
-import '../../../repositories/departments_repository/departments_extra_params_ext.dart';
-import '../../../repositories/departments_repository/departments_repository.dart';
+import '../../../shared_repositories/departments_repository/departments_extra_params_ext.dart';
+import '../../../shared_repositories/departments_repository/departments_repository.dart';
 import '../../../widgets/my_cached_image.dart';
 import '../../../widgets/wide_tile_card.dart';
 

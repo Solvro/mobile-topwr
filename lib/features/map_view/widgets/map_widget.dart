@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../../config.dart';
-import '../../../repositories/buildings_repository/building_extra_params_ext.dart';
-import '../../../repositories/buildings_repository/map_buildings_repo.dart';
+import '../../../shared_repositories/buildings_repository/building_extra_params_ext.dart';
+import '../../../shared_repositories/buildings_repository/map_buildings_repo.dart';
 import '../../../utils/where_non_null_iterable.dart';
 import '../controllers/bottom_sheet_controller.dart';
 import '../controllers/map_controller.dart';
