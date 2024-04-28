@@ -2,8 +2,9 @@ import 'package:graphql/client.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../utils/timestamp.dart';
 import '../config.dart';
-import 'timestamp.dart';
+import 'ttl_timestamp.dart';
 import 'ttl_config.dart';
 
 part "local_timestamp_repository.g.dart";
@@ -16,17 +17,15 @@ class LocalTimestampRepo {
 
   String get _storeKey => "${ApiBaseConfig.ttlPrefsPrefix}$_key";
 
-  Future<Timestamp> getTimestamp() async {
-    return Timestamp.from(
-      DateTime.tryParse(
-        _prefs.getString(_storeKey) ?? "",
-      ),
+  Future<TimestampTtl> getTimestamp() async {
+    return TimestampTtl.tryParse(
+      _prefs.getString(_storeKey),
       _key,
     );
   }
 
   Future<bool> saveTimestamp<T>(QueryResult<T> response) async {
-    final stamp = response.timestamp.toUtc().toIso8601String();
+    final stamp = Timestamp.from(response.timestamp).serializeUTC();
     return _prefs.setString(_storeKey, stamp);
   }
 }
