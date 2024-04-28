@@ -47,12 +47,17 @@ dependencies:
   logger: ^2.0.2+1
   equatable: ^2.0.5
   enum_map: ^0.3.0
-  google_maps_flutter: ^2.5.3
+  google_maps_flutter: ^2.6.1
   url_launcher: ^6.2.4
   shared_preferences: ^2.2.2
+  dio: ^5.4.3+1
+  freezed_annotation: ^2.4.1
+  json_annotation: ^4.8.1
+  collection: ^1.18.0
+  fl_chart: ^0.67.0
 
 dependency_overrides:
-  analyzer: ^6.0.0
+  analyzer: ^6.4.1
 
 dev_dependencies:
   flutter_test:
@@ -62,10 +67,12 @@ dev_dependencies:
   build_runner: ^2.4.7
   theme_tailor: ^2.0.2
   riverpod_generator: ^2.3.9
-  custom_lint: ^0.5.7
-  riverpod_lint: ^2.3.7
+  custom_lint: ^0.6.4
+  riverpod_lint: ^2.3.10
   envied_generator: ^0.5.2
   graphql_codegen: ^0.13.10
+  freezed: ^2.5.2
+  json_serializable: ^6.7.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

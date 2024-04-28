@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'widgets/details_screen_sliver_header_section.dart';
+import '../../theme/app_theme.dart';
 import 'models/contact_section_data.dart';
 import 'widgets/loading_widgets/about_us_section_loading.dart';
 import 'widgets/loading_widgets/contact_section_loading.dart';
@@ -12,7 +14,6 @@ import 'widgets/details_screen_contact_section.dart';
 import '../../utils/context_extensions.dart';
 import '../../widgets/my_error_widget.dart';
 import 'study_circle_details_repository/study_circle_repository.dart';
-import 'widgets/details_screen_header.dart';
 
 class StudyCircleDetails extends StatelessWidget {
   const StudyCircleDetails({super.key});
@@ -36,29 +37,44 @@ class _CircleDetailsDataView extends ConsumerWidget {
     return switch (state) {
       AsyncLoading() => const _StudyCircleDetailsLoading(),
       AsyncError(:final error) => MyErrorWidget(error),
-      AsyncValue(:final value) => ListView(children: [
-          HeaderSection(
-            logoImageUrl: value?.photo?.url ?? '',
-            title: value?.name ?? '',
-            backgroundImageUrl: value?.backgroundPhoto?.url ?? '',
-            department: value?.department?.name ?? '',
-          ),
-          const SizedBox(height: DetailsScreenConfig.spacerHeight),
-          ContactSection(
-            list: value?.infoSection
-                    ?.expand((e) => e?.info ?? [])
-                    .map((a) => ContactSectionData(
-                          iconUrl: a?.icon?.url,
-                          text: a?.visibleText,
-                          url: a?.value,
-                          type: a?.type,
-                        ))
-                    .toList() ??
-                List.empty(),
-          ),
-          const SizedBox(height: DetailsScreenConfig.spacerHeight),
-          AboutUsSection(
-            text: value?.description ?? '',
+      AsyncValue(:final value) => CustomScrollView(slivers: [
+          SliverPersistentHeader(
+              delegate: SliverHeaderSection(
+            logoImageUrl: value?.photo?.url,
+            backgroundImageUrl: value?.backgroundPhoto?.url,
+          )),
+          SliverList(
+            delegate: SliverChildListDelegate([
+              Text(
+                value?.name ?? '',
+                style: context.textTheme.headline,
+                textAlign: TextAlign.center,
+                maxLines: 2,
+              ),
+              const SizedBox(height: 12),
+              Text(
+                value?.department?.name ?? '',
+                style: context.textTheme.body,
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: DetailsScreenConfig.spacerHeight),
+              ContactSection(
+                list: value?.infoSection
+                        ?.expand((e) => e?.info ?? [])
+                        .map((a) => ContactSectionData(
+                              iconUrl: a?.icon?.url,
+                              text: a?.visibleText,
+                              url: a?.value,
+                              type: a?.type,
+                            ))
+                        .toList() ??
+                    List.empty(),
+              ),
+              const SizedBox(height: DetailsScreenConfig.spacerHeight),
+              AboutUsSection(
+                text: value?.description ?? '',
+              )
+            ]),
           ),
         ]),
     };
