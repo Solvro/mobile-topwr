@@ -4,7 +4,7 @@
     <application
         android:label="topwr"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/launcher_icon">
         <meta-data android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDKfUDQv4mb4W4I4bx0WE4qYkAl53Vfciw" />
         <activity
