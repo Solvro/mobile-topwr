@@ -28,12 +28,7 @@ class BottomScrollSheet extends ConsumerWidget {
           maxChildSize: 1, // factor 1 means 100% available height
           minChildSize: minSheetFraction,
           snap: true,
-          snapSizes: [
-            if (recomendedSheetFraction >
-                MapViewBottomSheetConfig.extraSnapPointFraction1)
-              MapViewBottomSheetConfig.extraSnapPointFraction1,
-            MapViewBottomSheetConfig.extraSnapPointFraction2,
-          ],
+          snapSizes: [recomendedSheetFraction],
           builder: (BuildContext context, ScrollController scrollController) {
             return Container(
               clipBehavior: Clip.antiAlias,
