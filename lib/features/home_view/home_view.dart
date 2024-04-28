@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../config.dart';
 import '../../theme/app_theme.dart';
 import 'widgets/buildings_section/buildings_section.dart';
@@ -7,6 +8,7 @@ import 'widgets/departments_section/department_section.dart';
 import 'widgets/home_screen_greeting.dart';
 import 'widgets/logo_app_bar.dart';
 import 'widgets/news_section.dart';
+import 'widgets/parking_section.dart';
 import 'widgets/study_circles_section.dart';
 
 class HomeView extends StatelessWidget {
@@ -17,7 +19,8 @@ class HomeView extends StatelessWidget {
     final List<Widget> sections = [
       const Greeting(),
       const ExamSessionCountdown(),
-      const NewsSection(),
+      const ParkingSection(),
+      const NewsSection(), // TODO: Replace with actual news and not guide info
       const BuildingsSection(),
       const StudyCirclesSection(),
       const DepartmentSection(),
@@ -29,7 +32,7 @@ class HomeView extends StatelessWidget {
         padding: const EdgeInsets.only(bottom: 48),
         itemBuilder: (context, index) => sections[index],
         separatorBuilder: (context, index) =>
-        const SizedBox(height: HomeScreenConfig.paddingMedium),
+            const SizedBox(height: HomeScreenConfig.paddingMedium),
         itemCount: sections.length,
       ),
     );

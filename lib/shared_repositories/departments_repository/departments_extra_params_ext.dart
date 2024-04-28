@@ -19,3 +19,24 @@ extension DepartmentsExtraParamsExt on Department {
         ]..sortByLightness(),
       );
 }
+
+extension _GetDeptCode on Department? {
+  static const _fallbackCode = 0;
+
+  int extractIntFromStrCode() {
+    if (this != null && this!.code.length >= 2) {
+      return int.tryParse(this!.code.substring(1)) ?? _fallbackCode;
+    }
+    return _fallbackCode;
+  }
+}
+
+extension SortDepartmentsByCode on List<Department?> {
+  void sortByCodeOrder() {
+    sort(
+      (a, b) => a.extractIntFromStrCode().compareTo(
+            b.extractIntFromStrCode(),
+          ),
+    );
+  }
+}

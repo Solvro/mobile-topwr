@@ -2,6 +2,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../api_base/watch_query_adapter.dart';
 import "../../api_base/ttl/ttl_config.dart";
+import 'departments_extra_params_ext.dart';
 import 'getDepartments.graphql.dart';
 
 part 'departments_repository.g.dart';
@@ -19,6 +20,6 @@ Stream<List<Department?>?> departmentsRepository(
     TtlKey.departmentsRepository,
   );
   yield* stream.map(
-    (event) => event?.departments,
+    (event) => event?.departments?..sortByCodeOrder(),
   );
 }
