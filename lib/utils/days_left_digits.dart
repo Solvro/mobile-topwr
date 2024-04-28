@@ -1,10 +1,11 @@
+import 'dart:math';
+
 import '../config.dart';
 
 enum Digit { first, second, third }
 
 extension DaysLeftStringConverter on DateTime {
-  String get daysLeftFromNowString => difference(DateTime.now())
-      .inDays
+  String get daysLeftFromNowString => max(0, difference(DateTime.now()).inDays)
       .toString()
       .padLeft(Digit.values.length, ExamSessionCountdownConfig.defaultDigit);
 }
