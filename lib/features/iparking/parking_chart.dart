@@ -11,8 +11,6 @@ import 'models/parking_model.dart';
 import 'repositories/chart_repo.dart';
 
 class ParkingChart extends ConsumerWidget {
-  /// Placeholder widget to show how to use chart repository
-
   const ParkingChart(this.parkingPlace, {super.key});
 
   final ParkingPlace parkingPlace;

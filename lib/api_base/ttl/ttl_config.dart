@@ -20,9 +20,8 @@ abstract class TtlStrategy {
   static const week = Duration(days: 7);
   static const thirtyDays = Duration(days: 30);
 
-  /// generated map ensures every TtlKey has its own TTL-Duration
-  static const _values = UnmodifiableTtlKeyMap(
-    /// specific values are yet ment to be accordingly adjusted
+  static const _ttlDurations = UnmodifiableTtlKeyMap(
+    // TODO: specific values are yet ment to be accordingly adjusted
     infosPreviewRepository: day,
     examSessionCountdownRepository: day,
     sciCirclesPreviewRepository: thirtyDays,
@@ -33,6 +32,6 @@ abstract class TtlStrategy {
   );
 
   static Duration get(TtlKey key) {
-    return _values.get(key);
+    return _ttlDurations.get(key);
   }
 }

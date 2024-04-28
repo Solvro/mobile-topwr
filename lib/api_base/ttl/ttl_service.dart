@@ -12,7 +12,6 @@ part 'ttl_service.g.dart';
 class TtlService extends _$TtlService {
   @override
   Future<FetchPolicy> build(TtlKey key) async {
-    ///  returns FetchPolicy that loads from cache or fetch from network
     final timestamp = (await repository).getTimestamp();
     if (await timestamp.isCacheUpToDate) {
       _scheduleTTLInvalidation(await timestamp.timeLeft);
@@ -28,7 +27,7 @@ class TtlService extends _$TtlService {
       QueryResult<T> event) async {
     if (event.source == QueryResultSource.network) {
       final repo = await repository;
-      await repo.saveTimestamp(event); // save locally last fresh data timestamp
+      await repo.saveTimestamp(event);
     }
     return event;
   }
