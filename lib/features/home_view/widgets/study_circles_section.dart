@@ -21,8 +21,8 @@ class StudyCirclesSection extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) => Column(
         children: [
           SubsectionHeader(
-              title: context.localize!.study_circles,
-              actionTitle: context.localize!.list,
+              title: context.localize.study_circles,
+              actionTitle: context.localize.list,
               onClick: () {
                 ref
                     .read(bottomNavBarControllerProvider.notifier)

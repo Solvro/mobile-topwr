@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
+
 import '../../../theme/app_theme.dart';
 import '../../../utils/context_extensions.dart';
 import '../../../utils/launch_url_util.dart';
@@ -19,8 +20,7 @@ class ContactSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(context.localize?.contact ?? '',
-              style: context.textTheme.headline),
+          Text(context.localize.contact, style: context.textTheme.headline),
           const SizedBox(height: 16),
           for (final item in list)
             Padding(

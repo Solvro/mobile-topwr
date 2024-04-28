@@ -65,7 +65,7 @@ class _BuildingTile extends ConsumerWidget {
     return PhotoTrailingWideTileCard(
       activeGradient: context.colorTheme.toPwrGradient,
       photoUrl: building.photo?.url,
-      title: "${context.localize?.building_prefix} ${building.name}",
+      title: "${context.localize.building_prefix} ${building.name}",
       subtitle: building.addresFormatted,
       isActive: ref.watchIsActive(building),
       onTap: () {
@@ -88,7 +88,7 @@ class _EmptyBuildings extends StatelessWidget {
             top: 24,
           ),
           child: Text(
-            context.localize!.building_not_found,
+            context.localize.building_not_found,
             style: context.textTheme.body,
           ),
         ),

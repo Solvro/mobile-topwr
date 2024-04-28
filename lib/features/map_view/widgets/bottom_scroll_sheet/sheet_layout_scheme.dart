@@ -23,7 +23,7 @@ class SheetLayoutScheme extends ConsumerWidget {
     final appBar = SearchBoxAppBar(
       context,
       primary: false,
-      title: context.localize?.buildings_title ?? "",
+      title: context.localize.buildings_title,
       onQueryChanged: ref
           .watch(buildingsListViewControllerProvider.notifier)
           .onSearchQueryChanged,

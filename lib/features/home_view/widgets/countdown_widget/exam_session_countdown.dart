@@ -48,11 +48,11 @@ class ExamSessionCountdown extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      context.localize!.days,
+                      context.localize.days,
                       style: context.textTheme.headlineWhite,
                     ),
                     Text(
-                      context.localize!.to_start_session,
+                      context.localize.to_start_session,
                       style: context.textTheme.bodyWhite,
                     ),
                   ],
@@ -66,9 +66,7 @@ class ExamSessionCountdown extends ConsumerWidget {
 }
 
 class _LoadingExamSessionCountdown extends StatelessWidget {
-  const _LoadingExamSessionCountdown({
-    super.key,
-  });
+  const _LoadingExamSessionCountdown();
 
   @override
   Widget build(BuildContext context) {

@@ -21,7 +21,7 @@ class ScientificCirclesTab extends ConsumerWidget {
     return Scaffold(
         appBar: SearchBoxAppBar(
           context,
-          title: context.localize?.study_circles ?? "",
+          title: context.localize.study_circles,
           bottomPadding: 16.0,
           onQueryChanged: ref
               .watch(searchScientificCirclesControllerProvider.notifier)

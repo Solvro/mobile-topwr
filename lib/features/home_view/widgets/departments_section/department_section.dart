@@ -21,8 +21,8 @@ class DepartmentSection extends ConsumerWidget {
     return Column(
       children: [
         SubsectionHeader(
-          title: context.localize?.departments ?? '',
-          actionTitle: context.localize?.list ?? '',
+          title: context.localize.departments,
+          actionTitle: context.localize.list,
           onClick: () {
             ref
                 .read(bottomNavBarControllerProvider.notifier)

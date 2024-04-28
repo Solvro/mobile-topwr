@@ -23,8 +23,8 @@ class BuildingsSection extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) => Column(
         children: [
           SubsectionHeader(
-            title: context.localize!.buildings_title,
-            actionTitle: context.localize!.map_button,
+            title: context.localize.buildings_title,
+            actionTitle: context.localize.map_button,
             onClick: () => BuildingsSection.goToMapTab(ref),
           ),
           const _BuildingsList()

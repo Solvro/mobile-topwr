@@ -49,7 +49,7 @@ class ContactSectionLoading extends StatelessWidget {
 }
 
 class _IconWithUrlLoading extends StatelessWidget {
-  const _IconWithUrlLoading({super.key});
+  const _IconWithUrlLoading();
 
   @override
   Widget build(BuildContext context) {

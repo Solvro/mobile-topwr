@@ -42,7 +42,7 @@ class _ScientificCirclesDataView extends ConsumerWidget {
     if (filteredCircles.isEmpty) {
       return Center(
         child: Text(
-          context.localize?.sci_circle_not_found ?? "",
+          context.localize.sci_circle_not_found,
           style: context.textTheme.body,
         ),
       );

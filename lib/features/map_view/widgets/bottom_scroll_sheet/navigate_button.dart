@@ -21,7 +21,7 @@ class NavigateButton extends ConsumerWidget {
           final active = ref.read(activeMapMarkerControllerProvider);
           if (active != null) GoogleMapsLinkUtils.navigateTo(active);
         },
-        actionTitle: context.localize?.navigate ?? "",
+        actionTitle: context.localize.navigate,
       ),
     );
   }

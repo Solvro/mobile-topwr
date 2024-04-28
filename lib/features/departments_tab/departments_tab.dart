@@ -20,7 +20,7 @@ class DepartmentTab extends ConsumerWidget {
     return Scaffold(
       appBar: SearchBoxAppBar(
         context,
-        title: context.localize?.departments ?? "",
+        title: context.localize.departments,
         onQueryChanged: (query) {
           ref
               .read(searchDepartmentsControllerProvider.notifier)
@@ -59,7 +59,7 @@ class _DepartmntsDataView extends StatelessWidget {
     if (departments.isEmpty) {
       return Center(
         child: Text(
-          context.localize?.department_not_found ?? "",
+          context.localize.department_not_found,
           style: context.textTheme.body,
         ),
       );

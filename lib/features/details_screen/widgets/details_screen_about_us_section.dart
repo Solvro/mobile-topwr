@@ -10,18 +10,19 @@ class AboutUsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return
-      text.isEmpty ? const SizedBox.shrink() :
-      Padding(
-        padding: const EdgeInsets.all(24),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(context.localize?.about_us ?? '', style: context.textTheme.headline),
-            const SizedBox(height: 16),
-            Text(text, style: context.textTheme.body),
-          ],
-        ),
-      );
+    return text.isEmpty
+        ? const SizedBox.shrink()
+        : Padding(
+            padding: const EdgeInsets.all(24),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(context.localize.about_us,
+                    style: context.textTheme.headline),
+                const SizedBox(height: 16),
+                Text(text, style: context.textTheme.body),
+              ],
+            ),
+          );
   }
 }

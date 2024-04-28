@@ -16,7 +16,7 @@ class Greeting extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(context.localize!.home_screen_greeting,
+          Text(context.localize.home_screen_greeting,
               style: context.greetingTheme.textStyle),
           Text('${context.mapAcademicScheduleDay(DateTime.now())}!',
               style: context.greetingTheme.boldTextStyle),

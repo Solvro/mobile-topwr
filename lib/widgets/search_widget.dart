@@ -59,7 +59,7 @@ class _SearchWidgetState extends ConsumerState<SearchWidget> {
         contentPadding: EdgeInsets.zero,
         filled: true,
         fillColor: context.colorTheme.greyLight,
-        hintText: '${widget.searchText ?? context.localize!.search}...',
+        hintText: '${widget.searchText ?? context.localize.search}...',
         hintStyle: context.textTheme.lightTitle.copyWith(color: color),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8.0),

@@ -73,7 +73,7 @@ class BigPreviewCard extends StatelessWidget {
                     textColor: context.colorTheme.whiteSoap,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(4)),
-                    child: Text(context.localize!.read_more),
+                    child: Text(context.localize.read_more),
                   ),
                 ],
               ),
