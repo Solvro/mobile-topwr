@@ -6,8 +6,6 @@ import 'parking_card.dart';
 import 'repositories/parkings_repo.dart';
 
 class ParkingView extends ConsumerWidget {
-  /// Placeholder widget to show how to use iparking module
-
   const ParkingView({super.key});
 
   @override

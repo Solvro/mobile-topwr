@@ -1,4 +1,4 @@
-# Our Graphql API Helper module
+# Our Graphql API Helper module (now with Cache and TTL)
 
 I've configured the graphql and graphql_codegen packages along with a persistent on-disk cache based on Hive.
 
@@ -31,34 +31,62 @@ API_KEY="<Your api token>"
    }
    ```
 
+2. `lib\api_base\ttl\ttl_config.dart`
+  -  **TTL Note**: Now every repository need to have its own `TtlKey` enumerations literal. You need to add one in `lib\api_base\ttl\ttl_config.dart` to `enum TtlKey`, rebuild code generation and add TTL duration to `TTLStrategy` generated map.
+
+modify this:
+```dart
+@unmodifiableEnumMap
+enum TtlKey {
+  //..
+  departmentsRepository, // add this new key
+}
+
+abstract class TtlStrategy {
+  static const _values = UnmodifiableTtlKeyMap(
+    // ..
+    departmentsRepository: Duration(days: 28),
+  );
+  //..
+}
+```
+
+
+
 2. `departments_repository.dart`:
 
    - This is example of our repository. It won't be much different for most of our simple fetch-only repositories. I've simplified the process as much as I could. Hopefully without limiting possibilities.
+     
 
-   ```dart
-   import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-   import 'package:topwr/api_base/gql_client_provider.dart';
-   import 'package:topwr/api_base/watch_query_adapter.dart';
-   import 'get_departments.graphql.dart';
 
-   part 'departments_repository.g.dart';
+ 
+```dart
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-   typedef Department = Query$GetDepartments$departments; // just alias for shorter type name
+import '../../../../api_base/watch_query_adapter.dart';
+import "../../api_base/ttl/ttl_config.dart";
+import 'getDepartments.graphql.dart';
 
-   @riverpod
-   Stream<List<Department?>?> departmentsRepository(DepartmentsRepositoryRef ref) async* {
-     final client = await ref.watch(gqlClientProvider);
-     final stream = ref.watchQueryWithCache(
-       client,
-       WatchOptions$Query$GetDepartments(
-           eagerlyFetchResults: true, // this true is crucial to even fetch anything
-       ),
-     );
-     yield* stream.map(
-       (event) => event?.departments, // some extra unpacking of your results
-     );
-   }
+part 'departments_repository.g.dart';
+
+typedef Department
+    = Query$GetDepartments$departments; // just alias for shorter type name
+
+@riverpod
+Stream<List<Department?>?> departmentsRepository(
+    DepartmentsRepositoryRef ref) async* {
+  final stream = ref.watchQueryWithCache(
+    WatchOptions$Query$GetDepartments(
+      eagerlyFetchResults: true,
+    ),
+    TtlKey.departmentsRepository,
+  );
+  yield* stream.map(
+    (event) => event?.departments,
+  );
+}
+
    ```
 
 3. `departments_view.dart`:
