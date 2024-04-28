@@ -7,7 +7,7 @@ import '../../utils/context_extensions.dart';
 import '../../widgets/loading_widgets/shimmer_loading.dart';
 import '../../widgets/my_error_widget.dart';
 import 'models/contact_section_data.dart';
-import 'study_circle_details_repository/study_circle_repository.dart';
+import 'repository/study_circle_repository.dart';
 import 'widgets/details_screen_about_us_section.dart';
 import 'widgets/details_screen_app_bar.dart';
 import 'widgets/details_screen_contact_section.dart';
