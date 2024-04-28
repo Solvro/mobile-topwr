@@ -20,7 +20,7 @@ class HomeView extends StatelessWidget {
       const Greeting(),
       const ExamSessionCountdown(),
       const ParkingSection(),
-      const NewsSection(),
+      const NewsSection(), // TODO: Replace with actual news and not guide info
       const BuildingsSection(),
       const StudyCirclesSection(),
       const DepartmentSection(),
