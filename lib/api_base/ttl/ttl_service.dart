@@ -13,7 +13,7 @@ class TtlService extends _$TtlService {
   @override
   Future<FetchPolicy> build(TtlKey key) async {
     ///  returns FetchPolicy that loads from cache or fetch from network
-    final timestamp = await (await repository).getTimestamp();
+    final timestamp = (await repository).getTimestamp();
     if (await timestamp.isCacheUpToDate) {
       _scheduleTTLInvalidation(await timestamp.timeLeft);
       return FetchPolicy.cacheFirst; // loads only from cache unless it's empty

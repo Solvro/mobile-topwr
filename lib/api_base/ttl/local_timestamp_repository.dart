@@ -17,7 +17,7 @@ class LocalTimestampRepo {
 
   String get _storeKey => "${ApiBaseConfig.ttlPrefsPrefix}$_key";
 
-  Future<TimestampTtl> getTimestamp() async {
+  TimestampTtl getTimestamp() {
     return TimestampTtl.tryParse(
       _prefs.getString(_storeKey),
       _key,
