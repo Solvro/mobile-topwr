@@ -154,3 +154,6 @@ app.*.symbols
 .env.dev
 env.g.dart
 **/env.g.dart
+
+
+.vscode

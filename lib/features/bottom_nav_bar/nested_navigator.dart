@@ -12,6 +12,10 @@ class NestedNavigator {
   final Ref ref;
   final navigatorKey = GlobalKey<NavigatorState>();
 
+  void handleNestedPop() {
+    navigatorKey.currentState?.pop();
+  }
+
   Route<dynamic> onGenerateRoute(RouteSettings settings) {
     return MaterialPageRoute(
       builder: switch (settings.name) {

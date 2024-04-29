@@ -32,10 +32,12 @@ class RootViewWithBottomNavBar extends ConsumerWidget {
     final selectedTab = ref.watch(bottomNavBarControllerProvider);
     final navigator = ref.watch(navigatorProvider);
     return Scaffold(
-        body: Navigator(
-          // here we nest the navigator to navigate with overlaing bottom navigation bar on top of everything
-          key: navigator.navigatorKey,
-          onGenerateRoute: navigator.onGenerateRoute,
+        body: NavigatorPopHandler(
+          onPop: navigator.handleNestedPop,
+          child: Navigator(
+            key: navigator.navigatorKey,
+            onGenerateRoute: navigator.onGenerateRoute,
+          ),
         ),
         bottomNavigationBar: Theme(
             data: Theme.of(context).copyWith(

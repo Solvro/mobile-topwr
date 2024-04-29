@@ -1,4 +1,4 @@
-package pl.edu.pwr.solvro.topwr
+package com.solvro.topwr
 
 import io.flutter.embedding.android.FlutterActivity
 
