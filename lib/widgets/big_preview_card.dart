@@ -41,7 +41,9 @@ class BigPreviewCard extends StatelessWidget {
                 child: Stack(
                   alignment: Alignment.topRight,
                   children: [
-                    MyCachedImage(photoUrl),
+                    SizedBox(
+                        width: double.maxFinite,
+                        child: MyCachedImage(photoUrl)),
                     date != null
                         ? DateChip(date: date!)
                         : const SizedBox.shrink()

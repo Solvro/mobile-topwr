@@ -4,8 +4,8 @@ query  GetStudyCirclesPreview{
         id
         description
         name
-        photo {
-                previewUrl
+        backgroundPhoto {
+                url
         }
     }
 }

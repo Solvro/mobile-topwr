@@ -79,7 +79,7 @@ class _StudyCirclesDataList extends ConsumerWidget {
             child: BigPreviewCard(
                 title: circle.name,
                 shortDescription: circle.description,
-                photoUrl: circle.photo?.previewUrl,
+                photoUrl: circle.backgroundPhoto?.url,
                 onClick: () {
                   ref
                       .read(navigatorProvider)
