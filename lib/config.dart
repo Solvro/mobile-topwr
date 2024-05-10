@@ -40,18 +40,6 @@ abstract class DateChipConfig {
   static const dateTimeFormat = 'dd.MM.yyyy';
 }
 
-abstract class StudyCirclesSectionConfig {
-  static const errorMsg = "An error occurred in StudyCircles's scrollable row";
-}
-
-abstract class NewsSectionConfig {
-  static const errorMsg = "An error occurred in NewsSection's scrollable row";
-}
-
-abstract class HomeScreenGreetingConfig {
-  static const errorMsg = "An error occurred in HomeScreen Greeting";
-}
-
 abstract class HomeScreenConfig {
   static const paddingSmall = 6.0;
   static const paddingMedium = 16.0;

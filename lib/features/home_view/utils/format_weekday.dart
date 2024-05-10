@@ -1,22 +1,16 @@
 import 'package:flutter/material.dart';
-import '../features/home_view/repositories/week_parity_exceptions_repository/get_week_parity_exceptions_repository.dart';
-import 'context_extensions.dart';
+import '../repositories/week_parity_exceptions_repository/get_week_parity_exceptions_repository.dart';
+import '../../../utils/context_extensions.dart';
 import 'enum_weekday_extensions.dart';
-import 'same_date.dart';
+import '../../../utils/same_date.dart';
 
 extension FormatWeekdayExtension on BuildContext {
   String mapAcademicScheduleDay(
       DateTime date, List<WeekParityExceptions?>? value) {
 
-    final exceptionIndex =
-        value?.indexWhere((element) => element?.date.isSameDay(date) ?? false) ?? -1;
-
-    final isEven = exceptionIndex != -1
-        ? (value![exceptionIndex]?.parity.isEven ?? date.day.isEven)
-        : date.day.isEven;
-    final weekday = exceptionIndex != -1
-        ? (value![exceptionIndex]?.dayOfTheWeek.toDateTimeWeekday ?? date.weekday)
-        : date.weekday;
+    final exception = value.findException(date);
+    final isEven = exception?.parity.isEven ?? date.day.isEven;
+    final weekday = exception?.dayOfTheWeek.toDateTimeWeekday ?? date.weekday;
 
     return switch (weekday) {
       DateTime.sunday => isEven
@@ -42,6 +36,16 @@ extension FormatWeekdayExtension on BuildContext {
           : "${localize.odd_f} ${localize.saturday}",
       _ => localize.unknown_day,
     };
+  }
+}
+
+extension FindExceptionExtension on List<WeekParityExceptions?>? {
+  WeekParityExceptions? findException(DateTime date) {
+    final index =
+        this?.indexWhere((element) => element?.date.isSameDay(date) ?? false) ??
+            -1;
+    if (index == -1) return null;
+    return this![index];
   }
 }
 

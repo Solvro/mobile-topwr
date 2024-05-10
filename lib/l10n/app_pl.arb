@@ -34,5 +34,8 @@
   "type_sci_circle": "Wpisz nazwę koła naukowego",
   "sci_circle_not_found": "Nie znaleziono kół naukowych",
   "all": "Wszystkie",
-  "parkings_title": "Parkingi"
+  "parkings_title": "Parkingi",
+  "home_screen_greeting_error": "Wystąpił błąd podczas pobierania danych dotyczących parzystości tygodnia. Spróbuj ponownie później.",
+  "study_circles_section_error": "Wystąpił błąd podczas pobierania danych dotyczących kół naukowych. Spróbuj ponownie później",
+  "news_section_error": "Wystąpił błąd podczas pobierania danych dotyczących wiadomości. Spróbuj ponownie później"
 }

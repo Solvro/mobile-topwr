@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import '../config.dart';
+import '../../../config.dart';
 
 enum Digit { first, second, third }
 
