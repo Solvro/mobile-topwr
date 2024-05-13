@@ -8,7 +8,7 @@ import '../../../../widgets/my_error_widget.dart';
 import '../../../../widgets/subsection_header.dart';
 import '../../../bottom_nav_bar/bottom_nav_bar_controller.dart';
 import '../../../bottom_nav_bar/nav_bar_config.dart';
-import '../../../map_view/controllers/active_map_marker_cntrl.dart';
+import '../../../buildings_map/controllers.dart';
 import '../loading_widgets/scrollable_section_loading.dart';
 import '../paddings.dart';
 import 'building_card.dart';

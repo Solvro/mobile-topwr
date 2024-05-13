@@ -10,7 +10,7 @@ import '../../../../utils/where_non_null_iterable.dart';
 import '../../../../widgets/my_error_widget.dart';
 import '../../../../widgets/wide_tile_card.dart';
 import '../../../buildings_map/controllers.dart';
-import '../../controllers/controllers.dart';
+import '../../controllers/controllers_set.dart';
 import 'buildings_list_loading.dart';
 
 class BuildingsSliverList extends ConsumerWidget {

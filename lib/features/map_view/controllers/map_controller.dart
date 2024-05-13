@@ -8,10 +8,10 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../config.dart';
 import 'bottom_sheet_controller.dart';
-import 'controllers.dart';
+import 'controllers_set.dart';
 
 mixin MapController<T> on AutoDisposeNotifier<GoogleMapController?> {
-  late final MapControllers<T> mapControllers;
+  late final MapControllersT<T> mapControllers;
   LatLng getLocation(T item);
 
   static Future<void> initializeGoogleMapsRenderingAndroid() async {

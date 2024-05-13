@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../config.dart';
 import '../../../../utils/context_extensions.dart';
 import '../../../../widgets/my_text_button.dart';
-import '../../controllers/controllers.dart';
+import '../../controllers/controllers_set.dart';
 import '../../utils/google_maps_link_utils.dart';
 
 class NavigateButton extends ConsumerWidget {

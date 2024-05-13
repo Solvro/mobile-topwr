@@ -5,7 +5,7 @@ import '../../shared_repositories/buildings_repository/building_extra_params_ext
 import '../../shared_repositories/buildings_repository/map_buildings_repo.dart';
 import '../map_view/controllers/active_map_marker_cntrl.dart';
 import '../map_view/controllers/buildings_listview_controller.dart';
-import '../map_view/controllers/controllers.dart';
+import '../map_view/controllers/controllers_set.dart';
 import '../map_view/controllers/map_controller.dart';
 
 part "controllers.g.dart";
@@ -56,7 +56,7 @@ class BuildingsMapController extends _$BuildingsMapController
   }
 }
 
-final MapControllers<Building> mapControllersBuildings = (
+final MapControllersT<Building> mapControllersBuildings = (
   activeMarker: activeBuildingControllerProvider,
   sourceRepo: mapBuildingsRepositoryProvider,
   map: buildingsMapControllerProvider,

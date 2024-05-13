@@ -5,7 +5,7 @@ import '../../../../utils/context_extensions.dart';
 import '../../../../widgets/search_box_app_bar.dart';
 import '../../../buildings_map/controllers.dart';
 import '../../controllers/bottom_sheet_controller.dart';
-import '../../controllers/controllers.dart';
+import '../../controllers/controllers_set.dart';
 import 'buildings_list.dart';
 import 'drag_handle.dart';
 import 'navigate_button.dart';

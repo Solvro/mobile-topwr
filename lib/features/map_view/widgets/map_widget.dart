@@ -7,7 +7,7 @@ import '../../../shared_repositories/buildings_repository/building_extra_params_
 import '../../../shared_repositories/buildings_repository/map_buildings_repo.dart';
 import '../../../utils/where_non_null_iterable.dart';
 import '../controllers/bottom_sheet_controller.dart';
-import '../controllers/controllers.dart';
+import '../controllers/controllers_set.dart';
 
 class MapWidget extends ConsumerWidget {
   const MapWidget({super.key});

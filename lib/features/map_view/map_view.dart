@@ -6,54 +6,33 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../config.dart';
 import '../../theme/app_theme.dart';
-import '../buildings_map/controllers.dart';
-import 'controllers/bottom_sheet_controller.dart';
-import 'controllers/controllers.dart';
+import 'controllers/controllers_set.dart';
 import 'widgets/bottom_scroll_sheet/bottom_scroll_sheet.dart';
 import 'widgets/bottom_scroll_sheet/sheet_layout_scheme.dart';
+import 'widgets/map_controllers.dart';
 import 'widgets/map_widget.dart';
 
-class BuildingMapView extends ConsumerWidget {
-  const BuildingMapView({super.key});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return ProviderScope(overrides: [
-      mapControllersProvider.overrideWith((ref) => mapControllersBuildings),
-      bottomSheetControllerProvider,
-      bottomSheetPixelsProvider,
-    ], child: const MapView());
-  }
-}
-
-class ParkingsMapView extends ConsumerWidget {
-  const ParkingsMapView({super.key});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return ProviderScope(overrides: [
-      mapControllersProvider.overrideWith((ref) => mapControllersBuildings),
-      bottomSheetControllerProvider,
-      bottomSheetPixelsProvider,
-    ], child: const MapView());
-  }
-}
-
-class MapView extends ConsumerWidget {
-  const MapView({super.key});
-
+class GeneralMapView<T> extends ConsumerWidget {
+  const GeneralMapView({
+    required this.mapControllers,
+    super.key,
+  });
+  final MapControllersT<T> mapControllers;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isBigScreen = MediaQuery.sizeOf(context).width >
         MapViewBottomSheetConfig.horizontalPanelModeMinWidth;
-    return Scaffold(
-      backgroundColor: context.colorTheme.whiteSoap,
-      body: kIsWeb || isBigScreen
-          ? const HorizontalWebLayout()
-          : const Stack(children: [
-              MapWidget(),
-              BottomScrollSheet(),
-            ]),
+    return MapControllers(
+      data: mapControllers,
+      child: Scaffold(
+        backgroundColor: context.colorTheme.whiteSoap,
+        body: kIsWeb || isBigScreen
+            ? const HorizontalWebLayout()
+            : const Stack(children: [
+                MapWidget(),
+                BottomScrollSheet(),
+              ]),
+      ),
     );
   }
 }
