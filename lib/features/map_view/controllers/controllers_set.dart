@@ -3,8 +3,12 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'active_map_marker_cntrl.dart';
 import 'map_controller.dart';
+import 'map_data_controller.dart';
 
 typedef SourceRepositoryProv<T> = AutoDisposeStreamProvider<Iterable<T?>?>;
+
+typedef MapDataProv<T>
+    = AutoDisposeAsyncNotifierProvider<MapDataController<T>, Iterable<T?>?>;
 
 typedef ActiveMarkerProv<T>
     = AutoDisposeNotifierProvider<ActiveMarkerController<T>, T?>;
@@ -16,4 +20,5 @@ typedef MapControllers<T> = ({
   ActiveMarkerProv<T> activeMarker,
   SourceRepositoryProv<T> sourceRepo,
   MapControllerProv<T> map,
+  MapDataProv dataController,
 });

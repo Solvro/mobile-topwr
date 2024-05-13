@@ -2,7 +2,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'controllers_set.dart';
 
-mixin MapSourceController<T> on AutoDisposeAsyncNotifier<Iterable<T?>?> {
+mixin MapDataController<T> on AutoDisposeAsyncNotifier<Iterable<T?>?> {
   String _textFieldFilterText = "";
   late final MapControllers<T> mapControllers;
 
