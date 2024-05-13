@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:logger/logger.dart';
 
-import '../../../shared_repositories/buildings_repository/map_buildings_repo.dart';
-import '../../../utils/launch_url_util.dart';
+import '../../shared_repositories/buildings_repository/map_buildings_repo.dart';
+import '../../utils/launch_url_util.dart';
 
 class GoogleMapsLinkUtils {
   static Future<void> navigateTo(Building building) async {

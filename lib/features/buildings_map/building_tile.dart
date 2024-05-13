@@ -6,7 +6,7 @@ import '../../shared_repositories/buildings_repository/map_buildings_repo.dart';
 import '../../theme/app_theme.dart';
 import '../../utils/context_extensions.dart';
 import '../../widgets/wide_tile_card.dart';
-import '../map_view/widgets/map_config.dart';
+import 'controllers.dart';
 
 class BuildingTile extends ConsumerWidget {
   const BuildingTile(
@@ -24,9 +24,7 @@ class BuildingTile extends ConsumerWidget {
       subtitle: building.addresFormatted,
       isActive: ref.watchIsActive(building),
       onTap: () {
-        ref
-            .read(context.mapController<Building>().notifier)
-            .onMarkerTap(building);
+        ref.read(buildingsMapControllerProvider.notifier).onMarkerTap(building);
       },
     );
   }

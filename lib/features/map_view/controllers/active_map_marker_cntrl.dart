@@ -6,19 +6,21 @@ mixin ActiveMarkerController<T> on AutoDisposeNotifier<T?> {
     return null;
   }
 
-  void selectBuilding(T building) {
-    state = building;
+  void selectBuilding(T item) {
+    state = item;
   }
 
   void unselect() {
     state = null;
   }
 
-  void toggleBuilding(T building) {
-    if (state == building) {
+  void toggleBuilding(T item) {
+    if (state == item) {
       unselect();
     } else {
-      selectBuilding(building);
+      selectBuilding(item);
     }
   }
+
+  Future<void> launchLink();
 }

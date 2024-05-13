@@ -16,10 +16,8 @@ class NavigateButton<T> extends ConsumerWidget {
         right: MapViewBottomSheetConfig.horizontalPadding - 3,
       ),
       child: MyTextButton(
-        onClick: () {
-          final active = ref.read(context.activeMarkerController<T>());
-          // if (active != null) GoogleMapsLinkUtils.navigateTo(active);
-        },
+        onClick:
+            ref.watch(context.activeMarkerController<T>().notifier).launchLink,
         actionTitle: context.localize.navigate,
       ),
     );
