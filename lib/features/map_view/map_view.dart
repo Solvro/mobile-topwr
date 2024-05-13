@@ -9,7 +9,7 @@ import '../../theme/app_theme.dart';
 import 'controllers/controllers_set.dart';
 import 'widgets/bottom_scroll_sheet/bottom_scroll_sheet.dart';
 import 'widgets/bottom_scroll_sheet/sheet_layout_scheme.dart';
-import 'widgets/map_controllers.dart';
+import 'widgets/map_config.dart';
 import 'widgets/map_widget.dart';
 
 class GeneralMapView<T> extends ConsumerWidget {
@@ -17,13 +17,13 @@ class GeneralMapView<T> extends ConsumerWidget {
     required this.mapControllers,
     super.key,
   });
-  final MapControllersT<T> mapControllers;
+  final MapControllers<T> mapControllers;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isBigScreen = MediaQuery.sizeOf(context).width >
         MapViewBottomSheetConfig.horizontalPanelModeMinWidth;
-    return MapControllers(
-      data: mapControllers,
+    return MapConfig(
+      controllers: mapControllers,
       child: Scaffold(
         backgroundColor: context.colorTheme.whiteSoap,
         body: kIsWeb || isBigScreen

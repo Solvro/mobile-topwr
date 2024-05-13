@@ -4,7 +4,7 @@ import 'controllers_set.dart';
 
 mixin MapSourceController<T> on AutoDisposeAsyncNotifier<Iterable<T?>?> {
   String _textFieldFilterText = "";
-  late final MapControllersT<T> mapControllers;
+  late final MapControllers<T> mapControllers;
 
   @override
   FutureOr<Iterable<T?>?> build() async {

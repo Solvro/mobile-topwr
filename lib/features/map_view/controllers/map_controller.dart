@@ -11,7 +11,7 @@ import 'bottom_sheet_controller.dart';
 import 'controllers_set.dart';
 
 mixin MapController<T> on AutoDisposeNotifier<GoogleMapController?> {
-  late final MapControllersT<T> mapControllers;
+  late final MapControllers<T> mapControllers;
   LatLng getLocation(T item);
 
   static Future<void> initializeGoogleMapsRenderingAndroid() async {

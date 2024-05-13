@@ -12,13 +12,13 @@ typedef ActiveMarkerProv<T>
 typedef MapControllerProv<T>
     = AutoDisposeNotifierProvider<MapController<T>, GoogleMapController?>;
 
-typedef MapControllersT<T> = ({
+typedef MapControllers<T> = ({
   ActiveMarkerProv<T> activeMarker,
   SourceRepositoryProv<T> sourceRepo,
   MapControllerProv<T> map,
 });
 
-final Provider<MapControllersT> mapControllersProvider =
-    Provider<MapControllersT>(
+final Provider<MapControllers> mapControllersProvider =
+    Provider<MapControllers>(
   (ref) => throw UnimplementedError(),
 );

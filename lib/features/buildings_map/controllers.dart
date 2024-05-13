@@ -56,7 +56,7 @@ class BuildingsMapController extends _$BuildingsMapController
   }
 }
 
-final MapControllersT<Building> mapControllersBuildings = (
+final MapControllers<Building> mapControllersBuildings = (
   activeMarker: activeBuildingControllerProvider,
   sourceRepo: mapBuildingsRepositoryProvider,
   map: buildingsMapControllerProvider,
