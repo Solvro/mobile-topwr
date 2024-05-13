@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../config.dart';
 import '../../../../theme/app_theme.dart';
-import '../../../../utils/context_extensions.dart';
 import '../../../../utils/where_non_null_iterable.dart';
 import '../../../../widgets/my_error_widget.dart';
 import '../map_config.dart';
@@ -32,7 +31,7 @@ class _DataSliverList<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (items.isEmpty) return const _EmptyDataList();
+    if (items.isEmpty) return _EmptyDataList<T>();
     return SliverPadding(
       padding: const EdgeInsets.only(
         left: MapViewBottomSheetConfig.horizontalPadding,
@@ -51,7 +50,7 @@ class _DataSliverList<T> extends StatelessWidget {
   }
 }
 
-class _EmptyDataList extends StatelessWidget {
+class _EmptyDataList<T> extends StatelessWidget {
   const _EmptyDataList();
 
   @override
@@ -64,7 +63,7 @@ class _EmptyDataList extends StatelessWidget {
             top: 24,
           ),
           child: Text(
-            context.localize.building_not_found,
+            context.mapViewTexts<T>().emptyList,
             style: context.textTheme.body,
           ),
         ),

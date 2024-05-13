@@ -8,18 +8,25 @@ typedef MarkerBuilder<T> = Marker Function(T item, WidgetRef ref);
 
 typedef MapTileBuilder<T> = Widget Function(T item);
 
+typedef MapViewTexts = ({
+  String emptyList,
+  String title,
+});
+
 class MapConfig<T> extends InheritedWidget {
   const MapConfig({
     super.key,
     required this.controllers,
     required this.markerBuilder,
     required this.mapTileBuilder,
+    required this.mapViewTexts,
     required super.child,
   });
 
   final MapControllers<T> controllers;
   final MarkerBuilder<T> markerBuilder;
   final MapTileBuilder<T> mapTileBuilder;
+  final MapViewTexts mapViewTexts;
 
   static MapConfig<T>? maybeOf<T>(BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType<MapConfig<T>>();
@@ -64,5 +71,9 @@ extension MapConfigExt on BuildContext {
 
   MapTileBuilder<T> mapTileBuilder<T>() {
     return config<T>().mapTileBuilder;
+  }
+
+  MapViewTexts mapViewTexts<T>() {
+    return config<T>().mapViewTexts;
   }
 }

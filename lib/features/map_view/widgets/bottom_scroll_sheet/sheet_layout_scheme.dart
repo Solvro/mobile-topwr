@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../utils/context_extensions.dart';
 import '../../../../widgets/search_box_app_bar.dart';
 import '../../controllers/bottom_sheet_controller.dart';
 import '../map_config.dart';
@@ -22,7 +21,7 @@ class SheetLayoutScheme<T> extends ConsumerWidget {
     final appBar = SearchBoxAppBar(
       context,
       primary: false,
-      title: context.localize.buildings_title,
+      title: context.mapViewTexts<T>().title,
       onQueryChanged: ref
           .watch(context.mapDataController<T>().notifier)
           .onSearchQueryChanged,

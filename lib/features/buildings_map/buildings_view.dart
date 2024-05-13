@@ -4,6 +4,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../shared_repositories/buildings_repository/building_extra_params_ext.dart';
 import '../../shared_repositories/buildings_repository/map_buildings_repo.dart';
+import '../../utils/context_extensions.dart';
 import '../map_view/controllers/bottom_sheet_controller.dart';
 import '../map_view/map_view.dart';
 import 'building_tile.dart';
@@ -20,7 +21,12 @@ class BuildingMapView extends ConsumerWidget {
           bottomSheetPixelsProvider,
         ],
         child: GeneralMapView<Building>(
+          mapViewTexts: (
+            emptyList: context.localize.building_not_found,
+            title: context.localize.buildings_title,
+          ),
           mapControllers: mapControllersBuildings,
+          mapTileBuilder: (item) => BuildingTile(item),
           markerBuilder: (item, ref) => Marker(
             consumeTapEvents: true,
             markerId: item.markerId,
@@ -30,7 +36,6 @@ class BuildingMapView extends ConsumerWidget {
               item.onMarkerTap(item);
             },
           ),
-          mapTileBuilder: (item) => BuildingTile(item),
         ));
   }
 }
@@ -46,6 +51,10 @@ class ParkingsMapView extends ConsumerWidget {
           bottomSheetPixelsProvider,
         ],
         child: GeneralMapView<Building>(
+          mapViewTexts: (
+            emptyList: context.localize.building_not_found,
+            title: context.localize.buildings_title,
+          ),
           mapControllers: mapControllersBuildings,
           mapTileBuilder: (item) => BuildingTile(item),
           markerBuilder: (item, ref) => Marker(
