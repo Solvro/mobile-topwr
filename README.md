@@ -1,7 +1,6 @@
 # topwr-mobile
 
-- ToPWR BACKEND API: https://to-pwr.solvro.pl/admin/login
-- ToPWR Figma: https://www.figma.com/file/y51BgMlrSDipXPceEHHZt4/ToPWR?type=design&node-id=964-1703&mode=design&t=7ibW653dM6z0TZ1J-0
+- ToPWR Figma: https://www.figma.com/file/33ofdGYbBzWvDi2MabxIc1/ToPWR-(imported)?type=design&node-id=2%3A2091&mode=design&t=qILflhzpbN8xW8F6-1
 
 # Developent
 
