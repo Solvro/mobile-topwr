@@ -17,8 +17,3 @@ typedef MapControllers<T> = ({
   SourceRepositoryProv<T> sourceRepo,
   MapControllerProv<T> map,
 });
-
-final Provider<MapControllers> mapControllersProvider =
-    Provider<MapControllers>(
-  (ref) => throw UnimplementedError(),
-);

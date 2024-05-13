@@ -15,15 +15,18 @@ import 'widgets/map_widget.dart';
 class GeneralMapView<T> extends ConsumerWidget {
   const GeneralMapView({
     required this.mapControllers,
+    required this.markerBuilder,
     super.key,
   });
   final MapControllers<T> mapControllers;
+  final MarkerBuilder<T> markerBuilder;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isBigScreen = MediaQuery.sizeOf(context).width >
         MapViewBottomSheetConfig.horizontalPanelModeMinWidth;
     return MapConfig(
       controllers: mapControllers,
+      markerBuilder: markerBuilder,
       child: Scaffold(
         backgroundColor: context.colorTheme.whiteSoap,
         body: kIsWeb || isBigScreen

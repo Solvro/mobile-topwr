@@ -4,9 +4,9 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../shared_repositories/buildings_repository/building_extra_params_ext.dart';
 import '../../shared_repositories/buildings_repository/map_buildings_repo.dart';
 import '../map_view/controllers/active_map_marker_cntrl.dart';
-import '../map_view/controllers/buildings_listview_controller.dart';
 import '../map_view/controllers/controllers_set.dart';
 import '../map_view/controllers/map_controller.dart';
+import '../map_view/controllers/map_source_controller.dart';
 
 part "controllers.g.dart";
 

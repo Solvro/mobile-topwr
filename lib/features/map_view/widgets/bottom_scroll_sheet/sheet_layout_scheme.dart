@@ -5,7 +5,7 @@ import '../../../../utils/context_extensions.dart';
 import '../../../../widgets/search_box_app_bar.dart';
 import '../../../buildings_map/controllers.dart';
 import '../../controllers/bottom_sheet_controller.dart';
-import '../../controllers/controllers_set.dart';
+import '../map_config.dart';
 import 'buildings_list.dart';
 import 'drag_handle.dart';
 import 'navigate_button.dart';
@@ -30,11 +30,7 @@ class SheetLayoutScheme extends ConsumerWidget {
       onSearchboxTap:
           ref.watch(bottomSheetPixelsProvider.notifier).onSearchBoxTap,
       actions: [
-        if (ref.watch(
-              ref.watch(mapControllersProvider).map,
-            ) !=
-            null)
-          const NavigateButton(),
+        if (ref.watch(context.mapController) != null) const NavigateButton(),
       ],
     );
 

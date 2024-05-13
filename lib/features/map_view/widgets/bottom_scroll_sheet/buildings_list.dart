@@ -10,7 +10,7 @@ import '../../../../utils/where_non_null_iterable.dart';
 import '../../../../widgets/my_error_widget.dart';
 import '../../../../widgets/wide_tile_card.dart';
 import '../../../buildings_map/controllers.dart';
-import '../../controllers/controllers_set.dart';
+import '../map_config.dart';
 import 'buildings_list_loading.dart';
 
 class BuildingsSliverList extends ConsumerWidget {
@@ -69,9 +69,7 @@ class _BuildingTile extends ConsumerWidget {
       subtitle: building.addresFormatted,
       isActive: ref.watchIsActive(building),
       onTap: () {
-        ref
-            .read(ref.read(mapControllersProvider).map.notifier)
-            .onMarkerTap(building);
+        ref.read(context.mapController.notifier).onMarkerTap(building);
       },
     );
   }
