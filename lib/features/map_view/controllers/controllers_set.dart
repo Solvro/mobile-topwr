@@ -20,5 +20,5 @@ typedef MapControllers<T> = ({
   ActiveMarkerProv<T> activeMarker,
   SourceRepositoryProv<T> sourceRepo,
   MapControllerProv<T> map,
-  MapDataProv dataController,
+  MapDataProv<T> dataController,
 });

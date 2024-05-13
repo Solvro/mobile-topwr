@@ -13,7 +13,7 @@ class MapWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final itemsState =
-        ref.watch(context.mapSourceController).value.whereNonNull;
+        ref.watch(context.mapSourceRepository).value.whereNonNull;
 
     final mapController = ref.watch(
       context.mapController.notifier,

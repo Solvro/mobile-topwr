@@ -6,6 +6,7 @@ import '../../shared_repositories/buildings_repository/building_extra_params_ext
 import '../../shared_repositories/buildings_repository/map_buildings_repo.dart';
 import '../map_view/controllers/bottom_sheet_controller.dart';
 import '../map_view/map_view.dart';
+import 'building_tile.dart';
 import 'controllers.dart';
 
 class BuildingMapView extends ConsumerWidget {
@@ -29,6 +30,7 @@ class BuildingMapView extends ConsumerWidget {
               item.onMarkerTap(item);
             },
           ),
+          mapTileBuilder: (item) => BuildingTile(item),
         ));
   }
 }
@@ -45,6 +47,7 @@ class ParkingsMapView extends ConsumerWidget {
         ],
         child: GeneralMapView<Building>(
           mapControllers: mapControllersBuildings,
+          mapTileBuilder: (item) => BuildingTile(item),
           markerBuilder: (item, ref) => Marker(
             consumeTapEvents: true,
             markerId: item.markerId,

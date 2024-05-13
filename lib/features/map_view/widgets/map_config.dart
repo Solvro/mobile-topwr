@@ -6,16 +6,20 @@ import '../controllers/controllers_set.dart';
 
 typedef MarkerBuilder<T> = Marker Function(T item, WidgetRef ref);
 
+typedef MapTileBuilder<T> = Widget Function(T item);
+
 class MapConfig<T> extends InheritedWidget {
   const MapConfig({
     super.key,
     required this.controllers,
     required this.markerBuilder,
+    required this.mapTileBuilder,
     required super.child,
   });
 
   final MapControllers<T> controllers;
   final MarkerBuilder<T> markerBuilder;
+  final MapTileBuilder<T> mapTileBuilder;
 
   static MapConfig<T>? maybeOf<T>(BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType<MapConfig<T>>();
@@ -42,7 +46,7 @@ extension MapConfigExt<T> on BuildContext {
     return config.controllers.map;
   }
 
-  SourceRepositoryProv<T> get mapSourceController {
+  SourceRepositoryProv<T> get mapSourceRepository {
     return config.controllers.sourceRepo;
   }
 
@@ -50,7 +54,15 @@ extension MapConfigExt<T> on BuildContext {
     return config.controllers.activeMarker;
   }
 
+  MapDataProv<T> get mapDataController {
+    return config.controllers.dataController;
+  }
+
   MarkerBuilder<T> get markerBuilder {
     return config.markerBuilder;
+  }
+
+  MapTileBuilder<T> get mapTileBuilder {
+    return config.mapTileBuilder;
   }
 }

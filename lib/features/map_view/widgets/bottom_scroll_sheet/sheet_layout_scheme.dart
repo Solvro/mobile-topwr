@@ -3,10 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../utils/context_extensions.dart';
 import '../../../../widgets/search_box_app_bar.dart';
-import '../../../buildings_map/controllers.dart';
 import '../../controllers/bottom_sheet_controller.dart';
 import '../map_config.dart';
-import 'buildings_list.dart';
+import 'data_list.dart';
 import 'drag_handle.dart';
 import 'navigate_button.dart';
 
@@ -24,9 +23,8 @@ class SheetLayoutScheme extends ConsumerWidget {
       context,
       primary: false,
       title: context.localize.buildings_title,
-      onQueryChanged: ref
-          .watch(buildingsListViewControllerProvider.notifier)
-          .onSearchQueryChanged,
+      onQueryChanged:
+          ref.watch(context.mapDataController.notifier).onSearchQueryChanged,
       onSearchboxTap:
           ref.watch(bottomSheetPixelsProvider.notifier).onSearchBoxTap,
       actions: [
@@ -47,7 +45,7 @@ class SheetLayoutScheme extends ConsumerWidget {
           toolbarHeight: appBar.preferredSize.height,
           flexibleSpace: appBar,
         ),
-        const BuildingsSliverList(),
+        const DataSliverList(),
       ],
     );
   }

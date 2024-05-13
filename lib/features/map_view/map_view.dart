@@ -16,10 +16,12 @@ class GeneralMapView<T> extends ConsumerWidget {
   const GeneralMapView({
     required this.mapControllers,
     required this.markerBuilder,
+    required this.mapTileBuilder,
     super.key,
   });
   final MapControllers<T> mapControllers;
   final MarkerBuilder<T> markerBuilder;
+  final MapTileBuilder<T> mapTileBuilder;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isBigScreen = MediaQuery.sizeOf(context).width >
@@ -27,6 +29,7 @@ class GeneralMapView<T> extends ConsumerWidget {
     return MapConfig(
       controllers: mapControllers,
       markerBuilder: markerBuilder,
+      mapTileBuilder: mapTileBuilder,
       child: Scaffold(
         backgroundColor: context.colorTheme.whiteSoap,
         body: kIsWeb || isBigScreen
