@@ -34,16 +34,16 @@ class GeneralMapView<T> extends ConsumerWidget {
         backgroundColor: context.colorTheme.whiteSoap,
         body: kIsWeb || isBigScreen
             ? const HorizontalWebLayout()
-            : const Stack(children: [
-                MapWidget(),
-                BottomScrollSheet(),
+            : Stack(children: [
+                MapWidget<T>(),
+                BottomScrollSheet<T>(),
               ]),
       ),
     );
   }
 }
 
-class HorizontalWebLayout extends StatelessWidget {
+class HorizontalWebLayout<T> extends StatelessWidget {
   const HorizontalWebLayout({
     super.key,
   });
@@ -55,9 +55,9 @@ class HorizontalWebLayout extends StatelessWidget {
       children: [
         SizedBox(
           width: panelWidth,
-          child: const SheetLayoutScheme(),
+          child: SheetLayoutScheme<T>(),
         ),
-        const Expanded(child: MapWidget())
+        Expanded(child: MapWidget<T>())
       ],
     );
   }

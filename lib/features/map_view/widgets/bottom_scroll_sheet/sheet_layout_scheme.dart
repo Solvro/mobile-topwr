@@ -9,7 +9,7 @@ import 'data_list.dart';
 import 'drag_handle.dart';
 import 'navigate_button.dart';
 
-class SheetLayoutScheme extends ConsumerWidget {
+class SheetLayoutScheme<T> extends ConsumerWidget {
   const SheetLayoutScheme({
     this.scrollController,
     super.key,
@@ -23,12 +23,13 @@ class SheetLayoutScheme extends ConsumerWidget {
       context,
       primary: false,
       title: context.localize.buildings_title,
-      onQueryChanged:
-          ref.watch(context.mapDataController.notifier).onSearchQueryChanged,
+      onQueryChanged: ref
+          .watch(context.mapDataController<T>().notifier)
+          .onSearchQueryChanged,
       onSearchboxTap:
           ref.watch(bottomSheetPixelsProvider.notifier).onSearchBoxTap,
       actions: [
-        if (ref.watch(context.mapController) != null) const NavigateButton(),
+        if (ref.watch(context.mapController<T>()) != null) NavigateButton<T>(),
       ],
     );
 
@@ -45,7 +46,7 @@ class SheetLayoutScheme extends ConsumerWidget {
           toolbarHeight: appBar.preferredSize.height,
           flexibleSpace: appBar,
         ),
-        const DataSliverList(),
+        DataSliverList<T>(),
       ],
     );
   }

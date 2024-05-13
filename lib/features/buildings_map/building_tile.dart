@@ -24,7 +24,9 @@ class BuildingTile extends ConsumerWidget {
       subtitle: building.addresFormatted,
       isActive: ref.watchIsActive(building),
       onTap: () {
-        ref.read(context.mapController.notifier).onMarkerTap(building);
+        ref
+            .read(context.mapController<Building>().notifier)
+            .onMarkerTap(building);
       },
     );
   }

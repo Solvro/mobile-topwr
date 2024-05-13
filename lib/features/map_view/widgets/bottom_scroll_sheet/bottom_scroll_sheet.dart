@@ -8,7 +8,7 @@ import '../../../../theme/app_theme.dart';
 import '../../controllers/bottom_sheet_controller.dart';
 import 'sheet_layout_scheme.dart';
 
-class BottomScrollSheet extends ConsumerWidget {
+class BottomScrollSheet<T> extends ConsumerWidget {
   const BottomScrollSheet({super.key});
 
   @override
@@ -34,7 +34,7 @@ class BottomScrollSheet extends ConsumerWidget {
               clipBehavior: Clip.antiAlias,
               decoration:
                   _RoundedTopDecoration(color: context.colorTheme.whiteSoap),
-              child: SheetLayoutScheme(scrollController: scrollController),
+              child: SheetLayoutScheme<T>(scrollController: scrollController),
             );
           },
         );

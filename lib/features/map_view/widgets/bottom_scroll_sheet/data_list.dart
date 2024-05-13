@@ -14,8 +14,7 @@ class DataSliverList<T> extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final itemsState =
-        ref.watch(context.mapDataController) as AsyncValue<Iterable<T?>?>;
+    final itemsState = ref.watch(context.mapDataController<T>());
     return switch (itemsState) {
       AsyncLoading() => const DataListLoading(),
       AsyncError(:final error) =>
@@ -44,7 +43,7 @@ class _DataSliverList<T> extends StatelessWidget {
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.only(bottom: 16),
-            child: context.mapTileBuilder(items[index]),
+            child: context.mapTileBuilder<T>()(items[index]),
           );
         },
       ),

@@ -37,32 +37,32 @@ class MapConfig<T> extends InheritedWidget {
   }
 }
 
-extension MapConfigExt<T> on BuildContext {
-  MapConfig<T> get config {
+extension MapConfigExt on BuildContext {
+  MapConfig<T> config<T>() {
     return MapConfig.of<T>(this);
   }
 
-  MapControllerProv<T> get mapController {
-    return config.controllers.map;
+  MapControllerProv<T> mapController<T>() {
+    return config<T>().controllers.map;
   }
 
-  SourceRepositoryProv<T> get mapSourceRepository {
-    return config.controllers.sourceRepo;
+  SourceRepositoryProv<T> mapSourceRepository<T>() {
+    return config<T>().controllers.sourceRepo;
   }
 
-  ActiveMarkerProv<T> get activeMarkerController {
-    return config.controllers.activeMarker;
+  ActiveMarkerProv<T> activeMarkerController<T>() {
+    return config<T>().controllers.activeMarker;
   }
 
-  MapDataProv<T> get mapDataController {
-    return config.controllers.dataController;
+  MapDataProv<T> mapDataController<T>() {
+    return config<T>().controllers.dataController;
   }
 
-  MarkerBuilder<T> get markerBuilder {
-    return config.markerBuilder;
+  MarkerBuilder<T> markerBuilder<T>() {
+    return config<T>().markerBuilder;
   }
 
-  MapTileBuilder<T> get mapTileBuilder {
-    return config.mapTileBuilder;
+  MapTileBuilder<T> mapTileBuilder<T>() {
+    return config<T>().mapTileBuilder;
   }
 }

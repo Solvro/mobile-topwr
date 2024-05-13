@@ -7,16 +7,16 @@ import '../../../utils/where_non_null_iterable.dart';
 import '../controllers/bottom_sheet_controller.dart';
 import 'map_config.dart';
 
-class MapWidget extends ConsumerWidget {
+class MapWidget<T> extends ConsumerWidget {
   const MapWidget({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final itemsState =
-        ref.watch(context.mapSourceRepository).value.whereNonNull;
+        ref.watch(context.mapSourceRepository<T>()).value.whereNonNull;
 
     final mapController = ref.watch(
-      context.mapController.notifier,
+      context.mapController<T>().notifier,
     );
 
     return GoogleMap(
@@ -24,8 +24,9 @@ class MapWidget extends ConsumerWidget {
       initialCameraPosition: MapWidgetConfig.defaultCameraPosition,
       onMapCreated: mapController.onMapCreated,
       onTap: mapController.onMapBgTap,
-      markers:
-          itemsState.map((item) => context.markerBuilder(item, ref)).toSet(),
+      markers: itemsState
+          .map((item) => context.markerBuilder<T>()(item, ref))
+          .toSet(),
       myLocationEnabled: true,
       myLocationButtonEnabled: false,
       mapToolbarEnabled: false,
