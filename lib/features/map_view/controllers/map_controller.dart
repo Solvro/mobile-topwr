@@ -7,15 +7,13 @@ import 'package:google_maps_flutter_platform_interface/google_maps_flutter_platf
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../config.dart';
-import '../../../shared_repositories/buildings_repository/building_extra_params_ext.dart';
-import '../../../shared_repositories/buildings_repository/map_buildings_repo.dart';
-import 'active_map_marker_cntrl.dart';
 import 'bottom_sheet_controller.dart';
+import 'controllers.dart';
 
-part "map_controller.g.dart";
+mixin MapController<T> on AutoDisposeNotifier<GoogleMapController?> {
+  late final MapControllers<T> mapControllers;
+  LatLng getLocation(T item);
 
-@riverpod
-class MapController extends _$MapController {
   static Future<void> initializeGoogleMapsRenderingAndroid() async {
     final GoogleMapsFlutterPlatform mapsImpl =
         GoogleMapsFlutterPlatform.instance;
@@ -25,25 +23,20 @@ class MapController extends _$MapController {
     }
   }
 
-  @override
-  GoogleMapController? build() {
-    return null;
-  }
-
   void onMapCreated(GoogleMapController controller) async {
     ref.invalidate(bottomSheetPixelsProvider);
     state = controller;
-    final activeMarker = ref.read(activeMapMarkerControllerProvider);
+    final activeMarker = ref.read(mapControllers.activeMarker);
     if (activeMarker != null) zoomOnMarker(activeMarker);
   }
 
-  void zoomOnMarker(Building building) {
+  void zoomOnMarker(T item) {
     Future.delayed(
       Durations.short1,
       () => state?.animateCamera(
         CameraUpdate.newCameraPosition(
           CameraPosition(
-            target: building.location,
+            target: getLocation(item),
             zoom: MapWidgetConfig.defaultMarkerZoom,
           ),
         ),
@@ -51,18 +44,16 @@ class MapController extends _$MapController {
     );
   }
 
-  void onMarkerTap(Building building) {
-    ref
-        .read(activeMapMarkerControllerProvider.notifier)
-        .toggleBuilding(building);
+  void onMarkerTap(T item) {
+    ref.read(mapControllers.activeMarker.notifier).toggleBuilding(item);
     ref.read(bottomSheetControllerProvider).resetSafe();
-    if (ref.read(activeMapMarkerControllerProvider) == building) {
-      zoomOnMarker(building);
+    if (ref.read(mapControllers.activeMarker) == item) {
+      zoomOnMarker(item);
     }
   }
 
   void onMapBgTap(_) {
-    ref.read(activeMapMarkerControllerProvider.notifier).unselect();
+    ref.read(mapControllers.activeMarker.notifier).unselect();
     ref.read(bottomSheetControllerProvider).resetSafe();
   }
 }

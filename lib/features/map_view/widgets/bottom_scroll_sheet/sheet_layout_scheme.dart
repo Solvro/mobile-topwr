@@ -3,9 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../utils/context_extensions.dart';
 import '../../../../widgets/search_box_app_bar.dart';
-import '../../controllers/active_map_marker_cntrl.dart';
+import '../../../buildings_map/controllers.dart';
 import '../../controllers/bottom_sheet_controller.dart';
-import '../../controllers/buildings_listview_controller.dart';
+import '../../controllers/controllers.dart';
 import 'buildings_list.dart';
 import 'drag_handle.dart';
 import 'navigate_button.dart';
@@ -30,7 +30,10 @@ class SheetLayoutScheme extends ConsumerWidget {
       onSearchboxTap:
           ref.watch(bottomSheetPixelsProvider.notifier).onSearchBoxTap,
       actions: [
-        if (ref.watch(activeMapMarkerControllerProvider) != null)
+        if (ref.watch(
+              ref.watch(mapControllersProvider).map,
+            ) !=
+            null)
           const NavigateButton(),
       ],
     );

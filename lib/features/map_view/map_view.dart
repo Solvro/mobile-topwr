@@ -6,9 +6,38 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../config.dart';
 import '../../theme/app_theme.dart';
+import '../buildings_map/controllers.dart';
+import 'controllers/bottom_sheet_controller.dart';
+import 'controllers/controllers.dart';
 import 'widgets/bottom_scroll_sheet/bottom_scroll_sheet.dart';
 import 'widgets/bottom_scroll_sheet/sheet_layout_scheme.dart';
 import 'widgets/map_widget.dart';
+
+class BuildingMapView extends ConsumerWidget {
+  const BuildingMapView({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return ProviderScope(overrides: [
+      mapControllersProvider.overrideWith((ref) => mapControllersBuildings),
+      bottomSheetControllerProvider,
+      bottomSheetPixelsProvider,
+    ], child: const MapView());
+  }
+}
+
+class ParkingsMapView extends ConsumerWidget {
+  const ParkingsMapView({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return ProviderScope(overrides: [
+      mapControllersProvider.overrideWith((ref) => mapControllersBuildings),
+      bottomSheetControllerProvider,
+      bottomSheetPixelsProvider,
+    ], child: const MapView());
+  }
+}
 
 class MapView extends ConsumerWidget {
   const MapView({super.key});

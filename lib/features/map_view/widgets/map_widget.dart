@@ -7,7 +7,7 @@ import '../../../shared_repositories/buildings_repository/building_extra_params_
 import '../../../shared_repositories/buildings_repository/map_buildings_repo.dart';
 import '../../../utils/where_non_null_iterable.dart';
 import '../controllers/bottom_sheet_controller.dart';
-import '../controllers/map_controller.dart';
+import '../controllers/controllers.dart';
 
 class MapWidget extends ConsumerWidget {
   const MapWidget({super.key});
@@ -17,7 +17,9 @@ class MapWidget extends ConsumerWidget {
     final buildingsState =
         ref.watch(mapBuildingsRepositoryProvider).value.whereNonNull;
 
-    final mapController = ref.watch(mapControllerProvider.notifier);
+    final mapController = ref.watch(
+      ref.watch(mapControllersProvider).map.notifier,
+    );
 
     return GoogleMap(
       mapType: MapWidgetConfig.mapType,

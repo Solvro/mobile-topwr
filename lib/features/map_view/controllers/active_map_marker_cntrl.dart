@@ -1,17 +1,12 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../shared_repositories/buildings_repository/map_buildings_repo.dart';
-
-part "active_map_marker_cntrl.g.dart";
-
-@Riverpod(keepAlive: false)
-class ActiveMapMarkerController extends _$ActiveMapMarkerController {
+mixin ActiveMarkerController<T> on AutoDisposeNotifier<T?> {
   @override
-  Building? build() {
+  T? build() {
     return null;
   }
 
-  void selectBuilding(Building building) {
+  void selectBuilding(T building) {
     state = building;
   }
 
@@ -19,7 +14,7 @@ class ActiveMapMarkerController extends _$ActiveMapMarkerController {
     state = null;
   }
 
-  void toggleBuilding(Building building) {
+  void toggleBuilding(T building) {
     if (state == building) {
       unselect();
     } else {

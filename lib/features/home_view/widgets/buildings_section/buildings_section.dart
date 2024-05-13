@@ -72,7 +72,7 @@ class _DataListBuildingsTiles extends ConsumerWidget {
             onTap: () {
               BuildingsSection.goToMapTab(ref);
               ref
-                  .watch(activeMapMarkerControllerProvider.notifier)
+                  .watch(activeBuildingControllerProvider.notifier)
                   .selectBuilding(mapItem);
             },
           ),
