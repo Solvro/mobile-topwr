@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import '../../../config.dart';
 import '../../../utils/context_extensions.dart';
 import '../../../utils/where_non_null_iterable.dart';
@@ -47,7 +46,7 @@ class _StudyCirclesList extends ConsumerWidget {
           child: BigScrollableSectionLoading(),
         ),
       AsyncError(:final error) =>
-        MyErrorWidget(StudyCirclesSectionConfig.errorMsg + error.toString()),
+        MyErrorWidget(context.localize.study_circles_section_error),
       AsyncValue(:final value) => Container(
           padding: const EdgeInsets.only(
             left: HomeScreenConfig.paddingSmall,
@@ -79,7 +78,7 @@ class _StudyCirclesDataList extends ConsumerWidget {
             child: BigPreviewCard(
                 title: circle.name,
                 shortDescription: circle.description,
-                photoUrl: circle.photo?.previewUrl,
+                photoUrl: circle.backgroundPhoto?.url,
                 onClick: () {
                   ref
                       .read(navigatorProvider)
