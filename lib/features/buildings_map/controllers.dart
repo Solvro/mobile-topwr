@@ -7,7 +7,7 @@ import '../map_view/controllers/active_map_marker_cntrl.dart';
 import '../map_view/controllers/controllers_set.dart';
 import '../map_view/controllers/map_controller.dart';
 import '../map_view/controllers/map_data_controller.dart';
-import 'google_maps_link_utils.dart';
+import '../map_view/utils/google_maps_link_utils.dart';
 
 part "controllers.g.dart";
 
@@ -21,7 +21,13 @@ class ActiveBuildingController extends _$ActiveBuildingController
 
   @override
   Future<void> launchLink() async {
-    if (state != null) return GoogleMapsLinkUtils.navigateTo(state!);
+    if (state != null) {
+      return GoogleMapsLinkUtils.navigateTo(
+        state!,
+        lat: (item) => item.latitude,
+        long: (item) => item.longitude,
+      );
+    }
   }
 }
 
