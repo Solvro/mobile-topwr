@@ -42,4 +42,6 @@ class ParkingPlace with _$ParkingPlace {
   double get latitude => double.tryParse(geoLat) ?? 0;
   double get longitude => double.tryParse(geoLan) ?? 0;
   LatLng get location => LatLng(latitude, longitude);
+  String get addresFormatted =>
+      address.replaceFirst(",", "\n").replaceAll("\n ", "\n");
 }

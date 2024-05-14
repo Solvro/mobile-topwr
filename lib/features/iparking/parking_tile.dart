@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../theme/app_theme.dart';
-import '../../utils/context_extensions.dart';
 import '../../widgets/wide_tile_card.dart';
 import 'controllers.dart';
 import 'models/parking_model.dart';
@@ -21,8 +20,8 @@ class ParkingTile extends ConsumerWidget {
     return PhotoTrailingWideTileCard(
       activeGradient: context.colorTheme.toPwrGradient,
       photoUrl: parking.iParkPhotoUrl,
-      title: "${context.localize.building_prefix} ${parking.name}",
-      subtitle: parking.address,
+      title: parking.symbol,
+      subtitle: parking.addresFormatted,
       isActive: isActive,
       onTap: () {
         ref.read(parkingsMapControllerProvider.notifier).onMarkerTap(parking);
