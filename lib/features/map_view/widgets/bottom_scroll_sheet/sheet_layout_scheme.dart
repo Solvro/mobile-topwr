@@ -28,7 +28,8 @@ class SheetLayoutScheme<T> extends ConsumerWidget {
       onSearchboxTap:
           ref.watch(bottomSheetPixelsProvider.notifier).onSearchBoxTap,
       actions: [
-        if (ref.watch(context.mapController<T>()) != null) NavigateButton<T>(),
+        if (ref.watch(context.activeMarkerController<T>()) != null)
+          NavigateButton<T>(),
       ],
     );
 
