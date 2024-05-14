@@ -44,4 +44,17 @@ class ParkingPlace with _$ParkingPlace {
   LatLng get location => LatLng(latitude, longitude);
   String get addresFormatted =>
       address.replaceFirst(",", "\n").replaceAll("\n ", "\n");
+
+  static const parkingPrefx = "Parking";
+  String get nameNormalized =>
+      name.startsWith(parkingPrefx) ? name : "$parkingPrefx $name";
+
+  String get openingHours =>
+      "${openHour?.formatIParkingDate} - ${closeHour?.formatIParkingDate}";
+}
+
+extension _FormatIParkingDate on String {
+  String get formatIParkingDate {
+    return substring(0, length - 3);
+  }
 }

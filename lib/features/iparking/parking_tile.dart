@@ -5,6 +5,7 @@ import '../../theme/app_theme.dart';
 import '../../widgets/wide_tile_card.dart';
 import 'controllers.dart';
 import 'models/parking_model.dart';
+import 'parking_wide_tile_card.dart';
 
 class ParkingTile extends ConsumerWidget {
   const ParkingTile(
@@ -17,9 +18,9 @@ class ParkingTile extends ConsumerWidget {
   final bool isActive;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return PhotoTrailingWideTileCard(
+    return ParkingWideTileCard(parking: parking);
+    return WideTileCard(
       activeGradient: context.colorTheme.toPwrGradient,
-      photoUrl: parking.iParkPhotoUrl,
       title: parking.symbol,
       subtitle: parking.addresFormatted,
       isActive: isActive,
