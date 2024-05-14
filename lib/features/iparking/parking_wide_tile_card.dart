@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../config.dart';
 import '../../theme/app_theme.dart';
+import '../../theme/iparking_theme.dart';
 import 'models/parking_model.dart';
 
 class ParkingWideTileCard extends StatelessWidget {
@@ -57,10 +58,7 @@ class _LeftColumn extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Text(
-          parking.symbol,
-          style: context.iParkingTheme.title,
-        ),
+        Text(parking.symbol, style: context.iParkingTheme.title),
         Padding(
           padding: IParkingConfig.extraIndentPadd,
           child: Text(
@@ -95,6 +93,7 @@ class _RigthColumn extends StatelessWidget {
         const Icon(
           Icons.info,
           color: Colors.white,
+          shadows: iparkingShadows,
         ),
         Text(
           parking.counterText,

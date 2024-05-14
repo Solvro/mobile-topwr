@@ -6,12 +6,23 @@ import 'typography.dart';
 
 part 'iparking_theme.tailor.dart';
 
+const iparkingShadows = [
+  Shadow(
+    blurRadius: 4,
+    color: Colors.black26,
+    offset: Offset(0, 4.0),
+  ),
+];
+
 class ParkingTextStyle extends BodyTextStyle {
   const ParkingTextStyle({
     super.fontWeight,
     super.fontSize,
     super.color = ColorsConsts.whiteSoap,
-  }) : super(height: 1.4);
+  }) : super(
+          height: 1.4,
+          shadows: iparkingShadows,
+        );
 }
 
 class ParkingBoldTextStyle extends ParkingTextStyle {
@@ -37,6 +48,10 @@ class ParkingSubtitleTextStyle extends ParkingLightSubtitleTextStyle {
 
 class ParkingSmallTextStyle extends ParkingTextStyle {
   const ParkingSmallTextStyle({super.color}) : super(fontSize: 12);
+}
+
+extension ParkingTextShadow on TextStyle {
+  TextStyle get withoutShadows => copyWith(shadows: []);
 }
 
 @tailorMixinComponent

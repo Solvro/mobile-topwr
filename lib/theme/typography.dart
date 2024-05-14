@@ -3,18 +3,15 @@ import 'package:flutter/material.dart';
 import 'colors.dart';
 
 class BodyTextStyle extends TextStyle {
-  const BodyTextStyle(
-      {FontWeight? fontWeight,
-      double? fontSize,
-      Color? color,
-      double? height = 1.2})
-      : super(
+  const BodyTextStyle({
+    super.fontWeight = FontWeight.w400,
+    super.fontSize = 13.0,
+    super.color = ColorsConsts.blackMirage,
+    super.height = 1.2,
+    super.shadows,
+  }) : super(
           fontFamily: 'Rubik',
-          fontSize: fontSize ?? 13.0,
-          fontWeight: fontWeight ?? FontWeight.w400,
           letterSpacing: 0,
-          color: color ?? ColorsConsts.blackMirage,
-          height: height,
         );
 }
 
