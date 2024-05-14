@@ -34,6 +34,9 @@ class GeneralMapView<T> extends ConsumerWidget {
       overrides: [
         bottomSheetControllerProvider,
         bottomSheetPixelsProvider,
+        mapControllers.activeMarker,
+        mapControllers.map,
+        mapControllers.dataController,
       ],
       child: MapConfig(
         controllers: mapControllers,
