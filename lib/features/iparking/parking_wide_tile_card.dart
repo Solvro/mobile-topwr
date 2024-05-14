@@ -4,6 +4,7 @@ import '../../config.dart';
 import '../../theme/app_theme.dart';
 import '../../theme/iparking_theme.dart';
 import 'models/parking_model.dart';
+import 'widgets/i_parking_icons_icons.dart';
 
 class ParkingWideTileCard extends StatelessWidget {
   const ParkingWideTileCard({
@@ -91,8 +92,9 @@ class _RigthColumn extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         const Icon(
-          Icons.info,
+          IParkingIcons.ipark_info,
           color: Colors.white,
+          size: 25,
           shadows: iparkingShadows,
         ),
         Text(
