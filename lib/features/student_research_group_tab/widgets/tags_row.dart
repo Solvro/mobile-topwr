@@ -47,13 +47,15 @@ class _TagsRowItem extends ConsumerWidget {
                 .read(selectedTagControllerProvider.notifier)
                 .handleTagSelected(tag);
           },
-          selectedColor: context.colorTheme.blueAzure,
+          selectedColor: context.colorTheme.orangePomegranade,
           backgroundColor: Colors.transparent,
           labelStyle: TextStyle(
               color: selectedTag == tag.name
                   ? Colors.white
-                  : context.colorTheme.blueAzure),
-          side: BorderSide(color: context.colorTheme.blueAzure),
+                  : context.colorTheme.greyPigeon),
+          side: BorderSide(color: selectedTag == tag.name
+              ? context.colorTheme.orangePomegranade
+              : context.colorTheme.greyPigeon),
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(
                   ScientificCirclesTabConfig.buttonBorderRadius)),
