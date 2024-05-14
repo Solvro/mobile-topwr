@@ -51,10 +51,27 @@ class ParkingPlace with _$ParkingPlace {
 
   String get openingHours =>
       "${openHour?.formatIParkingDate} - ${closeHour?.formatIParkingDate}";
+
+  String get counterText => "$numberOfPlaces ${trend.dashForm}";
 }
 
 extension _FormatIParkingDate on String {
   String get formatIParkingDate {
     return substring(0, length - 3);
+  }
+}
+
+extension TrendDash on String {
+  String get dashForm {
+    switch (this) {
+      case '0':
+        return "-";
+      case '1':
+        return "/";
+      case '2':
+        return "\\";
+      default:
+        return "?";
+    }
   }
 }

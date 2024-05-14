@@ -81,11 +81,11 @@ abstract class WideTileCardConfig {
   ];
 }
 
-abstract class DetailsScreenConfig{
+abstract class DetailsScreenConfig {
   static const double spacerHeight = 16;
 }
 
-abstract class DetailsScreenHeaderConfig{
+abstract class DetailsScreenHeaderConfig {
   static const double logoSize = 130;
 }
 
@@ -116,9 +116,7 @@ abstract class MapWidgetConfig {
   static const activeMapMarkerOriginWidth = 40;
 }
 
-
 abstract class ScientificCirclesTabConfig {
-
   static const listSeparatorSize = 16.0;
   static const microPadding = 4.0;
   static const smallPadding = 16.0;
@@ -127,15 +125,14 @@ abstract class ScientificCirclesTabConfig {
   static const buttonBorderRadius = 100.0;
 
   static const researchGroupTabGridDelegate =
-  SliverGridDelegateWithMaxCrossAxisExtent(
+      SliverGridDelegateWithMaxCrossAxisExtent(
     maxCrossAxisExtent: 600,
     mainAxisExtent: 92,
     crossAxisSpacing: 16,
     mainAxisSpacing: 16,
   );
 
-  static const tagsGridDelegate =
-  SliverGridDelegateWithMaxCrossAxisExtent(
+  static const tagsGridDelegate = SliverGridDelegateWithMaxCrossAxisExtent(
     maxCrossAxisExtent: 100,
     mainAxisExtent: 92,
     crossAxisSpacing: 8,
@@ -145,4 +142,14 @@ abstract class ScientificCirclesTabConfig {
 
 abstract class ScientificCircleCardConfig {
   static const trailingPadding = 2.0;
+}
+
+abstract class IParkingConfig {
+  static const padding = EdgeInsets.only(
+    left: 13,
+    top: 10,
+    bottom: 16,
+    right: 10,
+  );
+  static const extraIndentPadd = EdgeInsets.only(left: 2.0);
 }

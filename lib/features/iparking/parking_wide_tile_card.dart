@@ -31,37 +31,76 @@ class ParkingWideTileCard extends StatelessWidget {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            Container(
-              color: const Color.fromRGBO(41, 50, 65, 0.60),
+            Container(color: const Color.fromRGBO(41, 50, 65, 0.60)),
+            Padding(
+              padding: IParkingConfig.padding,
+              child: _LeftColumn(parking),
             ),
             Padding(
-              padding: const EdgeInsets.only(
-                left: 13,
-                top: 10,
-                bottom: 16,
-                right: 10,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Text(
-                    parking.symbol,
-                    style: context.iParkingTheme.title,
-                  ),
-                  Text(
-                    parking.nameNormalized,
-                    style: context.iParkingTheme.subtitle,
-                  ),
-                  Text(
-                    parking.openingHours,
-                    style: context.iParkingTheme.small,
-                  )
-                ],
-              ),
+              padding: IParkingConfig.padding,
+              child: _RigthColumn(parking),
             ),
           ],
         ),
       ),
+    );
+  }
+}
+
+class _LeftColumn extends StatelessWidget {
+  const _LeftColumn(this.parking);
+
+  final ParkingPlace parking;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Text(
+          parking.symbol,
+          style: context.iParkingTheme.title,
+        ),
+        Padding(
+          padding: IParkingConfig.extraIndentPadd,
+          child: Text(
+            parking.nameNormalized,
+            style: context.iParkingTheme.subtitle,
+          ),
+        ),
+        const SizedBox(height: 2),
+        Padding(
+          padding: IParkingConfig.extraIndentPadd,
+          child: Text(
+            parking.openingHours,
+            style: context.iParkingTheme.small,
+          ),
+        )
+      ],
+    );
+  }
+}
+
+class _RigthColumn extends StatelessWidget {
+  const _RigthColumn(this.parking);
+
+  final ParkingPlace parking;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        const Icon(
+          Icons.info,
+          color: Colors.white,
+        ),
+        Text(
+          parking.counterText,
+          style: context.iParkingTheme.title,
+        ),
+      ],
     );
   }
 }
