@@ -19,7 +19,6 @@
   "days": "dni",
   "to_start_session": "do rozpoczęcia sesji",
   "map_button": "Mapa",
-  "buildings_title": "Budynki",
   "sections": "Wydziały",
   "list": "Lista",
   "departments": "Wydziały",
@@ -30,9 +29,11 @@
   "navigate" : "Nawiguj",
   "building_prefix": "Budynek",
   "department_not_found": "Nie znaleziono wydziału",
-  "building_not_found": "Nie znaleziono budynku",
   "type_sci_circle": "Wpisz nazwę koła naukowego",
   "sci_circle_not_found": "Nie znaleziono kół naukowych",
   "all": "Wszystkie",
-  "parkings_title": "Parkingi"
+  "parkings_title": "Parkingi",
+  "parkings_not_found": "Nie znaleziono parkingu",
+  "building_not_found": "Nie znaleziono budynku",
+  "buildings_title": "Budynki"
 }

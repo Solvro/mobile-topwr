@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../api_client/iparking_client.dart';
 
@@ -37,4 +38,8 @@ class ParkingPlace with _$ParkingPlace {
   String get iParkPhotoUrl {
     return IParkingConfig.rootUrl + photo.trim();
   }
+
+  double get latitude => double.tryParse(geoLat) ?? 0;
+  double get longitude => double.tryParse(geoLan) ?? 0;
+  LatLng get location => LatLng(latitude, longitude);
 }

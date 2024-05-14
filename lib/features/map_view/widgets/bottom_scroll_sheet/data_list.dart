@@ -37,15 +37,19 @@ class _DataSliverList<T> extends StatelessWidget {
         left: MapViewBottomSheetConfig.horizontalPadding,
         right: MapViewBottomSheetConfig.horizontalPadding,
       ),
-      sliver: SliverList.builder(
-        itemCount: items.length,
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.only(bottom: 16),
-            child: context.mapTileBuilder<T>()(items[index]),
-          );
-        },
-      ),
+      sliver: Consumer(builder: (context, ref, child) {
+        final activeItem = ref.watch(context.activeMarkerController<T>());
+        return SliverList.builder(
+          itemCount: items.length,
+          itemBuilder: (context, index) {
+            final item = items[index];
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 16),
+              child: context.mapTileBuilder<T>()(item, activeItem == item),
+            );
+          },
+        );
+      }),
     );
   }
 }

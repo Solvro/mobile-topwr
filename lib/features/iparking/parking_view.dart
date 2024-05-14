@@ -1,26 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-import '../../widgets/my_error_widget.dart';
-import 'parking_card.dart';
-import 'repositories/parkings_repo.dart';
+import '../../utils/context_extensions.dart';
+import '../map_view/map_view.dart';
+import '../map_view/utils/map_marker_utils.dart';
+import 'controllers.dart';
+import 'models/parking_model.dart';
+import 'parking_tile.dart';
 
-class ParkingView extends ConsumerWidget {
-  const ParkingView({super.key});
+class ParkingsMapView extends ConsumerWidget {
+  const ParkingsMapView({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final parkings = ref.watch(parkingsRepoProvider);
-    return RefreshIndicator(
-      onRefresh: () => ref.refresh(parkingsRepoProvider.future),
-      child: Center(
-        child: switch (parkings) {
-          AsyncLoading() => const CircularProgressIndicator(),
-          AsyncError(:final error) => MyErrorWidget(error),
-          AsyncValue(:final value) => ListView.builder(
-              itemCount: value?.length ?? 0,
-              itemBuilder: (context, index) => ParkingCard(value![index]),
-            ),
+    return GeneralMapView<ParkingPlace>(
+      mapViewTexts: (
+        emptyList: context.localize.parkings_not_found,
+        title: context.localize.parkings_title,
+      ),
+      mapControllers: parkingsMapControllers,
+      mapTileBuilder: (item, isActive) => ParkingTile(item, isActive),
+      markerBuilder: (item, ref, isActive) => Marker(
+        consumeTapEvents: true,
+        markerId: MarkerId(item.id),
+        position: item.location,
+        icon: isActive
+            ? MapMarkerUtils.activeMapMarker
+            : MapMarkerUtils.mapMarker,
+        onTap: () {
+          ref.read(parkingsMapControllerProvider.notifier).onMarkerTap(item);
         },
       ),
     );

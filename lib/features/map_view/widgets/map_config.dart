@@ -4,9 +4,10 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../controllers/controllers_set.dart';
 
-typedef MarkerBuilder<T> = Marker Function(T item, WidgetRef ref);
+typedef MarkerBuilder<T> = Marker Function(
+    T item, WidgetRef ref, bool isActive);
 
-typedef MapTileBuilder<T> = Widget Function(T item);
+typedef MapTileBuilder<T> = Widget Function(T item, bool isActive);
 
 typedef MapViewTexts = ({
   String emptyList,

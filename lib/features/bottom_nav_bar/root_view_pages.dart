@@ -14,11 +14,13 @@ class RootViewPages extends ConsumerWidget {
 
   static const _widgetOptions = UnmodifiableNavBarEnumMap(
     home: HomeView(),
-    mapp: ParkingsMapView(),
+    mapp: BuildingMapView(),
     faculties: DepartmentTab(),
     sciCircles: ScientificCirclesTab(),
-    parkings: ParkingView(),
-    info: BuildingMapView(),
+    parkings: ParkingsMapView(),
+    info: Center(
+      child: Text("Info"),
+    ),
   );
 
   @override

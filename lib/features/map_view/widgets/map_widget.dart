@@ -19,13 +19,19 @@ class MapWidget<T> extends ConsumerWidget {
       context.mapController<T>().notifier,
     );
 
+    final activeItem = ref.watch(context.activeMarkerController<T>());
+
     return GoogleMap(
       mapType: MapWidgetConfig.mapType,
       initialCameraPosition: MapWidgetConfig.defaultCameraPosition,
       onMapCreated: mapController.onMapCreated,
       onTap: mapController.onMapBgTap,
       markers: itemsState
-          .map((item) => context.markerBuilder<T>()(item, ref))
+          .map((item) => context.markerBuilder<T>()(
+                item,
+                ref,
+                activeItem == item,
+              ))
           .toSet(),
       myLocationEnabled: true,
       myLocationButtonEnabled: false,

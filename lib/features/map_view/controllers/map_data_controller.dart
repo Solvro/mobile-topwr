@@ -18,12 +18,12 @@ mixin MapDataController<T> on AutoDisposeAsyncNotifier<Iterable<T?>?> {
         _filterMethod); // or elsewhere a whole list, filtered by text field
   }
 
-  bool filterMethod(T building, String filterStr);
+  bool filterMethod(T item, String filterStr);
 
-  bool _filterMethod(T? building) {
-    if (building == null) return false;
+  bool _filterMethod(T? item) {
+    if (item == null) return false;
     final filter = _textFieldFilterText.toLowerCase();
-    return filterMethod(building, filter);
+    return filterMethod(item, filter);
   }
 
   void onSearchQueryChanged(String newText) {
