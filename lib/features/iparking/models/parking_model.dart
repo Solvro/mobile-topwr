@@ -50,7 +50,7 @@ class ParkingPlace with _$ParkingPlace {
       name.startsWith(parkingPrefx) ? name : "$parkingPrefx $name";
 
   String get openingHours =>
-      "${openHour?.formatIParkingDate} - ${closeHour?.formatIParkingDate}";
+      "${openHour?.formatIParkingDate ?? "???"} - ${closeHour?.formatIParkingDate ?? "???"}";
 
   String get counterText => "$numberOfPlaces ${trend.dashForm}";
 }

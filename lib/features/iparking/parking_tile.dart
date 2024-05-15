@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'controllers.dart';
 import 'models/parking_model.dart';
 import 'parking_wide_tile_card.dart';
 
@@ -15,7 +16,11 @@ class ParkingTile extends ConsumerWidget {
   final bool isActive;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return ParkingWideTileCard(parking: parking);
-    //ref.read(parkingsMapControllerProvider.notifier).onMarkerTap(parking);
+    return ParkingWideTileCard(
+      parking: parking,
+      onTap: () {
+        ref.read(parkingsMapControllerProvider.notifier).onMarkerTap(parking);
+      },
+    );
   }
 }
