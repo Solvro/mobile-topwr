@@ -20,8 +20,14 @@ class WatchLocale extends _$WatchLocale {
     state = _getCurrLocal;
   }
 
-  static AppLocalizations get _getCurrLocal =>
-      lookupAppLocalizations(PlatformDispatcher.instance.locale);
+  static AppLocalizations get _getCurrLocal {
+    var locale = PlatformDispatcher.instance.locale;
+    if (!AppLocalizations.supportedLocales.contains(locale)) {
+      locale = AppLocalizations.supportedLocales
+          .first; //TODO: add english as default locale (when there is one)
+    }
+    return lookupAppLocalizations(locale);
+  }
 }
 
 class _LocaleObserver extends WidgetsBindingObserver {

@@ -1,0 +1,9 @@
+query GetWeekParityExceptions {
+    weekDayException{
+        weekday {
+           parity
+            dayOfTheWeek
+            date
+        }
+    }
+}
