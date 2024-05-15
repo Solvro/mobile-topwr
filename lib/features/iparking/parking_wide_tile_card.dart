@@ -11,17 +11,18 @@ class ParkingWideTileCard extends StatelessWidget {
     required this.parking,
     this.onTap,
     super.key,
+    required this.isActive,
   });
 
   final VoidCallback? onTap;
   final ParkingPlace parking;
-
+  final bool isActive;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        height: WideTileCardConfig.imageSize,
+        height: isActive ? 297 : WideTileCardConfig.imageSize,
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(WideTileCardConfig.radius),
           image: DecorationImage(
@@ -33,14 +34,18 @@ class ParkingWideTileCard extends StatelessWidget {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            Container(color: const Color.fromRGBO(41, 50, 65, 0.60)),
-            Padding(
-              padding: IParkingConfig.padding,
-              child: _LeftColumn(parking),
+            Container(
+              color: isActive
+                  ? context.colorTheme.blackMirage
+                  : const Color.fromRGBO(41, 50, 65, 0.60),
             ),
             Padding(
               padding: IParkingConfig.padding,
-              child: _RigthColumn(parking),
+              child: _LeftColumn(parking, isActive),
+            ),
+            Padding(
+              padding: IParkingConfig.padding,
+              child: _RigthColumn(parking, isActive),
             ),
           ],
         ),
@@ -50,40 +55,53 @@ class ParkingWideTileCard extends StatelessWidget {
 }
 
 class _LeftColumn extends StatelessWidget {
-  const _LeftColumn(this.parking);
+  const _LeftColumn(this.parking, this.isActive);
 
   final ParkingPlace parking;
+  final bool isActive;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Text(parking.symbol, style: context.iParkingTheme.title),
+        Text(
+          parking.symbol,
+          style: isActive
+              ? context.iParkingTheme.title.withoutShadows
+              : context.iParkingTheme.title,
+        ),
         Padding(
           padding: IParkingConfig.extraIndentPadd,
-          child: Text(
-            parking.nameNormalized,
-            style: context.iParkingTheme.subtitle,
-          ),
+          child: isActive
+              ? Text(
+                  parking.addresFormatted,
+                  style: context.iParkingTheme.subtitleLight.withoutShadows,
+                )
+              : Text(
+                  parking.nameNormalized,
+                  style: context.iParkingTheme.subtitle,
+                ),
         ),
         const SizedBox(height: 2),
-        Padding(
-          padding: IParkingConfig.extraIndentPadd,
-          child: Text(
-            parking.openingHours,
-            style: context.iParkingTheme.small,
-          ),
-        )
+        if (!isActive)
+          Padding(
+            padding: IParkingConfig.extraIndentPadd,
+            child: Text(
+              parking.openingHours,
+              style: context.iParkingTheme.small,
+            ),
+          )
       ],
     );
   }
 }
 
 class _RigthColumn extends StatelessWidget {
-  const _RigthColumn(this.parking);
+  const _RigthColumn(this.parking, this.isActive);
 
   final ParkingPlace parking;
+  final bool isActive;
 
   @override
   Widget build(BuildContext context) {
@@ -91,15 +109,24 @@ class _RigthColumn extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.end,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const Icon(
-          IParkingIcons.ipark_info,
-          color: Colors.white,
-          size: 25,
-          shadows: iparkingShadows,
-        ),
+        if (!isActive)
+          const Icon(
+            IParkingIcons.ipark_info,
+            color: Colors.white,
+            size: 25,
+            shadows: iparkingShadows,
+          ),
+        if (isActive)
+          const Icon(
+            IParkingIcons.ip_close,
+            color: Colors.white,
+            size: 20,
+          ),
         Text(
           parking.counterText,
-          style: context.iParkingTheme.title,
+          style: isActive
+              ? context.iParkingTheme.title.withoutShadows
+              : context.iParkingTheme.title,
         ),
       ],
     );

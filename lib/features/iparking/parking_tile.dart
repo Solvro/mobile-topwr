@@ -18,6 +18,7 @@ class ParkingTile extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return ParkingWideTileCard(
       parking: parking,
+      isActive: isActive,
       onTap: () {
         ref.read(parkingsMapControllerProvider.notifier).onMarkerTap(parking);
       },
