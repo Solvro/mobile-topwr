@@ -7,6 +7,7 @@
             android:value="AIzaSyDKfUDQv4mb4W4I4bx0WE4qYkAl53Vfciw" />
         <activity
             android:name=".MainActivity"
+            android:enableOnBackInvokedCallback="true"
             android:exported="true"
             android:launchMode="singleTop"
             android:theme="@style/LaunchTheme"
