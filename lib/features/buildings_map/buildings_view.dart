@@ -30,7 +30,7 @@ class BuildingMapView extends ConsumerWidget {
             ? MapMarkerUtils.activeMapMarker
             : MapMarkerUtils.mapMarker,
         onTap: () {
-          item.onMarkerTap(item);
+          ref.read(buildingsMapControllerProvider.notifier).onMarkerTap(item);
         },
       ),
     );
