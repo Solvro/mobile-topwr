@@ -68,7 +68,7 @@ extension TrendDash on String {
         return "-";
       case '1':
         return "/";
-      case '2':
+      case '-1':
         return "\\";
       default:
         return "?";
