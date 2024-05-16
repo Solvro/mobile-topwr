@@ -15,6 +15,7 @@ class ContactSectionData {
   }) {
     if (url != null) {
       _invalidateUrl();
+      _determineIcon();
     }
   }
 
@@ -30,4 +31,14 @@ class ContactSectionData {
       url = prefix + url!;
     }
   }
+
+void _determineIcon() {
+  var icons = {
+    "facebook": "assets/icons/ic_fb.png",
+    "instagram": "assets/icons/ic_insta.png",
+    "linkedin": "assets/icons/ic_linkedin.png",
+    "mailto:": "assets/icons/ic_email.png",
+  };
+  iconUrl = icons.entries.firstWhere((e) => url!.contains(e.key), orElse: () => const MapEntry("", "assets/icons/ic_web.png")).value;
+}
 }

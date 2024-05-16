@@ -63,7 +63,7 @@ class _CircleDetailsDataView extends ConsumerWidget {
                 list: value?.infoSection
                         ?.expand((e) => e?.info ?? [])
                         .map((a) => ContactSectionData(
-                              iconUrl: a?.icon?.url,
+                              iconUrl: 'assets/icons/ic_web.png',
                               text: a?.visibleText,
                               url: a?.value,
                               type: a?.type,
