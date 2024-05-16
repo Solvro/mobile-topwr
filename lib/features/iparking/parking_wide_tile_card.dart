@@ -4,6 +4,7 @@ import '../../config.dart';
 import '../../theme/app_theme.dart';
 import '../../theme/iparking_theme.dart';
 import 'models/parking_model.dart';
+import 'parking_chart.dart';
 import 'widgets/i_parking_icons_icons.dart';
 
 class ParkingWideTileCard extends StatelessWidget {
@@ -32,18 +33,20 @@ class ParkingWideTileCard extends StatelessWidget {
         ),
         clipBehavior: Clip.antiAlias,
         child: Stack(
-          fit: StackFit.expand,
           children: [
             Container(
               color: isActive
                   ? context.colorTheme.blackMirage
                   : const Color.fromRGBO(41, 50, 65, 0.60),
             ),
-            Padding(
+            Container(
+              width: double.infinity,
               padding: IParkingConfig.padding,
               child: _LeftColumn(parking, isActive),
             ),
-            Padding(
+            Container(
+              width: double.infinity,
+              height: WideTileCardConfig.imageSize,
               padding: IParkingConfig.padding,
               child: _RigthColumn(parking, isActive),
             ),
@@ -91,7 +94,20 @@ class _LeftColumn extends StatelessWidget {
               parking.openingHours,
               style: context.iParkingTheme.small,
             ),
-          )
+          ),
+        Expanded(
+          child: Center(
+            child: Container(
+              padding: const EdgeInsets.only(
+                top: 18,
+                left: 0,
+                right: 27,
+              ),
+              height: 167,
+              child: ParkingChart(parking),
+            ),
+          ),
+        ),
       ],
     );
   }

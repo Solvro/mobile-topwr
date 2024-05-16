@@ -18,10 +18,10 @@ class ParkingTextStyle extends BodyTextStyle {
   const ParkingTextStyle({
     super.fontWeight,
     super.fontSize,
+    super.shadows = iparkingShadows,
     super.color = ColorsConsts.whiteSoap,
   }) : super(
           height: 1.4,
-          shadows: iparkingShadows,
         );
 }
 
