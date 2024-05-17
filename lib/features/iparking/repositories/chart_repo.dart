@@ -11,5 +11,6 @@ Future<ChartData> chartRepo(ChartRepoRef ref, ParkingPlace parkingPlace) async {
   final response = await ref.postIParkingCommand(
     FetchChartCommand(parkingPlace.id),
   );
+  await Future.delayed(Duration(seconds: 10));
   return ChartData.fromJson(response.data["slots"] as Map<String, dynamic>);
 }

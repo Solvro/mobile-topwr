@@ -23,7 +23,7 @@ class ParkingWideTileCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        height: isActive ? 297 : WideTileCardConfig.imageSize,
+        height: isActive ? 300 : WideTileCardConfig.imageSize,
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(WideTileCardConfig.radius),
           image: DecorationImage(
@@ -95,19 +95,12 @@ class _LeftColumn extends StatelessWidget {
               style: context.iParkingTheme.small,
             ),
           ),
-        Expanded(
-          child: Center(
-            child: Container(
-              padding: const EdgeInsets.only(
-                top: 18,
-                left: 0,
-                right: 27,
-              ),
-              height: 167,
+        if (isActive)
+          Expanded(
+            child: Center(
               child: ParkingChart(parking),
             ),
           ),
-        ),
       ],
     );
   }

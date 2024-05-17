@@ -52,7 +52,7 @@ extension FlChartUtilities on ChartData {
       axisSide: AxisSide.bottom,
       child: Text(
         _convertToStringRepresentation(numHourValue),
-        style: const ParkingTextStyle(shadows: [], fontSize: 10),
+        style: const ParkingChartTextStyle(),
       ),
     );
   }
