@@ -60,17 +60,7 @@ class _Chart extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Padding(
-          padding: const EdgeInsets.only(bottom: 25, right: 2),
-          child: RotatedBox(
-            quarterTurns: -1,
-            child: Text(
-              context.localize.freePlaces,
-              style: context.iParkingTheme.chart,
-              textAlign: TextAlign.start,
-            ),
-          ),
-        ),
+        const ReversedText(),
         Expanded(
           child: LineChart(
             LineChartData(
@@ -139,6 +129,27 @@ class _Chart extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class ReversedText extends StatelessWidget {
+  const ReversedText({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 25, right: 2),
+      child: RotatedBox(
+        quarterTurns: -1,
+        child: Text(
+          context.localize.freePlaces,
+          style: context.iParkingTheme.chart,
+          textAlign: TextAlign.start,
+        ),
+      ),
     );
   }
 }

@@ -6,6 +6,7 @@ import 'package:flutter/widgets.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../theme/iparking_theme.dart';
+import '../../../utils/generate_range.dart';
 import 'parking_model.dart';
 
 part "chart_data_model.freezed.dart";
@@ -36,12 +37,11 @@ String _convertToStringRepresentation(double numericalTime) {
 }
 
 extension FlChartUtilities on ChartData {
-  static const chartMargin = 20;
-  static const showLabels = [6, 8, 10, 12, 14, 16, 18, 20, 22];
-  // static const showLabels = [5, 7, 9, 11, 13, 15, 17, 19, 21];
+  static final showLabels = generateRange(6, 22, 2).toList();
+  static final showDots = generateRange(5, 22).toList();
 
   bool checkToShowDot(FlSpot spot, LineChartBarData barData) {
-    return showLabels.contains(spot.x);
+    return showDots.contains(spot.x);
   }
 
   Widget getLabel(double numHourValue, _) {
