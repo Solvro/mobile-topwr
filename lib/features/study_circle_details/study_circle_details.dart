@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import '../../config.dart';
 import '../../theme/app_theme.dart';
 import '../../utils/context_extensions.dart';
@@ -63,7 +62,6 @@ class _CircleDetailsDataView extends ConsumerWidget {
                 list: value?.infoSection
                         ?.expand((e) => e?.info ?? [])
                         .map((a) => ContactSectionData(
-                              iconUrl: 'assets/icons/ic_web.png',
                               text: a?.visibleText,
                               url: a?.value,
                               type: a?.type,

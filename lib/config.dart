@@ -75,6 +75,7 @@ abstract class WideTileCardConfig {
 
 abstract class DetailsScreenConfig{
   static const double spacerHeight = 16;
+  static const String defaultIconUrl = 'assets/icons/ic_web.png';
 }
 
 abstract class DetailsScreenHeaderConfig{

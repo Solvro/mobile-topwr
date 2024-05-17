@@ -28,7 +28,7 @@ class ContactSection extends StatelessWidget {
               child: _IconWithUrl(
                 url: item.url ?? '',
                 text: item.text ?? '',
-                iconPath: item.iconUrl ?? '',
+                iconPath: item.iconUrl,
               ),
             )
         ],
