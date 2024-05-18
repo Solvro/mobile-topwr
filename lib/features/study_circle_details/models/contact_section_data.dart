@@ -40,6 +40,6 @@ class ContactSectionData {
   }
 
 void _determineIcon() {
-  iconUrl = _icons.entries.firstWhere((e) => url!.contains(e.key), orElse: () => const MapEntry("", "assets/icons/ic_web.png")).value;
+  iconUrl = _icons.entries.firstWhere((e) => url!.contains(e.key), orElse: () => const MapEntry("", DetailsScreenConfig.defaultIconUrl)).value;
 }
 }
