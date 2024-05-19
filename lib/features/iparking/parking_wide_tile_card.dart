@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../config.dart';
 import '../../theme/app_theme.dart';
 import '../../theme/iparking_theme.dart';
+import '../iparking_chart/chart_widget.dart';
 import 'models/parking_model.dart';
-import 'parking_chart.dart';
 import 'widgets/i_parking_icons_icons.dart';
 
 class ParkingWideTileCard extends StatelessWidget {

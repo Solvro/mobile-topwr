@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import 'features/iparking_chart/utils/range_hour_points.dart';
+
 abstract class MyAppConfig {
   static const title = "ToPwr";
 }
@@ -159,4 +161,9 @@ abstract class IParkingConfig {
     right: 10,
   );
   static const extraIndentPadd = EdgeInsets.only(left: 2.0);
+}
+
+abstract class ParkingChartConfig {
+  static final showLabels = generateRangeHourPoints(6, 22, 2).toList();
+  static final showDots = generateRangeHourPoints(5, 22).toList();
 }
