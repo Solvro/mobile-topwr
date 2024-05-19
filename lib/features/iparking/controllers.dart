@@ -38,6 +38,7 @@ class ParkingsListViewController extends _$ParkingsListViewController
     mapControllers = parkingsMapControllers;
   }
   @override
+  // ignore: unnecessary_overrides
   FutureOr<Iterable<ParkingPlace?>?> build() async {
     return super.build();
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../../utils/context_extensions.dart';
 import '../../utils/where_non_null_iterable.dart';
 import '../../widgets/my_error_widget.dart';
@@ -41,7 +42,8 @@ class _ScientificCirclesBody extends ConsumerWidget {
         height: 76.0,
         child: switch (tags) {
           AsyncLoading() => const TagsLoading(),
-          AsyncError(:final error) => MyErrorWidget(context.localize.study_circles_section_error),
+          AsyncError() =>
+            MyErrorWidget(context.localize.study_circles_section_error),
           AsyncValue(:final value) => TagsRow(
               allTags: value.whereNonNull.toList(),
             )
