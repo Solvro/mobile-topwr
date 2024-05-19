@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../theme/app_theme.dart';
-import 'my_cached_image.dart';
 
 class MyIcon extends StatelessWidget {
   const MyIcon({
@@ -19,8 +18,7 @@ class MyIcon extends StatelessWidget {
         child: Container(
             padding: const EdgeInsets.all(8),
             color: context.colorTheme.whiteSoap,
-            child: SizedBox(width: 20, height: 20, child: MyCachedImage(path))),
-      ),
-    );
+            child: SizedBox(width: 20, height: 20, child: Image.asset(path)))),
+      );
   }
 }
