@@ -29,8 +29,10 @@ class BottomSheetPixels extends _$BottomSheetPixels {
     return controller.pixelsSafe;
   }
 
-  void _update() async {
-    state = ref.read(bottomSheetControllerProvider).pixelsSafe;
+  void _update() {
+    Future.microtask(
+      () => state = ref.read(bottomSheetControllerProvider).pixelsSafe,
+    );
   }
 
   void onSearchBoxTap() {
