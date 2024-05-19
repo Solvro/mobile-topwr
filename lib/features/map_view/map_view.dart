@@ -49,7 +49,7 @@ class GeneralMapView<T> extends ConsumerWidget {
         child: Scaffold(
           backgroundColor: context.colorTheme.whiteSoap,
           body: kIsWeb || isBigScreen
-              ? const HorizontalWebLayout()
+              ? HorizontalWebLayout<T>()
               : Stack(children: [
                   MapWidget<T>(),
                   BottomScrollSheet<T>(),
