@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../config.dart';
 import '../../../../theme/app_theme.dart';
 import '../../controllers/bottom_sheet_controller.dart';
+import '../map_config.dart';
 import 'sheet_layout_scheme.dart';
 
 class BottomScrollSheet<T> extends ConsumerWidget {
@@ -16,11 +17,19 @@ class BottomScrollSheet<T> extends ConsumerWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         final screenHeight = constraints.maxHeight;
+        final sheetSize = context.mapSheetSize<T>();
 
-        final recomendedSheetFraction = min(
-            1.0, MapViewBottomSheetConfig.recomendedSheetHeight / screenHeight);
-        final minSheetFraction =
-            min(0.25, MapViewBottomSheetConfig.minSheetHeight / screenHeight);
+        final isAnyActive =
+            ref.watch(context.activeMarkerController<T>()) != null;
+        final recomendedSheetHeight = isAnyActive
+            ? sheetSize.recomendedActiveSheetHeight
+            : sheetSize.recomendedSheetHeight;
+
+        final minSheetHeight = sheetSize.minSheetHeight;
+
+        final recomendedSheetFraction =
+            min(1.0, recomendedSheetHeight / screenHeight);
+        final minSheetFraction = min(0.25, minSheetHeight / screenHeight);
 
         return DraggableScrollableSheet(
           controller: ref.watch(bottomSheetControllerProvider),

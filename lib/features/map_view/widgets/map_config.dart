@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import '../../../config.dart';
 import '../controllers/controllers_set.dart';
 
 typedef MarkerBuilder<T> = Marker Function(
@@ -22,12 +23,14 @@ class MapConfig<T> extends InheritedWidget {
     required this.mapTileBuilder,
     required this.mapViewTexts,
     required super.child,
+    required this.mapSheetSize,
   });
 
   final MapControllers<T> controllers;
   final MarkerBuilder<T> markerBuilder;
   final MapTileBuilder<T> mapTileBuilder;
   final MapViewTexts mapViewTexts;
+  final MapSheetSize mapSheetSize;
 
   static MapConfig<T>? maybeOf<T>(BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType<MapConfig<T>>();
@@ -76,5 +79,9 @@ extension MapConfigExt on BuildContext {
 
   MapViewTexts mapViewTexts<T>() {
     return config<T>().mapViewTexts;
+  }
+
+  MapSheetSize mapSheetSize<T>() {
+    return config<T>().mapSheetSize;
   }
 }

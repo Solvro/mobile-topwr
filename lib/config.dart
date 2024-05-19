@@ -81,12 +81,27 @@ abstract class DetailsScreenHeaderConfig {
   static const double logoSize = 130;
 }
 
+typedef MapSheetSize = ({
+  double recomendedSheetHeight,
+  double recomendedActiveSheetHeight,
+  double minSheetHeight,
+});
+
 abstract class MapViewBottomSheetConfig {
   static const bottomSheetRadius = Radius.circular(24);
-  static const recomendedSheetHeight = 357.0;
-  static const minSheetHeight = 150.0;
-  static const extraSnapPointFraction1 = 0.5;
-  static const extraSnapPointFraction2 = 0.8;
+
+  static const MapSheetSize buildingsMapSheetSize = (
+    recomendedSheetHeight: 357,
+    recomendedActiveSheetHeight: 357,
+    minSheetHeight: 150,
+  );
+
+  static const MapSheetSize parkingsMapSheetSize = (
+    recomendedSheetHeight: 357,
+    recomendedActiveSheetHeight: 480,
+    minSheetHeight: 150,
+  );
+
   static const lineHandleSectionHeight = 36.0;
   static const horizontalPadding = 24.0;
 

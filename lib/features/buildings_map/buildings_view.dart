@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import '../../config.dart';
 import '../../shared_repositories/buildings_repository/building_extra_params_ext.dart';
 import '../../shared_repositories/buildings_repository/map_buildings_repo.dart';
 import '../../utils/context_extensions.dart';
@@ -20,6 +21,7 @@ class BuildingMapView extends ConsumerWidget {
         emptyList: context.localize.building_not_found,
         title: context.localize.buildings_title,
       ),
+      mapSheetSize: MapViewBottomSheetConfig.buildingsMapSheetSize,
       mapControllers: mapControllersBuildings,
       mapTileBuilder: (item, isActive) => BuildingTile(item, isActive),
       markerBuilder: (item, ref, isActive) => Marker(

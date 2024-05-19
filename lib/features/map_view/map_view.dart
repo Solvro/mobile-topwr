@@ -19,12 +19,14 @@ class GeneralMapView<T> extends ConsumerWidget {
     required this.mapControllers,
     required this.markerBuilder,
     required this.mapTileBuilder,
+    required this.mapSheetSize,
     super.key,
   });
   final MapControllers<T> mapControllers;
   final MarkerBuilder<T> markerBuilder;
   final MapTileBuilder<T> mapTileBuilder;
   final MapViewTexts mapViewTexts;
+  final MapSheetSize mapSheetSize;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -43,6 +45,7 @@ class GeneralMapView<T> extends ConsumerWidget {
         markerBuilder: markerBuilder,
         mapTileBuilder: mapTileBuilder,
         mapViewTexts: mapViewTexts,
+        mapSheetSize: mapSheetSize,
         child: Scaffold(
           backgroundColor: context.colorTheme.whiteSoap,
           body: kIsWeb || isBigScreen
