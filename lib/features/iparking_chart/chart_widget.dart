@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../theme/app_theme.dart';
+import '../../utils/context_extensions.dart';
 import '../../widgets/loading_widgets/simple_previews/preview_card_loading.dart';
 import '../../widgets/my_error_widget.dart';
 import '../iparking/models/parking_model.dart';
@@ -32,17 +33,27 @@ class ParkingChart extends ConsumerWidget {
           ),
         ),
       AsyncError(:final error) => MyErrorWidget(error.toString()),
-      AsyncValue(:final value) => value == null
-          ? const SizedBox.shrink()
-          : Padding(
-              padding: const EdgeInsets.only(
-                top: 20,
-                left: 0,
-                right: 25,
-                bottom: 10,
+      AsyncValue(:final value) => Builder(builder: (context) {
+          if (value == null) return const SizedBox.shrink();
+          final chartPoints = value.toChartPoints().toList();
+          if (chartPoints.isEmpty) {
+            return Center(
+              child: Text(
+                context.localize.noChartData,
+                style: context.iParkingTheme.subtitleLight,
               ),
-              child: IChart(value.toChartPoints().toList(), parkingPlace),
+            );
+          }
+          return Padding(
+            padding: const EdgeInsets.only(
+              top: 20,
+              left: 0,
+              right: 25,
+              bottom: 10,
             ),
+            child: IChart(chartPoints, parkingPlace),
+          );
+        }),
     };
   }
 }

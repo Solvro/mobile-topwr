@@ -39,5 +39,6 @@
   "parkings_not_found": "Nie znaleziono parkingu",
   "building_not_found": "Nie znaleziono budynku",
   "buildings_title": "Budynki",
-  "freePlaces": "Wolne miejsca"
+  "freePlaces": "Wolne miejsca",
+  "noChartData": "Dane wykresów są niedostępne w nocy"
 }
