@@ -5,8 +5,8 @@ import '../../theme/app_theme.dart';
 import '../../widgets/loading_widgets/simple_previews/preview_card_loading.dart';
 import '../../widgets/my_error_widget.dart';
 import '../iparking/models/parking_model.dart';
-import '../iparking/repositories/chart_repo.dart';
 import 'models/chart_point.dart';
+import 'repositories/chart_repo.dart';
 import 'widgets/ichart.dart';
 
 class ParkingChart extends ConsumerWidget {

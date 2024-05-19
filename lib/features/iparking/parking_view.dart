@@ -8,7 +8,7 @@ import '../map_view/map_view.dart';
 import '../map_view/utils/map_marker_utils.dart';
 import 'controllers.dart';
 import 'models/parking_model.dart';
-import 'parking_tile.dart';
+import 'widgets/parking_tile.dart';
 
 class ParkingsMapView extends ConsumerWidget {
   const ParkingsMapView({super.key});

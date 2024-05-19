@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'controllers.dart';
-import 'models/parking_model.dart';
+import '../controllers.dart';
+import '../models/parking_model.dart';
 import 'parking_wide_tile_card.dart';
 
 class ParkingTile extends ConsumerWidget {

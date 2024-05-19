@@ -1,7 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:fl_chart/fl_chart.dart';
 
-import '../../iparking/models/chart_data_model.dart';
+import 'chart_data_model.dart';
 import 'hour_label.dart';
 
 class ChartPoint extends FlSpot {
@@ -14,7 +14,7 @@ class ChartPoint extends FlSpot {
         );
 }
 
-extension ToCharPointsExt on ChartData {
+extension ToCharPointsExt on RawChartData {
   Iterable<ChartPoint> toChartPoints() sync* {
     for (var pair in IterableZip(
       [labels, data],
