@@ -38,15 +38,16 @@ class BuildingsListViewController extends _$BuildingsListViewController
     mapControllers = mapControllersBuildings;
   }
   @override
+  // ignore: unnecessary_overrides
   FutureOr<Iterable<Building?>?> build() async {
     return super.build();
   }
 
   @override
-  bool filterMethod(Building building, String filterStr) {
-    return building.name.toLowerCase().contains(filterStr) ||
-        building.code.toLowerCase().contains(filterStr) ||
-        (building.addres?.toLowerCase().contains(filterStr) ?? false);
+  bool filterMethod(Building item, String filterStr) {
+    return item.name.toLowerCase().contains(filterStr) ||
+        item.code.toLowerCase().contains(filterStr) ||
+        (item.addres?.toLowerCase().contains(filterStr) ?? false);
   }
 }
 
