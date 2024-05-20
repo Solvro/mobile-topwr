@@ -7,10 +7,12 @@ import 'package:google_maps_flutter_platform_interface/google_maps_flutter_platf
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../config.dart';
+import '../../iparking/models/parking_model.dart';
 import 'bottom_sheet_controller.dart';
 import 'controllers_set.dart';
 
-mixin MapController<T> on AutoDisposeNotifier<GoogleMapController?> {
+mixin MapController<T extends GoogleNavigable>
+    on AutoDisposeNotifier<GoogleMapController?> {
   late final MapControllers<T> mapControllers;
   LatLng getLocation(T item);
 

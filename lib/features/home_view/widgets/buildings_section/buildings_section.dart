@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../shared_repositories/buildings_repository/building_model.dart';
 import '../../../../shared_repositories/buildings_repository/map_buildings_repo.dart';
 import '../../../../utils/context_extensions.dart';
 import '../../../../utils/where_non_null_iterable.dart';
@@ -56,7 +57,7 @@ class _BuildingsList extends ConsumerWidget {
 class _DataListBuildingsTiles extends ConsumerWidget {
   const _DataListBuildingsTiles(this.buildings);
 
-  final List<Building> buildings;
+  final List<BuildingModel> buildings;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

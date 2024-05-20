@@ -5,11 +5,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../config.dart';
 import '../../../../theme/app_theme.dart';
+import '../../../iparking/models/parking_model.dart';
 import '../../controllers/bottom_sheet_controller.dart';
 import '../map_config.dart';
 import 'sheet_layout_scheme.dart';
 
-class BottomScrollSheet<T> extends ConsumerWidget {
+class BottomScrollSheet<T extends GoogleNavigable> extends ConsumerWidget {
   const BottomScrollSheet({super.key});
 
   @override

@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../config.dart';
 import '../../theme/app_theme.dart';
+import '../iparking/models/parking_model.dart';
 import 'controllers/bottom_sheet_controller.dart';
 import 'controllers/controllers_set.dart';
 import 'widgets/bottom_scroll_sheet/bottom_scroll_sheet.dart';
@@ -13,7 +14,7 @@ import 'widgets/bottom_scroll_sheet/sheet_layout_scheme.dart';
 import 'widgets/map_config.dart';
 import 'widgets/map_widget.dart';
 
-class GeneralMapView<T> extends ConsumerWidget {
+class GeneralMapView<T extends GoogleNavigable> extends ConsumerWidget {
   const GeneralMapView({
     required this.mapViewTexts,
     required this.mapControllers,
@@ -58,7 +59,7 @@ class GeneralMapView<T> extends ConsumerWidget {
   }
 }
 
-class HorizontalWebLayout<T> extends StatelessWidget {
+class HorizontalWebLayout<T extends GoogleNavigable> extends StatelessWidget {
   const HorizontalWebLayout({
     super.key,
   });

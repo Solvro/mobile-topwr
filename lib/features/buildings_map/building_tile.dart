@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../shared_repositories/buildings_repository/building_extra_params_ext.dart';
-import '../../shared_repositories/buildings_repository/map_buildings_repo.dart';
+import '../../shared_repositories/buildings_repository/building_model.dart';
 import '../../theme/app_theme.dart';
 import '../../utils/context_extensions.dart';
 import '../../widgets/wide_tile_card.dart';
@@ -15,7 +14,7 @@ class BuildingTile extends ConsumerWidget {
     super.key,
   });
 
-  final Building building;
+  final BuildingModel building;
   final bool isActive;
   @override
   Widget build(BuildContext context, WidgetRef ref) {

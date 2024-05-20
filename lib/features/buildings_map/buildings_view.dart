@@ -3,8 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../config.dart';
-import '../../shared_repositories/buildings_repository/building_extra_params_ext.dart';
-import '../../shared_repositories/buildings_repository/map_buildings_repo.dart';
+import '../../shared_repositories/buildings_repository/building_model.dart';
 import '../../utils/context_extensions.dart';
 import '../map_view/map_view.dart';
 import '../map_view/utils/map_marker_utils.dart';
@@ -16,7 +15,7 @@ class BuildingMapView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return GeneralMapView<Building>(
+    return GeneralMapView<BuildingModel>(
       mapViewTexts: (
         emptyList: context.localize.building_not_found,
         title: context.localize.buildings_title,

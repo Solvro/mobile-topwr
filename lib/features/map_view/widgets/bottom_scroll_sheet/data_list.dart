@@ -5,10 +5,11 @@ import '../../../../config.dart';
 import '../../../../theme/app_theme.dart';
 import '../../../../utils/where_non_null_iterable.dart';
 import '../../../../widgets/my_error_widget.dart';
+import '../../../iparking/models/parking_model.dart';
 import '../map_config.dart';
 import 'data_list_loading.dart';
 
-class DataSliverList<T> extends ConsumerWidget {
+class DataSliverList<T extends GoogleNavigable> extends ConsumerWidget {
   const DataSliverList({super.key});
 
   @override
@@ -24,7 +25,7 @@ class DataSliverList<T> extends ConsumerWidget {
   }
 }
 
-class _DataSliverList<T> extends StatelessWidget {
+class _DataSliverList<T extends GoogleNavigable> extends StatelessWidget {
   const _DataSliverList(this.items);
 
   final List<T> items;
@@ -54,7 +55,7 @@ class _DataSliverList<T> extends StatelessWidget {
   }
 }
 
-class _EmptyDataList<T> extends StatelessWidget {
+class _EmptyDataList<T extends GoogleNavigable> extends StatelessWidget {
   const _EmptyDataList();
 
   @override

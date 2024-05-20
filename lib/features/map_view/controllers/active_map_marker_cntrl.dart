@@ -1,6 +1,10 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-mixin ActiveMarkerController<T> on AutoDisposeNotifier<T?> {
+import '../../iparking/models/parking_model.dart';
+import '../utils/google_maps_link_utils.dart';
+
+mixin ActiveMarkerController<T extends GoogleNavigable>
+    on AutoDisposeNotifier<T?> {
   @override
   T? build() {
     return null;
@@ -22,5 +26,9 @@ mixin ActiveMarkerController<T> on AutoDisposeNotifier<T?> {
     }
   }
 
-  Future<void> launchLink();
+  Future<void> launchLink() async {
+    if (state != null) {
+      return GoogleMapsLinkUtils.navigateTo(state!.location);
+    }
+  }
 }

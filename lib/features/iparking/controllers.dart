@@ -5,7 +5,6 @@ import '../map_view/controllers/active_map_marker_cntrl.dart';
 import '../map_view/controllers/controllers_set.dart';
 import '../map_view/controllers/map_controller.dart';
 import '../map_view/controllers/map_data_controller.dart';
-import '../map_view/utils/google_maps_link_utils.dart';
 import 'models/parking_model.dart';
 import 'repositories/parkings_repo.dart';
 
@@ -17,17 +16,6 @@ class ActiveParkingController extends _$ActiveParkingController
   @override
   ParkingPlace? build() {
     return null;
-  }
-
-  @override
-  Future<void> launchLink() async {
-    if (state != null) {
-      return GoogleMapsLinkUtils.navigateTo(
-        state!,
-        lat: (item) => item.latitude,
-        long: (item) => item.longitude,
-      );
-    }
   }
 }
 

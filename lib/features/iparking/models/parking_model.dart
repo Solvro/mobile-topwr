@@ -6,10 +6,15 @@ import '../api_client/iparking_client.dart';
 part "parking_model.freezed.dart";
 part "parking_model.g.dart";
 
+abstract class GoogleNavigable {
+  LatLng get location;
+}
+
 @freezed
-class ParkingPlace with _$ParkingPlace {
+class ParkingPlace with _$ParkingPlace implements GoogleNavigable {
   const ParkingPlace._();
 
+  @Implements<GoogleNavigable>()
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory ParkingPlace({
     required String id,
@@ -41,7 +46,10 @@ class ParkingPlace with _$ParkingPlace {
 
   double get latitude => double.tryParse(geoLat) ?? 0;
   double get longitude => double.tryParse(geoLan) ?? 0;
+
+  @override
   LatLng get location => LatLng(latitude, longitude);
+
   String get addresFormatted =>
       address.replaceFirst(",", "\n").replaceAll("\n ", "\n");
 

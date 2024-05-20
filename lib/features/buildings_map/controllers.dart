@@ -1,50 +1,38 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../shared_repositories/buildings_repository/building_extra_params_ext.dart';
+import '../../shared_repositories/buildings_repository/building_model.dart';
 import '../../shared_repositories/buildings_repository/map_buildings_repo.dart';
 import '../map_view/controllers/active_map_marker_cntrl.dart';
 import '../map_view/controllers/controllers_set.dart';
 import '../map_view/controllers/map_controller.dart';
 import '../map_view/controllers/map_data_controller.dart';
-import '../map_view/utils/google_maps_link_utils.dart';
 
 part "controllers.g.dart";
 
 @riverpod
 class ActiveBuildingController extends _$ActiveBuildingController
-    with ActiveMarkerController<Building> {
+    with ActiveMarkerController<BuildingModel> {
   @override
-  Building? build() {
+  BuildingModel? build() {
     return null;
-  }
-
-  @override
-  Future<void> launchLink() async {
-    if (state != null) {
-      return GoogleMapsLinkUtils.navigateTo(
-        state!,
-        lat: (item) => item.latitude,
-        long: (item) => item.longitude,
-      );
-    }
   }
 }
 
 @riverpod
 class BuildingsListViewController extends _$BuildingsListViewController
-    with MapDataController<Building> {
+    with MapDataController<BuildingModel> {
   BuildingsListViewController() {
     mapControllers = mapControllersBuildings;
   }
   @override
   // ignore: unnecessary_overrides
-  FutureOr<Iterable<Building?>?> build() async {
+  FutureOr<Iterable<BuildingModel?>?> build() async {
     return super.build();
   }
 
   @override
-  bool filterMethod(Building item, String filterStr) {
+  bool filterMethod(BuildingModel item, String filterStr) {
     return item.name.toLowerCase().contains(filterStr) ||
         item.code.toLowerCase().contains(filterStr) ||
         (item.addres?.toLowerCase().contains(filterStr) ?? false);
@@ -53,7 +41,7 @@ class BuildingsListViewController extends _$BuildingsListViewController
 
 @riverpod
 class BuildingsMapController extends _$BuildingsMapController
-    with MapController<Building> {
+    with MapController<BuildingModel> {
   BuildingsMapController() {
     mapControllers = mapControllersBuildings;
   }
@@ -64,12 +52,12 @@ class BuildingsMapController extends _$BuildingsMapController
   }
 
   @override
-  LatLng getLocation(Building item) {
+  LatLng getLocation(BuildingModel item) {
     return item.location;
   }
 }
 
-final MapControllers<Building> mapControllersBuildings = (
+final MapControllers<BuildingModel> mapControllersBuildings = (
   activeMarker: activeBuildingControllerProvider,
   sourceRepo: mapBuildingsRepositoryProvider,
   map: buildingsMapControllerProvider,

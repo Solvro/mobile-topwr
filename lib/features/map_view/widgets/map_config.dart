@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../../config.dart';
+import '../../iparking/models/parking_model.dart';
 import '../controllers/controllers_set.dart';
 
 typedef MarkerBuilder<T> = Marker Function(
@@ -15,7 +16,7 @@ typedef MapViewTexts = ({
   String title,
 });
 
-class MapConfig<T> extends InheritedWidget {
+class MapConfig<T extends GoogleNavigable> extends InheritedWidget {
   const MapConfig({
     super.key,
     required this.controllers,
@@ -32,11 +33,12 @@ class MapConfig<T> extends InheritedWidget {
   final MapViewTexts mapViewTexts;
   final MapSheetSize mapSheetSize;
 
-  static MapConfig<T>? maybeOf<T>(BuildContext context) {
+  static MapConfig<T>? maybeOf<T extends GoogleNavigable>(
+      BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType<MapConfig<T>>();
   }
 
-  static MapConfig<T> of<T>(BuildContext context) {
+  static MapConfig<T> of<T extends GoogleNavigable>(BuildContext context) {
     final result = maybeOf<T>(context);
     assert(result != null, 'No MapConfig found in context');
     return result!;
@@ -49,39 +51,39 @@ class MapConfig<T> extends InheritedWidget {
 }
 
 extension MapConfigExt on BuildContext {
-  MapConfig<T> config<T>() {
+  MapConfig<T> config<T extends GoogleNavigable>() {
     return MapConfig.of<T>(this);
   }
 
-  MapControllerProv<T> mapController<T>() {
+  MapControllerProv<T> mapController<T extends GoogleNavigable>() {
     return config<T>().controllers.map;
   }
 
-  SourceRepositoryProv<T> mapSourceRepository<T>() {
+  SourceRepositoryProv<T> mapSourceRepository<T extends GoogleNavigable>() {
     return config<T>().controllers.sourceRepo;
   }
 
-  ActiveMarkerProv<T> activeMarkerController<T>() {
+  ActiveMarkerProv<T> activeMarkerController<T extends GoogleNavigable>() {
     return config<T>().controllers.activeMarker;
   }
 
-  MapDataProv<T> mapDataController<T>() {
+  MapDataProv<T> mapDataController<T extends GoogleNavigable>() {
     return config<T>().controllers.dataController;
   }
 
-  MarkerBuilder<T> markerBuilder<T>() {
+  MarkerBuilder<T> markerBuilder<T extends GoogleNavigable>() {
     return config<T>().markerBuilder;
   }
 
-  MapTileBuilder<T> mapTileBuilder<T>() {
+  MapTileBuilder<T> mapTileBuilder<T extends GoogleNavigable>() {
     return config<T>().mapTileBuilder;
   }
 
-  MapViewTexts mapViewTexts<T>() {
+  MapViewTexts mapViewTexts<T extends GoogleNavigable>() {
     return config<T>().mapViewTexts;
   }
 
-  MapSheetSize mapSheetSize<T>() {
+  MapSheetSize mapSheetSize<T extends GoogleNavigable>() {
     return config<T>().mapSheetSize;
   }
 }
