@@ -16,40 +16,49 @@ class MapWidget<T extends GoogleNavigable> extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final itemsState =
-        ref.watch(context.mapSourceRepository<T>()).value.whereNonNull;
+        ref
+            .watch(context.mapSourceRepository<T>())
+            .value
+            .whereNonNull;
 
     final mapController = ref.watch(
-      context.mapController<T>().notifier,
+      context
+          .mapController<T>()
+          .notifier,
     );
 
     final activeItem = ref.watch(context.activeMarkerController<T>());
     return ref.watch(locationPermissionStatusProvider).when(
-        data: (isGranted) {
-    return GoogleMap(
-      mapType: MapWidgetConfig.mapType,
-      initialCameraPosition: MapWidgetConfig.defaultCameraPosition,
-      onMapCreated: mapController.onMapCreated,
-      onTap: mapController.onMapBgTap,
-      markers: itemsState
-          .map((item) => context.markerBuilder<T>()(
-        item,
-        ref,
-        activeItem == item,
-      ))
-          .toSet(),
-      myLocationEnabled: isGranted,
-      myLocationButtonEnabled: isGranted,
-      mapToolbarEnabled: false,
-      zoomControlsEnabled: false,
-      zoomGesturesEnabled: true,
-      compassEnabled: true,
-      padding: EdgeInsets.only(
-        top: MediaQuery.paddingOf(context).top,
-        bottom: ref.watch(bottomSheetPixelsProvider),
-      ),
+      data: (isGranted) {
+        return GoogleMap(
+          mapType: MapWidgetConfig.mapType,
+          initialCameraPosition: MapWidgetConfig.defaultCameraPosition,
+          onMapCreated: mapController.onMapCreated,
+          onTap: mapController.onMapBgTap,
+          markers: itemsState
+              .map((item) =>
+              context.markerBuilder<T>()(
+                item,
+                ref,
+                activeItem == item,
+              ))
+              .toSet(),
+          myLocationEnabled: isGranted,
+          myLocationButtonEnabled: isGranted,
+          mapToolbarEnabled: false,
+          zoomControlsEnabled: false,
+          zoomGesturesEnabled: true,
+          compassEnabled: true,
+          padding: EdgeInsets.only(
+            top: MediaQuery
+                .paddingOf(context)
+                .top,
+            bottom: ref.watch(bottomSheetPixelsProvider),
+          ),
+        );
+      },
+      loading: () => const SizedBox(),
+      error: (error, _) => MyErrorWidget(error),
     );
-  },
-    loading: () => const SizedBox(),
-    error: (error,_) => MyErrorWidget(error),
-    );
+  }
 }
