@@ -55,6 +55,7 @@ dependencies:
   json_annotation: ^4.8.1
   collection: ^1.18.0
   fl_chart: ^0.67.0
+  permission_handler: ^11.3.1
 
 dependency_overrides:
   analyzer: ^6.4.1

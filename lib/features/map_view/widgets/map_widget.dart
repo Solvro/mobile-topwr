@@ -1,12 +1,14 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../../config.dart';
 import '../../../utils/where_non_null_iterable.dart';
+import '../../../widgets/my_error_widget.dart';
 import '../controllers/bottom_sheet_controller.dart';
 import '../controllers/controllers_set.dart';
 import 'map_config.dart';
+import '../utils/location_permission_status_provider.dart';
 
 class MapWidget<T extends GoogleNavigable> extends ConsumerWidget {
   const MapWidget({super.key});
@@ -21,7 +23,8 @@ class MapWidget<T extends GoogleNavigable> extends ConsumerWidget {
     );
 
     final activeItem = ref.watch(context.activeMarkerController<T>());
-
+    return ref.watch(locationPermissionStatusProvider).when(
+        data: (isGranted) {
     return GoogleMap(
       mapType: MapWidgetConfig.mapType,
       initialCameraPosition: MapWidgetConfig.defaultCameraPosition,
@@ -29,13 +32,13 @@ class MapWidget<T extends GoogleNavigable> extends ConsumerWidget {
       onTap: mapController.onMapBgTap,
       markers: itemsState
           .map((item) => context.markerBuilder<T>()(
-                item,
-                ref,
-                activeItem == item,
-              ))
+        item,
+        ref,
+        activeItem == item,
+      ))
           .toSet(),
-      myLocationEnabled: true,
-      myLocationButtonEnabled: false,
+      myLocationEnabled: isGranted,
+      myLocationButtonEnabled: isGranted,
       mapToolbarEnabled: false,
       zoomControlsEnabled: false,
       zoomGesturesEnabled: true,
@@ -45,5 +48,8 @@ class MapWidget<T extends GoogleNavigable> extends ConsumerWidget {
         bottom: ref.watch(bottomSheetPixelsProvider),
       ),
     );
-  }
+  },
+    loading: () => const SizedBox(),
+    error: (error,_) => MyErrorWidget(error),
+    );
 }
