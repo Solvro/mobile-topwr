@@ -1,10 +1,12 @@
 # ToPWR
 
+![ToPWR file cover](/assets/topwr_header.png)
 ToPWR to aplikacja mobilna stworzona przez studentów dla studentów Politechniki Wrocławskiej. Licznik dni do sesji, mapka kampusu, informacje o dziekanatach i kółkach naukowych - wszystko, co trzeba w jednym miejscu. Life made easy. 🚀
 
 ToPWR to efekt naszych doświadczeń i pomysłów, którymi chcielibyśmy się podzielić z innymi studentami. Bo przecież każdy z nas zaczynał od zera, więc dlaczego by nie stworzyć czegoś, co ułatwiłoby życie na uczelni? Zależało nam, żeby każdy student miał w kieszeni takiego kumpla, co go wspiera i pomaga ogarnąć to wszystko. Bo studia to nie tylko nauka, to też odkrywanie, poznawanie, czasem trochę gubienie się i to jest w porządku.
 
 ## Links
+
 - ToPWR Figma: https://www.figma.com/file/33ofdGYbBzWvDi2MabxIc1/ToPWR-(imported)?type=design&node-id=2%3A2091&mode=design&t=qILflhzpbN8xW8F6-1
 
 ## Development
