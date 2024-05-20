@@ -8,6 +8,7 @@ import '../map_view/map_view.dart';
 import '../map_view/utils/map_marker_utils.dart';
 import 'controllers.dart';
 import 'models/parking_model.dart';
+import 'widgets/offline_parkings.dart';
 import 'widgets/parking_tile.dart';
 
 class ParkingsMapView extends ConsumerWidget {
@@ -20,6 +21,7 @@ class ParkingsMapView extends ConsumerWidget {
         emptyList: context.localize.parkings_not_found,
         title: context.localize.parkings_title,
       ),
+      dioExceptionBuilder: (context) => const OfflineParkings(),
       mapSheetSize: MapViewBottomSheetConfig.parkingsMapSheetSize,
       mapControllers: parkingsMapControllers,
       mapTileBuilder: ParkingTile.new,

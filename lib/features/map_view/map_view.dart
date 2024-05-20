@@ -6,7 +6,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../config.dart';
 import '../../theme/app_theme.dart';
-import '../iparking/models/parking_model.dart';
 import 'controllers/bottom_sheet_controller.dart';
 import 'controllers/controllers_set.dart';
 import 'widgets/bottom_scroll_sheet/bottom_scroll_sheet.dart';
@@ -21,6 +20,7 @@ class GeneralMapView<T extends GoogleNavigable> extends ConsumerWidget {
     required this.markerBuilder,
     required this.mapTileBuilder,
     required this.mapSheetSize,
+    this.dioExceptionBuilder,
     super.key,
   });
   final MapControllers<T> mapControllers;
@@ -28,6 +28,7 @@ class GeneralMapView<T extends GoogleNavigable> extends ConsumerWidget {
   final MapTileBuilder<T> mapTileBuilder;
   final MapViewTexts mapViewTexts;
   final MapSheetSize mapSheetSize;
+  final WidgetBuilder? dioExceptionBuilder;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -45,6 +46,7 @@ class GeneralMapView<T extends GoogleNavigable> extends ConsumerWidget {
         mapTileBuilder: mapTileBuilder,
         mapViewTexts: mapViewTexts,
         mapSheetSize: mapSheetSize,
+        dioExceptionBuilder: dioExceptionBuilder,
         child: Scaffold(
           backgroundColor: context.colorTheme.whiteSoap,
           body: kIsWeb || isBigScreen
