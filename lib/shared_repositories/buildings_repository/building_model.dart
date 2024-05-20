@@ -1,6 +1,6 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-import '../../features/iparking/models/parking_model.dart';
+import '../../features/map_view/controllers/controllers_set.dart';
 import 'map_buildings_repo.dart';
 
 class BuildingModel extends Building implements GoogleNavigable {

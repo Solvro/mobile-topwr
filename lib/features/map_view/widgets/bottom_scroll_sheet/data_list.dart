@@ -5,7 +5,7 @@ import '../../../../config.dart';
 import '../../../../theme/app_theme.dart';
 import '../../../../utils/where_non_null_iterable.dart';
 import '../../../../widgets/my_error_widget.dart';
-import '../../../iparking/models/parking_model.dart';
+import '../../controllers/controllers_set.dart';
 import '../map_config.dart';
 import 'data_list_loading.dart';
 

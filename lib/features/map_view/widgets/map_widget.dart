@@ -4,8 +4,8 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../../config.dart';
 import '../../../utils/where_non_null_iterable.dart';
-import '../../iparking/models/parking_model.dart';
 import '../controllers/bottom_sheet_controller.dart';
+import '../controllers/controllers_set.dart';
 import 'map_config.dart';
 
 class MapWidget<T extends GoogleNavigable> extends ConsumerWidget {

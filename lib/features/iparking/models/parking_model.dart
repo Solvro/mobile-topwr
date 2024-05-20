@@ -1,14 +1,11 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import '../../map_view/controllers/controllers_set.dart';
 import '../api_client/iparking_client.dart';
 
 part "parking_model.freezed.dart";
 part "parking_model.g.dart";
-
-abstract class GoogleNavigable {
-  LatLng get location;
-}
 
 @freezed
 class ParkingPlace with _$ParkingPlace implements GoogleNavigable {

@@ -4,8 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../config.dart';
 import '../../../../theme/app_theme.dart';
 import '../../../../utils/context_extensions.dart';
-import '../../../iparking/models/parking_model.dart';
 import '../../../iparking/widgets/i_parking_icons_icons.dart';
+import '../../controllers/controllers_set.dart';
 import '../map_config.dart';
 
 class NavigateButton<T extends GoogleNavigable> extends ConsumerWidget {
