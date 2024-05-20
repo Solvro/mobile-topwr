@@ -6,4 +6,4 @@ Iterable<HourLabel> generateRangeHourPoints(
   double stop, [
   double step = 1,
 ]) =>
-    generateRange(start, stop, step).map((e) => HourLabel(e));
+    generateRange(start, stop, step).map(HourLabel.new);

@@ -12,9 +12,9 @@ class ChartLine extends LineChartBarData {
           color: context.colorTheme.greyLight,
           barWidth: 1,
           isStrokeCapRound: true,
-          dotData: FlDotData(
+          dotData: const FlDotData(
             show: true,
-            checkToShowDot: chartData.showDotOrNot,
+            checkToShowDot: IChartUtils.showDotOrNot,
           ),
           belowBarData: BarAreaData(
             show: true,

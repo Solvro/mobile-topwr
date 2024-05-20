@@ -9,10 +9,6 @@ import '../models/chart_point.dart';
 import '../models/hour_label.dart';
 
 extension IChartUtils on List<ChartPoint> {
-  bool showDotOrNot(FlSpot spot, LineChartBarData barData) {
-    return ParkingChartConfig.showDots.contains(spot.x);
-  }
-
   double get minX => first.x;
   double get maxX => last.x;
 
@@ -27,5 +23,9 @@ extension IChartUtils on List<ChartPoint> {
       return "";
     }
     return hourPoint.toStringRepr();
+  }
+
+  static bool showDotOrNot(FlSpot spot, LineChartBarData barData) {
+    return ParkingChartConfig.showDots.contains(spot.x);
   }
 }

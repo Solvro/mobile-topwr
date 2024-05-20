@@ -22,7 +22,7 @@ class BuildingMapView extends ConsumerWidget {
       ),
       mapSheetSize: MapViewBottomSheetConfig.buildingsMapSheetSize,
       mapControllers: mapControllersBuildings,
-      mapTileBuilder: (item, isActive) => BuildingTile(item, isActive),
+      mapTileBuilder: BuildingTile.new,
       markerBuilder: (item, ref, isActive) => Marker(
         consumeTapEvents: true,
         markerId: item.markerId,
