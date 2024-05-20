@@ -22,7 +22,7 @@ class ParkingsMapView extends ConsumerWidget {
       ),
       mapSheetSize: MapViewBottomSheetConfig.parkingsMapSheetSize,
       mapControllers: parkingsMapControllers,
-      mapTileBuilder: (item, isActive) => ParkingTile(item, isActive),
+      mapTileBuilder: ParkingTile.new,
       markerBuilder: (item, ref, isActive) => Marker(
         consumeTapEvents: true,
         markerId: MarkerId(item.id),
