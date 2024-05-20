@@ -20,7 +20,7 @@ class WideTileLoading extends StatelessWidget {
         child: const Row(
           children: [
             Expanded(child: ShimmerLoadingItem(child: _TitlesColumnLoading())),
-            PreviewCardLoading(size: WideTileCardConfig.imageSize),
+            PreviewCardLoading.square(size: WideTileCardConfig.imageSize),
           ],
         ),
       ),

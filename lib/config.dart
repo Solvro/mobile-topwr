@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import 'features/iparking_chart/utils/range_hour_points.dart';
+
 abstract class MyAppConfig {
   static const title = "ToPwr";
 }
@@ -73,21 +75,36 @@ abstract class WideTileCardConfig {
   ];
 }
 
-abstract class DetailsScreenConfig{
+abstract class DetailsScreenConfig {
   static const double spacerHeight = 16;
   static const String defaultIconUrl = 'assets/icons/ic_web.png';
 }
 
-abstract class DetailsScreenHeaderConfig{
+abstract class DetailsScreenHeaderConfig {
   static const double logoSize = 130;
 }
 
+typedef MapSheetSize = ({
+  double recomendedSheetHeight,
+  double recomendedActiveSheetHeight,
+  double minSheetHeight,
+});
+
 abstract class MapViewBottomSheetConfig {
   static const bottomSheetRadius = Radius.circular(24);
-  static const recomendedSheetHeight = 357.0;
-  static const minSheetHeight = 150.0;
-  static const extraSnapPointFraction1 = 0.5;
-  static const extraSnapPointFraction2 = 0.8;
+
+  static const MapSheetSize buildingsMapSheetSize = (
+    recomendedSheetHeight: 357,
+    recomendedActiveSheetHeight: 357,
+    minSheetHeight: 150,
+  );
+
+  static const MapSheetSize parkingsMapSheetSize = (
+    recomendedSheetHeight: 357,
+    recomendedActiveSheetHeight: 480,
+    minSheetHeight: 150,
+  );
+
   static const lineHandleSectionHeight = 36.0;
   static const horizontalPadding = 24.0;
 
@@ -109,9 +126,7 @@ abstract class MapWidgetConfig {
   static const activeMapMarkerOriginWidth = 40;
 }
 
-
 abstract class ScientificCirclesTabConfig {
-
   static const listSeparatorSize = 16.0;
   static const microPadding = 4.0;
   static const smallPadding = 16.0;
@@ -120,15 +135,14 @@ abstract class ScientificCirclesTabConfig {
   static const buttonBorderRadius = 100.0;
 
   static const researchGroupTabGridDelegate =
-  SliverGridDelegateWithMaxCrossAxisExtent(
+      SliverGridDelegateWithMaxCrossAxisExtent(
     maxCrossAxisExtent: 600,
     mainAxisExtent: 92,
     crossAxisSpacing: 16,
     mainAxisSpacing: 16,
   );
 
-  static const tagsGridDelegate =
-  SliverGridDelegateWithMaxCrossAxisExtent(
+  static const tagsGridDelegate = SliverGridDelegateWithMaxCrossAxisExtent(
     maxCrossAxisExtent: 100,
     mainAxisExtent: 92,
     crossAxisSpacing: 8,
@@ -138,4 +152,19 @@ abstract class ScientificCirclesTabConfig {
 
 abstract class ScientificCircleCardConfig {
   static const trailingPadding = 2.0;
+}
+
+abstract class IParkingConfig {
+  static const padding = EdgeInsets.only(
+    left: 13,
+    top: 10,
+    bottom: 16,
+    right: 10,
+  );
+  static const extraIndentPadd = EdgeInsets.only(left: 2.0);
+}
+
+abstract class ParkingChartConfig {
+  static final showLabels = generateRangeHourPoints(6, 22, 2).toList();
+  static final showDots = generateRangeHourPoints(5, 22).toList();
 }

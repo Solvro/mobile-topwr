@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../config.dart';
+import '../../../../theme/app_theme.dart';
 import '../../../../utils/context_extensions.dart';
-import '../../../../widgets/my_text_button.dart';
-import '../../controllers/active_map_marker_cntrl.dart';
-import '../../utils/google_maps_link_utils.dart';
+import '../../../iparking/widgets/i_parking_icons_icons.dart';
+import '../../controllers/controllers_set.dart';
+import '../map_config.dart';
 
-class NavigateButton extends ConsumerWidget {
+class NavigateButton<T extends GoogleNavigable> extends ConsumerWidget {
   const NavigateButton({super.key});
 
   @override
@@ -16,13 +17,22 @@ class NavigateButton extends ConsumerWidget {
       padding: const EdgeInsets.only(
         right: MapViewBottomSheetConfig.horizontalPadding - 3,
       ),
-      child: MyTextButton(
-        onClick: () {
-          final active = ref.read(activeMapMarkerControllerProvider);
-          if (active != null) GoogleMapsLinkUtils.navigateTo(active);
-        },
-        actionTitle: context.localize.navigate,
-      ),
+      child: TextButton.icon(
+          icon: Icon(
+            IParkingIcons.map_nav,
+            color: context.colorTheme.orangePomegranade,
+            size: 16,
+          ),
+          onPressed: ref
+              .watch(context.activeMarkerController<T>().notifier)
+              .launchLink,
+          style: TextButton.styleFrom(
+            padding: EdgeInsets.zero,
+          ),
+          label: Text(
+            context.localize.navigate,
+            style: context.textTheme.boldBodyOrange,
+          )),
     );
   }
 }

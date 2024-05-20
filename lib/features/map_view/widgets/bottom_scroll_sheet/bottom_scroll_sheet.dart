@@ -6,9 +6,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../config.dart';
 import '../../../../theme/app_theme.dart';
 import '../../controllers/bottom_sheet_controller.dart';
+import '../../controllers/controllers_set.dart';
+import '../map_config.dart';
 import 'sheet_layout_scheme.dart';
 
-class BottomScrollSheet extends ConsumerWidget {
+class BottomScrollSheet<T extends GoogleNavigable> extends ConsumerWidget {
   const BottomScrollSheet({super.key});
 
   @override
@@ -16,11 +18,19 @@ class BottomScrollSheet extends ConsumerWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         final screenHeight = constraints.maxHeight;
+        final sheetSize = context.mapSheetSize<T>();
 
-        final recomendedSheetFraction = min(
-            1.0, MapViewBottomSheetConfig.recomendedSheetHeight / screenHeight);
-        final minSheetFraction =
-            min(0.25, MapViewBottomSheetConfig.minSheetHeight / screenHeight);
+        final isAnyActive =
+            ref.watch(context.activeMarkerController<T>()) != null;
+        final recomendedSheetHeight = isAnyActive
+            ? sheetSize.recomendedActiveSheetHeight
+            : sheetSize.recomendedSheetHeight;
+
+        final minSheetHeight = sheetSize.minSheetHeight;
+
+        final recomendedSheetFraction =
+            min(1.0, recomendedSheetHeight / screenHeight);
+        final minSheetFraction = min(0.25, minSheetHeight / screenHeight);
 
         return DraggableScrollableSheet(
           controller: ref.watch(bottomSheetControllerProvider),
@@ -34,7 +44,7 @@ class BottomScrollSheet extends ConsumerWidget {
               clipBehavior: Clip.antiAlias,
               decoration:
                   _RoundedTopDecoration(color: context.colorTheme.whiteSoap),
-              child: SheetLayoutScheme(scrollController: scrollController),
+              child: SheetLayoutScheme<T>(scrollController: scrollController),
             );
           },
         );

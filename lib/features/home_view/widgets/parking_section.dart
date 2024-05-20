@@ -7,6 +7,7 @@ import '../../../widgets/my_error_widget.dart';
 import '../../../widgets/subsection_header.dart';
 import '../../bottom_nav_bar/bottom_nav_bar_controller.dart';
 import '../../bottom_nav_bar/nav_bar_config.dart';
+import '../../iparking/controllers.dart';
 import '../../iparking/models/parking_model.dart';
 import '../../iparking/repositories/parkings_repo.dart';
 import 'buildings_section/building_card.dart';
@@ -16,8 +17,9 @@ import 'paddings.dart';
 class ParkingSection extends ConsumerWidget {
   const ParkingSection({super.key});
 
-  static void goToParkingsTab(WidgetRef ref) =>
-      ref.read(bottomNavBarControllerProvider.notifier).goTo(NavBarEnum.info);
+  static void goToParkingsTab(WidgetRef ref) => ref
+      .read(bottomNavBarControllerProvider.notifier)
+      .goTo(NavBarEnum.parkings);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) => Column(
@@ -54,23 +56,26 @@ class _ParkingsList extends ConsumerWidget {
 }
 
 class _DataListParkingsTiles extends ConsumerWidget {
-  const _DataListParkingsTiles(this.buildings);
+  const _DataListParkingsTiles(this.parkings);
 
-  final List<ParkingPlace> buildings;
+  final List<ParkingPlace> parkings;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return ListView.builder(
       scrollDirection: Axis.horizontal,
-      itemCount: buildings.length,
+      itemCount: parkings.length,
       itemBuilder: (context, index) {
-        final parking = buildings[index];
+        final parking = parkings[index];
         return MediumLeftPadding(
           child: BuildingCard(
             buildingName: parking.symbol,
             imageUrl: parking.iParkPhotoUrl,
             onTap: () {
               ParkingSection.goToParkingsTab(ref);
+              ref
+                  .watch(activeParkingControllerProvider.notifier)
+                  .selectBuilding(parking);
             },
           ),
         );

@@ -108,6 +108,9 @@ flutter:
     - family: BottomNavBarIcon
       fonts:
         - asset: assets/fonts/BottomNavBarIcon.ttf
+    - family: IParkingIcons
+      fonts:
+        - asset: assets/fonts/IParkingIcons.ttf
 
 flutter_native_splash:
   background_image: assets/splash_screen/native_splash_bg.png
