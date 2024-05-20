@@ -50,11 +50,6 @@ class ParkingsMapController extends _$ParkingsMapController
   GoogleMapController? build() {
     return null;
   }
-
-  @override
-  LatLng getLocation(ParkingPlace item) {
-    return item.location;
-  }
 }
 
 final MapControllers<ParkingPlace> parkingsMapControllers = (

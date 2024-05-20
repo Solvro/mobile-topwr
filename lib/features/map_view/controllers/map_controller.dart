@@ -14,7 +14,6 @@ import 'controllers_set.dart';
 mixin MapController<T extends GoogleNavigable>
     on AutoDisposeNotifier<GoogleMapController?> {
   late final MapControllers<T> mapControllers;
-  LatLng getLocation(T item);
 
   static Future<void> initializeGoogleMapsRenderingAndroid() async {
     final GoogleMapsFlutterPlatform mapsImpl =
@@ -38,7 +37,7 @@ mixin MapController<T extends GoogleNavigable>
       () => state?.animateCamera(
         CameraUpdate.newCameraPosition(
           CameraPosition(
-            target: getLocation(item),
+            target: item.location,
             zoom: MapWidgetConfig.defaultMarkerZoom,
           ),
         ),
