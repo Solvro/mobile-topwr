@@ -17,7 +17,7 @@ class MapWidget<T extends GoogleNavigable> extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncItems = ref.watch(context.mapSourceRepository<T>());
     return switch (asyncItems) {
-      AsyncLoading() => const CircularProgressIndicator(),
+      AsyncLoading() => _MapWidget<T>(const []),
       AsyncError() => _MapWidget<T>(const []),
       AsyncValue(:final value) => _MapWidget<T>(value.whereNonNull.toList()),
     };
