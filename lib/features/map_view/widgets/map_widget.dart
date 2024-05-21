@@ -11,6 +11,7 @@ import '../../../widgets/my_error_widget.dart';
 import '../controllers/bottom_sheet_controller.dart';
 import '../controllers/controllers_set.dart';
 import 'map_config.dart';
+import '../utils/location_permission_status_provider.dart';
 
 class MapWidget<T extends GoogleNavigable> extends ConsumerWidget {
   const MapWidget({super.key});
@@ -28,9 +29,9 @@ class MapWidget<T extends GoogleNavigable> extends ConsumerWidget {
 }
 
 class _MapWidget<T extends GoogleNavigable> extends ConsumerWidget {
-  const _MapWidget(this.value);
+  const _MapWidget(this.items);
 
-  final List<T> value;
+  final List<T> items;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -40,28 +41,33 @@ class _MapWidget<T extends GoogleNavigable> extends ConsumerWidget {
 
     final activeItem = ref.watch(context.activeMarkerController<T>());
 
-    return GoogleMap(
-      mapType: MapWidgetConfig.mapType,
-      initialCameraPosition: MapWidgetConfig.defaultCameraPosition,
-      onMapCreated: mapController.onMapCreated,
-      onTap: mapController.onMapBgTap,
-      markers: value.whereNonNull
-          .map((item) => context.markerBuilder<T>()(
-                item,
-                ref,
-                activeItem == item,
-              ))
-          .toSet(),
-      myLocationEnabled: true,
-      myLocationButtonEnabled: false,
-      mapToolbarEnabled: false,
-      zoomControlsEnabled: false,
-      zoomGesturesEnabled: true,
-      compassEnabled: true,
-      padding: EdgeInsets.only(
-        top: MediaQuery.paddingOf(context).top,
-        bottom: ref.watch(bottomSheetPixelsProvider),
-      ),
-    );
+    final locationStatus = ref.watch(locationPermissionStatusProvider);
+    return switch (locationStatus) {
+      AsyncLoading() => const SizedBox(),
+      AsyncError(:final error) => MyErrorWidget(error),
+      AsyncValue(:final value) => GoogleMap(
+          mapType: MapWidgetConfig.mapType,
+          initialCameraPosition: MapWidgetConfig.defaultCameraPosition,
+          onMapCreated: mapController.onMapCreated,
+          onTap: mapController.onMapBgTap,
+          markers: items
+              .map((item) => context.markerBuilder<T>()(
+                    item,
+                    ref,
+                    activeItem == item,
+                  ))
+              .toSet(),
+          myLocationEnabled: value ?? false,
+          myLocationButtonEnabled: value ?? false,
+          mapToolbarEnabled: false,
+          zoomControlsEnabled: false,
+          zoomGesturesEnabled: true,
+          compassEnabled: true,
+          padding: EdgeInsets.only(
+            top: MediaQuery.paddingOf(context).top,
+            bottom: ref.watch(bottomSheetPixelsProvider),
+          ),
+        ),
+    };
   }
 }
