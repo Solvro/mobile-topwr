@@ -28,9 +28,13 @@ class MapWidget<T extends GoogleNavigable> extends ConsumerWidget {
     );
 
     final activeItem = ref.watch(context.activeMarkerController<T>());
-    return ref.watch(locationPermissionStatusProvider).when(
-      data: (isGranted) {
-        return GoogleMap(
+
+    final locationStatus = ref.watch(locationPermissionStatusProvider);
+    return switch (locationStatus) {
+      AsyncLoading() => const SizedBox(),
+      AsyncError(:final error) => MyErrorWidget(error),
+      AsyncValue(:final value) =>
+        GoogleMap(
           mapType: MapWidgetConfig.mapType,
           initialCameraPosition: MapWidgetConfig.defaultCameraPosition,
           onMapCreated: mapController.onMapCreated,
@@ -43,8 +47,8 @@ class MapWidget<T extends GoogleNavigable> extends ConsumerWidget {
                 activeItem == item,
               ))
               .toSet(),
-          myLocationEnabled: isGranted,
-          myLocationButtonEnabled: isGranted,
+          myLocationEnabled: value ?? false,
+          myLocationButtonEnabled: value ?? false,
           mapToolbarEnabled: false,
           zoomControlsEnabled: false,
           zoomGesturesEnabled: true,
@@ -55,10 +59,7 @@ class MapWidget<T extends GoogleNavigable> extends ConsumerWidget {
                 .top,
             bottom: ref.watch(bottomSheetPixelsProvider),
           ),
-        );
-      },
-      loading: () => const SizedBox(),
-      error: (error, _) => MyErrorWidget(error),
-    );
+        ),
+      };
   }
 }
