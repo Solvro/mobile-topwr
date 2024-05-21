@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -11,7 +10,6 @@ import '../../bottom_nav_bar/nav_bar_config.dart';
 import '../../iparking/controllers.dart';
 import '../../iparking/models/parking_model.dart';
 import '../../iparking/repositories/parkings_repo.dart';
-import '../../iparking/widgets/offline_parkings.dart';
 import 'buildings_section/building_card.dart';
 import 'loading_widgets/scrollable_section_loading.dart';
 import 'paddings.dart';
@@ -46,7 +44,6 @@ class _ParkingsList extends ConsumerWidget {
       AsyncLoading() => const MediumLeftPadding(
           child: ScrollableSectionLoading(),
         ),
-      AsyncError(error: final DioException _) => const OfflineParkings(),
       AsyncError(:final error) => MyErrorWidget(error),
       AsyncValue(:final value) => SmallLeftPadding(
           child: SizedBox(

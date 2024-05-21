@@ -1,17 +1,14 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../config.dart';
 import '../../../utils/where_non_null_iterable.dart';
 import '../../../widgets/my_error_widget.dart';
 import '../controllers/bottom_sheet_controller.dart';
 import '../controllers/controllers_set.dart';
-import 'map_config.dart';
 import '../utils/location_permission_status_provider.dart';
+import 'map_config.dart';
 
 class MapWidget<T extends GoogleNavigable> extends ConsumerWidget {
   const MapWidget({super.key});
@@ -21,8 +18,7 @@ class MapWidget<T extends GoogleNavigable> extends ConsumerWidget {
     final asyncItems = ref.watch(context.mapSourceRepository<T>());
     return switch (asyncItems) {
       AsyncLoading() => const CircularProgressIndicator(),
-      AsyncError(error: final DioException _) => _MapWidget<T>(const []),
-      AsyncError(:final error) => MyErrorWidget(error),
+      AsyncError() => _MapWidget<T>(const []),
       AsyncValue(:final value) => _MapWidget<T>(value.whereNonNull.toList()),
     };
   }

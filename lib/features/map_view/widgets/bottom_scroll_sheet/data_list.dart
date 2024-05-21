@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -18,9 +17,6 @@ class DataSliverList<T extends GoogleNavigable> extends ConsumerWidget {
     final itemsState = ref.watch(context.mapDataController<T>());
     return switch (itemsState) {
       AsyncLoading() => const DataListLoading(),
-      AsyncError(error: final DioException _) => SliverToBoxAdapter(
-          child: context.config<T>().dioExceptionBuilder!.call(context),
-        ),
       AsyncError(:final error) =>
         SliverToBoxAdapter(child: MyErrorWidget(error)),
       AsyncValue(:final value) =>

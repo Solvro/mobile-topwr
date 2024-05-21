@@ -1,6 +1,5 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../iparking/models/parking_model.dart';
 import 'controllers_set.dart';
 
 mixin MapDataController<T extends GoogleNavigable>
