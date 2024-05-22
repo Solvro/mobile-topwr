@@ -1,29 +1,34 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../shared_repositories/buildings_repository/map_buildings_repo.dart';
+import '../utils/google_maps_link_utils.dart';
+import 'controllers_set.dart';
 
-part "active_map_marker_cntrl.g.dart";
-
-@Riverpod(keepAlive: false)
-class ActiveMapMarkerController extends _$ActiveMapMarkerController {
+mixin ActiveMarkerController<T extends GoogleNavigable>
+    on AutoDisposeNotifier<T?> {
   @override
-  Building? build() {
+  T? build() {
     return null;
   }
 
-  void selectBuilding(Building building) {
-    state = building;
+  void selectBuilding(T item) {
+    state = item;
   }
 
   void unselect() {
     state = null;
   }
 
-  void toggleBuilding(Building building) {
-    if (state == building) {
+  void toggleBuilding(T item) {
+    if (state == item) {
       unselect();
     } else {
-      selectBuilding(building);
+      selectBuilding(item);
+    }
+  }
+
+  Future<void> launchLink() async {
+    if (state != null) {
+      return GoogleMapsLinkUtils.navigateTo(state!.location);
     }
   }
 }

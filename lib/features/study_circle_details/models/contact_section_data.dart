@@ -1,20 +1,28 @@
 import 'package:logger/logger.dart';
 import '../../../api_base/schema.graphql.dart';
+import '../../../config.dart';
 
 class ContactSectionData {
-  String? iconUrl;
+  String iconUrl = DetailsScreenConfig.defaultIconUrl;
   String? text;
   String? url;
   Enum$ENUM_COMPONENTINFOINFO_TYPE? type;
 
+  static const  _icons = {
+    "facebook": "assets/icons/ic_fb.png",
+    "instagram": "assets/icons/ic_insta.png",
+    "linkedin": "assets/icons/ic_linkedin.png",
+    "mailto:": "assets/icons/ic_email.png",
+  };
+
   ContactSectionData({
-    required this.iconUrl,
     required this.text,
     required this.url,
     required this.type,
   }) {
     if (url != null) {
       _invalidateUrl();
+      _determineIcon();
     }
   }
 
@@ -30,4 +38,8 @@ class ContactSectionData {
       url = prefix + url!;
     }
   }
+
+void _determineIcon() {
+  iconUrl = _icons.entries.firstWhere((e) => url!.contains(e.key), orElse: () => const MapEntry("", DetailsScreenConfig.defaultIconUrl)).value;
+}
 }

@@ -20,11 +20,11 @@ extension RefIntervalRefresh on Ref {
 }
 
 @riverpod
-Future<List<ParkingPlace>?> parkingsRepo(ParkingsRepoRef ref) async {
+Stream<List<ParkingPlace>?> parkingsRepo(ParkingsRepoRef ref) async* {
   ref.setRefresh(IParkingConfig.parkingsRefreshInterval);
   final response = await ref.postIParkingCommand(
     FetchPlacesCommand(DateTime.now()),
   );
   final list = response.data["places"] as List<dynamic>;
-  return list.map((e) => ParkingPlace.fromJson(e)).toList();
+  yield list.map((e) => ParkingPlace.fromJson(e)).toList();
 }

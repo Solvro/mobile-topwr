@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../utils/context_extensions.dart';
 import '../../../../widgets/search_box_app_bar.dart';
-import '../../controllers/active_map_marker_cntrl.dart';
 import '../../controllers/bottom_sheet_controller.dart';
-import '../../controllers/buildings_listview_controller.dart';
-import 'buildings_list.dart';
+import '../../controllers/controllers_set.dart';
+import '../map_config.dart';
+import 'data_list.dart';
 import 'drag_handle.dart';
 import 'navigate_button.dart';
 
-class SheetLayoutScheme extends ConsumerWidget {
+class SheetLayoutScheme<T extends GoogleNavigable> extends ConsumerWidget {
   const SheetLayoutScheme({
     this.scrollController,
     super.key,
@@ -23,15 +22,15 @@ class SheetLayoutScheme extends ConsumerWidget {
     final appBar = SearchBoxAppBar(
       context,
       primary: false,
-      title: context.localize.buildings_title,
+      title: context.mapViewTexts<T>().title,
       onQueryChanged: ref
-          .watch(buildingsListViewControllerProvider.notifier)
+          .watch(context.mapDataController<T>().notifier)
           .onSearchQueryChanged,
       onSearchboxTap:
           ref.watch(bottomSheetPixelsProvider.notifier).onSearchBoxTap,
       actions: [
-        if (ref.watch(activeMapMarkerControllerProvider) != null)
-          const NavigateButton(),
+        if (ref.watch(context.activeMarkerController<T>()) != null)
+          NavigateButton<T>(),
       ],
     );
 
@@ -48,7 +47,7 @@ class SheetLayoutScheme extends ConsumerWidget {
           toolbarHeight: appBar.preferredSize.height,
           flexibleSpace: appBar,
         ),
-        const BuildingsSliverList(),
+        DataSliverList<T>(),
       ],
     );
   }

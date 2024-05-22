@@ -1,8 +1,30 @@
-# topwr-mobile
+# ToPWR
+
+![ToPWR file cover](/assets/topwr_header.png) 
+## 🇵🇱
+ToPWR to aplikacja mobilna stworzona przez studentów dla studentów Politechniki Wrocławskiej. Licznik dni do sesji, mapka kampusu, informacje o dziekanatach, kółkach naukowych i licznik wolnych miejsc parkingowych na żywo - wszystko, co trzeba w jednym miejscu. Life made easy. 🚀
+
+ToPWR to efekt naszych doświadczeń i pomysłów, którymi chcielibyśmy się podzielić z innymi studentami. Bo przecież każdy z nas zaczynał od zera, więc dlaczego by nie stworzyć czegoś, co ułatwiłoby życie na uczelni? Zależało nam, żeby każdy student miał w kieszeni takiego kumpla, co go wspiera i pomaga ogarnąć to wszystko. Bo studia to nie tylko nauka, to też odkrywanie, poznawanie, czasem trochę gubienie się i to jest w porządku.
+
+## 🇬🇧 
+ToPWR is a mobile application created by students for students of Wrocław University of Science and Technology. A countdown to exams, a campus map, information about dean's offices, student science clubs and live free parking places counter – everything you need in one place. Life made easy. 🚀
+
+ToPWR is the result of our experiences and ideas that we want to share with other students. After all, each of us started from scratch, so why not create something that would make university life easier? We wanted every student to have a friend in their pocket, supporting and helping them manage everything. Because university is not just about studying; it's also about discovering, meeting new people, sometimes getting a little lost, and that's okay.
+
+## Technologies used
+- Flutter
+- Riverpod
+- Freezed
+- graphql_codegen
+- Dio
+- google_maps_flutter
+- fl_chart
+
+## Links
 
 - ToPWR Figma: https://www.figma.com/file/33ofdGYbBzWvDi2MabxIc1/ToPWR-(imported)?type=design&node-id=2%3A2091&mode=design&t=qILflhzpbN8xW8F6-1
 
-# Developent
+## Development
 
 1. ### Google maps API key
 

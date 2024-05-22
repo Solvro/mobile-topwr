@@ -37,7 +37,7 @@ class _CircleDetailsDataView extends ConsumerWidget {
     final state = ref.watch(studyCircleRepositoryProvider(itemId));
     return switch (state) {
       AsyncLoading() => const _StudyCircleDetailsLoading(),
-      AsyncError(:final error) => MyErrorWidget(context.localize.study_circles_section_error),
+      AsyncError(:final error) => MyErrorWidget(error),
       AsyncValue(:final value) => CustomScrollView(slivers: [
           SliverPersistentHeader(
               delegate: SliverHeaderSection(
@@ -63,7 +63,6 @@ class _CircleDetailsDataView extends ConsumerWidget {
                 list: value?.infoSection
                         ?.expand((e) => e?.info ?? [])
                         .map((a) => ContactSectionData(
-                              iconUrl: a?.icon?.url,
                               text: a?.visibleText,
                               url: a?.value,
                               type: a?.type,

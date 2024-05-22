@@ -1,14 +1,17 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import '../../map_view/controllers/controllers_set.dart';
 import '../api_client/iparking_client.dart';
 
 part "parking_model.freezed.dart";
 part "parking_model.g.dart";
 
 @freezed
-class ParkingPlace with _$ParkingPlace {
+class ParkingPlace with _$ParkingPlace implements GoogleNavigable {
   const ParkingPlace._();
 
+  @Implements<GoogleNavigable>()
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory ParkingPlace({
     required String id,
@@ -36,5 +39,44 @@ class ParkingPlace with _$ParkingPlace {
 
   String get iParkPhotoUrl {
     return IParkingConfig.rootUrl + photo.trim();
+  }
+
+  double get latitude => double.tryParse(geoLat) ?? 0;
+  double get longitude => double.tryParse(geoLan) ?? 0;
+
+  @override
+  LatLng get location => LatLng(latitude, longitude);
+
+  String get addresFormatted =>
+      address.replaceFirst(",", "\n").replaceAll("\n ", "\n");
+
+  static const parkingPrefx = "Parking";
+  String get nameNormalized =>
+      name.startsWith(parkingPrefx) ? name : "$parkingPrefx $name";
+
+  String get openingHours =>
+      "${openHour?.formatIParkingDate ?? "???"} - ${closeHour?.formatIParkingDate ?? "???"}";
+
+  String get counterText => "$numberOfPlaces ${trend.dashForm}";
+}
+
+extension _FormatIParkingDate on String {
+  String get formatIParkingDate {
+    return substring(0, length - 3);
+  }
+}
+
+extension TrendDash on String {
+  String get dashForm {
+    switch (this) {
+      case '0':
+        return "-";
+      case '1':
+        return "/";
+      case '-1':
+        return "\\";
+      default:
+        return "?";
+    }
   }
 }

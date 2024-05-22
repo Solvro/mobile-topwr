@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../shared_repositories/buildings_repository/building_model.dart';
 import '../../../../shared_repositories/buildings_repository/map_buildings_repo.dart';
 import '../../../../utils/context_extensions.dart';
 import '../../../../utils/where_non_null_iterable.dart';
@@ -8,7 +9,7 @@ import '../../../../widgets/my_error_widget.dart';
 import '../../../../widgets/subsection_header.dart';
 import '../../../bottom_nav_bar/bottom_nav_bar_controller.dart';
 import '../../../bottom_nav_bar/nav_bar_config.dart';
-import '../../../map_view/controllers/active_map_marker_cntrl.dart';
+import '../../../buildings_map/controllers.dart';
 import '../loading_widgets/scrollable_section_loading.dart';
 import '../paddings.dart';
 import 'building_card.dart';
@@ -56,7 +57,7 @@ class _BuildingsList extends ConsumerWidget {
 class _DataListBuildingsTiles extends ConsumerWidget {
   const _DataListBuildingsTiles(this.buildings);
 
-  final List<Building> buildings;
+  final List<BuildingModel> buildings;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -72,7 +73,7 @@ class _DataListBuildingsTiles extends ConsumerWidget {
             onTap: () {
               BuildingsSection.goToMapTab(ref);
               ref
-                  .watch(activeMapMarkerControllerProvider.notifier)
+                  .watch(activeBuildingControllerProvider.notifier)
                   .selectBuilding(mapItem);
             },
           ),

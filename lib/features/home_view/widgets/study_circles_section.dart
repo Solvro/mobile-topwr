@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../../../config.dart';
 import '../../../utils/context_extensions.dart';
 import '../../../utils/where_non_null_iterable.dart';
@@ -45,8 +46,7 @@ class _StudyCirclesList extends ConsumerWidget {
               top: HomeScreenConfig.paddingMedium),
           child: BigScrollableSectionLoading(),
         ),
-      AsyncError(:final error) =>
-        MyErrorWidget(context.localize.study_circles_section_error),
+      AsyncError(:final error) => MyErrorWidget(error),
       AsyncValue(:final value) => Container(
           padding: const EdgeInsets.only(
             left: HomeScreenConfig.paddingSmall,

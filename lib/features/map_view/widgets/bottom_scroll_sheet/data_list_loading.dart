@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../../config.dart';
 import '../../../../widgets/loading_widgets/specific_imitations/wide_tile_loading.dart';
 
-class BuildingsListLoading extends StatelessWidget {
-  const BuildingsListLoading({super.key});
+class DataListLoading extends StatelessWidget {
+  const DataListLoading({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -16,7 +16,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 0.7.4+14
+version: 0.8.0+15
 
 environment:
   sdk: ">=3.3.0 <4.0.0"
@@ -55,6 +55,7 @@ dependencies:
   json_annotation: ^4.8.1
   collection: ^1.18.0
   fl_chart: ^0.67.0
+  permission_handler: ^11.3.1
 
 dependency_overrides:
   analyzer: ^6.4.1
@@ -91,6 +92,11 @@ flutter:
     - assets/map_markers/map_marker.png
     - assets/map_markers/active_map_marker.png
     - assets/search_box/vectorsearch.svg
+    - assets/icons/ic_email.png
+    - assets/icons/ic_fb.png
+    - assets/icons/ic_insta.png
+    - assets/icons/ic_linkedin.png
+    - assets/icons/ic_web.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
@@ -103,6 +109,9 @@ flutter:
     - family: BottomNavBarIcon
       fonts:
         - asset: assets/fonts/BottomNavBarIcon.ttf
+    - family: IParkingIcons
+      fonts:
+        - asset: assets/fonts/IParkingIcons.ttf
 
 flutter_native_splash:
   background_image: assets/splash_screen/native_splash_bg.png
