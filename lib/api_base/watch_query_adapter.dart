@@ -5,18 +5,33 @@ import 'gql_client_provider.dart';
 import 'ttl/ttl_config.dart';
 import 'ttl/ttl_service.dart';
 
-extension _WatchQueryStreamAdapter on Ref {
-  Stream<QueryResult<T>> watchQueryStreamAdapter<T>(
+class GqlOfflineException implements Exception {
+  const GqlOfflineException(this.ttlKey);
+  final TtlKey ttlKey;
+}
+
+extension _WatchQueryStreamAdapter<T> on Ref {
+  void handleErrors(QueryResult<T> event, TtlKey ttlKey) {
+    if (!event.hasException) return;
+
+    if (event.exception?.linkException != null) {
+      throw GqlOfflineException(ttlKey);
+    }
+
+    throw Exception(
+      event.exception,
+    ); //rethrow GraphQL Errors as not silent ones
+  }
+
+  Stream<QueryResult<T>> watchQueryStreamAdapter(
     GraphQLClient client,
     WatchQueryOptions<T> options,
+    TtlKey ttlKey,
   ) {
     final observableQuery = client.watchQuery(options);
     onDispose(observableQuery.close);
     return observableQuery.stream.map((event) {
-      if (event.hasException) {
-        throw Exception(
-            event.exception); //rethrow GraphQL Errors as not silent ones
-      }
+      handleErrors(event, ttlKey);
       return event;
     }).where(
       (event) => event.isNotLoading,
@@ -36,6 +51,7 @@ extension TTLWatchQueryAdapter on AutoDisposeStreamProviderRef {
     yield* watchQueryStreamAdapter(
       apiClient,
       newOptions,
+      ttlKey,
     )
         .asyncMap(read(ttlService.notifier).interceptAndSaveTimestamps)
         .map((event) => event.parsedData);

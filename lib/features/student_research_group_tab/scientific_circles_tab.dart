@@ -42,8 +42,7 @@ class _ScientificCirclesBody extends ConsumerWidget {
         height: 76.0,
         child: switch (tags) {
           AsyncLoading() => const TagsLoading(),
-          AsyncError() =>
-            MyErrorWidget(context.localize.study_circles_section_error),
+          AsyncError(:final error) => MyErrorWidget(error),
           AsyncValue(:final value) => TagsRow(
               allTags: value.whereNonNull.toList(),
             )

@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../theme/app_theme.dart';
-import '../../utils/context_extensions.dart';
-import '../../widgets/my_text_button.dart';
+import '../../../theme/app_theme.dart';
+import '../../../utils/context_extensions.dart';
+import '../../../widgets/my_text_button.dart';
 
-class OfflineMessge extends StatelessWidget {
-  const OfflineMessge(this.errMessage, {super.key, this.onRefresh});
+class OfflineMessage extends StatelessWidget {
+  const OfflineMessage(this.errMessage, {super.key, this.onRefresh});
   final String errMessage;
   final VoidCallback? onRefresh;
 
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 8),

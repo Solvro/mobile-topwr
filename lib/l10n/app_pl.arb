@@ -27,9 +27,6 @@
   "contact": "Kontakt",
   "about_us": "O nas",
   "navigate" : "Nawiguj",
-  "home_screen_greeting_error": "Wystąpił błąd podczas pobierania danych dotyczących parzystości tygodnia. Spróbuj ponownie później.",
-  "study_circles_section_error": "Wystąpił błąd podczas pobierania danych dotyczących kół naukowych. Spróbuj ponownie później",
-  "news_section_error": "Wystąpił błąd podczas pobierania danych dotyczących wiadomości. Spróbuj ponownie później",
   "building_prefix": "Budynek",
   "department_not_found": "Nie znaleziono wydziału",
   "type_sci_circle": "Wpisz nazwę koła naukowego",
@@ -42,6 +39,13 @@
   "freePlaces": "Wolne miejsca",
   "noChartData": "Dane wykresów są niedostępne w nocy",
   "offlineParkings": "Błąd połączenia: niestety, moduł parkingów nie może poprawnie działać bez połączenia internetowego",
-  "refresh": "Odśwież"
-
+  "refresh": "Odśwież",
+  "offline_error_message": "Wystąpił błąd podczas pobierania danych dotyczących ",
+  "offline_try_again":"Spróbuj ponownie później",
+  "offline_news": "wiadomości",
+  "offline_sci_clubs": "kół naukowych",
+  "offline_week_parity":"parzystości tygodnia",
+  "offline_buildings":"budynków",
+  "offline_departments":"wydziałów",
+  "offline_exam_session":"sesji"
 }

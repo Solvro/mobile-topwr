@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../../config.dart';
 import '../../theme/app_theme.dart';
 import '../../utils/context_extensions.dart';
@@ -36,8 +37,7 @@ class _CircleDetailsDataView extends ConsumerWidget {
     final state = ref.watch(studyCircleRepositoryProvider(itemId));
     return switch (state) {
       AsyncLoading() => const _StudyCircleDetailsLoading(),
-      AsyncError() =>
-        MyErrorWidget(context.localize.study_circles_section_error),
+      AsyncError(:final error) => MyErrorWidget(error),
       AsyncValue(:final value) => CustomScrollView(slivers: [
           SliverPersistentHeader(
               delegate: SliverHeaderSection(
