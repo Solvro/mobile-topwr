@@ -41,7 +41,7 @@
   "buildings_title": "Budynki",
   "freePlaces": "Wolne miejsca",
   "noChartData": "Dane wykresów są niedostępne w nocy",
-  "offlineParkings": "Błąd połączenia: niestety, moduł parkingów nie może poprawnie działać, bez połączenia internetowego",
+  "offlineParkings": "Błąd połączenia: niestety, moduł parkingów nie może poprawnie działać bez połączenia internetowego",
   "refresh": "Odśwież"
 
 }
