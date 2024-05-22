@@ -36,7 +36,8 @@ class ParkingChart extends ConsumerWidget {
       AsyncError(:final error) => Material(
           borderRadius: const BorderRadius.all(WideTileCardConfig.radius),
           color: context.colorTheme.greyLight.withOpacity(0.8),
-          child: MyErrorWidget(error)),
+          child: MyErrorWidget(error),
+        ),
       AsyncValue(:final value) => Builder(builder: (context) {
           if (value == null) return const SizedBox.shrink();
           final chartPoints = value.toChartPoints().toList();

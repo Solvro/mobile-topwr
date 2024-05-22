@@ -30,16 +30,15 @@ class DepartmentSection extends ConsumerWidget {
           },
         ),
         SmallLeftPadding(
-          child: SizedBox(
-              height: 120,
-              child: switch (state) {
-                AsyncLoading() => const MediumLeftPadding(
-                    child: ScrollableSectionLoading(),
-                  ),
-                AsyncError(:final error) => MyErrorWidget(error),
-                AsyncValue(:final value) =>
-                  _DepartmentsDataList(value.whereNonNull.toList()),
-              }),
+          child: switch (state) {
+            AsyncLoading() => const MediumLeftPadding(
+                child: ScrollableSectionLoading(),
+              ),
+            AsyncError(:final error) => MyErrorWidget(error),
+            AsyncValue(:final value) => SizedBox(
+                height: 120,
+                child: _DepartmentsDataList(value.whereNonNull.toList())),
+          },
         )
       ],
     );
