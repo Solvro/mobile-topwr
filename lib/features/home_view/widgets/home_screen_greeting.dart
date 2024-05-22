@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../../../theme/app_theme.dart';
 import '../../../utils/context_extensions.dart';
-import '../utils/format_weekday.dart';
 import '../../../widgets/my_error_widget.dart';
 import '../repositories/week_parity_exceptions_repository/get_week_parity_exceptions_repository.dart';
+import '../utils/format_weekday.dart';
 import 'loading_widgets/horizontal_rectangular_section_loading.dart';
 
 class Greeting extends ConsumerWidget {
@@ -20,8 +21,7 @@ class Greeting extends ConsumerWidget {
       AsyncLoading() => const Padding(
           padding: EdgeInsets.symmetric(horizontal: 16),
           child: HorizontalRectangularSectionLoading()),
-      AsyncError(:final error) =>
-        MyErrorWidget(context.localize.home_screen_greeting_error),
+      AsyncError(:final error) => MyErrorWidget(error),
       AsyncValue(:final value) => Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24),
           child: Column(

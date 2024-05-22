@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../../../config.dart';
 import '../../../utils/context_extensions.dart';
 import '../../../utils/where_non_null_iterable.dart';
@@ -43,8 +44,7 @@ class _NewsList extends ConsumerWidget {
               top: HomeScreenConfig.paddingMedium),
           child: BigScrollableSectionLoading(),
         ),
-      AsyncError(:final error) =>
-        MyErrorWidget(context.localize.news_section_error),
+      AsyncError(:final error) => MyErrorWidget(error),
       AsyncValue(:final value) => Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

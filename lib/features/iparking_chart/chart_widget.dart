@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../config.dart';
 import '../../theme/app_theme.dart';
 import '../../utils/context_extensions.dart';
 import '../../widgets/loading_widgets/simple_previews/preview_card_loading.dart';
@@ -32,7 +33,11 @@ class ParkingChart extends ConsumerWidget {
             color: context.colorTheme.greyPigeon.withOpacity(0.1),
           ),
         ),
-      AsyncError(:final error) => MyErrorWidget(error.toString()),
+      AsyncError(:final error) => Material(
+          borderRadius: const BorderRadius.all(WideTileCardConfig.radius),
+          color: context.colorTheme.greyLight.withOpacity(0.8),
+          child: MyErrorWidget(error),
+        ),
       AsyncValue(:final value) => Builder(builder: (context) {
           if (value == null) return const SizedBox.shrink();
           final chartPoints = value.toChartPoints().toList();

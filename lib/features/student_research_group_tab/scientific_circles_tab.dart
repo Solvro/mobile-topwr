@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../utils/context_extensions.dart';
 import '../../utils/where_non_null_iterable.dart';
-import '../../widgets/my_error_widget.dart';
 import '../../widgets/search_box_app_bar.dart';
 import 'repositories/scientific_circles_tab_controller.dart';
 import 'repositories/tags_repository.dart';
@@ -42,8 +41,7 @@ class _ScientificCirclesBody extends ConsumerWidget {
         height: 76.0,
         child: switch (tags) {
           AsyncLoading() => const TagsLoading(),
-          AsyncError() =>
-            MyErrorWidget(context.localize.study_circles_section_error),
+          AsyncError() => const SizedBox.shrink(),
           AsyncValue(:final value) => TagsRow(
               allTags: value.whereNonNull.toList(),
             )
