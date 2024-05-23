@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'nested_navigator.dart';
 import '../../theme/app_theme.dart';
+import 'android_pop_bug_workaround.dart';
 import 'bottom_nav_bar_controller.dart';
 import 'nav_bar_config.dart';
+import 'nested_navigator.dart';
 
 class RootViewWithBottomNavBar extends ConsumerWidget {
   const RootViewWithBottomNavBar({super.key});
@@ -32,11 +33,14 @@ class RootViewWithBottomNavBar extends ConsumerWidget {
     final selectedTab = ref.watch(bottomNavBarControllerProvider);
     final navigator = ref.watch(navigatorProvider);
     return Scaffold(
-        body: NavigatorPopHandler(
-          onPop: navigator.handleNestedPop,
-          child: Navigator(
-            key: navigator.navigatorKey,
-            onGenerateRoute: navigator.onGenerateRoute,
+        body: PopScope(
+          canPop: !navigator.androidSpecialPopTreatment,
+          child: NavigatorPopHandler(
+            onPop: navigator.handleNestedPop,
+            child: Navigator(
+              key: navigator.navigatorKey,
+              onGenerateRoute: navigator.onGenerateRoute,
+            ),
           ),
         ),
         bottomNavigationBar: Theme(
