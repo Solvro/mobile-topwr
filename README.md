@@ -28,6 +28,10 @@ We're using many UI/UX/graphic designs and assets made by @domkakromka, @AniaM72
 
 Read more at: https://solvro.pwr.edu.pl/portfolio/to-pwr
 
+
+      
+
+
 ## Technologies used
 - Flutter
 - Riverpod
@@ -37,15 +41,15 @@ Read more at: https://solvro.pwr.edu.pl/portfolio/to-pwr
 - google_maps_flutter
 - fl_chart
 
-  
 ## Links
-- ToPWR Figma: https://www.figma.com/file/33ofdGYbBzWvDi2MabxIc1/ToPWR-(imported)?type=design&node-id=2%3A2091&mode=design&t=qILflhzpbN8xW8F6-1
+- https://www.figma.com/file/33ofdGYbBzWvDi2MabxIc1/ToPWR-(imported)?type=design&node-id=2%3A2091&mode=design&t=qILflhzpbN8xW8F6-1
 - https://solvro.pwr.edu.pl/blog/fix-flutter-android-back-btn
 
 
- 
-## Development
+# Development
 
+
+ 
 1. ### Google maps API key
 
    There are google maps api keys already defined, but their usage is restricted on Google Maps Panel to specific package/bundle ids.
