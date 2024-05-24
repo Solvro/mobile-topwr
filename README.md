@@ -11,6 +11,23 @@ ToPWR is a mobile application created by students for students of Wrocław Unive
 
 ToPWR is the result of our experiences and ideas that we want to share with other students. After all, each of us started from scratch, so why not create something that would make university life easier? We wanted every student to have a friend in their pocket, supporting and helping them manage everything. Because university is not just about studying; it's also about discovering, meeting new people, sometimes getting a little lost, and that's okay.
 
+ 
+## Projects history
+It was initially created by KN Solvro members in native mobile technologies (Android & iOS) and Strapi backend back in 2022 (v0.5.1 was released in 3.10.2022). 
+
+Now we're redesigning and remaking it with fascinating new features in Flutter and Directus CMS, and we're coming close to our first release 🚀. Stay tuned 😎.
+
+## Current team
+- @AleksaZakrzewska - Project Manager
+- @simon-the-shark - Flutter Techlead
+- @mikolaj-jalocha - Flutter Developer
+- @gry-mar - Flutter Developer, UI/UX Designer
+- @kamilfedio - Flutter Developer
+
+We're using many UI/UX/graphic designs and assets made by @domkakromka, @AniaM727 
+
+Read more at: https://solvro.pwr.edu.pl/portfolio/to-pwr
+
 ## Technologies used
 - Flutter
 - Riverpod
@@ -20,10 +37,13 @@ ToPWR is the result of our experiences and ideas that we want to share with othe
 - google_maps_flutter
 - fl_chart
 
+  
 ## Links
-
 - ToPWR Figma: https://www.figma.com/file/33ofdGYbBzWvDi2MabxIc1/ToPWR-(imported)?type=design&node-id=2%3A2091&mode=design&t=qILflhzpbN8xW8F6-1
+- https://solvro.pwr.edu.pl/blog/fix-flutter-android-back-btn
 
+
+ 
 ## Development
 
 1. ### Google maps API key
