@@ -18,13 +18,13 @@ It was initially created by KN Solvro members in native mobile technologies (And
 Now we're redesigning and remaking it with fascinating new features in Flutter and Directus CMS, and we're coming close to our first release 🚀. Stay tuned 😎.
 
 ## Current team
-- @AleksaZakrzewska - Project Manager
-- @simon-the-shark - Flutter Techlead
-- @mikolaj-jalocha - Flutter Developer
-- @gry-mar - Flutter Developer, UI/UX Designer
-- @kamilfedio - Flutter Developer
+- [@AleksaZakrzewska](https://github.com/AleksaZakrzewska) - Project Manager
+- [@simon-the-shark](https://github.com/simon-the-shark) - Flutter Techlead
+- [@mikolaj-jalocha](https://github.com/mikolaj-jalocha) - Flutter Developer
+- [@gry-mar](https://github.com/gry-mar) - Flutter Developer, UI/UX Designer
+- [@kamilfedio](https://github.com/kamilfedio) - Flutter Developer
 
-We're using many UI/UX/graphic designs and assets made by @domkakromka, @AniaM727 
+We're using many UI/UX/graphic designs and assets made by [@domkakromka](https://github.com/domkakromka), [@AniaM727](https://github.com/AniaM727)
 
 Read more at: https://solvro.pwr.edu.pl/portfolio/to-pwr
 
@@ -56,7 +56,7 @@ Read more at: https://solvro.pwr.edu.pl/portfolio/to-pwr
 
    #### Android only
 
-   On Android, apart from package id, restriction is for specific signing key's SHA1 fingerprints. So to test on Android, your debug signing key's fingerprint must be added to the maps panel. (Contact @simon-the-shark to include yours)
+   On Android, apart from package id, restriction is for specific signing key's SHA1 fingerprints. So to test on Android, your debug signing key's fingerprint must be added to the maps panel. (Contact [@simon-the-shark](https://github.com/simon-the-shark) to include yours)
 
    Web key is restricted for localhost usage only
 
@@ -88,7 +88,7 @@ dart run build_runner watch
 4.  ### It's now possible to run or build the app in the usual way
     _Rebuilds are necessary after any updates or changes to affected files (`watch` command does it for you)_
 
-#### Additional notes:
+### Additional notes:
 
 1. App's custom theme usage instructions: https://github.com/Solvro/topwr-mobile/tree/main/lib/theme
 2. Introductions to internationalizing flutter apps (making them available in different languages): https://docs.flutter.dev/ui/accessibility-and-internationalization/internationalization
