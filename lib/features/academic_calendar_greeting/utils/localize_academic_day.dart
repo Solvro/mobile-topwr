@@ -5,22 +5,35 @@ import '../model/academic_day.dart';
 import '../model/weekday_enum.dart';
 
 extension LocalizeWeekDay on WeekdayEnum {
-  String localize(BuildContext context) {
+  String localizeEven(BuildContext context) {
     return switch (this) {
-      WeekdayEnum.mon => context.localize.monday,
-      WeekdayEnum.tue => context.localize.tuesday,
-      WeekdayEnum.wed => context.localize.wednesday,
-      WeekdayEnum.thu => context.localize.thursday,
-      WeekdayEnum.fri => context.localize.friday,
-      WeekdayEnum.sat => context.localize.saturday,
-      WeekdayEnum.sun => context.localize.sunday,
+      WeekdayEnum.mon => context.localize.even_monday,
+      WeekdayEnum.tue => context.localize.even_tuesday,
+      WeekdayEnum.wed => context.localize.even_wednesday,
+      WeekdayEnum.thu => context.localize.even_thursday,
+      WeekdayEnum.fri => context.localize.even_friday,
+      WeekdayEnum.sat => context.localize.even_saturday,
+      WeekdayEnum.sun => context.localize.even_sunday,
+    };
+  }
+
+  String localizeOdd(BuildContext context) {
+    return switch (this) {
+      WeekdayEnum.mon => context.localize.odd_monday,
+      WeekdayEnum.tue => context.localize.odd_tuesday,
+      WeekdayEnum.wed => context.localize.odd_wednesday,
+      WeekdayEnum.thu => context.localize.odd_thursday,
+      WeekdayEnum.fri => context.localize.odd_friday,
+      WeekdayEnum.sat => context.localize.odd_saturday,
+      WeekdayEnum.sun => context.localize.odd_sunday,
     };
   }
 }
 
 extension LocalizeAcademicDay on AcademicDay {
   String localize(BuildContext context) {
-    final prefix = isEven ? context.localize.even_f : context.localize.odd_f;
-    return prefix + weekday.localize(context);
+    return isEven
+        ? weekday.localizeEven(context)
+        : weekday.localizeOdd(context);
   }
 }
