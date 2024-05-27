@@ -18,6 +18,8 @@ extension AcadWeekExceptionExtraAttrs on List<AcademicWeekException> {
     if (changedDayData == null) return null;
     return AcademicDay(
       isEven: changedDayData.changedDayIsEven,
+      isExamSession: false,
+      isHolidays: false,
       weekday: WeekdayEnum.fromJson(changedDayData.changedWeekday),
     );
   }

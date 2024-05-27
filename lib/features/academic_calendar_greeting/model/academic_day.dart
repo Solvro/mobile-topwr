@@ -9,6 +9,8 @@ part "academic_day.g.dart";
 class AcademicDay with _$AcademicDay {
   const factory AcademicDay({
     required bool isEven,
+    required bool isHolidays,
+    required bool isExamSession,
     required WeekdayEnum weekday,
   }) = _AcademicDay;
 
