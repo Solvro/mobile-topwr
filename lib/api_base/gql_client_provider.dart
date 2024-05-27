@@ -14,11 +14,7 @@ final gqlClientProvider = Provider((ref) async {
   final hiveCache = await ref.watch(_hiveCacheBoxProvider);
   return GraphQLClient(
     cache: hiveCache,
-    link: AuthLink(
-      getToken: () => ApiBaseConfig.authHeaderPrefix + ApiBaseEnv.apiKey,
-    ).concat(
-      HttpLink(ApiBaseEnv.apiUrl),
-    ),
+    link: HttpLink(ApiBaseEnv.apiUrl),
     defaultPolicies: DefaultPolicies(
       query: Policies(
         fetch: FetchPolicy.networkOnly,
