@@ -1,5 +1,5 @@
 import '../repository/academic_calendar_repo.dart';
-import '../utils/datetime_utils.dart';
+import '../../../utils/datetime_utils.dart';
 import 'academic_day.dart';
 import 'academic_week_exception.dart';
 import 'weekday_enum.dart';

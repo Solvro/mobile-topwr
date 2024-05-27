@@ -1,7 +1,7 @@
 import 'package:collection/collection.dart';
 
+import '../../../utils/datetime_utils.dart';
 import '../repository/academic_calendar_repo.dart';
-import '../utils/datetime_utils.dart';
 import 'academic_day.dart';
 import 'weekday_enum.dart';
 
