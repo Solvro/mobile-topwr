@@ -6,14 +6,16 @@ import 'getExamDate.graphql.dart';
 
 part 'exam_date_repository.g.dart';
 
+typedef AcademicCalendar = Query$GetExamDate$AcademicCalendarData;
+
 @riverpod
-Stream<DateTime?> examSessionCountdownRepository(
+Stream<AcademicCalendar?> examSessionCountdownRepository(
     ExamSessionCountdownRepositoryRef ref) async* {
   final stream = ref.watchQueryWithCache(
     WatchOptions$Query$GetExamDate(eagerlyFetchResults: true),
     TtlKey.examSessionCountdownRepository,
   );
   yield* stream.map(
-    (event) => event?.academicYearEndDate?.endDate,
+    (event) => event?.AcademicCalendarData,
   );
 }

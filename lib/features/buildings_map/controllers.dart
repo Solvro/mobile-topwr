@@ -34,7 +34,6 @@ class BuildingsListViewController extends _$BuildingsListViewController
   @override
   bool filterMethod(BuildingModel item, String filterStr) {
     return item.name.toLowerCase().contains(filterStr) ||
-        item.code.toLowerCase().contains(filterStr) ||
         (item.addres?.toLowerCase().contains(filterStr) ?? false);
   }
 }

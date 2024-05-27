@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../config.dart';
 import '../../../utils/context_extensions.dart';
+import '../../../utils/directus_assets_url.dart';
 import '../../../utils/where_non_null_iterable.dart';
 import '../../../widgets/big_preview_card.dart';
 import '../../../widgets/my_error_widget.dart';
@@ -78,9 +79,9 @@ class _NewsDataList extends StatelessWidget {
           return MediumLeftPadding(
             child: BigPreviewCard(
               title: value[index].title,
-              shortDescription: value[index].shortDescription ?? "",
-              photoUrl: value[index].photo?.previewUrl,
-              date: value[index].published_at,
+              shortDescription: value[index].content ?? "",
+              photoUrl: value[index].cover.directusUrl,
+              date: value[index].date_created,
               onClick: () {},
             ),
           );

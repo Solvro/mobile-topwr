@@ -7,12 +7,11 @@ class BuildingModel extends Building implements GoogleNavigable {
   BuildingModel.from(Building building)
       : super(
           id: building.id,
-          code: building.code,
           name: building.name,
           longitude: building.longitude,
           latitude: building.latitude,
           addres: building.addres,
-          photo: building.photo,
+          cover: building.cover,
         );
 
   @override

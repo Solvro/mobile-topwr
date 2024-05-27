@@ -7,7 +7,7 @@ import 'getScientificCircles.graphql.dart';
 part 'scientific_circles_repository.g.dart';
 
 typedef ScientificCircle
-    = Query$GetScientificCircles$scientificCircles; // just alias for shorter type name
+    = Query$GetScientificCircles$Scientific_Circles; // just alias for shorter type name
 
 @riverpod
 Stream<List<ScientificCircle?>?> scientificCirclesRepository(
@@ -17,6 +17,6 @@ Stream<List<ScientificCircle?>?> scientificCirclesRepository(
     TtlKey.sciCirclesRepository,
   );
   yield* stream.map(
-    (event) => event?.scientificCircles,
+    (event) => event?.Scientific_Circles,
   );
 }

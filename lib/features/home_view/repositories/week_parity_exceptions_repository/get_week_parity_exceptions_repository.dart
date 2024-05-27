@@ -1,13 +1,10 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../../api_base/ttl/ttl_config.dart';
-import '../../../../api_base/watch_query_adapter.dart';
 import 'getWeekParityExceptions.graphql.dart';
 
 part 'get_week_parity_exceptions_repository.g.dart';
 
-typedef WeekParityExceptions
-    = Query$GetWeekParityExceptions$weekDayException$weekday;
+typedef WeekParityExceptions = Query$GetWeekParityExceptions;
 
 @riverpod
 Stream<List<WeekParityExceptions?>?> getWeekParityExceptionsRepository(

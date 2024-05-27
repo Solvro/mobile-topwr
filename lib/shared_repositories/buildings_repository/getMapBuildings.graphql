@@ -1,5 +1,6 @@
 query GetMapBuildings {
   Buildings {
+    id
     latitude
     longitude
     name

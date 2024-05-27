@@ -3,5 +3,6 @@ query GetStudyCirclesPreview {
     shortDescription
     name
     cover
+    id
   }
 }

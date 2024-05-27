@@ -1,14 +1,13 @@
-import 'package:logger/logger.dart';
-import '../../../api_base/schema.graphql.dart';
+import 'package:collection/collection.dart';
+
 import '../../../config.dart';
 
 class ContactSectionData {
-  String iconUrl = DetailsScreenConfig.defaultIconUrl;
+  String iconUrl;
   String? text;
   String? url;
-  Enum$ENUM_COMPONENTINFOINFO_TYPE? type;
 
-  static const  _icons = {
+  static const _icons = {
     "facebook": "assets/icons/ic_fb.png",
     "instagram": "assets/icons/ic_insta.png",
     "linkedin": "assets/icons/ic_linkedin.png",
@@ -18,28 +17,11 @@ class ContactSectionData {
   ContactSectionData({
     required this.text,
     required this.url,
-    required this.type,
-  }) {
-    if (url != null) {
-      _invalidateUrl();
-      _determineIcon();
-    }
-  }
+  }) : iconUrl = _determineIcon(url);
 
-  void _invalidateUrl() {
-    String prefix = switch (type) {
-      Enum$ENUM_COMPONENTINFOINFO_TYPE.Email => 'mailto:',
-      Enum$ENUM_COMPONENTINFOINFO_TYPE.PhoneNumber => 'tel:',
-      Enum$ENUM_COMPONENTINFOINFO_TYPE.Website => 'https://',
-      _ => ""
-    };
-    if (url?.startsWith(prefix) == false) {
-      Logger().w("Following url: $url is not properly formatted.");
-      url = prefix + url!;
-    }
+  static String _determineIcon(String? url) {
+    if (url == null) return DetailsScreenConfig.defaultIconUrl;
+    return _icons.entries.firstWhereOrNull((e) => url.contains(e.key))?.value ??
+        DetailsScreenConfig.defaultIconUrl;
   }
-
-void _determineIcon() {
-  iconUrl = _icons.entries.firstWhere((e) => url!.contains(e.key), orElse: () => const MapEntry("", DetailsScreenConfig.defaultIconUrl)).value;
-}
 }

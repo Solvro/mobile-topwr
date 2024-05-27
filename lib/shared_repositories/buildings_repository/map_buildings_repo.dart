@@ -2,13 +2,12 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../api_base/watch_query_adapter.dart';
 import '../../api_base/ttl/ttl_config.dart';
-import '../../utils/where_non_null_iterable.dart';
 import 'building_model.dart';
 import 'getMapBuildings.graphql.dart';
 
 part 'map_buildings_repo.g.dart';
 
-typedef Building = Query$GetMapBuildings$maps;
+typedef Building = Query$GetMapBuildings$Buildings;
 
 @riverpod
 Stream<List<BuildingModel?>?> mapBuildingsRepository(
@@ -19,6 +18,6 @@ Stream<List<BuildingModel?>?> mapBuildingsRepository(
   );
 
   yield* stream.map(
-    (event) => event?.maps?.whereNonNull.map(BuildingModel.from).toList(),
+    (event) => event?.Buildings.map(BuildingModel.from).toList(),
   );
 }

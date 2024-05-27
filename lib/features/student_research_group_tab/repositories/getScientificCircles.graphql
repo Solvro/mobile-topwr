@@ -1,7 +1,10 @@
 query GetScientificCircles {
   Scientific_Circles {
+    id
     name
-    department
+    department {
+      name
+    }
     tags {
       Tags_id {
         id

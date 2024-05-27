@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../config.dart';
 import '../../../utils/context_extensions.dart';
+import '../../../utils/directus_assets_url.dart';
 import '../../../utils/where_non_null_iterable.dart';
 import '../../../widgets/big_preview_card.dart';
 import '../../../widgets/my_error_widget.dart';
@@ -77,8 +78,8 @@ class _StudyCirclesDataList extends ConsumerWidget {
           return MediumLeftPadding(
             child: BigPreviewCard(
                 title: circle.name,
-                shortDescription: circle.description,
-                photoUrl: circle.backgroundPhoto?.url,
+                shortDescription: circle.shortDescription ?? "",
+                photoUrl: circle.cover.directusUrl,
                 onClick: () {
                   ref
                       .read(navigatorProvider)

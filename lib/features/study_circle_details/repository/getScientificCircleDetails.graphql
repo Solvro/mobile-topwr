@@ -8,5 +8,9 @@ query GetScientificCircleDetails($id: ID!) {
       name
       link
     }
+    logo
+    department {
+      name
+    }
   }
 }
