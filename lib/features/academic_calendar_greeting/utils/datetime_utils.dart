@@ -1,3 +1,5 @@
+DateTime get now => DateTime.now();
+
 extension DateTimeUtils on DateTime {
   DateTime findMondayOfTheWeek() {
     final difference = weekday - DateTime.monday;
@@ -10,4 +12,8 @@ extension DateTimeUtils on DateTime {
   }
 
   int get daysLeftFromNow => difference(DateTime.now()).inDays;
+
+  bool isSameDay(DateTime other) {
+    return year == other.year && month == other.month && day == other.day;
+  }
 }
