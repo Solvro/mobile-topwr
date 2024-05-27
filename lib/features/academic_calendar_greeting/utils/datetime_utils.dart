@@ -1,4 +1,4 @@
-extension FindMonday on DateTime {
+extension DateTimeUtils on DateTime {
   DateTime findMondayOfTheWeek() {
     final difference = weekday - DateTime.monday;
     return subtract(Duration(days: difference));
@@ -8,4 +8,6 @@ extension FindMonday on DateTime {
     final difference = end.difference(this);
     return (difference.inDays / 7).floor();
   }
+
+  int get daysLeftFromNow => difference(DateTime.now()).inDays;
 }

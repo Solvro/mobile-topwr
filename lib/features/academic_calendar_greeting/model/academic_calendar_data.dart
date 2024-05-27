@@ -1,7 +1,7 @@
-import '../repository/academ_calnd_data_repo.dart';
-import '../utils/find_monday.dart';
+import '../repository/academic_calendar_repo.dart';
+import '../utils/datetime_utils.dart';
 
-extension AcademicCalendarExtraAttrs on AcademicCalendar {
+extension AcademicCalendarExtraAttrs on AcademicCalendarData {
   DateTime get now => DateTime.now();
 
   bool isHolidays() {

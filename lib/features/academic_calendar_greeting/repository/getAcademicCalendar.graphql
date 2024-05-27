@@ -5,4 +5,9 @@ query GetAcademicCalendar {
     semesterStartDate
     isFirstWeekEven
   }
+  WeekExceptions {
+    day
+    changedWeekday
+    changedDayIsEven
+  }
 }
