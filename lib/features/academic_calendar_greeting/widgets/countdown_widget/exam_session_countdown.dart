@@ -4,8 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../theme/app_theme.dart';
 import '../../../../utils/context_extensions.dart';
 import '../../../../widgets/my_error_widget.dart';
-import '../../../academic_calendar_greeting/repository/academic_calendar_repo.dart';
-import '../loading_widgets/horizontal_rectangular_section_loading.dart';
+import '../../../home_view/widgets/loading_widgets/horizontal_rectangular_section_loading.dart';
+import '../../repository/academic_calendar_repo.dart';
 import 'digits_widgets.dart';
 
 class ExamSessionCountdown extends ConsumerWidget {

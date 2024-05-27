@@ -13,23 +13,15 @@ enum WeekdayEnum {
   static WeekdayEnum fromJson(String json) => values.byName(json);
 
   static WeekdayEnum fromDateTime(DateTime dateTime) {
-    switch (dateTime.weekday) {
-      case DateTime.monday:
-        return WeekdayEnum.mon;
-      case DateTime.tuesday:
-        return WeekdayEnum.tue;
-      case DateTime.wednesday:
-        return WeekdayEnum.wed;
-      case DateTime.thursday:
-        return WeekdayEnum.thu;
-      case DateTime.friday:
-        return WeekdayEnum.fri;
-      case DateTime.saturday:
-        return WeekdayEnum.sat;
-      case DateTime.sunday:
-        return WeekdayEnum.sun;
-      default:
-        throw ArgumentError('Invalid weekday');
-    }
+    return switch (dateTime.weekday) {
+      DateTime.monday => WeekdayEnum.mon,
+      DateTime.tuesday => WeekdayEnum.tue,
+      DateTime.wednesday => WeekdayEnum.wed,
+      DateTime.thursday => WeekdayEnum.thu,
+      DateTime.friday => WeekdayEnum.fri,
+      DateTime.saturday => WeekdayEnum.sat,
+      DateTime.sunday => WeekdayEnum.sun,
+      _ => WeekdayEnum.mon,
+    };
   }
 }
