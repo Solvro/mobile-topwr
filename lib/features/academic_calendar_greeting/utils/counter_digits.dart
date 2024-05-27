@@ -1,8 +1,8 @@
 import 'dart:math';
 
 import '../../../config.dart';
-import '../repository/academic_calendar_repo.dart';
 import '../../../utils/datetime_utils.dart';
+import '../repository/academic_calendar_repo.dart';
 
 enum Digit { first, second, third }
 
@@ -21,5 +21,5 @@ extension DaysLeftStringConverter on AcademicCalendar {
 
 extension GetDigitExtension on String {
   String getDigit(Digit digit) =>
-      length < digit.index ? this[digit.index] : _defaultStr;
+      length > digit.index ? this[digit.index] : _defaultStr;
 }
