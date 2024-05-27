@@ -147,10 +147,6 @@ type Query {
     version: String!
     id: ID!
   ): version_Scientific_Circles_Links
-  AcademicCalendarData(version: String): AcademicCalendarData
-  AcademicCalendarData_by_version(
-    version: String!
-  ): version_AcademicCalendarData
   WeekExceptions(
     filter: WeekExceptions_filter
     sort: [String]
@@ -249,6 +245,10 @@ type Query {
     sort: [String]
   ): [Buildings_aggregated!]!
   Buildings_by_version(version: String!, id: ID!): version_Buildings
+  AcademicCalendarData(version: String): AcademicCalendarData
+  AcademicCalendarData_by_version(
+    version: String!
+  ): version_AcademicCalendarData
 }
 
 type Scientific_Circles_Tags {
@@ -903,18 +903,12 @@ type version_Scientific_Circles_Links {
   scientific_circle_id: JSON
 }
 
-type AcademicCalendarData {
+type WeekExceptions {
   id: ID!
-  user_updated: String
-  date_updated: Date
-  date_updated_func: datetime_functions
-  semesterStartDate: Date!
-  semesterStartDate_func: date_functions
-  examSessionStartDate: Date!
-  examSessionStartDate_func: date_functions
-  isFirstWeekEven: Boolean
-  examSessionLastDay: Date!
-  examSessionLastDay_func: date_functions
+  day: Date
+  day_func: date_functions
+  changedWeekday: String
+  changedDayIsEven: Boolean
 }
 
 type date_functions {
@@ -923,30 +917,6 @@ type date_functions {
   week: Int
   day: Int
   weekday: Int
-}
-
-"""
-"""
-type version_AcademicCalendarData {
-  id: ID!
-  user_updated: String
-  date_updated: Date
-  date_updated_func: datetime_functions
-  semesterStartDate: Date!
-  semesterStartDate_func: date_functions
-  examSessionStartDate: Date!
-  examSessionStartDate_func: date_functions
-  isFirstWeekEven: Boolean
-  examSessionLastDay: Date!
-  examSessionLastDay_func: date_functions
-}
-
-type WeekExceptions {
-  id: ID!
-  day: Date
-  day_func: date_functions
-  changedWeekday: String
-  changedDayIsEven: Boolean
 }
 
 input WeekExceptions_filter {
@@ -1230,6 +1200,36 @@ type version_Buildings {
   food: Boolean
 }
 
+type AcademicCalendarData {
+  id: ID!
+  user_updated: String
+  date_updated: Date
+  date_updated_func: datetime_functions
+  semesterStartDate: Date!
+  semesterStartDate_func: date_functions
+  examSessionStartDate: Date!
+  examSessionStartDate_func: date_functions
+  isFirstWeekEven: Boolean!
+  examSessionLastDay: Date!
+  examSessionLastDay_func: date_functions
+}
+
+"""
+"""
+type version_AcademicCalendarData {
+  id: ID!
+  user_updated: String
+  date_updated: Date
+  date_updated_func: datetime_functions
+  semesterStartDate: Date!
+  semesterStartDate_func: date_functions
+  examSessionStartDate: Date!
+  examSessionStartDate_func: date_functions
+  isFirstWeekEven: Boolean!
+  examSessionLastDay: Date!
+  examSessionLastDay_func: date_functions
+}
+
 type Subscription {
   Scientific_Circles_Tags_mutated(
     event: EventEnum
@@ -1242,12 +1242,12 @@ type Subscription {
   Scientific_Circles_Links_mutated(
     event: EventEnum
   ): Scientific_Circles_Links_mutated
-  AcademicCalendarData_mutated(event: EventEnum): AcademicCalendarData_mutated
   WeekExceptions_mutated(event: EventEnum): WeekExceptions_mutated
   Scientific_Circles_mutated(event: EventEnum): Scientific_Circles_mutated
   Departments_mutated(event: EventEnum): Departments_mutated
   Posts_mutated(event: EventEnum): Posts_mutated
   Buildings_mutated(event: EventEnum): Buildings_mutated
+  AcademicCalendarData_mutated(event: EventEnum): AcademicCalendarData_mutated
 }
 
 type Scientific_Circles_Tags_mutated {
@@ -1298,12 +1298,6 @@ type Scientific_Circles_Links_mutated {
   data: Scientific_Circles_Links
 }
 
-type AcademicCalendarData_mutated {
-  key: ID!
-  event: EventEnum
-  data: AcademicCalendarData
-}
-
 type WeekExceptions_mutated {
   key: ID!
   event: EventEnum
@@ -1332,4 +1326,10 @@ type Buildings_mutated {
   key: ID!
   event: EventEnum
   data: Buildings
+}
+
+type AcademicCalendarData_mutated {
+  key: ID!
+  event: EventEnum
+  data: AcademicCalendarData
 }

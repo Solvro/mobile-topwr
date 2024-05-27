@@ -6,7 +6,7 @@ part 'ttl_config.g.dart';
 enum TtlKey {
   /// We need unique key for every data source for its ttl tracking
   sciCirclesPreviewRepository,
-  examSessionCountdownRepository,
+  academicCalendarRepository,
   infosPreviewRepository,
   sciCirclesRepository,
   tagsRepository,
@@ -24,7 +24,7 @@ abstract class TtlStrategy {
   static const _ttlDurations = UnmodifiableTtlKeyMap(
     // TODO: specific values are yet ment to be accordingly adjusted
     infosPreviewRepository: day,
-    examSessionCountdownRepository: day,
+    academicCalendarRepository: day,
     sciCirclesPreviewRepository: thirtyDays,
     sciCirclesRepository: thirtyDays,
     tagsRepository: thirtyDays,

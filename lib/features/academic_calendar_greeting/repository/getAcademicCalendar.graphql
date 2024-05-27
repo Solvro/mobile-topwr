@@ -1,0 +1,8 @@
+query GetAcademicCalendar {
+  AcademicCalendarData {
+    examSessionStartDate
+    examSessionLastDay
+    semesterStartDate
+    isFirstWeekEven
+  }
+}

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../../../config.dart';
 import '../../../../theme/app_theme.dart';
-import '../../repositories/exam_date_repository/exam_date_repository.dart';
-import '../../utils/days_left_digits.dart';
+import '../../../academic_calendar_greeting/repository/academ_calnd_data_repo.dart';
+import '../../../academic_calendar_greeting/utils/days_left_digits.dart';
 
 class DigitsRow extends StatelessWidget {
   const DigitsRow(this.calendarData, {super.key});
