@@ -1,13 +1,9 @@
 query GetMapBuildings {
-  maps {
-    id
+  Buildings {
     latitude
     longitude
     name
-    code
     addres
-    photo {
-      url
-    }
+    cover
   }
 }

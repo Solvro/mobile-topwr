@@ -1,11 +1,7 @@
-
-query  GetStudyCirclesPreview{
-    scientificCircles{
-        id
-        description
-        name
-        backgroundPhoto {
-                url
-        }
-    }
+query GetStudyCirclesPreview {
+  Scientific_Circles {
+    shortDescription
+    name
+    cover
+  }
 }

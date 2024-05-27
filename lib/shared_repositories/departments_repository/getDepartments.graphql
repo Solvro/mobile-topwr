@@ -1,13 +1,9 @@
 query GetDepartments {
-  departments {
+  Departments {
     name
     code
-    logo {
-      url
-    }
-    color {
-      gradientFirst
-      gradientSecond
-    }
+    logo
+    gradient_start
+    gradient_end
   }
 }

@@ -1,5 +1,5 @@
 query GetExamDate {
-  academicYearEndDate{
-    endDate
+  AcademicCalendarData {
+    examSessionStartDate
   }
 }
