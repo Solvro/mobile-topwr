@@ -7,7 +7,7 @@ extension GqlOfflineMessage on BuildContext {
   UnmodifiableTtlKeyMap<String> _offlineMessagesLocalized() =>
       UnmodifiableTtlKeyMap(
         infosPreviewRepository: localize.offline_news,
-        examSessionCountdownRepository: localize.offline_exam_session,
+        academicCalendarRepository: localize.offline_academic_calendar,
         sciCirclesPreviewRepository: localize.offline_sci_clubs,
         sciCirclesRepository: localize.offline_sci_clubs,
         tagsRepository: localize.offline_sci_clubs,

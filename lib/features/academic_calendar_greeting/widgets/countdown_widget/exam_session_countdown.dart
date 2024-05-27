@@ -13,11 +13,12 @@ class ExamSessionCountdown extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(examSessionCountdownRepositoryProvider);
+    final state = ref.watch(academicCalendarRepoProvider);
     return switch (state) {
       AsyncLoading() => const Padding(
           padding: EdgeInsets.symmetric(horizontal: 16),
-          child: HorizontalRectangularSectionLoading()),
+          child: HorizontalRectangularSectionLoading(),
+        ),
       AsyncError(:final error) => MyErrorWidget(error),
       AsyncValue(:final value) => Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24),

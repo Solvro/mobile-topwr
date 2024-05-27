@@ -20,7 +20,8 @@ abstract class SplashScreenConfig {
 }
 
 abstract class ExamSessionCountdownConfig {
-  static const defaultDigit = '0';
+  static const defaultDigit = 0;
+  static String get defaultStrDigit => defaultDigit.toString();
 }
 
 abstract class DepartmentsConfig {
