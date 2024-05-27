@@ -18,5 +18,7 @@ abstract class ApiBaseEnv {
   @EnviedField()
   static final String apiUrl = _ApiBaseEnv.apiUrl;
   @EnviedField()
+  static final String assetsUrl = _ApiBaseEnv.assetsUrl;
+  @EnviedField()
   static final String iparkingUrl = _ApiBaseEnv.iparkingUrl;
 }

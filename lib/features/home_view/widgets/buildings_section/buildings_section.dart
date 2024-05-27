@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../shared_repositories/buildings_repository/building_model.dart';
 import '../../../../shared_repositories/buildings_repository/map_buildings_repo.dart';
 import '../../../../utils/context_extensions.dart';
-import '../../../../utils/directus_assets_url.dart';
+import '../../../../api_base/directus_assets_url.dart';
 import '../../../../utils/where_non_null_iterable.dart';
 import '../../../../widgets/my_error_widget.dart';
 import '../../../../widgets/subsection_header.dart';

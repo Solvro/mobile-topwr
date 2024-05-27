@@ -1,8 +1,8 @@
-import '../api_base/config.dart';
+import 'config.dart';
 
 extension DirectusAssetsUrl on String {
   String get directusUrl {
-    return "${ApiBaseEnv.apiUrl}/assets/$this";
+    return "${ApiBaseEnv.assetsUrl}/$this";
   }
 }
 

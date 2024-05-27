@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../config.dart';
 import '../../../shared_repositories/departments_repository/departments_extra_params_ext.dart';
 import '../../../shared_repositories/departments_repository/departments_repository.dart';
-import '../../../utils/directus_assets_url.dart';
+import '../../../api_base/directus_assets_url.dart';
 import '../../../widgets/my_cached_image.dart';
 import '../../../widgets/wide_tile_card.dart';
 

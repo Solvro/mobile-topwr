@@ -1,7 +1,6 @@
 query GetScientificCircleDetails($id: ID!) {
   Scientific_Circles_by_id(id: $id) {
     name
-    department
     description
     cover
     links {
