@@ -18,7 +18,7 @@ class DigitsRow extends StatelessWidget {
         for (final digit in Digit.values)
           IntBox(
             singleInt: dayLeftString?.getDigit(digit) ??
-                ExamSessionCountdownConfig.defaultStrDigit,
+                CountdownConfig.defaultDigit.toString(),
           ),
       ],
     );

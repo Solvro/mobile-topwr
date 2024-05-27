@@ -19,9 +19,8 @@ abstract class SplashScreenConfig {
   static const androidNativeSplashColor = Color(0xFFEE6644);
 }
 
-abstract class ExamSessionCountdownConfig {
+abstract class CountdownConfig {
   static const defaultDigit = 0;
-  static String get defaultStrDigit => defaultDigit.toString();
 }
 
 abstract class DepartmentsConfig {
