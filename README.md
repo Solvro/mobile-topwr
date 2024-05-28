@@ -44,7 +44,7 @@ ToPWR is the result of our experiences and ideas that we want to share with othe
 
 ```bash
 API_URL="https://<our-server-url>/graphql"
-ASSETS_URL="https://<our-server-url>/assets"
+ASSETS_URL="https://<our-server-url>//assets"
 IPARKING_URL="https://<secret parking's source>.pl"
 ```
 
