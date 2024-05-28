@@ -169,25 +169,6 @@ type Query {
     version: String!
     id: ID!
   ): version_Scientific_Circles
-  Departments(
-    filter: Departments_filter
-    sort: [String]
-    limit: Int
-    offset: Int
-    page: Int
-    search: String
-  ): [Departments!]!
-  Departments_by_id(id: ID!, version: String): Departments
-  Departments_aggregated(
-    groupBy: [String]
-    filter: Departments_filter
-    limit: Int
-    offset: Int
-    page: Int
-    search: String
-    sort: [String]
-  ): [Departments_aggregated!]!
-  Departments_by_version(version: String!, id: ID!): version_Departments
   Posts(
     filter: Posts_filter
     sort: [String]
@@ -249,6 +230,25 @@ type Query {
     sort: [String]
   ): [WeekExceptions_aggregated!]!
   WeekExceptions_by_version(version: String!, id: ID!): version_WeekExceptions
+  Departments(
+    filter: Departments_filter
+    sort: [String]
+    limit: Int
+    offset: Int
+    page: Int
+    search: String
+  ): [Departments!]!
+  Departments_by_id(id: ID!, version: String): Departments
+  Departments_aggregated(
+    groupBy: [String]
+    filter: Departments_filter
+    limit: Int
+    offset: Int
+    page: Int
+    search: String
+    sort: [String]
+  ): [Departments_aggregated!]!
+  Departments_by_version(version: String!, id: ID!): version_Departments
 }
 
 type Scientific_Circles_Tags {
@@ -520,9 +520,9 @@ type Departments {
     search: String
   ): directus_files
   description: String
-  gradient_start: String!
-  gradient_end: String!
   code: String!
+  gradient_start: String
+  gradient_end: String
   links(
     filter: Departments_Links_filter
     sort: [String]
@@ -554,9 +554,9 @@ input Departments_filter {
   website: string_filter_operators
   logo: directus_files_filter
   description: string_filter_operators
+  code: string_filter_operators
   gradient_start: string_filter_operators
   gradient_end: string_filter_operators
-  code: string_filter_operators
   links: Departments_Links_filter
   links_func: count_function_filter_operators
   _and: [Departments_filter]
@@ -1081,50 +1081,6 @@ type version_Scientific_Circles {
   links_func: count_functions
 }
 
-type Departments_aggregated {
-  group: JSON
-  countAll: Int
-  count: Departments_aggregated_count
-  countDistinct: Departments_aggregated_count
-  avg: Departments_aggregated_fields
-  sum: Departments_aggregated_fields
-  avgDistinct: Departments_aggregated_fields
-  sumDistinct: Departments_aggregated_fields
-  min: Departments_aggregated_fields
-  max: Departments_aggregated_fields
-}
-
-type Departments_aggregated_count {
-  id: Int
-  name: Int
-  website: Int
-  logo: Int
-  description: Int
-  gradient_start: Int
-  gradient_end: Int
-  code: Int
-  links: Int
-}
-
-type Departments_aggregated_fields {
-  id: Float
-}
-
-"""
-"""
-type version_Departments {
-  id: ID!
-  name: String!
-  website: String
-  logo: JSON
-  description: String
-  gradient_start: String!
-  gradient_end: String!
-  code: String!
-  links: JSON
-  links_func: count_functions
-}
-
 type Posts_aggregated {
   group: JSON
   countAll: Int
@@ -1354,6 +1310,50 @@ type version_WeekExceptions {
   changedDayIsEven: Boolean!
 }
 
+type Departments_aggregated {
+  group: JSON
+  countAll: Int
+  count: Departments_aggregated_count
+  countDistinct: Departments_aggregated_count
+  avg: Departments_aggregated_fields
+  sum: Departments_aggregated_fields
+  avgDistinct: Departments_aggregated_fields
+  sumDistinct: Departments_aggregated_fields
+  min: Departments_aggregated_fields
+  max: Departments_aggregated_fields
+}
+
+type Departments_aggregated_count {
+  id: Int
+  name: Int
+  website: Int
+  logo: Int
+  description: Int
+  code: Int
+  gradient_start: Int
+  gradient_end: Int
+  links: Int
+}
+
+type Departments_aggregated_fields {
+  id: Float
+}
+
+"""
+"""
+type version_Departments {
+  id: ID!
+  name: String!
+  website: String
+  logo: JSON
+  description: String
+  code: String!
+  gradient_start: String
+  gradient_end: String
+  links: JSON
+  links_func: count_functions
+}
+
 type Subscription {
   directus_files_mutated(event: EventEnum): directus_files_mutated
   Scientific_Circles_Tags_mutated(
@@ -1368,11 +1368,11 @@ type Subscription {
     event: EventEnum
   ): Scientific_Circles_Links_mutated
   Scientific_Circles_mutated(event: EventEnum): Scientific_Circles_mutated
-  Departments_mutated(event: EventEnum): Departments_mutated
   Posts_mutated(event: EventEnum): Posts_mutated
   Buildings_mutated(event: EventEnum): Buildings_mutated
   AcademicCalendarData_mutated(event: EventEnum): AcademicCalendarData_mutated
   WeekExceptions_mutated(event: EventEnum): WeekExceptions_mutated
+  Departments_mutated(event: EventEnum): Departments_mutated
 }
 
 type directus_files_mutated {
@@ -1435,12 +1435,6 @@ type Scientific_Circles_mutated {
   data: Scientific_Circles
 }
 
-type Departments_mutated {
-  key: ID!
-  event: EventEnum
-  data: Departments
-}
-
 type Posts_mutated {
   key: ID!
   event: EventEnum
@@ -1463,4 +1457,10 @@ type WeekExceptions_mutated {
   key: ID!
   event: EventEnum
   data: WeekExceptions
+}
+
+type Departments_mutated {
+  key: ID!
+  event: EventEnum
+  data: Departments
 }
