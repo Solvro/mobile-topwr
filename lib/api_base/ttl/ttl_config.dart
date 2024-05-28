@@ -1,4 +1,5 @@
 import 'package:enum_map/enum_map.dart';
+import 'package:flutter/foundation.dart';
 
 part 'ttl_config.g.dart';
 
@@ -17,9 +18,10 @@ enum TtlKey {
 }
 
 abstract class TtlStrategy {
-  static const day = Duration(days: 0);
-  static const week = Duration(days: 0);
-  static const thirtyDays = Duration(days: 0);
+  // no cache in debug mode
+  static const day = kDebugMode ? Duration.zero : Duration(days: 1);
+  static const week = kDebugMode ? Duration.zero : Duration(days: 7);
+  static const thirtyDays = kDebugMode ? Duration.zero : Duration(days: 30);
 
   static const _ttlDurations = UnmodifiableTtlKeyMap(
     // TODO: specific values are yet ment to be accordingly adjusted
