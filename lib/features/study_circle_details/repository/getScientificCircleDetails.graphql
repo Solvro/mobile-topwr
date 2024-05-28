@@ -2,12 +2,16 @@ query GetScientificCircleDetails($id: ID!) {
   Scientific_Circles_by_id(id: $id) {
     name
     description
-    cover
+    cover {
+      filename_disk
+    }
     links {
       name
       link
     }
-    logo
+    logo {
+      filename_disk
+    }
     department {
       name
     }

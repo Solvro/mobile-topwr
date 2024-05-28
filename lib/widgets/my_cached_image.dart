@@ -18,7 +18,6 @@ class MyCachedImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     if (imageUrl == null || imageUrl!.isEmpty) {
       return const FlutterSplashScreen();
     }
@@ -34,7 +33,9 @@ class MyCachedImage extends StatelessWidget {
                   color: Colors.white,
                 ),
               )),
-      errorWidget: (context, url, error) => const FlutterSplashScreen(),
+      errorWidget: (context, url, error) {
+        return const FlutterSplashScreen();
+      },
     );
   }
 }

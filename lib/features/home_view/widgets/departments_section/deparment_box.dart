@@ -29,7 +29,7 @@ class DepartmentBox extends StatelessWidget {
               child: SizedBox.square(
                 dimension: 100,
                 child: MyCachedImage(
-                  department.logo.directusUrl,
+                  department.logo?.filename_disk.directusUrl,
                   noShimmeringLoading: true,
                   boxFit: BoxFit.contain,
                 ),

@@ -26,7 +26,7 @@ class DepartmentCard extends StatelessWidget {
           child: Opacity(
             opacity: .5,
             child: MyCachedImage(
-              department.logo.directusUrl,
+              department.logo?.filename_disk.directusUrl,
               boxFit: BoxFit.contain,
               noShimmeringLoading: true,
             ),

@@ -280,8 +280,22 @@ type Scientific_Circles {
   date_updated: Date
   date_updated_func: datetime_functions
   name: String!
-  logo: String
-  cover: String
+  logo(
+    filter: directus_files_filter
+    sort: [String]
+    limit: Int
+    offset: Int
+    page: Int
+    search: String
+  ): directus_files
+  cover(
+    filter: directus_files_filter
+    sort: [String]
+    limit: Int
+    offset: Int
+    page: Int
+    search: String
+  ): directus_files
   description: String
   type: String
   source: String
@@ -330,11 +344,181 @@ type datetime_functions {
   second: Int
 }
 
+type directus_files {
+  id: ID!
+  storage: String!
+  filename_disk: String
+  filename_download: String!
+  title: String
+  type: String
+  folder: String
+  uploaded_by: String
+  uploaded_on: Date
+  uploaded_on_func: datetime_functions
+  modified_by: String
+  modified_on: Date
+  modified_on_func: datetime_functions
+  charset: String
+  filesize: GraphQLBigInt
+  width: Int
+  height: Int
+  duration: Int
+  embed: String
+  description: String
+  location: String
+  tags: JSON
+  tags_func: count_functions
+  metadata: JSON
+  metadata_func: count_functions
+  focal_point_x: Int
+  focal_point_y: Int
+}
+
+"""
+BigInt value
+"""
+scalar GraphQLBigInt
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+type count_functions {
+  count: Int
+}
+
+input directus_files_filter {
+  id: string_filter_operators
+  storage: string_filter_operators
+  filename_disk: string_filter_operators
+  filename_download: string_filter_operators
+  title: string_filter_operators
+  type: string_filter_operators
+  folder: string_filter_operators
+  uploaded_by: string_filter_operators
+  uploaded_on: date_filter_operators
+  uploaded_on_func: datetime_function_filter_operators
+  modified_by: string_filter_operators
+  modified_on: date_filter_operators
+  modified_on_func: datetime_function_filter_operators
+  charset: string_filter_operators
+  filesize: big_int_filter_operators
+  width: number_filter_operators
+  height: number_filter_operators
+  duration: number_filter_operators
+  embed: string_filter_operators
+  description: string_filter_operators
+  location: string_filter_operators
+  tags: string_filter_operators
+  tags_func: count_function_filter_operators
+  metadata: string_filter_operators
+  metadata_func: count_function_filter_operators
+  focal_point_x: number_filter_operators
+  focal_point_y: number_filter_operators
+  _and: [directus_files_filter]
+  _or: [directus_files_filter]
+}
+
+input string_filter_operators {
+  _eq: String
+  _neq: String
+  _contains: String
+  _icontains: String
+  _ncontains: String
+  _starts_with: String
+  _nstarts_with: String
+  _istarts_with: String
+  _nistarts_with: String
+  _ends_with: String
+  _nends_with: String
+  _iends_with: String
+  _niends_with: String
+  _in: [String]
+  _nin: [String]
+  _null: Boolean
+  _nnull: Boolean
+  _empty: Boolean
+  _nempty: Boolean
+}
+
+input date_filter_operators {
+  _eq: String
+  _neq: String
+  _gt: String
+  _gte: String
+  _lt: String
+  _lte: String
+  _null: Boolean
+  _nnull: Boolean
+  _in: [String]
+  _nin: [String]
+  _between: [GraphQLStringOrFloat]
+  _nbetween: [GraphQLStringOrFloat]
+}
+
+"""
+A Float or a String
+"""
+scalar GraphQLStringOrFloat
+
+input datetime_function_filter_operators {
+  year: number_filter_operators
+  month: number_filter_operators
+  week: number_filter_operators
+  day: number_filter_operators
+  weekday: number_filter_operators
+  hour: number_filter_operators
+  minute: number_filter_operators
+  second: number_filter_operators
+}
+
+input number_filter_operators {
+  _eq: GraphQLStringOrFloat
+  _neq: GraphQLStringOrFloat
+  _in: [GraphQLStringOrFloat]
+  _nin: [GraphQLStringOrFloat]
+  _gt: GraphQLStringOrFloat
+  _gte: GraphQLStringOrFloat
+  _lt: GraphQLStringOrFloat
+  _lte: GraphQLStringOrFloat
+  _null: Boolean
+  _nnull: Boolean
+  _between: [GraphQLStringOrFloat]
+  _nbetween: [GraphQLStringOrFloat]
+}
+
+input big_int_filter_operators {
+  _eq: GraphQLBigInt
+  _neq: GraphQLBigInt
+  _in: [GraphQLBigInt]
+  _nin: [GraphQLBigInt]
+  _gt: GraphQLBigInt
+  _gte: GraphQLBigInt
+  _lt: GraphQLBigInt
+  _lte: GraphQLBigInt
+  _null: Boolean
+  _nnull: Boolean
+  _between: [GraphQLBigInt]
+  _nbetween: [GraphQLBigInt]
+}
+
+input count_function_filter_operators {
+  count: number_filter_operators
+}
+
 type Departments {
   id: ID!
   name: String!
   website: String
-  logo: String
+  logo(
+    filter: directus_files_filter
+    sort: [String]
+    limit: Int
+    offset: Int
+    page: Int
+    search: String
+  ): directus_files
   description: String
   gradient_start: String!
   gradient_end: String!
@@ -368,7 +552,7 @@ input Departments_filter {
   id: number_filter_operators
   name: string_filter_operators
   website: string_filter_operators
-  logo: string_filter_operators
+  logo: directus_files_filter
   description: string_filter_operators
   gradient_start: string_filter_operators
   gradient_end: string_filter_operators
@@ -379,48 +563,6 @@ input Departments_filter {
   _or: [Departments_filter]
 }
 
-input number_filter_operators {
-  _eq: GraphQLStringOrFloat
-  _neq: GraphQLStringOrFloat
-  _in: [GraphQLStringOrFloat]
-  _nin: [GraphQLStringOrFloat]
-  _gt: GraphQLStringOrFloat
-  _gte: GraphQLStringOrFloat
-  _lt: GraphQLStringOrFloat
-  _lte: GraphQLStringOrFloat
-  _null: Boolean
-  _nnull: Boolean
-  _between: [GraphQLStringOrFloat]
-  _nbetween: [GraphQLStringOrFloat]
-}
-
-"""
-A Float or a String
-"""
-scalar GraphQLStringOrFloat
-
-input string_filter_operators {
-  _eq: String
-  _neq: String
-  _contains: String
-  _icontains: String
-  _ncontains: String
-  _starts_with: String
-  _nstarts_with: String
-  _istarts_with: String
-  _nistarts_with: String
-  _ends_with: String
-  _nends_with: String
-  _iends_with: String
-  _niends_with: String
-  _in: [String]
-  _nin: [String]
-  _null: Boolean
-  _nnull: Boolean
-  _empty: Boolean
-  _nempty: Boolean
-}
-
 input Departments_Links_filter {
   id: number_filter_operators
   name: string_filter_operators
@@ -428,14 +570,6 @@ input Departments_Links_filter {
   department_id: Departments_filter
   _and: [Departments_Links_filter]
   _or: [Departments_Links_filter]
-}
-
-input count_function_filter_operators {
-  count: number_filter_operators
-}
-
-type count_functions {
-  count: Int
 }
 
 input Scientific_Circles_Tags_filter {
@@ -455,8 +589,8 @@ input Scientific_Circles_filter {
   date_updated: date_filter_operators
   date_updated_func: datetime_function_filter_operators
   name: string_filter_operators
-  logo: string_filter_operators
-  cover: string_filter_operators
+  logo: directus_files_filter
+  cover: directus_files_filter
   description: string_filter_operators
   type: string_filter_operators
   source: string_filter_operators
@@ -468,32 +602,6 @@ input Scientific_Circles_filter {
   links_func: count_function_filter_operators
   _and: [Scientific_Circles_filter]
   _or: [Scientific_Circles_filter]
-}
-
-input date_filter_operators {
-  _eq: String
-  _neq: String
-  _gt: String
-  _gte: String
-  _lt: String
-  _lte: String
-  _null: Boolean
-  _nnull: Boolean
-  _in: [String]
-  _nin: [String]
-  _between: [GraphQLStringOrFloat]
-  _nbetween: [GraphQLStringOrFloat]
-}
-
-input datetime_function_filter_operators {
-  year: number_filter_operators
-  month: number_filter_operators
-  week: number_filter_operators
-  day: number_filter_operators
-  weekday: number_filter_operators
-  hour: number_filter_operators
-  minute: number_filter_operators
-  second: number_filter_operators
 }
 
 input Scientific_Circles_Links_filter {
@@ -543,11 +651,6 @@ type Scientific_Circles_Tags_aggregated {
   min: Scientific_Circles_Tags_aggregated_fields
   max: Scientific_Circles_Tags_aggregated_fields
 }
-
-"""
-The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
-"""
-scalar JSON
 
 type Scientific_Circles_Tags_aggregated_count {
   id: Int
@@ -638,7 +741,14 @@ type Posts {
     page: Int
     search: String
   ): Departments
-  cover: String
+  cover(
+    filter: directus_files_filter
+    sort: [String]
+    limit: Int
+    offset: Int
+    page: Int
+    search: String
+  ): directus_files
   tags(
     filter: Posts_Tags_filter
     sort: [String]
@@ -671,7 +781,7 @@ input Posts_filter {
   content: string_filter_operators
   title: string_filter_operators
   department: Departments_filter
-  cover: string_filter_operators
+  cover: directus_files_filter
   tags: Posts_Tags_filter
   tags_func: count_function_filter_operators
   _and: [Posts_filter]
@@ -733,14 +843,21 @@ type FAQ {
 type FAQ_Types {
   id: ID!
   name: String
-  cover: String
+  cover(
+    filter: directus_files_filter
+    sort: [String]
+    limit: Int
+    offset: Int
+    page: Int
+    search: String
+  ): directus_files
   description: String
 }
 
 input FAQ_Types_filter {
   id: number_filter_operators
   name: string_filter_operators
-  cover: string_filter_operators
+  cover: directus_files_filter
   description: string_filter_operators
   _and: [FAQ_Types_filter]
   _or: [FAQ_Types_filter]
@@ -831,7 +948,7 @@ type FAQ_Types_aggregated_fields {
 type version_FAQ_Types {
   id: ID!
   name: String
-  cover: String
+  cover: JSON
   description: String
 }
 
@@ -951,8 +1068,8 @@ type version_Scientific_Circles {
   date_updated: Date
   date_updated_func: datetime_functions
   name: String!
-  logo: String
-  cover: String
+  logo: JSON
+  cover: JSON
   description: String
   type: String
   source: String
@@ -999,7 +1116,7 @@ type version_Departments {
   id: ID!
   name: String!
   website: String
-  logo: String
+  logo: JSON
   description: String
   gradient_start: String!
   gradient_end: String!
@@ -1057,7 +1174,7 @@ type version_Posts {
   content: String
   title: String!
   department: JSON
-  cover: String
+  cover: JSON
   tags: JSON
   tags_func: count_functions
 }
@@ -1068,7 +1185,14 @@ type Buildings {
   latitude: Float!
   longitude: Float!
   addres: String
-  cover: String
+  cover(
+    filter: directus_files_filter
+    sort: [String]
+    limit: Int
+    offset: Int
+    page: Int
+    search: String
+  ): directus_files
   food: Boolean
 }
 
@@ -1078,7 +1202,7 @@ input Buildings_filter {
   latitude: number_filter_operators
   longitude: number_filter_operators
   addres: string_filter_operators
-  cover: string_filter_operators
+  cover: directus_files_filter
   food: boolean_filter_operators
   _and: [Buildings_filter]
   _or: [Buildings_filter]
@@ -1128,7 +1252,7 @@ type version_Buildings {
   latitude: Float!
   longitude: Float!
   addres: String
-  cover: String
+  cover: JSON
   food: Boolean
 }
 
@@ -1231,6 +1355,7 @@ type version_WeekExceptions {
 }
 
 type Subscription {
+  directus_files_mutated(event: EventEnum): directus_files_mutated
   Scientific_Circles_Tags_mutated(
     event: EventEnum
   ): Scientific_Circles_Tags_mutated
@@ -1250,16 +1375,22 @@ type Subscription {
   WeekExceptions_mutated(event: EventEnum): WeekExceptions_mutated
 }
 
-type Scientific_Circles_Tags_mutated {
+type directus_files_mutated {
   key: ID!
   event: EventEnum
-  data: Scientific_Circles_Tags
+  data: directus_files
 }
 
 enum EventEnum {
   create
   update
   delete
+}
+
+type Scientific_Circles_Tags_mutated {
+  key: ID!
+  event: EventEnum
+  data: Scientific_Circles_Tags
 }
 
 type Tags_mutated {

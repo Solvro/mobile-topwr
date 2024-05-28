@@ -11,6 +11,8 @@ query GetScientificCircles {
         name
       }
     }
-    cover
+    cover {
+      filename_disk
+    }
   }
 }

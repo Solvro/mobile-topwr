@@ -80,7 +80,7 @@ class _NewsDataList extends StatelessWidget {
             child: BigPreviewCard(
               title: value[index].title,
               shortDescription: value[index].content ?? "",
-              photoUrl: value[index].cover.directusUrl,
+              photoUrl: value[index].cover?.filename_disk?.directusUrl,
               date: value[index].date_created,
               onClick: () {},
             ),

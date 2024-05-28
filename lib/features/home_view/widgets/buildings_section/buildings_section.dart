@@ -70,7 +70,7 @@ class _DataListBuildingsTiles extends ConsumerWidget {
         return MediumLeftPadding(
           child: BuildingCard(
             buildingName: mapItem.name,
-            imageUrl: mapItem.cover.directusUrl,
+            imageUrl: mapItem.cover?.filename_disk?.directusUrl,
             onTap: () {
               BuildingsSection.goToMapTab(ref);
               ref

@@ -3,7 +3,7 @@ import 'package:envied/envied.dart';
 part 'config.g.dart';
 
 abstract class ApiBaseConfig {
-  static const hiveCacheBoxName = "hiveCacheBoxForGraphQL";
+  static const hiveCacheBoxName = "hiveCacheBoxForGraphQL2";
   static const authHeaderPrefix = "Bearer ";
   static const ttlPrefsPrefix = "TTL_CACHE_TIMESTAMP_PREFX_";
 }

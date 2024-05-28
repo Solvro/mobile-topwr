@@ -43,8 +43,8 @@ class _CircleDetailsDataView extends ConsumerWidget {
       AsyncValue(:final value) => CustomScrollView(slivers: [
           SliverPersistentHeader(
               delegate: SliverHeaderSection(
-            logoImageUrl: value?.logo.directusUrl,
-            backgroundImageUrl: value?.cover.directusUrl,
+            logoImageUrl: value?.logo?.filename_disk?.directusUrl,
+            backgroundImageUrl: value?.cover?.filename_disk?.directusUrl,
           )),
           SliverList(
             delegate: SliverChildListDelegate([

@@ -17,9 +17,9 @@ enum TtlKey {
 }
 
 abstract class TtlStrategy {
-  static const day = Duration(days: 1);
-  static const week = Duration(days: 7);
-  static const thirtyDays = Duration(days: 30);
+  static const day = Duration(days: 0);
+  static const week = Duration(days: 0);
+  static const thirtyDays = Duration(days: 0);
 
   static const _ttlDurations = UnmodifiableTtlKeyMap(
     // TODO: specific values are yet ment to be accordingly adjusted

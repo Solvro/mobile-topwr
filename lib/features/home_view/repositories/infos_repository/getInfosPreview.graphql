@@ -2,7 +2,9 @@ query GetInfosPreview {
   Posts {
     content
     title
-    cover
+    cover {
+      filename_disk
+    }
     date_created
   }
 }

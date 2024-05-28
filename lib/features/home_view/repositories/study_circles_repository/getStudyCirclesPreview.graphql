@@ -2,7 +2,9 @@ query GetStudyCirclesPreview {
   Scientific_Circles {
     shortDescription
     name
-    cover
+    cover {
+      filename_disk
+    }
     id
   }
 }

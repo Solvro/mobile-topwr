@@ -10,7 +10,7 @@ enum WeekdayEnum {
   sat,
   sun;
 
-  static WeekdayEnum fromJson(String json) => values.byName(json);
+  static WeekdayEnum fromJson(String json) => values.byName(json.toLowerCase());
 
   static WeekdayEnum fromDateTime(DateTime dateTime) {
     return switch (dateTime.weekday) {

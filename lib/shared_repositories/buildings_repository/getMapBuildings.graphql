@@ -5,6 +5,8 @@ query GetMapBuildings {
     longitude
     name
     addres
-    cover
+    cover {
+      filename_disk
+    }
   }
 }

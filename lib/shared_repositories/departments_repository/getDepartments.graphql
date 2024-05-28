@@ -2,7 +2,9 @@ query GetDepartments {
   Departments {
     name
     code
-    logo
+    logo {
+      filename_disk
+    }
     gradient_start
     gradient_end
   }

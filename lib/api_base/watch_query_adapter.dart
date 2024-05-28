@@ -14,7 +14,7 @@ extension _WatchQueryStreamAdapter<T> on Ref {
   void handleErrors(QueryResult<T> event, TtlKey ttlKey) {
     if (!event.hasException) return;
 
-    if (event.exception?.linkException is ServerException) {
+    if (event.exception?.linkException != null) {
       throw GqlOfflineException(ttlKey);
     }
 
