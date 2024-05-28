@@ -13,7 +13,6 @@ extension GqlOfflineMessage on BuildContext {
         tagsRepository: localize.offline_sci_clubs,
         mapBuildingsRepository: localize.offline_buildings,
         departmentsRepository: localize.offline_departments,
-        weekParityExceptionsRepository: localize.offline_week_parity,
       );
 
   String gqlOfflineMessageLocalized(TtlKey key) {
