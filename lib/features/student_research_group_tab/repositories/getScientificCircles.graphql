@@ -1,15 +1,18 @@
 query GetScientificCircles {
-    scientificCircles {
+  Scientific_Circles {
+    id
+    name
+    department {
+      name
+    }
+    tags {
+      Tags_id {
         id
         name
-        department {
-            name
-        }
-        tags {
-            name
-        }
-        photo {
-            url
-        }
+      }
     }
+    cover {
+      filename_disk
+    }
+  }
 }

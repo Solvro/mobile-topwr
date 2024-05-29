@@ -6,7 +6,7 @@ import 'getStudyCirclesPreview.graphql.dart';
 
 part 'study_circles_repository.g.dart';
 
-typedef SciCirclePreview = Query$GetStudyCirclesPreview$scientificCircles;
+typedef SciCirclePreview = Query$GetStudyCirclesPreview$Scientific_Circles;
 
 @riverpod
 Stream<List<SciCirclePreview?>?> studyCirclesRepository(
@@ -15,5 +15,5 @@ Stream<List<SciCirclePreview?>?> studyCirclesRepository(
     WatchOptions$Query$GetStudyCirclesPreview(eagerlyFetchResults: true),
     TtlKey.sciCirclesPreviewRepository,
   );
-  yield* stream.map((event) => event?.scientificCircles);
+  yield* stream.map((event) => event?.Scientific_Circles);
 }

@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
+
 import '../../../../config.dart';
-import '../../utils/days_left_digits.dart';
 import '../../../../theme/app_theme.dart';
+import '../../repository/academic_calendar_repo.dart';
+import '../../utils/counter_digits.dart';
 
 class DigitsRow extends StatelessWidget {
-  const DigitsRow(this.endDate, {super.key});
-  final DateTime? endDate;
+  const DigitsRow(this.calendarData, {super.key});
+  final AcademicCalendar? calendarData;
 
   @override
   Widget build(BuildContext context) {
-    final dayLeftString = endDate?.daysLeftFromNowString;
+    final dayLeftString = calendarData?.daysLeftFromNowString;
     return Row(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         for (final digit in Digit.values)
           IntBox(
             singleInt: dayLeftString?.getDigit(digit) ??
-                ExamSessionCountdownConfig.defaultDigit,
+                CountdownConfig.defaultDigit.toString(),
           ),
       ],
     );

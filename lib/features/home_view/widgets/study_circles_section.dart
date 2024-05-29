@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../api_base/directus_assets_url.dart';
 import '../../../config.dart';
 import '../../../utils/context_extensions.dart';
 import '../../../utils/where_non_null_iterable.dart';
@@ -77,8 +78,8 @@ class _StudyCirclesDataList extends ConsumerWidget {
           return MediumLeftPadding(
             child: BigPreviewCard(
                 title: circle.name,
-                shortDescription: circle.description,
-                photoUrl: circle.backgroundPhoto?.url,
+                shortDescription: circle.shortDescription ?? "",
+                photoUrl: circle.cover?.filename_disk?.directusUrl,
                 onClick: () {
                   ref
                       .read(navigatorProvider)

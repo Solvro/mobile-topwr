@@ -6,7 +6,7 @@ import 'getInfosPreview.graphql.dart';
 
 part 'infos_preview_repository.g.dart';
 
-typedef InfosPreview = Query$GetInfosPreview$infos;
+typedef InfosPreview = Query$GetInfosPreview$Posts;
 
 @riverpod
 Stream<List<InfosPreview?>?> infosPreviewRepository(
@@ -15,5 +15,5 @@ Stream<List<InfosPreview?>?> infosPreviewRepository(
     WatchOptions$Query$GetInfosPreview(eagerlyFetchResults: true),
     TtlKey.infosPreviewRepository,
   );
-  yield* stream.map((event) => event?.infos);
+  yield* stream.map((event) => event?.Posts);
 }

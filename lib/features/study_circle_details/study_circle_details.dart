@@ -4,6 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../config.dart';
 import '../../theme/app_theme.dart';
 import '../../utils/context_extensions.dart';
+import '../../api_base/directus_assets_url.dart';
+import '../../utils/where_non_null_iterable.dart';
 import '../../widgets/loading_widgets/shimmer_loading.dart';
 import '../../widgets/my_error_widget.dart';
 import 'models/contact_section_data.dart';
@@ -41,8 +43,8 @@ class _CircleDetailsDataView extends ConsumerWidget {
       AsyncValue(:final value) => CustomScrollView(slivers: [
           SliverPersistentHeader(
               delegate: SliverHeaderSection(
-            logoImageUrl: value?.photo?.url,
-            backgroundImageUrl: value?.backgroundPhoto?.url,
+            logoImageUrl: value?.logo?.filename_disk?.directusUrl,
+            backgroundImageUrl: value?.cover?.filename_disk?.directusUrl,
           )),
           SliverList(
             delegate: SliverChildListDelegate([
@@ -60,12 +62,10 @@ class _CircleDetailsDataView extends ConsumerWidget {
               ),
               const SizedBox(height: DetailsScreenConfig.spacerHeight),
               ContactSection(
-                list: value?.infoSection
-                        ?.expand((e) => e?.info ?? [])
+                list: value?.links.whereNonNull
                         .map((a) => ContactSectionData(
-                              text: a?.visibleText,
-                              url: a?.value,
-                              type: a?.type,
+                              text: a.name,
+                              url: a.link,
                             ))
                         .toList() ??
                     List.empty(),

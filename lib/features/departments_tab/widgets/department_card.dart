@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../config.dart';
 import '../../../shared_repositories/departments_repository/departments_extra_params_ext.dart';
 import '../../../shared_repositories/departments_repository/departments_repository.dart';
+import '../../../api_base/directus_assets_url.dart';
 import '../../../widgets/my_cached_image.dart';
 import '../../../widgets/wide_tile_card.dart';
 
@@ -25,7 +26,7 @@ class DepartmentCard extends StatelessWidget {
           child: Opacity(
             opacity: .5,
             child: MyCachedImage(
-              department.logo?.url,
+              department.logo?.filename_disk.directusUrl,
               boxFit: BoxFit.contain,
               noShimmeringLoading: true,
             ),

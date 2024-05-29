@@ -6,7 +6,9 @@ import 'getScientificCircleDetails.graphql.dart';
 
 part 'study_circle_repository.g.dart';
 
-typedef StudyCircleDetails = Query$GetScientificCircleDetails$scientificCircle;
+typedef StudyCircleDetails
+    = Query$GetScientificCircleDetails$Scientific_Circles_by_id;
+
 typedef _Vars = Variables$Query$GetScientificCircleDetails;
 typedef _GetStudyCircles = WatchOptions$Query$GetScientificCircleDetails;
 
@@ -20,5 +22,5 @@ Stream<StudyCircleDetails?> studyCircleRepository(
     ),
     TtlKey.sciCirclesPreviewRepository,
   );
-  yield* stream.map((event) => event?.scientificCircle);
+  yield* stream.map((event) => event?.Scientific_Circles_by_id);
 }

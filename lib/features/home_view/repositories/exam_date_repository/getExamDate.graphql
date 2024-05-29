@@ -1,5 +1,0 @@
-query GetExamDate {
-  academicYearEndDate{
-    endDate
-  }
-}

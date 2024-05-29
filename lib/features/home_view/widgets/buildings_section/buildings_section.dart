@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../shared_repositories/buildings_repository/building_model.dart';
 import '../../../../shared_repositories/buildings_repository/map_buildings_repo.dart';
 import '../../../../utils/context_extensions.dart';
+import '../../../../api_base/directus_assets_url.dart';
 import '../../../../utils/where_non_null_iterable.dart';
 import '../../../../widgets/my_error_widget.dart';
 import '../../../../widgets/subsection_header.dart';
@@ -68,8 +69,8 @@ class _DataListBuildingsTiles extends ConsumerWidget {
         final mapItem = buildings[index];
         return MediumLeftPadding(
           child: BuildingCard(
-            buildingName: mapItem.code,
-            imageUrl: mapItem.photo?.url,
+            buildingName: mapItem.name,
+            imageUrl: mapItem.cover?.filename_disk?.directusUrl,
             onTap: () {
               BuildingsSection.goToMapTab(ref);
               ref

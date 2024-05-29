@@ -7,8 +7,7 @@ import 'getDepartments.graphql.dart';
 
 part 'departments_repository.g.dart';
 
-typedef Department
-    = Query$GetDepartments$departments; // just alias for shorter type name
+typedef Department = Query$GetDepartments$Departments;
 
 @riverpod
 Stream<List<Department?>?> departmentsRepository(
@@ -20,6 +19,6 @@ Stream<List<Department?>?> departmentsRepository(
     TtlKey.departmentsRepository,
   );
   yield* stream.map(
-    (event) => event?.departments?..sortByCodeOrder(),
+    (event) => event?.Departments?..sortByCodeOrder(),
   );
 }

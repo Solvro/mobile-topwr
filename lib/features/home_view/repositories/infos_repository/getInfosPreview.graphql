@@ -1,12 +1,10 @@
-
-query GetInfosPreview{
-    infos{
-        id
-        shortDescription,
-        title,
-        photo {
-            previewUrl
-        }
-        published_at
+query GetInfosPreview {
+  Posts {
+    content
+    title
+    cover {
+      filename_disk
     }
+    date_created
+  }
 }

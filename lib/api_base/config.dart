@@ -3,7 +3,7 @@ import 'package:envied/envied.dart';
 part 'config.g.dart';
 
 abstract class ApiBaseConfig {
-  static const hiveCacheBoxName = "hiveCacheBoxForGraphQL";
+  static const hiveCacheBoxName = "hiveCacheBoxForDirectusGraphQL";
   static const authHeaderPrefix = "Bearer ";
   static const ttlPrefsPrefix = "TTL_CACHE_TIMESTAMP_PREFX_";
 }
@@ -18,7 +18,7 @@ abstract class ApiBaseEnv {
   @EnviedField()
   static final String apiUrl = _ApiBaseEnv.apiUrl;
   @EnviedField()
-  static final String apiKey = _ApiBaseEnv.apiKey;
+  static final String assetsUrl = _ApiBaseEnv.assetsUrl;
   @EnviedField()
   static final String iparkingUrl = _ApiBaseEnv.iparkingUrl;
 }

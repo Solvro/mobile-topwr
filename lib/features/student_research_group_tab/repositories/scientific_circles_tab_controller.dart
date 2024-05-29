@@ -42,7 +42,8 @@ Future<Iterable<ScientificCircle?>?> scientificCircleList(
   }
 
   final filteredAndSelectedTag = circles?.where((circle) {
-    return circle?.tags?.any((tag) => tag?.name == selectedCategory) ?? false;
+    return circle?.tags?.any((tag) => tag?.Tags_id?.name == selectedCategory) ??
+        false;
   });
   return filteredAndSelectedTag;
 }

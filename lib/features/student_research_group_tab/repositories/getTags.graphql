@@ -1,5 +1,5 @@
-query GetTags{
-    tags {
-        name
-    }
+query GetTags {
+  Tags {
+    name
+  }
 }

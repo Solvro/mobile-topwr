@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../shared_repositories/departments_repository/departments_extra_params_ext.dart';
 import '../../../../shared_repositories/departments_repository/departments_repository.dart';
 import '../../../../theme/app_theme.dart';
+import '../../../../api_base/directus_assets_url.dart';
 import '../../../../widgets/my_cached_image.dart';
 import '../../../../widgets/tile_splash.dart';
 
@@ -28,7 +29,7 @@ class DepartmentBox extends StatelessWidget {
               child: SizedBox.square(
                 dimension: 100,
                 child: MyCachedImage(
-                  department.logo?.url,
+                  department.logo?.filename_disk.directusUrl,
                   noShimmeringLoading: true,
                   boxFit: BoxFit.contain,
                 ),

@@ -11,10 +11,10 @@ extension DepartmentsExtraParamsExt on Department {
         end: Alignment.centerRight,
         colors: [
           HexColor(
-            color?.gradientFirst ?? DepartmentsConfig.defaultColorFirst,
+            gradient_start ?? DepartmentsConfig.defaultColorFirst,
           ),
           HexColor(
-            color?.gradientSecond ?? DepartmentsConfig.defaultColorSecond,
+            gradient_end ?? DepartmentsConfig.defaultColorSecond,
           )
         ]..sortByLightness(),
       );

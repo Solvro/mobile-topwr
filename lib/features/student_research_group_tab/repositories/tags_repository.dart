@@ -8,7 +8,7 @@ import 'getTags.graphql.dart';
 
 part 'tags_repository.g.dart';
 
-typedef Tag = Query$GetTags$tags; // just alias for shorter type name
+typedef Tag = Query$GetTags$Tags; // just alias for shorter type name
 
 @riverpod
 Stream<List<Tag?>?> remoteTagsRepository(RemoteTagsRepositoryRef ref) async* {
@@ -18,9 +18,7 @@ Stream<List<Tag?>?> remoteTagsRepository(RemoteTagsRepositoryRef ref) async* {
     ),
     TtlKey.tagsRepository,
   );
-  yield* stream.map(
-    (event) => event?.tags,
-  );
+  yield* stream.map((event) => event?.Tags);
 }
 
 @riverpod

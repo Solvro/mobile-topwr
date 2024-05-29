@@ -18,7 +18,6 @@ class MyCachedImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     if (imageUrl == null || imageUrl!.isEmpty) {
       return const FlutterSplashScreen();
     }
