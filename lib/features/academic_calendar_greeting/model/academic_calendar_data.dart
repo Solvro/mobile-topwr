@@ -10,12 +10,13 @@ extension AcademicCalendarDataExtraAttrs on AcademicCalendarData {
   }
 
   bool isExamSession() {
-    return now.isAfter(examSessionStartDate) &&
-        now.isBefore(examSessionLastDay);
+    return now.isAfterOrSameAs(examSessionStartDate) &&
+        now.isBeforeOrSameAs(examSessionLastDay);
   }
 
   bool isSemester() {
-    return now.isAfter(semesterStartDate) && now.isBefore(examSessionStartDate);
+    return now.isAfterOrSameAs(semesterStartDate) &&
+        now.isBefore(examSessionStartDate);
   }
 
   bool shouldBeEvenWeek() {
