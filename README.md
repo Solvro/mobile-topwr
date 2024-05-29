@@ -89,6 +89,12 @@ dart run build_runner build
 dart run build_runner watch
 ```
 
+- If something doesn't build correctly, this might help:
+
+```zsh
+dart run build_runner build -d
+```
+
 4.  ### It's now possible to run or build the app in the usual way
     _Rebuilds are necessary after any updates or changes to affected files (`watch` command does it for you)_
 
@@ -99,6 +105,10 @@ dart run build_runner watch
 3. Api helper module instructions: https://github.com/Solvro/topwr-mobile/tree/main/lib/api_base
 
 ## Working with git
+
+### Github Solvro Handbook 🔥
+https://docs.google.com/document/d/1Sb5lYqYLnYuecS1Essn3YwietsbuLPCTsTuW0EMpG5o/edit?usp=sharing 
+
 
 ### SSH
 
