@@ -20,8 +20,13 @@ class ContactSectionData {
   }) : iconUrl = _determineIcon(url);
 
   static String _determineIcon(String? url) {
-    if (url == null) return DetailsScreenConfig.defaultIconUrl;
-    return _icons.entries.firstWhereOrNull((e) => url.contains(e.key))?.value ??
-        DetailsScreenConfig.defaultIconUrl;
+    return url != null
+        ? _icons.entries
+                .firstWhereOrNull(
+                  (e) => url.contains(e.key),
+                )
+                ?.value ??
+            DetailsScreenConfig.defaultIconUrl
+        : DetailsScreenConfig.defaultIconUrl;
   }
 }

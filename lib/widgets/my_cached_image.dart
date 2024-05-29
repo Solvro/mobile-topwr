@@ -33,9 +33,7 @@ class MyCachedImage extends StatelessWidget {
                   color: Colors.white,
                 ),
               )),
-      errorWidget: (context, url, error) {
-        return const FlutterSplashScreen();
-      },
+      errorWidget: (context, url, error) => const FlutterSplashScreen(),
     );
   }
 }
