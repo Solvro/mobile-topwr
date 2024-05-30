@@ -71,7 +71,7 @@ API_URL="https://<our-server-url>/graphql"
 ASSETS_URL="https://<our-server-url>/assets"
 IPARKING_URL="https://<secret parking's source>.pl"
 ```
-     If you need our server url please contact us for more details. 
+    If you need our server url please contact us for more details. 
 
 3.  ### Code generation
     Some of app's dependecies utilize code generation feature and generated files **are not currently included** to control version and this github repository, so before building, running or developing application, it's crucial to run code generation (to generate all needed files) in terminal with:
