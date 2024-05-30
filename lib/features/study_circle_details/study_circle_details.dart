@@ -48,12 +48,13 @@ class _CircleDetailsDataView extends ConsumerWidget {
           )),
           SliverList(
             delegate: SliverChildListDelegate([
-              Text(
-                value?.name ?? '',
-                style: context.textTheme.headline,
-                textAlign: TextAlign.center,
-                maxLines: 2,
-              ),
+              const SizedBox(height: 8),
+                Text(
+                  value?.name ?? '',
+                  style: context.textTheme.headline,
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                ),
               const SizedBox(height: 12),
               Text(
                 value?.department?.name ?? '',
