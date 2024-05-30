@@ -33,48 +33,48 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   cupertino_icons: ^1.0.2
-  theme_tailor_annotation: ^2.0.2
-  flutter_native_splash: ^2.3.8
-  flutter_riverpod: ^2.4.9
-  riverpod_annotation: ^2.3.3
+  theme_tailor_annotation: ^3.0.1
+  flutter_native_splash: ^2.4.0
+  flutter_riverpod: ^2.5.1
+  riverpod_annotation: ^2.3.5
   flutter_svg: ^2.0.9
   intl: ^0.19.0
-  envied: ^0.5.2
+  envied: ^0.5.4+1
   graphql: ^5.1.3
   hive: ^2.2.3
   path_provider: ^2.1.1
   cached_network_image: ^3.3.1
   logger: ^2.0.2+1
-  equatable: ^2.0.5
   enum_map: ^0.3.0
   google_maps_flutter: ^2.6.1
   url_launcher: ^6.2.4
   shared_preferences: ^2.2.2
   dio: ^5.4.3+1
   freezed_annotation: ^2.4.1
-  json_annotation: ^4.8.1
+  json_annotation: ^4.9.0
   collection: ^1.18.0
   fl_chart: ^0.67.0
   permission_handler: ^11.3.1
-
-dependency_overrides:
-  analyzer: ^6.4.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
-  enum_map_gen: ^0.3.0
-  build_runner: ^2.4.7
-  theme_tailor: ^2.0.2
-  riverpod_generator: ^2.3.9
-  custom_lint: ^0.6.4
-  riverpod_lint: ^2.3.10
-  envied_generator: ^0.5.2
-  graphql_codegen: ^0.13.10
-  freezed: ^2.5.2
-  json_serializable: ^6.7.1
+  build_runner: ^2.4.10
+  freezed: ^2.5.3
+  json_serializable: ^6.8.0
   flutter_launcher_icons: "^0.13.1"
+  riverpod_generator: ^2.4.2
+  theme_tailor: ^3.0.1
+  enum_map_gen: ^0.3.0
+  custom_lint: ^0.6.4
+  riverpod_lint: ^2.3.12
+  envied_generator: ^0.5.4+1
+  graphql_codegen: ^0.14.0
+
+dependency_overrides:
+  analyzer: ^6.5.0
+  meta: ^1.15.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
