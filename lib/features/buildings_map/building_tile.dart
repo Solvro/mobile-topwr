@@ -19,7 +19,6 @@ class BuildingTile extends ConsumerWidget {
   final bool isActive;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    print(building.cover?.filename_disk.directusUrl);
     return PhotoTrailingWideTileCard(
       activeGradient: context.colorTheme.toPwrGradient,
       photoUrl: building.cover?.filename_disk.directusUrl,
