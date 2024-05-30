@@ -10,11 +10,13 @@ class MyCachedImage extends StatelessWidget {
     super.key,
     this.noShimmeringLoading = false,
     this.boxFit = BoxFit.cover,
+    this.size,
   });
 
   final String? imageUrl;
   final bool noShimmeringLoading;
   final BoxFit boxFit;
+  final Size? size;
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +36,8 @@ class MyCachedImage extends StatelessWidget {
                 ),
               )),
       errorWidget: (context, url, error) => const FlutterSplashScreen(),
+      height: size?.height,
+      width: size?.width,
     );
   }
 }

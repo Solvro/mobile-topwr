@@ -1,5 +1,7 @@
 import 'dart:math';
+
 import 'package:flutter/material.dart';
+
 import '../../../config.dart';
 import '../../../widgets/my_cached_image.dart';
 
@@ -33,10 +35,10 @@ class SliverHeaderSection extends SliverPersistentHeaderDelegate {
 
   @override
   Widget build(
-      BuildContext context,
-      double shrinkOffset,
-      bool overlapsContent,
-      ) {
+    BuildContext context,
+    double shrinkOffset,
+    bool overlapsContent,
+  ) {
     final progress = shrinkOffset / maxExtent;
     final logoSize = calcLogoSize(shrinkOffset);
     final logoOpacity = calcLogoOpacity(shrinkOffset, logoSize);
@@ -64,7 +66,11 @@ class SliverHeaderSection extends SliverPersistentHeaderDelegate {
                       elevation: 3,
                       shape: const CircleBorder(),
                       clipBehavior: Clip.antiAlias,
-                      child: MyCachedImage(logoImageUrl),
+                      child: MyCachedImage(
+                        logoImageUrl,
+                        size: Size.square(logoSize),
+                        boxFit: BoxFit.contain,
+                      ),
                     ),
                   )
                 ],
