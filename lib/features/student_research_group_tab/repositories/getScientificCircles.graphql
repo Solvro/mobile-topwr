@@ -1,5 +1,5 @@
 query GetScientificCircles {
-  Scientific_Circles {
+  Scientific_Circles(limit: 300) {
     id
     name
     department {
