@@ -26,8 +26,8 @@ Future<Iterable<ScientificCircle?>?> _sciCirclesFilteredByTextQuery(
   return originalList?.where((element) =>
       element == null ||
       element.name.toLowerCase().contains(query.toLowerCase()) ||
-      element.department == null ||
-      element.department!.name.toLowerCase().contains(query.toLowerCase()));
+      (element.department?.name.toLowerCase().contains(query.toLowerCase()) ??
+          false));
 }
 
 @riverpod
