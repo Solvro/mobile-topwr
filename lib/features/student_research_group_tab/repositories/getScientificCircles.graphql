@@ -15,5 +15,6 @@ query GetScientificCircles {
       filename_disk
     }
     source
+    shortDescription
   }
 }

@@ -11,7 +11,7 @@ import '../../../widgets/subsection_header.dart';
 import '../../bottom_nav_bar/bottom_nav_bar_controller.dart';
 import '../../bottom_nav_bar/nav_bar_config.dart';
 import '../../bottom_nav_bar/nested_navigator.dart';
-import '../repositories/study_circles_repository/study_circles_repository.dart';
+import '../../student_research_group_tab/repositories/scientific_circles_repository.dart';
 import 'loading_widgets/big_scrollable_section_loading.dart';
 import 'paddings.dart';
 
@@ -39,7 +39,7 @@ class _StudyCirclesList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(studyCirclesRepositoryProvider);
+    final state = ref.watch(scientificCirclesRepositoryProvider);
     return switch (state) {
       AsyncLoading() => const Padding(
           padding: EdgeInsets.only(
@@ -65,7 +65,7 @@ class _StudyCirclesList extends ConsumerWidget {
 class _StudyCirclesDataList extends ConsumerWidget {
   const _StudyCirclesDataList(this.studyCircles);
 
-  final List<SciCirclePreview> studyCircles;
+  final List<ScientificCircle> studyCircles;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -80,7 +80,7 @@ class _StudyCirclesDataList extends ConsumerWidget {
             child: BigPreviewCard(
                 title: circle.name,
                 shortDescription: circle.shortDescription ?? "",
-                photoUrl: circle.cover?.filename_disk?.directusUrl,
+                photoUrl: circle.logo?.filename_disk?.directusUrl,
                 onClick: () {
                   ref
                       .read(navigatorProvider)
