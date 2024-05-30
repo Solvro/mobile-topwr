@@ -43,10 +43,8 @@ class ParkingChart extends ConsumerWidget {
           final chartPoints = value.toChartPoints().toList();
           if (chartPoints.isEmpty) {
             return Center(
-              child: Text(
-                context.localize.noChartData,
-                style: context.iParkingTheme.subtitleLight,
-              ),
+              child: Text(context.localize.noChartData,
+                  style: context.iParkingTheme.subtitleLightWithoutShadows),
             );
           }
           return Padding(
