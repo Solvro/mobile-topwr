@@ -11,8 +11,9 @@ query GetScientificCircles {
         name
       }
     }
-    cover {
+    logo {
       filename_disk
     }
+    source
   }
 }

@@ -38,7 +38,7 @@ class ResearchGroupCard extends StatelessWidget {
                   bottomRight: WideTileCardConfig.radius),
             ),
             child: MyCachedImage(
-              sciCircle.cover?.filename_disk.directusUrl,
+              sciCircle.logo?.filename_disk.directusUrl,
               boxFit: BoxFit.contain,
               noShimmeringLoading: true,
             ),
