@@ -7,7 +7,7 @@ import '../../../utils/context_extensions.dart';
 import '../../../utils/where_non_null_iterable.dart';
 import '../../../widgets/my_error_widget.dart';
 import '../../bottom_nav_bar/nested_navigator.dart';
-import '../repositories/scientific_circles_repository.dart';
+import '../../../shared_repositories/sci_clubs_repository/scientific_circles_repository.dart';
 import '../repositories/scientific_circles_tab_controller.dart';
 import 'scientific_circle_card.dart';
 import 'scientific_circle_loading.dart';

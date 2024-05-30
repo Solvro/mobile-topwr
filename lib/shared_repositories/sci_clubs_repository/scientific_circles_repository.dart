@@ -1,7 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../../api_base/watch_query_adapter.dart';
-import '../../../api_base/ttl/ttl_config.dart';
+import '../../../api_base/watch_query_adapter.dart';
+import '../../api_base/ttl/ttl_config.dart';
 import 'getScientificCircles.graphql.dart';
 
 part 'scientific_circles_repository.g.dart';

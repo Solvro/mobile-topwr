@@ -11,7 +11,7 @@ import '../../../widgets/subsection_header.dart';
 import '../../bottom_nav_bar/bottom_nav_bar_controller.dart';
 import '../../bottom_nav_bar/nav_bar_config.dart';
 import '../../bottom_nav_bar/nested_navigator.dart';
-import '../../student_research_group_tab/repositories/scientific_circles_repository.dart';
+import '../../../shared_repositories/sci_clubs_repository/scientific_circles_repository.dart';
 import 'loading_widgets/big_scrollable_section_loading.dart';
 import 'paddings.dart';
 
