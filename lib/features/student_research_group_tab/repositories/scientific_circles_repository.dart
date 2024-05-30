@@ -17,6 +17,19 @@ Stream<List<ScientificCircle?>?> scientificCirclesRepository(
     TtlKey.sciCirclesRepository,
   );
   yield* stream.map(
-    (event) => event?.Scientific_Circles,
+    (event) => event?.Scientific_Circles.sortBySourceTypes().toList(),
   );
+}
+
+extension SortBySourceType on Iterable<ScientificCircle> {
+  Iterable<ScientificCircle> _filter(String source) {
+    return where((element) => element.source == source);
+  }
+
+  Iterable<ScientificCircle> sortBySourceTypes() {
+    final p0 = _filter("manual_entry");
+    final p1 = _filter("aktywni_website");
+    final p2 = _filter("student_department");
+    return p0.followedBy(p1).followedBy(p2).toList();
+  }
 }
