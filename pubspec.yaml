@@ -56,6 +56,7 @@ dependencies:
   collection: ^1.18.0
   fl_chart: ^0.67.0
   permission_handler: ^11.3.1
+  flutter_widget_from_html_core: ^0.14.12
 
 dependency_overrides:
   analyzer: ^6.4.1
