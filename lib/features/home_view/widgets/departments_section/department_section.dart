@@ -29,7 +29,7 @@ class DepartmentSection extends ConsumerWidget {
                 .goTo(NavBarEnum.faculties);
           },
         ),
-        SmallLeftPadding(
+        SmallHorizontalPadding(
           child: switch (state) {
             AsyncLoading() => const MediumLeftPadding(
                 child: ScrollableSectionLoading(),

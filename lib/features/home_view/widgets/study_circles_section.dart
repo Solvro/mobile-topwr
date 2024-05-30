@@ -51,6 +51,7 @@ class _StudyCirclesList extends ConsumerWidget {
       AsyncValue(:final value) => Container(
           padding: const EdgeInsets.only(
             left: HomeScreenConfig.paddingSmall,
+            right: HomeScreenConfig.paddingSmall,
             top: HomeScreenConfig.paddingMedium,
           ),
           height: BigPreviewCardConfig.cardHeight,
