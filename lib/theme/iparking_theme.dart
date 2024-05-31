@@ -41,12 +41,6 @@ class ParkingLightSubtitleTextStyle extends ParkingTextStyle {
       : super(fontSize: 14);
 }
 
-class ParkingLightSubtitleWithoutShadowTextStyle extends ParkingTextStyle {
-  const ParkingLightSubtitleWithoutShadowTextStyle(
-      {super.color, super.fontWeight})
-      : super(shadows : const[], fontSize: 14);
-}
-
 class ParkingSubtitleTextStyle extends ParkingLightSubtitleTextStyle {
   const ParkingSubtitleTextStyle({super.color})
       : super(fontWeight: FontWeight.w500);
@@ -75,8 +69,6 @@ class IParkingTheme extends ThemeExtension<IParkingTheme>
   @override
   final TextStyle subtitleLight;
   @override
-  final TextStyle subtitleLightWithoutShadows;
-  @override
   final TextStyle small;
   @override
   final TextStyle chart;
@@ -85,7 +77,6 @@ class IParkingTheme extends ThemeExtension<IParkingTheme>
     this.title = const ParkingTitleTextStyle(),
     this.subtitle = const ParkingSubtitleTextStyle(),
     this.subtitleLight = const ParkingLightSubtitleTextStyle(),
-    this.subtitleLightWithoutShadows = const ParkingLightSubtitleWithoutShadowTextStyle(),
     this.small = const ParkingSmallTextStyle(),
     this.chart = const ParkingChartTextStyle(),
   });
