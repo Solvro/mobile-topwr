@@ -1,6 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'scientific_circles_repository.dart';
+import '../../../shared_repositories/sci_clubs_repository/scientific_circles_repository.dart';
 import 'selected_tag_controller.dart';
 import 'tags_repository.dart';
 
@@ -26,8 +26,8 @@ Future<Iterable<ScientificCircle?>?> _sciCirclesFilteredByTextQuery(
   return originalList?.where((element) =>
       element == null ||
       element.name.toLowerCase().contains(query.toLowerCase()) ||
-      element.department == null ||
-      element.department!.name.toLowerCase().contains(query.toLowerCase()));
+      (element.department?.name.toLowerCase().contains(query.toLowerCase()) ??
+          false));
 }
 
 @riverpod

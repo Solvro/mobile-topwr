@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../api_base/directus_assets_url.dart';
 import '../../config.dart';
 import '../../theme/app_theme.dart';
 import '../../utils/context_extensions.dart';
-import '../../api_base/directus_assets_url.dart';
 import '../../utils/where_non_null_iterable.dart';
 import '../../widgets/loading_widgets/shimmer_loading.dart';
 import '../../widgets/my_error_widget.dart';
@@ -48,6 +48,7 @@ class _CircleDetailsDataView extends ConsumerWidget {
           )),
           SliverList(
             delegate: SliverChildListDelegate([
+              const SizedBox(height: 8),
               Text(
                 value?.name ?? '',
                 style: context.textTheme.headline,

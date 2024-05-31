@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import '../../../theme/app_theme.dart';
 import '../../../utils/context_extensions.dart';
 
@@ -20,7 +20,10 @@ class AboutUsSection extends StatelessWidget {
                 Text(context.localize.about_us,
                     style: context.textTheme.headline),
                 const SizedBox(height: 16),
-                Text(text, style: context.textTheme.body),
+                HtmlWidget(
+                  text,
+                  textStyle: context.textTheme.body
+                ),
               ],
             ),
           );

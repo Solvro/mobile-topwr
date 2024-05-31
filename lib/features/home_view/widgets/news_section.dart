@@ -52,6 +52,7 @@ class _NewsList extends ConsumerWidget {
             Padding(
               padding: const EdgeInsets.only(
                   left: HomeScreenConfig.paddingSmall,
+                  right: HomeScreenConfig.paddingSmall,
                   top: HomeScreenConfig.paddingMedium),
               child: SizedBox(
                   height: BigPreviewCardConfig.cardHeight,

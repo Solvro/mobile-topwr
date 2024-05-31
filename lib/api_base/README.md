@@ -12,7 +12,8 @@ Before you start, you need to add `.env` file to project's root with appropriate
 
 ```bash
 API_URL="https://<our-server-url>/graphql"
-API_KEY="<Your api token>"
+ASSETS_URL="https://<our-server-url>/assets"
+IPARKING_URL="https://<secret parking's source>.pl"
 ```
 
 ## Example

@@ -45,7 +45,7 @@ class _ParkingsList extends ConsumerWidget {
           child: ScrollableSectionLoading(),
         ),
       AsyncError(:final error) => MyErrorWidget(error),
-      AsyncValue(:final value) => SmallLeftPadding(
+      AsyncValue(:final value) => SmallHorizontalPadding(
           child: SizedBox(
             height: 120,
             child: _DataListParkingsTiles(value.whereNonNull.toList()),

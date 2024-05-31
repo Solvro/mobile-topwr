@@ -1,5 +1,5 @@
 query GetScientificCircles {
-  Scientific_Circles {
+  Scientific_Circles(limit: 300) {
     id
     name
     department {
@@ -11,8 +11,10 @@ query GetScientificCircles {
         name
       }
     }
-    cover {
+    logo {
       filename_disk
     }
+    source
+    shortDescription
   }
 }

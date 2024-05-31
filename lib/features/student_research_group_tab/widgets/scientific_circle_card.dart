@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../../config.dart';
 import '../../../api_base/directus_assets_url.dart';
+import '../../../config.dart';
+import '../../../shared_repositories/sci_clubs_repository/scientific_circles_repository.dart';
 import '../../../widgets/my_cached_image.dart';
 import '../../../widgets/wide_tile_card.dart';
-import '../repositories/scientific_circles_repository.dart';
 
 class ResearchGroupCard extends StatelessWidget {
   final ScientificCircle sciCircle;
@@ -38,7 +38,7 @@ class ResearchGroupCard extends StatelessWidget {
                   bottomRight: WideTileCardConfig.radius),
             ),
             child: MyCachedImage(
-              sciCircle.cover?.filename_disk.directusUrl,
+              sciCircle.logo?.filename_disk.directusUrl,
               boxFit: BoxFit.contain,
               noShimmeringLoading: true,
             ),

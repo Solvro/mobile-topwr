@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../../../config.dart';
 
-class SmallLeftPadding extends Padding {
-  const SmallLeftPadding({super.key, super.child})
-      : super(padding: const EdgeInsets.only(left: HomeScreenConfig.paddingSmall));
+class SmallHorizontalPadding extends Padding {
+  const SmallHorizontalPadding({super.key, super.child})
+      : super(padding: const EdgeInsets.only(left: HomeScreenConfig.paddingSmall, right: HomeScreenConfig.paddingSmall));
 }
 
 class MediumLeftPadding extends Padding {
