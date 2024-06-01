@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'nav_bar_config.dart';
@@ -5,8 +7,10 @@ import 'nested_navigator.dart';
 
 part 'bottom_nav_bar_controller.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 class BottomNavBarController extends _$BottomNavBarController {
+  final _tabHistory = DoubleLinkedQueue<NavBarEnum>();
+
   @override
   NavBarEnum build() {
     return NavBarEnum.home;
@@ -20,10 +24,25 @@ class BottomNavBarController extends _$BottomNavBarController {
         .read(navigatorProvider)
         .popUntilRoot(); // pops nested views if we've went to different tab
 
-    state = NavBarEnum.values[index];
+    goTo(NavBarEnum.values[index]);
   }
 
   void goTo(NavBarEnum tab) {
-    state = tab;
+    if (tab != state) {
+      _registerHistoryTab();
+      state = tab;
+    }
   }
+
+  void _registerHistoryTab() {
+    if (_tabHistory.lastOrNull != state) {
+      _tabHistory.add(state);
+    }
+  }
+
+  void pop() {
+    state = _tabHistory.removeLast();
+  }
+
+  bool get canReturnToPreviousTab => _tabHistory.isNotEmpty;
 }

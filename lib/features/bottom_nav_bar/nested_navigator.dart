@@ -14,11 +14,21 @@ class NestedNavigator {
   final navigatorKey = GlobalKey<NavigatorState>();
 
   void handleNestedPop() {
-    if (androidSpecialPopTreatment) {
-      handleAndroidSpecialPop();
-    } else {
-      navigatorKey.currentState?.pop();
+    final isRootRoute = navigatorKey.currentState?.canPop() == false;
+    if (!isRootRoute) {
+      return navigatorKey.currentState?.pop();
     }
+
+    final tabController = ref.read(bottomNavBarControllerProvider.notifier);
+    if (tabController.canReturnToPreviousTab) {
+      return tabController.pop();
+    }
+
+    if (androidSpecialPopTreatment) {
+      return handleAndroidSpecialPop();
+    }
+
+    navigatorKey.currentState?.pop();
   }
 
   Route<dynamic> onGenerateRoute(RouteSettings settings) {
