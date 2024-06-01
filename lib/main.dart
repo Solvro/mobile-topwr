@@ -6,6 +6,7 @@ import 'features/bottom_nav_bar/bottom_nav_bar.dart';
 import 'features/splash_screen/splash_screen.dart';
 import 'features/splash_screen/splash_screen_controller.dart';
 import 'theme/app_theme.dart';
+import 'theme/colors.dart';
 
 void main() async {
   SplashScreenController.preserveNativeSplashScreen();
@@ -26,7 +27,11 @@ class MyApp extends StatelessWidget {
       title: MyAppConfig.title,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      theme: ThemeData(extensions: const [AppTheme()]),
+      theme: ThemeData(
+          extensions: const [AppTheme()],
+          colorScheme: const ColorScheme.light().copyWith(
+            surface: ColorsConsts.whiteSoap,
+          )),
       debugShowCheckedModeBanner: false,
       home: const RootViewWithBottomNavBar(),
     );
