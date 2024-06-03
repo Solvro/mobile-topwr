@@ -8,7 +8,7 @@ import '../../home_view/home_view.dart';
 import '../../iparking/parking_view.dart';
 import '../../student_research_group_tab/scientific_circles_tab.dart';
 
-class TabbarPageRoute extends MaterialPageRoute {
+class TabBarPageRoute extends MaterialPageRoute {
   static const _widgetOptions = UnmodifiableNavBarEnumMap(
     home: HomeView(),
     mapp: BuildingMapView(),
@@ -18,18 +18,30 @@ class TabbarPageRoute extends MaterialPageRoute {
     info: _InfoPlaceholder(),
   );
 
-  TabbarPageRoute(NavBarEnum? tab, {super.settings})
-      : super(
+  TabBarPageRoute({
+    required this.previousTab,
+    required this.newTab,
+    super.settings,
+  }) : super(
           builder: (context) {
-            return _widgetOptions.get(tab ?? NavBarEnum.home);
+            return _widgetOptions.get(newTab);
           },
         );
+
+  final NavBarEnum previousTab;
+  final NavBarEnum newTab;
 
   @override
   Widget buildTransitions(BuildContext context, Animation<double> animation,
       Animation<double> secondaryAnimation, Widget child) {
-    return FadeTransition(
-      opacity: animation,
+    final isMoreToRight = newTab.index >= previousTab.index;
+    final tween = Tween(
+      begin: isMoreToRight ? const Offset(1.0, 0.0) : const Offset(-1.0, 0.0),
+      end: Offset.zero,
+    ).chain(CurveTween(curve: Curves.ease));
+
+    return SlideTransition(
+      position: animation.drive(tween),
       child: child,
     );
   }
