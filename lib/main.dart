@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'config.dart';
-import 'features/bottom_nav_bar/bottom_nav_bar.dart';
+import 'features/navigator/root_navigator_widget.dart';
 import 'features/splash_screen/splash_screen.dart';
 import 'features/splash_screen/splash_screen_controller.dart';
 import 'theme/app_theme.dart';
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
             surface: ColorsConsts.whiteSoap,
           )),
       debugShowCheckedModeBanner: false,
-      home: const RootViewWithBottomNavBar(),
+      home: const RootNavigatorWidget(),
     );
   }
 }
