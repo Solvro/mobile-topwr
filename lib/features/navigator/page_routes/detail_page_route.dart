@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../widgets/my_error_widget.dart';
 import '../../study_circle_details/study_circle_details.dart';
 
-class TopwrPageRoute extends MaterialPageRoute {
-  TopwrPageRoute(RouteSettings settings)
+class DetailPageRoute extends MaterialPageRoute {
+  DetailPageRoute(RouteSettings settings)
       : super(
           builder: switch (settings.name) {
             AppRoutes.studyCircleDetails => (_) => const StudyCircleDetails(),
