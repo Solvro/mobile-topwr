@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import 'features/bottom_nav_bar/nav_bar_config.dart';
 import 'features/iparking_chart/utils/range_hour_points.dart';
 
 abstract class MyAppConfig {
   static const title = "ToPwr";
+  static const initialTab = NavBarEnum.home;
 }
 
 abstract class AppBarConfig {

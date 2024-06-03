@@ -1,5 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../config.dart';
 import '../navigator/utils/selected_tab_observer.dart';
 import 'nav_bar_config.dart';
 
@@ -12,7 +13,7 @@ class BottomNavBarController extends _$BottomNavBarController {
 
   @override
   NavBarEnum build() {
-    return NavBarEnum.home;
+    return MyAppConfig.initialTab;
   }
 
   void _onTabChanged(NavBarEnum tab) {
