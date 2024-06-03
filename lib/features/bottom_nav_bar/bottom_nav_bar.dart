@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../theme/app_theme.dart';
 import '../navigator/navigator/nested_navigator.dart';
+import '../navigator/navigator/tab_bar_navigator.dart';
 import 'bottom_nav_bar_controller.dart';
 import 'nav_bar_config.dart';
 

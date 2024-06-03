@@ -8,6 +8,7 @@ import '../../../../widgets/my_error_widget.dart';
 import '../../../../widgets/subsection_header.dart';
 import '../../../bottom_nav_bar/nav_bar_config.dart';
 import '../../../navigator/navigator/nested_navigator.dart';
+import '../../../navigator/navigator/tab_bar_navigator.dart';
 import '../loading_widgets/scrollable_section_loading.dart';
 import '../paddings.dart';
 import 'deparment_box.dart';
