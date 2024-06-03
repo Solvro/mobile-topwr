@@ -9,7 +9,7 @@ import '../../../widgets/big_preview_card.dart';
 import '../../../widgets/my_error_widget.dart';
 import '../../../widgets/subsection_header.dart';
 import '../../bottom_nav_bar/nav_bar_config.dart';
-import '../../navigator/nested_navigator.dart';
+import '../../navigator/navigator/nested_navigator.dart';
 import '../repositories/infos_repository/infos_preview_repository.dart';
 import 'loading_widgets/big_scrollable_section_loading.dart';
 import 'paddings.dart';

@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../bottom_nav_bar/bottom_nav_bar.dart';
 import '../bottom_nav_bar/bottom_nav_bar_controller.dart';
-import 'nested_navigator.dart';
+import 'navigator/nested_navigator.dart';
 import 'utils/android_pop_bug_workaround.dart';
 
 class RootNavigatorWidget extends ConsumerWidget {
