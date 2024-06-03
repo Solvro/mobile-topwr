@@ -3,10 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../bottom_nav_bar/bottom_nav_bar_controller.dart';
 import '../bottom_nav_bar/nav_bar_config.dart';
-import 'android_pop_bug_workaround.dart';
-import "extract_tabbar_arg.dart";
 import 'page_routes/tabbar_page_route.dart';
 import 'page_routes/topwr_page_route.dart';
+import 'utils/android_pop_bug_workaround.dart';
+import "utils/extract_tabbar_arg.dart";
 
 class NestedNavigator {
   NestedNavigator(this.ref);
@@ -30,26 +30,27 @@ class NestedNavigator {
     return TopwrPageRoute(settings);
   }
 
-  void changeTabBar(NavBarEnum tab) {
+  void changeTabBar(NavBarEnum newTab) {
+    final currentTab = ref.read(bottomNavBarControllerProvider);
+    if (currentTab == newTab) {
+      return; // no action
+    }
+
+    navigatorKey.currentState?.popUntil(
+      (route) => route.settings.name == AppRoutes.root,
+    );
+
     navigatorKey.currentState?.pushNamed(
       AppRoutes.root,
-      arguments: tab,
+      arguments: newTab,
     );
   }
 
   void navigateToStudyCircleDetails(String argument) {
-    ref
-        .read(bottomNavBarControllerProvider.notifier)
-        .goTo(NavBarEnum.sciCircles);
+    changeTabBar(NavBarEnum.sciCircles);
     navigatorKey.currentState?.pushNamed(
       AppRoutes.studyCircleDetails,
       arguments: argument,
-    );
-  }
-
-  void popUntilRoot() {
-    navigatorKey.currentState?.popUntil(
-      (route) => route.settings.name == AppRoutes.root,
     );
   }
 }

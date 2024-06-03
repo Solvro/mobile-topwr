@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'android_pop_bug_workaround.dart';
 import '../bottom_nav_bar/bottom_nav_bar.dart';
+import '../bottom_nav_bar/bottom_nav_bar_controller.dart';
 import 'nested_navigator.dart';
+import 'utils/android_pop_bug_workaround.dart';
 
 class RootNavigatorWidget extends ConsumerWidget {
   const RootNavigatorWidget({super.key});
@@ -11,6 +12,8 @@ class RootNavigatorWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final navigator = ref.watch(navigatorProvider);
+    final bottomNavController =
+        ref.watch(bottomNavBarControllerProvider.notifier);
     return Scaffold(
       body: PopScope(
         canPop: !navigator.androidSpecialPopTreatment,
@@ -19,6 +22,7 @@ class RootNavigatorWidget extends ConsumerWidget {
           child: Navigator(
             key: navigator.navigatorKey,
             onGenerateRoute: navigator.onGenerateRoute,
+            observers: [bottomNavController.selectedTabObserver],
           ),
         ),
       ),

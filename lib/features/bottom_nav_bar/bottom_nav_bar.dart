@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../theme/app_theme.dart';
+import '../navigator/nested_navigator.dart';
 import 'bottom_nav_bar_controller.dart';
 import 'nav_bar_config.dart';
 
@@ -12,7 +13,7 @@ class BottomNavBar extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedTab = ref.watch(bottomNavBarControllerProvider);
-    final controller = ref.watch(bottomNavBarControllerProvider.notifier);
+    final navigator = ref.watch(navigatorProvider);
 
     return Container(
         decoration: BoxDecoration(
@@ -26,7 +27,7 @@ class BottomNavBar extends ConsumerWidget {
         ),
         child: BottomNavigationBar(
           currentIndex: selectedTab.index,
-          onTap: controller.onIndexChanged,
+          onTap: (index) => navigator.changeTabBar(NavBarEnum.values[index]),
           backgroundColor: context.colorTheme.greyLight,
           showSelectedLabels: false,
           showUnselectedLabels: false,

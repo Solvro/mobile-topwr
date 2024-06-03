@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../../bottom_nav_bar/nav_bar_config.dart';
 import '../../buildings_map/buildings_view.dart';
 import '../../departments_tab/departments_tab.dart';
 import '../../home_view/home_view.dart';
 import '../../iparking/parking_view.dart';
 import '../../student_research_group_tab/scientific_circles_tab.dart';
-import '../../bottom_nav_bar/nav_bar_config.dart';
 
 class TabbarPageRoute extends MaterialPageRoute {
   static const _widgetOptions = UnmodifiableNavBarEnumMap(
@@ -19,10 +19,10 @@ class TabbarPageRoute extends MaterialPageRoute {
     ),
   );
 
-  TabbarPageRoute(NavBarEnum tab, {super.settings})
+  TabbarPageRoute(NavBarEnum? tab, {super.settings})
       : super(
           builder: (context) {
-            return _widgetOptions.get(tab);
+            return _widgetOptions.get(tab ?? NavBarEnum.home);
           },
         );
 }
