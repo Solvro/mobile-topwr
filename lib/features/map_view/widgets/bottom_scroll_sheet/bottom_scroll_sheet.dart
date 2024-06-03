@@ -32,21 +32,31 @@ class BottomScrollSheet<T extends GoogleNavigable> extends ConsumerWidget {
             min(1.0, recomendedSheetHeight / screenHeight);
         final minSheetFraction = min(0.25, minSheetHeight / screenHeight);
 
-        return DraggableScrollableSheet(
-          controller: ref.watch(bottomSheetControllerProvider),
-          initialChildSize: recomendedSheetFraction,
-          maxChildSize: 1, // factor 1 means 100% available height
-          minChildSize: minSheetFraction,
-          snap: true,
-          snapSizes: [recomendedSheetFraction],
-          builder: (BuildContext context, ScrollController scrollController) {
-            return Container(
-              clipBehavior: Clip.antiAlias,
-              decoration:
-                  _RoundedTopDecoration(color: context.colorTheme.whiteSoap),
-              child: SheetLayoutScheme<T>(scrollController: scrollController),
-            );
+        return PopScope(
+          canPop: !isAnyActive,
+          onPopInvoked: (didPop) {
+            if (isAnyActive) {
+              return ref
+                  .read(context.mapController<T>().notifier)
+                  .onMapBgTap(null);
+            }
           },
+          child: DraggableScrollableSheet(
+            controller: ref.watch(bottomSheetControllerProvider),
+            initialChildSize: recomendedSheetFraction,
+            maxChildSize: 1, // factor 1 means 100% available height
+            minChildSize: minSheetFraction,
+            snap: true,
+            snapSizes: [recomendedSheetFraction],
+            builder: (BuildContext context, ScrollController scrollController) {
+              return Container(
+                clipBehavior: Clip.antiAlias,
+                decoration:
+                    _RoundedTopDecoration(color: context.colorTheme.whiteSoap),
+                child: SheetLayoutScheme<T>(scrollController: scrollController),
+              );
+            },
+          ),
         );
       },
     );

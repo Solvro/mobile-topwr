@@ -17,7 +17,7 @@ class NestedNavigator {
     if (androidSpecialPopTreatment) {
       return handleAndroidSpecialPop();
     }
-    navigatorKey.currentState?.pop();
+    navigatorKey.currentState?.maybePop();
   }
 
   Route<dynamic> onGenerateRoute(RouteSettings settings) {
