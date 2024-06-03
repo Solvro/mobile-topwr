@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import '../../../theme/app_theme.dart';
 import '../../bottom_nav_bar/nav_bar_config.dart';
@@ -8,7 +8,7 @@ import '../../home_view/home_view.dart';
 import '../../iparking/parking_view.dart';
 import '../../student_research_group_tab/scientific_circles_tab.dart';
 
-class TabbarPageRoute extends CupertinoPageRoute {
+class TabbarPageRoute extends MaterialPageRoute {
   static const _widgetOptions = UnmodifiableNavBarEnumMap(
     home: HomeView(),
     mapp: BuildingMapView(),
@@ -23,8 +23,16 @@ class TabbarPageRoute extends CupertinoPageRoute {
           builder: (context) {
             return _widgetOptions.get(tab ?? NavBarEnum.home);
           },
-          title: tab?.label,
         );
+
+  @override
+  Widget buildTransitions(BuildContext context, Animation<double> animation,
+      Animation<double> secondaryAnimation, Widget child) {
+    return FadeTransition(
+      opacity: animation,
+      child: child,
+    );
+  }
 }
 
 class _InfoPlaceholder extends StatelessWidget {
