@@ -1,6 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../navigator/selected_tab_observer.dart';
+import '../navigator/utils/selected_tab_observer.dart';
 import 'nav_bar_config.dart';
 
 part 'bottom_nav_bar_controller.g.dart';

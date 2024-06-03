@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../bottom_nav_bar/nav_bar_config.dart';
-import 'utils/extract_tabbar_arg.dart';
+import '../../bottom_nav_bar/nav_bar_config.dart';
+import 'extract_tabbar_arg.dart';
 
 class SelectedTabObserver extends RouteObserver<PageRoute<dynamic>> {
   void Function(NavBarEnum tab) onTabChanged;
