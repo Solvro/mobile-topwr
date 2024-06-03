@@ -8,7 +8,7 @@ import '../../../../theme/app_theme.dart';
 import '../../controllers/bottom_sheet_controller.dart';
 import '../../controllers/controllers_set.dart';
 import '../map_config.dart';
-import 'custom_pop_behaviour.dart';
+import 'map_view_pop_behaviour.dart';
 import 'sheet_layout_scheme.dart';
 
 class BottomScrollSheet<T extends GoogleNavigable> extends ConsumerWidget {
@@ -33,7 +33,7 @@ class BottomScrollSheet<T extends GoogleNavigable> extends ConsumerWidget {
             min(1.0, recomendedSheetHeight / screenHeight);
         final minSheetFraction = min(0.25, minSheetHeight / screenHeight);
 
-        return CustomPopBehaviour<T>(
+        return MapViewPopBehaviour<T>(
           screenHeight: screenHeight,
           child: DraggableScrollableSheet(
             controller: ref.watch(bottomSheetControllerProvider),

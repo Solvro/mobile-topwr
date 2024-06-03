@@ -5,8 +5,8 @@ import '../../controllers/bottom_sheet_controller.dart';
 import '../../controllers/controllers_set.dart';
 import '../map_config.dart';
 
-class CustomPopBehaviour<T extends GoogleNavigable> extends ConsumerWidget {
-  const CustomPopBehaviour({
+class MapViewPopBehaviour<T extends GoogleNavigable> extends ConsumerWidget {
+  const MapViewPopBehaviour({
     required this.child,
     required this.screenHeight,
     super.key,
