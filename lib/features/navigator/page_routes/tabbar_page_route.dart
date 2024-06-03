@@ -30,6 +30,8 @@ class TabBarPageRoute extends MaterialPageRoute {
             name: AppRoutes.root,
             arguments: newTab,
           ),
+          maintainState:
+              false, // to avoid trashing RAM when changing tabs multiple times
         );
 
   final NavBarEnum previousTab;
