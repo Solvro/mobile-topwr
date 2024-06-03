@@ -16,6 +16,8 @@ class BottomNavBarController extends _$BottomNavBarController {
   }
 
   void _onTabChanged(NavBarEnum tab) {
-    state = tab;
+    if (state != tab) {
+      state = tab;
+    }
   }
 }

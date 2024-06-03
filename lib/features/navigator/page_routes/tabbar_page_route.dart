@@ -7,6 +7,7 @@ import '../../departments_tab/departments_tab.dart';
 import '../../home_view/home_view.dart';
 import '../../iparking/parking_view.dart';
 import '../../student_research_group_tab/scientific_circles_tab.dart';
+import 'detail_page_route.dart';
 
 class TabBarPageRoute extends MaterialPageRoute {
   static const _widgetOptions = UnmodifiableNavBarEnumMap(
@@ -21,11 +22,14 @@ class TabBarPageRoute extends MaterialPageRoute {
   TabBarPageRoute({
     required this.previousTab,
     required this.newTab,
-    super.settings,
   }) : super(
           builder: (context) {
             return _widgetOptions.get(newTab);
           },
+          settings: RouteSettings(
+            name: AppRoutes.root,
+            arguments: newTab,
+          ),
         );
 
   final NavBarEnum previousTab;
@@ -38,8 +42,8 @@ class TabBarPageRoute extends MaterialPageRoute {
 
     final animationTween = Tween(
       begin: isNewTabMoreToRight
-          ? const Offset(1.0, 0.0)
-          : const Offset(-1.0, 0.0),
+          ? const Offset(1.0, 0.0) // slide from right
+          : const Offset(-1.0, 0.0), // slide from left
       end: Offset.zero,
     ).chain(CurveTween(curve: Curves.ease));
 
