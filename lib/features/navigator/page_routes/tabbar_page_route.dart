@@ -34,14 +34,17 @@ class TabBarPageRoute extends MaterialPageRoute {
   @override
   Widget buildTransitions(BuildContext context, Animation<double> animation,
       Animation<double> secondaryAnimation, Widget child) {
-    final isMoreToRight = newTab.index >= previousTab.index;
-    final tween = Tween(
-      begin: isMoreToRight ? const Offset(1.0, 0.0) : const Offset(-1.0, 0.0),
+    final isNewTabMoreToRight = newTab.index >= previousTab.index;
+
+    final animationTween = Tween(
+      begin: isNewTabMoreToRight
+          ? const Offset(1.0, 0.0)
+          : const Offset(-1.0, 0.0),
       end: Offset.zero,
     ).chain(CurveTween(curve: Curves.ease));
 
     return SlideTransition(
-      position: animation.drive(tween),
+      position: animation.drive(animationTween),
       child: child,
     );
   }

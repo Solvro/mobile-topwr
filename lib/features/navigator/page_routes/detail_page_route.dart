@@ -7,6 +7,7 @@ class DetailPageRoute extends MaterialPageRoute {
   DetailPageRoute(RouteSettings settings)
       : super(
           builder: switch (settings.name) {
+            // here will be next detail routes
             AppRoutes.studyCircleDetails => (_) => const StudyCircleDetails(),
             _ => (_) => MyErrorWidget('Invalid route: ${settings.name}')
           },

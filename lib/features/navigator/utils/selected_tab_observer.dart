@@ -25,7 +25,9 @@ class SelectedTabObserver extends RouteObserver<PageRoute<dynamic>> {
   @override
   void didRemove(Route route, Route? previousRoute) {
     super.didRemove(route, previousRoute);
-    _recordCurrentlySelectedTab(route);
+    if (previousRoute != null) {
+      _recordCurrentlySelectedTab(previousRoute);
+    }
   }
 
   @override
@@ -39,6 +41,8 @@ class SelectedTabObserver extends RouteObserver<PageRoute<dynamic>> {
   @override
   void didPop(Route route, Route? previousRoute) {
     super.didPop(route, previousRoute);
-    _recordCurrentlySelectedTab(route);
+    if (previousRoute != null) {
+      _recordCurrentlySelectedTab(previousRoute);
+    }
   }
 }
