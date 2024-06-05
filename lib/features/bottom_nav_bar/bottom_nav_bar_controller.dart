@@ -1,29 +1,24 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'nav_bar_config.dart';
-import 'nested_navigator.dart';
+import '../../config/nav_bar_config.dart';
+import '../../config/navigator_config.dart';
+import '../navigator/utils/selected_tab_observer.dart';
 
 part 'bottom_nav_bar_controller.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 class BottomNavBarController extends _$BottomNavBarController {
+  late final SelectedTabObserver selectedTabObserver =
+      SelectedTabObserver(_onTabChanged);
+
   @override
   NavBarEnum build() {
-    return NavBarEnum.home;
+    return NavigatorConfig.initialTab;
   }
 
-  void onIndexChanged(int index) {
-    if (index == state.index) {
-      return; // prevents potencial popping of a nested view, when clicked on a current tab
+  void _onTabChanged(NavBarEnum tab) {
+    if (state != tab) {
+      state = tab;
     }
-    ref
-        .read(navigatorProvider)
-        .popUntilRoot(); // pops nested views if we've went to different tab
-
-    state = NavBarEnum.values[index];
-  }
-
-  void goTo(NavBarEnum tab) {
-    state = tab;
   }
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../config.dart';
+import '../config/ui_config.dart';
 import '../theme/app_theme.dart';
 import '../utils/context_extensions.dart';
 
@@ -10,12 +10,8 @@ class SearchWidget extends ConsumerStatefulWidget {
   final void Function(String query) onQueryChanged;
   final VoidCallback? onTap;
   final String? searchText;
-  const SearchWidget({
-    super.key,
-    required this.onQueryChanged,
-    this.onTap,
-    this.searchText
-  });
+  const SearchWidget(
+      {super.key, required this.onQueryChanged, this.onTap, this.searchText});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _SearchWidgetState();

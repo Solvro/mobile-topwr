@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import '../../../config.dart';
+
+import '../../../config/ui_config.dart';
 import '../../../theme/app_theme.dart';
 
 class LogoAppBar extends AppBar {
@@ -14,6 +15,7 @@ class LogoAppBar extends AppBar {
           titleSpacing: 0,
           backgroundColor: context.colorTheme.whiteSoap,
           scrolledUnderElevation: 0,
+          automaticallyImplyLeading: false,
         );
 }
 

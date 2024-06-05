@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../config.dart';
+import '../../../config/ui_config.dart';
 import '../../../widgets/loading_widgets/specific_imitations/button_loading.dart';
 
 class TagsLoading extends StatelessWidget {

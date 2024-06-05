@@ -46,6 +46,7 @@ class SheetLayoutScheme<T extends GoogleNavigable> extends ConsumerWidget {
           pinned: true,
           toolbarHeight: appBar.preferredSize.height,
           flexibleSpace: appBar,
+          automaticallyImplyLeading: false,
         ),
         DataSliverList<T>(),
       ],

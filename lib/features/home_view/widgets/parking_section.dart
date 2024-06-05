@@ -5,11 +5,12 @@ import '../../../utils/context_extensions.dart';
 import '../../../utils/where_non_null_iterable.dart';
 import '../../../widgets/my_error_widget.dart';
 import '../../../widgets/subsection_header.dart';
-import '../../bottom_nav_bar/bottom_nav_bar_controller.dart';
-import '../../bottom_nav_bar/nav_bar_config.dart';
+import '../../../config/nav_bar_config.dart';
 import '../../iparking/controllers.dart';
 import '../../iparking/models/parking_model.dart';
 import '../../iparking/repositories/parkings_repo.dart';
+import '../../navigator/navigator/nested_navigator.dart';
+import '../../navigator/navigator/tab_bar_navigator.dart';
 import 'buildings_section/building_card.dart';
 import 'loading_widgets/scrollable_section_loading.dart';
 import 'paddings.dart';
@@ -17,9 +18,8 @@ import 'paddings.dart';
 class ParkingSection extends ConsumerWidget {
   const ParkingSection({super.key});
 
-  static void goToParkingsTab(WidgetRef ref) => ref
-      .read(bottomNavBarControllerProvider.notifier)
-      .goTo(NavBarEnum.parkings);
+  static void goToParkingsTab(WidgetRef ref) =>
+      ref.read(navigatorProvider).changeTabBar(NavBarEnum.parkings);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) => Column(

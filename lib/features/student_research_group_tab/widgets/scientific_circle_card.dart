@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../api_base/directus_assets_url.dart';
-import '../../../config.dart';
+import '../../../config/ui_config.dart';
 import '../../../shared_repositories/sci_clubs_repository/scientific_circles_repository.dart';
 import '../../../widgets/my_cached_image.dart';
 import '../../../widgets/wide_tile_card.dart';

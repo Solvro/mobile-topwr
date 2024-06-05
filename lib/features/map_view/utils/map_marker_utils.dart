@@ -5,7 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-import '../../../config.dart';
+import '../../../config/map_view_config.dart';
+import '../../../config/ui_config.dart';
 
 class MapMarkerUtils {
   static late final BitmapDescriptor mapMarker;

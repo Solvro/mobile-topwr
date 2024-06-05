@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../../config.dart';
+import '../../../../config/ui_config.dart';
 import '../../../../widgets/loading_widgets/scrolable_loader_builder.dart';
 import '../../../../widgets/loading_widgets/shimmer_loading.dart';
 
@@ -8,7 +8,6 @@ class AboutUsSectionLoading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Padding(
       padding: const EdgeInsets.all(24),
       child: Column(

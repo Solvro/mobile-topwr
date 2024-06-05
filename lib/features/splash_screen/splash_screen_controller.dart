@@ -6,7 +6,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../api_base/hive_init.dart';
-import '../../config.dart';
+import '../../config/ui_config.dart';
 import '../home_view/widgets/logo_app_bar.dart';
 import '../map_view/controllers/map_controller.dart';
 import '../map_view/utils/map_marker_utils.dart';

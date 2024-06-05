@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../config.dart';
+import '../../../config/ui_config.dart';
 import '../../../shared_repositories/departments_repository/departments_extra_params_ext.dart';
 import '../../../shared_repositories/departments_repository/departments_repository.dart';
 import '../../../api_base/directus_assets_url.dart';

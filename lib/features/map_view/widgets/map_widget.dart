@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-import '../../../config.dart';
+import '../../../config/map_view_config.dart';
 import '../../../utils/where_non_null_iterable.dart';
 import '../../../widgets/my_error_widget.dart';
 import '../controllers/bottom_sheet_controller.dart';
@@ -45,7 +45,7 @@ class _MapWidget<T extends GoogleNavigable> extends ConsumerWidget {
           mapType: MapWidgetConfig.mapType,
           initialCameraPosition: MapWidgetConfig.defaultCameraPosition,
           onMapCreated: mapController.onMapCreated,
-          onTap: mapController.onMapBgTap,
+          onTap: mapController.onMapBackgroundTap,
           markers: items
               .map((item) => context.markerBuilder<T>()(
                     item,

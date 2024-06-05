@@ -6,7 +6,7 @@ import 'package:google_maps_flutter_android/google_maps_flutter_android.dart';
 import 'package:google_maps_flutter_platform_interface/google_maps_flutter_platform_interface.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../config.dart';
+import '../../../config/map_view_config.dart';
 import 'bottom_sheet_controller.dart';
 import 'controllers_set.dart';
 
@@ -52,7 +52,7 @@ mixin MapController<T extends GoogleNavigable>
     }
   }
 
-  void onMapBgTap(_) {
+  void onMapBackgroundTap(_) {
     ref.read(mapControllers.activeMarker.notifier).unselect();
     ref.read(bottomSheetControllerProvider).resetSafe();
   }

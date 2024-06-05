@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../config.dart';
+import '../../../config/ui_config.dart';
 import '../../../theme/app_theme.dart';
 import '../repositories/selected_tag_controller.dart';
 import '../repositories/tags_repository.dart';
@@ -40,7 +40,7 @@ class _TagsRowItem extends ConsumerWidget {
             horizontal: ScientificCirclesTabConfig.microPadding),
         child: ChoiceChip(
           showCheckmark: false,
-          label: Text(tag.name ?? ""),
+          label: Text(tag.name),
           selected: selectedTag == tag.name,
           onSelected: (bool selected) {
             ref
@@ -53,9 +53,10 @@ class _TagsRowItem extends ConsumerWidget {
               color: selectedTag == tag.name
                   ? Colors.white
                   : context.colorTheme.greyPigeon),
-          side: BorderSide(color: selectedTag == tag.name
-              ? context.colorTheme.orangePomegranade
-              : context.colorTheme.greyPigeon),
+          side: BorderSide(
+              color: selectedTag == tag.name
+                  ? context.colorTheme.orangePomegranade
+                  : context.colorTheme.greyPigeon),
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(
                   ScientificCirclesTabConfig.buttonBorderRadius)),

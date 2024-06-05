@@ -1,5 +1,5 @@
 import '../../utils/timestamp.dart';
-import 'ttl_config.dart';
+import '../../config/ttl_config.dart';
 
 class TimestampTtl extends Timestamp {
   TimestampTtl.nil(this.key) : super.nil();

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../config.dart';
+import '../../../config/ui_config.dart';
 import 'fade_in_splash_gradient.dart';
 
 class FlutterSplashScreen extends StatelessWidget {

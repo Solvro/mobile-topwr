@@ -1,6 +1,6 @@
 import 'package:envied/envied.dart';
 
-part 'config.g.dart';
+part 'api_base_config.g.dart';
 
 abstract class ApiBaseConfig {
   static const hiveCacheBoxName = "hiveCacheBoxForDirectusGraphQL";

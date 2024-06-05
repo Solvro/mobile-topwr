@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../api_base/ttl/ttl_config.dart';
+import '../../config/ttl_config.dart';
 import '../../utils/context_extensions.dart';
 
 extension GqlOfflineMessage on BuildContext {

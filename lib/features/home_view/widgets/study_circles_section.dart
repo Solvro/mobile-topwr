@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../api_base/directus_assets_url.dart';
-import '../../../config.dart';
+import '../../../config/ui_config.dart';
+import '../../../shared_repositories/sci_clubs_repository/scientific_circles_repository.dart';
 import '../../../utils/context_extensions.dart';
 import '../../../utils/where_non_null_iterable.dart';
 import '../../../widgets/big_preview_card.dart';
 import '../../../widgets/my_error_widget.dart';
 import '../../../widgets/subsection_header.dart';
-import '../../bottom_nav_bar/bottom_nav_bar_controller.dart';
-import '../../bottom_nav_bar/nav_bar_config.dart';
-import '../../bottom_nav_bar/nested_navigator.dart';
-import '../../../shared_repositories/sci_clubs_repository/scientific_circles_repository.dart';
+import '../../../config/nav_bar_config.dart';
+import '../../navigator/navigator/detail_view_navigator.dart';
+import '../../navigator/navigator/nested_navigator.dart';
+import '../../navigator/navigator/tab_bar_navigator.dart';
 import 'loading_widgets/big_scrollable_section_loading.dart';
 import 'paddings.dart';
 
@@ -25,9 +26,7 @@ class StudyCirclesSection extends ConsumerWidget {
               title: context.localize.study_circles,
               actionTitle: context.localize.list,
               onClick: () {
-                ref
-                    .read(bottomNavBarControllerProvider.notifier)
-                    .goTo(NavBarEnum.sciCircles);
+                ref.read(navigatorProvider).changeTabBar(NavBarEnum.sciCircles);
               }),
           const _StudyCirclesList()
         ],
@@ -67,6 +66,10 @@ class _StudyCirclesDataList extends ConsumerWidget {
 
   final List<ScientificCircle> studyCircles;
 
+  static void goToDetailView(WidgetRef ref, String id) {
+    ref.read(navigatorProvider).navigateToStudyCircleDetails(id);
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return ListView.builder(
@@ -81,11 +84,7 @@ class _StudyCirclesDataList extends ConsumerWidget {
                 title: circle.name,
                 shortDescription: circle.shortDescription ?? "",
                 photoUrl: circle.logo?.filename_disk?.directusUrl,
-                onClick: () {
-                  ref
-                      .read(navigatorProvider)
-                      .navigateToStudyCircleDetails(circle.id);
-                }),
+                onClick: () => goToDetailView(ref, circle.id)),
           );
         });
   }

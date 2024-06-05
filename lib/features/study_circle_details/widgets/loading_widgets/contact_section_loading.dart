@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../../config.dart';
+import '../../../../config/ui_config.dart';
 import '../../../../theme/app_theme.dart';
 import '../../../../widgets/loading_widgets/shimmer_loading.dart';
 
@@ -36,7 +36,8 @@ class ContactSectionLoading extends StatelessWidget {
                   return const _IconWithUrlLoading();
                 },
                 separatorBuilder: (BuildContext context, int index) {
-                  return const SizedBox(height: DetailsScreenConfig.spacerHeight);
+                  return const SizedBox(
+                      height: DetailsScreenConfig.spacerHeight);
                 },
                 itemCount: 3,
               ),
