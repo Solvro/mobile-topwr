@@ -2,7 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:graphql/client.dart';
 
 import 'gql_client_provider.dart';
-import 'ttl/ttl_config.dart';
+import '../config/ttl_config.dart';
 import 'ttl/ttl_service.dart';
 
 class GqlOfflineException implements Exception {

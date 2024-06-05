@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../config.dart';
+import '../../../config/ui_config.dart';
 import '../../../shared_repositories/sci_clubs_repository/scientific_circles_repository.dart';
 import '../../../theme/app_theme.dart';
 import '../../../utils/context_extensions.dart';

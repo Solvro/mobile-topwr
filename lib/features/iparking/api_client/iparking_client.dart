@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../api_base/config.dart';
+import '../../../config/api_base_config.dart';
 
 part "iparking_client.g.dart";
 

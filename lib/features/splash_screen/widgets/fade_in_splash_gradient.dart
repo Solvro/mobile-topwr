@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../config.dart';
+import '../../../config/ui_config.dart';
 import '../../../theme/colors.dart';
 import 'fade_in_gradient_animation.dart';
 

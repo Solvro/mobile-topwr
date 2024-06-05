@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../theme/app_theme.dart';
-import '../../bottom_nav_bar/nav_bar_config.dart';
+import '../../../config/nav_bar_config.dart';
 import '../../buildings_map/buildings_view.dart';
 import '../../departments_tab/departments_tab.dart';
 import '../../home_view/home_view.dart';

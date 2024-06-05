@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-import '../../../config.dart';
+import '../../../config/ui_config.dart';
 import '../../../widgets/my_cached_image.dart';
 
 class SliverHeaderSection extends SliverPersistentHeaderDelegate {

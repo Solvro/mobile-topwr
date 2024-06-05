@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:collection/collection.dart';
 import 'package:fl_chart/fl_chart.dart';
 
-import '../../../config.dart';
+import '../../../config/ui_config.dart';
 import '../../iparking/models/parking_model.dart';
 import '../models/chart_point.dart';
 import '../models/hour_label.dart';

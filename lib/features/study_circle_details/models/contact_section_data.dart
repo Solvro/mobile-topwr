@@ -1,6 +1,6 @@
 import 'package:collection/collection.dart';
 
-import '../../../config.dart';
+import '../../../config/ui_config.dart';
 
 class ContactSectionData {
   String iconUrl;

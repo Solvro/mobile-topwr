@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../config.dart';
+import '../../config/ui_config.dart';
 import '../../theme/app_theme.dart';
 import 'widgets/buildings_section/buildings_section.dart';
 import '../academic_calendar_greeting/widgets/countdown_widget/exam_session_countdown.dart';

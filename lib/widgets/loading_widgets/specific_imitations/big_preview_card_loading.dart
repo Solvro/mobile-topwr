@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../config.dart';
+import '../../../config/ui_config.dart';
 import '../simple_previews/preview_text_prototype.dart';
 import '../shimmer_loading.dart';
 

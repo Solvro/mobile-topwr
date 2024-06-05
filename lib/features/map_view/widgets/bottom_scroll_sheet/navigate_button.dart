@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../config.dart';
+import '../../../../config/map_view_config.dart';
 import '../../../../theme/app_theme.dart';
 import '../../../../utils/context_extensions.dart';
 import '../../../iparking/widgets/i_parking_icons_icons.dart';

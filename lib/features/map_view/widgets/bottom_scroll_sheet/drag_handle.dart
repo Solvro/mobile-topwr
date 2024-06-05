@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../config.dart';
+import '../../../../config/map_view_config.dart';
 import '../../../../theme/app_theme.dart';
 
 class DragHandle extends SliverPersistentHeaderDelegate {

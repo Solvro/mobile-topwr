@@ -1,4 +1,4 @@
-import '../../bottom_nav_bar/nav_bar_config.dart';
+import '../../../config/nav_bar_config.dart';
 import '../page_routes/detail_page_route.dart';
 import 'nested_navigator.dart';
 import 'tab_bar_navigator.dart';

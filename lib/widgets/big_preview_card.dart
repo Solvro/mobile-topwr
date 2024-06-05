@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../config.dart';
+import '../config/ui_config.dart';
 import '../theme/app_theme.dart';
 import '../utils/context_extensions.dart';
 import 'date_chip.dart';

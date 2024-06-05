@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../widgets/loading_widgets/specific_imitations/wide_tile_loading.dart';
-import '../../../config.dart';
+import '../../../config/ui_config.dart';
 
 class ScientificCirclesLoading extends StatelessWidget {
   const ScientificCirclesLoading({super.key});

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-import '../../../../config.dart';
+import '../../../../config/ui_config.dart';
 import '../../../../widgets/loading_widgets/specific_imitations/big_preview_card_loading.dart';
 import '../../../../widgets/loading_widgets/scrolable_loader_builder.dart';
 import '../paddings.dart';

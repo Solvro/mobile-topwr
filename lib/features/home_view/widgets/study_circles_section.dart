@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../api_base/directus_assets_url.dart';
-import '../../../config.dart';
+import '../../../config/ui_config.dart';
 import '../../../shared_repositories/sci_clubs_repository/scientific_circles_repository.dart';
 import '../../../utils/context_extensions.dart';
 import '../../../utils/where_non_null_iterable.dart';
 import '../../../widgets/big_preview_card.dart';
 import '../../../widgets/my_error_widget.dart';
 import '../../../widgets/subsection_header.dart';
-import '../../bottom_nav_bar/nav_bar_config.dart';
+import '../../../config/nav_bar_config.dart';
 import '../../navigator/navigator/detail_view_navigator.dart';
 import '../../navigator/navigator/nested_navigator.dart';
 import '../../navigator/navigator/tab_bar_navigator.dart';

@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../config.dart';
+import '../../config/map_view_config.dart';
 import '../../theme/app_theme.dart';
 import 'controllers/bottom_sheet_controller.dart';
 import 'controllers/controllers_set.dart';

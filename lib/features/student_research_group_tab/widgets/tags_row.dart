@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../config.dart';
+import '../../../config/ui_config.dart';
 import '../../../theme/app_theme.dart';
 import '../repositories/selected_tag_controller.dart';
 import '../repositories/tags_repository.dart';

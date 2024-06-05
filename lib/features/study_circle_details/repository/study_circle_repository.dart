@@ -1,6 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../api_base/ttl/ttl_config.dart';
+import '../../../config/ttl_config.dart';
 import '../../../api_base/watch_query_adapter.dart';
 import 'getScientificCircleDetails.graphql.dart';
 

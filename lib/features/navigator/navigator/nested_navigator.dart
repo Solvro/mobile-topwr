@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../config.dart';
+import '../../../config/navigator_config.dart';
 import '../../bottom_nav_bar/bottom_nav_bar_controller.dart';
 import '../page_routes/detail_page_route.dart';
 import '../page_routes/tabbar_page_route.dart';
@@ -25,7 +25,7 @@ class NestedNavigator {
       final previousTab = ref.read(bottomNavBarControllerProvider);
       return TabBarPageRoute(
         previousTab: previousTab,
-        newTab: settings.selectedTab ?? MyAppConfig.initialTab,
+        newTab: settings.selectedTab ?? NavigatorConfig.initialTab,
       );
     }
     return DetailPageRoute(settings);

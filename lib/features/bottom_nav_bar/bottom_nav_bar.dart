@@ -6,7 +6,7 @@ import '../../theme/app_theme.dart';
 import '../navigator/navigator/nested_navigator.dart';
 import '../navigator/navigator/tab_bar_navigator.dart';
 import 'bottom_nav_bar_controller.dart';
-import 'nav_bar_config.dart';
+import '../../config/nav_bar_config.dart';
 
 class BottomNavBar extends ConsumerWidget {
   const BottomNavBar({super.key});

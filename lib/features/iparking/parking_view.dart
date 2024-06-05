@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-import '../../config.dart';
+import '../../config/map_view_config.dart';
 import '../../utils/context_extensions.dart';
 import '../map_view/map_view.dart';
 import '../map_view/utils/map_marker_utils.dart';

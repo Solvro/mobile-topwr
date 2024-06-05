@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-import '../../../config.dart';
+import '../../../config/map_view_config.dart';
 import '../controllers/controllers_set.dart';
 
 typedef MarkerBuilder<T> = Marker Function(

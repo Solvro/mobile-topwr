@@ -1,7 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../api_base/watch_query_adapter.dart';
-import '../../../api_base/ttl/ttl_config.dart';
+import '../../../config/ttl_config.dart';
 import '../../../utils/watch_locale.dart';
 import '../../../utils/where_non_null_iterable.dart';
 import 'getTags.graphql.dart';
