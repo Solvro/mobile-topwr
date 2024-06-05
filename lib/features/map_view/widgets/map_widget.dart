@@ -45,7 +45,7 @@ class _MapWidget<T extends GoogleNavigable> extends ConsumerWidget {
           mapType: MapWidgetConfig.mapType,
           initialCameraPosition: MapWidgetConfig.defaultCameraPosition,
           onMapCreated: mapController.onMapCreated,
-          onTap: mapController.onMapBgTap,
+          onTap: mapController.onMapBackgroundTap,
           markers: items
               .map((item) => context.markerBuilder<T>()(
                     item,

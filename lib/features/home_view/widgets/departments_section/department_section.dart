@@ -16,6 +16,9 @@ import 'deparment_box.dart';
 class DepartmentSection extends ConsumerWidget {
   const DepartmentSection({super.key});
 
+  static void goToFacultiesTab(WidgetRef ref) =>
+      ref.read(navigatorProvider).changeTabBar(NavBarEnum.mapp);
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(departmentsRepositoryProvider);
@@ -24,9 +27,7 @@ class DepartmentSection extends ConsumerWidget {
         SubsectionHeader(
           title: context.localize.departments,
           actionTitle: context.localize.list,
-          onClick: () {
-            ref.read(navigatorProvider).changeTabBar(NavBarEnum.faculties);
-          },
+          onClick: () => goToFacultiesTab(ref),
         ),
         SmallHorizontalPadding(
           child: switch (state) {

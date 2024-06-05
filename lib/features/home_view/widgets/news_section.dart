@@ -17,15 +17,16 @@ import 'paddings.dart';
 
 class NewsSection extends ConsumerWidget {
   const NewsSection({super.key});
+  static void goToInfoTab(WidgetRef ref) =>
+      ref.read(navigatorProvider).changeTabBar(NavBarEnum.info);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) => Column(
         children: [
           SubsectionHeader(
-              title: context.localize.whats_up,
-              onClick: () {
-                ref.read(navigatorProvider).changeTabBar(NavBarEnum.info);
-              }),
+            title: context.localize.whats_up,
+            onClick: () => goToInfoTab(ref),
+          ),
           const _NewsList()
         ],
       );

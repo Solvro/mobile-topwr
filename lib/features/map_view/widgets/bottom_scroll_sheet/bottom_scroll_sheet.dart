@@ -29,7 +29,7 @@ class BottomScrollSheet<T extends GoogleNavigable> extends ConsumerWidget {
 
         final minSheetHeight = sheetSize.minSheetHeight;
 
-        final recomendedSheetFraction =
+        final recommendedSheetFraction =
             min(1.0, recomendedSheetHeight / screenHeight);
         final minSheetFraction = min(0.25, minSheetHeight / screenHeight);
 
@@ -37,11 +37,11 @@ class BottomScrollSheet<T extends GoogleNavigable> extends ConsumerWidget {
           screenHeight: screenHeight,
           child: DraggableScrollableSheet(
             controller: ref.watch(bottomSheetControllerProvider),
-            initialChildSize: recomendedSheetFraction,
+            initialChildSize: recommendedSheetFraction,
             maxChildSize: 1, // factor 1 means 100% available height
             minChildSize: minSheetFraction,
             snap: true,
-            snapSizes: [recomendedSheetFraction],
+            snapSizes: [recommendedSheetFraction],
             builder: (BuildContext context, ScrollController scrollController) {
               return Container(
                 clipBehavior: Clip.antiAlias,

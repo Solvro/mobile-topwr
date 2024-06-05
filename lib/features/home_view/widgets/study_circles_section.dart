@@ -66,6 +66,10 @@ class _StudyCirclesDataList extends ConsumerWidget {
 
   final List<ScientificCircle> studyCircles;
 
+  static void goToDetailView(WidgetRef ref, String id) {
+    ref.read(navigatorProvider).navigateToStudyCircleDetails(id);
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return ListView.builder(
@@ -80,11 +84,7 @@ class _StudyCirclesDataList extends ConsumerWidget {
                 title: circle.name,
                 shortDescription: circle.shortDescription ?? "",
                 photoUrl: circle.logo?.filename_disk?.directusUrl,
-                onClick: () {
-                  ref
-                      .read(navigatorProvider)
-                      .navigateToStudyCircleDetails(circle.id);
-                }),
+                onClick: () => goToDetailView(ref, circle.id)),
           );
         });
   }

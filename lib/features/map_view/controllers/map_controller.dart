@@ -52,7 +52,7 @@ mixin MapController<T extends GoogleNavigable>
     }
   }
 
-  void onMapBgTap(_) {
+  void onMapBackgroundTap(_) {
     ref.read(mapControllers.activeMarker.notifier).unselect();
     ref.read(bottomSheetControllerProvider).resetSafe();
   }

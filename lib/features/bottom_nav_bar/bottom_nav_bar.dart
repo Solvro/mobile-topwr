@@ -33,13 +33,13 @@ class BottomNavBar extends ConsumerWidget {
           showSelectedLabels: false,
           showUnselectedLabels: false,
           type: BottomNavigationBarType.fixed,
-          items: NavigationBarItemsList(selectedTab, context),
+          items: _NavigationBarItemsList(selectedTab, context),
         ));
   }
 }
 
-class NavigationBarItemsList extends DelegatingList<BottomNavigationBarItem> {
-  NavigationBarItemsList(NavBarEnum selectedTab, BuildContext context)
+class _NavigationBarItemsList extends DelegatingList<BottomNavigationBarItem> {
+  _NavigationBarItemsList(NavBarEnum selectedTab, BuildContext context)
       : super(
           NavBarEnum.values
               .map(
