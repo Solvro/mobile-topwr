@@ -1,0 +1,12 @@
+query getAbousUsDetails {
+  AboutUs{
+    description
+    cover{
+      filename_disk
+      
+    }
+    solvroSocialLinks{
+      url
+    }
+  }
+}
