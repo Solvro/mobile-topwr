@@ -9,4 +9,14 @@ query getAbousUsDetails {
       url
     }
   }
+  AboutUs_Team{
+    name
+    socialLinks{
+      url
+    }
+    photo{
+      filename_disk
+    }
+    subtitle
+  }
 }

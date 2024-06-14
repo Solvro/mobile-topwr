@@ -132,4 +132,5 @@ abstract class AboutUsConfig {
   static const spacerHeight = 24.0;
   static const borderRadius = 8.0;
   static const iconPadding = 10.0;
+  static const photoSize = 92.0;
 }

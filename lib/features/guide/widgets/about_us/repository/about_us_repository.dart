@@ -8,14 +8,29 @@ part 'about_us_repository.g.dart';
 
 typedef _GetAboutUs = WatchOptions$Query$getAbousUsDetails;
 typedef AboutUs = Query$getAbousUsDetails$AboutUs;
+typedef AboutUsTeam = Query$getAbousUsDetails$AboutUs_Team;
 
 @riverpod
-Stream<AboutUs?> aboutUsRepository(AboutUsRepositoryRef ref) async* {
+Stream<AboutUsDetails?> aboutUsRepository(AboutUsRepositoryRef ref) async* {
   final stream = ref.watchQueryWithCache(
     _GetAboutUs(
       eagerlyFetchResults: true,
     ),
     TtlKey.aboutUsRepository,
   );
-  yield* stream.map((event) => event?.AboutUs);
+  yield* stream.map((event) {
+    if (event == null) return null;
+    return AboutUsDetails(
+      aboutUs: event.AboutUs,
+      aboutUsTeam: event.AboutUs_Team,
+    );
+  });
+}
+
+
+class AboutUsDetails {
+  final AboutUs? aboutUs;
+  final List<AboutUsTeam>? aboutUsTeam;
+
+  AboutUsDetails({this.aboutUs, this.aboutUsTeam});
 }

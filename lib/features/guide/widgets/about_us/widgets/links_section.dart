@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../../../../../config/ui_config.dart';
 import '../../../../../theme/app_theme.dart';
 import '../../../../../utils/launch_url_util.dart';
-import '../../../../../widgets/my_icon.dart';
 import '../models/link_data.dart';
 
 class LinksSection extends StatelessWidget {

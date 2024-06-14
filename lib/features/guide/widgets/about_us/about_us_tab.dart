@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -9,6 +11,7 @@ import '../../../../widgets/my_error_widget.dart';
 import '../../../study_circle_details/widgets/details_screen_app_bar.dart';
 import '../../../study_circle_details/widgets/details_screen_sliver_header_section.dart';
 import 'models/link_data.dart';
+import 'models/member_data.dart';
 import 'repository/about_us_repository.dart';
 import 'widgets/desription_section.dart';
 import 'widgets/links_section.dart';
@@ -33,6 +36,7 @@ class _AboutUsView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(aboutUsRepositoryProvider);
+
     return switch (state) {
       AsyncLoading() => const CircularProgressIndicator(),
       AsyncError(:final error) => MyErrorWidget(error),
@@ -41,25 +45,45 @@ class _AboutUsView extends ConsumerWidget {
             SliverPersistentHeader(
               delegate: SliverHeaderSection(
                 logoImageUrl: AboutUsConfig.defaultLogoUrl,
-                backgroundImageUrl: value?.cover?.filename_disk?.directusUrl,
+                backgroundImageUrl:
+                    value?.aboutUs?.cover?.filename_disk?.directusUrl,
               ),
             ),
             SliverList(
               delegate: SliverChildListDelegate(
                 [
                   SectionHeader(text: context.localize.about_us),
-                  DescriptionSection(text: value?.description ?? ''),
+                  DescriptionSection(text: value?.aboutUs?.description ?? ''),
                   SectionHeader(text: context.localize.meet_out_team),
-                  const TeamSection(),
+                  TeamSection(
+                    members: value?.aboutUsTeam?.whereNonNull
+                            .toList()
+                            .map(
+                              (e) => MemberData(
+                                  socialLinks: e.socialLinks?.whereNonNull
+                                          .toList()
+                                          .map((e) => e.url)
+                                          .toList() ??
+                                      List.empty(),
+                                  name: e.name,
+                                  subtitle: e.subtitle,
+                                  imageUrl: e.photo?.filename_disk ?? ''),
+                            )
+                            .toList() ??
+                        List.empty(),
+                  ),
                   SectionHeader(text: context.localize.follow_solvro),
                   LinksSection(
-                    links: value?.solvroSocialLinks.whereNonNull
+                    links: value?.aboutUs?.solvroSocialLinks.whereNonNull
                             .map(
                               (e) => LinkData(url: e.url),
                             )
                             .toList() ??
                         List.empty(),
                   ),
+                  const SizedBox(
+                    height: AboutUsConfig.spacerHeight,
+                  )
                 ],
               ),
             ),
