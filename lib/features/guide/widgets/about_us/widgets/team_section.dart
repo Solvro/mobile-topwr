@@ -5,6 +5,7 @@ import '../../../../../config/ui_config.dart';
 import '../../../../../theme/app_theme.dart';
 import '../../../../../utils/launch_url_util.dart';
 import '../../../../../widgets/my_cached_image.dart';
+import '../models/link_data.dart';
 import '../models/member_data.dart';
 
 class TeamSection extends StatelessWidget {
@@ -49,32 +50,10 @@ class _TeamMemberCard extends StatelessWidget {
             const SizedBox(
               width: 14,
             ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 9.0, bottom: 4.0),
-                  child: Text(
-                    member.name ?? '',
-                    style: context.aboutUsTheme.headline2,
-                  ),
-                ),
-                Text(member.subtitle ?? '', style: context.aboutUsTheme.body2),
-                const SizedBox(
-                  height: 6,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    for (final icon in member.links)
-                      _Icon(
-                        iconUrl: icon.url ?? '',
-                        iconPath: icon.iconUrl,
-                      )
-                  ],
-                )
-              ],
+            _Description(
+              name: member.name ?? '',
+              subtitle: member.subtitle ?? '',
+              links: member.links,
             )
           ],
         ),
@@ -100,4 +79,43 @@ class _Icon extends StatelessWidget {
       ),
     );
   }
+}
+
+class _Description extends StatelessWidget {
+  const _Description(
+      {required this.name, required this.subtitle, required this.links});
+  final String name;
+  final String subtitle;
+  final List<LinkData> links;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(top: 9.0, bottom: 4.0),
+          child: Text(
+            name,
+            style: context.aboutUsTheme.headline2,
+          ),
+        ),
+        Text(subtitle, style: context.aboutUsTheme.body2),
+        const SizedBox(
+          height: 6,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            for (final icon in links)
+              _Icon(
+                iconUrl: icon.url ?? '',
+                iconPath: icon.iconUrl,
+              )
+          ],
+        )
+      ],
+    );
+}
 }
