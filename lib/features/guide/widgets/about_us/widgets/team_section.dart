@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../../api_base/directus_assets_url.dart';
 import '../../../../../config/ui_config.dart';
 import '../../../../../theme/app_theme.dart';
+import '../../../../../utils/launch_url_util.dart';
 import '../../../../../widgets/my_cached_image.dart';
 import '../models/member_data.dart';
 
@@ -68,6 +69,7 @@ class _TeamMemberCard extends StatelessWidget {
                   children: [
                     for (final icon in member.links)
                       _Icon(
+                        iconUrl: icon.url ?? '',
                         iconPath: icon.iconUrl,
                       )
                   ],
@@ -82,13 +84,20 @@ class _TeamMemberCard extends StatelessWidget {
 }
 
 class _Icon extends StatelessWidget {
-  const _Icon({required this.iconPath});
+  const _Icon({required this.iconPath, required this.iconUrl});
+  final String iconUrl;
   final String iconPath;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.only(right: 11.0),
-        child: Image.asset(iconPath));
+      padding: const EdgeInsets.only(right: 11.0),
+      child: GestureDetector(
+        onTap: () async {
+          await LaunchUrlUtil.launch(iconUrl);
+        },
+        child: Image.asset(iconPath),
+      ),
+    );
   }
 }
