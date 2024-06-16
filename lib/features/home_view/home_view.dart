@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../../config/ui_config.dart';
 import '../../theme/app_theme.dart';
-import 'widgets/buildings_section/buildings_section.dart';
 import '../academic_calendar_greeting/widgets/countdown_widget/exam_session_countdown.dart';
-import 'widgets/departments_section/department_section.dart';
 import '../academic_calendar_greeting/widgets/home_screen_greeting.dart';
+import 'widgets/buildings_section/buildings_section.dart';
+import 'widgets/departments_section/department_section.dart';
 import 'widgets/logo_app_bar.dart';
 import 'widgets/news_section.dart';
 import 'widgets/parking_section.dart';
@@ -20,7 +20,7 @@ class HomeView extends StatelessWidget {
       const Greeting(),
       const ExamSessionCountdown(),
       const ParkingSection(),
-      const NewsSection(), // TODO: Replace with actual news and not guide info
+      const NewsSection(),
       const BuildingsSection(),
       const StudyCirclesSection(),
       const DepartmentSection(),
