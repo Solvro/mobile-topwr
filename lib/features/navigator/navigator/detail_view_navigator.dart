@@ -1,5 +1,5 @@
 import '../../../config/nav_bar_config.dart';
-import '../page_routes/detail_page_route.dart';
+import '../../../config/navigator_config.dart';
 import 'nested_navigator.dart';
 import 'tab_bar_navigator.dart';
 

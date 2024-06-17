@@ -1,6 +1,6 @@
-import '../../bottom_nav_bar/bottom_nav_bar_controller.dart';
 import '../../../config/nav_bar_config.dart';
-import '../page_routes/detail_page_route.dart';
+import '../../../config/navigator_config.dart';
+import '../../bottom_nav_bar/bottom_nav_bar_controller.dart';
 import 'nested_navigator.dart';
 
 /// Extracted logic of navigating to tabs in tab view

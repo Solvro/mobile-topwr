@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../config/navigator_config.dart';
 import '../../../widgets/my_error_widget.dart';
 import '../../study_circle_details/study_circle_details.dart';
 
@@ -13,11 +14,4 @@ class DetailPageRoute extends MaterialPageRoute {
           },
           settings: settings,
         );
-}
-
-abstract class AppRoutes {
-  AppRoutes._();
-
-  static const root = '/';
-  static const studyCircleDetails = 'study-circle-details';
 }

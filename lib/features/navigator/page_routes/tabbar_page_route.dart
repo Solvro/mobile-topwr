@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../../config/nav_bar_config.dart';
-import '../../../config/tabs.dart';
-import 'detail_page_route.dart';
+import '../../../config/navigator_config.dart';
+import '../../../theme/app_theme.dart';
 
 class TabBarPageRoute extends MaterialPageRoute {
   TabBarPageRoute({
@@ -38,6 +38,20 @@ class TabBarPageRoute extends MaterialPageRoute {
     return SlideTransition(
       position: animation.drive(animationTween),
       child: child,
+    );
+  }
+}
+
+class InfoPlaceholder extends StatelessWidget {
+  const InfoPlaceholder({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: context.colorTheme.whiteSoap,
+      child: const Center(
+        child: Text("Info"),
+      ),
     );
   }
 }
