@@ -117,6 +117,19 @@ dart run build_runner build -d
 
 4.  ### It's now possible to run or build the app in the usual way
     _Rebuilds are necessary after any updates or changes to affected files (`watch` command does it for you)_
+   - Either with your IDE or
+   - from Terminal:
+   ```bash
+   flutter run
+   ```
+
+5. **[OPTIONAL]** If you operate on many Flutter versions, I reccomend to you `fvm` Flutter version manager: https://fvm.app/
+```bash
+fvm dart run build_runner watch
+fvm flutter run
+// etc...
+```
+    
 
 ### Additional notes:
 
