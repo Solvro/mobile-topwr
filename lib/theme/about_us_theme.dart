@@ -13,12 +13,12 @@ class AboutUsBody extends BodyTextStyle {
   const AboutUsBody({super.color}) : super(fontSize: 14);
 }
 
-class AboutUsHeadline2 extends BoldBodyTextStyle {
-  const AboutUsHeadline2({super.color}) : super(fontSize: 14);
+class AboutUsHeadlineSmaller extends BoldBodyTextStyle {
+  const AboutUsHeadlineSmaller({super.color}) : super(fontSize: 14);
 }
 
-class AboutUsBody2 extends BodyTextStyle {
-  const AboutUsBody2({super.color}) : super(fontSize: 12);
+class AboutUsBodySmaller extends BodyTextStyle {
+  const AboutUsBodySmaller({super.color}) : super(fontSize: 12);
 }
 
 @tailorMixinComponent
@@ -29,14 +29,14 @@ class AboutUsTheme extends ThemeExtension<AboutUsTheme>
   @override
   final TextStyle body;
   @override
-  final TextStyle headline2;
+  final TextStyle headlineSmaller;
   @override
-  final TextStyle body2;
+  final TextStyle bodySmaller;
 
   const AboutUsTheme({
     this.headline = const AboutUsHeadline(),
     this.body = const AboutUsBody(),
-    this.headline2 = const AboutUsHeadline2(),
-    this.body2 = const AboutUsBody2(),
+    this.headlineSmaller = const AboutUsHeadlineSmaller(),
+    this.bodySmaller = const AboutUsHeadlineSmaller(),
   });
 }

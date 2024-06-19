@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../theme/app_theme.dart';
+import '../../utils/context_extensions.dart';
 import 'widgets/about_us/about_us_tab.dart';
 
 class GuideViewTemplate extends StatelessWidget {
@@ -10,7 +11,7 @@ class GuideViewTemplate extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('O nas'),
+        title: Text(context.localize.about_us),
         backgroundColor: context.colorTheme.greyLight,
       ),
       body: Padding(
@@ -35,7 +36,7 @@ class GuideViewTemplate extends StatelessWidget {
                   color: context.colorTheme.greyLight,
                 ),
                 child: Text(
-                  'O nas',
+                  context.localize.about_us,
                   style: TextStyle(
                       fontSize: 24,
                       color: context.colorTheme.orangePomegranade),

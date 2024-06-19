@@ -98,10 +98,10 @@ class _Description extends StatelessWidget {
           padding: const EdgeInsets.only(top: 9.0, bottom: 4.0),
           child: Text(
             name,
-            style: context.aboutUsTheme.headline2,
+            style: context.aboutUsTheme.headlineSmaller,
           ),
         ),
-        Text(subtitle, style: context.aboutUsTheme.body2),
+        Text(subtitle, style: context.aboutUsTheme.bodySmaller),
         const SizedBox(
           height: 6,
         ),
