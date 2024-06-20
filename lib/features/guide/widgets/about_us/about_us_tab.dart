@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../api_base/directus_assets_url.dart';
 import '../../../../config/ui_config.dart';
+import '../../../../theme/app_theme.dart';
 import '../../../../utils/context_extensions.dart';
 import '../../../../widgets/my_error_widget.dart';
 import '../../../study_circle_details/widgets/details_screen_app_bar.dart';
@@ -34,7 +35,10 @@ class _AboutUsView extends ConsumerWidget {
     final state = ref.watch(aboutUsRepositoryProvider);
 
     return switch (state) {
-      AsyncLoading() => const CircularProgressIndicator(),
+      AsyncLoading() => Center(
+            child: CircularProgressIndicator(
+          color: context.colorTheme.orangePomegranade,
+        )),
       AsyncError(:final error) => MyErrorWidget(error),
       AsyncValue(:final value) => CustomScrollView(
           slivers: [
