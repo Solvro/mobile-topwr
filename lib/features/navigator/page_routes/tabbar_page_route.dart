@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../config/routes.dart';
 import '../../../theme/app_theme.dart';
 import '../../../config/nav_bar_config.dart';
 import '../../buildings_map/buildings_view.dart';
@@ -8,7 +9,6 @@ import '../../guide/guide_view_template.dart';
 import '../../home_view/home_view.dart';
 import '../../iparking/parking_view.dart';
 import '../../student_research_group_tab/scientific_circles_tab.dart';
-import 'detail_page_route.dart';
 
 class TabBarPageRoute extends MaterialPageRoute {
   static const _widgetOptions = UnmodifiableNavBarEnumMap(

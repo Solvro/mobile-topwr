@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../theme/app_theme.dart';
 import '../../utils/context_extensions.dart';
-import 'widgets/about_us/about_us_tab.dart';
+import '../navigator/navigator/detail_view_navigator.dart';
+import '../navigator/navigator/nested_navigator.dart';
 
-class GuideViewTemplate extends StatelessWidget {
+class GuideViewTemplate extends ConsumerWidget {
   const GuideViewTemplate({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         title: Text(context.localize.about_us),
@@ -19,14 +21,7 @@ class GuideViewTemplate extends StatelessWidget {
         child: Column(
           children: [
             GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const AboutUsTab(),
-                  ),
-                );
-              },
+              onTap: ref.watch(navigatorProvider).navigateToAboutUs,
               child: Container(
                 padding: const EdgeInsets.all(10.0),
                 width: double.infinity,

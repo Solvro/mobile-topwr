@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../config/navigator_config.dart';
+import '../../../config/routes.dart';
 import '../../bottom_nav_bar/bottom_nav_bar_controller.dart';
 import '../page_routes/detail_page_route.dart';
 import '../page_routes/tabbar_page_route.dart';
