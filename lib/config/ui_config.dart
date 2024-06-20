@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../features/iparking_chart/utils/range_hour_points.dart';
+import '../theme/hex_color.dart';
 
 abstract class MyAppConfig {
   static const title = "ToPwr";
@@ -44,6 +45,14 @@ abstract class DateChipConfig {
 abstract class HomeScreenConfig {
   static const paddingSmall = 6.0;
   static const paddingMedium = 16.0;
+
+  static const squareCardTextShadow = [
+    Shadow(
+      color: HexColor.consts(0x6621334D66),
+      blurRadius: 4.0,
+      offset: Offset(0.0, 2.0),
+    ),
+  ];
 }
 
 abstract class BigPreviewCardConfig {
