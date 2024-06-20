@@ -37,6 +37,6 @@ class AboutUsTheme extends ThemeExtension<AboutUsTheme>
     this.headline = const AboutUsHeadline(),
     this.body = const AboutUsBody(),
     this.headlineSmaller = const AboutUsHeadlineSmaller(),
-    this.bodySmaller = const AboutUsHeadlineSmaller(),
+    this.bodySmaller = const AboutUsBodySmaller(),
   });
 }

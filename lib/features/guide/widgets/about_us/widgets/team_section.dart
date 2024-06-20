@@ -36,6 +36,7 @@ class _TeamMemberCard extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 8.0),
       child: Container(
         width: double.infinity,
+        clipBehavior: Clip.antiAlias,
         decoration: BoxDecoration(
           color: context.colorTheme.greyLight,
           borderRadius: BorderRadius.circular(AboutUsConfig.borderRadius),
@@ -45,7 +46,7 @@ class _TeamMemberCard extends StatelessWidget {
           children: [
             SizedBox.square(
               dimension: AboutUsConfig.photoSize,
-              child: MyCachedImage(member.imageUrl.directusUrl),
+              child: MyCachedImage(member.imageUrl),
             ),
             const SizedBox(
               width: 14,
@@ -117,5 +118,5 @@ class _Description extends StatelessWidget {
         )
       ],
     );
-}
+  }
 }

@@ -10,20 +10,19 @@ class AboutUsDetails {
 
   AboutUsDetails({this.aboutUs, this.aboutUsTeam});
 
-  List<MemberData> getMemberData(List<AboutUsTeam>? aboutUsTeam) {
-    return aboutUsTeam?.whereNonNull.map((e) {
-          return MemberData(
-            name: e.name,
-            imageUrl: e.photo?.filename_disk?.directusUrl,
-            socialLinks:
-                e.socialLinks?.whereNonNull.map((e) => e.url).toList() ?? [],
-            subtitle: e.subtitle,
-          );
-        }).toList() ??
-        [];
+  List<MemberData> getMemberData() {
+    return aboutUsTeam.whereNonNull.map((e) {
+      return MemberData(
+        name: e.name,
+        imageUrl: e.photo?.filename_disk?.directusUrl,
+        socialLinks:
+            e.socialLinks.whereNonNull.map((e) => e.url).toList(),
+        subtitle: e.subtitle,
+      );
+    }).toList();
   }
 
-  List<UrlIconsUtilModel> getSocialIcons(AboutUs? aboutUs) {
+  List<UrlIconsUtilModel> getSocialIcons() {
     return aboutUs?.solvroSocialLinks.whereNonNull
             .map(
               (e) => UrlIconsUtilModel(url: e.url),

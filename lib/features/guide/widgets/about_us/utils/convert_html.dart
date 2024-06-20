@@ -16,12 +16,15 @@ extension IsLinkTag on html.Element {
 
 extension CustomHtmlStyles on BuildContext {
   Map<String, String>? customStylesBuilder(html.Element element) {
+    final defaultStyles = {
+      'text-align': 'justify',
+    };
     if (element.isLink) {
-      return {
+      defaultStyles.addAll({
         'color': colorTheme.orangePomegranade.htmlFormat,
         'text-decoration': 'none',
-      };
+      });
     }
-    return null;
+    return defaultStyles;
   }
 }
