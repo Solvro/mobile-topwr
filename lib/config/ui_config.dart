@@ -125,3 +125,14 @@ abstract class ParkingChartConfig {
   static final showLabels = generateRangeHourPoints(6, 22, 2).toList();
   static final showDots = generateRangeHourPoints(5, 22).toList();
 }
+
+abstract class IconsConfig {
+  static const iconsPaths = {
+    "facebook": "assets/icons/ic_fb.png",
+    "instagram": "assets/icons/ic_insta.png",
+    "linkedin": "assets/icons/ic_linkedin.png",
+    "mailto:": "assets/icons/ic_email.png",
+    "youtu": "assets/icons/ic_youtube.png",
+    "github": "assets/icons/ic_github.png",
+  };
+}
