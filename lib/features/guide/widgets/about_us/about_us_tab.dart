@@ -4,11 +4,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../api_base/directus_assets_url.dart';
 import '../../../../config/ui_config.dart';
 import '../../../../utils/context_extensions.dart';
+import '../../../../utils/url_icons.dart';
 import '../../../../utils/where_non_null_iterable.dart';
 import '../../../../widgets/my_error_widget.dart';
 import '../../../study_circle_details/widgets/details_screen_app_bar.dart';
 import '../../../study_circle_details/widgets/details_screen_sliver_header_section.dart';
-import 'models/link_data.dart';
+import 'models/about_us_details.dart';
 import 'models/member_data.dart';
 import 'repository/about_us_repository.dart';
 import 'widgets/desription_section.dart';
@@ -54,30 +55,11 @@ class _AboutUsView extends ConsumerWidget {
                   DescriptionSection(text: value?.aboutUs?.description ?? ''),
                   SectionHeader(text: context.localize.meet_out_team),
                   TeamSection(
-                    members: value?.aboutUsTeam?.whereNonNull
-                            .toList()
-                            .map(
-                              (e) => MemberData(
-                                  socialLinks: e.socialLinks?.whereNonNull
-                                          .toList()
-                                          .map((e) => e.url)
-                                          .toList() ??
-                                      List.empty(),
-                                  name: e.name,
-                                  subtitle: e.subtitle,
-                                  imageUrl: e.photo?.filename_disk ?? ''),
-                            )
-                            .toList() ??
-                        List.empty(),
+                    members: AboutUsDetails().getMemberData(value?.aboutUsTeam),
                   ),
                   SectionHeader(text: context.localize.follow_solvro),
                   LinksSection(
-                    links: value?.aboutUs?.solvroSocialLinks.whereNonNull
-                            .map(
-                              (e) => LinkData(url: e.url),
-                            )
-                            .toList() ??
-                        List.empty(),
+                    links: AboutUsDetails().getSocialIcons(value?.aboutUs),
                   ),
                   const SizedBox(
                     height: AboutUsConfig.spacerHeight,

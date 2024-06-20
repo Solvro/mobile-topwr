@@ -4,6 +4,7 @@ import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart
 import '../../../../../config/ui_config.dart';
 import '../../../../../theme/app_theme.dart';
 import '../../../../../utils/launch_url_util.dart';
+import '../utils/convert_html.dart';
 
 class DescriptionSection extends StatelessWidget {
   const DescriptionSection({super.key, required this.text});
@@ -25,17 +26,7 @@ class DescriptionSection extends StatelessWidget {
           child: HtmlWidget(
             text,
             textStyle: context.aboutUsTheme.body,
-            customStylesBuilder: (element) {
-              if (element.localName == 'a') {
-                return {
-                  'color':
-                      '#${context.colorTheme.orangePomegranade.value.toRadixString(16).padLeft(8, '0').substring(2)}',
-                  'text-decoration': 'none',
-                };
-              }
-              return null;
-            },
-            //todo
+            customStylesBuilder: (element) => context.customStylesBuilder(element),
             onTapUrl: (url) async {
               return LaunchUrlUtil.launch(url);
             },

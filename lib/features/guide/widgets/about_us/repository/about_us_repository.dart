@@ -2,6 +2,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../../api_base/watch_query_adapter.dart';
 import '../../../../../config/ttl_config.dart';
+import '../models/about_us_details.dart';
 import 'getAboutUsDetails.graphql.dart';
 
 part 'about_us_repository.g.dart';
@@ -25,12 +26,4 @@ Stream<AboutUsDetails?> aboutUsRepository(AboutUsRepositoryRef ref) async* {
       aboutUsTeam: event.AboutUs_Team,
     );
   });
-}
-
-
-class AboutUsDetails {
-  final AboutUs? aboutUs;
-  final List<AboutUsTeam>? aboutUsTeam;
-
-  AboutUsDetails({this.aboutUs, this.aboutUsTeam});
 }
