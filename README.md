@@ -47,6 +47,12 @@ Read more at: https://solvro.pwr.edu.pl/portfolio/to-pwr
 - https://www.figma.com/file/33ofdGYbBzWvDi2MabxIc1/ToPWR-(imported)?type=design&node-id=2%3A2091&mode=design&t=qILflhzpbN8xW8F6-1
 - https://solvro.pwr.edu.pl/blog/fix-flutter-android-back-btn
 
+  
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=Solvro/mobile-topwr&type=Date)](https://star-history.com/#Solvro/mobile-topwr&Date)
+
+
 # Development
 
 Recommended flutter version: `Channel stable, 3.22.1`
