@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 import '../../../../../config/ui_config.dart';
 import '../../../../../theme/app_theme.dart';
+import '../../../../../utils/determine_icon.dart';
 import '../../../../../utils/launch_url_util.dart';
-import '../../../../../utils/url_icons.dart';
 
 class LinksSection extends StatelessWidget {
   const LinksSection({super.key, required this.links});
 
-  final List<UrlIconsUtilModel> links;
+  final List<UrlIconsModel> links;
 
   @override
   Widget build(BuildContext context) {

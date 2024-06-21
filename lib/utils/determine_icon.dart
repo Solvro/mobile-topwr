@@ -1,26 +1,28 @@
 import 'package:collection/collection.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 
 import '../config/ui_config.dart';
 import '../config/url_icons.dart';
 
 @immutable
-class UrlIconsUtilModel {
+class UrlIconsModel {
   final String iconUrl;
   final String? text;
   final String? url;
 
-  UrlIconsUtilModel({
+  UrlIconsModel({
     String? text,
     this.url,
-  })  : iconUrl = _determineIcon(url),
+  })  : iconUrl = url.determineIcon(),
         text = text ?? url;
+}
 
-  static String _determineIcon(String? url) {
-    return url != null
-        ? UrlIconsConfig.icons.entries
+extension IconDeterminer on String? {
+  String determineIcon() {
+    return this != null
+        ? IconsConfig.iconsPaths.entries
                 .firstWhereOrNull(
-                  (e) => url.contains(e.key),
+                  (e) => this!.contains(e.key),
                 )
                 ?.value ??
             DetailsScreenConfig.defaultIconUrl

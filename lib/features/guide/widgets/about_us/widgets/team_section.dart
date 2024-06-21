@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import '../../../../../api_base/directus_assets_url.dart';
 import '../../../../../config/ui_config.dart';
 import '../../../../../theme/app_theme.dart';
+import '../../../../../utils/determine_icon.dart';
 import '../../../../../utils/launch_url_util.dart';
-import '../../../../../utils/url_icons.dart';
+
 import '../../../../../widgets/my_cached_image.dart';
 import '../models/member_data.dart';
 
@@ -87,7 +88,7 @@ class _Description extends StatelessWidget {
       {required this.name, required this.subtitle, required this.links});
   final String name;
   final String subtitle;
-  final List<UrlIconsUtilModel> links;
+  final List<UrlIconsModel> links;
 
   @override
   Widget build(BuildContext context) {

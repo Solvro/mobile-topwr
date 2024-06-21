@@ -3,14 +3,14 @@ import 'package:flutter/gestures.dart';
 
 import '../../../theme/app_theme.dart';
 import '../../../utils/context_extensions.dart';
+import '../../../utils/determine_icon.dart';
 import '../../../utils/launch_url_util.dart';
-import '../../../utils/url_icons.dart';
 import '../../../widgets/my_icon.dart';
 
 class ContactSection extends StatelessWidget {
   const ContactSection({super.key, required this.list});
 
-  final List<UrlIconsUtilModel> list;
+  final List<UrlIconsModel> list;
 
   @override
   Widget build(BuildContext context) {
