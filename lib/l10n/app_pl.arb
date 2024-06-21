@@ -29,6 +29,7 @@
   "exam_friday": "Egzaminacyjny Piątek",
   "exam_saturday": "Egzaminacyjną Sobota",
   "exam_sunday": "Egzaminacyjną Niedzielę",
+  "follow_solvro": "Obserwuj Solvro",
   "unknown_day": "w ten piękny dzień!",
   "read_more": "Czytaj dalej",
   "whats_up": "Co słychać?",
@@ -36,6 +37,7 @@
   "days": "dni",
   "to_start_session": "do rozpoczęcia sesji",
   "map_button": "Mapa",
+  "meet_our_team": "Poznaj nasz zespół",
   "sections": "Wydziały",
   "list": "Lista",
   "departments": "Wydziały",
@@ -63,5 +65,7 @@
   "offline_sci_clubs": "kół naukowych",
   "offline_buildings":"budynków",
   "offline_departments":"wydziałów",
-  "offline_academic_calendar":"kalendarza akademickiego"
+  "offline_academic_calendar":"kalendarza akademickiego",
+  "offline_about_us":"o nas",
+  "guide": "Przewodnik"
 }

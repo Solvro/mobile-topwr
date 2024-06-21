@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../../../../api_base/directus_assets_url.dart';
+import '../../../../config/ui_config.dart';
 import '../../../../shared_repositories/departments_repository/departments_extra_params_ext.dart';
 import '../../../../shared_repositories/departments_repository/departments_repository.dart';
 import '../../../../theme/app_theme.dart';
-import '../../../../api_base/directus_assets_url.dart';
 import '../../../../widgets/my_cached_image.dart';
 import '../../../../widgets/tile_splash.dart';
 
@@ -44,7 +45,8 @@ class DepartmentBox extends StatelessWidget {
               children: [
                 Text(
                   department.code,
-                  style: context.textTheme.titleWhite,
+                  style: context.textTheme.titleWhite
+                      .copyWith(shadows: HomeScreenConfig.squareCardTextShadow),
                 ),
                 Text(
                   department.name,

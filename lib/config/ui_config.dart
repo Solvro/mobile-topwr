@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../features/iparking_chart/utils/range_hour_points.dart';
+import '../theme/hex_color.dart';
 
 abstract class MyAppConfig {
   static const title = "ToPwr";
@@ -44,6 +45,14 @@ abstract class DateChipConfig {
 abstract class HomeScreenConfig {
   static const paddingSmall = 6.0;
   static const paddingMedium = 16.0;
+
+  static const squareCardTextShadow = [
+    Shadow(
+      color: HexColor.consts(0x6621334D66),
+      blurRadius: 4.0,
+      offset: Offset(0.0, 2.0),
+    ),
+  ];
 }
 
 abstract class BigPreviewCardConfig {
@@ -126,13 +135,11 @@ abstract class ParkingChartConfig {
   static final showDots = generateRangeHourPoints(5, 22).toList();
 }
 
-abstract class IconsConfig {
-  static const iconsPaths = {
-    "facebook": "assets/icons/ic_fb.png",
-    "instagram": "assets/icons/ic_insta.png",
-    "linkedin": "assets/icons/ic_linkedin.png",
-    "mailto:": "assets/icons/ic_email.png",
-    "youtu": "assets/icons/ic_youtube.png",
-    "github": "assets/icons/ic_github.png",
-  };
+abstract class AboutUsConfig {
+  static const defaultLogoUrl = 'f0311a7b-8838-4f48-bbcd-9791549012b1.png';
+  static const defaultPadding = 16.0;
+  static const spacerHeight = 24.0;
+  static const borderRadius = 8.0;
+  static const iconPadding = 10.0;
+  static const photoSize = 92.0;
 }

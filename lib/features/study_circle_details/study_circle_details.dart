@@ -5,10 +5,11 @@ import '../../api_base/directus_assets_url.dart';
 import '../../config/ui_config.dart';
 import '../../theme/app_theme.dart';
 import '../../utils/context_extensions.dart';
+import '../../utils/determine_icon.dart';
+
 import '../../utils/where_non_null_iterable.dart';
 import '../../widgets/loading_widgets/shimmer_loading.dart';
 import '../../widgets/my_error_widget.dart';
-import 'models/contact_section_data.dart';
 import 'repository/study_circle_repository.dart';
 import 'widgets/details_screen_about_us_section.dart';
 import 'widgets/details_screen_app_bar.dart';
@@ -64,7 +65,7 @@ class _CircleDetailsDataView extends ConsumerWidget {
               const SizedBox(height: DetailsScreenConfig.spacerHeight),
               ContactSection(
                 list: value?.links.whereNonNull
-                        .map((a) => ContactSectionData(
+                        .map((a) => UrlIconsModel(
                               text: a.name,
                               url: a.link,
                             ))

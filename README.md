@@ -47,6 +47,12 @@ Read more at: https://solvro.pwr.edu.pl/portfolio/to-pwr
 - https://www.figma.com/file/33ofdGYbBzWvDi2MabxIc1/ToPWR-(imported)?type=design&node-id=2%3A2091&mode=design&t=qILflhzpbN8xW8F6-1
 - https://solvro.pwr.edu.pl/blog/fix-flutter-android-back-btn
 
+  
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=Solvro/mobile-topwr&type=Date)](https://star-history.com/#Solvro/mobile-topwr&Date)
+
+
 # Development
 
 Recommended flutter version: `Channel stable, 3.22.1`
@@ -54,14 +60,36 @@ Recommended flutter version: `Channel stable, 3.22.1`
 1. ### Google maps API key
 
    There are google maps api keys already defined, but their usage is restricted on Google Maps Panel to specific package/bundle ids.
+   Web key is restricted for localhost usage only
+
 
    #### Android only
 
    On Android, apart from package id, restriction is for specific signing key's SHA1 fingerprints. So to test on Android, your debug signing key's fingerprint must be added to the maps panel. (Contact [@simon-the-shark](https://github.com/simon-the-shark) to include yours)
 
-   Web key is restricted for localhost usage only
+   _Instuctions pasted from Google Maps Panel:_
+   #### How to get your debug key fingerprint?
+   For Linux or macOS:
+   ```bash
+   keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android
+   ```
+   For Windows:
+   ```bash
+   keytool -list -v -keystore "%USERPROFILE%\.android\debug.keystore" -alias androiddebugkey -storepass android -keypass android
+   ```
 
-2. ### Before you start, you need to add `.env` file to project's root with appropriate content:
+   #### How to get your release certificate fingerprint?
+   ```bash
+   keytool -list -v -keystore your_keystore_name -alias your_alias_name
+   ```
+
+
+
+   
+
+   
+
+3. ### Before you start, you need to add `.env` file to project's root with appropriate content:
 
 ```bash
 API_URL="https://<our-server-url>/graphql"
@@ -95,6 +123,19 @@ dart run build_runner build -d
 
 4.  ### It's now possible to run or build the app in the usual way
     _Rebuilds are necessary after any updates or changes to affected files (`watch` command does it for you)_
+   - Either with your IDE or
+   - from Terminal:
+   ```bash
+   flutter run
+   ```
+
+5. **[OPTIONAL]** If you operate on many Flutter versions, I reccomend to you `fvm` Flutter version manager: https://fvm.app/
+```bash
+fvm dart run build_runner watch
+fvm flutter run
+// etc...
+```
+    
 
 ### Additional notes:
 

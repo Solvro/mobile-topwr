@@ -1,30 +1,17 @@
 import 'package:flutter/material.dart';
 
-import '../../../theme/app_theme.dart';
 import '../../../config/nav_bar_config.dart';
-import '../../buildings_map/buildings_view.dart';
-import '../../departments_tab/departments_tab.dart';
-import '../../home_view/home_view.dart';
-import '../../iparking/parking_view.dart';
-import '../../student_research_group_tab/scientific_circles_tab.dart';
-import 'detail_page_route.dart';
+import '../../../config/navigator_config.dart';
+import '../../../config/routes.dart';
+import '../../../theme/app_theme.dart';
 
 class TabBarPageRoute extends MaterialPageRoute {
-  static const _widgetOptions = UnmodifiableNavBarEnumMap(
-    home: HomeView(),
-    mapp: BuildingMapView(),
-    faculties: DepartmentTab(),
-    sciCircles: ScientificCirclesTab(),
-    parkings: ParkingsMapView(),
-    info: _InfoPlaceholder(),
-  );
-
   TabBarPageRoute({
     required this.previousTab,
     required this.newTab,
   }) : super(
           builder: (context) {
-            return _widgetOptions.get(newTab);
+            return TabsConfig.tabs.get(newTab);
           },
           settings: RouteSettings(
             name: AppRoutes.root,
@@ -56,8 +43,8 @@ class TabBarPageRoute extends MaterialPageRoute {
   }
 }
 
-class _InfoPlaceholder extends StatelessWidget {
-  const _InfoPlaceholder();
+class InfoPlaceholder extends StatelessWidget {
+  const InfoPlaceholder({super.key});
 
   @override
   Widget build(BuildContext context) {

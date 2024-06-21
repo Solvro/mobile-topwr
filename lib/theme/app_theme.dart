@@ -5,6 +5,7 @@ import 'app_color_theme.dart';
 import 'app_text_theme.dart';
 import 'greeting_theme.dart';
 import 'iparking_theme.dart';
+import 'about_us_theme.dart';
 
 part 'app_theme.tailor.dart';
 
@@ -15,6 +16,7 @@ class AppTheme extends ThemeExtension<AppTheme> with _$AppThemeTailorMixin {
     this.colorTheme = const AppColorTheme(),
     this.greetingTheme = const GreetingTheme(),
     this.iParkingTheme = const IParkingTheme(),
+    this.aboutUsTheme = const AboutUsTheme(),
   });
 
   @override
@@ -26,4 +28,6 @@ class AppTheme extends ThemeExtension<AppTheme> with _$AppThemeTailorMixin {
 
   @override
   final IParkingTheme iParkingTheme;
+  @override
+  final AboutUsTheme aboutUsTheme;
 }
