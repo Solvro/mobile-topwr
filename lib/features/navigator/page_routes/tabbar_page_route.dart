@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../config/nav_bar_config.dart';
 import '../../../config/navigator_config.dart';
+import '../../../config/routes.dart';
 import '../../../theme/app_theme.dart';
 
 class TabBarPageRoute extends MaterialPageRoute {
