@@ -134,3 +134,12 @@ abstract class ParkingChartConfig {
   static final showLabels = generateRangeHourPoints(6, 22, 2).toList();
   static final showDots = generateRangeHourPoints(5, 22).toList();
 }
+
+abstract class AboutUsConfig {
+  static const defaultLogoUrl = 'f0311a7b-8838-4f48-bbcd-9791549012b1.png';
+  static const defaultPadding = 16.0;
+  static const spacerHeight = 24.0;
+  static const borderRadius = 8.0;
+  static const iconPadding = 10.0;
+  static const photoSize = 92.0;
+}

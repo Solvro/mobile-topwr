@@ -1,5 +1,5 @@
 import '../../../config/nav_bar_config.dart';
-import '../../../config/navigator_config.dart';
+import '../../../config/routes.dart';
 import 'nested_navigator.dart';
 import 'tab_bar_navigator.dart';
 
@@ -11,5 +11,10 @@ extension DetailViewNavigator on NestedNavigator {
       AppRoutes.studyCircleDetails,
       arguments: argument,
     );
+  }
+
+  void navigateToAboutUs() {
+    changeTabBar(NavBarEnum.info);
+    navigatorKey.currentState?.pushNamed(AppRoutes.aboutUsDetail);
   }
 }
