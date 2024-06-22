@@ -38,9 +38,6 @@ class BuildingsListViewController extends _$BuildingsListViewController
         (item.naturalName?.toLowerCase().contains(filterStr) ?? false) ||
         (!filterStr.contains('-')
             ? item.name.toLowerCase().replaceAll('-', '').contains(filterStr)
-            : false) ||
-        (!filterStr.contains('-')
-            ? item.name.toLowerCase().replaceFirst(' ', '').contains(filterStr)
             : false);
   }
 }
