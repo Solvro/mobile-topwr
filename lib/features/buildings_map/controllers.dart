@@ -34,7 +34,14 @@ class BuildingsListViewController extends _$BuildingsListViewController
   @override
   bool filterMethod(BuildingModel item, String filterStr) {
     return item.name.toLowerCase().contains(filterStr) ||
-        (item.addres?.toLowerCase().contains(filterStr) ?? false);
+        (item.addres?.toLowerCase().contains(filterStr) ?? false) ||
+        (item.naturalName?.toLowerCase().contains(filterStr) ?? false) ||
+        (!filterStr.contains('-')
+            ? item.name.toLowerCase().replaceAll('-', '').contains(filterStr)
+            : false) ||
+        (!filterStr.contains('-')
+            ? item.name.toLowerCase().replaceFirst(' ', '').contains(filterStr)
+            : false);
   }
 }
 

@@ -8,5 +8,6 @@ query GetMapBuildings {
     cover {
       filename_disk
     }
+    naturalName
   }
 }
