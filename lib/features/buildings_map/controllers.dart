@@ -7,6 +7,7 @@ import '../map_view/controllers/active_map_marker_cntrl.dart';
 import '../map_view/controllers/controllers_set.dart';
 import '../map_view/controllers/map_controller.dart';
 import '../map_view/controllers/map_data_controller.dart';
+import 'utils.dart';
 
 part "controllers.g.dart";
 
@@ -33,12 +34,9 @@ class BuildingsListViewController extends _$BuildingsListViewController
 
   @override
   bool filterMethod(BuildingModel item, String filterStr) {
-    return item.name.toLowerCase().contains(filterStr) ||
-        (item.addres?.toLowerCase().contains(filterStr) ?? false) ||
-        (item.naturalName?.toLowerCase().contains(filterStr) ?? false) ||
-        (!filterStr.contains('-')
-            ? item.name.toLowerCase().replaceAll('-', '').contains(filterStr)
-            : false);
+    return item.name.containsBuildingCode(filterStr) ||
+        item.addres.containsBuildingCode(filterStr) ||
+        item.naturalName.containsBuildingCode(filterStr);
   }
 }
 
