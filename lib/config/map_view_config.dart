@@ -42,3 +42,8 @@ abstract class MapWidgetConfig {
   static const mapMarkerOriginWidth = 28;
   static const activeMapMarkerOriginWidth = 40;
 }
+
+
+abstract class BuildingSearchConfig {
+  static const buildingCodeSeperator = "-";
+}
