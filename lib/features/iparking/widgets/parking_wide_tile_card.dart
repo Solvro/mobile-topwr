@@ -48,7 +48,7 @@ class ParkingWideTileCard extends StatelessWidget {
               width: double.infinity,
               height: WideTileCardConfig.imageSize,
               padding: IParkingConfig.padding,
-              child: _RigthColumn(parking, isActive),
+              child: _RightColumn(parking, isActive),
             ),
           ],
         ),
@@ -106,8 +106,8 @@ class _LeftColumn extends StatelessWidget {
   }
 }
 
-class _RigthColumn extends StatelessWidget {
-  const _RigthColumn(this.parking, this.isActive);
+class _RightColumn extends StatelessWidget {
+  const _RightColumn(this.parking, this.isActive);
 
   final ParkingPlace parking;
   final bool isActive;

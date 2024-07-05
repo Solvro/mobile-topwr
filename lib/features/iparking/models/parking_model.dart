@@ -55,7 +55,7 @@ class ParkingPlace with _$ParkingPlace implements GoogleNavigable {
       name.startsWith(parkingPrefx) ? name : "$parkingPrefx $name";
 
   String get openingHours =>
-      "${openHour?.formatIParkingDate ?? "???"} - ${closeHour?.formatIParkingDate ?? "???"}";
+      "${openHour?.formatIParkingDate ?? "06:00"} - ${closeHour?.formatIParkingDate ?? "22:00"}";
 
   String get counterText => "$numberOfPlaces ${trend.dashForm}";
 }

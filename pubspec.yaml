@@ -92,6 +92,8 @@ flutter:
     - assets/logo_app_bar.svg
     - assets/map_markers/map_marker.png
     - assets/map_markers/active_map_marker.png
+    - assets/map_markers/active_parking_map_marker.png
+    - assets/map_markers/parking_map_marker.png
     - assets/search_box/vectorsearch.svg
     - assets/icons/ic_email.png
     - assets/icons/ic_fb.png
