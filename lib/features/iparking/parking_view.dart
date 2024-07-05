@@ -28,8 +28,8 @@ class ParkingsMapView extends ConsumerWidget {
         markerId: MarkerId(item.id),
         position: item.location,
         icon: isActive
-            ? MapMarkerUtils.activeMapMarker
-            : MapMarkerUtils.mapMarker,
+            ? MapMarkerUtils.activeParkingMapMarker
+            : MapMarkerUtils.parkingMapMarker,
         onTap: () {
           ref.read(parkingsMapControllerProvider.notifier).onMarkerTap(item);
         },
