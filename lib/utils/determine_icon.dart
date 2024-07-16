@@ -1,8 +1,8 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 
-import '../config/ui_config.dart';
 import '../config/url_icons.dart';
+import '../gen/assets.gen.dart';
 
 @immutable
 class UrlIconsModel {
@@ -18,6 +18,8 @@ class UrlIconsModel {
 }
 
 extension IconDeterminer on String? {
+  static final _defaultIconUrl = Assets.icons.icWeb.path;
+
   String determineIcon() {
     return this != null
         ? IconsConfig.iconsPaths.entries
@@ -25,7 +27,7 @@ extension IconDeterminer on String? {
                   (e) => this!.contains(e.key),
                 )
                 ?.value ??
-            DetailsScreenConfig.defaultIconUrl
-        : DetailsScreenConfig.defaultIconUrl;
+            _defaultIconUrl
+        : _defaultIconUrl;
   }
 }

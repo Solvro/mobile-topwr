@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../api_base/directus_assets_url.dart';
 import '../../../../../config/ui_config.dart';
 import '../../../../../theme/app_theme.dart';
 import '../../../../../utils/determine_icon.dart';

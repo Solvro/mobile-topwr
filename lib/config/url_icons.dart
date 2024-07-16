@@ -1,10 +1,12 @@
+import '../gen/assets.gen.dart';
+
 abstract class IconsConfig {
-  static const iconsPaths = {
-    "facebook": "assets/icons/ic_fb.png",
-    "instagram": "assets/icons/ic_insta.png",
-    "linkedin": "assets/icons/ic_linkedin.png",
-    "mailto:": "assets/icons/ic_email.png",
-    "youtu": "assets/icons/ic_youtube.png",
-    "github": "assets/icons/ic_github.png",
+  static final iconsPaths = {
+    "facebook": Assets.icons.icFb.path,
+    "instagram": Assets.icons.icInsta.path,
+    "linkedin": Assets.icons.icLinkedin.path,
+    "mailto:": Assets.icons.icEmail.path,
+    "youtu": Assets.icons.icYoutube.path,
+    "github": Assets.icons.icGithub.path,
   };
 }

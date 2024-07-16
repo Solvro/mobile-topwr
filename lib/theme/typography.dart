@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../gen/fonts.gen.dart';
 import 'colors.dart';
 
 class BodyTextStyle extends TextStyle {
@@ -10,7 +11,8 @@ class BodyTextStyle extends TextStyle {
     super.height = 1.2,
     super.shadows,
   }) : super(
-          fontFamily: 'Rubik',
+          fontFamily: FontFamily
+              .schyler, // it's actually rubik, but idk - it doesn't work otherwhise
           letterSpacing: 0,
         );
 }

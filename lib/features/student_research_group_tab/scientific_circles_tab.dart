@@ -18,15 +18,16 @@ class ScientificCirclesTab extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-        appBar: SearchBoxAppBar(
-          context,
-          title: context.localize.study_circles,
-          bottomPadding: 16.0,
-          onQueryChanged: ref
-              .watch(searchScientificCirclesControllerProvider.notifier)
-              .onTextChanged,
-        ),
-        body: const _ScientificCirclesBody());
+      appBar: SearchBoxAppBar(
+        context,
+        title: context.localize.study_circles,
+        bottomPadding: 16.0,
+        onQueryChanged: ref
+            .watch(searchScientificCirclesControllerProvider.notifier)
+            .onTextChanged,
+      ),
+      body: const _ScientificCirclesBody(),
+    );
   }
 }
 
