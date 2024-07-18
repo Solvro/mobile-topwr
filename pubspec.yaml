@@ -96,28 +96,26 @@ flutter:
     - assets/map_markers/active_parking_map_marker.png
     - assets/map_markers/parking_map_marker.png
     - assets/search_box/vectorsearch.svg
-    - assets/icons/ic_email.png
-    - assets/icons/ic_fb.png
-    - assets/icons/ic_insta.png
-    - assets/icons/ic_linkedin.png
-    - assets/icons/ic_web.png
-    - assets/icons/ic_youtube.png
-    - assets/icons/ic_github.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/assets-and-images/#from-packages
   fonts:
-    - family: Schyler
+    - family: Rubik
       fonts:
-        - asset: assets/fonts/Rubik-VariableFont_wght.ttf
+        - asset: fonts/Rubik-VariableFont_wght.ttf
+        - asset: fonts/Rubik-Italic-VariableFont_wght.ttf
+          style: italic
     - family: BottomNavBarIcon
       fonts:
-        - asset: assets/fonts/BottomNavBarIcon.ttf
+        - asset: fonts/BottomNavBarIcon.ttf
     - family: IParkingIcons
       fonts:
-        - asset: assets/fonts/IParkingIcons.ttf
+        - asset: fonts/IParkingIcons.ttf
+    - family: ContacsIcons
+      fonts:
+        - asset: fonts/ContacsIcons.ttf
 
 flutter_native_splash:
   background_image: assets/splash_screen/native_splash_bg.png

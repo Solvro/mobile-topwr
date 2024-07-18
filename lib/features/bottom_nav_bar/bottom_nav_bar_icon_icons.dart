@@ -11,19 +11,26 @@
 ///      fonts:
 ///       - asset: fonts/BottomNavBarIcon.ttf
 ///
-/// 
+///
 ///
 import 'package:flutter/widgets.dart';
+
+import '../../gen/fonts.gen.dart';
 
 class BottomNavBarIcon {
   BottomNavBarIcon._();
 
-  static const _kFontFam = 'BottomNavBarIcon';
+  static const _kFontFam = FontFamily.bottomNavBarIcon;
   static const String? _kFontPkg = null;
 
-  static const IconData home_icon = IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData info_icon = IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData map_icon = IconData(0xe802, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData faculty_icon = IconData(0xe803, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData sci_circle_icon = IconData(0xe804, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData home_icon =
+      IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData info_icon =
+      IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData map_icon =
+      IconData(0xe802, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData faculty_icon =
+      IconData(0xe803, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData sci_circle_icon =
+      IconData(0xe804, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }

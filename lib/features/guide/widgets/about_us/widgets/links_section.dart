@@ -19,7 +19,7 @@ class LinksSection extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           for (final item in links)
-            _IconWithUrl(url: item.url ?? '', iconPath: item.iconUrl)
+            _IconWithUrl(url: item.url ?? '', icon: item.icon)
         ],
       ),
     );
@@ -27,10 +27,10 @@ class LinksSection extends StatelessWidget {
 }
 
 class _IconWithUrl extends StatelessWidget {
-  const _IconWithUrl({required this.url, required this.iconPath});
+  const _IconWithUrl({required this.url, required this.icon});
 
   final String url;
-  final String iconPath;
+  final IconData icon;
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +47,7 @@ class _IconWithUrl extends StatelessWidget {
           padding: const EdgeInsets.all(
             AboutUsConfig.iconPadding,
           ),
-          child: Image.asset(iconPath),
+          child: Icon(icon),
         ),
       ),
     );
