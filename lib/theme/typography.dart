@@ -11,8 +11,7 @@ class BodyTextStyle extends TextStyle {
     super.height = 1.2,
     super.shadows,
   }) : super(
-          fontFamily: FontFamily
-              .schyler, // it's actually rubik, but idk - it doesn't work otherwhise
+          fontFamily: FontFamily.rubik,
           letterSpacing: 0,
         );
 }
