@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'widgets/fields_of_study_section.dart';
 import '../../api_base/directus_assets_url.dart';
 import '../../theme/app_theme.dart';
 import '../../utils/context_extensions.dart';
@@ -67,8 +68,16 @@ class _DepartmentDetailsDataView extends ConsumerWidget {
                             ))
                         .toList() ??
                     List.empty()),
+            FieldsOfStudySection(
+              fieldsOfStudy: value?.Departments_by_id?.fieldsOfStudies
+                      ?.map((e) => e?.name ?? "")
+                      .toList() ??
+                  List.empty(),
+            ),
           ]))
         ]),
     };
   }
 }
+
+

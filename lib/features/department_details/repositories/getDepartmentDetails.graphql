@@ -7,7 +7,6 @@ query GetDepartmentDetails($id: ID!) {
         }
         address
         fieldsOfStudies{
-            id
             name
         }
         links{
