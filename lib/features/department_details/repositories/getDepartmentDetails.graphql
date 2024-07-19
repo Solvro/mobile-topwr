@@ -1,0 +1,25 @@
+query GetDepartmentDetails($id: ID!) {
+    Departments_by_id(id: $id){
+        name
+        website
+        logo{
+            filename_disk
+        }
+        address
+        fieldsOfStudies{
+            id
+            name
+        }
+        links{
+            name
+            link
+        }
+    }
+    Scientific_Circles(filter: {department: {id: {_eq: 1}}}  ){
+        name
+        shortDescription
+        logo{
+            filename_disk
+        }
+    }
+}
