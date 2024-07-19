@@ -102,6 +102,7 @@ flutter:
     - assets/icons/ic_web.png
     - assets/icons/ic_youtube.png
     - assets/icons/ic_github.png
+    - assets/icons/ic_compass.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

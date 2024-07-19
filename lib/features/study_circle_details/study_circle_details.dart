@@ -64,6 +64,7 @@ class _CircleDetailsDataView extends ConsumerWidget {
               ),
               const SizedBox(height: DetailsScreenConfig.spacerHeight),
               ContactSection(
+                title: context.localize.contact,
                 list: value?.links.whereNonNull
                         .map((a) => UrlIconsModel(
                               text: a.name,
