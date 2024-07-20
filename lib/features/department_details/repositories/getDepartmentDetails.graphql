@@ -12,6 +12,8 @@ query GetDepartmentDetails($id: ID!) {
             name
             link
         }
+        gradient_start,
+        gradient_end
     }
     Scientific_Circles(filter: {department: {id: {_eq: 1}}}  ){
         id

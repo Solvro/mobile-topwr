@@ -7,6 +7,7 @@ part 'department_details_repository.g.dart';
 
 typedef DepartmentDetails = Query$GetDepartmentDetails;
 typedef StudyCircles = Query$GetDepartmentDetails$Scientific_Circles;
+typedef DepartmentDetailsDetails = Query$GetDepartmentDetails$Departments_by_id;
 typedef _Vars = Variables$Query$GetDepartmentDetails;
 @riverpod
 Stream<DepartmentDetails?> departmentDetailsRepository(
