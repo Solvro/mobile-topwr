@@ -1,6 +1,8 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'widgets/department_details_loading.dart';
+import '../../config/ui_config.dart';
 import 'widgets/department_study_circle_section.dart';
 import 'widgets/fields_of_study_section.dart';
 import '../../api_base/directus_assets_url.dart';
@@ -17,7 +19,6 @@ import '../department_details/utils/address_formatter.dart';
 
 class DepartmentDetails extends StatelessWidget {
   const DepartmentDetails({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +27,6 @@ class DepartmentDetails extends StatelessWidget {
     );
   }
 }
-
 class _DepartmentDetailsDataView extends ConsumerWidget {
   const _DepartmentDetailsDataView({Key? key});
 
@@ -36,8 +36,7 @@ class _DepartmentDetailsDataView extends ConsumerWidget {
     const itemId = "1";
     final state = ref.watch(departmentDetailsRepositoryProvider(itemId));
     return switch (state) {
-      //TODO: replace MyErrorWidget with the LoadingWidget
-      AsyncLoading() => const MyErrorWidget(""),
+      AsyncLoading() => const DepartmentDetailsLoading(),
       AsyncError(:final error) => MyErrorWidget(error),
       AsyncValue(:final value) => CustomScrollView(slivers: [
           SliverPersistentHeader(
@@ -61,6 +60,7 @@ class _DepartmentDetailsDataView extends ConsumerWidget {
               style: context.textTheme.body.copyWith(height: 1.2),
               textAlign: TextAlign.center,
             ),
+                const SizedBox(height: DetailsScreenConfig.spacerHeight),
             ContactSection(
                 title: context.localize.deans_office,
                 list: value?.Departments_by_id?.links.whereNonNull
@@ -84,3 +84,5 @@ class _DepartmentDetailsDataView extends ConsumerWidget {
     };
   }
 }
+
+
