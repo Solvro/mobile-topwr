@@ -1,7 +1,6 @@
 query GetDepartmentDetails($id: ID!) {
     Departments_by_id(id: $id){
         name
-        website
         logo{
             filename_disk
         }
@@ -15,6 +14,7 @@ query GetDepartmentDetails($id: ID!) {
         }
     }
     Scientific_Circles(filter: {department: {id: {_eq: 1}}}  ){
+        id
         name
         shortDescription
         logo{
