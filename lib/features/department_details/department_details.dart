@@ -16,6 +16,7 @@ import '../study_circle_details/widgets/details_screen_contact_section.dart';
 import '../study_circle_details/widgets/details_screen_sliver_header_section.dart';
 import 'repositories/department_details_repository.dart';
 import '../department_details/utils/address_formatter.dart';
+import '../department_details/utils/department_details_gradient.dart';
 
 class DepartmentDetails extends StatelessWidget {
   const DepartmentDetails({super.key});
@@ -32,8 +33,7 @@ class _DepartmentDetailsDataView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    //final itemId = ModalRoute.of(context)?.settings.arguments as String;
-    const itemId = "1";
+    final itemId = ModalRoute.of(context)?.settings.arguments as String;
     final state = ref.watch(departmentDetailsRepositoryProvider(itemId));
     return switch (state) {
       AsyncLoading() => const DepartmentDetailsLoading(),
@@ -41,6 +41,7 @@ class _DepartmentDetailsDataView extends ConsumerWidget {
       AsyncValue(:final value) => CustomScrollView(slivers: [
           SliverPersistentHeader(
               delegate: SliverHeaderSection(
+                activeGradient: value?.Departments_by_id?.gradient,
             logoImageUrl:
                 value?.Departments_by_id?.logo?.filename_disk?.directusUrl,
             backgroundImageUrl: null,
@@ -84,5 +85,6 @@ class _DepartmentDetailsDataView extends ConsumerWidget {
     };
   }
 }
+
 
 
