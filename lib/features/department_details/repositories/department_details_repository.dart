@@ -13,7 +13,7 @@ typedef _Vars = Variables$Query$GetDepartmentDetails;
 Stream<DepartmentDetails?> departmentDetailsRepository(
     DepartmentDetailsRepositoryRef ref, String id) async* {
   final stream = ref.watchQueryWithCache(
-    WatchOptions$Query$GetDepartmentDetails(eagerlyFetchResults: true, variables: _Vars(id: id)),
+    WatchOptions$Query$GetDepartmentDetails(eagerlyFetchResults: true, variables: _Vars(id: id, fid: id)),
     TtlKey.departmentsDetailsRepository,
   );
   yield* stream.map((event) => event);
