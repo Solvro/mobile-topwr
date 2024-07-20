@@ -1,9 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import '../../../config/ui_config.dart';
-import '../../../widgets/my_cached_image.dart';
-
-//TODO: Adjust logotype to better reflect department details design
+import '../config/ui_config.dart';
+import 'my_cached_image.dart';
 
 class SliverHeaderSection extends SliverPersistentHeaderDelegate {
   SliverHeaderSection({
@@ -44,6 +42,7 @@ class SliverHeaderSection extends SliverPersistentHeaderDelegate {
     final progress = shrinkOffset / maxExtent;
     final logoSize = calcLogoSize(shrinkOffset);
     final logoOpacity = calcLogoOpacity(shrinkOffset, logoSize);
+    final scaleFactor = activeGradient != null ? 0.5 : 1.0;
     return Stack(
       children: [
         Opacity(
@@ -57,7 +56,6 @@ class SliverHeaderSection extends SliverPersistentHeaderDelegate {
         Align(
             alignment: Alignment.bottomCenter,
             child: SizedBox.square(
-              dimension: logoSize,
               child: ListView(
                 reverse: true,
                 physics: const NeverScrollableScrollPhysics(),
@@ -69,18 +67,22 @@ class SliverHeaderSection extends SliverPersistentHeaderDelegate {
                       shape: const CircleBorder(),
                       clipBehavior: Clip.antiAlias,
                       child: Container(
-                        height: Size.square(logoSize).height,
-                        width: Size.square(logoSize).width,
+                        width: logoSize,
+                        height: logoSize,
                         decoration: BoxDecoration(
                           gradient: activeGradient,
                         ),
-                            child: MyCachedImage(
-                              logoImageUrl,
-                              boxFit: BoxFit.scaleDown,
-                            ),
+                        child: FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: MyCachedImage(
+                            size: Size.square(logoSize * scaleFactor),
+                            logoImageUrl,
+                            boxFit: BoxFit.scaleDown,
                           ),
                         ),
                       ),
+                    ),
+                  ),
                 ],
               ),
             )),
