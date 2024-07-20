@@ -14,8 +14,8 @@ import '../repositories/department_details_repository.dart';
 
 
 // TODO: Resolve if the list button should redirect to list of all study circles or only ones related to the department?
-class DepartmentsStudyCircleSection extends ConsumerWidget {
-  const DepartmentsStudyCircleSection(this.studyCircles, {super.key});
+class DepartmentsStudyCirclesSection extends ConsumerWidget {
+  const DepartmentsStudyCirclesSection(this.studyCircles, {super.key});
   final List<StudyCircles> studyCircles;
   @override
   Widget build(BuildContext context, WidgetRef ref) {

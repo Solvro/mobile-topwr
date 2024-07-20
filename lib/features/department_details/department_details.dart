@@ -12,7 +12,7 @@ import '../../utils/determine_icon.dart';
 import '../../utils/where_non_null_iterable.dart';
 import '../../widgets/my_error_widget.dart';
 import '../study_circle_details/widgets/details_screen_app_bar.dart';
-import '../study_circle_details/widgets/details_screen_contact_section.dart';
+import '../../widgets/details_screen_contact_section.dart';
 import '../../widgets/details_screen_sliver_header_section.dart';
 import 'repositories/department_details_repository.dart';
 import '../department_details/utils/address_formatter.dart';
@@ -77,7 +77,7 @@ class _DepartmentDetailsDataView extends ConsumerWidget {
                       .toList() ??
                   List.empty(),
             ),
-            DepartmentsStudyCircleSection(
+            DepartmentsStudyCirclesSection(
                 value?.Scientific_Circles.whereNotNull().toList() ??
                     List.empty()),
           ]))

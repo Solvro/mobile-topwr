@@ -13,11 +13,11 @@ import '../../widgets/my_error_widget.dart';
 import 'repository/study_circle_repository.dart';
 import 'widgets/details_screen_about_us_section.dart';
 import 'widgets/details_screen_app_bar.dart';
-import 'widgets/details_screen_contact_section.dart';
+import '../../widgets/details_screen_contact_section.dart';
 import '../../widgets/details_screen_sliver_header_section.dart';
 import 'widgets/loading_widgets/about_us_section_loading.dart';
-import 'widgets/loading_widgets/contact_section_loading.dart';
-import 'widgets/loading_widgets/header_section_loading.dart';
+import '../../widgets/loading_widgets/contact_section_loading.dart';
+import '../../widgets/loading_widgets/header_section_loading.dart';
 
 class StudyCircleDetails extends StatelessWidget {
   const StudyCircleDetails({super.key});

@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 
-import '../../../theme/app_theme.dart';
-import '../../../utils/determine_icon.dart';
-import '../../../utils/launch_url_util.dart';
-import '../../../widgets/my_icon.dart';
+import '../theme/app_theme.dart';
+import '../utils/determine_icon.dart';
+import '../utils/launch_url_util.dart';
+import 'my_icon.dart';
 
 class ContactSection extends StatelessWidget {
   const ContactSection({super.key, required this.list, required this.title});
