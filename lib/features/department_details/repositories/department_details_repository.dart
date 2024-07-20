@@ -6,6 +6,7 @@ import 'getDepartmentDetails.graphql.dart';
 part 'department_details_repository.g.dart';
 
 typedef DepartmentDetails = Query$GetDepartmentDetails;
+typedef StudyCircles = Query$GetDepartmentDetails$Scientific_Circles;
 typedef _Vars = Variables$Query$GetDepartmentDetails;
 @riverpod
 Stream<DepartmentDetails?> departmentDetailsRepository(

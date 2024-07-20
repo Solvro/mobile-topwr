@@ -1,5 +1,7 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'widgets/department_study_circle_section.dart';
 import 'widgets/fields_of_study_section.dart';
 import '../../api_base/directus_assets_url.dart';
 import '../../theme/app_theme.dart';
@@ -74,10 +76,11 @@ class _DepartmentDetailsDataView extends ConsumerWidget {
                       .toList() ??
                   List.empty(),
             ),
+            DepartmentsStudyCircleSection(
+                value?.Scientific_Circles.whereNotNull().toList() ??
+                    List.empty()),
           ]))
         ]),
     };
   }
 }
-
-
