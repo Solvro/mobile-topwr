@@ -7,6 +7,7 @@ import '../../../../utils/where_non_null_iterable.dart';
 import '../../../../widgets/my_error_widget.dart';
 import '../../../../widgets/subsection_header.dart';
 import '../../../../config/nav_bar_config.dart';
+import '../../../navigator/navigator/detail_view_navigator.dart';
 import '../../../navigator/navigator/nested_navigator.dart';
 import '../../../navigator/navigator/tab_bar_navigator.dart';
 import '../loading_widgets/scrollable_section_loading.dart';
@@ -45,18 +46,22 @@ class DepartmentSection extends ConsumerWidget {
   }
 }
 
-class _DepartmentsDataList extends StatelessWidget {
+class _DepartmentsDataList extends ConsumerWidget {
   const _DepartmentsDataList(this.departments);
 
   final List<Department> departments;
 
+  static void goToDetailView(WidgetRef ref, String id) {
+    ref.read(navigatorProvider).navigateToDepartmentDetails(id);
+  }
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return ListView.builder(
       scrollDirection: Axis.horizontal,
       itemCount: departments.length,
       itemBuilder: (context, index) =>
-          MediumLeftPadding(child: DepartmentBox(departments[index])),
+          MediumLeftPadding(child: DepartmentBox(departments[index],onClick: () => goToDetailView(ref, departments[index].id),)),
     );
   }
 }

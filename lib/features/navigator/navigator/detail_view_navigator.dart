@@ -17,4 +17,12 @@ extension DetailViewNavigator on NestedNavigator {
     changeTabBar(NavBarEnum.info);
     navigatorKey.currentState?.pushNamed(AppRoutes.aboutUsDetail);
   }
+
+  void navigateToDepartmentDetails(String argument) {
+    changeTabBar(NavBarEnum.faculties);
+    navigatorKey.currentState?.pushNamed(
+      AppRoutes.departmentDetails,
+      arguments: argument,
+    );
+  }
 }

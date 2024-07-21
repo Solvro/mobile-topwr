@@ -6,5 +6,7 @@ abstract class IconsConfig {
     "mailto:": "assets/icons/ic_email.png",
     "youtu": "assets/icons/ic_youtube.png",
     "github": "assets/icons/ic_github.png",
+    "maps": "assets/icons/ic_compass.png",
+    "tel": "assets/icons/ic_phone.png",
   };
 }

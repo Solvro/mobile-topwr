@@ -1,16 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 
-import '../../../theme/app_theme.dart';
-import '../../../utils/context_extensions.dart';
-import '../../../utils/determine_icon.dart';
-import '../../../utils/launch_url_util.dart';
-import '../../../widgets/my_icon.dart';
+import '../theme/app_theme.dart';
+import '../utils/determine_icon.dart';
+import '../utils/launch_url_util.dart';
+import 'my_icon.dart';
 
 class ContactSection extends StatelessWidget {
-  const ContactSection({super.key, required this.list});
+  const ContactSection({super.key, required this.list, required this.title});
 
   final List<UrlIconsModel> list;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class ContactSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(context.localize.contact, style: context.textTheme.headline),
+          Text(title, style: context.textTheme.headline),
           const SizedBox(height: 16),
           for (final item in list)
             Padding(
@@ -61,7 +61,7 @@ class _IconWithUrl extends StatelessWidget {
               text: TextSpan(
                 text: text,
                 style: context.textTheme.bodyOrange
-                    .copyWith(decoration: TextDecoration.underline),
+                    .copyWith(decoration: url.isNotEmpty ? TextDecoration.underline : TextDecoration.none),
                 recognizer: TapGestureRecognizer()
                   ..onTap = () => LaunchUrlUtil.launch(url),
               )),

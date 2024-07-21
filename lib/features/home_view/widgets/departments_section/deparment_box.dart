@@ -10,7 +10,8 @@ import '../../../../widgets/tile_splash.dart';
 
 class DepartmentBox extends StatelessWidget {
   final Department department;
-  const DepartmentBox(this.department, {super.key});
+  final VoidCallback onClick;
+  const DepartmentBox(this.department, {super.key, required this.onClick});
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +58,7 @@ class DepartmentBox extends StatelessWidget {
               ],
             ),
           ),
-          TileSplash(onTap: () {}),
+          TileSplash(onTap: onClick),
         ],
       ),
     );

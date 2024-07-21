@@ -1,18 +1,18 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
-
-import '../../../config/ui_config.dart';
-import '../../../widgets/my_cached_image.dart';
+import '../config/ui_config.dart';
+import 'my_cached_image.dart';
 
 class SliverHeaderSection extends SliverPersistentHeaderDelegate {
   SliverHeaderSection({
+    this.activeGradient,
     required this.logoImageUrl,
     required this.backgroundImageUrl,
   });
 
   final String? logoImageUrl;
   final String? backgroundImageUrl;
+  final LinearGradient? activeGradient;
   static const maxTopBarHeight = 250;
 
   @override
@@ -42,6 +42,7 @@ class SliverHeaderSection extends SliverPersistentHeaderDelegate {
     final progress = shrinkOffset / maxExtent;
     final logoSize = calcLogoSize(shrinkOffset);
     final logoOpacity = calcLogoOpacity(shrinkOffset, logoSize);
+    final scaleFactor = activeGradient != null ? 0.5 : 1.0;
     return Stack(
       children: [
         Opacity(
@@ -55,7 +56,6 @@ class SliverHeaderSection extends SliverPersistentHeaderDelegate {
         Align(
             alignment: Alignment.bottomCenter,
             child: SizedBox.square(
-              dimension: logoSize,
               child: ListView(
                 reverse: true,
                 physics: const NeverScrollableScrollPhysics(),
@@ -66,13 +66,23 @@ class SliverHeaderSection extends SliverPersistentHeaderDelegate {
                       elevation: 3,
                       shape: const CircleBorder(),
                       clipBehavior: Clip.antiAlias,
-                      child: MyCachedImage(
-                        logoImageUrl,
-                        size: Size.square(logoSize),
-                        boxFit: BoxFit.contain,
+                      child: Container(
+                        width: logoSize,
+                        height: logoSize,
+                        decoration: BoxDecoration(
+                          gradient: activeGradient,
+                        ),
+                        child: FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: MyCachedImage(
+                            size: Size.square(logoSize * scaleFactor),
+                            logoImageUrl,
+                            boxFit: BoxFit.scaleDown,
+                          ),
+                        ),
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             )),

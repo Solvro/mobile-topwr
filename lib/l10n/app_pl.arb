@@ -67,5 +67,10 @@
   "offline_departments":"wydziałów",
   "offline_academic_calendar":"kalendarza akademickiego",
   "offline_about_us":"o nas",
-  "guide": "Przewodnik"
+  "offline_department_details":"wydziału",
+  "guide": "Przewodnik",
+  "deans_office"  : "Dziekanat",
+  "fields_of_study"  : "Kierunki"
+
+
 }

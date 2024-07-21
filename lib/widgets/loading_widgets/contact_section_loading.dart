@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../../../config/ui_config.dart';
-import '../../../../theme/app_theme.dart';
-import '../../../../widgets/loading_widgets/shimmer_loading.dart';
+import '../../config/ui_config.dart';
+import '../../theme/app_theme.dart';
+import 'shimmer_loading.dart';
 
 class ContactSectionLoading extends StatelessWidget {
   const ContactSectionLoading({super.key});

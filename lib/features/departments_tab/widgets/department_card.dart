@@ -9,11 +9,13 @@ import '../../../widgets/wide_tile_card.dart';
 
 class DepartmentCard extends StatelessWidget {
   final Department department;
-  const DepartmentCard(this.department, {super.key});
+  const DepartmentCard(this.department, {super.key, this.onClick});
+  final VoidCallback? onClick;
 
   @override
   Widget build(BuildContext context) {
     return WideTileCard(
+      onTap: onClick,
       isActive: true,
       title: department.code,
       subtitle: department.name,
