@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../../../../../config/ui_config.dart';
 import '../../../../../theme/app_theme.dart';
@@ -66,7 +67,7 @@ class _TeamMemberCard extends StatelessWidget {
 class _Icon extends StatelessWidget {
   const _Icon({required this.icon, required this.launchUrl});
   final String launchUrl;
-  final IconData icon;
+  final String icon;
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +77,7 @@ class _Icon extends StatelessWidget {
         onTap: () async {
           await LaunchUrlUtil.launch(launchUrl);
         },
-        child: Icon(icon),
+        child: SizedBox.square(dimension: 22, child: SvgPicture.asset(icon)),
       ),
     );
   }

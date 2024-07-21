@@ -46,7 +46,7 @@ class _IconWithUrl extends StatelessWidget {
 
   final String url;
   final String text;
-  final IconData icon;
+  final String icon;
 
   @override
   Widget build(BuildContext context) {

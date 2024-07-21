@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../../../../../config/ui_config.dart';
 import '../../../../../theme/app_theme.dart';
@@ -30,7 +31,7 @@ class _IconWithUrl extends StatelessWidget {
   const _IconWithUrl({required this.url, required this.icon});
 
   final String url;
-  final IconData icon;
+  final String icon;
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +48,11 @@ class _IconWithUrl extends StatelessWidget {
           padding: const EdgeInsets.all(
             AboutUsConfig.iconPadding,
           ),
-          child: Icon(icon),
+          child: Center(
+            child: SvgPicture.asset(
+              icon,
+            ),
+          ),
         ),
       ),
     );

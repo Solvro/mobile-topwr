@@ -96,6 +96,15 @@ flutter:
     - assets/map_markers/active_parking_map_marker.png
     - assets/map_markers/parking_map_marker.png
     - assets/search_box/vectorsearch.svg
+    - assets/contact_icons/compass.svg
+    - assets/contact_icons/fb.svg
+    - assets/contact_icons/github.svg
+    - assets/contact_icons/ig.svg
+    - assets/contact_icons/linkedin.svg
+    - assets/contact_icons/mail.svg
+    - assets/contact_icons/phone.svg
+    - assets/contact_icons/web.svg
+    - assets/contact_icons/yt.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
@@ -108,9 +117,6 @@ flutter:
     - family: IParkingIcons
       fonts:
         - asset: fonts/IParkingIcons.ttf
-    - family: ContacsIcons
-      fonts:
-        - asset: fonts/ContacsIcons.ttf
     - family: Rubik
       fonts:
         - asset: fonts/rubik/Rubik-Light.ttf
