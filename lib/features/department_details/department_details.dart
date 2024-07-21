@@ -1,4 +1,3 @@
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'widgets/department_details_loading.dart';
@@ -20,6 +19,7 @@ import '../department_details/utils/department_details_gradient.dart';
 
 class DepartmentDetails extends StatelessWidget {
   const DepartmentDetails({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,6 +28,7 @@ class DepartmentDetails extends StatelessWidget {
     );
   }
 }
+
 class _DepartmentDetailsDataView extends ConsumerWidget {
   const _DepartmentDetailsDataView({Key? key});
 
@@ -41,7 +42,7 @@ class _DepartmentDetailsDataView extends ConsumerWidget {
       AsyncValue(:final value) => CustomScrollView(slivers: [
           SliverPersistentHeader(
               delegate: SliverHeaderSection(
-                activeGradient: value?.Departments_by_id?.gradient,
+            activeGradient: value?.Departments_by_id?.gradient,
             logoImageUrl:
                 value?.Departments_by_id?.logo?.filename_disk?.directusUrl,
             backgroundImageUrl: null,
@@ -61,7 +62,7 @@ class _DepartmentDetailsDataView extends ConsumerWidget {
               style: context.textTheme.body.copyWith(height: 1.2),
               textAlign: TextAlign.center,
             ),
-                const SizedBox(height: DetailsScreenConfig.spacerHeight),
+            const SizedBox(height: DetailsScreenConfig.spacerHeight),
             ContactSection(
                 title: context.localize.deans_office,
                 list: value?.Departments_by_id?.links.whereNonNull
@@ -72,19 +73,17 @@ class _DepartmentDetailsDataView extends ConsumerWidget {
                         .toList() ??
                     List.empty()),
             FieldsOfStudySection(
-              fieldsOfStudy: value?.Departments_by_id?.fieldsOfStudies
-                      ?.map((e) => e?.name ?? "")
+              fieldsOfStudy: value
+                      ?.Departments_by_id?.fieldsOfStudies.whereNonNull
+                      .map((e) => e.name)
                       .toList() ??
                   List.empty(),
             ),
             DepartmentsStudyCirclesSection(
-                value?.Scientific_Circles.whereNotNull().toList() ??
+                value?.Scientific_Circles.whereNonNull.toList() ??
                     List.empty()),
           ]))
         ]),
     };
   }
 }
-
-
-

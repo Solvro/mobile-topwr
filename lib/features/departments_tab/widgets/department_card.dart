@@ -10,7 +10,7 @@ import '../../../widgets/wide_tile_card.dart';
 class DepartmentCard extends StatelessWidget {
   final Department department;
   const DepartmentCard(this.department, {super.key, this.onClick});
-  final void Function()? onClick;
+  final VoidCallback? onClick;
 
   @override
   Widget build(BuildContext context) {

@@ -10,7 +10,7 @@ import '../../../../widgets/tile_splash.dart';
 
 class DepartmentBox extends StatelessWidget {
   final Department department;
-  final void Function() onClick;
+  final VoidCallback onClick;
   const DepartmentBox(this.department, {super.key, required this.onClick});
 
   @override
