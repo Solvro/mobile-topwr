@@ -8,6 +8,8 @@ import '../../utils/context_extensions.dart';
 import '../../utils/where_non_null_iterable.dart';
 import '../../widgets/my_error_widget.dart';
 import '../../widgets/search_box_app_bar.dart';
+import '../navigator/navigator/detail_view_navigator.dart';
+import '../navigator/navigator/nested_navigator.dart';
 import 'departments_tab_controller.dart';
 import 'widgets/department_card.dart';
 import 'widgets/departments_list_loading.dart';
@@ -42,18 +44,21 @@ class _DepartmentsTabListBody extends ConsumerWidget {
           AsyncLoading() => const DepartmentsListLoading(),
           AsyncError(:final error) => MyErrorWidget(error),
           AsyncValue(:final value) =>
-            _DepartmntsDataView(value.whereNonNull.toList()),
+            _DepartmentsDataView(value.whereNonNull.toList()),
         });
   }
 }
 
-class _DepartmntsDataView extends StatelessWidget {
-  const _DepartmntsDataView(this.departments);
-
+class _DepartmentsDataView extends ConsumerWidget {
+  const _DepartmentsDataView(this.departments);
   final List<Department> departments;
 
+  static void goToDetailView(WidgetRef ref, String id) {
+    ref.read(navigatorProvider).navigateToDepartmentDetails(id);
+  }
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     if (departments.isEmpty) {
       return Center(
         child: Text(
@@ -66,7 +71,7 @@ class _DepartmntsDataView extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 24),
       gridDelegate: DepartmentsConfig.departmentsTabGridDelegate,
       itemCount: departments.length,
-      itemBuilder: (context, index) => DepartmentCard(departments[index]),
+      itemBuilder: (context, index) => DepartmentCard(departments[index], onClick: () => goToDetailView(ref,departments[index].id) ,),
     );
   }
 }

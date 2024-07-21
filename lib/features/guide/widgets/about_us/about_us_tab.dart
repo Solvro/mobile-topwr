@@ -7,7 +7,7 @@ import '../../../../theme/app_theme.dart';
 import '../../../../utils/context_extensions.dart';
 import '../../../../widgets/my_error_widget.dart';
 import '../../../study_circle_details/widgets/details_screen_app_bar.dart';
-import '../../../study_circle_details/widgets/details_screen_sliver_header_section.dart';
+import '../../../../widgets/details_screen_sliver_header_section.dart';
 import 'repository/about_us_repository.dart';
 import 'widgets/desription_section.dart';
 import 'widgets/links_section.dart';

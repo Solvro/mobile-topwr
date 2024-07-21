@@ -45,10 +45,6 @@ type Query {
   WeekExceptions_by_id(id: ID!, version: String): WeekExceptions
   WeekExceptions_aggregated(groupBy: [String], filter: WeekExceptions_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [WeekExceptions_aggregated!]!
   WeekExceptions_by_version(version: String!, id: ID!): version_WeekExceptions
-  Departments(filter: Departments_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): [Departments!]!
-  Departments_by_id(id: ID!, version: String): Departments
-  Departments_aggregated(groupBy: [String], filter: Departments_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [Departments_aggregated!]!
-  Departments_by_version(version: String!, id: ID!): version_Departments
   AboutUs(version: String): AboutUs
   AboutUs_by_version(version: String!): version_AboutUs
   AboutUs_Team(filter: AboutUs_Team_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): [AboutUs_Team!]!
@@ -63,6 +59,14 @@ type Query {
   AboutUs_Solvro_Social_Links_by_id(id: ID!, version: String): AboutUs_Solvro_Social_Links
   AboutUs_Solvro_Social_Links_aggregated(groupBy: [String], filter: AboutUs_Solvro_Social_Links_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [AboutUs_Solvro_Social_Links_aggregated!]!
   AboutUs_Solvro_Social_Links_by_version(version: String!, id: ID!): version_AboutUs_Solvro_Social_Links
+  FieldOfStudy(filter: FieldOfStudy_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): [FieldOfStudy!]!
+  FieldOfStudy_by_id(id: ID!, version: String): FieldOfStudy
+  FieldOfStudy_aggregated(groupBy: [String], filter: FieldOfStudy_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [FieldOfStudy_aggregated!]!
+  FieldOfStudy_by_version(version: String!, id: ID!): version_FieldOfStudy
+  Departments(filter: Departments_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): [Departments!]!
+  Departments_by_id(id: ID!, version: String): Departments
+  Departments_aggregated(groupBy: [String], filter: Departments_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [Departments_aggregated!]!
+  Departments_by_version(version: String!, id: ID!): version_Departments
 }
 
 type Scientific_Circles_Tags {
@@ -87,6 +91,7 @@ type Scientific_Circles {
   source: String
   shortDescription: String
   department(filter: Departments_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): Departments
+  desc2: String
   tags(filter: Scientific_Circles_Tags_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): [Scientific_Circles_Tags]
   tags_func: count_functions
   links(filter: Scientific_Circles_Links_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): [Scientific_Circles_Links]
@@ -269,14 +274,16 @@ input count_function_filter_operators {
 type Departments {
   id: ID!
   name: String!
-  website: String
   logo(filter: directus_files_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): directus_files
   description: String
   code: String!
   gradient_start: String
   gradient_end: String
+  address: String
   links(filter: Departments_Links_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): [Departments_Links]
   links_func: count_functions
+  fieldsOfStudies(filter: FieldOfStudy_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): [FieldOfStudy]
+  fieldsOfStudies_func: count_functions
 }
 
 type Departments_Links {
@@ -289,14 +296,16 @@ type Departments_Links {
 input Departments_filter {
   id: number_filter_operators
   name: string_filter_operators
-  website: string_filter_operators
   logo: directus_files_filter
   description: string_filter_operators
   code: string_filter_operators
   gradient_start: string_filter_operators
   gradient_end: string_filter_operators
+  address: string_filter_operators
   links: Departments_Links_filter
   links_func: count_function_filter_operators
+  fieldsOfStudies: FieldOfStudy_filter
+  fieldsOfStudies_func: count_function_filter_operators
   _and: [Departments_filter]
   _or: [Departments_filter]
 }
@@ -308,6 +317,20 @@ input Departments_Links_filter {
   department_id: Departments_filter
   _and: [Departments_Links_filter]
   _or: [Departments_Links_filter]
+}
+
+input FieldOfStudy_filter {
+  id: number_filter_operators
+  department_id: Departments_filter
+  name: string_filter_operators
+  _and: [FieldOfStudy_filter]
+  _or: [FieldOfStudy_filter]
+}
+
+type FieldOfStudy {
+  id: ID!
+  department_id(filter: Departments_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): Departments
+  name: String!
 }
 
 input Scientific_Circles_Tags_filter {
@@ -334,6 +357,7 @@ input Scientific_Circles_filter {
   source: string_filter_operators
   shortDescription: string_filter_operators
   department: Departments_filter
+  desc2: string_filter_operators
   tags: Scientific_Circles_Tags_filter
   tags_func: count_function_filter_operators
   links: Scientific_Circles_Links_filter
@@ -722,6 +746,7 @@ type Scientific_Circles_aggregated_count {
   source: Int
   shortDescription: Int
   department: Int
+  desc2: Int
   tags: Int
   links: Int
 }
@@ -749,6 +774,7 @@ type version_Scientific_Circles {
   source: String
   shortDescription: String
   department: JSON
+  desc2: String
   tags: JSON
   tags_func: count_functions
   links: JSON
@@ -977,49 +1003,6 @@ type version_WeekExceptions {
   changedDayIsEven: Boolean!
 }
 
-type Departments_aggregated {
-  group: JSON
-  countAll: Int
-  count: Departments_aggregated_count
-  countDistinct: Departments_aggregated_count
-  avg: Departments_aggregated_fields
-  sum: Departments_aggregated_fields
-  avgDistinct: Departments_aggregated_fields
-  sumDistinct: Departments_aggregated_fields
-  min: Departments_aggregated_fields
-  max: Departments_aggregated_fields
-}
-
-type Departments_aggregated_count {
-  id: Int
-  name: Int
-  website: Int
-  logo: Int
-  description: Int
-  code: Int
-  gradient_start: Int
-  gradient_end: Int
-  links: Int
-}
-
-type Departments_aggregated_fields {
-  id: Float
-}
-
-""""""
-type version_Departments {
-  id: ID!
-  name: String!
-  website: String
-  logo: JSON
-  description: String
-  code: String!
-  gradient_start: String
-  gradient_end: String
-  links: JSON
-  links_func: count_functions
-}
-
 type AboutUs {
   id: ID!
   user_updated: String
@@ -1201,6 +1184,83 @@ type version_AboutUs_Solvro_Social_Links {
   parent_id: JSON
 }
 
+type FieldOfStudy_aggregated {
+  group: JSON
+  countAll: Int
+  count: FieldOfStudy_aggregated_count
+  countDistinct: FieldOfStudy_aggregated_count
+  avg: FieldOfStudy_aggregated_fields
+  sum: FieldOfStudy_aggregated_fields
+  avgDistinct: FieldOfStudy_aggregated_fields
+  sumDistinct: FieldOfStudy_aggregated_fields
+  min: FieldOfStudy_aggregated_fields
+  max: FieldOfStudy_aggregated_fields
+}
+
+type FieldOfStudy_aggregated_count {
+  id: Int
+  department_id: Int
+  name: Int
+}
+
+type FieldOfStudy_aggregated_fields {
+  id: Float
+  department_id: Float
+}
+
+""""""
+type version_FieldOfStudy {
+  id: ID!
+  department_id: JSON
+  name: String!
+}
+
+type Departments_aggregated {
+  group: JSON
+  countAll: Int
+  count: Departments_aggregated_count
+  countDistinct: Departments_aggregated_count
+  avg: Departments_aggregated_fields
+  sum: Departments_aggregated_fields
+  avgDistinct: Departments_aggregated_fields
+  sumDistinct: Departments_aggregated_fields
+  min: Departments_aggregated_fields
+  max: Departments_aggregated_fields
+}
+
+type Departments_aggregated_count {
+  id: Int
+  name: Int
+  logo: Int
+  description: Int
+  code: Int
+  gradient_start: Int
+  gradient_end: Int
+  address: Int
+  links: Int
+  fieldsOfStudies: Int
+}
+
+type Departments_aggregated_fields {
+  id: Float
+}
+
+""""""
+type version_Departments {
+  id: ID!
+  name: String!
+  logo: JSON
+  description: String
+  code: String!
+  gradient_start: String
+  gradient_end: String
+  address: String
+  links: JSON
+  links_func: count_functions
+  fieldsOfStudies: JSON
+  fieldsOfStudies_func: count_functions
+}
+
 type Subscription {
   directus_files_mutated(event: EventEnum): directus_files_mutated
   Scientific_Circles_Tags_mutated(event: EventEnum): Scientific_Circles_Tags_mutated
@@ -1215,11 +1275,12 @@ type Subscription {
   Buildings_mutated(event: EventEnum): Buildings_mutated
   AcademicCalendarData_mutated(event: EventEnum): AcademicCalendarData_mutated
   WeekExceptions_mutated(event: EventEnum): WeekExceptions_mutated
-  Departments_mutated(event: EventEnum): Departments_mutated
   AboutUs_mutated(event: EventEnum): AboutUs_mutated
   AboutUs_Team_mutated(event: EventEnum): AboutUs_Team_mutated
   AboutUs_Team_Social_Links_mutated(event: EventEnum): AboutUs_Team_Social_Links_mutated
   AboutUs_Solvro_Social_Links_mutated(event: EventEnum): AboutUs_Solvro_Social_Links_mutated
+  FieldOfStudy_mutated(event: EventEnum): FieldOfStudy_mutated
+  Departments_mutated(event: EventEnum): Departments_mutated
 }
 
 type directus_files_mutated {
@@ -1306,12 +1367,6 @@ type WeekExceptions_mutated {
   data: WeekExceptions
 }
 
-type Departments_mutated {
-  key: ID!
-  event: EventEnum
-  data: Departments
-}
-
 type AboutUs_mutated {
   key: ID!
   event: EventEnum
@@ -1334,4 +1389,16 @@ type AboutUs_Solvro_Social_Links_mutated {
   key: ID!
   event: EventEnum
   data: AboutUs_Solvro_Social_Links
+}
+
+type FieldOfStudy_mutated {
+  key: ID!
+  event: EventEnum
+  data: FieldOfStudy
+}
+
+type Departments_mutated {
+  key: ID!
+  event: EventEnum
+  data: Departments
 }

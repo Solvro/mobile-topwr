@@ -8,6 +8,8 @@ abstract class IconsConfig {
     "mailto:": Assets.contactIcons.mail,
     "youtu": Assets.contactIcons.yt,
     "github": Assets.contactIcons.github,
+    "maps": Assets.contactIcons.compass,
+    "tel": Assets.contactIcons.phone,
   };
   static final defaultIcon = Assets.contactIcons.web;
 }

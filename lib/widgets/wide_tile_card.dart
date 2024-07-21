@@ -26,7 +26,7 @@ class PhotoTrailingWideTileCard extends WideTileCard {
 class WideTileCard extends StatelessWidget {
   const WideTileCard({
     required this.title,
-    this.subtitle,
+    this.subtitle ="",
     this.trailing,
     this.onTap,
     this.activeGradient,

@@ -14,6 +14,7 @@ enum TtlKey {
   mapBuildingsRepository,
   departmentsRepository,
   aboutUsRepository,
+  departmentsDetailsRepository,
   // ... add a new key here if you create a new repository
 }
 
@@ -33,6 +34,7 @@ abstract class TtlStrategy {
     mapBuildingsRepository: thirtyDays,
     departmentsRepository: thirtyDays,
     aboutUsRepository: thirtyDays,
+    departmentsDetailsRepository: thirtyDays
   );
 
   static Duration get(TtlKey key) {

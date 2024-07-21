@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 
-import '../../../../widgets/loading_widgets/shimmer_loading.dart';
+import 'shimmer_loading.dart';
 
 class HeaderSectionLoading extends StatelessWidget {
   const HeaderSectionLoading({super.key});
