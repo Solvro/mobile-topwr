@@ -21,10 +21,11 @@ class MyIcon extends StatelessWidget {
           height: 35,
           color: context.colorTheme.whiteSoap,
           child: Center(
-            child: SizedBox.square(
-              dimension: 20,
+            child: SizedBox(
+              width: 20,
               child: SvgPicture.asset(
                 icon,
+                fit: BoxFit.fitWidth,
               ),
             ),
           ),
