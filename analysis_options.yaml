@@ -11,3 +11,13 @@ linter:
   rules:
     prefer_relative_imports: true
     avoid_relative_lib_imports: true
+
+analyzer:
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - "**/*.mocks.dart"
+    - "**/*.gform.dart"
+    - "**/*.tailor.dart"
+    - "**/*.gen.dart"
+    - "**/*.graphql.dart"
