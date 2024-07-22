@@ -38,7 +38,7 @@ class DepartmentsStudyCirclesSection extends ConsumerWidget {
 class _StudyCirclesList extends ConsumerWidget {
   final List<StudyCircles> studyCircles;
 
-  const _StudyCirclesList({super.key, required this.studyCircles});
+  const _StudyCirclesList({required this.studyCircles});
 
   static void goToDetailView(WidgetRef ref, String id) {
     ref.read(navigatorProvider).navigateToStudyCircleDetails(id);

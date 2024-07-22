@@ -30,7 +30,7 @@ class DepartmentDetails extends StatelessWidget {
 }
 
 class _DepartmentDetailsDataView extends ConsumerWidget {
-  const _DepartmentDetailsDataView({Key? key});
+  const _DepartmentDetailsDataView();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
