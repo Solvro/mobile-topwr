@@ -72,6 +72,7 @@ dev_dependencies:
   riverpod_lint: ^2.3.12
   envied_generator: ^0.5.4+1
   graphql_codegen: ^0.14.0
+  flutter_gen_runner: ^5.6.0
 
 dependency_overrides:
   analyzer: ^6.5.0
@@ -95,30 +96,64 @@ flutter:
     - assets/map_markers/active_parking_map_marker.png
     - assets/map_markers/parking_map_marker.png
     - assets/search_box/vectorsearch.svg
-    - assets/icons/ic_email.png
-    - assets/icons/ic_fb.png
-    - assets/icons/ic_insta.png
-    - assets/icons/ic_linkedin.png
-    - assets/icons/ic_web.png
-    - assets/icons/ic_youtube.png
-    - assets/icons/ic_github.png
-    - assets/icons/ic_compass.png
-    - assets/icons/ic_phone.png
+    - assets/contact_icons/compass.svg
+    - assets/contact_icons/fb.svg
+    - assets/contact_icons/github.svg
+    - assets/contact_icons/ig.svg
+    - assets/contact_icons/linkedin.svg
+    - assets/contact_icons/mail.svg
+    - assets/contact_icons/phone.svg
+    - assets/contact_icons/web.svg
+    - assets/contact_icons/yt.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/assets-and-images/#from-packages
   fonts:
-    - family: Schyler
-      fonts:
-        - asset: assets/fonts/Rubik-VariableFont_wght.ttf
     - family: BottomNavBarIcon
       fonts:
-        - asset: assets/fonts/BottomNavBarIcon.ttf
+        - asset: fonts/BottomNavBarIcon.ttf
     - family: IParkingIcons
       fonts:
-        - asset: assets/fonts/IParkingIcons.ttf
+        - asset: fonts/IParkingIcons.ttf
+    - family: Rubik
+      fonts:
+        - asset: fonts/rubik/Rubik-Light.ttf
+          weight: 300
+        - asset: fonts/rubik/Rubik-LightItalic.ttf
+          weight: 300
+          style: italic
+        - asset: fonts/rubik/Rubik-Regular.ttf
+          weight: 400
+        - asset: fonts/rubik/Rubik-Italic.ttf
+          weight: 400
+          style: italic
+        - asset: fonts/rubik/Rubik-Medium.ttf
+          weight: 500
+        - asset: fonts/rubik/Rubik-MediumItalic.ttf
+          weight: 500
+          style: italic
+        - asset: fonts/rubik/Rubik-SemiBold.ttf
+          weight: 600
+        - asset: fonts/rubik/Rubik-SemiBoldItalic.ttf
+          weight: 600
+          style: italic
+        - asset: fonts/rubik/Rubik-Bold.ttf
+          weight: 700
+        - asset: fonts/rubik/Rubik-BoldItalic.ttf
+          weight: 700
+          style: italic
+        - asset: fonts/rubik/Rubik-ExtraBold.ttf
+          weight: 800
+        - asset: fonts/rubik/Rubik-ExtraBoldItalic.ttf
+          weight: 800
+          style: italic
+        - asset: fonts/rubik/Rubik-Black.ttf
+          weight: 900
+        - asset: fonts/rubik/Rubik-BlackItalic.ttf
+          weight: 900
+          style: italic
 
 flutter_native_splash:
   background_image: assets/splash_screen/native_splash_bg.png

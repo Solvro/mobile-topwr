@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
-import '../../../../../api_base/directus_assets_url.dart';
 import '../../../../../config/ui_config.dart';
 import '../../../../../theme/app_theme.dart';
 import '../../../../../utils/determine_icon.dart';
@@ -65,9 +65,9 @@ class _TeamMemberCard extends StatelessWidget {
 }
 
 class _Icon extends StatelessWidget {
-  const _Icon({required this.iconPath, required this.iconUrl});
-  final String iconUrl;
-  final String iconPath;
+  const _Icon({required this.icon, required this.launchUrl});
+  final String launchUrl;
+  final String icon;
 
   @override
   Widget build(BuildContext context) {
@@ -75,9 +75,9 @@ class _Icon extends StatelessWidget {
       padding: const EdgeInsets.only(right: 11.0),
       child: GestureDetector(
         onTap: () async {
-          await LaunchUrlUtil.launch(iconUrl);
+          await LaunchUrlUtil.launch(launchUrl);
         },
-        child: Image.asset(iconPath),
+        child: SizedBox.square(dimension: 22, child: SvgPicture.asset(icon)),
       ),
     );
   }
@@ -112,8 +112,8 @@ class _Description extends StatelessWidget {
           children: [
             for (final icon in links)
               _Icon(
-                iconUrl: icon.url ?? '',
-                iconPath: icon.iconUrl,
+                launchUrl: icon.url ?? '',
+                icon: icon.icon,
               )
           ],
         )

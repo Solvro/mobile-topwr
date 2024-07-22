@@ -1,12 +1,15 @@
+import '../gen/assets.gen.dart';
+
 abstract class IconsConfig {
-  static const iconsPaths = {
-    "facebook": "assets/icons/ic_fb.png",
-    "instagram": "assets/icons/ic_insta.png",
-    "linkedin": "assets/icons/ic_linkedin.png",
-    "mailto:": "assets/icons/ic_email.png",
-    "youtu": "assets/icons/ic_youtube.png",
-    "github": "assets/icons/ic_github.png",
-    "maps": "assets/icons/ic_compass.png",
-    "tel": "assets/icons/ic_phone.png",
+  static final iconsPaths = {
+    "facebook": Assets.contactIcons.fb,
+    "instagram": Assets.contactIcons.ig,
+    "linkedin": Assets.contactIcons.linkedin,
+    "mailto:": Assets.contactIcons.mail,
+    "youtu": Assets.contactIcons.yt,
+    "github": Assets.contactIcons.github,
+    "maps": Assets.contactIcons.compass,
+    "tel": Assets.contactIcons.phone,
   };
+  static final defaultIcon = Assets.contactIcons.web;
 }

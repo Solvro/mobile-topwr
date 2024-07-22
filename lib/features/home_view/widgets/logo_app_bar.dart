@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../config/ui_config.dart';
+import '../../../gen/assets.gen.dart';
 import '../../../theme/app_theme.dart';
 
 class LogoAppBar extends AppBar {
@@ -24,7 +24,7 @@ class AppBarLogo extends StatelessWidget {
   const AppBarLogo({super.key});
 
   static void precacheImageIfAbsent() {
-    const loader = SvgAssetLoader(AppBarConfig.logoAssetName);
+    const loader = SvgAssetLoader(Assets.logoAppBar);
     svg.cache.putIfAbsent(loader.cacheKey(null), () => loader.loadBytes(null));
   }
 
@@ -32,7 +32,7 @@ class AppBarLogo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 48),
-      child: SvgPicture.asset(AppBarConfig.logoAssetName),
+      child: SvgPicture.asset(Assets.logoAppBar),
     );
   }
 }

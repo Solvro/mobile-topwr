@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../config/ui_config.dart';
+import '../gen/assets.gen.dart';
 import '../theme/app_theme.dart';
 import '../utils/context_extensions.dart';
 
@@ -63,7 +64,7 @@ class _SearchWidgetState extends ConsumerState<SearchWidget> {
         ),
         prefixIcon: Padding(
           padding: const EdgeInsets.all(10),
-          child: SvgPicture.asset(SearchWidgetConfig.searchIconName),
+          child: SvgPicture.asset(Assets.searchBox.vectorsearch),
         ),
         suffixIcon: showCloseIcon
             ? IconButton(

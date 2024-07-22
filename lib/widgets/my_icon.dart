@@ -1,24 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import '../theme/app_theme.dart';
 
 class MyIcon extends StatelessWidget {
   const MyIcon({
     super.key,
-    required this.path,
+    required this.icon,
   });
 
-  final String path;
+  final String icon;
 
   @override
   Widget build(BuildContext context) {
     return Material(
-      borderRadius: BorderRadius.circular(6),
+      borderRadius: BorderRadius.circular(4),
       elevation: 2,
       child: ClipOval(
         child: Container(
-            padding: const EdgeInsets.all(8),
-            color: context.colorTheme.whiteSoap,
-            child: SizedBox(width: 20, height: 20, child: Image.asset(path)))),
-      );
+          width: 35,
+          height: 35,
+          color: context.colorTheme.whiteSoap,
+          child: Center(
+            child: SizedBox(
+              width: 20,
+              child: SvgPicture.asset(
+                icon,
+                fit: BoxFit.fitWidth,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }

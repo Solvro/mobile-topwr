@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../../../config/map_view_config.dart';
-
+import '../../../gen/assets.gen.dart';
 
 class MapMarkerUtils {
   static late final BitmapDescriptor mapMarker;
@@ -18,20 +18,21 @@ class MapMarkerUtils {
         kIsWeb ? 1 : MediaQuery.devicePixelRatioOf(context).toInt();
 
     mapMarker = await _AssetScaledLoader.loadScaledBitmapDescriptor(
-      MapWidgetConfig.mapMarkerAssetName,
+      Assets.mapMarkers.mapMarker.path,
       width: MapWidgetConfig.mapMarkerOriginWidth * pixelRatio,
     );
 
     activeMapMarker = await _AssetScaledLoader.loadScaledBitmapDescriptor(
-      MapWidgetConfig.activeMapMarkerAssetName,
+      Assets.mapMarkers.activeMapMarker.path,
       width: MapWidgetConfig.activeMapMarkerOriginWidth * pixelRatio,
     );
     parkingMapMarker = await _AssetScaledLoader.loadScaledBitmapDescriptor(
-      MapWidgetConfig.parkingMapMarkerAssetName,
+      Assets.mapMarkers.parkingMapMarker.path,
       width: MapWidgetConfig.mapMarkerOriginWidth * pixelRatio,
     );
-    activeParkingMapMarker = await _AssetScaledLoader.loadScaledBitmapDescriptor(
-      MapWidgetConfig.activeParkingMapMarkerAssetName,
+    activeParkingMapMarker =
+        await _AssetScaledLoader.loadScaledBitmapDescriptor(
+      Assets.mapMarkers.activeParkingMapMarker.path,
       width: MapWidgetConfig.activeMapMarkerOriginWidth * pixelRatio,
     );
   }

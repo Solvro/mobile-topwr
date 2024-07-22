@@ -28,7 +28,7 @@ class ContactSection extends StatelessWidget {
               child: _IconWithUrl(
                 url: item.url ?? '',
                 text: item.text ?? '',
-                iconPath: item.iconUrl,
+                icon: item.icon,
               ),
             )
         ],
@@ -40,19 +40,19 @@ class ContactSection extends StatelessWidget {
 class _IconWithUrl extends StatelessWidget {
   const _IconWithUrl({
     required this.url,
-    required this.iconPath,
+    required this.icon,
     required this.text,
   });
 
   final String url;
   final String text;
-  final String iconPath;
+  final String icon;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        MyIcon(path: iconPath),
+        MyIcon(icon: icon),
         const SizedBox(width: 16),
         Expanded(
           child: RichText(
