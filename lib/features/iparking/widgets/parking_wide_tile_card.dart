@@ -5,7 +5,7 @@ import '../../../theme/app_theme.dart';
 import '../../../theme/iparking_theme.dart';
 import '../../iparking_chart/chart_widget.dart';
 import '../models/parking_model.dart';
-import 'i_parking_icons_icons.dart';
+import 'i_parking_icons_icons.icons.dart';
 
 class ParkingWideTileCard extends StatelessWidget {
   const ParkingWideTileCard({

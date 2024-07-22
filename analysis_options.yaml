@@ -11,6 +11,8 @@ linter:
   rules:
     prefer_relative_imports: true
     avoid_relative_lib_imports: true
+    prefer_single_quotes: false
+    prefer_int_literals: false
 
 analyzer:
   exclude:
@@ -21,3 +23,4 @@ analyzer:
     - "**/*.tailor.dart"
     - "**/*.gen.dart"
     - "**/*.graphql.dart"
+    - "**/*.icons.dart"

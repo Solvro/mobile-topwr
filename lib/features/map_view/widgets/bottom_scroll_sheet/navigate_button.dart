@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../config/map_view_config.dart';
 import '../../../../theme/app_theme.dart';
 import '../../../../utils/context_extensions.dart';
-import '../../../iparking/widgets/i_parking_icons_icons.dart';
+import '../../../iparking/widgets/i_parking_icons_icons.icons.dart';
 import '../../controllers/controllers_set.dart';
 import '../map_config.dart';
 
