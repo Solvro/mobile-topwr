@@ -12,7 +12,10 @@ linter:
     prefer_relative_imports: true
     avoid_relative_lib_imports: true
     prefer_single_quotes: false
-    prefer_int_literals: false
+    prefer_double_quotes: true # I hate single quotes
+    use_setters_to_change_properties: false
+    lines_longer_than_80_chars: false # I'd love to be able to set here some other number, but 80 is too low
+    sort_pub_dependencies: false
 
 analyzer:
   exclude:
