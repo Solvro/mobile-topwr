@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import '../theme/app_theme.dart';
+import "package:flutter/material.dart";
+import "package:flutter_svg/svg.dart";
+import "../theme/app_theme.dart";
 
 class MyIcon extends StatelessWidget {
   const MyIcon({

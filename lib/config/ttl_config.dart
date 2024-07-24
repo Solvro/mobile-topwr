@@ -1,7 +1,7 @@
-import 'package:enum_map/enum_map.dart';
-import 'package:flutter/foundation.dart';
+import "package:enum_map/enum_map.dart";
+import "package:flutter/foundation.dart";
 
-part 'ttl_config.g.dart';
+part "ttl_config.g.dart";
 
 @unmodifiableEnumMap
 enum TtlKey {
@@ -25,7 +25,7 @@ abstract class TtlStrategy {
   static const thirtyDays = kDebugMode ? Duration.zero : Duration(days: 30);
 
   static const _ttlDurations = UnmodifiableTtlKeyMap(
-    // TODO: specific values are yet ment to be accordingly adjusted
+    // TODO(simon-the-shark): specific values are yet ment to be accordingly adjusted.
     infosPreviewRepository: day,
     academicCalendarRepository: day,
     sciCirclesPreviewRepository: thirtyDays,
@@ -34,7 +34,7 @@ abstract class TtlStrategy {
     mapBuildingsRepository: thirtyDays,
     departmentsRepository: thirtyDays,
     aboutUsRepository: thirtyDays,
-    departmentsDetailsRepository: thirtyDays
+    departmentsDetailsRepository: thirtyDays,
   );
 
   static Duration get(TtlKey key) {

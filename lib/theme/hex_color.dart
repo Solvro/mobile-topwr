@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
 class HexColor extends Color {
   /// hexString starts with #, and then 6 or 8 chars long
@@ -19,7 +19,7 @@ abstract class _FromHexConverter {
 
   static String _supplementWithOpacityChannel(String str) {
     if (str.length == 6) {
-      str = "FF$str";
+      return "FF$str";
     }
     return str;
   }
@@ -36,7 +36,7 @@ abstract class _ToHexConverter {
 
   static String _toBase16Str(int value) => value.toRadixString(16);
 
-  static String _fillWith0sToFixedLen(String str) => str.padLeft(8, '0');
+  static String _fillWith0sToFixedLen(String str) => str.padLeft(8, "0");
 
   static String _removeOpacityChannelIf255(String str, int alpha) =>
       str.substring(alpha == 255 ? 2 : 0);

@@ -1,16 +1,16 @@
-import 'package:flutter/material.dart';
-import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
+import "package:flutter/material.dart";
+import "package:theme_tailor_annotation/theme_tailor_annotation.dart";
 
-import 'colors.dart';
-import 'typography.dart';
+import "colors.dart";
+import "typography.dart";
 
-part 'iparking_theme.tailor.dart';
+part "iparking_theme.tailor.dart";
 
 const iparkingShadows = [
   Shadow(
     blurRadius: 4,
     color: Colors.black26,
-    offset: Offset(0, 4.0),
+    offset: Offset(0, 4),
   ),
 ];
 

@@ -1,8 +1,6 @@
+import "package:flutter/material.dart";
 
-
-import 'package:flutter/material.dart';
-
-import 'shimmer_loading.dart';
+import "shimmer_loading.dart";
 
 class HeaderSectionLoading extends StatelessWidget {
   const HeaderSectionLoading({super.key});
@@ -18,7 +16,10 @@ class HeaderSectionLoading extends StatelessWidget {
             clipBehavior: Clip.none,
             children: [
               Container(
-                  height: 250, width: double.maxFinite, color: Colors.white),
+                height: 250,
+                width: double.maxFinite,
+                color: Colors.white,
+              ),
               Positioned(
                 top: 185,
                 child: Container(

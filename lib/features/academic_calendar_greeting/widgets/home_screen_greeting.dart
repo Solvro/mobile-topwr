@@ -1,13 +1,13 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import '../../../theme/app_theme.dart';
-import '../../../utils/context_extensions.dart';
-import '../../../widgets/my_error_widget.dart';
-import '../../home_view/widgets/loading_widgets/horizontal_rectangular_section_loading.dart';
-import '../model/academic_calendar_data.dart';
-import '../repository/academic_calendar_repo.dart';
-import '../utils/localize_academic_day.dart';
+import "../../../theme/app_theme.dart";
+import "../../../utils/context_extensions.dart";
+import "../../../widgets/my_error_widget.dart";
+import "../../home_view/widgets/loading_widgets/horizontal_rectangular_section_loading.dart";
+import "../model/academic_calendar_data.dart";
+import "../repository/academic_calendar_repo.dart";
+import "../utils/localize_academic_day.dart";
 
 class Greeting extends ConsumerWidget {
   const Greeting({

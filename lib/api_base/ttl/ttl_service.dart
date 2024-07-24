@@ -1,12 +1,12 @@
-import 'dart:async';
+import "dart:async";
 
-import 'package:graphql/client.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
+import "package:graphql/client.dart";
+import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import 'local_timestamp_repository.dart';
-import '../../config/ttl_config.dart';
+import "../../config/ttl_config.dart";
+import "local_timestamp_repository.dart";
 
-part 'ttl_service.g.dart';
+part "ttl_service.g.dart";
 
 @riverpod
 class TtlService extends _$TtlService {
@@ -24,7 +24,7 @@ class TtlService extends _$TtlService {
       ref.watch(localTimestampRepoProvider.call(key).future);
 
   Future<QueryResult<T>> interceptAndSaveTimestamps<T>(
-      QueryResult<T> event) async {
+      QueryResult<T> event,) async {
     if (event.source == QueryResultSource.network) {
       final repo = await repository;
       await repo.saveTimestamp(event);

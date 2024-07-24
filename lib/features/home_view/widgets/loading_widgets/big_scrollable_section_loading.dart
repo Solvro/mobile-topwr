@@ -1,9 +1,9 @@
-import 'package:flutter/cupertino.dart';
+import "package:flutter/cupertino.dart";
 
-import '../../../../config/ui_config.dart';
-import '../../../../widgets/loading_widgets/specific_imitations/big_preview_card_loading.dart';
-import '../../../../widgets/loading_widgets/scrolable_loader_builder.dart';
-import '../paddings.dart';
+import "../../../../config/ui_config.dart";
+import "../../../../widgets/loading_widgets/scrolable_loader_builder.dart";
+import "../../../../widgets/loading_widgets/specific_imitations/big_preview_card_loading.dart";
+import "../paddings.dart";
 
 class BigScrollableSectionLoading extends StatelessWidget {
   const BigScrollableSectionLoading({

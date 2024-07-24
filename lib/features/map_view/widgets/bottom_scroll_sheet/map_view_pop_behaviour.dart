@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import '../../controllers/bottom_sheet_controller.dart';
-import '../../controllers/controllers_set.dart';
-import '../map_config.dart';
+import "../../controllers/bottom_sheet_controller.dart";
+import "../../controllers/controllers_set.dart";
+import "../map_config.dart";
 
 class MapViewPopBehaviour<T extends GoogleNavigable> extends ConsumerWidget {
   const MapViewPopBehaviour({
@@ -30,6 +30,6 @@ class MapViewPopBehaviour<T extends GoogleNavigable> extends ConsumerWidget {
             ref.read(bottomSheetControllerProvider).resetSafe();
           }
         },
-        child: child);
+        child: child,);
   }
 }

@@ -1,10 +1,10 @@
-import 'package:riverpod_annotation/riverpod_annotation.dart';
+import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import '../../../config/ttl_config.dart';
-import '../../../api_base/watch_query_adapter.dart';
-import 'getAcademicCalendar.graphql.dart';
+import "../../../api_base/watch_query_adapter.dart";
+import "../../../config/ttl_config.dart";
+import "getAcademicCalendar.graphql.dart";
 
-part 'academic_calendar_repo.g.dart';
+part "academic_calendar_repo.g.dart";
 
 typedef AcademicCalendar = Query$GetAcademicCalendar;
 typedef AcademicCalendarData = Query$GetAcademicCalendar$AcademicCalendarData;

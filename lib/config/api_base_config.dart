@@ -1,6 +1,6 @@
-import 'package:envied/envied.dart';
+import "package:envied/envied.dart";
 
-part 'api_base_config.g.dart';
+part "api_base_config.g.dart";
 
 abstract class ApiBaseConfig {
   static const hiveCacheBoxName = "hiveCacheBoxForDirectusGraphQL";
@@ -9,7 +9,7 @@ abstract class ApiBaseConfig {
 }
 
 @Envied(
-  path: '.env',
+  path: ".env",
   obfuscate: true,
   useConstantCase: true,
   requireEnvFile: true,

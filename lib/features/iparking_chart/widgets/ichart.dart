@@ -1,15 +1,15 @@
-import 'package:fl_chart/fl_chart.dart';
-import 'package:flutter/material.dart';
+import "package:fl_chart/fl_chart.dart";
+import "package:flutter/material.dart";
 
-import '../../iparking/models/parking_model.dart';
-import '../chart_elements/chart_border.dart';
-import '../chart_elements/chart_grid.dart';
-import '../chart_elements/chart_line.dart';
-import '../chart_elements/labels_bottom.dart';
-import '../chart_elements/labels_left.dart';
-import '../models/chart_point.dart';
-import '../utils/chart_utils.dart';
-import 'reversed_label.dart';
+import "../../iparking/models/parking_model.dart";
+import "../chart_elements/chart_border.dart";
+import "../chart_elements/chart_grid.dart";
+import "../chart_elements/chart_line.dart";
+import "../chart_elements/labels_bottom.dart";
+import "../chart_elements/labels_left.dart";
+import "../models/chart_point.dart";
+import "../utils/chart_utils.dart";
+import "reversed_label.dart";
 
 class IChart extends StatelessWidget {
   const IChart(this.chartData, this.parkingPlace, {super.key});
@@ -47,5 +47,5 @@ class IChart extends StatelessWidget {
 }
 
 class HideLabels extends AxisTitles {
-  const HideLabels() : super(sideTitles: const SideTitles(showTitles: false));
+  const HideLabels() : super(sideTitles: const SideTitles());
 }

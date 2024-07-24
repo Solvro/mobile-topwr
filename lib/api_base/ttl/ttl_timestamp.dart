@@ -1,11 +1,11 @@
-import '../../utils/timestamp.dart';
-import '../../config/ttl_config.dart';
+import "../../config/ttl_config.dart";
+import "../../utils/timestamp.dart";
 
 class TimestampTtl extends Timestamp {
   TimestampTtl.nil(this.key) : super.nil();
-  TimestampTtl.from(DateTime? ts, this.key) : super.from(ts);
-  TimestampTtl.tryParse(String? formattedString, this.key)
-      : super.tryParse(formattedString);
+  TimestampTtl.from(super.ts, this.key) : super.from();
+  TimestampTtl.tryParse(super.formattedString, this.key)
+      : super.tryParse();
 
   final TtlKey key;
 

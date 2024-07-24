@@ -1,7 +1,7 @@
-import 'package:collection/collection.dart';
-import 'package:flutter/widgets.dart';
+import "package:collection/collection.dart";
+import "package:flutter/widgets.dart";
 
-import '../config/url_icons.dart';
+import "../config/url_icons.dart";
 
 @immutable
 class UrlIconsModel {

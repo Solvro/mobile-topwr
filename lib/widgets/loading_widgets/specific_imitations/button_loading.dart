@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import '../shimmer_loading.dart';
+import "package:flutter/material.dart";
+import "../shimmer_loading.dart";
 
 class ButtonLoading extends StatelessWidget {
   const ButtonLoading({super.key});
@@ -21,6 +21,6 @@ class ButtonLoading extends StatelessWidget {
               ),
             ),
           ],
-        ));
+        ),);
   }
 }

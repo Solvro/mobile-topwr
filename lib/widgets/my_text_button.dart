@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
-import '../theme/app_theme.dart';
+import "../theme/app_theme.dart";
 
 class MyTextButton extends StatelessWidget {
   const MyTextButton({
@@ -22,6 +22,6 @@ class MyTextButton extends StatelessWidget {
         child: Text(
           actionTitle,
           style: context.textTheme.boldBodyOrange,
-        ));
+        ),);
   }
 }

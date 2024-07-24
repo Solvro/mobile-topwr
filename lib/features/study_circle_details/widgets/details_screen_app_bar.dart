@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
-import '../../../theme/app_theme.dart';
+import "../../../theme/app_theme.dart";
 
 class DetailsScreenAppBar extends AppBar {
   DetailsScreenAppBar(BuildContext context, {super.key, required String title})
@@ -16,8 +16,8 @@ class DetailsScreenAppBar extends AppBar {
                 padding: EdgeInsets.zero,
               ),
               child: Text(
-                '< $title',
+                "< $title",
                 style: context.textTheme.boldBodyOrange,
-              )),
+              ),),
         );
 }

@@ -1,9 +1,9 @@
-import '../../../../../api_base/directus_assets_url.dart';
+import "../../../../../api_base/directus_assets_url.dart";
 
-import '../../../../../utils/determine_icon.dart';
-import '../../../../../utils/where_non_null_iterable.dart';
-import '../repository/about_us_repository.dart';
-import 'member_data.dart';
+import "../../../../../utils/determine_icon.dart";
+import "../../../../../utils/where_non_null_iterable.dart";
+import "../repository/about_us_repository.dart";
+import "member_data.dart";
 
 class AboutUsDetails {
   final AboutUs? aboutUs;

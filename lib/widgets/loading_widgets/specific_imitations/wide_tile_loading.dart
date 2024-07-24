@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
-import '../../../config/ui_config.dart';
-import '../shimmer_loading.dart';
-import '../simple_previews/preview_card_loading.dart';
-import '../simple_previews/preview_text_prototype.dart';
+import "../../../config/ui_config.dart";
+import "../shimmer_loading.dart";
+import "../simple_previews/preview_card_loading.dart";
+import "../simple_previews/preview_text_prototype.dart";
 
 class WideTileLoading extends StatelessWidget {
   const WideTileLoading({super.key});
@@ -51,6 +51,6 @@ class _TitlesColumnLoading extends StatelessWidget {
           const SizedBox(height: WideTileCardConfig.titlesSpacing),
         ],
       );
-    });
+    },);
   }
 }

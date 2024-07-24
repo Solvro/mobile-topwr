@@ -1,8 +1,8 @@
-import 'dart:math';
+import "dart:math";
 
-import '../../../config/ui_config.dart';
-import '../../../utils/datetime_utils.dart';
-import '../repository/academic_calendar_repo.dart';
+import "../../../config/ui_config.dart";
+import "../../../utils/datetime_utils.dart";
+import "../repository/academic_calendar_repo.dart";
 
 enum Digit { first, second, third }
 

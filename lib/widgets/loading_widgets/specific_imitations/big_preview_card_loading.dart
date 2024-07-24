@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
-import '../../../config/ui_config.dart';
-import '../simple_previews/preview_text_prototype.dart';
-import '../shimmer_loading.dart';
+import "../../../config/ui_config.dart";
+import "../shimmer_loading.dart";
+import "../simple_previews/preview_text_prototype.dart";
 
 class BigPreviewCardLoading extends StatelessWidget {
   const BigPreviewCardLoading({super.key});
@@ -23,9 +23,9 @@ class BigPreviewCardLoading extends StatelessWidget {
                 ),
               ),
             ),
-            const ShimmerLoadingItem(child: _LoadingText())
+            const ShimmerLoadingItem(child: _LoadingText()),
           ],
-        ));
+        ),);
   }
 }
 
@@ -40,7 +40,7 @@ class _LoadingText extends StatelessWidget {
         const SizedBox(height: 16),
         PreviewTextPrototype(width: BigPreviewCardConfig.cardWidth),
         const SizedBox(height: 16),
-        PreviewTextPrototype(width: BigPreviewCardConfig.cardWidth / 1.5)
+        PreviewTextPrototype(width: BigPreviewCardConfig.cardWidth / 1.5),
       ],
     );
   }

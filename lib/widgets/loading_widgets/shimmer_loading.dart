@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
 /// Widget that simplify use of [ShimmerLoadingItem] and [Shimmer]
 /// Designed to cover only one widget.
@@ -72,7 +72,7 @@ class _ShimmerLoadingItemState extends State<ShimmerLoadingItem> {
     final shimmerSize = shimmer.size;
     final gradient = shimmer.gradient;
     final offsetWithinShimmer = shimmer.getDescendantOffset(
-      descendant: context.findRenderObject() as RenderBox,
+      descendant: context.findRenderObject()! as RenderBox,
     );
 
     return ShaderMask(
@@ -142,13 +142,13 @@ class ShimmerState extends State<Shimmer> with SingleTickerProviderStateMixin {
   bool get isSized =>
       (context.findRenderObject() as RenderBox?)?.hasSize ?? false;
 
-  Size get size => (context.findRenderObject() as RenderBox).size;
+  Size get size => (context.findRenderObject()! as RenderBox).size;
 
   Offset getDescendantOffset({
     required RenderBox descendant,
     Offset offset = Offset.zero,
   }) {
-    final shimmerBox = context.findRenderObject() as RenderBox;
+    final shimmerBox = context.findRenderObject()! as RenderBox;
     return descendant.localToGlobal(offset, ancestor: shimmerBox);
   }
 
@@ -168,7 +168,7 @@ class _SlidingGradientTransform extends GradientTransform {
 
   @override
   Matrix4? transform(Rect bounds, {TextDirection? textDirection}) {
-    return Matrix4.translationValues(bounds.width * slidePercent, 0.0, 0.0);
+    return Matrix4.translationValues(bounds.width * slidePercent, 0, 0);
   }
 }
 
@@ -184,8 +184,6 @@ const shimmerGradient = LinearGradient(
     0.3,
     0.4,
   ],
-  begin: Alignment(-1.0, -0.3),
-  end: Alignment(1.0, 0.3),
-  tileMode: TileMode.clamp,
+  begin: Alignment(-1, -0.3),
+  end: Alignment(1, 0.3),
 );
-

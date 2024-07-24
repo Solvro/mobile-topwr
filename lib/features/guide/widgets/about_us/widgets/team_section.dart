@@ -1,13 +1,13 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import "package:flutter/material.dart";
+import "package:flutter_svg/svg.dart";
 
-import '../../../../../config/ui_config.dart';
-import '../../../../../theme/app_theme.dart';
-import '../../../../../utils/determine_icon.dart';
-import '../../../../../utils/launch_url_util.dart';
+import "../../../../../config/ui_config.dart";
+import "../../../../../theme/app_theme.dart";
+import "../../../../../utils/determine_icon.dart";
+import "../../../../../utils/launch_url_util.dart";
 
-import '../../../../../widgets/my_cached_image.dart';
-import '../models/member_data.dart';
+import "../../../../../widgets/my_cached_image.dart";
+import "../models/member_data.dart";
 
 class TeamSection extends StatelessWidget {
   const TeamSection({super.key, required this.members});
@@ -20,7 +20,7 @@ class TeamSection extends StatelessWidget {
           const EdgeInsets.symmetric(horizontal: AboutUsConfig.defaultPadding),
       child: Column(
         children: [
-          for (final member in members) _TeamMemberCard(member: member)
+          for (final member in members) _TeamMemberCard(member: member),
         ],
       ),
     );
@@ -34,7 +34,7 @@ class _TeamMemberCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 8.0),
+      padding: const EdgeInsets.only(bottom: 8),
       child: Container(
         width: double.infinity,
         clipBehavior: Clip.antiAlias,
@@ -53,10 +53,10 @@ class _TeamMemberCard extends StatelessWidget {
               width: 14,
             ),
             _Description(
-              name: member.name ?? '',
-              subtitle: member.subtitle ?? '',
+              name: member.name ?? "",
+              subtitle: member.subtitle ?? "",
               links: member.links,
-            )
+            ),
           ],
         ),
       ),
@@ -72,7 +72,7 @@ class _Icon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(right: 11.0),
+      padding: const EdgeInsets.only(right: 11),
       child: GestureDetector(
         onTap: () async {
           await LaunchUrlUtil.launch(launchUrl);
@@ -85,7 +85,7 @@ class _Icon extends StatelessWidget {
 
 class _Description extends StatelessWidget {
   const _Description(
-      {required this.name, required this.subtitle, required this.links});
+      {required this.name, required this.subtitle, required this.links,});
   final String name;
   final String subtitle;
   final List<UrlIconsModel> links;
@@ -93,11 +93,10 @@ class _Description extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.only(top: 9.0, bottom: 4.0),
+          padding: const EdgeInsets.only(top: 9, bottom: 4),
           child: Text(
             name,
             style: context.aboutUsTheme.headlineSmaller,
@@ -108,15 +107,14 @@ class _Description extends StatelessWidget {
           height: 6,
         ),
         Row(
-          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             for (final icon in links)
               _Icon(
-                launchUrl: icon.url ?? '',
+                launchUrl: icon.url ?? "",
                 icon: icon.icon,
-              )
+              ),
           ],
-        )
+        ),
       ],
     );
   }

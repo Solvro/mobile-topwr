@@ -1,12 +1,12 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import '../../../../theme/app_theme.dart';
-import '../../../../utils/context_extensions.dart';
-import '../../../../widgets/my_error_widget.dart';
-import '../../../home_view/widgets/loading_widgets/horizontal_rectangular_section_loading.dart';
-import '../../repository/academic_calendar_repo.dart';
-import 'digits_widgets.dart';
+import "../../../../theme/app_theme.dart";
+import "../../../../utils/context_extensions.dart";
+import "../../../../widgets/my_error_widget.dart";
+import "../../../home_view/widgets/loading_widgets/horizontal_rectangular_section_loading.dart";
+import "../../repository/academic_calendar_repo.dart";
+import "digits_widgets.dart";
 
 class ExamSessionCountdown extends ConsumerWidget {
   const ExamSessionCountdown({super.key});
@@ -33,12 +33,10 @@ class ExamSessionCountdown extends ConsumerWidget {
                   spreadRadius: 6,
                   blurRadius: 11,
                   color: Color(0x28fa6465),
-                  offset: Offset(0, 0),
                 ),
               ],
             ),
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
                   padding: const EdgeInsets.all(16),

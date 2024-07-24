@@ -1,16 +1,16 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import '../../config/ui_config.dart';
-import '../../theme/app_theme.dart';
-import '../../theme/iparking_theme.dart';
-import '../../utils/context_extensions.dart';
-import '../../widgets/loading_widgets/simple_previews/preview_card_loading.dart';
-import '../../widgets/my_error_widget.dart';
-import '../iparking/models/parking_model.dart';
-import 'models/chart_point.dart';
-import 'repositories/chart_repo.dart';
-import 'widgets/ichart.dart';
+import "../../config/ui_config.dart";
+import "../../theme/app_theme.dart";
+import "../../theme/iparking_theme.dart";
+import "../../utils/context_extensions.dart";
+import "../../widgets/loading_widgets/simple_previews/preview_card_loading.dart";
+import "../../widgets/my_error_widget.dart";
+import "../iparking/models/parking_model.dart";
+import "models/chart_point.dart";
+import "repositories/chart_repo.dart";
+import "widgets/ichart.dart";
 
 class ParkingChart extends ConsumerWidget {
   const ParkingChart(this.parkingPlace, {super.key});
@@ -45,19 +45,18 @@ class ParkingChart extends ConsumerWidget {
           if (chartPoints.isEmpty) {
             return Center(
               child: Text(context.localize.noChartData,
-                  style: context.iParkingTheme.subtitleLight.withoutShadows),
+                  style: context.iParkingTheme.subtitleLight.withoutShadows,),
             );
           }
           return Padding(
             padding: const EdgeInsets.only(
               top: 20,
-              left: 0,
               right: 25,
               bottom: 10,
             ),
             child: IChart(chartPoints, parkingPlace),
           );
-        }),
+        },),
     };
   }
 }

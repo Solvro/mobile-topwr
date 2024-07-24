@@ -1,4 +1,4 @@
-import '../gen/assets.gen.dart';
+import "../gen/assets.gen.dart";
 
 abstract class IconsConfig {
   static final iconsPaths = {

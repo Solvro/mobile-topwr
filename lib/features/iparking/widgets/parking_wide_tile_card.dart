@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
-import '../../../config/ui_config.dart';
-import '../../../theme/app_theme.dart';
-import '../../../theme/iparking_theme.dart';
-import '../../iparking_chart/chart_widget.dart';
-import '../models/parking_model.dart';
-import 'i_parking_icons_icons.icons.dart';
+import "../../../config/ui_config.dart";
+import "../../../theme/app_theme.dart";
+import "../../../theme/iparking_theme.dart";
+import "../../iparking_chart/chart_widget.dart";
+import "../models/parking_model.dart";
+import "i_parking_icons_icons.icons.dart";
 
 class ParkingWideTileCard extends StatelessWidget {
   const ParkingWideTileCard({
@@ -42,13 +42,13 @@ class ParkingWideTileCard extends StatelessWidget {
             Container(
               width: double.infinity,
               padding: IParkingConfig.padding,
-              child: _LeftColumn(parking, isActive),
+              child: _LeftColumn(parking, isActive: isActive),
             ),
             Container(
               width: double.infinity,
               height: WideTileCardConfig.imageSize,
               padding: IParkingConfig.padding,
-              child: _RightColumn(parking, isActive),
+              child: _RightColumn(parking, isActive: isActive),
             ),
           ],
         ),
@@ -58,7 +58,7 @@ class ParkingWideTileCard extends StatelessWidget {
 }
 
 class _LeftColumn extends StatelessWidget {
-  const _LeftColumn(this.parking, this.isActive);
+  const _LeftColumn(this.parking, {required this.isActive});
 
   final ParkingPlace parking;
   final bool isActive;
@@ -107,7 +107,7 @@ class _LeftColumn extends StatelessWidget {
 }
 
 class _RightColumn extends StatelessWidget {
-  const _RightColumn(this.parking, this.isActive);
+  const _RightColumn(this.parking, {required this.isActive});
 
   final ParkingPlace parking;
   final bool isActive;

@@ -1,14 +1,14 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:google_maps_flutter/google_maps_flutter.dart";
 
-import '../../config/map_view_config.dart';
-import '../../shared_repositories/buildings_repository/building_model.dart';
-import '../../utils/context_extensions.dart';
-import '../map_view/map_view.dart';
-import '../map_view/utils/map_marker_utils.dart';
-import 'building_tile.dart';
-import 'controllers.dart';
+import "../../config/map_view_config.dart";
+import "../../shared_repositories/buildings_repository/building_model.dart";
+import "../../utils/context_extensions.dart";
+import "../map_view/map_view.dart";
+import "../map_view/utils/map_marker_utils.dart";
+import "building_tile.dart";
+import "controllers.dart";
 
 class BuildingMapView extends ConsumerWidget {
   const BuildingMapView({super.key});
@@ -23,7 +23,7 @@ class BuildingMapView extends ConsumerWidget {
       mapSheetSize: MapViewBottomSheetConfig.buildingsMapSheetSize,
       mapControllers: mapControllersBuildings,
       mapTileBuilder: BuildingTile.new,
-      markerBuilder: (item, ref, isActive) => Marker(
+      markerBuilder: (item, ref, {required isActive}) => Marker(
         consumeTapEvents: true,
         markerId: item.markerId,
         position: item.location,

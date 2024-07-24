@@ -1,21 +1,22 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'widgets/department_details_loading.dart';
-import '../../config/ui_config.dart';
-import 'widgets/department_study_circle_section.dart';
-import 'widgets/fields_of_study_section.dart';
-import '../../api_base/directus_assets_url.dart';
-import '../../theme/app_theme.dart';
-import '../../utils/context_extensions.dart';
-import '../../utils/determine_icon.dart';
-import '../../utils/where_non_null_iterable.dart';
-import '../../widgets/my_error_widget.dart';
-import '../study_circle_details/widgets/details_screen_app_bar.dart';
-import '../../widgets/details_screen_contact_section.dart';
-import '../../widgets/details_screen_sliver_header_section.dart';
-import 'repositories/department_details_repository.dart';
-import '../department_details/utils/address_formatter.dart';
-import '../department_details/utils/department_details_gradient.dart';
+import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
+
+import "../../api_base/directus_assets_url.dart";
+import "../../config/ui_config.dart";
+import "../../theme/app_theme.dart";
+import "../../utils/context_extensions.dart";
+import "../../utils/determine_icon.dart";
+import "../../utils/where_non_null_iterable.dart";
+import "../../widgets/details_screen_contact_section.dart";
+import "../../widgets/details_screen_sliver_header_section.dart";
+import "../../widgets/my_error_widget.dart";
+import "../department_details/utils/address_formatter.dart";
+import "../department_details/utils/department_details_gradient.dart";
+import "../study_circle_details/widgets/details_screen_app_bar.dart";
+import "repositories/department_details_repository.dart";
+import "widgets/department_details_loading.dart";
+import "widgets/department_study_circle_section.dart";
+import "widgets/fields_of_study_section.dart";
 
 class DepartmentDetails extends StatelessWidget {
   const DepartmentDetails({super.key});
@@ -34,7 +35,7 @@ class _DepartmentDetailsDataView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final itemId = ModalRoute.of(context)?.settings.arguments as String;
+    final itemId = ModalRoute.of(context)!.settings.arguments! as String;
     final state = ref.watch(departmentDetailsRepositoryProvider(itemId));
     return switch (state) {
       AsyncLoading() => const DepartmentDetailsLoading(),
@@ -46,19 +47,19 @@ class _DepartmentDetailsDataView extends ConsumerWidget {
             logoImageUrl:
                 value?.Departments_by_id?.logo?.filename_disk?.directusUrl,
             backgroundImageUrl: null,
-          )),
+          ),),
           SliverList(
               delegate: SliverChildListDelegate([
             const SizedBox(height: 8),
             Text(
-              value?.Departments_by_id?.name ?? '',
+              value?.Departments_by_id?.name ?? "",
               style: context.textTheme.headline,
               textAlign: TextAlign.center,
               maxLines: 2,
             ),
             const SizedBox(height: 12),
             Text(
-              value?.Departments_by_id?.address?.divideAddressInto3Lines ?? '',
+              value?.Departments_by_id?.address?.divideAddressInto3Lines ?? "",
               style: context.textTheme.body.copyWith(height: 1.2),
               textAlign: TextAlign.center,
             ),
@@ -69,9 +70,9 @@ class _DepartmentDetailsDataView extends ConsumerWidget {
                         .map((link) => UrlIconsModel(
                               text: link.name,
                               url: link.link,
-                            ))
+                            ),)
                         .toList() ??
-                    List.empty()),
+                    List.empty(),),
             FieldsOfStudySection(
               fieldsOfStudy: value
                       ?.Departments_by_id?.fieldsOfStudies.whereNonNull
@@ -81,9 +82,9 @@ class _DepartmentDetailsDataView extends ConsumerWidget {
             ),
             DepartmentsStudyCirclesSection(
                 value?.Scientific_Circles.whereNonNull.toList() ??
-                    List.empty()),
-          ]))
-        ]),
+                    List.empty(),),
+          ]),),
+        ],),
     };
   }
 }

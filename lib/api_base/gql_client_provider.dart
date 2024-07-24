@@ -1,8 +1,8 @@
-import 'package:flutter/foundation.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:graphql/client.dart';
+import "package:flutter/foundation.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:graphql/client.dart";
 
-import '../config/api_base_config.dart';
+import "../config/api_base_config.dart";
 
 final _hiveCacheBoxProvider = Provider((ref) async {
   if (kIsWeb) return GraphQLCache(); // Normal in memory cache

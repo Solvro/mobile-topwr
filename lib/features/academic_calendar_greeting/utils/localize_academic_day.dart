@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
-import '../../../utils/context_extensions.dart';
-import '../model/academic_day.dart';
-import '../model/weekday_enum.dart';
+import "../../../utils/context_extensions.dart";
+import "../model/academic_day.dart";
+import "../model/weekday_enum.dart";
 
 extension LocalizeAcademicDay on AcademicDay {
   String localize(BuildContext context) {

@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
-import '../config/ui_config.dart';
-import '../theme/app_theme.dart';
-import 'search_widget.dart';
+import "../config/ui_config.dart";
+import "../theme/app_theme.dart";
+import "search_widget.dart";
 
 class SearchBoxAppBar extends AppBar {
   static const defaultBottomPadding = 32.0;

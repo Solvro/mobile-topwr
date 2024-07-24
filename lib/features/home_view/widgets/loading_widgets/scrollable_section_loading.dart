@@ -1,8 +1,8 @@
-import 'package:flutter/cupertino.dart';
+import "package:flutter/cupertino.dart";
 
-import '../../../../widgets/loading_widgets/scrolable_loader_builder.dart';
-import '../../../../widgets/loading_widgets/simple_previews/preview_card_loading.dart';
-import '../paddings.dart';
+import "../../../../widgets/loading_widgets/scrolable_loader_builder.dart";
+import "../../../../widgets/loading_widgets/simple_previews/preview_card_loading.dart";
+import "../paddings.dart";
 
 class ScrollableSectionLoading extends StatelessWidget {
   const ScrollableSectionLoading({super.key});

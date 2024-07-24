@@ -1,7 +1,7 @@
-import 'package:fl_chart/fl_chart.dart';
-import 'package:flutter/widgets.dart';
+import "package:fl_chart/fl_chart.dart";
+import "package:flutter/widgets.dart";
 
-import '../../../theme/app_theme.dart';
+import "../../../theme/app_theme.dart";
 
 extension WillMaxLabelOverlap on TitleMeta {
   bool get isMaxLabelOverlapping {
@@ -27,6 +27,6 @@ class LeftLabels extends AxisTitles {
                     style: context.iParkingTheme.chart,
                   ),
                 );
-              }),
+              },),
         );
 }

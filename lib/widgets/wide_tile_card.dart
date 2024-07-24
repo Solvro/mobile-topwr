@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
-import '../config/ui_config.dart';
-import '../theme/app_theme.dart';
-import 'my_cached_image.dart';
-import '../features/student_research_group_tab/widgets/ensure_visible_tags.dart';
+import "../config/ui_config.dart";
+import "../features/student_research_group_tab/widgets/ensure_visible_tags.dart";
+import "../theme/app_theme.dart";
+import "my_cached_image.dart";
 
 class PhotoTrailingWideTileCard extends WideTileCard {
   PhotoTrailingWideTileCard({
@@ -26,7 +26,7 @@ class PhotoTrailingWideTileCard extends WideTileCard {
 class WideTileCard extends StatelessWidget {
   const WideTileCard({
     required this.title,
-    this.subtitle ="",
+    this.subtitle = "",
     this.trailing,
     this.onTap,
     this.activeGradient,
@@ -64,8 +64,13 @@ class WideTileCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
-                child:
-                    _TitlesColumn(title, subtitle, isActive, secondSubtitle)),
+              child: _TitlesColumn(
+                title,
+                subtitle,
+                secondSubtitle,
+                isActive: isActive,
+              ),
+            ),
             if (trailing != null) trailing!,
           ],
         ),
@@ -78,9 +83,9 @@ class _TitlesColumn extends StatelessWidget {
   const _TitlesColumn(
     this.title,
     this.subtitle,
-    this.isActive,
-    this.secondSubtitle,
-  );
+    this.secondSubtitle, {
+    required this.isActive,
+  });
 
   final String title;
   final String? subtitle;
@@ -89,28 +94,34 @@ class _TitlesColumn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (context, constraints) {
-      const basePadding = WideTileCardConfig.basePadding;
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        const basePadding = WideTileCardConfig.basePadding;
 
-      return Padding(
-        padding: const EdgeInsets.only(
-            left: basePadding, top: basePadding, right: basePadding),
-        child: EnsureVisibleTags(
-          title: title,
-          titleStyle:
-              isActive ? context.textTheme.titleWhite : context.textTheme.title,
-          subtitle: subtitle,
-          subtitleStyle:
-              isActive ? context.textTheme.bodyWhite : context.textTheme.body,
-          spacing:
-              secondSubtitle == null ? WideTileCardConfig.titlesSpacing : 2,
-          secondSubtitle: secondSubtitle,
-          secondSubtitleStyle: isActive
-              ? context.textTheme.bodyWhite
-              : context.textTheme.bodyBlue,
-          maxTotalLines: 5,
-        ),
-      );
-    });
+        return Padding(
+          padding: const EdgeInsets.only(
+            left: basePadding,
+            top: basePadding,
+            right: basePadding,
+          ),
+          child: EnsureVisibleTags(
+            title: title,
+            titleStyle: isActive
+                ? context.textTheme.titleWhite
+                : context.textTheme.title,
+            subtitle: subtitle,
+            subtitleStyle:
+                isActive ? context.textTheme.bodyWhite : context.textTheme.body,
+            spacing:
+                secondSubtitle == null ? WideTileCardConfig.titlesSpacing : 2,
+            secondSubtitle: secondSubtitle,
+            secondSubtitleStyle: isActive
+                ? context.textTheme.bodyWhite
+                : context.textTheme.bodyBlue,
+            maxTotalLines: 5,
+          ),
+        );
+      },
+    );
   }
 }

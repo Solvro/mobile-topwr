@@ -1,10 +1,10 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
+import "package:flutter/cupertino.dart";
+import "package:flutter/gestures.dart";
 
-import '../theme/app_theme.dart';
-import '../utils/determine_icon.dart';
-import '../utils/launch_url_util.dart';
-import 'my_icon.dart';
+import "../theme/app_theme.dart";
+import "../utils/determine_icon.dart";
+import "../utils/launch_url_util.dart";
+import "my_icon.dart";
 
 class ContactSection extends StatelessWidget {
   const ContactSection({super.key, required this.list, required this.title});
@@ -26,11 +26,11 @@ class ContactSection extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(bottom: 16),
               child: _IconWithUrl(
-                url: item.url ?? '',
-                text: item.text ?? '',
+                url: item.url ?? "",
+                text: item.text ?? "",
                 icon: item.icon,
               ),
-            )
+            ),
         ],
       ),
     );
@@ -56,16 +56,20 @@ class _IconWithUrl extends StatelessWidget {
         const SizedBox(width: 16),
         Expanded(
           child: RichText(
-              overflow: TextOverflow.ellipsis,
-              maxLines: 2,
-              text: TextSpan(
-                text: text,
-                style: context.textTheme.bodyOrange
-                    .copyWith(decoration: url.isNotEmpty ? TextDecoration.underline : TextDecoration.none),
-                recognizer: TapGestureRecognizer()
-                  ..onTap = () => LaunchUrlUtil.launch(url),
-              )),
-        )
+            overflow: TextOverflow.ellipsis,
+            maxLines: 2,
+            text: TextSpan(
+              text: text,
+              style: context.textTheme.bodyOrange.copyWith(
+                decoration: url.isNotEmpty
+                    ? TextDecoration.underline
+                    : TextDecoration.none,
+              ),
+              recognizer: TapGestureRecognizer()
+                ..onTap = () async => LaunchUrlUtil.launch(url),
+            ),
+          ),
+        ),
       ],
     );
   }

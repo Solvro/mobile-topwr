@@ -1,6 +1,6 @@
-import 'package:flutter/foundation.dart';
+import "package:flutter/foundation.dart";
 
-import '../../../../../utils/determine_icon.dart';
+import "../../../../../utils/determine_icon.dart";
 
 @immutable
 class MemberData {

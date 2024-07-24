@@ -1,7 +1,7 @@
-import 'dart:math';
-import 'package:flutter/material.dart';
-import '../config/ui_config.dart';
-import 'my_cached_image.dart';
+import "dart:math";
+import "package:flutter/material.dart";
+import "../config/ui_config.dart";
+import "my_cached_image.dart";
 
 class SliverHeaderSection extends SliverPersistentHeaderDelegate {
   SliverHeaderSection({
@@ -24,7 +24,7 @@ class SliverHeaderSection extends SliverPersistentHeaderDelegate {
   double calcLogoSize(double shrinkOffset) {
     final ratio = min(1, shrinkOffset / DetailsScreenHeaderConfig.logoSize);
     final adjustedRatio = 1.0 - (ratio * 0.3);
-    return max(0.0, DetailsScreenHeaderConfig.logoSize * adjustedRatio);
+    return max(0, DetailsScreenHeaderConfig.logoSize * adjustedRatio);
   }
 
   double calcLogoOpacity(double shrinkOffset, double logoSize) {
@@ -85,7 +85,7 @@ class SliverHeaderSection extends SliverPersistentHeaderDelegate {
                   ),
                 ],
               ),
-            )),
+            ),),
       ],
     );
   }

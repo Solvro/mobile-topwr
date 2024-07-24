@@ -1,12 +1,12 @@
-import 'dart:math';
+import "dart:math";
 
-import 'package:collection/collection.dart';
-import 'package:fl_chart/fl_chart.dart';
+import "package:collection/collection.dart";
+import "package:fl_chart/fl_chart.dart";
 
-import '../../../config/ui_config.dart';
-import '../../iparking/models/parking_model.dart';
-import '../models/chart_point.dart';
-import '../models/hour_label.dart';
+import "../../../config/ui_config.dart";
+import "../../iparking/models/parking_model.dart";
+import "../models/chart_point.dart";
+import "../models/hour_label.dart";
 
 extension IChartUtils on List<ChartPoint> {
   double get minX => first.x;

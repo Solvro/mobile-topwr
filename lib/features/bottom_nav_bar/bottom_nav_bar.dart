@@ -1,12 +1,12 @@
-import 'package:collection/collection.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import "package:collection/collection.dart";
+import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import '../../theme/app_theme.dart';
-import '../navigator/navigator/nested_navigator.dart';
-import '../navigator/navigator/tab_bar_navigator.dart';
-import 'bottom_nav_bar_controller.dart';
-import '../../config/nav_bar_config.dart';
+import "../../config/nav_bar_config.dart";
+import "../../theme/app_theme.dart";
+import "../navigator/navigator/nested_navigator.dart";
+import "../navigator/navigator/tab_bar_navigator.dart";
+import "bottom_nav_bar_controller.dart";
 
 class BottomNavBar extends ConsumerWidget {
   const BottomNavBar({super.key});
@@ -16,25 +16,27 @@ class BottomNavBar extends ConsumerWidget {
     final selectedTab = ref.watch(bottomNavBarControllerProvider);
     final navigator = ref.watch(navigatorProvider);
 
-    return Container(
-        decoration: BoxDecoration(
-          boxShadow: <BoxShadow>[
-            BoxShadow(
-              color: Colors.black.withOpacity(.08),
-              blurRadius: 20,
-              offset: const Offset(0, -1),
-            ),
-          ],
-        ),
-        child: BottomNavigationBar(
-          currentIndex: selectedTab.index,
-          onTap: (index) => navigator.changeTabBar(NavBarEnum.values[index]),
-          backgroundColor: context.colorTheme.greyLight,
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          type: BottomNavigationBarType.fixed,
-          items: _NavigationBarItemsList(selectedTab, context),
-        ));
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+            color: Colors.black.withOpacity(.08),
+            blurRadius: 20,
+            offset: const Offset(0, -1),
+          ),
+        ],
+      ),
+      child: BottomNavigationBar(
+        currentIndex: selectedTab.index,
+        onTap: (index) async =>
+            navigator.changeTabBar(NavBarEnum.values[index]),
+        backgroundColor: context.colorTheme.greyLight,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        type: BottomNavigationBarType.fixed,
+        items: _NavigationBarItemsList(selectedTab, context),
+      ),
+    );
   }
 }
 

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
 extension CalcLinesUIUtils on TextSpan {
   int calculateLines(double availableWidth) {

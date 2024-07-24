@@ -1,9 +1,9 @@
-import 'dart:math';
+import "dart:math";
 
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
-import '../../../utils/calc_lines.dart';
-import '../../../widgets/dual_text_max_lines.dart';
+import "../../../utils/calc_lines.dart";
+import "../../../widgets/dual_text_max_lines.dart";
 
 class EnsureVisibleTags extends DualTextMaxLines {
   /// DualTextMaxLines with third text row that must have at least one line
@@ -38,7 +38,9 @@ class EnsureVisibleTags extends DualTextMaxLines {
         );
 
         final doubleLines = min(
-            maxTotalLines - 1, doubleText.calculateLines(constraints.maxWidth));
+          maxTotalLines - 1,
+          doubleText.calculateLines(constraints.maxWidth),
+        );
         final thirdLines = maxTotalLines - doubleLines;
 
         return Column(

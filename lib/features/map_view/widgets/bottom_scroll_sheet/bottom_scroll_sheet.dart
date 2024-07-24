@@ -1,15 +1,15 @@
-import 'dart:math';
+import "dart:math";
 
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import '../../../../config/map_view_config.dart';
-import '../../../../theme/app_theme.dart';
-import '../../controllers/bottom_sheet_controller.dart';
-import '../../controllers/controllers_set.dart';
-import '../map_config.dart';
-import 'map_view_pop_behaviour.dart';
-import 'sheet_layout_scheme.dart';
+import "../../../../config/map_view_config.dart";
+import "../../../../theme/app_theme.dart";
+import "../../controllers/bottom_sheet_controller.dart";
+import "../../controllers/controllers_set.dart";
+import "../map_config.dart";
+import "map_view_pop_behaviour.dart";
+import "sheet_layout_scheme.dart";
 
 class BottomScrollSheet<T extends GoogleNavigable> extends ConsumerWidget {
   const BottomScrollSheet({super.key});
@@ -29,8 +29,8 @@ class BottomScrollSheet<T extends GoogleNavigable> extends ConsumerWidget {
 
         final minSheetHeight = sheetSize.minSheetHeight;
 
-        final recommendedSheetFraction =
-            min(1.0, recomendedSheetHeight / screenHeight);
+        final double recommendedSheetFraction =
+            min(1, recomendedSheetHeight / screenHeight);
         final minSheetFraction = min(0.25, minSheetHeight / screenHeight);
 
         return MapViewPopBehaviour<T>(
@@ -38,7 +38,6 @@ class BottomScrollSheet<T extends GoogleNavigable> extends ConsumerWidget {
           child: DraggableScrollableSheet(
             controller: ref.watch(bottomSheetControllerProvider),
             initialChildSize: recommendedSheetFraction,
-            maxChildSize: 1, // factor 1 means 100% available height
             minChildSize: minSheetFraction,
             snap: true,
             snapSizes: [recommendedSheetFraction],

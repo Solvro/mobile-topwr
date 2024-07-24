@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
-import '../config/ui_config.dart';
-import '../theme/app_theme.dart';
-import '../utils/context_extensions.dart';
-import 'date_chip.dart';
-import 'dual_text_max_lines.dart';
-import 'my_cached_image.dart';
+import "../config/ui_config.dart";
+import "../theme/app_theme.dart";
+import "../utils/context_extensions.dart";
+import "date_chip.dart";
+import "dual_text_max_lines.dart";
+import "my_cached_image.dart";
 
 class BigPreviewCard extends StatelessWidget {
   const BigPreviewCard({
@@ -28,7 +28,7 @@ class BigPreviewCard extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
           color: context.colorTheme.greyLight,
-          borderRadius: BorderRadius.circular(8)),
+          borderRadius: BorderRadius.circular(8),),
       width: BigPreviewCardConfig.cardWidth,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,13 +43,11 @@ class BigPreviewCard extends StatelessWidget {
                   children: [
                     SizedBox(
                         width: double.maxFinite,
-                        child: MyCachedImage(photoUrl)),
-                    date != null
-                        ? DateChip(date: date!)
-                        : const SizedBox.shrink()
+                        child: MyCachedImage(photoUrl),),
+                    if (date != null) DateChip(date: date!) else const SizedBox.shrink(),
                   ],
                 ),
-              )),
+              ),),
           Expanded(
             flex: 210,
             child: Container(
@@ -74,7 +72,7 @@ class BigPreviewCard extends StatelessWidget {
                     color: context.colorTheme.orangePomegranade,
                     textColor: context.colorTheme.whiteSoap,
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(4)),
+                        borderRadius: BorderRadius.circular(4),),
                     child: Text(context.localize.read_more),
                   ),
                 ],

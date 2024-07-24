@@ -1,11 +1,11 @@
-import 'dart:ui' as ui;
+import "dart:ui" as ui;
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import '../../../config/map_view_config.dart';
-import '../../../gen/assets.gen.dart';
+import "package:flutter/foundation.dart";
+import "package:flutter/services.dart";
+import "package:flutter/widgets.dart";
+import "package:google_maps_flutter/google_maps_flutter.dart";
+import "../../../config/map_view_config.dart";
+import "../../../gen/assets.gen.dart";
 
 class MapMarkerUtils {
   static late final BitmapDescriptor mapMarker;
@@ -51,8 +51,8 @@ class _AssetScaledLoader {
       );
       final fi = await codec.getNextFrame();
       final decode = await fi.image.toByteData(format: ui.ImageByteFormat.png);
-      return BitmapDescriptor.fromBytes(decode!.buffer.asUint8List());
-    } catch (e) {
+      return BitmapDescriptor.bytes(decode!.buffer.asUint8List());
+    } on Exception {
       return BitmapDescriptor.defaultMarker; // fallback
     }
   }

@@ -1,12 +1,12 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import '../../../../config/map_view_config.dart';
-import '../../../../theme/app_theme.dart';
-import '../../../../utils/context_extensions.dart';
-import '../../../iparking/widgets/i_parking_icons_icons.icons.dart';
-import '../../controllers/controllers_set.dart';
-import '../map_config.dart';
+import "../../../../config/map_view_config.dart";
+import "../../../../theme/app_theme.dart";
+import "../../../../utils/context_extensions.dart";
+import "../../../iparking/widgets/i_parking_icons_icons.icons.dart";
+import "../../controllers/controllers_set.dart";
+import "../map_config.dart";
 
 class NavigateButton<T extends GoogleNavigable> extends ConsumerWidget {
   const NavigateButton({super.key});
@@ -32,7 +32,7 @@ class NavigateButton<T extends GoogleNavigable> extends ConsumerWidget {
           label: Text(
             context.localize.navigate,
             style: context.textTheme.boldBodyOrange,
-          )),
+          ),),
     );
   }
 }

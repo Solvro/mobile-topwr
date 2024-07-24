@@ -1,9 +1,9 @@
-import 'package:fl_chart/fl_chart.dart';
-import 'package:flutter/material.dart';
+import "package:fl_chart/fl_chart.dart";
+import "package:flutter/material.dart";
 
-import '../../../theme/app_theme.dart';
-import '../models/chart_point.dart';
-import '../utils/chart_utils.dart';
+import "../../../theme/app_theme.dart";
+import "../models/chart_point.dart";
+import "../utils/chart_utils.dart";
 
 class ChartLine extends LineChartBarData {
   ChartLine(BuildContext context, List<ChartPoint> chartData)
@@ -13,7 +13,6 @@ class ChartLine extends LineChartBarData {
           barWidth: 1,
           isStrokeCapRound: true,
           dotData: const FlDotData(
-            show: true,
             checkToShowDot: IChartUtils.showDotOrNot,
           ),
           belowBarData: BarAreaData(

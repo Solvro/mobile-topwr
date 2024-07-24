@@ -1,19 +1,19 @@
-import 'dart:io';
+import "dart:io";
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/services.dart';
+import "package:flutter/foundation.dart";
+import "package:flutter/services.dart";
 
-import '../navigator/nested_navigator.dart';
+import "../navigator/nested_navigator.dart";
 
 extension AndroidPopBugWorkaround on NestedNavigator {
-  static const platform = MethodChannel('topwr.app.android.channel');
+  static const platform = MethodChannel("topwr.app.android.channel");
 
   bool get androidSpecialPopTreatment =>
       !kIsWeb &&
       Platform.isAndroid &&
       navigatorKey.currentState?.canPop() == false;
 
-  void handleAndroidSpecialPop() {
-    platform.invokeMethod<int>('putAppInBackground');
+  Future<void> handleAndroidSpecialPop() async {
+    await platform.invokeMethod<int>("putAppInBackground");
   }
 }

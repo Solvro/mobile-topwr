@@ -1,14 +1,14 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:google_maps_flutter/google_maps_flutter.dart";
 
-import '../../../config/map_view_config.dart';
-import '../../../utils/where_non_null_iterable.dart';
-import '../../../widgets/my_error_widget.dart';
-import '../controllers/bottom_sheet_controller.dart';
-import '../controllers/controllers_set.dart';
-import '../utils/location_permission_status_provider.dart';
-import 'map_config.dart';
+import "../../../config/map_view_config.dart";
+import "../../../utils/where_non_null_iterable.dart";
+import "../../../widgets/my_error_widget.dart";
+import "../controllers/bottom_sheet_controller.dart";
+import "../controllers/controllers_set.dart";
+import "../utils/location_permission_status_provider.dart";
+import "map_config.dart";
 
 class MapWidget<T extends GoogleNavigable> extends ConsumerWidget {
   const MapWidget({super.key});
@@ -42,23 +42,22 @@ class _MapWidget<T extends GoogleNavigable> extends ConsumerWidget {
       AsyncLoading() => const SizedBox(),
       AsyncError(:final error) => MyErrorWidget(error),
       AsyncValue(:final value) => GoogleMap(
-          mapType: MapWidgetConfig.mapType,
           initialCameraPosition: MapWidgetConfig.defaultCameraPosition,
           onMapCreated: mapController.onMapCreated,
           onTap: mapController.onMapBackgroundTap,
           markers: items
-              .map((item) => context.markerBuilder<T>()(
-                    item,
-                    ref,
-                    activeItem == item,
-                  ))
+              .map(
+                (item) => context.markerBuilder<T>()(
+                  item,
+                  ref,
+                  isActive: activeItem == item,
+                ),
+              )
               .toSet(),
           myLocationEnabled: value ?? false,
           myLocationButtonEnabled: value ?? false,
           mapToolbarEnabled: false,
           zoomControlsEnabled: false,
-          zoomGesturesEnabled: true,
-          compassEnabled: true,
           padding: EdgeInsets.only(
             top: MediaQuery.paddingOf(context).top,
             bottom: ref.watch(bottomSheetPixelsProvider),

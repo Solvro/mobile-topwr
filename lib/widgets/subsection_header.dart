@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
-import '../theme/app_theme.dart';
-import 'my_text_button.dart';
+import "../theme/app_theme.dart";
+import "my_text_button.dart";
 
 class SubsectionHeader extends StatelessWidget {
   const SubsectionHeader(
-      {super.key, required this.title, this.actionTitle, this.onClick});
+      {super.key, required this.title, this.actionTitle, this.onClick,});
 
   final String title;
   final String? actionTitle;
@@ -14,7 +14,7 @@ class SubsectionHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 24.0, top: 16.0, right: 24.0),
+      padding: const EdgeInsets.only(left: 24, top: 16, right: 24),
       child: SizedBox(
         width: double.infinity,
         child: Row(
@@ -22,7 +22,7 @@ class SubsectionHeader extends StatelessWidget {
           children: [
             Text(title, style: context.textTheme.headline),
             if (actionTitle != null)
-              MyTextButton(onClick: onClick, actionTitle: "$actionTitle >")
+              MyTextButton(onClick: onClick, actionTitle: "$actionTitle >"),
           ],
         ),
       ),

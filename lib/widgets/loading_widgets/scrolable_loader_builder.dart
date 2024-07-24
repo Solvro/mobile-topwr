@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
 class ScrollableLoaderBuilder extends StatelessWidget {
   const ScrollableLoaderBuilder({
@@ -35,7 +35,7 @@ class ScrollableLoaderBuilder extends StatelessWidget {
             if (index.isEven) return itemBuilder(context, index ~/ 2);
             return _Gap(itemsSpacing);
           },
-        ));
+        ),);
   }
 }
 

@@ -1,8 +1,8 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
+import "package:cached_network_image/cached_network_image.dart";
+import "package:flutter/material.dart";
 
-import '../features/splash_screen/widgets/flutter_splash_screen.dart';
-import 'loading_widgets/shimmer_loading.dart';
+import "../features/splash_screen/widgets/flutter_splash_screen.dart";
+import "loading_widgets/shimmer_loading.dart";
 
 class MyCachedImage extends StatelessWidget {
   const MyCachedImage(
@@ -34,7 +34,7 @@ class MyCachedImage extends StatelessWidget {
                 child: Container(
                   color: Colors.white,
                 ),
-              )),
+              ),),
       errorWidget: (context, url, error) =>
           FlutterSplashScreen(size: size?.height),
       height: size?.height,

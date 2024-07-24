@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import "package:flutter/material.dart";
+import "package:flutter_svg/svg.dart";
 
-import '../../../gen/assets.gen.dart';
-import '../../../theme/app_theme.dart';
+import "../../../gen/assets.gen.dart";
+import "../../../theme/app_theme.dart";
 
 class LogoAppBar extends AppBar {
   /// AppBar with ToPwr colorful logo
@@ -23,9 +23,12 @@ class AppBarLogo extends StatelessWidget {
   /// ToPwr Appbar svg colorful themed logo
   const AppBarLogo({super.key});
 
-  static void precacheImageIfAbsent() {
+  static Future<void> precacheImageIfAbsent() async {
     const loader = SvgAssetLoader(Assets.logoAppBar);
-    svg.cache.putIfAbsent(loader.cacheKey(null), () => loader.loadBytes(null));
+    await svg.cache.putIfAbsent(
+      loader.cacheKey(null),
+      () => loader.loadBytes(null),
+    );
   }
 
   @override

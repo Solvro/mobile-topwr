@@ -1,18 +1,18 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import '../../../../api_base/directus_assets_url.dart';
-import '../../../../config/ui_config.dart';
-import '../../../../theme/app_theme.dart';
-import '../../../../utils/context_extensions.dart';
-import '../../../../widgets/my_error_widget.dart';
-import '../../../study_circle_details/widgets/details_screen_app_bar.dart';
-import '../../../../widgets/details_screen_sliver_header_section.dart';
-import 'repository/about_us_repository.dart';
-import 'widgets/desription_section.dart';
-import 'widgets/links_section.dart';
-import 'widgets/section_header.dart';
-import 'widgets/team_section.dart';
+import "../../../../api_base/directus_assets_url.dart";
+import "../../../../config/ui_config.dart";
+import "../../../../theme/app_theme.dart";
+import "../../../../utils/context_extensions.dart";
+import "../../../../widgets/details_screen_sliver_header_section.dart";
+import "../../../../widgets/my_error_widget.dart";
+import "../../../study_circle_details/widgets/details_screen_app_bar.dart";
+import "repository/about_us_repository.dart";
+import "widgets/desription_section.dart";
+import "widgets/links_section.dart";
+import "widgets/section_header.dart";
+import "widgets/team_section.dart";
 
 class AboutUsTab extends StatelessWidget {
   const AboutUsTab({super.key});
@@ -37,7 +37,7 @@ class _AboutUsView extends ConsumerWidget {
       AsyncLoading() => Center(
             child: CircularProgressIndicator(
           color: context.colorTheme.orangePomegranade,
-        )),
+        ),),
       AsyncError(:final error) => MyErrorWidget(error),
       AsyncValue(:final value) => CustomScrollView(
           slivers: [
@@ -52,7 +52,7 @@ class _AboutUsView extends ConsumerWidget {
               delegate: SliverChildListDelegate(
                 [
                   SectionHeader(text: context.localize.about_us),
-                  DescriptionSection(text: value?.aboutUs?.description ?? ''),
+                  DescriptionSection(text: value?.aboutUs?.description ?? ""),
                   SectionHeader(text: context.localize.meet_our_team),
                   TeamSection(
                     members: value?.getMemberData() ?? [],
@@ -63,7 +63,7 @@ class _AboutUsView extends ConsumerWidget {
                   ),
                   const SizedBox(
                     height: AboutUsConfig.spacerHeight,
-                  )
+                  ),
                 ],
               ),
             ),

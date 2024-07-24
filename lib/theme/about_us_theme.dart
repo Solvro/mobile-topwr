@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
+import "package:flutter/material.dart";
+import "package:theme_tailor_annotation/theme_tailor_annotation.dart";
 
-import 'typography.dart';
+import "typography.dart";
 
-part 'about_us_theme.tailor.dart';
+part "about_us_theme.tailor.dart";
 
 class AboutUsHeadline extends BoldBodyTextStyle {
   const AboutUsHeadline({super.color}) : super(fontSize: 19);
