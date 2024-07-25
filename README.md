@@ -144,6 +144,23 @@ fvm flutter run
 3. Api helper module instructions: https://github.com/Solvro/topwr-mobile/tree/main/lib/api_base
 4. We use `flutter_gen` for generating asset paths: https://pub.dev/packages/flutter_gen 
 
+# Before you push a commit
+- run the linter
+```bash
+flutter analyze
+```
+- if you have any problems listed, try to autofix with
+```bash
+dart fix --apply
+```
+- run `analyze` again, if problems still persist, correct them manually. If you disagree with some of the rules, we can still discuss and adjust them. Hit me up @simon-the-shark or open an issue.
+- run formatter
+```bash
+dart format .
+```
+## Github workflow
+Don't worry if you've forgotten about the steps, automatic gh action will run the checks for you and notify if somthing's wrong.
+
 
 ## Working with git
 
