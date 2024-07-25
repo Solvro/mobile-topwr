@@ -37,18 +37,20 @@ class _ScientificCirclesBody extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final tags = ref.watch(tagsListRepositoryProvider);
-    return Column(children: [
-      SizedBox(
-        height: 76,
-        child: switch (tags) {
-          AsyncLoading() => const TagsLoading(),
-          AsyncError() => const SizedBox.shrink(),
-          AsyncValue(:final value) => TagsRow(
-              allTags: value.whereNonNull.toList(),
-            )
-        },
-      ),
-      const ScientificCirclesList(),
-    ],);
+    return Column(
+      children: [
+        SizedBox(
+          height: 76,
+          child: switch (tags) {
+            AsyncLoading() => const TagsLoading(),
+            AsyncError() => const SizedBox.shrink(),
+            AsyncValue(:final value) => TagsRow(
+                allTags: value.whereNonNull.toList(),
+              )
+          },
+        ),
+        const ScientificCirclesList(),
+      ],
+    );
   }
 }

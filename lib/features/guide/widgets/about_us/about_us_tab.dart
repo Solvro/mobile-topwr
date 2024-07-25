@@ -35,9 +35,10 @@ class _AboutUsView extends ConsumerWidget {
 
     return switch (state) {
       AsyncLoading() => Center(
-            child: CircularProgressIndicator(
-          color: context.colorTheme.orangePomegranade,
-        ),),
+          child: CircularProgressIndicator(
+            color: context.colorTheme.orangePomegranade,
+          ),
+        ),
       AsyncError(:final error) => MyErrorWidget(error),
       AsyncValue(:final value) => CustomScrollView(
           slivers: [

@@ -33,8 +33,9 @@ class GuideViewTemplate extends ConsumerWidget {
                 child: Text(
                   context.localize.about_us,
                   style: TextStyle(
-                      fontSize: 24,
-                      color: context.colorTheme.orangePomegranade,),
+                    fontSize: 24,
+                    color: context.colorTheme.orangePomegranade,
+                  ),
                 ),
               ),
             ),

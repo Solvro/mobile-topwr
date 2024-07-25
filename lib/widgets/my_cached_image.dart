@@ -30,11 +30,12 @@ class MyCachedImage extends StatelessWidget {
       placeholder: noShimmeringLoading
           ? null
           : (context, url) => Center(
-                  child: ShimmeringEffect(
-                child: Container(
-                  color: Colors.white,
+                child: ShimmeringEffect(
+                  child: Container(
+                    color: Colors.white,
+                  ),
                 ),
-              ),),
+              ),
       errorWidget: (context, url, error) =>
           FlutterSplashScreen(size: size?.height),
       height: size?.height,

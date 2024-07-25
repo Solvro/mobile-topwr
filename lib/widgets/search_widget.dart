@@ -11,8 +11,12 @@ class SearchWidget extends ConsumerStatefulWidget {
   final void Function(String query) onQueryChanged;
   final VoidCallback? onTap;
   final String? searchText;
-  const SearchWidget(
-      {super.key, required this.onQueryChanged, this.onTap, this.searchText,});
+  const SearchWidget({
+    super.key,
+    required this.onQueryChanged,
+    this.onTap,
+    this.searchText,
+  });
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _SearchWidgetState();

@@ -29,10 +29,11 @@ class MyApp extends StatelessWidget {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       theme: ThemeData(
-          extensions: const [AppTheme()],
-          colorScheme: const ColorScheme.light().copyWith(
-            surface: ColorsConsts.whiteSoap,
-          ),),
+        extensions: const [AppTheme()],
+        colorScheme: const ColorScheme.light().copyWith(
+          surface: ColorsConsts.whiteSoap,
+        ),
+      ),
       debugShowCheckedModeBanner: false,
       home: const RootNavigatorWidget(),
     );

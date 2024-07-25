@@ -8,11 +8,13 @@ class FadeInSplashGradient extends FadeInGradientAnimation {
   /// Fades in from Android's single color splash to ToPwr LinearGradient on first build
   const FadeInSplashGradient({super.key})
       : super(
-          gradientStart: const LinearGradient(colors: [
-            SplashScreenConfig.androidNativeSplashColor,
-            SplashScreenConfig.androidNativeSplashColor,
-            SplashScreenConfig.androidNativeSplashColor,
-          ],),
+          gradientStart: const LinearGradient(
+            colors: [
+              SplashScreenConfig.androidNativeSplashColor,
+              SplashScreenConfig.androidNativeSplashColor,
+              SplashScreenConfig.androidNativeSplashColor,
+            ],
+          ),
           gradientStop: ColorsConsts.toPwrGradient,
           duration: SplashScreenConfig.animationDuration,
         );

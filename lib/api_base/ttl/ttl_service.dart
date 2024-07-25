@@ -24,7 +24,8 @@ class TtlService extends _$TtlService {
       ref.watch(localTimestampRepoProvider.call(key).future);
 
   Future<QueryResult<T>> interceptAndSaveTimestamps<T>(
-      QueryResult<T> event,) async {
+    QueryResult<T> event,
+  ) async {
     if (event.source == QueryResultSource.network) {
       final repo = await repository;
       await repo.saveTimestamp(event);

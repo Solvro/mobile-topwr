@@ -84,8 +84,11 @@ class _Icon extends StatelessWidget {
 }
 
 class _Description extends StatelessWidget {
-  const _Description(
-      {required this.name, required this.subtitle, required this.links,});
+  const _Description({
+    required this.name,
+    required this.subtitle,
+    required this.links,
+  });
   final String name;
   final String subtitle;
   final List<UrlIconsModel> links;

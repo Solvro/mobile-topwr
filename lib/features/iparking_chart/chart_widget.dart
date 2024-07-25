@@ -39,24 +39,28 @@ class ParkingChart extends ConsumerWidget {
           color: context.colorTheme.greyLight.withOpacity(0.8),
           child: MyErrorWidget(error),
         ),
-      AsyncValue(:final value) => Builder(builder: (context) {
-          if (value == null) return const SizedBox.shrink();
-          final chartPoints = value.toChartPoints().toList();
-          if (chartPoints.isEmpty) {
-            return Center(
-              child: Text(context.localize.noChartData,
-                  style: context.iParkingTheme.subtitleLight.withoutShadows,),
+      AsyncValue(:final value) => Builder(
+          builder: (context) {
+            if (value == null) return const SizedBox.shrink();
+            final chartPoints = value.toChartPoints().toList();
+            if (chartPoints.isEmpty) {
+              return Center(
+                child: Text(
+                  context.localize.noChartData,
+                  style: context.iParkingTheme.subtitleLight.withoutShadows,
+                ),
+              );
+            }
+            return Padding(
+              padding: const EdgeInsets.only(
+                top: 20,
+                right: 25,
+                bottom: 10,
+              ),
+              child: IChart(chartPoints, parkingPlace),
             );
-          }
-          return Padding(
-            padding: const EdgeInsets.only(
-              top: 20,
-              right: 25,
-              bottom: 10,
-            ),
-            child: IChart(chartPoints, parkingPlace),
-          );
-        },),
+          },
+        ),
     };
   }
 }

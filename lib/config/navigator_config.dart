@@ -10,7 +10,6 @@ abstract class NavigatorConfig {
   static const initialTab = NavBarEnum.home;
 }
 
-
 abstract class TabsConfig {
   static const tabs = UnmodifiableNavBarEnumMap(
     home: HomeView(),

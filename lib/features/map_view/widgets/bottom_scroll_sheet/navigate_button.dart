@@ -18,21 +18,21 @@ class NavigateButton<T extends GoogleNavigable> extends ConsumerWidget {
         right: MapViewBottomSheetConfig.horizontalPadding - 3,
       ),
       child: TextButton.icon(
-          icon: Icon(
-            IParkingIcons.map_nav,
-            color: context.colorTheme.orangePomegranade,
-            size: 16,
-          ),
-          onPressed: ref
-              .watch(context.activeMarkerController<T>().notifier)
-              .launchLink,
-          style: TextButton.styleFrom(
-            padding: EdgeInsets.zero,
-          ),
-          label: Text(
-            context.localize.navigate,
-            style: context.textTheme.boldBodyOrange,
-          ),),
+        icon: Icon(
+          IParkingIcons.map_nav,
+          color: context.colorTheme.orangePomegranade,
+          size: 16,
+        ),
+        onPressed:
+            ref.watch(context.activeMarkerController<T>().notifier).launchLink,
+        style: TextButton.styleFrom(
+          padding: EdgeInsets.zero,
+        ),
+        label: Text(
+          context.localize.navigate,
+          style: context.textTheme.boldBodyOrange,
+        ),
+      ),
     );
   }
 }

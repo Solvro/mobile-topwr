@@ -37,7 +37,8 @@ class ContactSectionLoading extends StatelessWidget {
                 },
                 separatorBuilder: (BuildContext context, int index) {
                   return const SizedBox(
-                      height: DetailsScreenConfig.spacerHeight,);
+                    height: DetailsScreenConfig.spacerHeight,
+                  );
                 },
                 itemCount: 3,
               ),

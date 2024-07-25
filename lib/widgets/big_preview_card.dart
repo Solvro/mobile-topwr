@@ -27,27 +27,33 @@ class BigPreviewCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: context.colorTheme.greyLight,
-          borderRadius: BorderRadius.circular(8),),
+        color: context.colorTheme.greyLight,
+        borderRadius: BorderRadius.circular(8),
+      ),
       width: BigPreviewCardConfig.cardWidth,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
-              flex: 135,
-              child: ClipRRect(
-                borderRadius:
-                    const BorderRadius.vertical(top: Radius.circular(8)),
-                child: Stack(
-                  alignment: Alignment.topRight,
-                  children: [
-                    SizedBox(
-                        width: double.maxFinite,
-                        child: MyCachedImage(photoUrl),),
-                    if (date != null) DateChip(date: date!) else const SizedBox.shrink(),
-                  ],
-                ),
-              ),),
+            flex: 135,
+            child: ClipRRect(
+              borderRadius:
+                  const BorderRadius.vertical(top: Radius.circular(8)),
+              child: Stack(
+                alignment: Alignment.topRight,
+                children: [
+                  SizedBox(
+                    width: double.maxFinite,
+                    child: MyCachedImage(photoUrl),
+                  ),
+                  if (date != null)
+                    DateChip(date: date!)
+                  else
+                    const SizedBox.shrink(),
+                ],
+              ),
+            ),
+          ),
           Expanded(
             flex: 210,
             child: Container(
@@ -72,7 +78,8 @@ class BigPreviewCard extends StatelessWidget {
                     color: context.colorTheme.orangePomegranade,
                     textColor: context.colorTheme.whiteSoap,
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(4),),
+                      borderRadius: BorderRadius.circular(4),
+                    ),
                     child: Text(context.localize.read_more),
                   ),
                 ],

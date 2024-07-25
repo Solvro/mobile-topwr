@@ -24,17 +24,19 @@ class ResearchGroupCard extends StatelessWidget {
       activeShadows: null,
       trailing: Padding(
         padding: const EdgeInsets.only(
-            right: ScientificCircleCardConfig.trailingPadding,
-            top: ScientificCircleCardConfig.trailingPadding,
-            bottom: ScientificCircleCardConfig.trailingPadding,),
+          right: ScientificCircleCardConfig.trailingPadding,
+          top: ScientificCircleCardConfig.trailingPadding,
+          bottom: ScientificCircleCardConfig.trailingPadding,
+        ),
         child: SizedBox.square(
           dimension: WideTileCardConfig.imageSize,
           child: Container(
             clipBehavior: Clip.antiAlias,
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.only(
-                  topRight: WideTileCardConfig.radius,
-                  bottomRight: WideTileCardConfig.radius,),
+                topRight: WideTileCardConfig.radius,
+                bottomRight: WideTileCardConfig.radius,
+              ),
             ),
             child: MyCachedImage(
               sciCircle.logo?.filename_disk.directusUrl,

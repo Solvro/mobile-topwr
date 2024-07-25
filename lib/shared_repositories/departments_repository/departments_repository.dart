@@ -11,7 +11,8 @@ typedef Department = Query$GetDepartments$Departments;
 
 @riverpod
 Stream<List<Department?>?> departmentsRepository(
-    DepartmentsRepositoryRef ref,) async* {
+  DepartmentsRepositoryRef ref,
+) async* {
   final stream = ref.watchQueryWithCache(
     WatchOptions$Query$GetDepartments(
       eagerlyFetchResults: true,

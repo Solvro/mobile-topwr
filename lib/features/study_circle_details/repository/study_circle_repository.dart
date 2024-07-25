@@ -14,7 +14,9 @@ typedef _GetStudyCircles = WatchOptions$Query$GetScientificCircleDetails;
 
 @riverpod
 Stream<StudyCircleDetails?> studyCircleRepository(
-    StudyCircleRepositoryRef ref, String id,) async* {
+  StudyCircleRepositoryRef ref,
+  String id,
+) async* {
   final stream = ref.watchQueryWithCache(
     _GetStudyCircles(
       eagerlyFetchResults: true,

@@ -10,7 +10,8 @@ typedef InfosPreview = Query$GetInfosPreview$Posts;
 
 @riverpod
 Stream<List<InfosPreview?>?> infosPreviewRepository(
-    InfosPreviewRepositoryRef ref,) async* {
+  InfosPreviewRepositoryRef ref,
+) async* {
   final stream = ref.watchQueryWithCache(
     WatchOptions$Query$GetInfosPreview(eagerlyFetchResults: true),
     TtlKey.infosPreviewRepository,

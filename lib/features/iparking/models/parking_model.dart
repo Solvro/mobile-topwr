@@ -11,7 +11,6 @@ part "parking_model.g.dart";
 
 @freezed
 class ParkingPlace with _$ParkingPlace implements GoogleNavigable {
-
   @Implements<GoogleNavigable>()
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory ParkingPlace({

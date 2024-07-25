@@ -21,15 +21,16 @@ class MapViewPopBehaviour<T extends GoogleNavigable> extends ConsumerWidget {
     final isAnyActive = ref.watch(context.activeMarkerController<T>()) != null;
 
     return PopScope(
-        canPop: !isAnyActive && !isAlmostFullyExtended,
-        onPopInvoked: (didPop) {
-          if (!didPop) {
-            ref
-                .read(context.mapController<T>().notifier)
-                .onMapBackgroundTap(null);
-            ref.read(bottomSheetControllerProvider).resetSafe();
-          }
-        },
-        child: child,);
+      canPop: !isAnyActive && !isAlmostFullyExtended,
+      onPopInvoked: (didPop) {
+        if (!didPop) {
+          ref
+              .read(context.mapController<T>().notifier)
+              .onMapBackgroundTap(null);
+          ref.read(bottomSheetControllerProvider).resetSafe();
+        }
+      },
+      child: child,
+    );
   }
 }

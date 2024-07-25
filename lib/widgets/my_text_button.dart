@@ -15,13 +15,14 @@ class MyTextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-        onPressed: onClick,
-        style: TextButton.styleFrom(
-          padding: EdgeInsets.zero,
-        ),
-        child: Text(
-          actionTitle,
-          style: context.textTheme.boldBodyOrange,
-        ),);
+      onPressed: onClick,
+      style: TextButton.styleFrom(
+        padding: EdgeInsets.zero,
+      ),
+      child: Text(
+        actionTitle,
+        style: context.textTheme.boldBodyOrange,
+      ),
+    );
   }
 }

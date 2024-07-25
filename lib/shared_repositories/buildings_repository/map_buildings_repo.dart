@@ -11,7 +11,8 @@ typedef Building = Query$GetMapBuildings$Buildings;
 
 @riverpod
 Stream<List<BuildingModel?>?> mapBuildingsRepository(
-    MapBuildingsRepositoryRef ref,) async* {
+  MapBuildingsRepositoryRef ref,
+) async* {
   final stream = ref.watchQueryWithCache(
     WatchOptions$Query$GetMapBuildings(eagerlyFetchResults: true),
     TtlKey.mapBuildingsRepository,

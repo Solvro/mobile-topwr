@@ -18,13 +18,14 @@ class FlutterSplashScreen extends StatelessWidget {
         children: [
           const Positioned.fill(child: FadeInSplashGradient()),
           Center(
-              child: SizedBox(
-            height: size ?? SplashScreenConfig.androidSplashSizeInDp,
-            width: size ?? SplashScreenConfig.androidSplashSizeInDp,
-            child: Image.asset(
-              Assets.splashScreen.splashLogo.path,
+            child: SizedBox(
+              height: size ?? SplashScreenConfig.androidSplashSizeInDp,
+              width: size ?? SplashScreenConfig.androidSplashSizeInDp,
+              child: Image.asset(
+                Assets.splashScreen.splashLogo.path,
+              ),
             ),
-          ),),
+          ),
         ],
       ),
     );

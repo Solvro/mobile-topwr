@@ -10,22 +10,23 @@ class BigPreviewCardLoading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer(
-        linearGradient: shimmerGradient,
-        child: Column(
-          children: [
-            ShimmerLoadingItem(
-              child: Container(
-                width: BigPreviewCardConfig.cardWidth,
-                height: 135,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(8),
-                ),
+      linearGradient: shimmerGradient,
+      child: Column(
+        children: [
+          ShimmerLoadingItem(
+            child: Container(
+              width: BigPreviewCardConfig.cardWidth,
+              height: 135,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(8),
               ),
             ),
-            const ShimmerLoadingItem(child: _LoadingText()),
-          ],
-        ),);
+          ),
+          const ShimmerLoadingItem(child: _LoadingText()),
+        ],
+      ),
+    );
   }
 }
 

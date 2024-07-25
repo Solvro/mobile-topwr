@@ -24,9 +24,10 @@ class StudyCircleDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar:
-            DetailsScreenAppBar(context, title: context.localize.study_circles),
-        body: const _CircleDetailsDataView(),);
+      appBar:
+          DetailsScreenAppBar(context, title: context.localize.study_circles),
+      body: const _CircleDetailsDataView(),
+    );
   }
 }
 
@@ -40,45 +41,50 @@ class _CircleDetailsDataView extends ConsumerWidget {
     return switch (state) {
       AsyncLoading() => const _StudyCircleDetailsLoading(),
       AsyncError(:final error) => MyErrorWidget(error),
-      AsyncValue(:final value) => CustomScrollView(slivers: [
-          SliverPersistentHeader(
+      AsyncValue(:final value) => CustomScrollView(
+          slivers: [
+            SliverPersistentHeader(
               delegate: SliverHeaderSection(
-            logoImageUrl: value?.logo?.filename_disk?.directusUrl,
-            backgroundImageUrl: value?.cover?.filename_disk?.directusUrl,
-          ),),
-          SliverList(
-            delegate: SliverChildListDelegate([
-              const SizedBox(height: 8),
-              Text(
-                value?.name ?? "",
-                style: context.textTheme.headline,
-                textAlign: TextAlign.center,
-                maxLines: 2,
+                logoImageUrl: value?.logo?.filename_disk?.directusUrl,
+                backgroundImageUrl: value?.cover?.filename_disk?.directusUrl,
               ),
-              const SizedBox(height: 12),
-              Text(
-                value?.department?.name ?? "",
-                style: context.textTheme.body,
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: DetailsScreenConfig.spacerHeight),
-              ContactSection(
-                title: context.localize.contact,
-                list: value?.links.whereNonNull
-                        .map((a) => UrlIconsModel(
+            ),
+            SliverList(
+              delegate: SliverChildListDelegate([
+                const SizedBox(height: 8),
+                Text(
+                  value?.name ?? "",
+                  style: context.textTheme.headline,
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                ),
+                const SizedBox(height: 12),
+                Text(
+                  value?.department?.name ?? "",
+                  style: context.textTheme.body,
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: DetailsScreenConfig.spacerHeight),
+                ContactSection(
+                  title: context.localize.contact,
+                  list: value?.links.whereNonNull
+                          .map(
+                            (a) => UrlIconsModel(
                               text: a.name,
                               url: a.link,
-                            ),)
-                        .toList() ??
-                    List.empty(),
-              ),
-              const SizedBox(height: DetailsScreenConfig.spacerHeight),
-              AboutUsSection(
-                text: value?.description ?? "",
-              ),
-            ]),
-          ),
-        ],),
+                            ),
+                          )
+                          .toList() ??
+                      List.empty(),
+                ),
+                const SizedBox(height: DetailsScreenConfig.spacerHeight),
+                AboutUsSection(
+                  text: value?.description ?? "",
+                ),
+              ]),
+            ),
+          ],
+        ),
     };
   }
 }

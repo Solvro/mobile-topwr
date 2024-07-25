@@ -17,8 +17,10 @@ class AboutUsSection extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(context.localize.about_us,
-                    style: context.textTheme.headline,),
+                Text(
+                  context.localize.about_us,
+                  style: context.textTheme.headline,
+                ),
                 const SizedBox(height: 16),
                 HtmlWidget(
                   text,

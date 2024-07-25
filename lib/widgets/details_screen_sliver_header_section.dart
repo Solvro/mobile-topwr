@@ -54,38 +54,39 @@ class SliverHeaderSection extends SliverPersistentHeaderDelegate {
           ),
         ),
         Align(
-            alignment: Alignment.bottomCenter,
-            child: SizedBox.square(
-              child: ListView(
-                reverse: true,
-                physics: const NeverScrollableScrollPhysics(),
-                children: [
-                  Opacity(
-                    opacity: logoOpacity,
-                    child: Card(
-                      elevation: 3,
-                      shape: const CircleBorder(),
-                      clipBehavior: Clip.antiAlias,
-                      child: Container(
-                        width: logoSize,
-                        height: logoSize,
-                        decoration: BoxDecoration(
-                          gradient: activeGradient,
-                        ),
-                        child: FittedBox(
-                          fit: BoxFit.scaleDown,
-                          child: MyCachedImage(
-                            size: Size.square(logoSize * scaleFactor),
-                            logoImageUrl,
-                            boxFit: BoxFit.scaleDown,
-                          ),
+          alignment: Alignment.bottomCenter,
+          child: SizedBox.square(
+            child: ListView(
+              reverse: true,
+              physics: const NeverScrollableScrollPhysics(),
+              children: [
+                Opacity(
+                  opacity: logoOpacity,
+                  child: Card(
+                    elevation: 3,
+                    shape: const CircleBorder(),
+                    clipBehavior: Clip.antiAlias,
+                    child: Container(
+                      width: logoSize,
+                      height: logoSize,
+                      decoration: BoxDecoration(
+                        gradient: activeGradient,
+                      ),
+                      child: FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: MyCachedImage(
+                          size: Size.square(logoSize * scaleFactor),
+                          logoImageUrl,
+                          boxFit: BoxFit.scaleDown,
                         ),
                       ),
                     ),
                   ),
-                ],
-              ),
-            ),),
+                ),
+              ],
+            ),
+          ),
+        ),
       ],
     );
   }

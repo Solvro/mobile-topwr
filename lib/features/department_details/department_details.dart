@@ -40,51 +40,60 @@ class _DepartmentDetailsDataView extends ConsumerWidget {
     return switch (state) {
       AsyncLoading() => const DepartmentDetailsLoading(),
       AsyncError(:final error) => MyErrorWidget(error),
-      AsyncValue(:final value) => CustomScrollView(slivers: [
-          SliverPersistentHeader(
+      AsyncValue(:final value) => CustomScrollView(
+          slivers: [
+            SliverPersistentHeader(
               delegate: SliverHeaderSection(
-            activeGradient: value?.Departments_by_id?.gradient,
-            logoImageUrl:
-                value?.Departments_by_id?.logo?.filename_disk?.directusUrl,
-            backgroundImageUrl: null,
-          ),),
-          SliverList(
+                activeGradient: value?.Departments_by_id?.gradient,
+                logoImageUrl:
+                    value?.Departments_by_id?.logo?.filename_disk?.directusUrl,
+                backgroundImageUrl: null,
+              ),
+            ),
+            SliverList(
               delegate: SliverChildListDelegate([
-            const SizedBox(height: 8),
-            Text(
-              value?.Departments_by_id?.name ?? "",
-              style: context.textTheme.headline,
-              textAlign: TextAlign.center,
-              maxLines: 2,
-            ),
-            const SizedBox(height: 12),
-            Text(
-              value?.Departments_by_id?.address?.divideAddressInto3Lines ?? "",
-              style: context.textTheme.body.copyWith(height: 1.2),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: DetailsScreenConfig.spacerHeight),
-            ContactSection(
-                title: context.localize.deans_office,
-                list: value?.Departments_by_id?.links.whereNonNull
-                        .map((link) => UrlIconsModel(
+                const SizedBox(height: 8),
+                Text(
+                  value?.Departments_by_id?.name ?? "",
+                  style: context.textTheme.headline,
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                ),
+                const SizedBox(height: 12),
+                Text(
+                  value?.Departments_by_id?.address?.divideAddressInto3Lines ??
+                      "",
+                  style: context.textTheme.body.copyWith(height: 1.2),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: DetailsScreenConfig.spacerHeight),
+                ContactSection(
+                  title: context.localize.deans_office,
+                  list: value?.Departments_by_id?.links.whereNonNull
+                          .map(
+                            (link) => UrlIconsModel(
                               text: link.name,
                               url: link.link,
-                            ),)
-                        .toList() ??
-                    List.empty(),),
-            FieldsOfStudySection(
-              fieldsOfStudy: value
-                      ?.Departments_by_id?.fieldsOfStudies.whereNonNull
-                      .map((e) => e.name)
-                      .toList() ??
-                  List.empty(),
+                            ),
+                          )
+                          .toList() ??
+                      List.empty(),
+                ),
+                FieldsOfStudySection(
+                  fieldsOfStudy: value
+                          ?.Departments_by_id?.fieldsOfStudies.whereNonNull
+                          .map((e) => e.name)
+                          .toList() ??
+                      List.empty(),
+                ),
+                DepartmentsStudyCirclesSection(
+                  value?.Scientific_Circles.whereNonNull.toList() ??
+                      List.empty(),
+                ),
+              ]),
             ),
-            DepartmentsStudyCirclesSection(
-                value?.Scientific_Circles.whereNonNull.toList() ??
-                    List.empty(),),
-          ]),),
-        ],),
+          ],
+        ),
     };
   }
 }

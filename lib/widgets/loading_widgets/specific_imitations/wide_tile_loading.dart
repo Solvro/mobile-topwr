@@ -36,21 +36,23 @@ class _TitlesColumnLoading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (context, constraints) {
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          PreviewTextPrototype(
-            width: constraints.maxWidth * _firstTextLoadingWidthFraction,
-          ),
-          const SizedBox(height: WideTileCardConfig.titlesSpacing),
-          PreviewTextPrototype(
-            width: constraints.maxWidth * _secondTextLoadingWidthFraction,
-          ),
-          const SizedBox(height: WideTileCardConfig.titlesSpacing),
-        ],
-      );
-    },);
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            PreviewTextPrototype(
+              width: constraints.maxWidth * _firstTextLoadingWidthFraction,
+            ),
+            const SizedBox(height: WideTileCardConfig.titlesSpacing),
+            PreviewTextPrototype(
+              width: constraints.maxWidth * _secondTextLoadingWidthFraction,
+            ),
+            const SizedBox(height: WideTileCardConfig.titlesSpacing),
+          ],
+        );
+      },
+    );
   }
 }

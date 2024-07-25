@@ -21,7 +21,8 @@ class GreetingTheme extends ThemeExtension<GreetingTheme>
   @override
   final TextStyle boldTextStyle;
 
-  const GreetingTheme(
-      {this.textStyle = const GreetingTextStyle(),
-      this.boldTextStyle = const GreetingBoldTextStyle(),});
+  const GreetingTheme({
+    this.textStyle = const GreetingTextStyle(),
+    this.boldTextStyle = const GreetingBoldTextStyle(),
+  });
 }

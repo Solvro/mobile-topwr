@@ -4,8 +4,12 @@ import "../theme/app_theme.dart";
 import "my_text_button.dart";
 
 class SubsectionHeader extends StatelessWidget {
-  const SubsectionHeader(
-      {super.key, required this.title, this.actionTitle, this.onClick,});
+  const SubsectionHeader({
+    super.key,
+    required this.title,
+    this.actionTitle,
+    this.onClick,
+  });
 
   final String title;
   final String? actionTitle;

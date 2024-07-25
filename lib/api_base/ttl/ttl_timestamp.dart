@@ -4,8 +4,7 @@ import "../../utils/timestamp.dart";
 class TimestampTtl extends Timestamp {
   TimestampTtl.nil(this.key) : super.nil();
   TimestampTtl.from(super.ts, this.key) : super.from();
-  TimestampTtl.tryParse(super.formattedString, this.key)
-      : super.tryParse();
+  TimestampTtl.tryParse(super.formattedString, this.key) : super.tryParse();
 
   final TtlKey key;
 
