@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
 class ScrollableLoaderBuilder extends StatelessWidget {
   const ScrollableLoaderBuilder({
@@ -24,18 +24,19 @@ class ScrollableLoaderBuilder extends StatelessWidget {
     final isHorizontal = scrollDirection == Axis.horizontal;
     final crossAxisSize = crossAxisForcedSize ?? double.infinity;
     return SizedBox(
-        width: isHorizontal ? double.infinity : crossAxisSize,
-        height: !isHorizontal ? double.infinity : crossAxisSize,
-        child: ListView.builder(
-          scrollDirection: scrollDirection,
-          physics: const NeverScrollableScrollPhysics(),
-          itemBuilder: (context, index) {
-            /// it's a workaround for ListView.separated, but without itemCount (infinite scrolling)
-            /// for some reasons ListView.builder can be infinite, and ListView.separated not
-            if (index.isEven) return itemBuilder(context, index ~/ 2);
-            return _Gap(itemsSpacing);
-          },
-        ));
+      width: isHorizontal ? double.infinity : crossAxisSize,
+      height: !isHorizontal ? double.infinity : crossAxisSize,
+      child: ListView.builder(
+        scrollDirection: scrollDirection,
+        physics: const NeverScrollableScrollPhysics(),
+        itemBuilder: (context, index) {
+          /// it's a workaround for ListView.separated, but without itemCount (infinite scrolling)
+          /// for some reasons ListView.builder can be infinite, and ListView.separated not
+          if (index.isEven) return itemBuilder(context, index ~/ 2);
+          return _Gap(itemsSpacing);
+        },
+      ),
+    );
   }
 }
 

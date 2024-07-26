@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
-import '../../../config/ui_config.dart';
-import '../../../shared_repositories/departments_repository/departments_extra_params_ext.dart';
-import '../../../shared_repositories/departments_repository/departments_repository.dart';
-import '../../../api_base/directus_assets_url.dart';
-import '../../../widgets/my_cached_image.dart';
-import '../../../widgets/wide_tile_card.dart';
+import "../../../api_base/directus_assets_url.dart";
+import "../../../config/ui_config.dart";
+import "../../../shared_repositories/departments_repository/departments_extra_params_ext.dart";
+import "../../../shared_repositories/departments_repository/departments_repository.dart";
+import "../../../widgets/my_cached_image.dart";
+import "../../../widgets/wide_tile_card.dart";
 
 class DepartmentCard extends StatelessWidget {
   final Department department;

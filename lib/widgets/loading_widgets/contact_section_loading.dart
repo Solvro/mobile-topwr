@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
-import '../../config/ui_config.dart';
-import '../../theme/app_theme.dart';
-import 'shimmer_loading.dart';
+import "package:flutter/material.dart";
+import "../../config/ui_config.dart";
+import "../../theme/app_theme.dart";
+import "shimmer_loading.dart";
 
 class ContactSectionLoading extends StatelessWidget {
   const ContactSectionLoading({super.key});
@@ -37,7 +37,8 @@ class ContactSectionLoading extends StatelessWidget {
                 },
                 separatorBuilder: (BuildContext context, int index) {
                   return const SizedBox(
-                      height: DetailsScreenConfig.spacerHeight);
+                    height: DetailsScreenConfig.spacerHeight,
+                  );
                 },
                 itemCount: 3,
               ),

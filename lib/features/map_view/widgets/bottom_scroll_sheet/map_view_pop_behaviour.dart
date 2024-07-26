@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import '../../controllers/bottom_sheet_controller.dart';
-import '../../controllers/controllers_set.dart';
-import '../map_config.dart';
+import "../../controllers/bottom_sheet_controller.dart";
+import "../../controllers/controllers_set.dart";
+import "../map_config.dart";
 
 class MapViewPopBehaviour<T extends GoogleNavigable> extends ConsumerWidget {
   const MapViewPopBehaviour({
@@ -21,15 +21,16 @@ class MapViewPopBehaviour<T extends GoogleNavigable> extends ConsumerWidget {
     final isAnyActive = ref.watch(context.activeMarkerController<T>()) != null;
 
     return PopScope(
-        canPop: !isAnyActive && !isAlmostFullyExtended,
-        onPopInvoked: (didPop) {
-          if (!didPop) {
-            ref
-                .read(context.mapController<T>().notifier)
-                .onMapBackgroundTap(null);
-            ref.read(bottomSheetControllerProvider).resetSafe();
-          }
-        },
-        child: child);
+      canPop: !isAnyActive && !isAlmostFullyExtended,
+      onPopInvoked: (didPop) {
+        if (!didPop) {
+          ref
+              .read(context.mapController<T>().notifier)
+              .onMapBackgroundTap(null);
+          ref.read(bottomSheetControllerProvider).resetSafe();
+        }
+      },
+      child: child,
+    );
   }
 }

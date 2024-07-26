@@ -1,17 +1,17 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import '../../api_base/directus_assets_url.dart';
-import '../../shared_repositories/buildings_repository/building_model.dart';
-import '../../theme/app_theme.dart';
-import '../../utils/context_extensions.dart';
-import '../../widgets/wide_tile_card.dart';
-import 'controllers.dart';
+import "../../api_base/directus_assets_url.dart";
+import "../../shared_repositories/buildings_repository/building_model.dart";
+import "../../theme/app_theme.dart";
+import "../../utils/context_extensions.dart";
+import "../../widgets/wide_tile_card.dart";
+import "controllers.dart";
 
 class BuildingTile extends ConsumerWidget {
   const BuildingTile(
-    this.building,
-    this.isActive, {
+    this.building, {
+    required this.isActive,
     super.key,
   });
 

@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
-import '../../../../../config/ui_config.dart';
-import '../../../../../theme/app_theme.dart';
+import "../../../../../config/ui_config.dart";
+import "../../../../../theme/app_theme.dart";
 
 class SectionHeader extends StatelessWidget {
   const SectionHeader({super.key, required this.text});

@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
+import "package:flutter/material.dart";
+import "package:theme_tailor_annotation/theme_tailor_annotation.dart";
 
-import 'typography.dart';
+import "typography.dart";
 
 part "greeting_theme.tailor.dart";
 
@@ -21,7 +21,8 @@ class GreetingTheme extends ThemeExtension<GreetingTheme>
   @override
   final TextStyle boldTextStyle;
 
-  const GreetingTheme(
-      {this.textStyle = const GreetingTextStyle(),
-      this.boldTextStyle = const GreetingBoldTextStyle()});
+  const GreetingTheme({
+    this.textStyle = const GreetingTextStyle(),
+    this.boldTextStyle = const GreetingBoldTextStyle(),
+  });
 }

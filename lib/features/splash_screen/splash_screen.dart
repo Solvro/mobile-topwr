@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import 'splash_screen_controller.dart';
-import 'widgets/flutter_splash_screen.dart';
+import "splash_screen_controller.dart";
+import "widgets/flutter_splash_screen.dart";
 
 class SplashScreen extends ConsumerWidget {
   const SplashScreen({

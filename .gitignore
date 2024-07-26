@@ -149,7 +149,6 @@ app.*.symbols
 
 
 #Env setup
-*.env
 .env
 *.env.dev
 .env.dev

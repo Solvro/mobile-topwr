@@ -1,9 +1,9 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:graphql/client.dart';
+import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:graphql/client.dart";
 
-import 'gql_client_provider.dart';
-import '../config/ttl_config.dart';
-import 'ttl/ttl_service.dart';
+import "../config/ttl_config.dart";
+import "gql_client_provider.dart";
+import "ttl/ttl_service.dart";
 
 class GqlOfflineException implements Exception {
   const GqlOfflineException(this.ttlKey);
@@ -41,7 +41,9 @@ extension _WatchQueryStreamAdapter<T> on Ref {
 
 extension TTLWatchQueryAdapter on AutoDisposeStreamProviderRef {
   Stream<T?> watchQueryWithCache<T>(
-      WatchQueryOptions<T> watchQueryOptions, TtlKey ttlKey) async* {
+    WatchQueryOptions<T> watchQueryOptions,
+    TtlKey ttlKey,
+  ) async* {
     final apiClient = await watch(gqlClientProvider);
     final ttlService = ttlServiceProvider.call(ttlKey);
     final ttlFetchPolicy = await watch(ttlService.future);

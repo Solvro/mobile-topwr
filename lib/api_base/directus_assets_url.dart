@@ -1,4 +1,4 @@
-import '../config/api_base_config.dart';
+import "../config/api_base_config.dart";
 
 extension DirectusAssetsUrl on String {
   String get directusUrl {

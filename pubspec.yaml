@@ -56,6 +56,9 @@ dependencies:
   fl_chart: ^0.67.0
   permission_handler: ^11.3.1
   flutter_widget_from_html_core: ^0.14.12
+  html: ^0.15.4
+  google_maps_flutter_android: ^2.12.0
+  google_maps_flutter_platform_interface: ^2.8.0
 
 dev_dependencies:
   flutter_test:
@@ -73,6 +76,7 @@ dev_dependencies:
   envied_generator: ^0.5.4+1
   graphql_codegen: ^0.14.0
   flutter_gen_runner: ^5.6.0
+  total_lints: ^3.4.0
 
 dependency_overrides:
   analyzer: ^6.5.0

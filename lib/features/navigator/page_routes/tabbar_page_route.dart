@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
-import '../../../config/nav_bar_config.dart';
-import '../../../config/navigator_config.dart';
-import '../../../config/routes.dart';
-import '../../../theme/app_theme.dart';
+import "../../../config/nav_bar_config.dart";
+import "../../../config/navigator_config.dart";
+import "../../../config/routes.dart";
+import "../../../theme/app_theme.dart";
 
 class TabBarPageRoute extends MaterialPageRoute {
   TabBarPageRoute({
@@ -25,14 +25,18 @@ class TabBarPageRoute extends MaterialPageRoute {
   final NavBarEnum newTab;
 
   @override
-  Widget buildTransitions(BuildContext context, Animation<double> animation,
-      Animation<double> secondaryAnimation, Widget child) {
+  Widget buildTransitions(
+    BuildContext context,
+    Animation<double> animation,
+    Animation<double> secondaryAnimation,
+    Widget child,
+  ) {
     final isNewTabMoreToRight = newTab.index >= previousTab.index;
 
     final animationTween = Tween(
       begin: isNewTabMoreToRight
-          ? const Offset(1.0, 0.0) // slide from right
-          : const Offset(-1.0, 0.0), // slide from left
+          ? const Offset(1, 0) // slide from right
+          : const Offset(-1, 0), // slide from left
       end: Offset.zero,
     ).chain(CurveTween(curve: Curves.ease));
 
@@ -48,7 +52,7 @@ class InfoPlaceholder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return ColoredBox(
       color: context.colorTheme.whiteSoap,
       child: const Center(
         child: Text("Info"),

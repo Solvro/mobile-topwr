@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
-import '../features/iparking_chart/utils/range_hour_points.dart';
-import '../theme/hex_color.dart';
+import "../features/iparking_chart/utils/range_hour_points.dart";
+import "../theme/hex_color.dart";
 
 abstract class MyAppConfig {
   static const title = "ToPwr";
@@ -19,8 +19,8 @@ abstract class CountdownConfig {
 }
 
 abstract class DepartmentsConfig {
-  static const defaultColorFirst = '#BFBEBE';
-  static const defaultColorSecond = '#999898';
+  static const defaultColorFirst = "#BFBEBE";
+  static const defaultColorSecond = "#999898";
 
   static const listSeparatorSize = 16.0;
 
@@ -34,7 +34,7 @@ abstract class DepartmentsConfig {
 }
 
 abstract class DateChipConfig {
-  static const dateTimeFormat = 'dd.MM.yyyy';
+  static const dateTimeFormat = "dd.MM.yyyy";
 }
 
 abstract class HomeScreenConfig {
@@ -44,8 +44,8 @@ abstract class HomeScreenConfig {
   static const squareCardTextShadow = [
     Shadow(
       color: HexColor.consts(0x6621334D66),
-      blurRadius: 4.0,
-      offset: Offset(0.0, 2.0),
+      blurRadius: 4,
+      offset: Offset(0, 2),
     ),
   ];
 }
@@ -71,9 +71,9 @@ abstract class WideTileCardConfig {
   static const defaultActiveShadows = [
     BoxShadow(
       color: Color.fromRGBO(250, 100, 101, 0.16),
-      blurRadius: 11.0,
-      spreadRadius: 6.0,
-    )
+      blurRadius: 11,
+      spreadRadius: 6,
+    ),
   ];
 }
 
@@ -120,7 +120,7 @@ abstract class IParkingConfig {
     bottom: 16,
     right: 10,
   );
-  static const extraIndentPadd = EdgeInsets.only(left: 2.0);
+  static const extraIndentPadd = EdgeInsets.only(left: 2);
 }
 
 abstract class ParkingChartConfig {
@@ -129,7 +129,7 @@ abstract class ParkingChartConfig {
 }
 
 abstract class AboutUsConfig {
-  static const defaultLogoUrl = 'f0311a7b-8838-4f48-bbcd-9791549012b1.png';
+  static const defaultLogoUrl = "f0311a7b-8838-4f48-bbcd-9791549012b1.png";
   static const defaultPadding = 16.0;
   static const spacerHeight = 24.0;
   static const borderRadius = 8.0;

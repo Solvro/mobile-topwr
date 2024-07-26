@@ -1,18 +1,22 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/svg.dart';
+import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:flutter_svg/svg.dart";
 
-import '../config/ui_config.dart';
-import '../gen/assets.gen.dart';
-import '../theme/app_theme.dart';
-import '../utils/context_extensions.dart';
+import "../config/ui_config.dart";
+import "../gen/assets.gen.dart";
+import "../theme/app_theme.dart";
+import "../utils/context_extensions.dart";
 
 class SearchWidget extends ConsumerStatefulWidget {
   final void Function(String query) onQueryChanged;
   final VoidCallback? onTap;
   final String? searchText;
-  const SearchWidget(
-      {super.key, required this.onQueryChanged, this.onTap, this.searchText});
+  const SearchWidget({
+    super.key,
+    required this.onQueryChanged,
+    this.onTap,
+    this.searchText,
+  });
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _SearchWidgetState();
@@ -21,7 +25,7 @@ class SearchWidget extends ConsumerStatefulWidget {
 class _SearchWidgetState extends ConsumerState<SearchWidget> {
   final controller = TextEditingController();
   final focusNode = FocusNode();
-  var showCloseIcon = false;
+  bool showCloseIcon = false;
 
   void _onChanged(String query) {
     setState(() {
@@ -56,10 +60,10 @@ class _SearchWidgetState extends ConsumerState<SearchWidget> {
         contentPadding: EdgeInsets.zero,
         filled: true,
         fillColor: context.colorTheme.greyLight,
-        hintText: '${widget.searchText ?? context.localize.search}...',
+        hintText: "${widget.searchText ?? context.localize.search}...",
         hintStyle: context.textTheme.lightTitle.copyWith(color: color),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8.0),
+          borderRadius: BorderRadius.circular(8),
           borderSide: BorderSide.none,
         ),
         prefixIcon: Padding(

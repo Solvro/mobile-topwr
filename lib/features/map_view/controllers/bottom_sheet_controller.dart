@@ -1,11 +1,12 @@
-import 'package:flutter/material.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
+import "package:flutter/material.dart";
+import "package:riverpod_annotation/riverpod_annotation.dart";
 
 part "bottom_sheet_controller.g.dart";
 
 @riverpod
 DraggableScrollableController bottomSheetController(
-        BottomSheetControllerRef ref) =>
+  BottomSheetControllerRef ref,
+) =>
     DraggableScrollableController();
 
 extension SafeDraggableScrollableControllerWrapper
@@ -35,11 +36,11 @@ class BottomSheetPixels extends _$BottomSheetPixels {
     );
   }
 
-  void onSearchBoxTap() {
+  Future<void> onSearchBoxTap() async {
     const fullScreenFrac = 1.0;
     final controller = ref.read(bottomSheetControllerProvider);
     if (controller.isAttached && controller.size < fullScreenFrac) {
-      controller.animateTo(
+      await controller.animateTo(
         fullScreenFrac,
         duration: Durations.medium2,
         curve: Curves.decelerate,

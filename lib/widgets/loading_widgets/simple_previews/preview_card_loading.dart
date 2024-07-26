@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
-import '../shimmer_loading.dart';
+import "../shimmer_loading.dart";
 
 class PreviewCardLoading extends StatelessWidget {
   const PreviewCardLoading({

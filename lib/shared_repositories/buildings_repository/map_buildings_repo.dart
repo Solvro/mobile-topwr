@@ -1,17 +1,18 @@
-import 'package:riverpod_annotation/riverpod_annotation.dart';
+import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import '../../../api_base/watch_query_adapter.dart';
-import '../../config/ttl_config.dart';
-import 'building_model.dart';
-import 'getMapBuildings.graphql.dart';
+import "../../../api_base/watch_query_adapter.dart";
+import "../../config/ttl_config.dart";
+import "building_model.dart";
+import "getMapBuildings.graphql.dart";
 
-part 'map_buildings_repo.g.dart';
+part "map_buildings_repo.g.dart";
 
 typedef Building = Query$GetMapBuildings$Buildings;
 
 @riverpod
 Stream<List<BuildingModel?>?> mapBuildingsRepository(
-    MapBuildingsRepositoryRef ref) async* {
+  MapBuildingsRepositoryRef ref,
+) async* {
   final stream = ref.watchQueryWithCache(
     WatchOptions$Query$GetMapBuildings(eagerlyFetchResults: true),
     TtlKey.mapBuildingsRepository,

@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
-import '../gen/fonts.gen.dart';
-import 'colors.dart';
+import "../gen/fonts.gen.dart";
+import "colors.dart";
 
 class BodyTextStyle extends TextStyle {
   const BodyTextStyle({

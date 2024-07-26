@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
-import '../../../../config/ui_config.dart';
-import '../../../../theme/app_theme.dart';
-import '../../repository/academic_calendar_repo.dart';
-import '../../utils/counter_digits.dart';
+import "../../../../config/ui_config.dart";
+import "../../../../theme/app_theme.dart";
+import "../../repository/academic_calendar_repo.dart";
+import "../../utils/counter_digits.dart";
 
 class DigitsRow extends StatelessWidget {
   const DigitsRow(this.calendarData, {super.key});
@@ -45,7 +45,6 @@ class IntBox extends StatelessWidget {
             color: Color(0x66c62d2e),
             offset: Offset(-1, 1),
             blurRadius: 4,
-            spreadRadius: 0,
           ),
         ],
       ),

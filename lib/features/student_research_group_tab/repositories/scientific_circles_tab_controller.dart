@@ -1,10 +1,10 @@
-import 'package:riverpod_annotation/riverpod_annotation.dart';
+import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import '../../../shared_repositories/sci_clubs_repository/scientific_circles_repository.dart';
-import 'selected_tag_controller.dart';
-import 'tags_repository.dart';
+import "../../../shared_repositories/sci_clubs_repository/scientific_circles_repository.dart";
+import "selected_tag_controller.dart";
+import "tags_repository.dart";
 
-part 'scientific_circles_tab_controller.g.dart';
+part "scientific_circles_tab_controller.g.dart";
 
 @riverpod
 class SearchScientificCirclesController
@@ -19,20 +19,24 @@ class SearchScientificCirclesController
 
 @riverpod
 Future<Iterable<ScientificCircle?>?> _sciCirclesFilteredByTextQuery(
-    _SciCirclesFilteredByTextQueryRef ref) async {
+  _SciCirclesFilteredByTextQueryRef ref,
+) async {
   final originalList =
       await ref.watch(scientificCirclesRepositoryProvider.future);
   final query = ref.watch(searchScientificCirclesControllerProvider);
-  return originalList?.where((element) =>
-      element == null ||
-      element.name.toLowerCase().contains(query.toLowerCase()) ||
-      (element.department?.name.toLowerCase().contains(query.toLowerCase()) ??
-          false));
+  return originalList?.where(
+    (element) =>
+        element == null ||
+        element.name.toLowerCase().contains(query.toLowerCase()) ||
+        (element.department?.name.toLowerCase().contains(query.toLowerCase()) ??
+            false),
+  );
 }
 
 @riverpod
 Future<Iterable<ScientificCircle?>?> scientificCircleList(
-    ScientificCircleListRef ref) async {
+  ScientificCircleListRef ref,
+) async {
   final circles =
       await ref.watch(_sciCirclesFilteredByTextQueryProvider.future);
 

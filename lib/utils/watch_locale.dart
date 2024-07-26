@@ -1,10 +1,10 @@
-import 'dart:ui';
+import "dart:ui";
 
-import 'package:flutter/widgets.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
+import "package:flutter/widgets.dart";
+import "package:flutter_gen/gen_l10n/app_localizations.dart";
+import "package:riverpod_annotation/riverpod_annotation.dart";
 
-part 'watch_locale.g.dart';
+part "watch_locale.g.dart";
 
 @riverpod
 class WatchLocale extends _$WatchLocale {
@@ -23,8 +23,8 @@ class WatchLocale extends _$WatchLocale {
   static AppLocalizations get _getCurrLocal {
     var locale = PlatformDispatcher.instance.locale;
     if (!AppLocalizations.supportedLocales.contains(locale)) {
-      locale = AppLocalizations.supportedLocales
-          .first; //TODO: add english as default locale (when there is one)
+      // TODO(simon-the-shark): Add english as default locale (when there is one).
+      locale = AppLocalizations.supportedLocales.first;
     }
     return lookupAppLocalizations(locale);
   }

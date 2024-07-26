@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
-import '../../../../config/ui_config.dart';
-import '../../../../theme/app_theme.dart';
-import '../../../../widgets/my_cached_image.dart';
-import '../../../../widgets/tile_splash.dart';
+import "../../../../config/ui_config.dart";
+import "../../../../theme/app_theme.dart";
+import "../../../../widgets/my_cached_image.dart";
+import "../../../../widgets/tile_splash.dart";
 
 class BuildingCard extends StatelessWidget {
   const BuildingCard({
@@ -22,7 +22,7 @@ class BuildingCard extends StatelessWidget {
     return SizedBox(
       width: 120,
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(8.0),
+        borderRadius: BorderRadius.circular(8),
         child: Stack(
           fit: StackFit.expand,
           children: [

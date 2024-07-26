@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import 'hex_color.dart';
+import "package:flutter/material.dart";
+import "hex_color.dart";
 
 abstract class ColorsConsts {
   // Mirage #293241
@@ -22,15 +22,14 @@ abstract class ColorsConsts {
 
   // ToPwr LinearGradient #f67448, #ee6645, #df371b
   static const toPwrGradient = LinearGradient(
-    begin: Alignment(-1.0, -0.1),
-    end: Alignment(1.0, 0.1),
+    begin: Alignment(-1, -0.1),
+    end: Alignment(1, 0.1),
     colors: [
       Color(0xfff67448),
       Color(0xffee6645),
       Color(0xffdf371b),
     ],
     stops: [0.0, 0.25, 0.72],
-    tileMode: TileMode.clamp,
   );
 
   static const buildingsGradient = LinearGradient(

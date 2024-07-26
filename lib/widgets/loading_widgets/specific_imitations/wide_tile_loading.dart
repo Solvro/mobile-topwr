@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
-import '../../../config/ui_config.dart';
-import '../shimmer_loading.dart';
-import '../simple_previews/preview_card_loading.dart';
-import '../simple_previews/preview_text_prototype.dart';
+import "../../../config/ui_config.dart";
+import "../shimmer_loading.dart";
+import "../simple_previews/preview_card_loading.dart";
+import "../simple_previews/preview_text_prototype.dart";
 
 class WideTileLoading extends StatelessWidget {
   const WideTileLoading({super.key});
@@ -36,21 +36,23 @@ class _TitlesColumnLoading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (context, constraints) {
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          PreviewTextPrototype(
-            width: constraints.maxWidth * _firstTextLoadingWidthFraction,
-          ),
-          const SizedBox(height: WideTileCardConfig.titlesSpacing),
-          PreviewTextPrototype(
-            width: constraints.maxWidth * _secondTextLoadingWidthFraction,
-          ),
-          const SizedBox(height: WideTileCardConfig.titlesSpacing),
-        ],
-      );
-    });
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            PreviewTextPrototype(
+              width: constraints.maxWidth * _firstTextLoadingWidthFraction,
+            ),
+            const SizedBox(height: WideTileCardConfig.titlesSpacing),
+            PreviewTextPrototype(
+              width: constraints.maxWidth * _secondTextLoadingWidthFraction,
+            ),
+            const SizedBox(height: WideTileCardConfig.titlesSpacing),
+          ],
+        );
+      },
+    );
   }
 }

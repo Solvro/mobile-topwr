@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
-import '../../../../config/ui_config.dart';
-import '../../../../widgets/loading_widgets/scrolable_loader_builder.dart';
-import '../../../../widgets/loading_widgets/shimmer_loading.dart';
+import "package:flutter/material.dart";
+import "../../../../config/ui_config.dart";
+import "../../../../widgets/loading_widgets/scrolable_loader_builder.dart";
+import "../../../../widgets/loading_widgets/shimmer_loading.dart";
 
 class AboutUsSectionLoading extends StatelessWidget {
   const AboutUsSectionLoading({super.key});

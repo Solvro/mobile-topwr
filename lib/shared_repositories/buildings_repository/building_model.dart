@@ -1,7 +1,7 @@
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import "package:google_maps_flutter/google_maps_flutter.dart";
 
-import '../../features/map_view/controllers/controllers_set.dart';
-import 'map_buildings_repo.dart';
+import "../../features/map_view/controllers/controllers_set.dart";
+import "map_buildings_repo.dart";
 
 class BuildingModel extends Building implements GoogleNavigable {
   BuildingModel.from(Building building)

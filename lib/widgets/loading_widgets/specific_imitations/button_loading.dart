@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import '../shimmer_loading.dart';
+import "package:flutter/material.dart";
+import "../shimmer_loading.dart";
 
 class ButtonLoading extends StatelessWidget {
   const ButtonLoading({super.key});
@@ -7,20 +7,21 @@ class ButtonLoading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer(
-        linearGradient: shimmerGradient,
-        child: Column(
-          children: [
-            ShimmerLoadingItem(
-              child: Container(
-                width: 110,
-                height: 36,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(100),
-                ),
+      linearGradient: shimmerGradient,
+      child: Column(
+        children: [
+          ShimmerLoadingItem(
+            child: Container(
+              width: 110,
+              height: 36,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(100),
               ),
             ),
-          ],
-        ));
+          ),
+        ],
+      ),
+    );
   }
 }

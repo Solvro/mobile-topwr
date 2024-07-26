@@ -1,4 +1,4 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import "package:freezed_annotation/freezed_annotation.dart";
 
 part "chart_data_model.freezed.dart";
 part "chart_data_model.g.dart";

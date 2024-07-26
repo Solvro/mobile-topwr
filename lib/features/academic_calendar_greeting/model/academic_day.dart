@@ -1,6 +1,6 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import "package:freezed_annotation/freezed_annotation.dart";
 
-import 'weekday_enum.dart';
+import "weekday_enum.dart";
 
 part "academic_day.freezed.dart";
 part "academic_day.g.dart";

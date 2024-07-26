@@ -1,8 +1,8 @@
-import 'package:collection/collection.dart';
-import 'package:fl_chart/fl_chart.dart';
+import "package:collection/collection.dart";
+import "package:fl_chart/fl_chart.dart";
 
-import 'chart_data_model.dart';
-import 'hour_label.dart';
+import "chart_data_model.dart";
+import "hour_label.dart";
 
 class ChartPoint extends FlSpot {
   ChartPoint(super.x, super.y);
@@ -16,7 +16,7 @@ class ChartPoint extends FlSpot {
 
 extension ToCharPointsExt on RawChartData {
   Iterable<ChartPoint> toChartPoints() sync* {
-    for (var pair in IterableZip(
+    for (final pair in IterableZip(
       [labels, data],
     )) {
       yield ChartPoint.parse(pair.first, pair.last);

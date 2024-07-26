@@ -1,14 +1,16 @@
-import 'dart:async';
+import "dart:async";
 
-import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:google_maps_flutter_android/google_maps_flutter_android.dart';
-import 'package:google_maps_flutter_platform_interface/google_maps_flutter_platform_interface.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
+import "package:flutter/material.dart";
+import "package:google_maps_flutter/google_maps_flutter.dart";
 
-import '../../../config/map_view_config.dart';
-import 'bottom_sheet_controller.dart';
-import 'controllers_set.dart';
+import "package:google_maps_flutter_android/google_maps_flutter_android.dart";
+
+import "package:google_maps_flutter_platform_interface/google_maps_flutter_platform_interface.dart";
+import "package:riverpod_annotation/riverpod_annotation.dart";
+
+import "../../../config/map_view_config.dart";
+import "bottom_sheet_controller.dart";
+import "controllers_set.dart";
 
 mixin MapController<T extends GoogleNavigable>
     on AutoDisposeNotifier<GoogleMapController?> {
@@ -23,7 +25,7 @@ mixin MapController<T extends GoogleNavigable>
     }
   }
 
-  void onMapCreated(GoogleMapController controller) async {
+  Future<void> onMapCreated(GoogleMapController controller) async {
     ref.invalidate(bottomSheetPixelsProvider);
     state = controller;
     final activeMarker = ref.read(mapControllers.activeMarker);
@@ -33,7 +35,7 @@ mixin MapController<T extends GoogleNavigable>
   void zoomOnMarker(T item) {
     Future.delayed(
       Durations.short1,
-      () => state?.animateCamera(
+      () async => state?.animateCamera(
         CameraUpdate.newCameraPosition(
           CameraPosition(
             target: item.location,

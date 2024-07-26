@@ -1,12 +1,13 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
 class FadeInGradientAnimation extends StatefulWidget {
   /// Animates between two LinearGradients on first build
-  const FadeInGradientAnimation(
-      {super.key,
-      required this.gradientStart,
-      required this.gradientStop,
-      required this.duration});
+  const FadeInGradientAnimation({
+    super.key,
+    required this.gradientStart,
+    required this.gradientStop,
+    required this.duration,
+  });
 
   final LinearGradient gradientStart;
   final LinearGradient gradientStop;

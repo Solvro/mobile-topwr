@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
-import '../../config/ttl_config.dart';
-import '../../utils/context_extensions.dart';
+import "../../config/ttl_config.dart";
+import "../../utils/context_extensions.dart";
 
 extension GqlOfflineMessage on BuildContext {
   UnmodifiableTtlKeyMap<String> _offlineMessagesLocalized() =>

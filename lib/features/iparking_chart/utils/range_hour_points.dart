@@ -1,5 +1,5 @@
-import '../../../utils/generate_range.dart';
-import '../models/hour_label.dart';
+import "../../../utils/generate_range.dart";
+import "../models/hour_label.dart";
 
 Iterable<HourLabel> generateRangeHourPoints(
   double start,

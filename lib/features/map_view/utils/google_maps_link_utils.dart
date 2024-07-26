@@ -1,9 +1,9 @@
-import 'dart:io';
+import "dart:io";
 
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:logger/logger.dart';
+import "package:google_maps_flutter/google_maps_flutter.dart";
+import "package:logger/logger.dart";
 
-import '../../../utils/launch_url_util.dart';
+import "../../../utils/launch_url_util.dart";
 
 class GoogleMapsLinkUtils {
   static Future<void> navigateTo(
@@ -14,7 +14,7 @@ class GoogleMapsLinkUtils {
     if (!launchedFirst) {
       final launchedBackup = await LaunchUrlUtil.launch(link.backupLink);
       if (!launchedBackup) {
-        Logger().e('Could not launch any directions');
+        Logger().e("Could not launch any directions");
       }
     }
   }

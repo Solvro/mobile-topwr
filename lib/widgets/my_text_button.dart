@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
-import '../theme/app_theme.dart';
+import "../theme/app_theme.dart";
 
 class MyTextButton extends StatelessWidget {
   const MyTextButton({
@@ -15,13 +15,14 @@ class MyTextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-        onPressed: onClick,
-        style: TextButton.styleFrom(
-          padding: EdgeInsets.zero,
-        ),
-        child: Text(
-          actionTitle,
-          style: context.textTheme.boldBodyOrange,
-        ));
+      onPressed: onClick,
+      style: TextButton.styleFrom(
+        padding: EdgeInsets.zero,
+      ),
+      child: Text(
+        actionTitle,
+        style: context.textTheme.boldBodyOrange,
+      ),
+    );
   }
 }

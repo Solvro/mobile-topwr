@@ -1,14 +1,17 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:google_maps_flutter/google_maps_flutter.dart";
 
-import '../../../config/map_view_config.dart';
-import '../controllers/controllers_set.dart';
+import "../../../config/map_view_config.dart";
+import "../controllers/controllers_set.dart";
 
 typedef MarkerBuilder<T> = Marker Function(
-    T item, WidgetRef ref, bool isActive);
+  T item,
+  WidgetRef ref, {
+  required bool isActive,
+});
 
-typedef MapTileBuilder<T> = Widget Function(T item, bool isActive);
+typedef MapTileBuilder<T> = Widget Function(T item, {required bool isActive});
 
 typedef MapViewTexts = ({
   String emptyList,
@@ -33,13 +36,14 @@ class MapConfig<T extends GoogleNavigable> extends InheritedWidget {
   final MapSheetSize mapSheetSize;
 
   static MapConfig<T>? maybeOf<T extends GoogleNavigable>(
-      BuildContext context) {
+    BuildContext context,
+  ) {
     return context.dependOnInheritedWidgetOfExactType<MapConfig<T>>();
   }
 
   static MapConfig<T> of<T extends GoogleNavigable>(BuildContext context) {
     final result = maybeOf<T>(context);
-    assert(result != null, 'No MapConfig found in context');
+    assert(result != null, "No MapConfig found in context");
     return result!;
   }
 

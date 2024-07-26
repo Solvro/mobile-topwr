@@ -1,18 +1,16 @@
 // ignore_for_file: invalid_annotation_target
 
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import "package:freezed_annotation/freezed_annotation.dart";
+import "package:google_maps_flutter/google_maps_flutter.dart";
 
-import '../../map_view/controllers/controllers_set.dart';
-import '../api_client/iparking_client.dart';
+import "../../map_view/controllers/controllers_set.dart";
+import "../api_client/iparking_client.dart";
 
 part "parking_model.freezed.dart";
 part "parking_model.g.dart";
 
 @freezed
 class ParkingPlace with _$ParkingPlace implements GoogleNavigable {
-  const ParkingPlace._();
-
   @Implements<GoogleNavigable>()
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory ParkingPlace({
@@ -35,6 +33,7 @@ class ParkingPlace with _$ParkingPlace implements GoogleNavigable {
     required String address,
     required String trend,
   }) = _ParkingPlace;
+  const ParkingPlace._();
 
   factory ParkingPlace.fromJson(Map<String, dynamic> json) =>
       _$ParkingPlaceFromJson(json);
@@ -71,12 +70,12 @@ extension _FormatIParkingDate on String {
 extension TrendDash on String {
   String get dashForm {
     switch (this) {
-      case '0':
+      case "0":
         return "-";
-      case '1':
+      case "1":
         return "/";
-      case '-1':
-        return "\\";
+      case "-1":
+        return r"\";
       default:
         return "?";
     }

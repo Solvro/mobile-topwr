@@ -1,4 +1,4 @@
-import '../../config/map_view_config.dart';
+import "../../config/map_view_config.dart";
 
 extension ContainsCaseUnsensitive on String? {
   bool containsUnsesitive(String str) {

@@ -1,7 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:html/dom.dart' as html;
-import '../../../../../theme/app_theme.dart';
-import '../../../../../theme/hex_color.dart';
+import "package:flutter/material.dart";
+// unfortunetly it's a dependency of dependency and it's not re-exported
+// ignore: depend_on_referenced_packages
+import "package:html/dom.dart" as html;
+import "../../../../../theme/app_theme.dart";
+import "../../../../../theme/hex_color.dart";
 
 extension ToHtmlColorString on HexColor {
   String get htmlFormat =>
@@ -10,19 +12,19 @@ extension ToHtmlColorString on HexColor {
 
 extension IsLinkTag on html.Element {
   bool get isLink {
-    return localName == 'a';
+    return localName == "a";
   }
 }
 
 extension CustomHtmlStyles on BuildContext {
   Map<String, String>? customStylesBuilder(html.Element element) {
     final defaultStyles = {
-      'text-align': 'justify',
+      "text-align": "justify",
     };
     if (element.isLink) {
       defaultStyles.addAll({
-        'color': colorTheme.orangePomegranade.htmlFormat,
-        'text-decoration': 'none',
+        "color": colorTheme.orangePomegranade.htmlFormat,
+        "text-decoration": "none",
       });
     }
     return defaultStyles;

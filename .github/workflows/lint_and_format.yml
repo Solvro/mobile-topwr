@@ -1,0 +1,34 @@
+name: Lint & formatting
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+    branches: ["**"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.22.3"
+          channel: "stable"
+      - run: flutter --version
+    
+      - name: Install dependencies
+        run: dart pub get
+      
+      - name: Example .env
+        run: cp example.env .env
+
+      - name: generate files
+        run: dart run build_runner build --delete-conflicting-outputs
+
+      - name: Verify formatting
+        run: dart format --output=none --set-exit-if-changed .
+
+      - name: Analyze project source
+        run: flutter analyze --fatal-infos

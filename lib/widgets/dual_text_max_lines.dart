@@ -1,22 +1,28 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
 class DualTextSpan extends TextSpan {
-  DualTextSpan(String title, TextStyle? titleStyle, String? subtitle,
-      TextStyle? subtitleStyle, double spacing)
-      : super(children: [
-    TextSpan(
-      text: "$title\n",
-      style: titleStyle,
-    ),
-    TextSpan(
-      text: "\n", // padding/spacing workaround
-      style: TextStyle(fontSize: spacing, height: 1),
-    ),
-    TextSpan(
-      text: "$subtitle",
-      style: subtitleStyle,
-    ),
-  ]);
+  DualTextSpan(
+    String title,
+    TextStyle? titleStyle,
+    String? subtitle,
+    TextStyle? subtitleStyle,
+    double spacing,
+  ) : super(
+          children: [
+            TextSpan(
+              text: "$title\n",
+              style: titleStyle,
+            ),
+            TextSpan(
+              text: "\n", // padding/spacing workaround
+              style: TextStyle(fontSize: spacing, height: 1),
+            ),
+            TextSpan(
+              text: "$subtitle",
+              style: subtitleStyle,
+            ),
+          ],
+        );
 }
 
 class DualTextMaxLines extends StatelessWidget {
