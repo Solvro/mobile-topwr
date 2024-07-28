@@ -1,15 +1,18 @@
+import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../utils/context_extensions.dart";
 import "../../utils/where_non_null_iterable.dart";
 import "../../widgets/search_box_app_bar.dart";
+
 import "repositories/scientific_circles_tab_controller.dart";
 import "repositories/tags_repository.dart";
 import "widgets/scientific_circles_list.dart";
 import "widgets/tags_loading.dart";
 import "widgets/tags_row.dart";
 
+@RoutePage()
 class ScientificCirclesTab extends ConsumerWidget {
   const ScientificCirclesTab({
     super.key,

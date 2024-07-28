@@ -1,3 +1,4 @@
+import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
@@ -14,6 +15,7 @@ import "widgets/links_section.dart";
 import "widgets/section_header.dart";
 import "widgets/team_section.dart";
 
+@RoutePage()
 class AboutUsTab extends StatelessWidget {
   const AboutUsTab({super.key});
 

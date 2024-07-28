@@ -1,8 +1,9 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../api_base/directus_assets_url.dart";
-import "../../../../config/nav_bar_config.dart";
 import "../../../../shared_repositories/buildings_repository/building_model.dart";
 import "../../../../shared_repositories/buildings_repository/map_buildings_repo.dart";
 import "../../../../utils/context_extensions.dart";
@@ -10,8 +11,7 @@ import "../../../../utils/where_non_null_iterable.dart";
 import "../../../../widgets/my_error_widget.dart";
 import "../../../../widgets/subsection_header.dart";
 import "../../../buildings_map/controllers.dart";
-import "../../../navigator/navigator/nested_navigator.dart";
-import "../../../navigator/navigator/tab_bar_navigator.dart";
+import "../../../navigator/utils/navigation_commands.dart";
 import "../loading_widgets/scrollable_section_loading.dart";
 import "../paddings.dart";
 import "building_card.dart";
@@ -19,16 +19,13 @@ import "building_card.dart";
 class BuildingsSection extends ConsumerWidget {
   const BuildingsSection({super.key});
 
-  static Future<void> goToMapTab(WidgetRef ref) async =>
-      ref.read(navigatorProvider).changeTabBar(NavBarEnum.mapp);
-
   @override
   Widget build(BuildContext context, WidgetRef ref) => Column(
         children: [
           SubsectionHeader(
             title: context.localize.buildings_title,
             actionTitle: context.localize.map_button,
-            onClick: () async => BuildingsSection.goToMapTab(ref),
+            onClick: ref.navigateBuildings,
           ),
           const _BuildingsList(),
         ],
@@ -73,7 +70,7 @@ class _DataListBuildingsTiles extends ConsumerWidget {
             buildingName: mapItem.name,
             imageUrl: mapItem.cover?.filename_disk?.directusUrl,
             onTap: () async {
-              await BuildingsSection.goToMapTab(ref);
+              unawaited(ref.navigateBuildings());
               ref
                   .watch(activeBuildingControllerProvider.notifier)
                   .selectBuilding(mapItem);

@@ -1,24 +1,19 @@
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../../../../config/nav_bar_config.dart";
 import "../../../../shared_repositories/departments_repository/departments_repository.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../utils/where_non_null_iterable.dart";
 import "../../../../widgets/my_error_widget.dart";
 import "../../../../widgets/subsection_header.dart";
-import "../../../navigator/navigator/detail_view_navigator.dart";
-import "../../../navigator/navigator/nested_navigator.dart";
-import "../../../navigator/navigator/tab_bar_navigator.dart";
+import "../../../navigator/utils/navigation_commands.dart";
+
 import "../loading_widgets/scrollable_section_loading.dart";
 import "../paddings.dart";
 import "deparment_box.dart";
 
 class DepartmentSection extends ConsumerWidget {
   const DepartmentSection({super.key});
-
-  static Future<void> goToFacultiesTab(WidgetRef ref) async =>
-      ref.read(navigatorProvider).changeTabBar(NavBarEnum.mapp);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -28,7 +23,7 @@ class DepartmentSection extends ConsumerWidget {
         SubsectionHeader(
           title: context.localize.departments,
           actionTitle: context.localize.list,
-          onClick: () async => goToFacultiesTab(ref),
+          onClick: ref.navigateDepartments,
         ),
         SmallHorizontalPadding(
           child: switch (state) {
@@ -52,10 +47,6 @@ class _DepartmentsDataList extends ConsumerWidget {
 
   final List<Department> departments;
 
-  static Future<void> goToDetailView(WidgetRef ref, String id) async {
-    await ref.read(navigatorProvider).navigateToDepartmentDetails(id);
-  }
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return ListView.builder(
@@ -64,7 +55,8 @@ class _DepartmentsDataList extends ConsumerWidget {
       itemBuilder: (context, index) => MediumLeftPadding(
         child: DepartmentBox(
           departments[index],
-          onClick: () async => goToDetailView(ref, departments[index].id),
+          onClick: () async =>
+              ref.navigateDepartmentDetail(departments[index].id),
         ),
       ),
     );

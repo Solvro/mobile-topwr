@@ -1,11 +1,12 @@
+import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../theme/app_theme.dart";
 import "../../utils/context_extensions.dart";
-import "../navigator/navigator/detail_view_navigator.dart";
-import "../navigator/navigator/nested_navigator.dart";
+import "../navigator/utils/navigation_commands.dart";
 
+@RoutePage()
 class GuideViewTemplate extends ConsumerWidget {
   const GuideViewTemplate({super.key});
 
@@ -21,7 +22,7 @@ class GuideViewTemplate extends ConsumerWidget {
         child: Column(
           children: [
             GestureDetector(
-              onTap: ref.watch(navigatorProvider).navigateToAboutUs,
+              onTap: ref.navigateAboutUs,
               child: Container(
                 padding: const EdgeInsets.all(10),
                 width: double.infinity,

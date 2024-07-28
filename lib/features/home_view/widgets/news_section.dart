@@ -2,30 +2,28 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../api_base/directus_assets_url.dart";
-import "../../../config/nav_bar_config.dart";
+
 import "../../../config/ui_config.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../utils/where_non_null_iterable.dart";
 import "../../../widgets/big_preview_card.dart";
 import "../../../widgets/my_error_widget.dart";
 import "../../../widgets/subsection_header.dart";
-import "../../navigator/navigator/nested_navigator.dart";
-import "../../navigator/navigator/tab_bar_navigator.dart";
+
+import "../../navigator/utils/navigation_commands.dart";
 import "../repositories/infos_repository/infos_preview_repository.dart";
 import "loading_widgets/big_scrollable_section_loading.dart";
 import "paddings.dart";
 
 class NewsSection extends ConsumerWidget {
   const NewsSection({super.key});
-  static Future<void> goToInfoTab(WidgetRef ref) async =>
-      ref.read(navigatorProvider).changeTabBar(NavBarEnum.info);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) => Column(
         children: [
           SubsectionHeader(
             title: context.localize.whats_up,
-            onClick: () async => goToInfoTab(ref),
+            onClick: ref.navigateGuide,
           ),
           const _NewsList(),
         ],

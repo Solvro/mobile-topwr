@@ -1,3 +1,4 @@
+import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
@@ -8,12 +9,12 @@ import "../../utils/context_extensions.dart";
 import "../../utils/where_non_null_iterable.dart";
 import "../../widgets/my_error_widget.dart";
 import "../../widgets/search_box_app_bar.dart";
-import "../navigator/navigator/detail_view_navigator.dart";
-import "../navigator/navigator/nested_navigator.dart";
+import "../navigator/utils/navigation_commands.dart";
 import "departments_tab_controller.dart";
 import "widgets/department_card.dart";
 import "widgets/departments_list_loading.dart";
 
+@RoutePage()
 class DepartmentTab extends ConsumerWidget {
   const DepartmentTab({super.key});
 
@@ -54,10 +55,6 @@ class _DepartmentsDataView extends ConsumerWidget {
   const _DepartmentsDataView(this.departments);
   final List<Department> departments;
 
-  static Future<void> goToDetailView(WidgetRef ref, String id) async {
-    await ref.read(navigatorProvider).navigateToDepartmentDetails(id);
-  }
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     if (departments.isEmpty) {
@@ -74,7 +71,8 @@ class _DepartmentsDataView extends ConsumerWidget {
       itemCount: departments.length,
       itemBuilder: (context, index) => DepartmentCard(
         departments[index],
-        onClick: () async => goToDetailView(ref, departments[index].id),
+        onClick: () async =>
+            ref.navigateDepartmentDetail(departments[index].id),
       ),
     );
   }

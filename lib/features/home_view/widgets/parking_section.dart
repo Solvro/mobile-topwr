@@ -1,7 +1,8 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../../../config/nav_bar_config.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../utils/where_non_null_iterable.dart";
 import "../../../widgets/my_error_widget.dart";
@@ -9,8 +10,7 @@ import "../../../widgets/subsection_header.dart";
 import "../../iparking/controllers.dart";
 import "../../iparking/models/parking_model.dart";
 import "../../iparking/repositories/parkings_repo.dart";
-import "../../navigator/navigator/nested_navigator.dart";
-import "../../navigator/navigator/tab_bar_navigator.dart";
+import "../../navigator/utils/navigation_commands.dart";
 import "buildings_section/building_card.dart";
 import "loading_widgets/scrollable_section_loading.dart";
 import "paddings.dart";
@@ -18,16 +18,13 @@ import "paddings.dart";
 class ParkingSection extends ConsumerWidget {
   const ParkingSection({super.key});
 
-  static Future<void> goToParkingsTab(WidgetRef ref) async =>
-      ref.read(navigatorProvider).changeTabBar(NavBarEnum.parkings);
-
   @override
   Widget build(BuildContext context, WidgetRef ref) => Column(
         children: [
           SubsectionHeader(
             title: context.localize.parkings_title,
             actionTitle: context.localize.map_button,
-            onClick: () async => ParkingSection.goToParkingsTab(ref),
+            onClick: ref.navigateParkings,
           ),
           const _ParkingsList(),
         ],
@@ -72,7 +69,7 @@ class _DataListParkingsTiles extends ConsumerWidget {
             buildingName: parking.symbol,
             imageUrl: parking.iParkPhotoUrl,
             onTap: () async {
-              await ParkingSection.goToParkingsTab(ref);
+              unawaited(ref.navigateParkings());
               ref
                   .watch(activeParkingControllerProvider.notifier)
                   .selectBuilding(parking);

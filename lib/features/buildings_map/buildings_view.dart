@@ -1,3 +1,4 @@
+import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:google_maps_flutter/google_maps_flutter.dart";
@@ -10,6 +11,7 @@ import "../map_view/utils/map_marker_utils.dart";
 import "building_tile.dart";
 import "controllers.dart";
 
+@RoutePage()
 class BuildingMapView extends ConsumerWidget {
   const BuildingMapView({super.key});
 

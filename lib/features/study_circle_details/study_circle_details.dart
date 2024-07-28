@@ -1,3 +1,4 @@
+import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
@@ -18,25 +19,29 @@ import "widgets/details_screen_about_us_section.dart";
 import "widgets/details_screen_app_bar.dart";
 import "widgets/loading_widgets/about_us_section_loading.dart";
 
-class StudyCircleDetails extends StatelessWidget {
-  const StudyCircleDetails({super.key});
-
+@RoutePage()
+class StudyCircleDetailsView extends StatelessWidget {
+  const StudyCircleDetailsView({
+    @PathParam("id") required this.id,
+    super.key,
+  });
+  final String id;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:
           DetailsScreenAppBar(context, title: context.localize.study_circles),
-      body: const _CircleDetailsDataView(),
+      body: _CircleDetailsDataView(id),
     );
   }
 }
 
 class _CircleDetailsDataView extends ConsumerWidget {
-  const _CircleDetailsDataView();
+  const _CircleDetailsDataView(this.itemId);
+  final String itemId;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final itemId = ModalRoute.of(context)!.settings.arguments! as String;
     final state = ref.watch(studyCircleRepositoryProvider(itemId));
     return switch (state) {
       AsyncLoading() => const _StudyCircleDetailsLoading(),

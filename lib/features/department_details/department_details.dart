@@ -1,3 +1,4 @@
+import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
@@ -18,24 +19,26 @@ import "widgets/department_details_loading.dart";
 import "widgets/department_study_circle_section.dart";
 import "widgets/fields_of_study_section.dart";
 
-class DepartmentDetails extends StatelessWidget {
-  const DepartmentDetails({super.key});
+@RoutePage()
+class DepartmentDetailsView extends StatelessWidget {
+  const DepartmentDetailsView({@PathParam("id") required this.id, super.key});
+  final String id;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: DetailsScreenAppBar(context, title: context.localize.departments),
-      body: const _DepartmentDetailsDataView(),
+      body: _DepartmentDetailsDataView(id),
     );
   }
 }
 
 class _DepartmentDetailsDataView extends ConsumerWidget {
-  const _DepartmentDetailsDataView();
+  const _DepartmentDetailsDataView(this.itemId);
+  final String itemId;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final itemId = ModalRoute.of(context)!.settings.arguments! as String;
     final state = ref.watch(departmentDetailsRepositoryProvider(itemId));
     return switch (state) {
       AsyncLoading() => const DepartmentDetailsLoading(),

@@ -1,3 +1,4 @@
+import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:google_maps_flutter/google_maps_flutter.dart";
@@ -10,6 +11,7 @@ import "controllers.dart";
 import "models/parking_model.dart";
 import "widgets/parking_tile.dart";
 
+@RoutePage()
 class ParkingsMapView extends ConsumerWidget {
   const ParkingsMapView({super.key});
 

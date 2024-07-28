@@ -1,3 +1,4 @@
+import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 
 import "../../config/ui_config.dart";
@@ -11,6 +12,7 @@ import "widgets/news_section.dart";
 import "widgets/parking_section.dart";
 import "widgets/study_circles_section.dart";
 
+@RoutePage()
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
 

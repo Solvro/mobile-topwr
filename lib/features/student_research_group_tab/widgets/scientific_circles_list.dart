@@ -7,8 +7,8 @@ import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../utils/where_non_null_iterable.dart";
 import "../../../widgets/my_error_widget.dart";
-import "../../navigator/navigator/detail_view_navigator.dart";
-import "../../navigator/navigator/nested_navigator.dart";
+import "../../navigator/utils/navigation_commands.dart";
+
 import "../repositories/scientific_circles_tab_controller.dart";
 import "scientific_circle_card.dart";
 import "scientific_circle_loading.dart";
@@ -57,12 +57,10 @@ class _ScientificCirclesDataView extends ConsumerWidget {
       ),
       gridDelegate: ScientificCirclesTabConfig.researchGroupTabGridDelegate,
       itemCount: filteredCircles.length,
-      itemBuilder: (context, index) =>
-          ResearchGroupCard(filteredCircles[index], () async {
-        await ref
-            .read(navigatorProvider)
-            .navigateToStudyCircleDetails(filteredCircles[index].id);
-      }),
+      itemBuilder: (context, index) => ResearchGroupCard(
+        filteredCircles[index],
+        () async => ref.navigateSciClubsDetail(filteredCircles[index].id),
+      ),
     );
   }
 }
