@@ -26,7 +26,7 @@ class SheetLayoutScheme<T extends GoogleNavigable> extends ConsumerWidget {
       onQueryChanged: ref
           .watch(context.mapDataController<T>().notifier)
           .onSearchQueryChanged,
-      onSearchboxTap:
+      onSearchBoxTap:
           ref.watch(bottomSheetPixelsProvider.notifier).onSearchBoxTap,
       actions: [
         if (ref.watch(context.activeMarkerController<T>()) != null)

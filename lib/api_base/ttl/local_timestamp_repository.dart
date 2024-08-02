@@ -9,11 +9,11 @@ import "ttl_timestamp.dart";
 
 part "local_timestamp_repository.g.dart";
 
-class LocalTimestampRepo {
+class LocalTimestampRepository {
   final TtlKey _key;
   final SharedPreferences _prefs;
 
-  LocalTimestampRepo(this._key, this._prefs);
+  LocalTimestampRepository(this._key, this._prefs);
 
   String get _storeKey => "${ApiBaseConfig.ttlPrefsPrefix}$_key";
 
@@ -36,10 +36,10 @@ Future<SharedPreferences> _prefs(_PrefsRef ref) async {
 }
 
 @riverpod
-Future<LocalTimestampRepo> localTimestampRepo(
-  LocalTimestampRepoRef ref,
+Future<LocalTimestampRepository> localTimestampRepository(
+  LocalTimestampRepositoryRef ref,
   TtlKey key,
 ) async {
   final prefs = await ref.watch(_prefsProvider.future);
-  return LocalTimestampRepo(key, prefs);
+  return LocalTimestampRepository(key, prefs);
 }

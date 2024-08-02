@@ -10,7 +10,7 @@ mixin ActiveMarkerController<T extends GoogleNavigable>
     return null;
   }
 
-  void selectBuilding(T item) {
+  void selectItem(T item) {
     state = item;
   }
 
@@ -18,11 +18,11 @@ mixin ActiveMarkerController<T extends GoogleNavigable>
     state = null;
   }
 
-  void toggleBuilding(T item) {
+  void toggleItem(T item) {
     if (state == item) {
       unselect();
     } else {
-      selectBuilding(item);
+      selectItem(item);
     }
   }
 

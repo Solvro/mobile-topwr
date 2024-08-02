@@ -1,0 +1,10 @@
+query GetNews {
+  Posts {
+    content
+    title
+    cover {
+      filename_disk
+    }
+    date_created
+  }
+}
