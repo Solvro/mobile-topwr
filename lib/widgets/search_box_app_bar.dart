@@ -2,7 +2,7 @@ import "package:flutter/material.dart";
 
 import "../config/ui_config.dart";
 import "../theme/app_theme.dart";
-import "search_widget.dart";
+import "search_box.dart";
 
 class SearchBoxAppBar extends AppBar {
   static const defaultBottomPadding = 32.0;
@@ -15,7 +15,7 @@ class SearchBoxAppBar extends AppBar {
     super.actions,
     super.primary,
     super.key,
-    VoidCallback? onSearchboxTap,
+    VoidCallback? onSearchBoxTap,
     double bottomPadding = defaultBottomPadding,
   }) : super(
           automaticallyImplyLeading: false,
@@ -27,16 +27,16 @@ class SearchBoxAppBar extends AppBar {
           titleSpacing: defaultHorizontalPadding,
           bottom: PreferredSize(
             preferredSize:
-                Size.fromHeight(SearchWidgetConfig.height + bottomPadding),
+                Size.fromHeight(SearchBoxConfig.height + bottomPadding),
             child: Padding(
               padding: EdgeInsets.only(
                 bottom: bottomPadding,
                 left: defaultHorizontalPadding,
                 right: defaultHorizontalPadding,
               ),
-              child: SearchWidget(
+              child: SearchBox(
                 onQueryChanged: onQueryChanged,
-                onTap: onSearchboxTap,
+                onTap: onSearchBoxTap,
               ),
             ),
           ),
