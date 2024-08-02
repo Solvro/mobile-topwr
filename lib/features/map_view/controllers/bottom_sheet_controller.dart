@@ -9,7 +9,7 @@ DraggableScrollableController bottomSheetController(
 ) =>
     DraggableScrollableController();
 
-extension SafeDraggableScrollableControllerWrapper
+extension SafeDraggableScrollableControllerWrapperX
     on DraggableScrollableController {
   void resetSafe() {
     if (isAttached) reset();

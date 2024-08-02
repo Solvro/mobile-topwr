@@ -3,7 +3,7 @@ import "package:flutter/material.dart";
 class TileSplash extends StatelessWidget {
   const TileSplash({super.key, this.onTap});
 
-  final void Function()? onTap;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {

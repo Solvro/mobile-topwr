@@ -6,13 +6,13 @@ Iterable<T> _whereNonNullIterable<T>(Iterable<T?> source) sync* {
   }
 }
 
-extension WhereNonNullExt<T> on Iterable<T?> {
+extension WhereNonNullX<T> on Iterable<T?> {
   Iterable<T> get whereNonNull {
     return _whereNonNullIterable(this);
   }
 }
 
-extension WhereNonNullExtNullable<T> on Iterable<T?>? {
+extension WhereNonNullNullableX<T> on Iterable<T?>? {
   Iterable<T> get whereNonNull {
     if (this == null) return [];
     return this!.whereNonNull;

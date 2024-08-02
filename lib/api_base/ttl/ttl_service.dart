@@ -20,8 +20,8 @@ class TtlService extends _$TtlService {
     return FetchPolicy.cacheAndNetwork; // force re-fetch
   }
 
-  Future<LocalTimestampRepo> get repository async =>
-      ref.watch(localTimestampRepoProvider.call(key).future);
+  Future<LocalTimestampRepository> get repository async =>
+      ref.watch(localTimestampRepositoryProvider.call(key).future);
 
   Future<QueryResult<T>> interceptAndSaveTimestamps<T>(
     QueryResult<T> event,

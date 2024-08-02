@@ -1,0 +1,13 @@
+query GetBuildings {
+  Buildings {
+    id
+    latitude
+    longitude
+    name
+    addres
+    cover {
+      filename_disk
+    }
+    naturalName
+  }
+}
