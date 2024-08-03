@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 
-extension ColorsSortX on List<Color> {
+extension ColorsSortExt on List<Color> {
   void sortByLightness() {
     sort(
       (a, b) {

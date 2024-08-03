@@ -21,7 +21,7 @@ class BigPreviewCard extends StatelessWidget {
   final String shortDescription;
   final String? photoUrl;
   final DateTime? date;
-  final VoidCallback? onClick;
+  final void Function() onClick;
 
   @override
   Widget build(BuildContext context) {

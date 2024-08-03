@@ -5,16 +5,16 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../config/transitions.dart";
-import "../about_us_view/about_us_view.dart";
-import "../buildings_view/buildings_view.dart";
-import "../department_detail_view/department_detail_view.dart";
-import "../departments_view/departments_view.dart";
-import "../guide_view/guide_view.dart";
+import "../buildings_map/buildings_view.dart";
+import "../department_details/department_details.dart";
+import "../departments_tab/departments_tab.dart";
+import "../guide/guide_view_template.dart";
+import "../guide/widgets/about_us/about_us_tab.dart";
 import "../home_view/home_view.dart";
-import "../parkings_view/parkings_view.dart";
-import "../science_club_detail_view/science_club_detail_view.dart";
-import "../science_clubs_view/science_clubs_view.dart";
-import "root_view.dart";
+import "../iparking/parking_view.dart";
+import "../student_research_group_tab/scientific_circles_tab.dart";
+import "../study_circle_details/study_circle_details.dart";
+import "root_page.dart";
 import "utils/tab_bar_transition.dart";
 
 part "app_router.g.dart";
@@ -42,34 +42,34 @@ class AppRouter extends _$AppRouter {
             ),
             CustomRoute(
               path: "map",
-              page: BuildingsRoute.page,
+              page: BuildingMapRoute.page,
               durationInMilliseconds: TransitionsConfig.durationInMiliseconds,
               reverseDurationInMilliseconds:
                   TransitionsConfig.durationInMiliseconds,
               transitionsBuilder:
-                  ref.tabBarTransitionBuilder(BuildingsRoute.name),
+                  ref.tabBarTransitionBuilder(BuildingMapRoute.name),
             ),
             CustomRoute(
               path: "parkings",
-              page: ParkingsRoute.page,
+              page: ParkingsMapRoute.page,
               durationInMilliseconds: TransitionsConfig.durationInMiliseconds,
               reverseDurationInMilliseconds:
                   TransitionsConfig.durationInMiliseconds,
               transitionsBuilder:
-                  ref.tabBarTransitionBuilder(ParkingsRoute.name),
+                  ref.tabBarTransitionBuilder(ParkingsMapRoute.name),
             ),
             CustomRoute(
               path: "departments",
-              page: DepartmentsRoute.page,
+              page: DepartmentRoute.page,
               durationInMilliseconds: TransitionsConfig.durationInMiliseconds,
               reverseDurationInMilliseconds:
                   TransitionsConfig.durationInMiliseconds,
               transitionsBuilder:
-                  ref.tabBarTransitionBuilder(DepartmentsRoute.name),
+                  ref.tabBarTransitionBuilder(DepartmentRoute.name),
             ),
             CustomRoute(
               path: "departments/:id",
-              page: DepartmentDetailRoute.page,
+              page: DepartmentDetailsRoute.page,
               durationInMilliseconds:
                   TransitionsConfig.detailDurationInMiliseconds,
               reverseDurationInMilliseconds:
@@ -78,16 +78,16 @@ class AppRouter extends _$AppRouter {
             ),
             CustomRoute(
               path: "sci-clubs",
-              page: ScienceClubsRoute.page,
+              page: ScientificCirclesRoute.page,
               durationInMilliseconds: TransitionsConfig.durationInMiliseconds,
               reverseDurationInMilliseconds:
                   TransitionsConfig.durationInMiliseconds,
               transitionsBuilder:
-                  ref.tabBarTransitionBuilder(ScienceClubsRoute.name),
+                  ref.tabBarTransitionBuilder(ScientificCirclesRoute.name),
             ),
             CustomRoute(
               path: "sci-clubs/:id",
-              page: ScienceClubDetailRoute.page,
+              page: StudyCircleDetailsRoute.page,
               durationInMilliseconds:
                   TransitionsConfig.detailDurationInMiliseconds,
               reverseDurationInMilliseconds:
@@ -96,11 +96,12 @@ class AppRouter extends _$AppRouter {
             ),
             CustomRoute(
               path: "guide",
-              page: GuideRoute.page,
+              page: GuideRouteTemplate.page,
               durationInMilliseconds: TransitionsConfig.durationInMiliseconds,
               reverseDurationInMilliseconds:
                   TransitionsConfig.durationInMiliseconds,
-              transitionsBuilder: ref.tabBarTransitionBuilder(GuideRoute.name),
+              transitionsBuilder:
+                  ref.tabBarTransitionBuilder(GuideRouteTemplate.name),
             ),
             CustomRoute(
               path: "aboutUs",

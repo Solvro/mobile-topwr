@@ -4,13 +4,12 @@ import "package:flutter/foundation.dart";
 import "package:flutter/services.dart";
 import "package:flutter/widgets.dart";
 import "package:google_maps_flutter/google_maps_flutter.dart";
-
 import "../../../config/map_view_config.dart";
 import "../../../gen/assets.gen.dart";
 
 class MapMarkerUtils {
-  static late final BitmapDescriptor buildingMapMarker;
-  static late final BitmapDescriptor activeBuildingMapMarker;
+  static late final BitmapDescriptor mapMarker;
+  static late final BitmapDescriptor activeMapMarker;
   static late final BitmapDescriptor parkingMapMarker;
   static late final BitmapDescriptor activeParkingMapMarker;
 
@@ -18,13 +17,12 @@ class MapMarkerUtils {
     final pixelRatio =
         kIsWeb ? 1 : MediaQuery.devicePixelRatioOf(context).toInt();
 
-    buildingMapMarker = await _AssetScaledLoader.loadScaledBitmapDescriptor(
+    mapMarker = await _AssetScaledLoader.loadScaledBitmapDescriptor(
       Assets.mapMarkers.mapMarker.path,
       width: MapWidgetConfig.mapMarkerOriginWidth * pixelRatio,
     );
 
-    activeBuildingMapMarker =
-        await _AssetScaledLoader.loadScaledBitmapDescriptor(
+    activeMapMarker = await _AssetScaledLoader.loadScaledBitmapDescriptor(
       Assets.mapMarkers.activeMapMarker.path,
       width: MapWidgetConfig.activeMapMarkerOriginWidth * pixelRatio,
     );

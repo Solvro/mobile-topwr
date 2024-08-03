@@ -2,14 +2,16 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../api_base/directus_assets_url.dart";
+
 import "../../../config/ui_config.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../utils/where_non_null_iterable.dart";
 import "../../../widgets/big_preview_card.dart";
 import "../../../widgets/my_error_widget.dart";
 import "../../../widgets/subsection_header.dart";
+
 import "../../navigator/utils/navigation_commands.dart";
-import "../repositories/news/news_repository.dart";
+import "../repositories/infos_repository/infos_preview_repository.dart";
 import "loading_widgets/big_scrollable_section_loading.dart";
 import "paddings.dart";
 
@@ -37,8 +39,8 @@ class _NewsList extends ConsumerWidget {
     return switch (state) {
       AsyncLoading() => const Padding(
           padding: EdgeInsets.only(
-            left: HomeViewConfig.paddingMedium,
-            top: HomeViewConfig.paddingMedium,
+            left: HomeScreenConfig.paddingMedium,
+            top: HomeScreenConfig.paddingMedium,
           ),
           child: BigScrollableSectionLoading(),
         ),
@@ -48,9 +50,9 @@ class _NewsList extends ConsumerWidget {
           children: [
             Padding(
               padding: const EdgeInsets.only(
-                left: HomeViewConfig.paddingSmall,
-                right: HomeViewConfig.paddingSmall,
-                top: HomeViewConfig.paddingMedium,
+                left: HomeScreenConfig.paddingSmall,
+                right: HomeScreenConfig.paddingSmall,
+                top: HomeScreenConfig.paddingMedium,
               ),
               child: SizedBox(
                 height: BigPreviewCardConfig.cardHeight,
@@ -66,7 +68,7 @@ class _NewsList extends ConsumerWidget {
 class _NewsDataList extends StatelessWidget {
   const _NewsDataList(this.value);
 
-  final List<NewsPost> value;
+  final List<InfosPreview> value;
 
   @override
   Widget build(BuildContext context) {

@@ -143,7 +143,6 @@ fvm flutter run
 2. Introductions to internationalizing flutter apps (making them available in different languages): https://docs.flutter.dev/ui/accessibility-and-internationalization/internationalization
 3. Api helper module instructions: https://github.com/Solvro/topwr-mobile/tree/main/lib/api_base
 4. We use `flutter_gen` for generating asset paths: https://pub.dev/packages/flutter_gen 
-5. For unified names read and follow: [taxonomy.md](./taxonomy.md)
 
 # Before you push a commit
 - run the linter

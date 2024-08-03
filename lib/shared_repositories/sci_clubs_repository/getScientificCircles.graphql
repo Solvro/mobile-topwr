@@ -1,0 +1,20 @@
+query GetScientificCircles {
+  Scientific_Circles(limit: 300) {
+    id
+    name
+    department {
+      name
+    }
+    tags {
+      Tags_id {
+        id
+        name
+      }
+    }
+    logo {
+      filename_disk
+    }
+    source
+    shortDescription
+  }
+}

@@ -13,7 +13,7 @@ class SubsectionHeader extends StatelessWidget {
 
   final String title;
   final String? actionTitle;
-  final VoidCallback? onClick;
+  final void Function()? onClick;
 
   @override
   Widget build(BuildContext context) {

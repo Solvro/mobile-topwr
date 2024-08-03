@@ -1,0 +1,19 @@
+query GetScientificCircleDetails($id: ID!) {
+  Scientific_Circles_by_id(id: $id) {
+    name
+    description
+    cover {
+      filename_disk
+    }
+    links {
+      name
+      link
+    }
+    logo {
+      filename_disk
+    }
+    department {
+      name
+    }
+  }
+}

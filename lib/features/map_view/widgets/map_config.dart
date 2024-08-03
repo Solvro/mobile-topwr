@@ -53,7 +53,7 @@ class MapConfig<T extends GoogleNavigable> extends InheritedWidget {
   }
 }
 
-extension MapConfigX on BuildContext {
+extension MapConfigExt on BuildContext {
   MapConfig<T> config<T extends GoogleNavigable>() {
     return MapConfig.of<T>(this);
   }

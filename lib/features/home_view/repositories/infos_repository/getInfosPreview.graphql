@@ -1,0 +1,10 @@
+query GetInfosPreview {
+  Posts {
+    content
+    title
+    cover {
+      filename_disk
+    }
+    date_created
+  }
+}

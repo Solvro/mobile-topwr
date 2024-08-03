@@ -1,6 +1,6 @@
 DateTime get now => DateTime.now();
 
-extension DateTimeUtilsX on DateTime {
+extension DateTimeUtils on DateTime {
   DateTime findMondayOfTheWeek() {
     final difference = weekday - DateTime.monday;
     return subtract(Duration(days: difference));

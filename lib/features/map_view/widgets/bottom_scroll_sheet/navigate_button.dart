@@ -4,7 +4,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "../../../../config/map_view_config.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
-import "../../../parkings_view/widgets/parkings_icons.icons.dart";
+import "../../../iparking/widgets/i_parking_icons_icons.icons.dart";
 import "../../controllers/controllers_set.dart";
 import "../map_config.dart";
 
@@ -19,7 +19,7 @@ class NavigateButton<T extends GoogleNavigable> extends ConsumerWidget {
       ),
       child: TextButton.icon(
         icon: Icon(
-          ParkingsIcons.map_nav,
+          IParkingIcons.map_nav,
           color: context.colorTheme.orangePomegranade,
           size: 16,
         ),

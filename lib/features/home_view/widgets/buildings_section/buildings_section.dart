@@ -4,13 +4,13 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../api_base/directus_assets_url.dart";
+import "../../../../shared_repositories/buildings_repository/building_model.dart";
+import "../../../../shared_repositories/buildings_repository/map_buildings_repo.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../utils/where_non_null_iterable.dart";
 import "../../../../widgets/my_error_widget.dart";
 import "../../../../widgets/subsection_header.dart";
-import "../../../buildings_view/controllers.dart";
-import "../../../buildings_view/model/building_model.dart";
-import "../../../buildings_view/repository/buildings_repository.dart";
+import "../../../buildings_map/controllers.dart";
 import "../../../navigator/utils/navigation_commands.dart";
 import "../loading_widgets/scrollable_section_loading.dart";
 import "../paddings.dart";
@@ -37,7 +37,7 @@ class _BuildingsList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(buildingsRepositoryProvider);
+    final state = ref.watch(mapBuildingsRepositoryProvider);
     return switch (state) {
       AsyncLoading() => const MediumLeftPadding(
           child: ScrollableSectionLoading(),
@@ -73,7 +73,7 @@ class _DataListBuildingsTiles extends ConsumerWidget {
               unawaited(ref.navigateBuildings());
               ref
                   .watch(activeBuildingControllerProvider.notifier)
-                  .selectItem(mapItem);
+                  .selectBuilding(mapItem);
             },
           ),
         );

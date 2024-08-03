@@ -10,7 +10,7 @@ class GqlOfflineException implements Exception {
   final TtlKey ttlKey;
 }
 
-extension _WatchQueryStreamAdapterX<T> on Ref {
+extension _WatchQueryStreamAdapter<T> on Ref {
   void handleErrors(QueryResult<T> event, TtlKey ttlKey) {
     if (!event.hasException) return;
 
@@ -39,7 +39,7 @@ extension _WatchQueryStreamAdapterX<T> on Ref {
   }
 }
 
-extension TTLWatchQueryAdapterX on AutoDisposeStreamProviderRef {
+extension TTLWatchQueryAdapter on AutoDisposeStreamProviderRef {
   Stream<T?> watchQueryWithCache<T>(
     WatchQueryOptions<T> watchQueryOptions,
     TtlKey ttlKey,

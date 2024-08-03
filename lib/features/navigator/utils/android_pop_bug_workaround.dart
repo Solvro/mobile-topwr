@@ -6,7 +6,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../navigation_controller.dart";
 
-extension AndroidPopBugWorkaroundX on WidgetRef {
+extension AndroidPopBugWorkaround on WidgetRef {
   static const platform = MethodChannel("topwr.app.android.channel");
 
   bool get androidSpecialPopTreatment {

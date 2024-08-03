@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 
-import "../features/parking_chart/utils/range_hour_points.dart";
+import "../features/iparking_chart/utils/range_hour_points.dart";
 import "../theme/hex_color.dart";
 
 abstract class MyAppConfig {
@@ -24,7 +24,7 @@ abstract class DepartmentsConfig {
 
   static const listSeparatorSize = 16.0;
 
-  static const departmentsViewGridDelegate =
+  static const departmentsTabGridDelegate =
       SliverGridDelegateWithMaxCrossAxisExtent(
     maxCrossAxisExtent: 600,
     mainAxisExtent: 92,
@@ -37,7 +37,7 @@ abstract class DateChipConfig {
   static const dateTimeFormat = "dd.MM.yyyy";
 }
 
-abstract class HomeViewConfig {
+abstract class HomeScreenConfig {
   static const paddingSmall = 6.0;
   static const paddingMedium = 16.0;
 
@@ -55,7 +55,7 @@ abstract class BigPreviewCardConfig {
   static const cardWidth = 240.0;
 }
 
-abstract class SearchBoxConfig {
+abstract class SearchWidgetConfig {
   static const height = 36.0;
 }
 
@@ -77,15 +77,15 @@ abstract class WideTileCardConfig {
   ];
 }
 
-abstract class DetailViewsConfig {
+abstract class DetailsScreenConfig {
   static const double spacerHeight = 16;
 }
 
-abstract class DetailViewsHeaderConfig {
+abstract class DetailsScreenHeaderConfig {
   static const double logoSize = 130;
 }
 
-abstract class ScienceClubsViewConfig {
+abstract class ScientificCirclesTabConfig {
   static const listSeparatorSize = 16.0;
   static const microPadding = 4.0;
   static const smallPadding = 16.0;
@@ -109,11 +109,11 @@ abstract class ScienceClubsViewConfig {
   );
 }
 
-abstract class ScienceClubCardConfig {
+abstract class ScientificCircleCardConfig {
   static const trailingPadding = 2.0;
 }
 
-abstract class ParkingsConfig {
+abstract class IParkingConfig {
   static const padding = EdgeInsets.only(
     left: 13,
     top: 10,
