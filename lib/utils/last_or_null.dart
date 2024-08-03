@@ -1,4 +1,4 @@
-extension MoreGettersX<T> on List<T> {
+extension LastOrNullX<T> on List<T> {
   T? get lastOrNull => isNotEmpty ? last : null;
 
   T? get preLastOrNull => length > 1 ? this[length - 2] : null;

@@ -6,15 +6,15 @@ part "ttl_config.g.dart";
 @unmodifiableEnumMap
 enum TtlKey {
   /// We need unique key for every data source for its ttl tracking
-  sciCirclesPreviewRepository,
   academicCalendarRepository,
-  infosPreviewRepository,
-  sciCirclesRepository,
+  newsRepository,
+  scienceClubsRepository,
+  scienceClubDetailsRepository,
   tagsRepository,
-  mapBuildingsRepository,
   departmentsRepository,
+  departmentDetailsRepository,
   aboutUsRepository,
-  departmentsDetailsRepository,
+  buildingsRepository,
   // ... add a new key here if you create a new repository
 }
 
@@ -26,15 +26,15 @@ abstract class TtlStrategy {
 
   static const _ttlDurations = UnmodifiableTtlKeyMap(
     // TODO(simon-the-shark): specific values are yet ment to be accordingly adjusted.
-    infosPreviewRepository: day,
+    newsRepository: day,
     academicCalendarRepository: day,
-    sciCirclesPreviewRepository: thirtyDays,
-    sciCirclesRepository: thirtyDays,
+    scienceClubDetailsRepository: thirtyDays,
+    scienceClubsRepository: thirtyDays,
     tagsRepository: thirtyDays,
-    mapBuildingsRepository: thirtyDays,
+    buildingsRepository: thirtyDays,
     departmentsRepository: thirtyDays,
     aboutUsRepository: thirtyDays,
-    departmentsDetailsRepository: thirtyDays,
+    departmentDetailsRepository: thirtyDays,
   );
 
   static Duration get(TtlKey key) {

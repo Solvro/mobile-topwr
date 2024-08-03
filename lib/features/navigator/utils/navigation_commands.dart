@@ -14,31 +14,31 @@ extension NavigationX on WidgetRef {
   }
 
   Future<void> navigateBuildings() async {
-    await _router.push(const BuildingMapRoute());
+    await _router.push(const BuildingsRoute());
   }
 
   Future<void> navigateParkings() async {
-    await _router.push(const ParkingsMapRoute());
+    await _router.push(const ParkingsRoute());
   }
 
   Future<void> navigateDepartments() async {
-    await _router.push(const DepartmentRoute());
+    await _router.push(const DepartmentsRoute());
   }
 
   Future<void> navigateDepartmentDetail(String id) async {
-    await _router.push(DepartmentDetailsRoute(id: id));
+    await _router.push(DepartmentDetailRoute(id: id));
   }
 
-  Future<void> navigateSciClubs() async {
-    await _router.push(const ScientificCirclesRoute());
+  Future<void> navigateScienceClubs() async {
+    await _router.push(const ScienceClubsRoute());
   }
 
   Future<void> navigateSciClubsDetail(String id) async {
-    await _router.push(StudyCircleDetailsRoute(id: id));
+    await _router.push(ScienceClubDetailRoute(id: id));
   }
 
   Future<void> navigateGuide() async {
-    await _router.push(const GuideRouteTemplate());
+    await _router.push(const GuideRoute());
   }
 
   Future<void> navigateAboutUs() async {

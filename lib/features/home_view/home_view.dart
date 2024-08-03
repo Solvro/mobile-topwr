@@ -3,14 +3,14 @@ import "package:flutter/material.dart";
 
 import "../../config/ui_config.dart";
 import "../../theme/app_theme.dart";
-import "../academic_calendar_greeting/widgets/countdown_widget/exam_session_countdown.dart";
-import "../academic_calendar_greeting/widgets/home_screen_greeting.dart";
+import "../academic_calendar/widgets/countdown_widget/exam_session_countdown.dart";
+import "../academic_calendar/widgets/home_screen_greeting.dart";
 import "widgets/buildings_section/buildings_section.dart";
-import "widgets/departments_section/department_section.dart";
+import "widgets/departments_section/departments_section.dart";
 import "widgets/logo_app_bar.dart";
 import "widgets/news_section.dart";
-import "widgets/parking_section.dart";
-import "widgets/study_circles_section.dart";
+import "widgets/parkings_section.dart";
+import "widgets/science_clubs_section.dart";
 
 @RoutePage()
 class HomeView extends StatelessWidget {
@@ -21,11 +21,11 @@ class HomeView extends StatelessWidget {
     final List<Widget> sections = [
       const Greeting(),
       const ExamSessionCountdown(),
-      const ParkingSection(),
+      const ParkingsSection(),
       const NewsSection(),
       const BuildingsSection(),
-      const StudyCirclesSection(),
-      const DepartmentSection(),
+      const ScienceClubsSection(),
+      const DepartmentsSection(),
     ];
     return Scaffold(
       backgroundColor: context.colorTheme.whiteSoap,
@@ -34,7 +34,7 @@ class HomeView extends StatelessWidget {
         padding: const EdgeInsets.only(bottom: 48),
         itemBuilder: (context, index) => sections[index],
         separatorBuilder: (context, index) =>
-            const SizedBox(height: HomeScreenConfig.paddingMedium),
+            const SizedBox(height: HomeViewConfig.paddingMedium),
         itemCount: sections.length,
       ),
     );

@@ -40,7 +40,7 @@ class BuildingCard extends StatelessWidget {
               child: Text(
                 buildingName,
                 style: context.textTheme.headlineWhite
-                    .copyWith(shadows: HomeScreenConfig.squareCardTextShadow),
+                    .copyWith(shadows: HomeViewConfig.squareCardTextShadow),
               ),
             ),
             TileSplash(onTap: onTap),

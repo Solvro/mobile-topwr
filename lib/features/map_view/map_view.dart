@@ -13,8 +13,8 @@ import "widgets/bottom_scroll_sheet/sheet_layout_scheme.dart";
 import "widgets/map_config.dart";
 import "widgets/map_widget.dart";
 
-class GeneralMapView<T extends GoogleNavigable> extends ConsumerWidget {
-  const GeneralMapView({
+class MapView<T extends GoogleNavigable> extends ConsumerWidget {
+  const MapView({
     required this.mapViewTexts,
     required this.mapControllers,
     required this.markerBuilder,
@@ -47,7 +47,7 @@ class GeneralMapView<T extends GoogleNavigable> extends ConsumerWidget {
         child: Scaffold(
           backgroundColor: context.colorTheme.whiteSoap,
           body: kIsWeb || isBigScreen
-              ? HorizontalWebLayout<T>()
+              ? _HorizontalWebLayout<T>()
               : Stack(
                   children: [
                     MapWidget<T>(),
@@ -60,8 +60,8 @@ class GeneralMapView<T extends GoogleNavigable> extends ConsumerWidget {
   }
 }
 
-class HorizontalWebLayout<T extends GoogleNavigable> extends StatelessWidget {
-  const HorizontalWebLayout({
+class _HorizontalWebLayout<T extends GoogleNavigable> extends StatelessWidget {
+  const _HorizontalWebLayout({
     super.key,
   });
 

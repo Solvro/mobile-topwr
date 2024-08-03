@@ -24,7 +24,7 @@ class ContactSectionLoading extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(height: DetailsScreenConfig.spacerHeight),
+          const SizedBox(height: DetailViewsConfig.spacerHeight),
           Padding(
             padding: const EdgeInsets.only(bottom: 16),
             child: SizedBox(
@@ -37,7 +37,7 @@ class ContactSectionLoading extends StatelessWidget {
                 },
                 separatorBuilder: (BuildContext context, int index) {
                   return const SizedBox(
-                    height: DetailsScreenConfig.spacerHeight,
+                    height: DetailViewsConfig.spacerHeight,
                   );
                 },
                 itemCount: 3,
