@@ -144,6 +144,7 @@ fvm flutter run
 3. Api helper module instructions: https://github.com/Solvro/topwr-mobile/tree/main/lib/api_base
 4. We use `flutter_gen` for generating asset paths: https://pub.dev/packages/flutter_gen 
 5. For unified names read and follow: [taxonomy.md](./taxonomy.md)
+6. For navigation we use `auto_route`, docs here: https://pub.dev/packages/auto_route
 
 # Before you push a commit
 - run the linter
