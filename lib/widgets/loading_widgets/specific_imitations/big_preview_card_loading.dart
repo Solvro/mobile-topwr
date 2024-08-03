@@ -16,7 +16,7 @@ class BigPreviewCardLoading extends StatelessWidget {
           ShimmerLoadingItem(
             child: Container(
               width: BigPreviewCardConfig.cardWidth,
-              height: 135,
+              height: 155,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(8),
@@ -35,13 +35,22 @@ class _LoadingText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const gap = 22.5;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(height: 16),
-        PreviewTextPrototype(width: BigPreviewCardConfig.cardWidth),
-        const SizedBox(height: 16),
-        PreviewTextPrototype(width: BigPreviewCardConfig.cardWidth / 1.5),
+        const SizedBox(height: gap),
+        PreviewTextPrototype(width: BigPreviewCardConfig.cardWidth, height: 25),
+        const SizedBox(height: gap),
+        PreviewTextPrototype(
+          width: BigPreviewCardConfig.cardWidth / 1.3,
+          height: 25,
+        ),
+        const SizedBox(height: gap),
+        PreviewTextPrototype(
+          width: BigPreviewCardConfig.cardWidth / 2.5,
+          height: 25,
+        ),
       ],
     );
   }
