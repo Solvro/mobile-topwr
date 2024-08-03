@@ -36,8 +36,10 @@ abstract class MapWidgetConfig {
   );
   static const mapType = MapType.normal;
 
-  static const mapMarkerOriginWidth = 28;
-  static const activeMapMarkerOriginWidth = 40;
+  static const mapMarkerWidth = 22.0;
+  static const mapMarkerHeight = 34.0;
+  static const activeMapMarkerWidth = 30.4;
+  static const activeMapMarkerHeight = 46.4;
 }
 
 abstract class BuildingSearchConfig {
