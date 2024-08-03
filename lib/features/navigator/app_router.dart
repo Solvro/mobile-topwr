@@ -1,5 +1,4 @@
 import "package:auto_route/auto_route.dart";
-import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
@@ -67,14 +66,9 @@ class AppRouter extends _$AppRouter {
               transitionsBuilder:
                   ref.tabBarTransitionBuilder(DepartmentsRoute.name),
             ),
-            CustomRoute(
+            AutoRoute(
               path: "departments/:id",
               page: DepartmentDetailRoute.page,
-              durationInMilliseconds:
-                  TransitionsConfig.detailDurationInMiliseconds,
-              reverseDurationInMilliseconds:
-                  TransitionsConfig.detailDurationInMiliseconds,
-              transitionsBuilder: TransitionsConfig.detailViewBuilder,
             ),
             CustomRoute(
               path: "sci-clubs",
@@ -85,14 +79,9 @@ class AppRouter extends _$AppRouter {
               transitionsBuilder:
                   ref.tabBarTransitionBuilder(ScienceClubsRoute.name),
             ),
-            CustomRoute(
+            AutoRoute(
               path: "sci-clubs/:id",
               page: ScienceClubDetailRoute.page,
-              durationInMilliseconds:
-                  TransitionsConfig.detailDurationInMiliseconds,
-              reverseDurationInMilliseconds:
-                  TransitionsConfig.detailDurationInMiliseconds,
-              transitionsBuilder: TransitionsConfig.detailViewBuilder,
             ),
             CustomRoute(
               path: "guide",
@@ -102,14 +91,9 @@ class AppRouter extends _$AppRouter {
                   TransitionsConfig.durationInMiliseconds,
               transitionsBuilder: ref.tabBarTransitionBuilder(GuideRoute.name),
             ),
-            CustomRoute(
+            AutoRoute(
               path: "aboutUs",
               page: AboutUsRoute.page,
-              durationInMilliseconds:
-                  TransitionsConfig.detailDurationInMiliseconds,
-              reverseDurationInMilliseconds:
-                  TransitionsConfig.detailDurationInMiliseconds,
-              transitionsBuilder: TransitionsConfig.detailViewBuilder,
             ),
           ],
         ),
