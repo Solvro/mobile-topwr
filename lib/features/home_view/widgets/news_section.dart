@@ -34,13 +34,19 @@ class _NewsList extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(newsRepositoryProvider);
+
     return switch (state) {
       AsyncLoading() => const Padding(
           padding: EdgeInsets.only(
             left: HomeViewConfig.paddingMedium,
-            top: HomeViewConfig.paddingMedium,
+            top: HomeViewConfig.paddingMedium *
+                2, // twice the padding of normal state, just to look cool
           ),
-          child: BigScrollableSectionLoading(),
+          child: SizedBox(
+            height:
+                BigPreviewCardConfig.cardHeight - HomeViewConfig.paddingMedium,
+            child: BigScrollableSectionLoading(),
+          ),
         ),
       AsyncError(:final error) => MyErrorWidget(error),
       AsyncValue(:final value) => Column(
