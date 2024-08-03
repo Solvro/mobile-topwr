@@ -2,9 +2,7 @@ import "dart:async";
 
 import "package:flutter/material.dart";
 import "package:google_maps_flutter/google_maps_flutter.dart";
-
 import "package:google_maps_flutter_android/google_maps_flutter_android.dart";
-
 import "package:google_maps_flutter_platform_interface/google_maps_flutter_platform_interface.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
@@ -47,7 +45,7 @@ mixin MapController<T extends GoogleNavigable>
   }
 
   void onMarkerTap(T item) {
-    ref.read(mapControllers.activeMarker.notifier).toggleBuilding(item);
+    ref.read(mapControllers.activeMarker.notifier).toggleItem(item);
     ref.read(bottomSheetControllerProvider).resetSafe();
     if (ref.read(mapControllers.activeMarker) == item) {
       zoomOnMarker(item);

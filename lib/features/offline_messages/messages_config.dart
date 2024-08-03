@@ -3,18 +3,18 @@ import "package:flutter/material.dart";
 import "../../config/ttl_config.dart";
 import "../../utils/context_extensions.dart";
 
-extension GqlOfflineMessage on BuildContext {
+extension GqlOfflineMessageX on BuildContext {
   UnmodifiableTtlKeyMap<String> _offlineMessagesLocalized() =>
       UnmodifiableTtlKeyMap(
-        infosPreviewRepository: localize.offline_news,
+        newsRepository: localize.offline_news,
         academicCalendarRepository: localize.offline_academic_calendar,
-        sciCirclesPreviewRepository: localize.offline_sci_clubs,
-        sciCirclesRepository: localize.offline_sci_clubs,
+        scienceClubDetailsRepository: localize.offline_sci_clubs,
+        scienceClubsRepository: localize.offline_sci_clubs,
         tagsRepository: localize.offline_sci_clubs,
-        mapBuildingsRepository: localize.offline_buildings,
+        buildingsRepository: localize.offline_buildings,
         departmentsRepository: localize.offline_departments,
         aboutUsRepository: localize.offline_about_us,
-        departmentsDetailsRepository: localize.offline_department_details,
+        departmentDetailsRepository: localize.offline_department_details,
       );
 
   String gqlOfflineMessageLocalized(TtlKey key) {

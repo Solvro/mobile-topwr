@@ -9,6 +9,7 @@ import "general_offline_message.dart";
 class OfflineGraphQLMessage extends ConsumerWidget {
   const OfflineGraphQLMessage(this.exceptionSourceKey, {super.key});
   final TtlKey exceptionSourceKey;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return OfflineMessage(

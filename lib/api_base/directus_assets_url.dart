@@ -1,12 +1,12 @@
 import "../config/api_base_config.dart";
 
-extension DirectusAssetsUrl on String {
+extension DirectusAssetsUrlX on String {
   String get directusUrl {
     return "${ApiBaseEnv.assetsUrl}/$this";
   }
 }
 
-extension DirectusAssetsUrlNullable on String? {
+extension DirectusAssetsUrlNullableX on String? {
   String get directusUrl {
     return this?.directusUrl ?? "";
   }

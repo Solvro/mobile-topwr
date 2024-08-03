@@ -2,30 +2,26 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../api_base/directus_assets_url.dart";
-import "../../../config/nav_bar_config.dart";
 import "../../../config/ui_config.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../utils/where_non_null_iterable.dart";
 import "../../../widgets/big_preview_card.dart";
 import "../../../widgets/my_error_widget.dart";
 import "../../../widgets/subsection_header.dart";
-import "../../navigator/navigator/nested_navigator.dart";
-import "../../navigator/navigator/tab_bar_navigator.dart";
-import "../repositories/infos_repository/infos_preview_repository.dart";
+import "../../navigator/utils/navigation_commands.dart";
+import "../repositories/news/news_repository.dart";
 import "loading_widgets/big_scrollable_section_loading.dart";
 import "paddings.dart";
 
 class NewsSection extends ConsumerWidget {
   const NewsSection({super.key});
-  static Future<void> goToInfoTab(WidgetRef ref) async =>
-      ref.read(navigatorProvider).changeTabBar(NavBarEnum.info);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) => Column(
         children: [
           SubsectionHeader(
             title: context.localize.whats_up,
-            onClick: () async => goToInfoTab(ref),
+            onClick: ref.navigateGuide,
           ),
           const _NewsList(),
         ],
@@ -37,14 +33,20 @@ class _NewsList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(infosPreviewRepositoryProvider);
+    final state = ref.watch(newsRepositoryProvider);
+
     return switch (state) {
       AsyncLoading() => const Padding(
           padding: EdgeInsets.only(
-            left: HomeScreenConfig.paddingMedium,
-            top: HomeScreenConfig.paddingMedium,
+            left: HomeViewConfig.paddingMedium,
+            top: HomeViewConfig.paddingMedium *
+                2, // twice the padding of normal state, just to look cool
           ),
-          child: BigScrollableSectionLoading(),
+          child: SizedBox(
+            height:
+                BigPreviewCardConfig.cardHeight - HomeViewConfig.paddingMedium,
+            child: BigScrollableSectionLoading(),
+          ),
         ),
       AsyncError(:final error) => MyErrorWidget(error),
       AsyncValue(:final value) => Column(
@@ -52,9 +54,9 @@ class _NewsList extends ConsumerWidget {
           children: [
             Padding(
               padding: const EdgeInsets.only(
-                left: HomeScreenConfig.paddingSmall,
-                right: HomeScreenConfig.paddingSmall,
-                top: HomeScreenConfig.paddingMedium,
+                left: HomeViewConfig.paddingSmall,
+                right: HomeViewConfig.paddingSmall,
+                top: HomeViewConfig.paddingMedium,
               ),
               child: SizedBox(
                 height: BigPreviewCardConfig.cardHeight,
@@ -70,7 +72,7 @@ class _NewsList extends ConsumerWidget {
 class _NewsDataList extends StatelessWidget {
   const _NewsDataList(this.value);
 
-  final List<InfosPreview> value;
+  final List<NewsPost> value;
 
   @override
   Widget build(BuildContext context) {
