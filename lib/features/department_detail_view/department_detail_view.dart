@@ -10,13 +10,13 @@ import "../../utils/determine_contact_icon.dart";
 import "../../utils/where_non_null_iterable.dart";
 import "../../widgets/detail_views/contact_section.dart";
 import "../../widgets/detail_views/detail_view_app_bar.dart";
-import "../../widgets/detail_views/sliver_header_section.dart";
 import "../../widgets/my_error_widget.dart";
 import "repository/department_details_repository.dart";
 import "utils/address_formatter.dart";
 import "utils/department_details_gradient.dart";
 import "widgets/department_detail_view_loading.dart";
 import "widgets/department_science_clubs_section.dart";
+import "widgets/department_sliver_header_section.dart";
 import "widgets/fields_of_study_section.dart";
 
 @RoutePage()
@@ -35,21 +35,23 @@ class DepartmentDetailView extends ConsumerWidget {
         AsyncValue(:final value) => CustomScrollView(
             slivers: [
               SliverPersistentHeader(
-                delegate: SliverHeaderSection(
+                delegate: DepartmentSliverHeaderSection(
                   activeGradient: value?.Departments_by_id?.gradient,
                   logoImageUrl: value
                       ?.Departments_by_id?.logo?.filename_disk?.directusUrl,
-                  backgroundImageUrl: null,
                 ),
               ),
               SliverList(
                 delegate: SliverChildListDelegate([
                   const SizedBox(height: 8),
-                  Text(
-                    value?.Departments_by_id?.name ?? "",
-                    style: context.textTheme.headline,
-                    textAlign: TextAlign.center,
-                    maxLines: 2,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    child: Text(
+                      value?.Departments_by_id?.name ?? "",
+                      style: context.textTheme.headline,
+                      textAlign: TextAlign.center,
+                      maxLines: 2,
+                    ),
                   ),
                   const SizedBox(height: 12),
                   Text(
@@ -83,6 +85,7 @@ class DepartmentDetailView extends ConsumerWidget {
                     value?.Scientific_Circles.whereNonNull.toList() ??
                         List.empty(),
                   ),
+                  const SizedBox(height: DetailViewsConfig.spacerHeight * 2),
                 ]),
               ),
             ],
