@@ -1,3 +1,4 @@
+import "package:collection/collection.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../../../api_base/watch_query_adapter.dart";
@@ -7,7 +8,6 @@ import "getScienceClubs.graphql.dart";
 part "science_clubs_repository.g.dart";
 
 typedef ScienceClub = Query$GetScienceClubs$Scientific_Circles;
-// just alias for shorter type name
 
 @riverpod
 Stream<List<ScienceClub?>?> scienceClubsRepository(
@@ -17,20 +17,37 @@ Stream<List<ScienceClub?>?> scienceClubsRepository(
     WatchOptions$Query$GetScienceClubs(eagerlyFetchResults: true),
     TtlKey.scienceClubsRepository,
   );
-  yield* stream.map(
-    (event) => event?.Scientific_Circles.sortBySourceTypes().toList(),
-  );
+  yield* stream.map((event) => event?.Scientific_Circles.sortBySourceTypes());
+}
+
+extension IsSolvroX on ScienceClub {
+  bool get isSolvro => name.contains("Solvro");
 }
 
 extension SortBySourceTypeX on Iterable<ScienceClub> {
-  Iterable<ScienceClub> _filter(String source) {
-    return where((element) => element.source == source);
+  Iterable<ScienceClub> _filterByType(
+    String source, {
+    bool includeSolvro = false,
+  }) {
+    return where(
+      (element) =>
+          element.source == source && (includeSolvro || !element.isSolvro),
+    );
   }
 
-  Iterable<ScienceClub> sortBySourceTypes() {
-    final p0 = _filter("manual_entry");
-    final p1 = _filter("aktywni_website");
-    final p2 = _filter("student_department");
-    return p0.followedBy(p1).followedBy(p2).toList();
+  List<ScienceClub> sortBySourceTypes() {
+    final solvro = firstWhereOrNull((element) => element.isSolvro);
+    final manualSource = _filterByType("manual_entry").toList()..shuffle();
+    final activeWebSource = _filterByType("aktywni_website").toList()
+      ..shuffle();
+    final studentDepartmentSource = _filterByType("student_department").toList()
+      ..shuffle();
+
+    return [
+      if (solvro != null) solvro,
+      ...manualSource,
+      ...activeWebSource,
+      ...studentDepartmentSource,
+    ];
   }
 }
