@@ -7,6 +7,7 @@ import "../../../utils/context_extensions.dart";
 import "../../../utils/where_non_null_iterable.dart";
 import "../../../widgets/my_error_widget.dart";
 import "../../navigator/utils/navigation_commands.dart";
+import "../controllers/science_clubs_view_controller.dart";
 import "../repositories/science_clubs/science_clubs_repository.dart";
 import "science_club_card.dart";
 import "science_clubs_view_loading.dart";
@@ -16,7 +17,7 @@ class ScienceClubsList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(scienceClubsRepositoryProvider);
+    final state = ref.watch(scienceClubsListProvider);
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.symmetric(
