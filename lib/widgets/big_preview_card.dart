@@ -44,7 +44,7 @@ class BigPreviewCard extends StatelessWidget {
                 children: [
                   SizedBox(
                     width: double.maxFinite,
-                    child: MyCachedImage(photoUrl),
+                    child: Center(child: MyCachedImage(photoUrl)),
                   ),
                   if (date != null)
                     DateChip(date: date!)

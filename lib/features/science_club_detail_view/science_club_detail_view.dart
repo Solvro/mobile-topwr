@@ -56,11 +56,14 @@ class _SciClubDetailDataView extends ConsumerWidget {
             SliverList(
               delegate: SliverChildListDelegate([
                 const SizedBox(height: 8),
-                Text(
-                  value?.name ?? "",
-                  style: context.textTheme.headline,
-                  textAlign: TextAlign.center,
-                  maxLines: 2,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: Text(
+                    value?.name ?? "",
+                    style: context.textTheme.headline,
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                  ),
                 ),
                 const SizedBox(height: 12),
                 Text(

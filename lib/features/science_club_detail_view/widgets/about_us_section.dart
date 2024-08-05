@@ -1,7 +1,10 @@
 import "package:flutter/material.dart";
 import "package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart";
+
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
+import "../../../utils/launch_url_util.dart";
+import "../../about_us_view/utils/html_util_extensions.dart";
 
 class AboutUsSection extends StatelessWidget {
   const AboutUsSection({super.key, required this.text});
@@ -13,7 +16,7 @@ class AboutUsSection extends StatelessWidget {
     return text.isEmpty
         ? const SizedBox.shrink()
         : Padding(
-            padding: const EdgeInsets.all(24),
+            padding: const EdgeInsets.all(24).copyWith(top: 8),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -24,7 +27,9 @@ class AboutUsSection extends StatelessWidget {
                 const SizedBox(height: 16),
                 HtmlWidget(
                   text,
-                  textStyle: context.textTheme.body,
+                  textStyle: context.aboutUsTheme.body,
+                  customStylesBuilder: context.customStylesBuilder,
+                  onTapUrl: LaunchUrlUtil.launch,
                 ),
               ],
             ),

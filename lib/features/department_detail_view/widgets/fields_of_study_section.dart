@@ -1,4 +1,5 @@
 import "package:flutter/cupertino.dart";
+import "package:separate/separate.dart";
 
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
@@ -12,7 +13,7 @@ class FieldsOfStudySection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(24),
+      padding: const EdgeInsets.only(left: 24, right: 24, top: 24, bottom: 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -21,13 +22,13 @@ class FieldsOfStudySection extends StatelessWidget {
             style: context.textTheme.headline,
           ),
           const SizedBox(height: 16),
-          for (final item in fieldsOfStudy)
-            Padding(
-              padding: const EdgeInsets.only(bottom: 12),
-              child: WideTileCard(
-                title: item,
+          ...fieldsOfStudy
+              .map<Widget>(
+                (item) => WideTileCard(title: item),
+              )
+              .separate(
+                (i, e0, e1) => const SizedBox(height: 12),
               ),
-            ),
         ],
       ),
     );
