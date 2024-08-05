@@ -26,8 +26,7 @@ class DescriptionSection extends StatelessWidget {
           child: HtmlWidget(
             text,
             textStyle: context.aboutUsTheme.body,
-            customStylesBuilder: (element) =>
-                context.customStylesBuilder(element),
+            customStylesBuilder: context.customStylesBuilder,
             onTapUrl: LaunchUrlUtil.launch,
           ),
         ),
