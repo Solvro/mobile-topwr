@@ -1,3 +1,4 @@
+import "package:flutter_gen/gen_l10n/app_localizations_pl.dart";
 import "../../config/map_view_config.dart";
 
 extension ContainsCaseUnsensitive on String? {
@@ -14,5 +15,15 @@ extension ContainsCaseUnsensitive on String? {
             ?.replaceAll(BuildingSearchConfig.buildingCodeSeperator, "")
             .containsUnsesitive(buildingCode) ??
         false;
+  }
+}
+
+extension ChangeNullAdress on String? {
+  String? changeNull() {
+    if (this == null) {
+      return AppLocalizationsPl().no_address;
+    } else {
+      return this;
+    }
   }
 }

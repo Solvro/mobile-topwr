@@ -70,7 +70,8 @@
   "offline_department_details":"wydziału",
   "guide": "Przewodnik",
   "deans_office"  : "Dziekanat",
-  "fields_of_study"  : "Kierunki"
+  "fields_of_study"  : "Kierunki",
+  "no_address": "Brak adresu"
 
 
 }
