@@ -16,10 +16,9 @@ Stream<GuideDetails?> guideDetailsRepository(
   final stream = ref.watchQueryWithCache(
     _GetGuideDetails(
       eagerlyFetchResults: true,
-      variables : _Vars(id: id),
+      variables: _Vars(id: id),
     ),
     TtlKey.guideDetailsRepository,
   );
   yield* stream.map((event) => event?.FAQ_Types_by_id);
-
 }
