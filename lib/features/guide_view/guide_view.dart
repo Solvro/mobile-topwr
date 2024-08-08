@@ -22,8 +22,7 @@ class GuideView extends ConsumerWidget {
         child: Column(
           children: [
             GestureDetector(
-             // onTap: ref.navigateAboutUs,
-              onTap: ref.navigateGuideDetail,
+               onTap: ref.navigateAboutUs,
               child: Container(
                 padding: const EdgeInsets.all(10),
                 width: double.infinity,
@@ -34,6 +33,25 @@ class GuideView extends ConsumerWidget {
                 ),
                 child: Text(
                   context.localize.about_us,
+                  style: TextStyle(
+                    fontSize: 24,
+                    color: context.colorTheme.orangePomegranade,
+                  ),
+                ),
+              ),
+            ),
+            GestureDetector(
+              onTap: ref.navigateGuideDetail,
+              child: Container(
+                padding: const EdgeInsets.all(10),
+                width: double.infinity,
+                height: 50,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: context.colorTheme.greyLight,
+                ),
+                child: Text(
+                  "Przykładowy wpis",
                   style: TextStyle(
                     fontSize: 24,
                     color: context.colorTheme.orangePomegranade,

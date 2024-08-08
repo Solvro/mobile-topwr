@@ -44,4 +44,9 @@ extension NavigationX on WidgetRef {
   Future<void> navigateAboutUs() async {
     await _router.push(const AboutUsRoute());
   }
+
+  // TODO(mikolaj-jalocha): add method parameter to navigate to guide detail.
+  Future<void> navigateGuideDetail() async {
+    await _router.push(GuideDetailRoute(id: "1"));
+  }
 }
