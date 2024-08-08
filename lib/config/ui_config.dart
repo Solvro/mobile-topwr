@@ -136,3 +136,10 @@ abstract class AboutUsConfig {
   static const iconPadding = 10.0;
   static const photoSize = 92.0;
 }
+
+abstract class GuideDetailViewConfig {
+  static const paddingSmall = 4.0;
+  static const paddingMedium = 16.0;
+  static const paddingLarge = 32.0;
+  static const borderRadius = 8.0;
+}

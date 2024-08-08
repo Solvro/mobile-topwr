@@ -1,3 +1,5 @@
+import "dart:async";
+
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
@@ -33,6 +35,27 @@ class GuideView extends ConsumerWidget {
                 ),
                 child: Text(
                   context.localize.about_us,
+                  style: TextStyle(
+                    fontSize: 24,
+                    color: context.colorTheme.orangePomegranade,
+                  ),
+                ),
+              ),
+            ),
+            GestureDetector(
+              onTap: () async {
+                unawaited(ref.navigateGuideDetail("1"));
+              },
+              child: Container(
+                padding: const EdgeInsets.all(10),
+                width: double.infinity,
+                height: 50,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: context.colorTheme.greyLight,
+                ),
+                child: Text(
+                  "Przykładowy wpis",
                   style: TextStyle(
                     fontSize: 24,
                     color: context.colorTheme.orangePomegranade,

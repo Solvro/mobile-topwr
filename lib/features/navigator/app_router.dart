@@ -8,6 +8,7 @@ import "../about_us_view/about_us_view.dart";
 import "../buildings_view/buildings_view.dart";
 import "../department_detail_view/department_detail_view.dart";
 import "../departments_view/departments_view.dart";
+import "../guide_detail_view/guide_detail_view.dart";
 import "../guide_view/guide_view.dart";
 import "../home_view/home_view.dart";
 import "../parkings_view/parkings_view.dart";
@@ -94,6 +95,10 @@ class AppRouter extends _$AppRouter {
             AutoRoute(
               path: "aboutUs",
               page: AboutUsRoute.page,
+            ),
+            AutoRoute(
+              path: "guide/:id",
+              page: GuideDetailRoute.page,
             ),
           ],
         ),
