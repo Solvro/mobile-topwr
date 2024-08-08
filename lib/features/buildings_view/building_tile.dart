@@ -7,6 +7,7 @@ import "../../utils/context_extensions.dart";
 import "../../widgets/wide_tile_card.dart";
 import "controllers.dart";
 import "model/building_model.dart";
+import "utils.dart";
 
 class BuildingTile extends ConsumerWidget {
   const BuildingTile(
@@ -23,7 +24,7 @@ class BuildingTile extends ConsumerWidget {
       activeGradient: context.colorTheme.toPwrGradient,
       photoUrl: building.cover?.filename_disk.directusUrl,
       title: "${context.localize.building_prefix} ${building.name}",
-      subtitle: building.addresFormatted,
+      subtitle: building.addresFormatted.changeNull(),
       isActive: isActive,
       onTap: () {
         ref.read(buildingsMapControllerProvider.notifier).onMarkerTap(building);

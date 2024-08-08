@@ -71,7 +71,8 @@
   "offline_guide_details":"wpisu z przewodnika",
   "guide": "Przewodnik",
   "deans_office"  : "Dziekanat",
-  "fields_of_study"  : "Kierunki"
+  "fields_of_study"  : "Kierunki",
+  "no_address": "Brak adresu"
 
 
 }
