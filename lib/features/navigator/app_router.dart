@@ -97,7 +97,7 @@ class AppRouter extends _$AppRouter {
               page: AboutUsRoute.page,
             ),
             AutoRoute(
-              path: "guide-detail/:id",
+              path: "guide/:id",
               page: GuideDetailRoute.page,
             ),
           ],
