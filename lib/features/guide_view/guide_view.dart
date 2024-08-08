@@ -22,7 +22,7 @@ class GuideView extends ConsumerWidget {
         child: Column(
           children: [
             GestureDetector(
-               onTap: ref.navigateAboutUs,
+              onTap: ref.navigateAboutUs,
               child: Container(
                 padding: const EdgeInsets.all(10),
                 width: double.infinity,

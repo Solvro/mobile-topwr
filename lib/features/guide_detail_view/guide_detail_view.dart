@@ -8,9 +8,12 @@ import "../../config/ui_config.dart";
 import "../../theme/app_theme.dart";
 import "../../utils/context_extensions.dart";
 import "../../widgets/detail_views/detail_view_app_bar.dart";
+import "../../widgets/loading_widgets/shimmer_loading.dart";
+import "../../widgets/loading_widgets/simple_previews/preview_text_prototype.dart";
 import "../../widgets/my_cached_image.dart";
 import "../../widgets/my_error_widget.dart";
 import "repository/guide_detail_view_repository.dart";
+import "widgets/my_expansion_tile.dart";
 
 @RoutePage()
 class GuideDetailView extends StatelessWidget {
@@ -39,7 +42,7 @@ class _GuideDetailDataView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(guideDetailsRepositoryProvider(id));
     return switch (state) {
-      AsyncLoading() => const Placeholder(),
+      AsyncLoading() => const _GuideDetailLoading(),
       AsyncError(:final error) => MyErrorWidget(error),
       AsyncValue(:final value) => ListView(
           children: [
@@ -61,7 +64,7 @@ class _GuideDetailDataView extends ConsumerWidget {
               itemCount: value?.questions?.length ?? 0,
               itemBuilder: (context, index) {
                 final question = value?.questions?[index]?.FAQ_id;
-                return _MyExpansionTile(
+                return MyExpansionTile(
                   title: question?.question ?? "",
                   description: question?.answer ?? "",
                 );
@@ -76,44 +79,54 @@ class _GuideDetailDataView extends ConsumerWidget {
   }
 }
 
-class _MyExpansionTile extends StatelessWidget {
-  final String title;
-  final String description;
-
-  const _MyExpansionTile({
-    required this.title,
-    required this.description,
-  });
+class _GuideDetailLoading extends StatelessWidget {
+  const _GuideDetailLoading();
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: GuideDetailViewConfig.paddingMedium,
-      ),
-      child: ExpansionTile(
-        title: Text(title, style: context.textTheme.title),
-        backgroundColor: context.colorTheme.greyLight,
-        collapsedBackgroundColor: context.colorTheme.greyLight,
-        shape: RoundedRectangleBorder(
-          borderRadius:
-              BorderRadius.circular(GuideDetailViewConfig.borderRadius),
-        ),
-        collapsedShape: RoundedRectangleBorder(
-          borderRadius:
-              BorderRadius.circular(GuideDetailViewConfig.borderRadius),
-        ),
-        iconColor: context.colorTheme.orangePomegranade,
-        collapsedIconColor: context.colorTheme.orangePomegranade,
+    return Shimmer(
+      linearGradient: shimmerGradient,
+      child: ListView(
+        physics: const NeverScrollableScrollPhysics(),
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: GuideDetailViewConfig.paddingSmall,
+          ShimmerLoadingItem(
+            child: Container(
+              color: Colors.white,
+              width: double.infinity,
+              height: 300,
             ),
-            child: ListTile(
-              title: Text(
-                description,
-                style: context.textTheme.body.copyWith(fontSize: 14),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(GuideDetailViewConfig.paddingMedium),
+            child: ListView.separated(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (context, _) {
+                return ShimmerLoadingItem(
+                  child: PreviewTextPrototype(
+                    width: double.infinity,
+                  ),
+                );
+              },
+              separatorBuilder: (context, _) => const SizedBox(
+                height: 8,
+              ),
+              itemCount: 5,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(GuideDetailViewConfig.paddingMedium),
+            child: ShimmerLoadingItem(
+              child: ListView.separated(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (context, _) {
+                  return const MyExpansionTileLoading();
+                },
+                separatorBuilder: (context, _) => const SizedBox(
+                  height: 8,
+                ),
+                itemCount: 3,
               ),
             ),
           ),
