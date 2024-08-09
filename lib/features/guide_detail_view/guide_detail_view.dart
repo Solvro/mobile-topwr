@@ -12,6 +12,7 @@ import "../../widgets/loading_widgets/shimmer_loading.dart";
 import "../../widgets/loading_widgets/simple_previews/preview_text_prototype.dart";
 import "../../widgets/my_cached_image.dart";
 import "../../widgets/my_error_widget.dart";
+import "../../widgets/my_html_widget.dart";
 import "repository/guide_detail_view_repository.dart";
 import "widgets/my_expansion_tile.dart";
 
@@ -44,37 +45,46 @@ class _GuideDetailDataView extends ConsumerWidget {
     return switch (state) {
       AsyncLoading() => const _GuideDetailLoading(),
       AsyncError(:final error) => MyErrorWidget(error),
-      AsyncValue(:final value) => ListView(
-          children: [
-            MyCachedImage(value?.cover?.filename_disk?.directusUrl),
-            Padding(
-              padding:
-                  const EdgeInsets.all(GuideDetailViewConfig.paddingMedium),
-              child: HtmlWidget(
-                value?.description ?? "",
-                textStyle: context.textTheme.body.copyWith(fontSize: 16),
+      AsyncValue(:final value) => CustomScrollView(
+          slivers: [
+            SliverAppBar(
+              expandedHeight: 254,
+              flexibleSpace: SizedBox(
+                height: 254,
+                child: MyCachedImage(
+                  value?.cover?.filename_disk?.directusUrl,
+                ),
+              ),
+              automaticallyImplyLeading: false,
+            ),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding:
+                    const EdgeInsets.all(GuideDetailViewConfig.paddingMedium),
+                child: HtmlWidget(
+                  value?.description ?? "",
+                  textStyle: context.textTheme.body.copyWith(fontSize: 16),
+                ),
               ),
             ),
-            ListView.separated(
-              shrinkWrap: true,
-              physics: const ClampingScrollPhysics(),
+            SliverPadding(
               padding: const EdgeInsets.only(
                 bottom: GuideDetailViewConfig.paddingLarge,
               ),
-              itemCount: value?.questions?.length ?? 0,
-              itemBuilder: (context, index) {
-                final question = value?.questions?[index]?.FAQ_id;
-                return MyExpansionTile(
-                  title: question?.question ?? "",
-                  description: question?.answer ?? "",
-                );
-              },
-              separatorBuilder: (context, index) => const SizedBox(
-                height: 8,
+              sliver: SliverList.separated(
+                itemCount: value?.questions?.length ?? 0,
+                itemBuilder: (context, index) {
+                  final question = value?.questions?[index]?.FAQ_id;
+                  return MyExpansionTile(
+                    title: question?.question ?? "",
+                    description: question?.answer ?? "",
+                  );
+                },
+                separatorBuilder: (context, index) => const SizedBox(height: 8),
               ),
             ),
           ],
-        )
+        ),
     };
   }
 }
