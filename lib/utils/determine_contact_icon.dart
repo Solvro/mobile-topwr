@@ -29,6 +29,7 @@ extension IconDeterminerX on String? {
             ContactIconsConfig.defaultIcon
         : ContactIconsConfig.defaultIcon;
   }
+
   int determineIconOrder() {
     return this != null
         ? ContactIconsConfig.iconsOrder.entries
