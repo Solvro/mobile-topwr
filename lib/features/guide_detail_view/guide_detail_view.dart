@@ -57,12 +57,8 @@ class _GuideDetailDataView extends ConsumerWidget {
             ),
             SliverToBoxAdapter(
               child: Padding(
-                padding:
-                    const EdgeInsets.all(GuideDetailViewConfig.paddingMedium),
-                child: MyHtmlWidget(
-                  value?.description ?? "",
-                  textStyle: context.textTheme.body.copyWith(fontSize: 16),
-                ),
+                padding: const EdgeInsets.all(24),
+                child: MyHtmlWidget(value?.description ?? ""),
               ),
             ),
             SliverPadding(
