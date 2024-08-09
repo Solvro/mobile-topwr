@@ -24,7 +24,7 @@ class NewsSection extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) => Column(
         children: [
           SubsectionHeader(
-            title: context.localize.whats_up,
+            title: context.localize.guide,
             onClick: ref.navigateGuide,
           ),
           const _NewsList(),
