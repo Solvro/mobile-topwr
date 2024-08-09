@@ -8,11 +8,11 @@ abstract class ContactIconsConfig {
     "mailto:": Assets.contactIcons.mail,
     "youtu": Assets.contactIcons.yt,
     "github": Assets.contactIcons.github,
-    "maps": Assets.contactIcons.compass,
+    "topwr:buildings": Assets.contactIcons.compass,
     "tel": Assets.contactIcons.phone,
   };
   static final iconsOrder = {
-    "maps": 1,
+    "topwr:buildings": 1,
     "tel": 3,
     "mailto:": 4,
     "facebook": 5,

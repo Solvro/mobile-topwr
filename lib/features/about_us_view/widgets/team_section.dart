@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:flutter_svg/svg.dart";
 
 import "../../../config/ui_config.dart";
@@ -64,18 +65,18 @@ class _TeamMemberCard extends StatelessWidget {
   }
 }
 
-class _Icon extends StatelessWidget {
+class _Icon extends ConsumerWidget {
   const _Icon({required this.icon, required this.launchUrl});
   final String launchUrl;
   final String icon;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
       padding: const EdgeInsets.only(right: 11),
       child: GestureDetector(
         onTap: () async {
-          await LaunchUrlUtil.launch(launchUrl);
+          await ref.launch(launchUrl);
         },
         child: SizedBox.square(dimension: 22, child: SvgPicture.asset(icon)),
       ),

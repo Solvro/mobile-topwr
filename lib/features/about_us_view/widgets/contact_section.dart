@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:flutter_svg/svg.dart";
 
 import "../../../config/ui_config.dart";
@@ -27,17 +28,17 @@ class ContactSection extends StatelessWidget {
   }
 }
 
-class _ContactIcon extends StatelessWidget {
+class _ContactIcon extends ConsumerWidget {
   const _ContactIcon({required this.url, required this.icon});
 
   final String url;
   final String icon;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
       onTap: () async {
-        await LaunchUrlUtil.launch(url);
+        await ref.launch(url);
       },
       child: DecoratedBox(
         decoration: BoxDecoration(

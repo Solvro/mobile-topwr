@@ -28,7 +28,7 @@ mixin ActiveMarkerController<T extends GoogleNavigable>
 
   Future<void> launchLink() async {
     if (state != null) {
-      return GoogleMapsLinkUtils.navigateTo(state!.location);
+      return GoogleMapsLinkUtils.navigateTo(state!.location, null);
     }
   }
 }

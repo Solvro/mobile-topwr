@@ -69,12 +69,7 @@ class _DataListBuildingsTiles extends ConsumerWidget {
           child: BuildingCard(
             buildingName: mapItem.name,
             imageUrl: mapItem.cover?.filename_disk?.directusUrl,
-            onTap: () async {
-              unawaited(ref.navigateBuildings());
-              ref
-                  .watch(activeBuildingControllerProvider.notifier)
-                  .selectItem(mapItem);
-            },
+            onTap: () async => ref.navigateBuilding(mapItem),
           ),
         );
       },

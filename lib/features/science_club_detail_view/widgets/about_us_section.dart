@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart";
 
 import "../../../theme/app_theme.dart";
@@ -6,13 +7,13 @@ import "../../../utils/context_extensions.dart";
 import "../../../utils/launch_url_util.dart";
 import "../../about_us_view/utils/html_util_extensions.dart";
 
-class AboutUsSection extends StatelessWidget {
+class AboutUsSection extends ConsumerWidget {
   const AboutUsSection({super.key, required this.text});
 
   final String text;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return text.isEmpty
         ? const SizedBox.shrink()
         : Padding(
@@ -29,7 +30,7 @@ class AboutUsSection extends StatelessWidget {
                   text,
                   textStyle: context.aboutUsTheme.body,
                   customStylesBuilder: context.customStylesBuilder,
-                  onTapUrl: LaunchUrlUtil.launch,
+                  onTapUrl: ref.launch,
                 ),
               ],
             ),

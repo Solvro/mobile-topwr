@@ -1,5 +1,6 @@
 import "dart:io";
 
+import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:google_maps_flutter/google_maps_flutter.dart";
 import "package:logger/logger.dart";
 
@@ -8,11 +9,12 @@ import "../../../utils/launch_url_util.dart";
 class GoogleMapsLinkUtils {
   static Future<void> navigateTo(
     LatLng latLng,
+    WidgetRef? ref,
   ) async {
     final link = _NavigationLaunchLink(latLng);
-    final launchedFirst = await LaunchUrlUtil.launch(link.adaptiveLink);
+    final launchedFirst = await ref.launch(link.adaptiveLink);
     if (!launchedFirst) {
-      final launchedBackup = await LaunchUrlUtil.launch(link.backupLink);
+      final launchedBackup = await ref.launch(link.backupLink);
       if (!launchedBackup) {
         Logger().e("Could not launch any directions");
       }
