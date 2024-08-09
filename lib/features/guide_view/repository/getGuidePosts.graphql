@@ -1,0 +1,10 @@
+query GetGuidePosts{
+    FAQ_Types{
+        id,
+        name,
+        cover {
+            filename_disk
+        },
+        short_description
+    }
+}

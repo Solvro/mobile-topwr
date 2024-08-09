@@ -7,7 +7,6 @@ part "ttl_config.g.dart";
 enum TtlKey {
   /// We need unique key for every data source for its ttl tracking
   academicCalendarRepository,
-  newsRepository,
   scienceClubsRepository,
   scienceClubDetailsRepository,
   tagsRepository,
@@ -15,7 +14,8 @@ enum TtlKey {
   departmentDetailsRepository,
   aboutUsRepository,
   buildingsRepository,
-  guideDetailsRepository
+  guideDetailsRepository,
+  guideViewRepository
   // ... add a new key here if you create a new repository
 }
 
@@ -27,7 +27,6 @@ abstract class TtlStrategy {
 
   static const _ttlDurations = UnmodifiableTtlKeyMap(
     // TODO(simon-the-shark): specific values are yet ment to be accordingly adjusted.
-    newsRepository: day,
     academicCalendarRepository: day,
     scienceClubDetailsRepository: thirtyDays,
     scienceClubsRepository: thirtyDays,
@@ -37,6 +36,7 @@ abstract class TtlStrategy {
     aboutUsRepository: thirtyDays,
     departmentDetailsRepository: thirtyDays,
     guideDetailsRepository: thirtyDays,
+    guideViewRepository: thirtyDays,
   );
 
   static Duration get(TtlKey key) {
