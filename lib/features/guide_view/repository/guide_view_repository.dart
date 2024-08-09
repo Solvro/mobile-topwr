@@ -15,7 +15,7 @@ Stream<List<GuidePosts?>?> guidePostsRepository(
 ) async* {
   final stream = ref.watchQueryWithCache(
     _GetGuidePosts(eagerlyFetchResults: true),
-    TtlKey.guideDetailsRepository,
+    TtlKey.guideViewRepository,
   );
   yield* stream.map((event) => event?.FAQ_Types);
 }
