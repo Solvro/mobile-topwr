@@ -22,7 +22,7 @@ class MapViewPopBehaviour<T extends GoogleNavigable> extends ConsumerWidget {
 
     return PopScope(
       canPop: !isAnyActive && !isAlmostFullyExtended,
-      onPopInvoked: (didPop) {
+      onPopInvokedWithResult: (didPop, _) {
         if (!didPop) {
           ref
               .read(context.mapController<T>().notifier)
