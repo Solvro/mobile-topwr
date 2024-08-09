@@ -1,11 +1,9 @@
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
-import "package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart";
 
 import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
-import "../../../utils/launch_url_util.dart";
-import "../utils/html_util_extensions.dart";
+import "../../../widgets/my_html_widget.dart";
 
 class DescriptionSection extends ConsumerWidget {
   const DescriptionSection({super.key, required this.text});
@@ -24,12 +22,7 @@ class DescriptionSection extends ConsumerWidget {
         ),
         child: Padding(
           padding: const EdgeInsets.all(AboutUsConfig.defaultPadding),
-          child: HtmlWidget(
-            text,
-            textStyle: context.aboutUsTheme.body,
-            customStylesBuilder: context.customStylesBuilder,
-            onTapUrl: ref.launch,
-          ),
+          child: MyHtmlWidget(text),
         ),
       ),
     );

@@ -3,6 +3,7 @@ import "package:flutter/material.dart";
 import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
 import "../../../widgets/loading_widgets/shimmer_loading.dart";
+import "../../../widgets/my_html_widget.dart";
 
 class MyExpansionTile extends StatelessWidget {
   final String title;
@@ -39,9 +40,9 @@ class MyExpansionTile extends StatelessWidget {
               vertical: GuideDetailViewConfig.paddingSmall,
             ),
             child: ListTile(
-              title: Text(
+              title: MyHtmlWidget(
                 description,
-                style: context.textTheme.body.copyWith(fontSize: 14),
+                textStyle: context.textTheme.body.copyWith(fontSize: 14),
               ),
             ),
           ),

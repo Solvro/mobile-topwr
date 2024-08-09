@@ -1,11 +1,9 @@
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
-import "package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart";
 
 import "../../api_base/directus_assets_url.dart";
 import "../../config/ui_config.dart";
-import "../../theme/app_theme.dart";
 import "../../utils/context_extensions.dart";
 import "../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../widgets/loading_widgets/shimmer_loading.dart";
@@ -61,7 +59,7 @@ class _GuideDetailDataView extends ConsumerWidget {
               child: Padding(
                 padding:
                     const EdgeInsets.all(GuideDetailViewConfig.paddingMedium),
-                child: HtmlWidget(
+                child: MyHtmlWidget(
                   value?.description ?? "",
                   textStyle: context.textTheme.body.copyWith(fontSize: 16),
                 ),
