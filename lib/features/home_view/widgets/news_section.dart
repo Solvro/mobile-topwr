@@ -15,7 +15,7 @@ import "../../navigator/utils/navigation_commands.dart";
 import "loading_widgets/big_scrollable_section_loading.dart";
 import "paddings.dart";
 
-//TODO(@mikolaj-jalocha) change guide posts to actuall news posts
+// TODO(mikolaj-jalocha): change guide posts to actuall news posts
 
 class NewsSection extends ConsumerWidget {
   const NewsSection({super.key});
