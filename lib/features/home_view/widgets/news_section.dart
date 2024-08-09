@@ -1,3 +1,5 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
@@ -8,10 +10,12 @@ import "../../../utils/where_non_null_iterable.dart";
 import "../../../widgets/big_preview_card.dart";
 import "../../../widgets/my_error_widget.dart";
 import "../../../widgets/subsection_header.dart";
+import "../../guide_view/repository/guide_view_repository.dart";
 import "../../navigator/utils/navigation_commands.dart";
-import "../repositories/news/news_repository.dart";
 import "loading_widgets/big_scrollable_section_loading.dart";
 import "paddings.dart";
+
+//TODO(@mikolaj-jalocha) change guide posts to actuall news posts
 
 class NewsSection extends ConsumerWidget {
   const NewsSection({super.key});
@@ -33,7 +37,7 @@ class _NewsList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(newsRepositoryProvider);
+    final state = ref.watch(guidePostsRepositoryProvider);
 
     return switch (state) {
       AsyncLoading() => const Padding(
@@ -69,13 +73,13 @@ class _NewsList extends ConsumerWidget {
   }
 }
 
-class _NewsDataList extends StatelessWidget {
+class _NewsDataList extends ConsumerWidget {
   const _NewsDataList(this.value);
 
-  final List<NewsPost> value;
+  final List<GuidePosts> value;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return ListView.builder(
       cacheExtent: 4,
       shrinkWrap: true,
@@ -84,11 +88,12 @@ class _NewsDataList extends StatelessWidget {
       itemBuilder: (BuildContext context, int index) {
         return MediumLeftPadding(
           child: BigPreviewCard(
-            title: value[index].title,
-            shortDescription: value[index].content ?? "",
+            title: value[index].name ?? "",
+            shortDescription: value[index].short_description ?? "",
             photoUrl: value[index].cover?.filename_disk?.directusUrl,
-            date: value[index].date_created,
-            onClick: () {},
+            onClick: () {
+              unawaited(ref.navigateGuideDetail(value[index].id));
+            },
           ),
         );
       },
