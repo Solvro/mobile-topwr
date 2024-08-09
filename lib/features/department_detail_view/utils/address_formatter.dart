@@ -4,7 +4,7 @@ extension AddressFormatterX on String {
     final postalCodeIndex =
         parts.indexWhere((part) => RegExp(r"^\d{2}-\d{3}$").hasMatch(part));
     final streetStartIndex = parts
-        .indexWhere((part) => RegExp(r"^(ul\.|wyb\.|plac)").hasMatch(part));
+        .indexWhere((part) => RegExp(r"^(ul\.|wyb\.|pl\.)").hasMatch(part));
     final postalCodeAndCity = parts.sublist(postalCodeIndex).join(" ");
     final streetAddress =
         parts.sublist(streetStartIndex, postalCodeIndex).join(" ");

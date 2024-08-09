@@ -25,7 +25,8 @@ extension TabBarRouteTransitionBuilderX on Ref {
   /// to compare and decide the transition direction (left or right)
   TRoute? _getPreviousTab(String thisRouteName) {
     final navigator = read(navigationControllerProvider.notifier);
-    final stack = navigator.stack.toList();
+    final stack =
+        navigator.stack.where((element) => element.isTabView).toList();
     final didLastPop = navigator.didLastPop;
     final isThisLastRouteOnStack = stack.lastOrNull?.routeName == thisRouteName;
     return isThisLastRouteOnStack

@@ -1,5 +1,6 @@
 import "package:flutter/cupertino.dart";
 import "package:flutter/gestures.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../theme/app_theme.dart";
 import "../../utils/determine_contact_icon.dart";
@@ -38,7 +39,7 @@ class ContactSection extends StatelessWidget {
   }
 }
 
-class _ContactIcon extends StatelessWidget {
+class _ContactIcon extends ConsumerWidget {
   const _ContactIcon({
     required this.url,
     required this.icon,
@@ -50,7 +51,7 @@ class _ContactIcon extends StatelessWidget {
   final String icon;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Row(
       children: [
         ContactIconWidget(icon: icon),
@@ -67,7 +68,7 @@ class _ContactIcon extends StatelessWidget {
                     : TextDecoration.none,
               ),
               recognizer: TapGestureRecognizer()
-                ..onTap = () async => LaunchUrlUtil.launch(url),
+                ..onTap = () async => ref.launch(url),
             ),
           ),
         ),

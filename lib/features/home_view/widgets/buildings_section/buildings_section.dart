@@ -1,5 +1,3 @@
-import "dart:async";
-
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
@@ -8,7 +6,6 @@ import "../../../../utils/context_extensions.dart";
 import "../../../../utils/where_non_null_iterable.dart";
 import "../../../../widgets/my_error_widget.dart";
 import "../../../../widgets/subsection_header.dart";
-import "../../../buildings_view/controllers.dart";
 import "../../../buildings_view/model/building_model.dart";
 import "../../../buildings_view/repository/buildings_repository.dart";
 import "../../../navigator/utils/navigation_commands.dart";
@@ -69,12 +66,7 @@ class _DataListBuildingsTiles extends ConsumerWidget {
           child: BuildingCard(
             buildingName: mapItem.name,
             imageUrl: mapItem.cover?.filename_disk?.directusUrl,
-            onTap: () async {
-              unawaited(ref.navigateBuildings());
-              ref
-                  .watch(activeBuildingControllerProvider.notifier)
-                  .selectItem(mapItem);
-            },
+            onTap: () async => ref.navigateBuilding(mapItem),
           ),
         );
       },
