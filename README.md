@@ -55,7 +55,7 @@ Read more at: https://solvro.pwr.edu.pl/portfolio/to-pwr
 
 # Development
 
-Recommended flutter version: `Channel stable, 3.22.1`
+Recommended flutter version: `Channel stable, 3.24.0`
 
 1. ### Google maps API key
 

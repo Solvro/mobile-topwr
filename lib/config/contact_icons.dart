@@ -8,19 +8,19 @@ abstract class ContactIconsConfig {
     "mailto:": Assets.contactIcons.mail,
     "youtu": Assets.contactIcons.yt,
     "github": Assets.contactIcons.github,
-    "maps": Assets.contactIcons.compass,
+    "topwr:buildings": Assets.contactIcons.compass,
     "tel": Assets.contactIcons.phone,
   };
   static final iconsOrder = {
-    "maps": 1,
-    "tel": 2,
-    "mailto:": 3,
+    "topwr:buildings": 1,
+    "tel": 3,
+    "mailto:": 4,
     "facebook": 5,
     "instagram": 6,
     "linkedin": 7,
     "github": 8,
     "youtu": 9,
   };
-  static const defaultIconOrder = 4;
+  static const defaultIconOrder = 2;
   static final defaultIcon = Assets.contactIcons.web;
 }

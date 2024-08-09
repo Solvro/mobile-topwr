@@ -1,5 +1,9 @@
+import "dart:async";
+
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
+import "../../buildings_view/controllers.dart";
+import "../../buildings_view/model/building_model.dart";
 import "../app_router.dart";
 import "../navigation_controller.dart";
 
@@ -15,6 +19,11 @@ extension NavigationX on WidgetRef {
 
   Future<void> navigateBuildings() async {
     await _router.push(const BuildingsRoute());
+  }
+
+  Future<void> navigateBuilding(BuildingModel model) async {
+    unawaited(_router.push(const BuildingsRoute()));
+    watch(activeBuildingControllerProvider.notifier).selectItem(model);
   }
 
   Future<void> navigateParkings() async {
