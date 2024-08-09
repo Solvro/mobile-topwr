@@ -13,14 +13,14 @@ abstract class ContactIconsConfig {
   };
   static final iconsOrder = {
     "maps": 1,
-    "tel": 2,
-    "mailto:": 3,
+    "tel": 3,
+    "mailto:": 4,
     "facebook": 5,
     "instagram": 6,
     "linkedin": 7,
     "github": 8,
     "youtu": 9,
   };
-  static const defaultIconOrder = 4;
+  static const defaultIconOrder = 2;
   static final defaultIcon = Assets.contactIcons.web;
 }
