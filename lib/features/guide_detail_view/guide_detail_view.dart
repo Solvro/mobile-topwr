@@ -10,9 +10,10 @@ import "../../widgets/loading_widgets/shimmer_loading.dart";
 import "../../widgets/loading_widgets/simple_previews/preview_text_prototype.dart";
 import "../../widgets/my_cached_image.dart";
 import "../../widgets/my_error_widget.dart";
+import "../../widgets/my_expansion_tile.dart";
 import "../../widgets/my_html_widget.dart";
 import "repository/guide_detail_view_repository.dart";
-import "widgets/my_expansion_tile.dart";
+import "widgets/faq_expansion_tile.dart";
 
 @RoutePage()
 class GuideDetailView extends StatelessWidget {
@@ -69,7 +70,7 @@ class _GuideDetailDataView extends ConsumerWidget {
                 itemCount: value?.questions?.length ?? 0,
                 itemBuilder: (context, index) {
                   final question = value?.questions?[index]?.FAQ_id;
-                  return MyExpansionTile(
+                  return FaqExpansionTile(
                     title: question?.question ?? "",
                     description: question?.answer ?? "",
                   );
