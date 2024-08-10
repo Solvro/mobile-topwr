@@ -1,0 +1,10 @@
+query GetGuide {
+  FAQ_Types {
+    id
+    name
+    short_description
+    cover {
+      filename_disk
+    }
+  }
+}

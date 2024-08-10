@@ -10,7 +10,7 @@ import "../../../utils/where_non_null_iterable.dart";
 import "../../../widgets/big_preview_card.dart";
 import "../../../widgets/my_error_widget.dart";
 import "../../../widgets/subsection_header.dart";
-import "../../guide_view/repository/guide_view_repository.dart";
+import "../../guide_view/repository/guide_repository.dart";
 import "../../navigator/utils/navigation_commands.dart";
 import "loading_widgets/big_scrollable_section_loading.dart";
 import "paddings.dart";
@@ -37,8 +37,7 @@ class _NewsList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(guidePostsRepositoryProvider);
-
+    final state = ref.watch(guideRepositoryProvider);
     return switch (state) {
       AsyncLoading() => const Padding(
           padding: EdgeInsets.only(
