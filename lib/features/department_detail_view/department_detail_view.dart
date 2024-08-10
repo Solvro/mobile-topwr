@@ -75,15 +75,12 @@ class DepartmentDetailView extends ConsumerWidget {
                         List.empty(),
                   ),
                   FieldsOfStudySection(
-                    fieldsOfStudy: value
-                            ?.Departments_by_id?.fieldsOfStudies.whereNonNull
-                            .map((e) => e.name)
-                            .toList() ??
-                        List.empty(),
+                    fieldsOfStudy: (value?.Departments_by_id?.fieldsOfStudies)
+                        .whereNonNull
+                        .toList(),
                   ),
                   DepartmentScienceClubsSection(
-                    value?.Scientific_Circles.whereNonNull.toList() ??
-                        List.empty(),
+                    (value?.Scientific_Circles).whereNonNull.toList(),
                   ),
                   const SizedBox(height: DetailViewsConfig.spacerHeight * 2),
                 ]),

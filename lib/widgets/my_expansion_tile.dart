@@ -5,20 +5,27 @@ import "../theme/app_theme.dart";
 import "loading_widgets/shimmer_loading.dart";
 
 class MyExpansionTile extends StatelessWidget {
+  final bool initiallyExpanded;
   final String title;
   final List<Widget> children;
+  final Color? backgroundColor;
+  final Color? collapsedBackgroundColor;
 
   const MyExpansionTile({
     required this.title,
     required this.children,
+    this.initiallyExpanded = false,
+    this.backgroundColor,
+    this.collapsedBackgroundColor,
   });
 
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
       title: Text(title, style: context.textTheme.title),
-      backgroundColor: context.colorTheme.greyLight,
-      collapsedBackgroundColor: context.colorTheme.greyLight,
+      backgroundColor: backgroundColor ?? context.colorTheme.greyLight,
+      collapsedBackgroundColor:
+          collapsedBackgroundColor ?? context.colorTheme.greyLight,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(GuideDetailViewConfig.borderRadius),
       ),
@@ -27,6 +34,7 @@ class MyExpansionTile extends StatelessWidget {
       ),
       iconColor: context.colorTheme.orangePomegranade,
       collapsedIconColor: context.colorTheme.orangePomegranade,
+      initiallyExpanded: initiallyExpanded,
       children: children,
     );
   }
