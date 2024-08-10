@@ -13,7 +13,7 @@ extension RefIntervalRefreshX on Ref {
   void setRefresh(Duration interval) {
     final timer = Timer.periodic(
       interval,
-      (t) => invalidateSelf(),
+      (t) => invalidate(parkingsRepositoryProvider),
     );
     onDispose(timer.cancel);
   }
