@@ -18,6 +18,8 @@ class FieldOfStudyExpansionTile extends StatelessWidget {
   final bool initiallyExpanded;
   @override
   Widget build(BuildContext context) {
+    const fontSize = 18.0;
+    final emojiStyle = context.textTheme.headline.copyWith(fontSize: 18);
     return Padding(
       padding: const EdgeInsets.only(top: 16),
       child: MyExpansionTile(
@@ -25,7 +27,32 @@ class FieldOfStudyExpansionTile extends StatelessWidget {
         initiallyExpanded: initiallyExpanded,
         title: title,
         children: fieldsOfStudy
-            .map<Widget>((item) => WideTileCard(title: item.name))
+            .map<Widget>(
+              (item) => WideTileCard(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                title: item.name,
+                trailing: Row(
+                  children: <Widget>[
+                    if (item.isEnglish)
+                      Text("🇬🇧", style: emojiStyle)
+                    else
+                      Text("🇵🇱", style: emojiStyle),
+                    Icon(
+                      Icons.sunny,
+                      color: context.colorTheme.greyPigeon,
+                      size: fontSize,
+                    ),
+                    if (item.hasWeekendModeOption)
+                      Icon(
+                        Icons.remove_red_eye_outlined,
+                        color: context.colorTheme.greyPigeon,
+                        size: fontSize,
+                      ),
+                    const SizedBox.shrink(),
+                  ].separate((i, e0, e1) => const SizedBox(width: 4)),
+                ),
+              ),
+            )
             .separate((i, e0, e1) => const SizedBox(height: 12))
             .toList(),
       ),
