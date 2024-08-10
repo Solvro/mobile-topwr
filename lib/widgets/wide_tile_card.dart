@@ -33,6 +33,7 @@ class WideTileCard extends StatelessWidget {
     this.isActive = false,
     this.activeShadows = WideTileCardConfig.defaultActiveShadows,
     this.secondSubtitle,
+    this.crossAxisAlignment = CrossAxisAlignment.start,
     super.key,
   });
 
@@ -47,7 +48,7 @@ class WideTileCard extends StatelessWidget {
 
   final List<BoxShadow>? activeShadows;
   final LinearGradient? activeGradient;
-
+  final CrossAxisAlignment crossAxisAlignment;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -61,7 +62,7 @@ class WideTileCard extends StatelessWidget {
         ),
         clipBehavior: Clip.antiAlias,
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: crossAxisAlignment,
           children: [
             Expanded(
               child: _TitlesColumn(
