@@ -1,20 +1,40 @@
 import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "template_section.dart";
+import "../../../config/ui_config.dart";
+import "../../../theme/app_theme.dart";
+import "../../../utils/context_extensions.dart";
+import "../../../widgets/wide_tile_card.dart";
+import "../../navigator/utils/navigation_commands.dart";
 
-class GuideAboutUsSection extends StatelessWidget {
+class GuideAboutUsSection extends ConsumerWidget {
   const GuideAboutUsSection({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const GuideTemplateSection(
-      title: "O Nas!",
-      description: "Poznaj twórców, którzy razem stworzyli te aplikacje!",
-      imagePath: "",
-      titleTextStyle: TextStyle(
-        fontWeight: FontWeight.bold,
-        color: Colors.red,
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Padding(
+      padding: GuideViewConfig.tilePadding,
+      child: Theme(
+        data: Theme.of(context).getAlTitlesOrange(context),
+        child: PhotoTrailingWideTileCard(
+          title: context.localize.guide_about_us,
+          subtitle: context.localize.guide_meet_creators,
+          photoUrl: "",
+          onTap: ref.navigateAboutUs,
+        ),
       ),
     );
   }
+}
+
+extension _ChangeTitleToOrangeTitleX on ThemeData {
+  ThemeData getAlTitlesOrange(BuildContext context) => copyWith(
+        extensions: [
+          context.appTheme.copyWith(
+            textTheme: context.textTheme.copyWith(
+              title: context.textTheme.titleOrange,
+            ),
+          ),
+        ],
+      );
 }

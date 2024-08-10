@@ -143,3 +143,7 @@ abstract class GuideDetailViewConfig {
   static const paddingLarge = 32.0;
   static const borderRadius = 8.0;
 }
+
+abstract class GuideViewConfig {
+  static const tilePadding = EdgeInsets.only(left: 24, right: 24, bottom: 17);
+}

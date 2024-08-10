@@ -75,7 +75,7 @@ class _NewsList extends ConsumerWidget {
 class _NewsDataList extends ConsumerWidget {
   const _NewsDataList(this.value);
 
-  final List<GuidePosts> value;
+  final List<GuidePost> value;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

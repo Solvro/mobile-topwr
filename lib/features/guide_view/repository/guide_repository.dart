@@ -6,11 +6,11 @@ import "getGuide.graphql.dart";
 
 part "guide_repository.g.dart";
 
-typedef GuidePosts = Query$GetGuide$FAQ_Types;
+typedef GuidePost = Query$GetGuide$FAQ_Types;
 typedef _GetGuidePosts = WatchOptions$Query$GetGuide;
 
 @riverpod
-Stream<List<GuidePosts?>?> guideRepository(
+Stream<List<GuidePost?>?> guideRepository(
   GuideRepositoryRef ref,
 ) async* {
   final stream = ref.watchQueryWithCache(

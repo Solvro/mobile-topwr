@@ -20,7 +20,7 @@ bool isSomethingSearched(IsSomethingSearchedRef ref) {
 }
 
 @riverpod
-Future<Iterable<GuidePosts?>?> guideListController(
+Future<Iterable<GuidePost?>?> guideListController(
   GuideListControllerRef ref,
 ) async {
   final originalList = await ref.watch(guideRepositoryProvider.future);
