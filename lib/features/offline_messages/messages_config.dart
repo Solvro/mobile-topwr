@@ -15,7 +15,7 @@ extension GqlOfflineMessageX on BuildContext {
         aboutUsRepository: localize.offline_about_us,
         departmentDetailsRepository: localize.offline_department_details,
         guideDetailsRepository: localize.offline_guide_details,
-        guideViewRepository: localize.offline_guide_posts,
+        guideRepository: localize.offline_guide_posts,
       );
 
   String gqlOfflineMessageLocalized(TtlKey key) {

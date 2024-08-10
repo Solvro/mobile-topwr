@@ -1,12 +1,14 @@
-import "dart:async";
-
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../../theme/app_theme.dart";
-import "../../utils/context_extensions.dart";
-import "../navigator/utils/navigation_commands.dart";
+import "../../../../widgets/my_error_widget.dart";
+import "../../api_base/directus_assets_url.dart";
+import "../../utils/where_non_null_iterable.dart";
+import "../../widgets/search_box_app_bar.dart";
+import "guide_view_controller.dart";
+import "widgets/about_us_section.dart";
+import "widgets/template_section.dart";
 
 @RoutePage()
 class GuideView extends ConsumerWidget {
@@ -14,58 +16,33 @@ class GuideView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(guideListControllerProvider);
+    final isSomethingSearched = ref.watch(isSomethingSearchedProvider);
     return Scaffold(
-      appBar: AppBar(
-        title: Text(context.localize.about_us),
-        backgroundColor: context.colorTheme.greyLight,
+      appBar: SearchBoxAppBar(
+        context,
+        title: "Przewodnik",
+        bottomPadding: 16,
+        onQueryChanged:
+            ref.watch(searchGuideControllerProvider.notifier).onTextChanged,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          children: [
-            GestureDetector(
-              onTap: ref.navigateAboutUs,
-              child: Container(
-                padding: const EdgeInsets.all(10),
-                width: double.infinity,
-                height: 50,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: context.colorTheme.greyLight,
+      body: switch (state) {
+        AsyncLoading() =>
+          const CircularProgressIndicator(), // TODO(simon-the-shark): add shimmer loading
+        AsyncError(:final error) => MyErrorWidget(error),
+        AsyncValue(:final value) => ListView(
+            children: [
+              if (!isSomethingSearched) const GuideAboutUsSection(),
+              for (final item in value.whereNonNull)
+                GuideTemplateSection(
+                  title: item.name ?? "",
+                  description: item.short_description ?? "",
+                  imagePath: item.cover?.filename_disk?.directusUrl ?? "",
+                  onTap: () {},
                 ),
-                child: Text(
-                  context.localize.about_us,
-                  style: TextStyle(
-                    fontSize: 24,
-                    color: context.colorTheme.orangePomegranade,
-                  ),
-                ),
-              ),
-            ),
-            GestureDetector(
-              onTap: () async {
-                unawaited(ref.navigateGuideDetail("1"));
-              },
-              child: Container(
-                padding: const EdgeInsets.all(10),
-                width: double.infinity,
-                height: 50,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: context.colorTheme.greyLight,
-                ),
-                child: Text(
-                  "Przykładowy wpis",
-                  style: TextStyle(
-                    fontSize: 24,
-                    color: context.colorTheme.orangePomegranade,
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
+            ],
+          )
+      },
     );
   }
 }
