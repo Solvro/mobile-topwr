@@ -1,10 +1,9 @@
 import '../features/buildings_map/buildings_view.dart';
 import '../features/departments_tab/departments_tab.dart';
+import '../features/guide_view/guide_view.dart';
 import '../features/home_view/home_view.dart';
 import '../features/iparking/parking_view.dart';
-import '../features/navigator/page_routes/tabbar_page_route.dart';
 import '../features/student_research_group_tab/scientific_circles_tab.dart';
-import '../features/info_section/info_section.dart';
 import 'nav_bar_config.dart';
 
 abstract class NavigatorConfig {
@@ -25,6 +24,6 @@ abstract class TabsConfig {
     faculties: DepartmentTab(),
     sciCircles: ScientificCirclesTab(),
     parkings: ParkingsMapView(),
-    info: InfoSection(),
+    info: GuideView(),
   );
 }

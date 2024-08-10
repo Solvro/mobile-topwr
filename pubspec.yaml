@@ -98,13 +98,6 @@ flutter:
     - assets/icons/ic_insta.png
     - assets/icons/ic_linkedin.png
     - assets/icons/ic_web.png
-    - assets/info_section/topwr_image.png
-    - assets/info_section/dormitories_image.png
-    - assets/info_section/library_image.png
-    - assets/info_section/student_id_image.png
-    - assets/info_section/iparking_image.png
-    - assets/info_section/cableway_image.png
-    - assets/info_section/psychological_help_image.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

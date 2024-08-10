@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../../widgets/my_cached_image.dart';
 
-class TemplateSection extends StatelessWidget {
-  const TemplateSection({
+class GuideTemplateSection extends StatelessWidget {
+  const GuideTemplateSection({
     super.key,
     required this.title,
     required this.description,
