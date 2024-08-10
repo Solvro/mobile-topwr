@@ -1,11 +1,9 @@
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
-import "package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart";
 
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
-import "../../../utils/launch_url_util.dart";
-import "../../about_us_view/utils/html_util_extensions.dart";
+import "../../../widgets/my_html_widget.dart";
 
 class AboutUsSection extends ConsumerWidget {
   const AboutUsSection({super.key, required this.text});
@@ -26,12 +24,7 @@ class AboutUsSection extends ConsumerWidget {
                   style: context.textTheme.headline,
                 ),
                 const SizedBox(height: 16),
-                HtmlWidget(
-                  text,
-                  textStyle: context.aboutUsTheme.body,
-                  customStylesBuilder: context.customStylesBuilder,
-                  onTapUrl: ref.launch,
-                ),
+                MyHtmlWidget(text),
               ],
             ),
           );
