@@ -36,9 +36,9 @@ abstract class ColorsConsts {
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
     colors: [
-      Color.fromRGBO(96, 130, 180, 0),
-      Color.fromRGBO(33, 45, 63, 0.36),
-      Color.fromRGBO(22, 37, 58, 0.36),
+      Color.fromRGBO(96, 130, 180, 0.3),
+      Color.fromRGBO(33, 45, 63, 0.5),
+      Color.fromRGBO(22, 37, 58, 0.5),
     ],
     stops: [0.0, 0.7396, 1.0],
   );

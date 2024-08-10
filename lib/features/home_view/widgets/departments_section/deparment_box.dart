@@ -15,6 +15,10 @@ class DepartmentBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final code = department.code.toLowerCase();
+    final useSpecialOpacity = code == "w3";
+    final logoOpacity = useSpecialOpacity ? .22 : .15;
+
     const size = 120.0;
     return Container(
       height: size,
@@ -27,7 +31,7 @@ class DepartmentBox extends StatelessWidget {
         children: [
           Center(
             child: Opacity(
-              opacity: .4,
+              opacity: logoOpacity,
               child: SizedBox.square(
                 dimension: 100,
                 child: MyCachedImage(
@@ -53,7 +57,8 @@ class DepartmentBox extends StatelessWidget {
                   department.name,
                   maxLines: 3,
                   overflow: TextOverflow.ellipsis,
-                  style: context.textTheme.bodyWhite,
+                  style: context.textTheme.bodyWhite
+                      .copyWith(shadows: HomeViewConfig.squareCardTextShadow),
                 ),
               ],
             ),
