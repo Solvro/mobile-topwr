@@ -8,6 +8,7 @@ import "../../utils/where_non_null_iterable.dart";
 import "../../widgets/search_box_app_bar.dart";
 import "guide_view_controller.dart";
 import "widgets/about_us_section.dart";
+import "widgets/guide_grid.dart";
 import "widgets/guide_tile.dart";
 
 @RoutePage()
@@ -29,7 +30,7 @@ class GuideView extends ConsumerWidget {
         AsyncLoading() => // TODO(simon-the-shark): add shimmer loading
           const CircularProgressIndicator(),
         AsyncError(:final error) => MyErrorWidget(error),
-        AsyncValue(:final value) => ListView(
+        AsyncValue(:final value) => GuideGrid(
             children: [
               if (!isSomethingSearched) const GuideAboutUsSection(),
               for (final item in value.whereNonNull) GuideTile(item),

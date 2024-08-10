@@ -1,7 +1,6 @@
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../widgets/wide_tile_card.dart";
@@ -12,16 +11,13 @@ class GuideAboutUsSection extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Padding(
-      padding: GuideViewConfig.tilePadding,
-      child: Theme(
-        data: Theme.of(context).getAlTitlesOrange(context),
-        child: PhotoTrailingWideTileCard(
-          title: context.localize.guide_about_us,
-          subtitle: context.localize.guide_meet_creators,
-          photoUrl: "",
-          onTap: ref.navigateAboutUs,
-        ),
+    return Theme(
+      data: Theme.of(context).getAlTitlesOrange(context),
+      child: PhotoTrailingWideTileCard(
+        title: context.localize.guide_about_us,
+        subtitle: context.localize.guide_meet_creators,
+        photoUrl: "",
+        onTap: ref.navigateAboutUs,
       ),
     );
   }
