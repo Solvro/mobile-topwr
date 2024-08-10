@@ -1,3 +1,4 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:google_maps_flutter/google_maps_flutter.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
@@ -28,7 +29,7 @@ class BuildingsViewController extends _$BuildingsViewController
   }
   @override
   // ignore: unnecessary_overrides
-  FutureOr<Iterable<BuildingModel?>?> build() async {
+  FutureOr<IList<BuildingModel?>?> build() async {
     return super.build();
   }
 
