@@ -85,5 +85,7 @@
   "scientific_cirlces" : "Koła naukowe",
   "student_organizations" : "Organizacje studenckie",
   "org_types": "Rodzaje organizacji",
-  "categories":"Kategorie tematyczne"
+  "categories":"Kategorie tematyczne",
+  "filters" : "Filtry",
+  "clear" : "Wyczyść"
 }

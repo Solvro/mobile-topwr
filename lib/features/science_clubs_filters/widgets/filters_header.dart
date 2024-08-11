@@ -3,12 +3,10 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../theme/app_theme.dart";
 import "../../../theme/utils.dart";
+import "../../../utils/context_extensions.dart";
 import "../../../widgets/subsection_header.dart";
 import "../../map_view/widgets/bottom_scroll_sheet/drag_handle.dart";
-import "../../science_clubs_view/controllers/science_clubs_view_controller.dart";
-import "../departments/controller/selected_department.dart";
-import "../tags/controller/selected_tag_controller.dart";
-import "../types/controller/selected_type.dart";
+import "../filters_controller.dart";
 
 class FiltersHeader extends StatelessWidget {
   @override
@@ -21,19 +19,17 @@ class FiltersHeader extends StatelessWidget {
           Center(
             child: Theme(
               data: context.defaultThemeWithOverrideTextStyles(
-                boldBodyOrange: context.textTheme.boldBodyOrange.copyWith(
-                  fontSize: context.textTheme.title.fontSize,
-                ),
-              ),
+                boldBodyOrange: context.textTheme.titleOrange,
+              ), // for text button font
               child: Consumer(
                 builder: (context, ref, child) => SubsectionHeader(
                   leftPadding: 8,
                   rightPadding: 0,
-                  title: "Filtry",
-                  actionTitle: "Wyczyść",
+                  title: context.localize.filters,
+                  actionTitle: context.localize.clear,
                   addArrow: false,
                   onClick: ref.watch(areFiltersEnabledProvider)
-                      ? clearAllFilters(ref)
+                      ? ref.getClearAllFilters(ref)
                       : null,
                 ),
               ),
@@ -43,17 +39,5 @@ class FiltersHeader extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  VoidCallback clearAllFilters(WidgetRef ref) {
-    return () {
-      ref.read(selectedTagControllerProvider.notifier).clear();
-      ref
-          .read(
-            selectedDepartmentControllerProvider.notifier,
-          )
-          .clear();
-      ref.read(selectedTypeControllerProvider.notifier).clear();
-    };
   }
 }

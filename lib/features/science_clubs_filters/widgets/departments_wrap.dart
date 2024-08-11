@@ -4,9 +4,9 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "../../../utils/where_non_null_iterable.dart";
 import "../../departments_view/repository/departments_extensions.dart";
 import "../../departments_view/repository/departments_repository.dart";
-import "../widgets/chips_loading.dart";
-import "../widgets/filter_chip.dart";
-import "controller/selected_department.dart";
+import "../filters_controller.dart";
+import "chips_loading.dart";
+import "filter_chip.dart";
 
 class DepartmentsWrap extends ConsumerWidget {
   const DepartmentsWrap({super.key});
@@ -21,19 +21,21 @@ class DepartmentsWrap extends ConsumerWidget {
           children: [
             for (final department in value.whereNonNull)
               Consumer(
-                builder: (context, ref, child) => MyFilterChip(
-                  label: department.code,
-                  onTap: () => ref
-                      .read(selectedDepartmentControllerProvider.notifier)
-                      .toggleDepartment(department),
-                  selected: ref.watch(
-                    selectedDepartmentControllerProvider.select(
-                      (value) => value.contains(department),
-                    ), // state slicing
-                  ),
-                  selectedColor: department.gradient.colors.first,
-                  selectedBorderColor: department.gradient.colors.last,
-                ),
+                builder: (context, ref, child) {
+                  final controller =
+                      ref.watch(selectedDepartmentControllerProvider.notifier);
+                  final isSelected = ref.watchContains(
+                    selectedDepartmentControllerProvider,
+                    department,
+                  );
+                  return MyFilterChip(
+                    label: department.code,
+                    onTap: () => controller.toggleFilter(department),
+                    selected: isSelected,
+                    selectedColor: department.gradient.colors.first,
+                    selectedBorderColor: department.gradient.colors.last,
+                  );
+                },
               ),
           ],
         )

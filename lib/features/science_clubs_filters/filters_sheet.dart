@@ -3,10 +3,10 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../theme/app_theme.dart";
 import "../../utils/context_extensions.dart";
-import "departments/departments_wrap.dart";
-import "tags/tags_wrap.dart";
-import "types/types_wrap.dart";
+import "widgets/departments_wrap.dart";
 import "widgets/filters_header.dart";
+import "widgets/tags_wrap.dart";
+import "widgets/types_wrap.dart";
 
 class FiltersSheet extends ConsumerWidget {
   const FiltersSheet({super.key});
@@ -19,21 +19,15 @@ class FiltersSheet extends ConsumerWidget {
         children: [
           FiltersHeader(),
           Expanded(
-            child: CustomScrollView(
-              slivers: [
-                SliverList(
-                  delegate: SliverChildListDelegate.fixed(
-                    [
-                      _Header(context.localize.org_types),
-                      const TypesWrap(),
-                      _Header(context.localize.departments),
-                      const DepartmentsWrap(),
-                      _Header(context.localize.categories),
-                      const TagsWrap(),
-                      const SizedBox(height: 12),
-                    ],
-                  ),
-                ),
+            child: ListView(
+              children: [
+                _Header(context.localize.org_types),
+                const TypesWrap(),
+                _Header(context.localize.departments),
+                const DepartmentsWrap(),
+                _Header(context.localize.categories),
+                const TagsWrap(),
+                const SizedBox(height: 12),
               ],
             ),
           ),

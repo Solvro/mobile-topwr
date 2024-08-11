@@ -1,9 +1,7 @@
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../utils/where_non_null_iterable.dart";
-import "../../science_clubs_filters/departments/controller/selected_department.dart";
-import "../../science_clubs_filters/tags/controller/selected_tag_controller.dart";
-import "../../science_clubs_filters/types/controller/selected_type.dart";
+import "../../science_clubs_filters/filters_controller.dart";
 import "../repositories/science_clubs/science_clubs_repository.dart";
 
 part "science_clubs_view_controller.g.dart";
@@ -34,18 +32,8 @@ Future<Iterable<ScienceClub?>?> _sciClubsFilteredByTextQuery(
 }
 
 @riverpod
-bool areFiltersEnabled(AreFiltersEnabledRef ref) {
-  final selectedTags = ref.watch(selectedTagControllerProvider);
-  final selectedDepartments = ref.watch(selectedDepartmentControllerProvider);
-  final selectedTypes = ref.watch(selectedTypeControllerProvider);
-  return selectedTags.isNotEmpty ||
-      selectedDepartments.isNotEmpty ||
-      selectedTypes.isNotEmpty;
-}
-
-@riverpod
-Future<Iterable<ScienceClub?>?> scienceClubsList(
-  ScienceClubsListRef ref,
+Future<Iterable<ScienceClub?>?> scienceClubsListController(
+  ScienceClubsListControllerRef ref,
 ) async {
   final sciClubs =
       (await ref.watch(_sciClubsFilteredByTextQueryProvider.future))
@@ -56,38 +44,32 @@ Future<Iterable<ScienceClub?>?> scienceClubsList(
   }
 
   final selectedTags =
-      ref.watch(selectedTagControllerProvider).map((element) => element.name);
+      ref.watch(selectedTagControllerProvider).map((it) => it.name);
 
-  final selectedDepartments = ref
-      .watch(selectedDepartmentControllerProvider)
-      .map((element) => element.name);
+  final selectedDepartments =
+      ref.watch(selectedDepartmentControllerProvider).map((it) => it.name);
 
-  final selectedTypes = ref
-      .watch(selectedTypeControllerProvider)
-      .map((element) => element.toJson());
+  final selectedTypes =
+      ref.watch(selectedTypeControllerProvider).map((it) => it.toJson());
 
   final filteredByTypes = selectedTypes.isEmpty
       ? sciClubs
       : sciClubs.where(
-          (club) => selectedTypes.contains(club.type ?? ""),
+          (club) => selectedTypes.contains(club.type),
         );
 
   final filteredByDepartments = selectedDepartments.isEmpty
       ? filteredByTypes
       : filteredByTypes.where(
-          (club) {
-            return selectedDepartments.contains(club.department?.name);
-          },
+          (club) => selectedDepartments.contains(club.department?.name),
         );
 
-  final filterByTags = selectedTags.isEmpty
+  final filteredByTags = selectedTags.isEmpty
       ? filteredByDepartments
       : filteredByDepartments.where(
-          (club) =>
-              club.tags
-                  ?.any((tag) => selectedTags.contains(tag?.Tags_id?.name)) ??
-              false,
+          (club) => club.tags.whereNonNull
+              .any((tag) => selectedTags.contains(tag.Tags_id?.name)),
         );
 
-  return filterByTags;
+  return filteredByTags;
 }

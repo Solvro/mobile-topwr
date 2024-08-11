@@ -2,7 +2,7 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../theme/app_theme.dart";
-import "../../science_clubs_view/controllers/science_clubs_view_controller.dart";
+import "../filters_controller.dart";
 import "../filters_sheet.dart";
 
 class FiltersFAB extends ConsumerWidget {
