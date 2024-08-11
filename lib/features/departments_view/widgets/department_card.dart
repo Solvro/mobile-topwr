@@ -2,6 +2,8 @@ import "package:flutter/material.dart";
 
 import "../../../api_base/directus_assets_url.dart";
 import "../../../config/ui_config.dart";
+import "../../../theme/app_theme.dart";
+import "../../../theme/utils.dart";
 import "../../../widgets/my_cached_image.dart";
 import "../../../widgets/wide_tile_card.dart";
 import "../repository/departments_extensions.dart";
@@ -14,23 +16,31 @@ class DepartmentCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WideTileCard(
-      onTap: onClick,
-      isActive: true,
-      title: department.code,
-      subtitle: department.name,
-      activeShadows: null,
-      activeGradient: department.gradient,
-      trailing: Padding(
-        padding: const EdgeInsets.only(right: 10),
-        child: SizedBox.square(
-          dimension: WideTileCardConfig.imageSize,
-          child: Opacity(
-            opacity: .5,
-            child: MyCachedImage(
-              department.logo?.filename_disk.directusUrl,
-              boxFit: BoxFit.contain,
-              noShimmeringLoading: true,
+    return Theme(
+      data: context.defaultThemeWithOverrideTextStyles(
+        titleWhite: context.textTheme.titleWhite
+            .copyWith(shadows: HomeViewConfig.squareCardTextShadow),
+        bodyWhite: context.textTheme.bodyWhite
+            .copyWith(shadows: HomeViewConfig.squareCardTextShadow),
+      ),
+      child: WideTileCard(
+        onTap: onClick,
+        isActive: true,
+        title: department.code,
+        subtitle: department.name,
+        activeShadows: null,
+        activeGradient: department.gradient,
+        trailing: Padding(
+          padding: const EdgeInsets.only(right: 10),
+          child: SizedBox.square(
+            dimension: WideTileCardConfig.imageSize,
+            child: Opacity(
+              opacity: .5,
+              child: MyCachedImage(
+                department.logo?.filename_disk.directusUrl,
+                boxFit: BoxFit.contain,
+                noShimmeringLoading: true,
+              ),
             ),
           ),
         ),
