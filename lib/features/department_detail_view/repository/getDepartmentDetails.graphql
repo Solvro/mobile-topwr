@@ -11,6 +11,7 @@ query GetDepartmentDetails($id: ID!, $fid : GraphQLStringOrFloat) {
             isEnglish
             isLongCycleStudies
             hasWeekendModeOption
+            url
         }
         links {
             name
