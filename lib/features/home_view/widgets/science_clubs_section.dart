@@ -39,9 +39,13 @@ class _ScienceClubsList extends ConsumerWidget {
       AsyncLoading() => const Padding(
           padding: EdgeInsets.only(
             left: HomeViewConfig.paddingMedium,
-            top: HomeViewConfig.paddingMedium,
+            top: HomeViewConfig.paddingMedium * 2,
           ),
-          child: BigScrollableSectionLoading(),
+          child: SizedBox(
+            height:
+                BigPreviewCardConfig.cardHeight - HomeViewConfig.paddingMedium,
+            child: BigScrollableSectionLoading(),
+          ),
         ),
       AsyncError(:final error) => MyErrorWidget(error),
       AsyncValue(:final value) => Container(
@@ -50,9 +54,11 @@ class _ScienceClubsList extends ConsumerWidget {
             right: HomeViewConfig.paddingSmall,
             top: HomeViewConfig.paddingMedium,
           ),
-          height: BigPreviewCardConfig.cardHeight,
-          child: _ScienceClubsDataList(
-            value.whereNonNull.toList(),
+          child: SizedBox(
+            height: BigPreviewCardConfig.cardHeight,
+            child: _ScienceClubsDataList(
+              value.whereNonNull.toList(),
+            ),
           ),
         )
     };

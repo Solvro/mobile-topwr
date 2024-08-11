@@ -53,21 +53,16 @@ class _NewsList extends ConsumerWidget {
           ),
         ),
       AsyncError(:final error) => MyErrorWidget(error),
-      AsyncValue(:final value) => Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(
-                left: HomeViewConfig.paddingSmall,
-                right: HomeViewConfig.paddingSmall,
-                top: HomeViewConfig.paddingMedium,
-              ),
-              child: SizedBox(
-                height: BigPreviewCardConfig.cardHeight,
-                child: _NewsDataList(value.whereNonNull.toList()),
-              ),
-            ),
-          ],
+      AsyncValue(:final value) => Padding(
+          padding: const EdgeInsets.only(
+            left: HomeViewConfig.paddingSmall,
+            right: HomeViewConfig.paddingSmall,
+            top: HomeViewConfig.paddingMedium,
+          ),
+          child: SizedBox(
+            height: BigPreviewCardConfig.cardHeight,
+            child: _NewsDataList(value.whereNonNull.toList()),
+          ),
         )
     };
   }
