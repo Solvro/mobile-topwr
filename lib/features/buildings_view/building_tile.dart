@@ -24,7 +24,7 @@ class BuildingTile extends ConsumerWidget {
       activeGradient: context.colorTheme.toPwrGradient,
       photoUrl: building.cover?.filename_disk.directusUrl,
       title: "${context.localize.building_prefix} ${building.name}",
-      subtitle: building.addresFormatted.changeNull(),
+      subtitle: context.changeNull(building.addresFormatted),
       isActive: isActive,
       onTap: () {
         ref.read(buildingsMapControllerProvider.notifier).onMarkerTap(building);
