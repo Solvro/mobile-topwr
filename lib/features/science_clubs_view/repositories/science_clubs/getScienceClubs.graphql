@@ -16,5 +16,6 @@ query GetScienceClubs {
     }
     source
     shortDescription
+    type
   }
 }

@@ -5,7 +5,7 @@ import "../theme/app_theme.dart";
 import "search_box.dart";
 
 class SearchBoxAppBar extends AppBar {
-  static const defaultBottomPadding = 32.0;
+  static const defaultBottomPadding = 16.0;
   static const defaultHorizontalPadding = 24.0;
 
   SearchBoxAppBar(

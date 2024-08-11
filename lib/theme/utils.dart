@@ -8,6 +8,7 @@ extension OverrideTextThemeStylesX on BuildContext {
     TextStyle? title,
     TextStyle? titleWhite,
     TextStyle? bodyWhite,
+    TextStyle? boldBodyOrange,
   }) =>
       Theme.of(this).copyWith(
         extensions: [
@@ -16,6 +17,7 @@ extension OverrideTextThemeStylesX on BuildContext {
               title: title,
               titleWhite: titleWhite,
               bodyWhite: bodyWhite,
+              boldBodyOrange: boldBodyOrange,
             ),
           ),
         ],

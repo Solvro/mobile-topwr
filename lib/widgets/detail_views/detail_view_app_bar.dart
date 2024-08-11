@@ -8,12 +8,13 @@ class DetailViewAppBar extends AppBar {
           centerTitle: false,
           automaticallyImplyLeading: false,
           scrolledUnderElevation: 0,
+          titleSpacing: 4,
           title: TextButton(
             onPressed: () {
               Navigator.pop(context);
             },
             style: TextButton.styleFrom(
-              padding: EdgeInsets.zero,
+              padding: const EdgeInsets.all(12),
             ),
             child: Text(
               "< $title",

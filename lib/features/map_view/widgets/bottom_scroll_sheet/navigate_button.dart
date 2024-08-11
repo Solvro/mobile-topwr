@@ -15,7 +15,7 @@ class NavigateButton<T extends GoogleNavigable> extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
       padding: const EdgeInsets.only(
-        right: MapViewBottomSheetConfig.horizontalPadding - 3,
+        right: MapViewBottomSheetConfig.horizontalPadding - 12,
       ),
       child: TextButton.icon(
         icon: Icon(
@@ -26,7 +26,7 @@ class NavigateButton<T extends GoogleNavigable> extends ConsumerWidget {
         onPressed:
             ref.watch(context.activeMarkerController<T>().notifier).launchLink,
         style: TextButton.styleFrom(
-          padding: EdgeInsets.zero,
+          padding: const EdgeInsets.all(12),
         ),
         label: Text(
           context.localize.navigate,
