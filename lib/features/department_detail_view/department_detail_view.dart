@@ -14,10 +14,10 @@ import "../../widgets/my_error_widget.dart";
 import "repository/department_details_repository.dart";
 import "utils/address_formatter.dart";
 import "utils/department_details_gradient.dart";
-import "widgets/department_detail_view_loading.dart";
-import "widgets/department_science_clubs_section.dart";
-import "widgets/department_sliver_header_section.dart";
 import "widgets/fields_of_study_section.dart";
+import "widgets/science_clubs_section.dart";
+import "widgets/sliver_header_section.dart";
+import "widgets/view_loading.dart";
 
 @RoutePage()
 class DepartmentDetailView extends ConsumerWidget {
