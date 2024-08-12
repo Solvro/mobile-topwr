@@ -1,4 +1,5 @@
 import "package:auto_route/auto_route.dart";
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
@@ -14,10 +15,10 @@ import "../../widgets/my_error_widget.dart";
 import "repository/department_details_repository.dart";
 import "utils/address_formatter.dart";
 import "utils/department_details_gradient.dart";
-import "widgets/department_detail_view_loading.dart";
-import "widgets/department_science_clubs_section.dart";
-import "widgets/department_sliver_header_section.dart";
 import "widgets/fields_of_study_section.dart";
+import "widgets/science_clubs_section.dart";
+import "widgets/sliver_header_section.dart";
+import "widgets/view_loading.dart";
 
 @RoutePage()
 class DepartmentDetailView extends ConsumerWidget {
@@ -75,15 +76,12 @@ class DepartmentDetailView extends ConsumerWidget {
                         List.empty(),
                   ),
                   FieldsOfStudySection(
-                    fieldsOfStudy: value
-                            ?.Departments_by_id?.fieldsOfStudies.whereNonNull
-                            .map((e) => e.name)
-                            .toList() ??
-                        List.empty(),
+                    fieldsOfStudy: (value?.Departments_by_id?.fieldsOfStudies)
+                        .whereNonNull
+                        .toIList(),
                   ),
                   DepartmentScienceClubsSection(
-                    value?.Scientific_Circles.whereNonNull.toList() ??
-                        List.empty(),
+                    (value?.Scientific_Circles).whereNonNull.toList(),
                   ),
                   const SizedBox(height: DetailViewsConfig.spacerHeight * 2),
                 ]),

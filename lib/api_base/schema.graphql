@@ -11,10 +11,6 @@ type Query {
   Posts_Tags_by_id(id: ID!, version: String): Posts_Tags
   Posts_Tags_aggregated(groupBy: [String], filter: Posts_Tags_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [Posts_Tags_aggregated!]!
   Posts_Tags_by_version(version: String!, id: ID!): version_Posts_Tags
-  Departments_Links(filter: Departments_Links_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): [Departments_Links!]!
-  Departments_Links_by_id(id: ID!, version: String): Departments_Links
-  Departments_Links_aggregated(groupBy: [String], filter: Departments_Links_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [Departments_Links_aggregated!]!
-  Departments_Links_by_version(version: String!, id: ID!): version_Departments_Links
   Scientific_Circles_Links(filter: Scientific_Circles_Links_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): [Scientific_Circles_Links!]!
   Scientific_Circles_Links_by_id(id: ID!, version: String): Scientific_Circles_Links
   Scientific_Circles_Links_aggregated(groupBy: [String], filter: Scientific_Circles_Links_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [Scientific_Circles_Links_aggregated!]!
@@ -51,10 +47,6 @@ type Query {
   AboutUs_Solvro_Social_Links_by_id(id: ID!, version: String): AboutUs_Solvro_Social_Links
   AboutUs_Solvro_Social_Links_aggregated(groupBy: [String], filter: AboutUs_Solvro_Social_Links_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [AboutUs_Solvro_Social_Links_aggregated!]!
   AboutUs_Solvro_Social_Links_by_version(version: String!, id: ID!): version_AboutUs_Solvro_Social_Links
-  FieldOfStudy(filter: FieldOfStudy_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): [FieldOfStudy!]!
-  FieldOfStudy_by_id(id: ID!, version: String): FieldOfStudy
-  FieldOfStudy_aggregated(groupBy: [String], filter: FieldOfStudy_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [FieldOfStudy_aggregated!]!
-  FieldOfStudy_by_version(version: String!, id: ID!): version_FieldOfStudy
   Departments(filter: Departments_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): [Departments!]!
   Departments_by_id(id: ID!, version: String): Departments
   Departments_aggregated(groupBy: [String], filter: Departments_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [Departments_aggregated!]!
@@ -63,14 +55,22 @@ type Query {
   FAQ_by_id(id: ID!, version: String): FAQ
   FAQ_aggregated(groupBy: [String], filter: FAQ_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [FAQ_aggregated!]!
   FAQ_by_version(version: String!, id: ID!): version_FAQ
-  FAQ_Types(filter: FAQ_Types_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): [FAQ_Types!]!
-  FAQ_Types_by_id(id: ID!, version: String): FAQ_Types
-  FAQ_Types_aggregated(groupBy: [String], filter: FAQ_Types_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [FAQ_Types_aggregated!]!
-  FAQ_Types_by_version(version: String!, id: ID!): version_FAQ_Types
   FAQ_Types_FAQ(filter: FAQ_Types_FAQ_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): [FAQ_Types_FAQ!]!
   FAQ_Types_FAQ_by_id(id: ID!, version: String): FAQ_Types_FAQ
   FAQ_Types_FAQ_aggregated(groupBy: [String], filter: FAQ_Types_FAQ_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [FAQ_Types_FAQ_aggregated!]!
   FAQ_Types_FAQ_by_version(version: String!, id: ID!): version_FAQ_Types_FAQ
+  FAQ_Types(filter: FAQ_Types_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): [FAQ_Types!]!
+  FAQ_Types_by_id(id: ID!, version: String): FAQ_Types
+  FAQ_Types_aggregated(groupBy: [String], filter: FAQ_Types_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [FAQ_Types_aggregated!]!
+  FAQ_Types_by_version(version: String!, id: ID!): version_FAQ_Types
+  Departments_Links(filter: Departments_Links_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): [Departments_Links!]!
+  Departments_Links_by_id(id: ID!, version: String): Departments_Links
+  Departments_Links_aggregated(groupBy: [String], filter: Departments_Links_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [Departments_Links_aggregated!]!
+  Departments_Links_by_version(version: String!, id: ID!): version_Departments_Links
+  FieldOfStudy(filter: FieldOfStudy_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): [FieldOfStudy!]!
+  FieldOfStudy_by_id(id: ID!, version: String): FieldOfStudy
+  FieldOfStudy_aggregated(groupBy: [String], filter: FieldOfStudy_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [FieldOfStudy_aggregated!]!
+  FieldOfStudy_by_version(version: String!, id: ID!): version_FieldOfStudy
 }
 
 type Scientific_Circles_Tags {
@@ -328,8 +328,19 @@ input FieldOfStudy_filter {
   department_id: Departments_filter
   name: string_filter_operators
   url: string_filter_operators
+  isEnglish: boolean_filter_operators
+  is2ndDegree: boolean_filter_operators
+  isLongCycleStudies: boolean_filter_operators
+  hasWeekendModeOption: boolean_filter_operators
   _and: [FieldOfStudy_filter]
   _or: [FieldOfStudy_filter]
+}
+
+input boolean_filter_operators {
+  _eq: Boolean
+  _neq: Boolean
+  _null: Boolean
+  _nnull: Boolean
 }
 
 type FieldOfStudy {
@@ -337,6 +348,10 @@ type FieldOfStudy {
   department_id(filter: Departments_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): Departments
   name: String!
   url: String
+  isEnglish: Boolean!
+  is2ndDegree: Boolean!
+  isLongCycleStudies: Boolean!
+  hasWeekendModeOption: Boolean!
 }
 
 input Scientific_Circles_Tags_filter {
@@ -544,39 +559,6 @@ type version_Posts_Tags {
   Tags_id: JSON
 }
 
-type Departments_Links_aggregated {
-  group: JSON
-  countAll: Int
-  count: Departments_Links_aggregated_count
-  countDistinct: Departments_Links_aggregated_count
-  avg: Departments_Links_aggregated_fields
-  sum: Departments_Links_aggregated_fields
-  avgDistinct: Departments_Links_aggregated_fields
-  sumDistinct: Departments_Links_aggregated_fields
-  min: Departments_Links_aggregated_fields
-  max: Departments_Links_aggregated_fields
-}
-
-type Departments_Links_aggregated_count {
-  id: Int
-  name: Int
-  link: Int
-  department_id: Int
-}
-
-type Departments_Links_aggregated_fields {
-  id: Float
-  department_id: Float
-}
-
-""""""
-type version_Departments_Links {
-  id: ID!
-  name: String
-  link: String
-  department_id: JSON
-}
-
 type Scientific_Circles_Links_aggregated {
   group: JSON
   countAll: Int
@@ -747,13 +729,6 @@ input Buildings_filter {
   naturalName: string_filter_operators
   _and: [Buildings_filter]
   _or: [Buildings_filter]
-}
-
-input boolean_filter_operators {
-  _eq: Boolean
-  _neq: Boolean
-  _null: Boolean
-  _nnull: Boolean
 }
 
 type Buildings_aggregated {
@@ -1075,39 +1050,6 @@ type version_AboutUs_Solvro_Social_Links {
   parent_id: JSON
 }
 
-type FieldOfStudy_aggregated {
-  group: JSON
-  countAll: Int
-  count: FieldOfStudy_aggregated_count
-  countDistinct: FieldOfStudy_aggregated_count
-  avg: FieldOfStudy_aggregated_fields
-  sum: FieldOfStudy_aggregated_fields
-  avgDistinct: FieldOfStudy_aggregated_fields
-  sumDistinct: FieldOfStudy_aggregated_fields
-  min: FieldOfStudy_aggregated_fields
-  max: FieldOfStudy_aggregated_fields
-}
-
-type FieldOfStudy_aggregated_count {
-  id: Int
-  department_id: Int
-  name: Int
-  url: Int
-}
-
-type FieldOfStudy_aggregated_fields {
-  id: Float
-  department_id: Float
-}
-
-""""""
-type version_FieldOfStudy {
-  id: ID!
-  department_id: JSON
-  name: String!
-  url: String
-}
-
 type Departments_aggregated {
   group: JSON
   countAll: Int
@@ -1257,6 +1199,38 @@ type version_FAQ {
   type: JSON
 }
 
+type FAQ_Types_FAQ_aggregated {
+  group: JSON
+  countAll: Int
+  count: FAQ_Types_FAQ_aggregated_count
+  countDistinct: FAQ_Types_FAQ_aggregated_count
+  avg: FAQ_Types_FAQ_aggregated_fields
+  sum: FAQ_Types_FAQ_aggregated_fields
+  avgDistinct: FAQ_Types_FAQ_aggregated_fields
+  sumDistinct: FAQ_Types_FAQ_aggregated_fields
+  min: FAQ_Types_FAQ_aggregated_fields
+  max: FAQ_Types_FAQ_aggregated_fields
+}
+
+type FAQ_Types_FAQ_aggregated_count {
+  id: Int
+  FAQ_Types_id: Int
+  FAQ_id: Int
+}
+
+type FAQ_Types_FAQ_aggregated_fields {
+  id: Float
+  FAQ_Types_id: Float
+  FAQ_id: Float
+}
+
+""""""
+type version_FAQ_Types_FAQ {
+  id: ID!
+  FAQ_Types_id: JSON
+  FAQ_id: JSON
+}
+
 type FAQ_Types_aggregated {
   group: JSON
   countAll: Int
@@ -1294,36 +1268,78 @@ type version_FAQ_Types {
   questions_func: count_functions
 }
 
-type FAQ_Types_FAQ_aggregated {
+type Departments_Links_aggregated {
   group: JSON
   countAll: Int
-  count: FAQ_Types_FAQ_aggregated_count
-  countDistinct: FAQ_Types_FAQ_aggregated_count
-  avg: FAQ_Types_FAQ_aggregated_fields
-  sum: FAQ_Types_FAQ_aggregated_fields
-  avgDistinct: FAQ_Types_FAQ_aggregated_fields
-  sumDistinct: FAQ_Types_FAQ_aggregated_fields
-  min: FAQ_Types_FAQ_aggregated_fields
-  max: FAQ_Types_FAQ_aggregated_fields
+  count: Departments_Links_aggregated_count
+  countDistinct: Departments_Links_aggregated_count
+  avg: Departments_Links_aggregated_fields
+  sum: Departments_Links_aggregated_fields
+  avgDistinct: Departments_Links_aggregated_fields
+  sumDistinct: Departments_Links_aggregated_fields
+  min: Departments_Links_aggregated_fields
+  max: Departments_Links_aggregated_fields
 }
 
-type FAQ_Types_FAQ_aggregated_count {
+type Departments_Links_aggregated_count {
   id: Int
-  FAQ_Types_id: Int
-  FAQ_id: Int
+  name: Int
+  link: Int
+  department_id: Int
 }
 
-type FAQ_Types_FAQ_aggregated_fields {
+type Departments_Links_aggregated_fields {
   id: Float
-  FAQ_Types_id: Float
-  FAQ_id: Float
+  department_id: Float
 }
 
 """"""
-type version_FAQ_Types_FAQ {
+type version_Departments_Links {
   id: ID!
-  FAQ_Types_id: JSON
-  FAQ_id: JSON
+  name: String
+  link: String
+  department_id: JSON
+}
+
+type FieldOfStudy_aggregated {
+  group: JSON
+  countAll: Int
+  count: FieldOfStudy_aggregated_count
+  countDistinct: FieldOfStudy_aggregated_count
+  avg: FieldOfStudy_aggregated_fields
+  sum: FieldOfStudy_aggregated_fields
+  avgDistinct: FieldOfStudy_aggregated_fields
+  sumDistinct: FieldOfStudy_aggregated_fields
+  min: FieldOfStudy_aggregated_fields
+  max: FieldOfStudy_aggregated_fields
+}
+
+type FieldOfStudy_aggregated_count {
+  id: Int
+  department_id: Int
+  name: Int
+  url: Int
+  isEnglish: Int
+  is2ndDegree: Int
+  isLongCycleStudies: Int
+  hasWeekendModeOption: Int
+}
+
+type FieldOfStudy_aggregated_fields {
+  id: Float
+  department_id: Float
+}
+
+""""""
+type version_FieldOfStudy {
+  id: ID!
+  department_id: JSON
+  name: String!
+  url: String
+  isEnglish: Boolean!
+  is2ndDegree: Boolean!
+  isLongCycleStudies: Boolean!
+  hasWeekendModeOption: Boolean!
 }
 
 type Subscription {
@@ -1331,7 +1347,6 @@ type Subscription {
   Scientific_Circles_Tags_mutated(event: EventEnum): Scientific_Circles_Tags_mutated
   Tags_mutated(event: EventEnum): Tags_mutated
   Posts_Tags_mutated(event: EventEnum): Posts_Tags_mutated
-  Departments_Links_mutated(event: EventEnum): Departments_Links_mutated
   Scientific_Circles_Links_mutated(event: EventEnum): Scientific_Circles_Links_mutated
   Scientific_Circles_mutated(event: EventEnum): Scientific_Circles_mutated
   Posts_mutated(event: EventEnum): Posts_mutated
@@ -1342,11 +1357,12 @@ type Subscription {
   AboutUs_Team_mutated(event: EventEnum): AboutUs_Team_mutated
   AboutUs_Team_Social_Links_mutated(event: EventEnum): AboutUs_Team_Social_Links_mutated
   AboutUs_Solvro_Social_Links_mutated(event: EventEnum): AboutUs_Solvro_Social_Links_mutated
-  FieldOfStudy_mutated(event: EventEnum): FieldOfStudy_mutated
   Departments_mutated(event: EventEnum): Departments_mutated
   FAQ_mutated(event: EventEnum): FAQ_mutated
-  FAQ_Types_mutated(event: EventEnum): FAQ_Types_mutated
   FAQ_Types_FAQ_mutated(event: EventEnum): FAQ_Types_FAQ_mutated
+  FAQ_Types_mutated(event: EventEnum): FAQ_Types_mutated
+  Departments_Links_mutated(event: EventEnum): Departments_Links_mutated
+  FieldOfStudy_mutated(event: EventEnum): FieldOfStudy_mutated
 }
 
 type directus_files_mutated {
@@ -1377,12 +1393,6 @@ type Posts_Tags_mutated {
   key: ID!
   event: EventEnum
   data: Posts_Tags
-}
-
-type Departments_Links_mutated {
-  key: ID!
-  event: EventEnum
-  data: Departments_Links
 }
 
 type Scientific_Circles_Links_mutated {
@@ -1445,12 +1455,6 @@ type AboutUs_Solvro_Social_Links_mutated {
   data: AboutUs_Solvro_Social_Links
 }
 
-type FieldOfStudy_mutated {
-  key: ID!
-  event: EventEnum
-  data: FieldOfStudy
-}
-
 type Departments_mutated {
   key: ID!
   event: EventEnum
@@ -1463,14 +1467,26 @@ type FAQ_mutated {
   data: FAQ
 }
 
+type FAQ_Types_FAQ_mutated {
+  key: ID!
+  event: EventEnum
+  data: FAQ_Types_FAQ
+}
+
 type FAQ_Types_mutated {
   key: ID!
   event: EventEnum
   data: FAQ_Types
 }
 
-type FAQ_Types_FAQ_mutated {
+type Departments_Links_mutated {
   key: ID!
   event: EventEnum
-  data: FAQ_Types_FAQ
+  data: Departments_Links
+}
+
+type FieldOfStudy_mutated {
+  key: ID!
+  event: EventEnum
+  data: FieldOfStudy
 }

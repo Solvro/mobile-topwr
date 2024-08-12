@@ -1,3 +1,4 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:google_maps_flutter/google_maps_flutter.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
@@ -9,10 +10,10 @@ abstract class GoogleNavigable {
   LatLng get location;
 }
 
-typedef SourceRepositoryProv<T> = AutoDisposeStreamProvider<Iterable<T?>?>;
+typedef SourceRepositoryProv<T> = AutoDisposeStreamProvider<IList<T?>?>;
 
 typedef MapDataProv<T extends GoogleNavigable>
-    = AutoDisposeAsyncNotifierProvider<MapDataController<T>, Iterable<T?>?>;
+    = AutoDisposeAsyncNotifierProvider<MapDataController<T>, IList<T?>?>;
 
 typedef ActiveMarkerProv<T extends GoogleNavigable>
     = AutoDisposeNotifierProvider<ActiveMarkerController<T>, T?>;

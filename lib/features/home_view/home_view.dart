@@ -22,9 +22,9 @@ class HomeView extends StatelessWidget {
       const Greeting(),
       const ExamSessionCountdown(),
       const ParkingsSection(),
-      const NewsSection(),
-      const BuildingsSection(),
       const ScienceClubsSection(),
+      const BuildingsSection(),
+      const NewsSection(),
       const DepartmentsSection(),
     ];
     return Scaffold(
