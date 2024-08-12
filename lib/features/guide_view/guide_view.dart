@@ -43,7 +43,7 @@ class _GuideViewContent extends ConsumerWidget {
 
     return switch (guideList) {
       AsyncError(:final error) => MyErrorWidget(error),
-      AsyncValue(:final IList<GuidePost> value) => GuideGrid(
+      AsyncValue(:final IList<GuidePost?> value) => GuideGrid(
           children: [
             if (!isSomethingSearched) const GuideAboutUsSection(),
             for (final item in value.whereNonNull) GuideTile(item),
