@@ -1,8 +1,10 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/cupertino.dart";
 
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../repository/getDepartmentDetails.graphql.dart";
+import "../utils/fields_of_studies.dart";
 import "field_of_study_expansion_tile.dart";
 
 typedef FieldOfStudy
@@ -11,15 +13,13 @@ typedef FieldOfStudy
 class FieldsOfStudySection extends StatelessWidget {
   const FieldsOfStudySection({super.key, required this.fieldsOfStudy});
 
-  final List<FieldOfStudy> fieldsOfStudy;
+  final IList<FieldOfStudy> fieldsOfStudy;
 
   @override
   Widget build(BuildContext context) {
-    final firstDegree = fieldsOfStudy
-        .where((item) => !item.is2ndDegree && !item.isLongCycleStudies);
-    final secondDegree = fieldsOfStudy
-        .where((item) => item.is2ndDegree && !item.isLongCycleStudies);
-    final longCycle = fieldsOfStudy.where((item) => item.isLongCycleStudies);
+    final firstDegree = fieldsOfStudy.whereFirstDegree;
+    final secondDegree = fieldsOfStudy.whereSecondDegree;
+    final longCycle = fieldsOfStudy.whereLongCycle;
 
     return Padding(
       padding: const EdgeInsets.only(left: 24, right: 24, top: 24, bottom: 8),
