@@ -1,4 +1,5 @@
 import "package:auto_route/auto_route.dart";
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
@@ -9,6 +10,7 @@ import "../../utils/where_non_null_iterable.dart";
 import "../../widgets/search_box_app_bar.dart";
 import "../departments_view/widgets/departments_view_loading.dart";
 import "guide_view_controller.dart";
+import "repository/guide_repository.dart";
 import "widgets/about_us_section.dart";
 import "widgets/guide_grid.dart";
 import "widgets/guide_tile.dart";
@@ -40,17 +42,17 @@ class _GuideViewContent extends ConsumerWidget {
     final isSomethingSearched = ref.watch(isSomethingSearchedProvider);
 
     return switch (guideList) {
-      AsyncLoading() => const Padding(
-          padding: GuideViewConfig.gridPadding,
-          child: DepartmentsViewLoading(),
-        ),
       AsyncError(:final error) => MyErrorWidget(error),
-      AsyncValue(:final value) => GuideGrid(
+      AsyncValue(:final IList<GuidePost> value) => GuideGrid(
           children: [
             if (!isSomethingSearched) const GuideAboutUsSection(),
             for (final item in value.whereNonNull) GuideTile(item),
           ],
-        )
+        ),
+      _ => const Padding(
+          padding: GuideViewConfig.gridPadding,
+          child: DepartmentsViewLoading(),
+        ),
     };
   }
 }

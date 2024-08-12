@@ -1,5 +1,6 @@
 import "dart:async";
 
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
@@ -60,7 +61,7 @@ class _NewsList extends ConsumerWidget {
           ),
           child: SizedBox(
             height: BigPreviewCardConfig.cardHeight,
-            child: _NewsDataList(value.whereNonNull.toList()),
+            child: _NewsDataList(value.whereNonNull.toIList()),
           ),
         )
     };
@@ -70,7 +71,7 @@ class _NewsList extends ConsumerWidget {
 class _NewsDataList extends ConsumerWidget {
   const _NewsDataList(this.value);
 
-  final List<GuidePost> value;
+  final IList<GuidePost> value;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

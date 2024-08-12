@@ -1,3 +1,4 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../api_base/watch_query_adapter.dart";
@@ -10,12 +11,10 @@ typedef GuidePost = Query$GetGuide$FAQ_Types;
 typedef _GetGuidePosts = WatchOptions$Query$GetGuide;
 
 @riverpod
-Stream<List<GuidePost?>?> guideRepository(
-  GuideRepositoryRef ref,
-) async* {
+Stream<IList<GuidePost?>?> guideRepository(GuideRepositoryRef ref) async* {
   final stream = ref.watchQueryWithCache(
     _GetGuidePosts(eagerlyFetchResults: true),
     TtlKey.guideRepository,
   );
-  yield* stream.map((event) => event?.FAQ_Types);
+  yield* stream.map((event) => event?.FAQ_Types.toIList());
 }

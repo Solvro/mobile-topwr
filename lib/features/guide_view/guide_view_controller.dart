@@ -1,3 +1,4 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "repository/guide_repository.dart";
@@ -20,14 +21,17 @@ bool isSomethingSearched(IsSomethingSearchedRef ref) {
 }
 
 @riverpod
-Future<Iterable<GuidePost?>?> guideListController(
+Future<IList<GuidePost?>?> guideListController(
   GuideListControllerRef ref,
 ) async {
   final originalList = await ref.watch(guideRepositoryProvider.future);
   final query = ref.watch(searchGuideControllerProvider);
-  return originalList?.where(
-    (element) =>
-        element == null ||
-        (element.name?.toLowerCase().contains(query.toLowerCase()) ?? false),
-  );
+  return originalList
+      ?.where(
+        (element) =>
+            element == null ||
+            (element.name?.toLowerCase().contains(query.toLowerCase()) ??
+                false),
+      )
+      .toIList();
 }
