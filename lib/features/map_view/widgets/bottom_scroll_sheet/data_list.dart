@@ -1,3 +1,4 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
@@ -16,11 +17,13 @@ class DataSliverList<T extends GoogleNavigable> extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final itemsState = ref.watch(context.mapDataController<T>());
     return switch (itemsState) {
-      AsyncLoading() => const DataListLoading(),
+      // misz-masz here fixed flickering
+      // we probably should consider similar refactoring to all switches, but won't be visible in our other use-cases
+      AsyncValue(:final IList<T?> value) =>
+        _DataSliverList<T>(value.whereNonNull.toIList()),
       AsyncError(:final error) =>
         SliverToBoxAdapter(child: MyErrorWidget(error)),
-      AsyncValue(:final value) =>
-        _DataSliverList<T>(value.whereNonNull.toList())
+      _ => const DataListLoading(),
     };
   }
 }
@@ -28,7 +31,7 @@ class DataSliverList<T extends GoogleNavigable> extends ConsumerWidget {
 class _DataSliverList<T extends GoogleNavigable> extends StatelessWidget {
   const _DataSliverList(this.items);
 
-  final List<T> items;
+  final IList<T> items;
 
   @override
   Widget build(BuildContext context) {

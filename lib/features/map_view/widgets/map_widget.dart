@@ -11,23 +11,7 @@ import "../utils/location_permission_status_provider.dart";
 import "map_config.dart";
 
 class MapWidget<T extends GoogleNavigable> extends ConsumerWidget {
-  const MapWidget({super.key});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final asyncItems = ref.watch(context.mapSourceRepository<T>());
-    return switch (asyncItems) {
-      AsyncLoading() => _MapWidget<T>(const []),
-      AsyncError() => _MapWidget<T>(const []),
-      AsyncValue(:final value) => _MapWidget<T>(value.whereNonNull.toList()),
-    };
-  }
-}
-
-class _MapWidget<T extends GoogleNavigable> extends ConsumerWidget {
-  const _MapWidget(this.items);
-
-  final List<T> items;
+  const MapWidget();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -38,30 +22,40 @@ class _MapWidget<T extends GoogleNavigable> extends ConsumerWidget {
     final activeItem = ref.watch(context.activeMarkerController<T>());
 
     final locationStatus = ref.watch(locationPermissionStatusProvider);
+
     return switch (locationStatus) {
       AsyncLoading() => const SizedBox(),
       AsyncError(:final error) => MyErrorWidget(error),
-      AsyncValue(:final value) => GoogleMap(
-          initialCameraPosition: MapWidgetConfig.defaultCameraPosition,
-          onMapCreated: mapController.onMapCreated,
-          onTap: mapController.onMapBackgroundTap,
-          markers: items
-              .map(
-                (item) => context.markerBuilder<T>()(
-                  item,
-                  ref,
-                  isActive: activeItem == item,
-                ),
-              )
-              .toSet(),
-          myLocationEnabled: value ?? false,
-          myLocationButtonEnabled: value ?? false,
-          mapToolbarEnabled: false,
-          zoomControlsEnabled: false,
-          padding: EdgeInsets.only(
-            top: MediaQuery.paddingOf(context).top,
-            bottom: ref.watch(bottomSheetPixelsProvider),
-          ),
+      AsyncValue(:final value) => Consumer(
+          builder: (BuildContext context, WidgetRef ref, Widget? child) {
+            final asyncItems = ref
+                .watch(context.mapSourceRepository<T>())
+                .value
+                .whereNonNull
+                .toList();
+            return GoogleMap(
+              initialCameraPosition: MapWidgetConfig.defaultCameraPosition,
+              onMapCreated: mapController.onMapCreated,
+              onTap: mapController.onMapBackgroundTap,
+              markers: asyncItems
+                  .map(
+                    (item) => context.markerBuilder<T>()(
+                      item,
+                      ref,
+                      isActive: activeItem == item,
+                    ),
+                  )
+                  .toSet(),
+              myLocationEnabled: value ?? false,
+              myLocationButtonEnabled: value ?? false,
+              mapToolbarEnabled: false,
+              zoomControlsEnabled: false,
+              padding: EdgeInsets.only(
+                top: MediaQuery.paddingOf(context).top,
+                bottom: ref.watch(bottomSheetPixelsProvider),
+              ),
+            );
+          },
         ),
     };
   }

@@ -75,5 +75,9 @@
   "fields_of_study"  : "Kierunki",
   "guide_about_us": "O Nas!",
   "guide_meet_creators": "Poznaj twórców aplikacji mobilnej ToPWR!",
-  "guide_not_found" : "Nie znaleziono wpisów przewodnika"
+  "guide_not_found" : "Nie znaleziono wpisów przewodnika",
+  "first_degree" : "I Stopnia",
+  "second_degree" : "II Stopnia",
+  "long_cycle" : "Jednolite magisterskie",
+  "no_address": "Brak adresu"
 }

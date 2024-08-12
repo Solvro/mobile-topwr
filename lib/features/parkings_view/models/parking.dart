@@ -16,7 +16,6 @@ class Parking with _$Parking implements GoogleNavigable {
   const factory Parking({
     required String id,
     required String parkingId,
-    @JsonKey(name: "czas_pomiaru") required String measurementTime,
     @JsonKey(name: "liczba_miejsc") required String numberOfPlaces,
     required String symbol,
     required String? type,

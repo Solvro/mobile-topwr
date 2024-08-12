@@ -7,6 +7,11 @@ query GetDepartmentDetails($id: ID!, $fid : GraphQLStringOrFloat) {
         address
         fieldsOfStudies {
             name
+            is2ndDegree
+            isEnglish
+            isLongCycleStudies
+            hasWeekendModeOption
+            url
         }
         links {
             name

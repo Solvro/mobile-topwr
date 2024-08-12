@@ -1,23 +1,22 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "controllers_set.dart";
 
 mixin MapDataController<T extends GoogleNavigable>
-    on AutoDisposeAsyncNotifier<Iterable<T?>?> {
+    on AutoDisposeAsyncNotifier<IList<T?>?> {
   String _textFieldFilterText = "";
   late final MapControllers<T> mapControllers;
 
   @override
-  FutureOr<Iterable<T?>?> build() async {
+  FutureOr<IList<T?>?> build() async {
     final itemSelected = ref.watch(mapControllers.activeMarker);
     if (itemSelected != null) {
-      return [itemSelected]; // shows only selected building
+      return [itemSelected].lock; // shows only selected building
     }
 
     final itemsData = await ref.watch(mapControllers.sourceRepo.future);
-    return itemsData?.where(
-      _filterMethod,
-    ); // or elsewhere a whole list, filtered by text field
+    return itemsData?.where(_filterMethod).toIList();
   }
 
   bool filterMethod(T item, String filterStr);

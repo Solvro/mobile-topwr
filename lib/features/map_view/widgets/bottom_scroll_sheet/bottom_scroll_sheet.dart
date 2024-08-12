@@ -23,14 +23,14 @@ class BottomScrollSheet<T extends GoogleNavigable> extends ConsumerWidget {
 
         final isAnyActive =
             ref.watch(context.activeMarkerController<T>()) != null;
-        final recomendedSheetHeight = isAnyActive
+        final recommendedSheetHeight = isAnyActive
             ? sheetSize.recomendedActiveSheetHeight
             : sheetSize.recomendedSheetHeight;
 
         final minSheetHeight = sheetSize.minSheetHeight;
 
         final double recommendedSheetFraction =
-            min(1, recomendedSheetHeight / screenHeight);
+            min(1, recommendedSheetHeight / screenHeight);
         final minSheetFraction = min(0.25, minSheetHeight / screenHeight);
 
         return MapViewPopBehaviour<T>(
