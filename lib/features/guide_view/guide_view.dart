@@ -1,12 +1,19 @@
-import "dart:async";
-
 import "package:auto_route/auto_route.dart";
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../../theme/app_theme.dart";
+import "../../../../widgets/my_error_widget.dart";
+import "../../config/ui_config.dart";
 import "../../utils/context_extensions.dart";
-import "../navigator/utils/navigation_commands.dart";
+import "../../utils/where_non_null_iterable.dart";
+import "../../widgets/search_box_app_bar.dart";
+import "../departments_view/widgets/departments_view_loading.dart";
+import "guide_view_controller.dart";
+import "repository/guide_repository.dart";
+import "widgets/about_us_section.dart";
+import "widgets/guide_grid.dart";
+import "widgets/guide_tile.dart";
 
 @RoutePage()
 class GuideView extends ConsumerWidget {
@@ -15,57 +22,37 @@ class GuideView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(context.localize.about_us),
-        backgroundColor: context.colorTheme.greyLight,
+      appBar: SearchBoxAppBar(
+        context,
+        title: context.localize.guide,
+        onQueryChanged:
+            ref.watch(searchGuideControllerProvider.notifier).onTextChanged,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
+      body: const _GuideViewContent(),
+    );
+  }
+}
+
+class _GuideViewContent extends ConsumerWidget {
+  const _GuideViewContent();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final guideList = ref.watch(guideListControllerProvider);
+    final isSomethingSearched = ref.watch(isSomethingSearchedProvider);
+
+    return switch (guideList) {
+      AsyncError(:final error) => MyErrorWidget(error),
+      AsyncValue(:final IList<GuidePost> value) => GuideGrid(
           children: [
-            GestureDetector(
-              onTap: ref.navigateAboutUs,
-              child: Container(
-                padding: const EdgeInsets.all(10),
-                width: double.infinity,
-                height: 50,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: context.colorTheme.greyLight,
-                ),
-                child: Text(
-                  context.localize.about_us,
-                  style: TextStyle(
-                    fontSize: 24,
-                    color: context.colorTheme.orangePomegranade,
-                  ),
-                ),
-              ),
-            ),
-            GestureDetector(
-              onTap: () async {
-                unawaited(ref.navigateGuideDetail("1"));
-              },
-              child: Container(
-                padding: const EdgeInsets.all(10),
-                width: double.infinity,
-                height: 50,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: context.colorTheme.greyLight,
-                ),
-                child: Text(
-                  "Przykładowy wpis",
-                  style: TextStyle(
-                    fontSize: 24,
-                    color: context.colorTheme.orangePomegranade,
-                  ),
-                ),
-              ),
-            ),
+            if (!isSomethingSearched) const GuideAboutUsSection(),
+            for (final item in value.whereNonNull) GuideTile(item),
           ],
         ),
-      ),
-    );
+      _ => const Padding(
+          padding: GuideViewConfig.gridPadding,
+          child: DepartmentsViewLoading(),
+        ),
+    };
   }
 }

@@ -1,5 +1,6 @@
 import "dart:async";
 
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
@@ -10,7 +11,7 @@ import "../../../utils/where_non_null_iterable.dart";
 import "../../../widgets/big_preview_card.dart";
 import "../../../widgets/my_error_widget.dart";
 import "../../../widgets/subsection_header.dart";
-import "../../guide_view/repository/guide_view_repository.dart";
+import "../../guide_view/repository/guide_repository.dart";
 import "../../navigator/utils/navigation_commands.dart";
 import "loading_widgets/big_scrollable_section_loading.dart";
 import "paddings.dart";
@@ -37,8 +38,7 @@ class _NewsList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(guidePostsRepositoryProvider);
-
+    final state = ref.watch(guideRepositoryProvider);
     return switch (state) {
       AsyncLoading() => const Padding(
           padding: EdgeInsets.only(
@@ -61,7 +61,7 @@ class _NewsList extends ConsumerWidget {
           ),
           child: SizedBox(
             height: BigPreviewCardConfig.cardHeight,
-            child: _NewsDataList(value.whereNonNull.toList()),
+            child: _NewsDataList(value.whereNonNull.toIList()),
           ),
         )
     };
@@ -71,7 +71,7 @@ class _NewsList extends ConsumerWidget {
 class _NewsDataList extends ConsumerWidget {
   const _NewsDataList(this.value);
 
-  final List<GuidePosts> value;
+  final IList<GuidePost> value;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
