@@ -5,7 +5,7 @@ part "api_base_config.g.dart";
 abstract class ApiBaseConfig {
   static const hiveCacheBoxName = "hiveCacheBoxForDirectusGraphQL";
   static const authHeaderPrefix = "Bearer ";
-  static const ttlPrefsPrefix = "TTL_CACHE_TIMESTAMP_PREFX_";
+  static const ttlPrefsPrefix = "TTL_CACHE_TIMESTAMP_PREFIX_";
 }
 
 @Envied(
