@@ -75,5 +75,6 @@
   "fields_of_study"  : "Kierunki",
   "first_degree" : "I Stopnia",
   "second_degree" : "II Stopnia",
-  "long_cycle" : "Jednolite magisterskie"
+  "long_cycle" : "Jednolite magisterskie",
+  "no_address": "Brak adresu"
 }
