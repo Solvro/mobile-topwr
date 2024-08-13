@@ -13,25 +13,32 @@ class FiltersSheet extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Padding(
-      padding: const EdgeInsets.all(16).copyWith(bottom: 0),
-      child: Column(
-        children: [
-          FiltersHeader(),
-          Expanded(
-            child: ListView(
-              children: [
-                _Header(context.localize.org_types),
-                const TypesWrap(),
-                _Header(context.localize.departments),
-                const DepartmentsWrap(),
-                _Header(context.localize.categories),
-                const TagsWrap(),
-                const SizedBox(height: 12),
-              ],
+    return SizedBox(
+      height: MediaQuery.sizeOf(context).height * 0.65,
+      child: Padding(
+        padding: const EdgeInsets.only(top: 16),
+        child: Column(
+          children: [
+            FiltersHeader(),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: ListView(
+                  shrinkWrap: true,
+                  children: [
+                    _Header(context.localize.org_types),
+                    const TypesWrap(),
+                    _Header(context.localize.departments),
+                    const DepartmentsWrap(),
+                    _Header(context.localize.categories),
+                    const TagsWrap(),
+                    const SizedBox(height: 12),
+                  ],
+                ),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

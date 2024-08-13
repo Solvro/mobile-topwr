@@ -1,10 +1,11 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../../../utils/where_non_null_iterable.dart";
 import "../../departments_view/repository/departments_extensions.dart";
 import "../../departments_view/repository/departments_repository.dart";
 import "../filters_controller.dart";
+import "../filters_search_controller.dart";
 import "chips_loading.dart";
 import "filter_chip.dart";
 
@@ -13,13 +14,12 @@ class DepartmentsWrap extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final departments = ref.watch(departmentsRepositoryProvider);
+    final departments = ref.watch(departmentFiltersFilteredProvider);
     return switch (departments) {
-      AsyncLoading() => const FilterChipsLoading(),
       AsyncError() => const SizedBox.shrink(),
-      AsyncValue(:final value) => Wrap(
+      AsyncValue(:final IList<Department> value) => Wrap(
           children: [
-            for (final department in value.whereNonNull)
+            for (final department in value)
               Consumer(
                 builder: (context, ref, child) {
                   final controller =
@@ -38,7 +38,8 @@ class DepartmentsWrap extends ConsumerWidget {
                 },
               ),
           ],
-        )
+        ),
+      _ => const FilterChipsLoading(),
     };
   }
 }

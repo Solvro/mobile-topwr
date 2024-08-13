@@ -20,7 +20,6 @@ class SubsectionHeader extends StatelessWidget {
   final double leftPadding;
   final double rightPadding;
   final bool addArrow;
-
   @override
   Widget build(BuildContext context) {
     return Padding(

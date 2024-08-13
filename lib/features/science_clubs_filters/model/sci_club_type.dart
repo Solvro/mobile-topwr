@@ -1,7 +1,9 @@
 import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 
 import "../../../../utils/context_extensions.dart";
+import "../../../utils/watch_locale.dart";
 
 part "sci_club_type.g.dart";
 
@@ -21,5 +23,18 @@ extension GetDisplayNameX on BuildContext {
         ScienceClubType.culturalAgenda => localize.cultural_agendas,
         ScienceClubType.studentOrganization => localize.student_organizations,
         ScienceClubType.studentMedia => localize.student_medias,
+      };
+}
+
+extension GetDisplayNameRefX on Ref {
+  String sciClubTypeDisplayName(ScienceClubType it) => switch (it) {
+        ScienceClubType.scientificCirlce =>
+          read(watchLocaleProvider).scientific_cirlces,
+        ScienceClubType.culturalAgenda =>
+          read(watchLocaleProvider).cultural_agendas,
+        ScienceClubType.studentOrganization =>
+          read(watchLocaleProvider).student_organizations,
+        ScienceClubType.studentMedia =>
+          read(watchLocaleProvider).student_medias,
       };
 }

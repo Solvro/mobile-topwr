@@ -7,6 +7,7 @@ import "../../../utils/context_extensions.dart";
 import "../../../widgets/subsection_header.dart";
 import "../../map_view/widgets/bottom_scroll_sheet/drag_handle.dart";
 import "../filters_controller.dart";
+import "filters_search.dart";
 
 class FiltersHeader extends StatelessWidget {
   @override
@@ -21,17 +22,21 @@ class FiltersHeader extends StatelessWidget {
               data: context.defaultThemeWithOverrideTextStyles(
                 boldBodyOrange: context.textTheme.titleOrange,
               ), // for text button font
-              child: Consumer(
-                builder: (context, ref, child) => SubsectionHeader(
-                  leftPadding: 8,
-                  rightPadding: 0,
-                  title: context.localize.filters,
-                  actionTitle: context.localize.clear,
-                  addArrow: false,
-                  onClick: ref.watch(areFiltersEnabledProvider)
-                      ? ref.getClearAllFilters(ref)
-                      : null,
-                ),
+              child: Stack(
+                children: [
+                  Consumer(
+                    builder: (context, ref, child) => SubsectionHeader(
+                      rightPadding: 16,
+                      title: context.localize.filters,
+                      actionTitle: context.localize.clear,
+                      addArrow: false,
+                      onClick: ref.watch(areFiltersEnabledProvider)
+                          ? ref.getClearAllFilters(ref)
+                          : null,
+                    ),
+                  ),
+                  const FiltersSearch(), // I need Stack cause the this lib is terribly made and it's my last hope to make it anything close to what I need
+                ],
               ),
             ),
           ),

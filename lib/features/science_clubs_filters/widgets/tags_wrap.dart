@@ -1,8 +1,10 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../utils/where_non_null_iterable.dart";
 import "../filters_controller.dart";
+import "../filters_search_controller.dart";
 import "../repository/tags_repository.dart";
 import "chips_loading.dart";
 import "filter_chip.dart";
@@ -12,11 +14,10 @@ class TagsWrap extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final tags = ref.watch(tagsRepositoryProvider);
+    final tags = ref.watch(tagFiltersFilteredProvider);
     return switch (tags) {
-      AsyncLoading() => const FilterChipsLoading(),
       AsyncError() => const SizedBox.shrink(),
-      AsyncValue(:final value) => Wrap(
+      AsyncValue(:final IList<Tag> value) => Wrap(
           children: [
             for (final tag in value.whereNonNull)
               Consumer(
@@ -35,7 +36,8 @@ class TagsWrap extends ConsumerWidget {
                 },
               ),
           ],
-        )
+        ),
+      _ => const FilterChipsLoading(),
     };
   }
 }
