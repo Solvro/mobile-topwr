@@ -12,10 +12,13 @@ class FilterChipsLoading extends StatelessWidget {
       padding: const EdgeInsets.only(
         left: ScienceClubsViewConfig.smallPadding,
       ),
-      child: GridView.builder(
-        gridDelegate: ScienceClubsViewConfig.tagsGridDelegate,
-        itemBuilder: (context, index) => const ButtonLoading(),
-        physics: const NeverScrollableScrollPhysics(),
+      child: SizedBox(
+        height: MediaQuery.sizeOf(context).height * 0.65,
+        child: GridView.builder(
+          gridDelegate: ScienceClubsViewConfig.tagsGridDelegate,
+          itemBuilder: (context, index) => const ButtonLoading(),
+          physics: const NeverScrollableScrollPhysics(),
+        ),
       ),
     );
   }

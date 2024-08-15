@@ -29,7 +29,7 @@ class DepartmentsWrap extends ConsumerWidget {
                     department,
                   );
                   return MyFilterChip(
-                    label: department.code,
+                    label: department.betterCode ?? department.code,
                     onTap: () => controller.toggleFilter(department),
                     selected: isSelected,
                     selectedColor: department.gradient.colors.first,

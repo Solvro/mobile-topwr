@@ -53,11 +53,13 @@ class NavigationController extends _$NavigationController {
   /// pops details views above tab views
   void _popUntilTabBarView() {
     _router?.popUntil(
-      (element) => (element.settings as AutoRoutePage)
-          .routeData
-          .topMatch
-          .toPageRouteInfo()
-          .isTabView,
+      (element) =>
+          element.settings is! AutoRoutePage ||
+          (element.settings as AutoRoutePage)
+              .routeData
+              .topMatch
+              .toPageRouteInfo()
+              .isTabView,
     );
   }
 

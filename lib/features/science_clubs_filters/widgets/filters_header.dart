@@ -12,37 +12,34 @@ import "filters_search.dart";
 class FiltersHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ColoredBox(
-      color: context.colorTheme.whiteSoap,
-      child: Column(
-        children: [
-          const LineHandle(),
-          Center(
-            child: Theme(
-              data: context.defaultThemeWithOverrideTextStyles(
-                boldBodyOrange: context.textTheme.titleOrange,
-              ), // for text button font
-              child: Stack(
-                children: [
-                  Consumer(
-                    builder: (context, ref, child) => SubsectionHeader(
-                      rightPadding: 16,
-                      title: context.localize.filters,
-                      actionTitle: context.localize.clear,
-                      addArrow: false,
-                      onClick: ref.watch(areFiltersEnabledProvider)
-                          ? ref.getClearAllFilters(ref)
-                          : null,
-                    ),
+    return Column(
+      children: [
+        const LineHandle(),
+        Center(
+          child: Theme(
+            data: context.defaultThemeWithOverrideTextStyles(
+              boldBodyOrange: context.textTheme.titleOrange,
+            ), // for text button font
+            child: Stack(
+              children: [
+                Consumer(
+                  builder: (context, ref, child) => SubsectionHeader(
+                    rightPadding: 16,
+                    title: context.localize.filters,
+                    actionTitle: context.localize.clear,
+                    addArrow: false,
+                    onClick: ref.watch(areFiltersEnabledProvider)
+                        ? ref.getClearAllFilters(ref)
+                        : null,
                   ),
-                  const FiltersSearch(), // I need Stack cause the this lib is terribly made and it's my last hope to make it anything close to what I need
-                ],
-              ),
+                ),
+                const FiltersSearch(), // I need Stack cause the this lib is terribly made and it's my last hope to make it anything close to what I need
+              ],
             ),
           ),
-          const SizedBox(height: 8),
-        ],
-      ),
+        ),
+        const SizedBox(height: 8),
+      ],
     );
   }
 }

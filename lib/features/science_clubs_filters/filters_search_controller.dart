@@ -43,7 +43,9 @@ Future<IList<Department>> departmentFiltersFiltered(
       .where(
         (x) =>
             x.name.toLowerCase().contains(query.toLowerCase()) ||
-            x.code.toLowerCase().contains(query.toLowerCase()),
+            x.code.toLowerCase().contains(query.toLowerCase()) ||
+            (x.betterCode?.toLowerCase().contains(query.toLowerCase()) ??
+                false),
       )
       .toIList();
 }
