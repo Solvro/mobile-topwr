@@ -7,8 +7,10 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../departments_view/repository/departments_repository.dart";
+import "filters_search_controller.dart";
 import "model/sci_club_type.dart";
 import "repository/tags_repository.dart";
+import "utils.dart";
 
 part "filters_controller.g.dart";
 
@@ -50,33 +52,24 @@ class SelectedTypeController extends _$SelectedTypeController
 
 @riverpod
 bool areFiltersEnabled(AreFiltersEnabledRef ref) {
-  final selectedTags = ref.watch(selectedTagControllerProvider);
-  final selectedDepartments = ref.watch(selectedDepartmentControllerProvider);
-  final selectedTypes = ref.watch(selectedTypeControllerProvider);
-  return selectedTags.isNotEmpty ||
-      selectedDepartments.isNotEmpty ||
-      selectedTypes.isNotEmpty;
+  final selectedTagsIsNotEmpty =
+      ref.watch(selectedTagControllerProvider.notEmpty);
+  final selectedDepartmentsIsNotEmpty =
+      ref.watch(selectedDepartmentControllerProvider.notEmpty);
+  final selectedTypesIsNotEmpty =
+      ref.watch(selectedTypeControllerProvider.notEmpty);
+  return selectedTagsIsNotEmpty ||
+      selectedDepartmentsIsNotEmpty ||
+      selectedTypesIsNotEmpty;
 }
 
-typedef FilterControllerProvider<T>
-    = AutoDisposeNotifierProvider<FilterController<T>, ISet<T>>;
-
-extension SliceStateX on WidgetRef {
-  bool watchContains<T>(
-    FilterControllerProvider<T> selectedProvider,
-    T valueToCheck,
-  ) =>
-      watch(
-        selectedProvider.select(
-          (value) => value.contains(valueToCheck),
-        ),
-      );
-
+extension ClearAllFiltersX on WidgetRef {
   VoidCallback getClearAllFilters(WidgetRef ref) {
     return () {
       ref.read(selectedTagControllerProvider.notifier).clearFilter();
       ref.read(selectedDepartmentControllerProvider.notifier).clearFilter();
       ref.read(selectedTypeControllerProvider.notifier).clearFilter();
+      ref.read(searchFiltersControllerProvider.notifier).clear();
     };
   }
 }

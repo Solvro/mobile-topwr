@@ -66,7 +66,6 @@ dependencies:
     git:
       url: https://github.com/simon-the-shark/anim_search_bar.git
       ref: master
-
 dev_dependencies:
   flutter_test:
     sdk: flutter

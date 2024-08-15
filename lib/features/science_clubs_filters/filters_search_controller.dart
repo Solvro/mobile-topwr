@@ -5,6 +5,7 @@ import "../../utils/where_non_null_iterable.dart";
 import "../departments_view/repository/departments_repository.dart";
 import "model/sci_club_type.dart";
 import "repository/tags_repository.dart";
+import "utils.dart";
 
 part "filters_search_controller.g.dart";
 
@@ -15,6 +16,10 @@ class SearchFiltersController extends _$SearchFiltersController {
 
   void onTextChanged(String newValue) {
     state = newValue;
+  }
+
+  void clear() {
+    state = "";
   }
 }
 
@@ -59,4 +64,15 @@ Future<IList<Tag>> tagFiltersFiltered(
   return tags.whereNonNull
       .where((x) => x.name.toLowerCase().contains(query.toLowerCase()))
       .toIList();
+}
+
+@riverpod
+bool areNoFiltersFound(AreNoFiltersFoundRef ref) {
+  final source1Empty = !ref.watch(typeFiltersFilteredProvider.notEmpty);
+  final source2Empty =
+      !(ref.watch(departmentFiltersFilteredProvider.notEmpty) ?? false);
+  final source3Empty =
+      !(ref.watch(tagFiltersFilteredProvider.notEmpty) ?? false);
+
+  return source1Empty && source2Empty && source3Empty;
 }

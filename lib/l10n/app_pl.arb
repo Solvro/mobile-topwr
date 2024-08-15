@@ -87,5 +87,6 @@
   "org_types": "Rodzaje organizacji",
   "categories":"Kategorie tematyczne",
   "filters" : "Filtry",
-  "clear" : "Wyczyść"
+  "clear" : "Wyczyść",
+  "filters_didnt_found_anything" : "Nie znaleziono żadnych filtrów"
 }

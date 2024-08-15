@@ -7,6 +7,8 @@ import "../../../utils/context_extensions.dart";
 import "../../../widgets/subsection_header.dart";
 import "../../map_view/widgets/bottom_scroll_sheet/drag_handle.dart";
 import "../filters_controller.dart";
+import "../filters_search_controller.dart";
+import "../utils.dart";
 import "filters_search.dart";
 
 class FiltersHeader extends StatelessWidget {
@@ -28,7 +30,8 @@ class FiltersHeader extends StatelessWidget {
                     title: context.localize.filters,
                     actionTitle: context.localize.clear,
                     addArrow: false,
-                    onClick: ref.watch(areFiltersEnabledProvider)
+                    onClick: ref.watch(areFiltersEnabledProvider) ||
+                            ref.watch(searchFiltersControllerProvider.notEmpty)
                         ? ref.getClearAllFilters(ref)
                         : null,
                   ),
