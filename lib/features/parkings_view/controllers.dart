@@ -2,6 +2,7 @@ import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:google_maps_flutter/google_maps_flutter.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
+import "../../utils/contains_lower_case.dart";
 import "../map_view/controllers/active_map_marker_cntrl.dart";
 import "../map_view/controllers/controllers_set.dart";
 import "../map_view/controllers/map_controller.dart";
@@ -34,9 +35,9 @@ class ParkingsViewController extends _$ParkingsViewController
 
   @override
   bool filterMethod(Parking item, String filterStr) {
-    return item.name.toLowerCase().contains(filterStr) ||
-        item.symbol.toLowerCase().contains(filterStr) ||
-        item.address.toLowerCase().contains(filterStr);
+    return item.name.containsLowerCase(filterStr) ||
+        item.symbol.containsLowerCase(filterStr) ||
+        item.address.containsLowerCase(filterStr);
   }
 }
 

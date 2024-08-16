@@ -1,5 +1,6 @@
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
+import "../../../utils/contains_lower_case.dart";
 import "../../../utils/where_non_null_iterable.dart";
 import "../../science_clubs_filters/filters_controller.dart";
 import "../repositories/science_clubs/science_clubs_repository.dart";
@@ -25,9 +26,10 @@ Future<Iterable<ScienceClub?>?> _sciClubsFilteredByTextQuery(
   return originalList?.where(
     (element) =>
         element == null ||
-        element.name.toLowerCase().contains(query.toLowerCase()) ||
-        (element.department?.name.toLowerCase().contains(query.toLowerCase()) ??
-            false),
+        element.name.containsLowerCase(query) ||
+        (element.department?.name).containsLowerCase(query) ||
+        (element.department?.code).containsLowerCase(query) ||
+        (element.department?.betterCode).containsLowerCase(query),
   );
 }
 

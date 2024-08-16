@@ -1,6 +1,7 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
+import "../../utils/contains_lower_case.dart";
 import "../../utils/where_non_null_iterable.dart";
 import "../departments_view/repository/departments_repository.dart";
 import "model/sci_club_type.dart";
@@ -29,7 +30,7 @@ IList<ScienceClubType> typeFiltersFiltered(TypeFiltersFilteredRef ref) {
   return ScienceClubType.values
       .where(
         (x) =>
-            x.name.toLowerCase().contains(query.toLowerCase()) ||
+            x.name.containsLowerCase(query) ||
             ref
                 .sciClubTypeDisplayName(x)
                 .toLowerCase()
@@ -47,10 +48,9 @@ Future<IList<Department>> departmentFiltersFiltered(
   return depts.whereNonNull
       .where(
         (x) =>
-            x.name.toLowerCase().contains(query.toLowerCase()) ||
-            x.code.toLowerCase().contains(query.toLowerCase()) ||
-            (x.betterCode?.toLowerCase().contains(query.toLowerCase()) ??
-                false),
+            x.name.containsLowerCase(query) ||
+            x.code.containsLowerCase(query) ||
+            x.betterCode.containsLowerCase(query),
       )
       .toIList();
 }
@@ -62,7 +62,7 @@ Future<IList<Tag>> tagFiltersFiltered(
   final query = ref.watch(searchFiltersControllerProvider);
   final tags = await ref.watch(tagsRepositoryProvider.future);
   return tags.whereNonNull
-      .where((x) => x.name.toLowerCase().contains(query.toLowerCase()))
+      .where((x) => x.name.containsLowerCase(query))
       .toIList();
 }
 

@@ -2,11 +2,10 @@ import "package:anim_search_bar/anim_search_bar.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
+import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../filters_search_controller.dart";
-
-const padding = 15.0;
 
 class FiltersSearch extends ConsumerStatefulWidget {
   const FiltersSearch({super.key});
@@ -30,24 +29,25 @@ class _FiltersSearchState extends ConsumerState<FiltersSearch> {
   @override
   Widget build(BuildContext context) {
     final expandedWidth = MediaQuery.sizeOf(context).width -
-        2 * padding -
+        2 * FilterConfig.searchFilterPadding -
         MediaQuery.viewInsetsOf(context).horizontal;
 
+    // loads of fixed values, but the search box library is a very fixed
     return AnimatedPositioned(
       duration: const Duration(milliseconds: 300),
-      left: isExpanded ? padding : 67,
+      left: isExpanded ? FilterConfig.searchFilterPadding : 67,
       top: 16,
       child: AnimSearchBar(
         width: expandedWidth,
         textController: textController,
         onSuffixTap: () {
           setState(() {
-            isExpanded = false; // let's say this lib is stupid has problems
+            isExpanded = false; // let's say this lib is stupid and has problems
           });
         },
         onSubmitted: (s) {
           setState(() {
-            isExpanded = false; // let's say this lib is stupid has problems
+            isExpanded = false; // let's say this lib is stupid and has problems
           });
         },
         onChanged: ref

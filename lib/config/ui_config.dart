@@ -147,3 +147,8 @@ abstract class GuideDetailViewConfig {
 abstract class GuideViewConfig {
   static const gridPadding = EdgeInsets.symmetric(horizontal: 24);
 }
+
+abstract class FilterConfig {
+  static const bottomSheetHeightFactor = 0.65;
+  static const searchFilterPadding = 15.0;
+}

@@ -13,7 +13,8 @@ class FilterChipsLoading extends StatelessWidget {
         left: ScienceClubsViewConfig.smallPadding,
       ),
       child: SizedBox(
-        height: MediaQuery.sizeOf(context).height * 0.65,
+        height: MediaQuery.sizeOf(context).height *
+            FilterConfig.bottomSheetHeightFactor,
         child: GridView.builder(
           gridDelegate: ScienceClubsViewConfig.tagsGridDelegate,
           itemBuilder: (context, index) => const ButtonLoading(),
