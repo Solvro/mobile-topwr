@@ -5,7 +5,7 @@ import "../../../theme/app_theme.dart";
 import "../../../theme/utils.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../widgets/subsection_header.dart";
-import "../../map_view/widgets/bottom_scroll_sheet/drag_handle.dart";
+import "../../bottom_scroll_sheet/drag_handle.dart";
 import "../filters_controller.dart";
 import "../filters_search_controller.dart";
 import "../utils.dart";

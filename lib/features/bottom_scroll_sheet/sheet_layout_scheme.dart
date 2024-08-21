@@ -1,10 +1,10 @@
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../../../../widgets/search_box_app_bar.dart";
-import "../../controllers/bottom_sheet_controller.dart";
-import "../../controllers/controllers_set.dart";
-import "../map_config.dart";
+import "../../widgets/search_box_app_bar.dart";
+import "../map_view/controllers/bottom_sheet_controller.dart";
+import "../map_view/controllers/controllers_set.dart";
+import "../map_view/widgets/map_config.dart";
 import "data_list.dart";
 import "drag_handle.dart";
 import "navigate_button.dart";

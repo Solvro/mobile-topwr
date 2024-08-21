@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 
-import "../../../../config/map_view_config.dart";
-import "../../../../widgets/loading_widgets/specific_imitations/wide_tile_loading.dart";
+import "../../config/map_view_config.dart";
+import "../../widgets/loading_widgets/specific_imitations/wide_tile_loading.dart";
 
 class DataListLoading extends StatelessWidget {
   const DataListLoading({super.key});
