@@ -40,23 +40,13 @@ class _FiltersSearchState extends ConsumerState<FiltersSearch> {
       child: AnimSearchBar(
         width: expandedWidth,
         textController: textController,
-        onSuffixTap: () {
-          setState(() {
-            isExpanded = false; // let's say this lib is stupid and has problems
-          });
-        },
-        onSubmitted: (s) {
-          setState(() {
-            isExpanded = false; // let's say this lib is stupid and has problems
-          });
-        },
+        onSuffixTap: () {},
         onChanged: ref
             .watch(searchFiltersControllerProvider.notifier)
             .onTextChanged, // I had to fork the lib and add this callback myself 😭
         textFieldColor: context.colorTheme.greyLight,
         textFieldIconColor: context.colorTheme.blackMirage,
         color: context.colorTheme.whiteSoap,
-        closeSearchOnSuffixTap: true,
         autoFocus: true,
         searchIconColor: context.colorTheme.blackMirage,
         helpText: context.localize.search,
@@ -65,8 +55,16 @@ class _FiltersSearchState extends ConsumerState<FiltersSearch> {
           setState(() {
             isExpanded = x == 1; // this lib is stupid as f...
           });
+          if (!isExpanded) {
+            ref
+                .read(searchFiltersControllerProvider.notifier)
+                .onTextChanged("");
+          }
         },
         height: 48,
+        clearOnClose: true,
+        clearOnSuffixTap: true,
+        closeOnSubmit: false,
       ),
     );
   }
