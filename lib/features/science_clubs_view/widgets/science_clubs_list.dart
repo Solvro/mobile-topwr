@@ -17,19 +17,17 @@ class ScienceClubsList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(scienceClubsListProvider);
-    return Expanded(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: ScienceClubsViewConfig.mediumPadding,
-        ),
-        child: switch (state) {
-          AsyncLoading() => const ScienceClubsViewLoading(),
-          AsyncError(:final error) => MyErrorWidget(error),
-          AsyncValue(:final value) =>
-            _ScienceClubsListView(value.whereNonNull.toList()),
-        },
+    final state = ref.watch(scienceClubsListControllerProvider);
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: ScienceClubsViewConfig.mediumPadding,
       ),
+      child: switch (state) {
+        AsyncValue(:final Iterable<ScienceClub?> value) =>
+          _ScienceClubsListView(value.whereNonNull.toList()),
+        AsyncError(:final error) => MyErrorWidget(error),
+        _ => const ScienceClubsViewLoading(),
+      },
     );
   }
 }

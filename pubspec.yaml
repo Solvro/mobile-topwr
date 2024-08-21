@@ -62,6 +62,10 @@ dependencies:
   auto_route: ^8.3.0
   separate: ^1.0.3
   fast_immutable_collections: ^10.2.4
+  anim_search_bar:
+    git:
+      url: https://github.com/simon-the-shark/anim_search_bar.git
+      ref: c56e410
 
 dev_dependencies:
   flutter_test:

@@ -2,6 +2,7 @@ import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:google_maps_flutter/google_maps_flutter.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
+import "../../utils/contains_lower_case.dart";
 import "../map_view/controllers/active_map_marker_cntrl.dart";
 import "../map_view/controllers/controllers_set.dart";
 import "../map_view/controllers/map_controller.dart";
@@ -36,8 +37,8 @@ class BuildingsViewController extends _$BuildingsViewController
   @override
   bool filterMethod(BuildingModel item, String filterStr) {
     return item.name.containsBuildingCode(filterStr) ||
-        item.addres.containsBuildingCode(filterStr) ||
-        item.naturalName.containsBuildingCode(filterStr);
+        item.addres.containsLowerCase(filterStr) ||
+        item.naturalName.containsLowerCase(filterStr);
   }
 }
 

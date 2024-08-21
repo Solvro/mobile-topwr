@@ -33,6 +33,8 @@ class MyApp extends ConsumerWidget {
         extensions: const [AppTheme()],
         colorScheme: const ColorScheme.light().copyWith(
           surface: ColorsConsts.whiteSoap,
+          primary: ColorsConsts.orangePomegranade,
+          secondary: ColorsConsts.blueAzure,
         ),
       ),
       debugShowCheckedModeBanner: false,

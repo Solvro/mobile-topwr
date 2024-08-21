@@ -284,6 +284,7 @@ type Departments {
   gradient_start: String
   gradient_end: String
   address: String
+  betterCode: String
   links(filter: Departments_Links_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): [Departments_Links]
   links_func: count_functions
   fieldsOfStudies(filter: FieldOfStudy_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): [FieldOfStudy]
@@ -306,6 +307,7 @@ input Departments_filter {
   gradient_start: string_filter_operators
   gradient_end: string_filter_operators
   address: string_filter_operators
+  betterCode: string_filter_operators
   links: Departments_Links_filter
   links_func: count_function_filter_operators
   fieldsOfStudies: FieldOfStudy_filter
@@ -348,10 +350,10 @@ type FieldOfStudy {
   department_id(filter: Departments_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): Departments
   name: String!
   url: String
-  isEnglish: Boolean!
-  is2ndDegree: Boolean!
-  isLongCycleStudies: Boolean!
-  hasWeekendModeOption: Boolean!
+  isEnglish: Boolean
+  is2ndDegree: Boolean
+  isLongCycleStudies: Boolean
+  hasWeekendModeOption: Boolean
 }
 
 input Scientific_Circles_Tags_filter {
@@ -1072,6 +1074,7 @@ type Departments_aggregated_count {
   gradient_start: Int
   gradient_end: Int
   address: Int
+  betterCode: Int
   links: Int
   fieldsOfStudies: Int
 }
@@ -1090,6 +1093,7 @@ type version_Departments {
   gradient_start: String
   gradient_end: String
   address: String
+  betterCode: String
   links: JSON
   links_func: count_functions
   fieldsOfStudies: JSON
@@ -1336,10 +1340,10 @@ type version_FieldOfStudy {
   department_id: JSON
   name: String!
   url: String
-  isEnglish: Boolean!
-  is2ndDegree: Boolean!
-  isLongCycleStudies: Boolean!
-  hasWeekendModeOption: Boolean!
+  isEnglish: Boolean
+  is2ndDegree: Boolean
+  isLongCycleStudies: Boolean
+  hasWeekendModeOption: Boolean
 }
 
 type Subscription {

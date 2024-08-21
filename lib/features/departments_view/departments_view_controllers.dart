@@ -1,5 +1,6 @@
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
+import "../../utils/contains_lower_case.dart";
 import "repository/departments_repository.dart";
 
 part "departments_view_controllers.g.dart";
@@ -22,8 +23,8 @@ Future<List<Department?>?> departmentsList(DepartmentsListRef ref) async {
       ?.where(
         (element) =>
             element == null ||
-            element.name.toLowerCase().contains(query.toLowerCase()) ||
-            element.code.toLowerCase().contains(query.toLowerCase()),
+            element.name.containsLowerCase(query) ||
+            element.code.containsLowerCase(query),
       )
       .toList();
 }

@@ -9,7 +9,7 @@ class MyTextButton extends StatelessWidget {
     required this.actionTitle,
   });
 
-  final void Function()? onClick;
+  final VoidCallback? onClick;
   final String actionTitle;
 
   @override
@@ -17,11 +17,15 @@ class MyTextButton extends StatelessWidget {
     return TextButton(
       onPressed: onClick,
       style: TextButton.styleFrom(
-        padding: EdgeInsets.zero,
+        padding: const EdgeInsets.all(12),
       ),
       child: Text(
         actionTitle,
-        style: context.textTheme.boldBodyOrange,
+        style: onClick == null
+            ? context.textTheme.boldBodyOrange.copyWith(
+                color: context.colorTheme.greyPigeon,
+              )
+            : context.textTheme.boldBodyOrange,
       ),
     );
   }

@@ -1,6 +1,7 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
+import "../../utils/contains_lower_case.dart";
 import "repository/guide_repository.dart";
 
 part "guide_view_controller.g.dart";
@@ -28,10 +29,7 @@ Future<IList<GuidePost?>?> guideListController(
   final query = ref.watch(searchGuideControllerProvider);
   return originalList
       ?.where(
-        (element) =>
-            element == null ||
-            (element.name?.toLowerCase().contains(query.toLowerCase()) ??
-                false),
+        (element) => element == null || element.name.containsLowerCase(query),
       )
       .toIList();
 }

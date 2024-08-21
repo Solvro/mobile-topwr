@@ -25,7 +25,7 @@ class FieldOfStudyTile extends ConsumerWidget {
         title: item.name,
         trailing: Row(
           children: <Widget>[
-            if (item.isEnglish)
+            if (item.isEnglish ?? false)
               Text("🇬🇧", style: emojiStyle)
             else
               Text("🇵🇱", style: emojiStyle),
@@ -34,7 +34,7 @@ class FieldOfStudyTile extends ConsumerWidget {
               color: context.colorTheme.greyPigeon,
               size: fontSize,
             ),
-            if (item.hasWeekendModeOption)
+            if (item.hasWeekendModeOption ?? false)
               Icon(
                 Icons.remove_red_eye_outlined,
                 color: context.colorTheme.greyPigeon,

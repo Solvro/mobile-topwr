@@ -1,9 +1,9 @@
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
+import "../../../utils/contains_lower_case.dart";
+import "../../../utils/where_non_null_iterable.dart";
+import "../../science_clubs_filters/filters_controller.dart";
 import "../repositories/science_clubs/science_clubs_repository.dart";
-
-import "../repositories/tags/tags_repository.dart";
-import "selected_tag_controller.dart";
 
 part "science_clubs_view_controller.g.dart";
 
@@ -26,24 +26,52 @@ Future<Iterable<ScienceClub?>?> _sciClubsFilteredByTextQuery(
   return originalList?.where(
     (element) =>
         element == null ||
-        element.name.toLowerCase().contains(query.toLowerCase()) ||
-        (element.department?.name.toLowerCase().contains(query.toLowerCase()) ??
-            false),
+        element.name.containsLowerCase(query) ||
+        (element.department?.name).containsLowerCase(query) ||
+        (element.department?.code).containsLowerCase(query) ||
+        (element.department?.betterCode).containsLowerCase(query),
   );
 }
 
 @riverpod
-Future<Iterable<ScienceClub?>?> scienceClubsList(
-  ScienceClubsListRef ref,
+Future<Iterable<ScienceClub?>?> scienceClubsListController(
+  ScienceClubsListControllerRef ref,
 ) async {
-  final sciClubs = await ref.watch(_sciClubsFilteredByTextQueryProvider.future);
-  final selectedCategory = ref.watch(selectedTagControllerProvider);
-  if (selectedCategory == ref.watch(allTagSingletonProvider).name) {
+  final sciClubs =
+      (await ref.watch(_sciClubsFilteredByTextQueryProvider.future))
+          .whereNonNull;
+
+  if (!ref.watch(areFiltersEnabledProvider)) {
     return sciClubs;
   }
-  final filteredAndSelectedTag = sciClubs?.where((circle) {
-    return circle?.tags?.any((tag) => tag?.Tags_id?.name == selectedCategory) ??
-        false;
-  });
-  return filteredAndSelectedTag;
+
+  final selectedTags =
+      ref.watch(selectedTagControllerProvider).map((it) => it.name);
+
+  final selectedDepartments =
+      ref.watch(selectedDepartmentControllerProvider).map((it) => it.name);
+
+  final selectedTypes =
+      ref.watch(selectedTypeControllerProvider).map((it) => it.toJson());
+
+  final filteredByTypes = selectedTypes.isEmpty
+      ? sciClubs
+      : sciClubs.where(
+          (club) => selectedTypes.contains(club.type),
+        );
+
+  final filteredByDepartments = selectedDepartments.isEmpty
+      ? filteredByTypes
+      : filteredByTypes.where(
+          (club) => selectedDepartments.contains(club.department?.name),
+        );
+
+  final filteredByTags = selectedTags.isEmpty
+      ? filteredByDepartments
+      : filteredByDepartments.where(
+          (club) => club.tags.whereNonNull
+              .any((tag) => selectedTags.contains(tag.Tags_id?.name)),
+        );
+
+  return filteredByTags;
 }

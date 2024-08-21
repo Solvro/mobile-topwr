@@ -9,16 +9,25 @@ class SubsectionHeader extends StatelessWidget {
     required this.title,
     this.actionTitle,
     this.onClick,
+    this.leftPadding = 24,
+    this.rightPadding = 12,
+    this.addArrow = true,
   });
 
   final String title;
   final String? actionTitle;
   final VoidCallback? onClick;
-
+  final double leftPadding;
+  final double rightPadding;
+  final bool addArrow;
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 24, top: 16, right: 24),
+      padding: EdgeInsets.only(
+        left: leftPadding,
+        top: 16,
+        right: rightPadding,
+      ),
       child: SizedBox(
         width: double.infinity,
         child: Row(
@@ -26,7 +35,10 @@ class SubsectionHeader extends StatelessWidget {
           children: [
             Text(title, style: context.textTheme.headline),
             if (actionTitle != null)
-              MyTextButton(onClick: onClick, actionTitle: "$actionTitle >"),
+              MyTextButton(
+                onClick: onClick,
+                actionTitle: addArrow ? "$actionTitle >" : actionTitle ?? "",
+              ),
           ],
         ),
       ),

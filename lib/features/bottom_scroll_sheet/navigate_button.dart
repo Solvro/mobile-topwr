@@ -1,12 +1,12 @@
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../../../../config/map_view_config.dart";
-import "../../../../theme/app_theme.dart";
-import "../../../../utils/context_extensions.dart";
-import "../../../parkings_view/widgets/parkings_icons.icons.dart";
-import "../../controllers/controllers_set.dart";
-import "../map_config.dart";
+import "../../config/map_view_config.dart";
+import "../../theme/app_theme.dart";
+import "../../utils/context_extensions.dart";
+import "../map_view/controllers/controllers_set.dart";
+import "../map_view/widgets/map_config.dart";
+import "../parkings_view/widgets/parkings_icons.icons.dart";
 
 class NavigateButton<T extends GoogleNavigable> extends ConsumerWidget {
   const NavigateButton({super.key});
@@ -15,7 +15,7 @@ class NavigateButton<T extends GoogleNavigable> extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
       padding: const EdgeInsets.only(
-        right: MapViewBottomSheetConfig.horizontalPadding - 3,
+        right: MapViewBottomSheetConfig.horizontalPadding - 12,
       ),
       child: TextButton.icon(
         icon: Icon(
@@ -26,7 +26,7 @@ class NavigateButton<T extends GoogleNavigable> extends ConsumerWidget {
         onPressed:
             ref.watch(context.activeMarkerController<T>().notifier).launchLink,
         style: TextButton.styleFrom(
-          padding: EdgeInsets.zero,
+          padding: const EdgeInsets.all(12),
         ),
         label: Text(
           context.localize.navigate,

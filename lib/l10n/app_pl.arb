@@ -79,5 +79,14 @@
   "first_degree" : "I Stopnia",
   "second_degree" : "II Stopnia",
   "long_cycle" : "Jednolite magisterskie",
-  "no_address": "Brak adresu"
+  "no_address": "Brak adresu",
+  "student_medias" : " Media studenckie",
+  "cultural_agendas" : "Agendy kultury",
+  "scientific_cirlces" : "Koła naukowe",
+  "student_organizations" : "Organizacje studenckie",
+  "org_types": "Rodzaje organizacji",
+  "categories":"Kategorie tematyczne",
+  "filters" : "Filtry",
+  "clear" : "Wyczyść",
+  "filters_didnt_found_anything" : "Nie znaleziono żadnych filtrów"
 }
