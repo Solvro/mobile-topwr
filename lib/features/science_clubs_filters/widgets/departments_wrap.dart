@@ -42,6 +42,7 @@ class DepartmentsWrap extends ConsumerWidget {
                         selected: isSelected,
                         selectedColor: department.gradient.colors.first,
                         selectedBorderColor: department.gradient.colors.last,
+                        tooltip: department.name,
                       );
                     },
                   ),

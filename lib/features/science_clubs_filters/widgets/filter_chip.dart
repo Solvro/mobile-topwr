@@ -11,6 +11,7 @@ class MyFilterChip extends ConsumerWidget {
     required this.onTap,
     this.selectedColor,
     this.selectedBorderColor,
+    this.tooltip,
   });
 
   final String label;
@@ -18,6 +19,7 @@ class MyFilterChip extends ConsumerWidget {
   final VoidCallback onTap;
   final Color? selectedColor;
   final Color? selectedBorderColor;
+  final String? tooltip;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -26,6 +28,7 @@ class MyFilterChip extends ConsumerWidget {
         horizontal: ScienceClubsViewConfig.microPadding,
       ),
       child: ChoiceChip(
+        tooltip: tooltip ?? label,
         showCheckmark: false,
         label: Text(label),
         selected: selected,
