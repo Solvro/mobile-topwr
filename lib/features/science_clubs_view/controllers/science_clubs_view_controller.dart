@@ -3,7 +3,7 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 import "../../../utils/contains_lower_case.dart";
 import "../../../utils/where_non_null_iterable.dart";
 import "../../science_clubs_filters/filters_controller.dart";
-import "../repositories/science_clubs/science_clubs_repository.dart";
+import "../repository/science_clubs_repository.dart";
 
 part "science_clubs_view_controller.g.dart";
 

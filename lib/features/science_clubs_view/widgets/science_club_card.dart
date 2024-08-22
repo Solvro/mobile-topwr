@@ -4,7 +4,7 @@ import "../../../api_base/directus_assets_url.dart";
 import "../../../config/ui_config.dart";
 import "../../../widgets/my_cached_image.dart";
 import "../../../widgets/wide_tile_card.dart";
-import "../repositories/science_clubs/science_clubs_repository.dart";
+import "../repository/science_clubs_repository.dart";
 
 class ScienceClubCard extends StatelessWidget {
   final ScienceClub sciClub;
