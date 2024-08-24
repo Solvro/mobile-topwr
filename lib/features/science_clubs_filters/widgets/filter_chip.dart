@@ -23,29 +23,36 @@ class MyFilterChip extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: ScienceClubsViewConfig.microPadding,
+    return Theme(
+      data: Theme.of(context).copyWith(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: context.colorTheme.orangePomegranade,
+        ),
       ),
-      child: ChoiceChip(
-        tooltip: tooltip ?? label,
-        showCheckmark: false,
-        label: Text(label),
-        selected: selected,
-        onSelected: (_) => onTap(),
-        selectedColor: selectedColor ?? context.colorTheme.orangePomegranade,
-        backgroundColor: Colors.transparent,
-        labelStyle: TextStyle(
-          color: selected ? Colors.white : context.colorTheme.greyPigeon,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: ScienceClubsViewConfig.microPadding,
         ),
-        side: BorderSide(
-          color: selected
-              ? selectedBorderColor ?? context.colorTheme.orangePomegranade
-              : context.colorTheme.greyPigeon,
-        ),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(
-            ScienceClubsViewConfig.buttonBorderRadius,
+        child: ChoiceChip(
+          tooltip: tooltip ?? label,
+          showCheckmark: false,
+          label: Text(label),
+          selected: selected,
+          onSelected: (_) => onTap(),
+          selectedColor: selectedColor ?? context.colorTheme.orangePomegranade,
+          backgroundColor: Colors.transparent,
+          labelStyle: TextStyle(
+            color: selected ? Colors.white : context.colorTheme.greyPigeon,
+          ),
+          side: BorderSide(
+            color: selected
+                ? selectedBorderColor ?? context.colorTheme.orangePomegranade
+                : context.colorTheme.greyPigeon,
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(
+              ScienceClubsViewConfig.buttonBorderRadius,
+            ),
           ),
         ),
       ),
