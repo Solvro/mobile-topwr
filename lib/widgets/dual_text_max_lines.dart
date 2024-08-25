@@ -10,17 +10,19 @@ class DualTextSpan extends TextSpan {
   ) : super(
           children: [
             TextSpan(
-              text: "$title\n",
+              text: subtitle == null ? title : "$title\n",
               style: titleStyle,
             ),
-            TextSpan(
-              text: "\n", // padding/spacing workaround
-              style: TextStyle(fontSize: spacing, height: 1),
-            ),
-            TextSpan(
-              text: "$subtitle",
-              style: subtitleStyle,
-            ),
+            if (subtitle != null)
+              TextSpan(
+                text: "\n", // padding/spacing workaround
+                style: TextStyle(fontSize: spacing, height: 1),
+              ),
+            if (subtitle != null)
+              TextSpan(
+                text: subtitle,
+                style: subtitleStyle,
+              ),
           ],
         );
 }

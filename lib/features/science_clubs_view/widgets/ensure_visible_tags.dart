@@ -38,7 +38,7 @@ class EnsureVisibleTags extends DualTextMaxLines {
         );
 
         final doubleLines = min(
-          maxTotalLines - 1,
+          secondSubtitle == null ? maxTotalLines : maxTotalLines - 1,
           doubleText.calculateLines(constraints.maxWidth),
         );
         final thirdLines = maxTotalLines - doubleLines;
@@ -52,11 +52,13 @@ class EnsureVisibleTags extends DualTextMaxLines {
               text: doubleText,
             ),
             SizedBox(height: spacing),
-            RichText(
-              maxLines: thirdLines,
-              overflow: TextOverflow.ellipsis,
-              text: TextSpan(text: secondSubtitle, style: secondSubtitleStyle),
-            ),
+            if (thirdLines > 0)
+              RichText(
+                maxLines: thirdLines,
+                overflow: TextOverflow.ellipsis,
+                text:
+                    TextSpan(text: secondSubtitle, style: secondSubtitleStyle),
+              ),
           ],
         );
       },
