@@ -44,7 +44,6 @@ class _TeamMemberCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(AboutUsConfig.borderRadius),
         ),
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox.square(
               dimension: AboutUsConfig.photoSize,
