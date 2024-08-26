@@ -3,6 +3,7 @@ import "package:flutter/material.dart";
 import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
 import "../../../theme/iparking_theme.dart";
+import "../../../utils/context_extensions.dart";
 import "../../parking_chart/parking_chart.dart";
 import "../models/parking.dart";
 import "parkings_icons.icons.dart";
@@ -79,7 +80,7 @@ class _LeftColumn extends StatelessWidget {
           padding: ParkingsConfig.extraIndentPadd,
           child: isActive
               ? Text(
-                  parking.addresFormatted,
+                  "${context.localize.street_abbreviation} ${parking.address}",
                   style: context.iParkingTheme.subtitleLight.withoutShadows,
                 )
               : Text(

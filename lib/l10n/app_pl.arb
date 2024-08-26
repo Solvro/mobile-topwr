@@ -88,5 +88,6 @@
   "categories":"Kategorie tematyczne",
   "filters" : "Filtry",
   "clear" : "Wyczyść",
-  "filters_didnt_found_anything" : "Nie znaleziono żadnych filtrów"
+  "filters_didnt_found_anything" : "Nie znaleziono żadnych filtrów",
+  "street_abbreviation" : "ul."
 }
