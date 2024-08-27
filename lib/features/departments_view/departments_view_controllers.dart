@@ -1,3 +1,4 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../utils/contains_lower_case.dart";
@@ -16,15 +17,15 @@ class SearchDepartmentsController extends _$SearchDepartmentsController {
 }
 
 @riverpod
-Future<List<Department?>?> departmentsList(DepartmentsListRef ref) async {
+Future<IList<Department?>> departmentsList(DepartmentsListRef ref) async {
   final originalList = await ref.watch(departmentsRepositoryProvider.future);
   final query = ref.watch(searchDepartmentsControllerProvider);
-  return originalList
-      ?.where(
-        (element) =>
-            element == null ||
-            element.name.containsLowerCase(query) ||
-            element.code.containsLowerCase(query),
-      )
-      .toList();
+  return (originalList?.where(
+            (element) =>
+                element == null ||
+                element.name.containsLowerCase(query) ||
+                element.code.containsLowerCase(query),
+          ) ??
+          [])
+      .toIList();
 }

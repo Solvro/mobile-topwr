@@ -2,10 +2,10 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../config/ui_config.dart";
-import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../utils/where_non_null_iterable.dart";
 import "../../../widgets/my_error_widget.dart";
+import "../../../widgets/search_not_found.dart";
 import "../../navigator/utils/navigation_commands.dart";
 import "../controllers/science_clubs_view_controller.dart";
 import "../repository/science_clubs_repository.dart";
@@ -40,11 +40,8 @@ class _ScienceClubsListView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     if (filteredCircles.isEmpty) {
-      return Center(
-        child: Text(
-          context.localize.sci_circle_not_found,
-          style: context.textTheme.body,
-        ),
+      return SearchNotFound(
+        message: context.localize.sci_circle_not_found,
       );
     }
     return GridView.builder(
