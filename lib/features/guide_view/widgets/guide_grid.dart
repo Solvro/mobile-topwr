@@ -1,20 +1,19 @@
 import "package:flutter/cupertino.dart";
 
 import "../../../config/ui_config.dart";
-import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
+import "../../../widgets/search_not_found.dart";
 
 class GuideGrid extends StatelessWidget {
   const GuideGrid({super.key, required this.children});
+
   final List<Widget> children;
+
   @override
   Widget build(BuildContext context) {
     if (children.isEmpty) {
-      return Center(
-        child: Text(
-          context.localize.guide_not_found,
-          style: context.textTheme.body,
-        ),
+      return SearchNotFound(
+        message: context.localize.guide_not_found,
       );
     }
     return GridView.builder(
