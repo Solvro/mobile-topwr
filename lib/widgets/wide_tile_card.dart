@@ -49,31 +49,36 @@ class WideTileCard extends StatelessWidget {
   final List<BoxShadow>? activeShadows;
   final LinearGradient? activeGradient;
   final CrossAxisAlignment crossAxisAlignment;
+
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        decoration: BoxDecoration(
-          gradient: isActive ? activeGradient : null,
-          color: context.colorTheme.greyLight,
+    return ClipRRect(
+      child: Material(
+        child: InkWell(
           borderRadius: const BorderRadius.all(WideTileCardConfig.radius),
-          boxShadow: isActive ? activeShadows : null,
-        ),
-        clipBehavior: Clip.antiAlias,
-        child: Row(
-          crossAxisAlignment: crossAxisAlignment,
-          children: [
-            Expanded(
-              child: _TitlesColumn(
-                title,
-                subtitle,
-                secondSubtitle,
-                isActive: isActive,
-              ),
+          onTap: onTap,
+          child: Ink(
+            decoration: BoxDecoration(
+              gradient: isActive ? activeGradient : null,
+              color: context.colorTheme.greyLight,
+              borderRadius: const BorderRadius.all(WideTileCardConfig.radius),
+              boxShadow: isActive ? activeShadows : null,
             ),
-            if (trailing != null) trailing!,
-          ],
+            child: Row(
+              crossAxisAlignment: crossAxisAlignment,
+              children: [
+                Expanded(
+                  child: _TitlesColumn(
+                    title,
+                    subtitle,
+                    secondSubtitle,
+                    isActive: isActive,
+                  ),
+                ),
+                if (trailing != null) trailing!,
+              ],
+            ),
+          ),
         ),
       ),
     );
