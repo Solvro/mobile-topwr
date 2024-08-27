@@ -1,4 +1,5 @@
 import "package:auto_route/auto_route.dart";
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
@@ -42,10 +43,10 @@ class _DepartmentsViewListBody extends ConsumerWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: switch (state) {
-        AsyncLoading() => const DepartmentsViewLoading(),
         AsyncError(:final error) => MyErrorWidget(error),
-        AsyncValue(:final value) =>
+        AsyncValue(:final IList<Department?> value) =>
           _DepartmentsDataView(value.whereNonNull.toList()),
+        _ => const DepartmentsViewLoading(),
       },
     );
   }
