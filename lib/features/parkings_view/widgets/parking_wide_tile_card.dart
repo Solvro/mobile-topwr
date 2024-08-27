@@ -80,7 +80,7 @@ class _LeftColumn extends StatelessWidget {
           padding: ParkingsConfig.extraIndentPadd,
           child: isActive
               ? Text(
-                  "${context.localize.street_abbreviation} ${parking.address}",
+                  "${context.localize.street_abbreviation} ${parking.addresFormatted}",
                   style: context.iParkingTheme.subtitleLight.withoutShadows,
                 )
               : Text(
