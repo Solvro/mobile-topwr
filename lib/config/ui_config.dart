@@ -152,3 +152,7 @@ abstract class FilterConfig {
   static const bottomSheetHeightFactor = 0.65;
   static const searchFilterPadding = 15.0;
 }
+
+abstract class LottieAnimationConfig {
+  static const frameRate = 120.0;
+}

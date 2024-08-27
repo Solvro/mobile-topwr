@@ -66,6 +66,7 @@ dependencies:
     git:
       url: https://github.com/simon-the-shark/anim_search_bar.git
       ref: c56e410
+  lottie: ^3.1.2
 
 dev_dependencies:
   flutter_test:
@@ -117,6 +118,9 @@ flutter:
     - assets/contact_icons/phone.svg
     - assets/contact_icons/web.svg
     - assets/contact_icons/yt.svg
+    - assets/animations/error.json
+    - assets/animations/search.json
+    - assets/animations/offline.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
