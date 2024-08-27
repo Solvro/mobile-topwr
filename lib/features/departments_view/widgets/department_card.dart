@@ -1,10 +1,9 @@
 import "package:flutter/material.dart";
 
-import "../../../api_base/directus_assets_url.dart";
 import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
 import "../../../theme/utils.dart";
-import "../../../widgets/my_cached_image.dart";
+import "../../../widgets/optimized_directus_image.dart";
 import "../../../widgets/wide_tile_card.dart";
 import "../repository/departments_extensions.dart";
 import "../repository/departments_repository.dart";
@@ -36,9 +35,9 @@ class DepartmentCard extends StatelessWidget {
             dimension: WideTileCardConfig.imageSize,
             child: Opacity(
               opacity: .5,
-              child: MyCachedImage(
-                department.logo?.filename_disk.directusUrl,
-                boxFit: BoxFit.contain,
+              child: OptimizedDirectusImage(
+                department.logo?.filename_disk,
+                boxFit: BoxFit.scaleDown,
                 noShimmeringLoading: true,
               ),
             ),

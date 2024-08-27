@@ -19,7 +19,7 @@ class GuideAboutUsSection extends ConsumerWidget {
       child: PhotoTrailingWideTileCard(
         title: context.localize.guide_about_us,
         subtitle: context.localize.guide_meet_creators,
-        photoUrl: "",
+        directusPhotoUrl: "",
         onTap: ref.navigateAboutUs,
       ),
     );

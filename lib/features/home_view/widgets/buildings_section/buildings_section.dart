@@ -1,7 +1,6 @@
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../../../../api_base/directus_assets_url.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../utils/where_non_null_iterable.dart";
 import "../../../../widgets/my_error_widget.dart";
@@ -65,7 +64,7 @@ class _DataListBuildingsTiles extends ConsumerWidget {
         return MediumLeftPadding(
           child: BuildingCard(
             buildingName: mapItem.name,
-            imageUrl: mapItem.cover?.filename_disk?.directusUrl,
+            directusImageUrl: mapItem.cover?.filename_disk,
             onTap: () async => ref.navigateBuilding(mapItem),
           ),
         );

@@ -3,7 +3,6 @@ import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../../api_base/directus_assets_url.dart";
 import "../../config/ui_config.dart";
 import "../../theme/app_theme.dart";
 import "../../utils/context_extensions.dart";
@@ -38,8 +37,8 @@ class DepartmentDetailView extends ConsumerWidget {
               SliverPersistentHeader(
                 delegate: DepartmentSliverHeaderSection(
                   activeGradient: value?.Departments_by_id?.gradient,
-                  logoImageUrl: value
-                      ?.Departments_by_id?.logo?.filename_disk?.directusUrl,
+                  logoDirectusImageUrl:
+                      value?.Departments_by_id?.logo?.filename_disk,
                 ),
               ),
               SliverList(

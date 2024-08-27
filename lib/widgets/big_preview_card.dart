@@ -5,23 +5,25 @@ import "../theme/app_theme.dart";
 import "../utils/context_extensions.dart";
 import "date_chip.dart";
 import "dual_text_max_lines.dart";
-import "my_cached_image.dart";
+import "optimized_directus_image.dart";
 
 class BigPreviewCard extends StatelessWidget {
   const BigPreviewCard({
     super.key,
     required this.title,
     required this.shortDescription,
-    required this.photoUrl,
+    required this.directusUrl,
     this.date,
     required this.onClick,
+    this.boxFit = BoxFit.scaleDown,
   });
 
   final String title;
   final String shortDescription;
-  final String? photoUrl;
+  final String? directusUrl;
   final DateTime? date;
   final VoidCallback? onClick;
+  final BoxFit boxFit;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +46,12 @@ class BigPreviewCard extends StatelessWidget {
                 children: [
                   SizedBox(
                     width: double.maxFinite,
-                    child: Center(child: MyCachedImage(photoUrl)),
+                    child: Center(
+                      child: OptimizedDirectusImage(
+                        directusUrl,
+                        boxFit: boxFit,
+                      ),
+                    ),
                   ),
                   if (date != null)
                     DateChip(date: date!)

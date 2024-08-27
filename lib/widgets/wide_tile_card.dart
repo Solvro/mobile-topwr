@@ -3,11 +3,11 @@ import "package:flutter/material.dart";
 import "../config/ui_config.dart";
 import "../features/science_clubs_view/widgets/ensure_visible_tags.dart";
 import "../theme/app_theme.dart";
-import "my_cached_image.dart";
+import "optimized_directus_image.dart";
 
 class PhotoTrailingWideTileCard extends WideTileCard {
   PhotoTrailingWideTileCard({
-    String? photoUrl,
+    String? directusPhotoUrl,
     required super.title,
     super.subtitle,
     super.onTap,
@@ -15,10 +15,14 @@ class PhotoTrailingWideTileCard extends WideTileCard {
     super.activeGradient,
     super.activeShadows,
     super.key,
+    BoxFit boxFit = BoxFit.cover,
   }) : super(
           trailing: SizedBox.square(
             dimension: WideTileCardConfig.imageSize,
-            child: MyCachedImage(photoUrl),
+            child: OptimizedDirectusImage(
+              directusPhotoUrl,
+              boxFit: boxFit,
+            ),
           ),
         );
 }
@@ -53,9 +57,9 @@ class WideTileCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
+      borderRadius: const BorderRadius.all(WideTileCardConfig.radius),
       child: Material(
         child: InkWell(
-          borderRadius: const BorderRadius.all(WideTileCardConfig.radius),
           onTap: onTap,
           child: Ink(
             decoration: BoxDecoration(

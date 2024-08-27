@@ -1,8 +1,7 @@
 import "package:flutter/material.dart";
 
-import "../../../api_base/directus_assets_url.dart";
 import "../../../config/ui_config.dart";
-import "../../../widgets/my_cached_image.dart";
+import "../../../widgets/optimized_directus_image.dart";
 import "../../../widgets/wide_tile_card.dart";
 import "../repository/science_clubs_repository.dart";
 
@@ -39,9 +38,9 @@ class ScienceClubCard extends StatelessWidget {
                 bottomRight: WideTileCardConfig.radius,
               ),
             ),
-            child: MyCachedImage(
-              sciClub.logo?.filename_disk.directusUrl,
-              boxFit: BoxFit.contain,
+            child: OptimizedDirectusImage(
+              sciClub.logo?.filename_disk,
+              boxFit: BoxFit.scaleDown,
               noShimmeringLoading: true,
             ),
           ),
