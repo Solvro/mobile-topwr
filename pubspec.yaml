@@ -32,34 +32,34 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  cupertino_icons: ^1.0.2
+  cupertino_icons: ^1.0.8
   theme_tailor_annotation: ^3.0.1
-  flutter_native_splash: ^2.4.0
+  flutter_native_splash: ^2.4.1
   flutter_riverpod: ^2.5.1
   riverpod_annotation: ^2.3.5
-  flutter_svg: ^2.0.9
+  flutter_svg: ^2.0.10
   intl: ^0.19.0
-  envied: ^0.5.4+1
+  envied: ^0.5.4
   graphql: ^5.1.3
   hive: ^2.2.3
-  path_provider: ^2.1.1
-  cached_network_image: ^3.3.1
-  logger: ^2.0.2+1
+  path_provider: ^2.1.4
+  cached_network_image: ^3.4.1
+  logger: ^2.4.0
   enum_map: ^0.3.0
-  google_maps_flutter: ^2.6.1
-  url_launcher: ^6.2.4
-  shared_preferences: ^2.2.2
-  dio: ^5.4.3+1
-  freezed_annotation: ^2.4.1
+  google_maps_flutter: ^2.9.0
+  url_launcher: ^6.3.0
+  shared_preferences: ^2.3.2
+  dio: ^5.6.0
+  freezed_annotation: ^2.4.4
   json_annotation: ^4.9.0
-  collection: ^1.18.0
-  fl_chart: ^0.67.0
+  collection: ^1.19.0
+  fl_chart: ^0.69.0
   permission_handler: ^11.3.1
-  flutter_widget_from_html_core: ^0.14.12
+  flutter_widget_from_html_core: ^0.15.2
   html: ^0.15.4
-  google_maps_flutter_android: ^2.12.0
-  google_maps_flutter_platform_interface: ^2.8.0
-  auto_route: ^8.3.0
+  google_maps_flutter_android: ^2.14.4
+  google_maps_flutter_platform_interface: ^2.9.0
+  auto_route: ^9.2.2
   separate: ^1.0.3
   fast_immutable_collections: ^10.2.4
   anim_search_bar:
@@ -72,25 +72,26 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
-  build_runner: ^2.4.10
-  freezed: ^2.5.3
+  flutter_lints: ^4.0.0
+  build_runner: ^2.4.12
+  freezed: ^2.5.7
   json_serializable: ^6.8.0
   flutter_launcher_icons: "^0.13.1"
-  riverpod_generator: ^2.4.2
+  riverpod_generator: ^2.4.3
   theme_tailor: ^3.0.1
   enum_map_gen: ^0.3.0
-  custom_lint: ^0.6.4
-  riverpod_lint: ^2.3.12
-  envied_generator: ^0.5.4+1
+  custom_lint: ^0.6.5
+  riverpod_lint: ^2.3.13
+  envied_generator: ^0.5.4
   graphql_codegen: ^0.14.0
   flutter_gen_runner: ^5.6.0
   total_lints: ^3.4.0
-  auto_route_generator: ^8.1.0
+  auto_route_generator: ^9.0.0
 
 dependency_overrides:
-  analyzer: ^6.5.0
-  meta: ^1.15.0
+  analyzer: ^6.8.0
+  rxdart: ^0.28.0
+  collection: ^1.19.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

@@ -21,7 +21,7 @@ part "app_router.g.dart";
 part "app_router.gr.dart";
 
 @AutoRouterConfig(replaceInRouteName: "View,Route")
-class AppRouter extends _$AppRouter {
+class AppRouter extends RootStackRouter {
   final Ref ref;
 
   AppRouter({required this.ref});
