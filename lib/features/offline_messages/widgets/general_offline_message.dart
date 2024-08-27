@@ -30,7 +30,7 @@ class OfflineMessage extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(8),
           child: Lottie.asset(
-            Assets.animations.loading,
+            Assets.animations.offline,
             width: 50,
             height: 50,
             frameRate: const FrameRate(LottieAnimationConfig.frameRate),
