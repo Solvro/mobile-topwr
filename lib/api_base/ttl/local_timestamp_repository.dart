@@ -2,7 +2,7 @@ import "package:graphql/client.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 import "package:shared_preferences/shared_preferences.dart";
 
-import "../../config/api_base_config.dart";
+import "../../config/env.dart";
 import "../../config/ttl_config.dart";
 import "../../utils/timestamp.dart";
 import "ttl_timestamp.dart";

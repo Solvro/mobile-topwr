@@ -8,6 +8,7 @@ import "../../config/ui_config.dart";
 import "../../utils/context_extensions.dart";
 import "../../utils/where_non_null_iterable.dart";
 import "../../widgets/search_box_app_bar.dart";
+import "../analytics/show_feedback_tile.dart";
 import "../departments_view/widgets/departments_view_loading.dart";
 import "guide_view_controller.dart";
 import "repository/guide_repository.dart";
@@ -47,6 +48,7 @@ class _GuideViewContent extends ConsumerWidget {
           children: [
             if (!isSomethingSearched) const GuideAboutUsSection(),
             for (final item in value.whereNonNull) GuideTile(item),
+            if (!isSomethingSearched) const ShowFeedbackTile(),
           ],
         ),
       _ => const Padding(

@@ -1,8 +1,11 @@
 import "package:flutter/material.dart";
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:wiredash/wiredash.dart";
 
+import "config/env.dart";
 import "config/ui_config.dart";
+import "config/wiredash.dart";
 import "features/navigator/app_router.dart";
 import "features/splash_screen/splash_screen.dart";
 import "features/splash_screen/splash_screen_controller.dart";
@@ -25,20 +28,25 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return MaterialApp.router(
-      title: MyAppConfig.title,
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
-      theme: ThemeData(
-        extensions: const [AppTheme()],
-        colorScheme: const ColorScheme.light().copyWith(
-          surface: ColorsConsts.whiteSoap,
-          primary: ColorsConsts.orangePomegranade,
-          secondary: ColorsConsts.blueAzure,
+    return Wiredash(
+      projectId: Env.wiredashId,
+      secret: Env.wiredashSecret,
+      theme: context.wiredashTheme,
+      child: MaterialApp.router(
+        title: MyAppConfig.title,
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        theme: ThemeData(
+          extensions: const [AppTheme()],
+          colorScheme: const ColorScheme.light().copyWith(
+            surface: ColorsConsts.whiteSoap,
+            primary: ColorsConsts.orangePomegranade,
+            secondary: ColorsConsts.blueAzure,
+          ),
         ),
+        debugShowCheckedModeBanner: false,
+        routerConfig: ref.watch(appRouterProvider).config(),
       ),
-      debugShowCheckedModeBanner: false,
-      routerConfig: ref.watch(appRouterProvider).config(),
     );
   }
 }
