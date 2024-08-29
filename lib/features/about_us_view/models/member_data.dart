@@ -8,13 +8,13 @@ class MemberData {
   final String? name;
   final String? subtitle;
   final List<ContactIconsModel> links;
-  final String? imageUrl;
+  final String? directusImageUrl;
 
   MemberData({
     required this.socialLinks,
     required this.name,
     required this.subtitle,
-    required this.imageUrl,
+    required this.directusImageUrl,
   }) : links = _determineLinksIcons(socialLinks);
 
   static List<ContactIconsModel> _determineLinksIcons(List<String> urls) {
@@ -30,7 +30,7 @@ class MemberData {
         other.name == name &&
         other.subtitle == subtitle &&
         listEquals(other.links, links) &&
-        other.imageUrl == imageUrl;
+        other.directusImageUrl == directusImageUrl;
   }
 
   @override
@@ -39,5 +39,5 @@ class MemberData {
       name.hashCode ^
       subtitle.hashCode ^
       links.hashCode ^
-      imageUrl.hashCode;
+      directusImageUrl.hashCode;
 }

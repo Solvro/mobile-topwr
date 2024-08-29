@@ -1,7 +1,6 @@
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../../../api_base/directus_assets_url.dart";
 import "../../../config/ui_config.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../widgets/big_preview_card.dart";
@@ -51,7 +50,7 @@ class _ScienceClubsList extends ConsumerWidget {
           child: BigPreviewCard(
             title: sciClub.name,
             shortDescription: sciClub.shortDescription ?? "",
-            photoUrl: sciClub.logo?.filename_disk?.directusUrl,
+            directusUrl: sciClub.logo?.filename_disk,
             onClick: () async => ref.navigateSciClubsDetail(sciClub.id),
           ),
         );

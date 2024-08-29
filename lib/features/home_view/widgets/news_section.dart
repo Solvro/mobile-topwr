@@ -4,7 +4,6 @@ import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../../../api_base/directus_assets_url.dart";
 import "../../../config/ui_config.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../utils/where_non_null_iterable.dart";
@@ -85,10 +84,11 @@ class _NewsDataList extends ConsumerWidget {
           child: BigPreviewCard(
             title: value[index].name ?? "",
             shortDescription: value[index].short_description ?? "",
-            photoUrl: value[index].cover?.filename_disk?.directusUrl,
+            directusUrl: value[index].cover?.filename_disk,
             onClick: () {
               unawaited(ref.navigateGuideDetail(value[index].id));
             },
+            boxFit: BoxFit.cover,
           ),
         );
       },

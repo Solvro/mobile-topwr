@@ -6,7 +6,7 @@ import "../../../widgets/detail_views/sliver_logo.dart";
 class DepartmentSliverHeaderSection extends SliverHeaderSection {
   DepartmentSliverHeaderSection({
     super.activeGradient,
-    super.logoImageUrl,
+    super.logoDirectusImageUrl,
   }) : super(backgroundImageUrl: null);
 
   @override
@@ -26,9 +26,11 @@ class DepartmentSliverHeaderSection extends SliverHeaderSection {
         SliverLogo(
           scaleFactor: scaleFactor,
           activeGradient: activeGradient,
-          logoImageUrl: logoImageUrl,
+          logoDirectusUrl: logoDirectusImageUrl,
           logoOpacity: logoOpacity,
           logoSize: logoSize,
+          boxfit: BoxFit.scaleDown,
+          noShimmeringLoading: true,
         ),
       ],
     );

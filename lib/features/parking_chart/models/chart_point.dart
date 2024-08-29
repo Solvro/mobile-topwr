@@ -5,7 +5,7 @@ import "hour_label.dart";
 import "raw_chart_data.dart";
 
 class ChartPoint extends FlSpot {
-  ChartPoint(super.x, super.y);
+  const ChartPoint(super.x, super.y);
 
   ChartPoint.parse(String label, String value)
       : super(

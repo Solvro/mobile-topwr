@@ -1,9 +1,8 @@
 import "package:flutter/material.dart";
 
-import "../../../../api_base/directus_assets_url.dart";
 import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
-import "../../../../widgets/my_cached_image.dart";
+import "../../../../widgets/optimized_directus_image.dart";
 import "../../../../widgets/tile_splash.dart";
 import "../../../departments_view/repository/departments_extensions.dart";
 import "../../../departments_view/repository/departments_repository.dart";
@@ -34,10 +33,10 @@ class DepartmentBox extends StatelessWidget {
               opacity: logoOpacity,
               child: SizedBox.square(
                 dimension: 100,
-                child: MyCachedImage(
-                  department.logo?.filename_disk.directusUrl,
+                child: OptimizedDirectusImage(
+                  department.logo?.filename_disk,
                   noShimmeringLoading: true,
-                  boxFit: BoxFit.contain,
+                  boxFit: BoxFit.scaleDown,
                 ),
               ),
             ),

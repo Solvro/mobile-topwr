@@ -1,5 +1,3 @@
-import "../../../api_base/directus_assets_url.dart";
-
 import "../../../utils/determine_contact_icon.dart";
 import "../../../utils/where_non_null_iterable.dart";
 import "../repository/about_us_repository.dart";
@@ -15,7 +13,7 @@ class AboutUsDetails {
     return aboutUsTeam.whereNonNull.map((e) {
       return MemberData(
         name: e.name,
-        imageUrl: e.photo?.filename_disk?.directusUrl,
+        directusImageUrl: e.photo?.filename_disk,
         socialLinks: e.socialLinks.whereNonNull.map((e) => e.url).toList(),
         subtitle: e.subtitle,
       );

@@ -2,16 +2,15 @@ import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../../api_base/directus_assets_url.dart";
 import "../../config/ui_config.dart";
 import "../../utils/context_extensions.dart";
 import "../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../widgets/loading_widgets/shimmer_loading.dart";
 import "../../widgets/loading_widgets/simple_previews/preview_text_prototype.dart";
-import "../../widgets/my_cached_image.dart";
 import "../../widgets/my_error_widget.dart";
 import "../../widgets/my_expansion_tile.dart";
 import "../../widgets/my_html_widget.dart";
+import "../../widgets/optimized_directus_image.dart";
 import "repository/guide_detail_view_repository.dart";
 import "widgets/faq_expansion_tile.dart";
 
@@ -50,8 +49,8 @@ class _GuideDetailDataView extends ConsumerWidget {
               expandedHeight: 254,
               flexibleSpace: SizedBox(
                 height: 254,
-                child: MyCachedImage(
-                  value?.cover?.filename_disk?.directusUrl,
+                child: OptimizedDirectusImage(
+                  value?.cover?.filename_disk,
                 ),
               ),
               automaticallyImplyLeading: false,

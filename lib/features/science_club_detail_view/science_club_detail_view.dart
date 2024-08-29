@@ -2,7 +2,6 @@ import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../../api_base/directus_assets_url.dart";
 import "../../config/ui_config.dart";
 import "../../theme/app_theme.dart";
 import "../../utils/context_extensions.dart";
@@ -49,8 +48,8 @@ class _SciClubDetailDataView extends ConsumerWidget {
           slivers: [
             SliverPersistentHeader(
               delegate: SliverHeaderSection(
-                logoImageUrl: value?.logo?.filename_disk?.directusUrl,
-                backgroundImageUrl: value?.cover?.filename_disk?.directusUrl,
+                logoDirectusImageUrl: value?.logo?.filename_disk,
+                backgroundImageUrl: value?.cover?.filename_disk,
               ),
             ),
             SliverList(

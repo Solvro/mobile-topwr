@@ -67,7 +67,7 @@ class _DataListParkingsTiles extends ConsumerWidget {
         return MediumLeftPadding(
           child: BuildingCard(
             buildingName: parking.symbol,
-            imageUrl: parking.iParkPhotoUrl,
+            directusImageUrl: parking.iParkPhotoUrl,
             onTap: () async {
               unawaited(ref.navigateParkings());
               ref

@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 
-import "../my_cached_image.dart";
+import "../optimized_directus_image.dart";
 
 class SliverLogo extends StatelessWidget {
   const SliverLogo({
@@ -9,15 +9,18 @@ class SliverLogo extends StatelessWidget {
     required this.logoOpacity,
     required this.scaleFactor,
     required this.activeGradient,
-    required this.logoImageUrl,
+    required this.logoDirectusUrl,
+    this.boxfit = BoxFit.contain,
+    this.noShimmeringLoading = false,
   });
 
   final double logoSize;
   final double logoOpacity;
   final double scaleFactor;
   final LinearGradient? activeGradient;
-  final String? logoImageUrl;
-
+  final String? logoDirectusUrl;
+  final BoxFit boxfit;
+  final bool noShimmeringLoading;
   @override
   Widget build(BuildContext context) {
     return Align(
@@ -41,10 +44,13 @@ class SliverLogo extends StatelessWidget {
                   ),
                   child: FittedBox(
                     fit: BoxFit.scaleDown,
-                    child: MyCachedImage(
-                      size: Size.square(logoSize * scaleFactor),
-                      logoImageUrl,
-                      boxFit: BoxFit.scaleDown,
+                    child: SizedBox.square(
+                      dimension: logoSize * scaleFactor,
+                      child: OptimizedDirectusImage(
+                        logoDirectusUrl,
+                        boxFit: boxfit,
+                        noShimmeringLoading: noShimmeringLoading,
+                      ),
                     ),
                   ),
                 ),

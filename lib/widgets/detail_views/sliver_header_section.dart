@@ -3,17 +3,17 @@ import "dart:math";
 import "package:flutter/material.dart";
 
 import "../../config/ui_config.dart";
-import "../my_cached_image.dart";
+import "../optimized_directus_image.dart";
 import "sliver_logo.dart";
 
 class SliverHeaderSection extends SliverPersistentHeaderDelegate {
   SliverHeaderSection({
     this.activeGradient,
-    required this.logoImageUrl,
+    required this.logoDirectusImageUrl,
     required this.backgroundImageUrl,
   });
 
-  final String? logoImageUrl;
+  final String? logoDirectusImageUrl;
   final String? backgroundImageUrl;
   final LinearGradient? activeGradient;
   static const maxTopBarHeight = 250;
@@ -53,15 +53,16 @@ class SliverHeaderSection extends SliverPersistentHeaderDelegate {
           child: SizedBox(
             height: maxTopBarHeight * (1 - progress),
             width: double.infinity,
-            child: MyCachedImage(backgroundImageUrl),
+            child: OptimizedDirectusImage(backgroundImageUrl),
           ),
         ),
         SliverLogo(
           scaleFactor: scaleFactor,
           activeGradient: activeGradient,
-          logoImageUrl: logoImageUrl,
+          logoDirectusUrl: logoDirectusImageUrl,
           logoOpacity: logoOpacity,
           logoSize: logoSize,
+          boxfit: BoxFit.scaleDown,
         ),
       ],
     );

@@ -6,8 +6,7 @@ import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/determine_contact_icon.dart";
 import "../../../utils/launch_url_util.dart";
-
-import "../../../widgets/my_cached_image.dart";
+import "../../../widgets/optimized_directus_image.dart";
 import "../models/member_data.dart";
 
 class TeamSection extends StatelessWidget {
@@ -47,7 +46,7 @@ class _TeamMemberCard extends StatelessWidget {
           children: [
             SizedBox.square(
               dimension: AboutUsConfig.photoSize,
-              child: MyCachedImage(member.imageUrl),
+              child: OptimizedDirectusImage(member.directusImageUrl),
             ),
             const SizedBox(
               width: 14,
