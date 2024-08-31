@@ -17,7 +17,7 @@ class TtlService extends _$TtlService {
       _scheduleTTLInvalidation(await timestamp.timeLeft);
       return FetchPolicy.cacheFirst; // loads only from cache unless it's empty
     }
-    return FetchPolicy.cacheAndNetwork; // force re-fetch
+    return FetchPolicy.networkOnly; // force re-fetch
   }
 
   Future<LocalTimestampRepository> get repository async =>
