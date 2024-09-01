@@ -5,6 +5,7 @@ import "../../config/ui_config.dart";
 import "../../theme/app_theme.dart";
 import "../academic_calendar/widgets/countdown_widget/exam_session_countdown.dart";
 import "../academic_calendar/widgets/home_screen_greeting.dart";
+import "keep_alive_home_view_providers.dart";
 import "widgets/buildings_section/buildings_section.dart";
 import "widgets/departments_section/departments_section.dart";
 import "widgets/logo_app_bar.dart";
@@ -30,12 +31,14 @@ class HomeView extends StatelessWidget {
     return Scaffold(
       backgroundColor: context.colorTheme.whiteSoap,
       appBar: LogoAppBar(context),
-      body: ListView.separated(
-        padding: const EdgeInsets.only(bottom: 48),
-        itemBuilder: (context, index) => sections[index],
-        separatorBuilder: (context, index) =>
-            const SizedBox(height: HomeViewConfig.paddingMedium),
-        itemCount: sections.length,
+      body: KeepAliveHomeViewProviders(
+        child: ListView.separated(
+          padding: const EdgeInsets.only(bottom: 48),
+          itemBuilder: (context, index) => sections[index],
+          separatorBuilder: (context, index) =>
+              const SizedBox(height: HomeViewConfig.paddingMedium),
+          itemCount: sections.length,
+        ),
       ),
     );
   }

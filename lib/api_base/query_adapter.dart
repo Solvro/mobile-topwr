@@ -9,13 +9,15 @@ class GqlOfflineException implements Exception {
   const GqlOfflineException(this.ttlKey);
   final TtlKey ttlKey;
 
-  static QueryResult<T> graphqlTryCatch<T>(
+  static Future<QueryResult<T>> graphqlTryCatch<T>(
     QueryResult<T> event,
     TtlKey ttlKey,
-  ) {
+  ) async {
     if (!event.hasException) return event;
 
     if (event.exception?.linkException != null) {
+      // wait, just to show loading on the ui for a little while
+      await Future.delayed(const Duration(milliseconds: 300));
       throw GqlOfflineException(ttlKey);
     }
 
@@ -36,7 +38,8 @@ extension TTLQueryAdapterX on AutoDisposeFutureProviderRef {
     final newOptions = queryOptions.copyWithFetchPolicy(ttlFetchPolicy);
 
     final rawResults = await apiClient.query(newOptions);
-    final safeResults = GqlOfflineException.graphqlTryCatch(rawResults, ttlKey);
+    final safeResults =
+        await GqlOfflineException.graphqlTryCatch(rawResults, ttlKey);
     await read(ttlService.notifier).interceptAndSaveTimestamps(safeResults);
     return safeResults.parsedData;
   }
