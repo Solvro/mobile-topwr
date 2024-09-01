@@ -24,6 +24,7 @@ class NewsSection extends ConsumerWidget {
         children: [
           SubsectionHeader(
             title: context.localize.guide,
+            actionTitle: context.localize.list,
             onClick: ref.navigateGuide,
           ),
           const _NewsList(),
