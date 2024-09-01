@@ -3,8 +3,7 @@ import "package:flutter/material.dart";
 
 import "../../config/ui_config.dart";
 import "../../theme/app_theme.dart";
-import "../academic_calendar/widgets/countdown_widget/exam_session_countdown.dart";
-import "../academic_calendar/widgets/home_screen_greeting.dart";
+import "../academic_calendar/widgets/academic_calendar_consumer.dart";
 import "keep_alive_home_view_providers.dart";
 import "widgets/buildings_section/buildings_section.dart";
 import "widgets/departments_section/departments_section.dart";
@@ -20,8 +19,7 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<Widget> sections = [
-      const Greeting(),
-      const ExamSessionCountdown(),
+      const AcademicCalendarConsumer(),
       const ParkingsSection(),
       const ScienceClubsSection(),
       const BuildingsSection(),
