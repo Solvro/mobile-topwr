@@ -79,9 +79,7 @@ class DepartmentDetailView extends ConsumerWidget {
                         .whereNonNull
                         .toIList(),
                   ),
-                  DepartmentScienceClubsSection(
-                    (value?.Scientific_Circles).whereNonNull.toList(),
-                  ),
+                  DepartmentScienceClubsSection(value),
                   const SizedBox(height: DetailViewsConfig.spacerHeight * 2),
                 ]),
               ),

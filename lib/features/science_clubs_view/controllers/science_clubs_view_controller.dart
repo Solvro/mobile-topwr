@@ -23,9 +23,8 @@ Future<Iterable<ScienceClub?>?> _sciClubsFilteredByTextQuery(
 ) async {
   final originalList = await ref.watch(scienceClubsRepositoryProvider.future);
   final query = ref.watch(searchScienceClubsControllerProvider);
-  return originalList?.where(
+  return originalList.where(
     (element) =>
-        element == null ||
         element.name.containsLowerCase(query) ||
         (element.department?.name).containsLowerCase(query) ||
         (element.department?.code).containsLowerCase(query) ||

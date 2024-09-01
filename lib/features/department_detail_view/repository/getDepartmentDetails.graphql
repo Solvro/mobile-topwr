@@ -1,5 +1,6 @@
-query GetDepartmentDetails($id: ID!, $fid : GraphQLStringOrFloat) {
+query GetDepartmentDetails($id: ID!) {
     Departments_by_id(id: $id){
+        id
         name
         logo {
             filename_disk
@@ -19,13 +20,5 @@ query GetDepartmentDetails($id: ID!, $fid : GraphQLStringOrFloat) {
         }
         gradient_start,
         gradient_end
-    }
-    Scientific_Circles(filter: {department: {id: {_eq: $fid}}}  ){
-        id
-        name
-        shortDescription
-        logo {
-            filename_disk
-        }
     }
 }

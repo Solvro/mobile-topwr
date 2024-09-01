@@ -1,39 +1,59 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../config/ui_config.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../widgets/big_preview_card.dart";
+import "../../../widgets/my_error_widget.dart";
 import "../../../widgets/subsection_header.dart";
+import "../../home_view/widgets/loading_widgets/big_scrollable_section_loading.dart";
 import "../../home_view/widgets/paddings.dart";
 import "../../navigator/utils/navigation_commands.dart";
+import "../../science_clubs_view/repository/science_clubs_repository.dart";
 import "../repository/department_details_repository.dart";
 
 // TODO(simon-the-shark): Resolve if the list button should redirect to list of all study circles or only ones related to the department.
 class DepartmentScienceClubsSection extends ConsumerWidget {
-  const DepartmentScienceClubsSection(this.scienceClubs, {super.key});
-  final List<ScienceClubs> scienceClubs;
+  const DepartmentScienceClubsSection(this.department, {super.key});
+  final DepartmentDetails? department;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Column(
-      children: [
-        SubsectionHeader(
-          title: context.localize.study_circles,
-          actionTitle: context.localize.list,
-          onClick: ref.navigateScienceClubs,
+    final state = ref.watch(scienceClubsRepositoryProvider);
+    return switch (state) {
+      AsyncError(:final error) => MyErrorWidget(error),
+      AsyncValue(:final IList<ScienceClub> value) => Builder(
+          builder: (context) {
+            final filtered = value
+                .where(
+                  (sciClubs) =>
+                      sciClubs.department?.id ==
+                      department?.Departments_by_id?.id,
+                )
+                .toIList();
+            return Column(
+              children: [
+                SubsectionHeader(
+                  title: context.localize.study_circles,
+                  actionTitle: context.localize.list,
+                  onClick: ref.navigateScienceClubs,
+                ),
+                SizedBox(
+                  height: BigPreviewCardConfig.cardHeight,
+                  child: _ScienceClubsList(scienceClubs: filtered),
+                ),
+              ],
+            );
+          },
         ),
-        SizedBox(
-          height: BigPreviewCardConfig.cardHeight,
-          child: _ScienceClubsList(scienceClubs: scienceClubs),
-        ),
-      ],
-    );
+      _ => const BigScrollableSectionLoading(),
+    };
   }
 }
 
 class _ScienceClubsList extends ConsumerWidget {
-  final List<ScienceClubs> scienceClubs;
+  final IList<ScienceClub> scienceClubs;
 
   const _ScienceClubsList({required this.scienceClubs});
 

@@ -7,7 +7,6 @@ import "getDepartmentDetails.graphql.dart";
 part "department_details_repository.g.dart";
 
 typedef DepartmentDetails = Query$GetDepartmentDetails;
-typedef ScienceClubs = Query$GetDepartmentDetails$Scientific_Circles;
 typedef DepartmentDetailsDetails = Query$GetDepartmentDetails$Departments_by_id;
 typedef _Vars = Variables$Query$GetDepartmentDetails;
 
@@ -19,10 +18,7 @@ Stream<DepartmentDetails?> departmentDetailsRepository(
   final stream = ref.watchQueryWithCache(
     WatchOptions$Query$GetDepartmentDetails(
       eagerlyFetchResults: true,
-      variables: _Vars(
-        id: id,
-        fid: id,
-      ),
+      variables: _Vars(id: id),
     ),
     TtlKey.departmentDetailsRepository,
   );

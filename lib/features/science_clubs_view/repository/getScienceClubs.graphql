@@ -3,6 +3,7 @@ query GetScienceClubs {
     id
     name
     department {
+      id
       name
       code
       betterCode

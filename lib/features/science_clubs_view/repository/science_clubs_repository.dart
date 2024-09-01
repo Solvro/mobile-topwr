@@ -1,4 +1,5 @@
 import "package:collection/collection.dart";
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../../../api_base/watch_query_adapter.dart";
@@ -10,14 +11,16 @@ part "science_clubs_repository.g.dart";
 typedef ScienceClub = Query$GetScienceClubs$Scientific_Circles;
 
 @riverpod
-Stream<List<ScienceClub?>?> scienceClubsRepository(
+Stream<IList<ScienceClub>> scienceClubsRepository(
   ScienceClubsRepositoryRef ref,
 ) async* {
   final stream = ref.watchQueryWithCache(
     WatchOptions$Query$GetScienceClubs(eagerlyFetchResults: true),
     TtlKey.scienceClubsRepository,
   );
-  yield* stream.map((event) => event?.Scientific_Circles.sortBySourceTypes());
+  yield* stream.map(
+    (event) => (event?.Scientific_Circles.sortBySourceTypes() ?? []).toIList(),
+  );
 }
 
 extension IsSolvroX on ScienceClub {
