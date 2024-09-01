@@ -1,3 +1,4 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../utils/contains_lower_case.dart";
@@ -18,7 +19,7 @@ class SearchScienceClubsController extends _$SearchScienceClubsController {
 }
 
 @riverpod
-Future<Iterable<ScienceClub?>?> _sciClubsFilteredByTextQuery(
+Future<Iterable<ScienceClub>> _sciClubsFilteredByTextQuery(
   _SciClubsFilteredByTextQueryRef ref,
 ) async {
   final originalList = await ref.watch(scienceClubsRepositoryProvider.future);
@@ -33,7 +34,7 @@ Future<Iterable<ScienceClub?>?> _sciClubsFilteredByTextQuery(
 }
 
 @riverpod
-Future<Iterable<ScienceClub?>?> scienceClubsListController(
+Future<IList<ScienceClub>> scienceClubsListController(
   ScienceClubsListControllerRef ref,
 ) async {
   final sciClubs =
@@ -41,7 +42,7 @@ Future<Iterable<ScienceClub?>?> scienceClubsListController(
           .whereNonNull;
 
   if (!ref.watch(areFiltersEnabledProvider)) {
-    return sciClubs;
+    return sciClubs.toIList();
   }
 
   final selectedTags =
@@ -72,5 +73,5 @@ Future<Iterable<ScienceClub?>?> scienceClubsListController(
               .any((tag) => selectedTags.contains(tag.Tags_id?.name)),
         );
 
-  return filteredByTags;
+  return filteredByTags.toIList();
 }

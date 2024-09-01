@@ -1,3 +1,4 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
@@ -26,7 +27,7 @@ extension TabBarRouteTransitionBuilderX on Ref {
   TRoute? _getPreviousTab(String thisRouteName) {
     final navigator = read(navigationControllerProvider.notifier);
     final stack =
-        navigator.stack.where((element) => element.isTabView).toList();
+        navigator.stack.where((element) => element.isTabView).toIList();
     final didLastPop = navigator.didLastPop;
     final isThisLastRouteOnStack = stack.lastOrNull?.routeName == thisRouteName;
     return isThisLastRouteOnStack

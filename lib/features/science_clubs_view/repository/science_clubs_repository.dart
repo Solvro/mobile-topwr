@@ -4,6 +4,7 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../../config/ttl_config.dart";
 import "../../../api_base/query_adapter.dart";
+import "../../../utils/ilist_nonempty.dart";
 import "getScienceClubs.graphql.dart";
 
 part "science_clubs_repository.g.dart";
@@ -18,7 +19,7 @@ Future<IList<ScienceClub>> scienceClubsRepository(
     Options$Query$GetScienceClubs(),
     TtlKey.scienceClubsRepository,
   );
-  return (results?.Scientific_Circles.sortBySourceTypes() ?? []).toIList();
+  return (results?.Scientific_Circles.sortBySourceTypes()).toIList();
 }
 
 extension IsSolvroX on ScienceClub {

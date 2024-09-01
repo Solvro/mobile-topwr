@@ -41,16 +41,15 @@ class _GuideDetailDataView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(guideDetailsRepositoryProvider(id));
     return switch (state) {
-      AsyncLoading() => const _GuideDetailLoading(),
       AsyncError(:final error) => MyErrorWidget(error),
-      AsyncValue(:final value) => CustomScrollView(
+      AsyncValue(:final GuideDetails value) => CustomScrollView(
           slivers: [
             SliverAppBar(
               expandedHeight: 254,
               flexibleSpace: SizedBox(
                 height: 254,
                 child: OptimizedDirectusImage(
-                  value?.cover?.filename_disk,
+                  value.cover?.filename_disk,
                 ),
               ),
               automaticallyImplyLeading: false,
@@ -58,7 +57,7 @@ class _GuideDetailDataView extends ConsumerWidget {
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.all(24),
-                child: MyHtmlWidget(value?.description ?? ""),
+                child: MyHtmlWidget(value.description ?? ""),
               ),
             ),
             SliverPadding(
@@ -66,9 +65,9 @@ class _GuideDetailDataView extends ConsumerWidget {
                 bottom: GuideDetailViewConfig.paddingLarge,
               ),
               sliver: SliverList.separated(
-                itemCount: value?.questions?.length ?? 0,
+                itemCount: value.questions?.length ?? 0,
                 itemBuilder: (context, index) {
-                  final question = value?.questions?[index]?.FAQ_id;
+                  final question = value.questions?[index]?.FAQ_id;
                   return FaqExpansionTile(
                     title: question?.question ?? "",
                     description: question?.answer ?? "",
@@ -79,6 +78,7 @@ class _GuideDetailDataView extends ConsumerWidget {
             ),
           ],
         ),
+      _ => const _GuideDetailLoading(),
     };
   }
 }

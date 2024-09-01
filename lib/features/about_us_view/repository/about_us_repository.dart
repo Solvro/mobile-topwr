@@ -1,3 +1,4 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../api_base/query_adapter.dart";
@@ -19,6 +20,6 @@ Future<AboutUsDetails?> aboutUsRepository(AboutUsRepositoryRef ref) async {
   if (results == null) return null;
   return AboutUsDetails(
     aboutUs: results.AboutUs,
-    aboutUsTeam: results.AboutUs_Team,
+    aboutUsTeam: results.AboutUs_Team.lock,
   );
 }

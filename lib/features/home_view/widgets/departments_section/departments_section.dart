@@ -1,8 +1,8 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../utils/context_extensions.dart";
-import "../../../../utils/where_non_null_iterable.dart";
 import "../../../../widgets/my_error_widget.dart";
 import "../../../../widgets/subsection_header.dart";
 import "../../../departments_view/repository/departments_repository.dart";
@@ -26,13 +26,13 @@ class DepartmentsSection extends ConsumerWidget {
         ),
         SmallHorizontalPadding(
           child: switch (state) {
-            AsyncLoading() => const MediumLeftPadding(
-                child: ScrollableSectionLoading(),
-              ),
             AsyncError(:final error) => MyErrorWidget(error),
-            AsyncValue(:final value) => SizedBox(
+            AsyncValue(:final IList<Department> value) => SizedBox(
                 height: 120,
-                child: _DepartmentsDataList(value.whereNonNull.toList()),
+                child: _DepartmentsDataList(value),
+              ),
+            _ => const MediumLeftPadding(
+                child: ScrollableSectionLoading(),
               ),
           },
         ),
@@ -44,7 +44,7 @@ class DepartmentsSection extends ConsumerWidget {
 class _DepartmentsDataList extends ConsumerWidget {
   const _DepartmentsDataList(this.departments);
 
-  final List<Department> departments;
+  final IList<Department> departments;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

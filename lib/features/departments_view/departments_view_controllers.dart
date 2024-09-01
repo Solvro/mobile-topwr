@@ -17,7 +17,7 @@ class SearchDepartmentsController extends _$SearchDepartmentsController {
 }
 
 @riverpod
-Future<IList<Department?>> departmentsList(DepartmentsListRef ref) async {
+Future<IList<Department>> departmentsList(DepartmentsListRef ref) async {
   final originalList = await ref.watch(departmentsRepositoryProvider.future);
   final query = ref.watch(searchDepartmentsControllerProvider);
   return originalList

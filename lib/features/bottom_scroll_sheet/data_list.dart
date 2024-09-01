@@ -4,7 +4,6 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../config/map_view_config.dart";
 import "../../theme/app_theme.dart";
-import "../../utils/where_non_null_iterable.dart";
 import "../../widgets/my_error_widget.dart";
 import "../map_view/controllers/controllers_set.dart";
 import "../map_view/widgets/map_config.dart";
@@ -17,10 +16,7 @@ class DataSliverList<T extends GoogleNavigable> extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final itemsState = ref.watch(context.mapDataController<T>());
     return switch (itemsState) {
-      // misz-masz here fixed flickering
-      // we probably should consider similar refactoring to all switches, but won't be visible in our other use-cases
-      AsyncValue(:final IList<T?> value) =>
-        _DataSliverList<T>(value.whereNonNull.toIList()),
+      AsyncValue(:final IList<T> value) => _DataSliverList<T>(value),
       AsyncError(:final error) =>
         SliverToBoxAdapter(child: MyErrorWidget(error)),
       _ => const DataListLoading(),

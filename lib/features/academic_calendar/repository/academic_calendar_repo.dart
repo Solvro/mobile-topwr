@@ -1,3 +1,4 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../api_base/query_adapter.dart";
@@ -20,5 +21,5 @@ Future<AcademicCalendar?> academicCalendarRepo(AcademicCalendarRepoRef ref) {
 
 extension FixNestedTypesX on AcademicCalendar {
   AcademicCalendarData? get data => this.AcademicCalendarData;
-  List<AcademicWeekException> get weeks => WeekExceptions;
+  IList<AcademicWeekException> get weeks => WeekExceptions.lock;
 }

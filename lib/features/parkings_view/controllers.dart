@@ -29,7 +29,7 @@ class ParkingsViewController extends _$ParkingsViewController
   }
   @override
   // ignore: unnecessary_overrides
-  FutureOr<IList<Parking?>?> build() async {
+  FutureOr<IList<Parking>> build() async {
     return super.build();
   }
 

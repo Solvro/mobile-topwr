@@ -1,3 +1,4 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:flutter_svg/svg.dart";
@@ -11,7 +12,7 @@ import "../models/member_data.dart";
 
 class TeamSection extends StatelessWidget {
   const TeamSection({super.key, required this.members});
-  final List<MemberData> members;
+  final IList<MemberData> members;
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +91,7 @@ class _Description extends StatelessWidget {
   });
   final String name;
   final String subtitle;
-  final List<ContactIconsModel> links;
+  final IList<ContactIconsModel> links;
 
   @override
   Widget build(BuildContext context) {
