@@ -44,6 +44,7 @@ class _ScienceClubsList extends ConsumerWidget {
       shrinkWrap: true,
       scrollDirection: Axis.horizontal,
       itemCount: scienceClubs.length,
+      padding: const EdgeInsets.only(right: HomeViewConfig.paddingMedium),
       itemBuilder: (BuildContext context, int index) {
         final sciClub = scienceClubs[index];
         return MediumLeftPadding(
