@@ -1,4 +1,5 @@
 import "package:auto_route/auto_route.dart";
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 
 import "../../config/ui_config.dart";
@@ -18,14 +19,14 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> sections = [
+    final sections = [
       const AcademicCalendarConsumer(),
       const ParkingsSection(),
       const ScienceClubsSection(),
       const BuildingsSection(),
       const NewsSection(),
       const DepartmentsSection(),
-    ];
+    ].lock;
     return Scaffold(
       backgroundColor: context.colorTheme.whiteSoap,
       appBar: LogoAppBar(context),

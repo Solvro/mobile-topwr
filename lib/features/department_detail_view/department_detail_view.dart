@@ -30,15 +30,14 @@ class DepartmentDetailView extends ConsumerWidget {
     return Scaffold(
       appBar: DetailViewAppBar(context, title: context.localize.departments),
       body: switch (state) {
-        AsyncLoading() => const DepartmentDetailViewLoading(),
         AsyncError(:final error) => MyErrorWidget(error),
-        AsyncValue(:final value) => CustomScrollView(
+        AsyncValue(:final DepartmentDetails value) => CustomScrollView(
             slivers: [
               SliverPersistentHeader(
                 delegate: DepartmentSliverHeaderSection(
-                  activeGradient: value?.Departments_by_id?.gradient,
+                  activeGradient: value.Departments_by_id?.gradient,
                   logoDirectusImageUrl:
-                      value?.Departments_by_id?.logo?.filename_disk,
+                      value.Departments_by_id?.logo?.filename_disk,
                 ),
               ),
               SliverList(
@@ -47,7 +46,7 @@ class DepartmentDetailView extends ConsumerWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 24),
                     child: Text(
-                      value?.Departments_by_id?.name ?? "",
+                      value.Departments_by_id?.name ?? "",
                       style: context.textTheme.headline,
                       textAlign: TextAlign.center,
                       maxLines: 2,
@@ -55,8 +54,7 @@ class DepartmentDetailView extends ConsumerWidget {
                   ),
                   const SizedBox(height: 12),
                   Text(
-                    value?.Departments_by_id?.address
-                            ?.divideAddressInto3Lines ??
+                    value.Departments_by_id?.address?.divideAddressInto3Lines ??
                         "",
                     style: context.textTheme.body.copyWith(height: 1.2),
                     textAlign: TextAlign.center,
@@ -64,18 +62,18 @@ class DepartmentDetailView extends ConsumerWidget {
                   const SizedBox(height: DetailViewsConfig.spacerHeight),
                   ContactSection(
                     title: context.localize.deans_office,
-                    list: value?.Departments_by_id?.links.whereNonNull
-                            .map(
-                              (link) => ContactIconsModel(
-                                text: link.name,
-                                url: link.link,
-                              ),
-                            )
-                            .toList() ??
-                        List.empty(),
+                    list: (value.Departments_by_id?.links)
+                        .whereNonNull
+                        .map(
+                          (link) => ContactIconsModel(
+                            text: link.name,
+                            url: link.link,
+                          ),
+                        )
+                        .toIList(),
                   ),
                   FieldsOfStudySection(
-                    fieldsOfStudy: (value?.Departments_by_id?.fieldsOfStudies)
+                    fieldsOfStudy: (value.Departments_by_id?.fieldsOfStudies)
                         .whereNonNull
                         .toIList(),
                   ),
@@ -85,6 +83,7 @@ class DepartmentDetailView extends ConsumerWidget {
               ),
             ],
           ),
+        _ => const DepartmentDetailViewLoading(),
       },
     );
   }

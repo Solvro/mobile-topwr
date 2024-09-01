@@ -1,3 +1,4 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
@@ -21,7 +22,27 @@ class ParkingChart extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final chartData = ref.watch(chartRepositoryProvider(parking));
     return switch (chartData) {
-      AsyncLoading() => Padding(
+      AsyncError(:final error) => Material(
+          borderRadius: const BorderRadius.all(WideTileCardConfig.radius),
+          color: context.colorTheme.greyLight.withOpacity(0.8),
+          child: MyErrorWidget(error),
+        ),
+      AsyncValue(:final IList<ChartPoint> value) => value.isEmpty
+          ? Center(
+              child: Text(
+                context.localize.noChartData,
+                style: context.iParkingTheme.subtitleLight.withoutShadows,
+              ),
+            )
+          : Padding(
+              padding: const EdgeInsets.only(
+                top: 20,
+                right: 25,
+                bottom: 10,
+              ),
+              child: ChartWidget(value, parking),
+            ),
+      _ => Padding(
           padding: const EdgeInsets.only(
             top: 18,
             left: 8,
@@ -33,33 +54,6 @@ class ParkingChart extends ConsumerWidget {
             width: double.infinity,
             color: context.colorTheme.greyPigeon.withOpacity(0.1),
           ),
-        ),
-      AsyncError(:final error) => Material(
-          borderRadius: const BorderRadius.all(WideTileCardConfig.radius),
-          color: context.colorTheme.greyLight.withOpacity(0.8),
-          child: MyErrorWidget(error),
-        ),
-      AsyncValue(:final value) => Builder(
-          builder: (context) {
-            if (value == null) return const SizedBox.shrink();
-            final chartPoints = value.toChartPoints().toList();
-            if (chartPoints.isEmpty) {
-              return Center(
-                child: Text(
-                  context.localize.noChartData,
-                  style: context.iParkingTheme.subtitleLight.withoutShadows,
-                ),
-              );
-            }
-            return Padding(
-              padding: const EdgeInsets.only(
-                top: 20,
-                right: 25,
-                bottom: 10,
-              ),
-              child: ChartWidget(chartPoints, parking),
-            );
-          },
         ),
     };
   }

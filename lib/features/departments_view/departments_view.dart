@@ -5,7 +5,6 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../config/ui_config.dart";
 import "../../utils/context_extensions.dart";
-import "../../utils/where_non_null_iterable.dart";
 import "../../widgets/my_error_widget.dart";
 import "../../widgets/search_box_app_bar.dart";
 import "../../widgets/search_not_found.dart";
@@ -44,8 +43,8 @@ class _DepartmentsViewListBody extends ConsumerWidget {
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: switch (state) {
         AsyncError(:final error) => MyErrorWidget(error),
-        AsyncValue(:final IList<Department?> value) =>
-          _DepartmentsDataView(value.whereNonNull.toList()),
+        AsyncValue(:final IList<Department> value) =>
+          _DepartmentsDataView(value),
         _ => const DepartmentsViewLoading(),
       },
     );
@@ -55,7 +54,7 @@ class _DepartmentsViewListBody extends ConsumerWidget {
 class _DepartmentsDataView extends ConsumerWidget {
   const _DepartmentsDataView(this.departments);
 
-  final List<Department> departments;
+  final IList<Department> departments;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

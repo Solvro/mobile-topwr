@@ -1,3 +1,4 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/cupertino.dart";
 import "package:flutter/gestures.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
@@ -10,12 +11,12 @@ import "contact_icon_widget.dart";
 class ContactSection extends StatelessWidget {
   const ContactSection({super.key, required this.list, required this.title});
 
-  final List<ContactIconsModel> list;
+  final IList<ContactIconsModel> list;
   final String title;
 
   @override
   Widget build(BuildContext context) {
-    list.sort((a, b) => a.order.compareTo(b.order));
+    final sorted = list.sort((a, b) => a.order.compareTo(b.order));
     return Container(
       padding: const EdgeInsets.only(top: 24, left: 24, right: 24, bottom: 8),
       color: context.colorTheme.greyLight,
@@ -24,7 +25,7 @@ class ContactSection extends StatelessWidget {
         children: [
           Text(title, style: context.textTheme.headline),
           const SizedBox(height: 16),
-          for (final item in list)
+          for (final item in sorted)
             Padding(
               padding: const EdgeInsets.only(bottom: 16),
               child: _ContactIcon(

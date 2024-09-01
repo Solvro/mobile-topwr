@@ -22,14 +22,14 @@ bool isSomethingSearched(IsSomethingSearchedRef ref) {
 }
 
 @riverpod
-Future<IList<GuidePost?>?> guideListController(
+Future<IList<GuidePost>> guideListController(
   GuideListControllerRef ref,
 ) async {
   final originalList = await ref.watch(guideRepositoryProvider.future);
   final query = ref.watch(searchGuideControllerProvider);
   return originalList
-      ?.where(
-        (element) => element == null || element.name.containsLowerCase(query),
+      .where(
+        (element) => element.name.containsLowerCase(query),
       )
       .toIList();
 }

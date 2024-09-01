@@ -1,9 +1,9 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../config/ui_config.dart";
 import "../../../utils/context_extensions.dart";
-import "../../../utils/where_non_null_iterable.dart";
 import "../../../widgets/big_preview_card.dart";
 import "../../../widgets/my_error_widget.dart";
 import "../../../widgets/subsection_header.dart";
@@ -35,7 +35,19 @@ class _ScienceClubsList extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(scienceClubsRepositoryProvider);
     return switch (state) {
-      AsyncLoading() => const Padding(
+      AsyncError(:final error) => MyErrorWidget(error),
+      AsyncValue(:final IList<ScienceClub> value) => Container(
+          padding: const EdgeInsets.only(
+            left: HomeViewConfig.paddingSmall,
+            right: HomeViewConfig.paddingSmall,
+            top: HomeViewConfig.paddingMedium,
+          ),
+          child: SizedBox(
+            height: BigPreviewCardConfig.cardHeight,
+            child: _ScienceClubsDataList(value),
+          ),
+        ),
+      _ => const Padding(
           padding: EdgeInsets.only(
             left: HomeViewConfig.paddingMedium,
             top: HomeViewConfig.paddingMedium * 2,
@@ -46,20 +58,6 @@ class _ScienceClubsList extends ConsumerWidget {
             child: BigScrollableSectionLoading(),
           ),
         ),
-      AsyncError(:final error) => MyErrorWidget(error),
-      AsyncValue(:final value) => Container(
-          padding: const EdgeInsets.only(
-            left: HomeViewConfig.paddingSmall,
-            right: HomeViewConfig.paddingSmall,
-            top: HomeViewConfig.paddingMedium,
-          ),
-          child: SizedBox(
-            height: BigPreviewCardConfig.cardHeight,
-            child: _ScienceClubsDataList(
-              value.whereNonNull.toList(),
-            ),
-          ),
-        )
     };
   }
 }
@@ -67,7 +65,7 @@ class _ScienceClubsList extends ConsumerWidget {
 class _ScienceClubsDataList extends ConsumerWidget {
   const _ScienceClubsDataList(this.scienceClubs);
 
-  final List<ScienceClub> scienceClubs;
+  final IList<ScienceClub> scienceClubs;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

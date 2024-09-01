@@ -21,7 +21,7 @@ extension RefIntervalRefreshX on Ref {
 }
 
 @riverpod
-Future<IList<Parking>?> parkingsRepository(ParkingsRepositoryRef ref) async {
+Future<IList<Parking>> parkingsRepository(ParkingsRepositoryRef ref) async {
   ref.setRefresh(ParkingsConfig.parkingsRefreshInterval);
   final response = await ref.postIParkingCommand<Map<String, dynamic>>(
     FetchPlacesCommand(DateTime.now()),

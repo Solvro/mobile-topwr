@@ -4,25 +4,24 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 import "controllers_set.dart";
 
 mixin MapDataController<T extends GoogleNavigable>
-    on AutoDisposeAsyncNotifier<IList<T?>?> {
+    on AutoDisposeAsyncNotifier<IList<T>> {
   String _textFieldFilterText = "";
   late final MapControllers<T> mapControllers;
 
   @override
-  FutureOr<IList<T?>?> build() async {
+  FutureOr<IList<T>> build() async {
     final itemSelected = ref.watch(mapControllers.activeMarker);
     if (itemSelected != null) {
       return [itemSelected].lock; // shows only selected building
     }
 
     final itemsData = await ref.watch(mapControllers.sourceRepo.future);
-    return itemsData?.where(_filterMethod).toIList();
+    return itemsData.where(_filterMethod).toIList();
   }
 
   bool filterMethod(T item, String filterStr);
 
-  bool _filterMethod(T? item) {
-    if (item == null) return false;
+  bool _filterMethod(T item) {
     final filter = _textFieldFilterText.toLowerCase();
     return filterMethod(item, filter);
   }

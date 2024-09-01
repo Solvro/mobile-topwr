@@ -1,3 +1,4 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:flutter_svg/svg.dart";
@@ -10,7 +11,7 @@ import "../../../utils/launch_url_util.dart";
 class ContactSection extends StatelessWidget {
   const ContactSection({super.key, required this.links});
 
-  final List<ContactIconsModel> links;
+  final IList<ContactIconsModel> links;
 
   @override
   Widget build(BuildContext context) {

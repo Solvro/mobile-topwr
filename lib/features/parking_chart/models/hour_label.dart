@@ -9,7 +9,7 @@ extension type HourLabel(double numericalPoint) implements double {
   }
 
   static double _convertToNumericalRepresentation(String time) {
-    final List<String> parts = time.split(":");
+    final parts = time.split(":");
     if (parts.length < 2) return 0;
     final int hours = int.tryParse(parts[0]) ?? 0;
     final int minutes = int.tryParse(parts[1]) ?? 0;

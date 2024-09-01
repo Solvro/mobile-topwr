@@ -4,7 +4,6 @@ import "package:url_launcher/url_launcher.dart";
 
 import "../features/buildings_view/repository/buildings_repository.dart";
 import "../features/navigator/utils/navigation_commands.dart";
-import "../utils/where_non_null_iterable.dart";
 
 extension LaunchUrlUtilX on WidgetRef? {
   Future<bool> launch(String uriStr) async {
@@ -25,8 +24,7 @@ extension _LaunchTopwrRouteX on WidgetRef {
     if (uriStr.startsWith("topwr:buildings/")) {
       final id = uriStr.replaceFirst("topwr:buildings/", "");
       final buildings = await read(buildingsRepositoryProvider.future);
-      final building =
-          buildings.whereNonNull.firstWhereOrNull((i) => i.id == id);
+      final building = buildings.firstWhereOrNull((i) => i.id == id);
       if (building == null) return false;
       await navigateBuilding(building);
       return true;
