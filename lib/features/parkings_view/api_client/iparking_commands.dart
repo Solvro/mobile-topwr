@@ -27,6 +27,7 @@ extension IParkingCommandsX on AutoDisposeRef {
     try {
       return await watch(iParkingClientProvider).post("", data: command);
     } on DioException catch (_) {
+      await Future.delayed(const Duration(milliseconds: 300));
       throw ParkingsOfflineException();
     }
   }
