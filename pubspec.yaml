@@ -119,6 +119,9 @@ flutter:
     - assets/contact_icons/phone.svg
     - assets/contact_icons/web.svg
     - assets/contact_icons/yt.svg
+    - assets/contact_icons/x.svg
+    - assets/contact_icons/tiktok.svg
+    - assets/contact_icons/discord.svg
     - assets/animations/error.json
     - assets/animations/search.json
     - assets/animations/offline.json

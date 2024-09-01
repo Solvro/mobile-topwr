@@ -10,16 +10,22 @@ abstract class ContactIconsConfig {
     "github": Assets.contactIcons.github,
     "topwr:buildings": Assets.contactIcons.compass,
     "tel": Assets.contactIcons.phone,
+    "https://x.com": Assets.contactIcons.x,
+    "tiktok": Assets.contactIcons.tiktok,
+    "discord": Assets.contactIcons.discord,
   };
   static final iconsOrder = {
-    "topwr:buildings": 1,
-    "tel": 3,
-    "mailto:": 4,
+    "maps": 1,
+    "tel": 2,
+    "mailto:": 3,
     "facebook": 5,
     "instagram": 6,
-    "linkedin": 7,
-    "github": 8,
-    "youtu": 9,
+    "discord": 7,
+    "linkedin": 8,
+    "github": 9,
+    "https://x.com": 10,
+    "youtu": 11,
+    "tiktok": 12,
   };
   static const defaultIconOrder = 2;
   static final defaultIcon = Assets.contactIcons.web;
