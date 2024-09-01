@@ -20,12 +20,11 @@ class SearchDepartmentsController extends _$SearchDepartmentsController {
 Future<IList<Department?>> departmentsList(DepartmentsListRef ref) async {
   final originalList = await ref.watch(departmentsRepositoryProvider.future);
   final query = ref.watch(searchDepartmentsControllerProvider);
-  return (originalList?.where(
-            (element) =>
-                element == null ||
-                element.name.containsLowerCase(query) ||
-                element.code.containsLowerCase(query),
-          ) ??
-          [])
+  return originalList
+      .where(
+        (element) =>
+            element.name.containsLowerCase(query) ||
+            element.code.containsLowerCase(query),
+      )
       .toIList();
 }

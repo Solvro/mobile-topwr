@@ -32,6 +32,14 @@ class SelectedDepartmentController extends _$SelectedDepartmentController
     with FilterController<Department> {
   @override
   ISet<Department> build() => const ISet.empty();
+
+  Future<void> selectDepartmentById(String id) async {
+    final department =
+        (await ref.read(departmentsRepositoryProvider.future)).firstWhere(
+      (element) => element.id == id,
+    );
+    state = state.clear().add(department);
+  }
 }
 
 @riverpod

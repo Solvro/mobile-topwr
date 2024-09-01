@@ -1,3 +1,4 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../../api_base/watch_query_adapter.dart";
@@ -10,7 +11,7 @@ part "departments_repository.g.dart";
 typedef Department = Query$GetDepartments$Departments;
 
 @riverpod
-Stream<List<Department?>?> departmentsRepository(
+Stream<IList<Department>> departmentsRepository(
   DepartmentsRepositoryRef ref,
 ) async* {
   final stream = ref.watchQueryWithCache(
@@ -20,6 +21,6 @@ Stream<List<Department?>?> departmentsRepository(
     TtlKey.departmentsRepository,
   );
   yield* stream.map(
-    (event) => event?.Departments?..sortByCodeOrder(),
+    (event) => ((event?.Departments?..sortByCodeOrder()) ?? []).toIList(),
   );
 }
