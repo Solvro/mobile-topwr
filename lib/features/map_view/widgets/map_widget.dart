@@ -29,7 +29,7 @@ class MapWidget<T extends GoogleNavigable> extends ConsumerWidget {
           builder: (BuildContext context, WidgetRef ref, Widget? child) {
             final asyncItems = ref
                 .watch(context.mapSourceRepository<T>())
-                .value
+                .valueOrNull
                 .whereNonNull
                 .toList();
             return GoogleMap(
