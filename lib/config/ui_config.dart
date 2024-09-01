@@ -145,7 +145,7 @@ abstract class GuideDetailViewConfig {
 }
 
 abstract class GuideViewConfig {
-  static const gridPadding = EdgeInsets.symmetric(horizontal: 24);
+  static const gridPadding = EdgeInsets.only(left: 24, right: 24, bottom: 24);
 }
 
 abstract class FilterConfig {

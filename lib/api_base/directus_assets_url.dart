@@ -1,13 +1,13 @@
 import "package:flutter/material.dart";
 
-import "../config/api_base_config.dart";
+import "../config/env.dart";
 
 extension DirectusAssetsUrlX on String {
   String get directusUrl {
     if (startsWith("https://") || startsWith("http://")) {
       return this; // Already a full URL (not from directus)
     }
-    return "${ApiBaseEnv.assetsUrl}/$this";
+    return "${Env.assetsUrl}/$this";
   }
 
   String directusUrlWithSize(Size size, BoxFit fit) {

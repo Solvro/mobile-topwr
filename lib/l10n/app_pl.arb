@@ -89,5 +89,10 @@
   "filters" : "Filtry",
   "clear" : "Wyczyść",
   "filters_didnt_found_anything" : "Nie znaleziono żadnych filtrów",
-  "street_abbreviation" : "ul."
+  "street_abbreviation" : "ul.",
+  "bug_report_title":"Zgłoś błąd lub sugestię",
+  "bug_report_subtitle":"Wyślij zgłoszenie bezpośrednio do twórców aplikacji.",
+  "new_feature": "Nowa funckcjonalność",
+  "bug" : "Błąd",
+  "praise" : "Pochwała"
 }

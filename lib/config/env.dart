@@ -1,6 +1,6 @@
 import "package:envied/envied.dart";
 
-part "api_base_config.g.dart";
+part "env.g.dart";
 
 abstract class ApiBaseConfig {
   static const hiveCacheBoxName = "hiveCacheBoxForDirectusGraphQL";
@@ -14,11 +14,15 @@ abstract class ApiBaseConfig {
   useConstantCase: true,
   requireEnvFile: true,
 )
-abstract class ApiBaseEnv {
+abstract class Env {
   @EnviedField()
-  static final String apiUrl = _ApiBaseEnv.apiUrl;
+  static final String apiUrl = _Env.apiUrl;
   @EnviedField()
-  static final String assetsUrl = _ApiBaseEnv.assetsUrl;
+  static final String assetsUrl = _Env.assetsUrl;
   @EnviedField()
-  static final String iparkingUrl = _ApiBaseEnv.iparkingUrl;
+  static final String iparkingUrl = _Env.iparkingUrl;
+  @EnviedField()
+  static final String wiredashId = _Env.wiredashId;
+  @EnviedField()
+  static final String wiredashSecret = _Env.wiredashSecret;
 }

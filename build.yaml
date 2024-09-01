@@ -9,7 +9,7 @@ targets:
       envied_generator:envied:
         generate_for:
           include:
-            - lib/config/api_base_config.dart
+            - lib/config/env.dart
       graphql_codegen:
         options:
           clients:
