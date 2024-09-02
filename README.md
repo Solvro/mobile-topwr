@@ -164,6 +164,12 @@ dart fix --apply
 ```bash
 dart format .
 ```
+- run riverpod formatted (it doesn't work now, wait until they fix it)
+```bash
+dart run custom_lint
+```
+
+
 ## Github workflow
 Don't worry if you've forgotten about the steps, automatic gh action will run the checks for you and notify if somthing's wrong.
 
