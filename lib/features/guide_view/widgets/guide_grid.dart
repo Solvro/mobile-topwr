@@ -1,3 +1,4 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/cupertino.dart";
 
 import "../../../config/ui_config.dart";
@@ -7,7 +8,7 @@ import "../../../widgets/search_not_found.dart";
 class GuideGrid extends StatelessWidget {
   const GuideGrid({super.key, required this.children});
 
-  final List<Widget> children;
+  final IList<Widget> children;
 
   @override
   Widget build(BuildContext context) {

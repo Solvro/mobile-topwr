@@ -1,6 +1,7 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "../../../api_base/watch_query_adapter.dart";
+import "../../../api_base/query_adapter.dart";
 import "../../../config/ttl_config.dart";
 import "getAcademicCalendar.graphql.dart";
 
@@ -11,15 +12,14 @@ typedef AcademicCalendarData = Query$GetAcademicCalendar$AcademicCalendarData;
 typedef AcademicWeekException = Query$GetAcademicCalendar$WeekExceptions;
 
 @riverpod
-Stream<AcademicCalendar?> academicCalendarRepo(AcademicCalendarRepoRef ref) {
-  final stream = ref.watchQueryWithCache(
-    WatchOptions$Query$GetAcademicCalendar(eagerlyFetchResults: true),
+Future<AcademicCalendar?> academicCalendarRepo(AcademicCalendarRepoRef ref) {
+  return ref.queryGraphql(
+    Options$Query$GetAcademicCalendar(),
     TtlKey.academicCalendarRepository,
   );
-  return stream;
 }
 
 extension FixNestedTypesX on AcademicCalendar {
   AcademicCalendarData? get data => this.AcademicCalendarData;
-  List<AcademicWeekException> get weeks => WeekExceptions;
+  IList<AcademicWeekException> get weeks => WeekExceptions.lock;
 }

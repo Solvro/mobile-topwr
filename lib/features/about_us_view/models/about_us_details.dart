@@ -1,3 +1,5 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
+
 import "../../../utils/determine_contact_icon.dart";
 import "../../../utils/where_non_null_iterable.dart";
 import "../repository/about_us_repository.dart";
@@ -5,27 +7,27 @@ import "member_data.dart";
 
 class AboutUsDetails {
   final AboutUs? aboutUs;
-  final List<AboutUsTeam>? aboutUsTeam;
+  final IList<AboutUsTeam> aboutUsTeam;
 
-  AboutUsDetails({this.aboutUs, this.aboutUsTeam});
+  AboutUsDetails({required this.aboutUs, required this.aboutUsTeam});
 
-  List<MemberData> getMemberData() {
-    return aboutUsTeam.whereNonNull.map((e) {
+  IList<MemberData> getMemberData() {
+    return aboutUsTeam.map((e) {
       return MemberData(
         name: e.name,
         directusImageUrl: e.photo?.filename_disk,
-        socialLinks: e.socialLinks.whereNonNull.map((e) => e.url).toList(),
+        socialLinks: e.socialLinks.whereNonNull.map((e) => e.url).toIList(),
         subtitle: e.subtitle,
       );
-    }).toList();
+    }).toIList();
   }
 
-  List<ContactIconsModel> getSocialIcons() {
-    return aboutUs?.solvroSocialLinks.whereNonNull
-            .map(
-              (e) => ContactIconsModel(url: e.url),
-            )
-            .toList() ??
-        [];
+  IList<ContactIconsModel> getSocialIcons() {
+    return (aboutUs?.solvroSocialLinks)
+        .whereNonNull
+        .map(
+          (e) => ContactIconsModel(url: e.url),
+        )
+        .toIList();
   }
 }

@@ -30,7 +30,7 @@ class BuildingsViewController extends _$BuildingsViewController
   }
   @override
   // ignore: unnecessary_overrides
-  FutureOr<IList<BuildingModel?>?> build() async {
+  FutureOr<IList<BuildingModel>> build() async {
     return super.build();
   }
 

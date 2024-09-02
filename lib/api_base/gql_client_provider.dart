@@ -25,3 +25,9 @@ final gqlClientProvider = Provider((ref) async {
     ),
   );
 });
+
+extension GqlClientProviderX<T> on QueryOptions<T> {
+  QueryOptions<T> copyWithFetchPolicy(FetchPolicy policy) => copyWithPolicies(
+        Policies(fetch: policy),
+      );
+}

@@ -2,7 +2,6 @@ import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../utils/contains_lower_case.dart";
-import "../../utils/where_non_null_iterable.dart";
 import "../departments_view/repository/departments_repository.dart";
 import "model/sci_club_type.dart";
 import "repository/tags_repository.dart";
@@ -45,7 +44,7 @@ Future<IList<Department>> departmentFiltersFiltered(
 ) async {
   final query = ref.watch(searchFiltersControllerProvider);
   final depts = await ref.watch(departmentsRepositoryProvider.future);
-  return depts.whereNonNull
+  return depts
       .where(
         (x) =>
             x.name.containsLowerCase(query) ||
@@ -61,9 +60,7 @@ Future<IList<Tag>> tagFiltersFiltered(
 ) async {
   final query = ref.watch(searchFiltersControllerProvider);
   final tags = await ref.watch(tagsRepositoryProvider.future);
-  return tags.whereNonNull
-      .where((x) => x.name.containsLowerCase(query))
-      .toIList();
+  return tags.where((x) => x.name.containsLowerCase(query)).toIList();
 }
 
 @riverpod

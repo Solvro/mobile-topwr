@@ -1,6 +1,6 @@
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "../../../api_base/watch_query_adapter.dart";
+import "../../../api_base/query_adapter.dart";
 import "../../../config/ttl_config.dart";
 import "getDepartmentDetails.graphql.dart";
 
@@ -11,16 +11,14 @@ typedef DepartmentDetailsDetails = Query$GetDepartmentDetails$Departments_by_id;
 typedef _Vars = Variables$Query$GetDepartmentDetails;
 
 @riverpod
-Stream<DepartmentDetails?> departmentDetailsRepository(
+Future<DepartmentDetails?> departmentDetailsRepository(
   DepartmentDetailsRepositoryRef ref,
   String id,
-) async* {
-  final stream = ref.watchQueryWithCache(
-    WatchOptions$Query$GetDepartmentDetails(
-      eagerlyFetchResults: true,
+) async {
+  return ref.queryGraphql(
+    Options$Query$GetDepartmentDetails(
       variables: _Vars(id: id),
     ),
     TtlKey.departmentDetailsRepository,
   );
-  yield* stream.map((event) => event);
 }

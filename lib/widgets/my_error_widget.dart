@@ -2,7 +2,7 @@ import "package:flutter/material.dart";
 import "package:logger/logger.dart";
 import "package:lottie/lottie.dart";
 
-import "../api_base/watch_query_adapter.dart";
+import "../api_base/query_adapter.dart";
 import "../config/ui_config.dart";
 import "../features/offline_messages/widgets/grapgql_offline_message.dart";
 import "../features/parkings_view/api_client/iparking_commands.dart";

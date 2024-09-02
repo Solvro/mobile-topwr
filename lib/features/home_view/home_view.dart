@@ -1,10 +1,11 @@
 import "package:auto_route/auto_route.dart";
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 
 import "../../config/ui_config.dart";
 import "../../theme/app_theme.dart";
-import "../academic_calendar/widgets/countdown_widget/exam_session_countdown.dart";
-import "../academic_calendar/widgets/home_screen_greeting.dart";
+import "../academic_calendar/widgets/academic_calendar_consumer.dart";
+import "keep_alive_home_view_providers.dart";
 import "widgets/buildings_section/buildings_section.dart";
 import "widgets/departments_section/departments_section.dart";
 import "widgets/logo_app_bar.dart";
@@ -18,24 +19,25 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> sections = [
-      const Greeting(),
-      const ExamSessionCountdown(),
+    final sections = [
+      const AcademicCalendarConsumer(),
       const ParkingsSection(),
       const ScienceClubsSection(),
       const BuildingsSection(),
       const NewsSection(),
       const DepartmentsSection(),
-    ];
+    ].lock;
     return Scaffold(
       backgroundColor: context.colorTheme.whiteSoap,
       appBar: LogoAppBar(context),
-      body: ListView.separated(
-        padding: const EdgeInsets.only(bottom: 48),
-        itemBuilder: (context, index) => sections[index],
-        separatorBuilder: (context, index) =>
-            const SizedBox(height: HomeViewConfig.paddingMedium),
-        itemCount: sections.length,
+      body: KeepAliveHomeViewProviders(
+        child: ListView.separated(
+          padding: const EdgeInsets.only(bottom: 48),
+          itemBuilder: (context, index) => sections[index],
+          separatorBuilder: (context, index) =>
+              const SizedBox(height: HomeViewConfig.paddingMedium),
+          itemCount: sections.length,
+        ),
       ),
     );
   }

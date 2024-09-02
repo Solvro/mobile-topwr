@@ -24,13 +24,12 @@ class MapWidget<T extends GoogleNavigable> extends ConsumerWidget {
     final locationStatus = ref.watch(locationPermissionStatusProvider);
 
     return switch (locationStatus) {
-      AsyncLoading() => const SizedBox(),
       AsyncError(:final error) => MyErrorWidget(error),
       AsyncValue(:final value) => Consumer(
           builder: (BuildContext context, WidgetRef ref, Widget? child) {
             final asyncItems = ref
                 .watch(context.mapSourceRepository<T>())
-                .value
+                .valueOrNull
                 .whereNonNull
                 .toList();
             return GoogleMap(

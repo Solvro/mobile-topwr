@@ -1,3 +1,4 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:fl_chart/fl_chart.dart";
 import "package:flutter/material.dart";
 
@@ -14,7 +15,7 @@ import "reversed_label.dart";
 class ChartWidget extends StatelessWidget {
   const ChartWidget(this.chartData, this.parking, {super.key});
 
-  final List<ChartPoint> chartData;
+  final IList<ChartPoint> chartData;
   final Parking parking;
 
   @override

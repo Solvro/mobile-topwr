@@ -1,9 +1,9 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../config/ui_config.dart";
 import "../../../utils/context_extensions.dart";
-import "../../../utils/where_non_null_iterable.dart";
 import "../../../widgets/my_error_widget.dart";
 import "../../../widgets/search_not_found.dart";
 import "../../navigator/utils/navigation_commands.dart";
@@ -23,8 +23,8 @@ class ScienceClubsList extends ConsumerWidget {
         horizontal: ScienceClubsViewConfig.mediumPadding,
       ),
       child: switch (state) {
-        AsyncValue(:final Iterable<ScienceClub?> value) =>
-          _ScienceClubsListView(value.whereNonNull.toList()),
+        AsyncValue(:final IList<ScienceClub> value) =>
+          _ScienceClubsListView(value),
         AsyncError(:final error) => MyErrorWidget(error),
         _ => const ScienceClubsViewLoading(),
       },
@@ -35,7 +35,7 @@ class ScienceClubsList extends ConsumerWidget {
 class _ScienceClubsListView extends ConsumerWidget {
   const _ScienceClubsListView(this.filteredCircles);
 
-  final List<ScienceClub> filteredCircles;
+  final IList<ScienceClub> filteredCircles;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

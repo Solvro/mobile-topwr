@@ -57,38 +57,30 @@ abstract class TtlStrategy {
 2. `departments_repository.dart`:
 
    - This is example of our repository. It won't be much different for most of our simple fetch-only repositories. I've simplified the process as much as I could. Hopefully without limiting possibilities.
-     
-
-
-
  
 ```dart
-import 'package:riverpod_annotation/riverpod_annotation.dart';
+import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import '../../../../api_base/watch_query_adapter.dart';
-import "../../api_base/ttl/ttl_config.dart";
-import 'getDepartments.graphql.dart';
+import "../../../../api_base/watch_query_adapter.dart";
+import "../../../config/ttl_config.dart";
+import "departments_extensions.dart";
+import "getDepartments.graphql.dart";
 
-part 'departments_repository.g.dart';
+part "departments_repository.g.dart";
 
-typedef Department
-    = Query$GetDepartments$departments; // just alias for shorter type name
+typedef Department = Query$GetDepartments$Departments;
 
 @riverpod
-Stream<List<Department?>?> departmentsRepository(
-    DepartmentsRepositoryRef ref) async* {
-  final stream = ref.watchQueryWithCache(
-    WatchOptions$Query$GetDepartments(
-      eagerlyFetchResults: true,
-    ),
+Future<List<Department?>?> departmentsRepository(
+  DepartmentsRepositoryRef ref,
+) async {
+  final results = await ref.queryGraphql(
+    Options$Query$GetDepartments(),
     TtlKey.departmentsRepository,
   );
-  yield* stream.map(
-    (event) => event?.departments,
-  );
+  return results?.Departments?..sortByCodeOrder();
 }
-
-   ```
+```
 
 3. `departments_view.dart`:
    Below very simple view with our repo usage
@@ -118,19 +110,4 @@ class DepartmentsView extends ConsumerWidget {
 }
 ```
 
-# How not to use this package and what has been sacrified for cache capabilities
 
-Below is a brief example of what would be different without caching data in the local database. However, I believe offline caching is extra nice due to the specifications of this tour-guide app. Therefore, it is preferable to use the approach from the example above, not the one below:
-
-```dart
-@riverpod
-Future<List<Department?>> departmentsRepositoryOnlyNetwork(
-  DepartmentsRepositoryOnlyNetworkRef ref,
-) async {
-  final client = await ref.watch(gqlClientProvider);
-  // I changed client.query default behaviour to no caching, so now it always makes network request.
-  final query = await client.query$GetDepartments();
-  return query.parsedData?.departments ?? [];
-}
-
-```

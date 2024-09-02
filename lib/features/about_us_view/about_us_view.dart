@@ -8,6 +8,7 @@ import "../../utils/context_extensions.dart";
 import "../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../widgets/detail_views/sliver_header_section.dart";
 import "../../widgets/my_error_widget.dart";
+import "models/about_us_details.dart";
 import "repository/about_us_repository.dart";
 import "widgets/contact_section.dart";
 import "widgets/description_section.dart";
@@ -35,32 +36,27 @@ class _AboutUsView extends ConsumerWidget {
     final state = ref.watch(aboutUsRepositoryProvider);
 
     return switch (state) {
-      AsyncLoading() => Center(
-          child: CircularProgressIndicator(
-            color: context.colorTheme.orangePomegranade,
-          ),
-        ),
       AsyncError(:final error) => MyErrorWidget(error),
-      AsyncValue(:final value) => CustomScrollView(
+      AsyncValue(:final AboutUsDetails value) => CustomScrollView(
           slivers: [
             SliverPersistentHeader(
               delegate: SliverHeaderSection(
                 logoDirectusImageUrl: AboutUsConfig.defaultLogoUrl,
-                backgroundImageUrl: value?.aboutUs?.cover?.filename_disk,
+                backgroundImageUrl: value.aboutUs?.cover?.filename_disk,
               ),
             ),
             SliverList(
               delegate: SliverChildListDelegate(
                 [
                   SectionHeader(text: context.localize.about_us),
-                  DescriptionSection(text: value?.aboutUs?.description ?? ""),
+                  DescriptionSection(text: value.aboutUs?.description ?? ""),
                   SectionHeader(text: context.localize.meet_our_team),
                   TeamSection(
-                    members: value?.getMemberData() ?? [],
+                    members: value.getMemberData(),
                   ),
                   SectionHeader(text: context.localize.follow_solvro),
                   ContactSection(
-                    links: value?.getSocialIcons() ?? [],
+                    links: value.getSocialIcons(),
                   ),
                   const SizedBox(
                     height: AboutUsConfig.spacerHeight,
@@ -69,6 +65,11 @@ class _AboutUsView extends ConsumerWidget {
               ),
             ),
           ],
+        ),
+      _ => Center(
+          child: CircularProgressIndicator(
+            color: context.colorTheme.orangePomegranade,
+          ),
         ),
     };
   }

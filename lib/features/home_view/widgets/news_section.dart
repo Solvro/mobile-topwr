@@ -6,7 +6,6 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../config/ui_config.dart";
 import "../../../utils/context_extensions.dart";
-import "../../../utils/where_non_null_iterable.dart";
 import "../../../widgets/big_preview_card.dart";
 import "../../../widgets/my_error_widget.dart";
 import "../../../widgets/subsection_header.dart";
@@ -25,6 +24,7 @@ class NewsSection extends ConsumerWidget {
         children: [
           SubsectionHeader(
             title: context.localize.guide,
+            actionTitle: context.localize.list,
             onClick: ref.navigateGuide,
           ),
           const _NewsList(),
@@ -39,7 +39,19 @@ class _NewsList extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(guideRepositoryProvider);
     return switch (state) {
-      AsyncLoading() => const Padding(
+      AsyncError(:final error) => MyErrorWidget(error),
+      AsyncValue(:final IList<GuidePost> value) => Padding(
+          padding: const EdgeInsets.only(
+            left: HomeViewConfig.paddingSmall,
+            right: HomeViewConfig.paddingSmall,
+            top: HomeViewConfig.paddingMedium,
+          ),
+          child: SizedBox(
+            height: BigPreviewCardConfig.cardHeight,
+            child: _NewsDataList(value),
+          ),
+        ),
+      _ => const Padding(
           padding: EdgeInsets.only(
             left: HomeViewConfig.paddingMedium,
             top: HomeViewConfig.paddingMedium *
@@ -51,18 +63,6 @@ class _NewsList extends ConsumerWidget {
             child: BigScrollableSectionLoading(),
           ),
         ),
-      AsyncError(:final error) => MyErrorWidget(error),
-      AsyncValue(:final value) => Padding(
-          padding: const EdgeInsets.only(
-            left: HomeViewConfig.paddingSmall,
-            right: HomeViewConfig.paddingSmall,
-            top: HomeViewConfig.paddingMedium,
-          ),
-          child: SizedBox(
-            height: BigPreviewCardConfig.cardHeight,
-            child: _NewsDataList(value.whereNonNull.toIList()),
-          ),
-        )
     };
   }
 }

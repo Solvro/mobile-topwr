@@ -10,10 +10,10 @@ abstract class GoogleNavigable {
   LatLng get location;
 }
 
-typedef SourceRepositoryProv<T> = AutoDisposeStreamProvider<IList<T?>?>;
+typedef SourceRepositoryProv<T> = AutoDisposeFutureProvider<IList<T>>;
 
 typedef MapDataProv<T extends GoogleNavigable>
-    = AutoDisposeAsyncNotifierProvider<MapDataController<T>, IList<T?>?>;
+    = AutoDisposeAsyncNotifierProvider<MapDataController<T>, IList<T>>;
 
 typedef ActiveMarkerProv<T extends GoogleNavigable>
     = AutoDisposeNotifierProvider<ActiveMarkerController<T>, T?>;

@@ -6,7 +6,6 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "../../../../widgets/my_error_widget.dart";
 import "../../config/ui_config.dart";
 import "../../utils/context_extensions.dart";
-import "../../utils/where_non_null_iterable.dart";
 import "../../widgets/search_box_app_bar.dart";
 import "../analytics/show_feedback_tile.dart";
 import "../departments_view/widgets/departments_view_loading.dart";
@@ -44,12 +43,12 @@ class _GuideViewContent extends ConsumerWidget {
 
     return switch (guideList) {
       AsyncError(:final error) => MyErrorWidget(error),
-      AsyncValue(:final IList<GuidePost?> value) => GuideGrid(
+      AsyncValue(:final IList<GuidePost> value) => GuideGrid(
           children: [
             if (!isSomethingSearched) const GuideAboutUsSection(),
-            for (final item in value.whereNonNull) GuideTile(item),
+            for (final item in value) GuideTile(item),
             if (!isSomethingSearched) const ShowFeedbackTile(),
-          ],
+          ].lock,
         ),
       _ => const Padding(
           padding: GuideViewConfig.gridPadding,

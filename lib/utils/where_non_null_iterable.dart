@@ -14,7 +14,8 @@ extension WhereNonNullX<T> on Iterable<T?> {
 
 extension WhereNonNullNullableX<T> on Iterable<T?>? {
   Iterable<T> get whereNonNull {
-    if (this == null) return [];
-    return this!.whereNonNull;
+    final strongThis = this;
+    if (strongThis == null) return [];
+    return strongThis.whereNonNull;
   }
 }

@@ -1,13 +1,14 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/foundation.dart";
 
 import "../../../utils/determine_contact_icon.dart";
 
 @immutable
 class MemberData {
-  final List<String> socialLinks;
+  final IList<String> socialLinks;
   final String? name;
   final String? subtitle;
-  final List<ContactIconsModel> links;
+  final IList<ContactIconsModel> links;
   final String? directusImageUrl;
 
   MemberData({
@@ -17,8 +18,8 @@ class MemberData {
     required this.directusImageUrl,
   }) : links = _determineLinksIcons(socialLinks);
 
-  static List<ContactIconsModel> _determineLinksIcons(List<String> urls) {
-    return urls.map((url) => ContactIconsModel(url: url)).toList();
+  static IList<ContactIconsModel> _determineLinksIcons(IList<String> urls) {
+    return urls.map((url) => ContactIconsModel(url: url)).toIList();
   }
 
   @override
@@ -26,10 +27,10 @@ class MemberData {
     if (identical(this, other)) return true;
 
     return other is MemberData &&
-        listEquals(other.socialLinks, socialLinks) &&
+        other.socialLinks == socialLinks &&
         other.name == name &&
         other.subtitle == subtitle &&
-        listEquals(other.links, links) &&
+        other.links == links &&
         other.directusImageUrl == directusImageUrl;
   }
 

@@ -1,10 +1,10 @@
 import "dart:async";
 
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../utils/context_extensions.dart";
-import "../../../utils/where_non_null_iterable.dart";
 import "../../../widgets/my_error_widget.dart";
 import "../../../widgets/subsection_header.dart";
 import "../../navigator/utils/navigation_commands.dart";
@@ -38,16 +38,16 @@ class _ParkingsList extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(parkingsRepositoryProvider);
     return switch (state) {
-      AsyncLoading() => const MediumLeftPadding(
-          child: ScrollableSectionLoading(),
-        ),
       AsyncError(:final error) => MyErrorWidget(error),
-      AsyncValue(:final value) => SmallHorizontalPadding(
+      AsyncValue(:final IList<Parking> value) => SmallHorizontalPadding(
           child: SizedBox(
             height: 120,
-            child: _DataListParkingsTiles(value.whereNonNull.toList()),
+            child: _DataListParkingsTiles(value),
           ),
-        )
+        ),
+      _ => const MediumLeftPadding(
+          child: ScrollableSectionLoading(),
+        ),
     };
   }
 }
@@ -55,7 +55,7 @@ class _ParkingsList extends ConsumerWidget {
 class _DataListParkingsTiles extends ConsumerWidget {
   const _DataListParkingsTiles(this.parkings);
 
-  final List<Parking> parkings;
+  final IList<Parking> parkings;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

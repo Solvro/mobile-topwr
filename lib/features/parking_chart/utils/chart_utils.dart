@@ -1,6 +1,7 @@
 import "dart:math";
 
 import "package:collection/collection.dart";
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:fl_chart/fl_chart.dart";
 
 import "../../../config/ui_config.dart";
@@ -8,7 +9,7 @@ import "../../parkings_view/models/parking.dart";
 import "../models/chart_point.dart";
 import "../models/hour_label.dart";
 
-extension ChartUtilsX on List<ChartPoint> {
+extension ChartUtilsX on IList<ChartPoint> {
   double get minX => first.x;
   double get maxX => last.x;
 
