@@ -41,6 +41,8 @@ Read more at: https://solvro.pwr.edu.pl/portfolio/to-pwr
 - Dio
 - google_maps_flutter
 - fl_chart
+- wiredash
+- lottie
 
 ## Links
 
@@ -95,6 +97,8 @@ Recommended flutter version: `Channel stable, 3.24.0`
 API_URL="https://<our-server-url>/graphql"
 ASSETS_URL="https://<our-server-url>/assets"
 IPARKING_URL="https://<secret parking's source>.pl"
+WIREDASH_ID="<...>" # can be left empty
+WIREDASH_SECRET="<...>" # can be left empty
 ```
 If you need our server url please write us an email [kn.solvro@pwr.edu.pl](mailto:kn.solvro@pwr.edu.pl) or contact us via our [website](https://solvro.pwr.edu.pl/contact/)
 
