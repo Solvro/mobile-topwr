@@ -20,7 +20,7 @@ class RootView extends ConsumerWidget {
         child: Scaffold(
           body: AutoRouter(
             // this widget act as nested [Navigator] for the app
-            key: ref.watch(navigationControllerProvider.notifier).navigatorKey,
+            key: ref.watch(navigatorKeyProvider),
           ),
           bottomNavigationBar: const BottomNavBar(),
         ),

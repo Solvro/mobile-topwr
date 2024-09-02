@@ -4,7 +4,7 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 part "bottom_sheet_controller.g.dart";
 
 @riverpod
-DraggableScrollableController bottomSheetController(
+Raw<DraggableScrollableController> bottomSheetController(
   BottomSheetControllerRef ref,
 ) =>
     DraggableScrollableController();

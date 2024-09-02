@@ -10,7 +10,9 @@ class BottomNavBar extends ConsumerWidget {
   const BottomNavBar({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final activeTab = ref.watch(navigationControllerProvider).activeTab;
+    final activeTab = ref.watch(
+      navigationControllerProvider.select((navigator) => navigator.activeTab),
+    );
     return Theme(
       data: Theme.of(context).copyWith(
         splashColor: Colors.transparent,

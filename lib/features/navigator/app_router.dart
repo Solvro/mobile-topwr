@@ -106,6 +106,6 @@ class AppRouter extends RootStackRouter {
 }
 
 @riverpod
-AppRouter appRouter(AppRouterRef ref) {
+Raw<AppRouter> appRouter(AppRouterRef ref) {
   return AppRouter(ref: ref);
 }
