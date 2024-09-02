@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
+import "../map_view/utils/map_marker_utils.dart";
 import "splash_screen_controller.dart";
 import "widgets/flutter_splash_screen.dart";
 
@@ -13,7 +14,16 @@ class SplashScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final controller = ref.watch(splashScreenControllerProvider.call(context));
+    final controller = ref.watch(
+      splashScreenControllerProvider.call(
+        (
+          mapMarkerUtilsArguments: (
+            activeMapMarkerConfiguration: context.activeMapMarkerConfiguration,
+            mapMarkerConfiguration: context.mapMarkerConfiguration
+          ),
+        ),
+      ),
+    );
     return switch (controller) {
       AsyncLoading() => const FlutterSplashScreen(),
       _ => child,

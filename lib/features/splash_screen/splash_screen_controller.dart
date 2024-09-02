@@ -13,22 +13,29 @@ import "../map_view/utils/map_marker_utils.dart";
 
 part "splash_screen_controller.g.dart";
 
+typedef SplashScreenControllerArguments = ({
+  MapMarkerUtilsArguments mapMarkerUtilsArguments,
+  // add more here if needed
+});
+
 @riverpod
 class SplashScreenController extends _$SplashScreenController {
-  Future<void> _initializationLogic(BuildContext context) async {
+  Future<void> _initializationLogic(
+    SplashScreenControllerArguments args,
+  ) async {
     /*
       Insert here any initialization async logic or operations 
       to be performed, when SplashScreen is showed.
     */
-    await MapMarkerUtils.loadMapMarkerAssets(context);
+    await MapMarkerUtils.loadMapMarkerAssets(args.mapMarkerUtilsArguments);
     await initHiveForGraphqlCache();
     await AppBarLogo.precacheImageIfAbsent();
     await MapController.initializeGoogleMapsRenderingAndroid();
   }
 
   @override
-  Future<void> build(BuildContext context) async {
-    await _initializationLogic(context);
+  Future<void> build(SplashScreenControllerArguments args) async {
+    await _initializationLogic(args);
     await Future.delayed(SplashScreenConfig.additionalWaitDuration);
     hideNativeSplashScreen();
   }

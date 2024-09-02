@@ -5,15 +5,20 @@ import "package:google_maps_flutter/google_maps_flutter.dart";
 import "../../../config/map_view_config.dart";
 import "../../../gen/assets.gen.dart";
 
+typedef MapMarkerUtilsArguments = ({
+  ImageConfiguration mapMarkerConfiguration,
+  ImageConfiguration activeMapMarkerConfiguration,
+});
+
 class MapMarkerUtils {
   static late final BitmapDescriptor buildingMapMarker;
   static late final BitmapDescriptor activeBuildingMapMarker;
   static late final BitmapDescriptor parkingMapMarker;
   static late final BitmapDescriptor activeParkingMapMarker;
 
-  static Future<void> loadMapMarkerAssets(BuildContext context) async {
-    final configuration = context.mapMarkerConfiguration;
-    final activeMarkerConfig = context.activeMapMarkerConfiguration;
+  static Future<void> loadMapMarkerAssets(MapMarkerUtilsArguments args) async {
+    final configuration = args.mapMarkerConfiguration;
+    final activeMarkerConfig = args.activeMapMarkerConfiguration;
     buildingMapMarker = await BitmapDescriptor.asset(
       configuration,
       Assets.mapMarkers.mapMarker.path,
@@ -33,7 +38,7 @@ class MapMarkerUtils {
   }
 }
 
-extension _ImageConfigurationX on BuildContext {
+extension ImageConfigurationX on BuildContext {
   double get pixelRatio => kIsWeb ? 1.0 : MediaQuery.devicePixelRatioOf(this);
 
   ImageConfiguration get mapMarkerConfiguration => ImageConfiguration(
