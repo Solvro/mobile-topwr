@@ -6,7 +6,7 @@ import "../../../theme/iparking_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../parking_chart/parking_chart.dart";
 import "../models/parking.dart";
-import "parkings_icons.icons.dart";
+import "parking_favourite.dart";
 
 class ParkingWideTileCard extends StatelessWidget {
   const ParkingWideTileCard({
@@ -51,6 +51,11 @@ class ParkingWideTileCard extends StatelessWidget {
               height: WideTileCardConfig.imageSize,
               padding: ParkingsConfig.padding,
               child: _RightColumn(parking, isActive: isActive),
+            ),
+            Positioned(
+              top: 1,
+              right: 2,
+              child: FavouriteParkingWidget(parking),
             ),
           ],
         ),
@@ -118,21 +123,8 @@ class _RightColumn extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        if (!isActive)
-          const Icon(
-            ParkingsIcons.ipark_info,
-            color: Colors.white,
-            size: 25,
-            shadows: iparkingShadows,
-          ),
-        if (isActive)
-          const Icon(
-            ParkingsIcons.ip_close,
-            color: Colors.white,
-            size: 20,
-          ),
         Text(
           parking.counterText,
           style: isActive

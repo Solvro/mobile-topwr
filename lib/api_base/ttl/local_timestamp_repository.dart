@@ -3,6 +3,7 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 import "package:shared_preferences/shared_preferences.dart";
 
 import "../../config/env.dart";
+import "../../config/shared_prefs.dart";
 import "../../config/ttl_config.dart";
 import "../../utils/timestamp.dart";
 import "ttl_timestamp.dart";
@@ -30,16 +31,11 @@ class LocalTimestampRepository {
   }
 }
 
-@Riverpod(keepAlive: true)
-Future<SharedPreferences> _prefs(_PrefsRef ref) async {
-  return SharedPreferences.getInstance();
-}
-
 @riverpod
 Future<LocalTimestampRepository> localTimestampRepository(
   LocalTimestampRepositoryRef ref,
   TtlKey key,
 ) async {
-  final prefs = await ref.watch(_prefsProvider.future);
+  final prefs = await ref.watch(sharedPreferencesSingletonProvider.future);
   return LocalTimestampRepository(key, prefs);
 }
