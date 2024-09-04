@@ -109,7 +109,7 @@ class _LeftColumn extends StatelessWidget {
 }
 
 class _RightColumn extends StatelessWidget {
-  const _RightColumn(this.parking, {required this.isActive });
+  const _RightColumn(this.parking, {required this.isActive});
 
   final Parking parking;
   final bool isActive;
@@ -161,7 +161,7 @@ class _FavouriteWidgetState extends State<_FavouriteWidget> {
     return GestureDetector(
       onTap: _updatePreference,
       child: FutureBuilder(
-        future: _loadPreference(),
+        future: Future.microtask(_loadPreference),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Icon(
@@ -172,10 +172,15 @@ class _FavouriteWidgetState extends State<_FavouriteWidget> {
             );
           } else if (snapshot.hasError) {
             return const FavouriteIcon(
-              icon: Icons.error,);
+              icon: Icons.error,
+            );
           } else {
             _isFavourite = snapshot.data ?? false;
-            return FavouriteIcon(icon: _isFavourite ? Icons.favorite : Icons.favorite_border_outlined,);
+            return FavouriteIcon(
+              icon: _isFavourite
+                  ? Icons.favorite
+                  : Icons.favorite_border_outlined,
+            );
           }
         },
       ),
