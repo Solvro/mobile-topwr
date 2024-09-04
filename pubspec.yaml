@@ -48,7 +48,7 @@ dependencies:
   enum_map: ^0.3.0
   google_maps_flutter: ^2.6.1
   url_launcher: ^6.2.4
-  shared_preferences: ^2.2.2
+  shared_preferences: ^2.3.2
   dio: ^5.4.3+1
   freezed_annotation: ^2.4.1
   json_annotation: ^4.9.0
