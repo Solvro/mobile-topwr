@@ -29,15 +29,15 @@ abstract class TtlStrategy {
   static const _ttlDurations = UnmodifiableTtlKeyMap(
     // TODO(simon-the-shark): specific values are yet ment to be accordingly adjusted.
     academicCalendarRepository: day,
-    scienceClubDetailsRepository: thirtyDays,
-    scienceClubsRepository: thirtyDays,
-    tagsRepository: thirtyDays,
-    buildingsRepository: thirtyDays,
-    departmentsRepository: thirtyDays,
-    aboutUsRepository: thirtyDays,
-    departmentDetailsRepository: thirtyDays,
-    guideDetailsRepository: thirtyDays,
-    guideRepository: thirtyDays,
+    scienceClubDetailsRepository: day,
+    scienceClubsRepository: day,
+    tagsRepository: day,
+    buildingsRepository: day,
+    departmentsRepository: day,
+    aboutUsRepository: day,
+    departmentDetailsRepository: day,
+    guideDetailsRepository: day,
+    guideRepository: day,
   );
 
   static Duration get(TtlKey key) {
