@@ -133,7 +133,7 @@ class _RightColumn extends StatelessWidget {
 }
 
 class _FavouriteWidget extends StatefulWidget {
-  const _FavouriteWidget({super.key, required this.parking});
+  const _FavouriteWidget({required this.parking});
   final Parking parking;
 
   @override
@@ -177,7 +177,7 @@ class _FavouriteWidgetState extends State<_FavouriteWidget> {
               icon: _isFavourite ? Icons.favorite : Icons.favorite_border_outlined,
             );
           }
-        }
+        },
       ),
     );
   }
