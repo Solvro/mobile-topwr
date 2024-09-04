@@ -164,18 +164,18 @@ class _FavouriteWidgetState extends State<_FavouriteWidget> {
         future: _loadPreference(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const FavouriteIcon(
-              icon: Icons.favorite_border_outlined,
+            return const Icon(
+              Icons.favorite_border_outlined,
+              color: Colors.white,
+              size: 25,
+              shadows: iparkingShadows,
             );
           } else if (snapshot.hasError) {
             return const FavouriteIcon(
-              icon: Icons.error,
-            );
+              icon: Icons.error,);
           } else {
             _isFavourite = snapshot.data ?? false;
-            return FavouriteIcon(
-              icon: _isFavourite ? Icons.favorite : Icons.favorite_border_outlined,
-            );
+            return FavouriteIcon(icon: _isFavourite ? Icons.favorite : Icons.favorite_border_outlined,);
           }
         },
       ),
