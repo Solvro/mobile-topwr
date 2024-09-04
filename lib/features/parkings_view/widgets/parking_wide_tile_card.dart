@@ -1,5 +1,4 @@
 import "package:flutter/material.dart";
-import "package:shared_preferences/shared_preferences.dart";
 
 import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
@@ -7,6 +6,7 @@ import "../../../theme/iparking_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../parking_chart/parking_chart.dart";
 import "../models/parking.dart";
+import "parking_favourite.dart";
 
 class ParkingWideTileCard extends StatelessWidget {
   const ParkingWideTileCard({
@@ -120,7 +120,7 @@ class _RightColumn extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.end,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        _FavouriteWidget(parking: parking),
+        FavouriteParkingWidget(parking),
         Text(
           parking.counterText,
           style: isActive
@@ -128,77 +128,6 @@ class _RightColumn extends StatelessWidget {
               : context.iParkingTheme.title,
         ),
       ],
-    );
-  }
-}
-
-class _FavouriteWidget extends StatefulWidget {
-  const _FavouriteWidget({required this.parking});
-  final Parking parking;
-
-  @override
-  State<_FavouriteWidget> createState() => _FavouriteWidgetState();
-}
-
-class _FavouriteWidgetState extends State<_FavouriteWidget> {
-  bool _isFavourite = false;
-
-  Future<bool> _loadPreference() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getBool(widget.parking.id) ?? false;
-  }
-
-  Future<void> _updatePreference() async {
-    setState(() {
-      _isFavourite = !_isFavourite;
-    });
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool(widget.parking.id, _isFavourite);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: _updatePreference,
-      child: FutureBuilder(
-        future: Future.microtask(_loadPreference),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Icon(
-              Icons.favorite_border_outlined,
-              color: Colors.white,
-              size: 25,
-              shadows: iparkingShadows,
-            );
-          } else if (snapshot.hasError) {
-            return const FavouriteIcon(
-              icon: Icons.error,
-            );
-          } else {
-            _isFavourite = snapshot.data ?? false;
-            return FavouriteIcon(
-              icon: _isFavourite
-                  ? Icons.favorite
-                  : Icons.favorite_border_outlined,
-            );
-          }
-        },
-      ),
-    );
-  }
-}
-
-class FavouriteIcon extends StatelessWidget {
-  const FavouriteIcon({super.key, required this.icon});
-  final IconData icon;
-
-  @override
-  Widget build(BuildContext context) {
-    return Icon(
-      icon,
-      color: Colors.white,
-      size: 25,
-      shadows: iparkingShadows,
     );
   }
 }
