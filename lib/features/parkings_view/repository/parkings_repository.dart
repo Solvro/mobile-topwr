@@ -1,4 +1,5 @@
 import "dart:async";
+import "dart:collection";
 
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
@@ -28,22 +29,21 @@ Future<IList<Parking>> parkingsRepository(ParkingsRepositoryRef ref) async {
     FetchPlacesCommand(DateTime.now()),
   );
   final parkings = response.data?["places"] as List<dynamic>;
-  final List<Parking> list =
-      parkings.whereType<Map<String, dynamic>>().map(Parking.fromJson).toList();
+  final list = parkings.whereType<Map<String, dynamic>>().map(Parking.fromJson);
 
   return _sortParkingsByFav(list, ref).toIList();
 }
 
-List<Parking> _sortParkingsByFav(
-  List<Parking> list,
+DoubleLinkedQueue<Parking> _sortParkingsByFav(
+  Iterable<Parking> list,
   ParkingsRepositoryRef ref,
 ) {
-  final List<Parking> finalParkings = [];
+  final finalParkings = DoubleLinkedQueue<Parking>();
   for (final parking in list) {
     final isFavorite =
         ref.watch(localFavParkingsRepositoryProvider(parking.id)) ?? false;
     if (isFavorite) {
-      finalParkings.insert(0, parking);
+      finalParkings.addFirst(parking);
     } else {
       finalParkings.add(parking);
     }
