@@ -28,18 +28,21 @@ Future<IList<Parking>> parkingsRepository(ParkingsRepositoryRef ref) async {
     FetchPlacesCommand(DateTime.now()),
   );
   final parkings = response.data?["places"] as List<dynamic>;
-  final List<Parking> list = parkings.whereType<Map<String, dynamic>>().map(Parking.fromJson).toList();
-  
+  final List<Parking> list =
+      parkings.whereType<Map<String, dynamic>>().map(Parking.fromJson).toList();
+
   return _sortParkingsByFav(list, ref).toIList();
 }
 
-List<Parking> _sortParkingsByFav(List<Parking> list, ParkingsRepositoryRef ref){
+List<Parking> _sortParkingsByFav(
+    List<Parking> list, ParkingsRepositoryRef ref) {
   final List<Parking> finalParkings = [];
   for (final parking in list) {
-    final isFavorite = ref.watch(localFavParkingsRepositoryProvider(parking.id)) ?? false;
-    if(isFavorite) {
+    final isFavorite =
+        ref.watch(localFavParkingsRepositoryProvider(parking.id)) ?? false;
+    if (isFavorite) {
       finalParkings.insert(0, parking);
-    }else{
+    } else {
       finalParkings.add(parking);
     }
   }
