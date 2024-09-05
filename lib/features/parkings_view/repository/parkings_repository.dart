@@ -35,7 +35,9 @@ Future<IList<Parking>> parkingsRepository(ParkingsRepositoryRef ref) async {
 }
 
 List<Parking> _sortParkingsByFav(
-    List<Parking> list, ParkingsRepositoryRef ref,) {
+  List<Parking> list,
+  ParkingsRepositoryRef ref,
+) {
   final List<Parking> finalParkings = [];
   for (final parking in list) {
     final isFavorite =
