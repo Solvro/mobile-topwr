@@ -94,5 +94,8 @@
   "bug_report_subtitle":"Wyślij zgłoszenie bezpośrednio do twórców aplikacji.",
   "new_feature": "Nowa funckcjonalność",
   "bug" : "Błąd",
-  "praise" : "Pochwała"
+  "praise" : "Pochwała",
+  "until_the_end_of_the_semester_break": "do końca przerwy międzysemestralnej",
+  "until_the_session_ends": "do zakończenia sesji"
+
 }

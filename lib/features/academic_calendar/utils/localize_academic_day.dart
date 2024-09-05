@@ -4,7 +4,7 @@ import "../../../utils/context_extensions.dart";
 import "../model/academic_day.dart";
 import "../model/weekday_enum.dart";
 
-extension LocalizeAcademicDay on AcademicDay {
+extension LocalizeAcademicDayX on AcademicDay {
   String localize(BuildContext context) {
     if (isHolidays) return weekday.localizeHoliday(context);
     if (isExamSession) return weekday.localizeExamSession(context);
@@ -14,7 +14,7 @@ extension LocalizeAcademicDay on AcademicDay {
   }
 }
 
-extension LocalizeWeekDay on WeekdayEnum {
+extension LocalizeWeekDayX on WeekdayEnum {
   String localizeEven(BuildContext context) {
     return switch (this) {
       WeekdayEnum.mon => context.localize.even_monday,
