@@ -10,6 +10,7 @@ import "../../widgets/detail_views/sliver_header_section.dart";
 import "../../widgets/my_error_widget.dart";
 import "models/about_us_details.dart";
 import "repository/about_us_repository.dart";
+import "widgets/app_version.dart";
 import "widgets/contact_section.dart";
 import "widgets/description_section.dart";
 import "widgets/section_header.dart";
@@ -58,9 +59,7 @@ class _AboutUsView extends ConsumerWidget {
                   ContactSection(
                     links: value.getSocialIcons(),
                   ),
-                  const SizedBox(
-                    height: AboutUsConfig.spacerHeight,
-                  ),
+                  const AppVersionTile(),
                 ],
               ),
             ),
