@@ -98,13 +98,11 @@ class _Description extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: const EdgeInsets.only(top: 9, bottom: 4),
-          child: Text(
-            name,
-            style: context.aboutUsTheme.headlineSmaller,
-          ),
+        Text(
+          name,
+          style: context.aboutUsTheme.headlineSmaller,
         ),
+        const SizedBox(height: 4),
         Text(subtitle, style: context.aboutUsTheme.bodySmaller),
         const SizedBox(
           height: 6,
