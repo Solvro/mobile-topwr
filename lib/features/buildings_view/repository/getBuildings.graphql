@@ -9,5 +9,6 @@ query GetBuildings {
       filename_disk
     }
     naturalName
+    disableBuildingPrefix
   }
 }

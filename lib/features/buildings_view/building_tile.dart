@@ -22,7 +22,8 @@ class BuildingTile extends ConsumerWidget {
     return PhotoTrailingWideTileCard(
       activeGradient: context.colorTheme.toPwrGradient,
       directusPhotoUrl: building.cover?.filename_disk,
-      title: "${context.localize.building_prefix} ${building.name}",
+      title:
+          "${building.disableBuildingPrefix ? "" : "${context.localize.building_prefix} "}${building.name}",
       subtitle: context.changeNull(building.addresFormatted),
       isActive: isActive,
       onTap: () {

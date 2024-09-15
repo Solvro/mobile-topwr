@@ -13,6 +13,7 @@ class BuildingModel extends Building implements GoogleNavigable {
           addres: building.addres,
           cover: building.cover,
           naturalName: building.naturalName,
+          disableBuildingPrefix: building.disableBuildingPrefix,
         );
 
   @override

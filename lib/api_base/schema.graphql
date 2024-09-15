@@ -23,10 +23,6 @@ type Query {
   Posts_by_id(id: ID!, version: String): Posts
   Posts_aggregated(groupBy: [String], filter: Posts_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [Posts_aggregated!]!
   Posts_by_version(version: String!, id: ID!): version_Posts
-  Buildings(filter: Buildings_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): [Buildings!]!
-  Buildings_by_id(id: ID!, version: String): Buildings
-  Buildings_aggregated(groupBy: [String], filter: Buildings_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [Buildings_aggregated!]!
-  Buildings_by_version(version: String!, id: ID!): version_Buildings
   AcademicCalendarData(version: String): AcademicCalendarData
   AcademicCalendarData_by_version(version: String!): version_AcademicCalendarData
   WeekExceptions(filter: WeekExceptions_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): [WeekExceptions!]!
@@ -71,6 +67,10 @@ type Query {
   FieldOfStudy_by_id(id: ID!, version: String): FieldOfStudy
   FieldOfStudy_aggregated(groupBy: [String], filter: FieldOfStudy_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [FieldOfStudy_aggregated!]!
   FieldOfStudy_by_version(version: String!, id: ID!): version_FieldOfStudy
+  Buildings(filter: Buildings_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): [Buildings!]!
+  Buildings_by_id(id: ID!, version: String): Buildings
+  Buildings_aggregated(groupBy: [String], filter: Buildings_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [Buildings_aggregated!]!
+  Buildings_by_version(version: String!, id: ID!): version_Buildings
 }
 
 type Scientific_Circles_Tags {
@@ -709,72 +709,6 @@ type version_Posts {
   tags_func: count_functions
 }
 
-type Buildings {
-  id: ID!
-  name: String!
-  latitude: Float!
-  longitude: Float!
-  addres: String
-  cover(filter: directus_files_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): directus_files
-  food: Boolean
-  naturalName: String
-}
-
-input Buildings_filter {
-  id: number_filter_operators
-  name: string_filter_operators
-  latitude: number_filter_operators
-  longitude: number_filter_operators
-  addres: string_filter_operators
-  cover: directus_files_filter
-  food: boolean_filter_operators
-  naturalName: string_filter_operators
-  _and: [Buildings_filter]
-  _or: [Buildings_filter]
-}
-
-type Buildings_aggregated {
-  group: JSON
-  countAll: Int
-  count: Buildings_aggregated_count
-  countDistinct: Buildings_aggregated_count
-  avg: Buildings_aggregated_fields
-  sum: Buildings_aggregated_fields
-  avgDistinct: Buildings_aggregated_fields
-  sumDistinct: Buildings_aggregated_fields
-  min: Buildings_aggregated_fields
-  max: Buildings_aggregated_fields
-}
-
-type Buildings_aggregated_count {
-  id: Int
-  name: Int
-  latitude: Int
-  longitude: Int
-  addres: Int
-  cover: Int
-  food: Int
-  naturalName: Int
-}
-
-type Buildings_aggregated_fields {
-  id: Float
-  latitude: Float
-  longitude: Float
-}
-
-""""""
-type version_Buildings {
-  id: ID!
-  name: String!
-  latitude: Float!
-  longitude: Float!
-  addres: String
-  cover: JSON
-  food: Boolean
-  naturalName: String
-}
-
 type AcademicCalendarData {
   id: ID!
   user_updated: String
@@ -1346,6 +1280,76 @@ type version_FieldOfStudy {
   hasWeekendModeOption: Boolean
 }
 
+type Buildings {
+  id: ID!
+  name: String!
+  latitude: Float!
+  longitude: Float!
+  addres: String
+  cover(filter: directus_files_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): directus_files
+  food: Boolean
+  naturalName: String
+  disableBuildingPrefix: Boolean!
+}
+
+input Buildings_filter {
+  id: number_filter_operators
+  name: string_filter_operators
+  latitude: number_filter_operators
+  longitude: number_filter_operators
+  addres: string_filter_operators
+  cover: directus_files_filter
+  food: boolean_filter_operators
+  naturalName: string_filter_operators
+  disableBuildingPrefix: boolean_filter_operators
+  _and: [Buildings_filter]
+  _or: [Buildings_filter]
+}
+
+type Buildings_aggregated {
+  group: JSON
+  countAll: Int
+  count: Buildings_aggregated_count
+  countDistinct: Buildings_aggregated_count
+  avg: Buildings_aggregated_fields
+  sum: Buildings_aggregated_fields
+  avgDistinct: Buildings_aggregated_fields
+  sumDistinct: Buildings_aggregated_fields
+  min: Buildings_aggregated_fields
+  max: Buildings_aggregated_fields
+}
+
+type Buildings_aggregated_count {
+  id: Int
+  name: Int
+  latitude: Int
+  longitude: Int
+  addres: Int
+  cover: Int
+  food: Int
+  naturalName: Int
+  disableBuildingPrefix: Int
+}
+
+type Buildings_aggregated_fields {
+  id: Float
+  latitude: Float
+  longitude: Float
+}
+
+""""""
+type version_Buildings {
+  id: ID!
+  name: String!
+  latitude: Float!
+  longitude: Float!
+  addres: String
+  cover: JSON
+  food: Boolean
+  naturalName: String
+  disableBuildingPrefix: Boolean!
+}
+
 type Subscription {
   directus_files_mutated(event: EventEnum): directus_files_mutated
   Scientific_Circles_Tags_mutated(event: EventEnum): Scientific_Circles_Tags_mutated
@@ -1354,7 +1358,6 @@ type Subscription {
   Scientific_Circles_Links_mutated(event: EventEnum): Scientific_Circles_Links_mutated
   Scientific_Circles_mutated(event: EventEnum): Scientific_Circles_mutated
   Posts_mutated(event: EventEnum): Posts_mutated
-  Buildings_mutated(event: EventEnum): Buildings_mutated
   AcademicCalendarData_mutated(event: EventEnum): AcademicCalendarData_mutated
   WeekExceptions_mutated(event: EventEnum): WeekExceptions_mutated
   AboutUs_mutated(event: EventEnum): AboutUs_mutated
@@ -1367,6 +1370,7 @@ type Subscription {
   FAQ_Types_mutated(event: EventEnum): FAQ_Types_mutated
   Departments_Links_mutated(event: EventEnum): Departments_Links_mutated
   FieldOfStudy_mutated(event: EventEnum): FieldOfStudy_mutated
+  Buildings_mutated(event: EventEnum): Buildings_mutated
 }
 
 type directus_files_mutated {
@@ -1415,12 +1419,6 @@ type Posts_mutated {
   key: ID!
   event: EventEnum
   data: Posts
-}
-
-type Buildings_mutated {
-  key: ID!
-  event: EventEnum
-  data: Buildings
 }
 
 type AcademicCalendarData_mutated {
@@ -1493,4 +1491,10 @@ type FieldOfStudy_mutated {
   key: ID!
   event: EventEnum
   data: FieldOfStudy
+}
+
+type Buildings_mutated {
+  key: ID!
+  event: EventEnum
+  data: Buildings
 }
