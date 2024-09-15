@@ -5,6 +5,7 @@ import "../../../../config/ttl_config.dart";
 import "../../../api_base/query_adapter.dart";
 import "../../../utils/ilist_nonempty.dart";
 import "../model/building_model.dart";
+import "../utils.dart";
 import "getBuildings.graphql.dart";
 
 part "buildings_repository.g.dart";
@@ -19,5 +20,7 @@ Future<IList<BuildingModel>> buildingsRepository(
     Options$Query$GetBuildings(),
     TtlKey.buildingsRepository,
   );
-  return (results?.Buildings.map(BuildingModel.from)).toIList();
+  return (results?.Buildings.map(BuildingModel.from))
+      .toIList()
+      .sortByCodeOrder();
 }
