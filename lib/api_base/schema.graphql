@@ -71,6 +71,8 @@ type Query {
   Buildings_by_id(id: ID!, version: String): Buildings
   Buildings_aggregated(groupBy: [String], filter: Buildings_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [Buildings_aggregated!]!
   Buildings_by_version(version: String!, id: ID!): version_Buildings
+  CacheReferenceNumber(version: String): CacheReferenceNumber
+  CacheReferenceNumber_by_version(version: String!): version_CacheReferenceNumber
 }
 
 type Scientific_Circles_Tags {
@@ -1350,6 +1352,23 @@ type version_Buildings {
   disableBuildingPrefix: Boolean!
 }
 
+type CacheReferenceNumber {
+  id: ID!
+  status: String
+  date_updated: Date
+  date_updated_func: datetime_functions
+  referenceNumber: Int
+}
+
+""""""
+type version_CacheReferenceNumber {
+  id: ID!
+  status: String
+  date_updated: Date
+  date_updated_func: datetime_functions
+  referenceNumber: Int
+}
+
 type Subscription {
   directus_files_mutated(event: EventEnum): directus_files_mutated
   Scientific_Circles_Tags_mutated(event: EventEnum): Scientific_Circles_Tags_mutated
@@ -1371,6 +1390,7 @@ type Subscription {
   Departments_Links_mutated(event: EventEnum): Departments_Links_mutated
   FieldOfStudy_mutated(event: EventEnum): FieldOfStudy_mutated
   Buildings_mutated(event: EventEnum): Buildings_mutated
+  CacheReferenceNumber_mutated(event: EventEnum): CacheReferenceNumber_mutated
 }
 
 type directus_files_mutated {
@@ -1497,4 +1517,10 @@ type Buildings_mutated {
   key: ID!
   event: EventEnum
   data: Buildings
+}
+
+type CacheReferenceNumber_mutated {
+  key: ID!
+  event: EventEnum
+  data: CacheReferenceNumber
 }

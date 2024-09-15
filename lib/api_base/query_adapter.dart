@@ -2,8 +2,8 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:graphql/client.dart";
 
 import "../config/ttl_config.dart";
+import "cache/ttl/ttl_service.dart";
 import "gql_client_provider.dart";
-import "ttl/ttl_service.dart";
 
 class GqlOfflineException implements Exception {
   const GqlOfflineException(this.ttlKey);
@@ -11,14 +11,14 @@ class GqlOfflineException implements Exception {
 
   static Future<QueryResult<T>> graphqlTryCatch<T>(
     QueryResult<T> event,
-    TtlKey ttlKey,
+    TtlKey? ttlKey,
   ) async {
     if (!event.hasException) return event;
 
     if (event.exception?.linkException != null) {
       // wait, just to show loading on the ui for a little while
       await Future.delayed(const Duration(milliseconds: 300));
-      throw GqlOfflineException(ttlKey);
+      throw ttlKey == null ? Exception() : GqlOfflineException(ttlKey);
     }
 
     throw Exception(

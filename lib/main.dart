@@ -3,6 +3,7 @@ import "package:flutter_gen/gen_l10n/app_localizations.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:wiredash/wiredash.dart";
 
+import "api_base/cache/remote_flush/presentation/flush_cache_remotely_widget.dart";
 import "config/env.dart";
 import "config/ui_config.dart";
 import "config/wiredash.dart";
@@ -28,24 +29,26 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Wiredash(
-      projectId: Env.wiredashId,
-      secret: Env.wiredashSecret,
-      theme: context.wiredashTheme,
-      child: MaterialApp.router(
-        title: MyAppConfig.title,
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
-        supportedLocales: AppLocalizations.supportedLocales,
-        theme: ThemeData(
-          extensions: const [AppTheme()],
-          colorScheme: const ColorScheme.light().copyWith(
-            surface: ColorsConsts.whiteSoap,
-            primary: ColorsConsts.orangePomegranade,
-            secondary: ColorsConsts.blueAzure,
+    return FlushCacheRemotelyWidget(
+      child: Wiredash(
+        projectId: Env.wiredashId,
+        secret: Env.wiredashSecret,
+        theme: context.wiredashTheme,
+        child: MaterialApp.router(
+          title: MyAppConfig.title,
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          theme: ThemeData(
+            extensions: const [AppTheme()],
+            colorScheme: const ColorScheme.light().copyWith(
+              surface: ColorsConsts.whiteSoap,
+              primary: ColorsConsts.orangePomegranade,
+              secondary: ColorsConsts.blueAzure,
+            ),
           ),
+          debugShowCheckedModeBanner: false,
+          routerConfig: ref.watch(appRouterProvider).config(),
         ),
-        debugShowCheckedModeBanner: false,
-        routerConfig: ref.watch(appRouterProvider).config(),
       ),
     );
   }

@@ -21,10 +21,10 @@ enum TtlKey {
 
 abstract class TtlStrategy {
   // no cache in debug mode
-  static const day = kDebugMode ? Duration(seconds: 30) : Duration(days: 1);
-  static const week = kDebugMode ? Duration(seconds: 30) : Duration(days: 7);
+  static const day = kDebugMode ? Duration(minutes: 30) : Duration(days: 1);
+  static const week = kDebugMode ? Duration(minutes: 30) : Duration(days: 7);
   static const thirtyDays =
-      kDebugMode ? Duration(seconds: 30) : Duration(days: 30);
+      kDebugMode ? Duration(minutes: 30) : Duration(days: 30);
 
   static const _ttlDurations = UnmodifiableTtlKeyMap(
     // TODO(simon-the-shark): specific values are yet ment to be accordingly adjusted.

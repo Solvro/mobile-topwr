@@ -2,10 +2,10 @@ import "package:graphql/client.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 import "package:shared_preferences/shared_preferences.dart";
 
-import "../../config/env.dart";
-import "../../config/shared_prefs.dart";
-import "../../config/ttl_config.dart";
-import "../../utils/timestamp.dart";
+import "../../../config/env.dart";
+import "../../../config/shared_prefs.dart";
+import "../../../config/ttl_config.dart";
+import "../../../utils/timestamp.dart";
 import "ttl_timestamp.dart";
 
 part "local_timestamp_repository.g.dart";
@@ -28,6 +28,10 @@ class LocalTimestampRepository {
   Future<bool> saveTimestamp<T>(QueryResult<T> response) async {
     final stamp = Timestamp.from(response.timestamp).serializeUTC();
     return _prefs.setString(_storeKey, stamp);
+  }
+
+  Future<bool> removeTimestamp() async {
+    return _prefs.remove(_storeKey);
   }
 }
 
