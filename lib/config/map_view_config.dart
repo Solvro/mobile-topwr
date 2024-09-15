@@ -26,6 +26,8 @@ abstract class MapViewBottomSheetConfig {
   static const horizontalPadding = 24.0;
 
   static const horizontalPanelModeMinWidth = 700;
+
+  static const listAnimationDuration = Duration(milliseconds: 200);
 }
 
 abstract class MapWidgetConfig {

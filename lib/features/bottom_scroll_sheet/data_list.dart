@@ -1,3 +1,4 @@
+import "package:animated_list_plus/animated_list_plus.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
@@ -40,15 +41,24 @@ class _DataSliverList<T extends GoogleNavigable> extends StatelessWidget {
       sliver: Consumer(
         builder: (context, ref, child) {
           final activeItem = ref.watch(context.activeMarkerController<T>());
-          return SliverList.builder(
-            itemCount: items.length,
-            itemBuilder: (context, index) {
-              final item = items[index];
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 16),
-                child: context.mapTileBuilder<T>()(
-                  item,
-                  isActive: activeItem == item,
+          return SliverImplicitlyAnimatedList(
+            items: items.toList(),
+            areItemsTheSame: (oldItem, newItem) => oldItem.id == newItem.id,
+            updateDuration: MapViewBottomSheetConfig.listAnimationDuration,
+            removeDuration: MapViewBottomSheetConfig.listAnimationDuration,
+            insertDuration: MapViewBottomSheetConfig.listAnimationDuration,
+            itemBuilder: (context, animation, item, i) {
+              return FadeTransition(
+                opacity: animation,
+                child: SizeTransition(
+                  sizeFactor: animation,
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 16),
+                    child: context.mapTileBuilder<T>()(
+                      item,
+                      isActive: activeItem == item,
+                    ),
+                  ),
                 ),
               );
             },

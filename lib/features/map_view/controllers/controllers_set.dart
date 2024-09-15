@@ -8,6 +8,7 @@ import "map_data_controller.dart";
 
 abstract class GoogleNavigable {
   LatLng get location;
+  String get id;
 }
 
 typedef SourceRepositoryProv<T> = AutoDisposeFutureProvider<IList<T>>;
