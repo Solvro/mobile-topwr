@@ -70,6 +70,7 @@ dependencies:
   wiredash: ^2.2.1
   package_info_plus: ^8.0.2
   animated_list_plus: ^0.5.2
+  flutter_hooks: ^0.20.5
 
 dev_dependencies:
   flutter_test:

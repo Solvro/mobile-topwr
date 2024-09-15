@@ -27,6 +27,7 @@ class MapConfig<T extends GoogleNavigable> extends InheritedWidget {
     required this.mapViewTexts,
     required super.child,
     required this.mapSheetSize,
+    required this.animateListTiles,
   });
 
   final MapControllers<T> controllers;
@@ -34,6 +35,7 @@ class MapConfig<T extends GoogleNavigable> extends InheritedWidget {
   final MapTileBuilder<T> mapTileBuilder;
   final MapViewTexts mapViewTexts;
   final MapSheetSize mapSheetSize;
+  final bool animateListTiles;
 
   static MapConfig<T>? maybeOf<T extends GoogleNavigable>(
     BuildContext context,
@@ -88,5 +90,9 @@ extension MapConfigX on BuildContext {
 
   MapSheetSize mapSheetSize<T extends GoogleNavigable>() {
     return config<T>().mapSheetSize;
+  }
+
+  bool animateListTiles<T extends GoogleNavigable>() {
+    return config<T>().animateListTiles;
   }
 }

@@ -22,6 +22,7 @@ class BuildingsView extends ConsumerWidget {
         emptyList: context.localize.building_not_found,
         title: context.localize.buildings_title,
       ),
+      animateListTiles: true,
       mapSheetSize: MapViewBottomSheetConfig.buildingsMapSheetSize,
       mapControllers: mapControllersBuildings,
       mapTileBuilder: BuildingTile.new,

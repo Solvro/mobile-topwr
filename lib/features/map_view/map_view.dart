@@ -20,6 +20,7 @@ class MapView<T extends GoogleNavigable> extends ConsumerWidget {
     required this.markerBuilder,
     required this.mapTileBuilder,
     required this.mapSheetSize,
+    this.animateListTiles = false,
     super.key,
   });
   final MapControllers<T> mapControllers;
@@ -27,7 +28,7 @@ class MapView<T extends GoogleNavigable> extends ConsumerWidget {
   final MapTileBuilder<T> mapTileBuilder;
   final MapViewTexts mapViewTexts;
   final MapSheetSize mapSheetSize;
-
+  final bool animateListTiles;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isBigScreen = MediaQuery.sizeOf(context).width >
@@ -44,6 +45,7 @@ class MapView<T extends GoogleNavigable> extends ConsumerWidget {
         mapTileBuilder: mapTileBuilder,
         mapViewTexts: mapViewTexts,
         mapSheetSize: mapSheetSize,
+        animateListTiles: animateListTiles,
         child: Scaffold(
           backgroundColor: context.colorTheme.whiteSoap,
           body: kIsWeb || isBigScreen
