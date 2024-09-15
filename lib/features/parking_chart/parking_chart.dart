@@ -36,9 +36,9 @@ class ParkingChart extends ConsumerWidget {
             )
           : Padding(
               padding: const EdgeInsets.only(
-                top: 20,
+                top: 14,
                 right: 25,
-                bottom: 10,
+                bottom: 9,
               ),
               child: ChartWidget(value, parking),
             ),

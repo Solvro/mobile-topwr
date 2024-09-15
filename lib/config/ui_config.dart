@@ -117,10 +117,10 @@ abstract class ParkingsConfig {
   static const padding = EdgeInsets.only(
     left: 13,
     top: 10,
-    bottom: 16,
+    bottom: 15,
     right: 10,
   );
-  static const extraIndentPadd = EdgeInsets.only(left: 2);
+  static const extraIndentPadd = EdgeInsets.only(left: 2, right: 40);
 }
 
 abstract class ParkingChartConfig {

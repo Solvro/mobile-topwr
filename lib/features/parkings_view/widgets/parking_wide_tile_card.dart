@@ -125,11 +125,24 @@ class _RightColumn extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.end,
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        Text(
-          parking.counterText,
-          style: isActive
-              ? context.iParkingTheme.title.withoutShadows
-              : context.iParkingTheme.title,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Text(
+              parking.numberOfPlaces,
+              style: isActive
+                  ? context.iParkingTheme.title.withoutShadows
+                  : context.iParkingTheme.title,
+            ),
+            const SizedBox(
+              width: 4,
+            ),
+            Icon(
+              parking.trend.arrowIcon,
+              color: context.colorTheme.whiteSoap,
+              size: 21,
+            ),
+          ],
         ),
       ],
     );
