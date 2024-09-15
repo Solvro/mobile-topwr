@@ -3,7 +3,7 @@ import "dart:async";
 import "package:graphql/client.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "../../config/ttl_config.dart";
+import "../../../config/ttl_config.dart";
 import "local_timestamp_repository.dart";
 
 part "ttl_service.g.dart";
@@ -36,5 +36,11 @@ class TtlService extends _$TtlService {
   void _scheduleTTLInvalidation(Duration timeLeft) {
     final timer = Timer(timeLeft, ref.invalidateSelf);
     ref.onDispose(timer.cancel);
+  }
+
+  Future<void> flushCache() async {
+    final repo = await repository;
+    await repo.removeTimestamp();
+    ref.invalidateSelf();
   }
 }
