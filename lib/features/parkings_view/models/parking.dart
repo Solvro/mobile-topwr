@@ -69,11 +69,11 @@ extension GetTrendArrowX on String {
   IconData get arrowIcon {
     switch (this) {
       case "0":
-        return Icons.arrow_right_alt_sharp;
+        return Icons.east;
       case "1":
-        return Icons.arrow_upward_sharp;
+        return Icons.north_east;
       case "-1":
-        return Icons.arrow_downward_sharp;
+        return Icons.south_east;
       default:
         return Icons.help;
     }
