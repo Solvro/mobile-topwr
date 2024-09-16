@@ -1,5 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 
+import "package:flutter/material.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 import "package:google_maps_flutter/google_maps_flutter.dart";
 
@@ -56,8 +57,6 @@ class Parking with _$Parking implements GoogleNavigable {
 
   String get openingHours =>
       "${openHour?.formatIParkingDate ?? "06:00"} - ${closeHour?.formatIParkingDate ?? "22:00"}";
-
-  String get counterText => "$numberOfPlaces ${trend.dashForm}";
 }
 
 extension _FormatIParkingDateX on String {
@@ -66,17 +65,17 @@ extension _FormatIParkingDateX on String {
   }
 }
 
-extension GetTrendDashX on String {
-  String get dashForm {
+extension GetTrendArrowX on String {
+  IconData get arrowIcon {
     switch (this) {
       case "0":
-        return "-";
+        return Icons.east;
       case "1":
-        return "/";
+        return Icons.north_east;
       case "-1":
-        return r"\";
+        return Icons.south_east;
       default:
-        return "?";
+        return Icons.help;
     }
   }
 }
