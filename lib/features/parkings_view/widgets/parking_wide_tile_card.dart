@@ -147,7 +147,7 @@ class _RightColumn extends StatelessWidget {
             ),
             Icon(
               parking.trend.arrowIcon,
-              color: context.colorTheme.whiteSoap,
+              color: arrowColor(parking.trend, context),
               size: 21,
             ),
           ],
@@ -156,3 +156,14 @@ class _RightColumn extends StatelessWidget {
     );
   }
 }
+
+Color arrowColor(String trend, BuildContext context) {
+    switch (trend) {
+      case "1":
+        return const Color(0xFF28a745);
+      case "-1":
+        return const Color(0xFFdc3545);
+      default:
+        return context.colorTheme.whiteSoap;
+    }
+  }
