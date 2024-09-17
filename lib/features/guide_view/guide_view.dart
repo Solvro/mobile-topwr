@@ -2,9 +2,12 @@ import "package:auto_route/auto_route.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:wiredash/wiredash.dart";
 
 import "../../../../widgets/my_error_widget.dart";
 import "../../config/ui_config.dart";
+import "../../config/wiredash.dart";
+import "../../theme/app_theme.dart";
 import "../../utils/context_extensions.dart";
 import "../../widgets/search_box_app_bar.dart";
 import "../analytics/show_feedback_tile.dart";
@@ -27,6 +30,7 @@ class GuideView extends ConsumerWidget {
         title: context.localize.guide,
         onQueryChanged:
             ref.watch(searchGuideControllerProvider.notifier).onTextChanged,
+        actions: const [_AppBarBugReportIconButton()],
       ),
       body: const _GuideViewContent(),
     );
@@ -55,5 +59,26 @@ class _GuideViewContent extends ConsumerWidget {
           child: DepartmentsViewLoading(),
         ),
     };
+  }
+}
+
+class _AppBarBugReportIconButton extends StatelessWidget {
+  const _AppBarBugReportIconButton();
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      onPressed: () {
+        Wiredash.of(context).show(
+          options: WiredashFeedbackOptions(
+            labels: context.labels,
+          ),
+        );
+      },
+      icon: Icon(
+        Icons.bug_report,
+        color: context.colorTheme.blackMirage,
+      ),
+    );
   }
 }
