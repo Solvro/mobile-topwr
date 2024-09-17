@@ -1,0 +1,9 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.solvro.topwr",
+    "sha256_cert_fingerprints":
+    ["C0:BF:BE:5D:15:C8:9A:C1:9B:E6:2D:05:E3:23:B0:BB:F8:DA:E0:BC:A3:52:F8:6A:1B:E1:EA:33:F8:4B:41:9B"]
+  }
+}]
