@@ -52,11 +52,12 @@ class ParkingWideTileCard extends StatelessWidget {
               padding: ParkingsConfig.padding,
               child: _RightColumn(parking, isActive: isActive),
             ),
-            Positioned(
-              top: 1,
-              right: 2,
-              child: FavouriteParkingWidget(parking),
-            ),
+            if (!isActive)
+              Positioned(
+                top: 1,
+                right: 2,
+                child: FavouriteParkingWidget(parking),
+              ),
           ],
         ),
       ),
@@ -125,6 +126,13 @@ class _RightColumn extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.end,
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
+        if (isActive)
+          Icon(
+            Icons.close,
+            color: context.colorTheme.whiteSoap,
+            size: 22,
+          ),
+        const Spacer(),
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
