@@ -71,6 +71,7 @@ dependencies:
   package_info_plus: ^8.0.2
   animated_list_plus: ^0.5.2
   flutter_hooks: ^0.20.5
+  svg_optimizer: ^0.0.1
 
 dev_dependencies:
   flutter_test:
@@ -106,6 +107,9 @@ flutter:
   generate: true
 
   assets:
+    - path: assets/
+      transformers:
+        - package: svg_optimizer
     - assets/splash_screen/splash_logo.png
     - assets/logo_app_bar.svg
     - assets/map_markers/map_marker.png
