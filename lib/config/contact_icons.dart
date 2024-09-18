@@ -2,17 +2,17 @@ import "../gen/assets.gen.dart";
 
 abstract class ContactIconsConfig {
   static final iconsPaths = {
-    "facebook": Assets.contactIcons.fb,
-    "instagram": Assets.contactIcons.ig,
-    "linkedin": Assets.contactIcons.linkedin,
-    "mailto:": Assets.contactIcons.mail,
-    "youtu": Assets.contactIcons.yt,
-    "github": Assets.contactIcons.github,
-    "topwr:buildings": Assets.contactIcons.compass,
-    "tel": Assets.contactIcons.phone,
-    "https://x.com": Assets.contactIcons.x,
-    "tiktok": Assets.contactIcons.tiktok,
-    "discord": Assets.contactIcons.discord,
+    "facebook": Assets.svg.contactIcons.fb,
+    "instagram": Assets.svg.contactIcons.ig,
+    "linkedin": Assets.svg.contactIcons.linkedin,
+    "mailto:": Assets.svg.contactIcons.mail,
+    "youtu": Assets.svg.contactIcons.yt,
+    "github": Assets.svg.contactIcons.github,
+    "topwr:buildings": Assets.svg.contactIcons.compass,
+    "tel": Assets.svg.contactIcons.phone,
+    "https://x.com": Assets.svg.contactIcons.x,
+    "tiktok": Assets.svg.contactIcons.tiktok,
+    "discord": Assets.svg.contactIcons.discord,
   };
   static final iconsOrder = {
     "maps": 1,
@@ -28,5 +28,5 @@ abstract class ContactIconsConfig {
     "tiktok": 12,
   };
   static const defaultIconOrder = 2;
-  static final defaultIcon = Assets.contactIcons.web;
+  static final defaultIcon = Assets.svg.contactIcons.web;
 }

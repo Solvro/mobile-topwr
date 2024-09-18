@@ -1,6 +1,6 @@
 # ToPWR
 
-![ToPWR file cover](/assets/topwr_header.png)
+![ToPWR file cover](/assets/png/topwr_header.png)
 
 ## 🇵🇱
 
@@ -102,6 +102,8 @@ WIREDASH_SECRET="<...>" # can be left empty
 ```
 If you need our server url please write us an email [kn.solvro@pwr.edu.pl](mailto:kn.solvro@pwr.edu.pl) or contact us via our [website](https://solvro.pwr.edu.pl/contact/)
 
+3. ### For SVG files optimization we use `svg_optimizer` (which uses SVGO under the hood) that's why before you start you need to install [Node.js](https://nodejs.org/en/download/package-manager) and [SVGO optimization tool](https://svgo.dev/docs/introduction/) on your machine
+
 3.  ### Code generation
     Some of app's dependecies utilize code generation feature and generated files **are not currently included** to control version and this github repository, so before building, running or developing application, it's crucial to run code generation (to generate all needed files) in terminal with:
 
@@ -149,6 +151,7 @@ fvm flutter run
 4. We use `flutter_gen` for generating asset paths: https://pub.dev/packages/flutter_gen 
 5. For unified names read and follow: [taxonomy.md](./taxonomy.md)
 6. For navigation we use `auto_route`, docs here: https://pub.dev/packages/auto_route
+7. For SVG files optimization we use `svg_optimizer` (which uses SVGO under the hood), related article here: https://www.thedroidsonroids.com/blog/svg-open-source-flutter-package
 
 # Before you push a commit
 - run the linter

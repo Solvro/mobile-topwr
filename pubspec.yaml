@@ -90,6 +90,7 @@ dev_dependencies:
   flutter_gen_runner: ^5.6.0
   total_lints: ^3.4.0
   auto_route_generator: ^8.1.0
+  svg_optimizer: ^0.0.1+1
 
 dependency_overrides:
   analyzer: ^6.5.0
@@ -106,25 +107,28 @@ flutter:
   generate: true
 
   assets:
-    - assets/splash_screen/splash_logo.png
-    - assets/logo_app_bar.svg
-    - assets/map_markers/map_marker.png
-    - assets/map_markers/active_map_marker.png
-    - assets/map_markers/active_parking_map_marker.png
-    - assets/map_markers/parking_map_marker.png
-    - assets/search_box/vectorsearch.svg
-    - assets/contact_icons/compass.svg
-    - assets/contact_icons/fb.svg
-    - assets/contact_icons/github.svg
-    - assets/contact_icons/ig.svg
-    - assets/contact_icons/linkedin.svg
-    - assets/contact_icons/mail.svg
-    - assets/contact_icons/phone.svg
-    - assets/contact_icons/web.svg
-    - assets/contact_icons/yt.svg
-    - assets/contact_icons/x.svg
-    - assets/contact_icons/tiktok.svg
-    - assets/contact_icons/discord.svg
+    - path: assets/svg/
+      transformers:
+        - package: svg_optimizer
+    - assets/png/splash_screen/splash_logo.png
+    - assets/svg/logo_app_bar.svg
+    - assets/png/map_markers/map_marker.png
+    - assets/png/map_markers/active_map_marker.png
+    - assets/png/map_markers/active_parking_map_marker.png
+    - assets/png/map_markers/parking_map_marker.png
+    - assets/svg/search_box/vectorsearch.svg
+    - assets/svg/contact_icons/compass.svg
+    - assets/svg/contact_icons/fb.svg
+    - assets/svg/contact_icons/github.svg
+    - assets/svg/contact_icons/ig.svg
+    - assets/svg/contact_icons/linkedin.svg
+    - assets/svg/contact_icons/mail.svg
+    - assets/svg/contact_icons/phone.svg
+    - assets/svg/contact_icons/web.svg
+    - assets/svg/contact_icons/yt.svg
+    - assets/svg/contact_icons/x.svg
+    - assets/svg/contact_icons/tiktok.svg
+    - assets/svg/contact_icons/discord.svg
     - assets/animations/error.json
     - assets/animations/search.json
     - assets/animations/offline.json
@@ -191,15 +195,15 @@ flutter_launcher_icons:
   android: false # manually set in Android Studio
   ios: true
   remove_alpha_ios: true
-  image_path: "assets/app_icon.png"
+  image_path: "assets/png/app_icon.png"
   web:
     generate: true
-    image_path: "assets/app_icon.png"
+    image_path: "assets/png/app_icon.png"
     background_color: "#EE6644"
     theme_color: "#EE6644"
   windows:
     generate: true
-    image_path: "assets/app_icon.png"
+    image_path: "assets/png/app_icon.png"
   macos:
     generate: true
-    image_path: "assets/app_icon.png"
+    image_path: "assets/png/app_icon.png"
