@@ -1,0 +1,59 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appIDs": [
+          "648RY5RYG6.com.solvro.ToPwr"
+        ],
+        "components": [
+          {
+            "/": "*",
+            "exclude": true,
+            "comment": "Exclude all by default, so then to be allowed only some paths"
+          },
+          {
+            "/": "/",
+            "comment": "Matches URL with a path /"
+          },
+          {
+            "/": "/buildings",
+            "comment": "Matches URL with a path /buildings"
+          },
+          {
+            "/": "/parkings",
+            "comment": "Matches URL with a path /parkings"
+          },
+          {
+            "/": "/departments",
+            "comment": "Matches URL with a path /departments"
+          },
+          {
+            "/": "/departments/*",
+            "comment": "Matches any URL that starts with /departments/"
+          },
+          {
+            "/": "/sci-clubs",
+            "comment": "Matches URL with a path /sci-clubs"
+          },
+          {
+            "/": "/sci-clubs/*",
+            "comment": "Matches any URL that starts with /sci-clubs/"
+          },
+          {
+            "/": "/guide",
+            "comment": "Matches URL with a path /guide"
+          },
+          {
+            "/": "/guide/*",
+            "comment": "Matches any URL that starts with /guide/"
+          },
+          {
+            "/": "/aboutUs",
+            "comment": "Matches URL with a path /aboutUs"
+          }
+        ]
+      }
+    ]
+  }
+}
