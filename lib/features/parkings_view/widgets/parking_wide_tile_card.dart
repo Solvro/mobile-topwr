@@ -147,7 +147,9 @@ class _RightColumn extends StatelessWidget {
             ),
             Icon(
               parking.trend.arrowIcon,
-              color: arrowColor(parking.trend, context),
+              color: isActive
+                  ? arrowColor(parking.trend, context)
+                  : context.colorTheme.whiteSoap,
               size: 21,
             ),
           ],
@@ -158,12 +160,12 @@ class _RightColumn extends StatelessWidget {
 }
 
 Color arrowColor(String trend, BuildContext context) {
-    switch (trend) {
-      case "1":
-        return const Color(0xFF28a745);
-      case "-1":
-        return const Color(0xFFdc3545);
-      default:
-        return context.colorTheme.whiteSoap;
-    }
+  switch (trend) {
+    case "1":
+      return const Color(0xFF28a745); //green arrow
+    case "-1":
+      return const Color(0xFFdc3545); //red arrow
+    default:
+      return context.colorTheme.whiteSoap;
   }
+}
