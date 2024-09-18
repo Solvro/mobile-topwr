@@ -16,19 +16,19 @@ class MapMarkerUtils {
     final activeMarkerConfig = context.activeMapMarkerConfiguration;
     buildingMapMarker = await BitmapDescriptor.asset(
       configuration,
-      Assets.mapMarkers.mapMarker.path,
+      Assets.png.mapMarkers.mapMarker.path,
     );
     activeBuildingMapMarker = await BitmapDescriptor.asset(
       activeMarkerConfig,
-      Assets.mapMarkers.activeMapMarker.path,
+      Assets.png.mapMarkers.activeMapMarker.path,
     );
     parkingMapMarker = await BitmapDescriptor.asset(
       configuration,
-      Assets.mapMarkers.parkingMapMarker.path,
+      Assets.png.mapMarkers.parkingMapMarker.path,
     );
     activeParkingMapMarker = await BitmapDescriptor.asset(
       activeMarkerConfig,
-      Assets.mapMarkers.activeParkingMapMarker.path,
+      Assets.png.mapMarkers.activeParkingMapMarker.path,
     );
   }
 }

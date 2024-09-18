@@ -24,7 +24,7 @@ class AppBarLogo extends StatelessWidget {
   const AppBarLogo({super.key});
 
   static Future<void> precacheImageIfAbsent() async {
-    const loader = SvgAssetLoader(Assets.logoAppBar);
+    final loader = SvgAssetLoader(Assets.svg.logoAppBar);
     await svg.cache.putIfAbsent(
       loader.cacheKey(null),
       () => loader.loadBytes(null),
@@ -35,7 +35,7 @@ class AppBarLogo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 48),
-      child: SvgPicture.asset(Assets.logoAppBar),
+      child: SvgPicture.asset(Assets.svg.logoAppBar),
     );
   }
 }

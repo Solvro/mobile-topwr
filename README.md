@@ -1,6 +1,6 @@
 # ToPWR
 
-![ToPWR file cover](/assets/topwr_header.png)
+![ToPWR file cover](/assets/png/topwr_header.png)
 
 ## 🇵🇱
 

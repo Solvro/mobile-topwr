@@ -22,7 +22,7 @@ class FlutterSplashScreen extends StatelessWidget {
               height: size ?? SplashScreenConfig.androidSplashSizeInDp,
               width: size ?? SplashScreenConfig.androidSplashSizeInDp,
               child: Image.asset(
-                Assets.splashScreen.splashLogo.path,
+                Assets.png.splashScreen.splashLogo.path,
               ),
             ),
           ),

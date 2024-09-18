@@ -69,7 +69,7 @@ class _SearchBoxState extends ConsumerState<SearchBox> {
         ),
         prefixIcon: Padding(
           padding: const EdgeInsets.all(10),
-          child: SvgPicture.asset(Assets.searchBox.vectorsearch),
+          child: SvgPicture.asset(Assets.svg.searchBox.vectorsearch),
         ),
         suffixIcon: showCloseIcon
             ? IconButton(
