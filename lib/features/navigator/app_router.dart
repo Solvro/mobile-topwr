@@ -41,7 +41,7 @@ class AppRouter extends _$AppRouter {
               transitionsBuilder: ref.tabBarTransitionBuilder(HomeRoute.name),
             ),
             CustomRoute(
-              path: "map",
+              path: "buildings",
               page: BuildingsRoute.page,
               durationInMilliseconds: TransitionsConfig.durationInMiliseconds,
               reverseDurationInMilliseconds:
