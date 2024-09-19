@@ -53,6 +53,7 @@ abstract class HomeViewConfig {
 abstract class BigPreviewCardConfig {
   static const cardHeight = 360.0;
   static const cardWidth = 240.0;
+  static const defaultCrossAxisForcedSize = 220.0;
 }
 
 abstract class SearchBoxConfig {

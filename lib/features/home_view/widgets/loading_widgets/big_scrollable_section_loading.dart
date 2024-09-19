@@ -8,12 +8,15 @@ import "../paddings.dart";
 class BigScrollableSectionLoading extends StatelessWidget {
   const BigScrollableSectionLoading({
     super.key,
+    this.crossAxisForcedSize = BigPreviewCardConfig.defaultCrossAxisForcedSize,
   });
+
+  final double crossAxisForcedSize;
 
   @override
   Widget build(BuildContext context) {
     return ScrollableLoaderBuilder(
-      crossAxisForcedSize: 220,
+      crossAxisForcedSize: crossAxisForcedSize,
       mainAxisItemSize: BigPreviewCardConfig.cardWidth,
       scrollDirection: Axis.horizontal,
       itemBuilder: (context, index) {
