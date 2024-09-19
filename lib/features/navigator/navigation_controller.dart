@@ -22,13 +22,10 @@ class NavigationController extends _$NavigationController {
 
   StackRouter? get _router => navigatorKey.currentState?.controller;
 
-  bool didLastPop = false; // used only for tabbar transition
-
-  Iterable<TRoute> get stack =>
+  Iterable<TRoute> get _stack =>
       _router?.stackData.map((e) => e.route.toPageRouteInfo()) ?? [];
 
   Future<void> push(TRoute route) async {
-    didLastPop = false;
     final popFutureResults = _router?.push(route); // push the route
     await Future.delayed(
       Duration.zero,
@@ -36,7 +33,6 @@ class NavigationController extends _$NavigationController {
     );
     // await the route's pop
     if (popFutureResults != null) await popFutureResults;
-    didLastPop = true;
     refreshState(); // refresh the state after the pop
   }
 
@@ -44,7 +40,7 @@ class NavigationController extends _$NavigationController {
   /// so we don't call this on other navigation actions (like `Lista >` buttons)
   Future<void> onTabBarChange(NavBarEnum item) async {
     final route = NavBarConfig.tabViews.get(item);
-    if (stack.last.routeName != route.routeName) {
+    if (_stack.last.routeName != route.routeName) {
       _popUntilTabBarView();
       await push(route);
     }
@@ -70,9 +66,9 @@ class NavigationController extends _$NavigationController {
   @override
   NavigationState build() {
     return (
-      isStackPoppable: stack.length > 1,
+      isStackPoppable: _stack.length > 1,
       activeTab:
-          stack.lastWhereOrNull((element) => element.isTabView)?.tabBarEnum ??
+          _stack.lastWhereOrNull((element) => element.isTabView)?.tabBarEnum ??
               NavBarEnum.home,
     );
   }
