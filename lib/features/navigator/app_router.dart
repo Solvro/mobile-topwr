@@ -14,22 +14,13 @@ import "../parkings_view/parkings_view.dart";
 import "../science_club_detail_view/science_club_detail_view.dart";
 import "../science_clubs_view/science_clubs_view.dart";
 import "root_view.dart";
+import "utils/no_transition_route.dart";
 
 part "app_router.g.dart";
 part "app_router.gr.dart";
 
-class _NoTransitionRoute extends CustomRoute {
-  _NoTransitionRoute({
-    required super.path,
-    required super.page,
-  }) : super(
-          reverseDurationInMilliseconds: 0,
-          durationInMilliseconds: 0,
-        );
-}
-
 @AutoRouterConfig(replaceInRouteName: "View,Route")
-class AppRouter extends _$AppRouter {
+class AppRouter extends RootStackRouter {
   final Ref ref;
 
   AppRouter({required this.ref});
@@ -40,19 +31,19 @@ class AppRouter extends _$AppRouter {
           path: "/",
           page: RootRoute.page,
           children: [
-            _NoTransitionRoute(
+            NoTransitionRoute(
               path: "",
               page: HomeRoute.page,
             ),
-            _NoTransitionRoute(
+            NoTransitionRoute(
               path: "buildings",
               page: BuildingsRoute.page,
             ),
-            _NoTransitionRoute(
+            NoTransitionRoute(
               path: "parkings",
               page: ParkingsRoute.page,
             ),
-            _NoTransitionRoute(
+            NoTransitionRoute(
               path: "departments",
               page: DepartmentsRoute.page,
             ),
@@ -60,7 +51,7 @@ class AppRouter extends _$AppRouter {
               path: "departments/:id",
               page: DepartmentDetailRoute.page,
             ),
-            _NoTransitionRoute(
+            NoTransitionRoute(
               path: "sci-clubs",
               page: ScienceClubsRoute.page,
             ),
@@ -68,7 +59,7 @@ class AppRouter extends _$AppRouter {
               path: "sci-clubs/:id",
               page: ScienceClubDetailRoute.page,
             ),
-            _NoTransitionRoute(
+            NoTransitionRoute(
               path: "guide",
               page: GuideRoute.page,
             ),

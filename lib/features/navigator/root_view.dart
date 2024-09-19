@@ -4,6 +4,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../bottom_nav_bar/bottom_nav_bar.dart";
 import "navigation_controller.dart";
+import "navigation_observer.dart";
 import "utils/android_pop_bug_workaround.dart";
 
 @RoutePage()
@@ -21,6 +22,9 @@ class RootView extends ConsumerWidget {
           body: AutoRouter(
             // this widget act as nested [Navigator] for the app
             key: ref.watch(navigationControllerProvider.notifier).navigatorKey,
+            navigatorObservers: () => [
+              ref.watch(navigationObserverProvider),
+            ],
           ),
           bottomNavigationBar: const BottomNavBar(),
         ),

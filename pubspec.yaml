@@ -59,7 +59,7 @@ dependencies:
   html: ^0.15.4
   google_maps_flutter_android: ^2.12.0
   google_maps_flutter_platform_interface: ^2.8.0
-  auto_route: ^8.3.0
+  auto_route: ^9.2.2
   separate: ^1.0.3
   fast_immutable_collections: ^10.2.4
   anim_search_bar:
@@ -89,7 +89,7 @@ dev_dependencies:
   graphql_codegen: ^0.14.0
   flutter_gen_runner: ^5.6.0
   total_lints: ^3.4.0
-  auto_route_generator: ^8.1.0
+  auto_route_generator: ^9.0.0
   svg_optimizer: ^0.0.1+1
 
 dependency_overrides:
