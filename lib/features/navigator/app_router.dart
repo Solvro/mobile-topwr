@@ -14,13 +14,22 @@ import "../parkings_view/parkings_view.dart";
 import "../science_club_detail_view/science_club_detail_view.dart";
 import "../science_clubs_view/science_clubs_view.dart";
 import "root_view.dart";
-import "utils/no_transition_route.dart";
 
 part "app_router.g.dart";
 part "app_router.gr.dart";
 
+class _NoTransitionRoute extends CustomRoute {
+  _NoTransitionRoute({
+    required super.path,
+    required super.page,
+  }) : super(
+          reverseDurationInMilliseconds: 0,
+          durationInMilliseconds: 0,
+        );
+}
+
 @AutoRouterConfig(replaceInRouteName: "View,Route")
-class AppRouter extends RootStackRouter {
+class AppRouter extends _$AppRouter {
   final Ref ref;
 
   AppRouter({required this.ref});
@@ -31,19 +40,19 @@ class AppRouter extends RootStackRouter {
           path: "/",
           page: RootRoute.page,
           children: [
-            NoTransitionRoute(
+            _NoTransitionRoute(
               path: "",
               page: HomeRoute.page,
             ),
-            NoTransitionRoute(
+            _NoTransitionRoute(
               path: "buildings",
               page: BuildingsRoute.page,
             ),
-            NoTransitionRoute(
+            _NoTransitionRoute(
               path: "parkings",
               page: ParkingsRoute.page,
             ),
-            NoTransitionRoute(
+            _NoTransitionRoute(
               path: "departments",
               page: DepartmentsRoute.page,
             ),
@@ -51,7 +60,7 @@ class AppRouter extends RootStackRouter {
               path: "departments/:id",
               page: DepartmentDetailRoute.page,
             ),
-            NoTransitionRoute(
+            _NoTransitionRoute(
               path: "sci-clubs",
               page: ScienceClubsRoute.page,
             ),
@@ -59,7 +68,7 @@ class AppRouter extends RootStackRouter {
               path: "sci-clubs/:id",
               page: ScienceClubDetailRoute.page,
             ),
-            NoTransitionRoute(
+            _NoTransitionRoute(
               path: "guide",
               page: GuideRoute.page,
             ),

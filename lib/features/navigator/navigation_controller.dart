@@ -9,14 +9,14 @@ import "../../config/nav_bar_config.dart";
 
 part "navigation_controller.g.dart";
 
-typedef TRoute<T> = PageRouteInfo<T>;
+typedef TRoute = PageRouteInfo<dynamic>;
 
 typedef NavigationState = ({
   bool isStackPoppable,
   NavBarEnum activeTab,
 });
 
-@Riverpod(keepAlive: true)
+@riverpod
 class NavigationController extends _$NavigationController {
   final navigatorKey = GlobalKey<AutoRouterState>();
 
@@ -25,8 +25,15 @@ class NavigationController extends _$NavigationController {
   Iterable<TRoute> get _stack =>
       _router?.stackData.map((e) => e.route.toPageRouteInfo()) ?? [];
 
-  Future<T?> push<T>(TRoute<T> route) async {
-    return _router?.push(route);
+  Future<void> push(TRoute route) async {
+    final popFutureResults = _router?.push(route); // push the route
+    await Future.delayed(
+      Duration.zero,
+      refreshState, // refresh the state after the push
+    );
+    // await the route's pop
+    if (popFutureResults != null) await popFutureResults;
+    refreshState(); // refresh the state after the pop
   }
 
   /// this is called only when you actually **click** in the nav tab bar
@@ -53,17 +60,11 @@ class NavigationController extends _$NavigationController {
   }
 
   void refreshState() {
-    // async func is used to make sure the state is updated after the next frame
-    Future.microtask(() {
-      print("last: rebuildd");
-      state = build();
-    });
+    state = build();
   }
 
   @override
   NavigationState build() {
-    final s = _stack.lastWhereOrNull((element) => element.isTabView);
-    print("last: $s");
     return (
       isStackPoppable: _stack.length > 1,
       activeTab:
