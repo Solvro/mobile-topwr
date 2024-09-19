@@ -53,6 +53,7 @@ abstract class HomeViewConfig {
 abstract class BigPreviewCardConfig {
   static const cardHeight = 360.0;
   static const cardWidth = 240.0;
+  static const defaultCrossAxisForcedSize = 220.0;
 }
 
 abstract class SearchBoxConfig {
@@ -102,10 +103,10 @@ abstract class ScienceClubsViewConfig {
   );
 
   static const tagsGridDelegate = SliverGridDelegateWithMaxCrossAxisExtent(
-    maxCrossAxisExtent: 100,
-    mainAxisExtent: 92,
-    crossAxisSpacing: 8,
-    mainAxisSpacing: 16,
+    maxCrossAxisExtent: 85,
+    mainAxisExtent: 40,
+    crossAxisSpacing: 4,
+    mainAxisSpacing: 4,
   );
 }
 
@@ -151,6 +152,7 @@ abstract class GuideViewConfig {
 abstract class FilterConfig {
   static const bottomSheetHeightFactor = 0.65;
   static const searchFilterPadding = 15.0;
+  static const paddingMedium = 8.0;
 }
 
 abstract class LottieAnimationConfig {

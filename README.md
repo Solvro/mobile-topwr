@@ -1,6 +1,6 @@
 # ToPWR
 
-![ToPWR file cover](/assets/topwr_header.png)
+![ToPWR file cover](/assets/png/topwr_header.png)
 
 ## 🇵🇱
 
@@ -133,7 +133,11 @@ dart run build_runner build -d
    flutter run
    ```
 
-5. **[OPTIONAL]** If you operate on many Flutter versions, I reccomend to you `fvm` Flutter version manager: https://fvm.app/
+5. ### SVGO
+    For SVG files optimization we use `svg_optimizer` (which uses SVGO under the hood) that's why before you start you need to install [Node.js](https://nodejs.org/en/download/package-manager) and [SVGO optimization tool](https://svgo.dev/docs/introduction/) on your machine
+
+
+6. **[OPTIONAL]** If you operate on many Flutter versions, I reccomend to you `fvm` Flutter version manager: https://fvm.app/
 ```bash
 fvm dart run build_runner watch
 fvm flutter run
@@ -149,6 +153,7 @@ fvm flutter run
 4. We use `flutter_gen` for generating asset paths: https://pub.dev/packages/flutter_gen 
 5. For unified names read and follow: [taxonomy.md](./taxonomy.md)
 6. For navigation we use `auto_route`, docs here: https://pub.dev/packages/auto_route
+7. For SVG files optimization we use `svg_optimizer` (which uses SVGO under the hood), related article here: https://www.thedroidsonroids.com/blog/svg-open-source-flutter-package
 
 # Before you push a commit
 - run the linter

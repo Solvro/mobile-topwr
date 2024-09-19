@@ -20,7 +20,9 @@ class DepartmentDetailViewLoading extends StatelessWidget {
           SizedBox(height: DetailViewsConfig.spacerHeight),
           ContactSectionLoading(),
           SizedBox(height: DetailViewsConfig.spacerHeight),
-          BigScrollableSectionLoading(),
+          BigScrollableSectionLoading(
+            crossAxisForcedSize: 400,
+          ),
         ],
       ),
     );
