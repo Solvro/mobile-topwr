@@ -3,7 +3,6 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "../../config/transitions.dart";
 import "../about_us_view/about_us_view.dart";
 import "../buildings_view/buildings_view.dart";
 import "../department_detail_view/department_detail_view.dart";
@@ -15,10 +14,19 @@ import "../parkings_view/parkings_view.dart";
 import "../science_club_detail_view/science_club_detail_view.dart";
 import "../science_clubs_view/science_clubs_view.dart";
 import "root_view.dart";
-import "utils/tab_bar_transition.dart";
 
 part "app_router.g.dart";
 part "app_router.gr.dart";
+
+class _NoTransitionRoute extends CustomRoute {
+  _NoTransitionRoute({
+    required super.path,
+    required super.page,
+  }) : super(
+          reverseDurationInMilliseconds: 0,
+          durationInMilliseconds: 0,
+        );
+}
 
 @AutoRouterConfig(replaceInRouteName: "View,Route")
 class AppRouter extends _$AppRouter {
@@ -32,65 +40,37 @@ class AppRouter extends _$AppRouter {
           path: "/",
           page: RootRoute.page,
           children: [
-            CustomRoute(
+            _NoTransitionRoute(
               path: "",
               page: HomeRoute.page,
-              durationInMilliseconds: TransitionsConfig.durationInMiliseconds,
-              reverseDurationInMilliseconds:
-                  TransitionsConfig.durationInMiliseconds,
-              transitionsBuilder: ref.tabBarTransitionBuilder(HomeRoute.name),
             ),
-            CustomRoute(
-              path: "map",
+            _NoTransitionRoute(
+              path: "buildings",
               page: BuildingsRoute.page,
-              durationInMilliseconds: TransitionsConfig.durationInMiliseconds,
-              reverseDurationInMilliseconds:
-                  TransitionsConfig.durationInMiliseconds,
-              transitionsBuilder:
-                  ref.tabBarTransitionBuilder(BuildingsRoute.name),
             ),
-            CustomRoute(
+            _NoTransitionRoute(
               path: "parkings",
               page: ParkingsRoute.page,
-              durationInMilliseconds: TransitionsConfig.durationInMiliseconds,
-              reverseDurationInMilliseconds:
-                  TransitionsConfig.durationInMiliseconds,
-              transitionsBuilder:
-                  ref.tabBarTransitionBuilder(ParkingsRoute.name),
             ),
-            CustomRoute(
+            _NoTransitionRoute(
               path: "departments",
               page: DepartmentsRoute.page,
-              durationInMilliseconds: TransitionsConfig.durationInMiliseconds,
-              reverseDurationInMilliseconds:
-                  TransitionsConfig.durationInMiliseconds,
-              transitionsBuilder:
-                  ref.tabBarTransitionBuilder(DepartmentsRoute.name),
             ),
             AutoRoute(
               path: "departments/:id",
               page: DepartmentDetailRoute.page,
             ),
-            CustomRoute(
+            _NoTransitionRoute(
               path: "sci-clubs",
               page: ScienceClubsRoute.page,
-              durationInMilliseconds: TransitionsConfig.durationInMiliseconds,
-              reverseDurationInMilliseconds:
-                  TransitionsConfig.durationInMiliseconds,
-              transitionsBuilder:
-                  ref.tabBarTransitionBuilder(ScienceClubsRoute.name),
             ),
             AutoRoute(
               path: "sci-clubs/:id",
               page: ScienceClubDetailRoute.page,
             ),
-            CustomRoute(
+            _NoTransitionRoute(
               path: "guide",
               page: GuideRoute.page,
-              durationInMilliseconds: TransitionsConfig.durationInMiliseconds,
-              reverseDurationInMilliseconds:
-                  TransitionsConfig.durationInMiliseconds,
-              transitionsBuilder: ref.tabBarTransitionBuilder(GuideRoute.name),
             ),
             AutoRoute(
               path: "aboutUs",
