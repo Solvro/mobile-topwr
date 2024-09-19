@@ -9,12 +9,11 @@ class FilterChipsLoading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(
-        left: ScienceClubsViewConfig.smallPadding,
-      ),
+      padding: const EdgeInsets.all(FilterConfig.paddingMedium),
       child: SizedBox(
         height: MediaQuery.sizeOf(context).height *
-            FilterConfig.bottomSheetHeightFactor,
+            FilterConfig.bottomSheetHeightFactor /
+            2,
         child: GridView.builder(
           gridDelegate: ScienceClubsViewConfig.tagsGridDelegate,
           itemBuilder: (context, index) => const ButtonLoading(),
