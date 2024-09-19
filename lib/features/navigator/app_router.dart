@@ -18,6 +18,16 @@ import "root_view.dart";
 part "app_router.g.dart";
 part "app_router.gr.dart";
 
+class _NoTransitionRoute extends CustomRoute {
+  _NoTransitionRoute({
+    required super.path,
+    required super.page,
+  }) : super(
+          reverseDurationInMilliseconds: 0,
+          durationInMilliseconds: 0,
+        );
+}
+
 @AutoRouterConfig(replaceInRouteName: "View,Route")
 class AppRouter extends _$AppRouter {
   final Ref ref;
@@ -30,43 +40,37 @@ class AppRouter extends _$AppRouter {
           path: "/",
           page: RootRoute.page,
           children: [
-            CustomRoute(
+            _NoTransitionRoute(
               path: "",
               page: HomeRoute.page,
-              durationInMilliseconds: 0,
             ),
-            CustomRoute(
+            _NoTransitionRoute(
               path: "buildings",
               page: BuildingsRoute.page,
-              durationInMilliseconds: 0,
             ),
-            CustomRoute(
+            _NoTransitionRoute(
               path: "parkings",
               page: ParkingsRoute.page,
-              durationInMilliseconds: 0,
             ),
-            CustomRoute(
+            _NoTransitionRoute(
               path: "departments",
               page: DepartmentsRoute.page,
-              durationInMilliseconds: 0,
             ),
             AutoRoute(
               path: "departments/:id",
               page: DepartmentDetailRoute.page,
             ),
-            CustomRoute(
+            _NoTransitionRoute(
               path: "sci-clubs",
               page: ScienceClubsRoute.page,
-              durationInMilliseconds: 0,
             ),
             AutoRoute(
               path: "sci-clubs/:id",
               page: ScienceClubDetailRoute.page,
             ),
-            CustomRoute(
+            _NoTransitionRoute(
               path: "guide",
               page: GuideRoute.page,
-              durationInMilliseconds: 0,
             ),
             AutoRoute(
               path: "aboutUs",
