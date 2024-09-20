@@ -1,4 +1,4 @@
-import "package:google_maps_flutter/google_maps_flutter.dart";
+import "package:latlong2/latlong.dart";
 
 import "../../map_view/controllers/controllers_set.dart";
 import "../repository/buildings_repository.dart";
@@ -19,8 +19,6 @@ class BuildingModel extends Building implements GoogleNavigable {
   @override
   LatLng get location => LatLng(latitude, longitude);
 
-  MarkerId get markerId => MarkerId(id);
-
-  String? get addresFormatted =>
+  String? get addressFormatted =>
       addres?.replaceFirst(",", "\n").replaceAll("\n ", "\n");
 }

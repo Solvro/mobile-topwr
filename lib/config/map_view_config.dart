@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-import "package:google_maps_flutter/google_maps_flutter.dart";
+import "package:latlong2/latlong.dart";
 
 typedef MapSheetSize = ({
   double recomendedSheetHeight,
@@ -32,11 +32,8 @@ abstract class MapViewBottomSheetConfig {
 
 abstract class MapWidgetConfig {
   static const defaultMarkerZoom = 17.0;
-  static const defaultCameraPosition = CameraPosition(
-    target: LatLng(51.10738, 17.05964),
-    zoom: 16,
-  );
-  static const mapType = MapType.normal;
+  static const initialZoom = 16.0;
+  static const initialCenter = LatLng(51.10738, 17.05964);
 
   static const mapMarkerWidth = 22.0;
   static const mapMarkerHeight = 34.0;

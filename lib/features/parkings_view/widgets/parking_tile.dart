@@ -20,7 +20,9 @@ class ParkingTile extends ConsumerWidget {
       parking: parking,
       isActive: isActive,
       onTap: () {
-        ref.read(parkingsMapControllerProvider.notifier).onMarkerTap(parking);
+        ref
+            .read(parkingsMapControllerProvider.notifier)
+            .onMarkerTap(parking, context);
       },
     );
   }

@@ -26,7 +26,7 @@ class MapViewPopBehaviour<T extends GoogleNavigable> extends ConsumerWidget {
         if (!didPop) {
           ref
               .read(context.mapController<T>().notifier)
-              .onMapBackgroundTap(null);
+              .onMapBackgroundTap(null, null);
           ref.read(bottomSheetControllerProvider).resetSafe();
         }
       },

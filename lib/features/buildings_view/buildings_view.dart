@@ -1,12 +1,12 @@
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
+import "package:flutter_map/flutter_map.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
-import "package:google_maps_flutter/google_maps_flutter.dart";
 
 import "../../config/map_view_config.dart";
+import "../../gen/assets.gen.dart";
 import "../../utils/context_extensions.dart";
 import "../map_view/map_view.dart";
-import "../map_view/utils/map_marker_utils.dart";
 import "building_tile.dart";
 import "controllers.dart";
 import "model/building_model.dart";
@@ -27,15 +27,20 @@ class BuildingsView extends ConsumerWidget {
       mapControllers: mapControllersBuildings,
       mapTileBuilder: BuildingTile.new,
       markerBuilder: (item, ref, {required isActive}) => Marker(
-        consumeTapEvents: true,
-        markerId: item.markerId,
-        position: item.location,
-        icon: isActive
-            ? MapMarkerUtils.activeBuildingMapMarker
-            : MapMarkerUtils.buildingMapMarker,
-        onTap: () {
-          ref.read(buildingsMapControllerProvider.notifier).onMarkerTap(item);
-        },
+        alignment: Alignment.topCenter,
+        point: item.location,
+        child: GestureDetector(
+          onTap: () {
+            ref
+                .read(buildingsMapControllerProvider.notifier)
+                .onMarkerTap(item, context);
+          },
+          child: Image.asset(
+            isActive
+                ? Assets.png.mapMarkers.activeMapMarker.path
+                : Assets.png.mapMarkers.mapMarker.path,
+          ),
+        ),
       ),
     );
   }
