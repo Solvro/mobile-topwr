@@ -24,6 +24,7 @@ mixin MapController<T extends GoogleNavigable>
         -ref.read(bottomSheetControllerProvider).pixelsSafe / 2,
       ),
     );
+    state.rotate(0);
   }
 
   void onMarkerTap(T item) {

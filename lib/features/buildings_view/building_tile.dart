@@ -24,7 +24,7 @@ class BuildingTile extends ConsumerWidget {
       directusPhotoUrl: building.cover?.filename_disk,
       title:
           "${building.disableBuildingPrefix ? "" : "${context.localize.building_prefix} "}${building.name}",
-      subtitle: context.changeNull(building.addresFormatted),
+      subtitle: context.changeNull(building.addressFormatted),
       isActive: isActive,
       onTap: () {
         ref.read(buildingsMapControllerProvider.notifier).onMarkerTap(building);
