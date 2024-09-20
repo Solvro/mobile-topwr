@@ -13,13 +13,13 @@ abstract class MapViewBottomSheetConfig {
   static const MapSheetSize buildingsMapSheetSize = (
     recomendedSheetHeight: 357,
     recomendedActiveSheetHeight: 357,
-    minSheetHeight: 150,
+    minSheetHeight: 90,
   );
 
   static const MapSheetSize parkingsMapSheetSize = (
     recomendedSheetHeight: 357,
     recomendedActiveSheetHeight: 480,
-    minSheetHeight: 150,
+    minSheetHeight: 90,
   );
 
   static const lineHandleSectionHeight = 36.0;
