@@ -1,5 +1,6 @@
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
+import "../../my_location_button/presentation/is_following_controller.dart";
 import "../utils/google_maps_link_utils.dart";
 import "controllers_set.dart";
 
@@ -11,6 +12,7 @@ mixin ActiveMarkerController<T extends GoogleNavigable>
   }
 
   void selectItem(T item) {
+    ref.read(isFollowingCurrentLocationControllerProvider.notifier).mapMoved();
     state = item;
   }
 

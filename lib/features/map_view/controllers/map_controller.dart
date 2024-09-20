@@ -15,7 +15,7 @@ mixin MapController<T extends GoogleNavigable>
     return fl_map.MapController();
   }
 
-  void zoomOnMarker(T item, BuildContext context) {
+  void zoomOnMarker(T item) {
     state.move(
       item.location,
       MapWidgetConfig.defaultMarkerZoom,
@@ -26,11 +26,11 @@ mixin MapController<T extends GoogleNavigable>
     );
   }
 
-  void onMarkerTap(T item, BuildContext context) {
+  void onMarkerTap(T item) {
     ref.read(mapControllers.activeMarker.notifier).toggleItem(item);
     ref.read(bottomSheetControllerProvider).resetSafe();
     if (ref.read(mapControllers.activeMarker) == item) {
-      zoomOnMarker(item, context);
+      zoomOnMarker(item);
     }
   }
 

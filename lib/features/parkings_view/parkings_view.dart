@@ -30,9 +30,7 @@ class ParkingsView extends ConsumerWidget {
         alignment: Alignment.topCenter,
         child: GestureDetector(
           onTap: () {
-            ref
-                .read(parkingsMapControllerProvider.notifier)
-                .onMarkerTap(item, context);
+            ref.read(parkingsMapControllerProvider.notifier).onMarkerTap(item);
           },
           child: Image.asset(
             isActive

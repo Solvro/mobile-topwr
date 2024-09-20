@@ -31,9 +31,7 @@ class BuildingsView extends ConsumerWidget {
         point: item.location,
         child: GestureDetector(
           onTap: () {
-            ref
-                .read(buildingsMapControllerProvider.notifier)
-                .onMarkerTap(item, context);
+            ref.read(buildingsMapControllerProvider.notifier).onMarkerTap(item);
           },
           child: Image.asset(
             isActive
