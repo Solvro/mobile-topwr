@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:flutter_map/flutter_map.dart";
 import "package:flutter_map_cancellable_tile_provider/flutter_map_cancellable_tile_provider.dart";
+import "package:flutter_map_compass/flutter_map_compass.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../config/map_view_config.dart";
@@ -42,10 +43,20 @@ class MapWidget<T extends GoogleNavigable> extends ConsumerWidget {
         ),
         MarkersConsumerLayer<T>(),
         const MyLocationLayer(),
-        Positioned(
-          right: 0,
-          top: MediaQuery.paddingOf(context).top,
-          child: const MyLocationButton(),
+        const Positioned(
+          top: 4,
+          right: 4,
+          child: SafeArea(
+            child: Column(
+              children: [
+                MyLocationButton(),
+                MapCompass.cupertino(
+                  hideIfRotatedNorth: true,
+                  padding: EdgeInsets.zero,
+                ),
+              ],
+            ),
+          ),
         ),
         const OpenMapAtrribution(),
       ],

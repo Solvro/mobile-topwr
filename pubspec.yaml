@@ -72,6 +72,7 @@ dependencies:
   latlong2: ^0.9.1
   flutter_map_cancellable_tile_provider: ^3.0.2
   flutter_map_location_marker: ^9.1.1
+  flutter_map_compass: ^1.0.3
 
 dev_dependencies:
   flutter_test:
