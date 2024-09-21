@@ -3,6 +3,7 @@ import "package:flutter_hooks/flutter_hooks.dart";
 
 import "../filters_controller.dart";
 
+// use this hook to load initial set of filters when the widget is first built
 void useInitialFilterIds<T>(
   IList<String>? ids,
   Future<IList<T>> Function() itemsCallback,

@@ -37,8 +37,10 @@ class _DataSliverList<T extends GoogleNavigable> extends HookConsumerWidget {
     useInitialActiveId(
       context.initialActiveItemId<T>(),
       ref.watch(context.activeMarkerController<T>().notifier),
+      ref.watch(context.mapController<T>().notifier).zoomOnMarker,
       items,
     );
+
     if (items.isEmpty) return _EmptyDataList<T>();
     final previousLength = usePrevious(items.length);
     final skipAnimationAnyway =
