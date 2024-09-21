@@ -26,13 +26,13 @@ enum NavBarEnum {
 }
 
 abstract class NavBarConfig {
-  static const tabViews = UnmodifiableNavBarEnumMap(
-    home: HomeRoute(),
+  static final tabViews = UnmodifiableNavBarEnumMap<PageRouteInfo>(
+    home: const HomeRoute(),
     buildings: BuildingsRoute(),
     parkings: ParkingsRoute(),
-    departments: DepartmentsRoute(),
-    scienceClubs: ScienceClubsRoute(),
-    guide: GuideRoute(),
+    departments: const DepartmentsRoute(),
+    scienceClubs: const ScienceClubsRoute(),
+    guide: const GuideRoute(),
   );
 }
 

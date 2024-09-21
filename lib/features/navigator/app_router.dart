@@ -45,13 +45,15 @@ class AppRouter extends RootStackRouter {
               page: HomeRoute.page,
             ),
             _NoTransitionRoute(
-              path: "buildings",
+              path: "buildings/:initialActiveItemId",
               page: BuildingsRoute.page,
             ),
+            RedirectRoute(path: "buildings", redirectTo: "buildings/null"),
             _NoTransitionRoute(
-              path: "parkings",
+              path: "parkings/:initialActiveItemId",
               page: ParkingsRoute.page,
             ),
+            RedirectRoute(path: "parkings", redirectTo: "parkings/null"),
             _NoTransitionRoute(
               path: "departments",
               page: DepartmentsRoute.page,
