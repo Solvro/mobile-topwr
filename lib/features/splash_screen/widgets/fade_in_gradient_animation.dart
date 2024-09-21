@@ -1,6 +1,9 @@
 import "package:flutter/material.dart";
+import "package:flutter_hooks/flutter_hooks.dart";
 
-class FadeInGradientAnimation extends StatefulWidget {
+import "../../../hooks/use_effect_on_init.dart";
+
+class FadeInGradientAnimation extends HookWidget {
   /// Animates between two LinearGradients on first build
   const FadeInGradientAnimation({
     super.key,
@@ -12,47 +15,28 @@ class FadeInGradientAnimation extends StatefulWidget {
   final LinearGradient gradientStart;
   final LinearGradient gradientStop;
   final Duration duration;
-  @override
-  State<FadeInGradientAnimation> createState() =>
-      _FadeInGradientAnimationState();
-}
-
-class _FadeInGradientAnimationState extends State<FadeInGradientAnimation>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<LinearGradient> _gradientAnimation;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      duration: widget.duration,
-      vsync: this,
-    );
-    _gradientAnimation = LinearGradientTween(
-      begin: widget.gradientStart,
-      end: widget.gradientStop,
-    ).animate(_controller);
-    _controller.forward();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: _controller,
-      builder: (context, child) {
-        return Container(
-          decoration: BoxDecoration(
-            gradient: _gradientAnimation.value,
-          ),
-        );
+    final controller = useAnimationController(duration: duration);
+    final gradientAnimation = useAnimation(
+      LinearGradientTween(
+        begin: gradientStart,
+        end: gradientStop,
+      ).animate(controller),
+    );
+
+    useEffectOnInit(
+      () {
+        controller.forward();
+        return null;
       },
+    );
+
+    return Container(
+      decoration: BoxDecoration(
+        gradient: gradientAnimation,
+      ),
     );
   }
 }
