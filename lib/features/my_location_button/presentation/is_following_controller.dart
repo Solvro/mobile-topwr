@@ -15,7 +15,8 @@ class IsFollowingCurrentLocationController
   }
 
   Future<void> buttonClicked() async {
-    final isGranted = await ref.read(locationPermissionStatusProvider.future);
+    final isGranted =
+        await ref.read(locationPermissionStatusProvider.notifier).request();
     if (isGranted) {
       state = true;
     }
