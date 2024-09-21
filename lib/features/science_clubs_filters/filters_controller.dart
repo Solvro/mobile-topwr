@@ -27,7 +27,7 @@ mixin FilterController<T> on AutoDisposeNotifier<ISet<T>> {
   }
 }
 
-@riverpod
+@Riverpod(dependencies: [])
 class SelectedDepartmentController extends _$SelectedDepartmentController
     with FilterController<Department> {
   @override
@@ -42,21 +42,27 @@ class SelectedDepartmentController extends _$SelectedDepartmentController
   }
 }
 
-@riverpod
+@Riverpod(dependencies: [])
 class SelectedTagController extends _$SelectedTagController
     with FilterController<Tag> {
   @override
   ISet<Tag> build() => const ISet.empty();
 }
 
-@riverpod
+@Riverpod(dependencies: [])
 class SelectedTypeController extends _$SelectedTypeController
     with FilterController<ScienceClubType> {
   @override
   ISet<ScienceClubType> build() => const ISet.empty();
 }
 
-@riverpod
+@Riverpod(
+  dependencies: [
+    SelectedDepartmentController,
+    SelectedTagController,
+    SelectedTypeController,
+  ],
+)
 bool areFiltersEnabled(AreFiltersEnabledRef ref) {
   final selectedTagsIsNotEmpty =
       ref.watch(selectedTagControllerProvider.notEmpty);

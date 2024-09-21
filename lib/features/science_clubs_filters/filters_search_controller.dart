@@ -9,7 +9,7 @@ import "utils.dart";
 
 part "filters_search_controller.g.dart";
 
-@riverpod
+@Riverpod(dependencies: [])
 class SearchFiltersController extends _$SearchFiltersController {
   @override
   String build() => "";
@@ -23,7 +23,7 @@ class SearchFiltersController extends _$SearchFiltersController {
   }
 }
 
-@riverpod
+@Riverpod(dependencies: [SearchFiltersController])
 IList<ScienceClubType> typeFiltersFiltered(TypeFiltersFilteredRef ref) {
   final query = ref.watch(searchFiltersControllerProvider);
   return ScienceClubType.values
@@ -38,7 +38,7 @@ IList<ScienceClubType> typeFiltersFiltered(TypeFiltersFilteredRef ref) {
       .toIList();
 }
 
-@riverpod
+@Riverpod(dependencies: [SearchFiltersController])
 Future<IList<Department>> departmentFiltersFiltered(
   DepartmentFiltersFilteredRef ref,
 ) async {
@@ -54,7 +54,7 @@ Future<IList<Department>> departmentFiltersFiltered(
       .toIList();
 }
 
-@riverpod
+@Riverpod(dependencies: [SearchFiltersController])
 Future<IList<Tag>> tagFiltersFiltered(
   TagFiltersFilteredRef ref,
 ) async {
@@ -63,7 +63,13 @@ Future<IList<Tag>> tagFiltersFiltered(
   return tags.where((x) => x.name.containsLowerCase(query)).toIList();
 }
 
-@riverpod
+@Riverpod(
+  dependencies: [
+    typeFiltersFiltered,
+    departmentFiltersFiltered,
+    tagFiltersFiltered,
+  ],
+)
 bool areNoFiltersFound(AreNoFiltersFoundRef ref) {
   final source1Empty = !ref.watch(typeFiltersFilteredProvider.notEmpty);
   final source2Empty =

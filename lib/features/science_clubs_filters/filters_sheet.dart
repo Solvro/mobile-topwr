@@ -4,6 +4,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "../../config/ui_config.dart";
 import "../../theme/app_theme.dart";
 import "../../utils/context_extensions.dart";
+import "filters_controller.dart";
 import "filters_search_controller.dart";
 import "widgets/departments_wrap.dart";
 import "widgets/filters_header.dart";
@@ -15,30 +16,36 @@ class FiltersSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.sizeOf(context).height *
-          FilterConfig.bottomSheetHeightFactor,
-      child: Padding(
-        padding: const EdgeInsets.only(top: 16),
-        child: Column(
-          children: [
-            FiltersHeader(),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: ListView(
-                  shrinkWrap: true,
-                  children: const [
-                    TypesWrap(),
-                    DepartmentsWrap(),
-                    TagsWrap(),
-                    _NoFiltersFound(),
-                    SizedBox(height: 12),
-                  ],
+    return ProviderScope(
+      overrides: [
+        searchFiltersControllerProvider,
+        areFiltersEnabledProvider,
+      ],
+      child: SizedBox(
+        height: MediaQuery.sizeOf(context).height *
+            FilterConfig.bottomSheetHeightFactor,
+        child: Padding(
+          padding: const EdgeInsets.only(top: 16),
+          child: Column(
+            children: [
+              FiltersHeader(),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: ListView(
+                    shrinkWrap: true,
+                    children: const [
+                      TypesWrap(),
+                      DepartmentsWrap(),
+                      TagsWrap(),
+                      _NoFiltersFound(),
+                      SizedBox(height: 12),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

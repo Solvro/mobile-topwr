@@ -6,7 +6,7 @@ import "repository/departments_repository.dart";
 
 part "departments_view_controllers.g.dart";
 
-@riverpod
+@Riverpod(dependencies: [])
 class SearchDepartmentsController extends _$SearchDepartmentsController {
   @override
   String build() => "";
@@ -16,7 +16,7 @@ class SearchDepartmentsController extends _$SearchDepartmentsController {
   }
 }
 
-@riverpod
+@Riverpod(dependencies: [SearchDepartmentsController])
 Future<IList<Department>> departmentsList(DepartmentsListRef ref) async {
   final originalList = await ref.watch(departmentsRepositoryProvider.future);
   final query = ref.watch(searchDepartmentsControllerProvider);
