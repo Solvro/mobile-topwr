@@ -21,7 +21,7 @@ class BuildingsSection extends ConsumerWidget {
           SubsectionHeader(
             title: context.localize.buildings_title,
             actionTitle: context.localize.map_button,
-            onClick: ref.navigateBuildings,
+            onClick: () async => ref.navigateBuildings(null),
           ),
           const _BuildingsList(),
         ],
