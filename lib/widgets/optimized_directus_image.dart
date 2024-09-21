@@ -1,6 +1,8 @@
 import "package:flutter/material.dart";
+import "package:flutter_hooks/flutter_hooks.dart";
 
 import "../api_base/directus_assets_url.dart";
+import "../hooks/use_effect_on_init.dart";
 import "my_cached_image.dart";
 
 /// It requests image from Directus already with the size of a parent widget. (less data to download)
@@ -42,29 +44,25 @@ class OptimizedDirectusImage extends MyCachedImage {
   }
 }
 
-/// This StatefulWidget will build its child once with the initial size and won't rebuild it it if the size changes.
+/// This HookWidget will build its child once with the initial size and won't rebuild it if the size changes.
 /// If we wouldn't use it, the `OptimizedDirectusImage` would rebuild on every layout change, causing fetching of a new image (of new size).
-class _LoadSizeOnce extends StatefulWidget {
+class _LoadSizeOnce extends HookWidget {
   const _LoadSizeOnce({
     required this.initialSize,
     required this.builder,
   });
   final Widget Function(BuildContext context, Size size) builder;
   final Size initialSize;
-  @override
-  State<_LoadSizeOnce> createState() => _LoadSizeOnceState();
-}
-
-class _LoadSizeOnceState extends State<_LoadSizeOnce> {
-  late Size size;
-  @override
-  void initState() {
-    size = widget.initialSize;
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
-    return widget.builder(context, size);
+    final size = useState(Size.zero);
+    useEffectOnInit(
+      () {
+        size.value = initialSize;
+        return null;
+      },
+    );
+    return builder(context, size.value);
   }
 }
