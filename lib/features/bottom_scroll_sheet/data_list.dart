@@ -2,7 +2,7 @@ import "package:animated_list_plus/animated_list_plus.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
-import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../config/map_view_config.dart";
 import "../../theme/app_theme.dart";
@@ -10,6 +10,7 @@ import "../../widgets/my_error_widget.dart";
 import "../map_view/controllers/controllers_set.dart";
 import "../map_view/widgets/map_config.dart";
 import "data_list_loading.dart";
+import "hooks/use_initial_active_id.dart";
 
 class DataSliverList<T extends GoogleNavigable> extends ConsumerWidget {
   const DataSliverList({super.key});
@@ -26,13 +27,18 @@ class DataSliverList<T extends GoogleNavigable> extends ConsumerWidget {
   }
 }
 
-class _DataSliverList<T extends GoogleNavigable> extends HookWidget {
+class _DataSliverList<T extends GoogleNavigable> extends HookConsumerWidget {
   const _DataSliverList(this.items);
 
   final IList<T> items;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    useInitialActiveId(
+      context.initialActiveItemId<T>(),
+      ref.watch(context.activeMarkerController<T>().notifier),
+      items,
+    );
     if (items.isEmpty) return _EmptyDataList<T>();
     final previousLength = usePrevious(items.length);
     final skipAnimationAnyway =
