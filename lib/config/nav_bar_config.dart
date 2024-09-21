@@ -31,7 +31,7 @@ abstract class NavBarConfig {
     buildings: BuildingsRoute(),
     parkings: ParkingsRoute(),
     departments: const DepartmentsRoute(),
-    scienceClubs: const ScienceClubsRoute(),
+    scienceClubs: ScienceClubsRoute(),
     guide: const GuideRoute(),
   );
 }

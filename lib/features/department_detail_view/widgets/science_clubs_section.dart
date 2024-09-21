@@ -12,7 +12,6 @@ import "../../../widgets/subsection_header.dart";
 import "../../home_view/widgets/loading_widgets/big_scrollable_section_loading.dart";
 import "../../home_view/widgets/paddings.dart";
 import "../../navigator/utils/navigation_commands.dart";
-import "../../science_clubs_filters/filters_controller.dart";
 import "../../science_clubs_view/repository/science_clubs_repository.dart";
 import "../repository/department_details_repository.dart";
 
@@ -41,13 +40,10 @@ class DepartmentScienceClubsSection extends ConsumerWidget {
                   title: context.localize.study_circles,
                   actionTitle: context.localize.list,
                   onClick: () async {
-                    unawaited(ref.navigateScienceClubs());
                     unawaited(
-                      ref
-                          .watch(selectedDepartmentControllerProvider.notifier)
-                          .selectDepartmentById(
-                            department?.Departments_by_id?.id ?? "",
-                          ),
+                      ref.navigateScienceClub(
+                        department?.Departments_by_id?.id,
+                      ),
                     );
                   },
                 ),
