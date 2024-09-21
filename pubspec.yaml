@@ -46,7 +46,6 @@ dependencies:
   cached_network_image: ^3.3.1
   logger: ^2.0.2+1
   enum_map: ^0.3.0
-  google_maps_flutter: ^2.6.1
   url_launcher: ^6.2.4
   shared_preferences: ^2.3.2
   dio: ^5.4.3+1
@@ -57,9 +56,7 @@ dependencies:
   permission_handler: ^11.3.1
   flutter_widget_from_html_core: ^0.14.12
   html: ^0.15.4
-  google_maps_flutter_android: ^2.12.0
-  google_maps_flutter_platform_interface: ^2.8.0
-  auto_route: ^8.3.0
+  auto_route: ^9.2.2
   separate: ^1.0.3
   fast_immutable_collections: ^10.2.4
   anim_search_bar:
@@ -71,6 +68,11 @@ dependencies:
   package_info_plus: ^8.0.2
   animated_list_plus: ^0.5.2
   flutter_hooks: ^0.20.5
+  flutter_map: ^7.0.2
+  latlong2: ^0.9.1
+  flutter_map_cancellable_tile_provider: ^3.0.2
+  flutter_map_location_marker: ^9.1.1
+  flutter_map_compass: ^1.0.3
 
 dev_dependencies:
   flutter_test:
@@ -89,7 +91,7 @@ dev_dependencies:
   graphql_codegen: ^0.14.0
   flutter_gen_runner: ^5.6.0
   total_lints: ^3.4.0
-  auto_route_generator: ^8.1.0
+  auto_route_generator: ^9.0.0
   svg_optimizer: ^0.0.1+1
 
 dependency_overrides:

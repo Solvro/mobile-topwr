@@ -2,7 +2,7 @@
 
 import "package:flutter/material.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
-import "package:google_maps_flutter/google_maps_flutter.dart";
+import "package:latlong2/latlong.dart";
 
 import "../../map_view/controllers/controllers_set.dart";
 import "../api_client/iparking_client.dart";

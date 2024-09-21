@@ -29,7 +29,7 @@ class _NoTransitionRoute extends CustomRoute {
 }
 
 @AutoRouterConfig(replaceInRouteName: "View,Route")
-class AppRouter extends _$AppRouter {
+class AppRouter extends RootStackRouter {
   final Ref ref;
 
   AppRouter({required this.ref});

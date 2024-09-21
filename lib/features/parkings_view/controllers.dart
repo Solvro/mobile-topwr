@@ -1,5 +1,5 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
-import "package:google_maps_flutter/google_maps_flutter.dart";
+import "package:flutter_map/flutter_map.dart" as fl_map;
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../utils/contains_lower_case.dart";
@@ -49,8 +49,9 @@ class ParkingsMapController extends _$ParkingsMapController
   }
 
   @override
-  GoogleMapController? build() {
-    return null;
+  // ignore: unnecessary_overrides
+  fl_map.MapController build() {
+    return super.build();
   }
 }
 
