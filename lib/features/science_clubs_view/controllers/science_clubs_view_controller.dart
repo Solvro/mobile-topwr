@@ -8,7 +8,7 @@ import "../repository/science_clubs_repository.dart";
 
 part "science_clubs_view_controller.g.dart";
 
-@riverpod
+@Riverpod(dependencies: [])
 class SearchScienceClubsController extends _$SearchScienceClubsController {
   @override
   String build() => "";
@@ -18,7 +18,7 @@ class SearchScienceClubsController extends _$SearchScienceClubsController {
   }
 }
 
-@riverpod
+@Riverpod(dependencies: [SearchScienceClubsController])
 Future<Iterable<ScienceClub>> _sciClubsFilteredByTextQuery(
   _SciClubsFilteredByTextQueryRef ref,
 ) async {
@@ -33,7 +33,15 @@ Future<Iterable<ScienceClub>> _sciClubsFilteredByTextQuery(
   );
 }
 
-@riverpod
+@Riverpod(
+  dependencies: [
+    _sciClubsFilteredByTextQuery,
+    areFiltersEnabled,
+    SelectedTagController,
+    SelectedDepartmentController,
+    SelectedTypeController,
+  ],
+)
 Future<IList<ScienceClub>> scienceClubsListController(
   ScienceClubsListControllerRef ref,
 ) async {

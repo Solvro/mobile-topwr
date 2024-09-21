@@ -12,6 +12,8 @@ class FiltersFAB extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isActive = ref.watch(areFiltersEnabledProvider);
+
+    final parentProvider = ProviderScope.containerOf(context);
     return FloatingActionButton(
       onPressed: () async => showModalBottomSheet(
         context: context,
@@ -20,7 +22,10 @@ class FiltersFAB extends ConsumerWidget {
               FilterConfig.bottomSheetHeightFactor,
         ),
         isScrollControlled: true,
-        builder: (context) => const FiltersSheet(),
+        builder: (context) => UncontrolledProviderScope(
+          container: parentProvider,
+          child: const FiltersSheet(),
+        ),
       ),
       backgroundColor: isActive
           ? context.colorTheme.orangePomegranade

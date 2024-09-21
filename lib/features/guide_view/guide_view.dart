@@ -19,8 +19,22 @@ import "widgets/guide_grid.dart";
 import "widgets/guide_tile.dart";
 
 @RoutePage()
-class GuideView extends ConsumerWidget {
+class GuideView extends StatelessWidget {
   const GuideView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ProviderScope(
+      overrides: [
+        searchGuideControllerProvider,
+      ],
+      child: const _GuideView(),
+    );
+  }
+}
+
+class _GuideView extends ConsumerWidget {
+  const _GuideView();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

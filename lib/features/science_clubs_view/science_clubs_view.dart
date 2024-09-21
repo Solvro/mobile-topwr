@@ -4,13 +4,31 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../utils/context_extensions.dart";
 import "../../widgets/search_box_app_bar.dart";
+import "../science_clubs_filters/filters_controller.dart";
 import "../science_clubs_filters/widgets/filters_fab.dart";
 import "controllers/science_clubs_view_controller.dart";
 import "widgets/science_clubs_list.dart";
 
 @RoutePage()
-class ScienceClubsView extends ConsumerWidget {
+class ScienceClubsView extends StatelessWidget {
   const ScienceClubsView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ProviderScope(
+      overrides: [
+        searchScienceClubsControllerProvider,
+        selectedDepartmentControllerProvider,
+        selectedTagControllerProvider,
+        selectedTypeControllerProvider,
+      ],
+      child: const _ScienceClubsView(),
+    );
+  }
+}
+
+class _ScienceClubsView extends ConsumerWidget {
+  const _ScienceClubsView();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
