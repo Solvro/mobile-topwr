@@ -12,7 +12,7 @@ import "repository/parkings_repository.dart";
 
 part "controllers.g.dart";
 
-@riverpod
+@Riverpod(dependencies: [])
 class ActiveParkingController extends _$ActiveParkingController
     with ActiveMarkerController<Parking> {
   @override
@@ -21,7 +21,7 @@ class ActiveParkingController extends _$ActiveParkingController
   }
 }
 
-@riverpod
+@Riverpod(dependencies: [ActiveParkingController])
 class ParkingsViewController extends _$ParkingsViewController
     with MapDataController<Parking> {
   ParkingsViewController() {
@@ -41,7 +41,7 @@ class ParkingsViewController extends _$ParkingsViewController
   }
 }
 
-@riverpod
+@Riverpod(dependencies: [ActiveParkingController])
 class ParkingsMapController extends _$ParkingsMapController
     with MapController<Parking> {
   ParkingsMapController() {

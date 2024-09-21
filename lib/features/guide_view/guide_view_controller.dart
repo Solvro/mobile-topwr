@@ -6,7 +6,7 @@ import "repository/guide_repository.dart";
 
 part "guide_view_controller.g.dart";
 
-@riverpod
+@Riverpod(dependencies: [])
 class SearchGuideController extends _$SearchGuideController {
   @override
   String build() => "";
@@ -16,12 +16,12 @@ class SearchGuideController extends _$SearchGuideController {
   }
 }
 
-@riverpod
+@Riverpod(dependencies: [SearchGuideController])
 bool isSomethingSearched(IsSomethingSearchedRef ref) {
   return ref.watch(searchGuideControllerProvider) != "";
 }
 
-@riverpod
+@Riverpod(dependencies: [SearchGuideController])
 Future<IList<GuidePost>> guideListController(
   GuideListControllerRef ref,
 ) async {

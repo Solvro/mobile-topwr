@@ -15,8 +15,22 @@ import "widgets/department_card.dart";
 import "widgets/departments_view_loading.dart";
 
 @RoutePage()
-class DepartmentsView extends ConsumerWidget {
+class DepartmentsView extends StatelessWidget {
   const DepartmentsView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ProviderScope(
+      overrides: [
+        searchDepartmentsControllerProvider,
+      ],
+      child: const _DepartmentsView(),
+    );
+  }
+}
+
+class _DepartmentsView extends ConsumerWidget {
+  const _DepartmentsView();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

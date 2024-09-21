@@ -38,6 +38,7 @@ class MapView<T extends GoogleNavigable> extends ConsumerWidget {
         bottomSheetControllerProvider,
         bottomSheetPixelsProvider,
         mapControllers.map,
+        mapControllers.activeMarker,
       ],
       child: MapConfig(
         controllers: mapControllers,

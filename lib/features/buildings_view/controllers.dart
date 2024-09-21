@@ -13,7 +13,7 @@ import "utils.dart";
 
 part "controllers.g.dart";
 
-@riverpod
+@Riverpod(dependencies: [])
 class ActiveBuildingController extends _$ActiveBuildingController
     with ActiveMarkerController<BuildingModel> {
   @override
@@ -22,7 +22,7 @@ class ActiveBuildingController extends _$ActiveBuildingController
   }
 }
 
-@riverpod
+@Riverpod(dependencies: [ActiveBuildingController])
 class BuildingsViewController extends _$BuildingsViewController
     with MapDataController<BuildingModel> {
   BuildingsViewController() {
@@ -42,7 +42,7 @@ class BuildingsViewController extends _$BuildingsViewController
   }
 }
 
-@riverpod
+@Riverpod(dependencies: [ActiveBuildingController])
 class BuildingsMapController extends _$BuildingsMapController
     with MapController<BuildingModel> {
   BuildingsMapController() {
