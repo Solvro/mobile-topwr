@@ -42,7 +42,15 @@ extension NavigationX on WidgetRef {
   }
 
   Future<void> navigateScienceClubs() async {
-    await _router.push(const ScienceClubsRoute());
+    await _router.push(ScienceClubsRoute());
+  }
+
+  Future<void> navigateScienceClub(String? departmentFilterId) async {
+    await _router.push(
+      ScienceClubsRoute(
+        deptsIdsSequence: departmentFilterId,
+      ),
+    );
   }
 
   Future<void> navigateSciClubsDetail(String id) async {
