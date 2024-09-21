@@ -8,7 +8,6 @@ import "../../../utils/context_extensions.dart";
 import "../../../widgets/my_error_widget.dart";
 import "../../../widgets/subsection_header.dart";
 import "../../navigator/utils/navigation_commands.dart";
-import "../../parkings_view/controllers.dart";
 import "../../parkings_view/models/parking.dart";
 import "../../parkings_view/repository/parkings_repository.dart";
 import "buildings_section/building_card.dart";
@@ -69,10 +68,7 @@ class _DataListParkingsTiles extends ConsumerWidget {
             buildingName: parking.symbol,
             directusImageUrl: parking.iParkPhotoUrl,
             onTap: () async {
-              unawaited(ref.navigateParkings());
-              ref
-                  .watch(activeParkingControllerProvider.notifier)
-                  .selectItem(parking);
+              unawaited(ref.navigateParking(parking));
             },
           ),
         );
