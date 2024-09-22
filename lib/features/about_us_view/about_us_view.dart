@@ -65,7 +65,7 @@ class _AboutUsView extends ConsumerWidget {
           ],
         ),
       _ => const _AboustUsLoading(),
-      };
+    };
   }
 }
 
