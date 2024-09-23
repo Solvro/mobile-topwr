@@ -67,7 +67,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '399902347530',
     projectId: 'topwr-a2066',
     storageBucket: 'topwr-a2066.appspot.com',
-    iosClientId: '399902347530-1pdnhl4c0fmk62pulk4vomp5jbd0ovcj.apps.googleusercontent.com',
+    iosClientId:
+        '399902347530-1pdnhl4c0fmk62pulk4vomp5jbd0ovcj.apps.googleusercontent.com',
     iosBundleId: 'com.solvro.ToPwr',
   );
 
