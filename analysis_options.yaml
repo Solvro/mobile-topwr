@@ -27,3 +27,4 @@ analyzer:
     - "**/*.gen.dart"
     - "**/*.graphql.dart"
     - "**/*.icons.dart"
+    - "**/firebase_options.dart"
