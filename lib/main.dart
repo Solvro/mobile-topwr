@@ -15,7 +15,7 @@ import "features/splash_screen/splash_screen_controller.dart";
 import "theme/app_theme.dart";
 import "theme/colors.dart";
 
-void main() async {
+void main() {
   SplashScreenController.preserveNativeSplashScreen();
   runApp(
     const ProviderScope(

@@ -7,6 +7,7 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../api_base/hive_init.dart";
 import "../../config/ui_config.dart";
+import "../../firebase_init.dart";
 import "../home_view/widgets/logo_app_bar.dart";
 
 part "splash_screen_controller.g.dart";
@@ -18,6 +19,8 @@ class SplashScreenController extends _$SplashScreenController {
       Insert here any initialization async logic or operations 
       to be performed, when SplashScreen is showed.
     */
+    WidgetsFlutterBinding.ensureInitialized();
+    await firebaseInit();
     await initHiveForGraphqlCache();
     await AppBarLogo.precacheImageIfAbsent();
   }
