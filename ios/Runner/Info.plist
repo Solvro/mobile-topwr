@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 	<dict>
+		<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+		<string>We need your permission to access your location to show your location on the map and show you buildings and parkings in you perimeter</string>
 		<key>FlutterDeepLinkingEnabled</key>
 		<true/>
 		<key>NSLocationWhenInUseUsageDescription</key>
