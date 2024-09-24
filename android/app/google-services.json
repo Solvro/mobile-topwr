@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "399902347530",
+    "project_id": "topwr-a2066",
+    "storage_bucket": "topwr-a2066.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:399902347530:android:54f57104b4011528db2af3",
+        "android_client_info": {
+          "package_name": "com.solvro.topwr"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "399902347530-u4rvugj7gmcan53gma2u0j6ii2uruh6n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAR3ysGBw3Nz5L85-rfgSGH_4RWlEUHDPM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "399902347530-u4rvugj7gmcan53gma2u0j6ii2uruh6n.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "399902347530-1pdnhl4c0fmk62pulk4vomp5jbd0ovcj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.solvro.ToPwr",
+                "app_store_id": "1644647395"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

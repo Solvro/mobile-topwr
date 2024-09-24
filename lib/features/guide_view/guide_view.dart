@@ -1,12 +1,15 @@
 import "package:auto_route/auto_route.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
+import "package:flutter_hooks/flutter_hooks.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:wiredash/wiredash.dart";
 
 import "../../../../widgets/my_error_widget.dart";
 import "../../config/ui_config.dart";
 import "../../config/wiredash.dart";
+import "../../firebase_init.dart";
+import "../../hooks/use_effect_on_init.dart";
 import "../../theme/app_theme.dart";
 import "../../utils/context_extensions.dart";
 import "../../widgets/search_box_app_bar.dart";
@@ -19,11 +22,15 @@ import "widgets/guide_grid.dart";
 import "widgets/guide_tile.dart";
 
 @RoutePage()
-class GuideView extends StatelessWidget {
+class GuideView extends HookWidget {
   const GuideView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    useEffectOnInit(() {
+      Future.microtask(requestFCMPermission);
+      return null;
+    });
     return ProviderScope(
       overrides: [
         searchGuideControllerProvider,
