@@ -137,7 +137,7 @@ class _RightColumn extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Text(
-              parking.numberOfPlaces,
+              parking.parsedNumberOfPlaces,
               style: isActive
                   ? context.iParkingTheme.title.withoutShadows
                   : context.iParkingTheme.title,
