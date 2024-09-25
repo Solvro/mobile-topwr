@@ -51,6 +51,12 @@ abstract class OpenStreetMapConfig {
       Platform.isIOS ? "com.solvro.ToPwr" : "com.solvro.topwr";
 }
 
+abstract class MapCacheConfig {
+  // in days
+  static const cacheDuration = 30;
+  static const cacheBoxName = "HiveMapCacheStore";
+}
+
 abstract class BuildingSearchConfig {
   static const buildingCodeSeperator = "-";
 }
