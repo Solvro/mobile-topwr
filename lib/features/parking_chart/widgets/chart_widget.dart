@@ -2,6 +2,7 @@ import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:fl_chart/fl_chart.dart";
 import "package:flutter/material.dart";
 
+import "../../../theme/app_theme.dart";
 import "../../parkings_view/models/parking.dart";
 import "../chart_elements/chart_border.dart";
 import "../chart_elements/chart_grid.dart";
@@ -39,6 +40,22 @@ class ChartWidget extends StatelessWidget {
               maxX: chartData.maxX,
               maxY: chartData.maxY(parking),
               minY: 0,
+              lineTouchData:
+                  LineTouchData(touchTooltipData: LineTouchTooltipData(
+                getTooltipItems: (touchedSpots) {
+                  return touchedSpots.map((touchedSpot) {
+                    final value =
+                        touchedSpot.y.toInt(); // Convert double to int
+                    return LineTooltipItem(
+                      value.toString(),
+                      TextStyle(
+                        color: context.colorTheme.whiteSoap,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    );
+                  }).toList();
+                },
+              ),),
             ),
           ),
         ),
