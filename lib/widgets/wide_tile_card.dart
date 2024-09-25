@@ -128,7 +128,7 @@ class _TitlesColumn extends StatelessWidget {
             secondSubtitleStyle: isActive
                 ? context.textTheme.bodyWhite
                 : context.textTheme.bodyBlue,
-            maxTotalLines: 5,
+            maxTotalLines: 4,
           ),
         );
       },
