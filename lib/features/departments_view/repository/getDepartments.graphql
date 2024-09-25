@@ -10,5 +10,4 @@ query GetDepartments {
     gradient_start
     gradient_end
   }
-  
 }

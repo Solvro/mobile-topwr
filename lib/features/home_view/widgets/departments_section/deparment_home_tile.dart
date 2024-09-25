@@ -7,10 +7,10 @@ import "../../../../widgets/tile_splash.dart";
 import "../../../departments_view/repository/departments_extensions.dart";
 import "../../../departments_view/repository/departments_repository.dart";
 
-class DepartmentBox extends StatelessWidget {
+class DepartmentHomeTile extends StatelessWidget {
   final Department department;
   final VoidCallback onClick;
-  const DepartmentBox(this.department, {super.key, required this.onClick});
+  const DepartmentHomeTile(this.department, {super.key, required this.onClick});
 
   @override
   Widget build(BuildContext context) {

@@ -9,7 +9,7 @@ import "../../../departments_view/repository/departments_repository.dart";
 import "../../../navigator/utils/navigation_commands.dart";
 import "../loading_widgets/scrollable_section_loading.dart";
 import "../paddings.dart";
-import "deparment_box.dart";
+import "deparment_home_tile.dart";
 
 class DepartmentsSection extends ConsumerWidget {
   const DepartmentsSection({super.key});
@@ -52,7 +52,7 @@ class _DepartmentsDataList extends ConsumerWidget {
       scrollDirection: Axis.horizontal,
       itemCount: departments.length,
       itemBuilder: (context, index) => MediumLeftPadding(
-        child: DepartmentBox(
+        child: DepartmentHomeTile(
           departments[index],
           onClick: () async =>
               ref.navigateDepartmentDetail(departments[index].id),

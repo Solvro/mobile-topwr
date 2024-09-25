@@ -98,6 +98,7 @@ type Scientific_Circles {
   shortDescription: String
   department(filter: Departments_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): Departments
   desc2: String
+  useCoverAsPreviewPhoto: Boolean
   tags(filter: Scientific_Circles_Tags_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): [Scientific_Circles_Tags]
   tags_func: count_functions
   links(filter: Scientific_Circles_Links_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): [Scientific_Circles_Links]
@@ -383,6 +384,7 @@ input Scientific_Circles_filter {
   shortDescription: string_filter_operators
   department: Departments_filter
   desc2: string_filter_operators
+  useCoverAsPreviewPhoto: boolean_filter_operators
   tags: Scientific_Circles_Tags_filter
   tags_func: count_function_filter_operators
   links: Scientific_Circles_Links_filter
@@ -624,6 +626,7 @@ type Scientific_Circles_aggregated_count {
   shortDescription: Int
   department: Int
   desc2: Int
+  useCoverAsPreviewPhoto: Int
   tags: Int
   links: Int
 }
@@ -652,6 +655,7 @@ type version_Scientific_Circles {
   shortDescription: String
   department: JSON
   desc2: String
+  useCoverAsPreviewPhoto: Boolean
   tags: JSON
   tags_func: count_functions
   links: JSON

@@ -80,7 +80,9 @@ class _ScienceClubsDataList extends ConsumerWidget {
           child: BigPreviewCard(
             title: sciClub.name,
             shortDescription: sciClub.shortDescription ?? "",
-            directusUrl: sciClub.logo?.filename_disk,
+            directusUrl: (sciClub.useCoverAsPreviewPhoto ?? false)
+                ? sciClub.cover?.filename_disk
+                : sciClub.logo?.filename_disk,
             onClick: () async => ref.navigateSciClubsDetail(sciClub.id),
           ),
         );

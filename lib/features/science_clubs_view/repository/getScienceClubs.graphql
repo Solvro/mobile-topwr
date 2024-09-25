@@ -20,5 +20,9 @@ query GetScienceClubs {
     source
     shortDescription
     type
+    cover {
+      filename_disk
+    }
+    useCoverAsPreviewPhoto
   }
 }
