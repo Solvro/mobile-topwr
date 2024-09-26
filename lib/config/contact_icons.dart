@@ -17,15 +17,15 @@ abstract class ContactIconsConfig {
   static final iconsOrder = {
     "maps": 1,
     "tel": 2,
-    "mailto:": 3,
-    "facebook": 5,
-    "instagram": 6,
-    "discord": 7,
-    "linkedin": 8,
-    "github": 9,
-    "https://x.com": 10,
-    "youtu": 11,
-    "tiktok": 12,
+    "linkedin": 3,
+    "facebook": 4,
+    "instagram": 5,
+    "discord": 6,
+    "mailto:": 7,
+    "github": 8,
+    "https://x.com": 9,
+    "youtu": 10,
+    "tiktok": 11,
   };
   static const defaultIconOrder = 2;
   static final defaultIcon = Assets.svg.contactIcons.web;

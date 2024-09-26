@@ -1,5 +1,6 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/foundation.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 
 import "../../../utils/determine_contact_icon.dart";
 
@@ -19,7 +20,10 @@ class MemberData {
   }) : links = _determineLinksIcons(socialLinks);
 
   static IList<ContactIconsModel> _determineLinksIcons(IList<String> urls) {
-    return urls.map((url) => ContactIconsModel(url: url)).toIList();
+    return urls
+        .map((url) => ContactIconsModel(url: url))
+        .toIList()
+        .sort((a, b) => a.order.compareTo(b.order));
   }
 
   @override
