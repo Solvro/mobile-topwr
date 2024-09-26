@@ -4,21 +4,21 @@
 
 ## 🇵🇱
 
-ToPWR to aplikacja mobilna stworzona przez studentów dla studentów Politechniki Wrocławskiej. Licznik dni do sesji, mapka kampusu, informacje o dziekanatach, kółkach naukowych i licznik wolnych miejsc parkingowych na żywo - wszystko, co trzeba w jednym miejscu. Life made easy. 🚀
+ToPWR to aplikacja mobilna stworzona przez studentów, dla studentów Politechniki Wrocławskiej. Licznik dni do sesji, mapka kampusu, informacje o dziekanatach, kołach naukowych i licznik wolnych miejsc parkingowych na żywo – wszystko, co trzeba, w jednym miejscu. Life made easy. 🚀
 
-ToPWR to efekt naszych doświadczeń i pomysłów, którymi chcielibyśmy się podzielić z innymi studentami. Bo przecież każdy z nas zaczynał od zera, więc dlaczego by nie stworzyć czegoś, co ułatwiłoby życie na uczelni? Zależało nam, żeby każdy student miał w kieszeni takiego kumpla, co go wspiera i pomaga ogarnąć to wszystko. Bo studia to nie tylko nauka, to też odkrywanie, poznawanie, czasem trochę gubienie się i to jest w porządku.
+ToPWR to efekt naszych doświadczeń i pomysłów, którymi chcielibyśmy się podzielić z innymi studentami. Bo przecież każdy z nas zaczynał od zera, więc dlaczego nie stworzyć czegoś, co ułatwiłoby życie na uczelni? Zależało nam, aby każdy student miał w kieszeni takiego kumpla, który go wspiera i pomaga ogarnąć to wszystko. Bo studia to nie tylko nauka, to także odkrywanie, poznawanie, czasem trochę gubienie się – i to jest w porządku.
 
 ## 🇬🇧
 
-ToPWR is a mobile application created by students for students of Wrocław University of Science and Technology. A countdown to exams, a campus map, information about dean's offices, student science clubs and live free parking places counter – everything you need in one place. Life made easy. 🚀
+ToPWR is a mobile application created by the students, for the students of Wrocław University of Science and Technology. A countdown to exams, a campus map, information about dean's offices, student science clubs, and a live counter for available parking spots – everything you need in one place. Life made easy. 🚀
 
-ToPWR is the result of our experiences and ideas that we want to share with other students. After all, each of us started from scratch, so why not create something that would make university life easier? We wanted every student to have a friend in their pocket, supporting and helping them manage everything. Because university is not just about studying; it's also about discovering, meeting new people, sometimes getting a little lost, and that's okay.
+ToPWR is the result of our experiences and ideas, which we want to share with other students. After all, each of us started from scratch, so why not create something that makes university life easier? We wanted every student to have a companion in their pocket, supporting and helping them manage everything. Because uni life is not just about studying; it's also about discovering, meeting new people, sometimes getting a little lost, and that's okay.
 
-## Projects history
+## Project history
 
-It was initially created by KN Solvro members in native mobile technologies (Android & iOS) and Strapi backend back in 2022 (v0.5.1 was released in 3.10.2022).
+The app was initially created by KN Solvro members using native mobile technologies (Android & iOS) and a Strapi backend in 2022 (v0.5.1 was released on October 3, 2022).
 
-Now we're redesigning and remaking it with fascinating new features in Flutter and Directus CMS, and we're coming close to our first release 🚀. Stay tuned 😎.
+Now, we're redesigning and remaking it with exciting new features using Flutter and Directus CMS, and we’re nearing our first release 🚀. Stay tuned 😎.
 
 ## Current team
 
@@ -27,10 +27,12 @@ Now we're redesigning and remaking it with fascinating new features in Flutter a
 - [@mikolaj-jalocha](https://github.com/mikolaj-jalocha) - Flutter Developer
 - [@gry-mar](https://github.com/gry-mar) - Flutter Developer, UI/UX Designer
 - [@kamilfedio](https://github.com/kamilfedio) - Flutter Developer
+- [@TTomaszPWR](https://github.com/TTomaszPWR) - Flutter Developer
+- [@wkrzos](https://github.com/wkrzos) - Junior Project Manager
 
-We're using many UI/UX/graphic designs and assets made by [@domkakromka](https://github.com/domkakromka), [@AniaM727](https://github.com/AniaM727)
+We're using many UI/UX designs and graphic assets created by [@domkakromka](https://github.com/domkakromka), [@AniaM727](https://github.com/AniaM727)
 
-Read more at: https://solvro.pwr.edu.pl/portfolio/to-pwr
+Read more at: https://solvro.pwr.edu.pl/portfolio/to-pwr/.
 
 ## Technologies used
 
