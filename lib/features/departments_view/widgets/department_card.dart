@@ -35,10 +35,13 @@ class DepartmentCard extends StatelessWidget {
             dimension: WideTileCardConfig.imageSize,
             child: Opacity(
               opacity: .5,
-              child: OptimizedDirectusImage(
-                department.logo?.filename_disk,
-                boxFit: BoxFit.scaleDown,
-                noShimmeringLoading: true,
+              child: Padding(
+                padding: const EdgeInsets.all(DepartmentsConfig.logoMicroPadding),
+                child: OptimizedDirectusImage(
+                  department.logo?.filename_disk,
+                  boxFit: BoxFit.scaleDown,
+                  noShimmeringLoading: true,
+                ),
               ),
             ),
           ),
