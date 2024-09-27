@@ -19,7 +19,10 @@ class MemberData {
   }) : links = _determineLinksIcons(socialLinks);
 
   static IList<ContactIconsModel> _determineLinksIcons(IList<String> urls) {
-    return urls.map((url) => ContactIconsModel(url: url)).toIList();
+    return urls
+        .map((url) => ContactIconsModel(url: url, isSciClub: false))
+        .toIList()
+        .sort((a, b) => a.order.compareTo(b.order));
   }
 
   @override

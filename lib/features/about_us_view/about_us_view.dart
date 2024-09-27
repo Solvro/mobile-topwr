@@ -65,13 +65,13 @@ class _AboutUsView extends ConsumerWidget {
             ),
           ],
         ),
-      _ => const _AboustUsLoading(),
+      _ => const _AboutUsLoading(),
     };
   }
 }
 
-class _AboustUsLoading extends StatelessWidget {
-  const _AboustUsLoading();
+class _AboutUsLoading extends StatelessWidget {
+  const _AboutUsLoading();
 
   @override
   Widget build(BuildContext context) {

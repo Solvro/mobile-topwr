@@ -28,6 +28,7 @@ class AboutUsDetails {
         .map(
           (e) => ContactIconsModel(url: e.url),
         )
-        .toIList();
+        .toIList()
+        .sort((a, b) => a.order.compareTo(b.order));
   }
 }

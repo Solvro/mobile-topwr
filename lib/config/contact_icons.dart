@@ -14,7 +14,7 @@ abstract class ContactIconsConfig {
     "tiktok": Assets.svg.contactIcons.tiktok,
     "discord": Assets.svg.contactIcons.discord,
   };
-  static final iconsOrder = {
+  static final iconsOrderAtSciClubs = {
     "maps": 1,
     "tel": 2,
     "mailto:": 3,
@@ -27,6 +27,20 @@ abstract class ContactIconsConfig {
     "youtu": 11,
     "tiktok": 12,
   };
-  static const defaultIconOrder = 2;
+  static final iconsOrderAtAboutUs = {
+    "github": 1,
+    "linkedin": 2,
+    "facebook": 4,
+    "mailto:": 5,
+    "instagram": 6,
+    "https://x.com": 7,
+    "discord": 8,
+    "youtu": 9,
+    "tiktok": 10,
+    "maps": 11,
+    "tel": 12,
+  };
+  static const defaultIconOrderAtSciClubs = 2;
+  static const defaultIconOrderAtAboutUs = 3;
   static final defaultIcon = Assets.svg.contactIcons.web;
 }

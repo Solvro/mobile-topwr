@@ -9,12 +9,16 @@ class ContactIconsModel {
   final String? text;
   final String? url;
   final int order;
+  final bool isSciClub;
 
   ContactIconsModel({
     String? text,
     this.url,
+    this.isSciClub = true,
   })  : icon = url.determineIcon(),
-        order = url.determineIconOrder(),
+        order = isSciClub
+            ? url.determineIconOrderForSciClubs()
+            : url.determineIconOrderForAboutUs(),
         text = text ?? url;
 }
 
@@ -30,14 +34,25 @@ extension IconDeterminerX on String? {
         : ContactIconsConfig.defaultIcon;
   }
 
-  int determineIconOrder() {
+  int determineIconOrderForSciClubs() {
     return this != null
-        ? ContactIconsConfig.iconsOrder.entries
+        ? ContactIconsConfig.iconsOrderAtSciClubs.entries
                 .firstWhereOrNull(
                   (e) => this!.contains(e.key),
                 )
                 ?.value ??
-            ContactIconsConfig.defaultIconOrder
-        : ContactIconsConfig.defaultIconOrder;
+            ContactIconsConfig.defaultIconOrderAtSciClubs
+        : ContactIconsConfig.defaultIconOrderAtSciClubs;
+  }
+
+  int determineIconOrderForAboutUs() {
+    return this != null
+        ? ContactIconsConfig.iconsOrderAtAboutUs.entries
+                .firstWhereOrNull(
+                  (e) => this!.contains(e.key),
+                )
+                ?.value ??
+            ContactIconsConfig.defaultIconOrderAtAboutUs
+        : ContactIconsConfig.defaultIconOrderAtAboutUs;
   }
 }
