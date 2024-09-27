@@ -40,12 +40,7 @@ class _NewsList extends ConsumerWidget {
     final state = ref.watch(guideRepositoryProvider);
     return switch (state) {
       AsyncError(:final error) => MyErrorWidget(error),
-      AsyncValue(:final IList<GuidePost> value) => Padding(
-          padding: const EdgeInsets.only(
-            left: HomeViewConfig.paddingSmall,
-            right: HomeViewConfig.paddingSmall,
-            top: HomeViewConfig.paddingMedium,
-          ),
+      AsyncValue(:final IList<GuidePost> value) => SmallHorizontalPadding(
           child: SizedBox(
             height: BigPreviewCardConfig.cardHeight,
             child: _NewsDataList(value),
