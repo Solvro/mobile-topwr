@@ -5,6 +5,7 @@ import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../splash_screen/widgets/flutter_splash_screen.dart";
+import "../utils/custom_license_dialog.dart";
 
 class AppVersionTile extends StatelessWidget {
   const AppVersionTile({super.key});
@@ -31,13 +32,18 @@ class AppVersionTile extends StatelessWidget {
             horizontal: WideTileCardConfig.basePadding,
           ),
           horizontalTitleGap: 8,
-          onTap: () {
+          onTap: () async {
             // TODO(simon-the-shark): customize [LicensePage] theme
-            showAboutDialog(
+            await showCustomLicenseDialog(
               context: context,
-              applicationIcon: const SizedBox.square(
-                dimension: 20,
-                child: FlutterSplashScreen(),
+              applicationIcon: Container(
+                width: 50,
+                height: 50,
+                clipBehavior: Clip.antiAlias,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: const FlutterSplashScreen(),
               ),
               applicationName: MyAppConfig.title,
               applicationVersion: snapshot.data?.version,
