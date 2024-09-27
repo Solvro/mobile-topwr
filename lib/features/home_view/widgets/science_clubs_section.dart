@@ -36,12 +36,7 @@ class _ScienceClubsList extends ConsumerWidget {
     final state = ref.watch(scienceClubsRepositoryProvider);
     return switch (state) {
       AsyncError(:final error) => MyErrorWidget(error),
-      AsyncValue(:final IList<ScienceClub> value) => Container(
-          padding: const EdgeInsets.only(
-            left: HomeViewConfig.paddingSmall,
-            right: HomeViewConfig.paddingSmall,
-            top: HomeViewConfig.paddingMedium,
-          ),
+      AsyncValue(:final IList<ScienceClub> value) => SmallHorizontalPadding(
           child: SizedBox(
             height: BigPreviewCardConfig.cardHeight,
             child: _ScienceClubsDataList(value),
