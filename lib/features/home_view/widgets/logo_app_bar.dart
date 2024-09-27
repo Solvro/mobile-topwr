@@ -5,7 +5,7 @@ import "../../../gen/assets.gen.dart";
 import "../../../theme/app_theme.dart";
 
 class LogoAppBar extends AppBar {
-  /// AppBar with ToPwr colorful logo
+  /// AppBar with ToPWR colorful logo
   LogoAppBar(
     BuildContext context, {
     super.key,
@@ -20,7 +20,7 @@ class LogoAppBar extends AppBar {
 }
 
 class AppBarLogo extends StatelessWidget {
-  /// ToPwr Appbar svg colorful themed logo
+  /// ToPWR Appbar svg colorful themed logo
   const AppBarLogo({super.key});
 
   static Future<void> precacheImageIfAbsent() async {

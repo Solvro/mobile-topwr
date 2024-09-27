@@ -4,7 +4,7 @@ import "../features/parking_chart/utils/range_hour_points.dart";
 import "../theme/hex_color.dart";
 
 abstract class MyAppConfig {
-  static const title = "ToPwr";
+  static const title = "ToPWR";
 }
 
 abstract class SplashScreenConfig {
