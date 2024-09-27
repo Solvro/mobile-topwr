@@ -63,9 +63,23 @@ class _NewsList extends ConsumerWidget {
 }
 
 class _NewsDataList extends ConsumerWidget {
-  const _NewsDataList(this.value);
+  const _NewsDataList(this.posts);
 
-  final IList<GuidePost> value;
+  final IList<GuidePost> posts;
+
+  Widget _buildNewsCard(GuidePost post, WidgetRef ref) {
+    return BigPreviewCard(
+      title: post.name ?? "",
+      shortDescription: post.short_description ?? "",
+      directusUrl: post.cover?.filename_disk,
+      onClick: () {
+        unawaited(
+          ref.navigateGuideDetail(post.id),
+        );
+      },
+      boxFit: BoxFit.cover,
+    );
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -73,19 +87,20 @@ class _NewsDataList extends ConsumerWidget {
       cacheExtent: 4,
       shrinkWrap: true,
       scrollDirection: Axis.horizontal,
-      itemCount: value.length,
+      itemCount: posts.length,
       itemBuilder: (BuildContext context, int index) {
-        return MediumLeftPadding(
-          child: BigPreviewCard(
-            title: value[index].name ?? "",
-            shortDescription: value[index].short_description ?? "",
-            directusUrl: value[index].cover?.filename_disk,
-            onClick: () {
-              unawaited(ref.navigateGuideDetail(value[index].id));
-            },
-            boxFit: BoxFit.cover,
-          ),
-        );
+        final post = posts[index];
+        final postCard = _buildNewsCard(post, ref);
+
+        if (index != posts.length - 1) {
+          return MediumLeftPadding(
+            child: postCard,
+          );
+        } else {
+          return MediumHorizontalPadding(
+            child: postCard,
+          );
+        }
       },
     );
   }
