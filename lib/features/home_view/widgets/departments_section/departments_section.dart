@@ -46,18 +46,32 @@ class _DepartmentsDataList extends ConsumerWidget {
 
   final IList<Department> departments;
 
+  Widget _buildDepartmentCard(Department department, WidgetRef ref) {
+    return DepartmentHomeTile(
+      department,
+      onClick: () async => ref.navigateDepartmentDetail(department.id),
+    );
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return ListView.builder(
       scrollDirection: Axis.horizontal,
       itemCount: departments.length,
-      itemBuilder: (context, index) => MediumLeftPadding(
-        child: DepartmentHomeTile(
-          departments[index],
-          onClick: () async =>
-              ref.navigateDepartmentDetail(departments[index].id),
-        ),
-      ),
+      itemBuilder: (context, index) {
+        final department = departments[index];
+        final departmentCard = _buildDepartmentCard(department, ref);
+
+        if (index != departments.length - 1) {
+          return MediumLeftPadding(
+            child: departmentCard,
+          );
+        } else {
+          return MediumHorizontalPadding(
+            child: departmentCard,
+          );
+        }
+      },
     );
   }
 }
