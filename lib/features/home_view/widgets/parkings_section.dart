@@ -56,6 +56,16 @@ class _DataListParkingsTiles extends ConsumerWidget {
 
   final IList<Parking> parkings;
 
+  Widget _buildParkingCard(Parking parking, WidgetRef ref) {
+    return BuildingCard(
+      buildingName: parking.symbol,
+      directusImageUrl: parking.iParkPhotoUrl,
+      onTap: () async {
+        unawaited(ref.navigateParking(parking));
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return ListView.builder(
@@ -63,15 +73,15 @@ class _DataListParkingsTiles extends ConsumerWidget {
       itemCount: parkings.length,
       itemBuilder: (context, index) {
         final parking = parkings[index];
-        return MediumLeftPadding(
-          child: BuildingCard(
-            buildingName: parking.symbol,
-            directusImageUrl: parking.iParkPhotoUrl,
-            onTap: () async {
-              unawaited(ref.navigateParking(parking));
-            },
-          ),
-        );
+        final parkingCard = _buildParkingCard(parking, ref);
+
+        if (index != parkings.length - 1) {
+          return MediumLeftPadding(
+            child: parkingCard,
+          );
+        } else {
+          return MediumHorizontalPadding(child: parkingCard);
+        }
       },
     );
   }
