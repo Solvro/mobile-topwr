@@ -98,5 +98,6 @@
   "until_the_session_ends": "do zakończenia sesji",
   "app_info": "(informacje o aplikacji)",
   "show_license": "Wyświelt licencję",
-  "close": "Zamknij"
+  "close": "Zamknij",
+  "no_version": "Brak wersji"
 }

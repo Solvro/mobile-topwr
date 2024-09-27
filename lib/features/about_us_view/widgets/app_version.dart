@@ -46,7 +46,8 @@ class AppVersionTile extends StatelessWidget {
                 child: const FlutterSplashScreen(),
               ),
               applicationName: MyAppConfig.title,
-              applicationVersion: snapshot.data?.version,
+              applicationVersion:
+                  snapshot.data?.version ?? context.localize.no_version,
               applicationLegalese:
                   "\u{a9} 2024 Koło Naukowe Solvro, Politechnika Wrocławska",
             );

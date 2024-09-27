@@ -138,6 +138,11 @@ abstract class AboutUsConfig {
   static const borderRadius = 8.0;
   static const iconPadding = 10.0;
   static const photoSize = 92.0;
+
+  static const dialogHorizontalPadding = 14.0;
+  static const dialogVerticalPadding = 20.0;
+  static const dialogButtonFontSize = 16.0;
+  static const dialogTitleFontSize = 24.0;
 }
 
 abstract class GuideDetailViewConfig {
