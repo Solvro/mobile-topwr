@@ -36,7 +36,8 @@ class DepartmentCard extends StatelessWidget {
             child: Opacity(
               opacity: .5,
               child: Padding(
-                padding: const EdgeInsets.all(DepartmentsConfig.logoMicroPadding),
+                padding:
+                    const EdgeInsets.all(DepartmentsConfig.logoMicroPadding),
                 child: OptimizedDirectusImage(
                   department.logo?.filename_disk,
                   boxFit: BoxFit.scaleDown,
