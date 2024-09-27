@@ -80,7 +80,9 @@ class _DataListParkingsTiles extends ConsumerWidget {
             child: parkingCard,
           );
         } else {
-          return MediumHorizontalPadding(child: parkingCard);
+          return MediumHorizontalPadding(
+            child: parkingCard,
+          );
         }
       },
     );
