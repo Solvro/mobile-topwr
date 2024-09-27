@@ -32,7 +32,7 @@ class HomeView extends StatelessWidget {
       appBar: LogoAppBar(context),
       body: KeepAliveHomeViewProviders(
         child: ListView.separated(
-          padding: const EdgeInsets.only(bottom: 48),
+          padding: const EdgeInsets.only(bottom: 24),
           itemBuilder: (context, index) => sections[index],
           separatorBuilder: (context, index) =>
               const SizedBox(height: HomeViewConfig.paddingMedium),
