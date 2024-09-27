@@ -23,6 +23,7 @@ abstract class DepartmentsConfig {
   static const defaultColorSecond = "#999898";
 
   static const listSeparatorSize = 16.0;
+  static const logoMicroPadding = 10.0;
 
   static const departmentsViewGridDelegate =
       SliverGridDelegateWithMaxCrossAxisExtent(
