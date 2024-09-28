@@ -46,13 +46,6 @@ class _DepartmentsDataList extends ConsumerWidget {
 
   final IList<Department> departments;
 
-  Widget _buildDepartmentCard(Department department, WidgetRef ref) {
-    return DepartmentHomeTile(
-      department,
-      onClick: () async => ref.navigateDepartmentDetail(department.id),
-    );
-  }
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return ListView.builder(
@@ -60,7 +53,8 @@ class _DepartmentsDataList extends ConsumerWidget {
       itemCount: departments.length,
       itemBuilder: (context, index) {
         final department = departments[index];
-        final departmentCard = _buildDepartmentCard(department, ref);
+        final departmentCard =
+            _BuildDepartmentCard(department: department, ref: ref);
 
         if (index != departments.length - 1) {
           return MediumLeftPadding(
@@ -72,6 +66,24 @@ class _DepartmentsDataList extends ConsumerWidget {
           );
         }
       },
+    );
+  }
+}
+
+class _BuildDepartmentCard extends StatelessWidget {
+  const _BuildDepartmentCard({
+    required this.department,
+    required this.ref,
+  });
+
+  final Department department;
+  final WidgetRef ref;
+
+  @override
+  Widget build(BuildContext context) {
+    return DepartmentHomeTile(
+      department,
+      onClick: () async => ref.navigateDepartmentDetail(department.id),
     );
   }
 }

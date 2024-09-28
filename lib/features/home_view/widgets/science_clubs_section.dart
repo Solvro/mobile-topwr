@@ -62,17 +62,6 @@ class _ScienceClubsDataList extends ConsumerWidget {
 
   final IList<ScienceClub> scienceClubs;
 
-  Widget _buildScienceClubCard(ScienceClub sciClub, WidgetRef ref) {
-    return BigPreviewCard(
-      title: sciClub.name,
-      shortDescription: sciClub.shortDescription ?? "",
-      directusUrl: (sciClub.useCoverAsPreviewPhoto ?? false)
-          ? sciClub.cover?.filename_disk
-          : sciClub.logo?.filename_disk,
-      onClick: () async => ref.navigateSciClubsDetail(sciClub.id),
-    );
-  }
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return ListView.builder(
@@ -82,7 +71,7 @@ class _ScienceClubsDataList extends ConsumerWidget {
       itemCount: scienceClubs.length,
       itemBuilder: (BuildContext context, int index) {
         final sciClub = scienceClubs[index];
-        final sciClubCard = _buildScienceClubCard(sciClub, ref);
+        final sciClubCard = _BuildScienceClubCard(sciClub: sciClub, ref: ref);
 
         if (index != scienceClubs.length - 1) {
           return MediumLeftPadding(
@@ -94,6 +83,28 @@ class _ScienceClubsDataList extends ConsumerWidget {
           );
         }
       },
+    );
+  }
+}
+
+class _BuildScienceClubCard extends StatelessWidget {
+  const _BuildScienceClubCard({
+    required this.sciClub,
+    required this.ref,
+  });
+
+  final ScienceClub sciClub;
+  final WidgetRef ref;
+
+  @override
+  Widget build(BuildContext context) {
+    return BigPreviewCard(
+      title: sciClub.name,
+      shortDescription: sciClub.shortDescription ?? "",
+      directusUrl: (sciClub.useCoverAsPreviewPhoto ?? false)
+          ? sciClub.cover?.filename_disk
+          : sciClub.logo?.filename_disk,
+      onClick: () async => ref.navigateSciClubsDetail(sciClub.id),
     );
   }
 }

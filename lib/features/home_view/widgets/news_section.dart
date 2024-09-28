@@ -67,20 +67,6 @@ class _NewsDataList extends ConsumerWidget {
 
   final IList<GuidePost> posts;
 
-  Widget _buildNewsCard(GuidePost post, WidgetRef ref) {
-    return BigPreviewCard(
-      title: post.name ?? "",
-      shortDescription: post.short_description ?? "",
-      directusUrl: post.cover?.filename_disk,
-      onClick: () {
-        unawaited(
-          ref.navigateGuideDetail(post.id),
-        );
-      },
-      boxFit: BoxFit.cover,
-    );
-  }
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return ListView.builder(
@@ -90,7 +76,7 @@ class _NewsDataList extends ConsumerWidget {
       itemCount: posts.length,
       itemBuilder: (BuildContext context, int index) {
         final post = posts[index];
-        final postCard = _buildNewsCard(post, ref);
+        final postCard = _BuildNewsCard(post: post, ref: ref);
 
         if (index != posts.length - 1) {
           return MediumLeftPadding(
@@ -102,6 +88,31 @@ class _NewsDataList extends ConsumerWidget {
           );
         }
       },
+    );
+  }
+}
+
+class _BuildNewsCard extends StatelessWidget {
+  const _BuildNewsCard({
+    required this.post,
+    required this.ref,
+  });
+
+  final GuidePost post;
+  final WidgetRef ref;
+
+  @override
+  Widget build(BuildContext context) {
+    return BigPreviewCard(
+      title: post.name ?? "",
+      shortDescription: post.short_description ?? "",
+      directusUrl: post.cover?.filename_disk,
+      onClick: () {
+        unawaited(
+          ref.navigateGuideDetail(post.id),
+        );
+      },
+      boxFit: BoxFit.cover,
     );
   }
 }

@@ -54,14 +54,6 @@ class _DataListBuildingsTiles extends ConsumerWidget {
 
   final IList<BuildingModel> buildings;
 
-  Widget _buildMapItemCard(BuildingModel mapItem, WidgetRef ref) {
-    return BuildingCard(
-      buildingName: mapItem.name,
-      directusImageUrl: mapItem.cover?.filename_disk,
-      onTap: () async => ref.navigateBuilding(mapItem),
-    );
-  }
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return ListView.builder(
@@ -69,7 +61,7 @@ class _DataListBuildingsTiles extends ConsumerWidget {
       itemCount: buildings.length,
       itemBuilder: (context, index) {
         final mapItem = buildings[index];
-        final mapItemCard = _buildMapItemCard(mapItem, ref);
+        final mapItemCard = _BuildMapItemCard(mapItem: mapItem, ref: ref);
 
         if (index != buildings.length - 1) {
           return MediumLeftPadding(
@@ -81,6 +73,25 @@ class _DataListBuildingsTiles extends ConsumerWidget {
           );
         }
       },
+    );
+  }
+}
+
+class _BuildMapItemCard extends StatelessWidget {
+  const _BuildMapItemCard({
+    required this.mapItem,
+    required this.ref,
+  });
+
+  final BuildingModel mapItem;
+  final WidgetRef ref;
+
+  @override
+  Widget build(BuildContext context) {
+    return BuildingCard(
+      buildingName: mapItem.name,
+      directusImageUrl: mapItem.cover?.filename_disk,
+      onTap: () async => ref.navigateBuilding(mapItem),
     );
   }
 }
