@@ -9,14 +9,14 @@ class ContactIconsModel {
   final String? text;
   final String? url;
   final int order;
-  final bool isSciClub;
+  final bool isTeamMember;
 
   ContactIconsModel({
     String? text,
     this.url,
-    this.isSciClub = true,
+    this.isTeamMember = false,
   })  : icon = url.determineIcon(),
-        order = isSciClub
+        order = !isTeamMember
             ? url.determineIconOrderForSciClubs()
             : url.determineIconOrderForAboutUs(),
         text = text ?? url;
