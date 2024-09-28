@@ -23,6 +23,7 @@ class MyTooltip extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(MyTooltipConfig.borderRadius),
         color: context.colorTheme.whiteSoap,
+        boxShadow: MyTooltipConfig.defaultActiveShadows,
       ),
       preferBelow: preferBelow,
       child: child,
