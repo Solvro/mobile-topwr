@@ -4,6 +4,7 @@ import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
 import "../../../theme/iparking_theme.dart";
 import "../../../utils/context_extensions.dart";
+import "../../../widgets/my_tooltip.dart";
 import "../../parking_chart/parking_chart.dart";
 import "../models/parking.dart";
 import "parking_favourite.dart";
@@ -136,11 +137,14 @@ class _RightColumn extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Text(
-              parking.parsedNumberOfPlaces,
-              style: isActive
-                  ? context.iParkingTheme.title.withoutShadows
-                  : context.iParkingTheme.title,
+            MyTooltip(
+              message: context.localize.places_currently_available,
+              child: Text(
+                parking.parsedNumberOfPlaces,
+                style: isActive
+                    ? context.iParkingTheme.title.withoutShadows
+                    : context.iParkingTheme.title,
+              ),
             ),
             const SizedBox(
               width: 4,

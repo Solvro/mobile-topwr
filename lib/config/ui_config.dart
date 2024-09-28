@@ -165,3 +165,7 @@ abstract class FilterConfig {
 abstract class LottieAnimationConfig {
   static const frameRate = 120.0;
 }
+
+abstract class MyTooltipConfig {
+  static const borderRadius = 8.0;
+}
