@@ -61,14 +61,37 @@ class _DataListBuildingsTiles extends ConsumerWidget {
       itemCount: buildings.length,
       itemBuilder: (context, index) {
         final mapItem = buildings[index];
-        return MediumLeftPadding(
-          child: BuildingCard(
-            buildingName: mapItem.name,
-            directusImageUrl: mapItem.cover?.filename_disk,
-            onTap: () async => ref.navigateBuilding(mapItem),
-          ),
-        );
+        final mapItemCard = _BuildMapItemCard(mapItem: mapItem, ref: ref);
+
+        if (index != buildings.length - 1) {
+          return MediumLeftPadding(
+            child: mapItemCard,
+          );
+        } else {
+          return MediumHorizontalPadding(
+            child: mapItemCard,
+          );
+        }
       },
+    );
+  }
+}
+
+class _BuildMapItemCard extends StatelessWidget {
+  const _BuildMapItemCard({
+    required this.mapItem,
+    required this.ref,
+  });
+
+  final BuildingModel mapItem;
+  final WidgetRef ref;
+
+  @override
+  Widget build(BuildContext context) {
+    return BuildingCard(
+      buildingName: mapItem.name,
+      directusImageUrl: mapItem.cover?.filename_disk,
+      onTap: () async => ref.navigateBuilding(mapItem),
     );
   }
 }

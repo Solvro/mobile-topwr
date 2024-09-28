@@ -71,17 +71,40 @@ class _ScienceClubsDataList extends ConsumerWidget {
       itemCount: scienceClubs.length,
       itemBuilder: (BuildContext context, int index) {
         final sciClub = scienceClubs[index];
-        return MediumLeftPadding(
-          child: BigPreviewCard(
-            title: sciClub.name,
-            shortDescription: sciClub.shortDescription ?? "",
-            directusUrl: (sciClub.useCoverAsPreviewPhoto ?? false)
-                ? sciClub.cover?.filename_disk
-                : sciClub.logo?.filename_disk,
-            onClick: () async => ref.navigateSciClubsDetail(sciClub.id),
-          ),
-        );
+        final sciClubCard = _BuildScienceClubCard(sciClub: sciClub, ref: ref);
+
+        if (index != scienceClubs.length - 1) {
+          return MediumLeftPadding(
+            child: sciClubCard,
+          );
+        } else {
+          return MediumHorizontalPadding(
+            child: sciClubCard,
+          );
+        }
       },
+    );
+  }
+}
+
+class _BuildScienceClubCard extends StatelessWidget {
+  const _BuildScienceClubCard({
+    required this.sciClub,
+    required this.ref,
+  });
+
+  final ScienceClub sciClub;
+  final WidgetRef ref;
+
+  @override
+  Widget build(BuildContext context) {
+    return BigPreviewCard(
+      title: sciClub.name,
+      shortDescription: sciClub.shortDescription ?? "",
+      directusUrl: (sciClub.useCoverAsPreviewPhoto ?? false)
+          ? sciClub.cover?.filename_disk
+          : sciClub.logo?.filename_disk,
+      onClick: () async => ref.navigateSciClubsDetail(sciClub.id),
     );
   }
 }
