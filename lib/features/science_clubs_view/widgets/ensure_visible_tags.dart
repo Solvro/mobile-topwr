@@ -30,28 +30,42 @@ class EnsureVisibleTags extends DualTextMaxLines {
     }
     return LayoutBuilder(
       builder: (context, constraints) {
-        final doubleText = DualTextSpan(
-          title,
-          titleStyle,
-          subtitle,
-          subtitleStyle,
-          spacing,
+        final titleSpan = TextSpan(
+          text: title,
+          style: titleStyle,
         );
-
-        final doubleLines = min(
-          secondSubtitle == null ? maxTotalLines : maxTotalLines - 1,
-          doubleText.calculateLines(constraints.maxWidth),
+        final maxForTitleLines = maxTotalLines -
+            (subtitle == null ? 0 : 1) -
+            (secondSubtitle == null ? 0 : 1);
+        final titleLines = min(
+          maxForTitleLines,
+          titleSpan.calculateLines(constraints.maxWidth),
         );
-        final thirdLines = maxTotalLines - doubleLines;
+        final subtitleLines = subtitle == null
+            ? 0
+            : secondSubtitle == "" || secondSubtitle == null
+                ? maxTotalLines - titleLines
+                : 1;
+        final thirdLines = maxTotalLines - titleLines - subtitleLines;
 
         return Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             AutoSizeText.rich(
-              doubleText,
-              maxLines: doubleLines,
+              titleSpan,
+              maxLines: titleLines,
               overflow: TextOverflow.ellipsis,
             ),
+            if (subtitle != null) SizedBox(height: spacing),
+            if (subtitle != null)
+              AutoSizeText.rich(
+                TextSpan(
+                  text: subtitle,
+                  style: subtitleStyle,
+                ),
+                maxLines: subtitleLines,
+                overflow: TextOverflow.ellipsis,
+              ),
             SizedBox(height: spacing),
             if (thirdLines > 0)
               RichText(
