@@ -63,15 +63,38 @@ class _DataListParkingsTiles extends ConsumerWidget {
       itemCount: parkings.length,
       itemBuilder: (context, index) {
         final parking = parkings[index];
-        return MediumLeftPadding(
-          child: BuildingCard(
-            buildingName: parking.symbol,
-            directusImageUrl: parking.iParkPhotoUrl,
-            onTap: () async {
-              unawaited(ref.navigateParking(parking));
-            },
-          ),
-        );
+        final parkingCard = _BuildParkingCard(parking: parking, ref: ref);
+
+        if (index != parkings.length - 1) {
+          return MediumLeftPadding(
+            child: parkingCard,
+          );
+        } else {
+          return MediumHorizontalPadding(
+            child: parkingCard,
+          );
+        }
+      },
+    );
+  }
+}
+
+class _BuildParkingCard extends StatelessWidget {
+  const _BuildParkingCard({
+    required this.parking,
+    required this.ref,
+  });
+
+  final Parking parking;
+  final WidgetRef ref;
+
+  @override
+  Widget build(BuildContext context) {
+    return BuildingCard(
+      buildingName: parking.symbol,
+      directusImageUrl: parking.iParkPhotoUrl,
+      onTap: () async {
+        unawaited(ref.navigateParking(parking));
       },
     );
   }

@@ -15,6 +15,17 @@ class SmallHorizontalPadding extends Padding {
 class MediumLeftPadding extends Padding {
   const MediumLeftPadding({super.key, super.child})
       : super(
-          padding: const EdgeInsets.only(left: HomeViewConfig.paddingMedium),
+          padding: const EdgeInsets.only(
+            left: HomeViewConfig.paddingMedium,
+          ),
+        );
+}
+
+class MediumHorizontalPadding extends Padding {
+  const MediumHorizontalPadding({super.key, super.child})
+      : super(
+          padding: const EdgeInsets.symmetric(
+            horizontal: HomeViewConfig.paddingMedium,
+          ),
         );
 }

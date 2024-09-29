@@ -51,13 +51,39 @@ class _DepartmentsDataList extends ConsumerWidget {
     return ListView.builder(
       scrollDirection: Axis.horizontal,
       itemCount: departments.length,
-      itemBuilder: (context, index) => MediumLeftPadding(
-        child: DepartmentHomeTile(
-          departments[index],
-          onClick: () async =>
-              ref.navigateDepartmentDetail(departments[index].id),
-        ),
-      ),
+      itemBuilder: (context, index) {
+        final department = departments[index];
+        final departmentCard =
+            _BuildDepartmentCard(department: department, ref: ref);
+
+        if (index != departments.length - 1) {
+          return MediumLeftPadding(
+            child: departmentCard,
+          );
+        } else {
+          return MediumHorizontalPadding(
+            child: departmentCard,
+          );
+        }
+      },
+    );
+  }
+}
+
+class _BuildDepartmentCard extends StatelessWidget {
+  const _BuildDepartmentCard({
+    required this.department,
+    required this.ref,
+  });
+
+  final Department department;
+  final WidgetRef ref;
+
+  @override
+  Widget build(BuildContext context) {
+    return DepartmentHomeTile(
+      department,
+      onClick: () async => ref.navigateDepartmentDetail(department.id),
     );
   }
 }

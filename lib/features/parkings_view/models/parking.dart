@@ -42,6 +42,9 @@ class Parking with _$Parking implements GoogleNavigable {
     return ParkingsConfig.rootUrl + photo.trim();
   }
 
+  String get parsedNumberOfPlaces =>
+      numberOfPlaces.startsWith("-") ? "0" : numberOfPlaces;
+
   double get latitude => double.tryParse(geoLat) ?? 0;
   double get longitude => double.tryParse(geoLan) ?? 0;
 

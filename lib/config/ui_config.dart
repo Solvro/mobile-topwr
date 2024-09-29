@@ -4,7 +4,7 @@ import "../features/parking_chart/utils/range_hour_points.dart";
 import "../theme/hex_color.dart";
 
 abstract class MyAppConfig {
-  static const title = "ToPwr";
+  static const title = "ToPWR";
 }
 
 abstract class SplashScreenConfig {
@@ -23,6 +23,7 @@ abstract class DepartmentsConfig {
   static const defaultColorSecond = "#999898";
 
   static const listSeparatorSize = 16.0;
+  static const logoMicroPadding = 10.0;
 
   static const departmentsViewGridDelegate =
       SliverGridDelegateWithMaxCrossAxisExtent(
@@ -40,6 +41,7 @@ abstract class DateChipConfig {
 abstract class HomeViewConfig {
   static const paddingSmall = 6.0;
   static const paddingMedium = 16.0;
+  static const bottomPadding = 24.0;
 
   static const squareCardTextShadow = [
     Shadow(
@@ -136,6 +138,11 @@ abstract class AboutUsConfig {
   static const borderRadius = 8.0;
   static const iconPadding = 10.0;
   static const photoSize = 92.0;
+
+  static const dialogHorizontalPadding = 14.0;
+  static const dialogVerticalPadding = 20.0;
+  static const dialogButtonFontSize = 16.0;
+  static const dialogTitleFontSize = 24.0;
 }
 
 abstract class GuideDetailViewConfig {
@@ -157,4 +164,16 @@ abstract class FilterConfig {
 
 abstract class LottieAnimationConfig {
   static const frameRate = 120.0;
+}
+
+abstract class MyTooltipConfig {
+  static const borderRadius = 8.0;
+
+  static const defaultActiveShadows = [
+    BoxShadow(
+      color: Color.fromRGBO(250, 100, 101, 0.16),
+      blurRadius: 11,
+      spreadRadius: 6,
+    ),
+  ];
 }
