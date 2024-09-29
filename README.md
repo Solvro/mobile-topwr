@@ -27,7 +27,7 @@ Now, we're redesigning and remaking it with exciting new features using Flutter 
 - [@mikolaj-jalocha](https://github.com/mikolaj-jalocha) - Flutter Developer
 - [@gry-mar](https://github.com/gry-mar) - Flutter Developer, UI/UX Designer
 - [@kamilfedio](https://github.com/kamilfedio) - Flutter Developer
-- [@TTomaszPWR](https://github.com/TTomaszPWR) - Flutter Developer
+- [@tomasz-trela](https://github.com/tomasz-trela) - Flutter Developer
 - [@wkrzos](https://github.com/wkrzos) - Junior Project Manager
 
 We're using many UI/UX designs and graphic assets created by [@domkakromka](https://github.com/domkakromka), [@AniaM727](https://github.com/AniaM727)
