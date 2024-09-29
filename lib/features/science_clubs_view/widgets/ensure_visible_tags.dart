@@ -1,5 +1,6 @@
 import "dart:math";
 
+import "package:auto_size_text/auto_size_text.dart";
 import "package:flutter/material.dart";
 
 import "../../../utils/calculate_lines.dart";
@@ -46,10 +47,10 @@ class EnsureVisibleTags extends DualTextMaxLines {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            RichText(
+            AutoSizeText.rich(
+              doubleText,
               maxLines: doubleLines,
               overflow: TextOverflow.ellipsis,
-              text: doubleText,
             ),
             SizedBox(height: spacing),
             if (thirdLines > 0)
