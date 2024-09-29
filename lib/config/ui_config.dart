@@ -165,3 +165,15 @@ abstract class FilterConfig {
 abstract class LottieAnimationConfig {
   static const frameRate = 120.0;
 }
+
+abstract class MyTooltipConfig {
+  static const borderRadius = 8.0;
+
+  static const defaultActiveShadows = [
+    BoxShadow(
+      color: Color.fromRGBO(250, 100, 101, 0.16),
+      blurRadius: 11,
+      spreadRadius: 6,
+    ),
+  ];
+}
