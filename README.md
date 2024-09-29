@@ -18,7 +18,7 @@ ToPWR is the result of our experiences and ideas, which we want to share with ot
 
 The app was initially created by KN Solvro members using native mobile technologies (Android & iOS) and a Strapi backend in 2022 (v0.5.1 was released on October 3, 2022).
 
-Now, we're redesigning and remaking it with exciting new features using Flutter and Directus CMS, and we’re nearing our first release 🚀. Stay tuned 😎.
+Now, we're redesigning and remaking it with exciting new features using Flutter and Directus CMS, and we’re after our first release (26/09/2024)! 🚀. 
 
 ## Current team
 
@@ -61,39 +61,7 @@ Read more at: https://solvro.pwr.edu.pl/portfolio/to-pwr/.
 
 Recommended flutter version: `Channel stable, 3.24.0`
 
-1. ### Google maps API key
-
-   There are google maps api keys already defined, but their usage is restricted on Google Maps Panel to specific package/bundle ids.
-   Web key is restricted for localhost usage only
-
-
-   #### Android only
-
-   On Android, apart from package id, restriction is for specific signing key's SHA1 fingerprints. So to test on Android, your debug signing key's fingerprint must be added to the maps panel. (Contact [@simon-the-shark](https://github.com/simon-the-shark) to include yours)
-
-   _Instuctions pasted from Google Maps Panel:_
-   #### How to get your debug key fingerprint?
-   For Linux or macOS:
-   ```bash
-   keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android
-   ```
-   For Windows:
-   ```bash
-   keytool -list -v -keystore "%USERPROFILE%\.android\debug.keystore" -alias androiddebugkey -storepass android -keypass android
-   ```
-
-   #### How to get your release certificate fingerprint?
-   ```bash
-   keytool -list -v -keystore your_keystore_name -alias your_alias_name
-   ```
-
-
-
-   
-
-   
-
-3. ### Before you start, you need to add `.env` file to project's root with appropriate content:
+1. ### Before you start, you need to add `.env` file to project's root with appropriate content:
 
 ```bash
 API_URL="https://<our-server-url>/graphql"
@@ -104,8 +72,8 @@ WIREDASH_SECRET="<...>" # can be left empty
 ```
 If you need our server url please write us an email [kn.solvro@pwr.edu.pl](mailto:kn.solvro@pwr.edu.pl) or contact us via our [website](https://solvro.pwr.edu.pl/contact/)
 
-3.  ### Code generation
-    Some of app's dependecies utilize code generation feature and generated files **are not currently included** to control version and this github repository, so before building, running or developing application, it's crucial to run code generation (to generate all needed files) in terminal with:
+  ### Code generation
+  Some of app's dependecies utilize code generation feature and generated files **are not currently included** to control version and this github repository, so before building, running or developing application, it's crucial to run code generation (to generate all needed files) in terminal with:
 
 - For one-time generation:
 
@@ -127,7 +95,7 @@ dart run build_runner watch
 dart run build_runner build -d
 ```
 
-4.  ### It's now possible to run or build the app in the usual way
+2.  ### It's now possible to run or build the app in the usual way
     _Rebuilds are necessary after any updates or changes to affected files (`watch` command does it for you)_
    - Either with your IDE or
    - from Terminal:
@@ -135,11 +103,11 @@ dart run build_runner build -d
    flutter run
    ```
 
-5. ### SVGO
+3. ### SVGO
     For SVG files optimization we use `svg_optimizer` (which uses SVGO under the hood) that's why before you start you need to install [Node.js](https://nodejs.org/en/download/package-manager) and [SVGO optimization tool](https://svgo.dev/docs/introduction/) on your machine
 
 
-6. **[OPTIONAL]** If you operate on many Flutter versions, I reccomend to you `fvm` Flutter version manager: https://fvm.app/
+4. **[OPTIONAL]** If you operate on many Flutter versions, I reccomend to you `fvm` Flutter version manager: https://fvm.app/
 ```bash
 fvm dart run build_runner watch
 fvm flutter run
