@@ -37,19 +37,41 @@ extension SortBySourceTypeX on Iterable<ScienceClub> {
     );
   }
 
+  Iterable<ScienceClub> withLogo() {
+    return where(
+      (element) => element.logo != null,
+    );
+  }
+
+  Iterable<ScienceClub> withoutLogo() {
+    return where(
+      (element) => element.logo == null,
+    );
+  }
+
   List<ScienceClub> sortBySourceTypes() {
     final solvro = firstWhereOrNull((element) => element.isSolvro);
-    final manualSource = _filterByType("manual_entry").toList()..shuffle();
-    final activeWebSource = _filterByType("aktywni_website").toList()
-      ..shuffle();
-    final studentDepartmentSource = _filterByType("student_department").toList()
-      ..shuffle();
+    final manualSourceWithPhotos =
+        _filterByType("manual_entry").withLogo().toList()..shuffle();
+    final manualSourceWithoutPhotos =
+        _filterByType("manual_entry").withoutLogo().toList()..shuffle();
+    final activeWebSourceWithPhotos =
+        _filterByType("aktywni_website").withLogo().toList()..shuffle();
+    final activeWebSourceWithoutPhotos =
+        _filterByType("aktywni_website").withoutLogo().toList()..shuffle();
+    final studentDepartmentSourceWithPhotos =
+        _filterByType("student_department").withLogo().toList()..shuffle();
+    final studentDepartmentSourceWithoutPhotos =
+        _filterByType("student_department").withoutLogo().toList()..shuffle();
 
     return [
       if (solvro != null) solvro,
-      ...manualSource,
-      ...activeWebSource,
-      ...studentDepartmentSource,
+      ...manualSourceWithPhotos,
+      ...manualSourceWithoutPhotos,
+      ...activeWebSourceWithPhotos,
+      ...activeWebSourceWithoutPhotos,
+      ...studentDepartmentSourceWithPhotos,
+      ...studentDepartmentSourceWithoutPhotos,
     ];
   }
 }
