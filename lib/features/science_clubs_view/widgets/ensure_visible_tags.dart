@@ -112,11 +112,10 @@ class EnsureVisibleTags extends DualTextMaxLines {
               ),
             SizedBox(height: spacing),
             if (thirdLines > 0)
-              RichText(
+              AutoSizeText.rich(
+                TextSpan(text: secondSubtitle, style: secondSubtitleStyle),
                 maxLines: thirdLines,
                 overflow: TextOverflow.ellipsis,
-                text:
-                    TextSpan(text: secondSubtitle, style: secondSubtitleStyle),
               ),
           ],
         );
