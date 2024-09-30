@@ -1,5 +1,6 @@
 import "dart:async";
 
+import "package:flutter_cache_manager/flutter_cache_manager.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../config/ttl_config.dart";
@@ -16,6 +17,7 @@ extension FlushCacheUseCasesX on WidgetRef {
     if (remoteRefNumber > localRefNumber) {
       await _flushAll(remoteRefNumber);
     }
+    await DefaultCacheManager().emptyCache();
   }
 
   Future<void> _flushAll(int remoteRefNumber) async {

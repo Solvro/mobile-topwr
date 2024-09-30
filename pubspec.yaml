@@ -85,6 +85,7 @@ dependencies:
     git:
       url: https://github.com/ChrisElliotUK/auto_size_text.git
       ref: patch-1
+  flutter_cache_manager: ^3.4.1
 
 dev_dependencies:
   flutter_test:
