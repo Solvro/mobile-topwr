@@ -39,6 +39,7 @@ class WideTileCard extends StatelessWidget {
     this.secondSubtitle,
     this.crossAxisAlignment = CrossAxisAlignment.start,
     super.key,
+    this.showBadge = false,
   });
 
   final String title;
@@ -53,7 +54,7 @@ class WideTileCard extends StatelessWidget {
   final List<BoxShadow>? activeShadows;
   final LinearGradient? activeGradient;
   final CrossAxisAlignment crossAxisAlignment;
-
+  final bool showBadge;
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -76,6 +77,7 @@ class WideTileCard extends StatelessWidget {
                     title,
                     subtitle,
                     secondSubtitle,
+                    showBadge: showBadge,
                     isActive: isActive,
                   ),
                 ),
@@ -95,13 +97,14 @@ class _TitlesColumn extends StatelessWidget {
     this.subtitle,
     this.secondSubtitle, {
     required this.isActive,
+    this.showBadge = false,
   });
 
   final String title;
   final String? subtitle;
   final String? secondSubtitle;
   final bool isActive;
-
+  final bool showBadge;
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -129,6 +132,7 @@ class _TitlesColumn extends StatelessWidget {
                 ? context.textTheme.bodyWhite
                 : context.textTheme.bodyBlue,
             maxTotalLines: 4,
+            badge: showBadge,
           ),
         );
       },
