@@ -51,13 +51,13 @@ class _AboutUsView extends ConsumerWidget {
                 [
                   SectionHeader(text: context.localize.about_us),
                   DescriptionSection(text: value.aboutUs?.description ?? ""),
-                  SectionHeader(text: context.localize.meet_our_team),
-                  TeamSection(
-                    members: value.getMemberData(),
-                  ),
                   SectionHeader(text: context.localize.follow_solvro),
                   ContactSection(
                     links: value.getSocialIcons(),
+                  ),
+                  SectionHeader(text: context.localize.meet_our_team),
+                  TeamSection(
+                    members: value.getMemberData(),
                   ),
                   const AppVersionTile(),
                 ],
