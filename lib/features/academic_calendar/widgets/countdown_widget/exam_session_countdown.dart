@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:url_launcher/url_launcher.dart";
 
 import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
@@ -15,49 +16,59 @@ class ExamSessionCountdown extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: Container(
-        width: double.infinity,
-        height: 69,
-        decoration: BoxDecoration(
-          gradient: context.colorTheme.toPwrGradient,
-          borderRadius: BorderRadius.circular(8),
-          boxShadow: const [
-            BoxShadow(
-              spreadRadius: 6,
-              blurRadius: 11,
-              color: Color(0x28fa6465),
-            ),
-          ],
-        ),
-        child: Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: DigitsRow(academicCalendar),
-            ),
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    context.localize.days,
-                    style: context.textTheme.headlineWhite,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 8),
-                    child: Text(
-                      academicCalendar.localizeDaysCounterMessage(context),
-                      style: context.textTheme.bodyWhite,
-                      textScaler: const TextScaler.linear(0.97),
-                    ),
-                  ),
-                ],
+      child: GestureDetector(
+        onTap: _launchCalendarUrl,
+        child: Container(
+          width: double.infinity,
+          height: 69,
+          decoration: BoxDecoration(
+            gradient: context.colorTheme.toPwrGradient,
+            borderRadius: BorderRadius.circular(8),
+            boxShadow: const [
+              BoxShadow(
+                spreadRadius: 6,
+                blurRadius: 11,
+                color: Color(0x28fa6465),
               ),
-            ),
-          ],
+            ],
+          ),
+          child: Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: DigitsRow(academicCalendar),
+              ),
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      context.localize.days,
+                      style: context.textTheme.headlineWhite,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 8),
+                      child: Text(
+                        academicCalendar.localizeDaysCounterMessage(context),
+                        style: context.textTheme.bodyWhite,
+                        textScaler: const TextScaler.linear(0.97),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
+  }
+
+  Future<void> _launchCalendarUrl() async {
+    const url = "https://pwr.edu.pl/studenci/kalendarz-akademicki";
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(Uri.parse(url));
+    }
   }
 }
