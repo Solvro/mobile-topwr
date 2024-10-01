@@ -12,6 +12,7 @@ enum ScienceClubType {
   scientificCirlce,
   culturalAgenda,
   studentOrganization,
+  studentCouncil,
   studentMedia;
 
   String? toJson() => _$ScienceClubTypeEnumMap[this];
@@ -23,6 +24,7 @@ extension GetDisplayNameX on BuildContext {
         ScienceClubType.culturalAgenda => localize.cultural_agendas,
         ScienceClubType.studentOrganization => localize.student_organizations,
         ScienceClubType.studentMedia => localize.student_medias,
+        ScienceClubType.studentCouncil => localize.student_councils,
       };
 }
 
@@ -36,5 +38,7 @@ extension GetDisplayNameRefX on Ref {
           read(watchLocaleProvider).student_organizations,
         ScienceClubType.studentMedia =>
           read(watchLocaleProvider).student_medias,
+        ScienceClubType.studentCouncil =>
+          read(watchLocaleProvider).student_councils,
       };
 }

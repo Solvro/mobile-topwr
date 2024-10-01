@@ -48,7 +48,7 @@
   "navigate": "Nawiguj",
   "building_prefix": "Budynek",
   "department_not_found": "Nie znaleziono wydziału",
-  "sci_circle_not_found": "Nie znaleziono kół naukowych",
+  "sci_circle_not_found": "Nie znaleziono organizacji studenckich",
   "all": "Wszystkie",
   "parkings_title": "Parkingi",
   "parkings_not_found": "Nie znaleziono parkingu",
@@ -100,5 +100,6 @@
   "show_license": "Wyświelt licencję",
   "close": "Zamknij",
   "no_version": "Brak wersji",
-  "places_currently_available": "Aktualnie wolne miejsca"
+  "places_currently_available": "Aktualnie wolne miejsca",
+  "student_councils": "Samorząd"
 }
