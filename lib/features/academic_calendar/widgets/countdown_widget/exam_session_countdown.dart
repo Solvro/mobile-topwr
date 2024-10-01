@@ -1,23 +1,25 @@
 import "package:flutter/material.dart";
-import "package:url_launcher/url_launcher.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 
+import "../../../../config/url_config.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
+import "../../../../utils/launch_url_util.dart";
 import "../../repository/academic_calendar_repo.dart";
 import "../../utils/localize_counter_message.dart";
 import "digits_widgets.dart";
 
-class ExamSessionCountdown extends StatelessWidget {
+class ExamSessionCountdown extends ConsumerWidget {
   const ExamSessionCountdown(this.academicCalendar, {super.key});
 
   final AcademicCalendar academicCalendar;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: GestureDetector(
-        onTap: _launchCalendarUrl,
+        onTap: () async => ref.launch(UrlConfig.academicCalendarUrl),
         child: Container(
           width: double.infinity,
           height: 69,
@@ -63,12 +65,5 @@ class ExamSessionCountdown extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  Future<void> _launchCalendarUrl() async {
-    const url = "https://pwr.edu.pl/studenci/kalendarz-akademicki";
-    if (await canLaunchUrl(Uri.parse(url))) {
-      await launchUrl(Uri.parse(url));
-    }
   }
 }
