@@ -13,6 +13,7 @@ import "../../hooks/use_effect_on_init.dart";
 import "../../theme/app_theme.dart";
 import "../../utils/context_extensions.dart";
 import "../../widgets/search_box_app_bar.dart";
+import "../../widgets/wide_tile_card.dart";
 import "../analytics/show_feedback_tile.dart";
 import "../departments_view/widgets/departments_view_loading.dart";
 import "guide_view_controller.dart";
@@ -73,6 +74,7 @@ class _GuideViewContent extends ConsumerWidget {
             if (!isSomethingSearched) const GuideAboutUsSection(),
             for (final item in value) GuideTile(item),
             if (!isSomethingSearched) const ShowFeedbackTile(),
+            const _GuideInfo(),
           ].lock,
         ),
       _ => const Padding(
@@ -100,6 +102,18 @@ class _AppBarBugReportIconButton extends StatelessWidget {
         Icons.bug_report,
         color: context.colorTheme.blackMirage,
       ),
+    );
+  }
+}
+
+class _GuideInfo extends StatelessWidget {
+  const _GuideInfo();
+
+  @override
+  Widget build(BuildContext context) {
+    return WideTileCard(
+      title: context.localize.hi_student,
+      subtitle: context.localize.guide_development_info,
     );
   }
 }
