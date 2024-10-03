@@ -52,7 +52,7 @@ class MyApp extends ConsumerWidget {
           routerConfig: ref.watch(appRouterProvider).config(
             deepLinkTransformer: (uri) {
               Future.delayed(
-                const Duration(milliseconds: 200),
+                const Duration(milliseconds: 500),
                 ref.read(navigationControllerProvider.notifier).refreshState,
               ); // TODO(simon-the-shark): remove this nasty workaround for active tab refresh
               return SynchronousFuture(uri);
