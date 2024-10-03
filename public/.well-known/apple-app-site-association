@@ -8,44 +8,11 @@
         ],
         "components": [
           {
-            "/": "/",
-            "comment": "Matches URL with a path /"
+            "/": "secret",
+            "comment": "non existent secret excluded path"
           },
           {
-            "/": "/buildings",
-            "comment": "Matches URL with a path /buildings"
-          },
-          {
-            "/": "/parkings",
-            "comment": "Matches URL with a path /parkings"
-          },
-          {
-            "/": "/departments",
-            "comment": "Matches URL with a path /departments"
-          },
-          {
-            "/": "/departments/*",
-            "comment": "Matches any URL that starts with /departments/"
-          },
-          {
-            "/": "/sci-clubs",
-            "comment": "Matches URL with a path /sci-clubs"
-          },
-          {
-            "/": "/sci-clubs/*",
-            "comment": "Matches any URL that starts with /sci-clubs/"
-          },
-          {
-            "/": "/guide",
-            "comment": "Matches URL with a path /guide"
-          },
-          {
-            "/": "/guide/*",
-            "comment": "Matches any URL that starts with /guide/"
-          },
-          {
-            "/": "/aboutUs",
-            "comment": "Matches URL with a path /aboutUs"
+            "/": "*"
           }
         ]
       }
