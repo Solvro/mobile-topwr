@@ -101,5 +101,7 @@
   "close": "Zamknij",
   "no_version": "Brak wersji",
   "places_currently_available": "Aktualnie wolne miejsca",
-  "student_councils": "Samorząd"
+  "student_councils": "Samorząd",
+  "hi_student": "Hej studencie!",
+  "guide_development_info": "Pamiętaj, że przewodnik jest wciąż w fazie rozwoju :)"
 }
