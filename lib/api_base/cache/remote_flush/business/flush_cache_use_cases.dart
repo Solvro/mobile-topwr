@@ -17,7 +17,7 @@ extension FlushCacheUseCasesX on WidgetRef {
     if (remoteRefNumber > localRefNumber) {
       await _flushAll(remoteRefNumber);
     }
-    await DefaultCacheManager().emptyCache();
+    await DefaultCacheManager().removeFile(MyCachedImageConfig.cacheKey);
   }
 
   Future<void> _flushAll(int remoteRefNumber) async {

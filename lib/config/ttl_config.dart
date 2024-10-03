@@ -1,5 +1,6 @@
 import "package:enum_map/enum_map.dart";
 import "package:flutter/foundation.dart";
+import "package:flutter_cache_manager/flutter_cache_manager.dart";
 
 part "ttl_config.g.dart";
 
@@ -43,4 +44,12 @@ abstract class TtlStrategy {
   static Duration get(TtlKey key) {
     return _ttlDurations.get(key);
   }
+}
+
+abstract class MyCachedImageConfig {
+  static const cacheKey = "topwr_my_cached_image_cache";
+  static final cacheConfig = Config(
+    cacheKey,
+    stalePeriod: const Duration(days: 7),
+  );
 }
