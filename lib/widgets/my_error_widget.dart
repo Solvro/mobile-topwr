@@ -12,7 +12,7 @@ import "../features/parkings_view/widgets/offline_parkings_view.dart";
 import "../gen/assets.gen.dart";
 import "../theme/app_theme.dart";
 
-class MyErrorWidget extends StatelessWidget {
+class MyErrorWidget extends HookWidget {
   const MyErrorWidget(this.error, {super.key});
 
   final Object? error;
