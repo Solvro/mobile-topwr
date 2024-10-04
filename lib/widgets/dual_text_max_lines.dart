@@ -12,29 +12,33 @@ class DualTextSpan extends TextSpan {
     bool showBadge = false,
   }) : super(
           children: [
-            TextSpan(text: title, style: titleStyle, children: [
-              if (showBadge)
-                const WidgetSpan(
-                  baseline: TextBaseline.ideographic,
-                  alignment: PlaceholderAlignment.middle,
-                  child: SizedBox.square(
-                    dimension: 16,
-                    child: Padding(
-                      padding: EdgeInsets.only(left: 4),
-                      child: Icon(
-                        Icons.verified_sharp,
-                        size: 12,
-                        color: ColorsConsts.orangePomegranade,
+            TextSpan(
+              text: title,
+              style: titleStyle,
+              children: [
+                if (showBadge)
+                  const WidgetSpan(
+                    baseline: TextBaseline.ideographic,
+                    alignment: PlaceholderAlignment.middle,
+                    child: SizedBox.square(
+                      dimension: 16,
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 4),
+                        child: Icon(
+                          Icons.verified_sharp,
+                          size: 12,
+                          color: ColorsConsts.orangePomegranade,
+                        ),
                       ),
                     ),
                   ),
-                ),
-              if (subtitle != null)
-                TextSpan(
-                  text: "\n",
-                  style: TextStyle(fontSize: spacing, height: 1),
-                ),
-            ],),
+                if (subtitle != null)
+                  TextSpan(
+                    text: "\n",
+                    style: TextStyle(fontSize: spacing, height: 1),
+                  ),
+              ],
+            ),
             if (subtitle != null)
               TextSpan(
                 text: "\n", // padding/spacing workaround
