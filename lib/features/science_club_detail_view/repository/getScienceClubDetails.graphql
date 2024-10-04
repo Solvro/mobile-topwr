@@ -2,6 +2,7 @@ query GetScienceClubDetails($id: ID!) {
   Scientific_Circles_by_id(id: $id) {
     name
     description
+    source
     cover {
       filename_disk
     }
