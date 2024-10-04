@@ -25,7 +25,9 @@ class ScienceClubDetailView extends StatelessWidget {
     @PathParam("id") required this.id,
     super.key,
   });
+
   final String id;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,6 +39,7 @@ class ScienceClubDetailView extends StatelessWidget {
 
 class _SciClubDetailDataView extends ConsumerWidget {
   const _SciClubDetailDataView(this.id);
+
   final String id;
 
   @override
@@ -57,11 +60,32 @@ class _SciClubDetailDataView extends ConsumerWidget {
                 const SizedBox(height: 8),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24),
-                  child: Text(
-                    value.name,
-                    style: context.textTheme.headline,
-                    textAlign: TextAlign.center,
+                  child: RichText(
                     maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.center,
+                    text: TextSpan(
+                      text: value.name,
+                      style: context.textTheme.headline,
+                      children: [
+                        if (value.source == ScienceClubsViewConfig.source)
+                          WidgetSpan(
+                            baseline: TextBaseline.ideographic,
+                            alignment: PlaceholderAlignment.middle,
+                            child: SizedBox.square(
+                              dimension: 16,
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 4),
+                                child: Icon(
+                                  Icons.verified_sharp,
+                                  size: 12,
+                                  color: context.colorTheme.orangePomegranade,
+                                ),
+                              ),
+                            ),
+                          ),
+                      ],
+                    ),
                   ),
                 ),
                 const SizedBox(height: 12),

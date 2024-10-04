@@ -83,7 +83,7 @@ class _ScienceClubsList extends ConsumerWidget {
                 ? sciClub.cover?.filename_disk
                 : sciClub.logo?.filename_disk,
             onClick: () async => ref.navigateSciClubsDetail(sciClub.id),
-            showBadge: sciClub.source == ScienceClubCardConfig.source,
+            showBadge: sciClub.source == ScienceClubsViewConfig.source,
           ),
         );
       },
