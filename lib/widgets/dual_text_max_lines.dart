@@ -32,16 +32,11 @@ class DualTextSpan extends TextSpan {
                       ),
                     ),
                   ),
-                if (subtitle != null)
-                  TextSpan(
-                    text: "\n",
-                    style: TextStyle(fontSize: spacing, height: 1),
-                  ),
               ],
             ),
             if (subtitle != null)
               TextSpan(
-                text: "\n", // padding/spacing workaround
+                text: "\n\n", // padding/spacing workaround
                 style: TextStyle(fontSize: spacing, height: 1),
               ),
             if (subtitle != null)
