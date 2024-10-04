@@ -16,6 +16,7 @@ class BigPreviewCard extends StatelessWidget {
     this.date,
     required this.onClick,
     this.boxFit = BoxFit.scaleDown,
+    this.showBadge = false,
   });
 
   final String title;
@@ -24,6 +25,7 @@ class BigPreviewCard extends StatelessWidget {
   final DateTime? date;
   final VoidCallback? onClick;
   final BoxFit boxFit;
+  final bool showBadge;
 
   @override
   Widget build(BuildContext context) {
@@ -76,6 +78,7 @@ class BigPreviewCard extends StatelessWidget {
                     subtitleStyle: context.textTheme.body,
                     spacing: 7,
                     maxTotalLines: 8,
+                    showBadge: showBadge,
                   ),
                   const Spacer(),
                   MaterialButton(
