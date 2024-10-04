@@ -114,6 +114,7 @@ abstract class ScienceClubsViewConfig {
 
 abstract class ScienceClubCardConfig {
   static const trailingPadding = 2.0;
+  static const source = "manual_entry";
 }
 
 abstract class ParkingsConfig {
