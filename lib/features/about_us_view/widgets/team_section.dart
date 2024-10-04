@@ -19,10 +19,15 @@ class TeamSection extends StatelessWidget {
     return Padding(
       padding:
           const EdgeInsets.symmetric(horizontal: AboutUsConfig.defaultPadding),
-      child: Column(
-        children: [
-          for (final member in members) _TeamMemberCard(member: member),
-        ],
+      child: ListView.builder(
+        physics: const NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        itemCount: members.length,
+        prototypeItem: _TeamMemberCard(member: members.first),
+        cacheExtent: 1300,
+        itemBuilder: (BuildContext ctx, int index) {
+          return _TeamMemberCard(member: members[index]);
+        },
       ),
     );
   }
