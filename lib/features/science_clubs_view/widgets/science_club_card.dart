@@ -21,7 +21,7 @@ class ScienceClubCard extends StatelessWidget {
           ?.map((tag) => "#${tag?.Tags_id?.name}")
           .toList()
           .join(", "),
-      showBadge: sciClub.source == ScienceClubCardConfig.source,
+      showBadge: sciClub.source == ScienceClubsViewConfig.source,
       activeShadows: null,
       trailing: Padding(
         padding: const EdgeInsets.only(

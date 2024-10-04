@@ -89,6 +89,7 @@ abstract class DetailViewsHeaderConfig {
 }
 
 abstract class ScienceClubsViewConfig {
+  static const source = "manual_entry";
   static const listSeparatorSize = 16.0;
   static const microPadding = 4.0;
   static const smallPadding = 16.0;
@@ -114,7 +115,6 @@ abstract class ScienceClubsViewConfig {
 
 abstract class ScienceClubCardConfig {
   static const trailingPadding = 2.0;
-  static const source = "manual_entry";
 }
 
 abstract class ParkingsConfig {
