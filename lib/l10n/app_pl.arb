@@ -103,5 +103,15 @@
   "places_currently_available": "Aktualnie wolne miejsca",
   "student_councils": "Samorząd",
   "hi_student": "Hej studencie!",
-  "guide_development_info": "Pamiętaj, że przewodnik jest wciąż w fazie rozwoju :)"
+  "guide_development_info": "Pamiętaj, że przewodnik jest wciąż w fazie rozwoju :)",
+  "streak_counter": "Używasz ToPWR nieprzerwanie od {days, plural, =1{1 dnia} other{{days} dni}}🔥",
+  "@streak_counter": {
+    "description": "A message with a single parameter",
+    "placeholders": {
+      "days": {
+        "type": "int",
+        "example": "15"
+      }
+    }
+  }
 }
