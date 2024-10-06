@@ -3,6 +3,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../academic_calendar/repository/academic_calendar_repo.dart";
+import "../app_streak/business/get_days_use_case.dart";
 import "../buildings_view/repository/buildings_repository.dart";
 import "../departments_view/repository/departments_repository.dart";
 import "../guide_view/repository/guide_repository.dart";
@@ -34,5 +35,6 @@ void keepAliveHomeViewProviders(KeepAliveHomeViewProvidersRef ref) {
   ref.watch(buildingsRepositoryProvider);
   ref.watch(departmentsRepositoryProvider);
   ref.watch(guideRepositoryProvider);
+  ref.watch(getUsageDaysUseCaseProvider);
   return;
 }

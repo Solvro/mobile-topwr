@@ -9,6 +9,8 @@ class Timestamp extends DateTime {
     String? formattedString,
   ) : this.from(DateTime.tryParse(formattedString ?? ""));
 
+  Timestamp.now() : super.now();
+
   String serializeUTC() {
     return toUtc().toIso8601String();
   }

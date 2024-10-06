@@ -9,3 +9,8 @@ Future<SharedPreferences> sharedPreferencesSingleton(
 ) {
   return SharedPreferences.getInstance();
 }
+
+abstract class StreakRepositoriesConfig {
+  static const lastEntryKey = "__app_streak_counter__last_entry_stamp";
+  static const streakStartKey = "__app_streak_counter__streak_start_stamp";
+}
