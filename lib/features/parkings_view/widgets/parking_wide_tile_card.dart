@@ -155,6 +155,7 @@ class _RightColumn extends StatelessWidget {
                   ? arrowColor(parking.trend, context)
                   : context.colorTheme.whiteSoap,
               size: 21,
+              shadows: iparkingShadows,
             ),
           ],
         ),
