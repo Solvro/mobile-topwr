@@ -49,6 +49,7 @@ class _TeamMemberCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(AboutUsConfig.borderRadius),
         ),
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             SizedBox.square(
               dimension: AboutUsConfig.photoSize,
@@ -102,6 +103,7 @@ class _Description extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
           name,
@@ -110,7 +112,7 @@ class _Description extends StatelessWidget {
         const SizedBox(height: 4),
         Text(subtitle, style: context.aboutUsTheme.bodySmaller),
         const SizedBox(
-          height: 6,
+          height: 8,
         ),
         Row(
           children: [
