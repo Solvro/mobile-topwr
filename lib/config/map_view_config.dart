@@ -38,7 +38,7 @@ abstract class MapWidgetConfig {
   static const initialZoom = 15.0;
   static const initialCenter = LatLng(51.10738, 17.05964);
   static const interactionOptions =
-      InteractionOptions(flags: ~InteractiveFlag.rotate);
+      InteractionOptions(flags: InteractiveFlag.all & ~InteractiveFlag.rotate);
 
   static const mapMarkerWidth = 22.0;
   static const mapMarkerHeight = 34.0;
