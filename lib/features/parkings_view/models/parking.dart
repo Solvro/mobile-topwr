@@ -51,12 +51,12 @@ class Parking with _$Parking implements GoogleNavigable {
   @override
   LatLng get location => LatLng(latitude, longitude);
 
-  String get addresFormatted =>
+  String get addressFormatted =>
       address.replaceFirst(",", "\n").replaceAll("\n ", "\n");
 
-  static const parkingPrefx = "Parking";
+  static const parkingPrefix = "Parking";
   String get nameNormalized =>
-      name.startsWith(parkingPrefx) ? name : "$parkingPrefx $name";
+      name.startsWith(parkingPrefix) ? name : "$parkingPrefix $name";
 
   String get openingHours =>
       "${openHour?.formatIParkingDate ?? "06:00"} - ${closeHour?.formatIParkingDate ?? "22:00"}";
