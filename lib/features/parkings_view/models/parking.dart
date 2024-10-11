@@ -78,7 +78,7 @@ extension GetTrendArrowX on String {
       case "-1":
         return Icons.south_east;
       default:
-        return Icons.help;
+        return const IconData(0);
     }
   }
 }
