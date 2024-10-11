@@ -3,6 +3,7 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../config/ui_config.dart";
+import "../../theme/app_theme.dart";
 import "../../utils/context_extensions.dart";
 import "../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../widgets/loading_widgets/shimmer_loading.dart";
@@ -12,6 +13,7 @@ import "../../widgets/my_expansion_tile.dart";
 import "../../widgets/my_html_widget.dart";
 import "../../widgets/optimized_directus_image.dart";
 import "repository/guide_detail_view_repository.dart";
+import "utils/get_the_latest_date.dart";
 import "widgets/faq_expansion_tile.dart";
 
 @RoutePage()
@@ -74,6 +76,27 @@ class _GuideDetailDataView extends ConsumerWidget {
                   );
                 },
                 separatorBuilder: (context, index) => const SizedBox(height: 8),
+              ),
+            ),
+            SliverPadding(
+              padding: const EdgeInsets.only(
+                bottom: GuideDetailViewConfig.bottomPadding,
+              ),
+              sliver: SliverToBoxAdapter(
+                child: Column(
+                  children: [
+                    Text(
+                      "${context.localize.created_at} ${context.getTheLatesCreatedDateGuide(questions: value.questions) ?? context.localize.not_date_available}",
+                      style: context.textTheme.bodyGrey,
+                      textAlign: TextAlign.end,
+                    ),
+                    Text(
+                      "${context.localize.last_modified} ${context.getTheLatesUpdatedDateGuide(questions: value.questions) ?? context.localize.not_date_available}",
+                      style: context.textTheme.bodyGrey,
+                      textAlign: TextAlign.end,
+                    ),
+                  ],
+                ),
               ),
             ),
           ],

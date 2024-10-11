@@ -9,6 +9,8 @@ query GetGuideDetails($id: ID!) {
             FAQ_id {
                 question,
                 answer
+              	date_created
+              	date_updated
             }
         }
     }
