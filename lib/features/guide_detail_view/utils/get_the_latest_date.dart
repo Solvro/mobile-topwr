@@ -8,8 +8,7 @@ extension GetTheLatestDateGuide on BuildContext {
   String? getTheLatesCreatedDateGuideX({
     List<Query$GetGuideDetails$FAQ_Types_by_id$questions?>? questions,
   }) {
-    final DateTime? newestDate = questions
-        ?.whereNonNull
+    final DateTime? newestDate = questions?.whereNonNull
         .map((e) => e.FAQ_id!.date_created!)
         .reduce((a, b) => a.isAfter(b) ? a : b);
 
@@ -20,8 +19,7 @@ extension GetTheLatestDateGuide on BuildContext {
   String? getTheLatesUpdatedDateGuideX({
     List<Query$GetGuideDetails$FAQ_Types_by_id$questions?>? questions,
   }) {
-    final DateTime? newestDate = questions
-        ?.whereNonNull
+    final DateTime? newestDate = questions?.whereNonNull
         .map((e) => e.FAQ_id!.date_updated!)
         .reduce((a, b) => a.isAfter(b) ? a : b);
 
