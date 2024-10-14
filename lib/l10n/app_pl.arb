@@ -114,7 +114,6 @@
       }
     }
   },
-  "last_modified": "Ostatnia modyfikacja",
-  "created_at": "Utworzono",
-  "not_date_available": "Brak daty"
+  "last_modified": "Ostatnia aktualizacja",
+  "created_at": "Utworzono"
 }
