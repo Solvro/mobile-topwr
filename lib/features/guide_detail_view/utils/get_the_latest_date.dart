@@ -4,7 +4,7 @@ import "package:intl/intl.dart";
 import "../repository/getGuideDetails.graphql.dart";
 
 extension GetTheLatestDateGuide on BuildContext {
-  String? getTheLatesCreatedDateGuide({
+  String? getTheLatesCreatedDateGuideX({
     List<Query$GetGuideDetails$FAQ_Types_by_id$questions?>? questions,
   }) {
     final DateTime? newestDate = questions
@@ -16,7 +16,7 @@ extension GetTheLatestDateGuide on BuildContext {
     return newestDate != null ? formatter.format(newestDate) : null;
   }
 
-  String? getTheLatesUpdatedDateGuide({
+  String? getTheLatesUpdatedDateGuideX({
     List<Query$GetGuideDetails$FAQ_Types_by_id$questions?>? questions,
   }) {
     final DateTime? newestDate = questions

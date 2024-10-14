@@ -86,12 +86,12 @@ class _GuideDetailDataView extends ConsumerWidget {
                 child: Column(
                   children: [
                     Text(
-                      "${context.localize.created_at} ${context.getTheLatesCreatedDateGuide(questions: value.questions)}",
+                      "${context.localize.created_at} ${context.getTheLatesCreatedDateGuideX(questions: value.questions)}",
                       style: context.textTheme.bodyGrey,
                       textAlign: TextAlign.end,
                     ),
                     Text(
-                      "${context.localize.last_modified} ${context.getTheLatesUpdatedDateGuide(questions: value.questions)}",
+                      "${context.localize.last_modified} ${context.getTheLatesUpdatedDateGuideX(questions: value.questions)}",
                       style: context.textTheme.bodyGrey,
                       textAlign: TextAlign.end,
                     ),
