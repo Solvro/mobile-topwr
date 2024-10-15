@@ -113,5 +113,7 @@
         "example": "15"
       }
     }
-  }
+  },
+  "last_modified": "Ostatnia aktualizacja",
+  "created_at": "Utworzono"
 }

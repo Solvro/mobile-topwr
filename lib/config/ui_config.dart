@@ -151,6 +151,7 @@ abstract class GuideDetailViewConfig {
   static const paddingMedium = 16.0;
   static const paddingLarge = 32.0;
   static const borderRadius = 8.0;
+  static const bottomPadding = 24.0;
 }
 
 abstract class GuideViewConfig {

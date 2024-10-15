@@ -1,15 +1,17 @@
 query GetGuideDetails($id: ID!) {
-    FAQ_Types_by_id(id: $id){
-        name,
-        cover {
-            filename_disk
-        },
-        description,
-        questions {
-            FAQ_id {
-                question,
-                answer
-            }
-        }
+  FAQ_Types_by_id(id: $id) {
+    name
+    cover {
+      filename_disk
     }
+    description
+    questions {
+      FAQ_id {
+        question
+        answer
+        date_created
+        date_updated
+      }
+    }
+  }
 }
