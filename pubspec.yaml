@@ -90,17 +90,17 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
-  build_runner: ^2.4.10
+  flutter_lints: ^2.0.3
+  build_runner: ^2.4.13
   freezed: ^2.5.3
   json_serializable: ^6.8.0
   flutter_launcher_icons: "^0.13.1"
-  riverpod_generator: ^2.4.2
+  riverpod_generator: ^2.4.4
   theme_tailor: ^3.0.1
   enum_map_gen: ^0.3.0
   custom_lint: ^0.6.10
-  riverpod_lint: ^2.3.12
-  envied_generator: ^0.5.4+1
+  riverpod_lint: ^2.3.14
+  envied_generator: ^0.5.4
   graphql_codegen: ^0.14.0
   flutter_gen_runner: ^5.6.0
   total_lints: ^3.4.0
