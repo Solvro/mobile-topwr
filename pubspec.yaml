@@ -98,7 +98,7 @@ dev_dependencies:
   riverpod_generator: ^2.4.2
   theme_tailor: ^3.0.1
   enum_map_gen: ^0.3.0
-  custom_lint: ^0.6.4
+  custom_lint: ^0.6.10
   riverpod_lint: ^2.3.12
   envied_generator: ^0.5.4+1
   graphql_codegen: ^0.14.0
