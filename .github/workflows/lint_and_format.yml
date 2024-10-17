@@ -19,7 +19,7 @@ jobs:
       - run: flutter --version
     
       - name: Install dependencies
-        run: dart pub get
+        run: flutter pub get
       
       - name: Example .env
         run: cp example.env .env
