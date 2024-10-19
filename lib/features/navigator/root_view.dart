@@ -18,9 +18,12 @@ class RootView extends ConsumerWidget {
       child: NavigatorPopHandler<void>(
         onPopWithResult: specialPop ? ref.handleAndroidSpecialPop : null,
         child: Scaffold(
-          body: AutoRouter(
-            // this widget act as nested [Navigator] for the app
-            key: ref.watch(navigationControllerProvider.notifier).navigatorKey,
+          body: SafeArea(
+            child: AutoRouter(
+              // this widget act as nested [Navigator] for the app
+              key:
+                  ref.watch(navigationControllerProvider.notifier).navigatorKey,
+            ),
           ),
           bottomNavigationBar: const BottomNavBar(),
         ),
