@@ -26,7 +26,7 @@ extension IsLinkTagX on html.Element {
 extension CustomHtmlStylesX on BuildContext {
   Map<String, String>? customStylesBuilder(html.Element element) {
     return {
-      if (!element.hasTextAlign) "text-align": "justify",
+      if (!element.hasTextAlign) "text-align": "left",
       if (element.isH1) "font-size": "20px",
       if (element.isLink) "color": colorTheme.orangePomegranade.htmlFormat,
       "text-decoration-color": colorTheme.orangePomegranade.htmlFormat,
