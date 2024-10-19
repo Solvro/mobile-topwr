@@ -34,7 +34,8 @@ extension CustomHtmlStylesX on BuildContext {
       if (element.isH1) "font-size": "20px",
       if (element.isLink) "color": colorTheme.orangePomegranade.htmlFormat,
       "text-decoration-color": colorTheme.orangePomegranade.htmlFormat,
-      if (element.hasUnderline) "text-decoration-color": colorTheme.blackMirage.htmlFormat,
+      if (element.hasUnderline)
+        "text-decoration-color": colorTheme.blackMirage.htmlFormat,
     };
   }
 }
