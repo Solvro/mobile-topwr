@@ -50,7 +50,8 @@ class SearchBox extends HookWidget {
       [controller, onChanged, context],
     );
 
-    final color = context.colorTheme.blackMirage.withOpacity(0.48);
+    final color =
+        context.colorTheme.blackMirage.withValues(alpha: 255.0 * 0.48);
 
     return TextField(
       controller: controller,

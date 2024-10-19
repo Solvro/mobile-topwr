@@ -40,7 +40,7 @@ class LineHandle extends StatelessWidget {
       width: 36,
       height: 4,
       decoration: BoxDecoration(
-        color: context.colorTheme.blackMirage.withOpacity(0.16),
+        color: context.colorTheme.blackMirage.withValues(alpha: 255.0 * 0.16),
         borderRadius: BorderRadius.circular(100),
       ),
     );
