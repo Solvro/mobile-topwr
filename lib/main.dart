@@ -12,6 +12,7 @@ import "features/navigator/app_router.dart";
 import "features/navigator/navigation_controller.dart";
 import "features/splash_screen/splash_screen.dart";
 import "features/splash_screen/splash_screen_controller.dart";
+import "features/update_dialog/presentation/update_dialog_wrapper.dart";
 import "theme/app_theme.dart";
 import "theme/colors.dart";
 
@@ -37,6 +38,9 @@ class MyApp extends ConsumerWidget {
         secret: Env.wiredashSecret,
         theme: context.wiredashTheme,
         child: MaterialApp.router(
+          builder: (context, child) => UpdateDialogWrapper(
+            child: child!,
+          ),
           title: MyAppConfig.title,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
