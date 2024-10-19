@@ -6,7 +6,7 @@ import "../../../theme/hex_color.dart";
 
 extension ToHtmlColorStringX on HexColor {
   String get htmlFormat =>
-      '#${value.toRadixString(16).padLeft(8, '0').substring(2)}';
+      '#${r.toInt().toRadixString(16).padLeft(2, '0')}${g.toInt().toRadixString(16).padLeft(2, '0')}${b.toInt().toRadixString(16).padLeft(2, '0')}';
 }
 
 extension IsLinkTagX on html.Element {

@@ -18,7 +18,7 @@ class ChartLine extends LineChartBarData {
           ),
           belowBarData: BarAreaData(
             show: true,
-            color: context.colorTheme.blueAzure.withOpacity(0.2),
+            color: context.colorTheme.blueAzure.withValues(alpha: 255.0 * 0.2),
           ),
           spots: chartData.unlockLazy,
         );

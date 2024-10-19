@@ -1,3 +1,4 @@
+import "dart:async";
 import "dart:io";
 
 import "package:flutter/foundation.dart";
@@ -15,7 +16,7 @@ extension AndroidPopBugWorkaroundX on WidgetRef {
         !read(navigationControllerProvider).isStackPoppable;
   }
 
-  Future<void> handleAndroidSpecialPop() async {
+  Future<void> handleAndroidSpecialPop(_) async {
     await platform.invokeMethod<int>("putAppInBackground");
   }
 }

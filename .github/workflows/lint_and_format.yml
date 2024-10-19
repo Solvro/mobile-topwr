@@ -15,7 +15,7 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           # flutter-version: "3.24.0"
-          channel: "master" # temporarly until the next stable release
+          channel: "master" # temporarly until some rollback
       - run: flutter --version
     
       - name: Install dependencies
