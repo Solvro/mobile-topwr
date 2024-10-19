@@ -26,6 +26,7 @@ class TeamSection extends StatelessWidget {
         prototypeItem: _TeamMemberCard(member: members.first),
         cacheExtent: 1300,
         itemBuilder: (BuildContext ctx, int index) {
+          // return Container();
           return _TeamMemberCard(member: members[index]);
         },
       ),
@@ -39,31 +40,34 @@ class _TeamMemberCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 8),
-      child: Container(
-        width: double.infinity,
-        clipBehavior: Clip.antiAlias,
-        decoration: BoxDecoration(
-          color: context.colorTheme.greyLight,
-          borderRadius: BorderRadius.circular(AboutUsConfig.borderRadius),
-        ),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            SizedBox.square(
-              dimension: AboutUsConfig.photoSize,
-              child: OptimizedDirectusImage(member.directusImageUrl),
-            ),
-            const SizedBox(
-              width: 14,
-            ),
-            _Description(
-              name: member.name ?? "",
-              subtitle: member.subtitle ?? "",
-              links: member.links,
-            ),
-          ],
+    return SizedBox(
+      height: WideTileCardConfig.imageSize,
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 8),
+        child: Container(
+          width: double.infinity,
+          clipBehavior: Clip.antiAlias,
+          decoration: BoxDecoration(
+            color: context.colorTheme.greyLight,
+            borderRadius: BorderRadius.circular(AboutUsConfig.borderRadius),
+          ),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              SizedBox.square(
+                dimension: AboutUsConfig.photoSize,
+                child: OptimizedDirectusImage(member.directusImageUrl),
+              ),
+              const SizedBox(
+                width: 14,
+              ),
+              _Description(
+                name: member.name ?? "",
+                subtitle: member.subtitle ?? "",
+                links: member.links,
+              ),
+            ],
+          ),
         ),
       ),
     );
