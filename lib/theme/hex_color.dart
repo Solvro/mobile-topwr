@@ -7,12 +7,13 @@ class HexColor extends Color {
 
   const HexColor.consts(super.value);
 
-  String get hexString => _ToHexConverter.getHexStrFromColorInt(
-        r.toInt(),
-        g.toInt(),
-        b.toInt(),
-        a.toInt(),
-      );
+  String get hexString {
+    final red = (r * 255).toInt().toRadixString(16).padLeft(2, "0");
+    final green = (g * 255).toInt().toRadixString(16).padLeft(2, "0");
+    final blue = (b * 255).toInt().toRadixString(16).padLeft(2, "0");
+    final alpha = (a * 255).toInt().toRadixString(16).padLeft(2, "0");
+    return "#${alpha == "ff" ? "" : alpha}$red$green$blue";
+  }
 }
 
 abstract class _FromHexConverter {
@@ -30,10 +31,4 @@ abstract class _FromHexConverter {
   }
 
   static int _parseFromBase16toDec(String str) => int.parse(str, radix: 16);
-}
-
-abstract class _ToHexConverter {
-  static String getHexStrFromColorInt(int r, int g, int b, int alpha) {
-    return "#${alpha == 255 ? "" : alpha.toRadixString(16).padLeft(2, "0")}${r.toRadixString(16).padLeft(2, "0")}${g.toRadixString(16).padLeft(2, "0")}${b.toRadixString(16).padLeft(2, "0")}";
-  }
 }
