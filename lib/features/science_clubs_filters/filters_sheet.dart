@@ -6,6 +6,7 @@ import "../../theme/app_theme.dart";
 import "../../utils/context_extensions.dart";
 import "filters_controller.dart";
 import "filters_search_controller.dart";
+import "widgets/apply_filters_button.dart";
 import "widgets/departments_wrap.dart";
 import "widgets/filters_header.dart";
 import "widgets/tags_wrap.dart";
@@ -26,22 +27,35 @@ class FiltersSheet extends StatelessWidget {
             FilterConfig.bottomSheetHeightFactor,
         child: Padding(
           padding: const EdgeInsets.only(top: 16),
-          child: Column(
+          child: Stack(
             children: [
-              FiltersHeader(),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: ListView(
-                    shrinkWrap: true,
-                    children: const [
-                      TypesWrap(),
-                      DepartmentsWrap(),
-                      TagsWrap(),
-                      _NoFiltersFound(),
-                      SizedBox(height: 12),
-                    ],
+              Column(
+                children: [
+                  FiltersHeader(),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: ListView(
+                        shrinkWrap: true,
+                        children: const [
+                          TypesWrap(),
+                          DepartmentsWrap(),
+                          TagsWrap(),
+                          _NoFiltersFound(),
+                          SizedBox(height: 12),
+                        ],
+                      ),
+                    ),
                   ),
+                ],
+              ),
+              Positioned(
+                right: 30,
+                bottom: 20,
+                child: ApplyFiltersButton(
+                  onPressed: () {
+                    
+                  },
                 ),
               ),
             ],

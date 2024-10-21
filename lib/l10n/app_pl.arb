@@ -115,5 +115,6 @@
     }
   },
   "last_modified": "Ostatnia aktualizacja",
-  "created_at": "Utworzono"
+  "created_at": "Utworzono",
+  "apply": "Zastosuj"
 }
