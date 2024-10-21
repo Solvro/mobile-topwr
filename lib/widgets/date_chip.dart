@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "package:intl/intl.dart";
+
 import "../config/ui_config.dart";
 import "../theme/app_theme.dart";
 
@@ -16,7 +17,7 @@ class DateChip extends StatelessWidget {
     return Align(
       alignment: Alignment.topRight,
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 6),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
         margin: const EdgeInsets.all(8),
         decoration: BoxDecoration(
           color: context.colorTheme.blackMirage,
@@ -24,7 +25,9 @@ class DateChip extends StatelessWidget {
         ),
         child: Text(
           DateFormat(DateChipConfig.dateTimeFormat).format(date),
-          style: context.textTheme.bodyWhite,
+          style: context.textTheme.bodyWhite.copyWith(
+            fontWeight: FontWeight.w500,
+          ),
         ),
       ),
     );

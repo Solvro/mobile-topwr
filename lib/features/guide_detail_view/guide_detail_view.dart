@@ -5,6 +5,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "../../config/ui_config.dart";
 import "../../theme/app_theme.dart";
 import "../../utils/context_extensions.dart";
+import "../../widgets/date_chip.dart";
 import "../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../widgets/loading_widgets/shimmer_loading.dart";
 import "../../widgets/loading_widgets/simple_previews/preview_text_prototype.dart";
@@ -15,6 +16,7 @@ import "../../widgets/optimized_directus_image.dart";
 import "repository/guide_detail_view_repository.dart";
 import "utils/get_the_latest_date.dart";
 import "widgets/faq_expansion_tile.dart";
+import "widgets/tooltip_on_click.dart";
 
 @RoutePage()
 class GuideDetailView extends StatelessWidget {
@@ -48,11 +50,26 @@ class _GuideDetailDataView extends ConsumerWidget {
           slivers: [
             SliverAppBar(
               expandedHeight: 254,
-              flexibleSpace: SizedBox(
-                height: 254,
-                child: OptimizedDirectusImage(
-                  value.cover?.filename_disk,
-                ),
+              flexibleSpace: Stack(
+                children: [
+                  SizedBox(
+                    height: 254,
+                    child: OptimizedDirectusImage(
+                      value.cover?.filename_disk,
+                    ),
+                  ),
+                  Positioned(
+                    top: GuideDetailViewConfig.paddingMedium,
+                    right: GuideDetailViewConfig.paddingSmall,
+                    child: Tooltip(
+                      message: context.localize.last_modified,
+                      child: TooltipOnTap(
+                        message: context.localize.last_modified,
+                        child: DateChip(date: DateTime.now()),
+                      ),
+                    ),
+                  ),
+                ],
               ),
               automaticallyImplyLeading: false,
             ),
@@ -81,9 +98,12 @@ class _GuideDetailDataView extends ConsumerWidget {
             SliverPadding(
               padding: const EdgeInsets.only(
                 bottom: GuideDetailViewConfig.bottomPadding,
+                left: GuideDetailViewConfig.paddingLarge,
+                right: GuideDetailViewConfig.paddingLarge,
               ),
               sliver: SliverToBoxAdapter(
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       "${context.localize.created_at} ${context.getTheLatesCreatedDateGuide(questions: value.questions)}",
