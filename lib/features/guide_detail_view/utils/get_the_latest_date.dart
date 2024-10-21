@@ -17,13 +17,12 @@ extension GetTheLatestDateGuideX on BuildContext {
     return newestDate != null ? formatter.format(newestDate) : null;
   }
 
-  String? getTheLatesUpdatedDateGuide({
+  DateTime? getTheLatesUpdatedDateGuide({
     List<Query$GetGuideDetails$FAQ_Types_by_id$questions?>? questions,
   }) {
     final newestDate = questions?.whereNonNull
         .map((e) => e.FAQ_id?.date_updated)
         .reduce((a, b) => (b == null || a != null && a.isAfter(b)) ? a : b);
-    final DateFormat formatter = DateFormat("dd.MM.yyyy");
-    return newestDate != null ? formatter.format(newestDate) : null;
+    return newestDate;
   }
 }

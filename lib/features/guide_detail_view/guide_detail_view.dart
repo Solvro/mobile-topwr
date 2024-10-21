@@ -1,6 +1,7 @@
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:intl/intl.dart";
 
 import "../../config/ui_config.dart";
 import "../../theme/app_theme.dart";
@@ -46,80 +47,89 @@ class _GuideDetailDataView extends ConsumerWidget {
     final state = ref.watch(guideDetailsRepositoryProvider(id));
     return switch (state) {
       AsyncError(:final error) => MyErrorWidget(error),
-      AsyncValue(:final GuideDetails value) => CustomScrollView(
-          slivers: [
-            SliverAppBar(
-              expandedHeight: 254,
-              flexibleSpace: Stack(
-                children: [
-                  SizedBox(
-                    height: 254,
-                    child: OptimizedDirectusImage(
-                      value.cover?.filename_disk,
-                    ),
-                  ),
-                  Positioned(
-                    top: GuideDetailViewConfig.paddingMedium,
-                    right: GuideDetailViewConfig.paddingSmall,
-                    child: Tooltip(
-                      message: context.localize.last_modified,
-                      child: TooltipOnTap(
-                        message: context.localize.last_modified,
-                        child: DateChip(date: DateTime.now()),
+      AsyncValue(:final GuideDetails value) => Builder(
+          builder: (context) {
+            final lastModifiedDate =
+                context.getTheLatesUpdatedDateGuide(questions: value.questions);
+            return CustomScrollView(
+              slivers: [
+                SliverAppBar(
+                  expandedHeight: 254,
+                  flexibleSpace: Stack(
+                    children: [
+                      SizedBox(
+                        height: 254,
+                        child: OptimizedDirectusImage(
+                          value.cover?.filename_disk,
+                        ),
                       ),
+                      if (lastModifiedDate != null)
+                        Positioned(
+                          top: GuideDetailViewConfig.paddingMedium,
+                          right: GuideDetailViewConfig.paddingSmall,
+                          child: Tooltip(
+                            message: context.localize.last_modified,
+                            child: TooltipOnTap(
+                              message: context.localize.last_modified,
+                              child: DateChip(date: lastModifiedDate),
+                            ),
+                          ),
+                        ),
+                    ],
+                  ),
+                  automaticallyImplyLeading: false,
+                ),
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.all(24),
+                    child: MyHtmlWidget(value.description ?? ""),
+                  ),
+                ),
+                SliverPadding(
+                  padding: const EdgeInsets.only(
+                    bottom: GuideDetailViewConfig.paddingLarge,
+                  ),
+                  sliver: SliverList.separated(
+                    itemCount: value.questions?.length ?? 0,
+                    itemBuilder: (context, index) {
+                      final question = value.questions?[index]?.FAQ_id;
+                      return FaqExpansionTile(
+                        title: question?.question ?? "",
+                        description: question?.answer ?? "",
+                      );
+                    },
+                    separatorBuilder: (context, index) =>
+                        const SizedBox(height: 8),
+                  ),
+                ),
+                SliverPadding(
+                  padding: const EdgeInsets.only(
+                    bottom: GuideDetailViewConfig.bottomPadding,
+                    left: GuideDetailViewConfig.paddingLarge,
+                    right: GuideDetailViewConfig.paddingLarge,
+                  ),
+                  sliver: SliverToBoxAdapter(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "${context.localize.created_at} ${context.getTheLatesCreatedDateGuide(questions: value.questions)}",
+                          style: context.textTheme.bodyGrey,
+                          textAlign: TextAlign.end,
+                        ),
+                        if (lastModifiedDate != null)
+                          Text(
+                            "${context.localize.last_modified} ${DateFormat("dd.MM.yyyy").format(lastModifiedDate)}",
+                            style: context.textTheme.bodyGrey,
+                            textAlign: TextAlign.end,
+                          ),
+                      ],
                     ),
                   ),
-                ],
-              ),
-              automaticallyImplyLeading: false,
-            ),
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.all(24),
-                child: MyHtmlWidget(value.description ?? ""),
-              ),
-            ),
-            SliverPadding(
-              padding: const EdgeInsets.only(
-                bottom: GuideDetailViewConfig.paddingLarge,
-              ),
-              sliver: SliverList.separated(
-                itemCount: value.questions?.length ?? 0,
-                itemBuilder: (context, index) {
-                  final question = value.questions?[index]?.FAQ_id;
-                  return FaqExpansionTile(
-                    title: question?.question ?? "",
-                    description: question?.answer ?? "",
-                  );
-                },
-                separatorBuilder: (context, index) => const SizedBox(height: 8),
-              ),
-            ),
-            SliverPadding(
-              padding: const EdgeInsets.only(
-                bottom: GuideDetailViewConfig.bottomPadding,
-                left: GuideDetailViewConfig.paddingLarge,
-                right: GuideDetailViewConfig.paddingLarge,
-              ),
-              sliver: SliverToBoxAdapter(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "${context.localize.created_at} ${context.getTheLatesCreatedDateGuide(questions: value.questions)}",
-                      style: context.textTheme.bodyGrey,
-                      textAlign: TextAlign.end,
-                    ),
-                    Text(
-                      "${context.localize.last_modified} ${context.getTheLatesUpdatedDateGuide(questions: value.questions)}",
-                      style: context.textTheme.bodyGrey,
-                      textAlign: TextAlign.end,
-                    ),
-                  ],
                 ),
-              ),
-            ),
-          ],
+              ],
+            );
+          },
         ),
       _ => const _GuideDetailLoading(),
     };
