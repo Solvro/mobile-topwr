@@ -5,7 +5,7 @@ import "../../../utils/context_extensions.dart";
 
 class ApplyFiltersButton extends StatelessWidget {
   const ApplyFiltersButton({
-    super.key, 
+    super.key,
     required this.onPressed,
   });
 
@@ -23,14 +23,18 @@ class ApplyFiltersButton extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const SizedBox(width: 5,),
+          const SizedBox(
+            width: 5,
+          ),
           Text(
             context.localize.apply,
             style: context.textTheme.titleWhite,
           ),
-          const SizedBox(width: 5,),
+          const SizedBox(
+            width: 5,
+          ),
           Icon(
-            Icons.check, 
+            Icons.check,
             color: context.colorTheme.whiteSoap,
           ),
         ],

@@ -53,9 +53,7 @@ class FiltersSheet extends StatelessWidget {
                 right: 30,
                 bottom: 20,
                 child: ApplyFiltersButton(
-                  onPressed: () {
-                    
-                  },
+                  onPressed: () {},
                 ),
               ),
             ],
