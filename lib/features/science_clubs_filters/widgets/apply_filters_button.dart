@@ -16,7 +16,7 @@ class ApplyFiltersButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.lightGreen,
+        backgroundColor: context.colorTheme.orangePomegranade,
         elevation: 4,
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
       ),
