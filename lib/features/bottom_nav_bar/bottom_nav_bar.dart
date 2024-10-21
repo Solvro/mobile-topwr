@@ -20,7 +20,9 @@ class BottomNavBar extends ConsumerWidget {
         decoration: BoxDecoration(
           boxShadow: <BoxShadow>[
             BoxShadow(
-              color: Colors.black.withValues(alpha: 255.0 * .08),
+              color: Colors.black.withOpacity(
+                .08,
+              ),
               blurRadius: 20,
               offset: const Offset(0, -1),
             ),
@@ -52,8 +54,7 @@ class _NavigationBarItemsList extends DelegatingList<BottomNavigationBarItem> {
                     e.icon,
                     color: e == selectedTab
                         ? context.colorTheme.orangePomegranade
-                        : context.colorTheme.blackMirage
-                            .withValues(alpha: 255.0 * .16),
+                        : context.colorTheme.blackMirage.withOpacity(.16),
                     size: e.size,
                   ),
                   label: e.label,

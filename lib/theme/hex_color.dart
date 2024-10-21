@@ -7,13 +7,7 @@ class HexColor extends Color {
 
   const HexColor.consts(super.value);
 
-  String get hexString {
-    final red = (r * 255).toInt().toRadixString(16).padLeft(2, "0");
-    final green = (g * 255).toInt().toRadixString(16).padLeft(2, "0");
-    final blue = (b * 255).toInt().toRadixString(16).padLeft(2, "0");
-    final alpha = (a * 255).toInt().toRadixString(16).padLeft(2, "0");
-    return "#${alpha == "ff" ? "" : alpha}$red$green$blue";
-  }
+  String get hexString => _ToHexConverter.getHexStrFromColorInt(value, alpha);
 }
 
 abstract class _FromHexConverter {
@@ -31,4 +25,19 @@ abstract class _FromHexConverter {
   }
 
   static int _parseFromBase16toDec(String str) => int.parse(str, radix: 16);
+}
+
+abstract class _ToHexConverter {
+  static String getHexStrFromColorInt(int value, int alpha) {
+    var tempString = _toBase16Str(value);
+    tempString = _fillWith0sToFixedLen(tempString);
+    return "#${_removeOpacityChannelIf255(tempString, alpha)}";
+  }
+
+  static String _toBase16Str(int value) => value.toRadixString(16);
+
+  static String _fillWith0sToFixedLen(String str) => str.padLeft(8, "0");
+
+  static String _removeOpacityChannelIf255(String str, int alpha) =>
+      str.substring(alpha == 255 ? 2 : 0);
 }

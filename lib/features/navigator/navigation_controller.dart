@@ -39,7 +39,7 @@ class NavigationController extends _$NavigationController {
   /// this is called only when you actually **click** in the nav tab bar
   /// so we don't call this on other navigation actions (like `Lista >` buttons)
   Future<void> onTabBarChange(NavBarEnum item) async {
-    final route = NavBarConfig.tabViews.get(item);
+    final route = NavBarConfig.tabViews[item]!;
     if (_stack.last.routeName != route.routeName) {
       _popUntilTabBarView();
       await push(route);

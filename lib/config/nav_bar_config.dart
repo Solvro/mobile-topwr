@@ -1,15 +1,11 @@
 import "package:auto_route/auto_route.dart";
 import "package:collection/collection.dart";
-import "package:enum_map/enum_map.dart";
 import "package:flutter/material.dart";
 
 import "../features/bottom_nav_bar/bottom_nav_bar_icon_icons.icons.dart";
 import "../features/navigator/app_router.dart";
 import "../features/parkings_view/widgets/parkings_icons.icons.dart";
 
-part "nav_bar_config.g.dart";
-
-@unmodifiableEnumMap
 enum NavBarEnum {
   home(BottomNavBarIcon.home_icon, 26, "Home"),
   buildings(BottomNavBarIcon.map_icon, 20, "Map"),
@@ -26,14 +22,14 @@ enum NavBarEnum {
 }
 
 abstract class NavBarConfig {
-  static final tabViews = UnmodifiableNavBarEnumMap<PageRouteInfo>(
-    home: const HomeRoute(),
-    buildings: BuildingsRoute(),
-    parkings: ParkingsRoute(),
-    departments: const DepartmentsRoute(),
-    scienceClubs: ScienceClubsRoute(),
-    guide: const GuideRoute(),
-  );
+  static final tabViews = <NavBarEnum, PageRouteInfo>{
+    NavBarEnum.home: const HomeRoute(),
+    NavBarEnum.buildings: BuildingsRoute(),
+    NavBarEnum.parkings: ParkingsRoute(),
+    NavBarEnum.departments: const DepartmentsRoute(),
+    NavBarEnum.scienceClubs: ScienceClubsRoute(),
+    NavBarEnum.guide: const GuideRoute(),
+  };
 }
 
 extension IsRouteATabViewOnStringX on String {

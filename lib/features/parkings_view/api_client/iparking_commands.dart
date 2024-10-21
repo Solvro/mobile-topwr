@@ -22,7 +22,7 @@ class FetchChartCommand extends DelegatingMap {
 
 class ParkingsOfflineException implements Exception {}
 
-extension IParkingCommandsX on AutoDisposeRef {
+extension IParkingCommandsX on Ref {
   Future<Response<T>> postIParkingCommand<T>(Map command) async {
     try {
       return await watch(iParkingClientProvider).post("", data: command);

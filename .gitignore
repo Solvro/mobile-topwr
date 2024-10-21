@@ -137,7 +137,6 @@ app.*.symbols
 !/dev/ci/**/Gemfile.lock
 !.vscode/settings.json
 
-
 # Excluding generated files
 /pubspec.lock
 *.g.dart
@@ -147,8 +146,6 @@ app.*.symbols
 *.gen.dart
 *.gr.dart
 
-
-
 #Env setup
 .env
 *.env.dev
@@ -156,5 +153,7 @@ app.*.symbols
 env.g.dart
 **/env.g.dart
 
-
 .vscode
+
+# FVM Version Cache
+.fvm/

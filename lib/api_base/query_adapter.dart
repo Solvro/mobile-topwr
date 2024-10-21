@@ -27,7 +27,7 @@ class GqlOfflineException implements Exception {
   }
 }
 
-extension TTLQueryAdapterX on AutoDisposeFutureProviderRef {
+extension TTLQueryAdapterX on Ref {
   Future<T?> queryGraphql<T>(
     QueryOptions<T> queryOptions,
     TtlKey ttlKey,

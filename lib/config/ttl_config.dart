@@ -1,10 +1,6 @@
-import "package:enum_map/enum_map.dart";
 import "package:flutter/foundation.dart";
 import "package:flutter_cache_manager/flutter_cache_manager.dart";
 
-part "ttl_config.g.dart";
-
-@unmodifiableEnumMap
 enum TtlKey {
   /// We need unique key for every data source for its ttl tracking
   academicCalendarRepository,
@@ -27,22 +23,19 @@ abstract class TtlStrategy {
   static const thirtyDays =
       kDebugMode ? Duration(minutes: 30) : Duration(days: 30);
 
-  static const _ttlDurations = UnmodifiableTtlKeyMap(
-    // TODO(simon-the-shark): specific values are yet ment to be accordingly adjusted.
-    academicCalendarRepository: day,
-    scienceClubDetailsRepository: day,
-    scienceClubsRepository: day,
-    tagsRepository: day,
-    buildingsRepository: day,
-    departmentsRepository: day,
-    aboutUsRepository: day,
-    departmentDetailsRepository: day,
-    guideDetailsRepository: day,
-    guideRepository: day,
-  );
-
   static Duration get(TtlKey key) {
-    return _ttlDurations.get(key);
+    return switch (key) {
+      TtlKey.academicCalendarRepository => day,
+      TtlKey.scienceClubDetailsRepository => day,
+      TtlKey.scienceClubsRepository => day,
+      TtlKey.tagsRepository => day,
+      TtlKey.buildingsRepository => day,
+      TtlKey.departmentsRepository => day,
+      TtlKey.aboutUsRepository => day,
+      TtlKey.departmentDetailsRepository => day,
+      TtlKey.guideDetailsRepository => day,
+      TtlKey.guideRepository => day,
+    };
   }
 }
 

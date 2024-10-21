@@ -16,7 +16,7 @@ extension AndroidPopBugWorkaroundX on WidgetRef {
         !read(navigationControllerProvider).isStackPoppable;
   }
 
-  Future<void> handleAndroidSpecialPop(_) async {
+  Future<void> handleAndroidSpecialPop() async {
     await platform.invokeMethod<int>("putAppInBackground");
   }
 }
