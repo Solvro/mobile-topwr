@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 
+import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 
@@ -19,6 +20,9 @@ class ApplyFiltersButton extends StatelessWidget {
         backgroundColor: context.colorTheme.orangePomegranade,
         elevation: 4,
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+        shape: RoundedRectangleBorder(
+          borderRadius: FilterConfig.radius, // Change this value to adjust the radius
+        ),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
