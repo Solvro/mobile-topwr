@@ -27,33 +27,30 @@ class FiltersSheet extends StatelessWidget {
             FilterConfig.bottomSheetHeightFactor,
         child: Padding(
           padding: const EdgeInsets.only(top: 16),
-          child: Stack(
+          child: Column(
             children: [
-              Column(
-                children: [
-                  FiltersHeader(),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: ListView(
-                        shrinkWrap: true,
-                        children: const [
-                          TypesWrap(),
-                          DepartmentsWrap(),
-                          TagsWrap(),
-                          _NoFiltersFound(),
-                          SizedBox(height: 12),
-                        ],
+              FiltersHeader(),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: ListView(
+                    shrinkWrap: true,
+                    children: [
+                      const TypesWrap(),
+                      const DepartmentsWrap(),
+                      const TagsWrap(),
+                      const _NoFiltersFound(),
+                      const SizedBox(
+                        height: FilterConfig.spacingBetweenWidgets,
                       ),
-                    ),
+                      ApplyFiltersButton(
+                        onPressed: () {},
+                      ),
+                      const SizedBox(
+                        height: FilterConfig.spacingBetweenWidgets,
+                      ),
+                    ],
                   ),
-                ],
-              ),
-              Positioned(
-                right: 20,
-                bottom: 20,
-                child: ApplyFiltersButton(
-                  onPressed: () {},
                 ),
               ),
             ],
