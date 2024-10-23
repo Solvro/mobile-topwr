@@ -1,3 +1,4 @@
+import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
@@ -6,6 +7,7 @@ import "../../theme/app_theme.dart";
 import "../../utils/context_extensions.dart";
 import "filters_controller.dart";
 import "filters_search_controller.dart";
+import "widgets/apply_filters_button.dart";
 import "widgets/departments_wrap.dart";
 import "widgets/filters_header.dart";
 import "widgets/tags_wrap.dart";
@@ -34,12 +36,20 @@ class FiltersSheet extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: ListView(
                     shrinkWrap: true,
-                    children: const [
-                      TypesWrap(),
-                      DepartmentsWrap(),
-                      TagsWrap(),
-                      _NoFiltersFound(),
-                      SizedBox(height: 12),
+                    children: [
+                      const TypesWrap(),
+                      const DepartmentsWrap(),
+                      const TagsWrap(),
+                      const _NoFiltersFound(),
+                      const SizedBox(
+                        height: FilterConfig.spacingBetweenWidgets,
+                      ),
+                      ApplyFiltersButton(
+                        onPressed: context.maybePop,
+                      ),
+                      const SizedBox(
+                        height: FilterConfig.spacingBetweenWidgets,
+                      ),
                     ],
                   ),
                 ),

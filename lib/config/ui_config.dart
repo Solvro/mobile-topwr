@@ -162,6 +162,8 @@ abstract class FilterConfig {
   static const bottomSheetHeightFactor = 0.65;
   static const searchFilterPadding = 15.0;
   static const paddingMedium = 8.0;
+  static const spacingBetweenWidgets = 12.0;
+  static final radius = BorderRadius.circular(8);
 }
 
 abstract class LottieAnimationConfig {
