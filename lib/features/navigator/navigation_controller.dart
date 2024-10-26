@@ -25,8 +25,7 @@ class NavigationController extends _$NavigationController {
   Iterable<TRoute> get _stack =>
       _router?.stackData.map((e) => e.route.toPageRouteInfo()) ?? [];
 
-  Future<void> push(TRoute route) async {
-    final popFutureResults = _router?.push(route); // push the route
+  Future<void> keepTrackOfTabBarState(Future<void>? popFutureResults) async {
     await Future.delayed(
       Duration.zero,
       refreshState, // refresh the state after the push
@@ -34,6 +33,16 @@ class NavigationController extends _$NavigationController {
     // await the route's pop
     if (popFutureResults != null) await popFutureResults;
     refreshState(); // refresh the state after the pop
+  }
+
+  Future<void> push(TRoute route) async {
+    final popFutureResults = _router?.push(route); // push the route
+    await keepTrackOfTabBarState(popFutureResults);
+  }
+
+  Future<void> pushNamed(String uri) async {
+    final popFutureResults = _router?.pushNamed(uri); // push the route
+    await keepTrackOfTabBarState(popFutureResults);
   }
 
   /// this is called only when you actually **click** in the nav tab bar

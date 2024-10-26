@@ -68,4 +68,8 @@ extension NavigationX on WidgetRef {
   Future<void> navigateGuideDetail(String id) async {
     await _router.push(GuideDetailRoute(id: id));
   }
+
+  Future<void> navigateNamedUri(String uri) async {
+    await _router.pushNamed(uri);
+  }
 }
