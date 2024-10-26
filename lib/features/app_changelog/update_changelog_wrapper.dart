@@ -18,7 +18,7 @@ class UpdateChangelogWrapper extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     useEffectOnInit(
       () {
-        unawaited(Future.microtask(() => showChangelog(context, ref)));
+        unawaited(showChangelog(context, ref));
         return null;
       }
     );
