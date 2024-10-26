@@ -4,6 +4,8 @@ import "package:shared_preferences/shared_preferences.dart";
 
 import "../../../config/shared_prefs.dart";
 import "../../../utils/datetime_utils.dart";
+import "../../../utils/shared_prefs_extensions.dart";
+import "../../../utils/timestamp.dart";
 import "../../app_streak/business/get_days_use_case.dart";
 
 class InAppRatingService {
@@ -28,28 +30,26 @@ class InAppRatingService {
   }
 
   Future<bool> _canRequestReview() async {
-    final lastReviewPrompt = _sharedPrefs.getInt(
-      InAppReviewConfig.lastReviewPromptDateInMillis,
-    );
+    final lastReviewPrompt = _sharedPrefs
+        .getTimestamp(InAppReviewConfig.lastReviewPromptDateAsString)
+        .daysLeftFromNow;
     final reviewCount =
         _sharedPrefs.getInt(InAppReviewConfig.reviewCountKey) ?? 0;
     final usageDays = await _getUsageDays();
 
-    if (usageDays > 2 && reviewCount < 3 && await _inAppReview.isAvailable()) {
-      final DateTime lastReviewPromptDate = lastReviewPrompt != null
-          ? DateTime.fromMillisecondsSinceEpoch(lastReviewPrompt)
-          : DateTime.now().subtract(const Duration(days: 8));
-      if (DateTime.now().difference(lastReviewPromptDate).inDays > 7) {
-        return true;
-      }
+    if (usageDays > 2 &&
+        reviewCount < 3 &&
+        lastReviewPrompt > 7 &&
+        await _inAppReview.isAvailable()) {
+      return true;
     }
     return false;
   }
 
   Future<void> _updatePreferences() async {
-    await _sharedPrefs.setInt(
-      InAppReviewConfig.lastReviewPromptDateInMillis,
-      now.millisecondsSinceEpoch,
+    await _sharedPrefs.saveTimestamp(
+      InAppReviewConfig.lastReviewPromptDateAsString,
+      Timestamp.now(),
     );
     await _sharedPrefs.setInt(
       InAppReviewConfig.reviewCountKey,

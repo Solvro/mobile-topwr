@@ -13,7 +13,7 @@ class InAppReviewWidget extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final inAppRatingService = ref.read(inAppRatingServiceProvider);
+    final inAppRatingService = ref.watch(inAppRatingServiceProvider);
     useEffectOnInit(() {
       unawaited(inAppRatingService.requestReviewIfNeeded());
       return null;

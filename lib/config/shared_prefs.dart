@@ -18,6 +18,6 @@ abstract class StreakRepositoriesConfig {
 
 abstract class InAppReviewConfig {
   static const reviewCountKey = "__app_in_app_review__review_count";
-  static const lastReviewPromptDateInMillis =
+  static const lastReviewPromptDateAsString =
       "__app_in_app_review__last_review_prompt";
 }
