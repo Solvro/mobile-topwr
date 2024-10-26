@@ -13,7 +13,8 @@ class AppTextTheme extends ThemeExtension<AppTextTheme>
     // Headline 17px, w500
     this.headline = const HeadlineTextStyle(),
     this.headlineWhite = const HeadlineTextStyle(color: ColorsConsts.whiteSoap),
-    this.headlineOrange = const HeadlineTextStyle(color: ColorsConsts.orangePomegranade),
+    this.headlineOrange =
+        const HeadlineTextStyle(color: ColorsConsts.orangePomegranade),
 
     // Title 15px, w500
     this.title = const TitleTextStyle(),
@@ -41,7 +42,8 @@ class AppTextTheme extends ThemeExtension<AppTextTheme>
         const BoldBodyTextStyle(color: ColorsConsts.orangePomegranade),
 
     // small 13px, w400
-    this.smallOrange = const SmallTextStyle(color: ColorsConsts.orangePomegranade),
+    this.smallOrange =
+        const SmallTextStyle(color: ColorsConsts.orangePomegranade),
   });
 
   @override

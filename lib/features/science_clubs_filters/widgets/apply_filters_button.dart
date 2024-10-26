@@ -21,7 +21,8 @@ class ApplyFiltersButton extends StatelessWidget {
         elevation: 4,
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
         shape: RoundedRectangleBorder(
-          borderRadius: FilterConfig.radius, // Change this value to adjust the radius
+          borderRadius:
+              FilterConfig.radius, // Change this value to adjust the radius
         ),
       ),
       child: Row(
