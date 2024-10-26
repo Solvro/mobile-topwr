@@ -39,7 +39,7 @@ class InAppRatingService {
 
     if (usageDays > 2 && reviewCount < 3 && await _inAppReview.isAvailable()) {
       final DateTime lastReviewPromptDate = lastReviewPrompt != null ? DateTime
-          .fromMillisecondsSinceEpoch(lastReviewPrompt) : DateTime.now();
+          .fromMillisecondsSinceEpoch(lastReviewPrompt) : DateTime.now().subtract(const Duration(days: 8));
       if (DateTime
           .now()
           .difference(lastReviewPromptDate)
