@@ -7,6 +7,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "../../config/map_view_config.dart";
 import "../../theme/app_theme.dart";
 import "../bottom_scroll_sheet/bottom_scroll_sheet.dart";
+import "../bottom_scroll_sheet/map_view_pop_behaviour.dart";
 import "../bottom_scroll_sheet/sheet_layout_scheme.dart";
 import "controllers/bottom_sheet_controller.dart";
 import "controllers/controllers_set.dart";
@@ -75,14 +76,17 @@ class _HorizontalWebLayout<T extends GoogleNavigable> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double panelWidth = min(350, MediaQuery.sizeOf(context).width);
-    return Row(
-      children: [
-        SizedBox(
-          width: panelWidth,
-          child: SheetLayoutScheme<T>(),
-        ),
-        Expanded(child: MapWidget<T>()),
-      ],
+    return MapViewPopBehaviour<T>(
+      screenHeight: MediaQuery.sizeOf(context).height,
+      child: Row(
+        children: [
+          SizedBox(
+            width: panelWidth,
+            child: SheetLayoutScheme<T>(),
+          ),
+          Expanded(child: MapWidget<T>()),
+        ],
+      ),
     );
   }
 }
