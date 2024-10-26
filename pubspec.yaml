@@ -87,6 +87,7 @@ dependencies:
   flutter_cache_manager: ^3.4.1
   in_app_update: ^4.2.3
   upgrader: ^11.3.0
+  in_app_review: ^2.0.9
 
 dev_dependencies:
   flutter_test:
