@@ -6,7 +6,6 @@ import "../../../config/shared_prefs.dart";
 import "../../../utils/datetime_utils.dart";
 import "../../app_streak/business/get_days_use_case.dart";
 
-
 class InAppRatingService {
   const InAppRatingService(this.ref);
 
@@ -19,9 +18,7 @@ class InAppRatingService {
   }
 
   SharedPreferences get _sharedPrefs =>
-      ref
-          .read(sharedPreferencesSingletonProvider)
-          .requireValue;
+      ref.read(sharedPreferencesSingletonProvider).requireValue;
 
   Future<void> requestReviewIfNeeded() async {
     if (await _canRequestReview()) {
@@ -32,18 +29,17 @@ class InAppRatingService {
 
   Future<bool> _canRequestReview() async {
     final lastReviewPrompt = _sharedPrefs.getInt(
-        InAppReviewConfig.lastReviewPromptDateInMillis,);
-    final reviewCount = _sharedPrefs.getInt(InAppReviewConfig.reviewCountKey) ??
-        0;
+      InAppReviewConfig.lastReviewPromptDateInMillis,
+    );
+    final reviewCount =
+        _sharedPrefs.getInt(InAppReviewConfig.reviewCountKey) ?? 0;
     final usageDays = await _getUsageDays();
 
     if (usageDays > 2 && reviewCount < 3 && await _inAppReview.isAvailable()) {
-      final DateTime lastReviewPromptDate = lastReviewPrompt != null ? DateTime
-          .fromMillisecondsSinceEpoch(lastReviewPrompt) : DateTime.now().subtract(const Duration(days: 8));
-      if (DateTime
-          .now()
-          .difference(lastReviewPromptDate)
-          .inDays > 7) {
+      final DateTime lastReviewPromptDate = lastReviewPrompt != null
+          ? DateTime.fromMillisecondsSinceEpoch(lastReviewPrompt)
+          : DateTime.now().subtract(const Duration(days: 8));
+      if (DateTime.now().difference(lastReviewPromptDate).inDays > 7) {
         return true;
       }
     }
@@ -51,9 +47,13 @@ class InAppRatingService {
   }
 
   Future<void> _updatePreferences() async {
-    await _sharedPrefs.setInt(InAppReviewConfig.lastReviewPromptDateInMillis,
-        now.millisecondsSinceEpoch,);
-    await _sharedPrefs.setInt(InAppReviewConfig.reviewCountKey,
-      (_sharedPrefs.getInt(InAppReviewConfig.reviewCountKey) ?? 0) + 1,);
+    await _sharedPrefs.setInt(
+      InAppReviewConfig.lastReviewPromptDateInMillis,
+      now.millisecondsSinceEpoch,
+    );
+    await _sharedPrefs.setInt(
+      InAppReviewConfig.reviewCountKey,
+      (_sharedPrefs.getInt(InAppReviewConfig.reviewCountKey) ?? 0) + 1,
+    );
   }
 }
