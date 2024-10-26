@@ -1,3 +1,4 @@
+import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../gql_client_provider.dart";
@@ -7,7 +8,7 @@ import "getRemoteCacheRef.graphql.dart";
 part "remote_cache_ref_number_repo.g.dart";
 
 @riverpod
-Future<int?> remoteCacheRefNumberRepo(RemoteCacheRefNumberRepoRef ref) async {
+Future<int?> remoteCacheRefNumberRepo(Ref ref) async {
   final apiClient = await ref.watch(gqlClientProvider);
   final remoteValue = await apiClient.query$GetRemoteRefCacheNumber();
   final safeRemoteValue =

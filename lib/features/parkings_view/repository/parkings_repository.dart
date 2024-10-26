@@ -23,7 +23,7 @@ extension RefIntervalRefreshX on Ref {
 }
 
 @riverpod
-Future<IList<Parking>> parkingsRepository(ParkingsRepositoryRef ref) async {
+Future<IList<Parking>> parkingsRepository(Ref ref) async {
   ref.setRefresh(ParkingsConfig.parkingsRefreshInterval);
   final response = await ref.postIParkingCommand<Map<String, dynamic>>(
     FetchPlacesCommand(DateTime.now()),
@@ -36,7 +36,7 @@ Future<IList<Parking>> parkingsRepository(ParkingsRepositoryRef ref) async {
 
 DoubleLinkedQueue<Parking> _sortParkingsByFav(
   Iterable<Parking> list,
-  ParkingsRepositoryRef ref,
+  Ref ref,
 ) {
   final finalParkings = DoubleLinkedQueue<Parking>();
   for (final parking in list) {

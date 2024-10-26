@@ -1,3 +1,4 @@
+import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:graphql/client.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 import "package:shared_preferences/shared_preferences.dart";
@@ -37,7 +38,7 @@ class LocalTimestampRepository {
 
 @riverpod
 Future<LocalTimestampRepository> localTimestampRepository(
-  LocalTimestampRepositoryRef ref,
+  Ref ref,
   TtlKey key,
 ) async {
   final prefs = await ref.watch(sharedPreferencesSingletonProvider.future);

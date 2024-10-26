@@ -1,4 +1,5 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../api_base/query_adapter.dart";
@@ -12,7 +13,7 @@ typedef AcademicCalendarData = Query$GetAcademicCalendar$AcademicCalendarData;
 typedef AcademicWeekException = Query$GetAcademicCalendar$WeekExceptions;
 
 @riverpod
-Future<AcademicCalendar?> academicCalendarRepo(AcademicCalendarRepoRef ref) {
+Future<AcademicCalendar?> academicCalendarRepo(Ref ref) {
   return ref.queryGraphql(
     Options$Query$GetAcademicCalendar(),
     TtlKey.academicCalendarRepository,

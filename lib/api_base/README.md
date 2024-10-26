@@ -71,9 +71,7 @@ part "departments_repository.g.dart";
 typedef Department = Query$GetDepartments$Departments;
 
 @riverpod
-Future<List<Department?>?> departmentsRepository(
-  DepartmentsRepositoryRef ref,
-) async {
+Future<List<Department?>?> departmentsRepository(Ref ref) async {
   final results = await ref.queryGraphql(
     Options$Query$GetDepartments(),
     TtlKey.departmentsRepository,

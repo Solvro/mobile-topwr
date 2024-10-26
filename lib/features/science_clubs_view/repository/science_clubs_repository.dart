@@ -1,5 +1,6 @@
 import "package:collection/collection.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../../config/ttl_config.dart";
@@ -12,9 +13,7 @@ part "science_clubs_repository.g.dart";
 typedef ScienceClub = Query$GetScienceClubs$Scientific_Circles;
 
 @riverpod
-Future<IList<ScienceClub>> scienceClubsRepository(
-  ScienceClubsRepositoryRef ref,
-) async {
+Future<IList<ScienceClub>> scienceClubsRepository(Ref ref) async {
   final results = await ref.queryGraphql(
     Options$Query$GetScienceClubs(),
     TtlKey.scienceClubsRepository,

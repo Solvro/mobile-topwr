@@ -1,4 +1,5 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../utils/contains_lower_case.dart";
@@ -17,14 +18,12 @@ class SearchGuideController extends _$SearchGuideController {
 }
 
 @Riverpod(dependencies: [SearchGuideController])
-bool isSomethingSearched(IsSomethingSearchedRef ref) {
+bool isSomethingSearched(Ref ref) {
   return ref.watch(searchGuideControllerProvider) != "";
 }
 
 @Riverpod(dependencies: [SearchGuideController])
-Future<IList<GuidePost>> guideListController(
-  GuideListControllerRef ref,
-) async {
+Future<IList<GuidePost>> guideListController(Ref ref) async {
   final originalList = await ref.watch(guideRepositoryProvider.future);
   final query = ref.watch(searchGuideControllerProvider);
   return originalList

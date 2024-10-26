@@ -63,7 +63,7 @@ class SelectedTypeController extends _$SelectedTypeController
     SelectedTypeController,
   ],
 )
-bool areFiltersEnabled(AreFiltersEnabledRef ref) {
+bool areFiltersEnabled(Ref ref) {
   final selectedTagsIsNotEmpty =
       ref.watch(selectedTagControllerProvider.notEmpty);
   final selectedDepartmentsIsNotEmpty =

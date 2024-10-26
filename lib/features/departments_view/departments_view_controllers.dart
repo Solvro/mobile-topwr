@@ -1,4 +1,5 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../utils/contains_lower_case.dart";
@@ -17,7 +18,7 @@ class SearchDepartmentsController extends _$SearchDepartmentsController {
 }
 
 @Riverpod(dependencies: [SearchDepartmentsController])
-Future<IList<Department>> departmentsList(DepartmentsListRef ref) async {
+Future<IList<Department>> departmentsList(Ref ref) async {
   final originalList = await ref.watch(departmentsRepositoryProvider.future);
   final query = ref.watch(searchDepartmentsControllerProvider);
   return originalList

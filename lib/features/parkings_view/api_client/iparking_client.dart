@@ -1,4 +1,5 @@
 import "package:dio/dio.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../config/env.dart";
@@ -23,7 +24,7 @@ abstract class ParkingsConfig {
 }
 
 @riverpod
-Dio iParkingClient(IParkingClientRef ref) {
+Dio iParkingClient(Ref ref) {
   return Dio(
     BaseOptions(
       baseUrl: ParkingsConfig.soapFullUrl,
