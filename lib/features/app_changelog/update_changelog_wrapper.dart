@@ -8,20 +8,18 @@ import "show_changelog.dart";
 
 class UpdateChangelogWrapper extends HookConsumerWidget {
   const UpdateChangelogWrapper({
-    super.key, 
+    super.key,
     required this.child,
-});
+  });
 
   final Widget child;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    useEffectOnInit(
-      () {
-        unawaited(showChangelog(context, ref));
-        return null;
-      }
-    );
+    useEffectOnInit(() {
+      unawaited(showChangelog(context, ref));
+      return null;
+    });
 
     return child;
   }

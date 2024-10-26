@@ -6,7 +6,7 @@ import "../repository/changelog_repository.dart";
 class AppChangelogList extends StatelessWidget {
   const AppChangelogList({super.key, required this.changelog});
 
-  final Changelog changelog; 
+  final Changelog changelog;
 
   @override
   Widget build(BuildContext context) {
@@ -17,17 +17,18 @@ class AppChangelogList extends StatelessWidget {
           tag: changelog.changes![index]!.changeType,
           description: changelog.changes![index]!.changeDescription,
         ),
-        itemCount: changelog.changes!.length, 
-        separatorBuilder: (BuildContext context, int index) => const SizedBox(height: 14,),
+        itemCount: changelog.changes!.length,
+        separatorBuilder: (BuildContext context, int index) => const SizedBox(
+          height: 14,
+        ),
       ),
     );
   }
 }
 
-
 class _ListItem extends StatelessWidget {
-  const _ListItem({ 
-    required this.tag, 
+  const _ListItem({
+    required this.tag,
     required this.description,
   });
 
@@ -55,7 +56,9 @@ class _ListItem extends StatelessWidget {
             style: context.textTheme.smallOrange,
           ),
         ),
-        const SizedBox(width: 15,),
+        const SizedBox(
+          width: 15,
+        ),
         Expanded(
           child: Text(
             description,

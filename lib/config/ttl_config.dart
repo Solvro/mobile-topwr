@@ -12,7 +12,7 @@ enum TtlKey {
   aboutUsRepository,
   buildingsRepository,
   guideDetailsRepository,
-  guideRepository, 
+  guideRepository,
   changelogRepository
   // ... add a new key here if you create a new repository
 }

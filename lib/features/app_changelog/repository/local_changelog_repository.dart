@@ -15,12 +15,12 @@ class LocalChangelogRepository extends _$LocalChangelogRepository {
     final prefs = await ref.watch(sharedPreferencesSingletonProvider.future);
 
     final userHasSeen = prefs.getBool(_key);
-    if(userHasSeen == null){
+    if (userHasSeen == null) {
       final prefs = await ref.read(sharedPreferencesSingletonProvider.future);
       await prefs.setBool(_key, true);
       return false;
     } else {
-      return userHasSeen;
+      return false;
     }
   }
 }

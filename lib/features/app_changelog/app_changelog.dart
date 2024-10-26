@@ -5,10 +5,9 @@ import "repository/changelog_repository.dart";
 import "widgets/app_changelog_header.dart";
 import "widgets/app_changelog_list.dart";
 
-
 class AppChangelog extends StatelessWidget {
   const AppChangelog({
-    super.key, 
+    super.key,
     required this.changelog,
   });
 
@@ -33,8 +32,12 @@ class AppChangelog extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                AppChangelogHeader(version: changelog.versionString!,),
-                const SizedBox(height: 15,),
+                AppChangelogHeader(
+                  version: changelog.versionString!,
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
                 AppChangelogList(changelog: changelog),
               ],
             ),
@@ -42,7 +45,7 @@ class AppChangelog extends StatelessWidget {
               right: 0,
               top: 0,
               child: GestureDetector(
-                onTap: context.maybePop, 
+                onTap: context.maybePop,
                 child: Icon(
                   Icons.close,
                   color: context.colorTheme.greyPigeon,
