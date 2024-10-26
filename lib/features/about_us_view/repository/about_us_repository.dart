@@ -1,4 +1,5 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../api_base/query_adapter.dart";
@@ -12,7 +13,7 @@ typedef AboutUs = Query$getAbousUsDetails$AboutUs;
 typedef AboutUsTeam = Query$getAbousUsDetails$AboutUs_Team;
 
 @riverpod
-Future<AboutUsDetails?> aboutUsRepository(AboutUsRepositoryRef ref) async {
+Future<AboutUsDetails?> aboutUsRepository(Ref ref) async {
   final results = await ref.queryGraphql(
     Options$Query$getAbousUsDetails(),
     TtlKey.aboutUsRepository,

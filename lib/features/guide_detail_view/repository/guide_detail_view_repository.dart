@@ -1,3 +1,4 @@
+import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../api_base/query_adapter.dart";
@@ -11,7 +12,7 @@ typedef _Vars = Variables$Query$GetGuideDetails;
 
 @riverpod
 Future<GuideDetails?> guideDetailsRepository(
-  GuideDetailsRepositoryRef ref,
+  Ref ref,
   String id,
 ) async {
   final results = await ref.queryGraphql(

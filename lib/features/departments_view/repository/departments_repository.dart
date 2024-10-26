@@ -1,4 +1,5 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../api_base/query_adapter.dart";
@@ -12,9 +13,7 @@ part "departments_repository.g.dart";
 typedef Department = Query$GetDepartments$Departments;
 
 @riverpod
-Future<IList<Department>> departmentsRepository(
-  DepartmentsRepositoryRef ref,
-) async {
+Future<IList<Department>> departmentsRepository(Ref ref) async {
   final results = await ref.queryGraphql(
     Options$Query$GetDepartments(),
     TtlKey.departmentsRepository,

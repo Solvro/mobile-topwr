@@ -1,12 +1,11 @@
 import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 part "bottom_sheet_controller.g.dart";
 
 @riverpod
-DraggableScrollableController bottomSheetController(
-  BottomSheetControllerRef ref,
-) =>
+DraggableScrollableController bottomSheetController(Ref ref) =>
     DraggableScrollableController();
 
 extension SafeDraggableScrollableControllerWrapperX

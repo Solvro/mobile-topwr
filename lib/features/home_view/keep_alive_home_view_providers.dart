@@ -28,7 +28,7 @@ class KeepAliveHomeViewProviders extends ConsumerWidget {
 }
 
 @riverpod
-void keepAliveHomeViewProviders(KeepAliveHomeViewProvidersRef ref) {
+void keepAliveHomeViewProviders(Ref ref) {
   ref.watch(academicCalendarRepoProvider);
   ref.watch(parkingsRepositoryProvider);
   ref.watch(scienceClubsRepositoryProvider);

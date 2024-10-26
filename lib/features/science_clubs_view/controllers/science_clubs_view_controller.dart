@@ -1,4 +1,5 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../utils/contains_lower_case.dart";
@@ -19,9 +20,7 @@ class SearchScienceClubsController extends _$SearchScienceClubsController {
 }
 
 @Riverpod(dependencies: [SearchScienceClubsController])
-Future<Iterable<ScienceClub>> _sciClubsFilteredByTextQuery(
-  _SciClubsFilteredByTextQueryRef ref,
-) async {
+Future<Iterable<ScienceClub>> _sciClubsFilteredByTextQuery(Ref ref) async {
   final originalList = await ref.watch(scienceClubsRepositoryProvider.future);
   final query = ref.watch(searchScienceClubsControllerProvider);
   return originalList.where(
@@ -42,9 +41,7 @@ Future<Iterable<ScienceClub>> _sciClubsFilteredByTextQuery(
     SelectedTypeController,
   ],
 )
-Future<IList<ScienceClub>> scienceClubsListController(
-  ScienceClubsListControllerRef ref,
-) async {
+Future<IList<ScienceClub>> scienceClubsListController(Ref ref) async {
   final sciClubs =
       (await ref.watch(_sciClubsFilteredByTextQueryProvider.future))
           .whereNonNull;

@@ -1,3 +1,4 @@
+import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../utils/timestamp.dart";
@@ -12,7 +13,7 @@ extension _GetDateFromDatetimeX on DateTime {
 }
 
 @riverpod
-Future<int> getUsageDaysUseCase(GetUsageDaysUseCaseRef ref) async {
+Future<int> getUsageDaysUseCase(Ref ref) async {
   final today = Timestamp.now().date;
   final lastEntry = (await ref.watch(lastEntryRepositoryProvider.future)).date;
   final differenceFromLastEntry = today.difference(lastEntry).inDays;

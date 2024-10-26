@@ -1,4 +1,5 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../utils/contains_lower_case.dart";
@@ -24,7 +25,7 @@ class SearchFiltersController extends _$SearchFiltersController {
 }
 
 @Riverpod(dependencies: [SearchFiltersController])
-IList<ScienceClubType> typeFiltersFiltered(TypeFiltersFilteredRef ref) {
+IList<ScienceClubType> typeFiltersFiltered(Ref ref) {
   final query = ref.watch(searchFiltersControllerProvider);
   return ScienceClubType.values
       .where(
@@ -40,7 +41,7 @@ IList<ScienceClubType> typeFiltersFiltered(TypeFiltersFilteredRef ref) {
 
 @Riverpod(dependencies: [SearchFiltersController])
 Future<IList<Department>> departmentFiltersFiltered(
-  DepartmentFiltersFilteredRef ref,
+  Ref ref,
 ) async {
   final query = ref.watch(searchFiltersControllerProvider);
   final depts = await ref.watch(departmentsRepositoryProvider.future);
@@ -55,9 +56,7 @@ Future<IList<Department>> departmentFiltersFiltered(
 }
 
 @Riverpod(dependencies: [SearchFiltersController])
-Future<IList<Tag>> tagFiltersFiltered(
-  TagFiltersFilteredRef ref,
-) async {
+Future<IList<Tag>> tagFiltersFiltered(Ref ref) async {
   final query = ref.watch(searchFiltersControllerProvider);
   final tags = await ref.watch(tagsRepositoryProvider.future);
   return tags.where((x) => x.name.containsLowerCase(query)).toIList();
@@ -70,7 +69,7 @@ Future<IList<Tag>> tagFiltersFiltered(
     tagFiltersFiltered,
   ],
 )
-bool areNoFiltersFound(AreNoFiltersFoundRef ref) {
+bool areNoFiltersFound(Ref ref) {
   final source1Empty = !ref.watch(typeFiltersFilteredProvider.notEmpty);
   final source2Empty =
       !(ref.watch(departmentFiltersFilteredProvider.notEmpty) ?? false);

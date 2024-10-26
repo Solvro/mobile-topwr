@@ -1,4 +1,5 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../../config/ttl_config.dart";
@@ -13,9 +14,7 @@ part "buildings_repository.g.dart";
 typedef Building = Query$GetBuildings$Buildings;
 
 @riverpod
-Future<IList<BuildingModel>> buildingsRepository(
-  BuildingsRepositoryRef ref,
-) async {
+Future<IList<BuildingModel>> buildingsRepository(Ref ref) async {
   final results = await ref.queryGraphql(
     Options$Query$GetBuildings(),
     TtlKey.buildingsRepository,
