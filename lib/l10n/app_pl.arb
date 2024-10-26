@@ -116,5 +116,9 @@
   },
   "last_modified": "Ostatnia aktualizacja",
   "created_at": "Utworzono",
-  "apply": "Zastosuj"
+  "apply": "Zastosuj",
+  "changes": "Zmiany",
+  "version": "wersja",
+  "hey_check_out_the_new_features": "Hej, sprawdź nowości",
+  "here_you_will_see_what_we_changed_in_the_latest_version": "Tutaj zobaczysz co zmieniliśmy w najnowszej wersji"
 }

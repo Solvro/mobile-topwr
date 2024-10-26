@@ -39,6 +39,9 @@ class AppTextTheme extends ThemeExtension<AppTextTheme>
     this.boldBody = const BoldBodyTextStyle(),
     this.boldBodyOrange =
         const BoldBodyTextStyle(color: ColorsConsts.orangePomegranade),
+
+    // small 13px, w400
+    this.smallOrange = const SmallTextStyle(color: ColorsConsts.orangePomegranade),
   });
 
   @override
@@ -73,4 +76,6 @@ class AppTextTheme extends ThemeExtension<AppTextTheme>
   final TextStyle bodyOrange;
   @override
   final TextStyle bodyBlue;
+  @override
+  final TextStyle smallOrange;
 }
