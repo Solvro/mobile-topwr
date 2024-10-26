@@ -13,6 +13,7 @@ class AppTextTheme extends ThemeExtension<AppTextTheme>
     // Headline 17px, w500
     this.headline = const HeadlineTextStyle(),
     this.headlineWhite = const HeadlineTextStyle(color: ColorsConsts.whiteSoap),
+    this.headlineOrange = const HeadlineTextStyle(color: ColorsConsts.orangePomegranade),
 
     // Title 15px, w500
     this.title = const TitleTextStyle(),
@@ -44,6 +45,8 @@ class AppTextTheme extends ThemeExtension<AppTextTheme>
   final TextStyle headline;
   @override
   final TextStyle headlineWhite;
+  @override
+  final TextStyle headlineOrange;
   @override
   final TextStyle title;
   @override
