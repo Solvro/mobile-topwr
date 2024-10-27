@@ -1,3 +1,5 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
@@ -20,7 +22,7 @@ class ParkingTile extends ConsumerWidget {
       parking: parking,
       isActive: isActive,
       onTap: () {
-        ref.read(parkingsMapControllerProvider.notifier).onMarkerTap(parking);
+        unawaited(ref.read(parkingsMapControllerProvider).onMarkerTap(parking));
       },
     );
   }

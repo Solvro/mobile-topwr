@@ -1,3 +1,5 @@
+import "dart:async";
+
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_map/flutter_map.dart";
@@ -35,7 +37,9 @@ class BuildingsView extends ConsumerWidget {
         point: item.location,
         child: GestureDetector(
           onTap: () {
-            ref.read(buildingsMapControllerProvider.notifier).onMarkerTap(item);
+            unawaited(
+              ref.read(buildingsMapControllerProvider).onMarkerTap(item),
+            );
           },
           child: Image.asset(
             isActive

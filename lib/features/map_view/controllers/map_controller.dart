@@ -1,37 +1,43 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
-import "package:flutter_map/flutter_map.dart" as fl_map;
-import "package:riverpod_annotation/riverpod_annotation.dart";
+import "package:flutter_map_animations/flutter_map_animations.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../config/map_view_config.dart";
 import "bottom_sheet_controller.dart";
 import "controllers_set.dart";
 
-mixin MapController<T extends GoogleNavigable>
-    on AutoDisposeNotifier<fl_map.MapController> {
-  late final MapControllers<T> mapControllers;
+class MyMapController<T extends GoogleNavigable> {
+  final Ref ref;
+  final MapControllers<T> mapControllers;
+  MyMapController(this.ref, this.mapControllers);
 
-  @override
-  fl_map.MapController build() {
-    return fl_map.MapController();
+  // nasty, but no other option I think
+  final _controllerCompleter = Completer<AnimatedMapController>();
+  Future<AnimatedMapController> get _controller => _controllerCompleter.future;
+  void completeController(AnimatedMapController controller) {
+    _controllerCompleter.complete(controller);
   }
 
-  void zoomOnMarker(T item) {
-    state.move(
-      item.location,
-      MapWidgetConfig.defaultMarkerZoom,
+  Future<void> zoomOnMarker(T item) async {
+    final controller = await _controller;
+    await controller.animateTo(
+      dest: item.location,
+      zoom: MapWidgetConfig.defaultMarkerZoom,
       offset: Offset(
         0,
         -ref.read(bottomSheetControllerProvider).pixelsSafe / 2,
       ),
+      rotation: 0,
     );
-    state.rotate(0);
   }
 
-  void onMarkerTap(T item) {
+  Future<void> onMarkerTap(T item) async {
     ref.read(mapControllers.activeMarker.notifier).toggleItem(item);
     ref.read(bottomSheetControllerProvider).resetSafe();
     if (ref.read(mapControllers.activeMarker) == item) {
-      zoomOnMarker(item);
+      await zoomOnMarker(item);
     }
   }
 
