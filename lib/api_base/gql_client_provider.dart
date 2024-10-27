@@ -1,17 +1,21 @@
 import "package:flutter/foundation.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:graphql/client.dart";
-
+import "package:riverpod_annotation/riverpod_annotation.dart";
 import "../config/env.dart";
 
-final _hiveCacheBoxProvider = Provider((ref) async {
+part "gql_client_provider.g.dart";
+
+@riverpod
+Future<GraphQLCache> _hiveCacheBox(Ref ref) async {
   if (kIsWeb) return GraphQLCache(); // Normal in memory cache
   final box = await HiveStore.open(boxName: ApiBaseConfig.hiveCacheBoxName);
-  return GraphQLCache(store: box); // Local persistent on-disk cache with Hive
-});
+  return GraphQLCache(store: box); // Local persistent on-disk cache with Hive}
+}
 
-final gqlClientProvider = Provider((ref) async {
-  final hiveCache = await ref.watch(_hiveCacheBoxProvider);
+@riverpod
+Future<GraphQLClient> grapqlClient(Ref ref) async {
+  final hiveCache = await ref.watch(_hiveCacheBoxProvider.future);
   return GraphQLClient(
     cache: hiveCache,
     link: HttpLink(Env.apiUrl),
@@ -24,7 +28,7 @@ final gqlClientProvider = Provider((ref) async {
       ),
     ),
   );
-});
+}
 
 extension GqlClientProviderX<T> on QueryOptions<T> {
   QueryOptions<T> copyWithFetchPolicy(FetchPolicy policy) => copyWithPolicies(

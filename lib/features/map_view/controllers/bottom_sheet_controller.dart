@@ -4,8 +4,8 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 
 part "bottom_sheet_controller.g.dart";
 
-@riverpod
-DraggableScrollableController bottomSheetController(Ref ref) =>
+@Riverpod(dependencies: [])
+Raw<DraggableScrollableController> bottomSheetController(Ref ref) =>
     DraggableScrollableController();
 
 extension SafeDraggableScrollableControllerWrapperX
@@ -17,7 +17,7 @@ extension SafeDraggableScrollableControllerWrapperX
   double get pixelsSafe => isAttached ? pixels : 0;
 }
 
-@riverpod
+@Riverpod(dependencies: [bottomSheetController])
 class BottomSheetPixels extends _$BottomSheetPixels {
   @override
   double build() {

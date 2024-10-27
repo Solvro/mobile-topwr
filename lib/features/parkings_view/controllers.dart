@@ -21,6 +21,8 @@ class ActiveParkingController extends _$ActiveParkingController
   }
 }
 
+// this lint rule here is imo bugged; I'm pretty sure it has no reason to be triggered here
+// ignore: provider_dependencies
 @Riverpod(dependencies: [ActiveParkingController])
 class ParkingsViewController extends _$ParkingsViewController
     with MapDataController<Parking> {
@@ -41,6 +43,8 @@ class ParkingsViewController extends _$ParkingsViewController
   }
 }
 
+// this lint rule here is imo bugged; I'm pretty sure it has no reason to be triggered here
+// ignore: provider_dependencies
 @Riverpod(dependencies: [ActiveParkingController])
 class ParkingsMapController extends _$ParkingsMapController
     with MapController<Parking> {
