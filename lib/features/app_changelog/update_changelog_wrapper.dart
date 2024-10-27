@@ -17,6 +17,7 @@ class UpdateChangelogWrapper extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     useEffectOnInit(() {
+      print("Wykonuje sie");
       unawaited(showChangelog(context, ref));
       return null;
     });

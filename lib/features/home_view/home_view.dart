@@ -5,6 +5,7 @@ import "package:flutter/material.dart";
 import "../../config/ui_config.dart";
 import "../../theme/app_theme.dart";
 import "../academic_calendar/widgets/academic_calendar_consumer.dart";
+import "../app_changelog/update_changelog_wrapper.dart";
 import "../app_streak/presentation/app_streak_counter.dart";
 import "keep_alive_home_view_providers.dart";
 import "widgets/buildings_section/buildings_section.dart";
@@ -29,17 +30,19 @@ class HomeView extends StatelessWidget {
       const NewsSection(),
       const DepartmentsSection(),
     ].lock;
-    return Scaffold(
-      backgroundColor: context.colorTheme.whiteSoap,
-      appBar: LogoAppBar(context),
-      body: KeepAliveHomeViewProviders(
-        child: ListView.separated(
-          padding: const EdgeInsets.only(bottom: HomeViewConfig.bottomPadding),
-          itemBuilder: (context, index) => sections[index],
-          separatorBuilder: (context, index) => SizedBox(
-            height: index == 1 ? 0 : HomeViewConfig.paddingMedium,
+    return UpdateChangelogWrapper(
+      child: Scaffold(
+        backgroundColor: context.colorTheme.whiteSoap,
+        appBar: LogoAppBar(context),
+        body: KeepAliveHomeViewProviders(
+          child: ListView.separated(
+            padding: const EdgeInsets.only(bottom: HomeViewConfig.bottomPadding),
+            itemBuilder: (context, index) => sections[index],
+            separatorBuilder: (context, index) => SizedBox(
+              height: index == 1 ? 0 : HomeViewConfig.paddingMedium,
+            ),
+            itemCount: sections.length,
           ),
-          itemCount: sections.length,
         ),
       ),
     );

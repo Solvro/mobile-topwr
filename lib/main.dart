@@ -8,7 +8,6 @@ import "api_base/cache/remote_flush/presentation/flush_cache_remotely_widget.dar
 import "config/env.dart";
 import "config/ui_config.dart";
 import "config/wiredash.dart";
-import "features/app_changelog/update_changelog_wrapper.dart";
 import "features/navigator/app_router.dart";
 import "features/navigator/navigation_controller.dart";
 import "features/splash_screen/splash_screen.dart";
@@ -39,10 +38,8 @@ class MyApp extends ConsumerWidget {
         secret: Env.wiredashSecret,
         theme: context.wiredashTheme,
         child: MaterialApp.router(
-          builder: (context, child) => UpdateChangelogWrapper(
-            child: UpdateDialogWrapper(
-              child: child!,
-            ),
+          builder: (context, child) => UpdateDialogWrapper(
+            child: child!,
           ),
           title: MyAppConfig.title,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
