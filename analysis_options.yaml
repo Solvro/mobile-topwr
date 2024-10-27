@@ -30,3 +30,6 @@ analyzer:
     - "**/firebase_options.dart"
   plugins:
     - custom_lint
+
+custom_lint:
+  enable_all_lint_rules: true

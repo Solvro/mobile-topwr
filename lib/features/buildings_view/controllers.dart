@@ -22,6 +22,8 @@ class ActiveBuildingController extends _$ActiveBuildingController
   }
 }
 
+// this lint rule here is imo bugged; I'm pretty sure it has no reason to be triggered here
+// ignore: provider_dependencies
 @Riverpod(dependencies: [ActiveBuildingController])
 class BuildingsViewController extends _$BuildingsViewController
     with MapDataController<BuildingModel> {
@@ -42,6 +44,8 @@ class BuildingsViewController extends _$BuildingsViewController
   }
 }
 
+// this lint rule here is imo bugged; I'm pretty sure it has no reason to be triggered here
+// ignore: provider_dependencies
 @Riverpod(dependencies: [ActiveBuildingController])
 class BuildingsMapController extends _$BuildingsMapController
     with MapController<BuildingModel> {

@@ -32,7 +32,7 @@ extension TTLQueryAdapterX on Ref {
     QueryOptions<T> queryOptions,
     TtlKey ttlKey,
   ) async {
-    final apiClient = await watch(gqlClientProvider);
+    final apiClient = await watch(grapqlClientProvider.future);
     final ttlService = ttlServiceProvider.call(ttlKey);
     final ttlFetchPolicy = await watch(ttlService.future);
     final newOptions = queryOptions.copyWithFetchPolicy(ttlFetchPolicy);

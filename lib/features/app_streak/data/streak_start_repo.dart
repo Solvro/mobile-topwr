@@ -1,5 +1,6 @@
 import "dart:async";
 
+import "package:flutter/foundation.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../config/shared_prefs.dart";
@@ -12,6 +13,7 @@ part "streak_start_repo.g.dart";
 class StreakStartRepository extends _$StreakStartRepository
     with TimestampRepository {
   @override
+  @protected
   final storeKey = StreakRepositoriesConfig.streakStartKey;
 
   @override

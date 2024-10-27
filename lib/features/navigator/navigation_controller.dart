@@ -3,6 +3,7 @@ import "dart:async";
 import "package:auto_route/auto_route.dart";
 import "package:collection/collection.dart";
 import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../config/nav_bar_config.dart";
@@ -17,10 +18,16 @@ typedef NavigationState = ({
 });
 
 @riverpod
-class NavigationController extends _$NavigationController {
-  final navigatorKey = GlobalKey<AutoRouterState>();
+GlobalKey<AutoRouterState> navigatorKey(Ref ref) {
+  return GlobalKey<AutoRouterState>();
+}
 
-  StackRouter? get _router => navigatorKey.currentState?.controller;
+@riverpod
+class NavigationController extends _$NavigationController {
+  GlobalKey<AutoRouterState> get _navigatorKey =>
+      ref.watch(navigatorKeyProvider);
+
+  StackRouter? get _router => _navigatorKey.currentState?.controller;
 
   Iterable<TRoute> get _stack =>
       _router?.stackData.map((e) => e.route.toPageRouteInfo()) ?? [];

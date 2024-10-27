@@ -9,7 +9,7 @@ part "remote_cache_ref_number_repo.g.dart";
 
 @riverpod
 Future<int?> remoteCacheRefNumberRepo(Ref ref) async {
-  final apiClient = await ref.watch(gqlClientProvider);
+  final apiClient = await ref.watch(grapqlClientProvider.future);
   final remoteValue = await apiClient.query$GetRemoteRefCacheNumber();
   final safeRemoteValue =
       await GqlOfflineException.graphqlTryCatch(remoteValue, null);

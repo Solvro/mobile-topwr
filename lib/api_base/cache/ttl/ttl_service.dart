@@ -12,7 +12,7 @@ part "ttl_service.g.dart";
 class TtlService extends _$TtlService {
   @override
   Future<FetchPolicy> build(TtlKey key) async {
-    final timestamp = (await repository).getTimestamp();
+    final timestamp = (await _repository).getTimestamp();
     if (await timestamp.isCacheUpToDate) {
       _scheduleTTLInvalidation(await timestamp.timeLeft);
       return FetchPolicy.cacheFirst; // loads only from cache unless it's empty
@@ -20,14 +20,14 @@ class TtlService extends _$TtlService {
     return FetchPolicy.networkOnly; // force re-fetch
   }
 
-  Future<LocalTimestampRepository> get repository async =>
+  Future<LocalTimestampRepository> get _repository async =>
       ref.watch(localTimestampRepositoryProvider.call(key).future);
 
   Future<QueryResult<T>> interceptAndSaveTimestamps<T>(
     QueryResult<T> event,
   ) async {
     if (event.source == QueryResultSource.network) {
-      final repo = await repository;
+      final repo = await _repository;
       await repo.saveTimestamp(event);
     }
     return event;
@@ -39,7 +39,7 @@ class TtlService extends _$TtlService {
   }
 
   Future<void> flushCache() async {
-    final repo = await repository;
+    final repo = await _repository;
     await repo.removeTimestamp();
     ref.invalidateSelf();
   }
