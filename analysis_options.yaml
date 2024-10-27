@@ -28,3 +28,5 @@ analyzer:
     - "**/*.graphql.dart"
     - "**/*.icons.dart"
     - "**/firebase_options.dart"
+  plugins:
+    - custom_lint

@@ -141,6 +141,10 @@ dart fix --apply
 ```bash
 dart format .
 ```
+- run riverpod linter (and any other custom lint package)
+```bash
+dart run custom_lint
+```
 ## Github workflow
 Don't worry if you've forgotten about the steps, automatic gh action will run the checks for you and notify if somthing's wrong.
 
