@@ -1,5 +1,3 @@
-import "dart:async";
-
 import "package:flutter/material.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
@@ -17,11 +15,11 @@ class UpdateChangelogWrapper extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     useEffectOnInit(() {
-      print("Wykonuje sie");
-      unawaited(showChangelog(context, ref));
+      Future.microtask(
+        () async => context.mounted ? showChangelog(context, ref) : null,
+      );
       return null;
     });
-
     return child;
   }
 }
