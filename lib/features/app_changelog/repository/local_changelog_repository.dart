@@ -20,7 +20,7 @@ class LocalChangelogRepository extends _$LocalChangelogRepository {
       await prefs.setBool(_key, true);
       return false;
     } else {
-      return false;
+      return userHasSeen;
     }
   }
 }

@@ -1,8 +1,8 @@
-query GetNewestChangelog(
+query GetChangelogs(
   $changelogFilter: Changelog_filter
   $changeFilter: Changelog_Change_filter
 ) {
-  Changelog(filter: $changelogFilter, sort: ["-date_created"], limit: 1) {
+  Changelog(filter: $changelogFilter) {
     id
     status
     versionString
