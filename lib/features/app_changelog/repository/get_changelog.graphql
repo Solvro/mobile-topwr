@@ -1,0 +1,16 @@
+query GetChangelog(
+  $changelogFilter: Changelog_filter
+  $changeFilter: Changelog_Change_filter
+) {
+  Changelog(filter: $changelogFilter) {
+    id
+    status
+    versionString
+    date_created
+    changes(filter: $changeFilter) {
+      id
+      changeDescription
+      changeType
+    }
+  }
+}

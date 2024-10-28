@@ -32,3 +32,7 @@ class TitleTextStyle extends BoldBodyTextStyle {
 class LightTitleTextStyle extends BodyTextStyle {
   const LightTitleTextStyle({super.color}) : super(fontSize: 15);
 }
+
+class SmallTextStyle extends BodyTextStyle {
+  const SmallTextStyle({super.color}) : super(fontSize: 11);
+}
