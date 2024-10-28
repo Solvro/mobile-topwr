@@ -8,7 +8,7 @@ import "repository/changelog_repository.dart";
 import "repository/local_changelog_repository.dart";
 
 Future<void> showChangelog(BuildContext context, WidgetRef ref) async {
-  final changelogs = await ref.watch(changelogRepositoryProvider.future);
+  final changelogs = await ref.read(changelogRepositoryProvider.future);
   if (changelogs.isEmpty) return;
 
   final appVersion = await _getAppVersion();
@@ -24,7 +24,7 @@ Future<void> showChangelog(BuildContext context, WidgetRef ref) async {
       ) ??
       true;
 
-  if (!changelogSeen && context.mounted) {
+  if (!changelogSeen && context.mounted && changelogForCurrentVersion.versionString != null) {
     await showDialog(
       context: context,
       builder: (context) => AppChangelog(changelog: changelogForCurrentVersion),
