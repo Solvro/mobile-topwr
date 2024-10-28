@@ -1,3 +1,5 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
@@ -27,7 +29,9 @@ class BuildingTile extends ConsumerWidget {
       subtitle: context.changeNull(building.addressFormatted),
       isActive: isActive,
       onTap: () {
-        ref.read(buildingsMapControllerProvider.notifier).onMarkerTap(building);
+        unawaited(
+          ref.read(buildingsMapControllerProvider).onMarkerTap(building),
+        );
       },
     );
   }

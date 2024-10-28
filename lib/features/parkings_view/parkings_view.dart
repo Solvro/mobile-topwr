@@ -1,3 +1,5 @@
+import "dart:async";
+
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_map/flutter_map.dart";
@@ -34,7 +36,9 @@ class ParkingsView extends ConsumerWidget {
         alignment: Alignment.topCenter,
         child: GestureDetector(
           onTap: () {
-            ref.read(parkingsMapControllerProvider.notifier).onMarkerTap(item);
+            unawaited(
+              ref.read(parkingsMapControllerProvider).onMarkerTap(item),
+            );
           },
           child: Image.asset(
             isActive
