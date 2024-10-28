@@ -19,8 +19,8 @@ Future<void> showChangelog(BuildContext context, WidgetRef ref) async {
 
   final changelogSeen = await ref.read(
         localChangelogRepositoryProvider(
-                changelogForCurrentVersion.versionString!,)
-            .future,
+          changelogForCurrentVersion.versionString!,
+        ).future,
       ) ??
       true;
 
@@ -38,7 +38,9 @@ Future<String> _getAppVersion() async {
 }
 
 Changelog? _findChangelogForVersion(
-    IList<Changelog> changelogs, String version,) {
+  IList<Changelog> changelogs,
+  String version,
+) {
   return changelogs.firstWhere(
     (changelog) => changelog.versionString == version,
   );

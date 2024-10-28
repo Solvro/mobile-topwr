@@ -1,4 +1,4 @@
-query GetChangelogs(
+query GetChangelog(
   $changelogFilter: Changelog_filter
   $changeFilter: Changelog_Change_filter
 ) {

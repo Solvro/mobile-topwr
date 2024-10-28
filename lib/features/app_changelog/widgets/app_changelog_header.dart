@@ -25,9 +25,10 @@ class AppChangelogHeader extends StatelessWidget {
                 style: context.textTheme.headlineOrange,
               ),
               const WidgetSpan(
-                  child: SizedBox(
-                width: 5,
-              ),),
+                child: SizedBox(
+                  width: 5,
+                ),
+              ),
               TextSpan(
                 text: "${context.localize.version} ${version.toUpperCase()}",
                 style: context.textTheme.bodyGrey,
