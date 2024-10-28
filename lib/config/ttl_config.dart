@@ -26,17 +26,18 @@ abstract class TtlStrategy {
 
   static Duration get(TtlKey key) {
     return switch (key) {
-      TtlKey.academicCalendarRepository => day,
-      TtlKey.scienceClubDetailsRepository => day,
-      TtlKey.scienceClubsRepository => day,
-      TtlKey.tagsRepository => day,
-      TtlKey.buildingsRepository => day,
-      TtlKey.departmentsRepository => day,
-      TtlKey.aboutUsRepository => day,
-      TtlKey.departmentDetailsRepository => day,
-      TtlKey.guideDetailsRepository => day,
-      TtlKey.guideRepository => day,
-      TtlKey.changelogRepository => day,
+      TtlKey.academicCalendarRepository => week,
+      TtlKey.scienceClubDetailsRepository => week,
+      TtlKey.scienceClubsRepository => week,
+      TtlKey.tagsRepository => week,
+      TtlKey.buildingsRepository => week,
+      TtlKey.departmentsRepository => week,
+      TtlKey.aboutUsRepository => week,
+      TtlKey.departmentDetailsRepository => week,
+      TtlKey.guideDetailsRepository =>
+        day, // leaving as day for now, cause maybe some uni orgs will update it by themselves
+      TtlKey.guideRepository => week,
+      TtlKey.changelogRepository => week,
     };
   }
 }
