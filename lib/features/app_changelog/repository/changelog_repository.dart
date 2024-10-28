@@ -1,4 +1,5 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../api_base/query_adapter.dart";
@@ -11,7 +12,7 @@ typedef Changelog = Query$GetNewestChangelog$Changelog;
 
 @riverpod
 Future<IList<Changelog>> changelogRepository(
-  ChangelogRepositoryRef ref,
+  Ref ref,
 ) async {
   final results = await ref.queryGraphql(
     Options$Query$GetNewestChangelog(),
