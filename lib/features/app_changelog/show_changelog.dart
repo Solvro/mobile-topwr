@@ -12,7 +12,7 @@ Future<void> showChangelog(BuildContext context, WidgetRef ref) async {
   if (changelogs.isEmpty) return;
 
   final appVersion = await _getAppVersion();
-  final changelogForCurrentVersion =
+  final changelogForCurrentVersion = changelogs[0];
       _findChangelogForVersion(changelogs, appVersion);
 
   if (changelogForCurrentVersion == null) return;
@@ -24,13 +24,20 @@ Future<void> showChangelog(BuildContext context, WidgetRef ref) async {
       ) ??
       true;
 
-  if (!changelogSeen && context.mounted && changelogForCurrentVersion.versionString != null) {
+  if (!changelogSeen && context.mounted && _canShowDialog(changelogForCurrentVersion)) {
     await showDialog(
       context: context,
       builder: (context) => AppChangelog(changelog: changelogForCurrentVersion),
     );
   }
 }
+
+bool _canShowDialog(Changelog changelog) {
+  final changes = changelog.changes;
+
+  return changelog.versionString != null && changes != null && changes.every((change) => change != null);
+}
+
 
 Future<String> _getAppVersion() async {
   final packageInfo = await PackageInfo.fromPlatform();
