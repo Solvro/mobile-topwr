@@ -14,7 +14,7 @@ class LeftLabels extends AxisTitles {
       : super(
           sideTitles: SideTitles(
             showTitles: true,
-            reservedSize: 30,
+            reservedSize: 32,
             getTitlesWidget: (value, meta) {
               if (value == meta.max && meta.isMaxLabelOverlapping) {
                 return const SizedBox.shrink();
