@@ -1,16 +1,12 @@
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
+import "../../../utils/datetime_utils.dart";
 import "../../../utils/timestamp.dart";
 import "../data/last_entry_repo.dart";
 import "../data/streak_start_repo.dart";
 
 part "get_days_use_case.g.dart";
-
-extension _GetDateFromDatetimeX on DateTime {
-  // Convert DateTime to Date (remove time)
-  DateTime get date => DateTime(year, month, day);
-}
 
 @riverpod
 Future<int> getUsageDaysUseCase(Ref ref) async {

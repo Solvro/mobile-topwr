@@ -5,6 +5,8 @@ import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../business/get_days_use_case.dart";
 
+// Currently, presentation layer of the functionality is not used anywhere.
+
 class AppStreakCounter extends ConsumerWidget {
   const AppStreakCounter({super.key});
 

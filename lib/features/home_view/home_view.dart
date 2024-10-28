@@ -6,6 +6,7 @@ import "../../config/ui_config.dart";
 import "../../theme/app_theme.dart";
 import "../academic_calendar/widgets/academic_calendar_consumer.dart";
 import "../app_streak/presentation/app_streak_counter.dart";
+import "../app_changelog/update_changelog_wrapper.dart";
 import "keep_alive_home_view_providers.dart";
 import "widgets/buildings_section/buildings_section.dart";
 import "widgets/departments_section/departments_section.dart";
@@ -22,7 +23,6 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     final sections = [
       const AcademicCalendarConsumer(),
-      const AppStreakCounter(),
       const ParkingsSection(),
       const ScienceClubsSection(),
       const BuildingsSection(),
