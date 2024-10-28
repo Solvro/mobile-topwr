@@ -1,5 +1,4 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
-import "package:flutter_map/flutter_map.dart" as fl_map;
 import "package:latlong2/latlong.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
@@ -21,7 +20,7 @@ typedef ActiveMarkerProv<T extends GoogleNavigable>
     = AutoDisposeNotifierProvider<ActiveMarkerController<T>, T?>;
 
 typedef MapControllerProv<T extends GoogleNavigable>
-    = AutoDisposeNotifierProvider<MapController<T>, fl_map.MapController?>;
+    = AutoDisposeProvider<MyMapController<T>>;
 
 typedef MapControllers<T extends GoogleNavigable> = ({
   ActiveMarkerProv<T> activeMarker,

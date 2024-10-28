@@ -6,6 +6,9 @@ extension DateTimeUtilsX on DateTime {
     return subtract(Duration(days: difference));
   }
 
+  // Convert DateTime to Date (remove time)
+  DateTime get date => DateTime(year, month, day);
+
   int calculateWeeksTo(DateTime end) {
     final difference = end.difference(this);
     return (difference.inDays / 7).floor();

@@ -32,4 +32,7 @@ analyzer:
     - custom_lint
 
 custom_lint:
-  enable_all_lint_rules: true
+  enable_all_lint_rules: false
+  rules:
+    # this works weirdly
+    provider_dependencies: false

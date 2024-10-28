@@ -1,9 +1,10 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
-import "package:flutter_map/flutter_map.dart" as fl_map;
+import "package:hooks_riverpod/hooks_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../utils/contains_lower_case.dart";
 import "../map_view/controllers/active_map_marker_cntrl.dart";
+import "../map_view/controllers/bottom_sheet_controller.dart";
 import "../map_view/controllers/controllers_set.dart";
 import "../map_view/controllers/map_controller.dart";
 import "../map_view/controllers/map_data_controller.dart";
@@ -21,9 +22,7 @@ class ActiveParkingController extends _$ActiveParkingController
   }
 }
 
-// this lint rule here is imo bugged; I'm pretty sure it has no reason to be triggered here
-// ignore: provider_dependencies
-@Riverpod(dependencies: [ActiveParkingController])
+@Riverpod(dependencies: [ActiveParkingController, bottomSheetController])
 class ParkingsViewController extends _$ParkingsViewController
     with MapDataController<Parking> {
   ParkingsViewController() {
@@ -43,20 +42,9 @@ class ParkingsViewController extends _$ParkingsViewController
   }
 }
 
-// this lint rule here is imo bugged; I'm pretty sure it has no reason to be triggered here
-// ignore: provider_dependencies
-@Riverpod(dependencies: [ActiveParkingController])
-class ParkingsMapController extends _$ParkingsMapController
-    with MapController<Parking> {
-  ParkingsMapController() {
-    mapControllers = parkingsMapControllers;
-  }
-
-  @override
-  // ignore: unnecessary_overrides
-  fl_map.MapController build() {
-    return super.build();
-  }
+@Riverpod(dependencies: [ActiveParkingController, bottomSheetController])
+MyMapController<Parking> parkingsMapController(Ref ref) {
+  return MyMapController(ref, parkingsMapControllers);
 }
 
 final MapControllers<Parking> parkingsMapControllers = (
