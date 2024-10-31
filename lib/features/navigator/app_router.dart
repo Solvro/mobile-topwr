@@ -13,6 +13,7 @@ import "../home_view/home_view.dart";
 import "../parkings_view/parkings_view.dart";
 import "../science_club_detail_view/science_club_detail_view.dart";
 import "../science_clubs_view/science_clubs_view.dart";
+import "../sks-menu/sks_menu_screen.dart";
 import "root_view.dart";
 
 part "app_router.g.dart";
@@ -42,7 +43,7 @@ class AppRouter extends RootStackRouter {
           children: [
             _NoTransitionRoute(
               path: "",
-              page: HomeRoute.page,
+              page: SksMenuRoute.page,
             ),
             _NoTransitionRoute(
               path: "buildings/:initialActiveItemId",
@@ -82,6 +83,10 @@ class AppRouter extends RootStackRouter {
               path: "guide/:id",
               page: GuideDetailRoute.page,
             ),
+           /* AutoRoute(
+              path: "sksMenu",
+              page: SksMenuRoute.page
+            )*/
           ],
         ),
       ];
