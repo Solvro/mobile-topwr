@@ -83,11 +83,11 @@ class AppRouter extends RootStackRouter {
               path: "guide/:id",
               page: GuideDetailRoute.page,
             ),
-            AutoRoute(
-              path: "sksMenu",
-              page: SksMenuRoute.page,
-            ),
           ],
+        ),
+        AutoRoute(
+          path: "/sks-menu",
+          page: SksMenuRoute.page,
         ),
       ];
 }
