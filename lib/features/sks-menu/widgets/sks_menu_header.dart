@@ -23,17 +23,22 @@ class SksMenuHeader extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        const SizedBox(height: SksMenuConfig.paddingLarge),
         Text(
           context.localize.sks_menu,
-          style: context.textTheme.headlineOrange.copyWith(fontSize: 24),
+          style: context.textTheme.headlineOrange
+              .copyWith(fontSize: 28, height: 1),
         ),
         Padding(
           padding:
               const EdgeInsets.symmetric(vertical: SksMenuConfig.paddingSmall),
           child: Text(
             DateTime.now().toDayDateString(),
-            style: context.textTheme.title
-                .copyWith(fontSize: 18, color: context.colorTheme.blueAzure),
+            style: context.textTheme.title.copyWith(
+              fontSize: 20,
+              color: context.colorTheme.blueAzure,
+              height: 1,
+            ),
           ),
         ),
         Text(

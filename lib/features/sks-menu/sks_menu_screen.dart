@@ -6,6 +6,7 @@ import "package:flutter/material.dart";
 import "../../config/ui_config.dart";
 import "../../utils/context_extensions.dart";
 import "../../widgets/detail_views/detail_view_app_bar.dart";
+import "../home_view/widgets/paddings.dart";
 import "widgets/sks_menu_data_source_link.dart";
 import "widgets/sks_menu_header.dart";
 import "widgets/sks_menu_section.dart";
@@ -25,10 +26,15 @@ class SksMenuView extends StatelessWidget {
             dateTimeOfLastUpdate: "2024-11-09T15:26:39Z",
           ),
           Padding(
-            padding: const EdgeInsets.all(SksMenuConfig.paddingSmall),
-            child: SksMenuSection(),
+            padding: const EdgeInsets.symmetric(
+              vertical: HomeViewConfig.paddingMedium,
+            ),
+            child: MediumHorizontalPadding(child: SksMenuSection()),
           ),
           const SksMenuDataSourceLink(),
+          const SizedBox(
+            height: ScienceClubsViewConfig.mediumPadding,
+          ),
         ],
       ),
     );
