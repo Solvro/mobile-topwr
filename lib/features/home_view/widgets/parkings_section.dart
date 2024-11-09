@@ -25,6 +25,10 @@ class ParkingsSection extends ConsumerWidget {
             actionTitle: context.localize.map_button,
             onClick: ref.navigateParkings,
           ),
+          FilledButton(
+            onPressed: ref.navigateToSksMenu,
+            child: const Text("navigate to sks menu"),
+          ),
           const _ParkingsList(),
         ],
       );

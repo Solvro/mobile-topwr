@@ -43,7 +43,7 @@ class AppRouter extends RootStackRouter {
           children: [
             _NoTransitionRoute(
               path: "",
-              page: SksMenuRoute.page,
+              page: HomeRoute.page,
             ),
             _NoTransitionRoute(
               path: "buildings/:initialActiveItemId",
@@ -83,10 +83,10 @@ class AppRouter extends RootStackRouter {
               path: "guide/:id",
               page: GuideDetailRoute.page,
             ),
-           /* AutoRoute(
+            AutoRoute(
               path: "sksMenu",
-              page: SksMenuRoute.page
-            )*/
+              page: SksMenuRoute.page,
+            ),
           ],
         ),
       ];

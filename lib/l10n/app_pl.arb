@@ -115,11 +115,24 @@
       }
     }
   },
+  "relative_time": "Ostatnia aktualizacja: {difference, plural, =0{mniej niż minutę temu} =1{minutę temu} =2{minuty temu} few{{difference} minuty temu} many{{difference} minut temu} other{{difference} minut temu}}",
+  "@relative-time": {
+    "description": "A message with a single parameter",
+    "placeholders": {
+      "minutes": {
+        "type": "int",
+        "example": "10"
+      }
+    }
+  },
   "last_modified": "Ostatnia aktualizacja",
   "created_at": "Utworzono",
   "apply": "Zastosuj",
   "changes": "Zmiany",
   "version": "wersja",
   "hey_check_out_the_new_features": "Hej, sprawdź nowości",
-  "here_you_will_see_what_we_changed_in_the_latest_version": "Tutaj zobaczysz co zmieniliśmy w najnowszej wersji"
+  "here_you_will_see_what_we_changed_in_the_latest_version": "Tutaj zobaczysz co zmieniliśmy w najnowszej wersji",
+  "data_come_from_website": "Dane pochodzą ze strony",
+  "sks_menu" : "SKS Menu",
+  "home_screen" : "Ekran główny"
 }

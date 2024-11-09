@@ -181,3 +181,10 @@ abstract class MyTooltipConfig {
     ),
   ];
 }
+
+abstract class SksMenuConfig {
+  static const borderRadius = 8.0;
+  static const paddingSmall = 8.0;
+  static const paddingLarge = 16.0;
+  static const sksDataSource = "www.sks.pwr.edu.pl/menu";
+}
