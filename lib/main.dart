@@ -8,7 +8,7 @@ import "api_base/cache/remote_flush/presentation/flush_cache_remotely_widget.dar
 import "config/env.dart";
 import "config/ui_config.dart";
 import "config/wiredash.dart";
-import "features/in_app_review/in_app_review.dart";
+import "features/in_app_review/presentation/in_app_review.dart";
 import "features/navigator/app_router.dart";
 import "features/navigator/navigation_controller.dart";
 import "features/splash_screen/splash_screen.dart";

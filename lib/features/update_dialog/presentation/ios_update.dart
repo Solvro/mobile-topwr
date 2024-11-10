@@ -16,11 +16,6 @@ class IosUpdateWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return UpgradeAlert(
       navigatorKey: ref.watch(appRouterProvider).navigatorKey,
-      upgrader: Upgrader(
-        debugDisplayAlways: true,
-        debugLogging: true,
-        durationUntilAlertAgain: const Duration(days: 1),
-      ),
       dialogStyle: UpgradeDialogStyle.cupertino,
       shouldPopScope: () => true,
       child: child,

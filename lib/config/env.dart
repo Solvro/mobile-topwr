@@ -25,4 +25,6 @@ abstract class Env {
   static final String wiredashId = _Env.wiredashId;
   @EnviedField()
   static final String wiredashSecret = _Env.wiredashSecret;
+  @EnviedField()
+  static final String sksUrl = _Env.sksUrl;
 }
