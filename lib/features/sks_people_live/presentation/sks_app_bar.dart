@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 
-import "../../theme/app_theme.dart";
-import "../home_view/widgets/logo_app_bar.dart";
+import "../../../theme/app_theme.dart";
+import "../../home_view/widgets/logo_app_bar.dart";
 import "widgets/sks_user_data_button.dart";
 
 class SksAppBar extends AppBar {

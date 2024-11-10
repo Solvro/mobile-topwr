@@ -12,38 +12,16 @@ class SksUserData with _$SksUserData {
     required DateTime externalTimestamp,
     required DateTime createdAt,
     required DateTime updatedAt,
-    @TrendConverter() required Trend trend,
+    required Trend trend,
   }) = _SksUserData;
 
   factory SksUserData.fromJson(Map<String, dynamic> json) =>
       _$SksUserDataFromJson(json);
 }
 
+@JsonEnum(fieldRename: FieldRename.screamingSnake)
 enum Trend {
   increasing,
   decreasing,
   stable,
-}
-
-class TrendConverter implements JsonConverter<Trend, String> {
-  const TrendConverter();
-
-  @override
-  Trend fromJson(String json) {
-    switch (json.toUpperCase()) {
-      case "INCREASING":
-        return Trend.increasing;
-      case "DECREASING":
-        return Trend.decreasing;
-      case "STABLE":
-        return Trend.stable;
-      default:
-        throw ArgumentError("Unknown Trend value: $json");
-    }
-  }
-
-  @override
-  String toJson(Trend trend) {
-    return trend.name.toUpperCase();
-  }
 }

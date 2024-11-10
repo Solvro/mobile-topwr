@@ -1,10 +1,10 @@
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../../../config/ui_config.dart";
-import "../../../theme/app_theme.dart";
-import "../models/sks_user_data.dart";
-import "../repository/latest_sks_user_data_repo.dart";
+import "../../../../config/ui_config.dart";
+import "../../../../theme/app_theme.dart";
+import "../../data/models/sks_user_data.dart";
+import "../../data/repository/latest_sks_user_data_repo.dart";
 
 class SksUserDataButton extends ConsumerWidget {
   const SksUserDataButton({super.key});
