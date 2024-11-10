@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
+import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
 import "../models/sks_user_data.dart";
 import "../repository/latest_sks_user_data_repo.dart";
@@ -28,18 +29,18 @@ class _SksButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(right: 12, bottom: 2),
+      padding: SksConfig.outerPadding,
       child: GestureDetector(
         onTap: () {},
         child: Row(
           children: [
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              padding: SksConfig.innerPadding,
               decoration: BoxDecoration(
                 border: Border.all(
                   color: context.colorTheme.orangePomegranade,
                 ),
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(SksConfig.radious),
               ),
               child: Row(
                 children: [
@@ -48,14 +49,14 @@ class _SksButton extends StatelessWidget {
                     color: context.colorTheme.orangePomegranade,
                   ),
                   const SizedBox(
-                    width: 5,
+                    width: SksConfig.sizedBoxWidth,
                   ),
                   Text(
                     sksUserData.activeUsers.toString(),
                     style: context.textTheme.titleOrange,
                   ),
                   const SizedBox(
-                    width: 5,
+                    width: SksConfig.sizedBoxWidth,
                   ),
                   sksUserData.trend.icon,
                 ],

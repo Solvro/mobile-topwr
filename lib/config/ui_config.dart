@@ -181,3 +181,10 @@ abstract class MyTooltipConfig {
     ),
   ];
 }
+
+abstract class SksConfig{
+  static const sizedBoxWidth = 5.0;
+  static const radious = 8.0;
+  static const innerPadding = EdgeInsets.symmetric(horizontal: 8, vertical: 4);
+  static const outerPadding = EdgeInsets.only(right: 12, bottom: 2);
+}
