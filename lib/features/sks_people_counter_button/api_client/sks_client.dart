@@ -9,7 +9,6 @@ part "sks_client.g.dart";
 abstract class SksClientConfig {
   static final rootUrl = Env.sksUrl;
   static const latestDataEndpoint = "sks-users/current/";
-  static String get latestDataFullUrl => rootUrl + latestDataEndpoint;
 }
 
 @riverpod
