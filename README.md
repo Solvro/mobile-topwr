@@ -71,6 +71,7 @@ ASSETS_URL="https://<our-server-url>/assets"
 IPARKING_URL="https://<secret parking's source>.pl"
 WIREDASH_ID="<...>" # can be left empty
 WIREDASH_SECRET="<...>" # can be left empty
+SKS_URL="<...>"
 ```
 If you need our server url please write us an email [kn.solvro@pwr.edu.pl](mailto:kn.solvro@pwr.edu.pl) or contact us via our [website](https://solvro.pwr.edu.pl/contact/)
 
