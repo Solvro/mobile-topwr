@@ -23,10 +23,22 @@ class SksMenuView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncSksMenuData = ref.watch(getSksMenuDataProvider);
 
+    // TODO(mikolaj-jalocha): Add lottie animation on: error and when data is empty (sks's closed)
     return asyncSksMenuData.when(
       data: (sksMenuData) => _SksMenuView(asyncSksMenuData.value ?? {}),
-      error: (error, stackTrace) => const SizedBox.shrink(),
-      loading: () => const SizedBox.shrink(),
+      error: (error, stackTrace) => Scaffold(
+        body: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(8),
+            child: Text("Error: $error"),
+          ),
+        ),
+      ),
+      loading: () => const Scaffold(
+        body: Center(
+          child: CircularProgressIndicator(),
+        ),
+      ),
     );
   }
 }
@@ -38,7 +50,14 @@ class _SksMenuView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final firstItem = sksMenuData.values.expand((list) => list).first;
+    if (sksMenuData.isEmpty) {
+      return const Scaffold(
+        body: Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+    }
+    final firstItem = sksMenuData.values.first.first;
     return Scaffold(
       appBar: DetailViewAppBar(context, title: context.localize.home_screen),
       body: ListView(

@@ -14,7 +14,7 @@ class SksMenuSection extends StatelessWidget {
       children: data.keys.map((category) {
         return SksMenuTile(
           title: category.getLocalizedName(context),
-          dishes: data[category]!,
+          dishes: data[category] ?? [],
         );
       }).toList(),
     );
