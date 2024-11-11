@@ -4,16 +4,16 @@
 import "package:flutter/material.dart";
 import "package:separate/separate.dart";
 
-import "../../../config/ui_config.dart";
-import "../../../theme/app_theme.dart";
-import "../../../widgets/my_expansion_tile.dart";
-import "sks_menu_section.dart";
+import "../../../../config/ui_config.dart";
+import "../../../../theme/app_theme.dart";
+import "../../../../widgets/my_expansion_tile.dart";
+import "../../data/models/sks_menu_data.dart";
 
 class SksMenuTile extends StatelessWidget {
   const SksMenuTile({super.key, required this.title, required this.dishes});
 
   final String title;
-  final List<Dish> dishes;
+  final List<SksMenuDish> dishes;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class SksMenuTile extends StatelessWidget {
 class SksMenuDishDetailsTile extends StatelessWidget {
   const SksMenuDishDetailsTile({super.key, required this.dish});
 
-  final Dish dish;
+  final SksMenuDish dish;
 
   @override
   Widget build(BuildContext context) {
