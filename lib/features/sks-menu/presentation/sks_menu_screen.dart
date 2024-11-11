@@ -1,6 +1,7 @@
 import "dart:core";
 
 import "package:auto_route/annotations.dart";
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
@@ -25,7 +26,8 @@ class SksMenuView extends ConsumerWidget {
 
     // TODO(mikolaj-jalocha): Add lottie animation on: error and when data is empty (sks's closed)
     return asyncSksMenuData.when(
-      data: (sksMenuData) => _SksMenuView(asyncSksMenuData.value ?? {}),
+      data: (sksMenuData) =>
+          _SksMenuView(asyncSksMenuData.value ?? const IMap.empty()),
       error: (error, stackTrace) => Scaffold(
         body: Center(
           child: Padding(
@@ -46,7 +48,7 @@ class SksMenuView extends ConsumerWidget {
 class _SksMenuView extends StatelessWidget {
   const _SksMenuView(this.sksMenuData);
 
-  final Map<DishCategory, List<SksMenuDish>> sksMenuData;
+  final IMap<DishCategory, List<SksMenuDish>> sksMenuData;
 
   @override
   Widget build(BuildContext context) {

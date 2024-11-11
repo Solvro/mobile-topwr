@@ -18,19 +18,14 @@ enum DishCategory {
 
 extension GetLocalizedNameX on DishCategory {
   String getLocalizedName(BuildContext context) {
-    switch (this) {
-      case DishCategory.salad:
-        return context.localize.sks_menu_salads;
-      case DishCategory.soup:
-        return context.localize.sks_menu_main_soups;
-      case DishCategory.vegetarianDish:
-        return context.localize.sks_menu_vegetarian_dishes;
-      case DishCategory.meatDish:
-        return context.localize.sks_menu_meat_dishes;
-      case DishCategory.sideDish:
-        return context.localize.sks_menu_side_dishes;
-      case DishCategory.drink:
-        return context.localize.sks_menu_drinks;
-    }
+    return switch (this) {
+      DishCategory.salad => context.localize.sks_menu_salads,
+      DishCategory.soup => context.localize.sks_menu_main_soups,
+      DishCategory.vegetarianDish =>
+        context.localize.sks_menu_vegetarian_dishes,
+      DishCategory.meatDish => context.localize.sks_menu_meat_dishes,
+      DishCategory.sideDish => context.localize.sks_menu_side_dishes,
+      DishCategory.drink => context.localize.sks_menu_drinks
+    };
   }
 }

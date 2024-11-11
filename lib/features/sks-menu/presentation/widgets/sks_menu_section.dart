@@ -1,3 +1,4 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/cupertino.dart";
 import "../../data/models/dish_category_enum.dart";
 import "../../data/models/sks_menu_data.dart";
@@ -6,7 +7,7 @@ import "sks_menu_tiles.dart";
 class SksMenuSection extends StatelessWidget {
   const SksMenuSection(this.data, {super.key});
 
-  final Map<DishCategory, List<SksMenuDish>> data;
+  final IMap<DishCategory, List<SksMenuDish>> data;
 
   @override
   Widget build(BuildContext context) {
