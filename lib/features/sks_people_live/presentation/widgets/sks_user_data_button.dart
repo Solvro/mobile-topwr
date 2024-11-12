@@ -40,7 +40,7 @@ class _SksButton extends StatelessWidget {
                 border: Border.all(
                   color: context.colorTheme.orangePomegranade,
                 ),
-                borderRadius: BorderRadius.circular(SksConfig.radious),
+                borderRadius: BorderRadius.circular(SksConfig.radius),
               ),
               child: Row(
                 children: [

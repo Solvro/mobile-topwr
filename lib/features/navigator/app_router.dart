@@ -13,6 +13,7 @@ import "../home_view/home_view.dart";
 import "../parkings_view/parkings_view.dart";
 import "../science_club_detail_view/science_club_detail_view.dart";
 import "../science_clubs_view/science_clubs_view.dart";
+import "../sks-menu/presentation/sks_menu_screen.dart";
 import "root_view.dart";
 
 part "app_router.g.dart";
@@ -83,6 +84,10 @@ class AppRouter extends RootStackRouter {
               page: GuideDetailRoute.page,
             ),
           ],
+        ),
+        AutoRoute(
+          path: "/sks-menu",
+          page: SksMenuRoute.page,
         ),
       ];
 }
