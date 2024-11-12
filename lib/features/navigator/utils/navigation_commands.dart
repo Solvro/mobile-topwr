@@ -72,4 +72,8 @@ extension NavigationX on WidgetRef {
   Future<void> navigateNamedUri(String uri) async {
     await _router.pushNamed(uri);
   }
+
+  Future<void> navigateToSksMenu() async {
+    await _router.push(const SksMenuRoute());
+  }
 }
