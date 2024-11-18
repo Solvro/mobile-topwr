@@ -7,8 +7,8 @@ import "../../../utils/context_extensions.dart";
 import "../../../widgets/wide_tile_card.dart";
 import "../../navigator/utils/navigation_commands.dart";
 
-class GuideAboutUsSection extends ConsumerWidget {
-  const GuideAboutUsSection({super.key});
+class AboutUsTile extends ConsumerWidget {
+  const AboutUsTile({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

@@ -14,11 +14,9 @@ import "../../theme/app_theme.dart";
 import "../../utils/context_extensions.dart";
 import "../../widgets/search_box_app_bar.dart";
 import "../../widgets/wide_tile_card.dart";
-import "../analytics/show_feedback_tile.dart";
 import "../departments_view/widgets/departments_view_loading.dart";
 import "guide_view_controller.dart";
 import "repository/guide_repository.dart";
-import "widgets/about_us_section.dart";
 import "widgets/guide_grid.dart";
 import "widgets/guide_tile.dart";
 
@@ -65,15 +63,12 @@ class _GuideViewContent extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final guideList = ref.watch(guideListControllerProvider);
-    final isSomethingSearched = ref.watch(isSomethingSearchedProvider);
 
     return switch (guideList) {
       AsyncError(:final error) => MyErrorWidget(error),
       AsyncValue(:final IList<GuidePost> value) => GuideGrid(
           children: [
-            if (!isSomethingSearched) const GuideAboutUsSection(),
             for (final item in value) GuideTile(item),
-            if (!isSomethingSearched) const ShowFeedbackTile(),
             const _GuideInfo(),
           ].lock,
         ),
