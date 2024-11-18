@@ -5,6 +5,8 @@ import "../theme/hex_color.dart";
 
 abstract class MyAppConfig {
   static const title = "ToPWR";
+  static const legalese =
+      "\u{a9} 2024 Koło Naukowe Solvro, Politechnika Wrocławska";
 }
 
 abstract class SplashScreenConfig {

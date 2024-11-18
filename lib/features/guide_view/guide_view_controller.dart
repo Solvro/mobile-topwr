@@ -18,11 +18,6 @@ class SearchGuideController extends _$SearchGuideController {
 }
 
 @Riverpod(dependencies: [SearchGuideController])
-bool isSomethingSearched(Ref ref) {
-  return ref.watch(searchGuideControllerProvider) != "";
-}
-
-@Riverpod(dependencies: [SearchGuideController])
 Future<IList<GuidePost>> guideListController(Ref ref) async {
   final originalList = await ref.watch(guideRepositoryProvider.future);
   final query = ref.watch(searchGuideControllerProvider);
