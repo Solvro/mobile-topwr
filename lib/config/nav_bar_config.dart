@@ -10,9 +10,8 @@ enum NavBarEnum {
   home(BottomNavBarIcon.home_icon, 26, "Home"),
   buildings(BottomNavBarIcon.map_icon, 20, "Map"),
   parkings(ParkingsIcons.directions_car, 19, "Parkings"),
-  departments(BottomNavBarIcon.faculty_icon, 26, "Faculties"),
   scienceClubs(BottomNavBarIcon.sci_circle_icon, 20, "Science Clubs"),
-  guide(BottomNavBarIcon.info_icon, 20, "Info"),
+  guide(Icons.book, 25, "Info"),
   navigation(BottomNavBarIcon.info_icon, 20, "Navigation");
 
   const NavBarEnum(this.icon, this.size, this.label);
@@ -27,7 +26,6 @@ abstract class NavBarConfig {
     NavBarEnum.home: const HomeRoute(),
     NavBarEnum.buildings: BuildingsRoute(),
     NavBarEnum.parkings: ParkingsRoute(),
-    NavBarEnum.departments: const DepartmentsRoute(),
     NavBarEnum.scienceClubs: ScienceClubsRoute(),
     NavBarEnum.guide: const GuideRoute(),
     NavBarEnum.navigation: const NavigationTabRoute(),

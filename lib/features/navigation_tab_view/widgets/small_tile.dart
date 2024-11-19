@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 
 import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
+import "../../../widgets/my_splash_tile.dart";
 
 class SmallTileCard extends StatelessWidget {
   const SmallTileCard({
@@ -16,34 +17,23 @@ class SmallTileCard extends StatelessWidget {
   final Icon icon;
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: const BorderRadius.all(WideTileCardConfig.radius),
-      child: Material(
-        child: InkWell(
-          onTap: onTap,
-          child: Ink(
-            decoration: BoxDecoration(
-              color: context.colorTheme.greyLight,
-              borderRadius: const BorderRadius.all(WideTileCardConfig.radius),
-            ),
-            child: Row(
-              children: [
-                SizedBox(
-                  width: WideTileCardConfig.imageSize / 3 * 2,
-                  height: WideTileCardConfig.imageSize,
-                  child: icon,
-                ),
-                Expanded(
-                  child: Text(
-                    title,
-                    style: context.textTheme.title,
-                  ),
-                ),
-                const SizedBox(width: 12),
-              ],
+    return MySplashTile(
+      onTap: onTap,
+      child: Row(
+        children: [
+          SizedBox(
+            width: WideTileCardConfig.imageSize / 3 * 2,
+            height: WideTileCardConfig.imageSize,
+            child: icon,
+          ),
+          Expanded(
+            child: Text(
+              title,
+              style: context.textTheme.title,
             ),
           ),
-        ),
+          const SizedBox(width: NavigationTabViewConfig.universalPadding),
+        ],
       ),
     );
   }
