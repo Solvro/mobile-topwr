@@ -197,3 +197,9 @@ abstract class SksConfig {
   static const innerPadding = EdgeInsets.symmetric(horizontal: 8, vertical: 4);
   static const outerPadding = EdgeInsets.only(right: 12, bottom: 2);
 }
+
+abstract class NavigationTabViewConfig {
+  static const universalPadding = 12.0;
+  static const radius = 8.0;
+  static const navIconSize = 30.0;
+}
