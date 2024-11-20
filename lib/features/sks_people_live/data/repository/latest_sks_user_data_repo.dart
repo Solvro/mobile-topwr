@@ -1,20 +1,14 @@
 import "dart:async";
+
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
+
 import "../../../../shared_api_clients/sks_api_client.dart";
+import "../../../../utils/ref_extensions.dart";
 import "../models/sks_user_data.dart";
+import "../sks_people_live_consts.dart";
 
 part "latest_sks_user_data_repo.g.dart";
-
-extension RefIntervalRefreshX on Ref {
-  void setRefresh(Duration interval) {
-    final timer = Timer.periodic(
-      interval,
-      (t) => invalidateSelf(),
-    );
-    onDispose(timer.cancel);
-  }
-}
 
 @riverpod
 Future<SksUserData> getLatestSksUserData(Ref ref) async {
@@ -26,7 +20,7 @@ Future<SksUserData> getLatestSksUserData(Ref ref) async {
   final currentTime = DateTime.now();
   final sksRefreshInterval = sksData.isResultRecent
       ? sksData.nextUpdateTimestamp.difference(currentTime)
-      : const Duration(minutes: 1);
+      : SksPeopleRepositoryConfig.defaultSksRefreshTime;
 
   ref.setRefresh(sksRefreshInterval);
 
