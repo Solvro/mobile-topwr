@@ -11,18 +11,17 @@ class MySplashTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
+    return Material(
       borderRadius: const BorderRadius.all(WideTileCardConfig.radius),
-      child: Material(
-        child: InkWell(
-          onTap: onTap,
-          child: Ink(
-            decoration: BoxDecoration(
-              color: context.colorTheme.greyLight,
-              borderRadius: const BorderRadius.all(WideTileCardConfig.radius),
-            ),
-            child: child,
+      child: InkWell(
+        borderRadius: const BorderRadius.all(WideTileCardConfig.radius),
+        onTap: onTap,
+        child: Ink(
+          decoration: BoxDecoration(
+            color: context.colorTheme.greyLight,
+            borderRadius: const BorderRadius.all(WideTileCardConfig.radius),
           ),
+          child: child,
         ),
       ),
     );

@@ -1,5 +1,6 @@
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../config/ui_config.dart";
 import "../../theme/app_theme.dart";
@@ -7,24 +8,26 @@ import "../../utils/context_extensions.dart";
 import "../analytics/show_feedback_tile.dart";
 import "../bottom_nav_bar/bottom_nav_bar_icon_icons.icons.dart";
 import "../home_view/widgets/logo_app_bar.dart";
+import "../navigator/utils/navigation_commands.dart";
+import "widgets/about_the_app_tile.dart";
 import "widgets/about_us_tile.dart";
 import "widgets/navigation_tile.dart";
 import "widgets/small_tile.dart";
 
 @RoutePage()
-class NavigationTabView extends StatelessWidget {
+class NavigationTabView extends ConsumerWidget {
   const NavigationTabView({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final children = [
       const SizedBox(height: NavigationTabViewConfig.universalPadding),
       const AboutUsTile(),
       const ShowFeedbackTile(),
       const SizedBox(height: NavigationTabViewConfig.universalPadding / 3),
-      NavigationRow(
+      _NavigationRow(
         child1: SmallTileCard(
-          onTap: () {},
+          onTap: ref.navigateDepartments,
           title: context.localize.departments,
           icon: const Icon(
             BottomNavBarIcon.faculty_icon,
@@ -32,7 +35,9 @@ class NavigationTabView extends StatelessWidget {
           ),
         ),
         child2: SmallTileCard(
-          onTap: () {},
+          onTap: () {
+            // TODO(simon-the-shark): implement review request
+          },
           title: context.localize.leave_a_review,
           icon: Icon(
             Icons.star,
@@ -41,16 +46,19 @@ class NavigationTabView extends StatelessWidget {
           ),
         ),
       ),
-      NavigationRow(
+      _NavigationRow(
         child1: SmallTileCard(
-          onTap: () {},
+          onTap: ref.navigateToSksMenu,
           title: context.localize.sks_full_name,
-          icon: const Icon(Icons.fastfood_rounded, size: 30),
+          icon: const Icon(
+            Icons.restaurant_menu,
+            size: NavigationTabViewConfig.navIconSize,
+          ),
         ),
         child2: SmallTileCard(
-          onTap: () {},
-          title: context.localize.guide,
-          icon: const Icon(Icons.book, size: 30),
+          onTap: ref.navigateScienceClubs,
+          title: context.localize.student_organizations,
+          icon: const Icon(BottomNavBarIcon.sci_circle_icon, size: 24),
         ),
       ),
       Padding(
@@ -65,12 +73,11 @@ class NavigationTabView extends StatelessWidget {
         title: context.localize.settings,
         icon: Icons.settings,
       ),
-      NavigationTile(
-        onTap: () {},
-        title: context.localize.about_the_app,
-        icon: Icons.info,
+      const Padding(
+        padding:
+            EdgeInsets.only(bottom: NavigationTabViewConfig.universalPadding),
+        child: AboutTheAppTile(),
       ),
-      const SizedBox.shrink(),
     ];
     return Scaffold(
       appBar: LogoAppBar(
@@ -89,8 +96,8 @@ class NavigationTabView extends StatelessWidget {
   }
 }
 
-class NavigationRow extends StatelessWidget {
-  const NavigationRow({super.key, required this.child1, required this.child2});
+class _NavigationRow extends StatelessWidget {
+  const _NavigationRow({required this.child1, required this.child2});
   final SmallTileCard child1;
   final SmallTileCard child2;
 

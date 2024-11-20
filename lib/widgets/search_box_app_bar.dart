@@ -17,14 +17,24 @@ class SearchBoxAppBar extends AppBar {
     super.key,
     VoidCallback? onSearchBoxTap,
     double bottomPadding = defaultBottomPadding,
+    bool addLeadingPopButton = false,
   }) : super(
-          automaticallyImplyLeading: false,
           title: Text(title),
           titleTextStyle: context.textTheme.headline,
           backgroundColor: context.colorTheme.whiteSoap,
           scrolledUnderElevation: 0,
-          centerTitle: false,
+          centerTitle: addLeadingPopButton,
           titleSpacing: defaultHorizontalPadding,
+          automaticallyImplyLeading: false,
+          leading: addLeadingPopButton
+              ? IconButton(
+                  icon: Icon(
+                    Icons.chevron_left,
+                    color: context.colorTheme.orangePomegranade,
+                  ),
+                  onPressed: () => Navigator.of(context).pop(),
+                )
+              : null,
           bottom: PreferredSize(
             preferredSize:
                 Size.fromHeight(SearchBoxConfig.height + bottomPadding),
