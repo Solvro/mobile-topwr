@@ -22,43 +22,36 @@ class NavigationTabView extends StatelessWidget {
       const AboutUsTile(),
       const ShowFeedbackTile(),
       const SizedBox(height: NavigationTabViewConfig.universalPadding / 3),
-      Row(
-        children: [
-          Expanded(
-            child: SmallTileCard(
-              onTap: () {},
-              title: context.localize.departments,
-              icon: const Icon(BottomNavBarIcon.faculty_icon),
-            ),
+      NavigationRow(
+        child1: SmallTileCard(
+          onTap: () {},
+          title: context.localize.departments,
+          icon: const Icon(
+            BottomNavBarIcon.faculty_icon,
+            size: NavigationTabViewConfig.navIconSize,
           ),
-          const SizedBox(width: NavigationTabViewConfig.universalPadding),
-          Expanded(
-            child: SmallTileCard(
-              onTap: () {},
-              title: context.localize.leave_a_review,
-              icon: const Icon(Icons.star, color: Color(0xFFFFDF00), size: 30),
-            ),
+        ),
+        child2: SmallTileCard(
+          onTap: () {},
+          title: context.localize.leave_a_review,
+          icon: Icon(
+            Icons.star,
+            color: context.colorTheme.gold,
+            size: NavigationTabViewConfig.navIconSize,
           ),
-        ],
+        ),
       ),
-      Row(
-        children: [
-          Expanded(
-            child: SmallTileCard(
-              onTap: () {},
-              title: context.localize.sks_full_name,
-              icon: const Icon(Icons.fastfood_rounded, size: 30),
-            ),
-          ),
-          const SizedBox(width: NavigationTabViewConfig.universalPadding),
-          Expanded(
-            child: SmallTileCard(
-              onTap: () {},
-              title: context.localize.guide,
-              icon: const Icon(Icons.book, size: 30),
-            ),
-          ),
-        ],
+      NavigationRow(
+        child1: SmallTileCard(
+          onTap: () {},
+          title: context.localize.sks_full_name,
+          icon: const Icon(Icons.fastfood_rounded, size: 30),
+        ),
+        child2: SmallTileCard(
+          onTap: () {},
+          title: context.localize.guide,
+          icon: const Icon(Icons.book, size: 30),
+        ),
       ),
       Padding(
         padding: const EdgeInsets.only(top: 16),
@@ -92,6 +85,27 @@ class NavigationTabView extends StatelessWidget {
             const SizedBox(height: NavigationTabViewConfig.universalPadding),
         itemCount: children.length,
       ),
+    );
+  }
+}
+
+class NavigationRow extends StatelessWidget {
+  const NavigationRow({super.key, required this.child1, required this.child2});
+  final SmallTileCard child1;
+  final SmallTileCard child2;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+          child: child1,
+        ),
+        const SizedBox(width: NavigationTabViewConfig.universalPadding),
+        Expanded(
+          child: child2,
+        ),
+      ],
     );
   }
 }
