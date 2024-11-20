@@ -12,6 +12,7 @@ import "../navigator/utils/navigation_commands.dart";
 import "widgets/about_the_app_tile.dart";
 import "widgets/about_us_tile.dart";
 import "widgets/navigation_tile.dart";
+import "widgets/notification_button.dart";
 import "widgets/small_tile.dart";
 
 @RoutePage()
@@ -84,6 +85,9 @@ class NavigationTabView extends ConsumerWidget {
         context,
         logoSize: 40,
         toolbarHeight: 80,
+        actions: const [
+          NotificationButton(),
+        ],
       ),
       body: ListView.separated(
         padding: GuideViewConfig.gridPadding,
