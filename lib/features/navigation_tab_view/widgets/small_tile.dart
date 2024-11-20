@@ -1,3 +1,4 @@
+import "package:auto_size_text/auto_size_text.dart";
 import "package:flutter/material.dart";
 
 import "../../../config/ui_config.dart";
@@ -27,9 +28,12 @@ class SmallTileCard extends StatelessWidget {
             child: icon,
           ),
           Expanded(
-            child: Text(
+            child: AutoSizeText(
               title,
-              style: context.textTheme.title,
+              maxFontSize: context.textTheme.title.fontSize ?? 15,
+              style: context.textTheme.title.copyWith(height: 1),
+              maxLines: 3,
+              wrapWords: false,
             ),
           ),
           const SizedBox(width: NavigationTabViewConfig.universalPadding),
