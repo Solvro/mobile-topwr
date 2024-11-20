@@ -84,7 +84,7 @@ class NavigationTabView extends ConsumerWidget {
       appBar: LogoAppBar(
         context,
         logoSize: 40,
-        toolbarHeight: 80,
+        toolbarHeight: 90,
         actions: const [
           NotificationButton(),
         ],
