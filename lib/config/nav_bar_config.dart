@@ -12,7 +12,7 @@ enum NavBarEnum {
   parkings(ParkingsIcons.directions_car, 19, "Parkings"),
   scienceClubs(BottomNavBarIcon.sci_circle_icon, 20, "Science Clubs"),
   guide(Icons.book, 25, "Info"),
-  navigation(BottomNavBarIcon.info_icon, 20, "Navigation");
+  navigation(Icons.more_horiz, 28, "Navigation");
 
   const NavBarEnum(this.icon, this.size, this.label);
 
