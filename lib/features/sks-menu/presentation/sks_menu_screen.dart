@@ -26,13 +26,13 @@ class SksMenuView extends ConsumerWidget {
 
     // TODO(mikolaj-jalocha): Add lottie animation on: error and when data is empty (sks's closed)
     return asyncSksMenuData.when(
-      data: (sksMenuData) =>
+      data: (sksMenuData) => 
           _SksMenuView(asyncSksMenuData.value ?? const IMap.empty()),
       error: (error, stackTrace) => Scaffold(
         body: Center(
           child: Padding(
             padding: const EdgeInsets.all(8),
-            child: Text("Error: $error"),
+            child: Text("Error with SKS menu API: $error"),
           ),
         ),
       ),
@@ -52,7 +52,12 @@ class _SksMenuView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    debugPrint("_SksMenuView");
+
     if (sksMenuData.isEmpty) {
+      // TODO (Bartosh) do UI for no dish in SKS
+      debugPrint("debug: No sks dishes returned!");
       return const Scaffold(
         body: Center(
           child: CircularProgressIndicator(),

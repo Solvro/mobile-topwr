@@ -11,17 +11,20 @@ part "sks_menu_repository.g.dart";
 
 @riverpod
 Future<IMap<DishCategory, List<SksMenuDish>>> getSksMenuData(Ref ref) async {
+
   final dio = ref.read(sksClientProvider);
-  const mealsEndpoint = "/meals";
+  const mealsEndpoint = "/api/v1/meals/current";
   final response = await dio.get(mealsEndpoint);
 
-  final List<SksMenuDish> sksMenuDataList = (response.data as List<dynamic>)
-      .map((e) => SksMenuDish.fromJson(e as Map<String, dynamic>))
+  if(!response.data['isMenuOnline']) return <DishCategory, List<SksMenuDish>>{}.toIMap();
+
+  final List<SksMenuDish> sksMenuDishesList = (response.data["meals"] as List<dynamic>)
+      .map((dish) => SksMenuDish.fromJson(dish as Map<String, dynamic>))
       .toList()
-    ..sort((a, b) => a.category.index.compareTo(b.category.index));
+      ..sort((a, b) => a.category.index.compareTo(b.category.index));
 
   final Map<DishCategory, List<SksMenuDish>> groupedData = groupBy(
-    sksMenuDataList,
+    sksMenuDishesList,
     (SksMenuDish data) => data.category,
   );
 

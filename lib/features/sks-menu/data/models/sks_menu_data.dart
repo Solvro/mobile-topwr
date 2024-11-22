@@ -8,7 +8,7 @@ part "sks_menu_data.g.dart";
 @freezed
 class SksMenuDish with _$SksMenuDish {
   const factory SksMenuDish({
-    required int id,
+    required String id,
     required String name,
     required DishCategory category,
     required String size,
@@ -17,6 +17,7 @@ class SksMenuDish with _$SksMenuDish {
     required DateTime updatedAt,
   }) = _SksMenuDish;
 
-  factory SksMenuDish.fromJson(Map<String, dynamic> json) =>
-      _$SksMenuDishFromJson(json);
+  factory SksMenuDish.fromJson(Map<String, dynamic> json) => 
+    _$SksMenuDishFromJson(json);
+      
 }
