@@ -56,8 +56,6 @@ class _SksMenuView extends StatelessWidget {
     debugPrint("_SksMenuView");
 
     if (sksMenuData.isEmpty) {
-      // TODO (Bartosh) do UI for no dish in SKS
-      debugPrint("debug: No sks dishes returned!");
       return const Scaffold(
         body: Center(
           child: CircularProgressIndicator(),
