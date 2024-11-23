@@ -1,6 +1,5 @@
 import "package:collection/collection.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
-import "package:flutter/foundation.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
@@ -14,10 +13,8 @@ part "sks_menu_repository.g.dart";
 @riverpod
 Future<IMap<DishCategory, List<SksMenuDish>>> getSksMenuData(Ref ref) async {
   const mealsEndpoint = "/meals/current";
-  
 
   final dio = ref.read(sksClientProvider);
-  debugPrint("${dio.options.baseUrl}/meals/current");
   final response = await dio.get(mealsEndpoint);
   final SksMenuResponse sksMenuResponse =
       SksMenuResponse.fromJson(response.data as Map<String, dynamic>);
