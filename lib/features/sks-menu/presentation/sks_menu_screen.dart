@@ -52,8 +52,6 @@ class _SksMenuView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint("_SksMenuView");
-
     if (sksMenuData.isEmpty) {
       return const Scaffold(
         body: Center(
