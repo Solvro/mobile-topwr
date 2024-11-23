@@ -15,7 +15,7 @@ abstract class CacheManagerConfig {
   static final jsonCacheManagerConfig = Config(
     "JsonCacheManager7Days",
     stalePeriod: const Duration(days: 7),
-    maxNrOfCacheObjects: 20,
+    maxNrOfCacheObjects: 10,
   );
 
   static const jsonExtesion = ".json";
