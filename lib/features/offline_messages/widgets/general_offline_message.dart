@@ -21,10 +21,12 @@ class OfflineMessage extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
-          child: Text(
-            errMessage,
-            style: context.textTheme.title,
-            textAlign: TextAlign.center,
+          child: Align(
+            child: Text(
+              errMessage,
+              style: context.textTheme.title,
+              textAlign: TextAlign.center,
+            ),
           ),
         ),
         Padding(
