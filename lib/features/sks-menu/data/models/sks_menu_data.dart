@@ -17,7 +17,6 @@ class SksMenuDish with _$SksMenuDish {
     required DateTime updatedAt,
   }) = _SksMenuDish;
 
-  factory SksMenuDish.fromJson(Map<String, dynamic> json) => 
-    _$SksMenuDishFromJson(json);
-      
+  factory SksMenuDish.fromJson(Map<String, dynamic> json) =>
+      _$SksMenuDishFromJson(json);
 }

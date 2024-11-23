@@ -26,7 +26,7 @@ class SksMenuView extends ConsumerWidget {
 
     // TODO(mikolaj-jalocha): Add lottie animation on: error and when data is empty (sks's closed)
     return asyncSksMenuData.when(
-      data: (sksMenuData) => 
+      data: (sksMenuData) =>
           _SksMenuView(asyncSksMenuData.value ?? const IMap.empty()),
       error: (error, stackTrace) => Scaffold(
         body: Center(
@@ -52,7 +52,6 @@ class _SksMenuView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     debugPrint("_SksMenuView");
 
     if (sksMenuData.isEmpty) {

@@ -12,15 +12,15 @@ part "sks_menu_repository.g.dart";
 
 @riverpod
 Future<IMap<DishCategory, List<SksMenuDish>>> getSksMenuData(Ref ref) async {
-
   const mealsEndpoint = "/api/v1/meals/current";
 
   final dio = ref.read(sksClientProvider);
   final response = await dio.get(mealsEndpoint);
-  final SksMenuResponse sksMenuResponse = SksMenuResponse.fromJson(response.data as Map<String, dynamic>);
+  final SksMenuResponse sksMenuResponse =
+      SksMenuResponse.fromJson(response.data as Map<String, dynamic>);
 
-  return sksMenuResponse.isMenuOnline 
-    ? groupBy(sksMenuResponse.meals, (SksMenuDish data) => data.category).toIMap()
-    : <DishCategory, List<SksMenuDish>>{}.toIMap();
-  
+  return sksMenuResponse.isMenuOnline
+      ? groupBy(sksMenuResponse.meals, (SksMenuDish data) => data.category)
+          .toIMap()
+      : <DishCategory, List<SksMenuDish>>{}.toIMap();
 }
