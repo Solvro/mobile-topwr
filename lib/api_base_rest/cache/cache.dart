@@ -11,9 +11,10 @@ Future<T> getAndCacheData<T>(
   Ref ref,
   CacheManager cacheManager,
   T Function(Map<String, dynamic> json) fromJson,
+  bool Function() condition,
 ) async {
   final cachedFile = await cacheManager.getFileFromCache(url);
-  if (cachedFile != null) {
+  if (cachedFile != null && condition()) {
     final cachedData = await cachedFile.file.readAsString();
     final data = fromJson(
       jsonDecode(cachedData) as Map<String, dynamic>,
