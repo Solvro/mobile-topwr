@@ -34,26 +34,31 @@ class AppVersionTile extends StatelessWidget {
           horizontalTitleGap: 8,
           onTap: () async {
             // TODO(simon-the-shark): customize [LicensePage] theme
-            await showCustomLicenseDialog(
-              context: context,
-              applicationIcon: Container(
-                width: 50,
-                height: 50,
-                clipBehavior: Clip.antiAlias,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: const FlutterSplashScreen(),
-              ),
-              applicationName: MyAppConfig.title,
-              applicationVersion:
-                  snapshot.data?.version ?? context.localize.no_version,
-              applicationLegalese:
-                  "\u{a9} 2024 Koło Naukowe Solvro, Politechnika Wrocławska",
-            );
+            await showMyLicenceDialog(context, snapshot.data?.version);
           },
         ),
       ),
     );
   }
+}
+
+Future<void> showMyLicenceDialog(
+  BuildContext context,
+  String? applicationVersion,
+) {
+  return showCustomLicenseDialog(
+    context: context,
+    applicationIcon: Container(
+      width: 50,
+      height: 50,
+      clipBehavior: Clip.antiAlias,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: const FlutterSplashScreen(),
+    ),
+    applicationName: MyAppConfig.title,
+    applicationVersion: applicationVersion ?? context.localize.no_version,
+    applicationLegalese: MyAppConfig.legalese,
+  );
 }

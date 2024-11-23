@@ -5,6 +5,8 @@ import "../theme/hex_color.dart";
 
 abstract class MyAppConfig {
   static const title = "ToPWR";
+  static const legalese =
+      "\u{a9} 2024 Koło Naukowe Solvro, Politechnika Wrocławska";
 }
 
 abstract class SplashScreenConfig {
@@ -194,4 +196,10 @@ abstract class SksConfig {
   static const radius = 8.0;
   static const innerPadding = EdgeInsets.symmetric(horizontal: 8, vertical: 4);
   static const outerPadding = EdgeInsets.only(right: 12, bottom: 2);
+}
+
+abstract class NavigationTabViewConfig {
+  static const universalPadding = 12.0;
+  static const radius = 8.0;
+  static const navIconSize = 30.0;
 }

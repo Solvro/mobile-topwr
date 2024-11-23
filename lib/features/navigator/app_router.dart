@@ -10,6 +10,7 @@ import "../departments_view/departments_view.dart";
 import "../guide_detail_view/guide_detail_view.dart";
 import "../guide_view/guide_view.dart";
 import "../home_view/home_view.dart";
+import "../navigation_tab_view/navigation_tab_view.dart";
 import "../parkings_view/parkings_view.dart";
 import "../science_club_detail_view/science_club_detail_view.dart";
 import "../science_clubs_view/science_clubs_view.dart";
@@ -56,24 +57,12 @@ class AppRouter extends RootStackRouter {
             ),
             RedirectRoute(path: "parkings", redirectTo: "parkings/null"),
             _NoTransitionRoute(
-              path: "departments",
-              page: DepartmentsRoute.page,
-            ),
-            AutoRoute(
-              path: "departments/:id",
-              page: DepartmentDetailRoute.page,
-            ),
-            _NoTransitionRoute(
-              path: "sci-clubs",
-              page: ScienceClubsRoute.page,
-            ),
-            AutoRoute(
-              path: "sci-clubs/:id",
-              page: ScienceClubDetailRoute.page,
-            ),
-            _NoTransitionRoute(
               path: "guide",
               page: GuideRoute.page,
+            ),
+            _NoTransitionRoute(
+              path: "navigation",
+              page: NavigationTabRoute.page,
             ),
             AutoRoute(
               path: "aboutUs",
@@ -88,6 +77,22 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           path: "/sks-menu",
           page: SksMenuRoute.page,
+        ),
+        _NoTransitionRoute(
+          path: "/departments",
+          page: DepartmentsRoute.page,
+        ),
+        AutoRoute(
+          path: "/departments/:id",
+          page: DepartmentDetailRoute.page,
+        ),
+        _NoTransitionRoute(
+          path: "/sci-clubs",
+          page: ScienceClubsRoute.page,
+        ),
+        AutoRoute(
+          path: "/sci-clubs/:id",
+          page: ScienceClubDetailRoute.page,
         ),
       ];
 }

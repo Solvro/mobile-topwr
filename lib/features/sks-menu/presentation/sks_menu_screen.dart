@@ -32,7 +32,7 @@ class SksMenuView extends ConsumerWidget {
         body: Center(
           child: Padding(
             padding: const EdgeInsets.all(8),
-            child: Text("Error: $error"),
+            child: Text("Error with SKS menu API: $error"),
           ),
         ),
       ),
