@@ -14,8 +14,8 @@ part "latest_sks_user_data_repo.g.dart";
 @riverpod
 Future<SksUserData> getLatestSksUserData(Ref ref) async {
   final dio = ref.watch(restClientProvider);
-  final latestDataEndpoint = "${Env.sksUrl}/sks-users/current/";
-  final response = await dio.get(latestDataEndpoint);
+  final latestDataUrl = "${Env.sksUrl}/sks-users/current/";
+  final response = await dio.get(latestDataUrl);
   final sksData = SksUserData.fromJson(response.data as Map<String, dynamic>);
 
   final currentTime = DateTime.now();

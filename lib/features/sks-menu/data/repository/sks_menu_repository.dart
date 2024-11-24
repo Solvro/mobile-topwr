@@ -13,10 +13,10 @@ part "sks_menu_repository.g.dart";
 
 @riverpod
 Future<IMap<DishCategory, List<SksMenuDish>>> getSksMenuData(Ref ref) async {
-  final mealsEndpoint = "${Env.sksUrl}/meals/current";
+  final mealsUrl = "${Env.sksUrl}/meals/current";
 
   final dio = ref.read(restClientProvider);
-  final response = await dio.get(mealsEndpoint);
+  final response = await dio.get(mealsUrl);
   final SksMenuResponse sksMenuResponse =
       SksMenuResponse.fromJson(response.data as Map<String, dynamic>);
 
