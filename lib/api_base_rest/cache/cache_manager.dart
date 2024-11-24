@@ -5,18 +5,15 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 part "cache_manager.g.dart";
 
 @Riverpod(keepAlive: true)
-CacheManager cacheManagerSingleton(Ref ref) {
+CacheManager restCacheManager(Ref ref, int ttlDays) {
   return CacheManager(
-    CacheManagerConfig.jsonCacheManagerConfig,
+    Config(
+      "JsonCacheManager${ttlDays}Days",
+      stalePeriod: Duration(days: ttlDays),
+      maxNrOfCacheObjects: 10,
+    ),
   );
 }
-
 abstract class CacheManagerConfig {
-  static final jsonCacheManagerConfig = Config(
-    "JsonCacheManager7Days",
-    stalePeriod: const Duration(days: 7),
-    maxNrOfCacheObjects: 10,
-  );
-
   static const jsonExtesion = ".json";
 }
