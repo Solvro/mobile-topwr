@@ -1,27 +1,67 @@
 import "package:lottie/lottie.dart";
 import "../../../../gen/assets.gen.dart";
 import "package:flutter/material.dart";
-import "../../../../config/ui_config.dart";
+import "../../../../../theme/app_theme.dart";
+import "../../../../../utils/context_extensions.dart";
+import "../../presentation/sks_menu_screen.dart";
 
-class LottieLoading extends StatelessWidget {
+class LottieLoading extends StatefulWidget {
   const LottieLoading({
     super.key,
   });
 
   @override
+  _LottieLoadingState createState() => _LottieLoadingState();
+}
+
+class _LottieLoadingState extends State<LottieLoading> {
+  bool _showOldMenu = false;
+
+  void _gotoOldMenu() {
+    //Navigator.push(
+      //context,
+      //MaterialPageRoute(builder: (context) => const _SksMenuView()),
+   // );
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: SizedBox(
-          width: 200,
-          height: 200,
-          child: Lottie.asset(
-            renderCache: RenderCache.raster,
-            repeat: true,
-            Assets.animations.closed,
-            frameRate: const FrameRate(LottieAnimationConfig.frameRate),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          const Spacer(),
+          Center(
+            child: SizedBox(
+              width: 200,
+              height: 200,
+              child: Lottie.asset(
+                Assets.animations.closed,
+                repeat: true,
+              ),
+            ),
           ),
-        ),
+          const Spacer(),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: MaterialButton(
+                elevation: 1,
+                padding: const EdgeInsets.all(8),
+                onPressed: _gotoOldMenu,
+                color: context.colorTheme.greyLight,
+                textColor: context.colorTheme.blackMirage,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(4),
+                ),
+                child: Text(_showOldMenu
+                    ? context.localize.close
+                    : context.localize.sks_old_menu),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
