@@ -15,6 +15,8 @@ import "widgets/sks_menu_data_source_link.dart";
 import "widgets/sks_menu_header.dart";
 import "widgets/sks_menu_section.dart";
 
+import "widgets/sks_menu_loading.dart";
+
 @RoutePage()
 class SksMenuView extends ConsumerWidget {
   const SksMenuView({
@@ -27,28 +29,25 @@ class SksMenuView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncSksMenuData = ref.watch(getSksMenuDataProvider);
 
-    // TODO(mikolaj-jalocha): Add lottie animation on: error and when data is empty (sks's closed)
     return asyncSksMenuData.when(
-      data: (sksMenuData) => _SksMenuView(
-        asyncSksMenuData.value ??
-            SksMenuResponse(
-              isMenuOnline: false,
-              lastUpdate: DateTime.now(),
-              meals: List.empty(),
-            ),
-        appBarPopTitle,
-      ),
-      error: (error, stackTrace) => Scaffold(
-        body: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(8),
-            child: Text("Error with SKS menu API: $error"),
-          ),
-        ),
-      ),
+      data: (sksMenuData) {
+        if (sksMenuData.isEmpty) {
+          return const LottieLoading();
+        }
+        return _SksMenuView(
+          asyncSksMenuData.value ??
+              SksMenuResponse(
+                isMenuOnline: false,
+                lastUpdate: DateTime.now(),
+                meals: List.empty(),
+              ),
+          appBarPopTitle,
+        );
+      },
+      error: (error, stackTrace) => const LottieLoading(),
       loading: () => const Scaffold(
         body: Center(
-          child: CircularProgressIndicator(),
+          child: LottieLoading(),
         ),
       ),
     );
@@ -64,9 +63,7 @@ class _SksMenuView extends StatelessWidget {
   Widget build(BuildContext context) {
     if (sksMenuData.meals.isEmpty) {
       return const Scaffold(
-        body: Center(
-          child: CircularProgressIndicator(),
-        ),
+        body: LottieLoading(),
       );
     }
     return Scaffold(
