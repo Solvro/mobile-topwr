@@ -6,9 +6,9 @@ import "package:separate/separate.dart";
 
 import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
+import "../../../../widgets/loading_widgets/shimmer_loading.dart";
 import "../../../../widgets/my_expansion_tile.dart";
 import "../../data/models/sks_menu_data.dart";
-
 class SksMenuTile extends StatelessWidget {
   const SksMenuTile({super.key, required this.title, required this.dishes});
 
@@ -70,6 +70,24 @@ class SksMenuDishDetailsTile extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+class SksMenuTilesLoading extends StatelessWidget {
+  const SksMenuTilesLoading();
+
+  @override
+  Widget build(BuildContext context) {
+    return ShimmerLoadingItem(
+      child: Container(
+        decoration: BoxDecoration(
+          color: context.colorTheme.whiteSoap,
+          borderRadius:
+          BorderRadius.circular(SksMenuConfig.borderRadius),
+        ),
+        width: double.infinity,
+        height: 45,
       ),
     );
   }
