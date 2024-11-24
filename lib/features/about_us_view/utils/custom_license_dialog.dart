@@ -53,38 +53,50 @@ class _AlertDialog extends StatelessWidget {
         ),
       ),
       actions: <Widget>[
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            TextButton(
-              child: Text(
-                context.localize.show_license,
-                style: context.textTheme.bodyOrange.copyWith(
-                  fontSize: AboutUsConfig.dialogButtonFontSize,
+        LayoutBuilder(
+          builder: (context, constraints) {
+            return Wrap(
+              alignment: WrapAlignment.center,
+              children: [
+                SizedBox(
+                  width: constraints.maxWidth / 2,
+                  // Split the width evenly
+                  child: TextButton(
+                    child: Text(
+                      context.localize.show_license,
+                      style: context.textTheme.bodyOrange.copyWith(
+                        fontSize: AboutUsConfig.dialogButtonFontSize,
+                      ),
+                    ),
+                    onPressed: () {
+                      showLicensePage(
+                        context: context,
+                        applicationName: applicationName,
+                        applicationIcon: applicationIcon,
+                        applicationVersion: applicationVersion,
+                        applicationLegalese: applicationLegalese,
+                      );
+                    },
+                  ),
                 ),
-              ),
-              onPressed: () {
-                showLicensePage(
-                  context: context,
-                  applicationName: applicationName,
-                  applicationIcon: applicationIcon,
-                  applicationVersion: applicationVersion,
-                  applicationLegalese: applicationLegalese,
-                );
-              },
-            ),
-            TextButton(
-              child: Text(
-                context.localize.close,
-                style: context.textTheme.body.copyWith(
-                  fontSize: AboutUsConfig.dialogButtonFontSize,
+                SizedBox(
+                  width: constraints.maxWidth / 2,
+                  // Split the width evenly
+                  child: TextButton(
+                    child: Text(
+                      context.localize.close,
+                      style: context.textTheme.body.copyWith(
+                        fontSize: AboutUsConfig.dialogButtonFontSize,
+                      ),
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
                 ),
-              ),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
+              ],
+            );
+          },
         ),
       ],
     );
