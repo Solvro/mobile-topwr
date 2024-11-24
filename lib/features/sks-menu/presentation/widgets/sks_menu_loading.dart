@@ -37,7 +37,7 @@ class _LottieLoadingState extends State<LottieLoading> {
               height: 200,
               child: Lottie.asset(
                 Assets.animations.closed,
-                repeat: true,
+                repeat: false,
               ),
             ),
           ),

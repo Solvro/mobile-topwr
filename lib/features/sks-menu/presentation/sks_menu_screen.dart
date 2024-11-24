@@ -30,24 +30,19 @@ class SksMenuView extends ConsumerWidget {
     final asyncSksMenuData = ref.watch(getSksMenuDataProvider);
 
     return asyncSksMenuData.when(
-      data: (sksMenuData) {
-        if (sksMenuData.isEmpty) {
-          return const LottieLoading();
-        }
-        return _SksMenuView(
-          asyncSksMenuData.value ??
-              SksMenuResponse(
-                isMenuOnline: false,
-                lastUpdate: DateTime.now(),
-                meals: List.empty(),
-              ),
-          appBarPopTitle,
-        );
-      },
+      data: (sksMenuData) => _SksMenuView(
+        asyncSksMenuData.value ??
+            SksMenuResponse(
+              isMenuOnline: false,
+              lastUpdate: DateTime.now(),
+              meals: List.empty(),
+            ),
+        appBarPopTitle,
+      ),
       error: (error, stackTrace) => const LottieLoading(),
       loading: () => const Scaffold(
         body: Center(
-          child: LottieLoading(),
+          child: CircularProgressIndicator(),
         ),
       ),
     );
