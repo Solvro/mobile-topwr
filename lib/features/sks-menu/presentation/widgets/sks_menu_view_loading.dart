@@ -15,20 +15,20 @@ class SksMenuViewLoading extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colorTheme.whiteSoap,
-      body:Shimmer(
-          linearGradient: shimmerGradient,
-          child: ListView(
-            physics: const NeverScrollableScrollPhysics(),
-            children: [
-              const ShimmerLoadingItem(
-                child: SksMenuHeaderLoading(),
-              ),
-              sksMenuTitleLoadingPaddings(),
-              sksMenuTitleLoadingPaddings(),
-              sksMenuTitleLoadingPaddings(),
-            ],
-          ),
+      body: Shimmer(
+        linearGradient: shimmerGradient,
+        child: ListView(
+          physics: const NeverScrollableScrollPhysics(),
+          children: [
+            const ShimmerLoadingItem(
+              child: SksMenuHeaderLoading(),
+            ),
+            sksMenuTitleLoadingPaddings(),
+            sksMenuTitleLoadingPaddings(),
+            sksMenuTitleLoadingPaddings(),
+          ],
         ),
+      ),
     );
   }
 

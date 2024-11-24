@@ -6,6 +6,7 @@ import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../utils/datetime_utils.dart";
 import "../../../../widgets/loading_widgets/shimmer_loading.dart";
+
 class SksMenuHeader extends StatelessWidget {
   const SksMenuHeader({
     required this.dateTimeOfLastUpdate,
@@ -50,6 +51,7 @@ class SksMenuHeader extends StatelessWidget {
     );
   }
 }
+
 class SksMenuHeaderLoading extends StatelessWidget {
   const SksMenuHeaderLoading();
 
@@ -59,8 +61,7 @@ class SksMenuHeaderLoading extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           color: context.colorTheme.whiteSoap,
-          borderRadius:
-          BorderRadius.circular(SksMenuConfig.borderRadius),
+          borderRadius: BorderRadius.circular(SksMenuConfig.borderRadius),
         ),
         width: double.infinity,
         height: 180,

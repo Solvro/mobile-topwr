@@ -17,6 +17,7 @@ import "widgets/sks_menu_data_source_link.dart";
 import "widgets/sks_menu_header.dart";
 import "widgets/sks_menu_section.dart";
 import "widgets/sks_menu_view_loading.dart";
+
 @RoutePage()
 class SksMenuView extends ConsumerWidget {
   const SksMenuView({super.key});
@@ -41,8 +42,6 @@ class SksMenuView extends ConsumerWidget {
     );
   }
 }
-
-
 
 class _SksMenuView extends StatelessWidget {
   const _SksMenuView(this.sksMenuData);
