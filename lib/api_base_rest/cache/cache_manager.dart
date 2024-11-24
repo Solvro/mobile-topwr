@@ -14,6 +14,7 @@ CacheManager restCacheManager(Ref ref, int ttlDays) {
     ),
   );
 }
+
 abstract class CacheManagerConfig {
   static const jsonExtesion = ".json";
 }

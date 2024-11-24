@@ -5,7 +5,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "../client/dio_client.dart";
 import "cache_manager.dart";
 
-extension DataCachingX on Ref{
+extension DataCachingX on Ref {
   Future<T> getAndCacheData<T>(
     String fullUrl,
     int ttlDays,
