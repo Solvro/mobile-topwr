@@ -1,35 +1,37 @@
 import "dart:convert";
 import "dart:typed_data";
 
-import "package:flutter_cache_manager/flutter_cache_manager.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
-import "../../shared_api_clients/sks_api_client.dart";
+import "../client/dio_client.dart";
 import "cache_manager.dart";
 
-Future<T> getAndCacheData<T>(
-  String url,
-  Ref ref,
-  CacheManager cacheManager,
-  T Function(Map<String, dynamic> json) fromJson,
-  bool Function() condition,
-) async {
-  final cachedFile = await cacheManager.getFileFromCache(url);
-  if (cachedFile != null && condition()) {
-    final cachedData = await cachedFile.file.readAsString();
-    final data = fromJson(
-      jsonDecode(cachedData) as Map<String, dynamic>,
+extension DataCachingX on Ref{
+  Future<T> getAndCacheData<T>(
+    String fullUrl,
+    int ttlDays,
+    T Function(Map<String, dynamic> json) fromJson,
+    bool Function() extraValidityCheck,
+  ) async {
+    final cacheManager = watch(restCacheManagerProvider(ttlDays));
+
+    final cachedFile = await cacheManager.getFileFromCache(fullUrl);
+    if (cachedFile != null && extraValidityCheck()) {
+      final cachedData = await cachedFile.file.readAsString();
+      final data = fromJson(
+        jsonDecode(cachedData) as Map<String, dynamic>,
+      );
+      return data;
+    }
+    final dio = watch(restClientProvider);
+    final response = await dio.get(fullUrl);
+    final sksData = fromJson(response.data as Map<String, dynamic>);
+
+    await cacheManager.putFile(
+      fullUrl,
+      Uint8List.fromList(jsonEncode(response.data).codeUnits),
+      fileExtension: CacheManagerConfig.jsonExtesion,
     );
-    return data;
+
+    return sksData;
   }
-  final dio = ref.read(sksClientProvider);
-  final response = await dio.get(url);
-  final sksData = fromJson(response.data as Map<String, dynamic>);
-
-  await cacheManager.putFile(
-    url,
-    Uint8List.fromList(jsonEncode(response.data).codeUnits),
-    fileExtension: CacheManagerConfig.jsonExtesion,
-  );
-
-  return sksData;
 }
