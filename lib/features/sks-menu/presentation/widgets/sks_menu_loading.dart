@@ -1,9 +1,9 @@
-import "package:lottie/lottie.dart";
-import "../../../../gen/assets.gen.dart";
 import "package:flutter/material.dart";
+import "package:lottie/lottie.dart";
+
 import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/context_extensions.dart";
-import "../../presentation/sks_menu_screen.dart";
+import "../../../../gen/assets.gen.dart";
 
 class LottieLoading extends StatefulWidget {
   const LottieLoading({
@@ -15,13 +15,13 @@ class LottieLoading extends StatefulWidget {
 }
 
 class _LottieLoadingState extends State<LottieLoading> {
-  bool _showOldMenu = false;
+  final bool _showOldMenu = false;
 
   void _gotoOldMenu() {
     //Navigator.push(
-      //context,
-      //MaterialPageRoute(builder: (context) => const _SksMenuView()),
-   // );
+    //context,
+    //MaterialPageRoute(builder: (context) => const _SksMenuView()),
+    // );
   }
 
   @override
@@ -45,7 +45,7 @@ class _LottieLoadingState extends State<LottieLoading> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16),
               child: MaterialButton(
                 elevation: 1,
                 padding: const EdgeInsets.all(8),
@@ -55,9 +55,11 @@ class _LottieLoadingState extends State<LottieLoading> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(4),
                 ),
-                child: Text(_showOldMenu
-                    ? context.localize.close
-                    : context.localize.sks_old_menu),
+                child: Text(
+                  _showOldMenu
+                      ? context.localize.close
+                      : context.localize.sks_old_menu,
+                ),
               ),
             ),
           ),

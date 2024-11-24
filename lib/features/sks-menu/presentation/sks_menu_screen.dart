@@ -13,9 +13,8 @@ import "../data/models/sks_menu_response.dart";
 import "../data/repository/sks_menu_repository.dart";
 import "widgets/sks_menu_data_source_link.dart";
 import "widgets/sks_menu_header.dart";
-import "widgets/sks_menu_section.dart";
-
 import "widgets/sks_menu_loading.dart";
+import "widgets/sks_menu_section.dart";
 
 @RoutePage()
 class SksMenuView extends ConsumerWidget {
