@@ -3,6 +3,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
+import "../../../navigator/utils/navigation_commands.dart";
 import "../../data/models/sks_user_data.dart";
 import "../../data/repository/latest_sks_user_data_repo.dart";
 
@@ -14,7 +15,8 @@ class SksUserDataButton extends ConsumerWidget {
     final asyncSksUserData = ref.watch(getLatestSksUserDataProvider);
 
     return asyncSksUserData.when(
-      data: _SksButton.new,
+      data: (sksUsersData) =>
+          _SksButton(sksUsersData, onTap: () async => ref.navigateToSksChart()),
       error: (error, stackTrace) => const SizedBox.shrink(),
       loading: () => const SizedBox.shrink(),
     );
@@ -22,8 +24,9 @@ class SksUserDataButton extends ConsumerWidget {
 }
 
 class _SksButton extends StatelessWidget {
-  const _SksButton(this.sksUserData, {super.key});
+  const _SksButton(this.sksUserData, {super.key, required this.onTap});
 
+  final VoidCallback onTap;
   final SksUserData sksUserData;
 
   @override
@@ -31,7 +34,7 @@ class _SksButton extends StatelessWidget {
     return Padding(
       padding: SksConfig.outerPadding,
       child: GestureDetector(
-        onTap: () {},
+        onTap: onTap,
         child: Row(
           children: [
             Container(
