@@ -34,7 +34,7 @@ class SksUserDataButton extends ConsumerWidget {
 }
 
 class _SksButton extends StatelessWidget {
-  const _SksButton(this.sksUserData, {required this.onTap});
+  const _SksButton(this.sksUserData, {super.key});
 
   final VoidCallback onTap;
   final SksUserData sksUserData;
