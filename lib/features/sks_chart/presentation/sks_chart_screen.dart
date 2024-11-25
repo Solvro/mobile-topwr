@@ -1,9 +1,14 @@
 import "package:auto_route/annotations.dart";
+import "package:fl_chart/fl_chart.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../../../utils/datetime_utils.dart";
+import "../../../theme/app_theme.dart";
+import "../../about_us_view/utils/custom_license_dialog.dart";
 import "../data/repository/sks_chart_repository.dart";
+
+
+// TODO: after click the hover should be int instead of double
 
 @RoutePage()
 class SksChartView extends ConsumerWidget {
@@ -14,26 +19,49 @@ class SksChartView extends ConsumerWidget {
     final asyncChartData = ref.watch(getLatestChartDataProvider);
 
     return Scaffold(
-      body: asyncChartData.when(
-        data: (chartDataList) {
-          if (chartDataList.isEmpty) {
-            return const Center(child: Text("No data available"));
-          }
-          return ListView.builder(
-            itemCount: chartDataList.length,
-            itemBuilder: (context, index) {
-              final data = chartDataList[index];
-              return ListTile(
-                title: Text(
-                  "Timestamp: ${data.externalTimestamp.toDayDateHourString()}",
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 250),
+          child: BarChart(
+            BarChartData(
+              gridData: const FlGridData(
+                drawHorizontalLine: false,
+                drawVerticalLine: false,
+              ),
+              maxY: 75,
+              barGroups: [
+                BarChartGroupData(x: 1105, barRods: [BarChartRodData(toY: 12),]),
+                BarChartGroupData(x: 1110, barRods: [BarChartRodData(toY: 23)]),
+                BarChartGroupData(x: 1115, barRods: [BarChartRodData(toY: 26)]),
+                BarChartGroupData(x: 1120, barRods: [BarChartRodData(toY: 29)]),
+                BarChartGroupData(x: 1125, barRods: [BarChartRodData(toY: 35, color: Colors.transparent, borderDashArray: [4], borderSide: const BorderSide())]),
+                BarChartGroupData(x: 1140, barRods: [BarChartRodData(toY: 50, color: Colors.transparent, borderDashArray: [4], borderSide: const BorderSide())]),
+                BarChartGroupData(x: 1145, barRods: [BarChartRodData(toY: 45, color: Colors.transparent, borderDashArray: [4], borderSide: const BorderSide())
+                ,],),
+              ],
+              alignment: BarChartAlignment.spaceAround,
+              titlesData: FlTitlesData(
+                leftTitles: const AxisTitles(
+                  axisNameWidget: Text("Ilość osób"),
+                  axisNameSize: 40,
                 ),
-                subtitle: Text("Value: ${data.activeUsers}"),
-              );
-            },
-          );
-        },
-        loading: () => const Center(child: CircularProgressIndicator()),
-        error: (error, stackTrace) => Center(child: Text("Error: $error")),
+                topTitles: const AxisTitles(),
+                bottomTitles: AxisTitles(
+                  sideTitles: SideTitles(
+                    showTitles: true,
+                    getTitlesWidget: (double value, TitleMeta meta) {
+                      return Text(
+                          style: context.textTheme.body.copyWith(fontSize: 12),
+                          (value / 100)
+                              .toStringAsFixed(2)
+                              .replaceRange(2, 3, ":"));
+                    },
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
