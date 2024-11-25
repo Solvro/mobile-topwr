@@ -5,7 +5,6 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "../../../utils/datetime_utils.dart";
 import "../data/repository/sks_chart_repository.dart";
 
-
 @RoutePage()
 class SksChartView extends ConsumerWidget {
   const SksChartView({super.key});
@@ -25,7 +24,9 @@ class SksChartView extends ConsumerWidget {
             itemBuilder: (context, index) {
               final data = chartDataList[index];
               return ListTile(
-                title: Text("Timestamp: ${data.externalTimestamp.toDayDateHourString()}"),
+                title: Text(
+                  "Timestamp: ${data.externalTimestamp.toDayDateHourString()}",
+                ),
                 subtitle: Text("Value: ${data.activeUsers}"),
               );
             },

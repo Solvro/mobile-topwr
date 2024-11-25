@@ -16,13 +16,10 @@ Future<IList<SksChartData>> getLatestChartData(Ref ref) async {
   final data = response.data as List<dynamic>;
   final chartDataList = data
       .map(
-        (entry) => SksChartData.fromJson(entry as Map<String, dynamic>),
-      )
-      .where(
-        (e) =>
-            e.externalTimestamp.difference(DateTime.now()).inMinutes.abs() <=
-            15,
-      )
+          (entry) => SksChartData.fromJson(entry as Map<String, dynamic>),)
+      .where((e) =>
+          e.externalTimestamp.difference(DateTime.now()).inMinutes.abs() <= 25,)
+    .map((e) => e = e.copyWith(externalTimestamp: e.externalTimestamp.add(const Duration(hours: 1))))
       .toIList();
 
   return chartDataList;

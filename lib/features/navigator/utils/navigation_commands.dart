@@ -80,6 +80,7 @@ extension NavigationX on WidgetRef {
   Future<void> navigateDigitalGuide(int id) async {
     await _router.push(DigitalGuideRoute(id: id));
   }
+
   Future<void> navigateToSksChart() async {
     await _router.push(const SksChartRoute());
   }
