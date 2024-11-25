@@ -8,7 +8,7 @@ import "../academic_calendar/widgets/academic_calendar_consumer.dart";
 import "../sks_people_live/presentation/sks_app_bar.dart";
 import "keep_alive_home_view_providers.dart";
 import "widgets/buildings_section/buildings_section.dart";
-import "widgets/departments_section/departments_section.dart";
+import "widgets/nav_actions_section.dart";
 import "widgets/news_section.dart";
 import "widgets/parkings_section.dart";
 import "widgets/science_clubs_section.dart";
@@ -24,11 +24,11 @@ class HomeView extends StatelessWidget {
 
     final sections = [
       const AcademicCalendarConsumer(),
-      const ParkingsSection(),
+      const NavActionsSection(),
       const ScienceClubsSection(),
       const BuildingsSection(),
       const NewsSection(),
-      const DepartmentsSection(),
+      const ParkingsSection(),
     ].lock;
 
     return Scaffold(
