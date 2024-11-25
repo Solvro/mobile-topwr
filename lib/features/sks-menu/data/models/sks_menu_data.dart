@@ -13,8 +13,6 @@ class SksMenuDish with _$SksMenuDish {
     required DishCategory category,
     required String size,
     required String price,
-    required DateTime createdAt,
-    required DateTime updatedAt,
   }) = _SksMenuDish;
 
   factory SksMenuDish.fromJson(Map<String, dynamic> json) =>
