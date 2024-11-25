@@ -10,8 +10,8 @@ enum NavBarEnum {
   home(BottomNavBarIcon.home_icon, 26, "Home"),
   buildings(BottomNavBarIcon.map_icon, 20, "Map"),
   parkings(ParkingsIcons.directions_car, 19, "Parkings"),
-  guide(Icons.book, 25, "Info"),
-  navigation(Icons.more_horiz, 28, "Navigation");
+  guide(BottomNavBarIcon.info_icon, 22, "Guide"),
+  navigation(Icons.more_horiz, 28, "Navigation Tab");
 
   const NavBarEnum(this.icon, this.size, this.label);
 
