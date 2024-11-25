@@ -8,6 +8,7 @@ import "../../../config/ui_config.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../home_view/widgets/paddings.dart";
+import "../../sks_people_live/presentation/widgets/sks_user_data_button.dart";
 import "../data/models/sks_menu_response.dart";
 import "../data/repository/sks_menu_repository.dart";
 import "widgets/sks_menu_data_source_link.dart";
@@ -64,7 +65,13 @@ class _SksMenuView extends StatelessWidget {
       );
     }
     return Scaffold(
-      appBar: DetailViewAppBar(context, title: context.localize.home_screen),
+      appBar: DetailViewAppBar(
+        context,
+        title: context.localize.home_screen,
+        actions: const [
+          SksUserDataButton(),
+        ],
+      ),
       body: ListView(
         children: [
           SksMenuHeader(
