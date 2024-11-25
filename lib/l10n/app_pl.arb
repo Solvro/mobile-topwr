@@ -145,5 +145,6 @@
   "leave_a_review" : "Oceń aplikację",
   "rest_header": "Pozostałe",
   "settings": "Ustawienia",
-  "about_the_app": "O aplikacji"
+  "about_the_app": "O aplikacji",
+  "other_view" : "Inne"
 }
