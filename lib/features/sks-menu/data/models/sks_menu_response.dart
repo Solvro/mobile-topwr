@@ -9,6 +9,7 @@ part "sks_menu_response.g.dart";
 class SksMenuResponse with _$SksMenuResponse {
   const factory SksMenuResponse({
     required bool isMenuOnline,
+    required DateTime lastUpdate,
     required List<SksMenuDish> meals,
   }) = _SksMenuResponse;
 
