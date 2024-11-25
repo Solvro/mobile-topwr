@@ -17,6 +17,7 @@ extension DateTimeUtilsX on DateTime {
     final String date = dateFormat.format(this);
     return "$capitalizedDay, $date";
   }
+
   String toDayDateHourString() {
     final DateFormat dayFormat = DateFormat("EEEE", "pl_PL");
     final DateFormat dateFormat = DateFormat("dd.MM.yyyy");

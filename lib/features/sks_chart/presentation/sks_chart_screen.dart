@@ -13,6 +13,7 @@ import "../../bottom_scroll_sheet/drag_handle.dart";
 import "../data/models/sks_chart_data.dart";
 import "../data/repository/sks_chart_repository.dart";
 
+
 @RoutePage()
 class SksChartView extends ConsumerWidget {
   const SksChartView({super.key});
