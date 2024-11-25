@@ -17,6 +17,17 @@ extension DateTimeUtilsX on DateTime {
     final String date = dateFormat.format(this);
     return "$capitalizedDay, $date";
   }
+  String toDayDateHourString() {
+    final DateFormat dayFormat = DateFormat("EEEE", "pl_PL");
+    final DateFormat dateFormat = DateFormat("dd.MM.yyyy");
+    final DateFormat hourFormat = DateFormat("HH:mm");
+    final String day = dayFormat.format(this);
+    final String capitalizedDay =
+        day[0].toUpperCase() + day.substring(1).toLowerCase();
+    final String date = dateFormat.format(this);
+    final String hour = hourFormat.format(this);
+    return "$capitalizedDay, $date $hour";
+  }
 
   // Convert DateTime to Date (remove time)
   DateTime get date => DateTime(year, month, day);
