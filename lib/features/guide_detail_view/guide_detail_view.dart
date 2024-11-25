@@ -31,7 +31,7 @@ class GuideDetailView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: DetailViewAppBar(context, title: context.localize.guide),
+      appBar: DetailViewAppBar(title: context.localize.guide),
       body: _GuideDetailDataView(id: id),
     );
   }

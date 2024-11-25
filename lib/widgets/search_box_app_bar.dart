@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 
 import "../config/ui_config.dart";
 import "../theme/app_theme.dart";
+import "detail_views/pop_button.dart";
 import "search_box.dart";
 
 class SearchBoxAppBar extends AppBar {
@@ -18,23 +19,25 @@ class SearchBoxAppBar extends AppBar {
     VoidCallback? onSearchBoxTap,
     double bottomPadding = defaultBottomPadding,
     bool addLeadingPopButton = false,
+    String? leadingButtonTitle,
   }) : super(
           title: Text(title),
           titleTextStyle: context.textTheme.headline,
           backgroundColor: context.colorTheme.whiteSoap,
           scrolledUnderElevation: 0,
           centerTitle: addLeadingPopButton,
-          titleSpacing: defaultHorizontalPadding,
+          titleSpacing: addLeadingPopButton ? 0 : defaultHorizontalPadding,
           automaticallyImplyLeading: false,
-          leading: addLeadingPopButton
-              ? IconButton(
-                  icon: Icon(
-                    Icons.chevron_left,
-                    color: context.colorTheme.orangePomegranade,
+          leading: addLeadingPopButton && leadingButtonTitle != null
+              ? Align(
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 4),
+                    child: DetailViewPopButton(leadingButtonTitle),
                   ),
-                  onPressed: () => Navigator.of(context).pop(),
                 )
               : null,
+          leadingWidth: addLeadingPopButton ? 80 : 0,
           bottom: PreferredSize(
             preferredSize:
                 Size.fromHeight(SearchBoxConfig.height + bottomPadding),
