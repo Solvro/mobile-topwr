@@ -3,8 +3,12 @@ import "package:flutter/material.dart";
 import "../../theme/app_theme.dart";
 
 class DetailViewAppBar extends AppBar {
-  DetailViewAppBar(BuildContext context, {super.key, required String title})
-      : super(
+  DetailViewAppBar(
+    BuildContext context, {
+    super.key,
+    required String title,
+    super.actions,
+  }) : super(
           centerTitle: false,
           automaticallyImplyLeading: false,
           scrolledUnderElevation: 0,

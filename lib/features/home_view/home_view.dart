@@ -5,9 +5,9 @@ import "package:flutter/material.dart";
 import "../../config/ui_config.dart";
 import "../../theme/app_theme.dart";
 import "../academic_calendar/widgets/academic_calendar_consumer.dart";
-import "../sks_people_live/presentation/sks_app_bar.dart";
 import "keep_alive_home_view_providers.dart";
 import "widgets/buildings_section/buildings_section.dart";
+import "widgets/logo_app_bar.dart";
 import "widgets/nav_actions_section.dart";
 import "widgets/science_clubs_section.dart";
 
@@ -37,7 +37,7 @@ class HomeView extends StatelessWidget {
         child: SafeArea(
           child: Padding(
             padding: EdgeInsets.only(left: horizontalPadding),
-            child: SksAppBar(context),
+            child: LogoAppBar(context),
           ),
         ),
       ),
