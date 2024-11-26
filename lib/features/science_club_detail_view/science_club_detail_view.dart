@@ -31,7 +31,7 @@ class ScienceClubDetailView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: DetailViewAppBar(context, title: context.localize.study_circles),
+      appBar: DetailViewAppBar(title: context.localize.study_circles),
       body: _SciClubDetailDataView(id),
     );
   }

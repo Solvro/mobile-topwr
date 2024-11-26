@@ -135,10 +135,16 @@
   "data_come_from_website": "Dane pochodzą ze strony",
   "sks_menu": "SKS Menu",
   "home_screen": "Ekran główny",
-  "sks_menu_salads": "Sałatki",
+  "sks_menu_salads": "Surówki",
   "sks_menu_main_soups": "Zupy",
   "sks_menu_vegetarian_dishes": "Dania jarskie",
   "sks_menu_meat_dishes": "Dania mięsne",
   "sks_menu_side_dishes": "Dodatki",
-  "sks_menu_drinks": "Kompoty i napoje"
+  "sks_menu_drinks": "Kompoty i napoje",
+  "sks_full_name" : "Strefa Kultury Studenckiej",
+  "leave_a_review" : "Oceń aplikację",
+  "rest_header": "Pozostałe",
+  "settings": "Ustawienia",
+  "about_the_app": "O aplikacji",
+  "other_view" : "Inne"
 }

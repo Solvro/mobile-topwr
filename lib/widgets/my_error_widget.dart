@@ -42,10 +42,12 @@ class MyErrorWidget extends HookWidget {
                 Assets.animations.error,
                 frameRate: const FrameRate(LottieAnimationConfig.frameRate),
               ),
-              Text(
-                textAlign: TextAlign.center,
-                style: context.textTheme.headline,
-                error.toString(),
+              Align(
+                child: Text(
+                  textAlign: TextAlign.center,
+                  style: context.textTheme.headline,
+                  error.toString(),
+                ),
               ),
             ],
           ),

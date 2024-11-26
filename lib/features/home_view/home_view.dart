@@ -7,10 +7,8 @@ import "../../theme/app_theme.dart";
 import "../academic_calendar/widgets/academic_calendar_consumer.dart";
 import "keep_alive_home_view_providers.dart";
 import "widgets/buildings_section/buildings_section.dart";
-import "widgets/departments_section/departments_section.dart";
 import "widgets/logo_app_bar.dart";
-import "widgets/news_section.dart";
-import "widgets/parkings_section.dart";
+import "widgets/nav_actions_section.dart";
 import "widgets/science_clubs_section.dart";
 
 @RoutePage()
@@ -19,25 +17,46 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final safeAreaInsets = MediaQuery.of(context).padding;
+    final horizontalPadding = safeAreaInsets.left;
+
     final sections = [
       const AcademicCalendarConsumer(),
-      const ParkingsSection(),
+      const Padding(
+        padding: EdgeInsets.only(top: 24, bottom: 8),
+        child: NavActionsSection(),
+      ),
       const ScienceClubsSection(),
       const BuildingsSection(),
-      const NewsSection(),
-      const DepartmentsSection(),
     ].lock;
+
     return Scaffold(
       backgroundColor: context.colorTheme.whiteSoap,
-      appBar: LogoAppBar(context),
-      body: KeepAliveHomeViewProviders(
-        child: ListView.separated(
-          padding: const EdgeInsets.only(bottom: HomeViewConfig.bottomPadding),
-          itemBuilder: (context, index) => sections[index],
-          separatorBuilder: (context, index) => SizedBox(
-            height: index == 1 ? 0 : HomeViewConfig.paddingMedium,
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(kToolbarHeight),
+        child: SafeArea(
+          child: Padding(
+            padding: EdgeInsets.only(left: horizontalPadding),
+            child: LogoAppBar(context),
           ),
-          itemCount: sections.length,
+        ),
+      ),
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.only(
+            left: horizontalPadding, // Align with the top bar
+            right: safeAreaInsets.right,
+            bottom: HomeViewConfig.bottomPadding,
+          ),
+          child: KeepAliveHomeViewProviders(
+            child: ListView.separated(
+              itemBuilder: (context, index) => sections[index],
+              separatorBuilder: (context, index) => SizedBox(
+                height: index == 1 ? 0 : HomeViewConfig.paddingMedium,
+              ),
+              itemCount: sections.length,
+            ),
+          ),
         ),
       ),
     );
