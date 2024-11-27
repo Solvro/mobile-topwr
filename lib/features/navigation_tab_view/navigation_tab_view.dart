@@ -1,6 +1,7 @@
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:in_app_review/in_app_review.dart";
 
 import "../../config/ui_config.dart";
 import "../../theme/app_theme.dart";
@@ -36,8 +37,8 @@ class NavigationTabView extends ConsumerWidget {
           ),
         ),
         child2: SmallTileCard(
-          onTap: () {
-            // TODO(simon-the-shark): implement review request
+          onTap: () async {
+            await InAppReview.instance.openStoreListing();
           },
           title: context.localize.leave_a_review,
           icon: Icon(
