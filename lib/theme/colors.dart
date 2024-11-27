@@ -43,6 +43,8 @@ abstract class ColorsConsts {
     stops: [0.0, 0.7396, 1.0],
   );
 
+  static const gold = Color(0xFFFFDF00);
+
   //Department's gradients are supposed to be pulled from server
   //
 }

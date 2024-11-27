@@ -73,7 +73,11 @@ extension NavigationX on WidgetRef {
     await _router.pushNamed(uri);
   }
 
-  Future<void> navigateToSksMenu() async {
-    await _router.push(const SksMenuRoute());
+  Future<void> navigateToSksMenu({String? appBarPopTitle}) async {
+    if (appBarPopTitle != null) {
+      await _router.push(SksMenuRoute(appBarPopTitle: appBarPopTitle));
+    } else {
+      await _router.push(SksMenuRoute());
+    }
   }
 }

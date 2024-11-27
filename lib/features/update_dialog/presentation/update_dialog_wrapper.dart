@@ -1,5 +1,6 @@
 import "dart:io";
 
+import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
@@ -15,7 +16,7 @@ class UpdateDialogWrapper extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Platform.isAndroid
+    return !kIsWeb && Platform.isAndroid
         ? AndroidUpdateWidget(child: child)
         : IosUpdateWidget(child: child);
   }

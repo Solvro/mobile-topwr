@@ -47,7 +47,7 @@ abstract class MapWidgetConfig {
 }
 
 abstract class OpenStreetMapConfig {
-  static const tileUrl = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
+  static const tileUrl = "https://tile.openstreetmap.org/{z}/{x}/{y}.png";
   static const attribution = "© OpenStreetMap contributors";
   static const copyright = "https://openstreetmap.org/copyright";
   static final userAgent =

@@ -1,29 +1,20 @@
-import "package:collection/collection.dart";
-import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "../../../../shared_api_clients/sks_api_client.dart";
-import "../models/dish_category_enum.dart";
-import "../models/sks_menu_data.dart";
+import "../../../../api_base_rest/client/dio_client.dart";
+import "../../../../config/env.dart";
+import "../models/sks_menu_response.dart";
 
 part "sks_menu_repository.g.dart";
 
 @riverpod
-Future<IMap<DishCategory, List<SksMenuDish>>> getSksMenuData(Ref ref) async {
-  final dio = ref.read(sksClientProvider);
-  const mealsEndpoint = "/meals";
-  final response = await dio.get(mealsEndpoint);
+Future<SksMenuResponse> getSksMenuData(Ref ref) async {
+  final mealsUrl = "${Env.sksUrl}/meals/current";
 
-  final List<SksMenuDish> sksMenuDataList = (response.data as List<dynamic>)
-      .map((e) => SksMenuDish.fromJson(e as Map<String, dynamic>))
-      .toList()
-    ..sort((a, b) => a.category.index.compareTo(b.category.index));
+  final dio = ref.read(restClientProvider);
+  final response = await dio.get(mealsUrl);
+  final SksMenuResponse sksMenuResponse =
+      SksMenuResponse.fromJson(response.data as Map<String, dynamic>);
 
-  final Map<DishCategory, List<SksMenuDish>> groupedData = groupBy(
-    sksMenuDataList,
-    (SksMenuDish data) => data.category,
-  );
-
-  return groupedData.toIMap();
+  return sksMenuResponse;
 }
