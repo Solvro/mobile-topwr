@@ -14,11 +14,23 @@ Future<void> showCustomLicenseDialog({
   await showDialog<void>(
     context: context,
     builder: (BuildContext context) {
-      return _AlertDialog(
-        applicationName: applicationName,
-        applicationVersion: applicationVersion,
-        applicationLegalese: applicationLegalese,
-        applicationIcon: applicationIcon,
+      return LayoutBuilder(
+        builder: (context, constraints) {
+          final double maxWidth = MediaQuery.of(context).size.width * 0.89;
+          return Center(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                maxWidth: maxWidth,
+              ),
+              child: _AlertDialog(
+                applicationName: applicationName,
+                applicationVersion: applicationVersion,
+                applicationLegalese: applicationLegalese,
+                applicationIcon: applicationIcon,
+              ),
+            ),
+          );
+        },
       );
     },
   );
@@ -53,50 +65,48 @@ class _AlertDialog extends StatelessWidget {
         ),
       ),
       actions: <Widget>[
-        LayoutBuilder(
-          builder: (context, constraints) {
-            return Wrap(
-              alignment: WrapAlignment.center,
-              children: [
-                SizedBox(
-                  width: constraints.maxWidth / 2,
-                  // Split the width evenly
-                  child: TextButton(
-                    child: Text(
-                      context.localize.show_license,
-                      style: context.textTheme.bodyOrange.copyWith(
-                        fontSize: AboutUsConfig.dialogButtonFontSize,
-                      ),
-                    ),
-                    onPressed: () {
-                      showLicensePage(
-                        context: context,
-                        applicationName: applicationName,
-                        applicationIcon: applicationIcon,
-                        applicationVersion: applicationVersion,
-                        applicationLegalese: applicationLegalese,
-                      );
-                    },
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Flexible(
+              child: TextButton(
+                child: Text(
+                  context.localize.show_license,
+                  style: context.textTheme.bodyOrange.copyWith(
+                    fontSize: AboutUsConfig.dialogButtonFontSize,
                   ),
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                 ),
-                SizedBox(
-                  width: constraints.maxWidth / 2,
-                  // Split the width evenly
-                  child: TextButton(
-                    child: Text(
-                      context.localize.close,
-                      style: context.textTheme.body.copyWith(
-                        fontSize: AboutUsConfig.dialogButtonFontSize,
-                      ),
-                    ),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
+                onPressed: () {
+                  showLicensePage(
+                    context: context,
+                    applicationName: applicationName,
+                    applicationIcon: applicationIcon,
+                    applicationVersion: applicationVersion,
+                    applicationLegalese: applicationLegalese,
+                  );
+                },
+              ),
+            ),
+            Flexible(
+              child: TextButton(
+                child: Text(
+                  context.localize.close,
+                  style: context.textTheme.body.copyWith(
+                    fontSize: AboutUsConfig.dialogButtonFontSize,
                   ),
+                  textAlign: TextAlign.center,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
-              ],
-            );
-          },
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ),
+          ],
         ),
       ],
     );
