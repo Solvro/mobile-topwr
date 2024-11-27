@@ -56,4 +56,8 @@ class InAppRatingService {
       (_sharedPrefs.getInt(InAppReviewConfig.reviewCountKey) ?? 0) + 1,
     );
   }
+
+  static Future<void> requestStoreListingReview() async {
+    await InAppReview.instance.openStoreListing();
+  }
 }
