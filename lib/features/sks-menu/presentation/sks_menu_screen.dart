@@ -21,11 +21,7 @@ import "widgets/sks_menu_section.dart";
 
 @RoutePage()
 class SksMenuView extends ConsumerWidget {
-  const SksMenuView({
-    super.key,
-    this.appBarPopTitle,
-  });
-  final String? appBarPopTitle;
+  const SksMenuView({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -39,7 +35,6 @@ class SksMenuView extends ConsumerWidget {
               lastUpdate: DateTime.now(),
               meals: List.empty(),
             ),
-        appBarPopTitle,
       ),
       error: (error, stackTrace) => _SKSMenuLottieAnimation(error: error),
       loading: () => const Scaffold(
@@ -52,10 +47,9 @@ class SksMenuView extends ConsumerWidget {
 }
 
 class _SksMenuView extends StatelessWidget {
-  const _SksMenuView(this.sksMenuData, this.appBarPopTitle);
+  const _SksMenuView(this.sksMenuData);
 
   final SksMenuResponse sksMenuData;
-  final String? appBarPopTitle;
   @override
   Widget build(BuildContext context) {
     if (!sksMenuData.isMenuOnline) {
@@ -63,7 +57,6 @@ class _SksMenuView extends StatelessWidget {
     }
     return Scaffold(
       appBar: DetailViewAppBar(
-        title: appBarPopTitle ?? context.localize.home_screen,
         actions: const [
           SksUserDataButton(),
         ],

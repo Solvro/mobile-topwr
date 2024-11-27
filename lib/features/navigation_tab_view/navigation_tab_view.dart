@@ -48,9 +48,7 @@ class NavigationTabView extends ConsumerWidget {
       ),
       _NavigationRow(
         child1: SmallTileCard(
-          onTap: () async => ref.navigateToSksMenu(
-            appBarPopTitle: context.localize.other_view,
-          ),
+          onTap: ref.navigateToSksMenu,
           title: context.localize.sks_full_name,
           icon: const Icon(
             Icons.restaurant_menu,

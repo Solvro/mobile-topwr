@@ -1,15 +1,21 @@
 import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 
+import '../../config/nav_bar_config.dart';
+import "../../features/navigator/navigation_controller.dart";
 import "../../theme/app_theme.dart";
 
-class DetailViewPopButton extends StatelessWidget {
-  const DetailViewPopButton(
-    this.title, {
+class DetailViewPopButton extends ConsumerWidget {
+  const DetailViewPopButton({
     super.key,
   });
-  final String? title;
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final title = ref
+        .watch(navigationControllerProvider)
+        .previousView
+        ?.niceRouteName(context);
+
     return TextButton(
       onPressed: () {
         Navigator.pop(context);

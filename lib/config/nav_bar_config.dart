@@ -2,9 +2,11 @@ import "package:auto_route/auto_route.dart";
 import "package:collection/collection.dart";
 import "package:flutter/material.dart";
 
+import "../features/about_us_view/about_us_view.dart";
 import "../features/bottom_nav_bar/bottom_nav_bar_icon_icons.icons.dart";
 import "../features/navigator/app_router.dart";
 import "../features/parkings_view/widgets/parkings_icons.icons.dart";
+import "../utils/context_extensions.dart";
 
 enum NavBarEnum {
   home(BottomNavBarIcon.home_icon, 26, "Home"),
@@ -43,4 +45,15 @@ extension IsRouteATabViewX on PageRouteInfo<dynamic> {
   NavBarEnum? get tabBarEnum => routeName.tabBarEnum;
 
   bool get isTabView => routeName.isTabView;
+
+  String? niceRouteName(BuildContext context) {
+    return switch (routeName) {
+      HomeRoute.name => context.localize.home_screen,
+      NavigationTabRoute.name => context.localize.other_view,
+      DepartmentsRoute.name => context.localize.departments,
+      SksMenuRoute.name => context.localize.sks_menu,
+      ScienceClubsRoute.name => context.localize.scientific_cirlces,
+      _ => null,
+    };
+  }
 }
