@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import '../../config/nav_bar_config.dart';
+import "../../config/nav_bar_config.dart";
 import "../../features/navigator/navigation_controller.dart";
 import "../../theme/app_theme.dart";
 

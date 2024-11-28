@@ -2,7 +2,6 @@ import "package:auto_route/auto_route.dart";
 import "package:collection/collection.dart";
 import "package:flutter/material.dart";
 
-import "../features/about_us_view/about_us_view.dart";
 import "../features/bottom_nav_bar/bottom_nav_bar_icon_icons.icons.dart";
 import "../features/navigator/app_router.dart";
 import "../features/parkings_view/widgets/parkings_icons.icons.dart";
