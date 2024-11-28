@@ -14,11 +14,23 @@ Future<void> showCustomLicenseDialog({
   await showDialog<void>(
     context: context,
     builder: (BuildContext context) {
-      return _AlertDialog(
-        applicationName: applicationName,
-        applicationVersion: applicationVersion,
-        applicationLegalese: applicationLegalese,
-        applicationIcon: applicationIcon,
+      return LayoutBuilder(
+        builder: (context, constraints) {
+          final double maxWidth = MediaQuery.of(context).size.width * 0.89;
+          return Center(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                maxWidth: maxWidth,
+              ),
+              child: _AlertDialog(
+                applicationName: applicationName,
+                applicationVersion: applicationVersion,
+                applicationLegalese: applicationLegalese,
+                applicationIcon: applicationIcon,
+              ),
+            ),
+          );
+        },
       );
     },
   );
@@ -54,35 +66,45 @@ class _AlertDialog extends StatelessWidget {
       ),
       actions: <Widget>[
         Row(
-          mainAxisAlignment: MainAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            TextButton(
-              child: Text(
-                context.localize.show_license,
-                style: context.textTheme.bodyOrange.copyWith(
-                  fontSize: AboutUsConfig.dialogButtonFontSize,
+            Flexible(
+              child: TextButton(
+                child: Text(
+                  context.localize.show_license,
+                  style: context.textTheme.bodyOrange.copyWith(
+                    fontSize: AboutUsConfig.dialogButtonFontSize,
+                  ),
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                 ),
+                onPressed: () {
+                  showLicensePage(
+                    context: context,
+                    applicationName: applicationName,
+                    applicationIcon: applicationIcon,
+                    applicationVersion: applicationVersion,
+                    applicationLegalese: applicationLegalese,
+                  );
+                },
               ),
-              onPressed: () {
-                showLicensePage(
-                  context: context,
-                  applicationName: applicationName,
-                  applicationIcon: applicationIcon,
-                  applicationVersion: applicationVersion,
-                  applicationLegalese: applicationLegalese,
-                );
-              },
             ),
-            TextButton(
-              child: Text(
-                context.localize.close,
-                style: context.textTheme.body.copyWith(
-                  fontSize: AboutUsConfig.dialogButtonFontSize,
+            Flexible(
+              child: TextButton(
+                child: Text(
+                  context.localize.close,
+                  style: context.textTheme.body.copyWith(
+                    fontSize: AboutUsConfig.dialogButtonFontSize,
+                  ),
+                  textAlign: TextAlign.center,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
               ),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
             ),
           ],
         ),
