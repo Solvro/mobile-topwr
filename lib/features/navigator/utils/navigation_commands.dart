@@ -1,6 +1,5 @@
 import "dart:async";
 
-import "package:flutter/foundation.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../buildings_view/model/building_model.dart";
@@ -80,5 +79,9 @@ extension NavigationX on WidgetRef {
     } else {
       await _router.push(SksMenuRoute());
     }
+  }
+
+  Future<void> navigateBuildingGuideDetail() async {
+    await _router.push(const BuildingDetailRoute());
   }
 }

@@ -4,6 +4,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../about_us_view/about_us_view.dart";
+import "../building_detail_view/presentation/building_detail_view.dart";
 import "../buildings_view/buildings_view.dart";
 import "../department_detail_view/department_detail_view.dart";
 import "../departments_view/departments_view.dart";
@@ -94,6 +95,10 @@ class AppRouter extends RootStackRouter {
           path: "/sci-clubs/:id",
           page: ScienceClubDetailRoute.page,
         ),
+        AutoRoute(
+          path: "/building-guide/detail",
+          page: BuildingDetailRoute.page,
+        )
       ];
 }
 
