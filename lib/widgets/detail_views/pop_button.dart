@@ -11,10 +11,12 @@ class DetailViewPopButton extends ConsumerWidget {
   });
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final title = ref
-        .watch(navigationControllerProvider)
-        .previousView
-        ?.niceRouteName(context);
+    final currentRoute = ModalRoute.of(context)?.settings.name;
+    final title = currentRoute == null
+        ? null
+        : ref
+            .watch(previousRouteOnStackProvider(currentRoute))
+            ?.getFormatedRouteName(context);
 
     return TextButton(
       onPressed: () {

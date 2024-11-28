@@ -45,13 +45,17 @@ extension IsRouteATabViewX on PageRouteInfo<dynamic> {
 
   bool get isTabView => routeName.isTabView;
 
-  String? niceRouteName(BuildContext context) {
+  String? getFormatedRouteName(BuildContext context) {
     return switch (routeName) {
       HomeRoute.name => context.localize.home_screen,
       NavigationTabRoute.name => context.localize.other_view,
       DepartmentsRoute.name => context.localize.departments,
       SksMenuRoute.name => context.localize.sks_menu,
       ScienceClubsRoute.name => context.localize.scientific_cirlces,
+      GuideRoute.name => context.localize.guide,
+      BuildingsRoute.name => context.localize.buildings_title,
+      ParkingsRoute.name => context.localize.parkings_title,
+      DepartmentDetailRoute.name => context.localize.department,
       _ => null,
     };
   }
