@@ -77,6 +77,7 @@ class DepartmentDetailView extends ConsumerWidget {
                         .whereNonNull
                         .toIList(),
                   ),
+                  const Text("after"),
                   DepartmentScienceClubsSection(value),
                   const SizedBox(height: DetailViewsConfig.spacerHeight * 2),
                 ]),
