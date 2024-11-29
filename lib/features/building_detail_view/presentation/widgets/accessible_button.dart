@@ -13,7 +13,8 @@ class AccessibleButton extends StatelessWidget {
           //side: const BorderSide(),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(
-                BuildingDetailConfig.accessibleButtonBorderRadius),
+              BuildingDetailConfig.accessibleButtonBorderRadius,
+            ),
           ),
         ),
         child: const Icon(

@@ -21,8 +21,10 @@ class ChangeReportButton extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8),
               ),
             ),
-            child: Text(context.localize.change_report_button,
-                style: const TextStyle(color: Colors.white)),
+            child: Text(
+              context.localize.change_report_button,
+              style: const TextStyle(color: Colors.white),
+            ),
           ),
         ],
       ),

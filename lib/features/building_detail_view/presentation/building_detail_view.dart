@@ -45,26 +45,34 @@ class _BuildingDetailView extends StatelessWidget {
           SliverList(
             delegate: SliverChildListDelegate([
               const SizedBox(height: 8),
-              Image.network("https://dummyimage.com/640x360/000/fff",
-                  fit: BoxFit.fitWidth),
+              Image.network(
+                "https://dummyimage.com/640x360/000/fff",
+                fit: BoxFit.fitWidth,
+              ),
               const HeadlinesSection(
-                  name: "Budynek C-2",
-                  description: "Budynek imienia profesora Wiesławia Barwicza"),
+                name: "Budynek C-2",
+                description: "Budynek imienia profesora Wiesławia Barwicza",
+              ),
               ContactSection(
                 title: "Siuuu",
                 list: IList<ContactIconsModel>([
                   ContactIconsModel(
-                      text: "Kampus Glówny",
-                      icon: Assets.svg.contactIcons.compass),
+                    text: "Kampus Glówny",
+                    icon: Assets.svg.contactIcons.compass,
+                  ),
                   ContactIconsModel(
-                      text: "ul. Janiszewskiego 11-17, 54-152 Wrocław",
-                      icon: Assets.svg.contactIcons.compass),
+                    text: "ul. Janiszewskiego 11-17, 54-152 Wrocław",
+                    icon: Assets.svg.contactIcons.compass,
+                  ),
                   ContactIconsModel(
-                      text: "(+48) 71 320 62 30",
-                      icon: Assets.svg.contactIcons.phone,
-                      url: "tel:+48713206230"),
+                    text: "(+48) 71 320 62 30",
+                    icon: Assets.svg.contactIcons.phone,
+                    url: "tel:+48713206230",
+                  ),
                   ContactIconsModel(
-                      text: "5 pięter", icon: Assets.svg.contactIcons.storey),
+                    text: "5 pięter",
+                    icon: Assets.svg.contactIcons.storey,
+                  ),
                 ]),
               ),
               BuildingFeaturesSection(),
