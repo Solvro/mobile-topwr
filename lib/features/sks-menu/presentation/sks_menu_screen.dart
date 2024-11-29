@@ -38,7 +38,7 @@ class SksMenuView extends ConsumerWidget {
             ),
         appBarPopTitle,
       ),
-      error: (error, stackTrace) => const LottieLoading(),
+      error: (error, stackTrace) => const SKSMenuLottieAnimation(),
       loading: () => const Scaffold(
         body: Center(
           child: CircularProgressIndicator(),
@@ -56,9 +56,7 @@ class _SksMenuView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (sksMenuData.meals.isEmpty) {
-      return const Scaffold(
-        body: LottieLoading(),
-      );
+      return const SKSMenuLottieAnimation();
     }
     return Scaffold(
       appBar: DetailViewAppBar(

@@ -3,64 +3,35 @@ import "package:lottie/lottie.dart";
 
 import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/context_extensions.dart";
+import "../../../../config/ui_config.dart";
 import "../../../../gen/assets.gen.dart";
 
-class LottieLoading extends StatefulWidget {
-  const LottieLoading({
+class SKSMenuLottieAnimation extends StatelessWidget {
+  const SKSMenuLottieAnimation({
     super.key,
   });
-
-  @override
-  _LottieLoadingState createState() => _LottieLoadingState();
-}
-
-class _LottieLoadingState extends State<LottieLoading> {
-  final bool _showOldMenu = false;
-
-  void _gotoOldMenu() {
-    //Navigator.push(
-    //context,
-    //MaterialPageRoute(builder: (context) => const _SksMenuView()),
-    // );
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Spacer(),
-          Center(
-            child: SizedBox(
-              width: 200,
-              height: 200,
+          SizedBox.square(
+              dimension: 200,
               child: Lottie.asset(
-                Assets.animations.closed,
+                Assets.animations.sksClosed,
+                fit: BoxFit.cover,
                 repeat: false,
+                frameRate: const FrameRate(LottieAnimationConfig.frameRate),
+                renderCache: RenderCache.drawingCommands,
               ),
             ),
-          ),
-          const Spacer(),
           Align(
-            alignment: Alignment.bottomCenter,
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: MaterialButton(
-                elevation: 1,
-                padding: const EdgeInsets.all(8),
-                onPressed: _gotoOldMenu,
-                color: context.colorTheme.greyLight,
-                textColor: context.colorTheme.blackMirage,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(4),
-                ),
-                child: Text(
-                  _showOldMenu
-                      ? context.localize.close
-                      : context.localize.sks_old_menu,
-                ),
-              ),
+              child: Text(
+                context.localize.sks_menu_closed,
+                style: context.textTheme.headline,
+                textAlign: TextAlign.center,
             ),
           ),
         ],

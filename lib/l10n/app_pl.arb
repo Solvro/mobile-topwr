@@ -146,6 +146,7 @@
   "rest_header": "Pozostałe",
   "settings": "Ustawienia",
   "about_the_app": "O aplikacji",
-  "other_view" : "Inne"
-  "sks_old_menu": "Zobacz ostatnie menu"
+  "other_view" : "Inne",
+  "sks_old_menu": "Zobacz ostatnie menu",
+  "sks_menu_closed" : "SKS Menu jest teraz niedostępne"
 }
