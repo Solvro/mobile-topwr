@@ -18,20 +18,20 @@ class SKSMenuLottieAnimation extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox.square(
-              dimension: 200,
-              child: Lottie.asset(
-                Assets.animations.sksClosed,
-                fit: BoxFit.cover,
-                repeat: false,
-                frameRate: const FrameRate(LottieAnimationConfig.frameRate),
-                renderCache: RenderCache.drawingCommands,
-              ),
+            dimension: 200,
+            child: Lottie.asset(
+              Assets.animations.sksClosed,
+              fit: BoxFit.cover,
+              repeat: false,
+              frameRate: const FrameRate(LottieAnimationConfig.frameRate),
+              renderCache: RenderCache.drawingCommands,
             ),
+          ),
           Align(
-              child: Text(
-                context.localize.sks_menu_closed,
-                style: context.textTheme.headline,
-                textAlign: TextAlign.center,
+            child: Text(
+              context.localize.sks_menu_closed,
+              style: context.textTheme.headline,
+              textAlign: TextAlign.center,
             ),
           ),
         ],
