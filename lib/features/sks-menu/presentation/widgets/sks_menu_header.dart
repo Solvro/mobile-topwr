@@ -53,7 +53,7 @@ class SksMenuHeader extends StatelessWidget {
 }
 
 class SksMenuHeaderLoading extends StatelessWidget {
-  const SksMenuHeaderLoading();
+  const SksMenuHeaderLoading({super.key});
 
   @override
   Widget build(BuildContext context) {

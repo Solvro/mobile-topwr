@@ -19,23 +19,26 @@ class SksMenuViewLoading extends StatelessWidget {
         linearGradient: shimmerGradient,
         child: ListView(
           physics: const NeverScrollableScrollPhysics(),
-          children: [
-            const ShimmerLoadingItem(
-              child: SksMenuHeaderLoading(),
-            ),
-            sksMenuTitleLoadingPaddings(),
-            sksMenuTitleLoadingPaddings(),
-            sksMenuTitleLoadingPaddings(),
+          children: const [
+            SksMenuHeaderLoading(),
+            SksMenuTitleLoadingPaddings(),
           ],
         ),
       ),
     );
   }
 
-  Padding sksMenuTitleLoadingPaddings() {
+}
+
+class SksMenuTitleLoadingPaddings extends StatelessWidget {
+  const SksMenuTitleLoadingPaddings({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(SksMenuConfig.paddingLarge),
-      child: ShimmerLoadingItem(
         child: ListView.separated(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
@@ -47,7 +50,6 @@ class SksMenuViewLoading extends StatelessWidget {
           ),
           itemCount: 3,
         ),
-      ),
     );
   }
 }

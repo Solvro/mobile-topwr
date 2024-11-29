@@ -81,15 +81,34 @@ class SksMenuTilesLoading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ShimmerLoadingItem(
-      child: Container(
+    return const ShimmerLoadingItem(
+      child: Column(
+        children: [
+          LoadingTitle(),
+          LoadingTitle(),
+          LoadingTitle(),
+        ],
+      ),
+    );
+  }
+}
+
+class LoadingTitle extends StatelessWidget {
+  const LoadingTitle({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: SksMenuConfig.paddingSmall),
+      child:  Container(
         decoration: BoxDecoration(
           color: context.colorTheme.whiteSoap,
           borderRadius: BorderRadius.circular(SksMenuConfig.borderRadius),
         ),
         width: double.infinity,
-        height: 45,
-      ),
-    );
+        height: 50,
+    ),);
   }
 }
