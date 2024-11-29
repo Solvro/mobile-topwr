@@ -3,14 +3,13 @@ import "dart:io";
 import "package:auto_route/annotations.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
-import "package:flutter_gen/gen_l10n/app_localizations.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
-import "package:path_provider/path_provider.dart";
-import "package:topwr/widgets/detail_views/contact_section.dart";
+import "../../../gen/assets.gen.dart";
 
 import "../../../utils/context_extensions.dart";
 import "../../../utils/determine_contact_icon.dart";
 import "../../../widgets/change_report_button.dart";
+import "../../../widgets/detail_views/contact_section.dart";
 import "../../../widgets/detail_views/detail_view_app_bar.dart";
 import "widgets/accessible_button.dart";
 import "widgets/building_data_source_link.dart";
@@ -50,12 +49,15 @@ class _BuildingDetailView extends StatelessWidget {
           SliverList(
             delegate: SliverChildListDelegate([
               const SizedBox(height: 8),
-              Image.network('https://via.placeholder.com/640x360', fit: BoxFit.fitWidth),
+              Image.network("https://dummyimage.com/640x360/000/fff", fit: BoxFit.fitWidth),
               const HeadlinesSection(name: "Budynek C-2", description: "Budynek imienia profesora Wiesławia Barwicza"),
               ContactSection(
                 title: "Siuuu",
                 list: IList<ContactIconsModel>([
-                  ContactIconsModel(text: "Kampus Glówny"),
+                  ContactIconsModel(text: "Kampus Glówny", icon: Assets.svg.contactIcons.compass),
+                  ContactIconsModel(text: "ul. Janiszewskiego 11-17, 54-152 Wrocław", icon: Assets.svg.contactIcons.compass),
+                  ContactIconsModel(text: "(+48) 71 320 62 30", icon: Assets.svg.contactIcons.phone),
+                  ContactIconsModel(text: "5 pięter", icon: Assets.svg.contactIcons.storey),
                 ]),
               ),
               BuildingFeaturesSection(),
