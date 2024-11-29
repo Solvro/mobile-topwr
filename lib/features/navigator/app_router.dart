@@ -98,7 +98,7 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           path: "/building-guide/detail",
           page: BuildingDetailRoute.page,
-        )
+        ),
       ];
 }
 

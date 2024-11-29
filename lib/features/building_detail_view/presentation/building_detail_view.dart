@@ -1,5 +1,3 @@
-import "dart:io";
-
 import "package:auto_route/annotations.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
@@ -19,7 +17,7 @@ import "widgets/headlines_section.dart";
 @RoutePage()
 class BuildingDetailView extends ConsumerWidget {
   const BuildingDetailView({
-    @PathParam("id") required this.id
+    @PathParam("id") required this.id,
   });
 
   final String id;
@@ -28,11 +26,9 @@ class BuildingDetailView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return _BuildingDetailView();
   }
-
 }
 
 class _BuildingDetailView extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     debugPrint("BuildingDetailView");
@@ -49,21 +45,33 @@ class _BuildingDetailView extends StatelessWidget {
           SliverList(
             delegate: SliverChildListDelegate([
               const SizedBox(height: 8),
-              Image.network("https://dummyimage.com/640x360/000/fff", fit: BoxFit.fitWidth),
-              const HeadlinesSection(name: "Budynek C-2", description: "Budynek imienia profesora Wiesławia Barwicza"),
+              Image.network("https://dummyimage.com/640x360/000/fff",
+                  fit: BoxFit.fitWidth),
+              const HeadlinesSection(
+                  name: "Budynek C-2",
+                  description: "Budynek imienia profesora Wiesławia Barwicza"),
               ContactSection(
                 title: "Siuuu",
                 list: IList<ContactIconsModel>([
-                  ContactIconsModel(text: "Kampus Glówny", icon: Assets.svg.contactIcons.compass),
-                  ContactIconsModel(text: "ul. Janiszewskiego 11-17, 54-152 Wrocław", icon: Assets.svg.contactIcons.compass),
-                  ContactIconsModel(text: "(+48) 71 320 62 30", icon: Assets.svg.contactIcons.phone),
-                  ContactIconsModel(text: "5 pięter", icon: Assets.svg.contactIcons.storey),
+                  ContactIconsModel(
+                      text: "Kampus Glówny",
+                      icon: Assets.svg.contactIcons.compass),
+                  ContactIconsModel(
+                      text: "ul. Janiszewskiego 11-17, 54-152 Wrocław",
+                      icon: Assets.svg.contactIcons.compass),
+                  ContactIconsModel(
+                      text: "(+48) 71 320 62 30",
+                      icon: Assets.svg.contactIcons.phone,
+                      url: "tel:+48713206230"),
+                  ContactIconsModel(
+                      text: "5 pięter", icon: Assets.svg.contactIcons.storey),
                 ]),
               ),
               BuildingFeaturesSection(),
               const SizedBox(height: 16),
               BuildingDataSourceLink(),
               ChangeReportButton(),
+              const SizedBox(height: 48),
             ]),
           ),
         ],

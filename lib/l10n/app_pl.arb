@@ -149,5 +149,16 @@
   "other_view" : "Inne",
   "map" : "Mapa",
   "change_report_title" : "Coś się zmieniło?",
-  "change_report_button" : "Zgłoś zmianę"
+  "change_report_button" : "Zgłoś zmianę",
+  "localization" : "Lokalizacja",
+  "amenities" : "Udogodnienia",
+  "surroundings": "Otoczenie",
+  "transport" : "Dojazd",
+  "entrances" : "Wejścia",
+  "elevators" : "Windy",
+  "toilets" : "Toilets",
+  "micro_navigation" : "Mikronawigacja",
+  "building_structure" : "Struktura budynku",
+  "classroom_information" : "Pomieszczenia",
+  "evacuation" : "Evacuation"
 }

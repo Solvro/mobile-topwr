@@ -5,7 +5,7 @@ import "../../../../config/ui_config.dart";
 class HeadlinesSection extends StatelessWidget {
   const HeadlinesSection({
     required this.name,
-    required this.description
+    required this.description,
   });
 
   final String name;

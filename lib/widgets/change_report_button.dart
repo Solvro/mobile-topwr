@@ -1,5 +1,4 @@
 import "package:flutter/material.dart";
-import "package:flutter/widgets.dart";
 
 import "../theme/colors.dart";
 import "../utils/context_extensions.dart";
@@ -21,11 +20,12 @@ class ChangeReportButton extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8),
               ),
-            ), 
-            child: Text(context.localize.change_report_button, style: const TextStyle(color: Colors.white)),
+            ),
+            child: Text(context.localize.change_report_button,
+                style: const TextStyle(color: Colors.white)),
           ),
         ],
       ),
     );
-  }  
+  }
 }

@@ -205,7 +205,9 @@ abstract class NavigationTabViewConfig {
 }
 
 abstract class BuildingDetailConfig {
-  static const accessibleButtonPadding = EdgeInsets.symmetric(horizontal: 8, vertical: 12);
+  static const accessibleButtonPadding =
+      EdgeInsets.symmetric(horizontal: 8, vertical: 12);
   static const accessibleButtonBorderRadius = 10.0;
-  static const headlinesPadding = EdgeInsets.symmetric(vertical: 32, horizontal: 24);
+  static const headlinesPadding =
+      EdgeInsets.symmetric(vertical: 32, horizontal: 24);
 }

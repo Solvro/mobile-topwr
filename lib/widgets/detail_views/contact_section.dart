@@ -1,6 +1,6 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
-import "package:flutter/cupertino.dart";
 import "package:flutter/gestures.dart";
+import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../theme/app_theme.dart";
@@ -64,6 +64,7 @@ class _ContactIcon extends ConsumerWidget {
             text: TextSpan(
               text: text,
               style: context.textTheme.bodyOrange.copyWith(
+                color: url.isNotEmpty ? null : Colors.black,
                 decoration: url.isNotEmpty
                     ? TextDecoration.underline
                     : TextDecoration.none,
