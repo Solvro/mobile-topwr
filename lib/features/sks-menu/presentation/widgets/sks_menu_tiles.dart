@@ -102,13 +102,14 @@ class LoadingTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: SksMenuConfig.paddingSmall),
-      child:  Container(
+      child: Container(
         decoration: BoxDecoration(
           color: context.colorTheme.whiteSoap,
           borderRadius: BorderRadius.circular(SksMenuConfig.borderRadius),
         ),
         width: double.infinity,
         height: 50,
-    ),);
+      ),
+    );
   }
 }

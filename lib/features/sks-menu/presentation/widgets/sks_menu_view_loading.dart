@@ -27,7 +27,6 @@ class SksMenuViewLoading extends StatelessWidget {
       ),
     );
   }
-
 }
 
 class SksMenuTitleLoadingPaddings extends StatelessWidget {
@@ -39,17 +38,17 @@ class SksMenuTitleLoadingPaddings extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(SksMenuConfig.paddingLarge),
-        child: ListView.separated(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemBuilder: (context, _) {
-            return const SksMenuTilesLoading();
-          },
-          separatorBuilder: (context, _) => const SizedBox(
-            height: 8,
-          ),
-          itemCount: 3,
+      child: ListView.separated(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        itemBuilder: (context, _) {
+          return const SksMenuTilesLoading();
+        },
+        separatorBuilder: (context, _) => const SizedBox(
+          height: 8,
         ),
+        itemCount: 3,
+      ),
     );
   }
 }
