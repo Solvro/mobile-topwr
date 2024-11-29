@@ -3,8 +3,12 @@ import "dart:core";
 import "package:auto_route/annotations.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:logger/logger.dart";
+import "package:lottie/lottie.dart";
 
+import "../../../../theme/app_theme.dart";
 import "../../../config/ui_config.dart";
+import "../../../gen/assets.gen.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../home_view/widgets/paddings.dart";
@@ -27,7 +31,6 @@ class SksMenuView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncSksMenuData = ref.watch(getSksMenuDataProvider);
 
-    // TODO(mikolaj-jalocha): Add lottie animation on: error and when data is empty (sks's closed)
     return asyncSksMenuData.when(
       data: (sksMenuData) => _SksMenuView(
         asyncSksMenuData.value ??
@@ -38,14 +41,7 @@ class SksMenuView extends ConsumerWidget {
             ),
         appBarPopTitle,
       ),
-      error: (error, stackTrace) => Scaffold(
-        body: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(8),
-            child: Text("Error with SKS menu API: $error"),
-          ),
-        ),
-      ),
+      error: (error, stackTrace) => _SKSMenuLottieAnimation(error: error),
       loading: () => const Scaffold(
         body: Center(
           child: CircularProgressIndicator(),
@@ -62,12 +58,8 @@ class _SksMenuView extends StatelessWidget {
   final String? appBarPopTitle;
   @override
   Widget build(BuildContext context) {
-    if (sksMenuData.meals.isEmpty) {
-      return const Scaffold(
-        body: Center(
-          child: CircularProgressIndicator(),
-        ),
-      );
+    if (!sksMenuData.isMenuOnline) {
+      return const _SKSMenuLottieAnimation();
     }
     return Scaffold(
       appBar: DetailViewAppBar(
@@ -93,6 +85,51 @@ class _SksMenuView extends StatelessWidget {
           const SizedBox(
             height: ScienceClubsViewConfig.mediumPadding,
           ),
+        ],
+      ),
+    );
+  }
+}
+
+class _SKSMenuLottieAnimation extends StatelessWidget {
+  const _SKSMenuLottieAnimation({
+    this.error,
+  });
+
+  final Object? error;
+  @override
+  Widget build(BuildContext context) {
+    Logger().e(error.toString());
+    return Scaffold(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SizedBox.square(
+            dimension: 200,
+            child: Lottie.asset(
+              Assets.animations.sksClosed,
+              fit: BoxFit.cover,
+              repeat: false,
+              frameRate: const FrameRate(LottieAnimationConfig.frameRate),
+              renderCache: RenderCache.drawingCommands,
+            ),
+          ),
+          Align(
+            child: Text(
+              context.localize.sks_menu_closed,
+              style: context.textTheme.headline,
+              textAlign: TextAlign.center,
+            ),
+          ),
+          if (error != null)
+            Padding(
+              padding: const EdgeInsets.only(top: 8),
+              child: Text(
+                error.toString(),
+                style: context.textTheme.titleGrey,
+                textAlign: TextAlign.center,
+              ),
+            ),
         ],
       ),
     );
