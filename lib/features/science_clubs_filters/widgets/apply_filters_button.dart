@@ -15,7 +15,7 @@ class ApplyFiltersButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(2, 0, 2, 0),
+      padding: const EdgeInsets.symmetric(horizontal: 2),
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
