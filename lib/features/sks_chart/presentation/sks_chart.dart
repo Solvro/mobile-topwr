@@ -27,7 +27,7 @@ class SksChart extends StatelessWidget {
     return AspectRatio(
       aspectRatio: 1,
       child: BarChart(
-        swapAnimationDuration: Duration.zero,
+        duration : Duration.zero,
         BarChartData(
           barGroups: asyncChartData.value
               ?.asMap()
