@@ -15,9 +15,7 @@ class SksUserDataButton extends ConsumerWidget {
     final asyncSksUserData = ref.watch(getLatestSksUserDataProvider);
 
     return asyncSksUserData.when(
-      data: (sksUsersData) =>
-          // _SksButton(sksUsersData, onTap: () async => ref.navigateToSksChart()),
-          _SksButton(
+      data: (sksUsersData) => _SksButton(
         sksUsersData,
         onTap: () async => showModalBottomSheet(
           context: context,
