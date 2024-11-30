@@ -51,7 +51,7 @@ dependencies:
   freezed_annotation: ^2.4.4
   json_annotation: ^4.9.0
   collection: ^1.19.1
-  fl_chart: ^0.69.0
+  fl_chart: ^0.69.2
   permission_handler: ^11.3.1
   flutter_widget_from_html_core: ^0.15.2
   html: ^0.15.4
