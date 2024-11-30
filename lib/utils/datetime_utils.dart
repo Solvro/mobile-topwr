@@ -41,7 +41,6 @@ extension DateTimeUtilsX on DateTime {
     final String hour = hourFormat.format(this);
     return "$capitalizedDay, $date $hour";
   }
-
   String toHourMinuteString() {
     final DateFormat hourFormat = DateFormat("HH:mm");
     return hourFormat.format(this);

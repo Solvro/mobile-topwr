@@ -149,12 +149,6 @@
   "rest_header": "Pozostałe",
   "settings": "Ustawienia",
   "about_the_app": "O aplikacji",
-  "other_view" : "Inne",
-  "sks_chart_title" : "Przybliżona liczba osób w Strefie Kultury Studenckiej",
-  "sks_chart_legend_users"  : "Zmierzona liczba osób",
-  "sks_chart_legend_forecast" : "Prognozowana liczba osób",
-  "sks_chart_number_of_users" : "Liczba osób"
-  "other_view" : "Inne",
   "map" : "Mapa",
   "report_change_title" : "Coś się zmieniło?",
   "report_change_button" : "Zgłoś zmianę",
@@ -210,4 +204,9 @@
       }
     }
   }
+  "other_view" : "Inne",
+  "sks_chart_title" : "Przybliżona liczba osób w Strefie Kultury Studenckiej",
+  "sks_chart_legend_users"  : "Zmierzona liczba osób",
+  "sks_chart_legend_forecast" : "Prognozowana liczba osób",
+  "sks_chart_number_of_users" : "Liczba osób"
 }
