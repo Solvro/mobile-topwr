@@ -21,12 +21,7 @@ Future<IList<SksChartData>> getLatestChartData(Ref ref) async {
       .where(
         (e) =>
             e.externalTimestamp.difference(DateTime.now()).inMinutes.abs() <=
-            25,
-      )
-      .map(
-        (e) => e = e.copyWith(
-          externalTimestamp: e.externalTimestamp.add(const Duration(hours: 1)),
-        ),
+            15,
       )
       .toIList();
 
