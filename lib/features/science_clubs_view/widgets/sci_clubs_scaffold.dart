@@ -15,7 +15,6 @@ class SciClubsScaffold extends ConsumerWidget {
     return Scaffold(
       appBar: SearchBoxAppBar(
         addLeadingPopButton: true,
-        leadingButtonTitle: context.localize.other_view,
         context,
         title: context.localize.study_circles,
         onQueryChanged: ref

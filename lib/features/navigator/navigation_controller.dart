@@ -2,6 +2,7 @@ import "dart:async";
 
 import "package:auto_route/auto_route.dart";
 import "package:collection/collection.dart";
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
@@ -15,6 +16,7 @@ typedef TRoute = PageRouteInfo<dynamic>;
 typedef NavigationState = ({
   bool isStackPoppable,
   NavBarEnum activeTab,
+  IList<TRoute> fullNavigationStack,
 });
 
 @riverpod
@@ -79,6 +81,15 @@ class NavigationController extends _$NavigationController {
     state = build();
   }
 
+  // so the problem is that we use both nested and global navigator and they have separate navigation stacks
+  List<TRoute> get fullStack => [
+        ..._stack, // nested navigator stack
+        ..._router?.root.stackData.sublist(1).map(
+                  (e) => e.route.toPageRouteInfo(), // global navigator stack
+                ) ??
+            [],
+      ]; // we spread both stacks to get proper combined stack
+
   @override
   NavigationState build() {
     return (
@@ -86,6 +97,19 @@ class NavigationController extends _$NavigationController {
       activeTab:
           _stack.lastWhereOrNull((element) => element.isTabView)?.tabBarEnum ??
               NavBarEnum.home,
+      fullNavigationStack: fullStack.toIList(),
     );
   }
+}
+
+@riverpod
+TRoute? previousRouteOnStack(Ref ref, String currentRouteName) {
+  final fullStack = ref.watch(navigationControllerProvider).fullNavigationStack;
+  final currentRouteIndex = fullStack.lastIndexWhere(
+    (element) => element.routeName == currentRouteName,
+  );
+  if (currentRouteIndex > 0) {
+    return fullStack[currentRouteIndex - 1];
+  }
+  return null;
 }

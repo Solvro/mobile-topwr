@@ -150,5 +150,7 @@
   "sks_chart_title" : "Przybliżona liczba osób w Strefie Kultury Studenckiej",
   "sks_chart_legend_users"  : "Zmierzona liczba osób",
   "sks_chart_legend_forecast" : "Prognozowana liczba osób",
-  "sks_chart_number_of_users" : "Liczba osób"
+  "sks_chart_number_of_users" : "Liczba osób",
+  "sks_old_menu": "Zobacz ostatnie menu",
+  "sks_menu_closed" : "SKS Menu jest teraz niedostępne"
 }
