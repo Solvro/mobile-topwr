@@ -95,7 +95,6 @@ class _SKSMenuLottieAnimation extends StatelessWidget {
     Logger().e(error.toString());
     return Scaffold(
       appBar: DetailViewAppBar(
-        title: context.localize.home_screen,
         actions: const [
           SksUserDataButton(),
         ],
