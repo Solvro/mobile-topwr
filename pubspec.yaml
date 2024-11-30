@@ -89,6 +89,7 @@ dependencies:
   upgrader: ^11.3.0
   in_app_review: ^2.0.9
   flutter_map_animations: ^0.7.1
+  dotted_border: ^2.1.0
 
 dev_dependencies:
   flutter_test:
