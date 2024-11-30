@@ -7,6 +7,8 @@ import "../models/sks_menu_response.dart";
 
 part "sks_menu_repository.g.dart";
 
+final isLastMenuButtonClickedProvider = StateProvider<bool>((ref) => false);
+final previousSksMenuDataProvider = StateProvider<SksMenuResponse?>((ref) => null);
 @riverpod
 Future<SksMenuResponse> getSksMenuData(Ref ref) async {
   final mealsUrl = "${Env.sksUrl}/meals/current";
@@ -18,3 +20,5 @@ Future<SksMenuResponse> getSksMenuData(Ref ref) async {
 
   return sksMenuResponse;
 }
+
+

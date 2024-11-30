@@ -30,18 +30,48 @@ class SksMenuView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncSksMenuData = ref.watch(getSksMenuDataProvider);
+    final isLastMenuButtonClicked = ref.watch(isLastMenuButtonClickedProvider);
+    final previousSksMenuData = ref.watch(previousSksMenuDataProvider);
 
     return asyncSksMenuData.when(
-      data: (sksMenuData) => _SksMenuView(
-        asyncSksMenuData.value ??
-            SksMenuResponse(
-              isMenuOnline: false,
-              lastUpdate: DateTime.now(),
-              meals: List.empty(),
-            ),
-        appBarPopTitle,
-      ),
-      error: (error, stackTrace) => _SKSMenuLottieAnimation(error: error),
+      data: (sksMenuData) {
+        Logger().d("Fetched SKS Menu Data: $sksMenuData");
+        Logger().d("Previous menu data: $previousSksMenuData");
+        Logger().d("Is last menu button clicked: $isLastMenuButtonClicked");
+
+        if (!sksMenuData.isMenuOnline && !isLastMenuButtonClicked) {
+          return _SKSMenuLottieAnimation(
+            onShowLastMenuTap: () {
+              ref.read(isLastMenuButtonClickedProvider.notifier).state = true;
+              ref.read(previousSksMenuDataProvider.notifier).state =
+                  sksMenuData;
+              Logger().d("Switched to last menu view");
+            },
+          );
+        }
+
+        if (isLastMenuButtonClicked && previousSksMenuData != null) {
+          return _SksMenuView(previousSksMenuData, appBarPopTitle);
+        }
+
+        return _SksMenuView(sksMenuData, appBarPopTitle);
+      },
+      error: (error, stackTrace) {
+        Logger().e("Error loading menu: $error");
+        Logger().e("Stack trace: $stackTrace");
+
+        if (isLastMenuButtonClicked && previousSksMenuData != null) {
+          return _SksMenuView(previousSksMenuData, appBarPopTitle);
+        }
+
+        return _SKSMenuLottieAnimation(
+          error: error,
+          onShowLastMenuTap: () {
+            ref.read(isLastMenuButtonClickedProvider.notifier).state = true;
+            Logger().d("Error occurred. Switching to last menu view.");
+          },
+        );
+      },
       loading: () => const Scaffold(
         body: Center(
           child: CircularProgressIndicator(),
@@ -58,6 +88,8 @@ class _SksMenuView extends StatelessWidget {
   final String? appBarPopTitle;
   @override
   Widget build(BuildContext context) {
+    Logger().d("Rendering menu view. Menu data: $sksMenuData");
+
     if (!sksMenuData.isMenuOnline) {
       return const _SKSMenuLottieAnimation();
     }
@@ -94,12 +126,16 @@ class _SksMenuView extends StatelessWidget {
 class _SKSMenuLottieAnimation extends StatelessWidget {
   const _SKSMenuLottieAnimation({
     this.error,
+    this.onShowLastMenuTap,
   });
 
   final Object? error;
+  final VoidCallback? onShowLastMenuTap;
   @override
   Widget build(BuildContext context) {
-    Logger().e(error.toString());
+    if (error != null) {
+      Logger().e(error.toString());
+    }
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -128,6 +164,21 @@ class _SKSMenuLottieAnimation extends StatelessWidget {
                 error.toString(),
                 style: context.textTheme.titleGrey,
                 textAlign: TextAlign.center,
+              ),
+            ),
+          if (onShowLastMenuTap != null)
+            Padding(
+              padding: const EdgeInsets.only(top: 16),
+              child: ElevatedButton(
+                onPressed: () {
+                  Logger().d("Show last menu button clicked");
+                  onShowLastMenuTap?.call();
+                },
+                child: Text(
+                  context.localize.sks_show_last_menu,
+                  style: context.textTheme.bodyOrange,
+                  textAlign: TextAlign.center,
+                ),
               ),
             ),
         ],

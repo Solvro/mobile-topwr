@@ -148,5 +148,6 @@
   "about_the_app": "O aplikacji",
   "other_view" : "Inne",
   "sks_old_menu": "Zobacz ostatnie menu",
-  "sks_menu_closed" : "SKS Menu jest teraz niedostępne"
+  "sks_menu_closed" : "SKS Menu jest teraz niedostępne",
+  "sks_show_last_menu" : "Pokaż ostatnio dostępne menu"
 }
