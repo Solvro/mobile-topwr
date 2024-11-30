@@ -19,6 +19,12 @@ import "widgets/sks_menu_data_source_link.dart";
 import "widgets/sks_menu_header.dart";
 import "widgets/sks_menu_section.dart";
 
+//TODO: think about auto generated providers
+//TODO: previousSksMenuData variable should be deleted, we dont need it.
+// TODO: figure out how isLastMenuButtonClicked should reseted so that user sees notification about old menu everytime he view the screen (currentyl if he's viewed prompt once, it is never displayed againa)
+// TODO: ignore error case as for now
+
+
 @RoutePage()
 class SksMenuView extends ConsumerWidget {
   const SksMenuView({
@@ -43,34 +49,25 @@ class SksMenuView extends ConsumerWidget {
           return _SKSMenuLottieAnimation(
             onShowLastMenuTap: () {
               ref.read(isLastMenuButtonClickedProvider.notifier).state = true;
-              ref.read(previousSksMenuDataProvider.notifier).state =
-                  sksMenuData;
+             /* ref.read(previousSksMenuDataProvider.notifier).state =
+                  sksMenuData;*/
               Logger().d("Switched to last menu view");
             },
           );
         }
-
-        if (isLastMenuButtonClicked && previousSksMenuData != null) {
-          return _SksMenuView(previousSksMenuData, appBarPopTitle);
-        }
-
-        return _SksMenuView(sksMenuData, appBarPopTitle);
+        return _SksMenuView(sksMenuData, appBarPopTitle, isLastMenuButtonClicked);
       },
       error: (error, stackTrace) {
-        Logger().e("Error loading menu: $error");
+      /*  Logger().e("Error loading menu: $error");
         Logger().e("Stack trace: $stackTrace");
-
-        if (isLastMenuButtonClicked && previousSksMenuData != null) {
-          return _SksMenuView(previousSksMenuData, appBarPopTitle);
-        }
 
         return _SKSMenuLottieAnimation(
           error: error,
           onShowLastMenuTap: () {
-            ref.read(isLastMenuButtonClickedProvider.notifier).state = true;
-            Logger().d("Error occurred. Switching to last menu view.");
+           return;
           },
-        );
+        );*/
+        return SizedBox.square();
       },
       loading: () => const Scaffold(
         body: Center(
@@ -82,15 +79,17 @@ class SksMenuView extends ConsumerWidget {
 }
 
 class _SksMenuView extends StatelessWidget {
-  const _SksMenuView(this.sksMenuData, this.appBarPopTitle);
+  const _SksMenuView(this.sksMenuData, this.appBarPopTitle, this.showOldMenu);
 
   final SksMenuResponse sksMenuData;
   final String? appBarPopTitle;
+  final bool showOldMenu;
+
   @override
   Widget build(BuildContext context) {
     Logger().d("Rendering menu view. Menu data: $sksMenuData");
 
-    if (!sksMenuData.isMenuOnline) {
+    if (!showOldMenu && !sksMenuData.isMenuOnline) {
       return const _SKSMenuLottieAnimation();
     }
     return Scaffold(
