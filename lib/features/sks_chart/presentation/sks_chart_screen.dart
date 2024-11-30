@@ -1,4 +1,3 @@
-import "package:auto_route/annotations.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
@@ -11,7 +10,6 @@ import "../data/repository/sks_chart_repository.dart";
 import "chart_elements/sks_chart_legend_item.dart";
 import "sks_chart.dart";
 
-@RoutePage()
 class SksChartView extends ConsumerWidget {
   const SksChartView({super.key});
 
