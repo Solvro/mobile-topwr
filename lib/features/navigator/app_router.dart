@@ -16,7 +16,7 @@ import "../parkings_view/parkings_view.dart";
 import "../science_club_detail_view/science_club_detail_view.dart";
 import "../science_clubs_view/science_clubs_view.dart";
 import "../sks-menu/presentation/sks_menu_screen.dart";
-import "../sks_chart/presentation/sks_chart_screen.dart";
+import "../sks_chart/presentation/sks_chart_sheet.dart";
 import "root_view.dart";
 
 part "app_router.g.dart";
