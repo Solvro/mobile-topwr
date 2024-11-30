@@ -11,7 +11,7 @@ class NotificationButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: SksConfig.outerPadding,
+      padding: SksConfig.outerPaddingLarge,
       child: MySplashTile(
         // TODO(simon-the-shark): show dialog about our future intented use of notifications
         onTap: requestFCMPermission,
