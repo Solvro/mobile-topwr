@@ -3,7 +3,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
-import "../../../navigator/utils/navigation_commands.dart";
+import "../../../sks_chart/presentation/sks_chart_screen.dart";
 import "../../data/models/sks_user_data.dart";
 import "../../data/repository/latest_sks_user_data_repo.dart";
 
@@ -16,7 +16,22 @@ class SksUserDataButton extends ConsumerWidget {
 
     return asyncSksUserData.when(
       data: (sksUsersData) =>
-          _SksButton(sksUsersData, onTap: () async => ref.navigateToSksChart()),
+          // _SksButton(sksUsersData, onTap: () async => ref.navigateToSksChart()),
+          _SksButton(
+        sksUsersData,
+        onTap: () async => showModalBottomSheet(
+          context: context,
+          constraints: BoxConstraints(
+            maxHeight: MediaQuery.sizeOf(context).height *
+                FilterConfig.bottomSheetHeightFactor,
+          ),
+          isScrollControlled: true,
+          builder: (BuildContext context) => UncontrolledProviderScope(
+            container: ProviderScope.containerOf(context),
+            child: const SksChartView(),
+          ),
+        ),
+      ),
       error: (error, stackTrace) => const SizedBox.shrink(),
       loading: () => const SizedBox.shrink(),
     );
