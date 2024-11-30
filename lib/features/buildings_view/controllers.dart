@@ -8,9 +8,10 @@ import "../map_view/controllers/bottom_sheet_controller.dart";
 import "../map_view/controllers/controllers_set.dart";
 import "../map_view/controllers/map_controller.dart";
 import "../map_view/controllers/map_data_controller.dart";
+import "./utils/building_codes_utils.dart";
 import "model/building_model.dart";
 import "repository/buildings_repository.dart";
-import "utils.dart";
+import "utils/utils.dart";
 
 part "controllers.g.dart";
 
@@ -46,7 +47,7 @@ class BuildingsViewController extends _$BuildingsViewController
       case 0:
         return true;
       case 1:
-        if (BuildingModel.isBuildingCode(filterStr)) {
+        if (ref.isStringABuildingCode(filterStr)) {
           return item.name.containsBuildingCode(filterStr);
         } else {
           return item.addres.containsLowerCase(filterStr) ||
