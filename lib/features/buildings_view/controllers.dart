@@ -3,6 +3,7 @@ import "package:hooks_riverpod/hooks_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../utils/contains_lower_case.dart";
+import "../../utils/contains_number.dart";
 import "../map_view/controllers/active_map_marker_cntrl.dart";
 import "../map_view/controllers/bottom_sheet_controller.dart";
 import "../map_view/controllers/controllers_set.dart";
@@ -42,9 +43,31 @@ class BuildingsViewController extends _$BuildingsViewController
 
   @override
   bool filterMethod(BuildingModel item, String filterStr) {
-    return item.name.containsBuildingCode(filterStr) ||
-        item.addres.containsLowerCase(filterStr) ||
-        item.naturalName.containsLowerCase(filterStr);
+    switch (filterStr.length) {
+      case 0:
+        return true;
+      case 1:
+        if (_isBuildingCode(filterStr)) {
+          return item.name.containsBuildingCode(filterStr);
+        } else {
+          return item.addres.containsLowerCase(filterStr) ||
+              item.naturalName.containsLowerCase(filterStr);
+        }
+      default:
+        return item.name.containsBuildingCode(filterStr) ||
+            item.addres.containsLowerCase(filterStr) ||
+            item.naturalName.containsLowerCase(filterStr);
+    }
+  }
+
+  bool _isBuildingCode(String filterStr) {
+    if (BuildingModel.buildingCodesLowerCase.contains(filterStr[0])) {
+      return true;
+    }
+    if (filterStr.containsNumber()) {
+      return true;
+    }
+    return false;
   }
 }
 
