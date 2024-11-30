@@ -202,6 +202,15 @@ abstract class SksConfig {
   static const outerPadding = EdgeInsets.only(right: 12, bottom: 2);
 }
 
+abstract class SksChartConfig {
+  static const borderDashArray = 4.0;
+  static const borderRadius = 8.0;
+  static const paddingLarge = 16.0;
+  static const paddingMedium = 12.0;
+  static const paddingExtraSmall = 4.0;
+  static const legendItemSize = 18.0;
+}
+
 abstract class NavigationTabViewConfig {
   static const universalPadding = 12.0;
   static const radius = 8.0;
