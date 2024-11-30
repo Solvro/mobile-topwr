@@ -52,9 +52,9 @@ class _SksMenuView extends StatelessWidget {
   final SksMenuResponse sksMenuData;
   @override
   Widget build(BuildContext context) {
-    /*if (!sksMenuData.isMenuOnline) {
+    if (!sksMenuData.isMenuOnline) {
       return const _SKSMenuLottieAnimation();
-    }*/
+    }
     return Scaffold(
       appBar: DetailViewAppBar(
         actions: const [
