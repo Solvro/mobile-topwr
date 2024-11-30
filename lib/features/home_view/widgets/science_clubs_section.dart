@@ -29,7 +29,6 @@ class ScienceClubsSection extends ConsumerWidget {
             onPressed: () {
               unawaited(ref.navigateBuildingGuideDetail("1"));
             },
-            //onPressed: ref.navigateGuide,
             child: const Text("Navigate to digital guide screen!"),
           ),
           const _ScienceClubsList(),

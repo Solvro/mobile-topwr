@@ -9,6 +9,12 @@ abstract class MyAppConfig {
       "\u{a9} 2024 Koło Naukowe Solvro, Politechnika Wrocławska";
 }
 
+abstract class AppWidgetsConfig {
+  static const paddingMedium =
+      EdgeInsets.symmetric(horizontal: 16, vertical: 12);
+  static const broderRadiusMedium = 8.0;
+}
+
 abstract class SplashScreenConfig {
   static const additionalWaitDuration = Duration(seconds: 1);
   static const animationDuration = Duration(milliseconds: 800);
@@ -205,9 +211,12 @@ abstract class NavigationTabViewConfig {
 }
 
 abstract class BuildingDetailConfig {
-  static const accessibleButtonPadding =
+  static const symmetricalPaddingMedium =
       EdgeInsets.symmetric(horizontal: 8, vertical: 12);
-  static const accessibleButtonBorderRadius = 10.0;
-  static const headlinesPadding =
+  static const symetricalPaddingBig =
       EdgeInsets.symmetric(vertical: 32, horizontal: 24);
+  static const borderRadiusMedium = 10.0;
+  static const heightSmall = 8.0;
+  static const heightMedium = 12.0;
+  static const heightHuge = 48.0;
 }

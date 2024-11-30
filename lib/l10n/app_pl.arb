@@ -159,6 +159,6 @@
   "toilets" : "Toilets",
   "micro_navigation" : "Mikronawigacja",
   "building_structure" : "Struktura budynku",
-  "classroom_information" : "Pomieszczenia",
-  "evacuation" : "Evacuation"
+  "room_information" : "Pomieszczenia",
+  "evacuation" : "Ewakuacja"
 }

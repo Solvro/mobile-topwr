@@ -2,14 +2,15 @@ import "package:auto_route/annotations.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
-import "../../../gen/assets.gen.dart";
 
+import "../../../config/ui_config.dart";
+import "../../../gen/assets.gen.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../utils/determine_contact_icon.dart";
-import "../../../widgets/change_report_button.dart";
 import "../../../widgets/detail_views/contact_section.dart";
 import "../../../widgets/detail_views/detail_view_app_bar.dart";
-import "widgets/accessible_button.dart";
+import "../../../widgets/report_change_button.dart";
+import "widgets/accessibility_button.dart";
 import "widgets/building_data_source_link.dart";
 import "widgets/building_features_section.dart";
 import "widgets/headlines_section.dart";
@@ -31,20 +32,18 @@ class BuildingDetailView extends ConsumerWidget {
 class _BuildingDetailView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    debugPrint("BuildingDetailView");
     return Scaffold(
       appBar: DetailViewAppBar(
         title: context.localize.map,
         actions: [
-          AccessibleButton(),
+          AccessibilityButton(),
         ],
       ),
       body: CustomScrollView(
         slivers: [
-          //Image.network("https://cocktails.solvro.pl/images/cocktails/long-island-tea.png"),
           SliverList(
             delegate: SliverChildListDelegate([
-              const SizedBox(height: 8),
+              const SizedBox(height: BuildingDetailConfig.heightSmall),
               Image.network(
                 "https://dummyimage.com/640x360/000/fff",
                 fit: BoxFit.fitWidth,
@@ -76,10 +75,10 @@ class _BuildingDetailView extends StatelessWidget {
                 ]),
               ),
               BuildingFeaturesSection(),
-              const SizedBox(height: 16),
+              const SizedBox(height: BuildingDetailConfig.heightMedium),
               BuildingDataSourceLink(),
-              ChangeReportButton(),
-              const SizedBox(height: 48),
+              ReportChangeButton(),
+              const SizedBox(height: BuildingDetailConfig.heightHuge),
             ]),
           ),
         ],

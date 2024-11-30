@@ -1,13 +1,14 @@
 import "package:flutter/material.dart";
 
-import "../theme/colors.dart";
+import "../config/ui_config.dart";
+import "../theme/app_theme.dart";
 import "../utils/context_extensions.dart";
 
-class ChangeReportButton extends StatelessWidget {
+class ReportChangeButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
+      padding: AppWidgetsConfig.paddingMedium,
       child: Column(
         children: [
           Text(context.localize.change_report_title),
@@ -15,15 +16,16 @@ class ChangeReportButton extends StatelessWidget {
           ElevatedButton(
             onPressed: () {},
             style: ElevatedButton.styleFrom(
-              backgroundColor: ColorsConsts.blueAzure,
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              backgroundColor: context.colorTheme.blueAzure,
+              padding: AppWidgetsConfig.paddingMedium,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
+                borderRadius:
+                    BorderRadius.circular(AppWidgetsConfig.broderRadiusMedium),
               ),
             ),
             child: Text(
               context.localize.change_report_button,
-              style: const TextStyle(color: Colors.white),
+              style: TextStyle(color: context.colorTheme.whiteSoap),
             ),
           ),
         ],

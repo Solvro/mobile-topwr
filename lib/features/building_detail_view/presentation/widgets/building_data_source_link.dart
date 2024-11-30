@@ -15,6 +15,7 @@ class BuildingDataSourceLink extends ConsumerWidget {
         ),
         children: [
           TextSpan(
+            // temporary hardcoded link
             text: "www.przewodnik.pwr.edu.pl",
             style: context.textTheme.bodyOrange.copyWith(
               decoration: TextDecoration.underline,
