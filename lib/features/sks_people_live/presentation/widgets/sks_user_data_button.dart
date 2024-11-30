@@ -3,7 +3,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
-import "../../../sks_chart/presentation/sks_chart_screen.dart";
+import "../../../sks_chart/presentation/sks_chart_sheet.dart";
 import "../../data/models/sks_user_data.dart";
 import "../../data/repository/latest_sks_user_data_repo.dart";
 
@@ -24,10 +24,7 @@ class SksUserDataButton extends ConsumerWidget {
                 FilterConfig.bottomSheetHeightFactor,
           ),
           isScrollControlled: true,
-          builder: (BuildContext context) => UncontrolledProviderScope(
-            container: ProviderScope.containerOf(context),
-            child: const SksChartView(),
-          ),
+          builder: (BuildContext context) => const SksChartSheet(),
         ),
       ),
       error: (error, stackTrace) => const SizedBox.shrink(),
