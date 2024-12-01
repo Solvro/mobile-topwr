@@ -34,14 +34,10 @@ class SksMenuView extends ConsumerWidget {
 
     return asyncSksMenuData.when(
       data: (sksMenuData) {
-        Logger().d("Fetched SKS Menu Data: $sksMenuData");
-        Logger().d("Is last menu button clicked: $isLastMenuButtonClicked");
-
         if (!sksMenuData.isMenuOnline && !isLastMenuButtonClicked) {
           return _SKSMenuLottieAnimation(
             onShowLastMenuTap: () {
               ref.read(isLastMenuButtonClickedProvider.notifier).setClicked();
-              Logger().d("Switched to last menu view");
             },
           );
         }
@@ -77,8 +73,6 @@ class _SksMenuView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Logger().d("Rendering menu view. Menu data: $sksMenuData");
-
     if (!isLastMenuButtonClicked && !sksMenuData.isMenuOnline) {
       return const _SKSMenuLottieAnimation();
     }
@@ -160,7 +154,6 @@ class _SKSMenuLottieAnimation extends ConsumerWidget {
                   padding: const EdgeInsets.only(top: 16),
                   child: ElevatedButton(
                     onPressed: () {
-                      Logger().d("Show last menu button clicked");
                       onShowLastMenuTap?.call();
                     },
                     child: Text(

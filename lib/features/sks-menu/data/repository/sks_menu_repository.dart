@@ -25,6 +25,7 @@ class IsLastMenuButtonClicked extends _$IsLastMenuButtonClicked {
   void setClicked() {
     state = true;
   }
+
   void resetClicked() {
     state = false;
   }
