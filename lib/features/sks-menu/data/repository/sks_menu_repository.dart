@@ -41,5 +41,3 @@ Future<SksMenuResponse> getSksMenuData(Ref ref) async {
 
   return sksMenuResponse;
 }
-
-

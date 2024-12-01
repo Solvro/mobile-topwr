@@ -49,9 +49,9 @@ class SksMenuView extends ConsumerWidget {
           ref.read(isLastMenuButtonClickedProvider.notifier).resetClicked();
         }
         return _SksMenuView(
-          sksMenuData,
-          appBarPopTitle,
-          isLastMenuButtonClicked,
+          sksMenuData: sksMenuData,
+          appBarPopTitle: appBarPopTitle,
+          isLastMenuButtonClicked: isLastMenuButtonClicked,
         );
       },
       error: (error, stackTrace) => _SKSMenuLottieAnimation(error: error),
@@ -65,8 +65,11 @@ class SksMenuView extends ConsumerWidget {
 }
 
 class _SksMenuView extends StatelessWidget {
-  const _SksMenuView(
-      this.sksMenuData, this.appBarPopTitle, this.isLastMenuButtonClicked);
+  const _SksMenuView({
+    required this.sksMenuData,
+    this.appBarPopTitle,
+    required this.isLastMenuButtonClicked,
+  });
 
   final SksMenuResponse sksMenuData;
   final String? appBarPopTitle;
@@ -170,7 +173,6 @@ class _SKSMenuLottieAnimation extends ConsumerWidget {
             ],
           ),
           Align(
-            alignment: Alignment.center,
             child: SizedBox.square(
               dimension: 200,
               child: Lottie.asset(
