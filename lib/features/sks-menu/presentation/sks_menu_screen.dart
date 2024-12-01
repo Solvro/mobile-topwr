@@ -1,16 +1,19 @@
 import "dart:core";
 
 import "package:auto_route/annotations.dart";
-import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:logger/logger.dart";
+import "package:lottie/lottie.dart";
 
+import "../../../../theme/app_theme.dart";
 import "../../../config/ui_config.dart";
+import "../../../gen/assets.gen.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../home_view/widgets/paddings.dart";
-import "../data/models/dish_category_enum.dart";
-import "../data/models/sks_menu_data.dart";
+import "../../sks_people_live/presentation/widgets/sks_user_data_button.dart";
+import "../data/models/sks_menu_response.dart";
 import "../data/repository/sks_menu_repository.dart";
 import "widgets/sks_menu_data_source_link.dart";
 import "widgets/sks_menu_header.dart";
@@ -24,18 +27,16 @@ class SksMenuView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncSksMenuData = ref.watch(getSksMenuDataProvider);
 
-    // TODO(mikolaj-jalocha): Add lottie animation on: error and when data is empty (sks's closed)
     return asyncSksMenuData.when(
-      data: (sksMenuData) =>
-          _SksMenuView(asyncSksMenuData.value ?? const IMap.empty()),
-      error: (error, stackTrace) => Scaffold(
-        body: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(8),
-            child: Text("Error with SKS menu API: $error"),
-          ),
-        ),
+      data: (sksMenuData) => _SksMenuView(
+        asyncSksMenuData.value ??
+            SksMenuResponse(
+              isMenuOnline: false,
+              lastUpdate: DateTime.now(),
+              meals: List.empty(),
+            ),
       ),
+      error: (error, stackTrace) => _SKSMenuLottieAnimation(error: error),
       loading: () => const Scaffold(
         body: Center(
           child: CircularProgressIndicator(),
@@ -48,35 +49,85 @@ class SksMenuView extends ConsumerWidget {
 class _SksMenuView extends StatelessWidget {
   const _SksMenuView(this.sksMenuData);
 
-  final IMap<DishCategory, List<SksMenuDish>> sksMenuData;
-
+  final SksMenuResponse sksMenuData;
   @override
   Widget build(BuildContext context) {
-    if (sksMenuData.isEmpty) {
-      return const Scaffold(
-        body: Center(
-          child: CircularProgressIndicator(),
-        ),
-      );
+    if (!sksMenuData.isMenuOnline) {
+      return const _SKSMenuLottieAnimation();
     }
-    final firstItem = sksMenuData.values.first.first;
     return Scaffold(
-      appBar: DetailViewAppBar(context, title: context.localize.home_screen),
+      appBar: DetailViewAppBar(
+        actions: const [
+          SksUserDataButton(),
+        ],
+      ),
       body: ListView(
         children: [
           SksMenuHeader(
-            dateTimeOfLastUpdate: firstItem.updatedAt.toIso8601String(),
+            dateTimeOfLastUpdate: sksMenuData.lastUpdate.toIso8601String(),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(
               vertical: HomeViewConfig.paddingMedium,
             ),
-            child: MediumHorizontalPadding(child: SksMenuSection(sksMenuData)),
+            child: MediumHorizontalPadding(
+              child: SksMenuSection(sksMenuData.meals),
+            ),
           ),
           const SksMenuDataSourceLink(),
           const SizedBox(
             height: ScienceClubsViewConfig.mediumPadding,
           ),
+        ],
+      ),
+    );
+  }
+}
+
+class _SKSMenuLottieAnimation extends StatelessWidget {
+  const _SKSMenuLottieAnimation({
+    this.error,
+  });
+
+  final Object? error;
+  @override
+  Widget build(BuildContext context) {
+    Logger().e(error.toString());
+    return Scaffold(
+      appBar: DetailViewAppBar(
+        actions: const [
+          SksUserDataButton(),
+        ],
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SizedBox.square(
+            dimension: 200,
+            child: Lottie.asset(
+              Assets.animations.sksClosed,
+              fit: BoxFit.cover,
+              repeat: false,
+              frameRate: const FrameRate(LottieAnimationConfig.frameRate),
+              renderCache: RenderCache.drawingCommands,
+            ),
+          ),
+          Align(
+            child: Text(
+              context.localize.sks_menu_closed,
+              style: context.textTheme.headline,
+              textAlign: TextAlign.center,
+            ),
+          ),
+          if (error != null)
+            Padding(
+              padding: const EdgeInsets.only(top: 8),
+              child: Text(
+                error.toString(),
+                style: context.textTheme.titleGrey,
+                textAlign: TextAlign.center,
+              ),
+            ),
         ],
       ),
     );

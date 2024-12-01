@@ -8,6 +8,7 @@ import "../../utils/context_extensions.dart";
 import "../analytics/show_feedback_tile.dart";
 import "../bottom_nav_bar/bottom_nav_bar_icon_icons.icons.dart";
 import "../home_view/widgets/logo_app_bar.dart";
+import "../in_app_review/business/in_app_rating_service.dart";
 import "../navigator/utils/navigation_commands.dart";
 import "widgets/about_the_app_tile.dart";
 import "widgets/about_us_tile.dart";
@@ -36,9 +37,7 @@ class NavigationTabView extends ConsumerWidget {
           ),
         ),
         child2: SmallTileCard(
-          onTap: () {
-            // TODO(simon-the-shark): implement review request
-          },
+          onTap: InAppRatingService.requestStoreListingReview,
           title: context.localize.leave_a_review,
           icon: Icon(
             Icons.star,

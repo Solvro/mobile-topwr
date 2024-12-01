@@ -28,7 +28,7 @@ class DepartmentDetailView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(departmentDetailsRepositoryProvider(id));
     return Scaffold(
-      appBar: DetailViewAppBar(context, title: context.localize.departments),
+      appBar: DetailViewAppBar(),
       body: switch (state) {
         AsyncError(:final error) => MyErrorWidget(error),
         AsyncValue(:final DepartmentDetails value) => CustomScrollView(

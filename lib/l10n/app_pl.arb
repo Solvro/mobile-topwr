@@ -98,7 +98,7 @@
   "until_the_end_of_the_semester_break": "do końca przerwy międzysemestralnej",
   "until_the_session_ends": "do zakończenia sesji",
   "app_info": "(informacje o aplikacji)",
-  "show_license": "Wyświelt licencję",
+  "show_license": "Wyświetl licencję",
   "close": "Zamknij",
   "no_version": "Brak wersji",
   "places_currently_available": "Aktualnie wolne miejsca",
@@ -135,7 +135,7 @@
   "data_come_from_website": "Dane pochodzą ze strony",
   "sks_menu": "SKS Menu",
   "home_screen": "Ekran główny",
-  "sks_menu_salads": "Sałatki",
+  "sks_menu_salads": "Surówki",
   "sks_menu_main_soups": "Zupy",
   "sks_menu_vegetarian_dishes": "Dania jarskie",
   "sks_menu_meat_dishes": "Dania mięsne",
@@ -145,5 +145,8 @@
   "leave_a_review" : "Oceń aplikację",
   "rest_header": "Pozostałe",
   "settings": "Ustawienia",
-  "about_the_app": "O aplikacji"
+  "about_the_app": "O aplikacji",
+  "other_view" : "Inne",
+  "sks_old_menu": "Zobacz ostatnie menu",
+  "sks_menu_closed" : "SKS Menu jest teraz niedostępne"
 }

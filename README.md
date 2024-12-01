@@ -48,6 +48,8 @@ Read more at: https://solvro.pwr.edu.pl/portfolio/to-pwr/.
 
 ## Links
 
+[![docs.solvro.pl](https://i.imgur.com/fuV0gra.png)](https://docs.solvro.pl/guides/flutter-mobile)
+
 - https://www.figma.com/file/33ofdGYbBzWvDi2MabxIc1/ToPWR-(imported)?type=design&node-id=2%3A2091&mode=design&t=qILflhzpbN8xW8F6-1
 - https://solvro.pwr.edu.pl/blog/fix-flutter-android-back-btn
 
@@ -71,7 +73,7 @@ ASSETS_URL="https://<our-server-url>/assets"
 IPARKING_URL="https://<secret parking's source>.pl"
 WIREDASH_ID="<...>" # can be left empty
 WIREDASH_SECRET="<...>" # can be left empty
-SKS_URL="<...>"
+SKS_URL="https://<...>/api/v1"
 ```
 If you need our server url please write us an email [kn.solvro@pwr.edu.pl](mailto:kn.solvro@pwr.edu.pl) or contact us via our [website](https://solvro.pwr.edu.pl/contact/)
 
@@ -154,7 +156,7 @@ Don't worry if you've forgotten about the steps, automatic gh action will run th
 
 ### Github Solvro Handbook 🔥
 
-https://docs.google.com/document/d/1Sb5lYqYLnYuecS1Essn3YwietsbuLPCTsTuW0EMpG5o/edit?usp=sharing
+https://docs.solvro.pl/guides/github
 
 ### SSH
 

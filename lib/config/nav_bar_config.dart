@@ -5,13 +5,14 @@ import "package:flutter/material.dart";
 import "../features/bottom_nav_bar/bottom_nav_bar_icon_icons.icons.dart";
 import "../features/navigator/app_router.dart";
 import "../features/parkings_view/widgets/parkings_icons.icons.dart";
+import "../utils/context_extensions.dart";
 
 enum NavBarEnum {
   home(BottomNavBarIcon.home_icon, 26, "Home"),
   buildings(BottomNavBarIcon.map_icon, 20, "Map"),
   parkings(ParkingsIcons.directions_car, 19, "Parkings"),
-  guide(Icons.book, 25, "Info"),
-  navigation(Icons.more_horiz, 28, "Navigation");
+  guide(BottomNavBarIcon.info_icon, 22, "Guide"),
+  navigation(Icons.more_horiz, 28, "Navigation Tab");
 
   const NavBarEnum(this.icon, this.size, this.label);
 
@@ -43,4 +44,19 @@ extension IsRouteATabViewX on PageRouteInfo<dynamic> {
   NavBarEnum? get tabBarEnum => routeName.tabBarEnum;
 
   bool get isTabView => routeName.isTabView;
+
+  String? getFormatedRouteName(BuildContext context) {
+    return switch (routeName) {
+      HomeRoute.name => context.localize.home_screen,
+      NavigationTabRoute.name => context.localize.other_view,
+      DepartmentsRoute.name => context.localize.departments,
+      SksMenuRoute.name => context.localize.sks_menu,
+      ScienceClubsRoute.name => context.localize.scientific_cirlces,
+      GuideRoute.name => context.localize.guide,
+      BuildingsRoute.name => context.localize.buildings_title,
+      ParkingsRoute.name => context.localize.parkings_title,
+      DepartmentDetailRoute.name => context.localize.department,
+      _ => null,
+    };
+  }
 }

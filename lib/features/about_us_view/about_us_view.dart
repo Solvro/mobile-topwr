@@ -24,7 +24,7 @@ class AboutUsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: DetailViewAppBar(context, title: context.localize.guide),
+      appBar: DetailViewAppBar(),
       body: const _AboutUsView(),
     );
   }
