@@ -50,8 +50,8 @@ class _MyAlertDialog extends StatelessWidget {
     return AlertDialog(
       content: Padding(
         padding: const EdgeInsets.symmetric(
-          horizontal: AboutUsConfig.dialogHorizontalPadding,
-          vertical: AboutUsConfig.dialogVerticalPadding,
+          horizontal: AlertDialogConfig.horizontalPadding,
+          vertical: AlertDialogConfig.verticalPadding,
         ),
         child: dialogContent,
       ),
@@ -65,7 +65,7 @@ class _MyAlertDialog extends StatelessWidget {
                 child: Text(
                   confirmText,
                   style: context.textTheme.bodyOrange.copyWith(
-                    fontSize: AboutUsConfig.dialogButtonFontSize,
+                    fontSize: AlertDialogConfig.buttonFontSize,
                   ),
                 ),
               ),
@@ -75,7 +75,7 @@ class _MyAlertDialog extends StatelessWidget {
                 child: Text(
                   context.localize.close,
                   style: context.textTheme.body.copyWith(
-                    fontSize: AboutUsConfig.dialogButtonFontSize,
+                    fontSize: AlertDialogConfig.buttonFontSize,
                   ),
                 ),
                 onPressed: () {
