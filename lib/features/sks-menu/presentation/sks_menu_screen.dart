@@ -19,12 +19,6 @@ import "widgets/sks_menu_data_source_link.dart";
 import "widgets/sks_menu_header.dart";
 import "widgets/sks_menu_section.dart";
 
-//TODO: think about auto generated providers
-//TODO: previousSksMenuData variable should be deleted, we dont need it.
-// TODO: figure out how isLastMenuButtonClicked should reseted so that user sees notification about old menu everytime he view the screen (currentyl if he's viewed prompt once, it is never displayed againa)
-// TODO: ignore error case as for now
-
-
 @RoutePage()
 class SksMenuView extends ConsumerWidget {
   const SksMenuView({
@@ -37,38 +31,30 @@ class SksMenuView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncSksMenuData = ref.watch(getSksMenuDataProvider);
     final isLastMenuButtonClicked = ref.watch(isLastMenuButtonClickedProvider);
-    final previousSksMenuData = ref.watch(previousSksMenuDataProvider);
 
     return asyncSksMenuData.when(
       data: (sksMenuData) {
         Logger().d("Fetched SKS Menu Data: $sksMenuData");
-        Logger().d("Previous menu data: $previousSksMenuData");
         Logger().d("Is last menu button clicked: $isLastMenuButtonClicked");
 
         if (!sksMenuData.isMenuOnline && !isLastMenuButtonClicked) {
           return _SKSMenuLottieAnimation(
             onShowLastMenuTap: () {
-              ref.read(isLastMenuButtonClickedProvider.notifier).state = true;
-             /* ref.read(previousSksMenuDataProvider.notifier).state =
-                  sksMenuData;*/
+              ref.read(isLastMenuButtonClickedProvider.notifier).setClicked();
               Logger().d("Switched to last menu view");
             },
           );
         }
-        return _SksMenuView(sksMenuData, appBarPopTitle, isLastMenuButtonClicked);
+        if (sksMenuData.isMenuOnline && isLastMenuButtonClicked) {
+          ref.read(isLastMenuButtonClickedProvider.notifier).resetClicked();
+        }
+        return _SksMenuView(
+          sksMenuData,
+          appBarPopTitle,
+          isLastMenuButtonClicked,
+        );
       },
-      error: (error, stackTrace) {
-      /*  Logger().e("Error loading menu: $error");
-        Logger().e("Stack trace: $stackTrace");
-
-        return _SKSMenuLottieAnimation(
-          error: error,
-          onShowLastMenuTap: () {
-           return;
-          },
-        );*/
-        return SizedBox.square();
-      },
+      error: (error, stackTrace) => _SKSMenuLottieAnimation(error: error),
       loading: () => const Scaffold(
         body: Center(
           child: CircularProgressIndicator(),
@@ -79,17 +65,18 @@ class SksMenuView extends ConsumerWidget {
 }
 
 class _SksMenuView extends StatelessWidget {
-  const _SksMenuView(this.sksMenuData, this.appBarPopTitle, this.showOldMenu);
+  const _SksMenuView(
+      this.sksMenuData, this.appBarPopTitle, this.isLastMenuButtonClicked);
 
   final SksMenuResponse sksMenuData;
   final String? appBarPopTitle;
-  final bool showOldMenu;
+  final bool isLastMenuButtonClicked;
 
   @override
   Widget build(BuildContext context) {
     Logger().d("Rendering menu view. Menu data: $sksMenuData");
 
-    if (!showOldMenu && !sksMenuData.isMenuOnline) {
+    if (!isLastMenuButtonClicked && !sksMenuData.isMenuOnline) {
       return const _SKSMenuLottieAnimation();
     }
     return Scaffold(
@@ -122,7 +109,7 @@ class _SksMenuView extends StatelessWidget {
   }
 }
 
-class _SKSMenuLottieAnimation extends StatelessWidget {
+class _SKSMenuLottieAnimation extends ConsumerWidget {
   const _SKSMenuLottieAnimation({
     this.error,
     this.onShowLastMenuTap,
@@ -130,56 +117,79 @@ class _SKSMenuLottieAnimation extends StatelessWidget {
 
   final Object? error;
   final VoidCallback? onShowLastMenuTap;
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isAnimationCompleted = ref.watch(lottieAnimationCompletedProvider);
+
     if (error != null) {
       Logger().e(error.toString());
     }
+
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+      body: Stack(
+        alignment: Alignment.center,
         children: [
-          SizedBox.square(
-            dimension: 200,
-            child: Lottie.asset(
-              Assets.animations.sksClosed,
-              fit: BoxFit.cover,
-              repeat: false,
-              frameRate: const FrameRate(LottieAnimationConfig.frameRate),
-              renderCache: RenderCache.drawingCommands,
-            ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const SizedBox(height: 200),
+              if (isAnimationCompleted)
+                Padding(
+                  padding: const EdgeInsets.only(top: 16),
+                  child: Text(
+                    context.localize.sks_menu_closed,
+                    style: context.textTheme.headline,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              if (error != null && isAnimationCompleted)
+                Padding(
+                  padding: const EdgeInsets.only(top: 8),
+                  child: Text(
+                    error.toString(),
+                    style: context.textTheme.titleGrey,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              if (onShowLastMenuTap != null && isAnimationCompleted)
+                Padding(
+                  padding: const EdgeInsets.only(top: 16),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Logger().d("Show last menu button clicked");
+                      onShowLastMenuTap?.call();
+                    },
+                    child: Text(
+                      context.localize.sks_show_last_menu,
+                      style: context.textTheme.lightTitle,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+            ],
           ),
           Align(
-            child: Text(
-              context.localize.sks_menu_closed,
-              style: context.textTheme.headline,
-              textAlign: TextAlign.center,
+            alignment: Alignment.center,
+            child: SizedBox.square(
+              dimension: 200,
+              child: Lottie.asset(
+                Assets.animations.sksClosed,
+                fit: BoxFit.cover,
+                repeat: false,
+                frameRate: const FrameRate(LottieAnimationConfig.frameRate),
+                renderCache: RenderCache.drawingCommands,
+                onLoaded: (composition) {
+                  final totalDuration = composition.duration;
+                  Future.delayed(totalDuration, () {
+                    ref
+                        .read(lottieAnimationCompletedProvider.notifier)
+                        .setAnimationCompleted();
+                  });
+                },
+              ),
             ),
           ),
-          if (error != null)
-            Padding(
-              padding: const EdgeInsets.only(top: 8),
-              child: Text(
-                error.toString(),
-                style: context.textTheme.titleGrey,
-                textAlign: TextAlign.center,
-              ),
-            ),
-          if (onShowLastMenuTap != null)
-            Padding(
-              padding: const EdgeInsets.only(top: 16),
-              child: ElevatedButton(
-                onPressed: () {
-                  Logger().d("Show last menu button clicked");
-                  onShowLastMenuTap?.call();
-                },
-                child: Text(
-                  context.localize.sks_show_last_menu,
-                  style: context.textTheme.bodyOrange,
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ),
         ],
       ),
     );

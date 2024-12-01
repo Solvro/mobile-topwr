@@ -7,8 +7,29 @@ import "../models/sks_menu_response.dart";
 
 part "sks_menu_repository.g.dart";
 
-final isLastMenuButtonClickedProvider = StateProvider<bool>((ref) => false);
-final previousSksMenuDataProvider = StateProvider<SksMenuResponse?>((ref) => null);
+@riverpod
+class LottieAnimationCompleted extends _$LottieAnimationCompleted {
+  @override
+  bool build() => false;
+
+  void setAnimationCompleted() {
+    state = true;
+  }
+}
+
+@riverpod
+class IsLastMenuButtonClicked extends _$IsLastMenuButtonClicked {
+  @override
+  bool build() => false;
+
+  void setClicked() {
+    state = true;
+  }
+  void resetClicked() {
+    state = false;
+  }
+}
+
 @riverpod
 Future<SksMenuResponse> getSksMenuData(Ref ref) async {
   final mealsUrl = "${Env.sksUrl}/meals/current";
