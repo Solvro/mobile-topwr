@@ -33,7 +33,6 @@ Future<void> showCustomLicenseDialog({
   );
 }
 
-
 class _DialogContent extends StatelessWidget {
   const _DialogContent({
     required this.applicationName,

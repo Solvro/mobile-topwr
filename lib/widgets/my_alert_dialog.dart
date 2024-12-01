@@ -34,7 +34,6 @@ Future<void> showCustomDialog({
   );
 }
 
-
 class _MyAlertDialog extends StatelessWidget {
   final Widget dialogContent;
   final VoidCallback onConfirmTapped;
@@ -61,29 +60,28 @@ class _MyAlertDialog extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Flexible(
-           child: TextButton(
-              onPressed: onConfirmTapped,
-              child: Text(
-                confirmText,
-                style: context.textTheme.bodyOrange.copyWith(
-                  fontSize: AboutUsConfig.dialogButtonFontSize,
+              child: TextButton(
+                onPressed: onConfirmTapped,
+                child: Text(
+                  confirmText,
+                  style: context.textTheme.bodyOrange.copyWith(
+                    fontSize: AboutUsConfig.dialogButtonFontSize,
+                  ),
                 ),
               ),
-            ),
             ),
             Flexible(
-              child:
-            TextButton(
-              child: Text(
-                context.localize.close,
-                style: context.textTheme.body.copyWith(
-                  fontSize: AboutUsConfig.dialogButtonFontSize,
+              child: TextButton(
+                child: Text(
+                  context.localize.close,
+                  style: context.textTheme.body.copyWith(
+                    fontSize: AboutUsConfig.dialogButtonFontSize,
+                  ),
                 ),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
               ),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
             ),
           ],
         ),
