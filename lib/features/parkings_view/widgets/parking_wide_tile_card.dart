@@ -91,13 +91,13 @@ class _LeftColumn extends StatelessWidget {
           padding: ParkingsConfig.extraIndentPadd,
           child: isActive
               ? Text(
-            "${context.localize.street_abbreviation} ${parking.addressFormatted}",
-            style: context.iParkingTheme.subtitleLight.withoutShadows,
-          )
+                  "${context.localize.street_abbreviation} ${parking.addressFormatted}",
+                  style: context.iParkingTheme.subtitleLight.withoutShadows,
+                )
               : Text(
-            parking.nameNormalized,
-            style: context.iParkingTheme.subtitle,
-          ),
+                  parking.nameNormalized,
+                  style: context.iParkingTheme.subtitle,
+                ),
         ),
         const SizedBox(height: 2),
         if (!isActive)
