@@ -23,44 +23,48 @@ class ParkingWideTileCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: isActive ? 300 : WideTileCardConfig.imageSize,
-      decoration: BoxDecoration(
-        borderRadius: const BorderRadius.all(WideTileCardConfig.radius),
-        image: DecorationImage(
-          fit: BoxFit.cover,
-          image: NetworkImage(parking.iParkPhotoUrl),
+    return GestureDetector(
+      onTap: isActive ? null : onTap,
+      child: Container(
+        height: isActive ? 300 : WideTileCardConfig.imageSize,
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(WideTileCardConfig.radius),
+          image: DecorationImage(
+            fit: BoxFit.cover,
+            image: NetworkImage(parking.iParkPhotoUrl),
+          ),
         ),
-      ),
-      clipBehavior: Clip.antiAlias,
-      child: Stack(
-        children: [
-          Container(
-            color: isActive
-                ? context.colorTheme.blackMirage
-                : const Color.fromRGBO(41, 50, 65, 0.60),
-          ),
-          Container(
-            width: double.infinity,
-            padding: ParkingsConfig.padding,
-            child: _LeftColumn(parking, isActive: isActive),
-          ),
-          Container(
-            width: double.infinity,
-            height: WideTileCardConfig.imageSize,
-            padding: ParkingsConfig.padding,
-            child: GestureDetector(
-              onTap: onTap,
-              child: _RightColumn(parking, isActive: isActive),
+        clipBehavior: Clip.antiAlias,
+        child: Stack(
+          children: [
+            Container(
+              color: isActive
+                  ? context.colorTheme.blackMirage
+                  : const Color.fromRGBO(41, 50, 65, 0.60),
             ),
-          ),
-          if (!isActive)
-            Positioned(
-              top: 1,
-              right: 2,
-              child: FavouriteParkingWidget(parking),
+            Container(
+              width: double.infinity,
+              padding: ParkingsConfig.padding,
+              child: _LeftColumn(parking, isActive: isActive),
             ),
-        ],
+            Container(
+              width: double.infinity,
+              height: WideTileCardConfig.imageSize,
+              padding: ParkingsConfig.padding,
+              child: _RightColumn(
+                parking,
+                isActive: isActive,
+                onCloseTap: onTap,
+              ),
+            ),
+            if (!isActive)
+              Positioned(
+                top: 1,
+                right: 2,
+                child: FavouriteParkingWidget(parking),
+              ),
+          ],
+        ),
       ),
     );
   }
@@ -87,13 +91,13 @@ class _LeftColumn extends StatelessWidget {
           padding: ParkingsConfig.extraIndentPadd,
           child: isActive
               ? Text(
-                  "${context.localize.street_abbreviation} ${parking.addressFormatted}",
-                  style: context.iParkingTheme.subtitleLight.withoutShadows,
-                )
+            "${context.localize.street_abbreviation} ${parking.addressFormatted}",
+            style: context.iParkingTheme.subtitleLight.withoutShadows,
+          )
               : Text(
-                  parking.nameNormalized,
-                  style: context.iParkingTheme.subtitle,
-                ),
+            parking.nameNormalized,
+            style: context.iParkingTheme.subtitle,
+          ),
         ),
         const SizedBox(height: 2),
         if (!isActive)
@@ -116,10 +120,11 @@ class _LeftColumn extends StatelessWidget {
 }
 
 class _RightColumn extends StatelessWidget {
-  const _RightColumn(this.parking, {required this.isActive});
+  const _RightColumn(this.parking, {required this.isActive, this.onCloseTap});
 
   final Parking parking;
   final bool isActive;
+  final VoidCallback? onCloseTap;
 
   @override
   Widget build(BuildContext context) {
@@ -128,11 +133,13 @@ class _RightColumn extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         if (isActive)
-          //MARK: Fix here
-          Icon(
-            Icons.close,
-            color: context.colorTheme.whiteSoap,
-            size: 22,
+          GestureDetector(
+            onTap: onCloseTap,
+            child: Icon(
+              Icons.close,
+              color: context.colorTheme.whiteSoap,
+              size: 22,
+            ),
           ),
         const Spacer(),
         Row(
