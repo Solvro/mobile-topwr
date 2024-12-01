@@ -23,44 +23,44 @@ class ParkingWideTileCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        height: isActive ? 300 : WideTileCardConfig.imageSize,
-        decoration: BoxDecoration(
-          borderRadius: const BorderRadius.all(WideTileCardConfig.radius),
-          image: DecorationImage(
-            fit: BoxFit.cover,
-            image: NetworkImage(parking.iParkPhotoUrl),
-          ),
+    return Container(
+      height: isActive ? 300 : WideTileCardConfig.imageSize,
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.all(WideTileCardConfig.radius),
+        image: DecorationImage(
+          fit: BoxFit.cover,
+          image: NetworkImage(parking.iParkPhotoUrl),
         ),
-        clipBehavior: Clip.antiAlias,
-        child: Stack(
-          children: [
-            Container(
-              color: isActive
-                  ? context.colorTheme.blackMirage
-                  : const Color.fromRGBO(41, 50, 65, 0.60),
-            ),
-            Container(
-              width: double.infinity,
-              padding: ParkingsConfig.padding,
-              child: _LeftColumn(parking, isActive: isActive),
-            ),
-            Container(
-              width: double.infinity,
-              height: WideTileCardConfig.imageSize,
-              padding: ParkingsConfig.padding,
+      ),
+      clipBehavior: Clip.antiAlias,
+      child: Stack(
+        children: [
+          Container(
+            color: isActive
+                ? context.colorTheme.blackMirage
+                : const Color.fromRGBO(41, 50, 65, 0.60),
+          ),
+          Container(
+            width: double.infinity,
+            padding: ParkingsConfig.padding,
+            child: _LeftColumn(parking, isActive: isActive),
+          ),
+          Container(
+            width: double.infinity,
+            height: WideTileCardConfig.imageSize,
+            padding: ParkingsConfig.padding,
+            child: GestureDetector(
+              onTap: onTap,
               child: _RightColumn(parking, isActive: isActive),
             ),
-            if (!isActive)
-              Positioned(
-                top: 1,
-                right: 2,
-                child: FavouriteParkingWidget(parking),
-              ),
-          ],
-        ),
+          ),
+          if (!isActive)
+            Positioned(
+              top: 1,
+              right: 2,
+              child: FavouriteParkingWidget(parking),
+            ),
+        ],
       ),
     );
   }
@@ -128,6 +128,7 @@ class _RightColumn extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         if (isActive)
+          //MARK: Fix here
           Icon(
             Icons.close,
             color: context.colorTheme.whiteSoap,
