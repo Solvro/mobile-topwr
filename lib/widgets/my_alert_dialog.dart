@@ -6,7 +6,7 @@ import "../../../utils/context_extensions.dart";
 
 Future<void> showCustomDialog({
   required BuildContext context,
-  required VoidCallback onConfirmTapped,
+  required void Function(BuildContext context) onConfirmTapped,
   required String confirmText,
   required Widget dialogContent,
 }) async {
@@ -21,7 +21,7 @@ Future<void> showCustomDialog({
           ),
           child: _MyAlertDialog(
             dialogContent: dialogContent,
-            onConfirmTapped: onConfirmTapped,
+            onConfirmTapped: () => onConfirmTapped(context),
             confirmText: confirmText,
           ),
         ),

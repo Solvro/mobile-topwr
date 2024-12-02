@@ -17,7 +17,7 @@ class NotificationButton extends StatelessWidget {
         onTap: () async {
           await showNotificationDialog(
             context: context,
-            onConfirmTapped: requestFCMPermission,
+            onConfirmTapped: (_) => requestFCMPermission(),
           );
         },
         child: Container(

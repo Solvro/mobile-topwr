@@ -14,7 +14,8 @@ Future<void> showCustomLicenseDialog({
 }) async {
   await showCustomDialog(
     context: context,
-    onConfirmTapped: () {
+    onConfirmTapped: (context) {
+      Navigator.of(context).pop();
       showLicensePage(
         context: context,
         applicationName: applicationName,
