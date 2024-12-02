@@ -4,6 +4,7 @@ import "../../../config/ui_config.dart";
 import "../../../firebase_init.dart";
 import "../../../theme/app_theme.dart";
 import "../../../widgets/my_splash_tile.dart";
+import "notification_dialog.dart";
 
 class NotificationButton extends StatelessWidget {
   const NotificationButton({super.key});
@@ -13,8 +14,12 @@ class NotificationButton extends StatelessWidget {
     return Padding(
       padding: SksConfig.outerPaddingLarge,
       child: MySplashTile(
-        // TODO(simon-the-shark): show dialog about our future intented use of notifications
-        onTap: requestFCMPermission,
+        onTap: () async {
+          await showNotificationDialog(
+            context: context,
+            onConfirmTapped: requestFCMPermission,
+          );
+        },
         child: Container(
           padding: SksConfig.innerPadding,
           decoration: BoxDecoration(
