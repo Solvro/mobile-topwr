@@ -13,22 +13,18 @@ Future<void> showCustomDialog({
   await showDialog<void>(
     context: context,
     builder: (BuildContext context) {
-      return LayoutBuilder(
-        builder: (context, constraints) {
-          final double maxWidth = MediaQuery.of(context).size.width * 0.89;
-          return Center(
-            child: ConstrainedBox(
-              constraints: BoxConstraints(
-                maxWidth: maxWidth,
-              ),
-              child: _MyAlertDialog(
-                dialogContent: dialogContent,
-                onConfirmTapped: onConfirmTapped,
-                confirmText: confirmText,
-              ),
-            ),
-          );
-        },
+      final double maxWidth = MediaQuery.sizeOf(context).width * 0.89;
+      return Center(
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            maxWidth: maxWidth,
+          ),
+          child: _MyAlertDialog(
+            dialogContent: dialogContent,
+            onConfirmTapped: onConfirmTapped,
+            confirmText: confirmText,
+          ),
+        ),
       );
     },
   );
