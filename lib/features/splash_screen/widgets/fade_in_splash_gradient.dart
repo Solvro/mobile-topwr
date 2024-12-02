@@ -5,7 +5,7 @@ import "../../../theme/colors.dart";
 import "fade_in_gradient_animation.dart";
 
 class FadeInSplashGradient extends FadeInGradientAnimation {
-  /// Fades in from Android's single color splash to ToPwr LinearGradient on first build
+  /// Fades in from Android's single color splash to ToPWR LinearGradient on first build
   const FadeInSplashGradient({super.key})
       : super(
           gradientStart: const LinearGradient(

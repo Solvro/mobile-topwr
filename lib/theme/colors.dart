@@ -20,7 +20,7 @@ abstract class ColorsConsts {
   // Azure #3F6499
   static const blueAzure = HexColor.consts(0xff3f6499);
 
-  // ToPwr LinearGradient #f67448, #ee6645, #df371b
+  // ToPWR LinearGradient #f67448, #ee6645, #df371b
   static const toPwrGradient = LinearGradient(
     begin: Alignment(-1, -0.1),
     end: Alignment(1, 0.1),
