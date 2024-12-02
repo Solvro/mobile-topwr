@@ -8,7 +8,7 @@ import "../../utils/context_extensions.dart";
 import "../../widgets/wide_tile_card.dart";
 import "controllers.dart";
 import "model/building_model.dart";
-import "utils.dart";
+import "utils/utils.dart";
 
 class BuildingTile extends ConsumerWidget {
   const BuildingTile(
