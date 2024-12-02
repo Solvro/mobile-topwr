@@ -7,6 +7,8 @@ import "../../../utils/context_extensions.dart";
 import "../../../widgets/big_preview_card.dart";
 import "../../../widgets/my_error_widget.dart";
 import "../../../widgets/subsection_header.dart";
+
+import "../../../widgets/tile_splash.dart";
 import "../../navigator/utils/navigation_commands.dart";
 import "../../science_clubs_view/repository/science_clubs_repository.dart";
 import "loading_widgets/big_scrollable_section_loading.dart";
@@ -98,14 +100,19 @@ class _BuildScienceClubCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BigPreviewCard(
-      title: sciClub.name,
-      shortDescription: sciClub.shortDescription ?? "",
-      directusUrl: (sciClub.useCoverAsPreviewPhoto ?? false)
-          ? sciClub.cover?.filename_disk
-          : sciClub.logo?.filename_disk,
-      onClick: () async => ref.navigateSciClubsDetail(sciClub.id),
-      showBadge: sciClub.source == ScienceClubsViewConfig.source,
+    return Material(
+      child: InkWell(
+        onTap: () async => ref.navigateSciClubsDetail(sciClub.id),
+        child: BigPreviewCard(
+          title: sciClub.name,
+          shortDescription: sciClub.shortDescription ?? "",
+          directusUrl: (sciClub.useCoverAsPreviewPhoto ?? false)
+              ? sciClub.cover?.filename_disk
+              : sciClub.logo?.filename_disk,
+          showBadge: sciClub.source == ScienceClubsViewConfig.source,
+          onClick: (){},
+        ),
+      ),
     );
   }
 }
