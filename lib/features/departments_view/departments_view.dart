@@ -37,7 +37,6 @@ class _DepartmentsView extends ConsumerWidget {
     return Scaffold(
       appBar: SearchBoxAppBar(
         addLeadingPopButton: true,
-        leadingButtonTitle: context.localize.other_view,
         context,
         title: context.localize.departments,
         onQueryChanged: ref

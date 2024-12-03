@@ -6,7 +6,7 @@ import "../../../../config/ttl_config.dart";
 import "../../../api_base/query_adapter.dart";
 import "../../../utils/ilist_nonempty.dart";
 import "../model/building_model.dart";
-import "../utils.dart";
+import "../utils/utils.dart";
 import "getBuildings.graphql.dart";
 
 part "buildings_repository.g.dart";

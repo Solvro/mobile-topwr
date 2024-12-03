@@ -19,8 +19,8 @@ class InAppRatingService {
     return await ref.read(getUsageDaysUseCaseProvider.future);
   }
 
-  SharedPreferences get _sharedPrefs =>
-      ref.read(sharedPreferencesSingletonProvider).requireValue;
+  Future<SharedPreferences> get _sharedPrefs =>
+      ref.read(sharedPreferencesSingletonProvider.future);
 
   Future<void> requestReviewIfNeeded() async {
     if (await _canRequestReview()) {
@@ -30,11 +30,12 @@ class InAppRatingService {
   }
 
   Future<bool> _canRequestReview() async {
-    final lastReviewPrompt = _sharedPrefs
+    final sharedPreferences = await _sharedPrefs;
+    final lastReviewPrompt = sharedPreferences
         .getTimestamp(InAppReviewConfig.lastReviewPromptDateAsString)
         .daysLeftFromNow;
     final reviewCount =
-        _sharedPrefs.getInt(InAppReviewConfig.reviewCountKey) ?? 0;
+        sharedPreferences.getInt(InAppReviewConfig.reviewCountKey) ?? 0;
     final usageDays = await _getUsageDays();
 
     if (usageDays > 2 &&
@@ -47,13 +48,18 @@ class InAppRatingService {
   }
 
   Future<void> _updatePreferences() async {
-    await _sharedPrefs.saveTimestamp(
+    final sharedPreferences = await _sharedPrefs;
+    await sharedPreferences.saveTimestamp(
       InAppReviewConfig.lastReviewPromptDateAsString,
       Timestamp.now(),
     );
-    await _sharedPrefs.setInt(
+    await sharedPreferences.setInt(
       InAppReviewConfig.reviewCountKey,
-      (_sharedPrefs.getInt(InAppReviewConfig.reviewCountKey) ?? 0) + 1,
+      (sharedPreferences.getInt(InAppReviewConfig.reviewCountKey) ?? 0) + 1,
     );
+  }
+
+  static Future<void> requestStoreListingReview() async {
+    await InAppReview.instance.openStoreListing();
   }
 }

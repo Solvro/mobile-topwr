@@ -19,7 +19,6 @@ class SearchBoxAppBar extends AppBar {
     VoidCallback? onSearchBoxTap,
     double bottomPadding = defaultBottomPadding,
     bool addLeadingPopButton = false,
-    String? leadingButtonTitle,
   }) : super(
           title: Text(title),
           titleTextStyle: context.textTheme.headline,
@@ -28,12 +27,12 @@ class SearchBoxAppBar extends AppBar {
           centerTitle: addLeadingPopButton,
           titleSpacing: addLeadingPopButton ? 0 : defaultHorizontalPadding,
           automaticallyImplyLeading: false,
-          leading: addLeadingPopButton && leadingButtonTitle != null
-              ? Align(
+          leading: addLeadingPopButton
+              ? const Align(
                   alignment: Alignment.centerLeft,
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 4),
-                    child: DetailViewPopButton(leadingButtonTitle),
+                    padding: EdgeInsets.only(left: 4),
+                    child: DetailViewPopButton(),
                   ),
                 )
               : null,

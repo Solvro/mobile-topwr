@@ -3,6 +3,7 @@ import "package:flutter/material.dart";
 import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
+import "../../../widgets/my_alert_dialog.dart";
 
 Future<void> showCustomLicenseDialog({
   required BuildContext context,
@@ -11,84 +12,26 @@ Future<void> showCustomLicenseDialog({
   required String applicationLegalese,
   required Widget applicationIcon,
 }) async {
-  await showDialog<void>(
+  await showCustomDialog(
     context: context,
-    builder: (BuildContext context) {
-      return _AlertDialog(
+    onConfirmTapped: (context) {
+      Navigator.of(context).pop();
+      showLicensePage(
+        context: context,
         applicationName: applicationName,
+        applicationIcon: applicationIcon,
         applicationVersion: applicationVersion,
         applicationLegalese: applicationLegalese,
-        applicationIcon: applicationIcon,
       );
     },
+    confirmText: context.localize.show_license,
+    dialogContent: _DialogContent(
+      applicationName: applicationName,
+      applicationVersion: applicationVersion,
+      applicationIcon: applicationIcon,
+      applicationLegalese: applicationLegalese,
+    ),
   );
-}
-
-class _AlertDialog extends StatelessWidget {
-  final String applicationName;
-  final String applicationVersion;
-  final String applicationLegalese;
-  final Widget applicationIcon;
-
-  const _AlertDialog({
-    required this.applicationName,
-    required this.applicationVersion,
-    required this.applicationLegalese,
-    required this.applicationIcon,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return AlertDialog(
-      content: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: AboutUsConfig.dialogHorizontalPadding,
-          vertical: AboutUsConfig.dialogVerticalPadding,
-        ),
-        child: _DialogContent(
-          applicationName: applicationName,
-          applicationVersion: applicationVersion,
-          applicationIcon: applicationIcon,
-          applicationLegalese: applicationLegalese,
-        ),
-      ),
-      actions: <Widget>[
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            TextButton(
-              child: Text(
-                context.localize.show_license,
-                style: context.textTheme.bodyOrange.copyWith(
-                  fontSize: AboutUsConfig.dialogButtonFontSize,
-                ),
-              ),
-              onPressed: () {
-                showLicensePage(
-                  context: context,
-                  applicationName: applicationName,
-                  applicationIcon: applicationIcon,
-                  applicationVersion: applicationVersion,
-                  applicationLegalese: applicationLegalese,
-                );
-              },
-            ),
-            TextButton(
-              child: Text(
-                context.localize.close,
-                style: context.textTheme.body.copyWith(
-                  fontSize: AboutUsConfig.dialogButtonFontSize,
-                ),
-              ),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        ),
-      ],
-    );
-  }
 }
 
 class _DialogContent extends StatelessWidget {

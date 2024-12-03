@@ -98,7 +98,7 @@
   "until_the_end_of_the_semester_break": "do końca przerwy międzysemestralnej",
   "until_the_session_ends": "do zakończenia sesji",
   "app_info": "(informacje o aplikacji)",
-  "show_license": "Wyświelt licencję",
+  "show_license": "Wyświetl licencję",
   "close": "Zamknij",
   "no_version": "Brak wersji",
   "places_currently_available": "Aktualnie wolne miejsca",
@@ -146,5 +146,9 @@
   "rest_header": "Pozostałe",
   "settings": "Ustawienia",
   "about_the_app": "O aplikacji",
-  "other_view" : "Inne"
+  "other_view" : "Inne",
+  "sks_old_menu": "Zobacz ostatnie menu",
+  "sks_menu_closed" : "SKS Menu jest teraz niedostępne",
+  "confirm": "Zatwierdź",
+  "push_notifications_dialog_info": "Obecnie nie korzystamy z powiadomień push, ale planujemy dodać je w przyszłości. Możesz wyrazić na nie zgodę już teraz."
 }
