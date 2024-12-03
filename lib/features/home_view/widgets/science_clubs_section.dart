@@ -99,19 +99,14 @@ class _BuildScienceClubCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: InkWell(
-        onTap: () async => ref.navigateSciClubsDetail(sciClub.id),
-        child: BigPreviewCard(
-          title: sciClub.name,
-          shortDescription: sciClub.shortDescription ?? "",
-          directusUrl: (sciClub.useCoverAsPreviewPhoto ?? false)
-              ? sciClub.cover?.filename_disk
-              : sciClub.logo?.filename_disk,
-          showBadge: sciClub.source == ScienceClubsViewConfig.source,
-          onClick: () {},
-        ),
-      ),
+    return BigPreviewCard(
+      title: sciClub.name,
+      shortDescription: sciClub.shortDescription ?? "",
+      directusUrl: (sciClub.useCoverAsPreviewPhoto ?? false)
+          ? sciClub.cover?.filename_disk
+          : sciClub.logo?.filename_disk,
+      showBadge: sciClub.source == ScienceClubsViewConfig.source,
+      onClick: () async => ref.navigateSciClubsDetail(sciClub.id),
     );
   }
 }
