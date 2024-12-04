@@ -6,13 +6,13 @@ class AccessibilityButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: BuildingDetailConfig.symmetricalPaddingMedium,
+      padding: DigitalGuideConfig.symmetricalPaddingMedium,
       child: OutlinedButton(
         onPressed: () {},
         style: OutlinedButton.styleFrom(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(
-              BuildingDetailConfig.borderRadiusMedium,
+              DigitalGuideConfig.borderRadiusMedium,
             ),
           ),
         ),

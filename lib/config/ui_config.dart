@@ -210,7 +210,7 @@ abstract class NavigationTabViewConfig {
   static const navIconSize = 30.0;
 }
 
-abstract class BuildingDetailConfig {
+abstract class DigitalGuideConfig {
   static const symmetricalPaddingMedium =
       EdgeInsets.symmetric(horizontal: 8, vertical: 12);
   static const symetricalPaddingBig =

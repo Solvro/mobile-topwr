@@ -81,7 +81,7 @@ extension NavigationX on WidgetRef {
     }
   }
 
-  Future<void> navigateBuildingGuideDetail(String id) async {
-    await _router.push(BuildingDetailRoute(id: id));
+  Future<void> navigateDigitalGuide(String id) async {
+    await _router.push(DigitalGuideRoute(id: id));
   }
 }

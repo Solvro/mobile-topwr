@@ -4,7 +4,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
 
-class BuildingDataSourceLink extends ConsumerWidget {
+class DigitalGuideDataSourceLink extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Text.rich(

@@ -10,14 +10,15 @@ import "../../../utils/determine_contact_icon.dart";
 import "../../../widgets/detail_views/contact_section.dart";
 import "../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../../widgets/report_change_button.dart";
+import "../data/repository/digital_guide_repository.dart";
 import "widgets/accessibility_button.dart";
-import "widgets/building_data_source_link.dart";
-import "widgets/building_features_section.dart";
+import "widgets/digital_guide_data_source_link.dart";
+import "widgets/digital_guide_features_section.dart";
 import "widgets/headlines_section.dart";
 
 @RoutePage()
-class BuildingDetailView extends ConsumerWidget {
-  const BuildingDetailView({
+class DigitalGuideView extends ConsumerWidget {
+  const DigitalGuideView({
     @PathParam("id") required this.id,
   });
 
@@ -25,11 +26,12 @@ class BuildingDetailView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return _BuildingDetailView();
+    final asyncData = ref.watch(getDigitalGuideDataProvider);
+    return _DigitalGuideView();
   }
 }
 
-class _BuildingDetailView extends StatelessWidget {
+class _DigitalGuideView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +45,7 @@ class _BuildingDetailView extends StatelessWidget {
         slivers: [
           SliverList(
             delegate: SliverChildListDelegate([
-              const SizedBox(height: BuildingDetailConfig.heightSmall),
+              const SizedBox(height: DigitalGuideConfig.heightSmall),
               Image.network(
                 "https://dummyimage.com/640x360/000/fff",
                 fit: BoxFit.fitWidth,
@@ -74,11 +76,11 @@ class _BuildingDetailView extends StatelessWidget {
                   ),
                 ]),
               ),
-              BuildingFeaturesSection(),
-              const SizedBox(height: BuildingDetailConfig.heightMedium),
-              BuildingDataSourceLink(),
+              DigitalGuideFeaturesSection(),
+              const SizedBox(height: DigitalGuideConfig.heightMedium),
+              DigitalGuideDataSourceLink(),
               ReportChangeButton(),
-              const SizedBox(height: BuildingDetailConfig.heightHuge),
+              const SizedBox(height: DigitalGuideConfig.heightHuge),
             ]),
           ),
         ],

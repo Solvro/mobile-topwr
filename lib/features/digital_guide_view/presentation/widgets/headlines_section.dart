@@ -14,7 +14,7 @@ class HeadlinesSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: BuildingDetailConfig.symetricalPaddingBig,
+      padding: DigitalGuideConfig.symetricalPaddingBig,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
