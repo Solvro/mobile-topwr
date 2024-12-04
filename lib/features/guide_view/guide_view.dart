@@ -2,11 +2,11 @@ import "package:auto_route/auto_route.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
-import "package:url_launcher/url_launcher_string.dart";
 
 import "../../../../widgets/my_error_widget.dart";
 import "../../config/ui_config.dart";
 import "../../utils/context_extensions.dart";
+import "../../utils/launch_url_util.dart";
 import "../../widgets/search_box_app_bar.dart";
 import "../../widgets/wide_tile_card.dart";
 import "../departments_view/widgets/departments_view_loading.dart";
@@ -59,7 +59,10 @@ class _GuideViewContent extends ConsumerWidget {
       AsyncValue(:final IList<GuidePost> value) => GuideGrid(
           children: [
             for (final item in value) GuideTile(item),
-            _GuideInfo(),
+            _GuideInfo(
+              emailAddress: "kn.solvro@pwr.edu.pl",
+              subject: context.localize.guide_subject_default_content,
+            ),
           ].lock,
         ),
       _ => const Padding(
@@ -70,29 +73,31 @@ class _GuideViewContent extends ConsumerWidget {
   }
 }
 
-class _GuideInfo extends StatelessWidget {
-  final Uri emailLaunchUri = Uri(
-    scheme: "mailto",
-    path: "kn.solvro@pwr.edu.pl",
-    query: "subject=Pomysł na rozwój ToPWR",
-  );
+class _GuideInfo extends ConsumerWidget {
+  final String emailAddress;
+  final String? subject;
+  late final Uri emailLaunchUri;
 
-  Future<void> _openUrl(url) async {
-    if (await canLaunchUrlString(url)) {
-      await launchUrlString(url);
-    }
+  _GuideInfo({
+    required this.emailAddress,
+    this.subject,
+  }) {
+    emailLaunchUri = Uri(
+      scheme: "mailto",
+      path: emailAddress,
+      query: "subject=$subject",
+    );
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.zero,
-      child: WideTileCard(
-        title: context.localize.hi_student,
-        subtitle: context.localize.guide_ideas_info,
-        secondSubtitle: context.localize.guide_click_here,
-        onTap: () async => _openUrl(emailLaunchUri.toString()),
-      ),
+  Widget build(BuildContext context, WidgetRef ref) {
+    return WideTileCard(
+      title: context.localize.hi_student,
+      subtitle: context.localize.guide_ideas_info,
+      secondSubtitle: context.localize.guide_click_here,
+      onTap: () async {
+        await ref.launch(emailLaunchUri.toString());
+      },
     );
   }
 }
