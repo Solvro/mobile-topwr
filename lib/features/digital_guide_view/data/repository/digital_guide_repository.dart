@@ -10,17 +10,24 @@ import "../models/digital_guide_response.dart";
 part "digital_guide_repository.g.dart";
 
 @riverpod
-Future<DigitalGuideResponse> getDigitalGuideData(Ref ref) async {
+
+@riverpod
+Future<DigitalGuideResponse> getDigitalGuideData(Ref ref, int id) async {
 
   debugPrint("start fetching digital guide data");
 
   try {
-    final digitalGuideUrl = "${Env.digitalGuideUrl}/images";
+
+    final digitalGuideUrl = "${Env.digitalGuideUrl}/buildings/$id";
     debugPrint("Url: $digitalGuideUrl");
+    debugPrint("Authorization token: ${Env.digitalGuideAuthorizationToken}");
     final dio = ref.read(restClientProvider);
+    dio.options.headers["Authorization"] = "Token ${Env.digitalGuideAuthorizationToken}";
     final response = await dio.get(digitalGuideUrl);
 
-    debugPrint("response: ");
+    debugPrint("Response received: ${response.headers.isEmpty}");
+
+    debugPrint("response data: ${response.data}");
 
     final DigitalGuideResponse digitalGuideResponse = 
       DigitalGuideResponse.fromJson(response.data as Map<String, dynamic>);
@@ -30,7 +37,6 @@ Future<DigitalGuideResponse> getDigitalGuideData(Ref ref) async {
     if (e is DioError) {
       debugPrint("DioError occurred: ${e.message}");
 
-      // Print detailed info about the error
       if (e.response != null) {
         debugPrint("Response status code: ${e.response?.statusCode}");
         debugPrint("Response data: ${e.response?.data}");
@@ -39,11 +45,9 @@ Future<DigitalGuideResponse> getDigitalGuideData(Ref ref) async {
         debugPrint("Request failed before reaching server: ${e.message}");
       }
     } else {
-      // Handle generic errors
       debugPrint("An unexpected error occurred: ${e.toString()}");
     }
 
-    // Optionally, rethrow the error or return a default value
     rethrow;
   }
   

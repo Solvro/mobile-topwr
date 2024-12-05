@@ -7,7 +7,8 @@ part "digital_guide_response.g.dart";
 class DigitalGuideResponse with _$DigitalGuideResponse {
 
   const factory DigitalGuideResponse({
-    required bool siuu,
+    required int id,
+    required String telephone_number,
   }) = _DigitalGuideResponse;
 
   factory DigitalGuideResponse.fromJson(Map<String,dynamic> json) =>

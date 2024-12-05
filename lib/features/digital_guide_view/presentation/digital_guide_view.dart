@@ -26,8 +26,16 @@ class DigitalGuideView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final asyncData = ref.watch(getDigitalGuideDataProvider);
-    return _DigitalGuideView();
+    final asyncDigitalGuideData = ref.watch(getDigitalGuideDataProvider(101));
+    // question: do we want app bar to appear while loading and error?
+    // Not it doesn't. Neither on SKS menu screen
+    return asyncDigitalGuideData.when(
+      data: (digitalGuideData) => _DigitalGuideView(),
+      error: (error, stackTrace) => Text("API error occured: $error"),
+      loading: () => const Scaffold(
+        body: Center(child: CircularProgressIndicator(),),
+      ),
+    );
   }
 }
 
