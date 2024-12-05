@@ -4,9 +4,14 @@ import "package:flutter/widgets.dart";
 import "../../../../config/ui_config.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../widgets/my_expansion_tile.dart";
+import "../../data/models/digital_guide_response.dart";
 import "expansion_tiles_content/localization_expansion_tile_content.dart";
 
 class DigitalGuideFeaturesSection extends StatelessWidget {
+  const DigitalGuideFeaturesSection({required this.digitalGuideResponse});
+
+  final DigitalGuideResponse digitalGuideResponse;
+
   @override
   Widget build(BuildContext context) {
     return Padding(

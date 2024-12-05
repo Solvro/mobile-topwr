@@ -3,20 +3,20 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../../api_base_rest/client/dio_client.dart";
 import "../../../../config/env.dart";
-import "../models/digital_guide_response.dart";
+import "../models/image_response.dart";
 
-part "digital_guide_repository.g.dart";
+part "image_repository.g.dart";
 
 @riverpod
-Future<DigitalGuideResponse> getDigitalGuideData(Ref ref, int id) async {
-  final digitalGuideUrl = "${Env.digitalGuideUrl}/buildings/$id";
+Future<ImageResponse> getImageData(Ref ref, int id) async {
+  final digitalGuideUrl = "${Env.digitalGuideUrl}/images/$id";
   final dio = ref.read(restClientProvider);
   dio.options.headers["Authorization"] =
       "Token ${Env.digitalGuideAuthorizationToken}";
   final response = await dio.get(digitalGuideUrl);
 
-  final DigitalGuideResponse digitalGuideResponse =
-      DigitalGuideResponse.fromJson(response.data as Map<String, dynamic>);
+  final ImageResponse imageResponse =
+      ImageResponse.fromJson(response.data as Map<String, dynamic>);
 
-  return digitalGuideResponse;
+  return imageResponse;
 }

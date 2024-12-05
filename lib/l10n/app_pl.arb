@@ -160,5 +160,15 @@
   "micro_navigation" : "Mikronawigacja",
   "building_structure" : "Struktura budynku",
   "room_information" : "Pomieszczenia",
-  "evacuation" : "Ewakuacja"
+  "evacuation" : "Ewakuacja",
+  "storeys" : "{number, plural, =1{{number} piętro} few{{number} piętra} other{{number} pięter}}",
+  "@storeys" : {
+    "description" : "number of storeys with one parameter",
+    "placeholders": {
+      "number": {
+        "type": "int",
+        "example": "10"
+      }
+    }
+  }
 }

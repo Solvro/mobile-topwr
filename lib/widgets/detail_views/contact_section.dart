@@ -9,10 +9,10 @@ import "../../utils/launch_url_util.dart";
 import "contact_icon_widget.dart";
 
 class ContactSection extends StatelessWidget {
-  const ContactSection({super.key, required this.list, required this.title});
+  const ContactSection({super.key, required this.list, this.title});
 
   final IList<ContactIconsModel> list;
-  final String title;
+  final String? title;
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +23,8 @@ class ContactSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(title, style: context.textTheme.headline),
-          const SizedBox(height: 16),
+          if (title != null) Text(title!, style: context.textTheme.headline),
+          if (title != null) const SizedBox(height: 16),
           for (final item in sorted)
             Padding(
               padding: const EdgeInsets.only(bottom: 16),

@@ -214,7 +214,7 @@ abstract class DigitalGuideConfig {
   static const symmetricalPaddingMedium =
       EdgeInsets.symmetric(horizontal: 8, vertical: 12);
   static const symetricalPaddingBig =
-      EdgeInsets.symmetric(vertical: 32, horizontal: 24);
+      EdgeInsets.symmetric(vertical: 24, horizontal: 24);
   static const borderRadiusMedium = 10.0;
   static const heightSmall = 8.0;
   static const heightMedium = 12.0;

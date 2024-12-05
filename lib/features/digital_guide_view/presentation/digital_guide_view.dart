@@ -7,10 +7,13 @@ import "../../../config/ui_config.dart";
 import "../../../gen/assets.gen.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../utils/determine_contact_icon.dart";
+import "../../../utils/phone_numbers.dart";
 import "../../../widgets/detail_views/contact_section.dart";
 import "../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../../widgets/report_change_button.dart";
+import "../data/models/digital_guide_response.dart";
 import "../data/repository/digital_guide_repository.dart";
+import "../data/repository/image_repository.dart";
 import "widgets/accessibility_button.dart";
 import "widgets/digital_guide_data_source_link.dart";
 import "widgets/digital_guide_features_section.dart";
@@ -22,26 +25,36 @@ class DigitalGuideView extends ConsumerWidget {
     @PathParam("id") required this.id,
   });
 
-  final String id;
+  final int id;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final asyncDigitalGuideData = ref.watch(getDigitalGuideDataProvider(101));
-    // question: do we want app bar to appear while loading and error?
-    // Not it doesn't. Neither on SKS menu screen
+    final asyncDigitalGuideData = ref.watch(getDigitalGuideDataProvider(id));
+    // question: Should the app bar appear during loading or when there's an error?
+    // Now it doesn't, neither does it appear on SKS menu screen
     return asyncDigitalGuideData.when(
-      data: (digitalGuideData) => _DigitalGuideView(),
+      data: _DigitalGuideView.new,
+      // To-do nice error
       error: (error, stackTrace) => Text("API error occured: $error"),
       loading: () => const Scaffold(
-        body: Center(child: CircularProgressIndicator(),),
+        body: Center(
+          child: CircularProgressIndicator(),
+        ),
       ),
     );
   }
 }
 
-class _DigitalGuideView extends StatelessWidget {
+class _DigitalGuideView extends ConsumerWidget {
+  const _DigitalGuideView(this.digitalGuideResponse);
+
+  final DigitalGuideResponse digitalGuideResponse;
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final asyncImageResponse =
+        ref.watch(getImageDataProvider(digitalGuideResponse.images[0]));
+
     return Scaffold(
       appBar: DetailViewAppBar(
         title: context.localize.map,
@@ -54,37 +67,44 @@ class _DigitalGuideView extends StatelessWidget {
           SliverList(
             delegate: SliverChildListDelegate([
               const SizedBox(height: DigitalGuideConfig.heightSmall),
-              Image.network(
-                "https://dummyimage.com/640x360/000/fff",
-                fit: BoxFit.fitWidth,
+              asyncImageResponse.when(
+                data: (imageResponseData) => Image.network(
+                  imageResponseData.imageUrl,
+                  fit: BoxFit.fitWidth,
+                ),
+                loading: () => const Center(child: CircularProgressIndicator()),
+                // To-do nice error
+                error: (error, stack) => Text("Error loading images: $error"),
               ),
-              const HeadlinesSection(
-                name: "Budynek C-2",
-                description: "Budynek imienia profesora Wiesławia Barwicza",
+              HeadlinesSection(
+                name: digitalGuideResponse.translations.pl.name,
+                description: digitalGuideResponse.translations.pl.extendedName,
               ),
               ContactSection(
-                title: "Siuuu",
                 list: IList<ContactIconsModel>([
                   ContactIconsModel(
-                    text: "Kampus Glówny",
+                    text: digitalGuideResponse.translations.pl.address
+                        .replaceAll("ulica", "ul."),
                     icon: Assets.svg.contactIcons.compass,
                   ),
                   ContactIconsModel(
-                    text: "ul. Janiszewskiego 11-17, 54-152 Wrocław",
-                    icon: Assets.svg.contactIcons.compass,
-                  ),
-                  ContactIconsModel(
-                    text: "(+48) 71 320 62 30",
+                    text: digitalGuideResponse.telephoneNumber
+                        .toPolishPohoneNumber(),
                     icon: Assets.svg.contactIcons.phone,
-                    url: "tel:+48713206230",
+                    // To-do url not working, nothing happens
+                    url:
+                        "tel:+48${digitalGuideResponse.telephoneNumber.replaceAll("<p>", "").replaceAll("</p>", "")}",
                   ),
                   ContactIconsModel(
-                    text: "5 pięter",
+                    text: context.localize
+                        .storeys(digitalGuideResponse.numberOfStoreys),
                     icon: Assets.svg.contactIcons.storey,
                   ),
                 ]),
               ),
-              DigitalGuideFeaturesSection(),
+              DigitalGuideFeaturesSection(
+                digitalGuideResponse: digitalGuideResponse,
+              ),
               const SizedBox(height: DigitalGuideConfig.heightMedium),
               DigitalGuideDataSourceLink(),
               ReportChangeButton(),

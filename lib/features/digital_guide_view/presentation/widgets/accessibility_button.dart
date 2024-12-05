@@ -15,6 +15,10 @@ class AccessibilityButton extends StatelessWidget {
               DigitalGuideConfig.borderRadiusMedium,
             ),
           ),
+          side: BorderSide(
+            color: Colors.black.withOpacity(0.7),
+            width: 0.8,
+          ),
         ),
         child: const Icon(
           Icons.accessible,
