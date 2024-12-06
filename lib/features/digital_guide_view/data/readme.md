@@ -3,12 +3,12 @@
 
 # Tips
 * To obtain the authorization token, username, or password for API login, please contact the development team
-* The complete list of endpoints is available after logging under https://przewodnik.pwr.edu.pl/swagger/
+* The complete list of endpoints is available after logging under [this](https://przewodnik.pwr.edu.pl/swagger/) link
 
-# Used endpoints and providers
+# Used endpoints
 1) Building data
   * DIGITAL_GUIDE_URL/buildings/{id}
-  * Used via: getDigitalGuideDataProvider({id})
 2) Building image
   * DIGITAL_GUIDE_URL/images/{id}
-  * Used via: getImageDataProvider({id})
+3) Surroundings data
+  * DIGITAL_GUIDE_URL/surroundings/{id}
