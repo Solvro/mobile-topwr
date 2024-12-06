@@ -59,8 +59,8 @@ class _ContactIcon extends ConsumerWidget {
         const SizedBox(width: 16),
         Expanded(
           child: RichText(
-            overflow: TextOverflow.ellipsis,
-            maxLines: 2,
+            //overflow: TextOverflow.ellipsis,
+            //maxLines: 2,
             text: TextSpan(
               text: text,
               style: context.textTheme.bodyOrange.copyWith(

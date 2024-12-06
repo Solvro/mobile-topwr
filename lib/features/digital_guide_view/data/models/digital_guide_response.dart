@@ -11,7 +11,48 @@ class DigitalGuideResponse with _$DigitalGuideResponse {
     required int id,
     required DigitalGuideTranslations translations,
     @JsonKey(name: "number_of_storeys") required int numberOfStoreys,
+    @JsonKey(
+      name: "is_possibility_to_enter_with_assistance_dog",
+      fromJson: _stringToBool,
+    )
+    required bool canAssistanceDog,
+    @JsonKey(
+      name: "is_induction_loop",
+      fromJson: _stringToBool,
+    )
+    required bool isInductionLoop,
+    @JsonKey(
+      name: "is_micronavigation_system",
+      fromJson: _stringToBool,
+    )
+    required bool isMicroNavigationSystem,
+    @JsonKey(
+      name: "are_guidance_paths",
+      fromJson: _stringToBool,
+    )
+    required bool areGuidancePaths,
+    @JsonKey(
+      name: "are_information_boards_with_braille_description",
+      fromJson: _stringToBool,
+    )
+    required bool areBrailleBoards,
+    @JsonKey(
+      name: "are_information_boards_with_large_font",
+      fromJson: _stringToBool,
+    )
+    required bool areLargeFontBoards,
+    @JsonKey(
+      name: "is_sign_language_interpreter",
+      fromJson: _stringToBool,
+    )
+    required bool isSignLanguageInterpreter,
+    @JsonKey(
+      name: "are_emergency_chairs",
+      fromJson: _stringToBool,
+    )
+    required bool areEmergencyChairs,
     @JsonKey(name: "telephone_number") required String telephoneNumber,
+    @JsonKey(name: "surrounding") required int surroundingId,
     required List<int> images,
   }) = _DigitalGuideResponse;
 
@@ -39,4 +80,8 @@ class DigitalGuideTranslation with _$DigitalGuideTranslation {
 
   factory DigitalGuideTranslation.fromJson(Map<String, dynamic> json) =>
       _$DigitalGuideTranslationFromJson(json);
+}
+
+bool _stringToBool(String value) {
+  return value == "True";
 }
