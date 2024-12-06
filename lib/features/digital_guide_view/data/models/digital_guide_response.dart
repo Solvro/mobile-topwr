@@ -63,7 +63,7 @@ class DigitalGuideResponse with _$DigitalGuideResponse {
 @freezed
 class DigitalGuideTranslations with _$DigitalGuideTranslations {
   const factory DigitalGuideTranslations({
-    required DigitalGuideTranslation pl,
+    @JsonKey(name: "pl") required DigitalGuideTranslation plTranslation,
   }) = _DigitalGuideTranslations;
 
   factory DigitalGuideTranslations.fromJson(Map<String, dynamic> json) =>

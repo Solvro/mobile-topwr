@@ -12,7 +12,7 @@ abstract class MyAppConfig {
 abstract class AppWidgetsConfig {
   static const paddingMedium =
       EdgeInsets.symmetric(horizontal: 16, vertical: 12);
-  static const broderRadiusMedium = 8.0;
+  static const borderRadiusMedium = 8.0;
 }
 
 abstract class SplashScreenConfig {

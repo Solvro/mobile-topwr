@@ -23,8 +23,10 @@ class ContactSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if (title != null) Text(title!, style: context.textTheme.headline),
-          if (title != null) const SizedBox(height: 16),
+          if (title != null)... [
+            Text(title!, style: context.textTheme.headline),
+            const SizedBox(height: 16),
+          ],
           for (final item in sorted)
             Padding(
               padding: const EdgeInsets.only(bottom: 16),
@@ -59,8 +61,6 @@ class _ContactIcon extends ConsumerWidget {
         const SizedBox(width: 16),
         Expanded(
           child: RichText(
-            //overflow: TextOverflow.ellipsis,
-            //maxLines: 2,
             text: TextSpan(
               text: text,
               style: context.textTheme.bodyOrange.copyWith(

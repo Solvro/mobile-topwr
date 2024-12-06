@@ -179,5 +179,6 @@
   "information_boards_with_large_font": "W budynku znajdują się czytelne tablice informacyjne zawierające napisy w dużej czcionce",
   "sign_language_interpreter": "W budynku zapewniona jest możliwość skorzystania z usług tłumacza języka migowego",
   "emergency_chairs": "W budynku zamieszczone zostały krzesła ewakuacyjne",
-  "parking_location" : "Miejsca parkingowe znajdują się {location}"
-}
+  "parking_location" : "Miejsca parkingowe znajdują się {location}",
+  "digital_guide_website" : "www.przewodnik.pwr.edu.pl"
+ }

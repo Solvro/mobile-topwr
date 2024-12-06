@@ -7,9 +7,10 @@ import "../../../config/ui_config.dart";
 import "../../../gen/assets.gen.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../utils/determine_contact_icon.dart";
-import "../../../utils/phone_numbers.dart";
 import "../../../widgets/detail_views/contact_section.dart";
 import "../../../widgets/detail_views/detail_view_app_bar.dart";
+import "../../../widgets/my_cached_image.dart";
+import "../../../widgets/my_error_widget.dart";
 import "../../../widgets/report_change_button.dart";
 import "../data/models/digital_guide_response.dart";
 import "../data/repository/digital_guide_repository.dart";
@@ -34,8 +35,7 @@ class DigitalGuideView extends ConsumerWidget {
     // Now it doesn't, neither does it appear on SKS menu screen
     return asyncDigitalGuideData.when(
       data: _DigitalGuideView.new,
-      // To-do nice error
-      error: (error, stackTrace) => Text("API error occured: $error"),
+      error: (error, stackTrace) => MyErrorWidget(error),
       loading: () => const Scaffold(
         body: Center(
           child: CircularProgressIndicator(),
@@ -68,28 +68,31 @@ class _DigitalGuideView extends ConsumerWidget {
             delegate: SliverChildListDelegate([
               const SizedBox(height: DigitalGuideConfig.heightSmall),
               asyncImageResponse.when(
-                data: (imageResponseData) => Image.network(
+                data: (imageResponseData) => MyCachedImage(
                   imageResponseData.imageUrl,
-                  fit: BoxFit.fitWidth,
                 ),
+                
+                // Image.network(
+                //   imageResponseData.imageUrl,
+                //   fit: BoxFit.fitWidth,
+                // ),
                 loading: () => const Center(child: CircularProgressIndicator()),
                 // To-do nice error
                 error: (error, stack) => Text("Error loading images: $error"),
               ),
               HeadlinesSection(
-                name: digitalGuideResponse.translations.pl.name,
-                description: digitalGuideResponse.translations.pl.extendedName,
+                name: digitalGuideResponse.translations.plTranslation.name,
+                description: digitalGuideResponse.translations.plTranslation.extendedName,
               ),
               ContactSection(
                 list: IList<ContactIconsModel>([
                   ContactIconsModel(
-                    text: digitalGuideResponse.translations.pl.address
+                    text: digitalGuideResponse.translations.plTranslation.address
                         .replaceAll("ulica", "ul."),
                     icon: Assets.svg.contactIcons.compass,
                   ),
                   ContactIconsModel(
-                    text: digitalGuideResponse.telephoneNumber
-                        .toPolishPohoneNumber(),
+                    text: digitalGuideResponse.telephoneNumber,
                     icon: Assets.svg.contactIcons.phone,
                     // To-do url not working, nothing happens
                     url:

@@ -15,8 +15,7 @@ class DigitalGuideDataSourceLink extends ConsumerWidget {
         ),
         children: [
           TextSpan(
-            // temporary hardcoded link
-            text: "www.przewodnik.pwr.edu.pl",
+            text: context.localize.digital_guide_website,
             style: context.textTheme.bodyOrange.copyWith(
               decoration: TextDecoration.underline,
               decorationColor: context.colorTheme.orangePomegranade,

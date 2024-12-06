@@ -15,8 +15,5 @@ Future<DigitalGuideResponse> getDigitalGuideData(Ref ref, int id) async {
       "Token ${Env.digitalGuideAuthorizationToken}";
   final response = await dio.get(digitalGuideUrl);
 
-  final DigitalGuideResponse digitalGuideResponse =
-      DigitalGuideResponse.fromJson(response.data as Map<String, dynamic>);
-
-  return digitalGuideResponse;
+  return DigitalGuideResponse.fromJson(response.data as Map<String, dynamic>);
 }
