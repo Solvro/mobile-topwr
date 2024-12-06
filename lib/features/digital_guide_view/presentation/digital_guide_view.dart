@@ -14,7 +14,6 @@ import "../../../widgets/my_error_widget.dart";
 import "../../../widgets/report_change_button.dart";
 import "../data/models/digital_guide_response.dart";
 import "../data/repository/digital_guide_repository.dart";
-import "../data/repository/image_repository.dart";
 import "widgets/accessibility_button.dart";
 import "widgets/digital_guide_data_source_link.dart";
 import "widgets/digital_guide_features_section.dart";
@@ -52,9 +51,6 @@ class _DigitalGuideView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final asyncImageResponse =
-        ref.watch(getImageDataProvider(digitalGuideResponse.images[0]));
-
     return Scaffold(
       appBar: DetailViewAppBar(
         title: context.localize.map,
@@ -67,18 +63,8 @@ class _DigitalGuideView extends ConsumerWidget {
           SliverList(
             delegate: SliverChildListDelegate([
               const SizedBox(height: DigitalGuideConfig.heightSmall),
-              asyncImageResponse.when(
-                data: (imageResponseData) => MyCachedImage(
-                  imageResponseData.imageUrl,
-                ),
-                
-                // Image.network(
-                //   imageResponseData.imageUrl,
-                //   fit: BoxFit.fitWidth,
-                // ),
-                loading: () => const Center(child: CircularProgressIndicator()),
-                // To-do nice error
-                error: (error, stack) => Text("Error loading images: $error"),
+              MyCachedImage(
+                digitalGuideResponse.imageUrl,
               ),
               HeadlinesSection(
                 name: digitalGuideResponse.translations.plTranslation.name,
@@ -94,7 +80,7 @@ class _DigitalGuideView extends ConsumerWidget {
                   ContactIconsModel(
                     text: digitalGuideResponse.telephoneNumber,
                     icon: Assets.svg.contactIcons.phone,
-                    // To-do url not working, nothing happens
+                    // TODO(Bartosh): url not working, nothing happens
                     url:
                         "tel:+48${digitalGuideResponse.telephoneNumber.replaceAll("<p>", "").replaceAll("</p>", "")}",
                   ),

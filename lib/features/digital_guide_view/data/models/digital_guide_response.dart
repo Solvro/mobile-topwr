@@ -54,6 +54,7 @@ class DigitalGuideResponse with _$DigitalGuideResponse {
     @JsonKey(name: "telephone_number") required String telephoneNumber,
     @JsonKey(name: "surrounding") required int surroundingId,
     required List<int> images,
+    String? imageUrl,
   }) = _DigitalGuideResponse;
 
   factory DigitalGuideResponse.fromJson(Map<String, dynamic> json) =>

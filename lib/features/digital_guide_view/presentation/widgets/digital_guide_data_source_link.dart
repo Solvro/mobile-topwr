@@ -21,7 +21,7 @@ class DigitalGuideDataSourceLink extends ConsumerWidget {
               decorationColor: context.colorTheme.orangePomegranade,
               fontWeight: FontWeight.bold,
             ),
-            //onTap ->
+            // TODO(Bartosh): on tap url handling -> webbrowser launch
           ),
         ],
       ),

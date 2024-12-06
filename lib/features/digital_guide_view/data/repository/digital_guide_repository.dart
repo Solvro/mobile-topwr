@@ -14,6 +14,35 @@ Future<DigitalGuideResponse> getDigitalGuideData(Ref ref, int id) async {
   dio.options.headers["Authorization"] =
       "Token ${Env.digitalGuideAuthorizationToken}";
   final response = await dio.get(digitalGuideUrl);
-
-  return DigitalGuideResponse.fromJson(response.data as Map<String, dynamic>);
+  final digitalGuideResponse = DigitalGuideResponse.fromJson(response.data as Map<String, dynamic>);
+  final imageUrl = await getImageUrl(ref, digitalGuideResponse.images[0]);
+  return digitalGuideResponse.copyWith(imageUrl: imageUrl);
 }
+
+@riverpod
+Future<String> getImageUrl(Ref ref, int id) async {
+  final digitalGuideUrl = "${Env.digitalGuideUrl}/images/$id";
+  final dio = ref.read(restClientProvider);
+  dio.options.headers["Authorization"] =
+      "Token ${Env.digitalGuideAuthorizationToken}";
+
+  try {
+    final response = await dio.get(digitalGuideUrl);
+
+    if (response.data is! Map<String, dynamic>) {
+      throw Exception("Invalid response format: Expected a map");
+    }
+
+    final Map<String, dynamic> responseData = response.data as Map<String, dynamic>;
+    final imageUrl = responseData["image_960w"];
+
+    if(imageUrl == null || imageUrl is! String) {
+      throw Exception("Image URL not found in the response");
+    }
+
+    return imageUrl;
+
+  } catch(e) {
+    throw Exception("Failed to fetch image URL: $e");
+  }
+} 
