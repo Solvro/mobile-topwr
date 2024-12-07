@@ -1,3 +1,4 @@
+import "package:flutter/foundation.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
@@ -35,6 +36,12 @@ Future<String?> getImageUrl(Ref ref, int id) async {
       "Token ${Env.digitalGuideAuthorizationToken}";
 
   final response = await dio.get(digitalGuideUrl);
+
+  // if only fetching image url fails I want data to be presented anyway
+  if (response.data is! Map<String, dynamic>) {
+    debugPrint("Failed to fetch image url!");
+    return null;
+  }
 
   final Map<String, dynamic> responseData =
       response.data as Map<String, dynamic>;
