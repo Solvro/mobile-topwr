@@ -5,6 +5,8 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:logger/logger.dart";
 import "package:lottie/lottie.dart";
+import "package:hooks_riverpod/hooks_riverpod.dart";
+import 'package:flutter_hooks/flutter_hooks.dart';
 
 import "../../../../theme/app_theme.dart";
 import "../../../config/ui_config.dart";
@@ -20,7 +22,7 @@ import "widgets/sks_menu_header.dart";
 import "widgets/sks_menu_section.dart";
 
 @RoutePage()
-class SksMenuView extends ConsumerWidget {
+class SksMenuView extends HookConsumerWidget {
   const SksMenuView({
     super.key,
     this.appBarPopTitle,
@@ -30,24 +32,25 @@ class SksMenuView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncSksMenuData = ref.watch(getSksMenuDataProvider);
-    final isLastMenuButtonClicked = ref.watch(isLastMenuButtonClickedProvider);
+    final isLastMenuButtonClicked = useState(false);
+
 
     return asyncSksMenuData.when(
       data: (sksMenuData) {
-        if (!sksMenuData.isMenuOnline && !isLastMenuButtonClicked) {
+        if (!sksMenuData.isMenuOnline && !isLastMenuButtonClicked.value) {
           return _SKSMenuLottieAnimation(
             onShowLastMenuTap: () {
-              ref.read(isLastMenuButtonClickedProvider.notifier).setClicked();
+              isLastMenuButtonClicked.value = true;
             },
           );
         }
-        if (sksMenuData.isMenuOnline && isLastMenuButtonClicked) {
-          ref.read(isLastMenuButtonClickedProvider.notifier).resetClicked();
+        if (sksMenuData.isMenuOnline && isLastMenuButtonClicked.value) {
+          isLastMenuButtonClicked.value = false;
         }
         return _SksMenuView(
           sksMenuData: sksMenuData,
           appBarPopTitle: appBarPopTitle,
-          isLastMenuButtonClicked: isLastMenuButtonClicked,
+          isLastMenuButtonClicked: isLastMenuButtonClicked.value,
         );
       },
       error: (error, stackTrace) => _SKSMenuLottieAnimation(error: error),
@@ -106,7 +109,7 @@ class _SksMenuView extends StatelessWidget {
   }
 }
 
-class _SKSMenuLottieAnimation extends ConsumerWidget {
+class _SKSMenuLottieAnimation extends HookWidget {
   const _SKSMenuLottieAnimation({
     this.error,
     this.onShowLastMenuTap,
@@ -116,8 +119,8 @@ class _SKSMenuLottieAnimation extends ConsumerWidget {
   final VoidCallback? onShowLastMenuTap;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final isAnimationCompleted = ref.watch(lottieAnimationCompletedProvider);
+  Widget build(BuildContext context) {
+    final isAnimationCompleted = useState(false);
 
     if (error != null) {
       Logger().e(error.toString());
@@ -131,7 +134,7 @@ class _SKSMenuLottieAnimation extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const SizedBox(height: 200),
-              if (isAnimationCompleted)
+              if (isAnimationCompleted.value)
                 Padding(
                   padding: const EdgeInsets.only(top: 16),
                   child: Text(
@@ -140,7 +143,7 @@ class _SKSMenuLottieAnimation extends ConsumerWidget {
                     textAlign: TextAlign.center,
                   ),
                 ),
-              if (error != null && isAnimationCompleted)
+              if (error != null && isAnimationCompleted.value)
                 Padding(
                   padding: const EdgeInsets.only(top: 8),
                   child: Text(
@@ -149,7 +152,7 @@ class _SKSMenuLottieAnimation extends ConsumerWidget {
                     textAlign: TextAlign.center,
                   ),
                 ),
-              if (onShowLastMenuTap != null && isAnimationCompleted)
+              if (onShowLastMenuTap != null && isAnimationCompleted.value)
                 Padding(
                   padding: const EdgeInsets.only(top: 16),
                   child: ElevatedButton(
@@ -177,9 +180,7 @@ class _SKSMenuLottieAnimation extends ConsumerWidget {
                 onLoaded: (composition) {
                   final totalDuration = composition.duration;
                   Future.delayed(totalDuration, () {
-                    ref
-                        .read(lottieAnimationCompletedProvider.notifier)
-                        .setAnimationCompleted();
+                    isAnimationCompleted.value = true;
                   });
                 },
               ),
