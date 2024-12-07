@@ -23,7 +23,7 @@ class ContactSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if (title != null)... [
+          if (title != null) ...[
             Text(title!, style: context.textTheme.headline),
             const SizedBox(height: 16),
           ],

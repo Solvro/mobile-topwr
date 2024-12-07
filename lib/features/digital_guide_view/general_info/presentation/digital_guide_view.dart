@@ -12,7 +12,7 @@ import "../../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../../../widgets/my_cached_image.dart";
 import "../../../../widgets/my_error_widget.dart";
 import "../../../../widgets/report_change_button.dart";
-import "../data/models/digital_guide_response.dart";
+import "../data/models/digital_guide_response_extended.dart";
 import "../data/repository/digital_guide_repository.dart";
 import "widgets/accessibility_button.dart";
 import "widgets/digital_guide_data_source_link.dart";
@@ -46,9 +46,9 @@ class DigitalGuideView extends ConsumerWidget {
 }
 
 class _DigitalGuideView extends ConsumerWidget {
-  const _DigitalGuideView(this.digitalGuideResponse);
+  const _DigitalGuideView(this.digitalGuideResponseExtended);
 
-  final DigitalGuideResponse digitalGuideResponse;
+  final DigitalGuideResponseExtended digitalGuideResponseExtended;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -65,37 +65,41 @@ class _DigitalGuideView extends ConsumerWidget {
             delegate: SliverChildListDelegate([
               const SizedBox(height: DigitalGuideConfig.heightSmall),
               MyCachedImage(
-                digitalGuideResponse.imageUrl,
+                digitalGuideResponseExtended.imageUrl,
               ),
               HeadlinesSection(
                 // There is only Polish language translation in external API
                 // In the future we must think how to handle multiple translations in UI
                 // For now it can be temporarily dealt with in the data layer
-                name: digitalGuideResponse.translations.plTranslation.name,
-                description: digitalGuideResponse.translations.plTranslation.extendedName,
+                name: digitalGuideResponseExtended
+                    .translations.plTranslation.name,
+                description: digitalGuideResponseExtended
+                    .translations.plTranslation.extendedName,
               ),
               ContactSection(
                 list: IList<ContactIconsModel>([
                   ContactIconsModel(
-                    text: digitalGuideResponse.translations.plTranslation.address
+                    text: digitalGuideResponseExtended
+                        .translations.plTranslation.address
                         .replaceAll("ulica", "ul."),
                     icon: Assets.svg.contactIcons.compass,
                   ),
                   ContactIconsModel(
-                    text: digitalGuideResponse.telephoneNumber,
+                    text: digitalGuideResponseExtended.telephoneNumber,
                     icon: Assets.svg.contactIcons.phone,
                     // TODO(Bartosh): url not working, nothing happens
-                    url: "tel:+48${digitalGuideResponse.telephoneNumber.replaceAll("<p>", "").replaceAll("</p>", "")}",
+                    url:
+                        "tel:+48${digitalGuideResponseExtended.telephoneNumber.replaceAll("<p>", "").replaceAll("</p>", "")}",
                   ),
                   ContactIconsModel(
                     text: context.localize
-                        .storeys(digitalGuideResponse.numberOfStoreys),
+                        .storeys(digitalGuideResponseExtended.numberOfStoreys),
                     icon: Assets.svg.contactIcons.storey,
                   ),
                 ]),
               ),
               DigitalGuideFeaturesSection(
-                digitalGuideResponse: digitalGuideResponse,
+                digitalGuideResponseExtended: digitalGuideResponseExtended,
               ),
               const SizedBox(height: DigitalGuideConfig.heightMedium),
               DigitalGuideDataSourceLink(),

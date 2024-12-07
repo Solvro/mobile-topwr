@@ -12,7 +12,7 @@ Future<SurroundingResponse> getSurroundingData(Ref ref, int id) async {
   final surroundingUrl = "${Env.digitalGuideUrl}/surroundings/$id";
   final dio = ref.read(restClientProvider);
   dio.options.headers["Authorization"] =
-    "Token ${Env.digitalGuideAuthorizationToken}";
+      "Token ${Env.digitalGuideAuthorizationToken}";
   final response = await dio.get(surroundingUrl);
 
   return SurroundingResponse.fromJson(response.data as Map<String, dynamic>);

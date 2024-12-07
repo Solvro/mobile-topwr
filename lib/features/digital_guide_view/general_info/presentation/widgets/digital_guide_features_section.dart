@@ -7,18 +7,20 @@ import "../../../../../widgets/my_expansion_tile.dart";
 import "../../../amenities/presentation/amenities_expansion_tile_content.dart";
 import "../../../localization/presentation/localization_expansion_tile_content.dart";
 import "../../../surrounding/presentation/surroundings_expansion_tile_content.dart";
-import "../../data/models/digital_guide_response.dart";
+import "../../data/models/digital_guide_response_extended.dart";
 
 class DigitalGuideFeaturesSection extends StatelessWidget {
-  const DigitalGuideFeaturesSection({required this.digitalGuideResponse});
+  const DigitalGuideFeaturesSection({
+    required this.digitalGuideResponseExtended,
+  });
 
-  final DigitalGuideResponse digitalGuideResponse;
+  final DigitalGuideResponseExtended digitalGuideResponseExtended;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 24, right: 24, top: 24, bottom: 8),
-      // TODO(Bartosh): don't use Column, use other Widget for better performance 
+      // TODO(Bartosh): don't use Column, use other Widget for better performance
       child: Column(
         children: [
           MyExpansionTile(
@@ -30,7 +32,7 @@ class DigitalGuideFeaturesSection extends StatelessWidget {
             title: context.localize.amenities,
             children: [
               AmenitiesExpansionTileContent(
-                digitalGuideResponse: digitalGuideResponse,
+                digitalGuideResponseExtended: digitalGuideResponseExtended,
               ),
             ],
           ),
@@ -39,8 +41,8 @@ class DigitalGuideFeaturesSection extends StatelessWidget {
             title: context.localize.surroundings,
             children: [
               SurroundingsExpansionTileContent(
-                digitalGuideResponse: digitalGuideResponse,
-              )
+                digitalGuideResponseExtended: digitalGuideResponseExtended,
+              ),
             ],
           ),
           const SizedBox(height: DigitalGuideConfig.heightMedium),

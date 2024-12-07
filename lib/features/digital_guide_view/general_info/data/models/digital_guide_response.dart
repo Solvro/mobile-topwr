@@ -51,7 +51,8 @@ class DigitalGuideResponse with _$DigitalGuideResponse {
       fromJson: _stringToBool,
     )
     required bool areEmergencyChairs,
-    @JsonKey(name: "telephone_number") required String telephoneNumber,
+    @JsonKey(name: "telephone_number", fromJson: _formatTelephoneNumber)
+    required String telephoneNumber,
     @JsonKey(name: "surrounding") required int surroundingId,
     required List<int> images,
     String? imageUrl,
@@ -85,4 +86,8 @@ class DigitalGuideTranslation with _$DigitalGuideTranslation {
 
 bool _stringToBool(String value) {
   return value == "True";
+}
+
+String _formatTelephoneNumber(String telephoneNumber) {
+  return telephoneNumber.replaceAll("<p>", "").replaceAll("</p>", "");
 }
