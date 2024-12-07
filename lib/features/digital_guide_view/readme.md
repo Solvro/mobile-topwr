@@ -1,14 +1,17 @@
 # Requirements
-* All HTTP requests must include the authorization token (DIGITAL_GUIDE_URL)
+* Two variables should be added to .env
+  * DIGITAL_GUIDE_URL
+  * DIGITAL_GUIDE_AUTHORIZATION_TOKEN
 
 # Tips
-* To obtain the authorization token, username, or password for API login, please contact the development team
+* All HTTP requests must include the authorization token ("Token ${Env.digitalGuideAuthorizationToken"})
 * The complete list of endpoints is available after logging under [this](https://przewodnik.pwr.edu.pl/swagger/) link
 
 # Used endpoints
-1) Building data
+1) Building data and image
+  * /general_info/data/repository/digita_guide_repository.dart
   * DIGITAL_GUIDE_URL/buildings/{id}
-2) Building image
   * DIGITAL_GUIDE_URL/images/{id}
-3) Surroundings data
+2) Surroundings data
+  * /surrounding/data/repository/surrounding_repository.dart
   * DIGITAL_GUIDE_URL/surroundings/{id}
