@@ -1,8 +1,8 @@
 import "package:flutter/material.dart";
 
-import "../config/ui_config.dart";
-import "../theme/app_theme.dart";
-import "../utils/context_extensions.dart";
+import "../../../../../config/ui_config.dart";
+import "../../../../../theme/app_theme.dart";
+import "../../../../../utils/context_extensions.dart";
 
 class ReportChangeButton extends StatelessWidget {
   @override
@@ -14,6 +14,7 @@ class ReportChangeButton extends StatelessWidget {
           Text(context.localize.change_report_title),
           const SizedBox(height: 8),
           ElevatedButton(
+            // TODO(Bartosh): handle action
             onPressed: () {},
             style: ElevatedButton.styleFrom(
               backgroundColor: context.colorTheme.blueAzure,

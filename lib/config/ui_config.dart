@@ -211,11 +211,11 @@ abstract class NavigationTabViewConfig {
 }
 
 abstract class DigitalGuideConfig {
-  static const symmetricalPaddingMedium =
-      EdgeInsets.symmetric(horizontal: 8, vertical: 12);
   static const symetricalPaddingBig =
       EdgeInsets.symmetric(vertical: 24, horizontal: 24);
-  static const borderRadiusMedium = 10.0;
+  static const horizontalPaddingMedium =
+      EdgeInsets.symmetric(horizontal: 16, vertical: 4);
+  static const borderRadiusMedium = 8.0;
   static const heightSmall = 8.0;
   static const heightMedium = 12.0;
   static const heightHuge = 48.0;

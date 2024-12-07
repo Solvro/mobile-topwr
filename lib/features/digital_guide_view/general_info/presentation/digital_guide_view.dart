@@ -11,13 +11,13 @@ import "../../../../widgets/detail_views/contact_section.dart";
 import "../../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../../../widgets/my_cached_image.dart";
 import "../../../../widgets/my_error_widget.dart";
-import "../../../../widgets/report_change_button.dart";
 import "../data/models/digital_guide_response_extended.dart";
 import "../data/repository/digital_guide_repository.dart";
 import "widgets/accessibility_button.dart";
 import "widgets/digital_guide_data_source_link.dart";
 import "widgets/digital_guide_features_section.dart";
 import "widgets/headlines_section.dart";
+import "widgets/report_change_button.dart";
 
 @RoutePage()
 class DigitalGuideView extends ConsumerWidget {
@@ -62,6 +62,7 @@ class _DigitalGuideView extends ConsumerWidget {
       body: CustomScrollView(
         slivers: [
           SliverList(
+            // TODO(Bartosh): replace with SilverChildBuilderDelegate
             delegate: SliverChildListDelegate([
               const SizedBox(height: DigitalGuideConfig.heightSmall),
               MyCachedImage(
