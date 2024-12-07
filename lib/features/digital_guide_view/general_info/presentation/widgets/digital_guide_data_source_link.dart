@@ -1,8 +1,8 @@
 import "package:flutter/widgets.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../../../../theme/app_theme.dart";
-import "../../../../utils/context_extensions.dart";
+import "../../../../../theme/app_theme.dart";
+import "../../../../../utils/context_extensions.dart";
 
 class DigitalGuideDataSourceLink extends ConsumerWidget {
   @override

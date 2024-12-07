@@ -1,13 +1,13 @@
 import "package:flutter/material.dart";
 import "package:flutter/widgets.dart";
 
-import "../../../../config/ui_config.dart";
-import "../../../../utils/context_extensions.dart";
-import "../../../../widgets/my_expansion_tile.dart";
+import "../../../../../config/ui_config.dart";
+import "../../../../../utils/context_extensions.dart";
+import "../../../../../widgets/my_expansion_tile.dart";
+import "../../../amenities/presentation/amenities_expansion_tile_content.dart";
+import "../../../localization/presentation/localization_expansion_tile_content.dart";
+import "../../../surrounding/presentation/surroundings_expansion_tile_content.dart";
 import "../../data/models/digital_guide_response.dart";
-import "expansion_tiles_content/amenities_expansion_tile_content.dart";
-import "expansion_tiles_content/localization_expansion_tile_content.dart";
-import "expansion_tiles_content/surroundings_expansion_tile_content.dart";
 
 class DigitalGuideFeaturesSection extends StatelessWidget {
   const DigitalGuideFeaturesSection({required this.digitalGuideResponse});

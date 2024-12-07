@@ -3,15 +3,15 @@ import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../../../config/ui_config.dart";
-import "../../../gen/assets.gen.dart";
-import "../../../utils/context_extensions.dart";
-import "../../../utils/determine_contact_icon.dart";
-import "../../../widgets/detail_views/contact_section.dart";
-import "../../../widgets/detail_views/detail_view_app_bar.dart";
-import "../../../widgets/my_cached_image.dart";
-import "../../../widgets/my_error_widget.dart";
-import "../../../widgets/report_change_button.dart";
+import "../../../../config/ui_config.dart";
+import "../../../../gen/assets.gen.dart";
+import "../../../../utils/context_extensions.dart";
+import "../../../../utils/determine_contact_icon.dart";
+import "../../../../widgets/detail_views/contact_section.dart";
+import "../../../../widgets/detail_views/detail_view_app_bar.dart";
+import "../../../../widgets/my_cached_image.dart";
+import "../../../../widgets/my_error_widget.dart";
+import "../../../../widgets/report_change_button.dart";
 import "../data/models/digital_guide_response.dart";
 import "../data/repository/digital_guide_repository.dart";
 import "widgets/accessibility_button.dart";
@@ -85,8 +85,7 @@ class _DigitalGuideView extends ConsumerWidget {
                     text: digitalGuideResponse.telephoneNumber,
                     icon: Assets.svg.contactIcons.phone,
                     // TODO(Bartosh): url not working, nothing happens
-                    url:
-                        "tel:+48${digitalGuideResponse.telephoneNumber.replaceAll("<p>", "").replaceAll("</p>", "")}",
+                    url: "tel:+48${digitalGuideResponse.telephoneNumber.replaceAll("<p>", "").replaceAll("</p>", "")}",
                   ),
                   ContactIconsModel(
                     text: context.localize

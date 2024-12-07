@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 
-import "../../../../config/ui_config.dart";
+import "../../../../../config/ui_config.dart";
 
 class AccessibilityButton extends StatelessWidget {
   @override
