@@ -35,6 +35,7 @@ class DigitalGuideView extends ConsumerWidget {
     return asyncDigitalGuideData.when(
       data: _DigitalGuideView.new,
       error: (error, stackTrace) => MyErrorWidget(error),
+      // TODO(Bartosh): shimmer loading
       loading: () => const Scaffold(
         body: Center(
           child: CircularProgressIndicator(),
@@ -67,6 +68,9 @@ class _DigitalGuideView extends ConsumerWidget {
                 digitalGuideResponse.imageUrl,
               ),
               HeadlinesSection(
+                // There is only Polish language translation in external API
+                // In the future we must think how to handle multiple translations in UI
+                // For now it can be temporarily dealt with in the data layer
                 name: digitalGuideResponse.translations.plTranslation.name,
                 description: digitalGuideResponse.translations.plTranslation.extendedName,
               ),

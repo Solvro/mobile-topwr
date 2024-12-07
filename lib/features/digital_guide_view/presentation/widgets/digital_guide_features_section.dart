@@ -18,25 +18,23 @@ class DigitalGuideFeaturesSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 24, right: 24, top: 24, bottom: 8),
+      // TODO(Bartosh): don't use Column, use other Widget for better performance 
       child: Column(
         children: [
-          // To-do
           MyExpansionTile(
             title: context.localize.localization,
             children: [LocalizationExpansionTileContent()],
           ),
           const SizedBox(height: DigitalGuideConfig.heightMedium),
-          // To-do
           MyExpansionTile(
             title: context.localize.amenities,
             children: [
               AmenitiesExpansionTileContent(
                 digitalGuideResponse: digitalGuideResponse,
-              )
+              ),
             ],
           ),
           const SizedBox(height: DigitalGuideConfig.heightMedium),
-          // To-do
           MyExpansionTile(
             title: context.localize.surroundings,
             children: [
@@ -46,19 +44,16 @@ class DigitalGuideFeaturesSection extends StatelessWidget {
             ],
           ),
           const SizedBox(height: DigitalGuideConfig.heightMedium),
-          // To-do
           MyExpansionTile(
             title: context.localize.transport,
             children: [LocalizationExpansionTileContent()],
           ),
           const SizedBox(height: DigitalGuideConfig.heightMedium),
-          // To-do
           MyExpansionTile(
             title: context.localize.entrances,
             children: [LocalizationExpansionTileContent()],
           ),
           const SizedBox(height: DigitalGuideConfig.heightMedium),
-          // To-do
           MyExpansionTile(
             title: context.localize.elevators,
             children: [LocalizationExpansionTileContent()],
@@ -72,25 +67,21 @@ class DigitalGuideFeaturesSection extends StatelessWidget {
             children: [LocalizationExpansionTileContent()],
           ),
           const SizedBox(height: DigitalGuideConfig.heightMedium),
-          // To-do
           MyExpansionTile(
             title: context.localize.micro_navigation,
             children: [LocalizationExpansionTileContent()],
           ),
           const SizedBox(height: DigitalGuideConfig.heightMedium),
-          // To-do
           MyExpansionTile(
             title: context.localize.building_structure,
             children: [LocalizationExpansionTileContent()],
           ),
           const SizedBox(height: DigitalGuideConfig.heightMedium),
-          // To-do
           MyExpansionTile(
             title: context.localize.room_information,
             children: [LocalizationExpansionTileContent()],
           ),
           const SizedBox(height: DigitalGuideConfig.heightMedium),
-          // To-do
           MyExpansionTile(
             title: context.localize.evacuation,
             children: [LocalizationExpansionTileContent()],

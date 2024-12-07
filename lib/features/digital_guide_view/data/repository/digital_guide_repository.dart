@@ -16,6 +16,9 @@ Future<DigitalGuideResponse> getDigitalGuideData(Ref ref, int id) async {
   final response = await dio.get(digitalGuideUrl);
   final digitalGuideResponse = DigitalGuideResponse.fromJson(response.data as Map<String, dynamic>);
   final imageUrl = await getImageUrl(ref, digitalGuideResponse.images[0]);
+  // QUESTION: would it be better to use late property in DigitalGuideResponse rather than copywith
+  // It is true that copywith creates second instane of class
+  // On the other hand, I read that it's better for immutable classses and libraries like Riverpod
   return digitalGuideResponse.copyWith(imageUrl: imageUrl);
 }
 
