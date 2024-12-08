@@ -19,6 +19,7 @@ import "../data/repository/sks_menu_repository.dart";
 import "widgets/sks_menu_data_source_link.dart";
 import "widgets/sks_menu_header.dart";
 import "widgets/sks_menu_section.dart";
+import "widgets/sks_menu_view_loading.dart";
 
 @RoutePage()
 class SksMenuView extends HookConsumerWidget {
@@ -46,7 +47,7 @@ class SksMenuView extends HookConsumerWidget {
       error: (error, stackTrace) => _SKSMenuLottieAnimation(error: error),
       loading: () => const Scaffold(
         body: Center(
-          child: CircularProgressIndicator(),
+          child: SksMenuViewLoading(),
         ),
       ),
     );

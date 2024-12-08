@@ -1,9 +1,11 @@
 import "package:flutter/cupertino.dart";
+import "package:flutter/material.dart";
 
 import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../utils/datetime_utils.dart";
+import "../../../../widgets/loading_widgets/shimmer_loading.dart";
 
 class SksMenuHeader extends StatelessWidget {
   const SksMenuHeader({
@@ -46,6 +48,23 @@ class SksMenuHeader extends StatelessWidget {
           style: context.textTheme.bodyGrey,
         ),
       ],
+    );
+  }
+}
+
+class SksMenuHeaderLoading extends StatelessWidget {
+  const SksMenuHeaderLoading({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return ShimmerLoadingItem(
+      child: Container(
+        decoration: BoxDecoration(
+          color: context.colorTheme.whiteSoap,
+          borderRadius: BorderRadius.circular(SksMenuConfig.borderRadius),
+        ),
+        width: double.infinity,
+        height: 250,
+      ),
     );
   }
 }
