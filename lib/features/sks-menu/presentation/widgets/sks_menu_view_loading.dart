@@ -23,8 +23,8 @@ class SksMenuViewLoading extends StatelessWidget {
             SksMenuHeaderLoading(),
             Expanded(
               child: _SksMenuTitleLoadingPaddings(),
-            )
-          ,],
+            ),
+          ],
         ),
       ),
     );
@@ -38,10 +38,13 @@ class _SksMenuTitleLoadingPaddings extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScrollableLoaderBuilder(
       itemsSpacing: 4,
-      mainAxisItemSize:14,
+      mainAxisItemSize: 14,
       scrollDirection: Axis.vertical,
       itemBuilder: (BuildContext context, int index) {
-        return const  Padding(padding: EdgeInsets.symmetric(vertical: SksMenuConfig.paddingMedium),child:SksMenuTilesLoading(),);
+        return const Padding(
+          padding: EdgeInsets.symmetric(vertical: SksMenuConfig.paddingMedium),
+          child: SksMenuTilesLoading(),
+        );
       },
     );
   }
