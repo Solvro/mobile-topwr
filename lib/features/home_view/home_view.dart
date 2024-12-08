@@ -46,7 +46,6 @@ class HomeView extends StatelessWidget {
           padding: EdgeInsets.only(
             left: horizontalPadding, // Align with the top bar
             right: safeAreaInsets.right,
-            bottom: HomeViewConfig.bottomPadding,
           ),
           child: KeepAliveHomeViewProviders(
             child: ListView.separated(

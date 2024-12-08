@@ -37,9 +37,11 @@ class _BuildingsList extends ConsumerWidget {
     return switch (state) {
       AsyncError(:final error) => MyErrorWidget(error),
       AsyncValue(:final IList<BuildingModel> value) => SmallHorizontalPadding(
-          child: SizedBox(
-            height: 120,
-            child: _DataListBuildingsTiles(value),
+          child: MediumBottomPadding(
+            child: SizedBox(
+              height: 120,
+              child: _DataListBuildingsTiles(value),
+            ),
           ),
         ),
       _ => const MediumLeftPadding(
