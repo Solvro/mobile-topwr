@@ -1,7 +1,6 @@
 import "package:flutter/material.dart";
 import "package:flutter/widgets.dart";
 
-import "../../../../../config/ui_config.dart";
 import "../../../../../utils/context_extensions.dart";
 import "../../../../../widgets/my_expansion_tile.dart";
 import "../../../amenities/presentation/amenities_expansion_tile_content.dart";
@@ -18,77 +17,74 @@ class DigitalGuideFeaturesSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 24, right: 24, top: 24, bottom: 8),
-      // TODO(Bartosh): don't use Column, use other Widget for better performance
-      child: Column(
-        children: [
-          MyExpansionTile(
-            title: context.localize.localization,
-            children: [LocalizationExpansionTileContent()],
-          ),
-          const SizedBox(height: DigitalGuideConfig.heightMedium),
-          MyExpansionTile(
-            title: context.localize.amenities,
-            children: [
-              AmenitiesExpansionTileContent(
-                digitalGuideResponseExtended: digitalGuideResponseExtended,
-              ),
-            ],
-          ),
-          const SizedBox(height: DigitalGuideConfig.heightMedium),
-          MyExpansionTile(
-            title: context.localize.surroundings,
-            children: [
-              SurroundingsExpansionTileContent(
-                digitalGuideResponseExtended: digitalGuideResponseExtended,
-              ),
-            ],
-          ),
-          const SizedBox(height: DigitalGuideConfig.heightMedium),
-          MyExpansionTile(
-            title: context.localize.transport,
-            children: [LocalizationExpansionTileContent()],
-          ),
-          const SizedBox(height: DigitalGuideConfig.heightMedium),
-          MyExpansionTile(
-            title: context.localize.entrances,
-            children: [LocalizationExpansionTileContent()],
-          ),
-          const SizedBox(height: DigitalGuideConfig.heightMedium),
-          MyExpansionTile(
-            title: context.localize.elevators,
-            children: [LocalizationExpansionTileContent()],
-          ),
-          const SizedBox(height: DigitalGuideConfig.heightMedium),
-          // there is no data provided in any endpoint for this expansion tile (toilets)
-          // This tile is not implemented on digital guide website XDDDD
-          // Can I skip it?
-          MyExpansionTile(
-            title: context.localize.toilets,
-            children: [LocalizationExpansionTileContent()],
-          ),
-          const SizedBox(height: DigitalGuideConfig.heightMedium),
-          MyExpansionTile(
-            title: context.localize.micro_navigation,
-            children: [LocalizationExpansionTileContent()],
-          ),
-          const SizedBox(height: DigitalGuideConfig.heightMedium),
-          MyExpansionTile(
-            title: context.localize.building_structure,
-            children: [LocalizationExpansionTileContent()],
-          ),
-          const SizedBox(height: DigitalGuideConfig.heightMedium),
-          MyExpansionTile(
-            title: context.localize.room_information,
-            children: [LocalizationExpansionTileContent()],
-          ),
-          const SizedBox(height: DigitalGuideConfig.heightMedium),
-          MyExpansionTile(
-            title: context.localize.evacuation,
-            children: [LocalizationExpansionTileContent()],
-          ),
+    final items = [
+      {
+        "title": context.localize.localization,
+        "content": [LocalizationExpansionTileContent()],
+      },
+      {
+        "title": context.localize.amenities,
+        "content": [
+          AmenitiesExpansionTileContent(
+            digitalGuideResponseExtended: digitalGuideResponseExtended,
+          )
         ],
+      },
+      {
+        "title": context.localize.surroundings,
+        "content": [
+          SurroundingsExpansionTileContent(
+            digitalGuideResponseExtended: digitalGuideResponseExtended,
+          )
+        ],
+      },
+      {
+        "title": context.localize.transport,
+        "content": [LocalizationExpansionTileContent()],
+      },
+      {
+        "title": context.localize.entrances,
+        "content": [LocalizationExpansionTileContent()],
+      },
+      {
+        "title": context.localize.elevators,
+        "content": [LocalizationExpansionTileContent()],
+      },
+      {
+        "title": context.localize.toilets,
+        "content": [LocalizationExpansionTileContent()],
+      },
+      {
+        "title": context.localize.micro_navigation,
+        "content": [LocalizationExpansionTileContent()],
+      },
+      {
+        "title": context.localize.building_structure,
+        "content": [LocalizationExpansionTileContent()],
+      },
+      {
+        "title": context.localize.room_information,
+        "content": [LocalizationExpansionTileContent()],
+      },
+      {
+        "title": context.localize.evacuation,
+        "content": [LocalizationExpansionTileContent()],
+      },
+    ];
+
+    return SliverList(
+      delegate: SliverChildBuilderDelegate(
+        (context, index) {
+          final item = items[index];
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+              child: MyExpansionTile(
+              title: item["title"]! as String,
+              children: item["content"]! as List<Widget>,
+            ),
+          );
+        },
+        childCount: items.length,
       ),
     );
   }

@@ -53,7 +53,7 @@ class _DigitalGuideView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
 
-    final widgets = [
+    final widgets1 = [
       const SizedBox(height: DigitalGuideConfig.heightSmall),
       MyCachedImage(
         digitalGuideResponseExtended.imageUrl,
@@ -89,10 +89,11 @@ class _DigitalGuideView extends ConsumerWidget {
           ),
         ]),
       ),
-      DigitalGuideFeaturesSection(
-        digitalGuideResponseExtended: digitalGuideResponseExtended,
-      ),
-      const SizedBox(height: DigitalGuideConfig.heightMedium),
+      const SizedBox(height: DigitalGuideConfig.heightBig),
+    ];
+
+    final widgets2 = [
+      const SizedBox(height: DigitalGuideConfig.heightBig),
       DigitalGuideDataSourceLink(),
       ReportChangeButton(),
       const SizedBox(height: DigitalGuideConfig.heightHuge),
@@ -108,12 +109,22 @@ class _DigitalGuideView extends ConsumerWidget {
       body: CustomScrollView(
         slivers: [
           SliverList(
-            // TODO(Bartosh): replace with SilverChildBuilderDelegate
             delegate: SliverChildBuilderDelegate(
               (context, index) {
-                return widgets[index];
+                return widgets1[index];
               },
-              childCount: widgets.length,
+              childCount: widgets1.length,
+            ),
+          ),
+          DigitalGuideFeaturesSection(
+            digitalGuideResponseExtended: digitalGuideResponseExtended,
+          ),
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (context, index) {
+                return widgets2[index];
+              },
+              childCount: widgets2.length,
             ),
           ),
         ],
