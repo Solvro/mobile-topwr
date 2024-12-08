@@ -7,6 +7,7 @@ import "../about_us_view/about_us_view.dart";
 import "../buildings_view/buildings_view.dart";
 import "../department_detail_view/department_detail_view.dart";
 import "../departments_view/departments_view.dart";
+import "../digital_guide_view/general_info/presentation/digital_guide_view.dart";
 import "../guide_detail_view/guide_detail_view.dart";
 import "../guide_view/guide_view.dart";
 import "../home_view/home_view.dart";
@@ -93,6 +94,10 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           path: "/sci-clubs/:id",
           page: ScienceClubDetailRoute.page,
+        ),
+        AutoRoute(
+          path: "/digital-guide/:id",
+          page: DigitalGuideRoute.page,
         ),
       ];
 }
