@@ -52,6 +52,52 @@ class _DigitalGuideView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+
+    final widgets = [
+      const SizedBox(height: DigitalGuideConfig.heightSmall),
+      MyCachedImage(
+        digitalGuideResponseExtended.imageUrl,
+      ),
+      HeadlinesSection(
+        // There is only Polish language translation in external API
+        // In the future we must think how to handle multiple translations in UI
+        // For now it can be temporarily dealt with in the data layer
+        name: digitalGuideResponseExtended
+            .translations.plTranslation.name,
+        description: digitalGuideResponseExtended
+            .translations.plTranslation.extendedName,
+      ),
+      ContactSection(
+        list: IList<ContactIconsModel>([
+          ContactIconsModel(
+            text: digitalGuideResponseExtended
+                .translations.plTranslation.address
+                .replaceAll("ulica", "ul."),
+            icon: Assets.svg.contactIcons.compass,
+          ),
+          ContactIconsModel(
+            text: digitalGuideResponseExtended.telephoneNumber,
+            icon: Assets.svg.contactIcons.phone,
+            // TODO(Bartosh): url not working, nothing happens
+            url:
+                "tel:+48${digitalGuideResponseExtended.telephoneNumber.replaceAll("<p>", "").replaceAll("</p>", "")}",
+          ),
+          ContactIconsModel(
+            text: context.localize
+                .storeys(digitalGuideResponseExtended.numberOfStoreys),
+            icon: Assets.svg.digitalGuide.storey,
+          ),
+        ]),
+      ),
+      DigitalGuideFeaturesSection(
+        digitalGuideResponseExtended: digitalGuideResponseExtended,
+      ),
+      const SizedBox(height: DigitalGuideConfig.heightMedium),
+      DigitalGuideDataSourceLink(),
+      ReportChangeButton(),
+      const SizedBox(height: DigitalGuideConfig.heightHuge),
+    ];
+
     return Scaffold(
       appBar: DetailViewAppBar(
         title: context.localize.map,
@@ -63,50 +109,12 @@ class _DigitalGuideView extends ConsumerWidget {
         slivers: [
           SliverList(
             // TODO(Bartosh): replace with SilverChildBuilderDelegate
-            delegate: SliverChildListDelegate([
-              const SizedBox(height: DigitalGuideConfig.heightSmall),
-              MyCachedImage(
-                digitalGuideResponseExtended.imageUrl,
-              ),
-              HeadlinesSection(
-                // There is only Polish language translation in external API
-                // In the future we must think how to handle multiple translations in UI
-                // For now it can be temporarily dealt with in the data layer
-                name: digitalGuideResponseExtended
-                    .translations.plTranslation.name,
-                description: digitalGuideResponseExtended
-                    .translations.plTranslation.extendedName,
-              ),
-              ContactSection(
-                list: IList<ContactIconsModel>([
-                  ContactIconsModel(
-                    text: digitalGuideResponseExtended
-                        .translations.plTranslation.address
-                        .replaceAll("ulica", "ul."),
-                    icon: Assets.svg.contactIcons.compass,
-                  ),
-                  ContactIconsModel(
-                    text: digitalGuideResponseExtended.telephoneNumber,
-                    icon: Assets.svg.contactIcons.phone,
-                    // TODO(Bartosh): url not working, nothing happens
-                    url:
-                        "tel:+48${digitalGuideResponseExtended.telephoneNumber.replaceAll("<p>", "").replaceAll("</p>", "")}",
-                  ),
-                  ContactIconsModel(
-                    text: context.localize
-                        .storeys(digitalGuideResponseExtended.numberOfStoreys),
-                    icon: Assets.svg.digitalGuide.storey,
-                  ),
-                ]),
-              ),
-              DigitalGuideFeaturesSection(
-                digitalGuideResponseExtended: digitalGuideResponseExtended,
-              ),
-              const SizedBox(height: DigitalGuideConfig.heightMedium),
-              DigitalGuideDataSourceLink(),
-              ReportChangeButton(),
-              const SizedBox(height: DigitalGuideConfig.heightHuge),
-            ]),
+            delegate: SliverChildBuilderDelegate(
+              (context, index) {
+                return widgets[index];
+              },
+              childCount: widgets.length,
+            ),
           ),
         ],
       ),
