@@ -186,6 +186,7 @@
   "digital_guide_website" : "www.przewodnik.pwr.edu.pl",
   "sks_old_menu": "Zobacz ostatnie menu",
   "sks_menu_closed" : "SKS Menu jest teraz niedostępne",
+  "sks_show_last_menu" : "Pokaż ostatnio dostępne menu",
   "confirm": "Zatwierdź",
   "push_notifications_dialog_info": "Obecnie nie korzystamy z powiadomień push, ale planujemy dodać je w przyszłości. Możesz wyrazić na nie zgodę już teraz."
 }
