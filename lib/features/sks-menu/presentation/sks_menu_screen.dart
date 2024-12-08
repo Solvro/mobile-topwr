@@ -22,11 +22,10 @@ import "widgets/sks_menu_section.dart";
 
 @RoutePage()
 class SksMenuView extends HookConsumerWidget {
-  const SksMenuView({
-    super.key,
-    this.appBarPopTitle,
-  });
+    const SksMenuView({super.key});
+
   final String? appBarPopTitle;
+
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -76,7 +75,6 @@ class _SksMenuView extends StatelessWidget {
     }
     return Scaffold(
       appBar: DetailViewAppBar(
-        title: appBarPopTitle ?? context.localize.home_screen,
         actions: const [
           SksUserDataButton(),
         ],
@@ -122,6 +120,11 @@ class _SKSMenuLottieAnimation extends HookWidget {
     }
 
     return Scaffold(
+       appBar: DetailViewAppBar(
+        actions: const [
+          SksUserDataButton(),
+        ],
+      ),
       body: Stack(
         alignment: Alignment.center,
         children: [

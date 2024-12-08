@@ -17,12 +17,16 @@ class SksMenuDataSourceLink extends ConsumerWidget {
     return Text.rich(
       TextSpan(
         text: "${context.localize.data_come_from_website}: ",
+        style: const TextStyle(
+          fontWeight: FontWeight.bold,
+        ),
         children: [
           TextSpan(
             text: SksMenuConfig.sksDataSource.replaceFirst("https://", "www."),
             style: context.textTheme.bodyOrange.copyWith(
               decoration: TextDecoration.underline,
               decorationColor: context.colorTheme.orangePomegranade,
+              fontWeight: FontWeight.bold,
             ),
             recognizer: TapGestureRecognizer()
               ..onTap = () async => ref.launch(SksMenuConfig.sksDataSource),

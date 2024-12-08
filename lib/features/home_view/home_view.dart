@@ -23,7 +23,7 @@ class HomeView extends StatelessWidget {
     final sections = [
       const AcademicCalendarConsumer(),
       const Padding(
-        padding: EdgeInsets.only(top: 24, bottom: 8),
+        padding: EdgeInsets.only(top: 12, bottom: 4),
         child: NavActionsSection(),
       ),
       const ScienceClubsSection(),
@@ -46,7 +46,6 @@ class HomeView extends StatelessWidget {
           padding: EdgeInsets.only(
             left: horizontalPadding, // Align with the top bar
             right: safeAreaInsets.right,
-            bottom: HomeViewConfig.bottomPadding,
           ),
           child: KeepAliveHomeViewProviders(
             child: ListView.separated(
