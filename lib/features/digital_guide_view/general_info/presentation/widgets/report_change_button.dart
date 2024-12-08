@@ -19,7 +19,7 @@ class ReportChangeButton extends StatelessWidget {
             style: ElevatedButton.styleFrom(
               backgroundColor: context.colorTheme.blueAzure,
               padding: AppWidgetsConfig.paddingMedium,
-              minimumSize: const Size(192, 40),
+              minimumSize: const Size(144, 40),
               shape: RoundedRectangleBorder(
                 borderRadius:
                     BorderRadius.circular(AppWidgetsConfig.borderRadiusMedium),

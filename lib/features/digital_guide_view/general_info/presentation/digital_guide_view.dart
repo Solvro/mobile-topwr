@@ -95,7 +95,7 @@ class _DigitalGuideView extends ConsumerWidget {
                   ContactIconsModel(
                     text: context.localize
                         .storeys(digitalGuideResponseExtended.numberOfStoreys),
-                    icon: Assets.svg.contactIcons.storey,
+                    icon: Assets.svg.digitalGuide.storey,
                   ),
                 ]),
               ),
