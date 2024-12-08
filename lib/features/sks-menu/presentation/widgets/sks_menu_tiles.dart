@@ -78,30 +78,30 @@ class SksMenuDishDetailsTile extends StatelessWidget {
 
 class SksMenuTilesLoading extends StatelessWidget {
   const SksMenuTilesLoading();
+  static const groupElements = 3;
 
   @override
   Widget build(BuildContext context) {
-    return const ShimmerLoadingItem(
-      child: Column(
-        children: [
-          LoadingTitle(),
-          LoadingTitle(),
-          LoadingTitle(),
-        ],
+    return ShimmerLoadingItem(
+      child: ListView.separated(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        itemBuilder: (context, _) {
+          return const _LoadingTitle();
+        },
+        separatorBuilder: (context, _) => const SizedBox(),
+        itemCount: groupElements,
       ),
     );
   }
 }
 
-class LoadingTitle extends StatelessWidget {
-  const LoadingTitle({
-    super.key,
-  });
-
+class _LoadingTitle extends StatelessWidget {
+  const _LoadingTitle();
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: SksMenuConfig.paddingSmall),
+      padding: const EdgeInsets.fromLTRB(SksMenuConfig.paddingLarge,0,SksMenuConfig.paddingLarge, SksMenuConfig.paddingMedium),
       child: Container(
         decoration: BoxDecoration(
           color: context.colorTheme.whiteSoap,

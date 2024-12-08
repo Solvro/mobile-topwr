@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 
 import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
+import "../../../../widgets/loading_widgets/scrolable_loader_builder.dart";
 import "../../../../widgets/loading_widgets/shimmer_loading.dart";
 import "sks_menu_header.dart";
 import "sks_menu_tiles.dart";
@@ -15,40 +16,33 @@ class SksMenuViewLoading extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colorTheme.whiteSoap,
-      body: Shimmer(
+      body: const Shimmer(
         linearGradient: shimmerGradient,
-        child: ListView(
-          physics: const NeverScrollableScrollPhysics(),
-          children: const [
+        child: Column(
+          children: [
             SksMenuHeaderLoading(),
-            SksMenuTitleLoadingPaddings(),
-          ],
+            Expanded(
+              child: _SksMenuTitleLoadingPaddings(),
+            )
+          ,],
         ),
       ),
     );
   }
 }
 
-class SksMenuTitleLoadingPaddings extends StatelessWidget {
-  const SksMenuTitleLoadingPaddings({
-    super.key,
-  });
+class _SksMenuTitleLoadingPaddings extends StatelessWidget {
+  const _SksMenuTitleLoadingPaddings();
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(SksMenuConfig.paddingLarge),
-      child: ListView.separated(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        itemBuilder: (context, _) {
-          return const SksMenuTilesLoading();
-        },
-        separatorBuilder: (context, _) => const SizedBox(
-          height: 8,
-        ),
-        itemCount: 3,
-      ),
+    return ScrollableLoaderBuilder(
+      itemsSpacing: 4,
+      mainAxisItemSize:14,
+      scrollDirection: Axis.vertical,
+      itemBuilder: (BuildContext context, int index) {
+        return const  Padding(padding: EdgeInsets.symmetric(vertical: SksMenuConfig.paddingMedium),child:SksMenuTilesLoading(),);
+      },
     );
   }
 }

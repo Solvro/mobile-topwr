@@ -54,7 +54,6 @@ class SksMenuHeader extends StatelessWidget {
 
 class SksMenuHeaderLoading extends StatelessWidget {
   const SksMenuHeaderLoading({super.key});
-
   @override
   Widget build(BuildContext context) {
     return ShimmerLoadingItem(
@@ -64,7 +63,7 @@ class SksMenuHeaderLoading extends StatelessWidget {
           borderRadius: BorderRadius.circular(SksMenuConfig.borderRadius),
         ),
         width: double.infinity,
-        height: 180,
+        height: 250,
       ),
     );
   }
