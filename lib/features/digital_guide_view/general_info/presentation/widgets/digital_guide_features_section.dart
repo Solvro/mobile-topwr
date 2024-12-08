@@ -8,6 +8,8 @@ import "../../../localization/presentation/localization_expansion_tile_content.d
 import "../../../surrounding/presentation/surroundings_expansion_tile_content.dart";
 import "../../data/models/digital_guide_response_extended.dart";
 
+typedef TileContent = ({String title, List<Widget> content});
+
 class DigitalGuideFeaturesSection extends StatelessWidget {
   const DigitalGuideFeaturesSection({
     required this.digitalGuideResponseExtended,
@@ -17,59 +19,59 @@ class DigitalGuideFeaturesSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final items = [
-      {
-        "title": context.localize.localization,
-        "content": [LocalizationExpansionTileContent()],
-      },
-      {
-        "title": context.localize.amenities,
-        "content": [
+    final items = <TileContent>[
+      (
+        title: context.localize.localization,
+        content: [LocalizationExpansionTileContent()],
+      ),
+      (
+        title: context.localize.amenities,
+        content: [
           AmenitiesExpansionTileContent(
             digitalGuideResponseExtended: digitalGuideResponseExtended,
           ),
         ],
-      },
-      {
-        "title": context.localize.surroundings,
-        "content": [
+      ),
+      (
+        title: context.localize.surroundings,
+        content: [
           SurroundingsExpansionTileContent(
             digitalGuideResponseExtended: digitalGuideResponseExtended,
           ),
         ],
-      },
-      {
-        "title": context.localize.transport,
-        "content": [LocalizationExpansionTileContent()],
-      },
-      {
-        "title": context.localize.entrances,
-        "content": [LocalizationExpansionTileContent()],
-      },
-      {
-        "title": context.localize.elevators,
-        "content": [LocalizationExpansionTileContent()],
-      },
-      {
-        "title": context.localize.toilets,
-        "content": [LocalizationExpansionTileContent()],
-      },
-      {
-        "title": context.localize.micro_navigation,
-        "content": [LocalizationExpansionTileContent()],
-      },
-      {
-        "title": context.localize.building_structure,
-        "content": [LocalizationExpansionTileContent()],
-      },
-      {
-        "title": context.localize.room_information,
-        "content": [LocalizationExpansionTileContent()],
-      },
-      {
-        "title": context.localize.evacuation,
-        "content": [LocalizationExpansionTileContent()],
-      },
+      ),
+      (
+        title: context.localize.transport,
+        content: [LocalizationExpansionTileContent()],
+      ),
+      (
+        title: context.localize.entrances,
+        content: [LocalizationExpansionTileContent()],
+      ),
+      (
+        title: context.localize.elevators,
+        content: [LocalizationExpansionTileContent()],
+      ),
+      (
+        title: context.localize.toilets,
+        content: [LocalizationExpansionTileContent()],
+      ),
+      (
+        title: context.localize.micro_navigation,
+        content: [LocalizationExpansionTileContent()],
+      ),
+      (
+        title: context.localize.building_structure,
+        content: [LocalizationExpansionTileContent()],
+      ),
+      (
+        title: context.localize.room_information,
+        content: [LocalizationExpansionTileContent()],
+      ),
+      (
+        title: context.localize.evacuation,
+        content: [LocalizationExpansionTileContent()],
+      ),
     ];
 
     return SliverList(
@@ -79,8 +81,8 @@ class DigitalGuideFeaturesSection extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
             child: MyExpansionTile(
-              title: item["title"]! as String,
-              children: item["content"]! as List<Widget>,
+              title: item.title,
+              children: item.content,
             ),
           );
         },
