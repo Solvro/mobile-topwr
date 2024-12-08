@@ -2,11 +2,10 @@ import "dart:core";
 
 import "package:auto_route/annotations.dart";
 import "package:flutter/material.dart";
-import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:flutter_hooks/flutter_hooks.dart";
+import "package:hooks_riverpod/hooks_riverpod.dart";
 import "package:logger/logger.dart";
 import "package:lottie/lottie.dart";
-import "package:hooks_riverpod/hooks_riverpod.dart";
-import 'package:flutter_hooks/flutter_hooks.dart';
 
 import "../../../../theme/app_theme.dart";
 import "../../../config/ui_config.dart";
@@ -34,7 +33,6 @@ class SksMenuView extends HookConsumerWidget {
     final asyncSksMenuData = ref.watch(getSksMenuDataProvider);
     final isLastMenuButtonClicked = useState(false);
 
-
     return asyncSksMenuData.when(
       data: (sksMenuData) {
         if (!sksMenuData.isMenuOnline && !isLastMenuButtonClicked.value) {
@@ -43,9 +41,6 @@ class SksMenuView extends HookConsumerWidget {
               isLastMenuButtonClicked.value = true;
             },
           );
-        }
-        if (sksMenuData.isMenuOnline && isLastMenuButtonClicked.value) {
-          isLastMenuButtonClicked.value = false;
         }
         return _SksMenuView(
           sksMenuData: sksMenuData,
@@ -156,9 +151,7 @@ class _SKSMenuLottieAnimation extends HookWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 16),
                   child: ElevatedButton(
-                    onPressed: () {
-                      onShowLastMenuTap?.call();
-                    },
+                    onPressed: onShowLastMenuTap,
                     child: Text(
                       context.localize.sks_show_last_menu,
                       style: context.textTheme.lightTitle,
