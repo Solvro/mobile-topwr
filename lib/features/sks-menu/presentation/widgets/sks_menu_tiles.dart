@@ -101,8 +101,12 @@ class _LoadingTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(SksMenuConfig.paddingLarge, 0,
-          SksMenuConfig.paddingLarge, SksMenuConfig.paddingMedium),
+      padding: const EdgeInsets.fromLTRB(
+        SksMenuConfig.paddingLarge,
+        0,
+        SksMenuConfig.paddingLarge,
+        SksMenuConfig.paddingMedium,
+      ),
       child: Container(
         decoration: BoxDecoration(
           color: context.colorTheme.whiteSoap,
