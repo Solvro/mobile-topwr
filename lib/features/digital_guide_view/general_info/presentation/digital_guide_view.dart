@@ -52,7 +52,6 @@ class _DigitalGuideView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     final widgets1 = [
       const SizedBox(height: DigitalGuideConfig.heightSmall),
       MyCachedImage(
@@ -62,8 +61,7 @@ class _DigitalGuideView extends ConsumerWidget {
         // There is only Polish language translation in external API
         // In the future we must think how to handle multiple translations in UI
         // For now it can be temporarily dealt with in the data layer
-        name: digitalGuideResponseExtended
-            .translations.plTranslation.name,
+        name: digitalGuideResponseExtended.translations.plTranslation.name,
         description: digitalGuideResponseExtended
             .translations.plTranslation.extendedName,
       ),

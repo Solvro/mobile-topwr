@@ -27,7 +27,7 @@ class DigitalGuideFeaturesSection extends StatelessWidget {
         "content": [
           AmenitiesExpansionTileContent(
             digitalGuideResponseExtended: digitalGuideResponseExtended,
-          )
+          ),
         ],
       },
       {
@@ -35,7 +35,7 @@ class DigitalGuideFeaturesSection extends StatelessWidget {
         "content": [
           SurroundingsExpansionTileContent(
             digitalGuideResponseExtended: digitalGuideResponseExtended,
-          )
+          ),
         ],
       },
       {
@@ -78,7 +78,7 @@ class DigitalGuideFeaturesSection extends StatelessWidget {
           final item = items[index];
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
-              child: MyExpansionTile(
+            child: MyExpansionTile(
               title: item["title"]! as String,
               children: item["content"]! as List<Widget>,
             ),
