@@ -22,10 +22,7 @@ import "widgets/sks_menu_section.dart";
 
 @RoutePage()
 class SksMenuView extends HookConsumerWidget {
-    const SksMenuView({super.key});
-
-  final String? appBarPopTitle;
-
+  const SksMenuView({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -43,7 +40,6 @@ class SksMenuView extends HookConsumerWidget {
         }
         return _SksMenuView(
           sksMenuData: sksMenuData,
-          appBarPopTitle: appBarPopTitle,
           isLastMenuButtonClicked: isLastMenuButtonClicked.value,
         );
       },
@@ -60,12 +56,10 @@ class SksMenuView extends HookConsumerWidget {
 class _SksMenuView extends StatelessWidget {
   const _SksMenuView({
     required this.sksMenuData,
-    this.appBarPopTitle,
     required this.isLastMenuButtonClicked,
   });
 
   final SksMenuResponse sksMenuData;
-  final String? appBarPopTitle;
   final bool isLastMenuButtonClicked;
 
   @override
@@ -120,7 +114,7 @@ class _SKSMenuLottieAnimation extends HookWidget {
     }
 
     return Scaffold(
-       appBar: DetailViewAppBar(
+      appBar: DetailViewAppBar(
         actions: const [
           SksUserDataButton(),
         ],
