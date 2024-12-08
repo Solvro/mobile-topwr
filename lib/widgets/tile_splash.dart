@@ -18,3 +18,6 @@ class TileSplash extends StatelessWidget {
     );
   }
 }
+
+// If tile splash doesn't work read this article
+// https://therdm.medium.com/ripple-effect-not-working-on-inkwell-try-the-ink-widget-44b6a1964de0

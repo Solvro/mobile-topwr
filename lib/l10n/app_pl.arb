@@ -105,6 +105,9 @@
   "student_councils": "Samorząd",
   "hi_student": "Hej studencie!",
   "guide_development_info": "Pamiętaj, że przewodnik jest wciąż w fazie rozwoju :)",
+  "guide_ideas_info": "Masz ciekawy pomysł? Podziel się z nami!",
+  "guide_click_here": "Zgłoś swój pomysł",
+  "guide_subject_default_content": "Pomsył na rozwój ToPWR",
   "streak_counter": "Używasz ToPWR nieprzerwanie od {days, plural, =1{1 dnia} other{{days} dni}}🔥",
   "@streak_counter": {
     "description": "A message with a single parameter",
@@ -148,5 +151,7 @@
   "about_the_app": "O aplikacji",
   "other_view" : "Inne",
   "sks_old_menu": "Zobacz ostatnie menu",
-  "sks_menu_closed" : "SKS Menu jest teraz niedostępne"
+  "sks_menu_closed" : "SKS Menu jest teraz niedostępne",
+  "confirm": "Zatwierdź",
+  "push_notifications_dialog_info": "Obecnie nie korzystamy z powiadomień push, ale planujemy dodać je w przyszłości. Możesz wyrazić na nie zgodę już teraz."
 }

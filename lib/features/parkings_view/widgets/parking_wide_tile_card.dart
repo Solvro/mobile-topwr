@@ -24,7 +24,7 @@ class ParkingWideTileCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: isActive ? null : onTap,
       child: Container(
         height: isActive ? 300 : WideTileCardConfig.imageSize,
         decoration: BoxDecoration(
@@ -51,13 +51,30 @@ class ParkingWideTileCard extends StatelessWidget {
               width: double.infinity,
               height: WideTileCardConfig.imageSize,
               padding: ParkingsConfig.padding,
-              child: _RightColumn(parking, isActive: isActive),
+              child: _RightColumn(
+                parking,
+                isActive: isActive,
+              ),
             ),
             if (!isActive)
               Positioned(
                 top: 1,
                 right: 2,
                 child: FavouriteParkingWidget(parking),
+              ),
+            if (isActive)
+              Positioned(
+                top: 0,
+                right: 0,
+                child: IconButton(
+                  padding: EdgeInsets.zero,
+                  onPressed: onTap,
+                  icon: Icon(
+                    Icons.close,
+                    color: context.colorTheme.whiteSoap,
+                    size: 22,
+                  ),
+                ),
               ),
           ],
         ),
@@ -127,12 +144,6 @@ class _RightColumn extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.end,
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        if (isActive)
-          Icon(
-            Icons.close,
-            color: context.colorTheme.whiteSoap,
-            size: 22,
-          ),
         const Spacer(),
         Row(
           mainAxisAlignment: MainAxisAlignment.end,

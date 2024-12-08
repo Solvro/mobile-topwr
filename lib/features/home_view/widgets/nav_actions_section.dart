@@ -60,7 +60,7 @@ class _NavActionButton extends StatelessWidget {
           child: Ink(
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              gradient: context.colorTheme.toPwrGradient,
+              color: context.colorTheme.orangePomegranade,
             ),
             child: InkWell(
               onTap: onTap,

@@ -141,10 +141,6 @@ abstract class AboutUsConfig {
   static const borderRadius = 8.0;
   static const iconPadding = 10.0;
   static const photoSize = 92.0;
-
-  static const dialogHorizontalPadding = 14.0;
-  static const dialogVerticalPadding = 20.0;
-  static const dialogButtonFontSize = 16.0;
   static const dialogTitleFontSize = 24.0;
 }
 
@@ -195,6 +191,7 @@ abstract class SksConfig {
   static const sizedBoxWidth = 5.0;
   static const radius = 8.0;
   static const innerPadding = EdgeInsets.symmetric(horizontal: 8, vertical: 4);
+  static const outerPaddingLarge = EdgeInsets.only(right: 24, bottom: 2);
   static const outerPadding = EdgeInsets.only(right: 12, bottom: 2);
 }
 
@@ -202,4 +199,10 @@ abstract class NavigationTabViewConfig {
   static const universalPadding = 12.0;
   static const radius = 8.0;
   static const navIconSize = 30.0;
+}
+
+abstract class AlertDialogConfig {
+  static const horizontalPadding = 14.0;
+  static const verticalPadding = 20.0;
+  static const buttonFontSize = 16.0;
 }

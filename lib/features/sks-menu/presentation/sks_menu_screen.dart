@@ -94,6 +94,11 @@ class _SKSMenuLottieAnimation extends StatelessWidget {
   Widget build(BuildContext context) {
     Logger().e(error.toString());
     return Scaffold(
+      appBar: DetailViewAppBar(
+        actions: const [
+          SksUserDataButton(),
+        ],
+      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

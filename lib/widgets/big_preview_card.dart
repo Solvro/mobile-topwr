@@ -29,74 +29,80 @@ class BigPreviewCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: context.colorTheme.greyLight,
-        borderRadius: BorderRadius.circular(8),
-      ),
-      width: BigPreviewCardConfig.cardWidth,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            flex: 135,
-            child: ClipRRect(
-              borderRadius:
-                  const BorderRadius.vertical(top: Radius.circular(8)),
-              child: Stack(
-                alignment: Alignment.topRight,
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(8),
+      child: Material(
+        child: InkWell(
+          onTap: onClick,
+          child: Ink(
+            decoration: BoxDecoration(
+              color: context.colorTheme.greyLight,
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: SizedBox(
+              width: BigPreviewCardConfig.cardWidth,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
-                    width: double.maxFinite,
-                    child: Center(
-                      child: OptimizedDirectusImage(
-                        directusUrl,
-                        boxFit: boxFit,
+                  Expanded(
+                    flex: 135,
+                    child: Stack(
+                      alignment: Alignment.topRight,
+                      children: [
+                        SizedBox(
+                          width: double.maxFinite,
+                          child: Center(
+                            child: OptimizedDirectusImage(
+                              directusUrl,
+                              boxFit: boxFit,
+                            ),
+                          ),
+                        ),
+                        if (date != null)
+                          DateChip(date: date!)
+                        else
+                          const SizedBox.shrink(),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    flex: 210,
+                    child: Container(
+                      padding: const EdgeInsets.all(16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          DualTextMaxLines(
+                            title: title,
+                            titleStyle: context.textTheme.title,
+                            subtitle: shortDescription,
+                            subtitleStyle: context.textTheme.body,
+                            spacing: 7,
+                            maxTotalLines: 8,
+                            showBadge: showBadge,
+                          ),
+                          const Spacer(),
+                          MaterialButton(
+                            elevation: 1,
+                            padding: const EdgeInsets.all(8),
+                            onPressed: onClick,
+                            color: context.colorTheme.orangePomegranade,
+                            textColor: context.colorTheme.whiteSoap,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                            child: Text(context.localize.read_more),
+                          ),
+                        ],
                       ),
                     ),
                   ),
-                  if (date != null)
-                    DateChip(date: date!)
-                  else
-                    const SizedBox.shrink(),
                 ],
               ),
             ),
           ),
-          Expanded(
-            flex: 210,
-            child: Container(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  DualTextMaxLines(
-                    title: title,
-                    titleStyle: context.textTheme.title,
-                    subtitle: shortDescription,
-                    subtitleStyle: context.textTheme.body,
-                    spacing: 7,
-                    maxTotalLines: 8,
-                    showBadge: showBadge,
-                  ),
-                  const Spacer(),
-                  MaterialButton(
-                    elevation: 1,
-                    padding: const EdgeInsets.all(8),
-                    onPressed: onClick,
-                    color: context.colorTheme.orangePomegranade,
-                    textColor: context.colorTheme.whiteSoap,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                    child: Text(context.localize.read_more),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
