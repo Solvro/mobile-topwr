@@ -183,11 +183,9 @@
   "sign_language_interpreter": "W budynku zapewniona jest możliwość skorzystania z usług tłumacza języka migowego",
   "emergency_chairs": "W budynku zamieszczone zostały krzesła ewakuacyjne",
   "parking_location" : "Miejsca parkingowe znajdują się {location}",
-  "digital_guide_website" : "www.przewodnik.pwr.edu.pl"
- },
+  "digital_guide_website" : "www.przewodnik.pwr.edu.pl",
   "sks_old_menu": "Zobacz ostatnie menu",
   "sks_menu_closed" : "SKS Menu jest teraz niedostępne",
   "confirm": "Zatwierdź",
   "push_notifications_dialog_info": "Obecnie nie korzystamy z powiadomień push, ale planujemy dodać je w przyszłości. Możesz wyrazić na nie zgodę już teraz."
 }
-

@@ -99,7 +99,6 @@ class _DigitalGuideView extends ConsumerWidget {
 
     return Scaffold(
       appBar: DetailViewAppBar(
-        title: context.localize.map,
         actions: [
           AccessibilityButton(),
         ],
