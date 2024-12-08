@@ -79,7 +79,7 @@ class AppRouter extends RootStackRouter {
           path: "/sks-menu",
           page: SksMenuRoute.page,
         ),
-        _NoTransitionRoute(
+        AutoRoute(
           path: "/departments",
           page: DepartmentsRoute.page,
         ),
@@ -87,7 +87,7 @@ class AppRouter extends RootStackRouter {
           path: "/departments/:id",
           page: DepartmentDetailRoute.page,
         ),
-        _NoTransitionRoute(
+        AutoRoute(
           path: "/sci-clubs",
           page: ScienceClubsRoute.page,
         ),

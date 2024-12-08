@@ -9,6 +9,7 @@ import "../../../utils/context_extensions.dart";
 import "../../../widgets/big_preview_card.dart";
 import "../../../widgets/my_error_widget.dart";
 import "../../../widgets/subsection_header.dart";
+
 import "../../navigator/utils/navigation_commands.dart";
 import "../../science_clubs_view/repository/science_clubs_repository.dart";
 import "loading_widgets/big_scrollable_section_loading.dart";
@@ -112,8 +113,8 @@ class _BuildScienceClubCard extends StatelessWidget {
       directusUrl: (sciClub.useCoverAsPreviewPhoto ?? false)
           ? sciClub.cover?.filename_disk
           : sciClub.logo?.filename_disk,
-      onClick: () async => ref.navigateSciClubsDetail(sciClub.id),
       showBadge: sciClub.source == ScienceClubsViewConfig.source,
+      onClick: () async => ref.navigateSciClubsDetail(sciClub.id),
     );
   }
 }

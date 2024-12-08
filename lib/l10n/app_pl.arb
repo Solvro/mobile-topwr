@@ -98,13 +98,16 @@
   "until_the_end_of_the_semester_break": "do końca przerwy międzysemestralnej",
   "until_the_session_ends": "do zakończenia sesji",
   "app_info": "(informacje o aplikacji)",
-  "show_license": "Wyświelt licencję",
+  "show_license": "Wyświetl licencję",
   "close": "Zamknij",
   "no_version": "Brak wersji",
   "places_currently_available": "Aktualnie wolne miejsca",
   "student_councils": "Samorząd",
   "hi_student": "Hej studencie!",
   "guide_development_info": "Pamiętaj, że przewodnik jest wciąż w fazie rozwoju :)",
+  "guide_ideas_info": "Masz ciekawy pomysł? Podziel się z nami!",
+  "guide_click_here": "Zgłoś swój pomysł",
+  "guide_subject_default_content": "Pomsył na rozwój ToPWR",
   "streak_counter": "Używasz ToPWR nieprzerwanie od {days, plural, =1{1 dnia} other{{days} dni}}🔥",
   "@streak_counter": {
     "description": "A message with a single parameter",
@@ -181,4 +184,10 @@
   "emergency_chairs": "W budynku zamieszczone zostały krzesła ewakuacyjne",
   "parking_location" : "Miejsca parkingowe znajdują się {location}",
   "digital_guide_website" : "www.przewodnik.pwr.edu.pl"
- }
+ },
+  "sks_old_menu": "Zobacz ostatnie menu",
+  "sks_menu_closed" : "SKS Menu jest teraz niedostępne",
+  "confirm": "Zatwierdź",
+  "push_notifications_dialog_info": "Obecnie nie korzystamy z powiadomień push, ale planujemy dodać je w przyszłości. Możesz wyrazić na nie zgodę już teraz."
+}
+
