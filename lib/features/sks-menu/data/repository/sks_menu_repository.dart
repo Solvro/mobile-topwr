@@ -31,7 +31,6 @@ Future<ExtendedSksMenuResponse> getSksMenuData(Ref ref) async {
     meals: trueMeals,
     technicalInfos: [
       ...technicalInfos,
-      "DZISIAJ BĘDZIE CZYNNE DO 14:00 !!!?!?",
     ],
   );
 }

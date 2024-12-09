@@ -189,5 +189,7 @@
   "sks_show_last_menu" : "Pokaż ostatnio dostępne menu",
   "confirm": "Zatwierdź",
   "push_notifications_dialog_info": "Obecnie nie korzystamy z powiadomień push, ale planujemy dodać je w przyszłości. Możesz wyrazić na nie zgodę już teraz.",
-  "sks_menu_technical_info": "KOMUNIKAT"
+  "sks_menu_technical_info": "KOMUNIKAT",
+  "sks_note": "UWAGA",
+  "sks_menu_you_see_last_menu": "Aktualne menu SKS jest niedostępne. Przeglądasz ostatnio dostępną wersję." 
 }

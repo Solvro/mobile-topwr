@@ -77,6 +77,12 @@ class _SksMenuView extends StatelessWidget {
       ),
       body: ListView(
         children: [
+          if (!sksMenuData.isMenuOnline)
+            TechnicalMessage(
+              color: context.colorTheme.blueAzure,
+              title: context.localize.sks_note,
+              message: context.localize.sks_menu_you_see_last_menu,
+            ),
           for (final technicalInfo in sksMenuData.technicalInfos)
             TechnicalMessage(message: technicalInfo),
           SksMenuHeader(
@@ -115,7 +121,7 @@ class _SKSMenuLottieAnimation extends HookWidget {
     final animationSize = MediaQuery.sizeOf(context).width * 0.6;
 
     return Scaffold(
-      backgroundColor: context.colorTheme.greyLight,
+      backgroundColor: context.colorTheme.whiteSoap,
       appBar: DetailViewAppBar(
         actions: const [
           SksUserDataButton(),
