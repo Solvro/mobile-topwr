@@ -12,6 +12,7 @@ import "../../../config/ui_config.dart";
 import "../../../gen/assets.gen.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../widgets/detail_views/detail_view_app_bar.dart";
+import "../../../widgets/my_text_button.dart";
 import "../../home_view/widgets/paddings.dart";
 import "../../sks_people_live/presentation/widgets/sks_user_data_button.dart";
 import "../data/models/sks_menu_response.dart";
@@ -113,55 +114,21 @@ class _SKSMenuLottieAnimation extends HookWidget {
     if (error != null) {
       Logger().e(error.toString());
     }
+    final animationSize = MediaQuery.sizeOf(context).width * 0.6;
 
     return Scaffold(
+      backgroundColor: context.colorTheme.greyLight,
       appBar: DetailViewAppBar(
         actions: const [
           SksUserDataButton(),
         ],
       ),
-      body: Stack(
-        alignment: Alignment.center,
-        children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const SizedBox(height: 200),
-              if (isAnimationCompleted.value)
-                Padding(
-                  padding: const EdgeInsets.only(top: 16),
-                  child: Text(
-                    context.localize.sks_menu_closed,
-                    style: context.textTheme.headline,
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              if (error != null && isAnimationCompleted.value)
-                Padding(
-                  padding: const EdgeInsets.only(top: 8),
-                  child: Text(
-                    error.toString(),
-                    style: context.textTheme.titleGrey,
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              if (onShowLastMenuTap != null && isAnimationCompleted.value)
-                Padding(
-                  padding: const EdgeInsets.only(top: 16),
-                  child: ElevatedButton(
-                    onPressed: onShowLastMenuTap,
-                    child: Text(
-                      context.localize.sks_show_last_menu,
-                      style: context.textTheme.lightTitle,
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                ),
-            ],
-          ),
-          Align(
-            child: SizedBox.square(
-              dimension: 200,
+      body: Center(
+        child: Column(
+          children: [
+            const Spacer(),
+            SizedBox.square(
+              dimension: animationSize,
               child: Lottie.asset(
                 Assets.animations.sksClosed,
                 fit: BoxFit.cover,
@@ -170,14 +137,55 @@ class _SKSMenuLottieAnimation extends HookWidget {
                 renderCache: RenderCache.drawingCommands,
                 onLoaded: (composition) {
                   final totalDuration = composition.duration;
-                  Future.delayed(totalDuration, () {
+                  Future.delayed(
+                      totalDuration *
+                          0.8, // in my opinion the animation is a bit boring at the end, so we can show the texts a bit earlier
+                      () {
                     isAnimationCompleted.value = true;
                   });
                 },
               ),
             ),
-          ),
-        ],
+            Opacity(
+              opacity: isAnimationCompleted.value ? 1 : 0,
+              child: Transform.translate(
+                offset: Offset(
+                  0,
+                  -(animationSize *
+                      0.10), // the animation has some extra space at the bottom
+                ),
+                child: Column(
+                  children: [
+                    Text(
+                      context.localize.sks_menu_closed,
+                      style: context.textTheme.headline.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    if (error != null)
+                      Text(
+                        error.toString(),
+                        style: context.textTheme.titleGrey,
+                        textAlign: TextAlign.center,
+                      ),
+                    if (onShowLastMenuTap != null)
+                      Padding(
+                        padding: const EdgeInsets.only(top: 12),
+                        child: MyTextButton(
+                          actionTitle: context.localize.sks_show_last_menu,
+                          onClick: onShowLastMenuTap,
+                          showBorder: true,
+                          color: context.colorTheme.blueAzure,
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+            ),
+            const Spacer(flex: 2),
+          ],
+        ),
       ),
     );
   }
