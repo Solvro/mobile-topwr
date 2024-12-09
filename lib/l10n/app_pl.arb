@@ -191,5 +191,15 @@
   "push_notifications_dialog_info": "Obecnie nie korzystamy z powiadomień push, ale planujemy dodać je w przyszłości. Możesz wyrazić na nie zgodę już teraz.",
   "sks_menu_technical_info": "KOMUNIKAT",
   "sks_note": "UWAGA",
-  "sks_menu_you_see_last_menu": "Aktualne menu SKS jest niedostępne. Przeglądasz ostatnio dostępną wersję." 
+  "sks_menu_you_see_last_menu": "Aktualne menu SKS jest niedostępne. Przeglądasz ostatnio dostępną wersję.",
+  "my_offline_error_message": "Wystąpił błąd podczas pobierania danych dotyczących {data_type}",
+  "@my_offline_error_message": {
+    "description": "An error message with a single parameter",
+    "placeholders": {
+      "data_type": {
+        "type": "String",
+        "example": "wydziałów"
+      }
+    }
+  }
 }
