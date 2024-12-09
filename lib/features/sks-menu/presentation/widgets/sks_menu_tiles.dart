@@ -6,7 +6,6 @@ import "package:separate/separate.dart";
 
 import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
-import "../../../../widgets/loading_widgets/shimmer_loading.dart";
 import "../../../../widgets/my_expansion_tile.dart";
 import "../../data/models/sks_menu_data.dart";
 
@@ -71,49 +70,6 @@ class SksMenuDishDetailsTile extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class SksMenuTilesLoading extends StatelessWidget {
-  const SksMenuTilesLoading();
-  static const groupElements = 3;
-
-  @override
-  Widget build(BuildContext context) {
-    return ShimmerLoadingItem(
-      child: ListView.separated(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        itemBuilder: (context, _) {
-          return const _LoadingTitle();
-        },
-        separatorBuilder: (context, _) => const SizedBox(),
-        itemCount: groupElements,
-      ),
-    );
-  }
-}
-
-class _LoadingTitle extends StatelessWidget {
-  const _LoadingTitle();
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(
-        SksMenuConfig.paddingLarge,
-        0,
-        SksMenuConfig.paddingLarge,
-        SksMenuConfig.paddingMedium,
-      ),
-      child: Container(
-        decoration: BoxDecoration(
-          color: context.colorTheme.whiteSoap,
-          borderRadius: BorderRadius.circular(SksMenuConfig.borderRadius),
-        ),
-        width: double.infinity,
-        height: 50,
       ),
     );
   }
