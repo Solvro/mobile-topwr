@@ -1,9 +1,10 @@
 import "dart:convert";
 import "dart:typed_data";
 
+import "package:flutter/widgets.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../client/dio_client.dart";
+import "../client/offline_error.dart";
 import "cache_manager.dart";
 
 extension DataCachingX on Ref {
@@ -13,6 +14,8 @@ extension DataCachingX on Ref {
     T Function(Map<String, dynamic> json) fromJson, {
     // returns true if the data is still valid
     required bool Function(T cachedData) extraValidityCheck,
+    required String Function(BuildContext context) localizedOfflineMessage,
+    VoidCallback? onRetry,
   }) async {
     final cacheManager = watch(restCacheManagerProvider(ttlDays));
 
@@ -26,8 +29,11 @@ extension DataCachingX on Ref {
         return data;
       }
     }
-    final dio = watch(restClientProvider);
-    final response = await dio.get(fullUrl);
+    final response = await safeGetWatch(
+      fullUrl,
+      localizedMessage: localizedOfflineMessage,
+      onRetry: onRetry,
+    );
     final sksData = fromJson(response.data as Map<String, dynamic>);
     if (extraValidityCheck(sksData)) {
       await cacheManager.putFile(
