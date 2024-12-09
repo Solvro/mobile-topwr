@@ -105,6 +105,9 @@
   "student_councils": "Samorząd",
   "hi_student": "Hej studencie!",
   "guide_development_info": "Pamiętaj, że przewodnik jest wciąż w fazie rozwoju :)",
+  "guide_ideas_info": "Masz ciekawy pomysł? Podziel się z nami!",
+  "guide_click_here": "Zgłoś swój pomysł",
+  "guide_subject_default_content": "Pomsył na rozwój ToPWR",
   "streak_counter": "Używasz ToPWR nieprzerwanie od {days, plural, =1{1 dnia} other{{days} dni}}🔥",
   "@streak_counter": {
     "description": "A message with a single parameter",
@@ -147,8 +150,43 @@
   "settings": "Ustawienia",
   "about_the_app": "O aplikacji",
   "other_view" : "Inne",
+  "map" : "Mapa",
+  "change_report_title" : "Coś się zmieniło?",
+  "change_report_button" : "Zgłoś zmianę",
+  "localization" : "Lokalizacja",
+  "amenities" : "Udogodnienia",
+  "surroundings": "Otoczenie",
+  "transport" : "Dojazd",
+  "entrances" : "Wejścia",
+  "elevators" : "Windy",
+  "toilets" : "Toilets",
+  "micro_navigation" : "Mikronawigacja",
+  "building_structure" : "Struktura budynku",
+  "room_information" : "Pomieszczenia",
+  "evacuation" : "Ewakuacja",
+  "storeys" : "{number, plural, =1{{number} piętro} few{{number} piętra} other{{number} pięter}}",
+  "@storeys" : {
+    "description" : "number of storeys with one parameter",
+    "placeholders": {
+      "number": {
+        "type": "int",
+        "example": "10"
+      }
+    }
+  },
+  "assistance_dog" : "Do budynku i wszystkich jego pomieszczeń można wejść z psem asystującym i psem przewodnikiem",
+  "induction_loop": "W budynku jest/są pętle indukcyjne",
+  "micronavigation_system": "W budynku zostały zainstalowane urządzenia systemu nawigacyjno-informacyjnego",
+  "guidance_paths": "W budynku zastosowane zostały ścieżki naprowadzające (dotykowe)",
+  "information_boards_with_braille_description": "W budynku znajdują się czytelne tablice informacyjne zawierające opisy w alfabecie Braille'a",
+  "information_boards_with_large_font": "W budynku znajdują się czytelne tablice informacyjne zawierające napisy w dużej czcionce",
+  "sign_language_interpreter": "W budynku zapewniona jest możliwość skorzystania z usług tłumacza języka migowego",
+  "emergency_chairs": "W budynku zamieszczone zostały krzesła ewakuacyjne",
+  "parking_location" : "Miejsca parkingowe znajdują się {location}",
+  "digital_guide_website" : "www.przewodnik.pwr.edu.pl",
   "sks_old_menu": "Zobacz ostatnie menu",
   "sks_menu_closed" : "SKS Menu jest teraz niedostępne",
+  "sks_show_last_menu" : "Pokaż ostatnio dostępne menu",
   "confirm": "Zatwierdź",
   "push_notifications_dialog_info": "Obecnie nie korzystamy z powiadomień push, ale planujemy dodać je w przyszłości. Możesz wyrazić na nie zgodę już teraz."
 }

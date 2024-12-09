@@ -2,7 +2,8 @@ import "dart:core";
 
 import "package:auto_route/annotations.dart";
 import "package:flutter/material.dart";
-import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:flutter_hooks/flutter_hooks.dart";
+import "package:hooks_riverpod/hooks_riverpod.dart";
 import "package:logger/logger.dart";
 import "package:lottie/lottie.dart";
 
@@ -20,22 +21,28 @@ import "widgets/sks_menu_header.dart";
 import "widgets/sks_menu_section.dart";
 
 @RoutePage()
-class SksMenuView extends ConsumerWidget {
+class SksMenuView extends HookConsumerWidget {
   const SksMenuView({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncSksMenuData = ref.watch(getSksMenuDataProvider);
+    final isLastMenuButtonClicked = useState(false);
 
     return asyncSksMenuData.when(
-      data: (sksMenuData) => _SksMenuView(
-        asyncSksMenuData.value ??
-            SksMenuResponse(
-              isMenuOnline: false,
-              lastUpdate: DateTime.now(),
-              meals: List.empty(),
-            ),
-      ),
+      data: (sksMenuData) {
+        if (!sksMenuData.isMenuOnline && !isLastMenuButtonClicked.value) {
+          return _SKSMenuLottieAnimation(
+            onShowLastMenuTap: () {
+              isLastMenuButtonClicked.value = true;
+            },
+          );
+        }
+        return _SksMenuView(
+          sksMenuData: sksMenuData,
+          isLastMenuButtonClicked: isLastMenuButtonClicked.value,
+        );
+      },
       error: (error, stackTrace) => _SKSMenuLottieAnimation(error: error),
       loading: () => const Scaffold(
         body: Center(
@@ -47,12 +54,17 @@ class SksMenuView extends ConsumerWidget {
 }
 
 class _SksMenuView extends StatelessWidget {
-  const _SksMenuView(this.sksMenuData);
+  const _SksMenuView({
+    required this.sksMenuData,
+    required this.isLastMenuButtonClicked,
+  });
 
   final SksMenuResponse sksMenuData;
+  final bool isLastMenuButtonClicked;
+
   @override
   Widget build(BuildContext context) {
-    if (!sksMenuData.isMenuOnline) {
+    if (!isLastMenuButtonClicked && !sksMenuData.isMenuOnline) {
       return const _SKSMenuLottieAnimation();
     }
     return Scaffold(
@@ -84,50 +96,86 @@ class _SksMenuView extends StatelessWidget {
   }
 }
 
-class _SKSMenuLottieAnimation extends StatelessWidget {
+class _SKSMenuLottieAnimation extends HookWidget {
   const _SKSMenuLottieAnimation({
     this.error,
+    this.onShowLastMenuTap,
   });
 
   final Object? error;
+  final VoidCallback? onShowLastMenuTap;
+
   @override
   Widget build(BuildContext context) {
-    Logger().e(error.toString());
+    final isAnimationCompleted = useState(false);
+
+    if (error != null) {
+      Logger().e(error.toString());
+    }
+
     return Scaffold(
       appBar: DetailViewAppBar(
         actions: const [
           SksUserDataButton(),
         ],
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+      body: Stack(
+        alignment: Alignment.center,
         children: [
-          SizedBox.square(
-            dimension: 200,
-            child: Lottie.asset(
-              Assets.animations.sksClosed,
-              fit: BoxFit.cover,
-              repeat: false,
-              frameRate: const FrameRate(LottieAnimationConfig.frameRate),
-              renderCache: RenderCache.drawingCommands,
-            ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const SizedBox(height: 200),
+              if (isAnimationCompleted.value)
+                Padding(
+                  padding: const EdgeInsets.only(top: 16),
+                  child: Text(
+                    context.localize.sks_menu_closed,
+                    style: context.textTheme.headline,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              if (error != null && isAnimationCompleted.value)
+                Padding(
+                  padding: const EdgeInsets.only(top: 8),
+                  child: Text(
+                    error.toString(),
+                    style: context.textTheme.titleGrey,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              if (onShowLastMenuTap != null && isAnimationCompleted.value)
+                Padding(
+                  padding: const EdgeInsets.only(top: 16),
+                  child: ElevatedButton(
+                    onPressed: onShowLastMenuTap,
+                    child: Text(
+                      context.localize.sks_show_last_menu,
+                      style: context.textTheme.lightTitle,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+            ],
           ),
           Align(
-            child: Text(
-              context.localize.sks_menu_closed,
-              style: context.textTheme.headline,
-              textAlign: TextAlign.center,
-            ),
-          ),
-          if (error != null)
-            Padding(
-              padding: const EdgeInsets.only(top: 8),
-              child: Text(
-                error.toString(),
-                style: context.textTheme.titleGrey,
-                textAlign: TextAlign.center,
+            child: SizedBox.square(
+              dimension: 200,
+              child: Lottie.asset(
+                Assets.animations.sksClosed,
+                fit: BoxFit.cover,
+                repeat: false,
+                frameRate: const FrameRate(LottieAnimationConfig.frameRate),
+                renderCache: RenderCache.drawingCommands,
+                onLoaded: (composition) {
+                  final totalDuration = composition.duration;
+                  Future.delayed(totalDuration, () {
+                    isAnimationCompleted.value = true;
+                  });
+                },
               ),
             ),
+          ),
         ],
       ),
     );

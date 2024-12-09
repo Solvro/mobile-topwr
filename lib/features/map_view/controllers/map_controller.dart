@@ -17,7 +17,9 @@ class MyMapController<T extends GoogleNavigable> {
   final _controllerCompleter = Completer<AnimatedMapController>();
   Future<AnimatedMapController> get _controller => _controllerCompleter.future;
   void completeController(AnimatedMapController controller) {
-    _controllerCompleter.complete(controller);
+    if (!_controllerCompleter.isCompleted) {
+      _controllerCompleter.complete(controller);
+    }
   }
 
   Future<void> zoomOnMarker(T item) async {

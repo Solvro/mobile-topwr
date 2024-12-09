@@ -145,6 +145,7 @@ flutter:
     - assets/svg/contact_icons/x.svg
     - assets/svg/contact_icons/tiktok.svg
     - assets/svg/contact_icons/discord.svg
+    - assets/svg/digital_guide/storey.svg
     - assets/animations/error.json
     - assets/animations/search.json
     - assets/animations/offline.json
