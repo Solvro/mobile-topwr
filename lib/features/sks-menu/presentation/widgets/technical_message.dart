@@ -5,8 +5,15 @@ import "../../../../theme/app_theme.dart";
 import "../../data/models/dish_category_enum.dart";
 
 class TechnicalMessage extends StatelessWidget {
-  const TechnicalMessage({super.key, required this.message});
+  const TechnicalMessage({
+    super.key,
+    required this.message,
+    this.title,
+    this.color,
+  });
   final String message;
+  final String? title;
+  final Color? color;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -16,10 +23,10 @@ class TechnicalMessage extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(8),
         child: ColoredBox(
-          color: context.colorTheme.orangePomegranade,
+          color: color ?? context.colorTheme.orangePomegranade,
           child: ListTile(
             title: Text(
-              DishCategory.technicalInfo.getLocalizedName(context),
+              title ?? DishCategory.technicalInfo.getLocalizedName(context),
               style: context.textTheme.titleWhite,
             ),
             subtitle: Text(
