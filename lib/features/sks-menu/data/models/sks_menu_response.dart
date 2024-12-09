@@ -16,3 +16,16 @@ class SksMenuResponse with _$SksMenuResponse {
   factory SksMenuResponse.fromJson(Map<String, dynamic> json) =>
       _$SksMenuResponseFromJson(json);
 }
+
+@freezed
+class ExtendedSksMenuResponse with _$ExtendedSksMenuResponse {
+  const factory ExtendedSksMenuResponse({
+    required bool isMenuOnline,
+    required DateTime lastUpdate,
+    required List<SksMenuDish> meals,
+    required List<String> technicalInfos,
+  }) = _ExtendedSksMenuResponse;
+
+  factory ExtendedSksMenuResponse.fromJson(Map<String, dynamic> json) =>
+      _$ExtendedSksMenuResponseFromJson(json);
+}

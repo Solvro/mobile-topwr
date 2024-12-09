@@ -188,5 +188,6 @@
   "sks_menu_closed" : "SKS Menu jest teraz niedostępne",
   "sks_show_last_menu" : "Pokaż ostatnio dostępne menu",
   "confirm": "Zatwierdź",
-  "push_notifications_dialog_info": "Obecnie nie korzystamy z powiadomień push, ale planujemy dodać je w przyszłości. Możesz wyrazić na nie zgodę już teraz."
+  "push_notifications_dialog_info": "Obecnie nie korzystamy z powiadomień push, ale planujemy dodać je w przyszłości. Możesz wyrazić na nie zgodę już teraz.",
+  "sks_menu_technical_info": "KOMUNIKAT"
 }

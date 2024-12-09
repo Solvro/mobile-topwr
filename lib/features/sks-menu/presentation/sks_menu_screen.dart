@@ -13,7 +13,6 @@ import "../../../gen/assets.gen.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../../widgets/my_text_button.dart";
-import "../../home_view/widgets/paddings.dart";
 import "../../sks_people_live/presentation/widgets/sks_user_data_button.dart";
 import "../data/models/sks_menu_response.dart";
 import "../data/repository/sks_menu_repository.dart";
@@ -21,6 +20,7 @@ import "widgets/sks_menu_data_source_link.dart";
 import "widgets/sks_menu_header.dart";
 import "widgets/sks_menu_section.dart";
 import "widgets/sks_menu_view_loading.dart";
+import "widgets/technical_message.dart";
 
 @RoutePage()
 class SksMenuView extends HookConsumerWidget {
@@ -61,7 +61,7 @@ class _SksMenuView extends StatelessWidget {
     required this.isLastMenuButtonClicked,
   });
 
-  final SksMenuResponse sksMenuData;
+  final ExtendedSksMenuResponse sksMenuData;
   final bool isLastMenuButtonClicked;
 
   @override
@@ -77,16 +77,14 @@ class _SksMenuView extends StatelessWidget {
       ),
       body: ListView(
         children: [
+          for (final technicalInfo in sksMenuData.technicalInfos)
+            TechnicalMessage(message: technicalInfo),
           SksMenuHeader(
             dateTimeOfLastUpdate: sksMenuData.lastUpdate.toIso8601String(),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: HomeViewConfig.paddingMedium,
-            ),
-            child: MediumHorizontalPadding(
-              child: SksMenuSection(sksMenuData.meals),
-            ),
+            padding: const EdgeInsets.all(HomeViewConfig.paddingMedium),
+            child: SksMenuSection(sksMenuData.meals),
           ),
           const SksMenuDataSourceLink(),
           const SizedBox(
