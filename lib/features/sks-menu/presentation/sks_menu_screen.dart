@@ -4,7 +4,6 @@ import "package:auto_route/annotations.dart";
 import "package:flutter/material.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
-import "package:logger/logger.dart";
 import "package:lottie/lottie.dart";
 
 import "../../../../theme/app_theme.dart";
@@ -12,6 +11,7 @@ import "../../../config/ui_config.dart";
 import "../../../gen/assets.gen.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../widgets/detail_views/detail_view_app_bar.dart";
+import "../../../widgets/my_error_widget.dart";
 import "../../../widgets/my_text_button.dart";
 import "../../sks_people_live/presentation/widgets/sks_user_data_button.dart";
 import "../data/models/sks_menu_response.dart";
@@ -34,7 +34,7 @@ class SksMenuView extends HookConsumerWidget {
     return asyncSksMenuData.when(
       data: (sksMenuData) {
         if (!sksMenuData.isMenuOnline && !isLastMenuButtonClicked.value) {
-          return _SKSMenuLottieAnimation(
+          return _SKSMenuUnavailableAnimation(
             onShowLastMenuTap: () {
               isLastMenuButtonClicked.value = true;
             },
@@ -45,7 +45,14 @@ class SksMenuView extends HookConsumerWidget {
           isLastMenuButtonClicked: isLastMenuButtonClicked.value,
         );
       },
-      error: (error, stackTrace) => _SKSMenuLottieAnimation(error: error),
+      error: (error, stackTrace) => Scaffold(
+        appBar: DetailViewAppBar(
+          actions: const [
+            SksUserDataButton(),
+          ],
+        ),
+        body: MyErrorWidget(error),
+      ),
       loading: () => const Scaffold(
         body: Center(
           child: SksMenuViewLoading(),
@@ -67,7 +74,7 @@ class _SksMenuView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (!isLastMenuButtonClicked && !sksMenuData.isMenuOnline) {
-      return const _SKSMenuLottieAnimation();
+      return const _SKSMenuUnavailableAnimation();
     }
     return Scaffold(
       appBar: DetailViewAppBar(
@@ -102,22 +109,14 @@ class _SksMenuView extends StatelessWidget {
   }
 }
 
-class _SKSMenuLottieAnimation extends HookWidget {
-  const _SKSMenuLottieAnimation({
-    this.error,
-    this.onShowLastMenuTap,
-  });
+class _SKSMenuUnavailableAnimation extends HookWidget {
+  const _SKSMenuUnavailableAnimation({this.onShowLastMenuTap});
 
-  final Object? error;
   final VoidCallback? onShowLastMenuTap;
 
   @override
   Widget build(BuildContext context) {
     final isAnimationCompleted = useState(false);
-
-    if (error != null) {
-      Logger().e(error.toString());
-    }
     final animationSize = MediaQuery.sizeOf(context).width * 0.6;
 
     return Scaffold(
@@ -167,12 +166,6 @@ class _SKSMenuLottieAnimation extends HookWidget {
                       ),
                       textAlign: TextAlign.center,
                     ),
-                    if (error != null)
-                      Text(
-                        error.toString(),
-                        style: context.textTheme.titleGrey,
-                        textAlign: TextAlign.center,
-                      ),
                     if (onShowLastMenuTap != null)
                       Padding(
                         padding: const EdgeInsets.only(top: 12),

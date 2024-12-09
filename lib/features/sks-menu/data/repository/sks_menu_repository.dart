@@ -3,6 +3,7 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../../api_base_rest/cache/cache.dart";
 import "../../../../config/env.dart";
+import "../../../../utils/context_extensions.dart";
 import "../../../../utils/datetime_utils.dart";
 import "../models/dish_category_enum.dart";
 import "../models/sks_menu_response.dart";
@@ -19,7 +20,13 @@ Future<ExtendedSksMenuResponse> getSksMenuData(Ref ref) async {
     ttlDays,
     SksMenuResponse.fromJson,
     extraValidityCheck: (data) =>
-        data.isMenuOnline && DateTime.now().date == data.lastUpdate.date,
+        data.isMenuOnline &&
+        DateTime.now().date.isSameDay(data.lastUpdate.date),
+    localizedOfflineMessage: (context) =>
+        context.localize.my_offline_error_message(
+      context.localize.sks_menu,
+    ),
+    onRetry: () => ref.invalidateSelf(),
   );
 
   final trueMeals = sksMenuResponse.meals
@@ -35,8 +42,6 @@ Future<ExtendedSksMenuResponse> getSksMenuData(Ref ref) async {
     isMenuOnline: sksMenuResponse.isMenuOnline,
     lastUpdate: sksMenuResponse.lastUpdate,
     meals: trueMeals,
-    technicalInfos: [
-      ...technicalInfos,
-    ],
+    technicalInfos: technicalInfos,
   );
 }
