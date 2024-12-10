@@ -26,9 +26,15 @@ import "widgets/technical_message.dart";
 class SksMenuView extends HookConsumerWidget {
   const SksMenuView({super.key});
 
+  static String localizedOfflineMessage(BuildContext context) {
+    return context.localize.my_offline_error_message(
+      context.localize.sks_menu,
+    );
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final asyncSksMenuData = ref.watch(getSksMenuDataProvider);
+    final asyncSksMenuData = ref.watch(sksMenuRepositoryProvider);
     final isLastMenuButtonClicked = useState(false);
 
     return asyncSksMenuData.when(
@@ -62,7 +68,7 @@ class SksMenuView extends HookConsumerWidget {
   }
 }
 
-class _SksMenuView extends StatelessWidget {
+class _SksMenuView extends ConsumerWidget {
   const _SksMenuView({
     required this.sksMenuData,
     required this.isLastMenuButtonClicked,
@@ -72,7 +78,7 @@ class _SksMenuView extends StatelessWidget {
   final bool isLastMenuButtonClicked;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     if (!isLastMenuButtonClicked && !sksMenuData.isMenuOnline) {
       return const _SKSMenuUnavailableAnimation();
     }
@@ -82,28 +88,35 @@ class _SksMenuView extends StatelessWidget {
           SksUserDataButton(),
         ],
       ),
-      body: ListView(
-        children: [
-          if (!sksMenuData.isMenuOnline)
-            TechnicalMessage(
-              color: context.colorTheme.blueAzure,
-              title: context.localize.sks_note,
-              message: context.localize.sks_menu_you_see_last_menu,
+      body: RefreshIndicator(
+        onRefresh: () async {
+          await ref.read(sksMenuRepositoryProvider.notifier).clearCache();
+          return ref.refresh(sksMenuRepositoryProvider.future);
+        },
+        color: context.colorTheme.orangePomegranade,
+        child: ListView(
+          children: [
+            if (!sksMenuData.isMenuOnline)
+              TechnicalMessage(
+                alertType: AlertType.info,
+                title: context.localize.sks_note,
+                message: context.localize.sks_menu_you_see_last_menu,
+              ),
+            for (final technicalInfo in sksMenuData.technicalInfos)
+              TechnicalMessage(message: technicalInfo),
+            SksMenuHeader(
+              dateTimeOfLastUpdate: sksMenuData.lastUpdate.toIso8601String(),
             ),
-          for (final technicalInfo in sksMenuData.technicalInfos)
-            TechnicalMessage(message: technicalInfo),
-          SksMenuHeader(
-            dateTimeOfLastUpdate: sksMenuData.lastUpdate.toIso8601String(),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(HomeViewConfig.paddingMedium),
-            child: SksMenuSection(sksMenuData.meals),
-          ),
-          const SksMenuDataSourceLink(),
-          const SizedBox(
-            height: ScienceClubsViewConfig.mediumPadding,
-          ),
-        ],
+            Padding(
+              padding: const EdgeInsets.all(HomeViewConfig.paddingMedium),
+              child: SksMenuSection(sksMenuData.meals),
+            ),
+            const SksMenuDataSourceLink(),
+            const SizedBox(
+              height: ScienceClubsViewConfig.mediumPadding,
+            ),
+          ],
+        ),
       ),
     );
   }
