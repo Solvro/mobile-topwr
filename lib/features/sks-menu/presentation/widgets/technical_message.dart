@@ -4,16 +4,18 @@ import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
 import "../../data/models/dish_category_enum.dart";
 
+enum AlertType { info, error }
+
 class TechnicalMessage extends StatelessWidget {
   const TechnicalMessage({
     super.key,
     required this.message,
     this.title,
-    this.color,
+    this.alertType = AlertType.error,
   });
   final String message;
   final String? title;
-  final Color? color;
+  final AlertType alertType;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -21,9 +23,12 @@ class TechnicalMessage extends StatelessWidget {
         HomeViewConfig.paddingMedium,
       ),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(8),
+        borderRadius:
+            BorderRadius.circular(AppWidgetsConfig.borderRadiusMedium),
         child: ColoredBox(
-          color: color ?? context.colorTheme.orangePomegranade,
+          color: alertType == AlertType.error
+              ? context.colorTheme.orangePomegranade
+              : context.colorTheme.blueAzure,
           child: ListTile(
             title: Text(
               title ?? DishCategory.technicalInfo.getLocalizedName(context),
