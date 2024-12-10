@@ -1,3 +1,4 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 
 import "sks_menu_data.dart";
@@ -22,8 +23,8 @@ class ExtendedSksMenuResponse with _$ExtendedSksMenuResponse {
   const factory ExtendedSksMenuResponse({
     required bool isMenuOnline,
     required DateTime lastUpdate,
-    required List<SksMenuDish> meals,
-    required List<String> technicalInfos,
+    required IList<SksMenuDish> meals,
+    required IList<String> technicalInfos,
   }) = _ExtendedSksMenuResponse;
 
   factory ExtendedSksMenuResponse.fromJson(Map<String, dynamic> json) =>

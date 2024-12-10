@@ -8,6 +8,14 @@ import "../client/offline_error.dart";
 import "cache_manager.dart";
 
 extension DataCachingX on Ref {
+  Future<void> clearCache(
+    String fullUrl,
+    int ttlDays,
+  ) async {
+    final cacheManager = watch(restCacheManagerProvider(ttlDays));
+    await cacheManager.removeFile(fullUrl);
+  }
+
   Future<T> getAndCacheData<T>(
     String fullUrl,
     int ttlDays,
