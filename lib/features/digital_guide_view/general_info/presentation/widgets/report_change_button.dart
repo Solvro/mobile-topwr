@@ -20,7 +20,24 @@ class ReportChangeButton extends ConsumerWidget {
           const SizedBox(height: 8),
           ElevatedButton(
             onPressed: () async {
-              await openEmailApp(context, ref);
+              final errorMessageToast =
+                  context.localize.report_change_error_toast_message;
+              final backgroundColorToast = context.colorTheme.greyLight;
+              final textColorToast = context.colorTheme.blackMirage;
+
+              if (!await ref.launch(
+                "mailto:${context.localize.report_change_email}?subject=${Uri.encodeComponent(context.localize.report_change_subject)}",
+              )) {
+                unawaited(
+                  Fluttertoast.showToast(
+                    msg: errorMessageToast,
+                    toastLength: Toast.LENGTH_LONG,
+                    gravity: ToastGravity.BOTTOM,
+                    backgroundColor: backgroundColorToast,
+                    textColor: textColorToast,
+                  ),
+                );
+              }
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: context.colorTheme.blueAzure,
@@ -37,26 +54,6 @@ class ReportChangeButton extends ConsumerWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-Future<void> openEmailApp(BuildContext context, WidgetRef ref) async {
-  final errorMessageToast = context.localize.report_change_error_toast_message;
-  final backgroundColorToast = context.colorTheme.greyLight;
-  final textColorToast = context.colorTheme.blackMirage;
-
-  if (await ref.launch(
-    "mailto:${context.localize.report_change_email}?subject=${Uri.encodeComponent(context.localize.report_change_subject)}",
-  )) {
-    unawaited(
-      Fluttertoast.showToast(
-        msg: errorMessageToast,
-        toastLength: Toast.LENGTH_LONG,
-        gravity: ToastGravity.BOTTOM,
-        backgroundColor: backgroundColorToast,
-        textColor: textColorToast,
       ),
     );
   }
