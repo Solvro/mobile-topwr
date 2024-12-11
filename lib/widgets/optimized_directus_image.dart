@@ -18,20 +18,9 @@ class OptimizedDirectusImage extends MyCachedImage {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        assert(
-          constraints.maxWidth != double.infinity,
-          "MaxWidth constraints around `OptimizedDirectusImage` must be finite. Either wrap it inside a parent with a finite width or use `MyCachedImage` directly.",
-        );
-        assert(
-          constraints.maxHeight != double.infinity,
-          "MaxHeight constraints around `OptimizedDirectusImage` must be finite. Either wrap it inside a parent with a finite height or use `MyCachedImage` directly.",
-        );
-        final pixelsDensity = MediaQuery.devicePixelRatioOf(context);
+        _assertConstraints(constraints);
         return _LoadSizeOnce(
-          initialSize: Size(
-            constraints.maxWidth * pixelsDensity,
-            constraints.maxHeight * pixelsDensity,
-          ),
+          initialSize: _getImagesSize(context, constraints),
           builder: (BuildContext context, Size size) => MyCachedImage(
             imageUrl?.directusUrlWithSize(size, boxFit),
             noShimmeringLoading: noShimmeringLoading,
@@ -40,6 +29,25 @@ class OptimizedDirectusImage extends MyCachedImage {
           ),
         );
       },
+    );
+  }
+
+  void _assertConstraints(BoxConstraints constraints) {
+    assert(
+      constraints.maxWidth != double.infinity,
+      "MaxWidth constraints around `OptimizedDirectusImage` must be finite. Either wrap it inside a parent with a finite width or use `MyCachedImage` directly.",
+    );
+    assert(
+      constraints.maxHeight != double.infinity,
+      "MaxHeight constraints around `OptimizedDirectusImage` must be finite. Either wrap it inside a parent with a finite height or use `MyCachedImage` directly.",
+    );
+  }
+
+  Size _getImagesSize(BuildContext context, BoxConstraints constraints) {
+    final pixelsDensity = MediaQuery.devicePixelRatioOf(context);
+    return Size(
+      constraints.maxWidth * pixelsDensity,
+      constraints.maxHeight * pixelsDensity,
     );
   }
 }
