@@ -21,7 +21,7 @@ class AmenitiesExpansionTileContent extends StatelessWidget {
         if (digitalGuideResponseExtended.canAssistanceDog)
           ContactIconsModel(
             text: context.localize.assistance_dog,
-            icon: Assets.svg.digitalGuide.assistanceDog, 
+            icon: Assets.svg.digitalGuide.assistanceDog,
           ),
         if (digitalGuideResponseExtended.isInductionLoop)
           ContactIconsModel(

@@ -73,7 +73,7 @@ class _DigitalGuideView extends ConsumerWidget {
                 .replaceAll("ulica", "ul."),
             icon: Assets.svg.contactIcons.compass,
           ),
-          if(digitalGuideResponseExtended.telephoneNumber.isNotEmpty) 
+          if (digitalGuideResponseExtended.telephoneNumber.isNotEmpty)
             ContactIconsModel(
               text: digitalGuideResponseExtended.telephoneNumber,
               icon: Assets.svg.contactIcons.phone,
