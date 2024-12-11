@@ -28,7 +28,7 @@ class ScienceClubsSection extends ConsumerWidget {
           ),
           FilledButton(
             onPressed: () {
-              unawaited(ref.navigateDigitalGuide(101));
+              unawaited(ref.navigateDigitalGuide(313));
             },
             child: const Text("Navigate to digital guide screen!"),
           ),

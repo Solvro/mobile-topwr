@@ -21,42 +21,42 @@ class AmenitiesExpansionTileContent extends StatelessWidget {
         if (digitalGuideResponseExtended.canAssistanceDog)
           ContactIconsModel(
             text: context.localize.assistance_dog,
-            icon: Assets.svg.contactIcons.compass,
+            icon: Assets.svg.digitalGuide.assistanceDog, 
           ),
         if (digitalGuideResponseExtended.isInductionLoop)
           ContactIconsModel(
             text: context.localize.induction_loop,
-            icon: Assets.svg.contactIcons.compass,
+            icon: Assets.svg.digitalGuide.inductionLoop,
           ),
         if (digitalGuideResponseExtended.isMicroNavigationSystem)
           ContactIconsModel(
             text: context.localize.micronavigation_system,
-            icon: Assets.svg.contactIcons.compass,
+            icon: Assets.svg.digitalGuide.micronavigation,
           ),
         if (digitalGuideResponseExtended.areGuidancePaths)
           ContactIconsModel(
-            text: context.localize.guidance_paths,
-            icon: Assets.svg.contactIcons.compass,
+            text: context.localize.orientation_paths,
+            icon: Assets.svg.digitalGuide.orientationPaths,
           ),
         if (digitalGuideResponseExtended.areBrailleBoards)
           ContactIconsModel(
             text: context.localize.information_boards_with_braille_description,
-            icon: Assets.svg.contactIcons.compass,
+            icon: Assets.svg.digitalGuide.braille,
           ),
         if (digitalGuideResponseExtended.areLargeFontBoards)
           ContactIconsModel(
             text: context.localize.information_boards_with_large_font,
-            icon: Assets.svg.contactIcons.compass,
+            icon: Assets.svg.digitalGuide.largeFont,
           ),
         if (digitalGuideResponseExtended.isSignLanguageInterpreter)
           ContactIconsModel(
             text: context.localize.sign_language_interpreter,
-            icon: Assets.svg.contactIcons.compass,
+            icon: Assets.svg.digitalGuide.signLanguage,
           ),
         if (digitalGuideResponseExtended.areEmergencyChairs)
           ContactIconsModel(
             text: context.localize.emergency_chairs,
-            icon: Assets.svg.contactIcons.compass,
+            icon: Assets.svg.digitalGuide.emergencyChairs,
           ),
       ].lock,
     );
