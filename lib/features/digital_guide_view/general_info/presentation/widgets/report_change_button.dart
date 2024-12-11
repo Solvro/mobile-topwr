@@ -25,7 +25,8 @@ class ReportChangeButton extends ConsumerWidget {
               final backgroundColorToast = context.colorTheme.greyLight;
               final textColorToast = context.colorTheme.blackMirage;
 
-              final emailUrl = "mailto:${context.localize.report_change_email}?subject=${Uri.encodeComponent(context.localize.report_change_subject)}";
+              final emailUrl =
+                  "mailto:${context.localize.report_change_email}?subject=${Uri.encodeComponent(context.localize.report_change_subject)}";
 
               if (!await ref.launch(
                 emailUrl,
