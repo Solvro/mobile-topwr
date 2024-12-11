@@ -1,16 +1,17 @@
 import "dart:async";
 
 import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:fluttertoast/fluttertoast.dart";
-import "package:url_launcher/url_launcher.dart";
 
 import "../../../../../config/ui_config.dart";
 import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/context_extensions.dart";
+import "../../../../../utils/launch_url_util.dart";
 
-class ReportChangeButton extends StatelessWidget {
+class ReportChangeButton extends ConsumerWidget {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
       padding: AppWidgetsConfig.paddingMedium,
       child: Column(
@@ -19,7 +20,7 @@ class ReportChangeButton extends StatelessWidget {
           const SizedBox(height: 8),
           ElevatedButton(
             onPressed: () async {
-              await openEmailApp(context);
+              await openEmailApp(context, ref);
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: context.colorTheme.blueAzure,
@@ -41,19 +42,14 @@ class ReportChangeButton extends StatelessWidget {
   }
 }
 
-Future<void> openEmailApp(BuildContext context) async {
+Future<void> openEmailApp(BuildContext context, WidgetRef ref) async {
   final errorMessageToast = context.localize.report_change_error_toast_message;
   final backgroundColorToast = context.colorTheme.greyLight;
   final textColorToast = context.colorTheme.blackMirage;
 
-  final Uri emailUrl = Uri(
-    scheme: "mailto",
-    path: context.localize.report_change_email,
-    query:
-        "subject=${Uri.encodeComponent(context.localize.report_change_subject)}",
-  );
-
-  if (await canLaunchUrl(emailUrl) && !await launchUrl(emailUrl)) {
+  if (await ref.launch(
+    "mailto:${context.localize.report_change_email}?subject=${Uri.encodeComponent(context.localize.report_change_subject)}",
+  )) {
     unawaited(
       Fluttertoast.showToast(
         msg: errorMessageToast,
