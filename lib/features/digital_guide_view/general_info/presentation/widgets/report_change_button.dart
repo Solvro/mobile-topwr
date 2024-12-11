@@ -42,8 +42,10 @@ class ReportChangeButton extends StatelessWidget {
 }
 
 Future<void> openEmailApp(BuildContext context) async {
+
   final errorMessageToast = context.localize.report_change_error_toast_message;
-  final backgroundColorToast = context.colorTheme.blackMirage;
+  final backgroundColorToast = context.colorTheme.greyLight;
+  final textColorToast = context.colorTheme.blackMirage;
 
   final Uri emailUrl = Uri(
     scheme: "mailto",
@@ -52,15 +54,14 @@ Future<void> openEmailApp(BuildContext context) async {
         "subject=${Uri.encodeComponent(context.localize.report_change_subject)}",
   );
 
-  debugPrint("Email url: $emailUrl");
-
-  if (!await launchUrl(emailUrl)) {
+  if (await canLaunchUrl(emailUrl) && !await launchUrl(emailUrl)) {
     unawaited(
       Fluttertoast.showToast(
         msg: errorMessageToast,
         toastLength: Toast.LENGTH_LONG,
-        gravity: ToastGravity.TOP,
+        gravity: ToastGravity.BOTTOM,
         backgroundColor: backgroundColorToast,
+        textColor: textColorToast,
       ),
     );
   }
