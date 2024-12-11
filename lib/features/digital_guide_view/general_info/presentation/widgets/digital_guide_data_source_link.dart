@@ -9,7 +9,8 @@ class DigitalGuideDataSourceLink extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: DigitalGuideConfig.paddingMedium),
+      padding: const EdgeInsets.symmetric(
+          horizontal: DigitalGuideConfig.paddingMedium,),
       child: Text.rich(
         TextSpan(
           text: "${context.localize.data_come_from_website}: ",
