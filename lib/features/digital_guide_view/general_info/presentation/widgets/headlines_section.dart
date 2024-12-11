@@ -22,7 +22,7 @@ class HeadlinesSection extends StatelessWidget {
             name,
             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
           ),
-          if(description.isNotEmpty) Text(description),
+          if (description.isNotEmpty) Text(description),
         ],
       ),
     );
