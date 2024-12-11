@@ -42,7 +42,6 @@ class ReportChangeButton extends StatelessWidget {
 }
 
 Future<void> openEmailApp(BuildContext context) async {
-
   final errorMessageToast = context.localize.report_change_error_toast_message;
   final backgroundColorToast = context.colorTheme.greyLight;
   final textColorToast = context.colorTheme.blackMirage;
