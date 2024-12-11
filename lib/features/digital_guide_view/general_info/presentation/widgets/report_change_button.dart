@@ -1,4 +1,8 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
+import "package:fluttertoast/fluttertoast.dart";
+import "package:url_launcher/url_launcher.dart";
 
 import "../../../../../config/ui_config.dart";
 import "../../../../../theme/app_theme.dart";
@@ -11,11 +15,12 @@ class ReportChangeButton extends StatelessWidget {
       padding: AppWidgetsConfig.paddingMedium,
       child: Column(
         children: [
-          Text(context.localize.change_report_title),
+          Text(context.localize.report_change_title),
           const SizedBox(height: 8),
           ElevatedButton(
-            // TODO(Bartosh): handle action
-            onPressed: () {},
+            onPressed: () async {
+              await openEmailApp(context);
+            },
             style: ElevatedButton.styleFrom(
               backgroundColor: context.colorTheme.blueAzure,
               padding: AppWidgetsConfig.paddingMedium,
@@ -26,11 +31,36 @@ class ReportChangeButton extends StatelessWidget {
               ),
             ),
             child: Text(
-              context.localize.change_report_button,
+              context.localize.report_change_button,
               style: TextStyle(color: context.colorTheme.whiteSoap),
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+Future<void> openEmailApp(BuildContext context) async {
+  final errorMessageToast = context.localize.report_change_error_toast_message;
+  final backgroundColorToast = context.colorTheme.blackMirage;
+
+  final Uri emailUrl = Uri(
+    scheme: "mailto",
+    path: context.localize.report_change_email,
+    query:
+        "subject=${Uri.encodeComponent(context.localize.report_change_subject)}",
+  );
+
+  debugPrint("Email url: $emailUrl");
+
+  if (!await launchUrl(emailUrl)) {
+    unawaited(
+      Fluttertoast.showToast(
+        msg: errorMessageToast,
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.TOP,
+        backgroundColor: backgroundColorToast,
       ),
     );
   }
