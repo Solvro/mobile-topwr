@@ -23,26 +23,22 @@ class ZoomableOptimizedDirectusImage extends StatefulWidget {
 }
 
 class _ZoomableOptimizedDirectusImageState extends State<ZoomableOptimizedDirectusImage> {
-  double _scale = 1.0;
-  bool _isFullScreen = false; // Track fullscreen state
+  bool _isFullScreen = false;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         if (_isFullScreen) {
-          Navigator.of(context).pop(); // Close fullscreen if already opened
+          Navigator.of(context).pop();
         } else {
-          _showFullScreenImage(context); // Open fullscreen
+          _showFullScreenImage(context);
         }
       },
-      child: Transform.scale(
-        scale: _scale,
-        child: OptimizedDirectusImage(
-          widget.imageUrl,
-          boxFit: widget.boxFit,
-          noShimmeringLoading: widget.noShimmeringLoading,
-        ),
+      child: OptimizedDirectusImage(
+        widget.imageUrl,
+        boxFit: widget.boxFit,
+        noShimmeringLoading: widget.noShimmeringLoading,
       ),
     );
   }
@@ -56,7 +52,7 @@ class _ZoomableOptimizedDirectusImageState extends State<ZoomableOptimizedDirect
       MaterialPageRoute(
         builder: (context) => _FullScreenView(
           imageUrl: widget.imageUrl,
-          initialScale: _scale,
+          noShimmeringLoading: widget.noShimmeringLoading,
           onTap: () {
             setState(() {
               _isFullScreen = false; // Close fullscreen on tap
@@ -69,92 +65,36 @@ class _ZoomableOptimizedDirectusImageState extends State<ZoomableOptimizedDirect
   }
 }
 
-class _FullScreenView extends StatefulWidget {
+class _FullScreenView extends StatelessWidget {
   final String? imageUrl;
-  final double initialScale;
+  final bool noShimmeringLoading;
+
   final VoidCallback onTap;
 
   const _FullScreenView({
     required this.imageUrl,
-    required this.initialScale,
+    required this.noShimmeringLoading,
     required this.onTap,
   });
 
   @override
-  _FullScreenViewState createState() => _FullScreenViewState();
-}
-
-class _FullScreenViewState extends State<_FullScreenView> {
-  double _scale;
-  double _previousScale = 1.0;
-
-  Offset offset = Offset.zero;
-  Offset prevOffset = Offset.zero;
-
-  _FullScreenViewState() : _scale = 1.0;
-
-  @override
-  void initState() {
-    super.initState();
-    _scale = widget.initialScale; // Start with the scale from the original widget
-  }
-  Offset initialFocalPoint = Offset.zero;
-  @override
-  Widget build(BuildContext context) {
-    final Size screenSize = MediaQuery.of(context).size; // Screen dimensions
-    final double screenWidth = screenSize.width;
-    final double screenHeight = screenSize.height;
-
+  Widget build(BuildContext build) {
     return Scaffold(
       backgroundColor: ColorsConsts.greyLight,
       body: GestureDetector(
-        onTap: widget.onTap,
-        onScaleStart: (details) {
-          _previousScale = _scale;
-          prevOffset = offset;
-          initialFocalPoint = details.focalPoint;
-        },
-        onScaleUpdate: (details) {
-          setState(() {
-            // Update scale
-            double delta = _scale - clampDouble(_previousScale * details.scale, 1, 4);
-            _scale = clampDouble(_previousScale * details.scale, 1, 4);
-
-              offset += details.focalPointDelta - (offset - prevOffset)*delta;
-            final double imageWidth = screenWidth * _scale;
-            final double imageHeight = screenHeight * _scale;
-
-            // Calculate the maximum offset based on scaled image size
-            final double maxX = (imageWidth - screenWidth) / 2;
-            final double maxY = (imageHeight - screenHeight) / 2;
-
-            // Clamp offset to ensure the image remains within bounds
-            offset = Offset(
-              offset.dx.clamp(-maxX, maxX),
-              offset.dy.clamp(-maxY, maxY),
-            );
-          });
-        },
-        onScaleEnd: (details) {
-          _previousScale = _scale; // Finalize scale
-        },
-        child: Center(
-          child: Transform.translate(
-            offset: offset,
-            child: Transform.scale(
-              scale: _scale,
+          onTap: onTap,
+          child:  Center(
+            child: InteractiveViewer(
+              minScale: 1,
+              maxScale: 3,
               child: OptimizedDirectusImage(
-                widget.imageUrl,
+                imageUrl,
                 boxFit: BoxFit.contain,
-                noShimmeringLoading: false,
+                noShimmeringLoading: noShimmeringLoading
               ),
-            ),
-          ),
-        ),
-      ),
+            )
+          )
+      )
     );
   }
-
-
-
 }
