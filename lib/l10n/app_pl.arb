@@ -155,7 +155,7 @@
   "report_change_button" : "Zgłoś zmianę",
   "report_change_email" : "kn.solvro@pwr.edu.pl",
   "report_change_subject" : "Sugestia zmiany - ToPWR",
-  "report_change_error_toast_message" : "Nie można otworzyć aplikacji mailowej",
+  "report_change_error_toast_message" : "Wystąpił błąd przy otwieraniu hiperłącza, sprawdź uprawnienia aplikacji",
   "localization" : "Lokalizacja",
   "amenities" : "Udogodnienia",
   "surroundings": "Otoczenie",
