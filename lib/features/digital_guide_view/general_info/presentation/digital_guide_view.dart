@@ -77,9 +77,10 @@ class _DigitalGuideView extends ConsumerWidget {
             ContactIconsModel(
               text: digitalGuideResponseExtended.telephoneNumber,
               icon: Assets.svg.contactIcons.phone,
-              // TODO(Bartosh): url not working, nothing happens
-              url:
-                  "tel:+48${digitalGuideResponseExtended.telephoneNumber.replaceAll("<p>", "").replaceAll("</p>", "")}",
+              url: () {
+                final match = RegExp(r"\d{9}").firstMatch(digitalGuideResponseExtended.telephoneNumber.replaceAll("+48", ""));
+                return match != null ? "tel:+48${match.group(0)}" : "";
+              }(),
             ),
           ContactIconsModel(
             text: context.localize
