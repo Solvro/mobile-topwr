@@ -180,7 +180,7 @@
   "assistance_dog" : "Do budynku i wszystkich jego pomieszczeń można wejść z psem asystującym i psem przewodnikiem",
   "induction_loop": "W budynku jest/są pętle indukcyjne",
   "micronavigation_system": "W budynku zostały zainstalowane urządzenia systemu nawigacyjno-informacyjnego",
-  "guidance_paths": "W budynku zastosowane zostały ścieżki naprowadzające (dotykowe)",
+  "orientation_paths": "W budynku zastosowane zostały ścieżki naprowadzające (dotykowe)",
   "information_boards_with_braille_description": "W budynku znajdują się czytelne tablice informacyjne zawierające opisy w alfabecie Braille'a",
   "information_boards_with_large_font": "W budynku znajdują się czytelne tablice informacyjne zawierające napisy w dużej czcionce",
   "sign_language_interpreter": "W budynku zapewniona jest możliwość skorzystania z usług tłumacza języka migowego",

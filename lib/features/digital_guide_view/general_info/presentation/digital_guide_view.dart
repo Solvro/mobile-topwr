@@ -73,13 +73,18 @@ class _DigitalGuideView extends ConsumerWidget {
                 .replaceAll("ulica", "ul."),
             icon: Assets.svg.contactIcons.compass,
           ),
-          ContactIconsModel(
-            text: digitalGuideResponseExtended.telephoneNumber,
-            icon: Assets.svg.contactIcons.phone,
-            // TODO(Bartosh): url not working, nothing happens
-            url:
-                "tel:+48${digitalGuideResponseExtended.telephoneNumber.replaceAll("<p>", "").replaceAll("</p>", "")}",
-          ),
+          if (digitalGuideResponseExtended.telephoneNumber.isNotEmpty)
+            ContactIconsModel(
+              text: digitalGuideResponseExtended.telephoneNumber,
+              icon: Assets.svg.contactIcons.phone,
+              url: () {
+                final match = RegExp(r"\d{9}").firstMatch(
+                  digitalGuideResponseExtended.telephoneNumber
+                      .replaceAll("+48", ""),
+                );
+                return match != null ? "tel:+48${match.group(0)}" : "";
+              }(),
+            ),
           ContactIconsModel(
             text: context.localize
                 .storeys(digitalGuideResponseExtended.numberOfStoreys),
