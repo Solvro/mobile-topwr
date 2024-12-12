@@ -13,7 +13,8 @@ class ContactIconsModel {
   ContactIconsModel({
     String? text,
     this.url,
-  })  : icon = url.determineIcon(),
+    String? icon,
+  })  : icon = icon ?? url.determineIcon(),
         order = url.determineIconOrder(),
         text = text ?? url;
 }

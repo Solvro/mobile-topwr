@@ -9,7 +9,7 @@ import "sks_menu_tiles.dart";
 class SksMenuSection extends StatelessWidget {
   const SksMenuSection(this.data, {super.key});
 
-  final List<SksMenuDish> data;
+  final IList<SksMenuDish> data;
 
   @override
   Widget build(BuildContext context) {

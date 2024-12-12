@@ -14,23 +14,31 @@ class SksMenuDataSourceLink extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Text.rich(
-      TextSpan(
-        text: "${context.localize.data_come_from_website}: ",
-        children: [
-          TextSpan(
-            text: SksMenuConfig.sksDataSource.replaceFirst("https://", "www."),
-            style: context.textTheme.bodyOrange.copyWith(
-              decoration: TextDecoration.underline,
-              decorationColor: context.colorTheme.orangePomegranade,
-            ),
-            recognizer: TapGestureRecognizer()
-              ..onTap = () async => ref.launch(SksMenuConfig.sksDataSource),
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: Text.rich(
+        TextSpan(
+          text: "${context.localize.data_come_from_website}: ",
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
           ),
-        ],
+          children: [
+            TextSpan(
+              text:
+                  SksMenuConfig.sksDataSource.replaceFirst("https://", "www."),
+              style: context.textTheme.bodyOrange.copyWith(
+                decoration: TextDecoration.underline,
+                decorationColor: context.colorTheme.orangePomegranade,
+                fontWeight: FontWeight.bold,
+              ),
+              recognizer: TapGestureRecognizer()
+                ..onTap = () async => ref.launch(SksMenuConfig.sksDataSource),
+            ),
+          ],
+        ),
+        textAlign: TextAlign.center,
+        style: context.textTheme.body,
       ),
-      textAlign: TextAlign.center,
-      style: context.textTheme.body,
     );
   }
 }

@@ -5,7 +5,9 @@ import "package:logger/logger.dart";
 import "package:lottie/lottie.dart";
 
 import "../api_base/query_adapter.dart";
+import "../api_base_rest/client/offline_error.dart";
 import "../config/ui_config.dart";
+import "../features/offline_messages/widgets/general_offline_message.dart";
 import "../features/offline_messages/widgets/grapgql_offline_message.dart";
 import "../features/parkings_view/api_client/iparking_commands.dart";
 import "../features/parkings_view/widgets/offline_parkings_view.dart";
@@ -32,6 +34,11 @@ class MyErrorWidget extends HookWidget {
     return switch (error) {
       ParkingsOfflineException() => const OfflineParkingsView(),
       GqlOfflineException(:final ttlKey) => OfflineGraphQLMessage(ttlKey),
+      RestFrameworkOfflineException(:final localizedMessage, :final onRetry) =>
+        OfflineMessage(
+          localizedMessage(context),
+          onRefresh: onRetry,
+        ),
       _ => Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

@@ -1,6 +1,6 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
-import "package:flutter/cupertino.dart";
 import "package:flutter/gestures.dart";
+import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../theme/app_theme.dart";
@@ -9,10 +9,10 @@ import "../../utils/launch_url_util.dart";
 import "contact_icon_widget.dart";
 
 class ContactSection extends StatelessWidget {
-  const ContactSection({super.key, required this.list, required this.title});
+  const ContactSection({super.key, required this.list, this.title});
 
   final IList<ContactIconsModel> list;
-  final String title;
+  final String? title;
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +23,10 @@ class ContactSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(title, style: context.textTheme.headline),
-          const SizedBox(height: 16),
+          if (title != null) ...[
+            Text(title!, style: context.textTheme.headline),
+            const SizedBox(height: 16),
+          ],
           for (final item in sorted)
             Padding(
               padding: const EdgeInsets.only(bottom: 16),
@@ -59,11 +61,10 @@ class _ContactIcon extends ConsumerWidget {
         const SizedBox(width: 16),
         Expanded(
           child: RichText(
-            overflow: TextOverflow.ellipsis,
-            maxLines: 2,
             text: TextSpan(
               text: text,
               style: context.textTheme.bodyOrange.copyWith(
+                color: url.isNotEmpty ? null : Colors.black,
                 decoration: url.isNotEmpty
                     ? TextDecoration.underline
                     : TextDecoration.none,

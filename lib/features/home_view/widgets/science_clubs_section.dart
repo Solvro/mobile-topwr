@@ -1,3 +1,5 @@
+import "dart:async";
+
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
@@ -23,6 +25,12 @@ class ScienceClubsSection extends ConsumerWidget {
             title: context.localize.study_circles,
             actionTitle: context.localize.list,
             onClick: ref.navigateScienceClubs,
+          ),
+          FilledButton(
+            onPressed: () {
+              unawaited(ref.navigateDigitalGuide(101));
+            },
+            child: const Text("Navigate to digital guide screen!"),
           ),
           const _ScienceClubsList(),
         ],
