@@ -10,7 +10,8 @@ enum DishCategory {
   vegetarianDish,
   meatDish,
   sideDish,
-  drink;
+  drink,
+  technicalInfo;
 
   @override
   String toString() => name;
@@ -25,7 +26,8 @@ extension GetLocalizedNameX on DishCategory {
         context.localize.sks_menu_vegetarian_dishes,
       DishCategory.meatDish => context.localize.sks_menu_meat_dishes,
       DishCategory.sideDish => context.localize.sks_menu_side_dishes,
-      DishCategory.drink => context.localize.sks_menu_drinks
+      DishCategory.drink => context.localize.sks_menu_drinks,
+      DishCategory.technicalInfo => context.localize.sks_menu_technical_info,
     };
   }
 }

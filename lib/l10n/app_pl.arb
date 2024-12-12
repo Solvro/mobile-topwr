@@ -151,8 +151,11 @@
   "about_the_app": "O aplikacji",
   "other_view" : "Inne",
   "map" : "Mapa",
-  "change_report_title" : "Coś się zmieniło?",
-  "change_report_button" : "Zgłoś zmianę",
+  "report_change_title" : "Coś się zmieniło?",
+  "report_change_button" : "Zgłoś zmianę",
+  "report_change_email" : "kn.solvro@pwr.edu.pl",
+  "report_change_subject" : "Sugestia zmiany - ToPWR",
+  "report_change_error_toast_message" : "Nie można otworzyć aplikacji mailowej",
   "localization" : "Lokalizacja",
   "amenities" : "Udogodnienia",
   "surroundings": "Otoczenie",
@@ -188,5 +191,18 @@
   "sks_menu_closed" : "SKS Menu jest teraz niedostępne",
   "sks_show_last_menu" : "Pokaż ostatnio dostępne menu",
   "confirm": "Zatwierdź",
-  "push_notifications_dialog_info": "Obecnie nie korzystamy z powiadomień push, ale planujemy dodać je w przyszłości. Możesz wyrazić na nie zgodę już teraz."
+  "push_notifications_dialog_info": "Obecnie nie korzystamy z powiadomień push, ale planujemy dodać je w przyszłości. Możesz wyrazić na nie zgodę już teraz.",
+  "sks_menu_technical_info": "KOMUNIKAT",
+  "sks_note": "UWAGA",
+  "sks_menu_you_see_last_menu": "Aktualne menu SKS jest niedostępne. Przeglądasz ostatnio dostępną wersję.",
+  "my_offline_error_message": "Wystąpił błąd podczas pobierania danych dotyczących {data_type}",
+  "@my_offline_error_message": {
+    "description": "An error message with a single parameter",
+    "placeholders": {
+      "data_type": {
+        "type": "String",
+        "example": "wydziałów"
+      }
+    }
+  }
 }

@@ -215,6 +215,7 @@ abstract class DigitalGuideConfig {
   static const heightSmall = 8.0;
   static const heightBig = 24.0;
   static const heightHuge = 48.0;
+  static const paddingMedium = 16.0;
 }
 
 abstract class AlertDialogConfig {
