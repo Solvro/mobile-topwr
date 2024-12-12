@@ -78,7 +78,10 @@ class _DigitalGuideView extends ConsumerWidget {
               text: digitalGuideResponseExtended.telephoneNumber,
               icon: Assets.svg.contactIcons.phone,
               url: () {
-                final match = RegExp(r"\d{9}").firstMatch(digitalGuideResponseExtended.telephoneNumber.replaceAll("+48", ""));
+                final match = RegExp(r"\d{9}").firstMatch(
+                  digitalGuideResponseExtended.telephoneNumber
+                      .replaceAll("+48", ""),
+                );
                 return match != null ? "tel:+48${match.group(0)}" : "";
               }(),
             ),
