@@ -2,7 +2,6 @@ import "dart:async";
 
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
-import "package:fluttertoast/fluttertoast.dart";
 
 import "../../../../../config/ui_config.dart";
 import "../../../../../theme/app_theme.dart";
@@ -20,27 +19,9 @@ class ReportChangeButton extends ConsumerWidget {
           const SizedBox(height: 8),
           ElevatedButton(
             onPressed: () async {
-              final errorMessageToast =
-                  context.localize.report_change_error_toast_message;
-              final backgroundColorToast = context.colorTheme.greyLight;
-              final textColorToast = context.colorTheme.blackMirage;
-
               final emailUrl =
                   "mailto:${context.localize.report_change_email}?subject=${Uri.encodeComponent(context.localize.report_change_subject)}";
-
-              if (!await ref.launch(
-                emailUrl,
-              )) {
-                unawaited(
-                  Fluttertoast.showToast(
-                    msg: errorMessageToast,
-                    toastLength: Toast.LENGTH_LONG,
-                    gravity: ToastGravity.BOTTOM,
-                    backgroundColor: backgroundColorToast,
-                    textColor: textColorToast,
-                  ),
-                );
-              }
+              unawaited(ref.launch(emailUrl));
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: context.colorTheme.blueAzure,
