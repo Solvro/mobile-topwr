@@ -2,8 +2,8 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../widgets/loading_widgets/shimmer_loading.dart";
-import "../../../../widgets/my_cached_image.dart";
 import "../../../../widgets/my_error_widget.dart";
+import "../../../../widgets/zoomable_optimized_directus_image.dart";
 import "../../data/repository/image_repository.dart";
 
 class DigitalGuideImage extends ConsumerWidget {
@@ -17,7 +17,7 @@ class DigitalGuideImage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncImageUrl = ref.watch(getImageUrlProvider(id));
     return asyncImageUrl.when(
-      data: MyCachedImage.new,
+      data: ZoomableOptimizedDirectusImage.new,
       error: (error, stackTrace) => MyErrorWidget(error),
       loading: () => Center(
         child: ShimmeringEffect(
