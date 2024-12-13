@@ -11,6 +11,7 @@ import "../../../../widgets/detail_views/contact_section.dart";
 import "../../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../../../widgets/my_cached_image.dart";
 import "../../../../widgets/my_error_widget.dart";
+import "../../../../widgets/zoomable_optimized_directus_image.dart";
 import "../data/models/digital_guide_response_extended.dart";
 import "../data/repository/digital_guide_repository.dart";
 import "widgets/accessibility_button.dart";
@@ -53,9 +54,12 @@ class _DigitalGuideView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final widgets1 = [
-      const SizedBox(height: DigitalGuideConfig.heightSmall),
-      MyCachedImage(
-        digitalGuideResponseExtended.imageUrl,
+      const SizedBox(height: DetailViewsConfig.heightImage),
+      SizedBox(
+        height: 254,
+        child: ZoomableOptimizedDirectusImage(
+            digitalGuideResponseExtended.imageUrl,
+        ),
       ),
       HeadlinesSection(
         // There is only Polish language translation in external API
