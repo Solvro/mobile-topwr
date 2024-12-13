@@ -1,6 +1,5 @@
 import "package:flutter/material.dart";
 
-import "../optimized_directus_image.dart";
 import "../zoomable_optimized_directus_image.dart";
 
 class SliverLogo extends StatelessWidget {
@@ -47,7 +46,7 @@ class SliverLogo extends StatelessWidget {
                   fit: BoxFit.scaleDown,
                   child: SizedBox.square(
                     dimension: logoSize * scaleFactor,
-                    child:  ZoomableOptimizedDirectusImage(
+                    child: ZoomableOptimizedDirectusImage(
                       logoDirectusUrl,
                       boxFit: boxfit,
                       noShimmeringLoading: noShimmeringLoading,
@@ -62,4 +61,3 @@ class SliverLogo extends StatelessWidget {
     );
   }
 }
-

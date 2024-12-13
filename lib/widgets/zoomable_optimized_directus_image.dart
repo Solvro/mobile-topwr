@@ -1,18 +1,14 @@
-import "dart:ui";
-
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 import "../theme/colors.dart";
 import "optimized_directus_image.dart";
 
-
 class ZoomableOptimizedDirectusImage extends StatelessWidget {
-
   const ZoomableOptimizedDirectusImage(
-      this.imageUrl, {
-        super.key,
-        this.noShimmeringLoading = false,
-        this.boxFit = BoxFit.cover,
-      });
+    this.imageUrl, {
+    super.key,
+    this.noShimmeringLoading = false,
+    this.boxFit = BoxFit.cover,
+  });
 
   final String? imageUrl;
   final bool noShimmeringLoading;
@@ -35,8 +31,7 @@ class ZoomableOptimizedDirectusImage extends StatelessWidget {
   Future<void> _showFullScreenImage(BuildContext context) async {
     await Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (newContext) =>
-        Scaffold(
+        builder: (newContext) => Scaffold(
           backgroundColor: ColorsConsts.greyLight,
           body: GestureDetector(
             onTap: () {

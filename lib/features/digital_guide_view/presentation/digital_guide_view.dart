@@ -10,15 +10,6 @@ import "../../../utils/determine_contact_icon.dart";
 import "../../../widgets/detail_views/contact_section.dart";
 import "../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../../widgets/my_error_widget.dart";
-import "../../../../config/ui_config.dart";
-import "../../../../gen/assets.gen.dart";
-import "../../../../utils/context_extensions.dart";
-import "../../../../utils/determine_contact_icon.dart";
-import "../../../../widgets/detail_views/contact_section.dart";
-import "../../../../widgets/detail_views/detail_view_app_bar.dart";
-import "../../../../widgets/my_cached_image.dart";
-import "../../../../widgets/my_error_widget.dart";
-import "../../../../widgets/zoomable_optimized_directus_image.dart";
 import "../data/models/digital_guide_response_extended.dart";
 import "../data/repository/digital_guide_repository.dart";
 import "widgets/accessibility_button.dart";
@@ -63,7 +54,11 @@ class _DigitalGuideView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final widgets1 = [
-      DigitalGuideImage(id: digitalGuideResponseExtended.images[0]),
+      const SizedBox(height: DetailViewsConfig.heightImage),
+      SizedBox(
+        height: DetailViewsConfig.heightImage,
+        child: DigitalGuideImage(id: digitalGuideResponseExtended.images[0]),
+      ),
       HeadlinesSection(
         // There is only Polish language translation in external API
         // In the future we must think how to handle multiple translations in UI
