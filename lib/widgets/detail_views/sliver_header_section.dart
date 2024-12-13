@@ -3,7 +3,6 @@ import "dart:math";
 import "package:flutter/material.dart";
 
 import "../../config/ui_config.dart";
-import "../optimized_directus_image.dart";
 import "../zoomable_optimized_directus_image.dart";
 import "sliver_logo.dart";
 
@@ -57,7 +56,6 @@ class SliverHeaderSection extends SliverPersistentHeaderDelegate {
             child: ZoomableOptimizedDirectusImage(backgroundImageUrl),
           ),
         ),
-
         SliverLogo(
           scaleFactor: scaleFactor,
           activeGradient: activeGradient,
