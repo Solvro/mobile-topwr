@@ -2,7 +2,6 @@ import "package:flutter/material.dart";
 
 import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
-import "../../tabs/entraces/data/models/digital_guide_entrace.dart";
 
 class DigitalGuideNavLink extends StatelessWidget {
   const DigitalGuideNavLink({

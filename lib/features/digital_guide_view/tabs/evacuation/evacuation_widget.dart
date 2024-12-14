@@ -5,7 +5,7 @@ import "../../../../utils/context_extensions.dart";
 import "../../../../widgets/my_cached_image.dart";
 import "../../../../widgets/my_html_widget.dart";
 import "../../data/models/digital_guide_response_extended.dart";
-import "../../presentation/widgets/digital_guide_go_to_button.dart";
+import "../../presentation/widgets/digital_guide_nav_link.dart";
 
 class EvacuationWidget extends StatelessWidget {
   const EvacuationWidget({
