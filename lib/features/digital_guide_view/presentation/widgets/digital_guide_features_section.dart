@@ -73,7 +73,8 @@ class DigitalGuideFeaturesSection extends StatelessWidget {
         title: context.localize.evacuation,
         content: [
           EvacuationWidget(
-              digitalGuideResponseExtended: digitalGuideResponseExtended)
+            digitalGuideResponseExtended: digitalGuideResponseExtended,
+          ),
         ],
       ),
     ];

@@ -26,6 +26,5 @@ Future<IList<DigitalGuideEntrace>> getDigitalGuideEntraces(
       .map((json) => DigitalGuideEntrace.fromJson(json as Map<String, dynamic>))
       .toIList();
 
-  print(entrances);
   return entrances;
 }
