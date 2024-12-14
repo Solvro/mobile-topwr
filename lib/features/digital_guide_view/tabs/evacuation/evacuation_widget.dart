@@ -22,9 +22,10 @@ class EvacuationWidget extends StatelessWidget {
         height: DigitalGuideConfig.heightSmall,
       ),
       MyHtmlWidget(
-          digitalGuideResponseExtended
-              .translations.plTranslation.evacuationDescription,
-          textStyle: context.textTheme.boldBody),
+        digitalGuideResponseExtended
+            .translations.plTranslation.evacuationDescription,
+        textStyle: context.textTheme.boldBody,
+      ),
       const SizedBox(
         height: DigitalGuideConfig.heightMedium,
       ),
