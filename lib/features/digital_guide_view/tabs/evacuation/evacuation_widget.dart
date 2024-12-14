@@ -44,7 +44,8 @@ class EvacuationWidget extends StatelessWidget {
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) => DigitalGuideNavLink(
           onTap: () {},
-          text: digitalGuideResponseExtended.entraces[index].translations.pl.name,
+          text:
+              digitalGuideResponseExtended.entraces[index].translations.pl.name,
         ),
         separatorBuilder: (context, index) => const SizedBox(
           height: DigitalGuideConfig.heightMedium,
