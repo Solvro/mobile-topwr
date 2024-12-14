@@ -22,10 +22,10 @@ Future<DigitalGuideResponseExtended> getDigitalGuideData(
   final response = await dio.get(digitalGuideUrl);
   final digitalGuideResponse =
       DigitalGuideResponse.fromJson(response.data as Map<String, dynamic>);
-  final imageUrl = await getImageUrl(ref, digitalGuideResponse.images[0]);
+  final imageUrl = await ref.watch(getImageUrlProvider(digitalGuideResponse.images[0]).future);
   final evacuationMapUrl =
-      await getImageUrl(ref, digitalGuideResponse.evacuationMapId);
-  final entraces = await getDigitalGuideEntraces(ref, digitalGuideResponse.id);
+      await ref.watch(getImageUrlProvider( digitalGuideResponse.evacuationMapId).future);
+  final entraces = await ref.watch(getDigitalGuideEntracesProvider(digitalGuideResponse.id).future);
   return DigitalGuideResponseExtended.fromDigitalGuideResponse(
     digitalGuideResponse: digitalGuideResponse,
     imageUrl: imageUrl,
