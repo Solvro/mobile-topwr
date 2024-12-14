@@ -3,6 +3,7 @@ import "dart:core";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 
 import "../../tabs/entraces/data/models/digital_guide_entrace.dart";
+import "../../tabs/evacuation/data/models/digital_guide_evacuation.dart";
 import "digital_guide_response.dart";
 
 class DigitalGuideResponseExtended {
@@ -22,9 +23,8 @@ class DigitalGuideResponseExtended {
     required this.surroundingId,
     required this.images,
     required this.imageUrl,
-    required this.evacuationMapId,
-    required this.evacuationMapUrl,
     required this.entraces,
+    required this.evacuation,
   });
 
   final int id;
@@ -42,14 +42,13 @@ class DigitalGuideResponseExtended {
   final int surroundingId;
   final List<int> images;
   final String? imageUrl;
-  final int evacuationMapId;
-  final String? evacuationMapUrl;
+  final DigitalGuideEvacuation evacuation;
   final IList<DigitalGuideEntrace> entraces;
 
   factory DigitalGuideResponseExtended.fromDigitalGuideResponse({
     required DigitalGuideResponse digitalGuideResponse,
     required String? imageUrl,
-    required String? evacuationMapUrl,
+    required DigitalGuideEvacuation evacuation,
     required IList<DigitalGuideEntrace> entraces,
   }) {
     return DigitalGuideResponseExtended(
@@ -64,13 +63,12 @@ class DigitalGuideResponseExtended {
       areLargeFontBoards: digitalGuideResponse.areLargeFontBoards,
       isSignLanguageInterpreter: digitalGuideResponse.isSignLanguageInterpreter,
       areEmergencyChairs: digitalGuideResponse.areEmergencyChairs,
-      phoneNumbers: digitalGuideResponse.phoneNumbers,
+      telephoneNumber: digitalGuideResponse.telephoneNumber,
       surroundingId: digitalGuideResponse.surroundingId,
       images: digitalGuideResponse.images,
       imageUrl: imageUrl,
-      evacuationMapId: digitalGuideResponse.evacuationMapId,
-      evacuationMapUrl: evacuationMapUrl,
       entraces: entraces,
+      evacuation: evacuation,
     );
   }
 }

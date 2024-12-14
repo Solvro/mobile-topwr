@@ -22,8 +22,7 @@ class EvacuationWidget extends StatelessWidget {
         height: DigitalGuideConfig.heightSmall,
       ),
       MyHtmlWidget(
-        digitalGuideResponseExtended
-            .translations.plTranslation.evacuationDescription,
+        digitalGuideResponseExtended.evacuation.evacuationDescription,
         textStyle: context.textTheme.boldBody,
       ),
       const SizedBox(
@@ -36,7 +35,7 @@ class EvacuationWidget extends StatelessWidget {
       const SizedBox(
         height: DigitalGuideConfig.heightMedium,
       ),
-      MyCachedImage(digitalGuideResponseExtended.evacuationMapUrl),
+      MyCachedImage(digitalGuideResponseExtended.evacuation.evacuationMapUrl),
       const SizedBox(
         height: DigitalGuideConfig.heightMedium,
       ),

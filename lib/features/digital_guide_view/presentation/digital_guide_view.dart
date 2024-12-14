@@ -29,7 +29,8 @@ class DigitalGuideView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final asyncDigitalGuideData = ref.watch(getDigitalGuideDataProvider(id));
+    final asyncDigitalGuideData =
+        ref.watch(getDigitalGuideDataExtendedProvider(id));
     // question: Should the app bar appear during loading or when there's an error?
     // Now it doesn't, neither does it appear on SKS menu screen
     return asyncDigitalGuideData.when(
