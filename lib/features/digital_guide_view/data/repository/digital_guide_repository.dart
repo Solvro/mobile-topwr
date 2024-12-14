@@ -2,8 +2,9 @@ import "package:flutter/foundation.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "../../../../../api_base_rest/client/dio_client.dart";
-import "../../../../../config/env.dart";
+import "../../../../api_base_rest/client/dio_client.dart";
+import "../../../../config/env.dart";
+import "../../tabs/entraces/data/repository/entraces_repository.dart";
 import "../models/digital_guide_response.dart";
 import "../models/digital_guide_response_extended.dart";
 
@@ -22,9 +23,14 @@ Future<DigitalGuideResponseExtended> getDigitalGuideData(
   final digitalGuideResponse =
       DigitalGuideResponse.fromJson(response.data as Map<String, dynamic>);
   final imageUrl = await getImageUrl(ref, digitalGuideResponse.images[0]);
+  final evacuationMapUrl =
+      await getImageUrl(ref, digitalGuideResponse.evacuationMapId);
+  final entraces = await getDigitalGuideEntraces(ref, digitalGuideResponse.id);
   return DigitalGuideResponseExtended.fromDigitalGuideResponse(
     digitalGuideResponse: digitalGuideResponse,
     imageUrl: imageUrl,
+    evacuationMapUrl: evacuationMapUrl,
+    entraces: entraces,
   );
 }
 

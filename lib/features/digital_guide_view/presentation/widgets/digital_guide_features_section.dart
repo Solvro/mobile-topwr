@@ -1,12 +1,13 @@
 import "package:flutter/material.dart";
 import "package:flutter/widgets.dart";
 
-import "../../../../../utils/context_extensions.dart";
-import "../../../../../widgets/my_expansion_tile.dart";
-import "../../../amenities/presentation/amenities_expansion_tile_content.dart";
-import "../../../localization/presentation/localization_expansion_tile_content.dart";
-import "../../../surrounding/presentation/surroundings_expansion_tile_content.dart";
+import "../../../../utils/context_extensions.dart";
+import "../../../../widgets/my_expansion_tile.dart";
 import "../../data/models/digital_guide_response_extended.dart";
+import "../../localization/presentation/localization_expansion_tile_content.dart";
+import "../../tabs/amenities/presentation/amenities_expansion_tile_content.dart";
+import "../../tabs/evacuation/evacuation_widget.dart";
+import "../../tabs/surrounding/presentation/surroundings_expansion_tile_content.dart";
 
 typedef TileContent = ({String title, List<Widget> content});
 
@@ -70,7 +71,10 @@ class DigitalGuideFeaturesSection extends StatelessWidget {
       ),
       (
         title: context.localize.evacuation,
-        content: [LocalizationExpansionTileContent()],
+        content: [
+          EvacuationWidget(
+              digitalGuideResponseExtended: digitalGuideResponseExtended)
+        ],
       ),
     ];
 
