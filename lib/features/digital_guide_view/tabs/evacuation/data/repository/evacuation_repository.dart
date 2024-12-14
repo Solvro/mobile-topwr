@@ -17,8 +17,8 @@ Future<DigitalGuideEvacuation> getDigitalGuideEvacuation(
       await ref.watch(getImageUrlProvider(building.evacuationMapId).future);
 
   return DigitalGuideEvacuation(
-      evacuationDescription:
-          building.translations.plTranslation.evacuationDescription,
-      evacuationMapUrl: evacuationMapUrl,
-    );
+    evacuationDescription:
+        building.translations.plTranslation.evacuationDescription,
+    evacuationMapUrl: evacuationMapUrl,
+  );
 }
