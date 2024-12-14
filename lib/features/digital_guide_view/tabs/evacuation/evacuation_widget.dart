@@ -46,7 +46,7 @@ class EvacuationWidget extends StatelessWidget {
           entrace: digitalGuideResponseExtended.entraces[index],
         ),
         separatorBuilder: (context, index) => const SizedBox(
-          height: 15,
+          height: DigitalGuideConfig.heightMedium,
         ),
         itemCount: digitalGuideResponseExtended.entraces.length,
         shrinkWrap: true,
@@ -54,7 +54,9 @@ class EvacuationWidget extends StatelessWidget {
     ];
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(
+        horizontal: DigitalGuideConfig.heightMedium,
+      ),
       child: ListView.builder(
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) => widgets[index],
