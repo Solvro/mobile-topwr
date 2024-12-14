@@ -15,7 +15,7 @@ class DigitalGuideResponseExtended {
     required this.areLargeFontBoards,
     required this.isSignLanguageInterpreter,
     required this.areEmergencyChairs,
-    required this.telephoneNumber,
+    required this.phoneNumbers,
     required this.surroundingId,
     required this.images,
     required this.imageUrl,
@@ -32,7 +32,7 @@ class DigitalGuideResponseExtended {
   final bool areLargeFontBoards;
   final bool isSignLanguageInterpreter;
   final bool areEmergencyChairs;
-  final String telephoneNumber;
+  final List<String> phoneNumbers;
   final int surroundingId;
   final List<int> images;
   final String? imageUrl;
@@ -53,7 +53,7 @@ class DigitalGuideResponseExtended {
       areLargeFontBoards: digitalGuideResponse.areLargeFontBoards,
       isSignLanguageInterpreter: digitalGuideResponse.isSignLanguageInterpreter,
       areEmergencyChairs: digitalGuideResponse.areEmergencyChairs,
-      telephoneNumber: digitalGuideResponse.telephoneNumber,
+      phoneNumbers: digitalGuideResponse.phoneNumbers,
       surroundingId: digitalGuideResponse.surroundingId,
       images: digitalGuideResponse.images,
       imageUrl: imageUrl,
