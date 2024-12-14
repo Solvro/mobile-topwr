@@ -4,15 +4,15 @@ import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
 import "../../tabs/entraces/data/models/digital_guide_entrace.dart";
 
-class DigitalGuideGoToButton extends StatelessWidget {
-  const DigitalGuideGoToButton({
+class DigitalGuideNavLink extends StatelessWidget {
+  const DigitalGuideNavLink({
     super.key,
     required this.onTap,
-    required this.entrace,
+    required this.text,
   });
 
   final VoidCallback onTap;
-  final DigitalGuideEntrace entrace;
+  final String text;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class DigitalGuideGoToButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              entrace.translations.pl.name,
+              text,
               style: context.textTheme.title,
             ),
             Icon(

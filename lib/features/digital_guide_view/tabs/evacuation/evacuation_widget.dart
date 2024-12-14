@@ -42,9 +42,9 @@ class EvacuationWidget extends StatelessWidget {
       ),
       ListView.separated(
         physics: const NeverScrollableScrollPhysics(),
-        itemBuilder: (context, index) => DigitalGuideGoToButton(
+        itemBuilder: (context, index) => DigitalGuideNavLink(
           onTap: () {},
-          entrace: digitalGuideResponseExtended.entraces[index],
+          text: digitalGuideResponseExtended.entraces[index].translations.pl.name,
         ),
         separatorBuilder: (context, index) => const SizedBox(
           height: DigitalGuideConfig.heightMedium,

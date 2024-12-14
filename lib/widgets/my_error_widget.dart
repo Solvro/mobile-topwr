@@ -14,6 +14,8 @@ import "../features/parkings_view/widgets/offline_parkings_view.dart";
 import "../gen/assets.gen.dart";
 import "../theme/app_theme.dart";
 
+// MEGA TEST NICE // TODO(simon-the-shark): delete this comment
+
 class MyErrorWidget extends HookWidget {
   const MyErrorWidget(this.error, {super.key});
 
