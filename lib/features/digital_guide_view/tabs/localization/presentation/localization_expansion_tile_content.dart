@@ -3,30 +3,25 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/context_extensions.dart";
-import "../../../../../utils/launch_url_util.dart";
-import "../../../../../widgets/my_error_widget.dart";
-import "../../../data/models/digital_guide_response.dart";
-import "../../../data/repository/image_repository.dart";
+import "../../../../widgets/my_error_widget.dart";
+import "../../../parkings_view/widgets/parkings_icons.icons.dart";
+import "../data/repository/localization_repository.dart";
 
 class LocalizationExpansionTileContent extends ConsumerWidget {
   const LocalizationExpansionTileContent({
     super.key,
-    required this.digitalGuideData,
+    required this.buildingId,
   });
 
-  final DigitalGuideResponse digitalGuideData;
+  final int buildingId;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncImageUrl =
-        ref.watch(imageRepositoryProvider(digitalGuideData.locationMapId));
+        ref.watch(getImageUrlFromBuildingProvider(buildingId));
 
     return asyncImageUrl.when(
-      data: (imageUrl) => _LocalizationExpansionTileContent(
-        imageUrl: imageUrl,
-        buildingName: digitalGuideData.translations.plTranslation.name,
-        buildingAddress: digitalGuideData.translations.plTranslation.address,
-      ),
+      data: (imageUrl) => _LocalizationExpansionTileContent(imageUrl: imageUrl),
       error: (error, stackTrace) => MyErrorWidget(error),
       loading: () => const Center(
         child: CircularProgressIndicator(),
@@ -35,19 +30,15 @@ class LocalizationExpansionTileContent extends ConsumerWidget {
   }
 }
 
-class _LocalizationExpansionTileContent extends ConsumerWidget {
+class _LocalizationExpansionTileContent extends StatelessWidget {
   const _LocalizationExpansionTileContent({
     required this.imageUrl,
-    required this.buildingName,
-    required this.buildingAddress,
   });
 
   final String? imageUrl;
-  final String buildingName;
-  final String buildingAddress;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return Column(
       children: [
         if (imageUrl != null)
@@ -58,17 +49,20 @@ class _LocalizationExpansionTileContent extends ConsumerWidget {
               child: Image.network(
                 imageUrl!,
                 fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) =>
+                    const Center(child: Text("Cannot load photo")),
               ),
             ),
-          ),
+          )
+        else
+          const Center(child: Text("Photo not available")),
         TextButton.icon(
           icon: Icon(
-            Icons.navigation,
+            ParkingsIcons.map_nav,
             color: context.colorTheme.orangePomegranade,
             size: 16,
           ),
-          onPressed: () async =>
-              _navigateToBuilding(context, ref, buildingName, buildingAddress),
+          onPressed: () {},
           label: Text.rich(
             TextSpan(
               text: context.localize.navigate_to_building,
@@ -82,17 +76,5 @@ class _LocalizationExpansionTileContent extends ConsumerWidget {
         ),
       ],
     );
-  }
-
-  Future<void> _navigateToBuilding(
-    BuildContext context,
-    WidgetRef ref,
-    String buildingName,
-    String buildingAddress,
-  ) async {
-    final query = "$buildingName, $buildingAddress";
-    final googleMapsUrl =
-        "https://www.google.com/maps/dir/?api=1&destination=${Uri.encodeComponent(query)}&travelmode=driving&origin=current+location";
-    await ref.launch(googleMapsUrl);
   }
 }
