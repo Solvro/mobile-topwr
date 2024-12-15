@@ -34,3 +34,7 @@
 7) Lifts data
 * /lifts/?building={buildingId}
 
+8) Localization data
+  * /localization/data/repository/localization_repository.dart
+  * DIGITAL_GUIDE_URL/buildings/{location_map}
+  * DIGITAL_GUIDE_URL/images/{id}
