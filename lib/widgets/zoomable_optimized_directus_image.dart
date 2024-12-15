@@ -30,24 +30,32 @@ class ZoomableOptimizedDirectusImage extends StatelessWidget {
 
   Future<void> _showFullScreenImage(BuildContext context) async {
     await Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => Scaffold(
-          backgroundColor: ColorsConsts.greyLight,
-          body: GestureDetector(
-            onTap: () {
-              Navigator.of(context).pop();
-            },
-            child: InteractiveViewer(
-              minScale: 1,
-              maxScale: 3,
-              child: OptimizedDirectusImage(
-                imageUrl,
-                boxFit: BoxFit.contain,
+      PageRouteBuilder(
+        opaque: false,
+        pageBuilder: (context, animation, secondaryAnimation) =>
+            Scaffold(
+              backgroundColor: Colors.black.withOpacity(0.5),
+              body: GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pop();
+                },
+                child: InteractiveViewer(
+                  minScale: 1,
+                  maxScale: 3,
+                  child: OptimizedDirectusImage(
+                    imageUrl,
+                    boxFit: BoxFit.contain,
+                  ),
+                ),
               ),
             ),
-          ),
-        ),
-        fullscreenDialog: true,
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          // Optional: Add a fade transition
+          return FadeTransition(
+            opacity: animation,
+            child: child,
+          );
+        },
       ),
     );
   }
