@@ -299,5 +299,6 @@
   "sensorySensitivity": "Wrażliwość sensoryczna",
   "cognitiveImpairment": "Trudności poznawcze",
   "accessibility_profiles":"Profile dostępności",
-  "you_can_adjust": "Możesz dostosować informacje pod swoje specjalne potrzeby"
+  "you_can_adjust": "Możesz dostosować informacje pod swoje specjalne potrzeby",
+  "navigate_to_building": "Nawiguj do budynku"
 }
