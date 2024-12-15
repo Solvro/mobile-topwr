@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:flutter/widgets.dart";
 
+import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/context_extensions.dart";
 import "../../../../../widgets/my_expansion_tile.dart";
 import "../../../amenities/presentation/amenities_expansion_tile_content.dart";
@@ -22,7 +23,11 @@ class DigitalGuideFeaturesSection extends StatelessWidget {
     final items = <TileContent>[
       (
         title: context.localize.localization,
-        content: [LocalizationExpansionTileContent()],
+        content: [
+          LocalizationExpansionTileContent(
+            buildingId: digitalGuideResponseExtended.id,
+          ),
+        ],
       ),
       (
         title: context.localize.amenities,
@@ -42,35 +47,67 @@ class DigitalGuideFeaturesSection extends StatelessWidget {
       ),
       (
         title: context.localize.transport,
-        content: [LocalizationExpansionTileContent()],
+        content: [
+          LocalizationExpansionTileContent(
+            buildingId: digitalGuideResponseExtended.id,
+          ),
+        ],
       ),
       (
         title: context.localize.entrances,
-        content: [LocalizationExpansionTileContent()],
+        content: [
+          LocalizationExpansionTileContent(
+            buildingId: digitalGuideResponseExtended.id,
+          ),
+        ],
       ),
       (
         title: context.localize.elevators,
-        content: [LocalizationExpansionTileContent()],
+        content: [
+          LocalizationExpansionTileContent(
+            buildingId: digitalGuideResponseExtended.id,
+          ),
+        ],
       ),
       (
         title: context.localize.toilets,
-        content: [LocalizationExpansionTileContent()],
+        content: [
+          LocalizationExpansionTileContent(
+            buildingId: digitalGuideResponseExtended.id,
+          ),
+        ],
       ),
       (
         title: context.localize.micro_navigation,
-        content: [LocalizationExpansionTileContent()],
+        content: [
+          LocalizationExpansionTileContent(
+            buildingId: digitalGuideResponseExtended.id,
+          ),
+        ],
       ),
       (
         title: context.localize.building_structure,
-        content: [LocalizationExpansionTileContent()],
+        content: [
+          LocalizationExpansionTileContent(
+            buildingId: digitalGuideResponseExtended.id,
+          ),
+        ],
       ),
       (
         title: context.localize.room_information,
-        content: [LocalizationExpansionTileContent()],
+        content: [
+          LocalizationExpansionTileContent(
+            buildingId: digitalGuideResponseExtended.id,
+          ),
+        ],
       ),
       (
         title: context.localize.evacuation,
-        content: [LocalizationExpansionTileContent()],
+        content: [
+          LocalizationExpansionTileContent(
+            buildingId: digitalGuideResponseExtended.id,
+          ),
+        ],
       ),
     ];
 
@@ -81,6 +118,7 @@ class DigitalGuideFeaturesSection extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
             child: MyExpansionTile(
+              backgroundColor: context.colorTheme.whiteSoap,
               title: item.title,
               children: item.content,
             ),
