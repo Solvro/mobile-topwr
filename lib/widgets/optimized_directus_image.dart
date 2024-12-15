@@ -19,8 +19,13 @@ class OptimizedDirectusImage extends MyCachedImage {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         _assertConstraints(constraints);
+
+        final pixelsDensity = MediaQuery.devicePixelRatioOf(context);
         return _LoadSizeOnce(
-          initialSize: _getImagesSize(context, constraints),
+          initialSize: Size(
+            constraints.maxWidth * pixelsDensity,
+            constraints.maxHeight * pixelsDensity,
+          ),
           builder: (BuildContext context, Size size) => MyCachedImage(
             imageUrl?.directusUrlWithSize(size, boxFit),
             noShimmeringLoading: noShimmeringLoading,
@@ -40,14 +45,6 @@ class OptimizedDirectusImage extends MyCachedImage {
     assert(
       constraints.maxHeight != double.infinity,
       "MaxHeight constraints around `OptimizedDirectusImage` must be finite. Either wrap it inside a parent with a finite height or use `MyCachedImage` directly.",
-    );
-  }
-
-  Size _getImagesSize(BuildContext context, BoxConstraints constraints) {
-    final pixelsDensity = MediaQuery.devicePixelRatioOf(context);
-    return Size(
-      constraints.maxWidth * pixelsDensity,
-      constraints.maxHeight * pixelsDensity,
     );
   }
 }

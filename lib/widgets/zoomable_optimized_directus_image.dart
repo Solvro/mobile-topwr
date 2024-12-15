@@ -31,11 +31,11 @@ class ZoomableOptimizedDirectusImage extends StatelessWidget {
   Future<void> _showFullScreenImage(BuildContext context) async {
     await Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (newContext) => Scaffold(
+        builder: (context) => Scaffold(
           backgroundColor: ColorsConsts.greyLight,
           body: GestureDetector(
             onTap: () {
-              Navigator.of(newContext).pop();
+              Navigator.of(context).pop();
             },
             child: InteractiveViewer(
               minScale: 1,

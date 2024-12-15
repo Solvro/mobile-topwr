@@ -58,7 +58,7 @@ class _GuideDetailDataView extends ConsumerWidget {
                   flexibleSpace: Stack(
                     children: [
                       SizedBox(
-                        height: DetailViewsConfig.heightImage,
+                        height: DetailViewsConfig.imageHeight,
                         child: ZoomableOptimizedDirectusImage(
                           value.cover?.filename_disk,
                         ),
