@@ -4,8 +4,10 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/context_extensions.dart";
 import "../../../../widgets/my_error_widget.dart";
+import "../../../map_view/controllers/controllers_set.dart";
 import "../../../parkings_view/widgets/parkings_icons.icons.dart";
 import "../data/repository/localization_repository.dart";
+import "../../../bottom_scroll_sheet/navigate_button.dart";
 
 class LocalizationExpansionTileContent extends ConsumerWidget {
   const LocalizationExpansionTileContent({
@@ -30,7 +32,7 @@ class LocalizationExpansionTileContent extends ConsumerWidget {
   }
 }
 
-class _LocalizationExpansionTileContent extends StatelessWidget {
+class _LocalizationExpansionTileContent <T extends GoogleNavigable> extends ConsumerWidget {
   const _LocalizationExpansionTileContent({
     required this.imageUrl,
   });
@@ -38,7 +40,7 @@ class _LocalizationExpansionTileContent extends StatelessWidget {
   final String? imageUrl;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Column(
       children: [
         if (imageUrl != null)
@@ -56,13 +58,22 @@ class _LocalizationExpansionTileContent extends StatelessWidget {
           )
         else
           const Center(child: Text("Photo not available")),
+         /*
+
+         * i will probably change TextButton.icon to NavigateButton<T> like here:
+         if (ref.watch(context.activeMarkerController<T>()) != null) NavigateButton<T>(),
+         *
+         * but it doesnt work
+         * */
         TextButton.icon(
           icon: Icon(
             ParkingsIcons.map_nav,
             color: context.colorTheme.orangePomegranade,
             size: 16,
           ),
-          onPressed: () {},
+          onPressed: () {
+
+          },
           label: Text.rich(
             TextSpan(
               text: context.localize.navigate_to_building,

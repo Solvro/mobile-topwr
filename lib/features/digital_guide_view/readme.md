@@ -15,3 +15,7 @@
 2) Surroundings data
   * /surrounding/data/repository/surrounding_repository.dart
   * DIGITAL_GUIDE_URL/surroundings/{id}
+3) Localization data
+  * /localization/data/repository/localization_repository.dart
+  * DIGITAL_GUIDE_URL/buildings/{location_map}
+  * DIGITAL_GUIDE_URL/images/{id}
