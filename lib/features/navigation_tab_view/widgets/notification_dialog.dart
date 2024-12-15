@@ -6,7 +6,7 @@ import "../../../widgets/my_alert_dialog.dart";
 
 Future<void> showNotificationDialog({
   required BuildContext context,
-  required VoidCallback onConfirmTapped,
+  required void Function(BuildContext context) onConfirmTapped,
 }) async {
   await showCustomDialog(
     context: context,

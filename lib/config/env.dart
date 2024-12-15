@@ -27,4 +27,9 @@ abstract class Env {
   static final String wiredashSecret = _Env.wiredashSecret;
   @EnviedField()
   static final String sksUrl = _Env.sksUrl;
+  @EnviedField()
+  static final String digitalGuideUrl = _Env.digitalGuideUrl;
+  @EnviedField()
+  static final String digitalGuideAuthorizationToken =
+      _Env.digitalGuideAuthorizationToken;
 }

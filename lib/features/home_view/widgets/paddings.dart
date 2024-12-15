@@ -29,3 +29,12 @@ class MediumHorizontalPadding extends Padding {
           ),
         );
 }
+
+class MediumBottomPadding extends Padding {
+  const MediumBottomPadding({super.key, super.child})
+      : super(
+          padding: const EdgeInsets.only(
+            bottom: HomeViewConfig.paddingMedium,
+          ),
+        );
+}

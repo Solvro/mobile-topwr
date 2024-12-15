@@ -1,5 +1,6 @@
 import "package:latlong2/latlong.dart";
 
+import "../../../config/map_view_config.dart";
 import "../../map_view/controllers/controllers_set.dart";
 import "../repository/buildings_repository.dart";
 
@@ -21,4 +22,15 @@ class BuildingModel extends Building implements GoogleNavigable {
 
   String? get addressFormatted =>
       addres?.replaceFirst(",", "\n").replaceAll("\n ", "\n");
+
+  String? get parseBuildingCode {
+    final List<String> separatedBuildingName =
+        name.split(BuildingSearchConfig.buildingCodeSeperator);
+
+    if (separatedBuildingName.length < 2) {
+      return null;
+    } else {
+      return separatedBuildingName[0];
+    }
+  }
 }

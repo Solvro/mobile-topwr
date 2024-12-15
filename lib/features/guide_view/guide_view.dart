@@ -6,6 +6,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "../../../../widgets/my_error_widget.dart";
 import "../../config/ui_config.dart";
 import "../../utils/context_extensions.dart";
+import "../../utils/launch_url_util.dart";
 import "../../widgets/search_box_app_bar.dart";
 import "../../widgets/wide_tile_card.dart";
 import "../departments_view/widgets/departments_view_loading.dart";
@@ -58,7 +59,10 @@ class _GuideViewContent extends ConsumerWidget {
       AsyncValue(:final IList<GuidePost> value) => GuideGrid(
           children: [
             for (final item in value) GuideTile(item),
-            const _GuideInfo(),
+            _GuideInfo(
+              emailAddress: "kn.solvro@pwr.edu.pl",
+              subject: context.localize.guide_subject_default_content,
+            ),
           ].lock,
         ),
       _ => const Padding(
@@ -69,14 +73,31 @@ class _GuideViewContent extends ConsumerWidget {
   }
 }
 
-class _GuideInfo extends StatelessWidget {
-  const _GuideInfo();
+class _GuideInfo extends ConsumerWidget {
+  final String emailAddress;
+  final String? subject;
+  late final Uri emailLaunchUri;
+
+  _GuideInfo({
+    required this.emailAddress,
+    this.subject,
+  }) {
+    emailLaunchUri = Uri(
+      scheme: "mailto",
+      path: emailAddress,
+      query: "subject=$subject",
+    );
+  }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return WideTileCard(
       title: context.localize.hi_student,
-      subtitle: context.localize.guide_development_info,
+      subtitle: context.localize.guide_ideas_info,
+      secondSubtitle: context.localize.guide_click_here,
+      onTap: () async {
+        await ref.launch(emailLaunchUri.toString());
+      },
     );
   }
 }

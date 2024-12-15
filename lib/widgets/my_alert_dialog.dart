@@ -6,29 +6,25 @@ import "../../../utils/context_extensions.dart";
 
 Future<void> showCustomDialog({
   required BuildContext context,
-  required VoidCallback onConfirmTapped,
+  required void Function(BuildContext context) onConfirmTapped,
   required String confirmText,
   required Widget dialogContent,
 }) async {
   await showDialog<void>(
     context: context,
     builder: (BuildContext context) {
-      return LayoutBuilder(
-        builder: (context, constraints) {
-          final double maxWidth = MediaQuery.of(context).size.width * 0.89;
-          return Center(
-            child: ConstrainedBox(
-              constraints: BoxConstraints(
-                maxWidth: maxWidth,
-              ),
-              child: _MyAlertDialog(
-                dialogContent: dialogContent,
-                onConfirmTapped: onConfirmTapped,
-                confirmText: confirmText,
-              ),
-            ),
-          );
-        },
+      final double maxWidth = MediaQuery.sizeOf(context).width * 0.89;
+      return Center(
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            maxWidth: maxWidth,
+          ),
+          child: _MyAlertDialog(
+            dialogContent: dialogContent,
+            onConfirmTapped: () => onConfirmTapped(context),
+            confirmText: confirmText,
+          ),
+        ),
       );
     },
   );

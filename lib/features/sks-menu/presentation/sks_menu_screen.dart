@@ -2,8 +2,8 @@ import "dart:core";
 
 import "package:auto_route/annotations.dart";
 import "package:flutter/material.dart";
-import "package:flutter_riverpod/flutter_riverpod.dart";
-import "package:logger/logger.dart";
+import "package:flutter_hooks/flutter_hooks.dart";
+import "package:hooks_riverpod/hooks_riverpod.dart";
 import "package:lottie/lottie.dart";
 
 import "../../../../theme/app_theme.dart";
@@ -11,49 +11,76 @@ import "../../../config/ui_config.dart";
 import "../../../gen/assets.gen.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../widgets/detail_views/detail_view_app_bar.dart";
-import "../../home_view/widgets/paddings.dart";
+import "../../../widgets/my_error_widget.dart";
+import "../../../widgets/my_text_button.dart";
 import "../../sks_people_live/presentation/widgets/sks_user_data_button.dart";
 import "../data/models/sks_menu_response.dart";
 import "../data/repository/sks_menu_repository.dart";
 import "widgets/sks_menu_data_source_link.dart";
 import "widgets/sks_menu_header.dart";
 import "widgets/sks_menu_section.dart";
+import "widgets/sks_menu_view_loading.dart";
+import "widgets/technical_message.dart";
 
 @RoutePage()
-class SksMenuView extends ConsumerWidget {
+class SksMenuView extends HookConsumerWidget {
   const SksMenuView({super.key});
+
+  static String localizedOfflineMessage(BuildContext context) {
+    return context.localize.my_offline_error_message(
+      context.localize.sks_menu,
+    );
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final asyncSksMenuData = ref.watch(getSksMenuDataProvider);
+    final asyncSksMenuData = ref.watch(sksMenuRepositoryProvider);
+    final isLastMenuButtonClicked = useState(false);
 
     return asyncSksMenuData.when(
-      data: (sksMenuData) => _SksMenuView(
-        asyncSksMenuData.value ??
-            SksMenuResponse(
-              isMenuOnline: false,
-              lastUpdate: DateTime.now(),
-              meals: List.empty(),
-            ),
+      data: (sksMenuData) {
+        if (!sksMenuData.isMenuOnline && !isLastMenuButtonClicked.value) {
+          return _SKSMenuUnavailableAnimation(
+            onShowLastMenuTap: () {
+              isLastMenuButtonClicked.value = true;
+            },
+          );
+        }
+        return _SksMenuView(
+          sksMenuData: sksMenuData,
+          isLastMenuButtonClicked: isLastMenuButtonClicked.value,
+        );
+      },
+      error: (error, stackTrace) => Scaffold(
+        appBar: DetailViewAppBar(
+          actions: const [
+            SksUserDataButton(),
+          ],
+        ),
+        body: MyErrorWidget(error),
       ),
-      error: (error, stackTrace) => _SKSMenuLottieAnimation(error: error),
       loading: () => const Scaffold(
         body: Center(
-          child: CircularProgressIndicator(),
+          child: SksMenuViewLoading(),
         ),
       ),
     );
   }
 }
 
-class _SksMenuView extends StatelessWidget {
-  const _SksMenuView(this.sksMenuData);
+class _SksMenuView extends ConsumerWidget {
+  const _SksMenuView({
+    required this.sksMenuData,
+    required this.isLastMenuButtonClicked,
+  });
 
-  final SksMenuResponse sksMenuData;
+  final ExtendedSksMenuResponse sksMenuData;
+  final bool isLastMenuButtonClicked;
+
   @override
-  Widget build(BuildContext context) {
-    if (!sksMenuData.isMenuOnline) {
-      return const _SKSMenuLottieAnimation();
+  Widget build(BuildContext context, WidgetRef ref) {
+    if (!isLastMenuButtonClicked && !sksMenuData.isMenuOnline) {
+      return const _SKSMenuUnavailableAnimation();
     }
     return Scaffold(
       appBar: DetailViewAppBar(
@@ -61,74 +88,114 @@ class _SksMenuView extends StatelessWidget {
           SksUserDataButton(),
         ],
       ),
-      body: ListView(
-        children: [
-          SksMenuHeader(
-            dateTimeOfLastUpdate: sksMenuData.lastUpdate.toIso8601String(),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: HomeViewConfig.paddingMedium,
+      body: RefreshIndicator(
+        onRefresh: () async {
+          await ref.read(sksMenuRepositoryProvider.notifier).clearCache();
+          return ref.refresh(sksMenuRepositoryProvider.future);
+        },
+        color: context.colorTheme.orangePomegranade,
+        child: ListView(
+          children: [
+            if (!sksMenuData.isMenuOnline)
+              TechnicalMessage(
+                alertType: AlertType.info,
+                title: context.localize.sks_note,
+                message: context.localize.sks_menu_you_see_last_menu,
+              ),
+            for (final technicalInfo in sksMenuData.technicalInfos)
+              TechnicalMessage(message: technicalInfo),
+            SksMenuHeader(
+              dateTimeOfLastUpdate: sksMenuData.lastUpdate.toIso8601String(),
             ),
-            child: MediumHorizontalPadding(
+            Padding(
+              padding: const EdgeInsets.all(HomeViewConfig.paddingMedium),
               child: SksMenuSection(sksMenuData.meals),
             ),
-          ),
-          const SksMenuDataSourceLink(),
-          const SizedBox(
-            height: ScienceClubsViewConfig.mediumPadding,
-          ),
-        ],
+            const SksMenuDataSourceLink(),
+            const SizedBox(
+              height: ScienceClubsViewConfig.mediumPadding,
+            ),
+          ],
+        ),
       ),
     );
   }
 }
 
-class _SKSMenuLottieAnimation extends StatelessWidget {
-  const _SKSMenuLottieAnimation({
-    this.error,
-  });
+class _SKSMenuUnavailableAnimation extends HookWidget {
+  const _SKSMenuUnavailableAnimation({this.onShowLastMenuTap});
 
-  final Object? error;
+  final VoidCallback? onShowLastMenuTap;
+
   @override
   Widget build(BuildContext context) {
-    Logger().e(error.toString());
+    final isAnimationCompleted = useState(false);
+    final animationSize = MediaQuery.sizeOf(context).width * 0.6;
+
     return Scaffold(
+      backgroundColor: context.colorTheme.whiteSoap,
       appBar: DetailViewAppBar(
         actions: const [
           SksUserDataButton(),
         ],
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SizedBox.square(
-            dimension: 200,
-            child: Lottie.asset(
-              Assets.animations.sksClosed,
-              fit: BoxFit.cover,
-              repeat: false,
-              frameRate: const FrameRate(LottieAnimationConfig.frameRate),
-              renderCache: RenderCache.drawingCommands,
-            ),
-          ),
-          Align(
-            child: Text(
-              context.localize.sks_menu_closed,
-              style: context.textTheme.headline,
-              textAlign: TextAlign.center,
-            ),
-          ),
-          if (error != null)
-            Padding(
-              padding: const EdgeInsets.only(top: 8),
-              child: Text(
-                error.toString(),
-                style: context.textTheme.titleGrey,
-                textAlign: TextAlign.center,
+      body: Center(
+        child: Column(
+          children: [
+            const Spacer(),
+            SizedBox.square(
+              dimension: animationSize,
+              child: Lottie.asset(
+                Assets.animations.sksClosed,
+                fit: BoxFit.cover,
+                repeat: false,
+                frameRate: const FrameRate(LottieAnimationConfig.frameRate),
+                renderCache: RenderCache.drawingCommands,
+                onLoaded: (composition) {
+                  final totalDuration = composition.duration;
+                  Future.delayed(
+                      totalDuration *
+                          0.8, // in my opinion the animation is a bit boring at the end, so we can show the texts a bit earlier
+                      () {
+                    isAnimationCompleted.value = true;
+                  });
+                },
               ),
             ),
-        ],
+            Opacity(
+              opacity: isAnimationCompleted.value ? 1 : 0,
+              child: Transform.translate(
+                offset: Offset(
+                  0,
+                  -(animationSize *
+                      0.10), // the animation has some extra space at the bottom
+                ),
+                child: Column(
+                  children: [
+                    Text(
+                      context.localize.sks_menu_closed,
+                      style: context.textTheme.headline.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    if (onShowLastMenuTap != null)
+                      Padding(
+                        padding: const EdgeInsets.only(top: 12),
+                        child: MyTextButton(
+                          actionTitle: context.localize.sks_show_last_menu,
+                          onClick: onShowLastMenuTap,
+                          showBorder: true,
+                          color: context.colorTheme.blueAzure,
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+            ),
+            const Spacer(flex: 2),
+          ],
+        ),
       ),
     );
   }
