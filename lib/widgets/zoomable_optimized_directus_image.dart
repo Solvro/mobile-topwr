@@ -1,5 +1,4 @@
 import "package:flutter/material.dart";
-import "../theme/colors.dart";
 import "optimized_directus_image.dart";
 
 class ZoomableOptimizedDirectusImage extends StatelessWidget {
@@ -32,23 +31,22 @@ class ZoomableOptimizedDirectusImage extends StatelessWidget {
     await Navigator.of(context).push(
       PageRouteBuilder(
         opaque: false,
-        pageBuilder: (context, animation, secondaryAnimation) =>
-            Scaffold(
-              backgroundColor: Colors.black.withOpacity(0.5),
-              body: GestureDetector(
-                onTap: () {
-                  Navigator.of(context).pop();
-                },
-                child: InteractiveViewer(
-                  minScale: 1,
-                  maxScale: 3,
-                  child: OptimizedDirectusImage(
-                    imageUrl,
-                    boxFit: BoxFit.contain,
-                  ),
-                ),
+        pageBuilder: (context, animation, secondaryAnimation) => Scaffold(
+          backgroundColor: Colors.black.withOpacity(0.5),
+          body: GestureDetector(
+            onTap: () {
+              Navigator.of(context).pop();
+            },
+            child: InteractiveViewer(
+              minScale: 1,
+              maxScale: 3,
+              child: OptimizedDirectusImage(
+                imageUrl,
+                boxFit: BoxFit.contain,
               ),
             ),
+          ),
+        ),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
           // Optional: Add a fade transition
           return FadeTransition(
