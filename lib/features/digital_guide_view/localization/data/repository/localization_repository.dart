@@ -10,30 +10,35 @@ part "localization_repository.g.dart";
 @riverpod
 Future<String?> getImageUrlFromBuilding(Ref ref, int buildingId) async {
   try {
-    // Pobierz dane z endpointu /buildings/{buildingId}
     final buildingUrl = "${Env.digitalGuideUrl}/buildings/$buildingId";
     final dio = ref.read(restClientProvider);
     dio.options.headers["Authorization"] =
-    "Token ${Env.digitalGuideAuthorizationToken}";
+        "Token ${Env.digitalGuideAuthorizationToken}";
 
     final buildingResponse = await dio.get(buildingUrl);
 
-    // Sprawdź, czy odpowiedź zawiera "location_map"
-    if (buildingResponse.data is! Map<String, dynamic> ||
-        buildingResponse.data["location_map"] == null) {
+    if (buildingResponse.data is! Map<String, dynamic>) {
       debugPrint("Invalid response from /buildings/$buildingId");
       return null;
     }
 
-    // Pobierz wartość pola "location_map"
-    final int? locationMapId = buildingResponse.data["location_map"] as int?;
+    final Map<String, dynamic> buildingData =
+        buildingResponse.data as Map<String, dynamic>;
 
-    if (locationMapId == null) {
-      debugPrint("location_map is null in the response from /buildings/$buildingId");
+    if (buildingData["location_map"] == null) {
+      debugPrint(
+        "location_map is null in the response from /buildings/$buildingId",
+      );
       return null;
     }
 
-    // Użyj ID z "location_map" do pobrania obrazka z /images/{id}
+    final int? locationMapId = buildingData["location_map"] as int?;
+    if (locationMapId == null) {
+      debugPrint(
+        "location_map ID is null in the response from /buildings/$buildingId",
+      );
+      return null;
+    }
     final imageUrl = await getImageUrl(ref, locationMapId);
 
     if (imageUrl == null) {
@@ -41,7 +46,7 @@ Future<String?> getImageUrlFromBuilding(Ref ref, int buildingId) async {
     }
 
     return imageUrl;
-  } catch (e) {
+  } on Exception catch (e) {
     debugPrint("Error in getImageUrlFromBuilding: $e");
     return null;
   }
@@ -50,24 +55,28 @@ Future<String?> getImageUrlFromBuilding(Ref ref, int buildingId) async {
 @riverpod
 Future<String?> getImageUrl(Ref ref, int id) async {
   try {
-    // Pobierz dane z endpointu /images/{id}
     final imageUrl = "${Env.digitalGuideUrl}/images/$id";
     final dio = ref.read(restClientProvider);
     dio.options.headers["Authorization"] =
-    "Token ${Env.digitalGuideAuthorizationToken}";
+        "Token ${Env.digitalGuideAuthorizationToken}";
 
     final imageResponse = await dio.get(imageUrl);
 
-    // Sprawdź, czy odpowiedź zawiera klucz "image_960w"
-    if (imageResponse.data is! Map<String, dynamic> ||
-        imageResponse.data["image_960w"] == null) {
+    if (imageResponse.data is! Map<String, dynamic>) {
+      debugPrint("Invalid response from /images/$id");
+      return null;
+    }
+    final Map<String, dynamic> imageData =
+        imageResponse.data as Map<String, dynamic>;
+
+    if (imageData["image_960w"] == null) {
       debugPrint("Invalid response from /images/$id");
       return null;
     }
 
-    final String image = imageResponse.data["image_960w"] as String;
+    final String image = imageData["image_960w"] as String;
     return image;
-  } catch (e) {
+  } on Exception catch (e) {
     debugPrint("Error in getImageUrl: $e");
     return null;
   }
