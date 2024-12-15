@@ -51,8 +51,8 @@ class DigitalGuideResponse with _$DigitalGuideResponse {
       fromJson: _stringToBool,
     )
     required bool areEmergencyChairs,
-    @JsonKey(name: "telephone_number", fromJson: _formatTelephoneNumber)
-    required String telephoneNumber,
+    @JsonKey(name: "telephone_number", fromJson: _formatPhoneNumbers)
+    required List<String> phoneNumbers,
     @JsonKey(name: "surrounding") required int surroundingId,
     required List<int> images,
     String? imageUrl,
@@ -88,6 +88,9 @@ bool _stringToBool(String value) {
   return value == "True";
 }
 
-String _formatTelephoneNumber(String telephoneNumber) {
-  return telephoneNumber.replaceAll("<p>", "").replaceAll("</p>", "");
+List<String> _formatPhoneNumbers(String phoneNumber) {
+  final matches = RegExp(r"\d{9}").allMatches(
+    phoneNumber.replaceAll("+48", "").replaceAll(RegExp(r"\D"), ""),
+  );
+  return matches.map((match) => match.group(0)!).toList();
 }
