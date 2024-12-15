@@ -54,9 +54,9 @@ class _DigitalGuideView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final widgets1 = [
-      const SizedBox(height: DetailViewsConfig.heightImage),
+      const SizedBox(height: DigitalGuideConfig.heightSmall),
       SizedBox(
-        height: DetailViewsConfig.heightImage,
+        height: DetailViewsConfig.imageHeight,
         child: DigitalGuideImage(id: digitalGuideResponseExtended.images[0]),
       ),
       HeadlinesSection(
