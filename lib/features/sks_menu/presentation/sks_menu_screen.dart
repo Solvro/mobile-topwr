@@ -111,7 +111,10 @@ class _SksMenuView extends ConsumerWidget {
               padding: const EdgeInsets.all(HomeViewConfig.paddingMedium),
               child: SksMenuSection(sksMenuData.meals),
             ),
-            const SksMenuDataSourceLink(),
+            SksMenuDataSourceLink(
+              SksMenuConfig.sksDataSource,
+              context.localize.data_come_from_website,
+            ),
             const SizedBox(
               height: ScienceClubsViewConfig.mediumPadding,
             ),

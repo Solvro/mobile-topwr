@@ -18,11 +18,6 @@ Future<IList<SksChartData>> getLatestChartData(Ref ref) async {
       .map(
         (entry) => SksChartData.fromJson(entry as Map<String, dynamic>),
       )
-      .where(
-        (e) =>
-            e.externalTimestamp.difference(DateTime.now()).inMinutes.abs() <=
-            15,
-      )
       .toIList();
 
   return chartDataList;

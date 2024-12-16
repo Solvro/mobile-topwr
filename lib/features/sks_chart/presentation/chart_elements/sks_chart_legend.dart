@@ -3,6 +3,29 @@ import "package:flutter/cupertino.dart";
 
 import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
+import "../../../../utils/context_extensions.dart";
+
+class SksChartLegend extends StatelessWidget {
+  const SksChartLegend({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        SksChartLegendItem(
+          text: context.localize.measured_number_of_users,
+          isPredicted: false,
+        ),
+        SksChartLegendItem(
+          text: context.localize.forecasted_number_of_users,
+          isPredicted: true,
+        ),
+      ],
+    );
+  }
+}
 
 class SksChartLegendItem extends StatelessWidget {
   const SksChartLegendItem({required this.text, required this.isPredicted});
@@ -18,31 +41,25 @@ class SksChartLegendItem extends StatelessWidget {
           DottedBorder(
             borderType: BorderType.RRect,
             dashPattern: const [SksChartConfig.borderDashArray],
-            radius: const Radius.circular(SksChartConfig.borderRadius),
+            color: context.colorTheme.blueAzure,
             padding: EdgeInsets.zero,
             // ignore: sized_box_for_whitespace
             child: Container(
               width: SksChartConfig.legendItemSize,
-              height: SksChartConfig.legendItemSize,
             ),
           )
         else
           Container(
             width: SksChartConfig.legendItemSize,
-            height: SksChartConfig.legendItemSize,
-            decoration: BoxDecoration(
-              color: context.colorTheme.orangePomegranade,
-              borderRadius: const BorderRadius.all(
-                Radius.circular(SksChartConfig.borderRadius),
-              ),
-            ),
+            height: 2,
+            color: context.colorTheme.orangePomegranade,
           ),
-        Padding(
-          padding: const EdgeInsets.only(left: SksChartConfig.paddingLarge),
-          child: Text(
-            text,
-            style: context.textTheme.body,
-          ),
+        const SizedBox(
+          width: SksChartConfig.heightMedium,
+        ),
+        Text(
+          text,
+          style: context.textTheme.body,
         ),
       ],
     );

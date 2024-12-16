@@ -204,11 +204,24 @@ abstract class SksConfig {
 
 abstract class SksChartConfig {
   static const borderDashArray = 4.0;
-  static const borderRadius = 8.0;
+  static const borderRadius = 16.0;
   static const paddingLarge = 16.0;
   static const paddingMedium = 12.0;
+  static const paddingSmall = 8.0;
   static const paddingExtraSmall = 4.0;
   static const legendItemSize = 18.0;
+  static const heightSmall = 8.0;
+  static const heightMedium = 12.0;
+  static const heightLarge = 16.0;
+  static const paddingLargeLTR = EdgeInsets.only(
+    left: SksChartConfig.paddingLarge,
+    top: SksChartConfig.paddingLarge,
+    right: SksChartConfig.paddingLarge,
+  );
+  static const sksChartDataUrl = "https://live.pwr.edu.pl/sks/";
+  static const sksAddress = "Hoene-Wrońskiego 10";
+  static const sksPostalCode = "50-370 Wrocław";
+  static const buildingCode = "C-18";
 }
 
 abstract class NavigationTabViewConfig {
