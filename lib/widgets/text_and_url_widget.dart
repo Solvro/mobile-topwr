@@ -2,11 +2,11 @@ import "package:flutter/cupertino.dart";
 import "package:flutter/gestures.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../../../../theme/app_theme.dart";
-import "../../../../utils/launch_url_util.dart";
+import "../theme/app_theme.dart";
+import "../utils/launch_url_util.dart";
 
-class SksMenuDataSourceLink extends ConsumerWidget {
-  const SksMenuDataSourceLink(
+class TextAndUrl extends ConsumerWidget {
+  const TextAndUrl(
     this.url,
     this.text, {
     super.key,
@@ -27,7 +27,7 @@ class SksMenuDataSourceLink extends ConsumerWidget {
           ),
           children: [
             TextSpan(
-              text: url.replaceFirst("https://", "www"),
+              text: url.replaceFirst("https://", " www."),
               style: context.textTheme.bodyOrange.copyWith(
                 decoration: TextDecoration.underline,
                 decorationColor: context.colorTheme.orangePomegranade,

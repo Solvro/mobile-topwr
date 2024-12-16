@@ -6,8 +6,8 @@ import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../widgets/my_error_widget.dart";
+import "../../../widgets/text_and_url_widget.dart";
 import "../../bottom_scroll_sheet/drag_handle.dart";
-import "../../sks_menu/presentation/widgets/sks_menu_data_source_link.dart";
 import "../../sks_people_live/data/repository/latest_sks_user_data_repo.dart";
 import "../data/models/sks_chart_data.dart";
 import "../data/repository/sks_chart_repository.dart";
@@ -61,7 +61,7 @@ class SksChartSheet extends ConsumerWidget {
                       padding: const EdgeInsets.all(
                         SksChartConfig.paddingSmall,
                       ),
-                      child: SksMenuDataSourceLink(
+                      child: TextAndUrl(
                         SksChartConfig.sksChartDataUrl,
                         "${context.localize.data_come_from_website}: ",
                       ),
