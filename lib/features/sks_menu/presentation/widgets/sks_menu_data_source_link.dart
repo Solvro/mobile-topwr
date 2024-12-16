@@ -2,15 +2,18 @@ import "package:flutter/cupertino.dart";
 import "package:flutter/gestures.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
-import "../../../../utils/context_extensions.dart";
 import "../../../../utils/launch_url_util.dart";
 
 class SksMenuDataSourceLink extends ConsumerWidget {
-  const SksMenuDataSourceLink({
+  const SksMenuDataSourceLink(
+    this.url,
+    this.text, {
     super.key,
   });
+
+  final String url;
+  final String text;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -18,21 +21,20 @@ class SksMenuDataSourceLink extends ConsumerWidget {
       padding: const EdgeInsets.all(16),
       child: Text.rich(
         TextSpan(
-          text: "${context.localize.data_come_from_website}: ",
+          text: text,
           style: const TextStyle(
             fontWeight: FontWeight.bold,
           ),
           children: [
             TextSpan(
-              text:
-                  SksMenuConfig.sksDataSource.replaceFirst("https://", "www."),
+              text: url.replaceFirst("https://", "www"),
               style: context.textTheme.bodyOrange.copyWith(
                 decoration: TextDecoration.underline,
                 decorationColor: context.colorTheme.orangePomegranade,
                 fontWeight: FontWeight.bold,
               ),
               recognizer: TapGestureRecognizer()
-                ..onTap = () async => ref.launch(SksMenuConfig.sksDataSource),
+                ..onTap = () async => ref.launch(url),
             ),
           ],
         ),

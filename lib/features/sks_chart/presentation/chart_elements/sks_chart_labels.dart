@@ -16,15 +16,17 @@ class SksChartRightTiles extends AxisTitles {
             style: context.textTheme.body
                 .copyWith(fontSize: 14, fontWeight: FontWeight.w400),
           ),
-          axisNameSize: 35,
           sideTitles: SideTitles(
+            maxIncluded: false,
+            reservedSize: 40,
             showTitles: true,
-            reservedSize: 25,
             getTitlesWidget: (double value, TitleMeta meta) {
-              return Text(
-                "${value.toInt()}",
-                style: context.textTheme.body
-                    .copyWith(fontSize: 14, fontWeight: FontWeight.w400),
+              return Center(
+                child: Text(
+                  "${value.toInt()}",
+                  style: context.textTheme.body
+                      .copyWith(fontSize: 12, fontWeight: FontWeight.w400),
+                ),
               );
             },
           ),
@@ -37,18 +39,30 @@ class SksChartBottomTitles extends AxisTitles {
           sideTitles: SideTitles(
             showTitles: true,
             reservedSize: 35,
+            interval: 5,
             getTitlesWidget: (double value, TitleMeta meta) {
+              final String text = (chartData.isNotEmpty)
+                  ? chartData[value.toInt()]
+                              .externalTimestamp
+                              .toLocal()
+                              .minute ==
+                          0
+                      ? chartData[value.toInt()]
+                          .externalTimestamp
+                          .toLocal()
+                          .toHourMinuteString()
+                      : ""
+                  : "";
+
               return Padding(
                 padding: const EdgeInsets.only(
-                  top: SksChartConfig.paddingExtraSmall * 2,
+                  top: SksChartConfig.paddingSmall,
+                  left: 50,
                 ),
                 child: Text(
                   style: context.textTheme.body
-                      .copyWith(fontSize: 14, fontWeight: FontWeight.w400),
-                  chartData[value.toInt()]
-                      .externalTimestamp
-                      .toLocal()
-                      .toHourMinuteString(),
+                      .copyWith(fontSize: 12, fontWeight: FontWeight.w400),
+                  text,
                 ),
               );
             },
