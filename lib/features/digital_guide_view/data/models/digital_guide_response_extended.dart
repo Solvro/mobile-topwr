@@ -63,7 +63,7 @@ class DigitalGuideResponseExtended {
       areLargeFontBoards: digitalGuideResponse.areLargeFontBoards,
       isSignLanguageInterpreter: digitalGuideResponse.isSignLanguageInterpreter,
       areEmergencyChairs: digitalGuideResponse.areEmergencyChairs,
-      telephoneNumber: digitalGuideResponse.telephoneNumber,
+      phoneNumbers: digitalGuideResponse.phoneNumbers,
       surroundingId: digitalGuideResponse.surroundingId,
       images: digitalGuideResponse.images,
       imageUrl: imageUrl,
