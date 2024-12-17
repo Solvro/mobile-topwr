@@ -87,8 +87,7 @@ class _SksSheetHeader extends StatelessWidget {
         const SizedBox(height: SksChartConfig.heightSmall),
         Text(
           context.localize.sks_chart_title,
-          style: context.textTheme.headline
-              .copyWith(color: context.colorTheme.blueAzure),
+          style: context.textTheme.headline,
           textAlign: TextAlign.center,
         ),
       ],
