@@ -204,5 +204,9 @@
         "example": "wydziałów"
       }
     }
-  }
+  },
+  "measured_number_of_users": "Zmierzona liczba użytkowników",
+  "forecasted_number_of_users": "Prognozowana liczba użytkowników",
+  "sks_chart_title" : "Przybliżona liczba osób w Strefie Kultury Studenckiej",
+  "number_of_people" : "Liczba osób"
 }
