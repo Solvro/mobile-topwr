@@ -3,14 +3,14 @@ import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../../../../config/ui_config.dart";
-import "../../../../gen/assets.gen.dart";
-import "../../../../utils/context_extensions.dart";
-import "../../../../utils/determine_contact_icon.dart";
-import "../../../../widgets/detail_views/contact_section.dart";
-import "../../../../widgets/detail_views/detail_view_app_bar.dart";
-import "../../../../widgets/my_cached_image.dart";
-import "../../../../widgets/my_error_widget.dart";
+import "../../../config/ui_config.dart";
+import "../../../gen/assets.gen.dart";
+import "../../../utils/context_extensions.dart";
+import "../../../utils/determine_contact_icon.dart";
+import "../../../widgets/detail_views/contact_section.dart";
+import "../../../widgets/detail_views/detail_view_app_bar.dart";
+import "../../../widgets/my_cached_image.dart";
+import "../../../widgets/my_error_widget.dart";
 import "../data/models/digital_guide_response_extended.dart";
 import "../data/repository/digital_guide_repository.dart";
 import "widgets/accessibility_button.dart";
@@ -29,7 +29,8 @@ class DigitalGuideView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final asyncDigitalGuideData = ref.watch(getDigitalGuideDataProvider(id));
+    final asyncDigitalGuideData =
+        ref.watch(getDigitalGuideDataExtendedProvider(id));
     // question: Should the app bar appear during loading or when there's an error?
     // Now it doesn't, neither does it appear on SKS menu screen
     return asyncDigitalGuideData.when(

@@ -1,11 +1,11 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/widgets.dart";
 
-import "../../../../gen/assets.gen.dart";
-import "../../../../utils/context_extensions.dart";
-import "../../../../utils/determine_contact_icon.dart";
-import "../../../../widgets/detail_views/contact_section.dart";
-import "../../general_info/data/models/digital_guide_response_extended.dart";
+import "../../../../../gen/assets.gen.dart";
+import "../../../../../utils/context_extensions.dart";
+import "../../../../../utils/determine_contact_icon.dart";
+import "../../../../../widgets/detail_views/contact_section.dart";
+import "../../../data/models/digital_guide_response_extended.dart";
 
 class AmenitiesExpansionTileContent extends StatelessWidget {
   const AmenitiesExpansionTileContent({
