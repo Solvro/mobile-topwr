@@ -13,10 +13,10 @@ import "../../../utils/context_extensions.dart";
 import "../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../../widgets/my_error_widget.dart";
 import "../../../widgets/my_text_button.dart";
+import "../../../widgets/text_and_url_widget.dart";
 import "../../sks_people_live/presentation/widgets/sks_user_data_button.dart";
 import "../data/models/sks_menu_response.dart";
 import "../data/repository/sks_menu_repository.dart";
-import "widgets/sks_menu_data_source_link.dart";
 import "widgets/sks_menu_header.dart";
 import "widgets/sks_menu_section.dart";
 import "widgets/sks_menu_view_loading.dart";
@@ -111,7 +111,10 @@ class _SksMenuView extends ConsumerWidget {
               padding: const EdgeInsets.all(HomeViewConfig.paddingMedium),
               child: SksMenuSection(sksMenuData.meals),
             ),
-            const SksMenuDataSourceLink(),
+            TextAndUrl(
+              SksMenuConfig.sksDataSource,
+              "${context.localize.data_come_from_website}: ",
+            ),
             const SizedBox(
               height: ScienceClubsViewConfig.mediumPadding,
             ),
