@@ -20,7 +20,7 @@ class SksChartSheet extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final asyncChartData = ref.watch(getLatestChartDataProvider);
+    final asyncChartData = ref.watch(sksChartRepositoryProvider);
     final asyncNumberOfUsers = ref.watch(getLatestSksUserDataProvider);
 
     final currentNumberOfUsers = asyncNumberOfUsers.value;

@@ -6,7 +6,7 @@ import "../../../../utils/context_extensions.dart";
 import "../../../sks_people_live/data/models/sks_user_data.dart";
 import "../../../sks_people_live/presentation/widgets/sks_user_data_button.dart";
 
-// TODO(mikolaj-jalocha): add navigation? maybe after click on building informations
+// TODO(mikolaj-jalocha): add navigation in separate button. Please see parking's chart.
 
 class SksChartHeader extends StatelessWidget {
   const SksChartHeader({

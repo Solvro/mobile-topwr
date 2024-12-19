@@ -43,7 +43,6 @@ class SksChartLegendItem extends StatelessWidget {
             dashPattern: const [SksChartConfig.borderDashArray],
             color: context.colorTheme.blueAzure,
             padding: EdgeInsets.zero,
-            // ignore: sized_box_for_whitespace
             child: Container(
               width: SksChartConfig.legendItemSize,
             ),

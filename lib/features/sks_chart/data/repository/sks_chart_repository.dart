@@ -9,7 +9,7 @@ import "../models/sks_chart_data.dart";
 part "sks_chart_repository.g.dart";
 
 @riverpod
-Future<IList<SksChartData>> getLatestChartData(Ref ref) async {
+Future<IList<SksChartData>> sksChartRepository(Ref ref) async {
   final dio = ref.watch(restClientProvider);
   final latestChartDataUrl = "${Env.sksUrl}/sks-users/today/";
   final response = await dio.get(latestChartDataUrl);

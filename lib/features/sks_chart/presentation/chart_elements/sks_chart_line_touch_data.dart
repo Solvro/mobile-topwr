@@ -18,10 +18,15 @@ class SksChartLineTouchData extends LineTouchData {
                 context.colorTheme.greyLight,
             getTooltipItems: (touchedSpots) {
               return touchedSpots.map((LineBarSpot touchedSpot) {
-                final hour = (touchedSpot.barIndex == 0 ||
-                        touchedSpots.length == 1)
+                // display hour always beneath red line or if there's only blue line.
+                // this not currently not works exactly as expected, please see todo in the line 8/.
+                final bool shouldDisplayHour =
+                    touchedSpot.barIndex == 0 || touchedSpots.length == 1;
+
+                final hour = shouldDisplayHour
                     ? "\n${dateTime.get(touchedSpot.x.toInt()).toHourMinuteString()}"
                     : "";
+
                 final value = touchedSpot.y.toStringAsFixed(0) + hour;
                 final Color color = (touchedSpot.barIndex == 0)
                     ? context.colorTheme.orangePomegranade

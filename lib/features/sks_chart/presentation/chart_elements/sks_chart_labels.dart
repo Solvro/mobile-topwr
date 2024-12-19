@@ -41,18 +41,13 @@ class SksChartBottomTitles extends AxisTitles {
             reservedSize: 35,
             interval: 5,
             getTitlesWidget: (double value, TitleMeta meta) {
-              final String text = (chartData.isNotEmpty)
-                  ? chartData[value.toInt()]
-                              .externalTimestamp
-                              .toLocal()
-                              .minute ==
-                          0
-                      ? chartData[value.toInt()]
-                          .externalTimestamp
-                          .toLocal()
-                          .toHourMinuteString()
-                      : ""
-                  : "";
+              final DateTime? hourMinute = chartData.isNotEmpty
+                  ? chartData[value.toInt()].externalTimestamp.toLocal()
+                  : null;
+              final String hourMinuteFormatted =
+                  hourMinute != null && hourMinute.minute == 0
+                      ? hourMinute.toHourMinuteString()
+                      : "";
 
               return Padding(
                 padding: const EdgeInsets.only(
@@ -62,7 +57,7 @@ class SksChartBottomTitles extends AxisTitles {
                 child: Text(
                   style: context.textTheme.body
                       .copyWith(fontSize: 12, fontWeight: FontWeight.w400),
-                  text,
+                  hourMinuteFormatted,
                 ),
               );
             },
