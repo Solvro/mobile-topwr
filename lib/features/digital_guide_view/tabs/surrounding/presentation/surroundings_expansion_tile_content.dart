@@ -1,9 +1,9 @@
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../../../../utils/context_extensions.dart";
-import "../../../../widgets/my_error_widget.dart";
-import "../../general_info/data/models/digital_guide_response_extended.dart";
+import "../../../../../utils/context_extensions.dart";
+import "../../../../../widgets/my_error_widget.dart";
+import "../../../data/models/digital_guide_response_extended.dart";
 import "../data/models/surrounding_response.dart";
 import "../data/repository/surrounding_repository.dart";
 

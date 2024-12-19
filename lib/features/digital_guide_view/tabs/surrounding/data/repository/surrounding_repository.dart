@@ -1,8 +1,8 @@
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "../../../../../api_base_rest/client/dio_client.dart";
-import "../../../../../config/env.dart";
+import "../../../../../../api_base_rest/client/dio_client.dart";
+import "../../../../../../config/env.dart";
 import "../models/surrounding_response.dart";
 
 part "surrounding_repository.g.dart";

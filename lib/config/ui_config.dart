@@ -235,9 +235,13 @@ abstract class DigitalGuideConfig {
       EdgeInsets.symmetric(vertical: 24, horizontal: 24);
   static const borderRadiusMedium = 8.0;
   static const heightSmall = 8.0;
+  static const heightMedium = 16.0;
   static const heightBig = 24.0;
   static const heightHuge = 48.0;
+  static const mediumButtonPadding =
+      EdgeInsets.symmetric(vertical: 8, horizontal: 14);
   static const paddingMedium = 16.0;
+  static const borderColor = Color(0x8077859D);
 }
 
 abstract class AlertDialogConfig {
