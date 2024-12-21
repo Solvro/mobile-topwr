@@ -86,11 +86,11 @@ extension TrendIcon on Trend {
   Icon get icon {
     switch (this) {
       case Trend.increasing:
-        return const Icon(Icons.trending_up, color: Colors.grey);
+        return Icon(Icons.trending_up, color: Colors.grey.shade700);
       case Trend.decreasing:
-        return const Icon(Icons.trending_down, color: Colors.grey);
+        return Icon(Icons.trending_down, color: Colors.grey.shade700);
       case Trend.stable:
-        return const Icon(Icons.trending_flat, color: Colors.grey);
+        return Icon(Icons.trending_flat, color: Colors.grey.shade700);
     }
   }
 }

@@ -45,11 +45,8 @@ class SksChartSheet extends ConsumerWidget {
                   physics: const NeverScrollableScrollPhysics(),
                   children: [
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(
-                        SksChartConfig.paddingMedium,
-                        SksChartConfig.paddingMedium,
-                        SksChartConfig.paddingMedium,
-                        0,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: SksChartConfig.paddingMedium,
                       ),
                       child: SksChartCard(
                         currentNumberOfUsers: currentNumberOfUsers,
@@ -85,10 +82,13 @@ class _SksSheetHeader extends StatelessWidget {
       children: [
         const LineHandle(),
         const SizedBox(height: SksChartConfig.heightSmall),
-        Text(
-          context.localize.sks_chart_title,
-          style: context.textTheme.headline,
-          textAlign: TextAlign.center,
+        Padding(
+          padding: const EdgeInsets.all(8).copyWith(bottom: 0),
+          child: Text(
+            context.localize.sks_chart_title,
+            style: context.textTheme.headline,
+            textAlign: TextAlign.center,
+          ),
         ),
       ],
     );
