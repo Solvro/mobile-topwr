@@ -8,11 +8,11 @@ import "../features/parkings_view/widgets/parkings_icons.icons.dart";
 import "../utils/context_extensions.dart";
 
 enum NavBarEnum {
-  home(BottomNavBarIcon.home_icon, 26, "Home"),
-  buildings(BottomNavBarIcon.map_icon, 20, "Map"),
+  home(BottomNavBarIcons.home_icon, 26, "Home"),
+  buildings(BottomNavBarIcons.map_icon, 20, "Map"),
   parkings(ParkingsIcons.directions_car, 19, "Parkings"),
-  guide(BottomNavBarIcon.info_icon, 22, "Guide"),
-  navigation(Icons.more_horiz, 28, "Navigation Tab");
+  guide(BottomNavBarIcons.info_icon, 22, "Guide"),
+  navigation(BottomNavBarIcons.view_grid, 26, "Navigation Tab");
 
   const NavBarEnum(this.icon, this.size, this.label);
 

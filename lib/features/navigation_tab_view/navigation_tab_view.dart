@@ -31,7 +31,7 @@ class NavigationTabView extends ConsumerWidget {
           onTap: ref.navigateDepartments,
           title: context.localize.departments,
           icon: const Icon(
-            BottomNavBarIcon.faculty_icon,
+            BottomNavBarIcons.departments_icon,
             size: NavigationTabViewConfig.navIconSize,
           ),
         ),
@@ -57,7 +57,7 @@ class NavigationTabView extends ConsumerWidget {
         child2: SmallTileCard(
           onTap: ref.navigateScienceClubs,
           title: context.localize.student_organizations,
-          icon: const Icon(BottomNavBarIcon.sci_circle_icon, size: 24),
+          icon: const Icon(BottomNavBarIcons.sci_clubs_icon, size: 24),
         ),
       ),
       Padding(

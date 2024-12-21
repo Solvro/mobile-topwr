@@ -167,9 +167,9 @@ flutter:
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/assets-and-images/#from-packages
   fonts:
-    - family: BottomNavBarIcon
+    - family: BottomNavBarIcons
       fonts:
-        - asset: fonts/BottomNavBarIcon.ttf
+        - asset: fonts/BottomNavBarIcons.ttf
     - family: IParkingIcons
       fonts:
         - asset: fonts/IParkingIcons.ttf
