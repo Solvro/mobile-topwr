@@ -38,12 +38,16 @@ extension IsRouteATabViewOnStringX on String {
 
   bool get isTabView =>
       NavBarConfig.tabViews.values.map((i) => i.routeName).contains(this);
+
+  bool get isRouteGlobalRoute => this == RootRoute.name;
 }
 
 extension IsRouteATabViewX on PageRouteInfo<dynamic> {
   NavBarEnum? get tabBarEnum => routeName.tabBarEnum;
 
   bool get isTabView => routeName.isTabView;
+
+  bool get isRouteGlobalRoute => routeName.isRouteGlobalRoute;
 
   String? getFormatedRouteName(BuildContext context) {
     return switch (routeName) {

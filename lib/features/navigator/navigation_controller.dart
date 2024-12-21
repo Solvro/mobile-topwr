@@ -8,6 +8,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../config/nav_bar_config.dart";
+import "app_router.dart";
 
 part "navigation_controller.g.dart";
 
@@ -50,7 +51,23 @@ class NavigationController extends _$NavigationController {
   }
 
   Future<void> pushNamed(String uri) async {
-    final popFutureResults = _router?.pushNamed(uri); // push the route
+    final lastRoute = fullStack.lastOrNull;
+    final isCurrentlyWithinTabView =
+        ref.read(appRouterProvider).routesWithinTabBar.any(
+              (route) => route.name == lastRoute?.routeName,
+            );
+    final isDestinationWithinTabView =
+        ref.read(appRouterProvider).routesWithinTabBar.any(
+              (route) => route.path.split("/").first == uri.split("/").first,
+            );
+    final properlyWorkingURI = !isDestinationWithinTabView ? "/$uri" : uri;
+    final shouldPopBefore =
+        !isCurrentlyWithinTabView && isDestinationWithinTabView;
+    if (shouldPopBefore) {
+      _popGlobalRouter();
+    }
+    final popFutureResults =
+        _router?.pushNamed(properlyWorkingURI); // push the route
     await keepTrackOfTabBarState(popFutureResults);
   }
 
@@ -77,6 +94,18 @@ class NavigationController extends _$NavigationController {
     );
   }
 
+  void _popGlobalRouter() {
+    _router?.root.popUntil(
+      (element) =>
+          element.settings is! AutoRoutePage ||
+          (element.settings as AutoRoutePage)
+              .routeData
+              .topMatch
+              .toPageRouteInfo()
+              .isRouteGlobalRoute,
+    );
+  }
+
   void refreshState() {
     state = build();
   }
@@ -84,8 +113,12 @@ class NavigationController extends _$NavigationController {
   // so the problem is that we use both nested and global navigator and they have separate navigation stacks
   List<TRoute> get fullStack => [
         ..._stack, // nested navigator stack
-        ..._router?.root.stackData.sublist(1).map(
+        ..._router?.root.stackData
+                .map(
                   (e) => e.route.toPageRouteInfo(), // global navigator stack
+                )
+                .where(
+                  (element) => !element.isRouteGlobalRoute,
                 ) ??
             [],
       ]; // we spread both stacks to get proper combined stack
