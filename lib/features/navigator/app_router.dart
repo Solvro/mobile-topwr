@@ -66,10 +66,6 @@ class AppRouter extends RootStackRouter {
               page: NavigationTabRoute.page,
             ),
             AutoRoute(
-              path: "aboutUs",
-              page: AboutUsRoute.page,
-            ),
-            AutoRoute(
               path: "guide/:id",
               page: GuideDetailRoute.page,
             ),
@@ -98,6 +94,10 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           path: "/digital-guide/:id",
           page: DigitalGuideRoute.page,
+        ),
+        AutoRoute(
+          path: "aboutUs",
+          page: AboutUsRoute.page,
         ),
       ];
 }
