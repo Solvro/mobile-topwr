@@ -12,7 +12,6 @@ import "../in_app_review/business/in_app_rating_service.dart";
 import "../navigator/utils/navigation_commands.dart";
 import "widgets/about_the_app_tile.dart";
 import "widgets/about_us_tile.dart";
-import "widgets/navigation_tile.dart";
 import "widgets/notification_button.dart";
 import "widgets/small_tile.dart";
 
@@ -68,11 +67,12 @@ class NavigationTabView extends ConsumerWidget {
           style: context.textTheme.headline,
         ),
       ),
-      NavigationTile(
-        onTap: () {},
-        title: context.localize.settings,
-        icon: Icons.settings,
-      ),
+      // TODO(simon-the-shark): reverse this when the settings screen is ready
+      // NavigationTile(
+      //   onTap: () {},
+      //   title: context.localize.settings,
+      //   icon: Icons.settings,
+      // ),
       const Padding(
         padding:
             EdgeInsets.only(bottom: NavigationTabViewConfig.universalPadding),

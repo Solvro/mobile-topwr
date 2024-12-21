@@ -96,7 +96,7 @@ class AppRouter extends RootStackRouter {
           page: DigitalGuideRoute.page,
         ),
         AutoRoute(
-          path: "aboutUs",
+          path: "/aboutUs",
           page: AboutUsRoute.page,
         ),
       ];
