@@ -19,11 +19,8 @@ class SksUserDataButton extends ConsumerWidget {
         sksUsersData,
         onTap: () async => showModalBottomSheet(
           context: context,
-          constraints: BoxConstraints(
-            maxHeight: MediaQuery.sizeOf(context).height *
-                FilterConfig.bottomSheetHeightFactor,
-          ),
           isScrollControlled: true,
+          constraints: const BoxConstraints(),
           builder: (BuildContext context) => const SksChartSheet(),
         ),
       ),

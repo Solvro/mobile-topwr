@@ -3,6 +3,7 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../config/ui_config.dart";
+import "../../../hooks/use_filters_sheet_height.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../widgets/my_error_widget.dart";
@@ -26,13 +27,14 @@ class SksChartSheet extends ConsumerWidget {
     final currentNumberOfUsers = asyncNumberOfUsers.value;
     final maxNumberOfUsers = asyncChartData.value?.maxNumberOfUsers ?? 0;
 
+    final sheetHeight = useFiltersSheetHeight(context);
+
     return switch (asyncChartData) {
       AsyncError(:final error) => MyErrorWidget(error),
       AsyncLoading() => const SizedBox.shrink(),
-      AsyncValue() => Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: SksChartConfig.paddingExtraSmall,
-          ),
+      AsyncValue() => SizedBox(
+          height: sheetHeight,
+          width: double.infinity,
           child: Column(
             children: [
               Padding(
