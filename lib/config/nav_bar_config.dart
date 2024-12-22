@@ -8,11 +8,11 @@ import "../features/parkings_view/widgets/parkings_icons.icons.dart";
 import "../utils/context_extensions.dart";
 
 enum NavBarEnum {
-  home(BottomNavBarIcon.home_icon, 26, "Home"),
-  buildings(BottomNavBarIcon.map_icon, 20, "Map"),
+  home(BottomNavBarIcons.home_icon, 26, "Home"),
+  buildings(BottomNavBarIcons.map_icon, 20, "Map"),
   parkings(ParkingsIcons.directions_car, 19, "Parkings"),
-  guide(BottomNavBarIcon.info_icon, 22, "Guide"),
-  navigation(Icons.more_horiz, 28, "Navigation Tab");
+  guide(BottomNavBarIcons.info_icon, 22, "Guide"),
+  navigation(BottomNavBarIcons.view_grid, 26, "Navigation Tab");
 
   const NavBarEnum(this.icon, this.size, this.label);
 
@@ -38,12 +38,16 @@ extension IsRouteATabViewOnStringX on String {
 
   bool get isTabView =>
       NavBarConfig.tabViews.values.map((i) => i.routeName).contains(this);
+
+  bool get isRouteGlobalRoute => this == RootRoute.name;
 }
 
 extension IsRouteATabViewX on PageRouteInfo<dynamic> {
   NavBarEnum? get tabBarEnum => routeName.tabBarEnum;
 
   bool get isTabView => routeName.isTabView;
+
+  bool get isRouteGlobalRoute => routeName.isRouteGlobalRoute;
 
   String? getFormatedRouteName(BuildContext context) {
     return switch (routeName) {
@@ -56,6 +60,8 @@ extension IsRouteATabViewX on PageRouteInfo<dynamic> {
       BuildingsRoute.name => context.localize.buildings_title,
       ParkingsRoute.name => context.localize.parkings_title,
       DepartmentDetailRoute.name => context.localize.department,
+      ScienceClubDetailRoute.name => context.localize.scientific_cirlces,
+      GuideDetailRoute.name => context.localize.guide,
       _ => null,
     };
   }

@@ -18,6 +18,11 @@ extension DateTimeUtilsX on DateTime {
     return "$capitalizedDay, $date";
   }
 
+  String toHourMinuteString() {
+    final DateFormat hourFormat = DateFormat("HH:mm");
+    return hourFormat.format(this);
+  }
+
   // Convert DateTime to Date (remove time)
   DateTime get date => DateTime(year, month, day);
 

@@ -45,7 +45,8 @@ class ZoomableOptimizedDirectusImage extends StatelessWidget {
               maxScale: 3,
               child: shouldHaveRectBackground
                   ? _showImageWithBackground(
-                      MediaQuery.of(context).size.shortestSide)
+                      MediaQuery.of(context).size.shortestSide,
+                    )
                   : _showImage(),
             ),
           ),

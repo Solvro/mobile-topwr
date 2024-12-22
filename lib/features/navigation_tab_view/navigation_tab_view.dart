@@ -12,7 +12,6 @@ import "../in_app_review/business/in_app_rating_service.dart";
 import "../navigator/utils/navigation_commands.dart";
 import "widgets/about_the_app_tile.dart";
 import "widgets/about_us_tile.dart";
-import "widgets/navigation_tile.dart";
 import "widgets/notification_button.dart";
 import "widgets/small_tile.dart";
 
@@ -32,7 +31,7 @@ class NavigationTabView extends ConsumerWidget {
           onTap: ref.navigateDepartments,
           title: context.localize.departments,
           icon: const Icon(
-            BottomNavBarIcon.faculty_icon,
+            BottomNavBarIcons.departments_icon,
             size: NavigationTabViewConfig.navIconSize,
           ),
         ),
@@ -58,7 +57,7 @@ class NavigationTabView extends ConsumerWidget {
         child2: SmallTileCard(
           onTap: ref.navigateScienceClubs,
           title: context.localize.student_organizations,
-          icon: const Icon(BottomNavBarIcon.sci_circle_icon, size: 24),
+          icon: const Icon(BottomNavBarIcons.sci_clubs_icon, size: 24),
         ),
       ),
       Padding(
@@ -68,11 +67,12 @@ class NavigationTabView extends ConsumerWidget {
           style: context.textTheme.headline,
         ),
       ),
-      NavigationTile(
-        onTap: () {},
-        title: context.localize.settings,
-        icon: Icons.settings,
-      ),
+      // TODO(simon-the-shark): reverse this when the settings screen is ready
+      // NavigationTile(
+      //   onTap: () {},
+      //   title: context.localize.settings,
+      //   icon: Icons.settings,
+      // ),
       const Padding(
         padding:
             EdgeInsets.only(bottom: NavigationTabViewConfig.universalPadding),

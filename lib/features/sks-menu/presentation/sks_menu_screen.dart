@@ -1,4 +1,5 @@
 import "dart:core";
+import "dart:math";
 
 import "package:auto_route/annotations.dart";
 import "package:flutter/material.dart";
@@ -13,10 +14,10 @@ import "../../../utils/context_extensions.dart";
 import "../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../../widgets/my_error_widget.dart";
 import "../../../widgets/my_text_button.dart";
+import "../../../widgets/text_and_url_widget.dart";
 import "../../sks_people_live/presentation/widgets/sks_user_data_button.dart";
 import "../data/models/sks_menu_response.dart";
 import "../data/repository/sks_menu_repository.dart";
-import "widgets/sks_menu_data_source_link.dart";
 import "widgets/sks_menu_header.dart";
 import "widgets/sks_menu_section.dart";
 import "widgets/sks_menu_view_loading.dart";
@@ -111,7 +112,10 @@ class _SksMenuView extends ConsumerWidget {
               padding: const EdgeInsets.all(HomeViewConfig.paddingMedium),
               child: SksMenuSection(sksMenuData.meals),
             ),
-            const SksMenuDataSourceLink(),
+            TextAndUrl(
+              SksMenuConfig.sksDataSource,
+              "${context.localize.data_come_from_website}: ",
+            ),
             const SizedBox(
               height: ScienceClubsViewConfig.mediumPadding,
             ),
@@ -130,7 +134,11 @@ class _SKSMenuUnavailableAnimation extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final isAnimationCompleted = useState(false);
-    final animationSize = MediaQuery.sizeOf(context).width * 0.6;
+    final animationSize = min(
+          MediaQuery.sizeOf(context).width,
+          MediaQuery.sizeOf(context).height,
+        ) *
+        0.6;
 
     return Scaffold(
       backgroundColor: context.colorTheme.whiteSoap,
@@ -139,63 +147,74 @@ class _SKSMenuUnavailableAnimation extends HookWidget {
           SksUserDataButton(),
         ],
       ),
-      body: Center(
-        child: Column(
-          children: [
-            const Spacer(),
-            SizedBox.square(
-              dimension: animationSize,
-              child: Lottie.asset(
-                Assets.animations.sksClosed,
-                fit: BoxFit.cover,
-                repeat: false,
-                frameRate: const FrameRate(LottieAnimationConfig.frameRate),
-                renderCache: RenderCache.drawingCommands,
-                onLoaded: (composition) {
-                  final totalDuration = composition.duration;
-                  Future.delayed(
-                      totalDuration *
-                          0.8, // in my opinion the animation is a bit boring at the end, so we can show the texts a bit earlier
-                      () {
-                    isAnimationCompleted.value = true;
-                  });
-                },
-              ),
-            ),
-            Opacity(
-              opacity: isAnimationCompleted.value ? 1 : 0,
-              child: Transform.translate(
-                offset: Offset(
-                  0,
-                  -(animationSize *
-                      0.10), // the animation has some extra space at the bottom
-                ),
+      body: LayoutBuilder(
+        builder: (context, box) {
+          return SizedBox(
+            height: box.maxHeight,
+            width: box.maxWidth,
+            child: Align(
+              alignment: const Alignment(0, -0.4),
+              child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    Text(
-                      context.localize.sks_menu_closed,
-                      style: context.textTheme.headline.copyWith(
-                        fontWeight: FontWeight.bold,
+                    SizedBox.square(
+                      dimension: animationSize,
+                      child: Lottie.asset(
+                        Assets.animations.sksClosed,
+                        fit: BoxFit.cover,
+                        repeat: false,
+                        frameRate:
+                            const FrameRate(LottieAnimationConfig.frameRate),
+                        renderCache: RenderCache.drawingCommands,
+                        onLoaded: (composition) {
+                          final totalDuration = composition.duration;
+                          Future.delayed(
+                              totalDuration *
+                                  0.8, // in my opinion the animation is a bit boring at the end, so we can show the texts a bit earlier
+                              () {
+                            isAnimationCompleted.value = true;
+                          });
+                        },
                       ),
-                      textAlign: TextAlign.center,
                     ),
-                    if (onShowLastMenuTap != null)
-                      Padding(
-                        padding: const EdgeInsets.only(top: 12),
-                        child: MyTextButton(
-                          actionTitle: context.localize.sks_show_last_menu,
-                          onClick: onShowLastMenuTap,
-                          showBorder: true,
-                          color: context.colorTheme.blueAzure,
+                    Opacity(
+                      opacity: isAnimationCompleted.value ? 1 : 0,
+                      child: Transform.translate(
+                        offset: Offset(
+                          0,
+                          -(animationSize *
+                              0.10), // the animation has some extra space at the bottom
+                        ),
+                        child: Column(
+                          children: [
+                            Text(
+                              context.localize.sks_menu_closed,
+                              style: context.textTheme.headline.copyWith(
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                            if (onShowLastMenuTap != null)
+                              Padding(
+                                padding: const EdgeInsets.only(top: 12),
+                                child: MyTextButton(
+                                  actionTitle:
+                                      context.localize.sks_show_last_menu,
+                                  onClick: onShowLastMenuTap,
+                                  showBorder: true,
+                                  color: context.colorTheme.blueAzure,
+                                ),
+                              ),
+                          ],
                         ),
                       ),
+                    ),
                   ],
                 ),
               ),
             ),
-            const Spacer(flex: 2),
-          ],
-        ),
+          );
+        },
       ),
     );
   }
