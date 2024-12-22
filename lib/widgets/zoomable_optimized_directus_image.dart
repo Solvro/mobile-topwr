@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "../theme/colors.dart";
 import "optimized_directus_image.dart";
 
 class ZoomableOptimizedDirectusImage extends StatelessWidget {
@@ -42,8 +43,10 @@ class ZoomableOptimizedDirectusImage extends StatelessWidget {
             child: InteractiveViewer(
               minScale: 1,
               maxScale: 3,
-              child: shouldHaveRectBackground? _showImageWithBackground(MediaQuery.of(context).size.shortestSide)
-                                             : _showImage(),
+              child: shouldHaveRectBackground
+                  ? _showImageWithBackground(
+                      MediaQuery.of(context).size.shortestSide)
+                  : _showImage(),
             ),
           ),
         ),
@@ -58,19 +61,26 @@ class ZoomableOptimizedDirectusImage extends StatelessWidget {
   }
 
   Center _showImageWithBackground(sideLength) => Center(
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(20),
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Container(
+            decoration: BoxDecoration(
+              color: ColorsConsts.greyLight,
+              borderRadius: BorderRadius.circular(30),
+            ),
+            width: sideLength,
+            height: sideLength,
+            child: _showImage(),
+          ),
         ),
-        width: sideLength,
-        height: sideLength,
-        child: _showImage(),
-      ),
-  );
+      );
 
-  OptimizedDirectusImage _showImage() => OptimizedDirectusImage(
-    imageUrl,
-    boxFit: BoxFit.scaleDown,
-  );
+  Padding _showImage() => Padding(
+        padding: const EdgeInsets.all(10),
+        child: OptimizedDirectusImage(
+          imageUrl,
+          boxFit: BoxFit.scaleDown,
+          noShimmeringLoading: true,
+        ),
+      );
 }
