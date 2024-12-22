@@ -2,9 +2,11 @@ import "package:auto_route/auto_route.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:flutter_svg/svg.dart";
 
 import "../../../../widgets/my_error_widget.dart";
 import "../../config/ui_config.dart";
+import "../../gen/assets.gen.dart";
 import "../../utils/context_extensions.dart";
 import "../../utils/launch_url_util.dart";
 import "../../widgets/search_box_app_bar.dart";
@@ -94,7 +96,14 @@ class _GuideInfo extends ConsumerWidget {
     return WideTileCard(
       title: context.localize.hi_student,
       subtitle: context.localize.guide_ideas_info,
-      secondSubtitle: context.localize.guide_click_here,
+      trailing: SizedBox.square(
+        dimension: WideTileCardConfig.imageSize,
+        child: SvgPicture.asset(
+          Assets.svg.guideView.ideasBulb,
+          width: WideTileCardConfig.imageSize,
+          height: WideTileCardConfig.imageSize,
+        ),
+      ),
       onTap: () async {
         await ref.launch(emailLaunchUri.toString());
       },
