@@ -50,6 +50,7 @@ class SliverLogo extends StatelessWidget {
                       logoDirectusUrl,
                       boxFit: boxfit,
                       noShimmeringLoading: noShimmeringLoading,
+                      shouldHaveRectBackground: true,
                     ),
                   ),
                 ),

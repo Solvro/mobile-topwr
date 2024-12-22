@@ -7,11 +7,13 @@ class ZoomableOptimizedDirectusImage extends StatelessWidget {
     super.key,
     this.noShimmeringLoading = false,
     this.boxFit = BoxFit.cover,
+    this.shouldHaveRectBackground = false,
   });
 
   final String? imageUrl;
   final bool noShimmeringLoading;
   final BoxFit boxFit;
+  final bool shouldHaveRectBackground;
 
   @override
   Widget build(BuildContext context) {
@@ -40,15 +42,12 @@ class ZoomableOptimizedDirectusImage extends StatelessWidget {
             child: InteractiveViewer(
               minScale: 1,
               maxScale: 3,
-              child: OptimizedDirectusImage(
-                imageUrl,
-                boxFit: BoxFit.contain,
-              ),
+              child: shouldHaveRectBackground? _showImageWithBackground(MediaQuery.of(context).size.shortestSide)
+                                             : _showImage(),
             ),
           ),
         ),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
-          // Optional: Add a fade transition
           return FadeTransition(
             opacity: animation,
             child: child,
@@ -57,4 +56,21 @@ class ZoomableOptimizedDirectusImage extends StatelessWidget {
       ),
     );
   }
+
+  Center _showImageWithBackground(sideLength) => Center(
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        width: sideLength,
+        height: sideLength,
+        child: _showImage(),
+      ),
+  );
+
+  OptimizedDirectusImage _showImage() => OptimizedDirectusImage(
+    imageUrl,
+    boxFit: BoxFit.scaleDown,
+  );
 }
