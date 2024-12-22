@@ -7,7 +7,7 @@ import "../about_us_view/about_us_view.dart";
 import "../buildings_view/buildings_view.dart";
 import "../department_detail_view/department_detail_view.dart";
 import "../departments_view/departments_view.dart";
-import "../digital_guide_view/general_info/presentation/digital_guide_view.dart";
+import "../digital_guide_view/presentation/digital_guide_view.dart";
 import "../guide_detail_view/guide_detail_view.dart";
 import "../guide_view/guide_view.dart";
 import "../home_view/home_view.dart";
@@ -37,43 +37,43 @@ class AppRouter extends RootStackRouter {
 
   AppRouter({required this.ref});
 
+  // These have bottom nav bar visible
+  // also they need to handle in app deeplinks differently
+  List<AutoRoute> get routesWithinTabBar => [
+        _NoTransitionRoute(
+          path: "",
+          page: HomeRoute.page,
+        ),
+        _NoTransitionRoute(
+          path: "buildings/:initialActiveItemId",
+          page: BuildingsRoute.page,
+        ),
+        RedirectRoute(path: "buildings", redirectTo: "buildings/null"),
+        _NoTransitionRoute(
+          path: "parkings/:initialActiveItemId",
+          page: ParkingsRoute.page,
+        ),
+        RedirectRoute(path: "parkings", redirectTo: "parkings/null"),
+        _NoTransitionRoute(
+          path: "guide",
+          page: GuideRoute.page,
+        ),
+        _NoTransitionRoute(
+          path: "navigation",
+          page: NavigationTabRoute.page,
+        ),
+        AutoRoute(
+          path: "guide/:id",
+          page: GuideDetailRoute.page,
+        ),
+      ];
+
   @override
   List<AutoRoute> get routes => [
         AutoRoute(
           path: "/",
           page: RootRoute.page,
-          children: [
-            _NoTransitionRoute(
-              path: "",
-              page: HomeRoute.page,
-            ),
-            _NoTransitionRoute(
-              path: "buildings/:initialActiveItemId",
-              page: BuildingsRoute.page,
-            ),
-            RedirectRoute(path: "buildings", redirectTo: "buildings/null"),
-            _NoTransitionRoute(
-              path: "parkings/:initialActiveItemId",
-              page: ParkingsRoute.page,
-            ),
-            RedirectRoute(path: "parkings", redirectTo: "parkings/null"),
-            _NoTransitionRoute(
-              path: "guide",
-              page: GuideRoute.page,
-            ),
-            _NoTransitionRoute(
-              path: "navigation",
-              page: NavigationTabRoute.page,
-            ),
-            AutoRoute(
-              path: "aboutUs",
-              page: AboutUsRoute.page,
-            ),
-            AutoRoute(
-              path: "guide/:id",
-              page: GuideDetailRoute.page,
-            ),
-          ],
+          children: routesWithinTabBar,
         ),
         AutoRoute(
           path: "/sks-menu",
@@ -98,6 +98,10 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           path: "/digital-guide/:id",
           page: DigitalGuideRoute.page,
+        ),
+        AutoRoute(
+          path: "/aboutUs",
+          page: AboutUsRoute.page,
         ),
       ];
 }

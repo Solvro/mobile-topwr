@@ -3,6 +3,7 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../config/ui_config.dart";
+import "../../hooks/use_filters_sheet_height.dart";
 import "../../theme/app_theme.dart";
 import "../../utils/context_extensions.dart";
 import "filters_controller.dart";
@@ -18,14 +19,14 @@ class FiltersSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final sheetHeight = useFiltersSheetHeight(context);
     return ProviderScope(
       overrides: [
         searchFiltersControllerProvider,
         areFiltersEnabledProvider,
       ],
       child: SizedBox(
-        height: MediaQuery.sizeOf(context).height *
-            FilterConfig.bottomSheetHeightFactor,
+        height: sheetHeight,
         child: Padding(
           padding: const EdgeInsets.only(top: 16),
           child: Column(

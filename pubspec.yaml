@@ -16,7 +16,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.1.6+61
+version: 1.1.7+62
 
 environment:
   sdk: ^3.5.3
@@ -51,7 +51,7 @@ dependencies:
   freezed_annotation: ^2.4.4
   json_annotation: ^4.9.0
   collection: ^1.19.1
-  fl_chart: ^0.69.0
+  fl_chart: ^0.69.2
   permission_handler: ^11.3.1
   flutter_widget_from_html_core: ^0.15.2
   html: ^0.15.4
@@ -90,6 +90,7 @@ dependencies:
   in_app_review: ^2.0.9
   flutter_map_animations: ^0.7.1
   fluttertoast: ^8.2.8
+  dotted_border: ^2.1.0
 
 dev_dependencies:
   flutter_test:
@@ -147,6 +148,14 @@ flutter:
     - assets/svg/contact_icons/tiktok.svg
     - assets/svg/contact_icons/discord.svg
     - assets/svg/digital_guide/storey.svg
+    - assets/svg/digital_guide/assistance_dog.svg
+    - assets/svg/digital_guide/braille.svg
+    - assets/svg/digital_guide/emergency_chairs.svg
+    - assets/svg/digital_guide/induction_loop.svg
+    - assets/svg/digital_guide/large_font.svg
+    - assets/svg/digital_guide/micronavigation.svg
+    - assets/svg/digital_guide/orientation_paths.svg
+    - assets/svg/digital_guide/sign_language.svg
     - assets/animations/error.json
     - assets/animations/search.json
     - assets/animations/offline.json
@@ -158,9 +167,9 @@ flutter:
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/assets-and-images/#from-packages
   fonts:
-    - family: BottomNavBarIcon
+    - family: BottomNavBarIcons
       fonts:
-        - asset: fonts/BottomNavBarIcon.ttf
+        - asset: fonts/BottomNavBarIcons.ttf
     - family: IParkingIcons
       fonts:
         - asset: fonts/IParkingIcons.ttf
