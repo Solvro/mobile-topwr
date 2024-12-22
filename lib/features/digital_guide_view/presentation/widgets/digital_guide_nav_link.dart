@@ -32,6 +32,7 @@ class DigitalGuideNavLink extends StatelessWidget {
             Text(
               text,
               style: context.textTheme.title,
+              overflow: TextOverflow.ellipsis,
             ),
             Icon(
               Icons.arrow_forward_ios,
