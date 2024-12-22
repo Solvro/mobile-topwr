@@ -6,6 +6,10 @@ import "../../../../widgets/my_error_widget.dart";
 import "../../general_info/data/models/digital_guide_response_extended.dart";
 import "../data/models/surrounding_response.dart";
 import "../data/repository/surrounding_repository.dart";
+import "../../general_info/presentation/widgets/accessibility_profile_card.dart";
+import "difficulties_information_cards_list.dart";
+import "../../../../../gen/assets.gen.dart";
+import "../data/utils/surrounding_response_operations.dart";
 
 class SurroundingsExpansionTileContent extends ConsumerWidget {
   const SurroundingsExpansionTileContent({
@@ -43,9 +47,19 @@ class _SurroundingExpansionTileContent extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Column(
       children: [
+        DifficultiesInformationCardsList(
+          surroundingResponse: surroundingResponse,
+        ),
+        const SizedBox(
+          height: 12,
+        ),
+        AccessibilityProfileCard(
+          items: getSurroundingsCommentsList(surroundingResponse, context),
+          icon: Assets.svg.digitalGuide.accessibilityAlerts.blindProfile,
+        ),
         Text(
           context.localize.parking_location(
-            surroundingResponse.translations.translationPl.parkingSpacesComment,
+            surroundingResponse.translations.pl.areParkingSpacesComment,
           ),
         ),
       ],

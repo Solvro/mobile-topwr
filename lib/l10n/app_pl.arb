@@ -186,6 +186,7 @@
   "sign_language_interpreter": "W budynku zapewniona jest możliwość skorzystania z usług tłumacza języka migowego",
   "emergency_chairs": "W budynku zamieszczone zostały krzesła ewakuacyjne",
   "parking_location" : "Miejsca parkingowe znajdują się {location}",
+  "parking_pwd_location" : "Miejsca parkingowe dla niepełnospranych znajdują się {location}",
   "digital_guide_website" : "www.przewodnik.pwr.edu.pl",
   "sks_old_menu": "Zobacz ostatnie menu",
   "sks_menu_closed" : "SKS Menu jest teraz niedostępne",
@@ -204,5 +205,55 @@
         "example": "wydziałów"
       }
     }
-  }
+  },
+  "accessibility_profile" : "Profil dostępności",
+  "accessibility_profile_empty" : "Brak informacji dotyczących wybranego profilu dostępności",
+  "accessibility_card_information" : "{message} jest {accessibility_level} dla osób {disability_description}",
+  "@accessibility_card_information" : {
+    "placeholders" : {
+      "message" : {
+        "type": "String",
+        "example": "Otoczenie budynku"
+      },
+
+      "accessibility_level" : {
+        "type": "String",
+        "example": "częściowo dostępne/dostępne/niedostępne"
+      },
+
+      "disability_description" : {
+        "type": "String",
+        "example": "posiadających trudności poznawcze"
+      }
+    }
+  },
+
+  "accessibility_level_feminine" : "{level, select, 0{niedostępna} 1{częściowo dostępna} 2{częściowo dostępna} 3{dostępna} other{niedostępna}}",
+  "@accessibility_level_feminine" : {
+    "placeholders" : {
+      "level" : {}
+    }
+  },
+  "accessibility_level_masculine" : "{level, select, 0{niedostępny} 1{częściowo dostępny} 2{częściowo dostępny} 3{dostępny} other{niedostępny}}",
+  "@accessibility_level_masculine" : {
+    "placeholders" : {
+      "level" : {}
+    }
+  },
+  "accessibility_level_neuter" : "{level, select, 0{niedostępne} 1{częściowo dostępne} 2{częściowo dostępne} 3{dostępne} other{niedostępne}}",
+  "@accessibility_level_neuter" : {
+    "placeholders" : {
+      "level" : {}
+    }
+  },
+  "people_with_cognitive_difficulties" : "posiadających trudności poznawcze",
+  "people_with_hard_of_hearing" : "posiadających trudności ze słyszeniem",
+  "people_visually_impaired" : "słabo widzących",
+  "people_blind" : "niewidomych",
+  "people_with_motor_disability" : "posiadających dysfunkcje ruchu",
+  "people_with_high_sensory_sensitivity" : "o wysokiej wrażliwości sensorycznej"
+
+
+
+
 }

@@ -209,13 +209,25 @@ abstract class NavigationTabViewConfig {
 }
 
 abstract class DigitalGuideConfig {
+  static const symetricalPaddingSmall =
+      EdgeInsets.symmetric(vertical: 4, horizontal: 4);
   static const symetricalPaddingBig =
       EdgeInsets.symmetric(vertical: 24, horizontal: 24);
+  static const borderRadiusSmall = 4.0;
   static const borderRadiusMedium = 8.0;
   static const heightSmall = 8.0;
   static const heightBig = 24.0;
   static const heightHuge = 48.0;
+  static const paddingSmall = 4.0;
   static const paddingMedium = 16.0;
+  static const difficultiesCardIconSize = 36.0;
+
+  static const accessibilityLevelColors = [
+    Color(0xFFB1261E),
+    Color(0xFFE07E0F),
+    Color.fromARGB(255, 169, 183, 10),
+    Color(0xFF28BC2F),
+  ];
 }
 
 abstract class AlertDialogConfig {
