@@ -14,7 +14,11 @@ extension LaunchUrlUtilX on WidgetRef? {
     if (this != null && uriStr.startsWith(UrlConfig.topwrUrl)) {
       final urlWithoutDomain = uriStr.split(UrlConfig.topwrUrl).last;
       unawaited(
-        this!.navigateNamedUri(urlWithoutDomain),
+        this!.navigateNamedUri(
+          urlWithoutDomain.endsWith("/") // remove trailing slash
+              ? urlWithoutDomain.substring(0, urlWithoutDomain.length - 1)
+              : urlWithoutDomain,
+        ),
       );
       return true;
     }

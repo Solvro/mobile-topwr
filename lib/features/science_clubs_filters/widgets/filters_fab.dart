@@ -2,7 +2,6 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../theme/app_theme.dart";
-import "../../../config/ui_config.dart";
 import "../filters_controller.dart";
 import "../filters_sheet.dart";
 
@@ -17,10 +16,7 @@ class FiltersFAB extends ConsumerWidget {
     return FloatingActionButton(
       onPressed: () async => showModalBottomSheet(
         context: context,
-        constraints: BoxConstraints(
-          maxHeight: MediaQuery.sizeOf(context).height *
-              FilterConfig.bottomSheetHeightFactor,
-        ),
+        constraints: const BoxConstraints(),
         isScrollControlled: true,
         builder: (context) => UncontrolledProviderScope(
           container: parentProvider,

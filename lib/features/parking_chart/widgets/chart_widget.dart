@@ -3,6 +3,7 @@ import "package:fl_chart/fl_chart.dart";
 import "package:flutter/material.dart";
 
 import "../../../theme/app_theme.dart";
+import "../../../widgets/charts/hide_labels.dart";
 import "../../parkings_view/models/parking.dart";
 import "../chart_elements/chart_border.dart";
 import "../chart_elements/chart_grid.dart";
@@ -30,8 +31,8 @@ class ChartWidget extends StatelessWidget {
               borderData: ChartBorder(context),
               gridData: ChartGrid(context),
               titlesData: FlTitlesData(
-                rightTitles: const _HideLabels(),
-                topTitles: const _HideLabels(),
+                rightTitles: const HideLabels(),
+                topTitles: const HideLabels(),
                 bottomTitles: BottomLabels(context),
                 leftTitles: LeftLabels(context),
               ),
@@ -63,8 +64,4 @@ class ChartWidget extends StatelessWidget {
       ],
     );
   }
-}
-
-class _HideLabels extends AxisTitles {
-  const _HideLabels() : super(sideTitles: const SideTitles());
 }
