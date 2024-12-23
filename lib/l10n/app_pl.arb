@@ -162,7 +162,8 @@
   "transport" : "Dojazd",
   "entrances" : "Wejścia",
   "elevators" : "Windy",
-  "toilets" : "Toilets",
+  "adapted_toilets" : "Toalety dostosowane",
+  "adapted_toilet_description": "Toaleta dla osób z niepełnosprawnościami",
   "micro_navigation" : "Mikronawigacja",
   "building_structure" : "Struktura budynku",
   "room_information" : "Pomieszczenia",
@@ -209,5 +210,6 @@
   "forecasted_number_of_users": "Średnia liczba użytkowników z 21 dni",
   "sks_chart_title" : "Przybliżona liczba osób w Strefie Kultury Studenckiej",
   "number_of_people" : "Liczba osób",
-  "evacuation_text": "Ewakuacja i pierwsza pomoc"
+  "evacuation_text": "Ewakuacja i pierwsza pomoc",
+  "digital_guide": "Przeowdnik"
 }

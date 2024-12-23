@@ -24,9 +24,13 @@ Future<DigitalGuideResponseExtended> getDigitalGuideDataExtended(
       await ref.watch(getDigitalGuideEvacuationProvider(id).future);
   final entraces = await ref
       .watch(getDigitalGuideEntracesProvider(digitalGuideResponse.id).future);
+  final levels = await ref
+      .watch(GetLevelsProvider(digitalGuideResponse.levelsIndices).future);
+  debugPrint("Levels count: ${levels.length}");
   return DigitalGuideResponseExtended.fromDigitalGuideResponse(
     digitalGuideResponse: digitalGuideResponse,
     imageUrl: imageUrl,
+    levels: levels,
     evacuation: evacuation,
     entraces: entraces,
   );
@@ -52,6 +56,45 @@ Future<String?> getImageUrl(Ref ref, int id) async {
   final imageUrl = responseData["image_960w"];
 
   return imageUrl;
+}
+
+@riverpod
+Future<List<Level>> getLevels(Ref ref, List<int> levelsIndices) async {
+  final dio = ref.read(restClientProvider);
+  dio.options.headers["Authorization"] =
+      "Token ${Env.digitalGuideAuthorizationToken}";
+
+  final levelsFutures = levelsIndices.map((levelID) async {
+    final levelResponse =
+        await dio.get("${Env.digitalGuideUrl}/levels/$levelID");
+    final levelNotFull =
+        LevelNotFull.fromJson(levelResponse.data as Map<String, dynamic>);
+    final regionsFutures = levelNotFull.regionIndices.map((regionID) async {
+      final regionResponse =
+          await dio.get("${Env.digitalGuideUrl}/regions/$regionID");
+      return Region.fromJson(regionResponse.data as Map<String, dynamic>);
+    }).toList();
+    final regions = await Future.wait(regionsFutures);
+    return Level.create(levelNotFull: levelNotFull, regions: regions);
+  }).toList();
+
+  final levelsList = await Future.wait(levelsFutures);
+
+  return levelsList;
+}
+
+@riverpod
+Future<List<Region>> getRegions(Ref ref, List<int> regionsIndices) async {
+  final dio = ref.read(restClientProvider);
+  dio.options.headers["Authorization"] =
+      "Token ${Env.digitalGuideAuthorizationToken}";
+
+  final regionsIterable = regionsIndices.map((id) async {
+    final response = await dio.get("${Env.digitalGuideUrl}/regions/$id");
+    return Region.fromJson(response.data as Map<String, dynamic>);
+  });
+
+  return Future.wait(regionsIterable);
 }
 
 @riverpod
