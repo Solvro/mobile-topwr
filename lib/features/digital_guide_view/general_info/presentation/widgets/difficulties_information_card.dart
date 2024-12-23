@@ -8,8 +8,8 @@ class DifficultiesInformationCard extends StatelessWidget {
   final Color color;
   final String icon;
   final String text;
+  
 
-  // Constructor
   const DifficultiesInformationCard({
     super.key,
     required this.color,
@@ -23,7 +23,7 @@ class DifficultiesInformationCard extends StatelessWidget {
       padding: DigitalGuideConfig.symetricalPaddingSmall,
       child: Container(
         width: double.infinity,
-        height: DigitalGuideConfig.heightHuge,
+        height: DigitalGuideConfig.paddingSmall * 2 + DigitalGuideConfig.difficultiesCardIconSize,
         decoration: BoxDecoration(
           borderRadius:
               BorderRadius.circular(DigitalGuideConfig.borderRadiusMedium),
@@ -38,7 +38,7 @@ class DifficultiesInformationCard extends StatelessWidget {
                 height: DigitalGuideConfig.difficultiesCardIconSize,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(
-                      DigitalGuideConfig.borderRadiusSmall),
+                      DigitalGuideConfig.borderRadiusSmall,),
                   color: Colors.white,
                 ),
                 child: Padding(

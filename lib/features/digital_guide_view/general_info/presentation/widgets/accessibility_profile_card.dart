@@ -1,9 +1,10 @@
 import "package:flutter/material.dart";
+import "package:flutter_svg/svg.dart";
 
 import "../../../../../../theme/app_theme.dart";
 import "../../../../../config/ui_config.dart";
 import "../../../../../utils/context_extensions.dart";
-import "package:flutter_svg/svg.dart";
+import "bullet_list.dart";
 
 class AccessibilityProfileCard extends StatelessWidget {
   final List<String> items;
@@ -15,12 +16,11 @@ class AccessibilityProfileCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(DigitalGuideConfig.paddingMedium),
+      padding: const EdgeInsets.symmetric(horizontal: DigitalGuideConfig.paddingMedium,),
       child: Stack(
         clipBehavior: Clip.none,
         children: [
-          Container(
-            padding: const EdgeInsets.all(DigitalGuideConfig.paddingMedium),
+          DecoratedBox(
             decoration: BoxDecoration(
               borderRadius:
                   BorderRadius.circular(DigitalGuideConfig.borderRadiusMedium),
@@ -28,40 +28,7 @@ class AccessibilityProfileCard extends StatelessWidget {
                 color: context.colorTheme.blackMirage,
               ),
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: DigitalGuideConfig.paddingSmall),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: items.map((item) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: DigitalGuideConfig.paddingSmall,
-                      ),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "\u2022",
-                            style: context.textTheme.body,
-                          ),
-                          const SizedBox(
-                            width: DigitalGuideConfig.paddingSmall,
-                          ),
-                          Expanded(
-                            child: Text(
-                              item,
-                              style: context.textTheme.body,
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  }).toList(),
-                ),
-              ],
-            ),
+            child: BulletList(items: items), 
           ),
           Positioned(
             top: -15,

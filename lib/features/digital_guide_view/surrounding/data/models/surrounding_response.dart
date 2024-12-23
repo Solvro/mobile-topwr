@@ -106,7 +106,7 @@ class SurroundingResponse with _$SurroundingResponse {
 @freezed
 class SurroundingResponseTranslations with _$SurroundingResponseTranslations {
   const factory SurroundingResponseTranslations({
-    required SurroundingResponseTranslationsDetails pl,
+    @JsonKey(name: "pl") required SurroundingResponseTranslationsDetails plTranslation,
   }) = _SurroundingResponseTranslations;
 
   factory SurroundingResponseTranslations.fromJson(

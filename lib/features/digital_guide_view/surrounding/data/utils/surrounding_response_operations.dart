@@ -6,7 +6,7 @@ List<String> getSurroundingsCommentsList(
     SurroundingResponse surroundingResponse, BuildContext context) {
   final List<String> commentsList = [];
 
-  final comments = surroundingResponse.translations.pl;
+  final comments = surroundingResponse.translations.plTranslation;
 
   String parkingSpacesForPwdComment = "";
 

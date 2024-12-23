@@ -187,6 +187,7 @@
   "emergency_chairs": "W budynku zamieszczone zostały krzesła ewakuacyjne",
   "parking_location" : "Miejsca parkingowe znajdują się {location}",
   "parking_pwd_location" : "Miejsca parkingowe dla niepełnospranych znajdują się {location}",
+  "closest_facilities" : "Najbliższe sąsiednie budynki i obiekty kampusu to: {places}",
   "digital_guide_website" : "www.przewodnik.pwr.edu.pl",
   "sks_old_menu": "Zobacz ostatnie menu",
   "sks_menu_closed" : "SKS Menu jest teraz niedostępne",

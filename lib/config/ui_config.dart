@@ -220,7 +220,7 @@ abstract class DigitalGuideConfig {
   static const heightHuge = 48.0;
   static const paddingSmall = 4.0;
   static const paddingMedium = 16.0;
-  static const difficultiesCardIconSize = 36.0;
+  static const difficultiesCardIconSize = 35.0;
 
   static const accessibilityLevelColors = [
     Color(0xFFB1261E),
