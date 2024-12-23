@@ -11,7 +11,6 @@ import "../data/models/surrounding_response.dart";
 import "../data/repository/surrounding_repository.dart";
 import "../data/utils/surrounding_response_operations.dart";
 import "difficulties_information_cards_list.dart";
-import "../../../../widgets/my_splash_tile.dart";
 import "../../../navigation_tab_view/widgets/navigation_tile.dart";
 
 class SurroundingsExpansionTileContent extends ConsumerWidget {
