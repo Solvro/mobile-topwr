@@ -164,6 +164,8 @@ abstract class GuideViewConfig {
 
 abstract class FilterConfig {
   static const bottomSheetHeightFactor = 0.65;
+  static const minimalHeight = 400.0;
+  static const absoluteMaximumBottomSheetHeightFactor = 0.9;
   static const searchFilterPadding = 15.0;
   static const paddingMedium = 8.0;
   static const spacingBetweenWidgets = 12.0;
@@ -202,6 +204,28 @@ abstract class SksConfig {
   static const outerPadding = EdgeInsets.only(right: 12, bottom: 2);
 }
 
+abstract class SksChartConfig {
+  static const borderDashArray = 4.0;
+  static const borderRadius = 16.0;
+  static const paddingLarge = 16.0;
+  static const paddingMedium = 12.0;
+  static const paddingSmall = 8.0;
+  static const paddingExtraSmall = 4.0;
+  static const legendItemSize = 18.0;
+  static const heightSmall = 8.0;
+  static const heightMedium = 12.0;
+  static const heightLarge = 16.0;
+  static const paddingLargeLTR = EdgeInsets.only(
+    left: SksChartConfig.paddingLarge,
+    top: SksChartConfig.paddingLarge,
+    right: SksChartConfig.paddingLarge,
+  );
+  static const sksChartDataUrl = "https://live.pwr.edu.pl/sks/";
+  static const sksAddress = "Hoene-Wrońskiego 10";
+  static const sksPostalCode = "50-370 Wrocław";
+  static const buildingCode = "C-18";
+}
+
 abstract class NavigationTabViewConfig {
   static const universalPadding = 12.0;
   static const radius = 8.0;
@@ -216,9 +240,12 @@ abstract class DigitalGuideConfig {
   static const borderRadiusSmall = 4.0;
   static const borderRadiusMedium = 8.0;
   static const heightSmall = 8.0;
+  static const heightMedium = 16.0;
   static const heightBig = 24.0;
   static const heightHuge = 48.0;
   static const paddingSmall = 4.0;
+  static const mediumButtonPadding =
+      EdgeInsets.symmetric(vertical: 8, horizontal: 14);
   static const paddingMedium = 16.0;
   static const difficultiesCardIconSize = 35.0;
 
@@ -228,6 +255,7 @@ abstract class DigitalGuideConfig {
     Color.fromARGB(255, 169, 183, 10),
     Color(0xFF28BC2F),
   ];
+  static const borderColor = Color(0x8077859D);
 }
 
 abstract class AlertDialogConfig {

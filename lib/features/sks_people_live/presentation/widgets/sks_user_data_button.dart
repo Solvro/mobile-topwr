@@ -3,6 +3,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
+import "../../../sks_chart/presentation/sks_chart_sheet.dart";
 import "../../data/models/sks_user_data.dart";
 import "../../data/repository/latest_sks_user_data_repo.dart";
 
@@ -14,7 +15,15 @@ class SksUserDataButton extends ConsumerWidget {
     final asyncSksUserData = ref.watch(getLatestSksUserDataProvider);
 
     return asyncSksUserData.when(
-      data: _SksButton.new,
+      data: (sksUsersData) => _SksButton(
+        sksUsersData,
+        onTap: () async => showModalBottomSheet(
+          context: context,
+          isScrollControlled: true,
+          constraints: const BoxConstraints(),
+          builder: (BuildContext context) => const SksChartSheet(),
+        ),
+      ),
       error: (error, stackTrace) => const SizedBox.shrink(),
       loading: () => const SizedBox.shrink(),
     );
@@ -22,8 +31,9 @@ class SksUserDataButton extends ConsumerWidget {
 }
 
 class _SksButton extends StatelessWidget {
-  const _SksButton(this.sksUserData, {super.key});
+  const _SksButton(this.sksUserData, {required this.onTap});
 
+  final VoidCallback onTap;
   final SksUserData sksUserData;
 
   @override
@@ -31,7 +41,7 @@ class _SksButton extends StatelessWidget {
     return Padding(
       padding: SksConfig.outerPadding,
       child: GestureDetector(
-        onTap: () {},
+        onTap: onTap,
         child: Row(
           children: [
             Container(
@@ -73,11 +83,11 @@ extension TrendIcon on Trend {
   Icon get icon {
     switch (this) {
       case Trend.increasing:
-        return const Icon(Icons.trending_up, color: Color(0xFF28a745));
+        return Icon(Icons.trending_up, color: Colors.grey.shade700);
       case Trend.decreasing:
-        return const Icon(Icons.trending_down, color: Color(0xFFdc3545));
+        return Icon(Icons.trending_down, color: Colors.grey.shade700);
       case Trend.stable:
-        return const Icon(Icons.trending_flat, color: Colors.grey);
+        return Icon(Icons.trending_flat, color: Colors.grey.shade700);
     }
   }
 }

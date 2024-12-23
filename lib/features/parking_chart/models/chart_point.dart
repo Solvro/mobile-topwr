@@ -1,3 +1,4 @@
+import "dart:math" as math;
 import "package:collection/collection.dart";
 import "package:fl_chart/fl_chart.dart";
 
@@ -10,7 +11,7 @@ class ChartPoint extends FlSpot {
   ChartPoint.parse(String label, String value)
       : super(
           HourLabel.parse(label),
-          double.tryParse(value) ?? 0,
+          math.max(double.tryParse(value) ?? 0, 0),
         );
 }
 
