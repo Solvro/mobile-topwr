@@ -1,9 +1,9 @@
 import "package:flutter/material.dart";
 
+import "../../../../../config/ui_config.dart";
 import "../../../../../gen/assets.gen.dart";
-import "../../../../config/ui_config.dart";
-import "../../../../utils/context_extensions.dart";
-import "../../general_info/presentation/widgets/difficulties_information_card.dart";
+import "../../../../../utils/context_extensions.dart";
+import "../../../presentation/widgets/difficulties_information_card.dart";
 import "../data/models/surrounding_response.dart";
 
 // THIS WIDGET IS TEMPORARY BECAUSE IT WILL BE SHOWN CONDITIONALLY - THINGS ARE HARDCODED FOR NOW

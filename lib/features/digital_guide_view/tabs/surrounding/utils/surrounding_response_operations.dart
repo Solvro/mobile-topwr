@@ -1,6 +1,6 @@
 import "package:flutter/widgets.dart";
 import "../../../../../utils/context_extensions.dart";
-import "../models/surrounding_response.dart";
+import "../data/models/surrounding_response.dart";
 
 List<String> getSurroundingsCommentsList(
     SurroundingResponse surroundingResponse, BuildContext context) {
