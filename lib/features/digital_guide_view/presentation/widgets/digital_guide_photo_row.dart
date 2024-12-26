@@ -23,10 +23,12 @@ class DigitalGuidePhotoRow extends StatelessWidget {
               (url) => Expanded(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
-                      horizontal: DigitalGuideConfig.paddingSmall,),
+                    horizontal: DigitalGuideConfig.paddingSmall,
+                  ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(
-                        DigitalGuideConfig.borderRadiusMedium,),
+                      DigitalGuideConfig.borderRadiusMedium,
+                    ),
                     child: Image.network(
                       url!,
                       fit: BoxFit.cover,

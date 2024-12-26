@@ -11,7 +11,9 @@ part "surrounding_repository.g.dart";
 
 @riverpod
 Future<SurroundingResponseExtended> getSurroundingDataExtended(
-    Ref ref, int id,) async {
+  Ref ref,
+  int id,
+) async {
   final surroundingResponse =
       await ref.watch(getSurroundingDataProvider(id).future);
   final imagesUrl =

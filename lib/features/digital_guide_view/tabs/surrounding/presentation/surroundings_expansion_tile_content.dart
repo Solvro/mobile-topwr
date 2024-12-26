@@ -26,7 +26,8 @@ class SurroundingsExpansionTileContent extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncSurroundingData = ref.watch(
       getSurroundingDataExtendedProvider(
-          digitalGuideResponseExtended.surroundingId,),
+        digitalGuideResponseExtended.surroundingId,
+      ),
     );
 
     return asyncSurroundingData.when(
