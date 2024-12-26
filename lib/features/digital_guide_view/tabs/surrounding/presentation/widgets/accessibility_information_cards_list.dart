@@ -1,27 +1,27 @@
 import "package:flutter/material.dart";
 
-import "../../../../../config/ui_config.dart";
-import "../../../../../gen/assets.gen.dart";
-import "../../../../../utils/context_extensions.dart";
-import "../../../presentation/widgets/difficulties_information_card.dart";
-import "../data/models/surrounding_response.dart";
+import "../../../../../../../config/ui_config.dart";
+import "../../../../../../../gen/assets.gen.dart";
+import "../../../../../../../utils/context_extensions.dart";
+import "../../../../presentation/widgets/accessibility_information_card.dart";
+import "../../data/models/surrounding_response_extended.dart";
 
 // THIS WIDGET IS TEMPORARY BECAUSE IT WILL BE SHOWN CONDITIONALLY - THINGS ARE HARDCODED FOR NOW
 
-class DifficultiesInformationCardsList extends StatelessWidget {
-  const DifficultiesInformationCardsList({
+class AccessibilityInformationCardsList extends StatelessWidget {
+  const AccessibilityInformationCardsList({
     super.key,
     required this.surroundingResponse,
   });
 
-  final SurroundingResponse surroundingResponse;
+  final SurroundingResponseExtended surroundingResponse;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         // Card for blind accessibility
-        DifficultiesInformationCard(
+        AccessibilityInformationCard(
           icon: Assets.svg.digitalGuide.accessibilityAlerts.blindProfile,
           color: DigitalGuideConfig.accessibilityLevelColors[
               surroundingResponse.accessibilityLevelForBlind],
@@ -34,8 +34,12 @@ class DifficultiesInformationCardsList extends StatelessWidget {
           ),
         ),
 
+        const SizedBox(
+          height: DigitalGuideConfig.heightTiny,
+        ),
+
         // Card for visually impaired
-        DifficultiesInformationCard(
+        AccessibilityInformationCard(
           icon: Assets.svg.digitalGuide.accessibilityAlerts.visuallyImpaired,
           color: DigitalGuideConfig.accessibilityLevelColors[
               surroundingResponse.accessibilityLevelForVisuallyImpaired],
@@ -48,8 +52,13 @@ class DifficultiesInformationCardsList extends StatelessWidget {
             context.localize.people_visually_impaired,
           ),
         ),
+
+        const SizedBox(
+          height: DigitalGuideConfig.heightTiny,
+        ),
+
         // Card for motor disabilities
-        DifficultiesInformationCard(
+        AccessibilityInformationCard(
           icon: Assets.svg.digitalGuide.accessibilityAlerts.movementDysfunction,
           color: DigitalGuideConfig.accessibilityLevelColors[
               surroundingResponse.accessibilityLevelForMotorDisability],
@@ -62,8 +71,13 @@ class DifficultiesInformationCardsList extends StatelessWidget {
             context.localize.people_with_motor_disability,
           ),
         ),
+
+        const SizedBox(
+          height: DigitalGuideConfig.heightTiny,
+        ),
+
         // Card for cognitive difficulties
-        DifficultiesInformationCard(
+        AccessibilityInformationCard(
           icon:
               Assets.svg.digitalGuide.accessibilityAlerts.cognitiveDifficulties,
           color: DigitalGuideConfig.accessibilityLevelColors[
@@ -78,8 +92,12 @@ class DifficultiesInformationCardsList extends StatelessWidget {
           ),
         ),
 
+        const SizedBox(
+          height: DigitalGuideConfig.heightTiny,
+        ),
+
         // Card for hard of hearing
-        DifficultiesInformationCard(
+        AccessibilityInformationCard(
           icon: Assets.svg.digitalGuide.accessibilityAlerts.hearingDysfunction,
           color: DigitalGuideConfig.accessibilityLevelColors[
               surroundingResponse.accessibilityLevelForHardOfHearing],
@@ -92,8 +110,12 @@ class DifficultiesInformationCardsList extends StatelessWidget {
           ),
         ),
 
+        const SizedBox(
+          height: DigitalGuideConfig.heightTiny,
+        ),
+
         // Card for high sensory sensitivity
-        DifficultiesInformationCard(
+        AccessibilityInformationCard(
           icon: Assets.svg.digitalGuide.accessibilityAlerts.sensorySensitivity,
           color: DigitalGuideConfig.accessibilityLevelColors[
               surroundingResponse.accessibilityLevelForHighSensorySensitivity],

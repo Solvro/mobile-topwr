@@ -1,18 +1,19 @@
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
+import "../../../../../config/ui_config.dart";
 import "../../../../../gen/assets.gen.dart";
 import "../../../../../utils/context_extensions.dart";
 import "../../../../../widgets/my_error_widget.dart";
 import "../../../../digital_guide_view/data/models/digital_guide_response_extended.dart";
-import "../../../../navigation_tab_view/widgets/navigation_tile.dart";
 import "../../../presentation/widgets/accessibility_profile_card.dart";
 import "../../../presentation/widgets/bullet_list.dart";
-import "../data/models/surrounding_response.dart";
+import "../../../presentation/widgets/digital_guide_nav_link.dart";
+import "../../../presentation/widgets/digital_guide_photo_row.dart";
+import "../data/models/surrounding_response_extended.dart";
 import "../data/repository/surrounding_repository.dart";
 import "../utils/surrounding_response_operations.dart";
-import "difficulties_information_cards_list.dart";
-
+import "widgets/accessibility_information_cards_list.dart";
 
 class SurroundingsExpansionTileContent extends ConsumerWidget {
   const SurroundingsExpansionTileContent({
@@ -24,7 +25,8 @@ class SurroundingsExpansionTileContent extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncSurroundingData = ref.watch(
-      getSurroundingDataProvider(digitalGuideResponseExtended.surroundingId),
+      getSurroundingDataExtendedProvider(
+          digitalGuideResponseExtended.surroundingId),
     );
 
     return asyncSurroundingData.when(
@@ -44,28 +46,59 @@ class _SurroundingExpansionTileContent extends ConsumerWidget {
     required this.surroundingResponse,
   });
 
-  final SurroundingResponse surroundingResponse;
+  final SurroundingResponseExtended surroundingResponse;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Column(
-      children: [
-        DifficultiesInformationCardsList(
-          surroundingResponse: surroundingResponse,
-        ),
-        BulletList(items: [context.localize.parking_location(
-            surroundingResponse.translations.plTranslation.areParkingSpacesComment, 
-        ),
-        context.localize.closest_facilities(
-          surroundingResponse.translations.plTranslation.closestBuildings,
-          ),],),
-        AccessibilityProfileCard(
-          items: getSurroundingsCommentsList(surroundingResponse, context),
-          icon: Assets.svg.digitalGuide.accessibilityAlerts.blindProfile,
-        ),
-        NavigationTile(title: "djhhdfdhfhdf"),
+    final widgets = [
+      AccessibilityInformationCardsList(
+        surroundingResponse: surroundingResponse,
+      ),
+      const SizedBox(
+        height: DigitalGuideConfig.heightMedium,
+      ),
+      BulletList(
+        items: [
+          context.localize.parking_location(
+            surroundingResponse
+                .translations.plTranslation.areParkingSpacesComment,
+          ),
+          context.localize.closest_facilities(
+            surroundingResponse.translations.plTranslation.closestBuildings,
+          ),
+        ],
+      ),
+      const SizedBox(
+        height: DigitalGuideConfig.heightMedium,
+      ),
+      AccessibilityProfileCard(
+        items: getSurroundingsCommentsList(surroundingResponse, context),
+        icon: Assets.svg.digitalGuide.accessibilityAlerts.blindProfile,
+      ),
+      const SizedBox(
+        height: DigitalGuideConfig.heightMedium,
+      ),
+      DigitalGuidePhotoRow(imageUrls: surroundingResponse.imagesUrl),
+      const SizedBox(
+        height: DigitalGuideConfig.heightMedium,
+      ),
+      DigitalGuideNavLink(
+        onTap: () => {},
+        text:
+            context.localize.see_all_photos(surroundingResponse.images.length),
+      ),
+    ];
 
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: DigitalGuideConfig.paddingMedium,
+      ),
+      child: ListView.builder(
+        physics: const NeverScrollableScrollPhysics(),
+        itemBuilder: (context, index) => widgets[index],
+        itemCount: widgets.length,
+        shrinkWrap: true,
+      ),
     );
   }
 }

@@ -97,6 +97,7 @@ class SurroundingResponse with _$SurroundingResponse {
     required int accessibilityLevelForCognitiveDifficulties,
     required int building,
     required List<int> images,
+    List<String?>? imagesUrl,
   }) = _SurroundingResponse;
 
   factory SurroundingResponse.fromJson(Map<String, dynamic> json) =>
@@ -106,7 +107,8 @@ class SurroundingResponse with _$SurroundingResponse {
 @freezed
 class SurroundingResponseTranslations with _$SurroundingResponseTranslations {
   const factory SurroundingResponseTranslations({
-    @JsonKey(name: "pl") required SurroundingResponseTranslationsDetails plTranslation,
+    @JsonKey(name: "pl")
+    required SurroundingResponseTranslationsDetails plTranslation,
   }) = _SurroundingResponseTranslations;
 
   factory SurroundingResponseTranslations.fromJson(
