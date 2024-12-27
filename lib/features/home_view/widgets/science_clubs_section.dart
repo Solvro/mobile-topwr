@@ -20,7 +20,7 @@ class ScienceClubsSection extends ConsumerWidget {
         children: [
           FilledButton(
             onPressed: () async {
-              await ref.navigateDigitalGuide(313);
+              await ref.navigateDigitalGuide(319);
             },
             child: const Text("navigate to digital guide mock"),
           ),

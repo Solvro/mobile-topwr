@@ -47,6 +47,20 @@ class DigitalGuideResponseExtended {
   final DigitalGuideEvacuation evacuation;
   final IList<DigitalGuideEntrace> entraces;
 
+  bool areAdaptedToilets() {
+    return levels.fold(
+          0,
+          (levelValue, levelElement) =>
+              levelValue +
+              levelElement.regions.fold(
+                0,
+                (regionValue, regionElement) =>
+                    regionValue + regionElement.adaptedToiletsIndices.length,
+              ),
+        ) >
+        0;
+  }
+
   factory DigitalGuideResponseExtended.fromDigitalGuideResponse({
     required DigitalGuideResponse digitalGuideResponse,
     required String? imageUrl,
