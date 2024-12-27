@@ -20,11 +20,8 @@ class AdaptedToiletsExpansionTileContent extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    debugPrint("AdaptedToiletsExpansionTileContent");
     final asyncAdaptedToilets = ref
         .watch(GetAdaptedToiltesProvider(digitalGuideResponseExtended.levels));
-    debugPrint("After fetching data");
-    debugPrint("asyncAdaptedToilets: ${asyncAdaptedToilets.value}");
     return asyncAdaptedToilets.when(
       data: (adaptedToiletsData) => _AdaptedToiletsExpansionTileContent(
         levels: digitalGuideResponseExtended.levels
@@ -72,7 +69,7 @@ class _AdaptedToiletsExpansionTileContent extends ConsumerWidget {
                 style: context.textTheme.title,
               ),
               const SizedBox(
-                height: DigitalGuideConfig.heightMedium,
+                height: DigitalGuideConfig.heightSmall,
               ),
               ListView.separated(
                 physics: const NeverScrollableScrollPhysics(),
@@ -82,13 +79,29 @@ class _AdaptedToiletsExpansionTileContent extends ConsumerWidget {
                       adaptedToiletsData[level.id]![index],
                     );
                   },
-                  text: context.localize.adapted_toilet_description,
+                  text: () {
+                    switch (adaptedToiletsData[level.id]![index]
+                        .hasAdditionalPurpose) {
+                      case 1:
+                        return context.localize.adapted_toilet_description;
+                      case 2:
+                        return context.localize.adapted_toilet_description_men;
+                      case 3:
+                        return context
+                            .localize.adapted_toilet_description_women;
+                      default:
+                        return context.localize.adapted_toilet_description;
+                    }
+                  }(),
                 ),
                 separatorBuilder: (context, index) => const SizedBox(
                   height: DigitalGuideConfig.heightMedium,
                 ),
                 itemCount: adaptedToiletsData[level.id]!.length,
                 shrinkWrap: true,
+              ),
+              const SizedBox(
+                height: DigitalGuideConfig.heightMedium,
               ),
             ],
           );

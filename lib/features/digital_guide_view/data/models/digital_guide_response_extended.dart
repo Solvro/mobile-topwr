@@ -80,11 +80,13 @@ class DigitalGuideResponseExtended {
 class Level {
   const Level({
     required this.id,
+    required this.floorNumber,
     required this.translations,
     required this.regions,
   });
 
   final int id;
+  final int floorNumber;
   final LevelTranslations translations;
   final List<Region> regions;
 
@@ -94,6 +96,7 @@ class Level {
   }) {
     return Level(
       id: levelNotFull.id,
+      floorNumber: levelNotFull.floorNumber,
       translations: levelNotFull.translations,
       regions: regions,
     );

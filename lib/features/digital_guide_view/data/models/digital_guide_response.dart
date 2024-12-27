@@ -92,6 +92,7 @@ class DigitalGuideTranslation with _$DigitalGuideTranslation {
 class LevelNotFull with _$LevelNotFull {
   const factory LevelNotFull({
     required int id,
+    @JsonKey(name: "floor_number") required int floorNumber,
     required LevelTranslations translations,
     @JsonKey(name: "regions") required List<int> regionIndices,
   }) = _LevelNotFull;

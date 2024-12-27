@@ -54,14 +54,25 @@ class DigitalGuideFeaturesSection extends StatelessWidget {
         title: context.localize.elevators,
         content: [LocalizationExpansionTileContent()],
       ),
-      (
-        title: context.localize.adapted_toilets,
-        content: [
-          AdaptedToiletsExpansionTileContent(
-            digitalGuideResponseExtended: digitalGuideResponseExtended,
-          ),
-        ],
-      ),
+      if (digitalGuideResponseExtended.levels.fold(
+            0,
+            (levelValue, levelElement) =>
+                levelValue +
+                levelElement.regions.fold(
+                  0,
+                  (regionValue, regionElement) =>
+                      regionValue + regionElement.adaptedToiletsIndices.length,
+                ),
+          ) >
+          0)
+        (
+          title: context.localize.adapted_toilets,
+          content: [
+            AdaptedToiletsExpansionTileContent(
+              digitalGuideResponseExtended: digitalGuideResponseExtended,
+            ),
+          ],
+        ),
       (
         title: context.localize.micro_navigation,
         content: [LocalizationExpansionTileContent()],

@@ -26,7 +26,6 @@ Future<DigitalGuideResponseExtended> getDigitalGuideDataExtended(
       .watch(getDigitalGuideEntracesProvider(digitalGuideResponse.id).future);
   final levels = await ref
       .watch(GetLevelsProvider(digitalGuideResponse.levelsIndices).future);
-  debugPrint("Levels count: ${levels.length}");
   return DigitalGuideResponseExtended.fromDigitalGuideResponse(
     digitalGuideResponse: digitalGuideResponse,
     imageUrl: imageUrl,
@@ -79,6 +78,9 @@ Future<List<Level>> getLevels(Ref ref, List<int> levelsIndices) async {
   }).toList();
 
   final levelsList = await Future.wait(levelsFutures);
+  levelsList.sort(
+    (level1, level2) => level1.floorNumber.compareTo(level2.floorNumber),
+  );
 
   return levelsList;
 }
