@@ -1,9 +1,10 @@
 import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../config/ui_config.dart";
 import "../theme/app_theme.dart";
 
-class MyPointWidget extends StatelessWidget {
+class MyPointWidget extends ConsumerWidget {
   const MyPointWidget({
     required this.text,
   });
@@ -11,15 +12,15 @@ class MyPointWidget extends StatelessWidget {
   final String text;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Padding(
-          padding: EdgeInsets.only(right: DigitalGuideConfig.heightSmall),
+        Padding(
+          padding: const EdgeInsets.only(right: DigitalGuideConfig.heightSmall),
           child: Text(
             "•",
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            style: context.textTheme.title.copyWith(fontSize: 24),
           ),
         ),
         Expanded(
