@@ -3,7 +3,6 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../config/ui_config.dart";
 import "../../../../../theme/app_theme.dart";
-import "../../../../../utils/context_extensions.dart";
 import "../../../../../widgets/my_error_widget.dart";
 import "../../../../navigator/utils/navigation_commands.dart";
 import "../../../data/models/digital_guide_response_extended.dart";
@@ -79,20 +78,8 @@ class _AdaptedToiletsExpansionTileContent extends ConsumerWidget {
                       adaptedToiletsData[level.id]![index],
                     );
                   },
-                  text: () {
-                    switch (adaptedToiletsData[level.id]![index]
-                        .hasAdditionalPurpose) {
-                      case 1:
-                        return context.localize.adapted_toilet_description;
-                      case 2:
-                        return context.localize.adapted_toilet_description_men;
-                      case 3:
-                        return context
-                            .localize.adapted_toilet_description_women;
-                      default:
-                        return context.localize.adapted_toilet_description;
-                    }
-                  }(),
+                  text: adaptedToiletsData[level.id]![index]
+                      .getDescription(context),
                 ),
                 separatorBuilder: (context, index) => const SizedBox(
                   height: DigitalGuideConfig.heightMedium,

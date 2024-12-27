@@ -1,3 +1,6 @@
+import "package:flutter/material.dart";
+
+import "../../../../../../utils/context_extensions.dart";
 import "adapted_toilet_not_full.dart";
 
 class AdaptedToilet {
@@ -36,5 +39,16 @@ class AdaptedToilet {
       imagesURLs: imagesURLs,
       doorsIndices: adaptedToiletNotFull.doorsIndices,
     );
+  }
+}
+
+extension AdaptedToiletLocalization on AdaptedToilet {
+  String getDescription(BuildContext context) {
+    return switch (hasAdditionalPurpose) {
+      1 => context.localize.adapted_toilet_description,
+      2 => context.localize.adapted_toilet_description_men,
+      3 => context.localize.adapted_toilet_description_women,
+      _ => context.localize.adapted_toilet_description,
+    };
   }
 }

@@ -34,19 +34,7 @@ class AdaptedToiletDetailView extends ConsumerWidget {
             SliverList(
               delegate: SliverChildListDelegate([
                 Text(
-                  () {
-                    switch (adaptedToilet.hasAdditionalPurpose) {
-                      case 1:
-                        return context.localize.adapted_toilet_description;
-                      case 2:
-                        return context.localize.adapted_toilet_description_men;
-                      case 3:
-                        return context
-                            .localize.adapted_toilet_description_women;
-                      default:
-                        return context.localize.adapted_toilet_description;
-                    }
-                  }(),
+                  adaptedToilet.getDescription(context),
                   style: context.textTheme.title.copyWith(fontSize: 18),
                 ),
                 const SizedBox(
