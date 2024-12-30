@@ -73,18 +73,23 @@ class _AdaptedToiletsExpansionTileContent extends ConsumerWidget {
               ),
               ListView.separated(
                 physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (context, index) => DigitalGuideNavLink(
-                  onTap: () async {
-                    await ref.navigateAdaptedToiletDetails(
-                      adaptedToiletsData[level.id]![index],
+                itemBuilder: (context, index) {
+                  final levelData = adaptedToiletsData[level.id];
+                  return levelData == null
+                    ? const SizedBox()
+                    : DigitalGuideNavLink(
+                      onTap: () async {
+                        await ref.navigateAdaptedToiletDetails(
+                          levelData[index],
+                        );
+                      },
+                      text: levelData[index].getDescription(context),
                     );
-                  },
-                  text: adaptedToiletsData[level.id]![index].getDescription(context),
-                ),
+                },
                 separatorBuilder: (context, index) => const SizedBox(
                   height: DigitalGuideConfig.heightMedium,
                 ),
-                itemCount: adaptedToiletsData[level.id]!.length,
+                itemCount: adaptedToiletsData[level.id]?.length ?? 0,
                 shrinkWrap: true,
               ),
               const SizedBox(
