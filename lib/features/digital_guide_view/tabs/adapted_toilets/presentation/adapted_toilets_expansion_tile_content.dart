@@ -1,3 +1,4 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
@@ -29,7 +30,7 @@ class AdaptedToiletsExpansionTileContent extends ConsumerWidget {
                   adaptedToiletsData.containsKey(level.id) &&
                   adaptedToiletsData[level.id]!.isNotEmpty,
             )
-            .toList(),
+            .toIList(),
         adaptedToiletsData: adaptedToiletsData,
       ),
       error: (error, stackTrace) => MyErrorWidget(error),
@@ -46,7 +47,7 @@ class _AdaptedToiletsExpansionTileContent extends ConsumerWidget {
     required this.adaptedToiletsData,
   });
 
-  final List<Level> levels;
+  final IList<Level> levels;
   final Map<int, List<AdaptedToilet>> adaptedToiletsData;
 
   @override
@@ -78,8 +79,7 @@ class _AdaptedToiletsExpansionTileContent extends ConsumerWidget {
                       adaptedToiletsData[level.id]![index],
                     );
                   },
-                  text: adaptedToiletsData[level.id]![index]
-                      .getDescription(context),
+                  text: adaptedToiletsData[level.id]![index].getDescription(context),
                 ),
                 separatorBuilder: (context, index) => const SizedBox(
                   height: DigitalGuideConfig.heightMedium,
