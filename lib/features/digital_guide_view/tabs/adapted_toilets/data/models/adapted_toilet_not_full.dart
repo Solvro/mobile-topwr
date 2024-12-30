@@ -58,7 +58,7 @@ class AdaptedToiletTranslation with _$AdaptedToiletTranslation {
 }
 
 bool _stringToBool(String str) {
-  return str == "True";
+  return str.toLowerCase() == "true";
 }
 
 int _stringToInt(String str) {
