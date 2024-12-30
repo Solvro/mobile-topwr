@@ -10,6 +10,7 @@ import "../../../../../widgets/my_cached_image.dart";
 import "../../../../../widgets/my_point_widget.dart";
 import "../../../presentation/widgets/digital_guide_nav_link.dart";
 import "../data/models/adapted_toilet.dart";
+import "../data/models/adapted_toilet_not_full.dart";
 
 @RoutePage()
 class AdaptedToiletDetailView extends ConsumerWidget {
@@ -62,9 +63,11 @@ class AdaptedToiletDetailView extends ConsumerWidget {
                     text: adaptedToilet.translations.plTranslation
                         .isAccessAccessibleForPwdComment,
                   ),
-                if (adaptedToilet.isNeedAuthorization != "Unknown")
+                if (adaptedToilet.isNeedAuthorization !=
+                    IsNeedAuthorizationEnum.unknown)
                   MyPointWidget(
-                    text: adaptedToilet.isNeedAuthorization == "True"
+                    text: adaptedToilet.isNeedAuthorization ==
+                            IsNeedAuthorizationEnum.yes
                         ? context.localize.adapted_toilet_authorization(
                             adaptedToilet.translations.plTranslation
                                 .isNeedAuthorizationComment,

@@ -18,7 +18,7 @@ class AdaptedToilet {
   final AdaptedToiletTranslations translations;
   final bool isAccessAccessibleForPwd;
   final int hasAdditionalPurpose;
-  final String isNeedAuthorization;
+  final IsNeedAuthorizationEnum isNeedAuthorization;
   final bool isEntranceGraphicallyMarked;
   final bool isMarked;
   final List<String> imagesURLs;

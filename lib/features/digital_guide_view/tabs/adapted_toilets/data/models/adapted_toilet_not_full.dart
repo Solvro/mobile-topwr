@@ -13,7 +13,8 @@ class AdaptedToiletNotFull with _$AdaptedToiletNotFull {
     required bool isAccessAccessibleForPwd,
     @JsonKey(name: "has_additional_purpose", fromJson: _stringToInt)
     required int hasAdditionalPurpose,
-    @JsonKey(name: "is_need_authorization") required String isNeedAuthorization,
+    @JsonKey(name: "is_need_authorization", fromJson: isNeedAuthorizationToEnum)
+    required IsNeedAuthorizationEnum isNeedAuthorization,
     @JsonKey(name: "is_entrance_graphically_marked", fromJson: _stringToBool)
     required bool isEntranceGraphicallyMarked,
     @JsonKey(name: "is_marked", fromJson: _stringToBool) required bool isMarked,
@@ -64,3 +65,14 @@ bool _stringToBool(String str) {
 int _stringToInt(String str) {
   return int.tryParse(str) ?? 1;
 }
+
+IsNeedAuthorizationEnum isNeedAuthorizationToEnum(String str) {
+  return switch (str.toLowerCase()) {
+    "true" => IsNeedAuthorizationEnum.yes,
+    "false" => IsNeedAuthorizationEnum.no,
+    "unknown" => IsNeedAuthorizationEnum.unknown,
+    _ => IsNeedAuthorizationEnum.unknown,
+  };
+}
+
+enum IsNeedAuthorizationEnum { yes, no, unknown }

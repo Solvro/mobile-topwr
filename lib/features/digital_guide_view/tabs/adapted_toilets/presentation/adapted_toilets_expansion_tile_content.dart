@@ -76,15 +76,15 @@ class _AdaptedToiletsExpansionTileContent extends ConsumerWidget {
                 itemBuilder: (context, index) {
                   final levelData = adaptedToiletsData[level.id];
                   return levelData == null
-                    ? const SizedBox()
-                    : DigitalGuideNavLink(
-                      onTap: () async {
-                        await ref.navigateAdaptedToiletDetails(
-                          levelData[index],
+                      ? const SizedBox()
+                      : DigitalGuideNavLink(
+                          onTap: () async {
+                            await ref.navigateAdaptedToiletDetails(
+                              levelData[index],
+                            );
+                          },
+                          text: levelData[index].getDescription(context),
                         );
-                      },
-                      text: levelData[index].getDescription(context),
-                    );
                 },
                 separatorBuilder: (context, index) => const SizedBox(
                   height: DigitalGuideConfig.heightMedium,
