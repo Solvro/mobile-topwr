@@ -3,6 +3,7 @@ import "dart:async";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../buildings_view/model/building_model.dart";
+import "../../digital_guide_view/tabs/adapted_toilets/data/models/adapted_toilet.dart";
 import "../../parkings_view/models/parking.dart";
 import "../app_router.dart";
 import "../navigation_controller.dart";
@@ -79,5 +80,9 @@ extension NavigationX on WidgetRef {
 
   Future<void> navigateDigitalGuide(int id) async {
     await _router.push(DigitalGuideRoute(id: id));
+  }
+
+  Future<void> navigateAdaptedToiletDetails(AdaptedToilet adaptedToilet) async {
+    await _router.push(AdaptedToiletDetailRoute(adaptedToilet: adaptedToilet));
   }
 }

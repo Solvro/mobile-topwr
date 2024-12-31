@@ -57,6 +57,7 @@ class DigitalGuideResponse with _$DigitalGuideResponse {
     required List<int> images,
     @JsonKey(name: "evacuation_map") required int evacuationMapId,
     String? imageUrl,
+    @JsonKey(name: "levels") required List<int> levelsIndices,
   }) = _DigitalGuideResponse;
 
   factory DigitalGuideResponse.fromJson(Map<String, dynamic> json) =>
@@ -87,8 +88,50 @@ class DigitalGuideTranslation with _$DigitalGuideTranslation {
       _$DigitalGuideTranslationFromJson(json);
 }
 
+@freezed
+class LevelNotFull with _$LevelNotFull {
+  const factory LevelNotFull({
+    required int id,
+    @JsonKey(name: "floor_number") required int floorNumber,
+    required LevelTranslations translations,
+    @JsonKey(name: "regions") required List<int> regionIndices,
+  }) = _LevelNotFull;
+
+  factory LevelNotFull.fromJson(Map<String, dynamic> json) =>
+      _$LevelNotFullFromJson(json);
+}
+
+@freezed
+class LevelTranslations with _$LevelTranslations {
+  const factory LevelTranslations({
+    @JsonKey(name: "pl") required LevelTranslation plTranslation,
+  }) = _LevelTranslations;
+
+  factory LevelTranslations.fromJson(Map<String, dynamic> json) =>
+      _$LevelTranslationsFromJson(json);
+}
+
+@freezed
+class LevelTranslation with _$LevelTranslation {
+  const factory LevelTranslation({
+    required String name,
+  }) = _LevelTranslation;
+
+  factory LevelTranslation.fromJson(Map<String, dynamic> json) =>
+      _$LevelTranslationFromJson(json);
+}
+
+@freezed
+class Region with _$Region {
+  const factory Region({
+    @JsonKey(name: "adapted_toilets") required List<int> adaptedToiletsIndices,
+  }) = _Region;
+
+  factory Region.fromJson(Map<String, dynamic> json) => _$RegionFromJson(json);
+}
+
 bool _stringToBool(String value) {
-  return value == "True";
+  return value.toLowerCase() == "true";
 }
 
 List<String> _formatPhoneNumbers(String phoneNumber) {
