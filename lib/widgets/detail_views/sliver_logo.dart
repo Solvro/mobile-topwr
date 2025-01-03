@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 
-import "../optimized_directus_image.dart";
+import "../zoomable_optimized_directus_image.dart";
 
 class SliverLogo extends StatelessWidget {
   const SliverLogo({
@@ -21,42 +21,42 @@ class SliverLogo extends StatelessWidget {
   final String? logoDirectusUrl;
   final BoxFit boxfit;
   final bool noShimmeringLoading;
+
   @override
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.bottomCenter,
       child: SizedBox.square(
-        child: ListView(
+        child: SingleChildScrollView(
           reverse: true,
           physics: const NeverScrollableScrollPhysics(),
-          children: [
-            Opacity(
-              opacity: logoOpacity,
-              child: Card(
-                elevation: 3,
-                shape: const CircleBorder(),
-                clipBehavior: Clip.antiAlias,
-                child: Container(
-                  width: logoSize,
-                  height: logoSize,
-                  decoration: BoxDecoration(
-                    gradient: activeGradient,
-                  ),
-                  child: FittedBox(
-                    fit: BoxFit.scaleDown,
-                    child: SizedBox.square(
-                      dimension: logoSize * scaleFactor,
-                      child: OptimizedDirectusImage(
-                        logoDirectusUrl,
-                        boxFit: boxfit,
-                        noShimmeringLoading: noShimmeringLoading,
-                      ),
+          child: Opacity(
+            opacity: logoOpacity,
+            child: Card(
+              elevation: 3,
+              shape: const CircleBorder(),
+              clipBehavior: Clip.antiAlias,
+              child: Container(
+                width: logoSize,
+                height: logoSize,
+                decoration: BoxDecoration(
+                  gradient: activeGradient,
+                ),
+                child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: SizedBox.square(
+                    dimension: logoSize * scaleFactor,
+                    child: ZoomableOptimizedDirectusImage(
+                      logoDirectusUrl,
+                      boxFit: boxfit,
+                      noShimmeringLoading: noShimmeringLoading,
+                      shouldHaveRectBackground: true,
                     ),
                   ),
                 ),
               ),
             ),
-          ],
+          ),
         ),
       ),
     );
