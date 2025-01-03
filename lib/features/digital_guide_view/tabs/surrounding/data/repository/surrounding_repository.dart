@@ -62,7 +62,6 @@ Future<List<String?>> getImagesUrl(Ref ref, List<int> ids) async {
       // ignore: avoid_catches_without_on_clauses
     } catch (e) {
       Logger().e("Error fetching image URL for ID $id: $e");
-      imagesUrlList.add(null);
     }
   }
 

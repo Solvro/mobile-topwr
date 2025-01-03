@@ -5,7 +5,7 @@ import "../../../../config/ui_config.dart";
 import "../../../../widgets/my_cached_image.dart";
 
 class DigitalGuidePhotoRow extends StatelessWidget {
-  final List<String?>? imageUrls;
+  final IList<String?>? imageUrls;
 
   const DigitalGuidePhotoRow({super.key, required this.imageUrls});
 
