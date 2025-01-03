@@ -10,11 +10,12 @@ import "../../../../utils/datetime_utils.dart";
 class SksMenuHeader extends StatelessWidget {
   const SksMenuHeader({
     required this.dateTimeOfLastUpdate,
+    required this.isMenuOnline,
     super.key,
   });
 
   final String dateTimeOfLastUpdate;
-
+  final bool isMenuOnline;
   @override
   Widget build(BuildContext context) {
     final stamp = DateTime.tryParse(dateTimeOfLastUpdate) ?? DateTime.now();
@@ -39,13 +40,14 @@ class SksMenuHeader extends StatelessWidget {
             ),
           ),
         ),
-        Text(
-          "${context.localize.last_modified}: ${Protontime.format(
-            stamp,
-            language: "pl",
-          )}",
-          style: context.textTheme.bodyGrey,
-        ),
+        if (isMenuOnline)
+          Text(
+            "${context.localize.last_modified}: ${Protontime.format(
+              stamp,
+              language: "pl",
+            )}",
+            style: context.textTheme.bodyGrey,
+          ),
       ],
     );
   }
