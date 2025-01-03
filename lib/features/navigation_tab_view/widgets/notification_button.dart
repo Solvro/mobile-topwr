@@ -1,3 +1,5 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
 
 import "../../../config/ui_config.dart";
@@ -17,7 +19,10 @@ class NotificationButton extends StatelessWidget {
         onTap: () async {
           await showNotificationDialog(
             context: context,
-            onConfirmTapped: (_) => requestFCMPermission(),
+            onConfirmTapped: (context) {
+              unawaited(requestFCMPermission());
+              Navigator.of(context).pop();
+            },
           );
         },
         child: Container(
