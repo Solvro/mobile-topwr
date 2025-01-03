@@ -88,7 +88,7 @@ class DigitalGuideTranslation with _$DigitalGuideTranslation {
 }
 
 bool _stringToBool(String value) {
-  return value == "True";
+  return value.toLowerCase() == "true";
 }
 
 List<String> _formatPhoneNumbers(String phoneNumber) {

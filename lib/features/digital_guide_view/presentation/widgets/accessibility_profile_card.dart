@@ -1,3 +1,4 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_svg/svg.dart";
 
@@ -7,7 +8,7 @@ import "../../../../../utils/context_extensions.dart";
 import "bullet_list.dart";
 
 class AccessibilityProfileCard extends StatelessWidget {
-  final List<String> items;
+  final IList<String> items;
   final String icon;
 
   const AccessibilityProfileCard({
@@ -48,7 +49,7 @@ class AccessibilityProfileCard extends StatelessWidget {
                     style: context.textTheme.title,
                   ),
                   const SizedBox(
-                    width: DigitalGuideConfig.paddingSmall,
+                    width: DigitalGuideConfig.heightTiny,
                   ),
                   SvgPicture.asset(icon),
                 ],

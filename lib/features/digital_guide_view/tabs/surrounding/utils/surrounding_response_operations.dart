@@ -1,8 +1,9 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/widgets.dart";
 import "../../../../../utils/context_extensions.dart";
 import "../data/models/surrounding_response_extended.dart";
 
-List<String> getSurroundingsCommentsList(
+IList<String> getSurroundingsCommentsList(
   SurroundingResponseExtended surroundingResponse,
   BuildContext context,
 ) {
@@ -15,7 +16,6 @@ List<String> getSurroundingsCommentsList(
             )
           : "";
 
-  //not really sure if it's alright - in this scenario if there are no dangerous elements we just do not display information   about it, but if you think it should be displayed that "there are no dangerous elements" - let me know
   final String areDangerousElementsComment =
       comments.areDangerousElementsComment != ""
           ? context.localize.are_dangerous_elements_comment_prefix(
@@ -23,7 +23,7 @@ List<String> getSurroundingsCommentsList(
             )
           : "";
 
-  final List<String> commentsList = [
+  final IList<String> commentsList = [
     context.localize.are_no_barriers(
           surroundingResponse.areNoBarriers.toString(),
         ) +
@@ -62,7 +62,7 @@ List<String> getSurroundingsCommentsList(
     comments.accessibilityLevelForMotorDisabilityComment,
     comments.accessibilityLevelForVisuallyImpairedComment,
     comments.comment,
-  ].where((c) => c.isNotEmpty).toList();
+  ].where((c) => c.isNotEmpty).toIList();
 
   return commentsList;
 }

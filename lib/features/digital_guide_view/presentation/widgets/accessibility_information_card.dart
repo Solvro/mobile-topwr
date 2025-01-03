@@ -46,7 +46,7 @@ class AccessibilityInformationCard extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(width: DigitalGuideConfig.paddingSmall),
+          const SizedBox(width: DigitalGuideConfig.heightTiny),
           Expanded(
             child: Text(
               text,

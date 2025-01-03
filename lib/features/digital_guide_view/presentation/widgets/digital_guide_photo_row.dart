@@ -1,6 +1,8 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 
 import "../../../../config/ui_config.dart";
+import "../../../../widgets/my_cached_image.dart";
 
 class DigitalGuidePhotoRow extends StatelessWidget {
   final List<String?>? imageUrls;
@@ -13,7 +15,7 @@ class DigitalGuidePhotoRow extends StatelessWidget {
       return const SizedBox.shrink();
     }
 
-    final displayImages = imageUrls!.take(3).toList();
+    final displayImages = imageUrls!.take(3).toIList();
 
     return SizedBox(
       height: DigitalGuideConfig.photoRowHeight,
@@ -29,9 +31,8 @@ class DigitalGuidePhotoRow extends StatelessWidget {
                     borderRadius: BorderRadius.circular(
                       DigitalGuideConfig.borderRadiusMedium,
                     ),
-                    child: Image.network(
-                      url!,
-                      fit: BoxFit.cover,
+                    child: MyCachedImage(
+                      url,
                     ),
                   ),
                 ),

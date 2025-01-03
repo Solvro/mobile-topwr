@@ -239,7 +239,7 @@ abstract class DigitalGuideConfig {
       EdgeInsets.symmetric(vertical: 24, horizontal: 24);
   static const borderRadiusSmall = 4.0;
   static const borderRadiusMedium = 8.0;
-  static const heightTiny = 8.0;
+  static const heightTiny = 4.0;
   static const heightSmall = 8.0;
   static const heightMedium = 16.0;
   static const heightBig = 24.0;
@@ -251,12 +251,12 @@ abstract class DigitalGuideConfig {
   static const difficultiesCardIconSize = 35.0;
   static const photoRowHeight = 75.0;
 
-  // Basically there are 4 levels of accessability, but 0 an 1 are shown as the same on digital guide site
+  // Basically there are 4 levels of accessability, but 0 and 1 are shown as the same on digital guide site
   static const accessibilityLevelColors = [
-    Color(0xFFB1261E),
-    Color(0xFFB1261E),
-    Color(0xFFE07E0F),
-    Color(0xFF28BC2F),
+    Color(0xFFB1261E), // 0 == red == unaccessible
+    Color(0xFFB1261E), // 1 == red == unaccessible
+    Color(0xFFE07E0F), // 2 == orange == partially accessible
+    Color(0xFF28BC2F), // 3 == green == accessible
   ];
   static const borderColor = Color(0x8077859D);
 }

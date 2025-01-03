@@ -1,5 +1,5 @@
-import "package:flutter/foundation.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:logger/logger.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../../../../api_base_rest/client/dio_client.dart";
@@ -50,8 +50,7 @@ Future<List<String?>> getImagesUrl(Ref ref, List<int> ids) async {
       final response = await dio.get(surroundingResponseUrl);
 
       if (response.data is! Map<String, dynamic>) {
-        debugPrint("Failed to fetch image URL for ID: $id");
-        imagesUrlList.add(null);
+        Logger().e("Failed to fetch image URL for ID: $id");
         continue;
       }
 
@@ -62,7 +61,7 @@ Future<List<String?>> getImagesUrl(Ref ref, List<int> ids) async {
       imagesUrlList.add(imageUrl);
       // ignore: avoid_catches_without_on_clauses
     } catch (e) {
-      debugPrint("Error fetching image URL for ID $id: $e");
+      Logger().e("Error fetching image URL for ID $id: $e");
       imagesUrlList.add(null);
     }
   }

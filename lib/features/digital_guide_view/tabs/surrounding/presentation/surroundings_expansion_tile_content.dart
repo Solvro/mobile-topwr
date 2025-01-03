@@ -1,3 +1,4 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
@@ -67,7 +68,7 @@ class _SurroundingExpansionTileContent extends ConsumerWidget {
           context.localize.closest_facilities(
             surroundingResponse.translations.plTranslation.closestBuildings,
           ),
-        ],
+        ].toIList(),
       ),
       const SizedBox(
         height: DigitalGuideConfig.heightMedium,
@@ -96,9 +97,9 @@ class _SurroundingExpansionTileContent extends ConsumerWidget {
       ),
       child: ListView.builder(
         physics: const NeverScrollableScrollPhysics(),
-        itemBuilder: (context, index) => widgets[index],
         itemCount: widgets.length,
         shrinkWrap: true,
+        itemBuilder: (context, index) => widgets[index],
       ),
     );
   }
