@@ -2,11 +2,10 @@ import "package:auto_route/auto_route.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
-import "package:flutter_svg/svg.dart";
 
 import "../../../../widgets/my_error_widget.dart";
 import "../../config/ui_config.dart";
-import "../../gen/assets.gen.dart";
+import "../../theme/app_theme.dart";
 import "../../utils/context_extensions.dart";
 import "../../utils/launch_url_util.dart";
 import "../../widgets/search_box_app_bar.dart";
@@ -98,10 +97,10 @@ class _GuideInfo extends ConsumerWidget {
       subtitle: context.localize.guide_ideas_info,
       trailing: SizedBox.square(
         dimension: WideTileCardConfig.imageSize,
-        child: SvgPicture.asset(
-          Assets.svg.guideView.ideasBulb,
-          width: WideTileCardConfig.imageSize,
-          height: WideTileCardConfig.imageSize,
+        child: Icon(
+          Icons.lightbulb_outline,
+          size: 55,
+          color: context.colorTheme.greyPigeon,
         ),
       ),
       onTap: () async {
