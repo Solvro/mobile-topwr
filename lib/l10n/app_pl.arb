@@ -207,7 +207,7 @@
     }
   },
   "measured_number_of_users": "Zmierzona liczba użytkowników",
-  "forecasted_number_of_users": "Średnia liczba użytkowników z 21 dni",
+  "forecasted_number_of_users": "Średnia liczba użytkowników z ostatnich 21 dni",
   "sks_chart_title" : "Przybliżona liczba osób w Strefie Kultury Studenckiej",
   "number_of_people" : "Liczba osób",
   "evacuation_text": "Ewakuacja i pierwsza pomoc",
