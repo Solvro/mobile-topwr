@@ -60,6 +60,6 @@ class InAppRatingService {
   }
 
   static Future<void> requestStoreListingReview() async {
-    await InAppReview.instance.openStoreListing();
+    await InAppReview.instance.openStoreListing(appStoreId: "1644647395");
   }
 }
