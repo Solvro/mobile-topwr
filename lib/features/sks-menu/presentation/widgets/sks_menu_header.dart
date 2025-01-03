@@ -1,5 +1,6 @@
 import "package:flutter/cupertino.dart";
 import "package:flutter/material.dart";
+import "package:protontime/protontime.dart";
 
 import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
@@ -16,11 +17,7 @@ class SksMenuHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final int difference = DateTime.tryParse(dateTimeOfLastUpdate)
-            ?.difference(DateTime.now())
-            .inMinutes
-            .abs() ??
-        0;
+    final stamp = DateTime.tryParse(dateTimeOfLastUpdate) ?? DateTime.now();
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -43,7 +40,10 @@ class SksMenuHeader extends StatelessWidget {
           ),
         ),
         Text(
-          context.localize.relative_time(difference),
+          "${context.localize.last_modified}: ${Protontime.format(
+            stamp,
+            language: "pl",
+          )}",
           style: context.textTheme.bodyGrey,
         ),
       ],

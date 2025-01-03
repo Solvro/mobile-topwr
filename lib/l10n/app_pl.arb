@@ -117,16 +117,6 @@
       }
     }
   },
-  "relative_time": "Ostatnia aktualizacja: {difference, plural, =0{mniej niż minutę temu} =1{minutę temu} =2{minuty temu} few{{difference} minuty temu} many{{difference} minut temu} other{{difference} minut temu}}",
-  "@relative-time": {
-    "description": "A message with a single parameter",
-    "placeholders": {
-      "minutes": {
-        "type": "int",
-        "example": "10"
-      }
-    }
-  },
   "last_modified": "Ostatnia aktualizacja",
   "created_at": "Utworzono",
   "apply": "Zastosuj",
