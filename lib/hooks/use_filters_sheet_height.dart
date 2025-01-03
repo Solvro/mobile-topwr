@@ -4,12 +4,12 @@ import "package:flutter/material.dart";
 
 import "../config/ui_config.dart";
 
-double useFiltersSheetHeight(BuildContext context) {
+double useFiltersSheetHeight(BuildContext context, {double? prefferedHeight}) {
   final height = MediaQuery.sizeOf(context).height;
   return min(
     FilterConfig.absoluteMaximumBottomSheetHeightFactor * height,
     max(
-      height * FilterConfig.bottomSheetHeightFactor,
+      prefferedHeight ?? (height * FilterConfig.bottomSheetHeightFactor),
       FilterConfig.minimalHeight,
     ),
   );

@@ -27,7 +27,10 @@ class SksChartSheet extends ConsumerWidget {
     final currentNumberOfUsers = asyncNumberOfUsers.value;
     final maxNumberOfUsers = asyncChartData.value?.maxNumberOfUsers ?? 0;
 
-    final sheetHeight = useFiltersSheetHeight(context);
+    final sheetHeight = useFiltersSheetHeight(
+      context,
+      prefferedHeight: 540,
+    );
 
     return switch (asyncChartData) {
       AsyncError(:final error) => MyErrorWidget(error),
