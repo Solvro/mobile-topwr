@@ -162,6 +162,7 @@ flutter:
     - assets/svg/digital_guide/accessibility_alerts/visually_impaired.svg
     - assets/svg/digital_guide/accessibility_alerts/hearing_dysfunction.svg
     - assets/svg/digital_guide/accessibility_alerts/sensory_sensitivity.svg
+    - assets/svg/guide_view/ideas_bulb.svg
     - assets/animations/error.json
     - assets/animations/search.json
     - assets/animations/offline.json
