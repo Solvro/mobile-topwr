@@ -220,7 +220,7 @@ abstract class SksChartConfig {
     top: SksChartConfig.paddingLarge,
     right: SksChartConfig.paddingLarge,
   );
-  static const sksChartDataUrl = "https://live.pwr.edu.pl/sks/";
+  static const sksChartDataUrl = "https://live.pwr.edu.pl/sks";
   static const sksAddress = "Hoene-Wrońskiego 10";
   static const sksPostalCode = "50-370 Wrocław";
   static const buildingCode = "C-18";
