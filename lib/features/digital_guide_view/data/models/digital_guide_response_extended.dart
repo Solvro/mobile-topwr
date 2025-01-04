@@ -47,7 +47,7 @@ class DigitalGuideResponseExtended {
   final DigitalGuideEvacuation evacuation;
   final IList<DigitalGuideEntrace> entraces;
 
-  bool areAdaptedToilets() {
+  bool hasAdaptedToilets() {
 
     for(final level in levels) {
       for(final region in level.regions) {

@@ -12,7 +12,7 @@ import "../models/adapted_toilet_not_full.dart";
 part "adapted_toilets_repository.g.dart";
 
 @riverpod
-Future<IMap<int, List<AdaptedToilet>>> getAdaptedToiltes(
+Future<IMap<int, List<AdaptedToilet>>> adaptedToiletsRepository(
   Ref ref,
   List<Level> levels,
 ) async {
@@ -23,7 +23,7 @@ Future<IMap<int, List<AdaptedToilet>>> getAdaptedToiltes(
   final Map<int, List<AdaptedToilet>> adaptedToiletsMap = {};
 
   for (final level in levels) {
-    
+
     final adaptedToiletsIDs = level.regions.expand((region) => region.adaptedToiletsIndices).toList();
 
     final adaptedToiletsIterable =

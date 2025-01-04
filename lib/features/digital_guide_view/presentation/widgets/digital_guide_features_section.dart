@@ -54,7 +54,7 @@ class DigitalGuideFeaturesSection extends StatelessWidget {
         title: context.localize.elevators,
         content: [LocalizationExpansionTileContent()],
       ),
-      if (digitalGuideResponseExtended.areAdaptedToilets())
+      if (digitalGuideResponseExtended.hasAdaptedToilets())
         (
           title: context.localize.adapted_toilets,
           content: [

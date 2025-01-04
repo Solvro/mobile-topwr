@@ -21,7 +21,7 @@ class AdaptedToiletsExpansionTileContent extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncAdaptedToilets = ref
-        .watch(GetAdaptedToiltesProvider(digitalGuideResponseExtended.levels));
+        .watch(AdaptedToiletsRepositoryProvider(digitalGuideResponseExtended.levels));
     return asyncAdaptedToilets.when(
       data: (adaptedToiletsData) => _AdaptedToiletsExpansionTileContent(
         levels: digitalGuideResponseExtended.levels
@@ -93,6 +93,9 @@ class _AdaptedToiletsExpansionTileContent extends ConsumerWidget {
                 ),
                 itemCount: adaptedToiletsData[level.id]?.length ?? 0,
                 shrinkWrap: true,
+              ),
+              const SizedBox(
+                height: DigitalGuideConfig.heightMedium,
               ),
             ],
           );
