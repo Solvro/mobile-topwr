@@ -23,8 +23,8 @@ Future<IMap<int, List<AdaptedToilet>>> adaptedToiletsRepository(
   final Map<int, List<AdaptedToilet>> adaptedToiletsMap = {};
 
   for (final level in levels) {
-
-    final adaptedToiletsIDs = level.regions.expand((region) => region.adaptedToiletsIndices).toList();
+    final adaptedToiletsIDs =
+        level.regions.expand((region) => region.adaptedToiletsIndices).toList();
 
     final adaptedToiletsIterable =
         adaptedToiletsIDs.map((adaptedTouiletID) async {
@@ -40,7 +40,8 @@ Future<IMap<int, List<AdaptedToilet>>> adaptedToiletsRepository(
         final imageURL = await ref.watch(GetImageUrlProvider(imageID).future);
         return imageURL;
       });
-      final imagesURLs = (await Future.wait(imagesURLsFutures)).whereType<String>().toList();
+      final imagesURLs =
+          (await Future.wait(imagesURLsFutures)).whereType<String>().toList();
       return AdaptedToilet.create(
         adaptedToiletNotFull: adaptedToiletNotFull,
         imagesURLs: imagesURLs,

@@ -22,7 +22,6 @@ class AdaptedToiletDetailView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     final List<Widget> points = [
       Text(
         adaptedToilet.getDescription(context),
@@ -38,29 +37,24 @@ class AdaptedToiletDetailView extends ConsumerWidget {
       MyPointWidget(
         text: adaptedToilet.translations.plTranslation.location,
       ),
-      if (adaptedToilet
-          .translations.plTranslation.numberOfCabins.isNotEmpty)
+      if (adaptedToilet.translations.plTranslation.numberOfCabins.isNotEmpty)
         MyPointWidget(
-          text:
-              adaptedToilet.translations.plTranslation.numberOfCabins,
+          text: adaptedToilet.translations.plTranslation.numberOfCabins,
         ),
       MyPointWidget(
-        text: adaptedToilet
-            .translations.plTranslation.toiletDescription,
+        text: adaptedToilet.translations.plTranslation.toiletDescription,
       ),
       if (!adaptedToilet.isAccessAccessibleForPwd)
         MyPointWidget(
-          text: adaptedToilet.translations.plTranslation
-              .isAccessAccessibleForPwdComment,
+          text: adaptedToilet
+              .translations.plTranslation.isAccessAccessibleForPwdComment,
         ),
-      if (adaptedToilet.isNeedAuthorization !=
-          IsNeedAuthorizationEnum.unknown)
+      if (adaptedToilet.isNeedAuthorization != IsNeedAuthorizationEnum.unknown)
         MyPointWidget(
-          text: adaptedToilet.isNeedAuthorization ==
-                  IsNeedAuthorizationEnum.yes
+          text: adaptedToilet.isNeedAuthorization == IsNeedAuthorizationEnum.yes
               ? context.localize.adapted_toilet_authorization(
-                  adaptedToilet.translations.plTranslation
-                      .isNeedAuthorizationComment,
+                  adaptedToilet
+                      .translations.plTranslation.isNeedAuthorizationComment,
                 )
               : context.localize.adapted_toilet_no_authorization,
         ),
@@ -83,8 +77,7 @@ class AdaptedToiletDetailView extends ConsumerWidget {
       MyPointWidget(
         text: adaptedToilet.isMarked
             ? context.localize.adapted_toilet_is_marked(
-                adaptedToilet
-                    .translations.plTranslation.isMarkedComment,
+                adaptedToilet.translations.plTranslation.isMarkedComment,
               )
             : context.localize.adapted_toilet_is_not_marked,
       ),
@@ -131,7 +124,8 @@ class AdaptedToiletDetailView extends ConsumerWidget {
               delegate: SliverChildBuilderDelegate(
                 (context, index) {
                   return Padding(
-                    padding: const EdgeInsets.all(DigitalGuideConfig.heightMedium),
+                    padding:
+                        const EdgeInsets.all(DigitalGuideConfig.heightMedium),
                     child: MyCachedImage(adaptedToilet.imagesURLs[index]),
                   );
                 },

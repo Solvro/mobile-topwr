@@ -25,8 +25,9 @@ Future<DigitalGuideResponseExtended> getDigitalGuideDataExtended(
       await ref.watch(getDigitalGuideEvacuationProvider(id).future);
   final entraces = await ref
       .watch(getDigitalGuideEntracesProvider(digitalGuideResponse.id).future);
-  final levels = await ref
-      .watch(LevelsRespositoryProvider(digitalGuideResponse.levelsIndices).future);
+  final levels = await ref.watch(
+    LevelsRespositoryProvider(digitalGuideResponse.levelsIndices).future,
+  );
   return DigitalGuideResponseExtended.fromDigitalGuideResponse(
     digitalGuideResponse: digitalGuideResponse,
     imageUrl: imageUrl,

@@ -48,17 +48,15 @@ class DigitalGuideResponseExtended {
   final IList<DigitalGuideEntrace> entraces;
 
   bool hasAdaptedToilets() {
-
-    for(final level in levels) {
-      for(final region in level.regions) {
-        if(region.adaptedToiletsIndices.isNotEmpty) {
+    for (final level in levels) {
+      for (final region in level.regions) {
+        if (region.adaptedToiletsIndices.isNotEmpty) {
           return true;
         }
       }
     }
 
     return false;
-
   }
 
   factory DigitalGuideResponseExtended.fromDigitalGuideResponse({
