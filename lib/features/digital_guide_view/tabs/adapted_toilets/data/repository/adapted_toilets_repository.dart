@@ -1,3 +1,4 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
@@ -11,7 +12,7 @@ import "../models/adapted_toilet_not_full.dart";
 part "adapted_toilets_repository.g.dart";
 
 @riverpod
-Future<Map<int, List<AdaptedToilet>>> getAdaptedToiltes(
+Future<IMap<int, List<AdaptedToilet>>> getAdaptedToiltes(
   Ref ref,
   List<Level> levels,
 ) async {
@@ -51,5 +52,5 @@ Future<Map<int, List<AdaptedToilet>>> getAdaptedToiltes(
     adaptedToiletsMap[level.id] = adaptedToiletsList;
   }
 
-  return adaptedToiletsMap;
+  return adaptedToiletsMap.lock;
 }
