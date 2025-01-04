@@ -22,6 +22,97 @@ class AdaptedToiletDetailView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+
+    final List<Widget> points = [
+      Text(
+        adaptedToilet.getDescription(context),
+        style: context.textTheme.title.copyWith(fontSize: 18),
+      ),
+      const SizedBox(
+        height: DigitalGuideConfig.heightMedium,
+      ),
+      if (adaptedToilet.translations.plTranslation.comment.isNotEmpty)
+        MyPointWidget(
+          text: adaptedToilet.translations.plTranslation.comment,
+        ),
+      MyPointWidget(
+        text: adaptedToilet.translations.plTranslation.location,
+      ),
+      if (adaptedToilet
+          .translations.plTranslation.numberOfCabins.isNotEmpty)
+        MyPointWidget(
+          text:
+              adaptedToilet.translations.plTranslation.numberOfCabins,
+        ),
+      MyPointWidget(
+        text: adaptedToilet
+            .translations.plTranslation.toiletDescription,
+      ),
+      if (!adaptedToilet.isAccessAccessibleForPwd)
+        MyPointWidget(
+          text: adaptedToilet.translations.plTranslation
+              .isAccessAccessibleForPwdComment,
+        ),
+      if (adaptedToilet.isNeedAuthorization !=
+          IsNeedAuthorizationEnum.unknown)
+        MyPointWidget(
+          text: adaptedToilet.isNeedAuthorization ==
+                  IsNeedAuthorizationEnum.yes
+              ? context.localize.adapted_toilet_authorization(
+                  adaptedToilet.translations.plTranslation
+                      .isNeedAuthorizationComment,
+                )
+              : context.localize.adapted_toilet_no_authorization,
+        ),
+      if (adaptedToilet.translations.plTranslation
+          .isAreaAllowingMovementInFrontEntranceComment.isNotEmpty)
+        MyPointWidget(
+          text: adaptedToilet.translations.plTranslation
+              .isAreaAllowingMovementInFrontEntranceComment,
+        ),
+      MyPointWidget(
+        text: (adaptedToilet.isEntranceGraphicallyMarked &&
+                adaptedToilet.translations.plTranslation
+                    .isEntranceGraphicallyMarkedComment.isNotEmpty)
+            ? context.localize.adapted_toilet_graphically_marked(
+                adaptedToilet.translations.plTranslation
+                    .isEntranceGraphicallyMarkedComment,
+              )
+            : context.localize.adapted_toilet_not_graphically_marked,
+      ),
+      MyPointWidget(
+        text: adaptedToilet.isMarked
+            ? context.localize.adapted_toilet_is_marked(
+                adaptedToilet
+                    .translations.plTranslation.isMarkedComment,
+              )
+            : context.localize.adapted_toilet_is_not_marked,
+      ),
+      const SizedBox(height: DigitalGuideConfig.heightBig),
+      ListView.separated(
+        physics: const NeverScrollableScrollPhysics(),
+        itemBuilder: (context, index) {
+          return DigitalGuideNavLink(
+            onTap: () {},
+            text: context.localize.doors,
+          );
+        },
+        itemCount: adaptedToilet.doorsIndices.length,
+        separatorBuilder: (context, index) => const SizedBox(
+          height: DigitalGuideConfig.heightMedium,
+        ),
+        shrinkWrap: true,
+      ),
+      const SizedBox(
+        height: DigitalGuideConfig.heightBig,
+      ),
+      if (adaptedToilet.imagesURLs.isNotEmpty)
+        Text(
+          context.localize.images,
+          style: context.textTheme.title.copyWith(fontSize: 28),
+        ),
+    ];
+
     return Scaffold(
       appBar: DetailViewAppBar(),
       body: Padding(
@@ -31,107 +122,28 @@ class AdaptedToiletDetailView extends ConsumerWidget {
         child: CustomScrollView(
           slivers: [
             SliverList(
-              delegate: SliverChildListDelegate([
-                Text(
-                  adaptedToilet.getDescription(context),
-                  style: context.textTheme.title.copyWith(fontSize: 18),
-                ),
-                const SizedBox(
-                  height: DigitalGuideConfig.heightMedium,
-                ),
-                if (adaptedToilet.translations.plTranslation.comment.isNotEmpty)
-                  MyPointWidget(
-                    text: adaptedToilet.translations.plTranslation.comment,
-                  ),
-                MyPointWidget(
-                  text: adaptedToilet.translations.plTranslation.location,
-                ),
-                if (adaptedToilet
-                    .translations.plTranslation.numberOfCabins.isNotEmpty)
-                  MyPointWidget(
-                    text:
-                        adaptedToilet.translations.plTranslation.numberOfCabins,
-                  ),
-                MyPointWidget(
-                  text: adaptedToilet
-                      .translations.plTranslation.toiletDescription,
-                ),
-                if (!adaptedToilet.isAccessAccessibleForPwd)
-                  MyPointWidget(
-                    text: adaptedToilet.translations.plTranslation
-                        .isAccessAccessibleForPwdComment,
-                  ),
-                if (adaptedToilet.isNeedAuthorization !=
-                    IsNeedAuthorizationEnum.unknown)
-                  MyPointWidget(
-                    text: adaptedToilet.isNeedAuthorization ==
-                            IsNeedAuthorizationEnum.yes
-                        ? context.localize.adapted_toilet_authorization(
-                            adaptedToilet.translations.plTranslation
-                                .isNeedAuthorizationComment,
-                          )
-                        : context.localize.adapted_toilet_no_authorization,
-                  ),
-                if (adaptedToilet.translations.plTranslation
-                    .isAreaAllowingMovementInFrontEntranceComment.isNotEmpty)
-                  MyPointWidget(
-                    text: adaptedToilet.translations.plTranslation
-                        .isAreaAllowingMovementInFrontEntranceComment,
-                  ),
-                MyPointWidget(
-                  text: (adaptedToilet.isEntranceGraphicallyMarked &&
-                          adaptedToilet.translations.plTranslation
-                              .isEntranceGraphicallyMarkedComment.isNotEmpty)
-                      ? context.localize.adapted_toilet_graphically_marked(
-                          adaptedToilet.translations.plTranslation
-                              .isEntranceGraphicallyMarkedComment,
-                        )
-                      : context.localize.adapted_toilet_not_graphically_marked,
-                ),
-                MyPointWidget(
-                  text: adaptedToilet.isMarked
-                      ? context.localize.adapted_toilet_is_marked(
-                          adaptedToilet
-                              .translations.plTranslation.isMarkedComment,
-                        )
-                      : context.localize.adapted_toilet_is_not_marked,
-                ),
-                const SizedBox(height: DigitalGuideConfig.heightBig),
-                ListView.separated(
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    return DigitalGuideNavLink(
-                      onTap: () {},
-                      text: context.localize.doors,
+              delegate: SliverChildBuilderDelegate(
+                (context, index) {
+                  if(index < points.length) {
+                    return points[index];
+                  }
+
+                  if(index == points.length && adaptedToilet.imagesURLs.isNotEmpty) {
+                    return Column(
+                      children: adaptedToilet.imagesURLs.map((imageURL) {
+                        return Padding(
+                          padding:
+                              const EdgeInsets.all(DigitalGuideConfig.heightMedium),
+                          child: MyCachedImage(imageURL),
+                        );
+                      }).toList(),
                     );
-                  },
-                  itemCount: adaptedToilet.doorsIndices.length,
-                  separatorBuilder: (context, index) => const SizedBox(
-                    height: DigitalGuideConfig.heightMedium,
-                  ),
-                  shrinkWrap: true,
-                ),
-                const SizedBox(
-                  height: DigitalGuideConfig.heightBig,
-                ),
-                if (adaptedToilet.imagesURLs.isNotEmpty)
-                  Text(
-                    context.localize.images,
-                    style: context.textTheme.title.copyWith(fontSize: 28),
-                  ),
-                Column(
-                  children: adaptedToilet.imagesURLs.map((imageURL) {
-                    return Padding(
-                      padding:
-                          const EdgeInsets.all(DigitalGuideConfig.heightMedium),
-                      child: MyCachedImage(imageURL),
-                    );
-                  }).toList(),
-                ),
-                const SizedBox(
-                  height: DigitalGuideConfig.heightBig,
-                ),
-              ]),
+                  }
+
+                  return null;
+                },
+                childCount: points.length + (adaptedToilet.imagesURLs.isNotEmpty ? 1 : 0),
+              ),
             ),
           ],
         ),
