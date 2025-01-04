@@ -27,9 +27,10 @@ class SksChartSheet extends ConsumerWidget {
     final currentNumberOfUsers = asyncNumberOfUsers.value;
     final maxNumberOfUsers = asyncChartData.value?.maxNumberOfUsers ?? 0;
 
+    final screenWidth = MediaQuery.sizeOf(context).width;
     final sheetHeight = useFiltersSheetHeight(
       context,
-      prefferedHeight: 540,
+      prefferedHeightFactor: screenWidth > 400 ? .62 : .68,
     );
 
     return switch (asyncChartData) {
