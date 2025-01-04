@@ -23,8 +23,8 @@ Future<IMap<int, List<AdaptedToilet>>> getAdaptedToiltes(
   final Map<int, List<AdaptedToilet>> adaptedToiletsMap = {};
 
   for (final level in levels) {
-    final adaptedToiletsIDs = level.regions
-        .fold([], (list, region) => list + region.adaptedToiletsIndices);
+    
+    final adaptedToiletsIDs = level.regions.expand((region) => region.adaptedToiletsIndices).toList();
 
     final adaptedToiletsIterable =
         adaptedToiletsIDs.map((adaptedTouiletID) async {

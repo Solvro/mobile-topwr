@@ -23,9 +23,7 @@ class AdaptedToiletDetailView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: DetailViewAppBar(
-        actions: const [],
-      ),
+      appBar: DetailViewAppBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: DigitalGuideConfig.heightBig,

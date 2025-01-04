@@ -48,7 +48,9 @@ class _AdaptedToiletsExpansionTileContent extends ConsumerWidget {
   });
 
   final IList<Level> levels;
-  final Map<int, List<AdaptedToilet>> adaptedToiletsData;
+
+  // map: level id (keys) -> adapted toilets instances (values)
+  final IMap<int, List<AdaptedToilet>> adaptedToiletsData;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
