@@ -37,9 +37,9 @@ Future<Map<int, List<AdaptedToilet>>> getAdaptedToiltes(
       final imagesURLsFutures =
           adaptedToiletNotFull.imagesIndices.map((imageID) async {
         final imageURL = await ref.watch(GetImageUrlProvider(imageID).future);
-        return imageURL!;
+        return imageURL;
       });
-      final imagesURLs = await Future.wait(imagesURLsFutures);
+      final imagesURLs = (await Future.wait(imagesURLsFutures)).whereType<String>().toList();
       return AdaptedToilet.create(
         adaptedToiletNotFull: adaptedToiletNotFull,
         imagesURLs: imagesURLs,
