@@ -63,44 +63,97 @@ class _AdaptedToiletsExpansionTileContent extends ConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: levels.map((level) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                level.translations.plTranslation.name,
-                style: context.textTheme.title,
-              ),
-              const SizedBox(
-                height: DigitalGuideConfig.heightSmall,
-              ),
-              ListView.separated(
-                physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (context, index) {
-                  final levelData = adaptedToiletsData[level.id];
-                  return levelData == null
-                      ? const SizedBox()
-                      : DigitalGuideNavLink(
-                          onTap: () async {
-                            await ref.navigateAdaptedToiletDetails(
-                              levelData[index],
-                            );
-                          },
-                          text: levelData[index].getDescription(context),
-                        );
-                },
-                separatorBuilder: (context, index) => const SizedBox(
-                  height: DigitalGuideConfig.heightMedium,
-                ),
-                itemCount: adaptedToiletsData[level.id]?.length ?? 0,
-                shrinkWrap: true,
-              ),
-              const SizedBox(
-                height: DigitalGuideConfig.heightMedium,
-              ),
-            ],
+          return AdaptedToiletLevel(
+            level: level,
+            adaptedToilets: adaptedToiletsData[level.id] ?? [],
           );
+          // return Column(
+          //   crossAxisAlignment: CrossAxisAlignment.start,
+          //   children: [
+          //     Text(
+          //       level.translations.plTranslation.name,
+          //       style: context.textTheme.title,
+          //     ),
+          //     const SizedBox(
+          //       height: DigitalGuideConfig.heightSmall,
+          //     ),
+          //     ListView.separated(
+          //       physics: const NeverScrollableScrollPhysics(),
+          //       itemBuilder: (context, index) {
+          //         final levelData = adaptedToiletsData[level.id];
+          //         return levelData == null
+          //             ? const SizedBox()
+          //             : DigitalGuideNavLink(
+          //                 onTap: () async {
+          //                   await ref.navigateAdaptedToiletDetails(
+          //                     levelData[index],
+          //                   );
+          //                 },
+          //                 text: levelData[index].getDescription(context),
+          //               );
+          //       },
+          //       separatorBuilder: (context, index) => const SizedBox(
+          //         height: DigitalGuideConfig.heightMedium,
+          //       ),
+          //       itemCount: adaptedToiletsData[level.id]?.length ?? 0,
+          //       shrinkWrap: true,
+          //     ),
+          //     const SizedBox(
+          //       height: DigitalGuideConfig.heightMedium,
+          //     ),
+          //   ],
+          // );
         }).toList(),
       ),
     );
+  }
+}
+
+class AdaptedToiletLevel extends ConsumerWidget {
+  const AdaptedToiletLevel({
+    required this.level,
+    required this.adaptedToilets,
+  });
+
+  final Level level;
+  final List<AdaptedToilet> adaptedToilets;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return adaptedToilets.isEmpty
+      ? const SizedBox()
+      : Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            level.translations.plTranslation.name,
+            style: context.textTheme.title,
+          ),
+          const SizedBox(
+            height: DigitalGuideConfig.heightSmall,
+          ),
+          ListView.separated(
+            physics: const NeverScrollableScrollPhysics(),
+            itemBuilder: (context, index) {
+              return DigitalGuideNavLink(
+                onTap: () async {
+                  await ref.navigateAdaptedToiletDetails(
+                    adaptedToilets[index],
+                  );
+                },
+                text: adaptedToilets[index].getDescription(context),
+              );
+            },
+            separatorBuilder: (context, index) => const SizedBox(
+              height: DigitalGuideConfig.heightMedium,
+            ),
+            itemCount: adaptedToilets.length,
+            shrinkWrap: true,
+          ),
+          const SizedBox(
+            height: DigitalGuideConfig.heightMedium,
+          ),
+        ],
+      );
   }
 }

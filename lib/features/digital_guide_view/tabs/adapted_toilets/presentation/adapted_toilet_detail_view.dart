@@ -123,26 +123,19 @@ class AdaptedToiletDetailView extends ConsumerWidget {
           slivers: [
             SliverList(
               delegate: SliverChildBuilderDelegate(
+                (context, index) => points[index],
+                childCount: points.length,
+              ),
+            ),
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
                 (context, index) {
-                  if(index < points.length) {
-                    return points[index];
-                  }
-
-                  if(index == points.length && adaptedToilet.imagesURLs.isNotEmpty) {
-                    return Column(
-                      children: adaptedToilet.imagesURLs.map((imageURL) {
-                        return Padding(
-                          padding:
-                              const EdgeInsets.all(DigitalGuideConfig.heightMedium),
-                          child: MyCachedImage(imageURL),
-                        );
-                      }).toList(),
-                    );
-                  }
-
-                  return null;
+                  return Padding(
+                    padding: const EdgeInsets.all(DigitalGuideConfig.heightMedium),
+                    child: MyCachedImage(adaptedToilet.imagesURLs[index]),
+                  );
                 },
-                childCount: points.length + (adaptedToilet.imagesURLs.isNotEmpty ? 1 : 0),
+                childCount: adaptedToilet.imagesURLs.length,
               ),
             ),
           ],
