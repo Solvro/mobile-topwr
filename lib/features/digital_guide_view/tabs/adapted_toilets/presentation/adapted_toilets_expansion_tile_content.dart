@@ -92,9 +92,6 @@ class _AdaptedToiletsExpansionTileContent extends ConsumerWidget {
                 itemCount: adaptedToiletsData[level.id]?.length ?? 0,
                 shrinkWrap: true,
               ),
-              const SizedBox(
-                height: DigitalGuideConfig.heightMedium,
-              ),
             ],
           );
         }).toList(),

@@ -48,17 +48,17 @@ class DigitalGuideResponseExtended {
   final IList<DigitalGuideEntrace> entraces;
 
   bool areAdaptedToilets() {
-    return levels.fold(
-          0,
-          (levelValue, levelElement) =>
-              levelValue +
-              levelElement.regions.fold(
-                0,
-                (regionValue, regionElement) =>
-                    regionValue + regionElement.adaptedToiletsIndices.length,
-              ),
-        ) >
-        0;
+
+    for(final level in levels) {
+      for(final region in level.regions) {
+        if(region.adaptedToiletsIndices.isNotEmpty) {
+          return true;
+        }
+      }
+    }
+
+    return false;
+
   }
 
   factory DigitalGuideResponseExtended.fromDigitalGuideResponse({
