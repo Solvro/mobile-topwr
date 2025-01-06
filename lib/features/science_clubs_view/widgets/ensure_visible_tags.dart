@@ -3,9 +3,10 @@ import "dart:math";
 import "package:auto_size_text/auto_size_text.dart";
 import "package:flutter/material.dart";
 
-import "../../../theme/app_theme.dart";
 import "../../../utils/calculate_lines.dart";
 import "../../../widgets/dual_text_max_lines.dart";
+import "strategic_badge.dart";
+import "verified_badge.dart";
 
 class EnsureVisibleTags extends DualTextMaxLines {
   /// DualTextMaxLines with third text row that must have at least one line
@@ -19,12 +20,12 @@ class EnsureVisibleTags extends DualTextMaxLines {
     super.key,
     this.secondSubtitle,
     this.secondSubtitleStyle,
-    this.badge = false,
+    super.showVerifiedBadge = false,
+    super.showStrategicBadge = false,
   });
 
   final String? secondSubtitle;
   final TextStyle? secondSubtitleStyle;
-  final bool badge;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +33,12 @@ class EnsureVisibleTags extends DualTextMaxLines {
       return super.build(context);
     }
     final placeholderDimensions = [
-      if (badge)
+      if (showVerifiedBadge)
+        const PlaceholderDimensions(
+          size: Size(12, 12),
+          alignment: PlaceholderAlignment.middle,
+        ),
+      if (showStrategicBadge)
         const PlaceholderDimensions(
           size: Size(12, 12),
           alignment: PlaceholderAlignment.middle,
@@ -56,22 +62,8 @@ class EnsureVisibleTags extends DualTextMaxLines {
                   ? titleStyle
                   : titleStyle?.copyWith(fontSize: fontSize),
               children: [
-                if (badge)
-                  WidgetSpan(
-                    baseline: TextBaseline.ideographic,
-                    alignment: PlaceholderAlignment.middle,
-                    child: SizedBox.square(
-                      dimension: 16,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 4),
-                        child: Icon(
-                          Icons.verified_sharp,
-                          size: 12,
-                          color: context.colorTheme.orangePomegranade,
-                        ),
-                      ),
-                    ),
-                  ),
+                if (showVerifiedBadge) const VerifiedBadge(),
+                if (showStrategicBadge) const StrategicBadge(),
               ],
             );
 

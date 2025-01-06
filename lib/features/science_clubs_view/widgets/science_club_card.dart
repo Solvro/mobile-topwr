@@ -22,6 +22,7 @@ class ScienceClubCard extends StatelessWidget {
           .toList()
           .join(", "),
       showBadge: sciClub.source == ScienceClubsViewConfig.source,
+      showStrategicBadge: true,
       activeShadows: null,
       trailing: Padding(
         padding: const EdgeInsets.only(

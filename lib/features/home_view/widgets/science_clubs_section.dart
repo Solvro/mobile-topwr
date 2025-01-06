@@ -104,7 +104,7 @@ class _BuildScienceClubCard extends StatelessWidget {
       directusUrl: (sciClub.useCoverAsPreviewPhoto ?? false)
           ? sciClub.cover?.filename_disk
           : sciClub.logo?.filename_disk,
-      showBadge: sciClub.source == ScienceClubsViewConfig.source,
+      showVerifiedBadge: sciClub.source == ScienceClubsViewConfig.source,
       onClick: () async => ref.navigateSciClubsDetail(sciClub.id),
     );
   }

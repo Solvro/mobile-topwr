@@ -241,11 +241,7 @@
   "are_lowered_curbs" : "Krawężniki w okolicach budynku {value, select, false{nie} other{}} są obniżone. ",
   "are_no_barriers": "Wokół budynku {value, select, true{nie ma barier uniemożliwiających dojścia} false{znajdują się bariery uniemożliwiające dojście} other{}} do budynku. ",
   "is_path_to_accessible_entrance_marked" : "Ścieżka do wejścia dostępnego dla osób z niepełnosprawnościami {value, select, false{nie} other{}} jest wyraźnie oznaczona. ",
-  "is_noisy_street_near_building" : "W okolicy {value, select, false{nie ma ruchliwej, hałaśliwej ulicy. } true{znajduje się ruchliwa, hałaśliwa ulica. } other{}}"
-
-
-
-
-
-
+  "is_noisy_street_near_building" : "W okolicy {value, select, false{nie ma ruchliwej, hałaśliwej ulicy. } true{znajduje się ruchliwa, hałaśliwa ulica. } other{}}",
+  "strategicBadgeTooltip": "Koło Strategiczne PWr",
+  "strategic_club_abbr": "KS"
 }

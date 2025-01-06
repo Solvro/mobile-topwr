@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 
-import "../theme/colors.dart";
+import "../features/science_clubs_view/widgets/strategic_badge.dart";
+import "../features/science_clubs_view/widgets/verified_badge.dart";
 
 class DualTextSpan extends TextSpan {
   DualTextSpan(
@@ -10,28 +11,15 @@ class DualTextSpan extends TextSpan {
     TextStyle? subtitleStyle,
     double spacing, {
     bool showBadge = false,
+    bool showStrategicBadge = false,
   }) : super(
           children: [
             TextSpan(
               text: title,
               style: titleStyle,
               children: [
-                if (showBadge)
-                  const WidgetSpan(
-                    baseline: TextBaseline.ideographic,
-                    alignment: PlaceholderAlignment.middle,
-                    child: SizedBox.square(
-                      dimension: 16,
-                      child: Padding(
-                        padding: EdgeInsets.only(left: 4),
-                        child: Icon(
-                          Icons.verified_sharp,
-                          size: 12,
-                          color: ColorsConsts.orangePomegranade,
-                        ),
-                      ),
-                    ),
-                  ),
+                if (showBadge) const VerifiedBadge(),
+                if (showStrategicBadge) const StrategicBadge(),
               ],
             ),
             if (subtitle != null)
@@ -56,7 +44,8 @@ class DualTextMaxLines extends StatelessWidget {
     this.titleStyle,
     this.subtitleStyle,
     this.spacing = 0,
-    this.showBadge = false,
+    this.showVerifiedBadge = false,
+    this.showStrategicBadge = false,
     super.key,
   });
 
@@ -66,8 +55,8 @@ class DualTextMaxLines extends StatelessWidget {
   final TextStyle? subtitleStyle;
   final double spacing;
   final int maxTotalLines;
-  final bool showBadge;
-
+  final bool showVerifiedBadge;
+  final bool showStrategicBadge;
   @override
   Widget build(BuildContext context) {
     return RichText(
@@ -79,7 +68,8 @@ class DualTextMaxLines extends StatelessWidget {
         subtitle,
         subtitleStyle,
         spacing,
-        showBadge: showBadge,
+        showBadge: showVerifiedBadge,
+        showStrategicBadge: showStrategicBadge,
       ),
     );
   }
