@@ -138,7 +138,7 @@ class _TitlesColumn extends StatelessWidget {
                 : context.textTheme.bodyBlue,
             maxTotalLines: 4,
             showVerifiedBadge: showBadge,
-            showStrategicBadge: true,
+            showStrategicBadge: showStrategicBadge,
           ),
         );
       },

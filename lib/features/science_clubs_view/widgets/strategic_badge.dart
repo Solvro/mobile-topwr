@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 
 import "../../../theme/app_theme.dart";
+import "../../../utils/context_extensions.dart";
 
 class StrategicBadge extends WidgetSpan {
   const StrategicBadge()
@@ -20,7 +21,7 @@ class _StrategicBadgeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Tooltip(
-      message: "Koło strategiczne PWr",
+      message: context.localize.strategicBadgeTooltip,
       child: Stack(
         children: [
           Center(

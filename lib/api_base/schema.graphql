@@ -15,10 +15,6 @@ type Query {
   Scientific_Circles_Links_by_id(id: ID!, version: String): Scientific_Circles_Links
   Scientific_Circles_Links_aggregated(groupBy: [String], filter: Scientific_Circles_Links_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [Scientific_Circles_Links_aggregated!]!
   Scientific_Circles_Links_by_version(version: String!, id: ID!): version_Scientific_Circles_Links
-  Scientific_Circles(filter: Scientific_Circles_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): [Scientific_Circles!]!
-  Scientific_Circles_by_id(id: ID!, version: String): Scientific_Circles
-  Scientific_Circles_aggregated(groupBy: [String], filter: Scientific_Circles_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [Scientific_Circles_aggregated!]!
-  Scientific_Circles_by_version(version: String!, id: ID!): version_Scientific_Circles
   Posts(filter: Posts_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): [Posts!]!
   Posts_by_id(id: ID!, version: String): Posts
   Posts_aggregated(groupBy: [String], filter: Posts_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [Posts_aggregated!]!
@@ -85,6 +81,10 @@ type Query {
   Changelog_Screenshots_by_id(id: ID!, version: String): Changelog_Screenshots
   Changelog_Screenshots_aggregated(groupBy: [String], filter: Changelog_Screenshots_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [Changelog_Screenshots_aggregated!]!
   Changelog_Screenshots_by_version(version: String!, id: ID!): version_Changelog_Screenshots
+  Scientific_Circles(filter: Scientific_Circles_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): [Scientific_Circles!]!
+  Scientific_Circles_by_id(id: ID!, version: String): Scientific_Circles
+  Scientific_Circles_aggregated(groupBy: [String], filter: Scientific_Circles_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [Scientific_Circles_aggregated!]!
+  Scientific_Circles_by_version(version: String!, id: ID!): version_Scientific_Circles
 }
 
 type Scientific_Circles_Tags {
@@ -111,6 +111,7 @@ type Scientific_Circles {
   department(filter: Departments_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): Departments
   desc2: String
   useCoverAsPreviewPhoto: Boolean
+  isStrategic: Boolean!
   tags(filter: Scientific_Circles_Tags_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): [Scientific_Circles_Tags]
   tags_func: count_functions
   links(filter: Scientific_Circles_Links_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): [Scientific_Circles_Links]
@@ -397,6 +398,7 @@ input Scientific_Circles_filter {
   department: Departments_filter
   desc2: string_filter_operators
   useCoverAsPreviewPhoto: boolean_filter_operators
+  isStrategic: boolean_filter_operators
   tags: Scientific_Circles_Tags_filter
   tags_func: count_function_filter_operators
   links: Scientific_Circles_Links_filter
@@ -608,70 +610,6 @@ type version_Scientific_Circles_Links {
   name: String
   link: String
   scientific_circle_id: JSON
-}
-
-type Scientific_Circles_aggregated {
-  group: JSON
-  countAll: Int
-  count: Scientific_Circles_aggregated_count
-  countDistinct: Scientific_Circles_aggregated_count
-  avg: Scientific_Circles_aggregated_fields
-  sum: Scientific_Circles_aggregated_fields
-  avgDistinct: Scientific_Circles_aggregated_fields
-  sumDistinct: Scientific_Circles_aggregated_fields
-  min: Scientific_Circles_aggregated_fields
-  max: Scientific_Circles_aggregated_fields
-}
-
-type Scientific_Circles_aggregated_count {
-  id: Int
-  status: Int
-  sort: Int
-  date_created: Int
-  date_updated: Int
-  name: Int
-  logo: Int
-  cover: Int
-  description: Int
-  type: Int
-  source: Int
-  shortDescription: Int
-  department: Int
-  desc2: Int
-  useCoverAsPreviewPhoto: Int
-  tags: Int
-  links: Int
-}
-
-type Scientific_Circles_aggregated_fields {
-  id: Float
-  sort: Float
-  department: Float
-}
-
-""""""
-type version_Scientific_Circles {
-  id: ID!
-  status: String
-  sort: Int
-  date_created: Date
-  date_created_func: datetime_functions
-  date_updated: Date
-  date_updated_func: datetime_functions
-  name: String!
-  logo: JSON
-  cover: JSON
-  description: String
-  type: String
-  source: String
-  shortDescription: String
-  department: JSON
-  desc2: String
-  useCoverAsPreviewPhoto: Boolean
-  tags: JSON
-  tags_func: count_functions
-  links: JSON
-  links_func: count_functions
 }
 
 type Posts_aggregated {
@@ -1610,13 +1548,78 @@ type version_Changelog_Screenshots {
   screenshot_preview: JSON
 }
 
+type Scientific_Circles_aggregated {
+  group: JSON
+  countAll: Int
+  count: Scientific_Circles_aggregated_count
+  countDistinct: Scientific_Circles_aggregated_count
+  avg: Scientific_Circles_aggregated_fields
+  sum: Scientific_Circles_aggregated_fields
+  avgDistinct: Scientific_Circles_aggregated_fields
+  sumDistinct: Scientific_Circles_aggregated_fields
+  min: Scientific_Circles_aggregated_fields
+  max: Scientific_Circles_aggregated_fields
+}
+
+type Scientific_Circles_aggregated_count {
+  id: Int
+  status: Int
+  sort: Int
+  date_created: Int
+  date_updated: Int
+  name: Int
+  logo: Int
+  cover: Int
+  description: Int
+  type: Int
+  source: Int
+  shortDescription: Int
+  department: Int
+  desc2: Int
+  useCoverAsPreviewPhoto: Int
+  isStrategic: Int
+  tags: Int
+  links: Int
+}
+
+type Scientific_Circles_aggregated_fields {
+  id: Float
+  sort: Float
+  department: Float
+}
+
+""""""
+type version_Scientific_Circles {
+  id: ID!
+  status: String
+  sort: Int
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  name: String!
+  logo: JSON
+  cover: JSON
+  description: String
+  type: String
+  source: String
+  shortDescription: String
+  department: JSON
+  desc2: String
+  useCoverAsPreviewPhoto: Boolean
+  isStrategic: Boolean!
+  tags: JSON
+  tags_func: count_functions
+  links: JSON
+  links_func: count_functions
+}
+
 type Subscription {
   directus_files_mutated(event: EventEnum): directus_files_mutated
   Scientific_Circles_Tags_mutated(event: EventEnum): Scientific_Circles_Tags_mutated
   Tags_mutated(event: EventEnum): Tags_mutated
   Posts_Tags_mutated(event: EventEnum): Posts_Tags_mutated
   Scientific_Circles_Links_mutated(event: EventEnum): Scientific_Circles_Links_mutated
-  Scientific_Circles_mutated(event: EventEnum): Scientific_Circles_mutated
   Posts_mutated(event: EventEnum): Posts_mutated
   AcademicCalendarData_mutated(event: EventEnum): AcademicCalendarData_mutated
   WeekExceptions_mutated(event: EventEnum): WeekExceptions_mutated
@@ -1635,6 +1638,7 @@ type Subscription {
   Changelog_mutated(event: EventEnum): Changelog_mutated
   Changelog_Change_mutated(event: EventEnum): Changelog_Change_mutated
   Changelog_Screenshots_mutated(event: EventEnum): Changelog_Screenshots_mutated
+  Scientific_Circles_mutated(event: EventEnum): Scientific_Circles_mutated
 }
 
 type directus_files_mutated {
@@ -1671,12 +1675,6 @@ type Scientific_Circles_Links_mutated {
   key: ID!
   event: EventEnum
   data: Scientific_Circles_Links
-}
-
-type Scientific_Circles_mutated {
-  key: ID!
-  event: EventEnum
-  data: Scientific_Circles
 }
 
 type Posts_mutated {
@@ -1785,4 +1783,10 @@ type Changelog_Screenshots_mutated {
   key: ID!
   event: EventEnum
   data: Changelog_Screenshots
+}
+
+type Scientific_Circles_mutated {
+  key: ID!
+  event: EventEnum
+  data: Scientific_Circles
 }

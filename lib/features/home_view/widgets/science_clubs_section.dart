@@ -71,8 +71,7 @@ class _ScienceClubsDataList extends ConsumerWidget {
       itemCount: scienceClubs.length,
       itemBuilder: (BuildContext context, int index) {
         final sciClub = scienceClubs[index];
-        final sciClubCard = _BuildScienceClubCard(sciClub: sciClub, ref: ref);
-
+        final sciClubCard = _ScienceClubCard(sciClub: sciClub);
         if (index != scienceClubs.length - 1) {
           return MediumLeftPadding(
             child: sciClubCard,
@@ -87,17 +86,13 @@ class _ScienceClubsDataList extends ConsumerWidget {
   }
 }
 
-class _BuildScienceClubCard extends StatelessWidget {
-  const _BuildScienceClubCard({
-    required this.sciClub,
-    required this.ref,
-  });
+class _ScienceClubCard extends ConsumerWidget {
+  const _ScienceClubCard({required this.sciClub});
 
   final ScienceClub sciClub;
-  final WidgetRef ref;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return BigPreviewCard(
       title: sciClub.name,
       shortDescription: sciClub.shortDescription ?? "",
@@ -106,6 +101,7 @@ class _BuildScienceClubCard extends StatelessWidget {
           : sciClub.logo?.filename_disk,
       showVerifiedBadge: sciClub.source == ScienceClubsViewConfig.source,
       onClick: () async => ref.navigateSciClubsDetail(sciClub.id),
+      showStrategicBadge: sciClub.isStrategic,
     );
   }
 }

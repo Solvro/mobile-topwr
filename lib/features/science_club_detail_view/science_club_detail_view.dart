@@ -72,7 +72,7 @@ class _SciClubDetailDataView extends ConsumerWidget {
                       children: [
                         if (value.source == ScienceClubsViewConfig.source)
                           const VerifiedBadge(),
-                        const StrategicBadge(),
+                        if (value.isStrategic) const StrategicBadge(),
                       ],
                     ),
                   ),
