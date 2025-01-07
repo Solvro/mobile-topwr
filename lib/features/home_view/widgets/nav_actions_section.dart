@@ -1,3 +1,5 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
@@ -40,15 +42,15 @@ class NavActionsSection extends ConsumerWidget {
               ),
               ref.navigateAboutUs,
             ),
-            // _NavActionButton(
-            //   "Digital Guide",
-            //   Icon(
-            //     Icons.accessibility,
-            //     color: context.colorTheme.whiteSoap,
-            //     size: 32,
-            //   ),
-            //   () => unawaited(ref.navigateDigitalGuide(301)),
-            // ),
+            _NavActionButton(
+              "Digital Guide",
+              Icon(
+                Icons.accessibility,
+                color: context.colorTheme.whiteSoap,
+                size: 32,
+              ),
+              () => unawaited(ref.navigateDigitalGuide(301)),
+            ),
           ],
         ),
       );
