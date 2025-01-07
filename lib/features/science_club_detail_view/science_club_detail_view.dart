@@ -15,6 +15,8 @@ import "../../widgets/loading_widgets/contact_section_loading.dart";
 import "../../widgets/loading_widgets/header_section_loading.dart";
 import "../../widgets/loading_widgets/shimmer_loading.dart";
 import "../../widgets/my_error_widget.dart";
+import "../science_clubs_view/widgets/strategic_badge.dart";
+import "../science_clubs_view/widgets/verified_badge.dart";
 import "repository/science_club_details_repository.dart";
 import "widgets/about_us_section.dart";
 import "widgets/about_us_section_loading.dart";
@@ -69,21 +71,8 @@ class _SciClubDetailDataView extends ConsumerWidget {
                       style: context.textTheme.headline,
                       children: [
                         if (value.source == ScienceClubsViewConfig.source)
-                          WidgetSpan(
-                            baseline: TextBaseline.ideographic,
-                            alignment: PlaceholderAlignment.middle,
-                            child: SizedBox.square(
-                              dimension: 16,
-                              child: Padding(
-                                padding: const EdgeInsets.only(left: 4),
-                                child: Icon(
-                                  Icons.verified_sharp,
-                                  size: 12,
-                                  color: context.colorTheme.orangePomegranade,
-                                ),
-                              ),
-                            ),
-                          ),
+                          const VerifiedBadge(),
+                        if (value.isStrategic) const StrategicBadge(),
                       ],
                     ),
                   ),

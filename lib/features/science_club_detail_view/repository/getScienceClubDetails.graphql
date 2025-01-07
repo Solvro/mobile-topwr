@@ -16,5 +16,6 @@ query GetScienceClubDetails($id: ID!) {
     department {
       name
     }
+    isStrategic
   }
 }
