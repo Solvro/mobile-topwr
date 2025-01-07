@@ -85,6 +85,18 @@ type Query {
   Scientific_Circles_by_id(id: ID!, version: String): Scientific_Circles
   Scientific_Circles_aggregated(groupBy: [String], filter: Scientific_Circles_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [Scientific_Circles_aggregated!]!
   Scientific_Circles_by_version(version: String!, id: ID!): version_Scientific_Circles
+  TeamVersions(filter: TeamVersions_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): [TeamVersions!]!
+  TeamVersions_by_id(id: ID!, version: String): TeamVersions
+  TeamVersions_aggregated(groupBy: [String], filter: TeamVersions_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [TeamVersions_aggregated!]!
+  TeamVersions_by_version(version: String!, id: ID!): version_TeamVersions
+  TeamVersion_Members_AboutUs_Team_Social_Links(filter: TeamVersion_Members_AboutUs_Team_Social_Links_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): [TeamVersion_Members_AboutUs_Team_Social_Links!]!
+  TeamVersion_Members_AboutUs_Team_Social_Links_by_id(id: ID!, version: String): TeamVersion_Members_AboutUs_Team_Social_Links
+  TeamVersion_Members_AboutUs_Team_Social_Links_aggregated(groupBy: [String], filter: TeamVersion_Members_AboutUs_Team_Social_Links_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [TeamVersion_Members_AboutUs_Team_Social_Links_aggregated!]!
+  TeamVersion_Members_AboutUs_Team_Social_Links_by_version(version: String!, id: ID!): version_TeamVersion_Members_AboutUs_Team_Social_Links
+  TeamVersion_Members(filter: TeamVersion_Members_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): [TeamVersion_Members!]!
+  TeamVersion_Members_by_id(id: ID!, version: String): TeamVersion_Members
+  TeamVersion_Members_aggregated(groupBy: [String], filter: TeamVersion_Members_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [TeamVersion_Members_aggregated!]!
+  TeamVersion_Members_by_version(version: String!, id: ID!): version_TeamVersion_Members
 }
 
 type Scientific_Circles_Tags {
@@ -1614,6 +1626,206 @@ type version_Scientific_Circles {
   links_func: count_functions
 }
 
+type TeamVersions {
+  id: ID!
+  sort: Int
+  user_created: String
+  date_created: Date
+  date_created_func: datetime_functions
+  user_updated: String
+  date_updated: Date
+  date_updated_func: datetime_functions
+  name: String
+}
+
+input TeamVersions_filter {
+  id: number_filter_operators
+  sort: number_filter_operators
+  user_created: string_filter_operators
+  date_created: date_filter_operators
+  date_created_func: datetime_function_filter_operators
+  user_updated: string_filter_operators
+  date_updated: date_filter_operators
+  date_updated_func: datetime_function_filter_operators
+  name: string_filter_operators
+  _and: [TeamVersions_filter]
+  _or: [TeamVersions_filter]
+}
+
+type TeamVersions_aggregated {
+  group: JSON
+  countAll: Int
+  count: TeamVersions_aggregated_count
+  countDistinct: TeamVersions_aggregated_count
+  avg: TeamVersions_aggregated_fields
+  sum: TeamVersions_aggregated_fields
+  avgDistinct: TeamVersions_aggregated_fields
+  sumDistinct: TeamVersions_aggregated_fields
+  min: TeamVersions_aggregated_fields
+  max: TeamVersions_aggregated_fields
+}
+
+type TeamVersions_aggregated_count {
+  id: Int
+  sort: Int
+  user_created: Int
+  date_created: Int
+  user_updated: Int
+  date_updated: Int
+  name: Int
+}
+
+type TeamVersions_aggregated_fields {
+  id: Float
+  sort: Float
+}
+
+""""""
+type version_TeamVersions {
+  id: ID!
+  sort: Int
+  user_created: String
+  date_created: Date
+  date_created_func: datetime_functions
+  user_updated: String
+  date_updated: Date
+  date_updated_func: datetime_functions
+  name: String
+}
+
+type TeamVersion_Members_AboutUs_Team_Social_Links {
+  id: ID!
+  TeamVersion_Members_id(filter: TeamVersion_Members_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): TeamVersion_Members
+  AboutUs_Team_Social_Links_id(filter: AboutUs_Team_Social_Links_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): AboutUs_Team_Social_Links
+}
+
+type TeamVersion_Members {
+  id: ID!
+  sort: Int
+  user_created: String
+  date_created: Date
+  date_created_func: datetime_functions
+  user_updated: String
+  date_updated: Date
+  date_updated_func: datetime_functions
+  name: String!
+  subtitle: String
+  photo(filter: directus_files_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): directus_files
+  appVersion(filter: TeamVersions_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): TeamVersions
+  socialLinks(filter: TeamVersion_Members_AboutUs_Team_Social_Links_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): [TeamVersion_Members_AboutUs_Team_Social_Links]
+  socialLinks_func: count_functions
+}
+
+input TeamVersion_Members_AboutUs_Team_Social_Links_filter {
+  id: number_filter_operators
+  TeamVersion_Members_id: TeamVersion_Members_filter
+  AboutUs_Team_Social_Links_id: AboutUs_Team_Social_Links_filter
+  _and: [TeamVersion_Members_AboutUs_Team_Social_Links_filter]
+  _or: [TeamVersion_Members_AboutUs_Team_Social_Links_filter]
+}
+
+input TeamVersion_Members_filter {
+  id: number_filter_operators
+  sort: number_filter_operators
+  user_created: string_filter_operators
+  date_created: date_filter_operators
+  date_created_func: datetime_function_filter_operators
+  user_updated: string_filter_operators
+  date_updated: date_filter_operators
+  date_updated_func: datetime_function_filter_operators
+  name: string_filter_operators
+  subtitle: string_filter_operators
+  photo: directus_files_filter
+  appVersion: TeamVersions_filter
+  socialLinks: TeamVersion_Members_AboutUs_Team_Social_Links_filter
+  socialLinks_func: count_function_filter_operators
+  _and: [TeamVersion_Members_filter]
+  _or: [TeamVersion_Members_filter]
+}
+
+type TeamVersion_Members_AboutUs_Team_Social_Links_aggregated {
+  group: JSON
+  countAll: Int
+  count: TeamVersion_Members_AboutUs_Team_Social_Links_aggregated_count
+  countDistinct: TeamVersion_Members_AboutUs_Team_Social_Links_aggregated_count
+  avg: TeamVersion_Members_AboutUs_Team_Social_Links_aggregated_fields
+  sum: TeamVersion_Members_AboutUs_Team_Social_Links_aggregated_fields
+  avgDistinct: TeamVersion_Members_AboutUs_Team_Social_Links_aggregated_fields
+  sumDistinct: TeamVersion_Members_AboutUs_Team_Social_Links_aggregated_fields
+  min: TeamVersion_Members_AboutUs_Team_Social_Links_aggregated_fields
+  max: TeamVersion_Members_AboutUs_Team_Social_Links_aggregated_fields
+}
+
+type TeamVersion_Members_AboutUs_Team_Social_Links_aggregated_count {
+  id: Int
+  TeamVersion_Members_id: Int
+  AboutUs_Team_Social_Links_id: Int
+}
+
+type TeamVersion_Members_AboutUs_Team_Social_Links_aggregated_fields {
+  id: Float
+  TeamVersion_Members_id: Float
+  AboutUs_Team_Social_Links_id: Float
+}
+
+""""""
+type version_TeamVersion_Members_AboutUs_Team_Social_Links {
+  id: ID!
+  TeamVersion_Members_id: JSON
+  AboutUs_Team_Social_Links_id: JSON
+}
+
+type TeamVersion_Members_aggregated {
+  group: JSON
+  countAll: Int
+  count: TeamVersion_Members_aggregated_count
+  countDistinct: TeamVersion_Members_aggregated_count
+  avg: TeamVersion_Members_aggregated_fields
+  sum: TeamVersion_Members_aggregated_fields
+  avgDistinct: TeamVersion_Members_aggregated_fields
+  sumDistinct: TeamVersion_Members_aggregated_fields
+  min: TeamVersion_Members_aggregated_fields
+  max: TeamVersion_Members_aggregated_fields
+}
+
+type TeamVersion_Members_aggregated_count {
+  id: Int
+  sort: Int
+  user_created: Int
+  date_created: Int
+  user_updated: Int
+  date_updated: Int
+  name: Int
+  subtitle: Int
+  photo: Int
+  appVersion: Int
+  socialLinks: Int
+}
+
+type TeamVersion_Members_aggregated_fields {
+  id: Float
+  sort: Float
+  appVersion: Float
+}
+
+""""""
+type version_TeamVersion_Members {
+  id: ID!
+  sort: Int
+  user_created: String
+  date_created: Date
+  date_created_func: datetime_functions
+  user_updated: String
+  date_updated: Date
+  date_updated_func: datetime_functions
+  name: String!
+  subtitle: String
+  photo: JSON
+  appVersion: JSON
+  socialLinks: JSON
+  socialLinks_func: count_functions
+}
+
 type Subscription {
   directus_files_mutated(event: EventEnum): directus_files_mutated
   Scientific_Circles_Tags_mutated(event: EventEnum): Scientific_Circles_Tags_mutated
@@ -1639,6 +1851,9 @@ type Subscription {
   Changelog_Change_mutated(event: EventEnum): Changelog_Change_mutated
   Changelog_Screenshots_mutated(event: EventEnum): Changelog_Screenshots_mutated
   Scientific_Circles_mutated(event: EventEnum): Scientific_Circles_mutated
+  TeamVersions_mutated(event: EventEnum): TeamVersions_mutated
+  TeamVersion_Members_AboutUs_Team_Social_Links_mutated(event: EventEnum): TeamVersion_Members_AboutUs_Team_Social_Links_mutated
+  TeamVersion_Members_mutated(event: EventEnum): TeamVersion_Members_mutated
 }
 
 type directus_files_mutated {
@@ -1789,4 +2004,22 @@ type Scientific_Circles_mutated {
   key: ID!
   event: EventEnum
   data: Scientific_Circles
+}
+
+type TeamVersions_mutated {
+  key: ID!
+  event: EventEnum
+  data: TeamVersions
+}
+
+type TeamVersion_Members_AboutUs_Team_Social_Links_mutated {
+  key: ID!
+  event: EventEnum
+  data: TeamVersion_Members_AboutUs_Team_Social_Links
+}
+
+type TeamVersion_Members_mutated {
+  key: ID!
+  event: EventEnum
+  data: TeamVersion_Members
 }
