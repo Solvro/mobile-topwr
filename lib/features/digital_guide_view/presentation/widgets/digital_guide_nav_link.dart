@@ -29,10 +29,12 @@ class DigitalGuideNavLink extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              text,
-              style: context.textTheme.title,
-              overflow: TextOverflow.ellipsis,
+            Expanded(
+              child: Text(
+                text,
+                style: context.textTheme.title,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
             Icon(
               Icons.arrow_forward_ios,
