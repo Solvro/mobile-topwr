@@ -1,6 +1,7 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/widgets.dart";
 
+import "../../../../../config/ui_config.dart";
 import "../../../../../gen/assets.gen.dart";
 import "../../../../../utils/context_extensions.dart";
 import "../../../../../utils/determine_contact_icon.dart";
@@ -17,6 +18,7 @@ class AmenitiesExpansionTileContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ContactSection(
+      topPadding: DigitalGuideConfig.heightTiny,
       list: [
         if (digitalGuideResponseExtended.canAssistanceDog)
           ContactIconsModel(

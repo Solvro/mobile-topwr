@@ -24,7 +24,7 @@ class ReportChangeButton extends ConsumerWidget {
               unawaited(ref.launch(emailUrl));
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: context.colorTheme.blueAzure,
+              backgroundColor: context.colorTheme.orangePomegranade,
               padding: AppWidgetsConfig.paddingMedium,
               minimumSize: const Size(144, 40),
               shape: RoundedRectangleBorder(

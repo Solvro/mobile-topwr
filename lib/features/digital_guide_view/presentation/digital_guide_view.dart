@@ -54,7 +54,6 @@ class _DigitalGuideView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final widgets1 = [
-      const SizedBox(height: DigitalGuideConfig.heightSmall),
       MyCachedImage(
         digitalGuideResponseExtended.imageUrl,
       ),

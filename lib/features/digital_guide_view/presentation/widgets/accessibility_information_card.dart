@@ -20,7 +20,7 @@ class AccessibilityInformationCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: DigitalGuideConfig.paddingSmall * 2 +
+      height: DigitalGuideConfig.paddingMedium +
           DigitalGuideConfig.difficultiesCardIconSize,
       decoration: BoxDecoration(
         borderRadius:
@@ -30,7 +30,7 @@ class AccessibilityInformationCard extends StatelessWidget {
       child: Row(
         children: [
           Padding(
-            padding: DigitalGuideConfig.symetricalPaddingSmall,
+            padding: DigitalGuideConfig.widePaddingMedium,
             child: Container(
               width: DigitalGuideConfig.difficultiesCardIconSize,
               height: DigitalGuideConfig.difficultiesCardIconSize,
@@ -41,18 +41,22 @@ class AccessibilityInformationCard extends StatelessWidget {
                 color: Colors.white,
               ),
               child: Padding(
-                padding: DigitalGuideConfig.symetricalPaddingSmall,
+                padding: DigitalGuideConfig.widePaddingMedium,
                 child: SvgPicture.asset(icon),
               ),
             ),
           ),
           const SizedBox(width: DigitalGuideConfig.heightTiny),
           Expanded(
-            child: Text(
-              text,
-              style: context.textTheme.bodyWhite,
-              overflow: TextOverflow.ellipsis,
-              maxLines: 2,
+            child: Padding(
+              padding:
+                  const EdgeInsets.only(right: DigitalGuideConfig.paddingSmall),
+              child: Text(
+                text,
+                style: context.textTheme.bodyWhite,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 2,
+              ),
             ),
           ),
         ],
