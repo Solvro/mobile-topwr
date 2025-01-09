@@ -16,7 +16,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.1.7+62
+version: 1.1.10+65
 
 environment:
   sdk: ^3.5.3
@@ -46,7 +46,7 @@ dependencies:
   cached_network_image: ^3.4.1
   logger: ^2.4.0
   url_launcher: ^6.3.1
-  shared_preferences: ^2.3.2
+  shared_preferences: ^2.3.5
   dio: ^5.7.0
   freezed_annotation: ^2.4.4
   json_annotation: ^4.9.0
@@ -91,6 +91,7 @@ dependencies:
   flutter_map_animations: ^0.7.1
   fluttertoast: ^8.2.8
   dotted_border: ^2.1.0
+  protontime: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -156,6 +157,12 @@ flutter:
     - assets/svg/digital_guide/micronavigation.svg
     - assets/svg/digital_guide/orientation_paths.svg
     - assets/svg/digital_guide/sign_language.svg
+    - assets/svg/digital_guide/accessibility_alerts/blind_profile.svg
+    - assets/svg/digital_guide/accessibility_alerts/cognitive_difficulties.svg
+    - assets/svg/digital_guide/accessibility_alerts/movement_dysfunction.svg
+    - assets/svg/digital_guide/accessibility_alerts/visually_impaired.svg
+    - assets/svg/digital_guide/accessibility_alerts/hearing_dysfunction.svg
+    - assets/svg/digital_guide/accessibility_alerts/sensory_sensitivity.svg
     - assets/animations/error.json
     - assets/animations/search.json
     - assets/animations/offline.json

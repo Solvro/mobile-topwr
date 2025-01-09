@@ -19,6 +19,7 @@ class AppColorTheme extends ThemeExtension<AppColorTheme>
     this.toPwrGradient = ColorsConsts.toPwrGradient,
     this.buildingsGradient = ColorsConsts.buildingsGradient,
     this.gold = ColorsConsts.gold,
+    this.orangePomegranadeLighter = ColorsConsts.orangePomegranadeLighter,
   });
   @override
   final HexColor blackMirage;
@@ -26,6 +27,8 @@ class AppColorTheme extends ThemeExtension<AppColorTheme>
   final HexColor whiteSoap;
   @override
   final HexColor orangePomegranade;
+  @override
+  final Color orangePomegranadeLighter;
   @override
   final HexColor greyPigeon;
   @override

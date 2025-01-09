@@ -57,7 +57,7 @@ class _AboutUsView extends ConsumerWidget {
                   ),
                   SectionHeader(text: context.localize.meet_our_team),
                   TeamSection(
-                    members: value.getMemberData(),
+                    multiversionTeam: value.getMemberData(),
                   ),
                   const AppVersionTile(),
                 ],

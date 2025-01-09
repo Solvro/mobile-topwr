@@ -29,7 +29,7 @@
   "exam_friday": "w Egzaminacyjny Piątek",
   "exam_saturday": "w Egzaminacyjną Sobotę",
   "exam_sunday": "w Egzaminacyjną Niedzielę",
-  "follow_solvro": "Obserwuj Solvro",
+  "follow_solvro": "Obserwuj nas na socialach!",
   "unknown_day": "w ten piękny dzień!",
   "read_more": "Czytaj dalej",
   "whats_up": "Co słychać?",
@@ -37,7 +37,7 @@
   "days": "dni",
   "to_start_session": "do rozpoczęcia sesji",
   "map_button": "Mapa",
-  "meet_our_team": "Poznaj nasz zespół",
+  "meet_our_team": "Poznaj nas!",
   "sections": "Wydziały",
   "list": "Lista",
   "departments": "Wydziały",
@@ -106,8 +106,7 @@
   "hi_student": "Hej studencie!",
   "guide_development_info": "Pamiętaj, że przewodnik jest wciąż w fazie rozwoju :)",
   "guide_ideas_info": "Masz ciekawy pomysł? Podziel się z nami!",
-  "guide_click_here": "Zgłoś swój pomysł",
-  "guide_subject_default_content": "Pomsył na rozwój ToPWR",
+  "guide_subject_default_content": "Pomysł na rozwój ToPWR",
   "streak_counter": "Używasz ToPWR nieprzerwanie od {days, plural, =1{1 dnia} other{{days} dni}}🔥",
   "@streak_counter": {
     "description": "A message with a single parameter",
@@ -115,16 +114,6 @@
       "days": {
         "type": "int",
         "example": "15"
-      }
-    }
-  },
-  "relative_time": "Ostatnia aktualizacja: {difference, plural, =0{mniej niż minutę temu} =1{minutę temu} =2{minuty temu} few{{difference} minuty temu} many{{difference} minut temu} other{{difference} minut temu}}",
-  "@relative-time": {
-    "description": "A message with a single parameter",
-    "placeholders": {
-      "minutes": {
-        "type": "int",
-        "example": "10"
       }
     }
   },
@@ -189,6 +178,8 @@
   "sign_language_interpreter": "W budynku zapewniona jest możliwość skorzystania z usług tłumacza języka migowego",
   "emergency_chairs": "W budynku zamieszczone zostały krzesła ewakuacyjne",
   "parking_location" : "Miejsca parkingowe znajdują się {location}",
+  "parking_pwd_location" : "Miejsca parkingowe dla niepełnospranych znajdują się {location}",
+  "closest_facilities" : "Najbliższe sąsiednie budynki i obiekty kampusu to: {places}",
   "digital_guide_website" : "www.przewodnik.pwr.edu.pl",
   "sks_old_menu": "Zobacz ostatnie menu",
   "sks_menu_closed" : "SKS Menu jest teraz niedostępne",
@@ -209,7 +200,7 @@
     }
   },
   "measured_number_of_users": "Zmierzona liczba użytkowników",
-  "forecasted_number_of_users": "Średnia liczba użytkowników z 21 dni",
+  "forecasted_number_of_users": "Średnia liczba użytkowników z ostatnich 21 dni",
   "sks_chart_title" : "Przybliżona liczba osób w Strefie Kultury Studenckiej",
   "number_of_people" : "Liczba osób",
   "evacuation_text": "Ewakuacja i pierwsza pomoc",
@@ -246,5 +237,49 @@
   },
   "adapted_toilet_is_not_marked": "Lokalizacja toalety nie jest oznaczona za pomocą informacji kierunkowej.",
   "images": "Zdjęcia",
-  "doors": "Drzwi"
+  "doors": "Drzwi",
+  "accessibility_profile" : "Profil dostępności",
+  "accessibility_profile_empty" : "Brak informacji dotyczących wybranego profilu dostępności",
+  "accessibility_card_information" : "{message} jest {accessibility_level} dla osób {disability_description}",
+  "@accessibility_card_information" : {
+    "placeholders" : {
+      "message" : {
+        "type": "String",
+        "example": "Otoczenie budynku"
+      },
+
+      "accessibility_level" : {
+        "type": "String",
+        "example": "częściowo dostępne/dostępne/niedostępne"
+      },
+
+      "disability_description" : {
+        "type": "String",
+        "example": "posiadających trudności poznawcze"
+      }
+    }
+  },
+
+  "accessibility_level_feminine" : "{level, select, 0{niedostępna} 1{niedostępna} 2{częściowo dostępna} 3{dostępna} other{niedostępna}}",
+  "accessibility_level_masculine" : "{level, select, 0{niedostępny} 1{niedostępny} 2{częściowo dostępny} 3{dostępny} other{niedostępny}}",
+  "accessibility_level_neuter" : "{level, select, 0{niedostępne} 1{niedostępne} 2{częściowo dostępne} 3{dostępne} other{niedostępne}}",
+  
+  "people_with_cognitive_difficulties" : "posiadających trudności poznawcze",
+  "people_with_hard_of_hearing" : "posiadających trudności ze słyszeniem",
+  "people_visually_impaired" : "słabo widzących",
+  "people_blind" : "niewidomych",
+  "people_with_motor_disability" : "posiadających dysfunkcje ruchu",
+  "people_with_high_sensory_sensitivity" : "o wysokiej wrażliwości sensorycznej",
+  "see_all_photos" : "Zobacz {photos, plural, =0{{photos} zdjęć} =1{{photos} zdjęcie} few{wszystkie {photos} zdjęcia} other{wszystkie {photos} zjęć}}",
+  "are_dangerous_elements_comment_prefix" : "W otoczeniu budynku znajdują się następujące obiekty, które mogą stanowić zagrożenie: {text}",
+  "are_high_curbs_at_parking_space_for_pwd" : "Przy miejscach postojowych dla osób z niepełnosprawnościami {value, select, false{nie} other{}} znajduje się wysoki krawężnik. ",
+  "is_lit" : "Otoczenie budynku {value, select, false{nie} other{}} jest oświetlone po zmroku. ",
+  "is_pavement_rough" : "Nawierzchnia przy budynku {value, select, false{nie} other{}} jest równa. ",
+  "are_lowered_curbs" : "Krawężniki w okolicach budynku {value, select, false{nie} other{}} są obniżone. ",
+  "are_no_barriers": "Wokół budynku {value, select, true{nie ma barier uniemożliwiających dojścia} false{znajdują się bariery uniemożliwiające dojście} other{}} do budynku. ",
+  "is_path_to_accessible_entrance_marked" : "Ścieżka do wejścia dostępnego dla osób z niepełnosprawnościami {value, select, false{nie} other{}} jest wyraźnie oznaczona. ",
+  "is_noisy_street_near_building" : "W okolicy {value, select, false{nie ma ruchliwej, hałaśliwej ulicy. } true{znajduje się ruchliwa, hałaśliwa ulica. } other{}}",
+  "strategicBadgeTooltip": "Koło Strategiczne PWr",
+  "strategic_club_abbr": "KS",
+  "emptySection": "Brak członków zespołu w tej wersji"
 }

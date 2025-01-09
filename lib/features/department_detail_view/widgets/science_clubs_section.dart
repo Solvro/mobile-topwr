@@ -15,7 +15,6 @@ import "../../navigator/utils/navigation_commands.dart";
 import "../../science_clubs_view/repository/science_clubs_repository.dart";
 import "../repository/department_details_repository.dart";
 
-// TODO(simon-the-shark): Resolve if the list button should redirect to list of all study circles or only ones related to the department., #165
 class DepartmentScienceClubsSection extends ConsumerWidget {
   const DepartmentScienceClubsSection(this.department, {super.key});
   final DepartmentDetails? department;
@@ -83,7 +82,8 @@ class _ScienceClubsList extends ConsumerWidget {
                 ? sciClub.cover?.filename_disk
                 : sciClub.logo?.filename_disk,
             onClick: () async => ref.navigateSciClubsDetail(sciClub.id),
-            showBadge: sciClub.source == ScienceClubsViewConfig.source,
+            showVerifiedBadge: sciClub.source == ScienceClubsViewConfig.source,
+            showStrategicBadge: sciClub.isStrategic,
           ),
         );
       },

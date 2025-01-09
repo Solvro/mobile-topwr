@@ -220,7 +220,7 @@ abstract class SksChartConfig {
     top: SksChartConfig.paddingLarge,
     right: SksChartConfig.paddingLarge,
   );
-  static const sksChartDataUrl = "https://live.pwr.edu.pl/sks/";
+  static const sksChartDataUrl = "https://live.pwr.edu.pl/sks";
   static const sksAddress = "Hoene-Wrońskiego 10";
   static const sksPostalCode = "50-370 Wrocław";
   static const buildingCode = "C-18";
@@ -233,16 +233,31 @@ abstract class NavigationTabViewConfig {
 }
 
 abstract class DigitalGuideConfig {
+  static const symetricalPaddingSmall =
+      EdgeInsets.symmetric(vertical: 4, horizontal: 4);
   static const symetricalPaddingBig =
       EdgeInsets.symmetric(vertical: 24, horizontal: 24);
+  static const borderRadiusSmall = 4.0;
   static const borderRadiusMedium = 8.0;
+  static const heightTiny = 4.0;
   static const heightSmall = 8.0;
   static const heightMedium = 16.0;
   static const heightBig = 24.0;
   static const heightHuge = 48.0;
+  static const paddingSmall = 4.0;
   static const mediumButtonPadding =
       EdgeInsets.symmetric(vertical: 8, horizontal: 14);
   static const paddingMedium = 16.0;
+  static const difficultiesCardIconSize = 35.0;
+  static const photoRowHeight = 75.0;
+
+  // Basically there are 4 levels of accessability, but 0 and 1 are shown as the same on digital guide site
+  static const accessibilityLevelColors = [
+    Color(0xFFB1261E), // 0 == red == unaccessible
+    Color(0xFFB1261E), // 1 == red == unaccessible
+    Color(0xFFE07E0F), // 2 == orange == partially accessible
+    Color(0xFF28BC2F), // 3 == green == accessible
+  ];
   static const borderColor = Color(0x8077859D);
 }
 

@@ -56,9 +56,12 @@ class SksChartLegendItem extends StatelessWidget {
         const SizedBox(
           width: SksChartConfig.heightMedium,
         ),
-        Text(
-          text,
-          style: context.textTheme.body,
+        Expanded(
+          child: Text(
+            text,
+            style: context.textTheme.body,
+            softWrap: true,
+          ),
         ),
       ],
     );

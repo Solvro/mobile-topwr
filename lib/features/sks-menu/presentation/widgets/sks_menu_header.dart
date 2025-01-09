@@ -1,5 +1,6 @@
 import "package:flutter/cupertino.dart";
 import "package:flutter/material.dart";
+import "package:protontime/protontime.dart";
 
 import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
@@ -9,18 +10,15 @@ import "../../../../utils/datetime_utils.dart";
 class SksMenuHeader extends StatelessWidget {
   const SksMenuHeader({
     required this.dateTimeOfLastUpdate,
+    required this.isMenuOnline,
     super.key,
   });
 
   final String dateTimeOfLastUpdate;
-
+  final bool isMenuOnline;
   @override
   Widget build(BuildContext context) {
-    final int difference = DateTime.tryParse(dateTimeOfLastUpdate)
-            ?.difference(DateTime.now())
-            .inMinutes
-            .abs() ??
-        0;
+    final stamp = DateTime.tryParse(dateTimeOfLastUpdate) ?? DateTime.now();
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -42,10 +40,14 @@ class SksMenuHeader extends StatelessWidget {
             ),
           ),
         ),
-        Text(
-          context.localize.relative_time(difference),
-          style: context.textTheme.bodyGrey,
-        ),
+        if (isMenuOnline)
+          Text(
+            "${context.localize.last_modified}: ${Protontime.format(
+              stamp,
+              language: "pl",
+            )}",
+            style: context.textTheme.bodyGrey,
+          ),
       ],
     );
   }

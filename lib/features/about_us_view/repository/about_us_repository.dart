@@ -10,7 +10,8 @@ import "getAboutUsDetails.graphql.dart";
 part "about_us_repository.g.dart";
 
 typedef AboutUs = Query$getAbousUsDetails$AboutUs;
-typedef AboutUsTeam = Query$getAbousUsDetails$AboutUs_Team;
+typedef TeamVersion = Query$getAbousUsDetails$TeamVersions;
+typedef TeamMember = Query$getAbousUsDetails$TeamVersion_Members;
 
 @riverpod
 Future<AboutUsDetails?> aboutUsRepository(Ref ref) async {
@@ -21,6 +22,7 @@ Future<AboutUsDetails?> aboutUsRepository(Ref ref) async {
   if (results == null) return null;
   return AboutUsDetails(
     aboutUs: results.AboutUs,
-    aboutUsTeam: results.AboutUs_Team.lock,
+    versions: results.TeamVersions.lock,
+    teamMembers: results.TeamVersion_Members.lock,
   );
 }

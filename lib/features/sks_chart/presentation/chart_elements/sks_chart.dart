@@ -31,7 +31,7 @@ class SksChart extends StatelessWidget {
           LineChartData(
             clipData: const FlClipData.all(),
             backgroundColor: context.colorTheme.whiteSoap,
-            gridData: SksChartGridData(context),
+            gridData: SksChartGridData(context, maxNumberOfUsers / 5),
             maxY: maxNumberOfUsers + (maxNumberOfUsers / 10).toInt(),
             lineBarsData: [
               LineChartBarData(
@@ -69,11 +69,23 @@ class SksChart extends StatelessWidget {
                     return false;
                   },
                 ),
+                barWidth: 1.25,
                 color: context.colorTheme.blueAzure,
                 spots: chartData.asMap().entries.map<FlSpot>((e) {
                   return FlSpot(
                     e.key.toDouble(),
                     e.value.movingAverage21.toDouble(),
+                  );
+                }).toList(),
+              ),
+              // this is the biggest hack you'll ever see in your life
+              // this is transparent data const = 0 that allows the chart to have a hour tooltip
+              LineChartBarData(
+                color: Colors.transparent,
+                spots: chartData.asMap().entries.map<FlSpot>((e) {
+                  return FlSpot(
+                    e.key.toDouble(),
+                    0,
                   );
                 }).toList(),
               ),
