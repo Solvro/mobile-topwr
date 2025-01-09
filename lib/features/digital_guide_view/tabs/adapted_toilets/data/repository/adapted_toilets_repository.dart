@@ -12,7 +12,7 @@ import "../models/adapted_toilet_not_full.dart";
 part "adapted_toilets_repository.g.dart";
 
 @riverpod
-Future<IMap<int, List<AdaptedToilet>>> adaptedToiletsRepository(
+Future<IMap<int, IList<AdaptedToilet>>> adaptedToiletsRepository(
   Ref ref,
   List<Level> levels,
 ) async {
@@ -20,7 +20,7 @@ Future<IMap<int, List<AdaptedToilet>>> adaptedToiletsRepository(
   dio.options.headers["Authorization"] =
       "Token ${Env.digitalGuideAuthorizationToken}";
 
-  final Map<int, List<AdaptedToilet>> adaptedToiletsMap = {};
+  final Map<int, IList<AdaptedToilet>> adaptedToiletsMap = {};
 
   for (final level in levels) {
     final adaptedToiletsIDs =
@@ -50,7 +50,7 @@ Future<IMap<int, List<AdaptedToilet>>> adaptedToiletsRepository(
 
     final adaptedToiletsList = await Future.wait(adaptedToiletsIterable);
 
-    adaptedToiletsMap[level.id] = adaptedToiletsList;
+    adaptedToiletsMap[level.id] = adaptedToiletsList.lock;
   }
 
   return adaptedToiletsMap.lock;

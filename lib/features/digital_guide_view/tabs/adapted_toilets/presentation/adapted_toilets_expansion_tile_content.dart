@@ -51,7 +51,7 @@ class _AdaptedToiletsExpansionTileContent extends ConsumerWidget {
   final IList<Level> levels;
 
   // map: level id (keys) -> adapted toilets instances (values)
-  final IMap<int, List<AdaptedToilet>> adaptedToiletsData;
+  final IMap<int, IList<AdaptedToilet>> adaptedToiletsData;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -66,9 +66,7 @@ class _AdaptedToiletsExpansionTileContent extends ConsumerWidget {
         children: levels.map((level) {
           return AdaptedToiletLevel(
             level: level,
-            adaptedToilets: adaptedToiletsData[level.id] != null
-                ? adaptedToiletsData[level.id]!.lock
-                : IList(),
+            adaptedToilets: adaptedToiletsData[level.id] ?? IList(),
           );
         }).toList(),
       ),
