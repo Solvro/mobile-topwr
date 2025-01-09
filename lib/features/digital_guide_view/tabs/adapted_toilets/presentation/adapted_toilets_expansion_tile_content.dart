@@ -66,7 +66,9 @@ class _AdaptedToiletsExpansionTileContent extends ConsumerWidget {
         children: levels.map((level) {
           return AdaptedToiletLevel(
             level: level,
-            adaptedToilets: adaptedToiletsData[level.id] ?? [],
+            adaptedToilets: adaptedToiletsData[level.id] != null
+                ? adaptedToiletsData[level.id]!.lock
+                : IList(),
           );
         }).toList(),
       ),
@@ -81,7 +83,7 @@ class AdaptedToiletLevel extends ConsumerWidget {
   });
 
   final Level level;
-  final List<AdaptedToilet> adaptedToilets;
+  final IList<AdaptedToilet> adaptedToilets;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

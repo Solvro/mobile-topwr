@@ -29,7 +29,7 @@ class MyPointWidget extends ConsumerWidget {
             child: Text(
               text,
               style: context.textTheme.body.copyWith(fontSize: 16),
-              // maxLines: 100,
+              maxLines: 100,
               overflow: TextOverflow.ellipsis,
             ),
           ),
