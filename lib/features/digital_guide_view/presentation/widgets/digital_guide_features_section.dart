@@ -4,6 +4,7 @@ import "package:flutter/widgets.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../widgets/my_expansion_tile.dart";
 import "../../data/models/digital_guide_response_extended.dart";
+import "../../tabs/adapted_toilets/presentation/adapted_toilets_expansion_tile_content.dart";
 import "../../tabs/amenities/presentation/amenities_expansion_tile_content.dart";
 import "../../tabs/evacuation/evacuation_widget.dart";
 import "../../tabs/localization/presentation/localization_expansion_tile_content.dart";
@@ -53,10 +54,15 @@ class DigitalGuideFeaturesSection extends StatelessWidget {
         title: context.localize.elevators,
         content: [LocalizationExpansionTileContent()],
       ),
-      (
-        title: context.localize.toilets,
-        content: [LocalizationExpansionTileContent()],
-      ),
+      if (digitalGuideResponseExtended.hasAdaptedToilets())
+        (
+          title: context.localize.adapted_toilets,
+          content: [
+            AdaptedToiletsExpansionTileContent(
+              digitalGuideResponseExtended: digitalGuideResponseExtended,
+            ),
+          ],
+        ),
       (
         title: context.localize.micro_navigation,
         content: [LocalizationExpansionTileContent()],

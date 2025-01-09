@@ -23,6 +23,7 @@ class DigitalGuideResponseExtended {
     required this.surroundingId,
     required this.images,
     required this.imageUrl,
+    required this.levels,
     required this.entraces,
     required this.evacuation,
   });
@@ -42,12 +43,26 @@ class DigitalGuideResponseExtended {
   final int surroundingId;
   final List<int> images;
   final String? imageUrl;
+  final List<Level> levels;
   final DigitalGuideEvacuation evacuation;
   final IList<DigitalGuideEntrace> entraces;
+
+  bool hasAdaptedToilets() {
+    for (final level in levels) {
+      for (final region in level.regions) {
+        if (region.adaptedToiletsIndices.isNotEmpty) {
+          return true;
+        }
+      }
+    }
+
+    return false;
+  }
 
   factory DigitalGuideResponseExtended.fromDigitalGuideResponse({
     required DigitalGuideResponse digitalGuideResponse,
     required String? imageUrl,
+    required List<Level> levels,
     required DigitalGuideEvacuation evacuation,
     required IList<DigitalGuideEntrace> entraces,
   }) {
@@ -67,8 +82,35 @@ class DigitalGuideResponseExtended {
       surroundingId: digitalGuideResponse.surroundingId,
       images: digitalGuideResponse.images,
       imageUrl: imageUrl,
+      levels: levels,
       entraces: entraces,
       evacuation: evacuation,
+    );
+  }
+}
+
+class Level {
+  const Level({
+    required this.id,
+    required this.floorNumber,
+    required this.translations,
+    required this.regions,
+  });
+
+  final int id;
+  final int floorNumber;
+  final LevelTranslations translations;
+  final List<Region> regions;
+
+  factory Level.create({
+    required LevelNotFull levelNotFull,
+    required List<Region> regions,
+  }) {
+    return Level(
+      id: levelNotFull.id,
+      floorNumber: levelNotFull.floorNumber,
+      translations: levelNotFull.translations,
+      regions: regions,
     );
   }
 }

@@ -151,7 +151,10 @@
   "transport" : "Dojazd",
   "entrances" : "Wejścia",
   "elevators" : "Windy",
-  "toilets" : "Toilets",
+  "adapted_toilets" : "Toalety dostosowane",
+  "adapted_toilet_description": "Toaleta dla osób z niepełnosprawnościami",
+  "adapted_toilet_description_men": "Toaleta dla mężczyzn z niepełnosprawnościami",
+  "adapted_toilet_description_women": "Toaleta dla kobiet z niepełnosprawnościami",
   "micro_navigation" : "Mikronawigacja",
   "building_structure" : "Struktura budynku",
   "room_information" : "Pomieszczenia",
@@ -201,6 +204,40 @@
   "sks_chart_title" : "Przybliżona liczba osób w Strefie Kultury Studenckiej",
   "number_of_people" : "Liczba osób",
   "evacuation_text": "Ewakuacja i pierwsza pomoc",
+  "digital_guide": "Przewodnik",
+  "adapted_toilet_authorization": "Toaleta jest dostępna wyłącznie dla osób uprawnionych. {comment}",
+  "@adapted_toilet_authorization": {
+    "description": "Adapted toilet needs authorization with ending from API",
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "adapted_toilet_no_authorization": "Wejście do toalety nie wymaga żadnych specjalnych uprawnień.",
+  "adapted_toilet_graphically_marked": "Wejście do toalety jest dobrze oznakowane graficznie, za pomocą: {comment}",
+  "@adapted_toilet_graphically_marked": {
+    "description": "Adapted toilet is graphically marked info with ending from API",
+    "placeholders": {
+      "comment": {
+        "type": "String",
+        "example": "piktogramów toalety damskiej i dostosowanej do potrzeb osób z niepełnosprawnością na drzwiach wejściowych do ogólnodostępnej toalety damskiej."
+      }
+    }
+  },
+  "adapted_toilet_not_graphically_marked": "Wejście do toalety nie jest oznakowane graficznie.",
+  "adapted_toilet_is_marked": "Lokalizacja toalety jest oznaczona za pomocą informacji kierunkowej. {comment}",
+  "@adapted_toilet_is_marked": {
+    "description": "Adapted toilet is marked info with ending from API",
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "adapted_toilet_is_not_marked": "Lokalizacja toalety nie jest oznaczona za pomocą informacji kierunkowej.",
+  "images": "Zdjęcia",
+  "doors": "Drzwi",
   "accessibility_profile" : "Profil dostępności",
   "accessibility_profile_empty" : "Brak informacji dotyczących wybranego profilu dostępności",
   "accessibility_card_information" : "{message} jest {accessibility_level} dla osób {disability_description}",

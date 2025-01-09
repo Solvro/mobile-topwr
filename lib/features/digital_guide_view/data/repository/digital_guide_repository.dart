@@ -8,6 +8,7 @@ import "../../tabs/entraces/data/repository/entraces_repository.dart";
 import "../../tabs/evacuation/data/repository/evacuation_repository.dart";
 import "../models/digital_guide_response.dart";
 import "../models/digital_guide_response_extended.dart";
+import "levels_repository.dart";
 
 part "digital_guide_repository.g.dart";
 
@@ -24,9 +25,13 @@ Future<DigitalGuideResponseExtended> getDigitalGuideDataExtended(
       await ref.watch(getDigitalGuideEvacuationProvider(id).future);
   final entraces = await ref
       .watch(getDigitalGuideEntracesProvider(digitalGuideResponse.id).future);
+  final levels = await ref.watch(
+    LevelsRespositoryProvider(digitalGuideResponse.levelsIndices).future,
+  );
   return DigitalGuideResponseExtended.fromDigitalGuideResponse(
     digitalGuideResponse: digitalGuideResponse,
     imageUrl: imageUrl,
+    levels: levels,
     evacuation: evacuation,
     entraces: entraces,
   );
