@@ -9,16 +9,27 @@ import "../../utils/launch_url_util.dart";
 import "contact_icon_widget.dart";
 
 class ContactSection extends StatelessWidget {
-  const ContactSection({super.key, required this.list, this.title});
+  const ContactSection({
+    super.key,
+    required this.list,
+    this.title,
+    this.topPadding = 24,
+  });
 
   final IList<ContactIconsModel> list;
   final String? title;
+  final double topPadding;
 
   @override
   Widget build(BuildContext context) {
     final sorted = list.sort((a, b) => a.order.compareTo(b.order));
     return Container(
-      padding: const EdgeInsets.only(top: 24, left: 24, right: 24, bottom: 8),
+      padding: EdgeInsets.only(
+        top: topPadding,
+        left: 24,
+        right: 24,
+        bottom: 8,
+      ),
       color: context.colorTheme.greyLight,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

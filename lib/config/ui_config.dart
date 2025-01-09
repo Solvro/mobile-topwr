@@ -235,6 +235,8 @@ abstract class NavigationTabViewConfig {
 abstract class DigitalGuideConfig {
   static const symetricalPaddingSmall =
       EdgeInsets.symmetric(vertical: 4, horizontal: 4);
+  static const symetricalPaddingMedium =
+      EdgeInsets.symmetric(vertical: 8, horizontal: 8);
   static const symetricalPaddingBig =
       EdgeInsets.symmetric(vertical: 24, horizontal: 24);
   static const borderRadiusSmall = 4.0;
@@ -244,6 +246,7 @@ abstract class DigitalGuideConfig {
   static const heightMedium = 16.0;
   static const heightBig = 24.0;
   static const heightHuge = 48.0;
+  static const widePaddingMedium = EdgeInsets.symmetric(horizontal: 8);
   static const paddingSmall = 4.0;
   static const mediumButtonPadding =
       EdgeInsets.symmetric(vertical: 8, horizontal: 14);

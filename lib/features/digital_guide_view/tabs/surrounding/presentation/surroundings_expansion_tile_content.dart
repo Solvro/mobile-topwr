@@ -53,11 +53,14 @@ class _SurroundingExpansionTileContent extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final widgets = [
+      const SizedBox(
+        height: DigitalGuideConfig.heightSmall,
+      ),
       AccessibilityInformationCardsList(
         surroundingResponse: surroundingResponse,
       ),
       const SizedBox(
-        height: DigitalGuideConfig.heightMedium,
+        height: DigitalGuideConfig.heightBig,
       ),
       BulletList(
         items: [
@@ -71,7 +74,10 @@ class _SurroundingExpansionTileContent extends ConsumerWidget {
         ].toIList(),
       ),
       const SizedBox(
-        height: DigitalGuideConfig.heightMedium,
+        height: DigitalGuideConfig.heightBig,
+      ),
+      const SizedBox(
+        height: DigitalGuideConfig.heightTiny,
       ),
       AccessibilityProfileCard(
         items: getSurroundingsCommentsList(surroundingResponse, context),
@@ -82,12 +88,15 @@ class _SurroundingExpansionTileContent extends ConsumerWidget {
       ),
       DigitalGuidePhotoRow(imageUrls: surroundingResponse.imagesUrl?.toIList()),
       const SizedBox(
-        height: DigitalGuideConfig.heightMedium,
+        height: DigitalGuideConfig.heightSmall,
       ),
       DigitalGuideNavLink(
         onTap: () => {},
         text:
             context.localize.see_all_photos(surroundingResponse.images.length),
+      ),
+      const SizedBox(
+        height: DigitalGuideConfig.heightMedium,
       ),
     ];
 
