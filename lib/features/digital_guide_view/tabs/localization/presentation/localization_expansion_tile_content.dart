@@ -19,9 +19,9 @@ class LocalizationExpansionTileContent extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncImageUrl =
-    ref.watch(getImageUrlFromBuildingProvider(buildingId));
+        ref.watch(getImageUrlFromBuildingProvider(buildingId));
     final asyncBuildingDetails =
-    ref.watch(getBuildingDetailsProvider(buildingId));
+        ref.watch(getBuildingDetailsProvider(buildingId));
 
     return asyncBuildingDetails.when(
       data: (buildingDetails) => asyncImageUrl.when(
@@ -70,7 +70,7 @@ class _LocalizationExpansionTileContent extends ConsumerWidget {
                 imageUrl!,
                 fit: BoxFit.cover,
                 errorBuilder: (context, error, stackTrace) =>
-                const Center(child: Text("Cannot load photo")),
+                    const Center(child: Text("Cannot load photo")),
               ),
             ),
           )
@@ -82,7 +82,8 @@ class _LocalizationExpansionTileContent extends ConsumerWidget {
             color: context.colorTheme.orangePomegranade,
             size: 16,
           ),
-          onPressed: () async => _navigateToBuilding(context, buildingName, buildingAddress),
+          onPressed: () async =>
+              _navigateToBuilding(context, buildingName, buildingAddress),
           label: Text.rich(
             TextSpan(
               text: context.localize.navigate_to_building,
@@ -99,7 +100,10 @@ class _LocalizationExpansionTileContent extends ConsumerWidget {
   }
 
   Future<void> _navigateToBuilding(
-      BuildContext context, String buildingName, String buildingAddress,) async {
+    BuildContext context,
+    String buildingName,
+    String buildingAddress,
+  ) async {
     final query = "$buildingName, $buildingAddress";
     final googleMapsUrl = Uri.parse(
       "https://www.google.com/maps/dir/?api=1&destination=${Uri.encodeComponent(query)}&travelmode=driving&origin=current+location",
