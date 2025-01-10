@@ -1,6 +1,8 @@
 import "package:flutter/material.dart";
 
+import "../api_base/directus_assets_url.dart";
 import "../theme/colors.dart";
+import "my_cached_image.dart";
 import "optimized_directus_image.dart";
 
 class ZoomableOptimizedDirectusImage extends StatelessWidget {
@@ -63,8 +65,8 @@ class _ImageWithoutBackground extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(10),
-      child: OptimizedDirectusImage(
-        imageUrl,
+      child: MyCachedImage(
+        imageUrl?.directusUrlWithoutParams,
         boxFit: BoxFit.scaleDown,
         noShimmeringLoading: true,
       ),
@@ -93,8 +95,8 @@ class _ImageWithWhiteBackground extends StatelessWidget {
           height: MediaQuery.sizeOf(context).shortestSide,
           child: Padding(
             padding: const EdgeInsets.all(10),
-            child: OptimizedDirectusImage(
-              imageUrl,
+            child: MyCachedImage(
+              imageUrl?.directusUrlWithoutParams,
               boxFit: BoxFit.scaleDown,
               noShimmeringLoading: true,
             ),
