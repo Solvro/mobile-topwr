@@ -18,12 +18,6 @@ class ScienceClubsSection extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) => Column(
         children: [
-          FilledButton(
-            onPressed: () async {
-              await ref.navigateDigitalGuide(313);
-            },
-            child: const Text("navigate to digital guide mock"),
-          ),
           SubsectionHeader(
             title: context.localize.study_circles,
             actionTitle: context.localize.list,

@@ -32,57 +32,74 @@ class ZoomableOptimizedDirectusImage extends StatelessWidget {
   }
 
   Future<void> _showFullScreenImage(BuildContext context) async {
-    await Navigator.of(context).push(
-      PageRouteBuilder(
-        opaque: false,
-        pageBuilder: (context, animation, secondaryAnimation) => Scaffold(
-          backgroundColor: Colors.black.withAlpha(127),
-          body: GestureDetector(
-            onTap: () {
-              Navigator.of(context).pop();
-            },
-            child: InteractiveViewer(
-              minScale: 1,
-              maxScale: 3,
-              child: shouldHaveRectBackground
-                  ? Center(
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: ColorsConsts.greyLight,
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          width: MediaQuery.sizeOf(context).shortestSide,
-                          height: MediaQuery.sizeOf(context).shortestSide,
-                          child: Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: OptimizedDirectusImage(
-                              imageUrl,
-                              boxFit: BoxFit.scaleDown,
-                              noShimmeringLoading: true,
-                            ),
-                          ),
-                        ),
-                      ),
-                    )
-                  : Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: OptimizedDirectusImage(
-                        imageUrl,
-                        boxFit: BoxFit.scaleDown,
-                        noShimmeringLoading: true,
-                      ),
-                    ),
+    await showDialog(
+      context: context,
+      builder: (context) {
+        return GestureDetector(
+          onTap: () {
+            Navigator.of(context).pop();
+          },
+          child: InteractiveViewer(
+            minScale: 1,
+            maxScale: 3,
+            child: shouldHaveRectBackground
+                ? _ImageWithWhiteBackground(imageUrl: imageUrl)
+                : _ImageWithoutBackground(imageUrl: imageUrl),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _ImageWithoutBackground extends StatelessWidget {
+  const _ImageWithoutBackground({
+    required this.imageUrl,
+  });
+
+  final String? imageUrl;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(10),
+      child: OptimizedDirectusImage(
+        imageUrl,
+        boxFit: BoxFit.scaleDown,
+        noShimmeringLoading: true,
+      ),
+    );
+  }
+}
+
+class _ImageWithWhiteBackground extends StatelessWidget {
+  const _ImageWithWhiteBackground({
+    required this.imageUrl,
+  });
+
+  final String? imageUrl;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Container(
+          decoration: BoxDecoration(
+            color: ColorsConsts.greyLight,
+            borderRadius: BorderRadius.circular(30),
+          ),
+          width: MediaQuery.sizeOf(context).shortestSide,
+          height: MediaQuery.sizeOf(context).shortestSide,
+          child: Padding(
+            padding: const EdgeInsets.all(10),
+            child: OptimizedDirectusImage(
+              imageUrl,
+              boxFit: BoxFit.scaleDown,
+              noShimmeringLoading: true,
             ),
           ),
         ),
-        transitionsBuilder: (context, animation, secondaryAnimation, child) {
-          return FadeTransition(
-            opacity: animation,
-            child: child,
-          );
-        },
       ),
     );
   }
