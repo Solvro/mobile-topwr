@@ -13,7 +13,7 @@ Future<Map<String, String>?> getBuildingDetails(Ref ref, int buildingId) async {
     final buildingUrl = "${Env.digitalGuideUrl}/buildings/$buildingId";
     final dio = ref.read(restClientProvider);
     dio.options.headers["Authorization"] =
-    "Token ${Env.digitalGuideAuthorizationToken}";
+        "Token ${Env.digitalGuideAuthorizationToken}";
 
     final buildingResponse = await dio.get(buildingUrl);
 
@@ -23,17 +23,17 @@ Future<Map<String, String>?> getBuildingDetails(Ref ref, int buildingId) async {
     }
 
     final Map<String, dynamic> buildingData =
-    buildingResponse.data as Map<String, dynamic>;
+        buildingResponse.data as Map<String, dynamic>;
 
     final Map<String, dynamic>? translations =
-    buildingData["translations"] as Map<String, dynamic>?;
+        buildingData["translations"] as Map<String, dynamic>?;
     if (translations == null || translations["pl"] == null) {
       debugPrint("translations or 'pl' key missing in /buildings/$buildingId");
       return null;
     }
 
     final Map<String, dynamic>? plTranslations =
-    translations["pl"] as Map<String, dynamic>?;
+        translations["pl"] as Map<String, dynamic>?;
     if (plTranslations == null) {
       debugPrint("'pl' translations are null for /buildings/$buildingId");
       return null;
