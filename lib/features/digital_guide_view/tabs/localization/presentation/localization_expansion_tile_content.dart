@@ -1,13 +1,12 @@
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:url_launcher/url_launcher.dart";
 
 import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/context_extensions.dart";
 import "../../../../widgets/my_error_widget.dart";
-import "../../../map_view/controllers/controllers_set.dart";
 import "../../../parkings_view/widgets/parkings_icons.icons.dart";
 import "../data/repository/localization_repository.dart";
-import "../../../bottom_scroll_sheet/navigate_button.dart";
 
 class LocalizationExpansionTileContent extends ConsumerWidget {
   const LocalizationExpansionTileContent({
@@ -20,10 +19,23 @@ class LocalizationExpansionTileContent extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncImageUrl =
-        ref.watch(getImageUrlFromBuildingProvider(buildingId));
+    ref.watch(getImageUrlFromBuildingProvider(buildingId));
+    final asyncBuildingDetails =
+    ref.watch(getBuildingDetailsProvider(buildingId));
 
-    return asyncImageUrl.when(
-      data: (imageUrl) => _LocalizationExpansionTileContent(imageUrl: imageUrl),
+    return asyncBuildingDetails.when(
+      data: (buildingDetails) => asyncImageUrl.when(
+        data: (imageUrl) => _LocalizationExpansionTileContent(
+          imageUrl: imageUrl,
+          buildingName: buildingDetails?["name"] ?? "Unknown Building",
+          buildingAddress: buildingDetails?["address"] ?? "Unknown Address",
+          buildingId: buildingId,
+        ),
+        error: (error, stackTrace) => MyErrorWidget(error),
+        loading: () => const Center(
+          child: CircularProgressIndicator(),
+        ),
+      ),
       error: (error, stackTrace) => MyErrorWidget(error),
       loading: () => const Center(
         child: CircularProgressIndicator(),
@@ -32,12 +44,18 @@ class LocalizationExpansionTileContent extends ConsumerWidget {
   }
 }
 
-class _LocalizationExpansionTileContent <T extends GoogleNavigable> extends ConsumerWidget {
+class _LocalizationExpansionTileContent extends ConsumerWidget {
   const _LocalizationExpansionTileContent({
     required this.imageUrl,
+    required this.buildingId,
+    required this.buildingName,
+    required this.buildingAddress,
   });
 
   final String? imageUrl;
+  final int buildingId;
+  final String buildingName;
+  final String buildingAddress;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -52,28 +70,19 @@ class _LocalizationExpansionTileContent <T extends GoogleNavigable> extends Cons
                 imageUrl!,
                 fit: BoxFit.cover,
                 errorBuilder: (context, error, stackTrace) =>
-                    const Center(child: Text("Cannot load photo")),
+                const Center(child: Text("Cannot load photo")),
               ),
             ),
           )
         else
           const Center(child: Text("Photo not available")),
-         /*
-
-         * i will probably change TextButton.icon to NavigateButton<T> like here:
-         if (ref.watch(context.activeMarkerController<T>()) != null) NavigateButton<T>(),
-         *
-         * but it doesnt work
-         * */
         TextButton.icon(
           icon: Icon(
             ParkingsIcons.map_nav,
             color: context.colorTheme.orangePomegranade,
             size: 16,
           ),
-          onPressed: () {
-
-          },
+          onPressed: () async => _navigateToBuilding(context, buildingName, buildingAddress),
           label: Text.rich(
             TextSpan(
               text: context.localize.navigate_to_building,
@@ -87,5 +96,18 @@ class _LocalizationExpansionTileContent <T extends GoogleNavigable> extends Cons
         ),
       ],
     );
+  }
+
+  Future<void> _navigateToBuilding(
+      BuildContext context, String buildingName, String buildingAddress,) async {
+    final query = "$buildingName, $buildingAddress";
+    final googleMapsUrl = Uri.parse(
+      "https://www.google.com/maps/dir/?api=1&destination=${Uri.encodeComponent(query)}&travelmode=driving&origin=current+location",
+    );
+    if (await canLaunchUrl(googleMapsUrl)) {
+      await launchUrl(googleMapsUrl);
+    } else {
+      const Text("Could not open Google Maps");
+    }
   }
 }
