@@ -283,5 +283,9 @@
   "strategicBadgeTooltip": "Koło Strategiczne PWr",
   "strategic_club_abbr": "KS",
   "emptySection": "Brak członków zespołu w tej wersji",
-  "digital_guide_offline" : "Cyfrowego Przewodnika"
+  "digital_guide_offline" : "Cyfrowego Przewodnika",
+  "communique" : "Komunikat",
+  "audio_message" : "Komunikat Dźwiękowy",
+  "digital_guide" : "Cyfrowy Przewodnik"
+
 }
