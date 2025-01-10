@@ -6,11 +6,10 @@ import "../../../../../config/ui_config.dart";
 import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/context_extensions.dart";
 import "../../../../../widgets/detail_views/detail_view_app_bar.dart";
-import "../../../../../widgets/my_cached_image.dart";
 import "../../../../../widgets/my_point_widget.dart";
+import "../../../presentation/widgets/digital_guide_image.dart";
 import "../../../presentation/widgets/digital_guide_nav_link.dart";
 import "../data/models/adapted_toilet.dart";
-import "../data/models/adapted_toilet_not_full.dart";
 
 @RoutePage()
 class AdaptedToiletDetailView extends ConsumerWidget {
@@ -99,7 +98,7 @@ class AdaptedToiletDetailView extends ConsumerWidget {
       const SizedBox(
         height: DigitalGuideConfig.heightBig,
       ),
-      if (adaptedToilet.imagesURLs.isNotEmpty)
+      if (adaptedToilet.imagesIndices.isNotEmpty)
         Text(
           context.localize.images,
           style: context.textTheme.title.copyWith(fontSize: 28),
@@ -126,10 +125,12 @@ class AdaptedToiletDetailView extends ConsumerWidget {
                   return Padding(
                     padding:
                         const EdgeInsets.all(DigitalGuideConfig.heightMedium),
-                    child: MyCachedImage(adaptedToilet.imagesURLs[index]),
+                    child: DigitalGuideImage(
+                      id: adaptedToilet.imagesIndices[index],
+                    ),
                   );
                 },
-                childCount: adaptedToilet.imagesURLs.length,
+                childCount: adaptedToilet.imagesIndices.length,
               ),
             ),
           ],
