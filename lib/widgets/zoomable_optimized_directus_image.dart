@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+
 import "../theme/colors.dart";
 import "optimized_directus_image.dart";
 
@@ -35,7 +36,7 @@ class ZoomableOptimizedDirectusImage extends StatelessWidget {
       PageRouteBuilder(
         opaque: false,
         pageBuilder: (context, animation, secondaryAnimation) => Scaffold(
-          backgroundColor: Colors.black.withOpacity(0.5),
+          backgroundColor: Colors.black.withAlpha(127),
           body: GestureDetector(
             onTap: () {
               Navigator.of(context).pop();
@@ -44,9 +45,35 @@ class ZoomableOptimizedDirectusImage extends StatelessWidget {
               minScale: 1,
               maxScale: 3,
               child: shouldHaveRectBackground
-                  ? _showImageWithBackground(
-                      MediaQuery.of(context).size.shortestSide)
-                  : _showImage(),
+                  ? Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: ColorsConsts.greyLight,
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          width: MediaQuery.sizeOf(context).shortestSide,
+                          height: MediaQuery.sizeOf(context).shortestSide,
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: OptimizedDirectusImage(
+                              imageUrl,
+                              boxFit: BoxFit.scaleDown,
+                              noShimmeringLoading: true,
+                            ),
+                          ),
+                        ),
+                      ),
+                    )
+                  : Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: OptimizedDirectusImage(
+                        imageUrl,
+                        boxFit: BoxFit.scaleDown,
+                        noShimmeringLoading: true,
+                      ),
+                    ),
             ),
           ),
         ),
@@ -59,28 +86,4 @@ class ZoomableOptimizedDirectusImage extends StatelessWidget {
       ),
     );
   }
-
-  Center _showImageWithBackground(sideLength) => Center(
-        child: Padding(
-          padding: const EdgeInsets.all(10),
-          child: Container(
-            decoration: BoxDecoration(
-              color: ColorsConsts.greyLight,
-              borderRadius: BorderRadius.circular(30),
-            ),
-            width: sideLength,
-            height: sideLength,
-            child: _showImage(),
-          ),
-        ),
-      );
-
-  Padding _showImage() => Padding(
-        padding: const EdgeInsets.all(10),
-        child: OptimizedDirectusImage(
-          imageUrl,
-          boxFit: BoxFit.scaleDown,
-          noShimmeringLoading: true,
-        ),
-      );
 }
