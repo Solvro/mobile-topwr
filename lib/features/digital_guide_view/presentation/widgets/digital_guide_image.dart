@@ -5,9 +5,9 @@ import "../../../../widgets/my_cached_image.dart";
 import "../../../../widgets/my_error_widget.dart";
 import "../../data/repository/image_repository.dart";
 
-class DigitalGuideImage extends ConsumerWidget{
+class DigitalGuideImage extends ConsumerWidget {
   const DigitalGuideImage({
-    required this.id
+    required this.id,
   });
 
   final int id;
@@ -18,7 +18,9 @@ class DigitalGuideImage extends ConsumerWidget{
     return asyncImageUrl.when(
       data: MyCachedImage.new,
       error: (error, stackTrace) => MyErrorWidget(error),
-      loading: () => const CircularProgressIndicator(),
+      loading: () => const Center(
+        child: CircularProgressIndicator(),
+      ),
     );
   }
 }

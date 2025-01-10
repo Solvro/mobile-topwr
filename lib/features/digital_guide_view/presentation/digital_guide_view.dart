@@ -9,7 +9,6 @@ import "../../../utils/context_extensions.dart";
 import "../../../utils/determine_contact_icon.dart";
 import "../../../widgets/detail_views/contact_section.dart";
 import "../../../widgets/detail_views/detail_view_app_bar.dart";
-import "../../../widgets/my_cached_image.dart";
 import "../../../widgets/my_error_widget.dart";
 import "../data/models/digital_guide_response_extended.dart";
 import "../data/repository/digital_guide_repository.dart";
