@@ -9,6 +9,7 @@ import "digital_guide_response.dart";
 class DigitalGuideResponseExtended {
   const DigitalGuideResponseExtended({
     required this.id,
+    required this.externalId,
     required this.translations,
     required this.numberOfStoreys,
     required this.canAssistanceDog,
@@ -28,6 +29,7 @@ class DigitalGuideResponseExtended {
   });
 
   final int id;
+  final int externalId;
   final DigitalGuideTranslations translations;
   final int numberOfStoreys;
   final bool canAssistanceDog;
@@ -65,6 +67,7 @@ class DigitalGuideResponseExtended {
   }) {
     return DigitalGuideResponseExtended(
       id: digitalGuideResponse.id,
+      externalId: digitalGuideResponse.externalId,
       translations: digitalGuideResponse.translations,
       numberOfStoreys: digitalGuideResponse.numberOfStoreys,
       canAssistanceDog: digitalGuideResponse.canAssistanceDog,

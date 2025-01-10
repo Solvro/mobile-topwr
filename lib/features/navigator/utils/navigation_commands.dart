@@ -82,7 +82,22 @@ extension NavigationX on WidgetRef {
     await _router.push(DigitalGuideRoute(id: id));
   }
 
+
   Future<void> navigateAdaptedToiletDetails(AdaptedToilet adaptedToilet) async {
     await _router.push(AdaptedToiletDetailRoute(adaptedToilet: adaptedToilet));
+
+  Future<void> navigateMicronavigationDetails(
+    String title,
+    String comment,
+    String soundURL,
+  ) async {
+    await _router.push(
+      MicronavigationRouteDetails(
+        title: title,
+        comment: comment,
+        soundURL: soundURL,
+      ),
+    );
+
   }
 }

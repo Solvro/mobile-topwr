@@ -9,6 +9,7 @@ part "digital_guide_response.g.dart";
 class DigitalGuideResponse with _$DigitalGuideResponse {
   const factory DigitalGuideResponse({
     required int id,
+    @JsonKey(name: "external_id") required int externalId,
     required DigitalGuideTranslations translations,
     @JsonKey(name: "number_of_storeys") required int numberOfStoreys,
     @JsonKey(

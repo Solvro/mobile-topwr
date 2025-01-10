@@ -8,6 +8,7 @@ import "../../tabs/adapted_toilets/presentation/adapted_toilets_expansion_tile_c
 import "../../tabs/amenities/presentation/amenities_expansion_tile_content.dart";
 import "../../tabs/evacuation/evacuation_widget.dart";
 import "../../tabs/localization/presentation/localization_expansion_tile_content.dart";
+import "../../tabs/micronavigation/presentation/micronavigation_expansion_tile_content.dart";
 import "../../tabs/surrounding/presentation/surroundings_expansion_tile_content.dart";
 
 typedef TileContent = ({String title, List<Widget> content});
@@ -65,7 +66,11 @@ class DigitalGuideFeaturesSection extends StatelessWidget {
         ),
       (
         title: context.localize.micro_navigation,
-        content: [LocalizationExpansionTileContent()],
+        content: [
+          MicronavigationExpansionTileContent(
+            digitalGuideResponseExtended: digitalGuideResponseExtended,
+          ),
+        ],
       ),
       (
         title: context.localize.building_structure,
