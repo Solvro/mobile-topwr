@@ -8,6 +8,56 @@ import "../../../../../config/env.dart";
 part "localization_repository.g.dart";
 
 @riverpod
+Future<Map<String, String>?> getBuildingDetails(Ref ref, int buildingId) async {
+  try {
+    final buildingUrl = "${Env.digitalGuideUrl}/buildings/$buildingId";
+    final dio = ref.read(restClientProvider);
+    dio.options.headers["Authorization"] =
+    "Token ${Env.digitalGuideAuthorizationToken}";
+
+    final buildingResponse = await dio.get(buildingUrl);
+
+    if (buildingResponse.data is! Map<String, dynamic>) {
+      debugPrint("Invalid response from /buildings/$buildingId");
+      return null;
+    }
+
+    final Map<String, dynamic> buildingData =
+    buildingResponse.data as Map<String, dynamic>;
+
+    final Map<String, dynamic>? translations =
+    buildingData["translations"] as Map<String, dynamic>?;
+    if (translations == null || translations["pl"] == null) {
+      debugPrint("translations or 'pl' key missing in /buildings/$buildingId");
+      return null;
+    }
+
+    final Map<String, dynamic>? plTranslations =
+    translations["pl"] as Map<String, dynamic>?;
+    if (plTranslations == null) {
+      debugPrint("'pl' translations are null for /buildings/$buildingId");
+      return null;
+    }
+
+    final String? buildingName = plTranslations["name"] as String?;
+    final String? buildingAddress = plTranslations["address"] as String?;
+
+    if (buildingName == null || buildingAddress == null) {
+      debugPrint("Building name or address is missing in translations['pl']");
+      return null;
+    }
+
+    return {
+      "name": buildingName,
+      "address": buildingAddress,
+    };
+  } on Exception catch (e) {
+    debugPrint("Error in getBuildingDetails: $e");
+    return null;
+  }
+}
+
+@riverpod
 Future<String?> getImageUrlFromBuilding(Ref ref, int buildingId) async {
   try {
     final buildingUrl = "${Env.digitalGuideUrl}/buildings/$buildingId";
