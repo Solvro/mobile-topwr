@@ -10,7 +10,7 @@ import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../utils/determine_contact_icon.dart";
 import "../../../utils/launch_url_util.dart";
-import "../../../widgets/optimized_directus_image.dart";
+import "../../../widgets/zoomable_optimized_directus_image.dart";
 import "../models/about_us_details.dart";
 import "../models/member_data.dart";
 
@@ -132,7 +132,7 @@ class _TeamMemberCard extends StatelessWidget {
             children: [
               SizedBox.square(
                 dimension: AboutUsConfig.photoSize,
-                child: OptimizedDirectusImage(member.directusImageUrl),
+                child: ZoomableOptimizedDirectusImage(member.directusImageUrl),
               ),
               const SizedBox(
                 width: 14,

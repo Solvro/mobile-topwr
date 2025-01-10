@@ -89,6 +89,7 @@ abstract class WideTileCardConfig {
 }
 
 abstract class DetailViewsConfig {
+  static const imageHeight = 254.0;
   static const double spacerHeight = 16;
 }
 

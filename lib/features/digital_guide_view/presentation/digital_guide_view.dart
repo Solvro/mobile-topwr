@@ -54,7 +54,11 @@ class _DigitalGuideView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final widgets1 = [
-      DigitalGuideImage(id: digitalGuideResponseExtended.images[0]),
+      const SizedBox(height: DigitalGuideConfig.heightSmall),
+      SizedBox(
+        height: DetailViewsConfig.imageHeight,
+        child: DigitalGuideImage(id: digitalGuideResponseExtended.images[0]),
+      ),
       HeadlinesSection(
         // There is only Polish language translation in external API
         // In the future we must think how to handle multiple translations in UI
