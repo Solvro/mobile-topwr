@@ -56,7 +56,6 @@ class DigitalGuideResponse with _$DigitalGuideResponse {
     @JsonKey(name: "surrounding") required int surroundingId,
     required List<int> images,
     @JsonKey(name: "evacuation_map") required int evacuationMapId,
-    String? imageUrl,
     @JsonKey(name: "levels") required List<int> levelsIndices,
   }) = _DigitalGuideResponse;
 

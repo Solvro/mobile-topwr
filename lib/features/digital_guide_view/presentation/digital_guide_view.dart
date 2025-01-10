@@ -16,6 +16,7 @@ import "../data/repository/digital_guide_repository.dart";
 import "widgets/accessibility_button.dart";
 import "widgets/digital_guide_data_source_link.dart";
 import "widgets/digital_guide_features_section.dart";
+import "widgets/digital_guide_image.dart";
 import "widgets/headlines_section.dart";
 import "widgets/report_change_button.dart";
 
@@ -54,9 +55,7 @@ class _DigitalGuideView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final widgets1 = [
-      MyCachedImage(
-        digitalGuideResponseExtended.imageUrl,
-      ),
+      DigitalGuideImage(id: digitalGuideResponseExtended.images[0]),
       HeadlinesSection(
         // There is only Polish language translation in external API
         // In the future we must think how to handle multiple translations in UI

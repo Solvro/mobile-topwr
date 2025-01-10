@@ -22,7 +22,6 @@ class DigitalGuideResponseExtended {
     required this.phoneNumbers,
     required this.surroundingId,
     required this.images,
-    required this.imageUrl,
     required this.levels,
     required this.entraces,
     required this.evacuation,
@@ -42,7 +41,6 @@ class DigitalGuideResponseExtended {
   final List<String> phoneNumbers;
   final int surroundingId;
   final List<int> images;
-  final String? imageUrl;
   final List<Level> levels;
   final DigitalGuideEvacuation evacuation;
   final IList<DigitalGuideEntrace> entraces;
@@ -61,7 +59,6 @@ class DigitalGuideResponseExtended {
 
   factory DigitalGuideResponseExtended.fromDigitalGuideResponse({
     required DigitalGuideResponse digitalGuideResponse,
-    required String? imageUrl,
     required List<Level> levels,
     required DigitalGuideEvacuation evacuation,
     required IList<DigitalGuideEntrace> entraces,
@@ -81,7 +78,6 @@ class DigitalGuideResponseExtended {
       phoneNumbers: digitalGuideResponse.phoneNumbers,
       surroundingId: digitalGuideResponse.surroundingId,
       images: digitalGuideResponse.images,
-      imageUrl: imageUrl,
       levels: levels,
       entraces: entraces,
       evacuation: evacuation,

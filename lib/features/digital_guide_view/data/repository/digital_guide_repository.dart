@@ -19,8 +19,6 @@ Future<DigitalGuideResponseExtended> getDigitalGuideDataExtended(
 ) async {
   final digitalGuideResponse =
       await ref.watch(getDigitalGuideBuildingDataProvider(id).future);
-  final imageUrl = await ref
-      .watch(getImageUrlProvider(digitalGuideResponse.images[0]).future);
   final evacuation =
       await ref.watch(getDigitalGuideEvacuationProvider(id).future);
   final entraces = await ref
@@ -30,7 +28,6 @@ Future<DigitalGuideResponseExtended> getDigitalGuideDataExtended(
   );
   return DigitalGuideResponseExtended.fromDigitalGuideResponse(
     digitalGuideResponse: digitalGuideResponse,
-    imageUrl: imageUrl,
     levels: levels,
     evacuation: evacuation,
     entraces: entraces,
