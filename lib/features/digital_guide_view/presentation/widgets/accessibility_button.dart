@@ -12,18 +12,15 @@ class AccessibilityButton extends StatelessWidget {
         onPressed: () {},
         style: OutlinedButton.styleFrom(
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(
-              DigitalGuideConfig.borderRadiusMedium,
-            ),
+            borderRadius:
+                BorderRadius.circular(DigitalGuideConfig.borderRadiusMedium),
           ),
-          side: BorderSide(
-            color: context.colorTheme.greyPigeon,
-          ),
+          side: BorderSide(color: context.colorTheme.greyPigeon),
           backgroundColor: context.colorTheme.greyLight,
-          minimumSize: const Size(56, 32),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
         ),
         child: Icon(
-          Icons.accessible,
+          Icons.accessibility_new,
           color: context.colorTheme.blackMirage,
         ),
       ),

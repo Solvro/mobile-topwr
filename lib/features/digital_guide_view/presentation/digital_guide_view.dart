@@ -101,9 +101,7 @@ class _DigitalGuideView extends ConsumerWidget {
 
     return Scaffold(
       appBar: DetailViewAppBar(
-        actions: [
-          AccessibilityButton(),
-        ],
+        actions: [AccessibilityButton()],
       ),
       body: CustomScrollView(
         slivers: [

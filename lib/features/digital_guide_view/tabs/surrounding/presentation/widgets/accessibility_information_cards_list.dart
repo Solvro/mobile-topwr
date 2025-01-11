@@ -33,10 +33,6 @@ class AccessibilityInformationCardsList extends StatelessWidget {
         ),
       ),
 
-      const SizedBox(
-        height: DigitalGuideConfig.heightSmall,
-      ),
-
       // Card for visually impaired
       AccessibilityInformationCard(
         icon: Assets.svg.digitalGuide.accessibilityAlerts.visuallyImpaired,
@@ -52,10 +48,6 @@ class AccessibilityInformationCardsList extends StatelessWidget {
         ),
       ),
 
-      const SizedBox(
-        height: DigitalGuideConfig.heightSmall,
-      ),
-
       // Card for motor disabilities
       AccessibilityInformationCard(
         icon: Assets.svg.digitalGuide.accessibilityAlerts.movementDysfunction,
@@ -68,10 +60,6 @@ class AccessibilityInformationCardsList extends StatelessWidget {
           ),
           context.localize.people_with_motor_disability,
         ),
-      ),
-
-      const SizedBox(
-        height: DigitalGuideConfig.heightSmall,
       ),
 
       // Card for cognitive difficulties
@@ -89,10 +77,6 @@ class AccessibilityInformationCardsList extends StatelessWidget {
         ),
       ),
 
-      const SizedBox(
-        height: DigitalGuideConfig.heightSmall,
-      ),
-
       // Card for hard of hearing
       AccessibilityInformationCard(
         icon: Assets.svg.digitalGuide.accessibilityAlerts.hearingDysfunction,
@@ -105,10 +89,6 @@ class AccessibilityInformationCardsList extends StatelessWidget {
           ),
           context.localize.people_with_hard_of_hearing,
         ),
-      ),
-
-      const SizedBox(
-        height: DigitalGuideConfig.heightSmall,
       ),
 
       // Card for high sensory sensitivity
@@ -127,10 +107,13 @@ class AccessibilityInformationCardsList extends StatelessWidget {
       ),
     ];
 
-    return ListView.builder(
+    return ListView.separated(
       physics: const NeverScrollableScrollPhysics(),
       itemCount: widgets.length,
       itemBuilder: (context, index) => widgets[index],
+      separatorBuilder: (context, index) => const SizedBox(
+        height: DigitalGuideConfig.heightSmall,
+      ),
       shrinkWrap: true,
     );
   }

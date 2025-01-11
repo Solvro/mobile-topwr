@@ -118,8 +118,8 @@ class ZoomableOptimizedDirectusImage extends StatelessWidget {
   }
 }
 
-class ZoomableNormalImage extends StatelessWidget {
-  const ZoomableNormalImage(
+class ZoomableCachedImage extends StatelessWidget {
+  const ZoomableCachedImage(
     this.imageUrl, {
     super.key,
     this.noShimmeringLoading = false,

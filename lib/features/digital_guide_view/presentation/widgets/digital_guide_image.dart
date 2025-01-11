@@ -19,7 +19,7 @@ class DigitalGuideImage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncImageUrl = ref.watch(getImageUrlProvider(id));
     return asyncImageUrl.when(
-      data: zoomable ? ZoomableNormalImage.new : MyCachedImage.new,
+      data: zoomable ? ZoomableCachedImage.new : MyCachedImage.new,
       error: (error, stackTrace) => MyErrorWidget(error),
       loading: () => Center(
         child: ShimmeringEffect(

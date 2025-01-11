@@ -262,7 +262,6 @@ abstract class DigitalGuideConfig {
     Color(0xFFE07E0F), // 2 == orange == partially accessible
     Color(0xFF28BC2F), // 3 == green == accessible
   ];
-  static const borderColor = Color(0x8077859D);
 }
 
 abstract class AlertDialogConfig {

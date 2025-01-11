@@ -48,10 +48,12 @@ class AccessibilityProfileCard extends StatelessWidget {
                     context.localize.accessibility_profile,
                     style: context.textTheme.title,
                   ),
-                  const SizedBox(
-                    width: DigitalGuideConfig.heightTiny,
+                  const SizedBox(width: DigitalGuideConfig.heightSmall),
+                  SvgPicture.asset(
+                    icon,
+                    height: 17,
+                    width: 28,
                   ),
-                  SvgPicture.asset(icon),
                 ],
               ),
             ),

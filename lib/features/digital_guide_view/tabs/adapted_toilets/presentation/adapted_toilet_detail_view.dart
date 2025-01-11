@@ -1,4 +1,5 @@
 import "package:auto_route/auto_route.dart";
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
@@ -6,7 +7,8 @@ import "../../../../../config/ui_config.dart";
 import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/context_extensions.dart";
 import "../../../../../widgets/detail_views/detail_view_app_bar.dart";
-import "../../../../../widgets/my_point_widget.dart";
+import "../../../presentation/widgets/accessibility_button.dart";
+import "../../../presentation/widgets/bullet_list.dart";
 import "../../../presentation/widgets/digital_guide_image.dart";
 import "../../../presentation/widgets/digital_guide_nav_link.dart";
 import "../data/models/adapted_toilet.dart";
@@ -21,64 +23,45 @@ class AdaptedToiletDetailView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final List<Widget> points = [
+    final List<Widget> widgets = [
       Text(
         adaptedToilet.getDescription(context),
-        style: context.textTheme.title.copyWith(fontSize: 18),
+        style: context.textTheme.title.copyWith(fontSize: 24),
       ),
-      const SizedBox(
-        height: DigitalGuideConfig.heightMedium,
-      ),
-      if (adaptedToilet.translations.plTranslation.comment.isNotEmpty)
-        MyPointWidget(
-          text: adaptedToilet.translations.plTranslation.comment,
-        ),
-      MyPointWidget(
-        text: adaptedToilet.translations.plTranslation.location,
-      ),
-      if (adaptedToilet.translations.plTranslation.numberOfCabins.isNotEmpty)
-        MyPointWidget(
-          text: adaptedToilet.translations.plTranslation.numberOfCabins,
-        ),
-      MyPointWidget(
-        text: adaptedToilet.translations.plTranslation.toiletDescription,
-      ),
-      if (!adaptedToilet.isAccessAccessibleForPwd)
-        MyPointWidget(
-          text: adaptedToilet
-              .translations.plTranslation.isAccessAccessibleForPwdComment,
-        ),
-      if (adaptedToilet.isNeedAuthorization != IsNeedAuthorizationEnum.unknown)
-        MyPointWidget(
-          text: adaptedToilet.isNeedAuthorization == IsNeedAuthorizationEnum.yes
-              ? context.localize.adapted_toilet_authorization(
-                  adaptedToilet
-                      .translations.plTranslation.isNeedAuthorizationComment,
-                )
-              : context.localize.adapted_toilet_no_authorization,
-        ),
-      if (adaptedToilet.translations.plTranslation
-          .isAreaAllowingMovementInFrontEntranceComment.isNotEmpty)
-        MyPointWidget(
-          text: adaptedToilet.translations.plTranslation
+      const SizedBox(height: DigitalGuideConfig.heightMedium),
+      BulletList(
+        items: [
+          adaptedToilet.translations.plTranslation.comment,
+          adaptedToilet.translations.plTranslation.location,
+          adaptedToilet.translations.plTranslation.numberOfCabins,
+          adaptedToilet.translations.plTranslation.toiletDescription,
+          if (!adaptedToilet.isAccessAccessibleForPwd)
+            adaptedToilet
+                .translations.plTranslation.isAccessAccessibleForPwdComment,
+          if (adaptedToilet.isNeedAuthorization !=
+              IsNeedAuthorizationEnum.unknown)
+            adaptedToilet.isNeedAuthorization == IsNeedAuthorizationEnum.yes
+                ? context.localize.adapted_toilet_authorization(
+                    adaptedToilet
+                        .translations.plTranslation.isNeedAuthorizationComment,
+                  )
+                : context.localize.adapted_toilet_no_authorization,
+          adaptedToilet.translations.plTranslation
               .isAreaAllowingMovementInFrontEntranceComment,
-        ),
-      MyPointWidget(
-        text: (adaptedToilet.isEntranceGraphicallyMarked &&
-                adaptedToilet.translations.plTranslation
-                    .isEntranceGraphicallyMarkedComment.isNotEmpty)
-            ? context.localize.adapted_toilet_graphically_marked(
-                adaptedToilet.translations.plTranslation
-                    .isEntranceGraphicallyMarkedComment,
-              )
-            : context.localize.adapted_toilet_not_graphically_marked,
-      ),
-      MyPointWidget(
-        text: adaptedToilet.isMarked
-            ? context.localize.adapted_toilet_is_marked(
-                adaptedToilet.translations.plTranslation.isMarkedComment,
-              )
-            : context.localize.adapted_toilet_is_not_marked,
+          if (adaptedToilet.isEntranceGraphicallyMarked)
+            context.localize.adapted_toilet_graphically_marked(
+              adaptedToilet.translations.plTranslation
+                  .isEntranceGraphicallyMarkedComment,
+            )
+          else
+            context.localize.adapted_toilet_not_graphically_marked,
+          if (adaptedToilet.isMarked)
+            context.localize.adapted_toilet_is_marked(
+              adaptedToilet.translations.plTranslation.isMarkedComment,
+            )
+          else
+            context.localize.adapted_toilet_is_not_marked,
+        ].lock,
       ),
       const SizedBox(height: DigitalGuideConfig.heightBig),
       ListView.separated(
@@ -95,18 +78,18 @@ class AdaptedToiletDetailView extends ConsumerWidget {
         ),
         shrinkWrap: true,
       ),
-      const SizedBox(
-        height: DigitalGuideConfig.heightBig,
-      ),
+      const SizedBox(height: DigitalGuideConfig.heightBig),
       if (adaptedToilet.imagesIndices.isNotEmpty)
         Text(
           context.localize.images,
-          style: context.textTheme.title.copyWith(fontSize: 28),
+          style: context.textTheme.title.copyWith(fontSize: 24),
         ),
     ];
 
     return Scaffold(
-      appBar: DetailViewAppBar(),
+      appBar: DetailViewAppBar(
+        actions: [AccessibilityButton()],
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: DigitalGuideConfig.heightBig,
@@ -115,8 +98,8 @@ class AdaptedToiletDetailView extends ConsumerWidget {
           slivers: [
             SliverList(
               delegate: SliverChildBuilderDelegate(
-                (context, index) => points[index],
-                childCount: points.length,
+                (context, index) => widgets[index],
+                childCount: widgets.length,
               ),
             ),
             SliverList(

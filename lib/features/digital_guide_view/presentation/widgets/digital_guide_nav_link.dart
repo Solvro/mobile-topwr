@@ -15,16 +15,19 @@ class DigitalGuideNavLink extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: onTap,
-      child: Container(
+      borderRadius:
+          BorderRadius.circular(DigitalGuideConfig.borderRadiusMedium),
+      child: Ink(
         padding: DigitalGuideConfig.mediumButtonPadding,
         decoration: BoxDecoration(
           borderRadius:
               BorderRadius.circular(DigitalGuideConfig.borderRadiusMedium),
           border: Border.all(
-            color: DigitalGuideConfig.borderColor,
+            color: context.colorTheme.greyPigeon,
           ),
+          color: context.colorTheme.greyLight,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -32,13 +35,13 @@ class DigitalGuideNavLink extends StatelessWidget {
             Expanded(
               child: Text(
                 text,
-                style: context.textTheme.body,
+                style: context.textTheme.title,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 3,
               ),
             ),
             Icon(
-              Icons.arrow_forward_ios,
+              Icons.chevron_right,
               color: context.colorTheme.blueAzure,
             ),
           ],

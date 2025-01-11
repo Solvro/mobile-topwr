@@ -9,7 +9,6 @@ import "../../../../../widgets/my_error_widget.dart";
 import "../../../../digital_guide_view/data/models/digital_guide_response_extended.dart";
 import "../../../presentation/widgets/accessibility_profile_card.dart";
 import "../../../presentation/widgets/bullet_list.dart";
-import "../../../presentation/widgets/digital_guide_nav_link.dart";
 import "../../../presentation/widgets/digital_guide_photo_row.dart";
 import "../data/models/surrounding_response_extended.dart";
 import "../data/repository/surrounding_repository.dart";
@@ -86,14 +85,8 @@ class _SurroundingExpansionTileContent extends ConsumerWidget {
       const SizedBox(
         height: DigitalGuideConfig.heightMedium,
       ),
-      DigitalGuidePhotoRow(imageUrls: surroundingResponse.imagesUrl?.toIList()),
-      const SizedBox(
-        height: DigitalGuideConfig.heightSmall,
-      ),
-      DigitalGuideNavLink(
-        onTap: () => {},
-        text:
-            context.localize.see_all_photos(surroundingResponse.images.length),
+      DigitalGuidePhotoRow(
+        imageUrls: surroundingResponse.imagesUrl?.toIList() ?? IList(),
       ),
       const SizedBox(
         height: DigitalGuideConfig.heightMedium,

@@ -1,9 +1,10 @@
 import "package:flutter/material.dart";
+
 import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
-import "../../../../widgets/my_cached_image.dart";
 import "../../../../widgets/my_html_widget.dart";
+import "../../../../widgets/zoomable_images.dart";
 import "../../data/models/digital_guide_response_extended.dart";
 import "../../presentation/widgets/digital_guide_nav_link.dart";
 
@@ -35,7 +36,9 @@ class EvacuationWidget extends StatelessWidget {
       const SizedBox(
         height: DigitalGuideConfig.heightMedium,
       ),
-      MyCachedImage(digitalGuideResponseExtended.evacuation.evacuationMapUrl),
+      ZoomableCachedImage(
+        digitalGuideResponseExtended.evacuation.evacuationMapUrl,
+      ),
       const SizedBox(
         height: DigitalGuideConfig.heightMedium,
       ),

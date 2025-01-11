@@ -13,28 +13,24 @@ class MyPointWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(right: DigitalGuideConfig.heightSmall),
-          child: Text(
-            "•",
-            style: context.textTheme.title.copyWith(fontSize: 24),
-          ),
-        ),
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.only(top: DigitalGuideConfig.heightSmall),
-            child: Text(
-              text,
-              style: context.textTheme.body.copyWith(fontSize: 16),
-              maxLines: 100,
-              overflow: TextOverflow.ellipsis,
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        vertical: DigitalGuideConfig.heightTiny / 2,
+      ),
+      child: RichText(
+        text: TextSpan(
+          text: "• ",
+          style: context.textTheme.body.copyWith(fontSize: 18),
+          children: [
+            TextSpan(
+              text: text,
+              style: context.textTheme.body.copyWith(fontSize: 14),
             ),
-          ),
+          ],
         ),
-      ],
+        maxLines: 100,
+        overflow: TextOverflow.ellipsis,
+      ),
     );
   }
 }

@@ -35,14 +35,19 @@ class AccessibilityInformationCard extends StatelessWidget {
               width: DigitalGuideConfig.difficultiesCardIconSize,
               height: DigitalGuideConfig.difficultiesCardIconSize,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(
-                  DigitalGuideConfig.borderRadiusSmall,
-                ),
+                borderRadius:
+                    BorderRadius.circular(DigitalGuideConfig.borderRadiusSmall),
                 color: Colors.white,
               ),
-              child: Padding(
-                padding: DigitalGuideConfig.widePaddingMedium,
-                child: SvgPicture.asset(icon),
+              child: Center(
+                child: SizedBox.square(
+                  dimension: 20,
+                  child: SvgPicture.asset(
+                    icon,
+                    height: 20,
+                    width: 20,
+                  ),
+                ),
               ),
             ),
           ),
