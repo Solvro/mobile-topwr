@@ -1,6 +1,7 @@
 import "package:dio/dio.dart";
 import "package:flutter/widgets.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:logger/logger.dart";
 
 import "dio_client.dart";
 
@@ -27,7 +28,8 @@ extension DioSafeRequestsX on Ref {
   }) async {
     try {
       return await request();
-    } on DioException catch (_) {
+    } on DioException catch (e) {
+      Logger().e(e);
       throw RestFrameworkOfflineException(
         localizedMessage: localizedMessage,
         onRetry: onRetry,
@@ -39,10 +41,11 @@ extension DioSafeRequestsX on Ref {
     String url, {
     required String Function(BuildContext context) localizedMessage,
     VoidCallback? onRetry,
+    AuthHeader? authHeader,
   }) async {
-    final dio = watch(restClientProvider);
+    final dio = watch(authRestClientProvider(authHeader));
     return safeRequest(
-      () => dio.get(url),
+      () => dio.get<T>(url),
       localizedMessage: localizedMessage,
       onRetry: onRetry,
     );

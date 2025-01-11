@@ -1,5 +1,3 @@
-// ignore_for_file: invalid_annotation_target
-
 import "package:freezed_annotation/freezed_annotation.dart";
 
 part "surrounding_response.freezed.dart";
@@ -97,7 +95,6 @@ class SurroundingResponse with _$SurroundingResponse {
     required int accessibilityLevelForCognitiveDifficulties,
     required int building,
     required List<int> images,
-    List<String?>? imagesUrl,
   }) = _SurroundingResponse;
 
   factory SurroundingResponse.fromJson(Map<String, dynamic> json) =>

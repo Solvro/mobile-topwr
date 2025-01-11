@@ -1,23 +1,15 @@
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "../../../../api_base_rest/client/dio_client.dart";
-import "../../../../config/env.dart";
+import "../api/digital_guide_get_and_cache.dart";
 
 part "image_repository.g.dart";
 
 @riverpod
-Future<String?> getImageUrl(Ref ref, int id) async {
-  final digitalGuideUrl = "${Env.digitalGuideUrl}/images/$id";
-  final dio = ref.read(restClientProvider);
-  dio.options.headers["Authorization"] =
-      "Token ${Env.digitalGuideAuthorizationToken}";
-
-  final response = await dio.get(digitalGuideUrl);
-
-  final Map<String, dynamic> responseData =
-      response.data as Map<String, dynamic>;
-  final imageUrl = responseData["image_320w"];
-
-  return imageUrl;
+Future<String?> imageRepository(Ref ref, int imageID) async {
+  return ref.getAndCacheDataFromDigitalGuide(
+    "images/$imageID",
+    (Map<String, dynamic> json) => json["image_1920w"] as String,
+    onRetry: () => ref.invalidateSelf(),
+  );
 }

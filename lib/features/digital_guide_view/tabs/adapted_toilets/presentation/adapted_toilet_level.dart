@@ -5,7 +5,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "../../../../../config/ui_config.dart";
 import "../../../../../theme/app_theme.dart";
 import "../../../../navigator/utils/navigation_commands.dart";
-import "../../../data/models/digital_guide_response_extended.dart";
+import "../../../data/models/level.dart";
 import "../../../presentation/widgets/digital_guide_nav_link.dart";
 import "../data/models/adapted_toilet.dart";
 

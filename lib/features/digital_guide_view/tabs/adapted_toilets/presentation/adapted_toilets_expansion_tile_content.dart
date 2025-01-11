@@ -4,52 +4,36 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../config/ui_config.dart";
 import "../../../../../widgets/my_error_widget.dart";
-import "../../../data/models/digital_guide_response_extended.dart";
-import "../data/models/adapted_toilet.dart";
-import "../data/repository/adapted_toilets_repository.dart";
+import "../../../data/models/digital_guide_response.dart";
+import "../business/adapted_toilets_use_cases.dart";
 import "adapted_toilet_level.dart";
 
 class AdaptedToiletsExpansionTileContent extends ConsumerWidget {
   const AdaptedToiletsExpansionTileContent({
-    required this.digitalGuideResponseExtended,
+    required this.digitalGuideData,
   });
 
-  final DigitalGuideResponseExtended digitalGuideResponseExtended;
+  final DigitalGuideResponse digitalGuideData;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final asyncAdaptedToilets = ref.watch(
-      AdaptedToiletsRepositoryProvider(digitalGuideResponseExtended.levels),
+    final levelsWithToilets = ref.watch(
+      getLevelsWithToiletsUseCaseProvider(digitalGuideData),
     );
-    return asyncAdaptedToilets.when(
-      data: (adaptedToiletsData) => _AdaptedToiletsExpansionTileContent(
-        levels: digitalGuideResponseExtended.levels
-            .where(
-              (level) =>
-                  adaptedToiletsData.containsKey(level.id) &&
-                  adaptedToiletsData[level.id]!.isNotEmpty,
-            )
-            .toIList(),
-        adaptedToiletsData: adaptedToiletsData,
-      ),
-      error: (error, stackTrace) => MyErrorWidget(error),
+    return levelsWithToilets.when(
+      data: _AdaptedToiletsExpansionTileContent.new,
       loading: () => const Center(
         child: CircularProgressIndicator(),
       ),
+      error: (error, _) => MyErrorWidget(error),
     );
   }
 }
 
 class _AdaptedToiletsExpansionTileContent extends ConsumerWidget {
-  const _AdaptedToiletsExpansionTileContent({
-    required this.levels,
-    required this.adaptedToiletsData,
-  });
+  const _AdaptedToiletsExpansionTileContent(this.levelsWithToilets);
 
-  final IList<Level> levels;
-
-  // map: level id (keys) -> adapted toilets instances (values)
-  final IMap<int, IList<AdaptedToilet>> adaptedToiletsData;
+  final IList<LevelWithToilets> levelsWithToilets;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -61,10 +45,10 @@ class _AdaptedToiletsExpansionTileContent extends ConsumerWidget {
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: levels.map((level) {
+        children: levelsWithToilets.map((level) {
           return AdaptedToiletLevel(
-            level: level,
-            adaptedToilets: adaptedToiletsData[level.id] ?? IList(),
+            level: level.level,
+            adaptedToilets: level.adaptedToilets,
           );
         }).toList(),
       ),

@@ -4,17 +4,17 @@ import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../widgets/my_html_widget.dart";
-import "../../../../widgets/zoomable_images.dart";
-import "../../data/models/digital_guide_response_extended.dart";
-import "../../presentation/widgets/digital_guide_nav_link.dart";
+import "../../data/models/digital_guide_response.dart";
+import "../../presentation/widgets/digital_guide_image.dart";
+import "entrances_list.dart";
 
 class EvacuationWidget extends StatelessWidget {
   const EvacuationWidget({
     super.key,
-    required this.digitalGuideResponseExtended,
+    required this.digitalGuideData,
   });
 
-  final DigitalGuideResponseExtended digitalGuideResponseExtended;
+  final DigitalGuideResponse digitalGuideData;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class EvacuationWidget extends StatelessWidget {
         height: DigitalGuideConfig.heightSmall,
       ),
       MyHtmlWidget(
-        digitalGuideResponseExtended.evacuation.evacuationDescription,
+        digitalGuideData.translations.plTranslation.evacuationDescription,
         textStyle: context.textTheme.boldBody,
       ),
       const SizedBox(
@@ -36,25 +36,11 @@ class EvacuationWidget extends StatelessWidget {
       const SizedBox(
         height: DigitalGuideConfig.heightMedium,
       ),
-      ZoomableCachedImage(
-        digitalGuideResponseExtended.evacuation.evacuationMapUrl,
-      ),
+      DigitalGuideImage(id: digitalGuideData.evacuationMapId),
       const SizedBox(
         height: DigitalGuideConfig.heightMedium,
       ),
-      ListView.separated(
-        physics: const NeverScrollableScrollPhysics(),
-        itemBuilder: (context, index) => DigitalGuideNavLink(
-          onTap: () {},
-          text:
-              digitalGuideResponseExtended.entraces[index].translations.pl.name,
-        ),
-        separatorBuilder: (context, index) => const SizedBox(
-          height: DigitalGuideConfig.heightMedium,
-        ),
-        itemCount: digitalGuideResponseExtended.entraces.length,
-        shrinkWrap: true,
-      ),
+      EntrancesList(digitalGuideData),
     ];
 
     return Padding(

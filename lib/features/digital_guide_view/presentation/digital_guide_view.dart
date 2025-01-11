@@ -10,7 +10,7 @@ import "../../../utils/determine_contact_icon.dart";
 import "../../../widgets/detail_views/contact_section.dart";
 import "../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../../widgets/my_error_widget.dart";
-import "../data/models/digital_guide_response_extended.dart";
+import "../data/models/digital_guide_response.dart";
 import "../data/repository/digital_guide_repository.dart";
 import "widgets/accessibility_button.dart";
 import "widgets/digital_guide_data_source_link.dart";
@@ -27,18 +27,25 @@ class DigitalGuideView extends ConsumerWidget {
 
   final int id;
 
+  static String localizedOfflineMessage(BuildContext context) {
+    return context.localize.my_offline_error_message(
+      context.localize.digital_guide_offline,
+    );
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final asyncDigitalGuideData =
-        ref.watch(getDigitalGuideDataExtendedProvider(id));
-    // question: Should the app bar appear during loading or when there's an error?
-    // Now it doesn't, neither does it appear on SKS menu screen
+    final asyncDigitalGuideData = ref.watch(digitalGuideRepositoryProvider(id));
     return asyncDigitalGuideData.when(
       data: _DigitalGuideView.new,
-      error: (error, stackTrace) => MyErrorWidget(error),
+      error: (error, stackTrace) => Scaffold(
+        appBar: DetailViewAppBar(),
+        body: MyErrorWidget(error),
+      ),
       // TODO(Bartosh): shimmer loading
-      loading: () => const Scaffold(
-        body: Center(
+      loading: () => Scaffold(
+        appBar: DetailViewAppBar(),
+        body: const Center(
           child: CircularProgressIndicator(),
         ),
       ),
@@ -47,9 +54,9 @@ class DigitalGuideView extends ConsumerWidget {
 }
 
 class _DigitalGuideView extends ConsumerWidget {
-  const _DigitalGuideView(this.digitalGuideResponseExtended);
+  const _DigitalGuideView(this.digitalGuideData);
 
-  final DigitalGuideResponseExtended digitalGuideResponseExtended;
+  final DigitalGuideResponse digitalGuideData;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -57,25 +64,20 @@ class _DigitalGuideView extends ConsumerWidget {
       const SizedBox(height: DigitalGuideConfig.heightSmall),
       SizedBox(
         height: DetailViewsConfig.imageHeight,
-        child: DigitalGuideImage(id: digitalGuideResponseExtended.images[0]),
+        child: DigitalGuideImage(id: digitalGuideData.images[0]),
       ),
       HeadlinesSection(
-        // There is only Polish language translation in external API
-        // In the future we must think how to handle multiple translations in UI
-        // For now it can be temporarily dealt with in the data layer
-        name: digitalGuideResponseExtended.translations.plTranslation.name,
-        description: digitalGuideResponseExtended
-            .translations.plTranslation.extendedName,
+        name: digitalGuideData.translations.plTranslation.name,
+        description: digitalGuideData.translations.plTranslation.extendedName,
       ),
       ContactSection(
         list: IList<ContactIconsModel>([
           ContactIconsModel(
-            text: digitalGuideResponseExtended
-                .translations.plTranslation.address
+            text: digitalGuideData.translations.plTranslation.address
                 .replaceAll("ulica", "ul."),
             icon: Assets.svg.contactIcons.compass,
           ),
-          ...digitalGuideResponseExtended.phoneNumbers.map(
+          ...digitalGuideData.phoneNumbers.map(
             (phoneNumber) => ContactIconsModel(
               text: "+48$phoneNumber",
               icon: Assets.svg.contactIcons.phone,
@@ -83,8 +85,7 @@ class _DigitalGuideView extends ConsumerWidget {
             ),
           ),
           ContactIconsModel(
-            text: context.localize
-                .storeys(digitalGuideResponseExtended.numberOfStoreys),
+            text: context.localize.storeys(digitalGuideData.numberOfStoreys),
             icon: Assets.svg.digitalGuide.storey,
           ),
         ]),
@@ -114,7 +115,7 @@ class _DigitalGuideView extends ConsumerWidget {
             ),
           ),
           DigitalGuideFeaturesSection(
-            digitalGuideResponseExtended: digitalGuideResponseExtended,
+            digitalGuideData: digitalGuideData,
           ),
           SliverList(
             delegate: SliverChildBuilderDelegate(

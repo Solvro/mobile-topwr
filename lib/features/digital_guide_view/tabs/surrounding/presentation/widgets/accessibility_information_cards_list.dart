@@ -4,7 +4,7 @@ import "../../../../../../../config/ui_config.dart";
 import "../../../../../../../gen/assets.gen.dart";
 import "../../../../../../../utils/context_extensions.dart";
 import "../../../../presentation/widgets/accessibility_information_card.dart";
-import "../../data/models/surrounding_response_extended.dart";
+import "../../data/models/surrounding_response.dart";
 
 // THIS WIDGET IS TEMPORARY BECAUSE IT WILL BE SHOWN CONDITIONALLY - THINGS ARE HARDCODED FOR NOW
 
@@ -14,7 +14,7 @@ class AccessibilityInformationCardsList extends StatelessWidget {
     required this.surroundingResponse,
   });
 
-  final SurroundingResponseExtended surroundingResponse;
+  final SurroundingResponse surroundingResponse;
 
   @override
   Widget build(BuildContext context) {
