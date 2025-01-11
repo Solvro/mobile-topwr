@@ -10,25 +10,10 @@ class MicronavigationResponse with _$MicronavigationResponse {
   const factory MicronavigationResponse({
     required int id,
     required int location,
-    @JsonKey(name: "range_entry_action") required String rangeEntryAction,
-    @JsonKey(name: "user_triggered_action") required String userTriggeredAction,
     @JsonKey(name: "name_override")
     required MicronavigationNameOverride nameOverride,
     @JsonKey(name: "web_content") required MicronavigationContent webContent,
-    @JsonKey(name: "rssi_detect_level") required int rssiDetectLevel,
-    @JsonKey(name: "beep_length") required int beepLength,
-    @JsonKey(name: "flash_beep_sound") required String flashBeepSound,
-    required int volume,
-    @JsonKey(name: "ibeacon_uuid") required String ibeaconUuid,
-    @JsonKey(name: "ibeacon_major") required int ibeaconMajor,
-    @JsonKey(name: "ibeacon_minor") required int ibeaconMinor,
     required int sn,
-    @JsonKey(name: "needs_flashing") required bool needsFlashing,
-    @JsonKey(name: "lang_info_from_device") required bool langInfoFromDevice,
-    required bool active,
-    @JsonKey(name: "show_on_web_site") required bool showOnWebSite,
-    @JsonKey(name: "map_lat") required double mapLat,
-    @JsonKey(name: "map_lon") required double mapLon,
     required bool inside,
     required List<MicronavigationProfile> profiles,
     required List<MicronavigationLanguage> languages,
@@ -72,9 +57,6 @@ class MicronavigationProfile with _$MicronavigationProfile {
     required int id,
     required int profile,
     @JsonKey(name: "web_content") required MicronavigationContent webContent,
-    @JsonKey(name: "range_entry_action") String? rangeEntryAction,
-    @JsonKey(name: "user_triggered_action") String? userTriggeredAction,
-    int? volume,
   }) = _MicronavigationProfile;
 
   factory MicronavigationProfile.fromJson(Map<String, dynamic> json) =>
