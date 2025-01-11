@@ -17,7 +17,7 @@ class DigitalGuideImage extends ConsumerWidget {
   final bool zoomable;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final asyncImageUrl = ref.watch(getImageUrlProvider(id));
+    final asyncImageUrl = ref.watch(imageRepositoryProvider(id));
     return asyncImageUrl.when(
       data: zoomable ? ZoomableCachedImage.new : MyCachedImage.new,
       error: (error, stackTrace) => MyErrorWidget(error),

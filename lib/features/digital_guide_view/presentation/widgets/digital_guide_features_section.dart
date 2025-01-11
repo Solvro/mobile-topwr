@@ -1,9 +1,12 @@
 import "package:flutter/material.dart";
 import "package:flutter/widgets.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../utils/context_extensions.dart";
 import "../../../../widgets/my_expansion_tile.dart";
-import "../../data/models/digital_guide_response_extended.dart";
+import "../../data/models/digital_guide_response.dart";
+import "../../data/models/level_with_regions.dart";
+import "../../data/repository/levels_repository.dart";
 import "../../tabs/adapted_toilets/presentation/adapted_toilets_expansion_tile_content.dart";
 import "../../tabs/amenities/presentation/amenities_expansion_tile_content.dart";
 import "../../tabs/evacuation/evacuation_widget.dart";
@@ -12,15 +15,21 @@ import "../../tabs/surrounding/presentation/surroundings_expansion_tile_content.
 
 typedef TileContent = ({String title, List<Widget> content});
 
-class DigitalGuideFeaturesSection extends StatelessWidget {
+class DigitalGuideFeaturesSection extends ConsumerWidget {
   const DigitalGuideFeaturesSection({
-    required this.digitalGuideResponseExtended,
+    required this.digitalGuideData,
   });
 
-  final DigitalGuideResponseExtended digitalGuideResponseExtended;
+  final DigitalGuideResponse digitalGuideData;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final hasToilets = ref
+            .watch(levelsWithRegionsRepositoryProvider(digitalGuideData))
+            .value
+            ?.hasAdaptedToilets() ??
+        false;
+
     final items = <TileContent>[
       (
         title: context.localize.localization,
@@ -30,7 +39,7 @@ class DigitalGuideFeaturesSection extends StatelessWidget {
         title: context.localize.amenities,
         content: [
           AmenitiesExpansionTileContent(
-            digitalGuideResponseExtended: digitalGuideResponseExtended,
+            digitalGuideData: digitalGuideData,
           ),
         ],
       ),
@@ -38,7 +47,7 @@ class DigitalGuideFeaturesSection extends StatelessWidget {
         title: context.localize.surroundings,
         content: [
           SurroundingsExpansionTileContent(
-            digitalGuideResponseExtended: digitalGuideResponseExtended,
+            digitalGuideData: digitalGuideData,
           ),
         ],
       ),
@@ -54,12 +63,12 @@ class DigitalGuideFeaturesSection extends StatelessWidget {
         title: context.localize.elevators,
         content: [LocalizationExpansionTileContent()],
       ),
-      if (digitalGuideResponseExtended.hasAdaptedToilets())
+      if (hasToilets)
         (
           title: context.localize.adapted_toilets,
           content: [
             AdaptedToiletsExpansionTileContent(
-              digitalGuideResponseExtended: digitalGuideResponseExtended,
+              digitalGuideData: digitalGuideData,
             ),
           ],
         ),
@@ -79,7 +88,7 @@ class DigitalGuideFeaturesSection extends StatelessWidget {
         title: context.localize.evacuation,
         content: [
           EvacuationWidget(
-            digitalGuideResponseExtended: digitalGuideResponseExtended,
+            digitalGuideData: digitalGuideData,
           ),
         ],
       ),

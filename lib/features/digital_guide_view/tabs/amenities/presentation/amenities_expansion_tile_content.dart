@@ -6,56 +6,56 @@ import "../../../../../gen/assets.gen.dart";
 import "../../../../../utils/context_extensions.dart";
 import "../../../../../utils/determine_contact_icon.dart";
 import "../../../../../widgets/detail_views/contact_section.dart";
-import "../../../data/models/digital_guide_response_extended.dart";
+import "../../../data/models/digital_guide_response.dart";
 
 class AmenitiesExpansionTileContent extends StatelessWidget {
   const AmenitiesExpansionTileContent({
-    required this.digitalGuideResponseExtended,
+    required this.digitalGuideData,
   });
 
-  final DigitalGuideResponseExtended digitalGuideResponseExtended;
+  final DigitalGuideResponse digitalGuideData;
 
   @override
   Widget build(BuildContext context) {
     return ContactSection(
       topPadding: DigitalGuideConfig.heightTiny,
       list: [
-        if (digitalGuideResponseExtended.canAssistanceDog)
+        if (digitalGuideData.canAssistanceDog)
           ContactIconsModel(
             text: context.localize.assistance_dog,
             icon: Assets.svg.digitalGuide.assistanceDog,
           ),
-        if (digitalGuideResponseExtended.isInductionLoop)
+        if (digitalGuideData.isInductionLoop)
           ContactIconsModel(
             text: context.localize.induction_loop,
             icon: Assets.svg.digitalGuide.inductionLoop,
           ),
-        if (digitalGuideResponseExtended.isMicroNavigationSystem)
+        if (digitalGuideData.isMicroNavigationSystem)
           ContactIconsModel(
             text: context.localize.micronavigation_system,
             icon: Assets.svg.digitalGuide.micronavigation,
           ),
-        if (digitalGuideResponseExtended.areGuidancePaths)
+        if (digitalGuideData.areGuidancePaths)
           ContactIconsModel(
             text: context.localize.orientation_paths,
             icon: Assets.svg.digitalGuide.orientationPaths,
           ),
-        if (digitalGuideResponseExtended.areBrailleBoards)
+        if (digitalGuideData.areBrailleBoards)
           ContactIconsModel(
             text: context.localize.information_boards_with_braille_description,
             icon: Assets.svg.digitalGuide.braille,
           ),
-        if (digitalGuideResponseExtended.areLargeFontBoards)
+        if (digitalGuideData.areLargeFontBoards)
           ContactIconsModel(
             text: context.localize.information_boards_with_large_font,
             icon: Assets.svg.digitalGuide.largeFont,
           ),
-        if (digitalGuideResponseExtended.isSignLanguageInterpreter)
+        if (digitalGuideData.isSignLanguageInterpreter)
           ContactIconsModel(
             text: context.localize.sign_language_interpreter,
             icon: Assets.svg.digitalGuide.signLanguage,
           ),
-        if (digitalGuideResponseExtended.areEmergencyChairs)
+        if (digitalGuideData.areEmergencyChairs)
           ContactIconsModel(
             text: context.localize.emergency_chairs,
             icon: Assets.svg.digitalGuide.emergencyChairs,

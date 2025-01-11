@@ -1,5 +1,3 @@
-// ignore_for_file: invalid_annotation_target
-
 import "package:freezed_annotation/freezed_annotation.dart";
 
 part "digital_guide_response.freezed.dart";
@@ -85,48 +83,6 @@ class DigitalGuideTranslation with _$DigitalGuideTranslation {
 
   factory DigitalGuideTranslation.fromJson(Map<String, dynamic> json) =>
       _$DigitalGuideTranslationFromJson(json);
-}
-
-@freezed
-class LevelNotFull with _$LevelNotFull {
-  const factory LevelNotFull({
-    required int id,
-    @JsonKey(name: "floor_number") required int floorNumber,
-    required LevelTranslations translations,
-    @JsonKey(name: "regions") required List<int> regionIndices,
-  }) = _LevelNotFull;
-
-  factory LevelNotFull.fromJson(Map<String, dynamic> json) =>
-      _$LevelNotFullFromJson(json);
-}
-
-@freezed
-class LevelTranslations with _$LevelTranslations {
-  const factory LevelTranslations({
-    @JsonKey(name: "pl") required LevelTranslation plTranslation,
-  }) = _LevelTranslations;
-
-  factory LevelTranslations.fromJson(Map<String, dynamic> json) =>
-      _$LevelTranslationsFromJson(json);
-}
-
-@freezed
-class LevelTranslation with _$LevelTranslation {
-  const factory LevelTranslation({
-    required String name,
-  }) = _LevelTranslation;
-
-  factory LevelTranslation.fromJson(Map<String, dynamic> json) =>
-      _$LevelTranslationFromJson(json);
-}
-
-@freezed
-class Region with _$Region {
-  const factory Region({
-    @JsonKey(name: "adapted_toilets") required List<int> adaptedToiletsIndices,
-  }) = _Region;
-
-  factory Region.fromJson(Map<String, dynamic> json) => _$RegionFromJson(json);
 }
 
 bool _stringToBool(String value) {

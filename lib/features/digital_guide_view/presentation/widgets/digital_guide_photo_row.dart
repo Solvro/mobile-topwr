@@ -3,21 +3,21 @@ import "package:flutter/material.dart";
 
 import "../../../../config/ui_config.dart";
 import "../../../../utils/context_extensions.dart";
-import "../../../../widgets/zoomable_images.dart";
+import "digital_guide_image.dart";
 import "digital_guide_nav_link.dart";
 
 class DigitalGuidePhotoRow extends StatelessWidget {
-  final IList<String?> imageUrls;
+  final IList<int> imagesIDs;
 
-  const DigitalGuidePhotoRow({super.key, required this.imageUrls});
+  const DigitalGuidePhotoRow({super.key, required this.imagesIDs});
 
   @override
   Widget build(BuildContext context) {
-    if (imageUrls.isEmpty) {
+    if (imagesIDs.isEmpty) {
       return const SizedBox.shrink();
     }
 
-    final displayImages = imageUrls.take(3).toIList();
+    final displayImages = imagesIDs.take(3).toIList();
 
     return Column(
       children: [
@@ -26,7 +26,7 @@ class DigitalGuidePhotoRow extends StatelessWidget {
           child: Row(
             children: displayImages
                 .map(
-                  (url) => Expanded(
+                  (id) => Expanded(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                         horizontal: DigitalGuideConfig.paddingSmall,
@@ -35,7 +35,7 @@ class DigitalGuidePhotoRow extends StatelessWidget {
                         borderRadius: BorderRadius.circular(
                           DigitalGuideConfig.borderRadiusMedium,
                         ),
-                        child: ZoomableCachedImage(url),
+                        child: DigitalGuideImage(id: id),
                       ),
                     ),
                   ),
@@ -43,14 +43,14 @@ class DigitalGuidePhotoRow extends StatelessWidget {
                 .toList(),
           ),
         ),
-        if (imageUrls.length > 3)
+        if (imagesIDs.length > 3)
           Padding(
             padding: const EdgeInsets.only(
               top: DigitalGuideConfig.heightSmall,
             ),
             child: DigitalGuideNavLink(
               onTap: () => {},
-              text: context.localize.see_all_photos(imageUrls.length),
+              text: context.localize.see_all_photos(imagesIDs.length),
             ),
           ),
       ],

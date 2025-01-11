@@ -4,27 +4,24 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../../../../../api_base_rest/client/dio_client.dart";
 import "../../../../../../../config/env.dart";
-
+import "../../../../data/models/digital_guide_response.dart";
 import "../models/digital_guide_entrace.dart";
 
 part "entraces_repository.g.dart";
 
 @riverpod
-Future<IList<DigitalGuideEntrace>> getDigitalGuideEntraces(
+Future<IList<DigitalGuideEntrace>> entrancesRepository(
   Ref ref,
-  int buildingId,
+  DigitalGuideResponse building,
 ) async {
   final digitalGuideEntranceUrl =
-      "${Env.digitalGuideUrl}/entrances/?building=$buildingId";
+      "${Env.digitalGuideUrl}/entrances/?building=${building.id}";
   final dio = ref.read(restClientProvider);
   dio.options.headers["Authorization"] =
       "Token ${Env.digitalGuideAuthorizationToken}";
-
-  final response = await dio.get(digitalGuideEntranceUrl);
-  final data = response.data as List<dynamic>;
-  final entrances = data
-      .map((json) => DigitalGuideEntrace.fromJson(json as Map<String, dynamic>))
+  final response = await dio.get<List<dynamic>>(digitalGuideEntranceUrl);
+  final entrances = response.data
+      ?.map((json) => DigitalGuideEntrace.fromJson(json))
       .toIList();
-
-  return entrances;
+  return entrances ?? const IList.empty();
 }

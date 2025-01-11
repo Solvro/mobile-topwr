@@ -4,7 +4,8 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../../../../api_base_rest/client/dio_client.dart";
 import "../../../../../../config/env.dart";
-import "../../../../data/models/digital_guide_response_extended.dart";
+import "../../../../data/models/digital_guide_response.dart";
+import "../../../../data/repository/levels_repository.dart";
 import "../models/adapted_toilet.dart";
 
 part "adapted_toilets_repository.g.dart";
@@ -12,8 +13,10 @@ part "adapted_toilets_repository.g.dart";
 @riverpod
 Future<IMap<int, IList<AdaptedToilet>>> adaptedToiletsRepository(
   Ref ref,
-  List<Level> levels,
+  DigitalGuideResponse building,
 ) async {
+  final levels =
+      await ref.watch(levelsWithRegionsRepositoryProvider(building).future);
   final dio = ref.read(restClientProvider);
   dio.options.headers["Authorization"] =
       "Token ${Env.digitalGuideAuthorizationToken}";
@@ -37,7 +40,7 @@ Future<IMap<int, IList<AdaptedToilet>>> adaptedToiletsRepository(
 
     final adaptedToiletsList = await Future.wait(adaptedToiletsIterable);
 
-    adaptedToiletsMap[level.id] = adaptedToiletsList.lock;
+    adaptedToiletsMap[level.level.id] = adaptedToiletsList.lock;
   }
 
   return adaptedToiletsMap.lock;

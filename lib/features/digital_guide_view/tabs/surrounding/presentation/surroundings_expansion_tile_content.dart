@@ -6,29 +6,26 @@ import "../../../../../config/ui_config.dart";
 import "../../../../../gen/assets.gen.dart";
 import "../../../../../utils/context_extensions.dart";
 import "../../../../../widgets/my_error_widget.dart";
-import "../../../../digital_guide_view/data/models/digital_guide_response_extended.dart";
+import "../../../data/models/digital_guide_response.dart";
 import "../../../presentation/widgets/accessibility_profile_card.dart";
 import "../../../presentation/widgets/bullet_list.dart";
 import "../../../presentation/widgets/digital_guide_photo_row.dart";
-import "../data/models/surrounding_response_extended.dart";
+import "../data/models/surrounding_response.dart";
 import "../data/repository/surrounding_repository.dart";
 import "../utils/surrounding_response_operations.dart";
 import "widgets/accessibility_information_cards_list.dart";
 
 class SurroundingsExpansionTileContent extends ConsumerWidget {
   const SurroundingsExpansionTileContent({
-    required this.digitalGuideResponseExtended,
+    required this.digitalGuideData,
   });
 
-  final DigitalGuideResponseExtended digitalGuideResponseExtended;
+  final DigitalGuideResponse digitalGuideData;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final asyncSurroundingData = ref.watch(
-      getSurroundingDataExtendedProvider(
-        digitalGuideResponseExtended.surroundingId,
-      ),
-    );
+    final asyncSurroundingData =
+        ref.watch(surroundingRepositoryProvider(digitalGuideData));
 
     return asyncSurroundingData.when(
       data: (surroundingData) => _SurroundingExpansionTileContent(
@@ -47,7 +44,7 @@ class _SurroundingExpansionTileContent extends ConsumerWidget {
     required this.surroundingResponse,
   });
 
-  final SurroundingResponseExtended surroundingResponse;
+  final SurroundingResponse surroundingResponse;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -79,14 +76,14 @@ class _SurroundingExpansionTileContent extends ConsumerWidget {
         height: DigitalGuideConfig.heightTiny,
       ),
       AccessibilityProfileCard(
-        items: getSurroundingsCommentsList(surroundingResponse, context),
+        items: context.getSurroundingsCommentsList(surroundingResponse),
         icon: Assets.svg.digitalGuide.accessibilityAlerts.blindProfile,
       ),
       const SizedBox(
         height: DigitalGuideConfig.heightMedium,
       ),
       DigitalGuidePhotoRow(
-        imageUrls: surroundingResponse.imagesUrl?.toIList() ?? IList(),
+        imagesIDs: surroundingResponse.images.lock,
       ),
       const SizedBox(
         height: DigitalGuideConfig.heightMedium,

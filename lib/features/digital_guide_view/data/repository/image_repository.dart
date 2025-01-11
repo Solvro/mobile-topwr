@@ -7,8 +7,8 @@ import "../../../../config/env.dart";
 part "image_repository.g.dart";
 
 @riverpod
-Future<String?> getImageUrl(Ref ref, int id) async {
-  final digitalGuideUrl = "${Env.digitalGuideUrl}/images/$id";
+Future<String?> imageRepository(Ref ref, int imageID) async {
+  final digitalGuideUrl = "${Env.digitalGuideUrl}/images/$imageID";
   final dio = ref.read(restClientProvider);
   dio.options.headers["Authorization"] =
       "Token ${Env.digitalGuideAuthorizationToken}";
