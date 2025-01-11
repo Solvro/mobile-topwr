@@ -27,17 +27,25 @@ class DigitalGuideView extends ConsumerWidget {
 
   final int id;
 
+  static String localizedOfflineMessage(BuildContext context) {
+    return context.localize.my_offline_error_message(
+      context.localize.digital_guide_offline,
+    );
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncDigitalGuideData = ref.watch(digitalGuideRepositoryProvider(id));
-    // question: Should the app bar appear during loading or when there's an error?
-    // Now it doesn't, neither does it appear on SKS menu screen
     return asyncDigitalGuideData.when(
       data: _DigitalGuideView.new,
-      error: (error, stackTrace) => MyErrorWidget(error),
+      error: (error, stackTrace) => Scaffold(
+        appBar: DetailViewAppBar(),
+        body: MyErrorWidget(error),
+      ),
       // TODO(Bartosh): shimmer loading
-      loading: () => const Scaffold(
-        body: Center(
+      loading: () => Scaffold(
+        appBar: DetailViewAppBar(),
+        body: const Center(
           child: CircularProgressIndicator(),
         ),
       ),

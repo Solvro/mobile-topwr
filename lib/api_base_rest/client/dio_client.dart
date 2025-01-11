@@ -9,3 +9,15 @@ Dio restClient(Ref ref) {
   //Pass as argument FULL URL
   return Dio();
 }
+
+typedef AuthHeader = ({
+  String authotization,
+});
+
+@riverpod
+Dio authRestClient(Ref ref, AuthHeader? authHeader) {
+  final dio = ref.watch(restClientProvider);
+  if (authHeader == null) return dio;
+  dio.options.headers["Authorization"] = authHeader.authotization;
+  return dio;
+}
