@@ -26,14 +26,12 @@ class MicronavigationExpansionTileContent extends ConsumerWidget {
       ),
     );
 
-    // Handle the async state with `when`.
     return asyncMicronavigationData.when(
       data: (micronavigationDataList) => _MicronavigationExpansionTileContent(
-        micronavigationResponses: micronavigationDataList, // Pass the list
+        micronavigationResponses: micronavigationDataList,
       ),
-      error: (error, stackTrace) => MyErrorWidget(error), // Error state
-      loading: () =>
-          const Center(child: CircularProgressIndicator()), // Loading state
+      error: (error, stackTrace) => MyErrorWidget(error),
+      loading: () => const Center(child: CircularProgressIndicator()),
     );
   }
 }

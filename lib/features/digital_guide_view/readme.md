@@ -13,5 +13,9 @@
   * DIGITAL_GUIDE_URL/buildings/{id}
   * DIGITAL_GUIDE_URL/images/{id}
 2) Surroundings data
-  * /surrounding/data/repository/surrounding_repository.dart
+  * tabs/surrounding/data/repository/surrounding_repository.dart
   * DIGITAL_GUIDE_URL/surroundings/{id}
+3) Micronavigation data
+  * /tabs/micronavigation/data/repository/micronavigation_repository.dart
+  * https://przewodnik.pwr.edu.pl/api2/beaconplus/?location={external_id}
+  * Note that endpoint above is different than usual one and uses external_id from digital_guide_response. Additionaly it is unprotected, so for now it is not being added to .env

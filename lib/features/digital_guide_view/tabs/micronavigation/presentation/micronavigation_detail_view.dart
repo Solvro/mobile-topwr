@@ -9,8 +9,8 @@ import "../../../../../widgets/my_html_widget.dart";
 import "widgets/my_audio_player.dart";
 
 @RoutePage()
-class MicronavigationViewDetails extends StatefulWidget {
-  const MicronavigationViewDetails({
+class MicronavigationDetailView extends StatefulWidget {
+  const MicronavigationDetailView({
     super.key,
     required this.title,
     required this.comment,
@@ -22,12 +22,11 @@ class MicronavigationViewDetails extends StatefulWidget {
   final String soundURL;
 
   @override
-  State<MicronavigationViewDetails> createState() =>
-      _MicronavigationViewDetailsState();
+  State<MicronavigationDetailView> createState() =>
+      _MicronavigationDetailViewState();
 }
 
-class _MicronavigationViewDetailsState
-    extends State<MicronavigationViewDetails> {
+class _MicronavigationDetailViewState extends State<MicronavigationDetailView> {
   @override
   Widget build(BuildContext context) {
     final widgets = [
@@ -68,7 +67,7 @@ class _MicronavigationViewDetailsState
       appBar: DetailViewAppBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(
-          horizontal: DigitalGuideConfig.paddingMedium,
+          horizontal: DigitalGuideConfig.paddingBig,
         ),
         child: ListView.builder(
           physics: const NeverScrollableScrollPhysics(),
