@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 
-import "../zoomable_optimized_directus_image.dart";
+import "../zoomable_images.dart";
 
 class SliverLogo extends StatelessWidget {
   const SliverLogo({

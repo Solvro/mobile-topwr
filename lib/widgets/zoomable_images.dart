@@ -5,37 +5,16 @@ import "../theme/colors.dart";
 import "my_cached_image.dart";
 import "optimized_directus_image.dart";
 
-class ZoomableOptimizedDirectusImage extends StatelessWidget {
-  const ZoomableOptimizedDirectusImage(
-    this.imageUrl, {
-    super.key,
-    this.noShimmeringLoading = false,
-    this.boxFit = BoxFit.cover,
-    this.shouldHaveRectBackground = false,
-  });
-
-  final String? imageUrl;
-  final bool noShimmeringLoading;
-  final BoxFit boxFit;
-  final bool shouldHaveRectBackground;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () async {
-        await _showFullScreenImage(context);
-      },
-      child: OptimizedDirectusImage(
-        imageUrl,
-        boxFit: boxFit,
-        noShimmeringLoading: noShimmeringLoading,
-      ),
-    );
-  }
-
-  Future<void> _showFullScreenImage(BuildContext context) async {
+extension ShowFullscreenImageX on BuildContext {
+  Future<void> showFullScreenImage(
+    String? imageUrl, {
+    bool shouldHaveRectBackground = false,
+  }) async {
+    if (imageUrl == null) {
+      return;
+    }
     await showDialog(
-      context: context,
+      context: this,
       builder: (context) {
         return GestureDetector(
           onTap: () {
@@ -102,6 +81,70 @@ class _ImageWithWhiteBackground extends StatelessWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class ZoomableOptimizedDirectusImage extends StatelessWidget {
+  const ZoomableOptimizedDirectusImage(
+    this.imageUrl, {
+    super.key,
+    this.noShimmeringLoading = false,
+    this.boxFit = BoxFit.cover,
+    this.shouldHaveRectBackground = false,
+  });
+
+  final String? imageUrl;
+  final bool noShimmeringLoading;
+  final BoxFit boxFit;
+  final bool shouldHaveRectBackground;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () async {
+        await context.showFullScreenImage(
+          imageUrl,
+          shouldHaveRectBackground: shouldHaveRectBackground,
+        );
+      },
+      child: OptimizedDirectusImage(
+        imageUrl,
+        boxFit: boxFit,
+        noShimmeringLoading: noShimmeringLoading,
+      ),
+    );
+  }
+}
+
+class ZoomableNormalImage extends StatelessWidget {
+  const ZoomableNormalImage(
+    this.imageUrl, {
+    super.key,
+    this.noShimmeringLoading = false,
+    this.boxFit = BoxFit.cover,
+    this.shouldHaveRectBackground = false,
+  });
+
+  final String? imageUrl;
+  final bool noShimmeringLoading;
+  final BoxFit boxFit;
+  final bool shouldHaveRectBackground;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () async {
+        await context.showFullScreenImage(
+          imageUrl,
+          shouldHaveRectBackground: shouldHaveRectBackground,
+        );
+      },
+      child: MyCachedImage(
+        imageUrl,
+        boxFit: boxFit,
+        noShimmeringLoading: noShimmeringLoading,
       ),
     );
   }

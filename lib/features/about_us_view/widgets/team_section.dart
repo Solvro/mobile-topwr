@@ -10,7 +10,7 @@ import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../utils/determine_contact_icon.dart";
 import "../../../utils/launch_url_util.dart";
-import "../../../widgets/zoomable_optimized_directus_image.dart";
+import "../../../widgets/zoomable_images.dart";
 import "../models/about_us_details.dart";
 import "../models/member_data.dart";
 
