@@ -1,6 +1,5 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
-import "package:logger/logger.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../../../../api_base_rest/client/dio_client.dart";
@@ -20,9 +19,7 @@ Future<IList<MicronavigationResponse>> getMicronavigationData(
       "$micronavigationUrlEndpoint/beaconplus/?location=$id";
   final dio = ref.read(restClientProvider);
   final response = await dio.get(micronavigationUrl);
-  Logger().i("URL: $micronavigationUrl");
   final List<dynamic> responseData = response.data as List<dynamic>;
-  Logger().i("response data: $responseData");
   return responseData
       .map(
         (item) =>

@@ -284,5 +284,6 @@
   "emptySection": "Brak członków zespołu w tej wersji",
   "communique" : "Komunikat",
   "audio_message" : "Komunikat Dźwiękowy",
+  "audio_message_comment" : "Sygnał znacznika może różnić się tempem i brzmieniem",
   "digital_guide" : "Cyfrowy Przewodnik"
 }
