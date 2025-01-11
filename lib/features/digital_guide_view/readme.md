@@ -2,6 +2,7 @@
 * Two variables should be added to .env
   * DIGITAL_GUIDE_URL
   * DIGITAL_GUIDE_AUTHORIZATION_TOKEN
+  * DIGITAL_GUIDE_URL   (no token required)
 
 # Tips
 * All HTTP requests must include the authorization token ("Token ${Env.digitalGuideAuthorizationToken"})
@@ -17,5 +18,5 @@
   * DIGITAL_GUIDE_URL/surroundings/{id}
 3) Micronavigation data
   * /tabs/micronavigation/data/repository/micronavigation_repository.dart
-  * https://przewodnik.pwr.edu.pl/api2/beaconplus/?location={external_id}
+  * DIGITAL_GUIDE_URL_MICRONAVIGATION/beaconplus/?location={external_id}
   * Note that endpoint above is different than usual one and uses external_id from digital_guide_response. Additionaly it is unprotected, so for now it is not being added to .env
