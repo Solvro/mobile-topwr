@@ -48,7 +48,6 @@ class MyAudioPlayerState extends State<MyAudioPlayer> {
     super.dispose();
   }
 
-  // Play or pause the audio
   Future<void> _togglePlayPause() async {
     if (isPlaying) {
       await _audioPlayer.pause();
@@ -68,7 +67,8 @@ class MyAudioPlayerState extends State<MyAudioPlayer> {
       padding: const EdgeInsets.all(DigitalGuideConfig.paddingSmall),
       decoration: BoxDecoration(
         color: Colors.grey[200],
-        borderRadius: BorderRadius.circular(20),
+        borderRadius:
+            BorderRadius.circular(DigitalGuideConfig.borderRadiusHuge),
       ),
       child: Row(
         children: [
