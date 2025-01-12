@@ -24,7 +24,7 @@ class ParkingChart extends ConsumerWidget {
     return switch (chartData) {
       AsyncError(:final error) => Material(
           borderRadius: const BorderRadius.all(WideTileCardConfig.radius),
-          color: context.colorTheme.greyLight.withOpacity(0.8),
+          color: context.colorTheme.greyLight.withValues(alpha: 0.8),
           child: MyErrorWidget(error),
         ),
       AsyncValue(:final IList<ChartPoint> value) => value.isEmpty
@@ -52,7 +52,7 @@ class ParkingChart extends ConsumerWidget {
           child: PreviewCardLoading(
             height: double.infinity,
             width: double.infinity,
-            color: context.colorTheme.greyPigeon.withOpacity(0.1),
+            color: context.colorTheme.greyPigeon.withValues(alpha: 0.1),
           ),
         ),
     };
