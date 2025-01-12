@@ -281,5 +281,7 @@
   "is_noisy_street_near_building" : "W okolicy {value, select, false{nie ma ruchliwej, hałaśliwej ulicy. } true{znajduje się ruchliwa, hałaśliwa ulica. } other{}}",
   "strategicBadgeTooltip": "Koło Strategiczne PWr",
   "strategic_club_abbr": "KS",
-  "emptySection": "Brak członków zespołu w tej wersji"
+  "emptySection": "Brak członków zespołu w tej wersji",
+  "public_transport": "Publiczny środek komunikacji miejskiej (autobus, tramwaj)",
+  "private_transport": "Prywatny środek transportu (samochód, rower)"
 }

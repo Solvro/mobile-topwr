@@ -3,6 +3,7 @@ import "dart:async";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../buildings_view/model/building_model.dart";
+import "../../digital_guide_view/tabs/access/data/models/access.dart";
 import "../../digital_guide_view/tabs/adapted_toilets/data/models/adapted_toilet.dart";
 import "../../parkings_view/models/parking.dart";
 import "../app_router.dart";
@@ -84,5 +85,12 @@ extension NavigationX on WidgetRef {
 
   Future<void> navigateAdaptedToiletDetails(AdaptedToilet adaptedToilet) async {
     await _router.push(AdaptedToiletDetailRoute(adaptedToilet: adaptedToilet));
+  }
+
+  Future<void> navigatePublicTransportDetails(Access access) async {
+    await _router.push(PublicTransportDetailRoute(access: access));
+  }
+  Future<void> navigatePrivateTransportDetails(Access access) async {
+    await _router.push(PrivateTransportDetailRoute(access: access));
   }
 }

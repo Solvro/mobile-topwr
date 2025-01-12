@@ -4,6 +4,7 @@ import "package:flutter/widgets.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../widgets/my_expansion_tile.dart";
 import "../../data/models/digital_guide_response_extended.dart";
+import "../../tabs/access/presentation/access_expansion_tile_content.dart";
 import "../../tabs/adapted_toilets/presentation/adapted_toilets_expansion_tile_content.dart";
 import "../../tabs/amenities/presentation/amenities_expansion_tile_content.dart";
 import "../../tabs/evacuation/evacuation_widget.dart";
@@ -44,7 +45,10 @@ class DigitalGuideFeaturesSection extends StatelessWidget {
       ),
       (
         title: context.localize.transport,
-        content: [LocalizationExpansionTileContent()],
+        content: [AccessExpansionTileContent(
+          digitalGuideResponseExtended: digitalGuideResponseExtended,
+        ),
+        ],
       ),
       (
         title: context.localize.entrances,
