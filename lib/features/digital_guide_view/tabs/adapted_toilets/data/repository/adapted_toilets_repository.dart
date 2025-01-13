@@ -5,6 +5,7 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 import "../../../../data/api/digital_guide_get_and_cache.dart";
 import "../../../../data/models/level.dart";
 import "../../../../data/models/level_with_regions.dart";
+import "../../../../data/models/region.dart";
 import "../models/adapted_toilet.dart";
 
 part "adapted_toilets_repository.g.dart";
