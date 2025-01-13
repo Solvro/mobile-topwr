@@ -64,8 +64,7 @@ class _DigitalGuideView extends ConsumerWidget {
       const SizedBox(height: DigitalGuideConfig.heightSmall),
       SizedBox(
         height: DetailViewsConfig.imageHeight,
-        child:
-            DigitalGuideImage(id: digitalGuideData.images[0], zoomable: false),
+        child: DigitalGuideImage(id: digitalGuideData.images[0]),
       ),
       HeadlinesSection(
         name: digitalGuideData.translations.plTranslation.name,
