@@ -49,7 +49,7 @@ class NavActionsSection extends ConsumerWidget {
                 color: context.colorTheme.whiteSoap,
                 size: 32,
               ),
-              () => unawaited(ref.navigateDigitalGuide(303)),
+              () => unawaited(ref.navigateDigitalGuide(421)),
             ),
           ],
         ),

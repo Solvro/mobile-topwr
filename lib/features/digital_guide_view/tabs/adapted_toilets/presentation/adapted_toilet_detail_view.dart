@@ -108,8 +108,13 @@ class AdaptedToiletDetailView extends ConsumerWidget {
                   return Padding(
                     padding:
                         const EdgeInsets.all(DigitalGuideConfig.heightMedium),
-                    child: DigitalGuideImage(
-                      id: adaptedToilet.imagesIndices[index],
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(
+                        DigitalGuideConfig.borderRadiusSmall,
+                      ),
+                      child: DigitalGuideImage(
+                        id: adaptedToilet.imagesIndices[index],
+                      ),
                     ),
                   );
                 },

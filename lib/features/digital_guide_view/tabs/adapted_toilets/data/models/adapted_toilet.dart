@@ -1,3 +1,4 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 
@@ -19,8 +20,8 @@ class AdaptedToilet with _$AdaptedToilet {
     @JsonKey(name: "is_entrance_graphically_marked", fromJson: _stringToBool)
     required bool isEntranceGraphicallyMarked,
     @JsonKey(name: "is_marked", fromJson: _stringToBool) required bool isMarked,
-    @JsonKey(name: "images") required List<int> imagesIndices,
-    @JsonKey(name: "doors") required List<int> doorsIndices,
+    @JsonKey(name: "images") required IList<int> imagesIndices,
+    @JsonKey(name: "doors") required IList<int> doorsIndices,
   }) = _AdaptedToilet;
 
   factory AdaptedToilet.fromJson(Map<String, dynamic> json) =>
