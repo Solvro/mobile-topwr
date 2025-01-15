@@ -8,10 +8,10 @@ class HexColor extends Color {
   const HexColor.consts(super.value);
 
   String get hexString => _ToHexConverter.getHexStrFromColorInt(
-        r.toInt(),
-        g.toInt(),
-        b.toInt(),
-        a.toInt(),
+        r,
+        g,
+        b,
+        a,
       );
 }
 
@@ -33,21 +33,19 @@ abstract class _FromHexConverter {
 }
 
 abstract class _ToHexConverter {
-  static String getHexStrFromColorInt(int r, int g, int b, int a) {
-    var tempString = _toBase16Str(r, g, b);
-    tempString = _fillWith0sToFixedLen(tempString);
+  static String getHexStrFromColorInt(double r, double g, double b, double a) {
+    final tempString = _toBase16Str(r, g, b, a);
     return "#${_removeOpacityChannelIf255(tempString, a)}";
   }
 
-  static String _toBase16Str(int r, int g, int b) {
-    final red = (r * 255).toRadixString(16).padLeft(2, "0");
-    final green = (g * 255).toRadixString(16).padLeft(2, "0");
-    final blue = (b * 255).toRadixString(16).padLeft(2, "0");
-    return "$red$green$blue";
+  static String _toBase16Str(double r, double g, double b, double a) {
+    final red = (r * 255).toInt().toRadixString(16).padLeft(2, "0");
+    final green = (g * 255).toInt().toRadixString(16).padLeft(2, "0");
+    final blue = (b * 255).toInt().toRadixString(16).padLeft(2, "0");
+    final alpha = (a * 255).toInt().toRadixString(16).padLeft(2, "0");
+    return "$alpha$red$green$blue";
   }
 
-  static String _fillWith0sToFixedLen(String str) => str.padLeft(8, "0");
-
-  static String _removeOpacityChannelIf255(String str, int alpha) =>
-      str.substring(alpha == 255 ? 2 : 0);
+  static String _removeOpacityChannelIf255(String str, double alpha) =>
+      str.substring(alpha == 1 ? 2 : 0);
 }
