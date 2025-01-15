@@ -9,6 +9,7 @@ enum DishCategory {
   soup,
   vegetarianDish,
   meatDish,
+  dessert,
   sideDish,
   drink,
   technicalInfo;
@@ -28,6 +29,7 @@ extension GetLocalizedNameX on DishCategory {
       DishCategory.sideDish => context.localize.sks_menu_side_dishes,
       DishCategory.drink => context.localize.sks_menu_drinks,
       DishCategory.technicalInfo => context.localize.sks_menu_technical_info,
+      DishCategory.dessert => context.localize.sks_menu_desserts,
     };
   }
 }
