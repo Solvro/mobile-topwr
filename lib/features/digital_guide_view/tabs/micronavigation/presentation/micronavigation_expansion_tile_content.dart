@@ -4,7 +4,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../config/ui_config.dart";
 import "../../../../../widgets/my_error_widget.dart";
-import "../../../../digital_guide_view/data/models/digital_guide_response_extended.dart";
+import "../../../../digital_guide_view/data/models/digital_guide_response.dart";
 import "../../../../navigator/utils/navigation_commands.dart";
 import "../../../presentation/widgets/digital_guide_nav_link.dart";
 import "../data/models/micronavigation_response.dart";
@@ -13,16 +13,16 @@ import "../data/repository/micronavigation_repository.dart";
 class MicronavigationExpansionTileContent extends ConsumerWidget {
   const MicronavigationExpansionTileContent({
     super.key,
-    required this.digitalGuideResponseExtended,
+    required this.digitalGuideData,
   });
 
-  final DigitalGuideResponseExtended digitalGuideResponseExtended;
+  final DigitalGuideResponse digitalGuideData;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncMicronavigationData = ref.watch(
       getMicronavigationDataProvider(
-        digitalGuideResponseExtended.externalId,
+        digitalGuideData.externalId,
       ),
     );
 

@@ -77,7 +77,7 @@ class DigitalGuideFeaturesSection extends ConsumerWidget {
         title: context.localize.micro_navigation,
         content: [
           MicronavigationExpansionTileContent(
-            digitalGuideResponseExtended: digitalGuideResponseExtended,
+            digitalGuideData: digitalGuideData,
           ),
         ],
       ),

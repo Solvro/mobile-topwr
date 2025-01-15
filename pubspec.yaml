@@ -34,8 +34,6 @@ dependencies:
     sdk: flutter
 
   #Theme
-  audioplayers: ^6.1.0
-  cupertino_icons: ^1.0.8
   theme_tailor_annotation: ^3.0.1
   theme_tailor: ^3.0.1
 
