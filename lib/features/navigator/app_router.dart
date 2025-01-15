@@ -10,6 +10,8 @@ import "../departments_view/departments_view.dart";
 import "../digital_guide_view/presentation/digital_guide_view.dart";
 import "../digital_guide_view/tabs/adapted_toilets/data/models/adapted_toilet.dart";
 import "../digital_guide_view/tabs/adapted_toilets/presentation/adapted_toilet_detail_view.dart";
+import "../digital_guide_view/tabs/rooms/data/models/digital_guide_room.dart";
+import "../digital_guide_view/tabs/rooms/presentation/digital_guide_room_detail_view.dart";
 import "../guide_detail_view/guide_detail_view.dart";
 import "../guide_view/guide_view.dart";
 import "../home_view/home_view.dart";
@@ -21,6 +23,7 @@ import "../sks-menu/presentation/sks_menu_screen.dart";
 import "root_view.dart";
 
 part "app_router.g.dart";
+
 part "app_router.gr.dart";
 
 class _NoTransitionRoute extends CustomRoute {
@@ -107,6 +110,9 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           path: "/aboutUs",
           page: AboutUsRoute.page,
+        ),
+        AutoRoute(
+          page: DigitalGuideRoomDetailRoute.page,
         ),
       ];
 }

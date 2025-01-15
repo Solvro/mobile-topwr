@@ -11,6 +11,7 @@ import "../../tabs/adapted_toilets/presentation/adapted_toilets_expansion_tile_c
 import "../../tabs/amenities/presentation/amenities_expansion_tile_content.dart";
 import "../../tabs/evacuation/evacuation_widget.dart";
 import "../../tabs/localization/presentation/localization_expansion_tile_content.dart";
+import "../../tabs/rooms/presentation/digital_guide_rooms_expansion_tile_content.dart";
 import "../../tabs/surrounding/presentation/surroundings_expansion_tile_content.dart";
 
 typedef TileContent = ({String title, List<Widget> content});
@@ -82,7 +83,11 @@ class DigitalGuideFeaturesSection extends ConsumerWidget {
       ),
       (
         title: context.localize.room_information,
-        content: [LocalizationExpansionTileContent()],
+        content: [
+          DigitalGuideRoomExpansionTileContent(
+            digitalGuideResponse: digitalGuideData,
+          ),
+        ],
       ),
       (
         title: context.localize.evacuation,
