@@ -271,7 +271,7 @@
   "people_blind" : "niewidomych",
   "people_with_motor_disability" : "posiadających dysfunkcje ruchu",
   "people_with_high_sensory_sensitivity" : "o wysokiej wrażliwości sensorycznej",
-  "see_all_photos" : "Zobacz {photos, plural, =0{{photos} zdjęć} =1{{photos} zdjęcie} few{wszystkie {photos} zdjęcia} other{wszystkie {photos} zjęć}}",
+  "see_all_photos" : "Zobacz {photos, plural, =0{{photos} zdjęć} =1{{photos} zdjęcie} few{wszystkie {photos} zdjęcia} other{wszystkie {photos} zdjęć}}",
   "are_dangerous_elements_comment_prefix" : "W otoczeniu budynku znajdują się następujące obiekty, które mogą stanowić zagrożenie: {text}",
   "are_high_curbs_at_parking_space_for_pwd" : "Przy miejscach postojowych dla osób z niepełnosprawnościami {value, select, false{nie} other{}} znajduje się wysoki krawężnik. ",
   "is_lit" : "Otoczenie budynku {value, select, false{nie} other{}} jest oświetlone po zmroku. ",
@@ -283,5 +283,9 @@
   "strategicBadgeTooltip": "Koło Strategiczne PWr",
   "strategic_club_abbr": "KS",
   "emptySection": "Brak członków zespołu w tej wersji",
-  "digital_guide_offline" : "Cyfrowego Przewodnika"
+  "digital_guide_offline" : "Cyfrowego Przewodnika",
+  "platforms" : "Podesty",
+  "stairs" : "Schody",
+  "key_information" : "Najważniejsze informacje",
+  "working_hours" : "Godziny otwarcia"
 }

@@ -9,9 +9,12 @@
 
 # Used endpoints
 1) Building data and image
-  * /general_info/data/repository/digita_guide_repository.dart
+  * /general_info/data/repository/digital_guide_repository.dart
   * DIGITAL_GUIDE_URL/buildings/{id}
   * DIGITAL_GUIDE_URL/images/{id}
 2) Surroundings data
   * /surrounding/data/repository/surrounding_repository.dart
   * DIGITAL_GUIDE_URL/surroundings/{id}
+3) Rooms data
+  * /rooms/data/repository/rooms_repository.dart
+  * DIGITAL_GUIDE_URL/rooms/{id}
