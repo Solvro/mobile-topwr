@@ -1,7 +1,9 @@
 import "dart:async";
 
 import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:logger/logger.dart";
 
+import "../../../utils/launch_url_util.dart";
 import "../../buildings_view/model/building_model.dart";
 import "../../digital_guide_view/tabs/adapted_toilets/data/models/adapted_toilet.dart";
 import "../../digital_guide_view/tabs/rooms/data/models/digital_guide_room.dart";
@@ -89,5 +91,18 @@ extension NavigationX on WidgetRef {
 
   Future<void> navigateRoomDetails(DigitalGuideRoom room) async {
     await _router.push(DigitalGuideRoomDetailRoute(room: room));
+  }
+
+  Future<void> navigateBuildingDetailAction(String mode, String urlOrID) async {
+    return switch (mode) {
+      "web_url" => launch(urlOrID),
+      "digital_guide_building" => navigateDigitalGuide(int.parse(urlOrID)),
+      "digital_guide_other_place" => Logger().i(
+          "Other Digital Guide place, not yet implemented",
+        ),
+      _ => Logger().w(
+          "Unknown externalDigitalGuideMode: $mode",
+        )
+    };
   }
 }
