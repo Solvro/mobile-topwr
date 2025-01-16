@@ -34,31 +34,22 @@ class DigitalGuideRoomDetailView extends ConsumerWidget {
         style: context.textTheme.headline
             .copyWith(fontSize: 12, fontWeight: FontWeight.normal),
       ),
-      SizedBox(
-        height: roomInformation.workingDaysAndHours.isNotEmpty
-            ? DigitalGuideConfig.heightMedium
-            : 0,
-      ),
+      if (roomInformation.workingDaysAndHours.isNotEmpty)
+        const SizedBox(height: DigitalGuideConfig.heightMedium),
       Text(
         roomInformation.workingDaysAndHours.isNotEmpty
             ? "${context.localize.working_hours}:"
             : "",
         style: context.textTheme.headline,
       ),
-      SizedBox(
-        height: roomInformation.workingDaysAndHours.isNotEmpty
-            ? DigitalGuideConfig.heightSmall
-            : 0,
-      ),
+      if (roomInformation.workingDaysAndHours.isNotEmpty)
+        const SizedBox(height: DigitalGuideConfig.heightSmall),
       Text(
         roomInformation.workingDaysAndHours,
         style: context.textTheme.body.copyWith(fontSize: 16),
       ),
-      SizedBox(
-        height: roomInformation.workingDaysAndHours.isNotEmpty
-            ? DigitalGuideConfig.heightMedium
-            : 0,
-      ),
+      if (roomInformation.workingDaysAndHours.isNotEmpty)
+        const SizedBox(height: DigitalGuideConfig.heightMedium),
       Text(
         context.localize.key_information,
         style: context.textTheme.headline,
@@ -80,10 +71,8 @@ class DigitalGuideRoomDetailView extends ConsumerWidget {
             : 0,
       ),
       DigitalGuidePhotoRow(imagesIDs: room.imagesIds.toIList()),
-      SizedBox(
-        height: room.imagesIds != null && room.imagesIds!.isNotEmpty
-            ? DigitalGuideConfig.heightMedium
-            : DigitalGuideConfig.heightSmall,
+      const SizedBox(
+        height: DigitalGuideConfig.heightMedium,
       ),
       DigitalGuideNavLink(
         onTap: () {},

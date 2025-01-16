@@ -1,6 +1,7 @@
 import "package:freezed_annotation/freezed_annotation.dart";
 
 part "digital_guide_room.freezed.dart";
+
 part "digital_guide_room.g.dart";
 
 @freezed
@@ -27,18 +28,16 @@ class DigitalGuideTranslationsRoom with _$DigitalGuideTranslationsRoom {
 
 @freezed
 class DigitalGuideTranslationRoom with _$DigitalGuideTranslationRoom {
+  @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideTranslationRoom({
-    @JsonKey(name: "name") required String name,
-    @JsonKey(name: "room_purpose") required String roomPurpose,
-    @JsonKey(name: "location") required String location,
-    @JsonKey(name: "working_days_and_hours")
+    required String name,
+    required String roomPurpose,
+    required String location,
     required String workingDaysAndHours,
-    @JsonKey(name: "are_entrances_comment") required String areEntrancesComment,
-    @JsonKey(name: "is_one_level_floor_comment")
+    required String areEntrancesComment,
     required String isOneLevelFloorComment,
-    @JsonKey(name: "are_places_for_wheelchairs_comment")
     required String arePlacesForWheelchairsComment,
-    @JsonKey(name: "comment") required String comment,
+    required String comment,
   }) = _DigitalGuideTranslationRoom;
 
   factory DigitalGuideTranslationRoom.fromJson(Map<String, dynamic> json) =>
