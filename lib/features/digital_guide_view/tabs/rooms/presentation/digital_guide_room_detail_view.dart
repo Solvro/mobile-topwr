@@ -36,12 +36,11 @@ class DigitalGuideRoomDetailView extends ConsumerWidget {
       ),
       if (roomInformation.workingDaysAndHours.isNotEmpty)
         const SizedBox(height: DigitalGuideConfig.heightMedium),
-      Text(
-        roomInformation.workingDaysAndHours.isNotEmpty
-            ? "${context.localize.working_hours}:"
-            : "",
-        style: context.textTheme.headline,
-      ),
+      if (roomInformation.workingDaysAndHours.isNotEmpty)
+        Text(
+          "${context.localize.working_hours}:",
+          style: context.textTheme.headline,
+        ),
       if (roomInformation.workingDaysAndHours.isNotEmpty)
         const SizedBox(height: DigitalGuideConfig.heightSmall),
       Text(
