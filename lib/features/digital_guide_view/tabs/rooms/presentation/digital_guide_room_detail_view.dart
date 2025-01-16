@@ -64,11 +64,10 @@ class DigitalGuideRoomDetailView extends ConsumerWidget {
           roomInformation.isOneLevelFloorComment,
         ].toIList(),
       ),
-      SizedBox(
-        height: room.imagesIds != null && room.imagesIds!.isNotEmpty
-            ? DigitalGuideConfig.heightMedium
-            : 0,
-      ),
+      if (room.imagesIds != null && room.imagesIds!.isNotEmpty)
+        const SizedBox(
+          height: DigitalGuideConfig.heightMedium,
+        ),
       DigitalGuidePhotoRow(imagesIDs: room.imagesIds.toIList()),
       const SizedBox(
         height: DigitalGuideConfig.heightMedium,
