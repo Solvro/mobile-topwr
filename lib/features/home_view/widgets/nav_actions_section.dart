@@ -40,15 +40,6 @@ class NavActionsSection extends ConsumerWidget {
               ),
               ref.navigateAboutUs,
             ),
-            // _NavActionButton(
-            //   "Digital Guide",
-            //   Icon(
-            //     Icons.accessibility,
-            //     color: context.colorTheme.whiteSoap,
-            //     size: 32,
-            //   ),
-            //   () => unawaited(ref.navigateDigitalGuide(421)),
-            // ),
           ],
         ),
       );
