@@ -53,12 +53,7 @@ class BuildingTile extends ConsumerWidget {
                     : context.colorTheme.greyPigeon,
               ),
               onPressed: () {
-                unawaited(
-                  ref.navigateBuildingDetailAction(
-                    building.externalDigitalGuideMode!,
-                    building.externalDigitalGuideIdOrURL!,
-                  ),
-                );
+                unawaited(ref.navigateBuildingDetailAction(building));
               },
             ),
           ),
