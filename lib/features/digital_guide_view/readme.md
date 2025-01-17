@@ -10,13 +10,18 @@
 
 # Used endpoints
 1) Building data and image
-  * /general_info/data/repository/digita_guide_repository.dart
+  * /general_info/data/repository/digital_guide_repository.dart
   * DIGITAL_GUIDE_URL/buildings/{id}
   * DIGITAL_GUIDE_URL/images/{id}
 2) Surroundings data
   * tabs/surrounding/data/repository/surrounding_repository.dart
   * DIGITAL_GUIDE_URL/surroundings/{id}
+
 3) Micronavigation data
   * /tabs/micronavigation/data/repository/micronavigation_repository.dart
-  * DIGITAL_GUIDE_URL_MICRONAVIGATION/beaconplus/?location={external_id}
-  * Note that endpoint above is different than usual one and uses external_id from digital_guide_response. Additionaly it is unprotected, so for now it is not being added to .env
+  * DIGITAL_GUIDE_ADDONS_URL/beaconplus/?location={external_id}
+
+4) Rooms data
+  * /rooms/data/repository/rooms_repository.dart
+  * DIGITAL_GUIDE_URL/rooms/{id}
+
