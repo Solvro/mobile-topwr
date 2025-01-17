@@ -5,12 +5,13 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "../../buildings_view/model/building_model.dart";
 import "../../digital_guide_view/tabs/adapted_toilets/data/models/adapted_toilet.dart";
 import "../../digital_guide_view/tabs/micronavigation/data/models/micronavigation_response.dart";
+import "../../digital_guide_view/tabs/rooms/data/models/digital_guide_room.dart";
 import "../../parkings_view/models/parking.dart";
 import "../app_router.dart";
 import "../navigation_controller.dart";
 
 /// just a one place to gather implementation details of navigation flow
-/// - for easy maintainance
+/// - for easy maintenance
 extension NavigationX on WidgetRef {
   NavigationController get _router =>
       read(navigationControllerProvider.notifier);
@@ -95,5 +96,9 @@ extension NavigationX on WidgetRef {
         micronavigationResponse: micronavigationResponse,
       ),
     );
+  }
+
+  Future<void> navigateRoomDetails(DigitalGuideRoom room) async {
+    await _router.push(DigitalGuideRoomDetailRoute(room: room));
   }
 }
