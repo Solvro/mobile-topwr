@@ -10,5 +10,7 @@ query GetBuildings {
     }
     naturalName
     disableBuildingPrefix
+    externalDigitalGuideMode
+    externalDigitalGuideIdOrURL
   }
 }

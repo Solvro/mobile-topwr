@@ -55,10 +55,6 @@ type Query {
   FieldOfStudy_by_id(id: ID!, version: String): FieldOfStudy
   FieldOfStudy_aggregated(groupBy: [String], filter: FieldOfStudy_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [FieldOfStudy_aggregated!]!
   FieldOfStudy_by_version(version: String!, id: ID!): version_FieldOfStudy
-  Buildings(filter: Buildings_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): [Buildings!]!
-  Buildings_by_id(id: ID!, version: String): Buildings
-  Buildings_aggregated(groupBy: [String], filter: Buildings_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [Buildings_aggregated!]!
-  Buildings_by_version(version: String!, id: ID!): version_Buildings
   CacheReferenceNumber(version: String): CacheReferenceNumber
   CacheReferenceNumber_by_version(version: String!): version_CacheReferenceNumber
   AboutUs_Team_Social_Links(filter: AboutUs_Team_Social_Links_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): [AboutUs_Team_Social_Links!]!
@@ -85,10 +81,6 @@ type Query {
   Scientific_Circles_by_id(id: ID!, version: String): Scientific_Circles
   Scientific_Circles_aggregated(groupBy: [String], filter: Scientific_Circles_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [Scientific_Circles_aggregated!]!
   Scientific_Circles_by_version(version: String!, id: ID!): version_Scientific_Circles
-  TeamVersions(filter: TeamVersions_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): [TeamVersions!]!
-  TeamVersions_by_id(id: ID!, version: String): TeamVersions
-  TeamVersions_aggregated(groupBy: [String], filter: TeamVersions_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [TeamVersions_aggregated!]!
-  TeamVersions_by_version(version: String!, id: ID!): version_TeamVersions
   TeamVersion_Members_AboutUs_Team_Social_Links(filter: TeamVersion_Members_AboutUs_Team_Social_Links_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): [TeamVersion_Members_AboutUs_Team_Social_Links!]!
   TeamVersion_Members_AboutUs_Team_Social_Links_by_id(id: ID!, version: String): TeamVersion_Members_AboutUs_Team_Social_Links
   TeamVersion_Members_AboutUs_Team_Social_Links_aggregated(groupBy: [String], filter: TeamVersion_Members_AboutUs_Team_Social_Links_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [TeamVersion_Members_AboutUs_Team_Social_Links_aggregated!]!
@@ -97,6 +89,14 @@ type Query {
   TeamVersion_Members_by_id(id: ID!, version: String): TeamVersion_Members
   TeamVersion_Members_aggregated(groupBy: [String], filter: TeamVersion_Members_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [TeamVersion_Members_aggregated!]!
   TeamVersion_Members_by_version(version: String!, id: ID!): version_TeamVersion_Members
+  TeamVersions(filter: TeamVersions_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): [TeamVersions!]!
+  TeamVersions_by_id(id: ID!, version: String): TeamVersions
+  TeamVersions_aggregated(groupBy: [String], filter: TeamVersions_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [TeamVersions_aggregated!]!
+  TeamVersions_by_version(version: String!, id: ID!): version_TeamVersions
+  Buildings(filter: Buildings_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): [Buildings!]!
+  Buildings_by_id(id: ID!, version: String): Buildings
+  Buildings_aggregated(groupBy: [String], filter: Buildings_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [Buildings_aggregated!]!
+  Buildings_by_version(version: String!, id: ID!): version_Buildings
 }
 
 type Scientific_Circles_Tags {
@@ -1199,76 +1199,6 @@ type version_FieldOfStudy {
   hasWeekendModeOption: Boolean
 }
 
-type Buildings {
-  id: ID!
-  name: String!
-  latitude: Float!
-  longitude: Float!
-  addres: String
-  cover(filter: directus_files_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): directus_files
-  food: Boolean
-  naturalName: String
-  disableBuildingPrefix: Boolean!
-}
-
-input Buildings_filter {
-  id: number_filter_operators
-  name: string_filter_operators
-  latitude: number_filter_operators
-  longitude: number_filter_operators
-  addres: string_filter_operators
-  cover: directus_files_filter
-  food: boolean_filter_operators
-  naturalName: string_filter_operators
-  disableBuildingPrefix: boolean_filter_operators
-  _and: [Buildings_filter]
-  _or: [Buildings_filter]
-}
-
-type Buildings_aggregated {
-  group: JSON
-  countAll: Int
-  count: Buildings_aggregated_count
-  countDistinct: Buildings_aggregated_count
-  avg: Buildings_aggregated_fields
-  sum: Buildings_aggregated_fields
-  avgDistinct: Buildings_aggregated_fields
-  sumDistinct: Buildings_aggregated_fields
-  min: Buildings_aggregated_fields
-  max: Buildings_aggregated_fields
-}
-
-type Buildings_aggregated_count {
-  id: Int
-  name: Int
-  latitude: Int
-  longitude: Int
-  addres: Int
-  cover: Int
-  food: Int
-  naturalName: Int
-  disableBuildingPrefix: Int
-}
-
-type Buildings_aggregated_fields {
-  id: Float
-  latitude: Float
-  longitude: Float
-}
-
-""""""
-type version_Buildings {
-  id: ID!
-  name: String!
-  latitude: Float!
-  longitude: Float!
-  addres: String
-  cover: JSON
-  food: Boolean
-  naturalName: String
-  disableBuildingPrefix: Boolean!
-}
-
 type CacheReferenceNumber {
   id: ID!
   status: String
@@ -1626,6 +1556,29 @@ type version_Scientific_Circles {
   links_func: count_functions
 }
 
+type TeamVersion_Members_AboutUs_Team_Social_Links {
+  id: ID!
+  TeamVersion_Members_id(filter: TeamVersion_Members_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): TeamVersion_Members
+  AboutUs_Team_Social_Links_id(filter: AboutUs_Team_Social_Links_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): AboutUs_Team_Social_Links
+}
+
+type TeamVersion_Members {
+  id: ID!
+  sort: Int
+  user_created: String
+  date_created: Date
+  date_created_func: datetime_functions
+  user_updated: String
+  date_updated: Date
+  date_updated_func: datetime_functions
+  name: String!
+  subtitle: String
+  photo(filter: directus_files_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): directus_files
+  appVersion(filter: TeamVersions_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): TeamVersions
+  socialLinks(filter: TeamVersion_Members_AboutUs_Team_Social_Links_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): [TeamVersion_Members_AboutUs_Team_Social_Links]
+  socialLinks_func: count_functions
+}
+
 type TeamVersions {
   id: ID!
   sort: Int
@@ -1650,70 +1603,6 @@ input TeamVersions_filter {
   name: string_filter_operators
   _and: [TeamVersions_filter]
   _or: [TeamVersions_filter]
-}
-
-type TeamVersions_aggregated {
-  group: JSON
-  countAll: Int
-  count: TeamVersions_aggregated_count
-  countDistinct: TeamVersions_aggregated_count
-  avg: TeamVersions_aggregated_fields
-  sum: TeamVersions_aggregated_fields
-  avgDistinct: TeamVersions_aggregated_fields
-  sumDistinct: TeamVersions_aggregated_fields
-  min: TeamVersions_aggregated_fields
-  max: TeamVersions_aggregated_fields
-}
-
-type TeamVersions_aggregated_count {
-  id: Int
-  sort: Int
-  user_created: Int
-  date_created: Int
-  user_updated: Int
-  date_updated: Int
-  name: Int
-}
-
-type TeamVersions_aggregated_fields {
-  id: Float
-  sort: Float
-}
-
-""""""
-type version_TeamVersions {
-  id: ID!
-  sort: Int
-  user_created: String
-  date_created: Date
-  date_created_func: datetime_functions
-  user_updated: String
-  date_updated: Date
-  date_updated_func: datetime_functions
-  name: String
-}
-
-type TeamVersion_Members_AboutUs_Team_Social_Links {
-  id: ID!
-  TeamVersion_Members_id(filter: TeamVersion_Members_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): TeamVersion_Members
-  AboutUs_Team_Social_Links_id(filter: AboutUs_Team_Social_Links_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): AboutUs_Team_Social_Links
-}
-
-type TeamVersion_Members {
-  id: ID!
-  sort: Int
-  user_created: String
-  date_created: Date
-  date_created_func: datetime_functions
-  user_updated: String
-  date_updated: Date
-  date_updated_func: datetime_functions
-  name: String!
-  subtitle: String
-  photo(filter: directus_files_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): directus_files
-  appVersion(filter: TeamVersions_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): TeamVersions
-  socialLinks(filter: TeamVersion_Members_AboutUs_Team_Social_Links_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): [TeamVersion_Members_AboutUs_Team_Social_Links]
-  socialLinks_func: count_functions
 }
 
 input TeamVersion_Members_AboutUs_Team_Social_Links_filter {
@@ -1826,6 +1715,125 @@ type version_TeamVersion_Members {
   socialLinks_func: count_functions
 }
 
+type TeamVersions_aggregated {
+  group: JSON
+  countAll: Int
+  count: TeamVersions_aggregated_count
+  countDistinct: TeamVersions_aggregated_count
+  avg: TeamVersions_aggregated_fields
+  sum: TeamVersions_aggregated_fields
+  avgDistinct: TeamVersions_aggregated_fields
+  sumDistinct: TeamVersions_aggregated_fields
+  min: TeamVersions_aggregated_fields
+  max: TeamVersions_aggregated_fields
+}
+
+type TeamVersions_aggregated_count {
+  id: Int
+  sort: Int
+  user_created: Int
+  date_created: Int
+  user_updated: Int
+  date_updated: Int
+  name: Int
+}
+
+type TeamVersions_aggregated_fields {
+  id: Float
+  sort: Float
+}
+
+""""""
+type version_TeamVersions {
+  id: ID!
+  sort: Int
+  user_created: String
+  date_created: Date
+  date_created_func: datetime_functions
+  user_updated: String
+  date_updated: Date
+  date_updated_func: datetime_functions
+  name: String
+}
+
+type Buildings {
+  id: ID!
+  name: String!
+  latitude: Float!
+  longitude: Float!
+  addres: String
+  cover(filter: directus_files_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): directus_files
+  food: Boolean
+  naturalName: String
+  disableBuildingPrefix: Boolean!
+  externalDigitalGuideIdOrURL: String
+  externalDigitalGuideMode: String
+}
+
+input Buildings_filter {
+  id: number_filter_operators
+  name: string_filter_operators
+  latitude: number_filter_operators
+  longitude: number_filter_operators
+  addres: string_filter_operators
+  cover: directus_files_filter
+  food: boolean_filter_operators
+  naturalName: string_filter_operators
+  disableBuildingPrefix: boolean_filter_operators
+  externalDigitalGuideIdOrURL: string_filter_operators
+  externalDigitalGuideMode: string_filter_operators
+  _and: [Buildings_filter]
+  _or: [Buildings_filter]
+}
+
+type Buildings_aggregated {
+  group: JSON
+  countAll: Int
+  count: Buildings_aggregated_count
+  countDistinct: Buildings_aggregated_count
+  avg: Buildings_aggregated_fields
+  sum: Buildings_aggregated_fields
+  avgDistinct: Buildings_aggregated_fields
+  sumDistinct: Buildings_aggregated_fields
+  min: Buildings_aggregated_fields
+  max: Buildings_aggregated_fields
+}
+
+type Buildings_aggregated_count {
+  id: Int
+  name: Int
+  latitude: Int
+  longitude: Int
+  addres: Int
+  cover: Int
+  food: Int
+  naturalName: Int
+  disableBuildingPrefix: Int
+  externalDigitalGuideIdOrURL: Int
+  externalDigitalGuideMode: Int
+}
+
+type Buildings_aggregated_fields {
+  id: Float
+  latitude: Float
+  longitude: Float
+}
+
+""""""
+type version_Buildings {
+  id: ID!
+  name: String!
+  latitude: Float!
+  longitude: Float!
+  addres: String
+  cover: JSON
+  food: Boolean
+  naturalName: String
+  disableBuildingPrefix: Boolean!
+  externalDigitalGuideIdOrURL: String
+  externalDigitalGuideMode: String
+}
+
 type Subscription {
   directus_files_mutated(event: EventEnum): directus_files_mutated
   Scientific_Circles_Tags_mutated(event: EventEnum): Scientific_Circles_Tags_mutated
@@ -1843,7 +1851,6 @@ type Subscription {
   FAQ_Types_mutated(event: EventEnum): FAQ_Types_mutated
   Departments_Links_mutated(event: EventEnum): Departments_Links_mutated
   FieldOfStudy_mutated(event: EventEnum): FieldOfStudy_mutated
-  Buildings_mutated(event: EventEnum): Buildings_mutated
   CacheReferenceNumber_mutated(event: EventEnum): CacheReferenceNumber_mutated
   AboutUs_Team_Social_Links_mutated(event: EventEnum): AboutUs_Team_Social_Links_mutated
   FAQ_Types_FAQ_mutated(event: EventEnum): FAQ_Types_FAQ_mutated
@@ -1851,9 +1858,10 @@ type Subscription {
   Changelog_Change_mutated(event: EventEnum): Changelog_Change_mutated
   Changelog_Screenshots_mutated(event: EventEnum): Changelog_Screenshots_mutated
   Scientific_Circles_mutated(event: EventEnum): Scientific_Circles_mutated
-  TeamVersions_mutated(event: EventEnum): TeamVersions_mutated
   TeamVersion_Members_AboutUs_Team_Social_Links_mutated(event: EventEnum): TeamVersion_Members_AboutUs_Team_Social_Links_mutated
   TeamVersion_Members_mutated(event: EventEnum): TeamVersion_Members_mutated
+  TeamVersions_mutated(event: EventEnum): TeamVersions_mutated
+  Buildings_mutated(event: EventEnum): Buildings_mutated
 }
 
 type directus_files_mutated {
@@ -1958,12 +1966,6 @@ type FieldOfStudy_mutated {
   data: FieldOfStudy
 }
 
-type Buildings_mutated {
-  key: ID!
-  event: EventEnum
-  data: Buildings
-}
-
 type CacheReferenceNumber_mutated {
   key: ID!
   event: EventEnum
@@ -2006,12 +2008,6 @@ type Scientific_Circles_mutated {
   data: Scientific_Circles
 }
 
-type TeamVersions_mutated {
-  key: ID!
-  event: EventEnum
-  data: TeamVersions
-}
-
 type TeamVersion_Members_AboutUs_Team_Social_Links_mutated {
   key: ID!
   event: EventEnum
@@ -2022,4 +2018,16 @@ type TeamVersion_Members_mutated {
   key: ID!
   event: EventEnum
   data: TeamVersion_Members
+}
+
+type TeamVersions_mutated {
+  key: ID!
+  event: EventEnum
+  data: TeamVersions
+}
+
+type Buildings_mutated {
+  key: ID!
+  event: EventEnum
+  data: Buildings
 }

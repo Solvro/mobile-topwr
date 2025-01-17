@@ -3,6 +3,7 @@ import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
+import "../../../api_base/directus_assets_url.dart";
 import "../../../config/ui_config.dart";
 import "../../../gen/assets.gen.dart";
 import "../../../utils/context_extensions.dart";
@@ -10,22 +11,22 @@ import "../../../utils/determine_contact_icon.dart";
 import "../../../widgets/detail_views/contact_section.dart";
 import "../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../../widgets/my_error_widget.dart";
+import "../../../widgets/zoomable_images.dart";
 import "../data/models/digital_guide_response.dart";
 import "../data/repository/digital_guide_repository.dart";
 import "widgets/accessibility_button.dart";
 import "widgets/digital_guide_data_source_link.dart";
 import "widgets/digital_guide_features_section.dart";
-import "widgets/digital_guide_image.dart";
 import "widgets/headlines_section.dart";
 import "widgets/report_change_button.dart";
 
 @RoutePage()
 class DigitalGuideView extends ConsumerWidget {
   const DigitalGuideView({
-    @PathParam("id") required this.id,
+    @PathParam("id") required this.ourId,
   });
 
-  final int id;
+  final String ourId;
 
   static String localizedOfflineMessage(BuildContext context) {
     return context.localize.my_offline_error_message(
@@ -35,9 +36,10 @@ class DigitalGuideView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final asyncDigitalGuideData = ref.watch(digitalGuideRepositoryProvider(id));
+    final asyncDigitalGuideData =
+        ref.watch(digitalGuideRepositoryProvider(ourId));
     return asyncDigitalGuideData.when(
-      data: _DigitalGuideView.new,
+      data: (data) => _DigitalGuideView(data.digitalGuideData, data.photoUrl),
       error: (error, stackTrace) => Scaffold(
         appBar: DetailViewAppBar(),
         body: MyErrorWidget(error),
@@ -54,9 +56,10 @@ class DigitalGuideView extends ConsumerWidget {
 }
 
 class _DigitalGuideView extends ConsumerWidget {
-  const _DigitalGuideView(this.digitalGuideData);
+  const _DigitalGuideView(this.digitalGuideData, this.photoUrl);
 
   final DigitalGuideResponse digitalGuideData;
+  final String? photoUrl;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -64,7 +67,7 @@ class _DigitalGuideView extends ConsumerWidget {
       const SizedBox(height: DigitalGuideConfig.heightSmall),
       SizedBox(
         height: DetailViewsConfig.imageHeight,
-        child: DigitalGuideImage(id: digitalGuideData.images[0]),
+        child: ZoomableOptimizedDirectusImage(photoUrl?.directusUrl),
       ),
       HeadlinesSection(
         name: digitalGuideData.translations.plTranslation.name,
