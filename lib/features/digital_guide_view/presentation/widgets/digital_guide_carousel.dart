@@ -35,7 +35,8 @@ class _CarouselWithIndicatorState
                 .map(
                   (item) => ClipRRect(
                     borderRadius: const BorderRadius.all(
-                        Radius.circular(DigitalGuideConfig.borderRadiusMedium),),
+                      Radius.circular(DigitalGuideConfig.borderRadiusMedium),
+                    ),
                     child: DigitalGuideImage(id: item),
                   ),
                 )
