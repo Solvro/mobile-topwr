@@ -24,7 +24,7 @@ Future<IList<MicronavigationResponse>> getMicronavigationData(
     _ttlDays,
     (json) => (json! as List<dynamic>)
         .map((item) =>
-            MicronavigationResponse.fromJson(item as Map<String, dynamic>))
+            MicronavigationResponse.fromJson(item as Map<String, dynamic>),)
         .toIList(),
     localizedOfflineMessage: DigitalGuideView.localizedOfflineMessage,
     extraValidityCheck: (data) {
