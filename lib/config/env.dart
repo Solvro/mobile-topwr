@@ -33,6 +33,5 @@ abstract class Env {
   static final String digitalGuideAuthorizationToken =
       _Env.digitalGuideAuthorizationToken;
   @EnviedField()
-  static final String digitalGuideUrlMicronavigation =
-      _Env.digitalGuideUrlMicronavigation;
+  static final String digitalGuideAddonsUrl = _Env.digitalGuideAddonsUrl;
 }

@@ -7,15 +7,12 @@ part "micronavigation_response.g.dart";
 
 @freezed
 class MicronavigationResponse with _$MicronavigationResponse {
+  @JsonSerializable(fieldRename: FieldRename.snake)
   const factory MicronavigationResponse({
     required int id,
     required int location,
-    @JsonKey(name: "name_override")
     required MicronavigationNameOverride nameOverride,
-    @JsonKey(name: "web_content") required MicronavigationContent webContent,
-    required int sn,
-    required bool inside,
-    required List<MicronavigationProfile> profiles,
+    required MicronavigationContent webContent,
     required List<MicronavigationLanguage> languages,
   }) = _MicronavigationResponse;
 
@@ -52,22 +49,11 @@ class MicronavigationContent with _$MicronavigationContent {
 }
 
 @freezed
-class MicronavigationProfile with _$MicronavigationProfile {
-  const factory MicronavigationProfile({
-    required int id,
-    required int profile,
-    @JsonKey(name: "web_content") required MicronavigationContent webContent,
-  }) = _MicronavigationProfile;
-
-  factory MicronavigationProfile.fromJson(Map<String, dynamic> json) =>
-      _$MicronavigationProfileFromJson(json);
-}
-
-@freezed
 class MicronavigationLanguage with _$MicronavigationLanguage {
+  @JsonSerializable(fieldRename: FieldRename.snake)
   const factory MicronavigationLanguage({
     required int id,
-    @JsonKey(name: "lang_code") required String langCode,
+    required String langCode,
     String? text,
     String? sound,
     required int order,

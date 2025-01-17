@@ -54,17 +54,8 @@ class _MicronavigationExpansionTileContent extends ConsumerWidget {
           0,
         ),
         child: DigitalGuideNavLink(
-          //CHANGE THIS WHEN WE WILL MAKE TRANSLATIONS!
           onTap: () async {
-            await ref.navigateMicronavigationDetails(
-              response.nameOverride.pl ?? "",
-              response.webContent.pl ?? "",
-              response.languages
-                      .where((a) => a.langCode == "pl")
-                      .firstOrNull
-                      ?.sound ??
-                  "",
-            );
+            await ref.navigateMicronavigationDetails(response);
           },
           text: response.nameOverride.pl ?? "",
         ),

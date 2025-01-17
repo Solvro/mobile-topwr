@@ -6,38 +6,26 @@ import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/context_extensions.dart";
 import "../../../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../../../../widgets/my_html_widget.dart";
+import "../../../presentation/widgets/accessibility_button.dart";
+import "../data/models/micronavigation_response.dart";
 import "widgets/my_audio_player.dart";
 
 @RoutePage()
-class MicronavigationDetailView extends StatefulWidget {
+class MicronavigationDetailView extends StatelessWidget {
   const MicronavigationDetailView({
     super.key,
-    required this.title,
-    required this.comment,
-    required this.soundURL,
+    required this.micronavigationResponse,
   });
 
-  final String title;
-  final String comment;
-  final String soundURL;
+  final MicronavigationResponse micronavigationResponse;
 
-  @override
-  State<MicronavigationDetailView> createState() =>
-      _MicronavigationDetailViewState();
-}
-
-class _MicronavigationDetailViewState extends State<MicronavigationDetailView> {
   @override
   Widget build(BuildContext context) {
     final widgets = [
       const SizedBox(height: DigitalGuideConfig.heightMedium),
       Text(
-        widget.title,
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-          fontSize: 24,
-          color: context.colorTheme.blackMirage,
-        ),
+        micronavigationResponse.nameOverride.pl ?? "",
+        style: context.textTheme.title.copyWith(fontSize: 24),
       ),
       const SizedBox(height: DigitalGuideConfig.heightBig),
       Text(
@@ -45,7 +33,7 @@ class _MicronavigationDetailViewState extends State<MicronavigationDetailView> {
         style: context.textTheme.title,
       ),
       const SizedBox(height: DigitalGuideConfig.heightMedium),
-      MyHtmlWidget(widget.comment),
+      MyHtmlWidget(micronavigationResponse.webContent.pl ?? ""),
       const SizedBox(height: DigitalGuideConfig.heightMedium),
       Text(
         context.localize.audio_message,
@@ -58,13 +46,21 @@ class _MicronavigationDetailViewState extends State<MicronavigationDetailView> {
       ),
       Padding(
         padding: DigitalGuideConfig.symetricalPaddingBig,
-        child: MyAudioPlayer(audioUrl: widget.soundURL),
+        child: MyAudioPlayer(
+          audioUrl: micronavigationResponse.languages
+                  .where((a) => a.langCode == "pl")
+                  .firstOrNull
+                  ?.sound ??
+              "",
+        ),
       ),
     ];
 
     return Scaffold(
       backgroundColor: context.colorTheme.greyLight,
-      appBar: DetailViewAppBar(),
+      appBar: DetailViewAppBar(
+        actions: [AccessibilityButton()],
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: DigitalGuideConfig.paddingBig,

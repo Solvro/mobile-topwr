@@ -4,6 +4,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../buildings_view/model/building_model.dart";
 import "../../digital_guide_view/tabs/adapted_toilets/data/models/adapted_toilet.dart";
+import "../../digital_guide_view/tabs/micronavigation/data/models/micronavigation_response.dart";
 import "../../parkings_view/models/parking.dart";
 import "../app_router.dart";
 import "../navigation_controller.dart";
@@ -87,15 +88,11 @@ extension NavigationX on WidgetRef {
   }
 
   Future<void> navigateMicronavigationDetails(
-    String title,
-    String comment,
-    String soundURL,
+    MicronavigationResponse micronavigationResponse,
   ) async {
     await _router.push(
       MicronavigationDetailRoute(
-        title: title,
-        comment: comment,
-        soundURL: soundURL,
+        micronavigationResponse: micronavigationResponse,
       ),
     );
   }
