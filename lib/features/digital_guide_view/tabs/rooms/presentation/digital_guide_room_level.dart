@@ -39,8 +39,10 @@ class DigitalGuideRoomLevel extends ConsumerWidget {
             },
             text: rooms[index].translations.pl.name,
           ),
-          separatorBuilder: (context, index) => const SizedBox(
-            height: DigitalGuideConfig.heightMedium,
+          separatorBuilder: (context, index) => SizedBox(
+            height: index == rooms.length - 1
+                ? DigitalGuideConfig.heightSmall
+                : DigitalGuideConfig.heightMedium,
           ),
           itemCount: rooms.length,
           shrinkWrap: true,

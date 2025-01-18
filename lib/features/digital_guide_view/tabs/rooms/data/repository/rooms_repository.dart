@@ -16,7 +16,7 @@ Future<IList<DigitalGuideRoom>> roomsRepository(
   LevelWithRegions level,
 ) async {
   Future<DigitalGuideRoom> getDigitalGuideRoom(int roomId) async {
-    final String endpoint = "rooms/$roomId";
+    final endpoint = "rooms/$roomId";
     return ref.getAndCacheDataFromDigitalGuide(
       endpoint,
       DigitalGuideRoom.fromJson,
