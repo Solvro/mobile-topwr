@@ -287,5 +287,13 @@
   "platforms" : "Podesty",
   "stairs" : "Schody",
   "key_information" : "Najważniejsze informacje",
-  "working_hours" : "Godziny otwarcia"
+  "working_hours" : "Godziny otwarcia",
+  "motorImpairment": "Dysfunkcja ruchu",
+  "visualImpairment": "Dysfunkcja wzroku",
+  "blind": "Niewidomy",
+  "lowVision": "Słabo widzący",
+  "sensorySensitivity": "Wrażliwość sensoryczna",
+  "cognitiveImpairment": "Trudności poznawcze",
+  "accessibility_profiles":"Profile dostępności",
+  "you_can_adjust": "Możesz dostosować informacje pod swoje specjalne potrzeby"
 }

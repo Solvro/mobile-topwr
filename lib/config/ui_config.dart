@@ -171,6 +171,12 @@ abstract class FilterConfig {
   static const paddingMedium = 8.0;
   static const spacingBetweenWidgets = 12.0;
   static final radius = BorderRadius.circular(8);
+  static const buttonPadding =
+      EdgeInsets.symmetric(vertical: 10, horizontal: 20);
+}
+
+class DialogsConfig {
+  static final padding = const EdgeInsets.all(20).copyWith(top: 6);
 }
 
 abstract class LottieAnimationConfig {
