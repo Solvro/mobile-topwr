@@ -1,8 +1,11 @@
+import "dart:async";
+
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 
 import "../../../../config/ui_config.dart";
 import "../../../../utils/context_extensions.dart";
+import "digital_guide_carousel.dart";
 import "digital_guide_image.dart";
 import "digital_guide_nav_link.dart";
 
@@ -35,7 +38,13 @@ class DigitalGuidePhotoRow extends StatelessWidget {
                         borderRadius: BorderRadius.circular(
                           DigitalGuideConfig.borderRadiusMedium,
                         ),
-                        child: DigitalGuideImage(id: id),
+                        child: GestureDetector(
+                          onTap: () async => showGallery(context, initId: id),
+                          child: DigitalGuideImage(
+                            id: id,
+                            zoomable: false,
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -49,11 +58,21 @@ class DigitalGuidePhotoRow extends StatelessWidget {
               top: DigitalGuideConfig.heightSmall,
             ),
             child: DigitalGuideNavLink(
-              onTap: () => {},
+              onTap: () async => showGallery(context),
               text: context.localize.see_all_photos(imagesIDs.length),
             ),
           ),
       ],
+    );
+  }
+
+  Future<void> showGallery(BuildContext context, {int? initId}) async {
+    await showDialog(
+      context: context,
+      builder: (context) => DigitalGuideCarouselWithIndicator(
+        imgListId: imagesIDs,
+        initId: initId,
+      ),
     );
   }
 }

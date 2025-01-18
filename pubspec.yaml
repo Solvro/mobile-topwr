@@ -73,6 +73,7 @@ dependencies:
   animated_list_plus: ^0.5.2
   dotted_border: ^2.1.0
   fluttertoast: ^8.2.8
+  carousel_slider_plus: ^7.1.0
 
   #Data
   freezed_annotation: ^2.4.4
