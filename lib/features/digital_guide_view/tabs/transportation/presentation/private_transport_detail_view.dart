@@ -11,15 +11,15 @@ import "../../../presentation/widgets/accessibility_button.dart";
 import "../../../presentation/widgets/bullet_list.dart";
 import "../../../presentation/widgets/digital_guide_image.dart";
 import "../../../presentation/widgets/digital_guide_nav_link.dart";
-import "../data/models/access.dart";
+import "../data/models/digital_guide_transportation.dart";
 
 @RoutePage()
-class PublicTransportDetailView extends ConsumerWidget {
-  const PublicTransportDetailView({
-    required this.access,
+class PrivateTransportDetailView extends ConsumerWidget {
+  const PrivateTransportDetailView({
+    required this.transportationResponse,
   });
 
-  final Access access;
+  final TransportationResponse transportationResponse;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -27,8 +27,8 @@ class PublicTransportDetailView extends ConsumerWidget {
       const SizedBox(height: DigitalGuideConfig.heightMedium),
       BulletList(
         items: [
-          access.translations.plTranslation.nearestDisabledParkingSpaces,
-          access.translations.plTranslation.location,
+          transportationResponse.translations.plTranslation.nearestDisabledParkingSpaces,
+          transportationResponse.translations.plTranslation.nearestPublicParkingLocation,
         ].lock,
       ),
       const SizedBox(height: DigitalGuideConfig.heightBig),

@@ -48,25 +48,24 @@ class _TransportationExpansionTileContent extends ConsumerWidget {
         horizontal: DigitalGuideConfig.heightMedium,
         vertical: DigitalGuideConfig.heightMedium,
       ),
-      child: Text("data"),
-      /*child: Column(
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           DigitalGuideNavLink(
             onTap: () async {
-              //await ref.navigatePublicTransportDetails(transportationResponse);
+              await ref.navigatePublicTransportDetails(TransportationResponse);
             },
             text: context.localize.public_transport,
           ),
           const SizedBox(height: 16),
           DigitalGuideNavLink(
             onTap: () async {
-              //await ref.navigatePrivateTransportDetails(transportationResponse);
+              await ref.navigatePrivateTransportDetails(TransportationResponse);
             },
             text: context.localize.private_transport,
           ),
         ],
-      ),*/
+      ),
     );
   }
 }

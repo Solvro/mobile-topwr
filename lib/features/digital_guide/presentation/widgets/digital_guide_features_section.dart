@@ -1,3 +1,4 @@
+
 import "package:flutter/material.dart";
 import "package:flutter/widgets.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
@@ -27,84 +28,84 @@ class DigitalGuideFeaturesSection extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final hasToilets = ref
-            .watch(levelsWithRegionsRepositoryProvider(digitalGuideData))
-            .value
-            ?.hasAdaptedToilets() ??
+        .watch(levelsWithRegionsRepositoryProvider(digitalGuideData))
+        .value
+        ?.hasAdaptedToilets() ??
         false;
 
     final items = <TileContent>[
       (
-        title: context.localize.localization,
-        content: [LocalizationExpansionTileContent()],
+      title: context.localize.localization,
+      content: [LocalizationExpansionTileContent()],
       ),
       (
-        title: context.localize.amenities,
-        content: [
-          AmenitiesExpansionTileContent(
-            digitalGuideData: digitalGuideData,
-          ),
-        ],
-      ),
-      (
-        title: context.localize.surroundings,
-        content: [
-          SurroundingsExpansionTileContent(
-            digitalGuideData: digitalGuideData,
-          ),
-        ],
-      ),
-      (
-        title: context.localize.transport,
-        content: [TransportationExpansionTileContent(
+      title: context.localize.amenities,
+      content: [
+        AmenitiesExpansionTileContent(
           digitalGuideData: digitalGuideData,
-        ),],
+        ),
+      ],
       ),
       (
-        title: context.localize.entrances,
-        content: [LocalizationExpansionTileContent()],
+      title: context.localize.surroundings,
+      content: [
+        SurroundingsExpansionTileContent(
+          digitalGuideData: digitalGuideData,
+        ),
+      ],
       ),
       (
-        title: context.localize.elevators,
-        content: [LocalizationExpansionTileContent()],
+      title: context.localize.transport,
+      content: [TransportationExpansionTileContent(
+        digitalGuideData: digitalGuideData,
+      )],
+      ),
+      (
+      title: context.localize.entrances,
+      content: [LocalizationExpansionTileContent()],
+      ),
+      (
+      title: context.localize.elevators,
+      content: [LocalizationExpansionTileContent()],
       ),
       if (hasToilets)
         (
-          title: context.localize.adapted_toilets,
-          content: [
-            AdaptedToiletsExpansionTileContent(
-              digitalGuideData: digitalGuideData,
-            ),
-          ],
-        ),
-      (
-        title: context.localize.micro_navigation,
-        content: [LocalizationExpansionTileContent()],
-      ),
-      (
-        title: context.localize.building_structure,
-        content: [LocalizationExpansionTileContent()],
-      ),
-      (
-        title: context.localize.room_information,
+        title: context.localize.adapted_toilets,
         content: [
-          DigitalGuideRoomExpansionTileContent(
-            digitalGuideResponse: digitalGuideData,
-          ),
-        ],
-      ),
-      (
-        title: context.localize.evacuation,
-        content: [
-          EvacuationWidget(
+          AdaptedToiletsExpansionTileContent(
             digitalGuideData: digitalGuideData,
           ),
         ],
+        ),
+      (
+      title: context.localize.micro_navigation,
+      content: [LocalizationExpansionTileContent()],
+      ),
+      (
+      title: context.localize.building_structure,
+      content: [LocalizationExpansionTileContent()],
+      ),
+      (
+      title: context.localize.room_information,
+      content: [
+        DigitalGuideRoomExpansionTileContent(
+          digitalGuideResponse: digitalGuideData,
+        ),
+      ],
+      ),
+      (
+      title: context.localize.evacuation,
+      content: [
+        EvacuationWidget(
+          digitalGuideData: digitalGuideData,
+        ),
+      ],
       ),
     ];
 
     return SliverList(
       delegate: SliverChildBuilderDelegate(
-        (context, index) {
+            (context, index) {
           final item = items[index];
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
