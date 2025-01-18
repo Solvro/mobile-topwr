@@ -287,5 +287,8 @@
   "platforms" : "Podesty",
   "stairs" : "Schody",
   "key_information" : "Najważniejsze informacje",
-  "working_hours" : "Godziny otwarcia"
+  "working_hours" : "Godziny otwarcia",
+  "rooms_distribution" : "Rozkład pomieszczeń:",
+  "region_location" : "Lokalizacja strefy:",
+  "level" : "Piętro"
 }

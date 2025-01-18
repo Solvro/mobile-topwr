@@ -7,11 +7,15 @@ import "../about_us_view/about_us_view.dart";
 import "../buildings_view/buildings_view.dart";
 import "../department_detail_view/department_detail_view.dart";
 import "../departments_view/departments_view.dart";
+import "../digital_guide_view/data/models/level_with_regions.dart";
+import "../digital_guide_view/data/models/region.dart";
 import "../digital_guide_view/presentation/digital_guide_view.dart";
 import "../digital_guide_view/tabs/adapted_toilets/data/models/adapted_toilet.dart";
 import "../digital_guide_view/tabs/adapted_toilets/presentation/adapted_toilet_detail_view.dart";
 import "../digital_guide_view/tabs/rooms/data/models/digital_guide_room.dart";
 import "../digital_guide_view/tabs/rooms/presentation/digital_guide_room_detail_view.dart";
+import "../digital_guide_view/tabs/structure/presentation/views/level_view.dart";
+import "../digital_guide_view/tabs/structure/presentation/views/region_view.dart";
 import "../guide_detail_view/guide_detail_view.dart";
 import "../guide_view/guide_view.dart";
 import "../home_view/home_view.dart";
@@ -106,6 +110,12 @@ class AppRouter extends RootStackRouter {
         ),
         AutoRoute(
           page: AdaptedToiletDetailRoute.page,
+        ),
+        AutoRoute(
+          page: LevelRoute.page,
+        ),
+        AutoRoute(
+          page: RegionRoute.page,
         ),
         AutoRoute(
           path: "/aboutUs",

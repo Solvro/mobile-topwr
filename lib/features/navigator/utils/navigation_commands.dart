@@ -5,6 +5,8 @@ import "package:logger/logger.dart";
 
 import "../../../utils/launch_url_util.dart";
 import "../../buildings_view/model/building_model.dart";
+import "../../digital_guide_view/data/models/level_with_regions.dart";
+import "../../digital_guide_view/data/models/region.dart";
 import "../../digital_guide_view/tabs/adapted_toilets/data/models/adapted_toilet.dart";
 import "../../digital_guide_view/tabs/rooms/data/models/digital_guide_room.dart";
 import "../../parkings_view/models/parking.dart";
@@ -91,6 +93,14 @@ extension NavigationX on WidgetRef {
 
   Future<void> navigateRoomDetails(DigitalGuideRoom room) async {
     await _router.push(DigitalGuideRoomDetailRoute(room: room));
+  }
+
+  Future<void> navigateDigitalGuideLevel(LevelWithRegions levelInfo) async {
+    await _router.push(LevelRoute(levelInfo: levelInfo));
+  }
+
+  Future<void> navigateDigitalGuideRegion(Region region) async {
+    await _router.push(RegionRoute(region: region));
   }
 
   Future<void> navigateBuildingDetailAction(BuildingModel building) async {
