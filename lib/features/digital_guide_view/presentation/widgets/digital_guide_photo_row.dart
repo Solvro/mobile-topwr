@@ -38,7 +38,13 @@ class DigitalGuidePhotoRow extends StatelessWidget {
                         borderRadius: BorderRadius.circular(
                           DigitalGuideConfig.borderRadiusMedium,
                         ),
-                        child: DigitalGuideImage(id: id),
+                        child: GestureDetector(
+                          onTap: () async => showGallery(context, initId: id),
+                          child: DigitalGuideImage(
+                            id: id,
+                            zoomable: false,
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -60,11 +66,12 @@ class DigitalGuidePhotoRow extends StatelessWidget {
     );
   }
 
-  Future<void> showGallery(BuildContext context) async {
+  Future<void> showGallery(BuildContext context, {int? initId}) async {
     await showDialog(
       context: context,
       builder: (context) => DigitalGuideCarouselWithIndicator(
         imgListId: imagesIDs,
+        initId: initId,
       ),
     );
   }
