@@ -115,14 +115,14 @@ class AppRouter extends RootStackRouter {
           page: DigitalGuideRoute.page,
         ),
         AutoRoute(
-          path: "/digital-guide/:id/room-details",
-          page: DigitalGuideRoomDetailRoute.page,
+          page: AdaptedToiletDetailRoute.page,
         ),
         AutoRoute(
-          path: "/digital-guide/:id/lift-details",
-          page: DigitalGuideLiftDetailRoute.page,
+          page: LevelRoute.page,
         ),
-        AutoRoute(page: TransportationDetailRoute.page),
+        AutoRoute(
+          page: RegionRoute.page,
+        ),
         AutoRoute(
           path: "/digital-guide/:id/micronavigation-details",
           page: MicronavigationDetailRoute.page,

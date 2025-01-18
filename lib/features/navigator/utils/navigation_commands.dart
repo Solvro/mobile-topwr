@@ -129,6 +129,14 @@ extension NavigationX on WidgetRef {
         .push(DigitalGuideLiftDetailRoute(lift: lift, levelName: levelName));
   }
 
+  Future<void> navigateDigitalGuideLevel(LevelWithRegions levelInfo) async {
+    await _router.push(LevelRoute(levelInfo: levelInfo));
+  }
+
+  Future<void> navigateDigitalGuideRegion(Region region) async {
+    await _router.push(RegionRoute(region: region));
+  }
+
   Future<void> navigateBuildingDetailAction(BuildingModel building) async {
     return switch (building.externalDigitalGuideMode) {
       "web_url" => launch(building.externalDigitalGuideIdOrURL!),

@@ -320,5 +320,11 @@
   "no_pass_traffic_lights": "Do przystanku prowadzą przejścia bez sygnalizacji świetlnej. ",
   "nearest_public_transport_stop": "Najbliższy przystanek komunikacji miejskiej to ",
   "nearest_public_transport_stop_alt": "Alternatywny przystanek komunikacji miejskiej to ",
-  "chose_the_path": "Gdzie można dotrzeć obierając drogę "
+  "chose_the_path": "Gdzie można dotrzeć obierając drogę ",
+  "you_can_adjust": "Możesz dostosować informacje pod swoje specjalne potrzeby",
+  "navigate_to_building": "Nawiguj do budynku",
+  "working_hours" : "Godziny otwarcia",
+  "rooms_distribution" : "Rozkład pomieszczeń:",
+  "region_location" : "Lokalizacja strefy:",
+  "level" : "Piętro"
 }
