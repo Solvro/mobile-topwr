@@ -35,7 +35,11 @@ class DigitalGuideFeaturesSection extends ConsumerWidget {
     final items = <TileContent>[
       (
         title: context.localize.localization,
-        content: [LocalizationExpansionTileContent()],
+        content: [
+          LocalizationExpansionTileContent(
+            digitalGuideData: digitalGuideData,
+          ),
+        ],
       ),
       (
         title: context.localize.amenities,
@@ -55,15 +59,27 @@ class DigitalGuideFeaturesSection extends ConsumerWidget {
       ),
       (
         title: context.localize.transport,
-        content: [LocalizationExpansionTileContent()],
+        content: [
+          LocalizationExpansionTileContent(
+            digitalGuideData: digitalGuideData,
+          ),
+        ],
       ),
       (
         title: context.localize.entrances,
-        content: [LocalizationExpansionTileContent()],
+        content: [
+          LocalizationExpansionTileContent(
+            digitalGuideData: digitalGuideData,
+          ),
+        ],
       ),
       (
         title: context.localize.elevators,
-        content: [LocalizationExpansionTileContent()],
+        content: [
+          LocalizationExpansionTileContent(
+            digitalGuideData: digitalGuideData,
+          ),
+        ],
       ),
       if (hasToilets)
         (
@@ -84,7 +100,11 @@ class DigitalGuideFeaturesSection extends ConsumerWidget {
       ),
       (
         title: context.localize.building_structure,
-        content: [LocalizationExpansionTileContent()],
+        content: [
+          LocalizationExpansionTileContent(
+            digitalGuideData: digitalGuideData,
+          ),
+        ],
       ),
       (
         title: context.localize.room_information,
