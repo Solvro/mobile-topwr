@@ -102,6 +102,14 @@ class DigitalGuideFeaturesSection extends ConsumerWidget {
         ],
       ),
       (
+        title: context.localize.micro_navigation,
+        content: [
+          LocalizationExpansionTileContent(
+            digitalGuideData: digitalGuideData,
+          ),
+        ],
+      ),
+      (
         title: context.localize.building_structure,
         content: [
           LocalizationExpansionTileContent(
