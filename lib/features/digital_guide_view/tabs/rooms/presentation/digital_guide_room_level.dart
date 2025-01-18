@@ -11,7 +11,7 @@ import "../data/models/digital_guide_room.dart";
 
 class DigitalGuideRoomLevel extends ConsumerWidget {
   const DigitalGuideRoomLevel(
-      {super.key, required this.level, required this.rooms});
+      {super.key, required this.level, required this.rooms,});
 
   final Level level;
   final IList<DigitalGuideRoom> rooms;
