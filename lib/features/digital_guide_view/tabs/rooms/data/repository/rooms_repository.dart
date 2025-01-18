@@ -3,7 +3,9 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../../data/api/digital_guide_get_and_cache.dart";
-import "../../../../data/models/digital_guide_response.dart";
+import "../../../../data/models/level.dart";
+import "../../../../data/models/level_with_regions.dart";
+import "../../../../data/models/region.dart";
 import "../models/digital_guide_room.dart";
 
 part "rooms_repository.g.dart";
@@ -11,16 +13,18 @@ part "rooms_repository.g.dart";
 @riverpod
 Future<IList<DigitalGuideRoom>> roomsRepository(
   Ref ref,
-  DigitalGuideResponse building,
+  LevelWithRegions level,
 ) async {
-  final String endpoint = "rooms/?building=${building.id}";
+  Future<DigitalGuideRoom> getDigitalGuideRoom(int roomId) async {
+    final endpoint = "rooms/$roomId";
+    return ref.getAndCacheDataFromDigitalGuide(
+      endpoint,
+      DigitalGuideRoom.fromJson,
+      onRetry: () => ref.invalidateSelf(),
+    );
+  }
 
-  return ref.getAndCacheDataFromDigitalGuide(
-    endpoint,
-    (List<dynamic> json) => json
-        .whereType<Map<String, dynamic>>()
-        .map(DigitalGuideRoom.fromJson)
-        .toIList(),
-    onRetry: () => ref.invalidateSelf(),
-  );
+  final roomsIds = level.regions.expand((region) => region.roomsIds);
+  final rooms = await Future.wait(roomsIds.map(getDigitalGuideRoom));
+  return rooms.toIList();
 }

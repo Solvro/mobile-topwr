@@ -7,6 +7,7 @@ part "region.g.dart";
 class Region with _$Region {
   const factory Region({
     @JsonKey(name: "adapted_toilets") required List<int> adaptedToiletsIndices,
+    @JsonKey(name: "rooms") required List<int> roomsIds,
   }) = _Region;
 
   factory Region.fromJson(Map<String, dynamic> json) => _$RegionFromJson(json);
