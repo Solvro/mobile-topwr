@@ -106,7 +106,7 @@ class DigitalGuideFeaturesSection extends ConsumerWidget {
       (
         title: context.localize.building_structure,
         content: [
-          StructureExpansionTileContent(digitalGuideData: digitalGuideData)
+          StructureExpansionTileContent(digitalGuideData: digitalGuideData),
         ],
       ),
       (
