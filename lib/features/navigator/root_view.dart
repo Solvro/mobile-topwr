@@ -14,6 +14,20 @@ class RootView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final specialPop = ref.androidSpecialPopTreatment;
+    final mediaQuery = MediaQuery.of(context);
+    final isOnRightSide = mediaQuery.padding.right > mediaQuery.padding.left;
+    final isOnLeftSide = mediaQuery.padding.left > mediaQuery.padding.right;
+
+    EdgeInsets getPadding() {
+      if (isOnLeftSide) {
+        return EdgeInsets.only(right: MediaQuery.paddingOf(context).left);
+      } else if (isOnRightSide) {
+        return EdgeInsets.only(left: MediaQuery.paddingOf(context).right);
+      } else {
+        return EdgeInsets.zero;
+      }
+    }
+
     return PopScope(
       canPop: !specialPop, // android pop bug workaround
       child: NavigatorPopHandler(
@@ -21,13 +35,15 @@ class RootView extends ConsumerWidget {
             specialPop ? (result) async => ref.handleAndroidSpecialPop() : null,
         child: UpdateChangelogWrapper(
           child: Scaffold(
-            body: Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: MediaQuery.viewPaddingOf(context).horizontal,
-              ),
-              child: AutoRouter(
-                // this widget act as nested [Navigator] for the app
-                key: ref.watch(navigatorKeyProvider),
+            extendBodyBehindAppBar: true,
+            extendBody: true,
+            body: SafeArea(
+              child: Padding(
+                padding: getPadding(),
+                child: AutoRouter(
+                  // this widget acts as nested [Navigator] for the app
+                  key: ref.watch(navigatorKeyProvider),
+                ),
               ),
             ),
             bottomNavigationBar: const BottomNavBar(),
