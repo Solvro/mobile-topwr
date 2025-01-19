@@ -14,18 +14,20 @@ class Lift with _$Lift {
 
 @freezed
 class LiftTranslations with _$LiftTranslations {
-  const factory LiftTranslations ({
+  const factory LiftTranslations({
     @JsonKey(name: "pl") required LiftTranslation plTranslation,
   }) = _LiftTranslations;
 
-  factory LiftTranslations.fromJson(Map<String, dynamic> json) => _$LiftTranslationsFromJson(json);
+  factory LiftTranslations.fromJson(Map<String, dynamic> json) =>
+      _$LiftTranslationsFromJson(json);
 }
 
 @freezed
 class LiftTranslation with _$LiftTranslation {
-  const factory LiftTranslation ({
+  const factory LiftTranslation({
     required String location,
   }) = _LiftTranslation;
 
-  factory LiftTranslation.fromJson(Map<String,dynamic> json) => _$LiftTranslationFromJson(json);
+  factory LiftTranslation.fromJson(Map<String, dynamic> json) =>
+      _$LiftTranslationFromJson(json);
 }

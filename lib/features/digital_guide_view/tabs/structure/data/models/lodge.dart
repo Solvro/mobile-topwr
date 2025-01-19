@@ -13,19 +13,21 @@ class Lodge with _$Lodge {
 }
 
 @freezed
-class  LodgeTranslations with _$LodgeTranslations {
-  const factory LodgeTranslations ({
+class LodgeTranslations with _$LodgeTranslations {
+  const factory LodgeTranslations({
     @JsonKey(name: "pl") required LodgeTranslation plTranslation,
   }) = _LodgeTranslations;
 
-  factory LodgeTranslations.fromJson(Map<String, dynamic> json) => _$LodgeTranslationsFromJson(json);
+  factory LodgeTranslations.fromJson(Map<String, dynamic> json) =>
+      _$LodgeTranslationsFromJson(json);
 }
 
 @freezed
 class LodgeTranslation with _$LodgeTranslation {
-  const factory LodgeTranslation ({
+  const factory LodgeTranslation({
     required String location,
   }) = _LodgeTranslation;
 
-  factory LodgeTranslation.fromJson(Map<String, dynamic> json) => _$LodgeTranslationFromJson(json);
+  factory LodgeTranslation.fromJson(Map<String, dynamic> json) =>
+      _$LodgeTranslationFromJson(json);
 }

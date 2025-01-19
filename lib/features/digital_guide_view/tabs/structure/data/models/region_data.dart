@@ -12,7 +12,7 @@ import "stairs.dart";
 import "stairway.dart";
 import "toilet.dart";
 
-class RegionData{
+class RegionData {
   final IList<Corridor> corridors;
   final IList<Stairs> stairs;
   final IList<Ramp> ramps;

@@ -9,23 +9,26 @@ class Stairway with _$Stairway {
     required StairwayTranslations translations,
   }) = _Stairway;
 
-  factory Stairway.fromJson(Map<String, dynamic> json) => _$StairwayFromJson(json);
+  factory Stairway.fromJson(Map<String, dynamic> json) =>
+      _$StairwayFromJson(json);
 }
 
 @freezed
 class StairwayTranslations with _$StairwayTranslations {
-  const factory StairwayTranslations ({
+  const factory StairwayTranslations({
     @JsonKey(name: "pl") required StairwayTranslation plTranslation,
   }) = _StairwayTranslations;
 
-  factory StairwayTranslations.fromJson(Map<String, dynamic> json) => _$StairwayTranslationsFromJson(json);
+  factory StairwayTranslations.fromJson(Map<String, dynamic> json) =>
+      _$StairwayTranslationsFromJson(json);
 }
 
 @freezed
 class StairwayTranslation with _$StairwayTranslation {
-  const factory StairwayTranslation ({
+  const factory StairwayTranslation({
     required String name,
   }) = _StairwayTranslation;
 
-  factory StairwayTranslation.fromJson(Map<String, dynamic> json) => _$StairwayTranslationFromJson(json);
+  factory StairwayTranslation.fromJson(Map<String, dynamic> json) =>
+      _$StairwayTranslationFromJson(json);
 }
