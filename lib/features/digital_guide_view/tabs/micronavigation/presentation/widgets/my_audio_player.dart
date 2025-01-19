@@ -6,6 +6,7 @@ import "package:flutter_hooks/flutter_hooks.dart";
 
 import "../../../../../../config/ui_config.dart";
 import "../../../../../../theme/app_theme.dart";
+import "../../../../../../utils/duration_utils.dart";
 
 class MyAudioPlayer extends HookWidget {
   final String audioUrl;
@@ -54,16 +55,18 @@ class MyAudioPlayer extends HookWidget {
       }
     }
 
-    Future<void> seekAudio(double value) async {
+    Future<void> seeokAudio(double value) async {
       final position = Duration(seconds: value.toInt());
       await audioPlayer.seek(position);
     }
 
-    String formatTime(Duration duration) {
-      final minutes = duration.inMinutes;
-      final seconds = duration.inSeconds % 60;
-      return "$minutes:${seconds.toString().padLeft(2, "0")}";
-    }
+    final seekAudio = useCallback(
+      (double value) async {
+        final position = Duration(seconds: value.toInt());
+        await audioPlayer.seek(position);
+      },
+      [],
+    );
 
     return Container(
       padding: const EdgeInsets.all(DigitalGuideConfig.paddingSmall),
@@ -80,7 +83,7 @@ class MyAudioPlayer extends HookWidget {
             onPressed: togglePlayPause,
           ),
           Text(
-            "${formatTime(currentTime.value)} / ${formatTime(totalTime.value)}",
+            "${formatDurationToMinutesString(currentTime.value)} / ${formatDurationToMinutesString(totalTime.value)}",
             style:
                 TextStyle(fontSize: 14, color: context.colorTheme.blackMirage),
           ),

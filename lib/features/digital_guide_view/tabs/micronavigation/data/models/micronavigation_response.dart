@@ -11,8 +11,8 @@ class MicronavigationResponse with _$MicronavigationResponse {
   const factory MicronavigationResponse({
     required int id,
     required int location,
-    required MicronavigationNameOverride nameOverride,
-    required MicronavigationContent webContent,
+    required MicronavigationTranslations nameOverride,
+    required MicronavigationTranslations webContent,
     required List<MicronavigationLanguage> languages,
   }) = _MicronavigationResponse;
 
@@ -21,31 +21,17 @@ class MicronavigationResponse with _$MicronavigationResponse {
 }
 
 @freezed
-class MicronavigationNameOverride with _$MicronavigationNameOverride {
-  const factory MicronavigationNameOverride({
+class MicronavigationTranslations with _$MicronavigationTranslations {
+  const factory MicronavigationTranslations({
     String? pl,
     String? en,
     String? nb,
     String? de,
     String? uk,
-  }) = _MicronavigationNameOverride;
+  }) = _MicronavigationTranslations;
 
-  factory MicronavigationNameOverride.fromJson(Map<String, dynamic> json) =>
-      _$MicronavigationNameOverrideFromJson(json);
-}
-
-@freezed
-class MicronavigationContent with _$MicronavigationContent {
-  const factory MicronavigationContent({
-    String? pl,
-    String? en,
-    String? nb,
-    String? de,
-    String? uk,
-  }) = _MicronavigationContent;
-
-  factory MicronavigationContent.fromJson(Map<String, dynamic> json) =>
-      _$MicronavigationContentFromJson(json);
+  factory MicronavigationTranslations.fromJson(Map<String, dynamic> json) =>
+      _$MicronavigationTranslationsFromJson(json);
 }
 
 @freezed

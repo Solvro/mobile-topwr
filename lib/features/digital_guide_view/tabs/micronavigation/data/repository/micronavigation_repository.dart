@@ -22,11 +22,9 @@ Future<IList<MicronavigationResponse>> getMicronavigationData(
   final responseData = await ref.getAndCacheData(
     micronavigationUrl,
     _ttlDays,
-    (json) => (json! as List<dynamic>)
-        .map(
-          (item) =>
-              MicronavigationResponse.fromJson(item as Map<String, dynamic>),
-        )
+    (List<dynamic> json) => json
+        .whereType<Map<String, dynamic>>()
+        .map(MicronavigationResponse.fromJson)
         .toIList(),
     localizedOfflineMessage: DigitalGuideView.localizedOfflineMessage,
     extraValidityCheck: (data) {
