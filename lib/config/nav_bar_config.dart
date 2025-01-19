@@ -63,6 +63,8 @@ extension IsRouteATabViewX on PageRouteInfo<dynamic> {
       ScienceClubDetailRoute.name => context.localize.scientific_cirlces,
       GuideDetailRoute.name => context.localize.guide,
       DigitalGuideRoute.name => context.localize.digital_guide,
+      LevelRoute.name => context.localize.level,
+      RegionRoute.name => context.localize.region,
       _ => null,
     };
   }

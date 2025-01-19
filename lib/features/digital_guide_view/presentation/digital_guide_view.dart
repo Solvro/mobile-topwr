@@ -10,6 +10,7 @@ import "../../../utils/context_extensions.dart";
 import "../../../utils/determine_contact_icon.dart";
 import "../../../widgets/detail_views/contact_section.dart";
 import "../../../widgets/detail_views/detail_view_app_bar.dart";
+import "../../../widgets/loading_widgets/shimmer_loading.dart";
 import "../../../widgets/my_error_widget.dart";
 import "../../../widgets/zoomable_images.dart";
 import "../data/models/digital_guide_response.dart";
@@ -44,11 +45,11 @@ class DigitalGuideView extends ConsumerWidget {
         appBar: DetailViewAppBar(),
         body: MyErrorWidget(error),
       ),
-      // TODO(Bartosh): shimmer loading
-      loading: () => Scaffold(
-        appBar: DetailViewAppBar(),
-        body: const Center(
-          child: CircularProgressIndicator(),
+      loading: () => Center(
+        child: ShimmeringEffect(
+          child: Container(
+            color: Colors.white,
+          ),
         ),
       ),
     );
