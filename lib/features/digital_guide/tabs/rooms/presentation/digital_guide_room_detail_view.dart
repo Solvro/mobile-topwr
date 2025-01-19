@@ -75,7 +75,7 @@ class DigitalGuideRoomDetailView extends ConsumerWidget {
       ),
       DigitalGuideNavLink(
         onTap: () {},
-        text: context.localize.doors,
+        text: context.localize.door,
       ),
       const SizedBox(
         height: DigitalGuideConfig.heightMedium,

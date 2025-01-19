@@ -95,7 +95,9 @@ class _RegionView extends ConsumerWidget {
                   return Column(
                     children: [
                       DigitalGuideNavLink(
-                        onTap: () {}, 
+                        onTap: () async {
+                          await ref.navigateDigitalGuideCorridor(regionData.corridors[index]);
+                        }, 
                         text: regionData.corridors[index].translations.plTranslation.name,
                       ),
                       const SizedBox(

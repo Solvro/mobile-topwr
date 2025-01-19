@@ -238,7 +238,7 @@
   },
   "adapted_toilet_is_not_marked": "Lokalizacja toalety nie jest oznaczona za pomocą informacji kierunkowej.",
   "images": "Zdjęcia",
-  "doors": "Drzwi",
+  "door": "Drzwi",
   "accessibility_profile" : "Profil dostępności",
   "accessibility_profile_empty" : "Brak informacji dotyczących wybranego profilu dostępności",
   "accessibility_card_information" : "{message} jest {accessibility_level} dla osób {disability_description}",
@@ -327,6 +327,7 @@
   "rooms_distribution" : "Rozkład pomieszczeń:",
   "region_location" : "Lokalizacja strefy:",
   "level" : "Piętro",
+  "region" : "Strefa", 
   "stairs" : "Schody",
   "lodge" : "Portiernia",
   "information_point" : "Punkt informacyjny",
@@ -335,5 +336,106 @@
   "women_toilet" : "Toaleta damska",
   "ramp" : "Pochylnia",
   "lift" : "Winda",
-  "parking" : "Parking"
+  "parking" : "Parking",
+  "corridor_simple_layout_text" : "Korytarz ma prosty i przejrzysty układ, który jest powtarzalny na każdej kondygnacji. {comment}",
+  "@corridor_simple_layout_text": {
+    "description": "comment",
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "corridor_no_simple_layout_text" : "Układ korytarza nie jest prosty, czytelny ani powtarzalny na każdej kondygnacji. {comment}",
+  "@corridor_no_simple_layout_text": {
+    "description": "comment",
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "floor_marked_text" : "Korytarz jest oznakowany. Widoczny jest numer piętra. {comment}",
+  "@floor_marked_text": {
+    "description": "comment",
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "floor_not_marked_text" : "Korytarz nie jest oznakowany. Nie ma widocznego numeru piętra. {comment}",
+  "@floor_not_marked_text": {
+    "description": "comment",
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "room_entrances_text" : "Z korytarza możliwe jest wejście do następujących pomieszczeń: {comment}",
+  "@floor_marked_text": {
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "no_room_entrances_text" : "Z korytarza nie ma możliwości wejścia do żadnego pomieszczenia.",
+  "information_board_text" : "W korytarzu nie ma tablicy informacyjnej ze spisem pomieszczeń. {comment}",
+  "@information_board_text": {
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "no_information_board_text" : "W korytarzu nie ma tablicy informacyjnej ze spisem pomieszczeń. {comment}",
+  "@no_information_board_text": {
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "room_puropose_described_in_en_text" : "Funkcje pomieszczeń nie są opisane w języku angielskim.",
+  "room_puropose_not_described_in_en_text" : "Funkcje pomieszczeń nie są opisane w języku angielskim.",
+  "consistent_level_color_pattern_text" : "Kolor, wzór i krój oznakowania pomieszczeń są spójne dla całego piętra.",
+  "not_consistent_level_color_pattern_text" : "Kolor, wzór i krój oznakowania pomieszczeń nie są spójne dla całego piętra.",
+  "pictorial_directional_signs_text" : "W kluczowych punktach korytarza znajdują się wyraźne i kontrastowe oznakowania kierunkowe. {comment}",
+  "@pictorial_directional_signs_text": {
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "no_pictorial_directional_signs_text" : "W kluczowych punktach korytarza nie ma wyraźnych i kontrastowych oznakowań kierunkowych. {comment}",
+  "@no_pictorial_directional_signs_text": {
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "seats_text" : "W korytarzu znajdują się miejsca siedzące. Są to: {comment}",
+  "@seats_text": {
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "no_seats_text" : "W korytarzu nie ma miejsc siedzących.",
+  "vending_machines_text" : "W korytarzu znajdują się automaty sprzedające. {comment}",
+  "@vending_machines_text": {
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "no_vending_machines_text" : "W korytarzu nie ma automatów sprzedających.",
+  "emergency_plan_text" : "W korytarzu znajdują się plany ewakuacyjne.",
+  "no_emergency_plan_text" : "W korytarzu nie ma planów ewakuacyjnych."
 }

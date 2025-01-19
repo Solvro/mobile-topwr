@@ -70,7 +70,7 @@ class AdaptedToiletDetailView extends ConsumerWidget {
         itemBuilder: (context, index) {
           return DigitalGuideNavLink(
             onTap: () {},
-            text: context.localize.doors,
+            text: context.localize.door,
           );
         },
         itemCount: adaptedToilet.doorsIndices.length,
@@ -83,7 +83,7 @@ class AdaptedToiletDetailView extends ConsumerWidget {
       if (adaptedToilet.imagesIndices.isNotEmpty)
         Text(
           context.localize.images,
-          style: context.textTheme.title.copyWith(fontSize: 24),
+          style: context.textTheme.title.copyWith(fontSize: 22),
         ),
     ];
 
