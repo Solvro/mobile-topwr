@@ -15,7 +15,7 @@ class Stairway with _$Stairway {
 @freezed
 class StairwayTranslations with _$StairwayTranslations {
   const factory StairwayTranslations ({
-    required StairwayTranslation plTranslation,
+    @JsonKey(name: "pl") required StairwayTranslation plTranslation,
   }) = _StairwayTranslations;
 
   factory StairwayTranslations.fromJson(Map<String, dynamic> json) => _$StairwayTranslationsFromJson(json);

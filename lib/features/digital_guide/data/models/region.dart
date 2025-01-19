@@ -7,9 +7,18 @@ part "region.g.dart";
 class Region with _$Region {
   const factory Region({
     required RegionTranslations translations,
+    @JsonKey(name: "dressing_rooms") required List<int> dressingRoomIndices,
+    @JsonKey(name: "lodges") required List<int> lodgesIndices,
+    @JsonKey(name: "information_points") required List<int> informationPointsIndices,
+    @JsonKey(name: "toilets") required List<int>toiletsIndices,
     @JsonKey(name: "adapted_toilets") required List<int> adaptedToiletsIndices,
+     @JsonKey(name: "lifts") required List<int> liftsIndices,
+    @JsonKey(name: "stairs") required List<int> stairsIndices,
+    @JsonKey(name: "ramps") required List<int> rampsIndices,
+    @JsonKey(name: "corridors") required List<int> corridorsIndices,
+    @JsonKey(name: "stairways") required List<int> stwairwaysIndices,
     @JsonKey(name: "rooms") required List<int> roomsIds,
-    @JsonKey(name: "lifts") required List<int> liftsIds,
+    @JsonKey(name: "parkings") required List<int> parkingsIndices,
   }) = _Region;
 
   factory Region.fromJson(Map<String, dynamic> json) => _$RegionFromJson(json);

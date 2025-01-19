@@ -15,7 +15,7 @@ class InformationPoint with _$InformationPoint {
 @freezed
 class  InformationPointTranslations with _$InformationPointTranslations {
   const factory InformationPointTranslations ({
-    required InformationPointTranslation plTranslation,
+    @JsonKey(name: "pl") required InformationPointTranslation plTranslation,
   }) = _InformationPointTranslations;
 
   factory InformationPointTranslations.fromJson(Map<String, dynamic> json) => _$InformationPointTranslationsFromJson(json);

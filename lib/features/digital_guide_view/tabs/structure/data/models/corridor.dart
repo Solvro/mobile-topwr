@@ -15,10 +15,10 @@ class Corridor with _$Corridor {
 @freezed
 class CorridorTranslations with _$CorridorTranslations {
   const factory CorridorTranslations ({
-    required CorridorTranslation plTranslation,
+    @JsonKey(name: "pl") required CorridorTranslation plTranslation,
   }) = _CorridorTranslations;
 
-  factory CorridorTranslations.fromJson(Map<String, dynamic> json) => _CorridorTranslationsFromJson(json);
+  factory CorridorTranslations.fromJson(Map<String, dynamic> json) => _$CorridorTranslationsFromJson(json);
 }
 
 @freezed
@@ -27,5 +27,5 @@ class CorridorTranslation with _$CorridorTranslation {
     required String name,
   }) = _CorridorTranslation;
 
-  factory CorridorTranslation.fromJson(Map<String,dynamic> json) => CorridorTranslationFromJson(json);
+  factory CorridorTranslation.fromJson(Map<String,dynamic> json) => _$CorridorTranslationFromJson(json);
 }

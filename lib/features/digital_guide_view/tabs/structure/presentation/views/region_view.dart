@@ -6,7 +6,13 @@ import "../../../../../../config/ui_config.dart";
 import "../../../../../../theme/app_theme.dart";
 import "../../../../../../utils/context_extensions.dart";
 import "../../../../../../widgets/detail_views/detail_view_app_bar.dart";
+import "../../../../../../widgets/loading_widgets/shimmer_loading.dart";
+import "../../../../../../widgets/my_error_widget.dart";
+import "../../../../../navigator/utils/navigation_commands.dart";
 import "../../../../data/models/region.dart";
+import "../../../../presentation/widgets/digital_guide_nav_link.dart";
+import "../../data/models/region_data.dart";
+import "../../data/repository/region_data_repository.dart";
 
 @RoutePage()
 class RegionView extends ConsumerWidget {
@@ -15,6 +21,37 @@ class RegionView extends ConsumerWidget {
   });
 
   final Region region;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+
+    final regionDataAsync = ref.watch(regionDataRepositoryProvider(region));
+
+    return regionDataAsync.when(
+      data: (regionData) => _RegionView(region: region, regionData: regionData),
+      error: (error, stackTrace) => Scaffold(
+        appBar: DetailViewAppBar(),
+        body: MyErrorWidget(error),
+      ),
+      loading: () => Center(
+        child: ShimmeringEffect(
+          child: Container(
+            color: Colors.white,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _RegionView extends ConsumerWidget {
+  const _RegionView({
+    required this.region,
+    required this.regionData,
+  });
+
+  final Region region;
+  final RegionData regionData;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -49,16 +86,227 @@ class RegionView extends ConsumerWidget {
                 const SizedBox(
                   height: DigitalGuideConfig.heightMedium,
                 ),
-                // corridors
-                // DigitalGuideNavLink(
-                //   onTap: onTap,
-                //   text: text
-                // )
               ]),
+            ),
+            // corridors
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (context,index) {
+                  return Column(
+                    children: [
+                      DigitalGuideNavLink(
+                        onTap: () {}, 
+                        text: regionData.corridors[index].translations.plTranslation.name,
+                      ),
+                      const SizedBox(
+                        height: DigitalGuideConfig.heightMedium,
+                      ),
+                    ],
+                  );
+                },
+                childCount: regionData.corridors.length,
+              ),
+            ),
+            // stairs
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (context,index) {
+                  return Column(
+                    children: [
+                      DigitalGuideNavLink(
+                        onTap: () {}, 
+                        text: context.localize.stairs,
+                      ),
+                      const SizedBox(
+                        height: DigitalGuideConfig.heightMedium,
+                      ),
+                    ],
+                  );
+                },
+                childCount: regionData.stairs.length,
+              ),
+            ),
+            // ramps
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (context,index) {
+                  return Column(
+                    children: [
+                      DigitalGuideNavLink(
+                        onTap: () {}, 
+                        text: context.localize.ramp,
+                      ),
+                      const SizedBox(
+                        height: DigitalGuideConfig.heightMedium,
+                      ),
+                    ],
+                  );
+                },
+                childCount: regionData.ramps.length,
+              ),
+            ),
+            // stairways
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (context,index) {
+                  return Column(
+                    children: [
+                      DigitalGuideNavLink(
+                        onTap: () {}, 
+                        text: regionData.stairways[index].translations.plTranslation.name,
+                      ),
+                      const SizedBox(
+                        height: DigitalGuideConfig.heightMedium,
+                      ),
+                    ],
+                  );
+                },
+                childCount: regionData.stairways.length,
+              ),
+            ),
+            // stairways
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (context,index) {
+                  return Column(
+                    children: [
+                      DigitalGuideNavLink(
+                        onTap: () {}, 
+                        text: context.localize.lift,
+                      ),
+                      const SizedBox(
+                        height: DigitalGuideConfig.heightMedium,
+                      ),
+                    ],
+                  );
+                },
+                childCount: regionData.lifts.length,
+              ),
+            ),
+            // lodges
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (context,index) {
+                  return Column(
+                    children: [
+                      DigitalGuideNavLink(
+                        onTap: () {}, 
+                        text: context.localize.lodge,
+                      ),
+                      const SizedBox(
+                        height: DigitalGuideConfig.heightMedium,
+                      ),
+                    ],
+                  );
+                },
+                childCount: regionData.lodges.length,
+              ),
+            ),
+            // information points
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (context,index) {
+                  return Column(
+                    children: [
+                      DigitalGuideNavLink(
+                        onTap: () {}, 
+                        text: context.localize.information_point,
+                      ),
+                      const SizedBox(
+                        height: DigitalGuideConfig.heightMedium,
+                      ),
+                    ],
+                  );
+                },
+                childCount: regionData.informationPoints.length,
+              ),
+            ),
+            // dressing rooms
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (context,index) {
+                  return Column(
+                    children: [
+                      DigitalGuideNavLink(
+                        onTap: () {}, 
+                        text: context.localize.dressing_room,
+                      ),
+                      const SizedBox(
+                        height: DigitalGuideConfig.heightMedium,
+                      ),
+                    ],
+                  );
+                },
+                childCount: regionData.dressingRooms.length,
+              ),
+            ),
+            // dressing rooms
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (context,index) {
+                  return Column(
+                    children: [
+                      DigitalGuideNavLink(
+                        onTap: () {}, 
+                        text: regionData.toilets[index].menToilet 
+                          ? context.localize.men_toilet
+                          : context.localize.women_toilet,
+                      ),
+                      const SizedBox(
+                        height: DigitalGuideConfig.heightMedium,
+                      ),
+                    ],
+                  );
+                },
+                childCount: regionData.toilets.length,
+              ),
+            ),
+            // rooms
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (context,index) {
+                  return Column(
+                    children: [
+                      DigitalGuideNavLink(
+                        onTap: () async {
+                          await ref.navigateRoomDetails(regionData.rooms[index]);
+                        }, 
+                        text: regionData.rooms[index].translations.pl.name,
+                      ),
+                      const SizedBox(
+                        height: DigitalGuideConfig.heightMedium,
+                      ),
+                    ],
+                  );
+                },
+                childCount: regionData.rooms.length,
+              ),
+            ),
+            // parkings
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (context,index) {
+                  return Column(
+                    children: [
+                      DigitalGuideNavLink(
+                        onTap: () async {
+                          await ref.navigateRoomDetails(regionData.rooms[index]);
+                        }, 
+                        text: context.localize.parking,
+                      ),
+                      const SizedBox(
+                        height: DigitalGuideConfig.heightMedium,
+                      ),
+                    ],
+                  );
+                },
+                childCount: regionData.parkings.length,
+              ),
             ),
           ],
         ),
       ),
     );
   }
+  
 }

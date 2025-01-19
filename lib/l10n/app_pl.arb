@@ -326,5 +326,14 @@
   "working_hours" : "Godziny otwarcia",
   "rooms_distribution" : "Rozkład pomieszczeń:",
   "region_location" : "Lokalizacja strefy:",
-  "level" : "Piętro"
+  "level" : "Piętro",
+  "stairs" : "Schody",
+  "lodge" : "Portiernia",
+  "information_point" : "Punkt informacyjny",
+  "dressing_room" : "Szatnia",
+  "men_toilet" : "Toaleta męska",
+  "women_toilet" : "Toaleta damska",
+  "ramp" : "Pochylnia",
+  "lift" : "Winda",
+  "parking" : "Parking"
 }

@@ -15,7 +15,7 @@ class DressingRoom with _$DressingRoom {
 @freezed
 class  DressingRoomTranslations with _$DressingRoomTranslations {
   const factory DressingRoomTranslations ({
-    required DressingRoomTranslation plTranslation,
+    @JsonKey(name: "pl") required DressingRoomTranslation plTranslation,
   }) = _DressingRoomTranslations;
 
   factory DressingRoomTranslations.fromJson(Map<String, dynamic> json) => _$DressingRoomTranslationsFromJson(json);

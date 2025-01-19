@@ -15,7 +15,7 @@ class Stairs with _$Stairs {
 @freezed
 class StairsTranslations with _$StairsTranslations {
   const factory StairsTranslations ({
-    required StairsTranslation plTranslation,
+    @JsonKey(name: "pl") required StairsTranslation plTranslation,
   }) = _StairsTranslations;
 
   factory StairsTranslations.fromJson(Map<String, dynamic> json) => _$StairsTranslationsFromJson(json);
@@ -24,7 +24,7 @@ class StairsTranslations with _$StairsTranslations {
 @freezed
 class StairsTranslation with _$StairsTranslation {
   const factory StairsTranslation ({
-    required String name,
+    required String location,
   }) = _StairsTranslation;
 
   factory StairsTranslation.fromJson(Map<String, dynamic> json) => _$StairsTranslationFromJson(json);
