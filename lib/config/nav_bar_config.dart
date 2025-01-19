@@ -64,6 +64,7 @@ extension IsRouteATabViewX on PageRouteInfo<dynamic> {
       GuideDetailRoute.name => context.localize.guide,
       DigitalGuideRoute.name => context.localize.digital_guide,
       LevelRoute.name => context.localize.level,
+      RegionRoute.name => context.localize.region,
       _ => null,
     };
   }

@@ -9,6 +9,7 @@ import "../../digital_guide_view/data/models/level_with_regions.dart";
 import "../../digital_guide_view/data/models/region.dart";
 import "../../digital_guide_view/tabs/adapted_toilets/data/models/adapted_toilet.dart";
 import "../../digital_guide_view/tabs/rooms/data/models/digital_guide_room.dart";
+import "../../digital_guide_view/tabs/structure/data/models/corridor.dart";
 import "../../parkings_view/models/parking.dart";
 import "../app_router.dart";
 import "../navigation_controller.dart";
@@ -101,6 +102,10 @@ extension NavigationX on WidgetRef {
 
   Future<void> navigateDigitalGuideRegion(Region region) async {
     await _router.push(RegionRoute(region: region));
+  }
+
+  Future<void> navigateDigitalGuideCorridor(Corridor corridor) async {
+    await _router.push(CorridorRoute(corridor: corridor));
   }
 
   Future<void> navigateBuildingDetailAction(BuildingModel building) async {
