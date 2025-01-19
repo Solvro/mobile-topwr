@@ -4,31 +4,25 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../utils/context_extensions.dart";
 import "../../../../widgets/my_expansion_tile.dart";
-import "../../../buildings_view/model/building_model.dart";
 import "../../data/models/digital_guide_response.dart";
 import "../../data/models/level_with_regions.dart";
 import "../../data/repository/levels_repository.dart";
 import "../../tabs/adapted_toilets/presentation/adapted_toilets_expansion_tile_content.dart";
 import "../../tabs/amenities/presentation/amenities_expansion_tile_content.dart";
-import "../../tabs/dressing_room/presentation/digital_guide_dressing_rooms_expansion_tile.dart";
 import "../../tabs/evacuation/evacuation_widget.dart";
-import "../../tabs/lifts/presentation/digital_guide_lifts_expansion_tile_content.dart";
 import "../../tabs/localization/presentation/localization_expansion_tile_content.dart";
-import "../../tabs/lodge/presentation/digital_guide_lodge_expansion_tile_content.dart";
-import "../../tabs/micronavigation/presentation/micronavigation_expansion_tile_content.dart";
 import "../../tabs/rooms/presentation/digital_guide_rooms_expansion_tile_content.dart";
 import "../../tabs/surrounding/presentation/surroundings_expansion_tile_content.dart";
+import "../../tabs/transportation/presentation/transportation_expansion_tile_content.dart";
 
 typedef TileContent = ({String title, List<Widget> content});
 
 class DigitalGuideFeaturesSection extends ConsumerWidget {
   const DigitalGuideFeaturesSection({
     required this.digitalGuideData,
-    required this.building,
   });
 
   final DigitalGuideResponse digitalGuideData;
-  final BuildingModel building;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -41,12 +35,7 @@ class DigitalGuideFeaturesSection extends ConsumerWidget {
     final items = <TileContent>[
       (
         title: context.localize.localization,
-        content: [
-          LocalizationExpansionTileContent(
-            digitalGuideData: digitalGuideData,
-            building: building,
-          ),
-        ],
+        content: [LocalizationExpansionTileContent()],
       ),
       (
         title: context.localize.amenities,
@@ -66,19 +55,17 @@ class DigitalGuideFeaturesSection extends ConsumerWidget {
       ),
       (
         title: context.localize.transport,
-        content: [],
+        content: [TransportationExpansionTileContent(
+          digitalGuideData: digitalGuideData,
+        ),],
       ),
       (
         title: context.localize.entrances,
-        content: [],
+        content: [LocalizationExpansionTileContent()],
       ),
       (
-        title: context.localize.lifts,
-        content: [
-          DigitalGuideLiftExpansionTileContent(
-            digitalGuideResponse: digitalGuideData,
-          ),
-        ],
+        title: context.localize.elevators,
+        content: [LocalizationExpansionTileContent()],
       ),
       if (hasToilets)
         (
@@ -91,15 +78,11 @@ class DigitalGuideFeaturesSection extends ConsumerWidget {
         ),
       (
         title: context.localize.micro_navigation,
-        content: [
-          MicronavigationExpansionTileContent(
-            digitalGuideData: digitalGuideData,
-          ),
-        ],
+        content: [LocalizationExpansionTileContent()],
       ),
       (
         title: context.localize.building_structure,
-        content: [],
+        content: [LocalizationExpansionTileContent()],
       ),
       (
         title: context.localize.room_information,
@@ -114,22 +97,6 @@ class DigitalGuideFeaturesSection extends ConsumerWidget {
         content: [
           EvacuationWidget(
             digitalGuideData: digitalGuideData,
-          ),
-        ],
-      ),
-      (
-        title: context.localize.lodge,
-        content: [
-          DigitalGuideLodgeExpansionTileContent(
-            digitalGuideData,
-          ),
-        ],
-      ),
-      (
-        title: context.localize.dressing_room,
-        content: [
-          DigitalGuideDressingRoomsExpansionTileContent(
-            digitalGuideData,
           ),
         ],
       ),
