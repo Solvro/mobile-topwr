@@ -6,6 +6,7 @@ import "package:logger/logger.dart";
 import "../../../utils/launch_url_util.dart";
 import "../../buildings_view/model/building_model.dart";
 import "../../digital_guide_view/tabs/adapted_toilets/data/models/adapted_toilet.dart";
+import "../../digital_guide_view/tabs/micronavigation/data/models/micronavigation_response.dart";
 import "../../digital_guide_view/tabs/rooms/data/models/digital_guide_room.dart";
 import "../../parkings_view/models/parking.dart";
 import "../app_router.dart";
@@ -87,6 +88,16 @@ extension NavigationX on WidgetRef {
 
   Future<void> navigateAdaptedToiletDetails(AdaptedToilet adaptedToilet) async {
     await _router.push(AdaptedToiletDetailRoute(adaptedToilet: adaptedToilet));
+  }
+
+  Future<void> navigateMicronavigationDetails(
+    MicronavigationResponse micronavigationResponse,
+  ) async {
+    await _router.push(
+      MicronavigationDetailRoute(
+        micronavigationResponse: micronavigationResponse,
+      ),
+    );
   }
 
   Future<void> navigateRoomDetails(DigitalGuideRoom room) async {

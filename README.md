@@ -76,6 +76,7 @@ WIREDASH_SECRET="<...>" # can be left empty
 SKS_URL="https://<...>/api/v1"
 DIGITAL_GUIDE_URL="https://<...>/api"
 DIGITAL_GUIDE_AUTHORIZATION_TOKEN="<...>"
+DIGITAL_GUIDE_ADDONS_URL="<...>"
 ```
 If you need our server url please write us an email [kn.solvro@pwr.edu.pl](mailto:kn.solvro@pwr.edu.pl) or contact us via our [website](https://solvro.pwr.edu.pl/contact/)
 
