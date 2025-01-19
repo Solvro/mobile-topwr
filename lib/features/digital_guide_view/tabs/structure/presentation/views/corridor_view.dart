@@ -115,7 +115,8 @@ class CorridorView extends ConsumerWidget {
                       context.localize.no_emergency_plan_text,
                   ].lock,
                 ),
-                const SizedBox(height: DigitalGuideConfig.heightBig),
+                if (corridor.doorsIndices.isNotEmpty)
+                  const SizedBox(height: DigitalGuideConfig.heightMedium),
                 ListView.separated(
                   physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
@@ -130,7 +131,7 @@ class CorridorView extends ConsumerWidget {
                   ),
                   shrinkWrap: true,
                 ),
-                const SizedBox(height: DigitalGuideConfig.heightBig),
+                const SizedBox(height: DigitalGuideConfig.heightMedium),
                 if (corridor.imagesIndices.isNotEmpty)
                   Text(
                     context.localize.images,
