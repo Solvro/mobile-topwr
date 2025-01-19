@@ -154,28 +154,30 @@ class _SKSMenuUnavailableAnimation extends HookWidget {
             height: box.maxHeight,
             width: box.maxWidth,
             child: Align(
-              alignment: const Alignment(0, -0.4),
+              alignment: const Alignment(0, -0.2),
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    SizedBox.square(
-                      dimension: animationSize,
-                      child: Lottie.asset(
-                        Assets.animations.sksClosed,
-                        fit: BoxFit.cover,
-                        repeat: false,
-                        frameRate:
-                            const FrameRate(LottieAnimationConfig.frameRate),
-                        renderCache: RenderCache.drawingCommands,
-                        onLoaded: (composition) {
-                          final totalDuration = composition.duration;
-                          Future.delayed(
-                              totalDuration *
-                                  0.8, // in my opinion the animation is a bit boring at the end, so we can show the texts a bit earlier
-                              () {
-                            isAnimationCompleted.value = true;
-                          });
-                        },
+                    Transform.translate(offset: Offset(0, -0.1 * animationSize),
+                      child: SizedBox.square(
+                        dimension: animationSize,
+                        child: Lottie.asset(
+                          Assets.animations.sksClosed,
+                          fit: BoxFit.cover,
+                          repeat: false,
+                          frameRate:
+                              const FrameRate(LottieAnimationConfig.frameRate),
+                          renderCache: RenderCache.drawingCommands,
+                          onLoaded: (composition) {
+                            final totalDuration = composition.duration;
+                            Future.delayed(
+                                totalDuration *
+                                    0.8, // in my opinion the animation is a bit boring at the end, so we can show the texts a bit earlier
+                                () {
+                              isAnimationCompleted.value = true;
+                            });
+                          },
+                        ),
                       ),
                     ),
                     Opacity(
@@ -183,8 +185,7 @@ class _SKSMenuUnavailableAnimation extends HookWidget {
                       child: Transform.translate(
                         offset: Offset(
                           0,
-                          -(animationSize *
-                              0.10), // the animation has some extra space at the bottom
+                          -(animationSize * 0.20), // the animation has some extra space at the bottom
                         ),
                         child: Column(
                           children: [
