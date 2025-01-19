@@ -4,11 +4,9 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../config/ui_config.dart";
 import "../../../../../widgets/my_error_widget.dart";
-import "../../../../navigator/utils/navigation_commands.dart";
 import "../../../data/models/digital_guide_response.dart";
-import "../../../presentation/widgets/digital_guide_nav_link.dart";
-import "../data/models/digital_guide_room.dart";
-import "../data/repository/rooms_repository.dart";
+import "../domain/digital_guide_rooms_use_cases.dart";
+import "digital_guide_room_level.dart";
 
 class DigitalGuideRoomExpansionTileContent extends ConsumerWidget {
   const DigitalGuideRoomExpansionTileContent({
@@ -19,10 +17,11 @@ class DigitalGuideRoomExpansionTileContent extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final roomsInBuilding =
-        ref.watch(roomsRepositoryProvider(digitalGuideResponse));
-    return roomsInBuilding.when(
-      data: (data) => _DigitalGuideRoomExpansionTileContent(rooms: data),
+    final levelsWithRooms =
+        ref.watch(getLevelsWithRoomsUseCaseProvider(digitalGuideResponse));
+    return levelsWithRooms.when(
+      data: (data) =>
+          _DigitalGuideRoomExpansionTileContent(levelsWithRooms: data),
       error: (error, _) => MyErrorWidget(error),
       loading: () => const Center(
         child: CircularProgressIndicator(),
@@ -32,9 +31,9 @@ class DigitalGuideRoomExpansionTileContent extends ConsumerWidget {
 }
 
 class _DigitalGuideRoomExpansionTileContent extends ConsumerWidget {
-  const _DigitalGuideRoomExpansionTileContent({required this.rooms});
+  const _DigitalGuideRoomExpansionTileContent({required this.levelsWithRooms});
 
-  final IList<DigitalGuideRoom> rooms;
+  final IList<LevelWithRooms> levelsWithRooms;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -43,21 +42,14 @@ class _DigitalGuideRoomExpansionTileContent extends ConsumerWidget {
         horizontal: DigitalGuideConfig.paddingMedium,
         vertical: DigitalGuideConfig.paddingMedium,
       ),
-      child: ListView.separated(
-        physics: const NeverScrollableScrollPhysics(),
-        separatorBuilder: (context, index) => const SizedBox(
-          height: DigitalGuideConfig.heightMedium,
-        ),
-        itemCount: rooms.length,
-        shrinkWrap: true,
-        itemBuilder: (context, index) => DigitalGuideNavLink(
-          onTap: () async {
-            await ref.navigateRoomDetails(
-              rooms[index],
-            );
-          },
-          text: rooms[index].translations.pl.name,
-        ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: levelsWithRooms.map((level) {
+          return DigitalGuideRoomLevel(
+            level: level.level,
+            rooms: level.rooms,
+          );
+        }).toList(),
       ),
     );
   }

@@ -1,7 +1,9 @@
 import "dart:async";
 
 import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:logger/logger.dart";
 
+import "../../../utils/launch_url_util.dart";
 import "../../buildings_view/model/building_model.dart";
 import "../../digital_guide_view/tabs/adapted_toilets/data/models/adapted_toilet.dart";
 import "../../digital_guide_view/tabs/micronavigation/data/models/micronavigation_response.dart";
@@ -80,8 +82,8 @@ extension NavigationX on WidgetRef {
     await _router.push(const SksMenuRoute());
   }
 
-  Future<void> navigateDigitalGuide(int id) async {
-    await _router.push(DigitalGuideRoute(id: id));
+  Future<void> navigateDigitalGuide(String ourId) async {
+    await _router.push(DigitalGuideRoute(ourId: ourId));
   }
 
   Future<void> navigateAdaptedToiletDetails(AdaptedToilet adaptedToilet) async {
@@ -100,5 +102,18 @@ extension NavigationX on WidgetRef {
 
   Future<void> navigateRoomDetails(DigitalGuideRoom room) async {
     await _router.push(DigitalGuideRoomDetailRoute(room: room));
+  }
+
+  Future<void> navigateBuildingDetailAction(BuildingModel building) async {
+    return switch (building.externalDigitalGuideMode) {
+      "web_url" => launch(building.externalDigitalGuideIdOrURL!),
+      "digital_guide_building" => navigateDigitalGuide(building.id),
+      "digital_guide_other_place" => Logger().i(
+          "Other Digital Guide place, not yet implemented",
+        ),
+      _ => Logger().w(
+          "Unknown externalDigitalGuideMode: ${building.externalDigitalGuideMode}",
+        )
+    };
   }
 }
