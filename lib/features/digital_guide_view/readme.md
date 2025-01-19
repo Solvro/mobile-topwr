@@ -25,3 +25,7 @@
   * /rooms/data/repository/rooms_repository.dart
   * DIGITAL_GUIDE_URL/rooms/{id}
 
+5) Localization data
+  * /localization/data/repository/localization_repository.dart
+  * DIGITAL_GUIDE_URL/buildings/{location_map}
+  * DIGITAL_GUIDE_URL/images/{id}
