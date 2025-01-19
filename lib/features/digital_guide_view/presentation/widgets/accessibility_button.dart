@@ -1,7 +1,10 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
 
 import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
+import "../../tabs/accessibility_dialog/presentation/accessibility_dialog.dart";
 
 class AccessibilityButton extends StatelessWidget {
   @override
@@ -9,7 +12,14 @@ class AccessibilityButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(right: 8),
       child: OutlinedButton(
-        onPressed: () {},
+        onPressed: () {
+          unawaited(
+            showDialog(
+              context: context,
+              builder: (_) => const AccessibilityDialog(),
+            ),
+          );
+        },
         style: OutlinedButton.styleFrom(
           shape: RoundedRectangleBorder(
             borderRadius:
