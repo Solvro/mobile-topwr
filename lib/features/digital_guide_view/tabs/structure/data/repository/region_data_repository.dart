@@ -21,18 +21,30 @@ part "region_data_repository.g.dart";
 
 @riverpod
 Future<RegionData> regionDataRepository(Ref ref, Region region) async {
-  final corridors = await ref.watch(corridorsRepositoryProvider(region.corridorsIndices).future);
-  final stairs = await ref.watch(stairsRepositoryProvider(region.stairsIndices).future);
-  final ramps = await ref.watch(rampsRepositoryProvider(region.rampsIndices).future);
-  final stairways = await ref.watch(stairwaysRepositoryProvider(region.stwairwaysIndices).future);
-  final lifts = await ref.watch(liftsRepositoryProvider(region.liftsIndices).future);
-  final lodges = await ref.watch(lodgesRepositoryProvider(region.lodgesIndices).future);
-  final informationPoints = await ref.watch(informationPointsRepositoryProvider(region.informationPointsIndices).future);
-  final dressingRooms = await ref.watch(dressingRoomsRepositoryProvider(region.dressingRoomIndices).future);
-  final toilets = await ref.watch(toiletsRepositoryProvider(region.toiletsIndices).future);
-  final rooms = await ref.watch(regionRoomsRepositoryProvider(region.roomsIds).future);
-  final parkings = await ref.watch(regionParkingsRepositoryProvider(region.parkingsIndices).future);
-;
+  final corridors = await ref
+      .watch(corridorsRepositoryProvider(region.corridorsIndices).future);
+  final stairs =
+      await ref.watch(stairsRepositoryProvider(region.stairsIndices).future);
+  final ramps =
+      await ref.watch(rampsRepositoryProvider(region.rampsIndices).future);
+  final stairways = await ref
+      .watch(stairwaysRepositoryProvider(region.stwairwaysIndices).future);
+  final lifts =
+      await ref.watch(liftsRepositoryProvider(region.liftsIndices).future);
+  final lodges =
+      await ref.watch(lodgesRepositoryProvider(region.lodgesIndices).future);
+  final informationPoints = await ref.watch(
+    informationPointsRepositoryProvider(region.informationPointsIndices).future,
+  );
+  final dressingRooms = await ref.watch(
+    dressingRoomsRepositoryProvider(region.dressingRoomIndices).future,
+  );
+  final toilets =
+      await ref.watch(toiletsRepositoryProvider(region.toiletsIndices).future);
+  final rooms =
+      await ref.watch(regionRoomsRepositoryProvider(region.roomsIds).future);
+  final parkings = await ref
+      .watch(regionParkingsRepositoryProvider(region.parkingsIndices).future);
   return RegionData(
     corridors: corridors,
     stairs: stairs,
@@ -49,7 +61,10 @@ Future<RegionData> regionDataRepository(Ref ref, Region region) async {
 }
 
 @riverpod
-Future<IList<Corridor>> corridorsRepository(Ref ref, List<int> corridorsIDs) async {
+Future<IList<Corridor>> corridorsRepository(
+  Ref ref,
+  List<int> corridorsIDs,
+) async {
   Future<Corridor> getCorridor(int corridorID) async {
     return ref.getAndCacheDataFromDigitalGuide(
       "corridors/$corridorID",
@@ -91,7 +106,10 @@ Future<IList<Ramp>> rampsRepository(Ref ref, List<int> rampsIDs) async {
 }
 
 @riverpod
-Future<IList<Stairway>> stairwaysRepository(Ref ref, List<int> stairwaysIDs) async {
+Future<IList<Stairway>> stairwaysRepository(
+  Ref ref,
+  List<int> stairwaysIDs,
+) async {
   Future<Stairway> getStairway(int stairwayID) async {
     return ref.getAndCacheDataFromDigitalGuide(
       "stairways/$stairwayID",
@@ -105,7 +123,10 @@ Future<IList<Stairway>> stairwaysRepository(Ref ref, List<int> stairwaysIDs) asy
 }
 
 @riverpod
-Future<IList<Lift>> liftsRepository(Ref ref, List<int> liftIDs) async {
+Future<IList<Lift>> liftsRepository(
+  Ref ref,
+  List<int> liftIDs,
+) async {
   Future<Lift> getLift(int liftID) async {
     return ref.getAndCacheDataFromDigitalGuide(
       "lifts/$liftID",
@@ -119,7 +140,10 @@ Future<IList<Lift>> liftsRepository(Ref ref, List<int> liftIDs) async {
 }
 
 @riverpod
-Future<IList<Lodge>> lodgesRepository(Ref ref, List<int> lodgesIDs) async {
+Future<IList<Lodge>> lodgesRepository(
+  Ref ref,
+  List<int> lodgesIDs,
+) async {
   Future<Lodge> getLodge(int lodgeID) async {
     return ref.getAndCacheDataFromDigitalGuide(
       "lodges/$lodgeID",
@@ -133,7 +157,10 @@ Future<IList<Lodge>> lodgesRepository(Ref ref, List<int> lodgesIDs) async {
 }
 
 @riverpod
-Future<IList<InformationPoint>> informationPointsRepository(Ref ref, List<int> informationPointsIDs) async {
+Future<IList<InformationPoint>> informationPointsRepository(
+  Ref ref,
+  List<int> informationPointsIDs,
+) async {
   Future<InformationPoint> getInformationPoint(int informationPointID) async {
     return ref.getAndCacheDataFromDigitalGuide(
       "information_points/$informationPointID",
@@ -142,13 +169,16 @@ Future<IList<InformationPoint>> informationPointsRepository(Ref ref, List<int> i
     );
   }
 
-  final informationPoints = await Future.wait(informationPointsIDs.map(getInformationPoint));
+  final informationPoints =
+      await Future.wait(informationPointsIDs.map(getInformationPoint));
   return informationPoints.lock;
 }
 
-
 @riverpod
-Future<IList<DressingRoom>> dressingRoomsRepository(Ref ref, List<int> dressingRoomsIDs) async {
+Future<IList<DressingRoom>> dressingRoomsRepository(
+  Ref ref,
+  List<int> dressingRoomsIDs,
+) async {
   Future<DressingRoom> getDressingRoom(int dressingRoomID) async {
     return ref.getAndCacheDataFromDigitalGuide(
       "dressing_rooms/$dressingRoomID",
@@ -157,12 +187,16 @@ Future<IList<DressingRoom>> dressingRoomsRepository(Ref ref, List<int> dressingR
     );
   }
 
-  final dressingRooms = await Future.wait(dressingRoomsIDs.map(getDressingRoom));
+  final dressingRooms =
+      await Future.wait(dressingRoomsIDs.map(getDressingRoom));
   return dressingRooms.lock;
 }
 
 @riverpod
-Future<IList<Toilet>> toiletsRepository(Ref ref, List<int> toiletsIDs) async {
+Future<IList<Toilet>> toiletsRepository(
+  Ref ref,
+  List<int> toiletsIDs,
+) async {
   Future<Toilet> getToilet(int toiletID) async {
     return ref.getAndCacheDataFromDigitalGuide(
       "toilets/$toiletID",
@@ -176,7 +210,10 @@ Future<IList<Toilet>> toiletsRepository(Ref ref, List<int> toiletsIDs) async {
 }
 
 @riverpod
-Future<IList<DigitalGuideRoom>> regionRoomsRepository(Ref ref, List<int> roomsIDs) async {
+Future<IList<DigitalGuideRoom>> regionRoomsRepository(
+  Ref ref,
+  List<int> roomsIDs,
+) async {
   Future<DigitalGuideRoom> getRoom(int roomID) async {
     return ref.getAndCacheDataFromDigitalGuide(
       "rooms/$roomID",
@@ -190,7 +227,10 @@ Future<IList<DigitalGuideRoom>> regionRoomsRepository(Ref ref, List<int> roomsID
 }
 
 @riverpod
-Future<IList<Parking>> regionParkingsRepository(Ref ref, List<int> parkingsIDs) async {
+Future<IList<Parking>> regionParkingsRepository(
+  Ref ref,
+  List<int> parkingsIDs,
+) async {
   Future<Parking> getParking(int parkingID) async {
     return ref.getAndCacheDataFromDigitalGuide(
       "parkings/$parkingID",

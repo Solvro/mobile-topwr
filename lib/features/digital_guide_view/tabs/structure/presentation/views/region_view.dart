@@ -24,7 +24,6 @@ class RegionView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     final regionDataAsync = ref.watch(regionDataRepositoryProvider(region));
 
     return regionDataAsync.when(
@@ -91,14 +90,17 @@ class _RegionView extends ConsumerWidget {
             // corridors
             SliverList(
               delegate: SliverChildBuilderDelegate(
-                (context,index) {
+                (context, index) {
                   return Column(
                     children: [
                       DigitalGuideNavLink(
                         onTap: () async {
-                          await ref.navigateDigitalGuideCorridor(regionData.corridors[index]);
-                        }, 
-                        text: regionData.corridors[index].translations.plTranslation.name,
+                          await ref.navigateDigitalGuideCorridor(
+                            regionData.corridors[index],
+                          );
+                        },
+                        text: regionData
+                            .corridors[index].translations.plTranslation.name,
                       ),
                       const SizedBox(
                         height: DigitalGuideConfig.heightMedium,
@@ -112,11 +114,11 @@ class _RegionView extends ConsumerWidget {
             // stairs
             SliverList(
               delegate: SliverChildBuilderDelegate(
-                (context,index) {
+                (context, index) {
                   return Column(
                     children: [
                       DigitalGuideNavLink(
-                        onTap: () {}, 
+                        onTap: () {},
                         text: context.localize.stairs,
                       ),
                       const SizedBox(
@@ -131,11 +133,11 @@ class _RegionView extends ConsumerWidget {
             // ramps
             SliverList(
               delegate: SliverChildBuilderDelegate(
-                (context,index) {
+                (context, index) {
                   return Column(
                     children: [
                       DigitalGuideNavLink(
-                        onTap: () {}, 
+                        onTap: () {},
                         text: context.localize.ramp,
                       ),
                       const SizedBox(
@@ -150,12 +152,13 @@ class _RegionView extends ConsumerWidget {
             // stairways
             SliverList(
               delegate: SliverChildBuilderDelegate(
-                (context,index) {
+                (context, index) {
                   return Column(
                     children: [
                       DigitalGuideNavLink(
-                        onTap: () {}, 
-                        text: regionData.stairways[index].translations.plTranslation.name,
+                        onTap: () {},
+                        text: regionData
+                            .stairways[index].translations.plTranslation.name,
                       ),
                       const SizedBox(
                         height: DigitalGuideConfig.heightMedium,
@@ -169,11 +172,11 @@ class _RegionView extends ConsumerWidget {
             // stairways
             SliverList(
               delegate: SliverChildBuilderDelegate(
-                (context,index) {
+                (context, index) {
                   return Column(
                     children: [
                       DigitalGuideNavLink(
-                        onTap: () {}, 
+                        onTap: () {},
                         text: context.localize.lift,
                       ),
                       const SizedBox(
@@ -188,11 +191,11 @@ class _RegionView extends ConsumerWidget {
             // lodges
             SliverList(
               delegate: SliverChildBuilderDelegate(
-                (context,index) {
+                (context, index) {
                   return Column(
                     children: [
                       DigitalGuideNavLink(
-                        onTap: () {}, 
+                        onTap: () {},
                         text: context.localize.lodge,
                       ),
                       const SizedBox(
@@ -207,11 +210,11 @@ class _RegionView extends ConsumerWidget {
             // information points
             SliverList(
               delegate: SliverChildBuilderDelegate(
-                (context,index) {
+                (context, index) {
                   return Column(
                     children: [
                       DigitalGuideNavLink(
-                        onTap: () {}, 
+                        onTap: () {},
                         text: context.localize.information_point,
                       ),
                       const SizedBox(
@@ -226,11 +229,11 @@ class _RegionView extends ConsumerWidget {
             // dressing rooms
             SliverList(
               delegate: SliverChildBuilderDelegate(
-                (context,index) {
+                (context, index) {
                   return Column(
                     children: [
                       DigitalGuideNavLink(
-                        onTap: () {}, 
+                        onTap: () {},
                         text: context.localize.dressing_room,
                       ),
                       const SizedBox(
@@ -245,14 +248,14 @@ class _RegionView extends ConsumerWidget {
             // dressing rooms
             SliverList(
               delegate: SliverChildBuilderDelegate(
-                (context,index) {
+                (context, index) {
                   return Column(
                     children: [
                       DigitalGuideNavLink(
-                        onTap: () {}, 
-                        text: regionData.toilets[index].menToilet 
-                          ? context.localize.men_toilet
-                          : context.localize.women_toilet,
+                        onTap: () {},
+                        text: regionData.toilets[index].menToilet
+                            ? context.localize.men_toilet
+                            : context.localize.women_toilet,
                       ),
                       const SizedBox(
                         height: DigitalGuideConfig.heightMedium,
@@ -266,13 +269,14 @@ class _RegionView extends ConsumerWidget {
             // rooms
             SliverList(
               delegate: SliverChildBuilderDelegate(
-                (context,index) {
+                (context, index) {
                   return Column(
                     children: [
                       DigitalGuideNavLink(
                         onTap: () async {
-                          await ref.navigateRoomDetails(regionData.rooms[index]);
-                        }, 
+                          await ref
+                              .navigateRoomDetails(regionData.rooms[index]);
+                        },
                         text: regionData.rooms[index].translations.pl.name,
                       ),
                       const SizedBox(
@@ -287,13 +291,14 @@ class _RegionView extends ConsumerWidget {
             // parkings
             SliverList(
               delegate: SliverChildBuilderDelegate(
-                (context,index) {
+                (context, index) {
                   return Column(
                     children: [
                       DigitalGuideNavLink(
                         onTap: () async {
-                          await ref.navigateRoomDetails(regionData.rooms[index]);
-                        }, 
+                          await ref
+                              .navigateRoomDetails(regionData.rooms[index]);
+                        },
                         text: context.localize.parking,
                       ),
                       const SizedBox(
@@ -310,5 +315,4 @@ class _RegionView extends ConsumerWidget {
       ),
     );
   }
-  
 }
