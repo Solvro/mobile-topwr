@@ -47,18 +47,16 @@ class MyAudioPlayer extends HookWidget {
       [audioPlayer],
     );
 
-    Future<void> togglePlayPause() async {
-      if (isPlaying.value) {
-        await audioPlayer.pause();
-      } else {
-        await audioPlayer.play(UrlSource(audioUrl));
-      }
-    }
-
-    Future<void> seeokAudio(double value) async {
-      final position = Duration(seconds: value.toInt());
-      await audioPlayer.seek(position);
-    }
+    final togglePlayPause = useCallback(
+      () async {
+        if (isPlaying.value) {
+          await audioPlayer.pause();
+        } else {
+          await audioPlayer.play(UrlSource(audioUrl));
+        }
+      },
+      [audioUrl],
+    );
 
     final seekAudio = useCallback(
       (double value) async {
