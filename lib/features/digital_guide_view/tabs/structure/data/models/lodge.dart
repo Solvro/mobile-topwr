@@ -15,7 +15,7 @@ class Lodge with _$Lodge {
 @freezed
 class  LodgeTranslations with _$LodgeTranslations {
   const factory LodgeTranslations ({
-    required LodgeTranslation plTranslation,
+    @JsonKey(name: "pl") required LodgeTranslation plTranslation,
   }) = _LodgeTranslations;
 
   factory LodgeTranslations.fromJson(Map<String, dynamic> json) => _$LodgeTranslationsFromJson(json);

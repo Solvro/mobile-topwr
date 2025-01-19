@@ -7,6 +7,7 @@ part "toilet.freezed.dart";
 class Toilet with _$Toilet {
   const factory Toilet({
     required ToiletTranslations translations,
+    @JsonKey(name: "is_available_for", fromJson: decideMenToilet) required bool menToilet,
   }) = _Toilet;
 
   factory Toilet.fromJson(Map<String, dynamic> json) => _$ToiletFromJson(json);
@@ -15,7 +16,7 @@ class Toilet with _$Toilet {
 @freezed
 class  ToiletTranslations with _$ToiletTranslations {
   const factory ToiletTranslations ({
-    required ToiletTranslation plTranslation,
+    @JsonKey(name: "pl") required ToiletTranslation plTranslation,
   }) = _ToiletTranslations;
 
   factory ToiletTranslations.fromJson(Map<String, dynamic> json) => _$ToiletTranslationsFromJson(json);
@@ -28,4 +29,8 @@ class ToiletTranslation with _$ToiletTranslation {
   }) = _ToiletTranslation;
 
   factory ToiletTranslation.fromJson(Map<String, dynamic> json) => _$ToiletTranslationFromJson(json);
+}
+
+bool decideMenToilet(String option) {
+  return option == "1";
 }
