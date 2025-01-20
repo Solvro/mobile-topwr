@@ -24,7 +24,11 @@ class HorizontalSymmetricSafeArea extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: context.maxOfHorizontalViewPaddings,
-      child: child,
+      child: SafeArea(
+        left: false,
+        right: false,
+        child: child,
+      ),
     );
   }
 }

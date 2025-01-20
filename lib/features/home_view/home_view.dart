@@ -28,11 +28,9 @@ class HomeView extends StatelessWidget {
     ].lock;
 
     return Scaffold(
+      primary: false,
       backgroundColor: context.colorTheme.whiteSoap,
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(kToolbarHeight),
-        child: LogoAppBar(context),
-      ),
+      appBar: LogoAppBar(context),
       body: KeepAliveHomeViewProviders(
         child: ListView.separated(
           itemBuilder: (context, index) => sections[index],

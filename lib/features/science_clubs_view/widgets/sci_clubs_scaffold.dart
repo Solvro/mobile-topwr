@@ -16,6 +16,7 @@ class SciClubsScaffold extends ConsumerWidget {
     return HorizontalSymmetricSafeAreaScaffold(
       appBar: SearchBoxAppBar(
         addLeadingPopButton: true,
+        primary: true,
         context,
         title: context.localize.study_circles,
         onQueryChanged: ref

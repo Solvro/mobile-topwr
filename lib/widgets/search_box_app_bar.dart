@@ -18,6 +18,7 @@ class SearchBoxAppBar extends AppBar {
     VoidCallback? onSearchBoxTap,
     double bottomPadding = defaultBottomPadding,
     bool addLeadingPopButton = false,
+    super.primary = false,
   }) : super(
           title: Text(title),
           titleTextStyle: context.textTheme.headline,

@@ -13,6 +13,7 @@ class LogoAppBar extends AppBar {
     double toolbarHeight = kToolbarHeight,
     super.actions,
   }) : super(
+          primary: false,
           title: AppBarLogo(logoSize: logoSize),
           centerTitle: false,
           titleSpacing: 0,

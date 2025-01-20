@@ -37,6 +37,7 @@ class _DepartmentsView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return HorizontalSymmetricSafeAreaScaffold(
       appBar: SearchBoxAppBar(
+        primary: true,
         addLeadingPopButton: true,
         context,
         title: context.localize.departments,
