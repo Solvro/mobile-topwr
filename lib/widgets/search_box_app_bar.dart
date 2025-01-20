@@ -14,7 +14,6 @@ class SearchBoxAppBar extends AppBar {
     required String title,
     required void Function(String query) onQueryChanged,
     super.actions,
-    super.primary,
     super.key,
     VoidCallback? onSearchBoxTap,
     double bottomPadding = defaultBottomPadding,

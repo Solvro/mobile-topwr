@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../utils/context_extensions.dart";
+import "../../../widgets/horizontal_symmetric_safe_area.dart";
 import "../../../widgets/search_box_app_bar.dart";
 import "../../science_clubs_filters/widgets/filters_fab.dart";
 import "../controllers/science_clubs_view_controller.dart";
@@ -12,7 +13,7 @@ class SciClubsScaffold extends ConsumerWidget {
   final bool showFab;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Scaffold(
+    return HorizontalSymmetricSafeAreaScaffold(
       appBar: SearchBoxAppBar(
         addLeadingPopButton: true,
         context,
@@ -21,8 +22,17 @@ class SciClubsScaffold extends ConsumerWidget {
             .watch(searchScienceClubsControllerProvider.notifier)
             .onTextChanged,
       ),
-      floatingActionButton: showFab ? const FiltersFAB() : null,
-      body: child,
+      body: Stack(
+        children: [
+          if (child != null) child!,
+          if (showFab)
+            Positioned(
+              right: 16, // the left view padding is applied globally
+              bottom: MediaQuery.viewPaddingOf(context).bottom + 16,
+              child: const FiltersFAB(),
+            ),
+        ],
+      ),
     );
   }
 }

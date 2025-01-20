@@ -26,7 +26,7 @@ class AboutUsSectionLoading extends StatelessWidget {
           ),
           const SizedBox(height: DetailViewsConfig.spacerHeight),
           SizedBox(
-            height: MediaQuery.of(context).size.height / 10,
+            height: MediaQuery.sizeOf(context).height / 10,
             child: ShimmerLoadingItem(
               child: ScrollableLoaderBuilder(
                 mainAxisItemSize: 16,
@@ -35,7 +35,7 @@ class AboutUsSectionLoading extends StatelessWidget {
                 itemBuilder: (BuildContext context, int index) {
                   return Container(
                     height: 16,
-                    width: MediaQuery.of(context).size.width,
+                    width: MediaQuery.sizeOf(context).width,
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(16),
