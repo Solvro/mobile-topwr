@@ -25,7 +25,6 @@ import "../sks-menu/presentation/sks_menu_screen.dart";
 import "root_view.dart";
 
 part "app_router.g.dart";
-
 part "app_router.gr.dart";
 
 class _NoTransitionRoute extends CustomRoute {
@@ -103,22 +102,24 @@ class AppRouter extends RootStackRouter {
           page: ScienceClubDetailRoute.page,
         ),
         AutoRoute(
-          path: "/digital-guide/:id",
-          page: DigitalGuideRoute.page,
-        ),
-        AutoRoute(
-          page: AdaptedToiletDetailRoute.page,
-        ),
-        AutoRoute(
           path: "/aboutUs",
           page: AboutUsRoute.page,
         ),
         AutoRoute(
-          path: "/digital-guide/:id/micronavigationDetails",
+          path: "/digital-guide/:id",
+          page: DigitalGuideRoute.page,
+        ),
+        AutoRoute(
+          path: "/digital-guide/:id/room-details",
+          page: DigitalGuideRoomDetailRoute.page,
+        ),
+        AutoRoute(
+          path: "/digital-guide/:id/micronavigation-details",
           page: MicronavigationDetailRoute.page,
         ),
         AutoRoute(
-          page: DigitalGuideRoomDetailRoute.page,
+          path: "/digital-guide/:id/adapted-toilet-details",
+          page: AdaptedToiletDetailRoute.page,
         ),
       ];
 }

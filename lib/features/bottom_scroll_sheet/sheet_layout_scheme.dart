@@ -21,7 +21,6 @@ class SheetLayoutScheme<T extends GoogleNavigable> extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final appBar = SearchBoxAppBar(
       context,
-      primary: false,
       title: context.mapViewTexts<T>().title,
       onQueryChanged: ref
           .watch(context.mapDataController<T>().notifier)

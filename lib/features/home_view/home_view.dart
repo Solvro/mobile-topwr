@@ -17,9 +17,6 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final safeAreaInsets = MediaQuery.of(context).padding;
-    final horizontalPadding = safeAreaInsets.left;
-
     final sections = [
       const AcademicCalendarConsumer(),
       const Padding(
@@ -34,28 +31,15 @@ class HomeView extends StatelessWidget {
       backgroundColor: context.colorTheme.whiteSoap,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(kToolbarHeight),
-        child: SafeArea(
-          child: Padding(
-            padding: EdgeInsets.only(left: horizontalPadding),
-            child: LogoAppBar(context),
-          ),
-        ),
+        child: LogoAppBar(context),
       ),
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.only(
-            left: horizontalPadding, // Align with the top bar
-            right: safeAreaInsets.right,
+      body: KeepAliveHomeViewProviders(
+        child: ListView.separated(
+          itemBuilder: (context, index) => sections[index],
+          separatorBuilder: (context, index) => SizedBox(
+            height: index == 1 ? 0 : HomeViewConfig.paddingMedium,
           ),
-          child: KeepAliveHomeViewProviders(
-            child: ListView.separated(
-              itemBuilder: (context, index) => sections[index],
-              separatorBuilder: (context, index) => SizedBox(
-                height: index == 1 ? 0 : HomeViewConfig.paddingMedium,
-              ),
-              itemCount: sections.length,
-            ),
-          ),
+          itemCount: sections.length,
         ),
       ),
     );

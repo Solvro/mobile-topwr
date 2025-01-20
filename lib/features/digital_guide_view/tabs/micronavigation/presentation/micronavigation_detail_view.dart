@@ -5,6 +5,7 @@ import "../../../../../config/ui_config.dart";
 import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/context_extensions.dart";
 import "../../../../../widgets/detail_views/detail_view_app_bar.dart";
+import "../../../../../widgets/horizontal_symmetric_safe_area.dart";
 import "../../../../../widgets/my_html_widget.dart";
 import "../../../presentation/widgets/accessibility_button.dart";
 import "../data/models/micronavigation_response.dart";
@@ -56,7 +57,7 @@ class MicronavigationDetailView extends StatelessWidget {
       ),
     ];
 
-    return Scaffold(
+    return HorizontalSymmetricSafeAreaScaffold(
       backgroundColor: context.colorTheme.greyLight,
       appBar: DetailViewAppBar(
         actions: [AccessibilityButton()],

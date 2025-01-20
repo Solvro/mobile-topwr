@@ -11,6 +11,7 @@ import "../../utils/where_non_null_iterable.dart";
 import "../../widgets/detail_views/contact_section.dart";
 import "../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../widgets/detail_views/sliver_header_section.dart";
+import "../../widgets/horizontal_symmetric_safe_area.dart";
 import "../../widgets/loading_widgets/contact_section_loading.dart";
 import "../../widgets/loading_widgets/header_section_loading.dart";
 import "../../widgets/loading_widgets/shimmer_loading.dart";
@@ -32,7 +33,7 @@ class ScienceClubDetailView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return HorizontalSymmetricSafeAreaScaffold(
       appBar: DetailViewAppBar(),
       body: _SciClubDetailDataView(id),
     );

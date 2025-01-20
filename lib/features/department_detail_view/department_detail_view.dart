@@ -10,6 +10,7 @@ import "../../utils/determine_contact_icon.dart";
 import "../../utils/where_non_null_iterable.dart";
 import "../../widgets/detail_views/contact_section.dart";
 import "../../widgets/detail_views/detail_view_app_bar.dart";
+import "../../widgets/horizontal_symmetric_safe_area.dart";
 import "../../widgets/my_error_widget.dart";
 import "repository/department_details_repository.dart";
 import "utils/address_formatter.dart";
@@ -27,7 +28,7 @@ class DepartmentDetailView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(departmentDetailsRepositoryProvider(id));
-    return Scaffold(
+    return HorizontalSymmetricSafeAreaScaffold(
       appBar: DetailViewAppBar(),
       body: switch (state) {
         AsyncError(:final error) => MyErrorWidget(error),

@@ -10,6 +10,7 @@ import "../../../utils/context_extensions.dart";
 import "../../../utils/determine_contact_icon.dart";
 import "../../../widgets/detail_views/contact_section.dart";
 import "../../../widgets/detail_views/detail_view_app_bar.dart";
+import "../../../widgets/horizontal_symmetric_safe_area.dart";
 import "../../../widgets/my_error_widget.dart";
 import "../../../widgets/zoomable_images.dart";
 import "../data/models/digital_guide_response.dart";
@@ -40,12 +41,12 @@ class DigitalGuideView extends ConsumerWidget {
         ref.watch(digitalGuideRepositoryProvider(ourId));
     return asyncDigitalGuideData.when(
       data: (data) => _DigitalGuideView(data.digitalGuideData, data.photoUrl),
-      error: (error, stackTrace) => Scaffold(
+      error: (error, stackTrace) => HorizontalSymmetricSafeAreaScaffold(
         appBar: DetailViewAppBar(),
         body: MyErrorWidget(error),
       ),
       // TODO(Bartosh): shimmer loading
-      loading: () => Scaffold(
+      loading: () => HorizontalSymmetricSafeAreaScaffold(
         appBar: DetailViewAppBar(),
         body: const Center(
           child: CircularProgressIndicator(),
@@ -103,7 +104,7 @@ class _DigitalGuideView extends ConsumerWidget {
       const SizedBox(height: DigitalGuideConfig.heightHuge),
     ];
 
-    return Scaffold(
+    return HorizontalSymmetricSafeAreaScaffold(
       appBar: DetailViewAppBar(
         actions: [AccessibilityButton()],
       ),

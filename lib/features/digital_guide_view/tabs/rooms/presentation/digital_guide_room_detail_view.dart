@@ -8,6 +8,7 @@ import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/context_extensions.dart";
 import "../../../../../utils/ilist_nonempty.dart";
 import "../../../../../widgets/detail_views/detail_view_app_bar.dart";
+import "../../../../../widgets/horizontal_symmetric_safe_area.dart";
 import "../../../presentation/widgets/accessibility_button.dart";
 import "../../../presentation/widgets/bullet_list.dart";
 import "../../../presentation/widgets/digital_guide_nav_link.dart";
@@ -91,7 +92,7 @@ class DigitalGuideRoomDetailView extends ConsumerWidget {
         text: context.localize.stairs,
       ),
     ];
-    return Scaffold(
+    return HorizontalSymmetricSafeAreaScaffold(
       appBar: DetailViewAppBar(
         actions: [AccessibilityButton()],
       ),

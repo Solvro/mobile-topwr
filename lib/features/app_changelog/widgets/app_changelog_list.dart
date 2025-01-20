@@ -40,7 +40,7 @@ class _ListItem extends StatelessWidget {
     return Row(
       children: [
         Container(
-          width: MediaQuery.of(context).size.width * 0.2,
+          width: MediaQuery.sizeOf(context).width * 0.2,
           alignment: Alignment.center,
           padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
           decoration: BoxDecoration(

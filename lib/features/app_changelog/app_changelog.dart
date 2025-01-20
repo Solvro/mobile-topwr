@@ -1,5 +1,6 @@
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
+
 import "../../theme/app_theme.dart";
 import "repository/changelog_repository.dart";
 import "widgets/app_changelog_header.dart";
@@ -19,8 +20,8 @@ class AppChangelog extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(25),
         constraints: BoxConstraints(
-          maxHeight: MediaQuery.of(context).size.height * 0.6,
-          maxWidth: MediaQuery.of(context).size.width * 0.7,
+          maxHeight: MediaQuery.sizeOf(context).height * 0.6,
+          maxWidth: MediaQuery.sizeOf(context).width * 0.7,
         ),
         decoration: BoxDecoration(
           color: context.colorTheme.whiteSoap,
