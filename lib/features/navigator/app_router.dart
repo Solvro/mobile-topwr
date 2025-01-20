@@ -10,6 +10,8 @@ import "../departments_view/departments_view.dart";
 import "../digital_guide_view/presentation/digital_guide_view.dart";
 import "../digital_guide_view/tabs/adapted_toilets/data/models/adapted_toilet.dart";
 import "../digital_guide_view/tabs/adapted_toilets/presentation/adapted_toilet_detail_view.dart";
+import "../digital_guide_view/tabs/entraces/data/models/digital_guide_entrace.dart";
+import "../digital_guide_view/tabs/entraces/presentation/entraces_detail_view.dart";
 import "../digital_guide_view/tabs/rooms/data/models/digital_guide_room.dart";
 import "../digital_guide_view/tabs/rooms/presentation/digital_guide_room_detail_view.dart";
 import "../guide_detail_view/guide_detail_view.dart";
@@ -111,9 +113,8 @@ class AppRouter extends RootStackRouter {
           path: "/aboutUs",
           page: AboutUsRoute.page,
         ),
-        AutoRoute(
-          page: DigitalGuideRoomDetailRoute.page,
-        ),
+        AutoRoute(page: DigitalGuideRoomDetailRoute.page),
+        AutoRoute(page: DigitalGuideEntranceDetailsRoute.page),
       ];
 }
 

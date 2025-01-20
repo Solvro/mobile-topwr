@@ -12,13 +12,10 @@ import "../../../presentation/widgets/bullet_list.dart";
 import "../../../presentation/widgets/digital_guide_image.dart";
 import "../../../presentation/widgets/digital_guide_nav_link.dart";
 import "../data/models/digital_guide_entrace.dart";
-//import "../digital_guide_view/tabs/entraces/data/models/digital_guide_entrace.dart";
 
 @RoutePage()
-class DigitalGuideEntranceDetails extends ConsumerWidget {
-  const DigitalGuideEntranceDetails({
-    required this.entrance,
-  });
+class DigitalGuideEntranceDetailsView extends ConsumerWidget {
+  const DigitalGuideEntranceDetailsView({required this.entrance});
 
   final DigitalGuideEntrace entrance;
 

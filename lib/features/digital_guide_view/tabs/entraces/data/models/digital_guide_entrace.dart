@@ -100,6 +100,6 @@ int _stringToInt(String str) {
   return int.tryParse(str) ?? 1;
 }
 
-int _catchInt(int intiger) {
+int _catchInt(int? intiger) {
   return intiger ?? 0;
 }
