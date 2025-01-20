@@ -6,6 +6,7 @@ import "../../../config/ui_config.dart";
 import "../../../hooks/use_filters_sheet_height.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
+import "../../../widgets/horizontal_symmetric_safe_area.dart";
 import "../../../widgets/my_error_widget.dart";
 import "../../../widgets/text_and_url_widget.dart";
 import "../../bottom_scroll_sheet/drag_handle.dart";
@@ -36,42 +37,45 @@ class SksChartSheet extends ConsumerWidget {
     return switch (asyncChartData) {
       AsyncError(:final error) => MyErrorWidget(error),
       AsyncLoading() => const SizedBox.shrink(),
-      AsyncValue() => SizedBox(
-          height: sheetHeight,
-          width: double.infinity,
-          child: Column(
-            children: [
-              Padding(
-                padding: SksChartConfig.paddingLargeLTR
-                    .copyWith(bottom: SksChartConfig.paddingMedium),
-                child: const _SksSheetHeader(),
-              ),
-              Expanded(
-                child: ListView(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: SksChartConfig.paddingMedium,
-                      ),
-                      child: SksChartCard(
-                        currentNumberOfUsers: currentNumberOfUsers,
-                        maxNumberOfUsers: maxNumberOfUsers,
-                        chartData: asyncChartData.value ?? const IList.empty(),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(
-                        SksChartConfig.paddingSmall,
-                      ),
-                      child: TextAndUrl(
-                        SksChartConfig.sksChartDataUrl,
-                        "${context.localize.data_come_from_website}: ",
-                      ),
-                    ),
-                  ],
+      AsyncValue() => HorizontalSymmetricSafeArea(
+          child: SizedBox(
+            height: sheetHeight,
+            width: double.infinity,
+            child: Column(
+              children: [
+                Padding(
+                  padding: SksChartConfig.paddingLargeLTR
+                      .copyWith(bottom: SksChartConfig.paddingMedium),
+                  child: const _SksSheetHeader(),
                 ),
-              ),
-            ],
+                Expanded(
+                  child: ListView(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: SksChartConfig.paddingMedium,
+                        ),
+                        child: SksChartCard(
+                          currentNumberOfUsers: currentNumberOfUsers,
+                          maxNumberOfUsers: maxNumberOfUsers,
+                          chartData:
+                              asyncChartData.value ?? const IList.empty(),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(
+                          SksChartConfig.paddingSmall,
+                        ),
+                        child: TextAndUrl(
+                          SksChartConfig.sksChartDataUrl,
+                          "${context.localize.data_come_from_website}: ",
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
     };
