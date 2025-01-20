@@ -23,6 +23,7 @@ class CheckboxesList extends HookWidget {
           switch (mode) {
             ModeWithChildren() => Column(
                 children: [
+                  ModeCheckbox(mode),
                   for (final subMode in mode.children)
                     _SubModePadding(child: ModeCheckbox(subMode)),
                 ],
