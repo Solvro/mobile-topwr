@@ -162,7 +162,7 @@ class SurroundingResponseTranslationsDetails
 }
 
 bool _stringToBool(String value) {
-  return value == "True";
+  return value.toLowerCase() == "true";
 }
 
 int _stringToInt(String value) {

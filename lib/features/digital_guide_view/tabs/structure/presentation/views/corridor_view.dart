@@ -34,86 +34,11 @@ class CorridorView extends ConsumerWidget {
               delegate: SliverChildListDelegate([
                 Text(
                   corridor.translations.plTranslation.name,
-                  style: context.textTheme.headline.copyWith(fontSize: 22),
+                  style: context.textTheme.headline.copyWith(fontSize: DigitalGuideConfig.headlineFont),
                 ),
                 const SizedBox(height: DigitalGuideConfig.heightMedium),
-                BulletList(
-                  items: [
-                    corridor.translations.plTranslation.comment,
-                    if (corridor.isSimpleCorridorLayout)
-                      context.localize.corridor_simple_layout_text(
-                        corridor.translations.plTranslation
-                            .simpleCorridorLayoutComment,
-                      )
-                    else
-                      context.localize.corridor_no_simple_layout_text(
-                        corridor.translations.plTranslation
-                            .simpleCorridorLayoutComment,
-                      ),
-                    if (corridor.isFloorMarked)
-                      context.localize.floor_marked_text(
-                        corridor.translations.plTranslation.floorMarkedComment,
-                      )
-                    else
-                      context.localize.floor_not_marked_text(
-                        corridor.translations.plTranslation.floorMarkedComment,
-                      ),
-                    if (corridor.areRoomEntrances)
-                      context.localize.room_entrances_text(
-                        corridor
-                            .translations.plTranslation.roomEntrancesComment,
-                      )
-                    else
-                      context.localize.no_room_entrances_text,
-                    if (corridor.isInformationBoard)
-                      context.localize.information_board_text(
-                        corridor
-                            .translations.plTranslation.informationBoardComment,
-                      )
-                    else
-                      context.localize.no_information_board_text(
-                        corridor
-                            .translations.plTranslation.informationBoardComment,
-                      ),
-                    if (corridor.areRoomPurposeDescribedInEn)
-                      context.localize.room_puropose_described_in_en_text
-                    else
-                      context.localize.room_puropose_not_described_in_en_text,
-                    if (corridor.isConsistentLevelColorPattern)
-                      context.localize.room_puropose_described_in_en_text
-                    else
-                      context.localize.not_consistent_level_color_pattern_text,
-                    if (corridor.arePictorialdirectionalSigns)
-                      context.localize.pictorial_directional_signs_text(
-                        corridor.translations.plTranslation
-                            .pictorialDirectionalSignsComment,
-                      )
-                    else
-                      context.localize.no_pictorial_directional_signs_text(
-                        corridor.translations.plTranslation
-                            .pictorialDirectionalSignsComment,
-                      ),
-                    if (corridor.areSeats)
-                      context.localize.seats_text(
-                        corridor.translations.plTranslation.seatsComment,
-                      )
-                    else
-                      context.localize.no_seats_text,
-                    if (corridor.areVendingMachines)
-                      context.localize.vending_machines_text(
-                        corridor
-                            .translations.plTranslation.vendingMachinesComment,
-                      ),
-                    if (corridor.areVendingMachines)
-                      corridor
-                          .translations.plTranslation.vendingMachinesProducts
-                    else
-                      context.localize.no_vending_machines_text,
-                    if (corridor.isEmergencyPlan)
-                      context.localize.emergency_plan_text
-                    else
-                      context.localize.no_emergency_plan_text,
-                  ].lock,
+                TextPoints(
+                  corridor: corridor,
                 ),
                 if (corridor.doorsIndices.isNotEmpty)
                   const SizedBox(height: DigitalGuideConfig.heightMedium),
@@ -135,7 +60,7 @@ class CorridorView extends ConsumerWidget {
                 if (corridor.imagesIndices.isNotEmpty)
                   Text(
                     context.localize.images,
-                    style: context.textTheme.title.copyWith(fontSize: 22),
+                    style: context.textTheme.title.copyWith(fontSize: DigitalGuideConfig.headlineFont),
                   ),
               ]),
             ),
@@ -161,6 +86,96 @@ class CorridorView extends ConsumerWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class TextPoints extends ConsumerWidget {
+  const TextPoints({
+    required this.corridor,
+  });
+
+  final Corridor corridor;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return BulletList(
+      items: [
+        corridor.translations.plTranslation.comment,
+        if (corridor.isSimpleCorridorLayout)
+          context.localize.corridor_simple_layout_text(
+            corridor.translations.plTranslation
+                .isSimpleCorridorLayoutComment,
+          )
+        else
+          context.localize.corridor_no_simple_layout_text(
+            corridor.translations.plTranslation
+                .isSimpleCorridorLayoutComment,
+          ),
+        if (corridor.isFloorMarked)
+          context.localize.floor_marked_text(
+            corridor.translations.plTranslation.isFloorMarkedComment,
+          )
+        else
+          context.localize.floor_not_marked_text(
+            corridor.translations.plTranslation.isFloorMarkedComment,
+          ),
+        if (corridor.areRoomsEntrances)
+          context.localize.room_entrances_text(
+            corridor
+                .translations.plTranslation.areRoomsEntrancesComment,
+          )
+        else
+          context.localize.no_room_entrances_text,
+        if (corridor.isInformationBoard)
+          context.localize.information_board_text(
+            corridor
+                .translations.plTranslation.isInformationBoardComment,
+          )
+        else
+          context.localize.no_information_board_text(
+            corridor
+                .translations.plTranslation.isInformationBoardComment,
+          ),
+        if (corridor.areRoomPurposeDescribedInEn)
+          context.localize.room_puropose_described_in_en_text
+        else
+          context.localize.room_puropose_not_described_in_en_text,
+        if (corridor.isConsistentLevelColorPattern)
+          context.localize.room_puropose_described_in_en_text
+        else
+          context.localize.not_consistent_level_color_pattern_text,
+        if (corridor.arePictorialDirectionalSigns)
+          context.localize.pictorial_directional_signs_text(
+            corridor.translations.plTranslation
+                .arePictorialDirectionalSignsComment,
+          )
+        else
+          context.localize.no_pictorial_directional_signs_text(
+            corridor.translations.plTranslation
+                .arePictorialDirectionalSignsComment,
+          ),
+        if (corridor.areSeats)
+          context.localize.seats_text(
+            corridor.translations.plTranslation.areSeatsComment,
+          )
+        else
+          context.localize.no_seats_text,
+        if (corridor.areVendingMachines)
+          context.localize.vending_machines_text(
+            corridor
+                .translations.plTranslation.areVendingMachinesComment,
+          ),
+        if (corridor.areVendingMachines)
+          corridor
+              .translations.plTranslation.vendingMachinesProducts
+        else
+          context.localize.no_vending_machines_text,
+        if (corridor.isEmergencyPlan)
+          context.localize.emergency_plan_text
+        else
+          context.localize.no_emergency_plan_text,
+      ].lock,
     );
   }
 }

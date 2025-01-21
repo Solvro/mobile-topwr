@@ -24,7 +24,7 @@ Future<IList<AdaptedToilet>> adaptedToiletsRepository(
   }
 
   final adaptedToiletsIDs =
-      level.regions.expand((region) => region.adaptedToiletsIndices);
+      level.regions.expand((region) => region.adaptedToilets);
   final toilets = await Future.wait(adaptedToiletsIDs.map(getAdaptedToilet));
   return toilets.toIList();
 }

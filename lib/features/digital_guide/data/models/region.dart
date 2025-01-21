@@ -5,21 +5,22 @@ part "region.g.dart";
 
 @freezed
 class Region with _$Region {
+
+  @JsonSerializable(fieldRename: FieldRename.snake)
   const factory Region({
     required RegionTranslations translations,
-    @JsonKey(name: "dressing_rooms") required List<int> dressingRoomIndices,
-    @JsonKey(name: "lodges") required List<int> lodgesIndices,
-    @JsonKey(name: "information_points")
-    required List<int> informationPointsIndices,
-    @JsonKey(name: "toilets") required List<int> toiletsIndices,
-    @JsonKey(name: "adapted_toilets") required List<int> adaptedToiletsIndices,
-    @JsonKey(name: "lifts") required List<int> liftsIndices,
-    @JsonKey(name: "stairs") required List<int> stairsIndices,
-    @JsonKey(name: "ramps") required List<int> rampsIndices,
-    @JsonKey(name: "corridors") required List<int> corridorsIndices,
-    @JsonKey(name: "stairways") required List<int> stwairwaysIndices,
-    @JsonKey(name: "rooms") required List<int> roomsIds,
-    @JsonKey(name: "parkings") required List<int> parkingsIndices,
+    required List<int> dressingRooms,
+    required List<int> lodges,
+    required List<int> informationPoints,
+    required List<int> toilets,
+    required List<int> adaptedToilets,
+    required List<int> lifts,
+    required List<int> stairs,
+    required List<int> ramps,
+    required List<int> corridors,
+    required List<int> stairways,
+    required List<int> rooms,
+    required List<int> parkings,
   }) = _Region;
 
   factory Region.fromJson(Map<String, dynamic> json) => _$RegionFromJson(json);

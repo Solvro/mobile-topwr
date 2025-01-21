@@ -24,7 +24,7 @@ Future<IList<DigitalGuideRoom>> roomsRepository(
     );
   }
 
-  final roomsIds = level.regions.expand((region) => region.roomsIds);
+  final roomsIds = level.regions.expand((region) => region.rooms);
   final rooms = await Future.wait(roomsIds.map(getDigitalGuideRoom));
   return rooms.toIList();
 }

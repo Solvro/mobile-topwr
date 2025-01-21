@@ -263,6 +263,8 @@ abstract class DigitalGuideConfig {
   static const paddingBig = 24.0;
   static const difficultiesCardIconSize = 35.0;
   static const photoRowHeight = 75.0;
+  static const bodyFont = 16.0;
+  static const headlineFont = 22.0;
 
   // Basically there are 4 levels of accessability, but 0 and 1 are shown as the same on digital guide site
   static const accessibilityLevelColors = [

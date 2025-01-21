@@ -22,29 +22,29 @@ part "region_data_repository.g.dart";
 @riverpod
 Future<RegionData> regionDataRepository(Ref ref, Region region) async {
   final corridors = await ref
-      .watch(corridorsRepositoryProvider(region.corridorsIndices).future);
+      .watch(corridorsRepositoryProvider(region.corridors).future);
   final stairs =
-      await ref.watch(stairsRepositoryProvider(region.stairsIndices).future);
+      await ref.watch(stairsRepositoryProvider(region.stairs).future);
   final ramps =
-      await ref.watch(rampsRepositoryProvider(region.rampsIndices).future);
+      await ref.watch(rampsRepositoryProvider(region.rooms).future);
   final stairways = await ref
-      .watch(stairwaysRepositoryProvider(region.stwairwaysIndices).future);
+      .watch(stairwaysRepositoryProvider(region.stairways).future);
   final lifts =
-      await ref.watch(liftsRepositoryProvider(region.liftsIndices).future);
+      await ref.watch(liftsRepositoryProvider(region.lifts).future);
   final lodges =
-      await ref.watch(lodgesRepositoryProvider(region.lodgesIndices).future);
+      await ref.watch(lodgesRepositoryProvider(region.lodges).future);
   final informationPoints = await ref.watch(
-    informationPointsRepositoryProvider(region.informationPointsIndices).future,
+    informationPointsRepositoryProvider(region.informationPoints).future,
   );
   final dressingRooms = await ref.watch(
-    dressingRoomsRepositoryProvider(region.dressingRoomIndices).future,
+    dressingRoomsRepositoryProvider(region.dressingRooms).future,
   );
   final toilets =
-      await ref.watch(toiletsRepositoryProvider(region.toiletsIndices).future);
+      await ref.watch(toiletsRepositoryProvider(region.toilets).future);
   final rooms =
-      await ref.watch(regionRoomsRepositoryProvider(region.roomsIds).future);
+      await ref.watch(regionRoomsRepositoryProvider(region.rooms).future);
   final parkings = await ref
-      .watch(regionParkingsRepositoryProvider(region.parkingsIndices).future);
+      .watch(regionParkingsRepositoryProvider(region.parkings).future);
   return RegionData(
     corridors: corridors,
     stairs: stairs,

@@ -25,8 +25,10 @@ class ParkingTranslations with _$ParkingTranslations {
 
 @freezed
 class ParkingTranslation with _$ParkingTranslation {
+
+  @JsonSerializable(fieldRename: FieldRename.snake)
   const factory ParkingTranslation({
-    @JsonKey(name: "entry_location") required String entryLocation,
+    required String entryLocation,
   }) = _ParkingTranslation;
 
   factory ParkingTranslation.fromJson(Map<String, dynamic> json) =>

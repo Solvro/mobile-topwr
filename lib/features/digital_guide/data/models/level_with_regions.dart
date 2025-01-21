@@ -12,7 +12,7 @@ extension HasAdaptedToiletsX on IList<LevelWithRegions> {
   bool hasAdaptedToilets() {
     for (final level in this) {
       for (final region in level.regions) {
-        if (region.adaptedToiletsIndices.isNotEmpty) {
+        if (region.adaptedToilets.isNotEmpty) {
           return true;
         }
       }

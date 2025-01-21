@@ -31,21 +31,21 @@ class LevelView extends ConsumerWidget {
               delegate: SliverChildListDelegate([
                 Text(
                   levelInfo.level.translations.plTranslation.name,
-                  style: context.textTheme.headline.copyWith(fontSize: 22),
+                  style: context.textTheme.headline.copyWith(fontSize: DigitalGuideConfig.headlineFont),
                 ),
                 const SizedBox(
                   height: DigitalGuideConfig.heightSmall,
                 ),
                 Text(
                   context.localize.rooms_distribution,
-                  style: context.textTheme.boldBody.copyWith(fontSize: 16),
+                  style: context.textTheme.boldBody.copyWith(fontSize: DigitalGuideConfig.bodyFont),
                 ),
                 const SizedBox(
                   height: DigitalGuideConfig.heightSmall,
                 ),
                 Text(
                   levelInfo.level.translations.plTranslation.roomNumbersRange,
-                  style: context.textTheme.body.copyWith(fontSize: 16),
+                  style: context.textTheme.body.copyWith(fontSize: DigitalGuideConfig.bodyFont),
                 ),
                 const SizedBox(
                   height: DigitalGuideConfig.heightMedium,
