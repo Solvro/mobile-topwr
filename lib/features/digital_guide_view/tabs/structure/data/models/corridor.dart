@@ -6,29 +6,20 @@ part "corridor.g.dart";
 
 @freezed
 class Corridor with _$Corridor {
-
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory Corridor({
     required CorridorTranslations translations,
-    @JsonKey(fromJson: stringToBool)
-    required bool isSimpleCorridorLayout,
-    @JsonKey(fromJson: stringToBool)
-    required bool isFloorMarked,
-    @JsonKey(fromJson: stringToBool)
-    required bool areRoomsEntrances,
-    @JsonKey(fromJson: stringToBool)
-    required bool isInformationBoard,
-    @JsonKey(fromJson: stringToBool)
-    required bool areRoomPurposeDescribedInEn,
+    @JsonKey(fromJson: stringToBool) required bool isSimpleCorridorLayout,
+    @JsonKey(fromJson: stringToBool) required bool isFloorMarked,
+    @JsonKey(fromJson: stringToBool) required bool areRoomsEntrances,
+    @JsonKey(fromJson: stringToBool) required bool isInformationBoard,
+    @JsonKey(fromJson: stringToBool) required bool areRoomPurposeDescribedInEn,
     @JsonKey(fromJson: stringToBool)
     required bool isConsistentLevelColorPattern,
-    @JsonKey(fromJson: stringToBool)
-    required bool arePictorialDirectionalSigns,
+    @JsonKey(fromJson: stringToBool) required bool arePictorialDirectionalSigns,
     @JsonKey(fromJson: stringToBool) required bool areSeats,
-    @JsonKey(fromJson: stringToBool)
-    required bool areVendingMachines,
-    @JsonKey(fromJson: stringToBool)
-    required bool isEmergencyPlan,
+    @JsonKey(fromJson: stringToBool) required bool areVendingMachines,
+    @JsonKey(fromJson: stringToBool) required bool isEmergencyPlan,
     @JsonKey(name: "doors") required IList<int> doorsIndices,
     @JsonKey(name: "images") required IList<int> imagesIndices,
   }) = _Corridor;
@@ -49,7 +40,6 @@ class CorridorTranslations with _$CorridorTranslations {
 
 @freezed
 class CorridorTranslation with _$CorridorTranslation {
-
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory CorridorTranslation({
     required String name,

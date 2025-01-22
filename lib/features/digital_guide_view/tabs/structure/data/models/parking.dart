@@ -25,7 +25,6 @@ class ParkingTranslations with _$ParkingTranslations {
 
 @freezed
 class ParkingTranslation with _$ParkingTranslation {
-
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory ParkingTranslation({
     required String entryLocation,

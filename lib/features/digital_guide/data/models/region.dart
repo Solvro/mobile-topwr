@@ -5,7 +5,6 @@ part "region.g.dart";
 
 @freezed
 class Region with _$Region {
-
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory Region({
     required RegionTranslations translations,

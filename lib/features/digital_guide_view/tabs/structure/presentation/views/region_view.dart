@@ -255,8 +255,7 @@ class _RegionView extends ConsumerWidget {
                   children: [
                     DigitalGuideNavLink(
                       onTap: () async {
-                        await ref
-                            .navigateRoomDetails(regionData.rooms[index]);
+                        await ref.navigateRoomDetails(regionData.rooms[index]);
                       },
                       text: regionData.rooms[index].translations.pl.name,
                     ),
@@ -275,8 +274,7 @@ class _RegionView extends ConsumerWidget {
                   children: [
                     DigitalGuideNavLink(
                       onTap: () async {
-                        await ref
-                            .navigateRoomDetails(regionData.rooms[index]);
+                        await ref.navigateRoomDetails(regionData.rooms[index]);
                       },
                       text: context.localize.parking,
                     ),

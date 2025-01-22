@@ -34,7 +34,8 @@ class CorridorView extends ConsumerWidget {
               delegate: SliverChildListDelegate([
                 Text(
                   corridor.translations.plTranslation.name,
-                  style: context.textTheme.headline.copyWith(fontSize: DigitalGuideConfig.headlineFont),
+                  style: context.textTheme.headline
+                      .copyWith(fontSize: DigitalGuideConfig.headlineFont),
                 ),
                 const SizedBox(height: DigitalGuideConfig.heightMedium),
                 TextPoints(
@@ -60,7 +61,8 @@ class CorridorView extends ConsumerWidget {
                 if (corridor.imagesIndices.isNotEmpty)
                   Text(
                     context.localize.images,
-                    style: context.textTheme.title.copyWith(fontSize: DigitalGuideConfig.headlineFont),
+                    style: context.textTheme.title
+                        .copyWith(fontSize: DigitalGuideConfig.headlineFont),
                   ),
               ]),
             ),
@@ -104,13 +106,11 @@ class TextPoints extends ConsumerWidget {
         corridor.translations.plTranslation.comment,
         if (corridor.isSimpleCorridorLayout)
           context.localize.corridor_simple_layout_text(
-            corridor.translations.plTranslation
-                .isSimpleCorridorLayoutComment,
+            corridor.translations.plTranslation.isSimpleCorridorLayoutComment,
           )
         else
           context.localize.corridor_no_simple_layout_text(
-            corridor.translations.plTranslation
-                .isSimpleCorridorLayoutComment,
+            corridor.translations.plTranslation.isSimpleCorridorLayoutComment,
           ),
         if (corridor.isFloorMarked)
           context.localize.floor_marked_text(
@@ -122,20 +122,17 @@ class TextPoints extends ConsumerWidget {
           ),
         if (corridor.areRoomsEntrances)
           context.localize.room_entrances_text(
-            corridor
-                .translations.plTranslation.areRoomsEntrancesComment,
+            corridor.translations.plTranslation.areRoomsEntrancesComment,
           )
         else
           context.localize.no_room_entrances_text,
         if (corridor.isInformationBoard)
           context.localize.information_board_text(
-            corridor
-                .translations.plTranslation.isInformationBoardComment,
+            corridor.translations.plTranslation.isInformationBoardComment,
           )
         else
           context.localize.no_information_board_text(
-            corridor
-                .translations.plTranslation.isInformationBoardComment,
+            corridor.translations.plTranslation.isInformationBoardComment,
           ),
         if (corridor.areRoomPurposeDescribedInEn)
           context.localize.room_puropose_described_in_en_text
@@ -147,13 +144,13 @@ class TextPoints extends ConsumerWidget {
           context.localize.not_consistent_level_color_pattern_text,
         if (corridor.arePictorialDirectionalSigns)
           context.localize.pictorial_directional_signs_text(
-            corridor.translations.plTranslation
-                .arePictorialDirectionalSignsComment,
+            corridor
+                .translations.plTranslation.arePictorialDirectionalSignsComment,
           )
         else
           context.localize.no_pictorial_directional_signs_text(
-            corridor.translations.plTranslation
-                .arePictorialDirectionalSignsComment,
+            corridor
+                .translations.plTranslation.arePictorialDirectionalSignsComment,
           ),
         if (corridor.areSeats)
           context.localize.seats_text(
@@ -163,12 +160,10 @@ class TextPoints extends ConsumerWidget {
           context.localize.no_seats_text,
         if (corridor.areVendingMachines)
           context.localize.vending_machines_text(
-            corridor
-                .translations.plTranslation.areVendingMachinesComment,
+            corridor.translations.plTranslation.areVendingMachinesComment,
           ),
         if (corridor.areVendingMachines)
-          corridor
-              .translations.plTranslation.vendingMachinesProducts
+          corridor.translations.plTranslation.vendingMachinesProducts
         else
           context.localize.no_vending_machines_text,
         if (corridor.isEmergencyPlan)

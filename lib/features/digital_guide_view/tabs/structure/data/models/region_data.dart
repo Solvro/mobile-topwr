@@ -12,30 +12,16 @@ import "stairs.dart";
 import "stairway.dart";
 import "toilet.dart";
 
-class RegionData {
-  final IList<Corridor> corridors;
-  final IList<Stairs> stairs;
-  final IList<Ramp> ramps;
-  final IList<Stairway> stairways;
-  final IList<Lift> lifts;
-  final IList<Lodge> lodges;
-  final IList<InformationPoint> informationPoints;
-  final IList<DressingRoom> dressingRooms;
-  final IList<Toilet> toilets;
-  final IList<DigitalGuideRoom> rooms;
-  final IList<Parking> parkings;
-
-  RegionData({
-    required this.corridors,
-    required this.stairs,
-    required this.ramps,
-    required this.stairways,
-    required this.lifts,
-    required this.lodges,
-    required this.informationPoints,
-    required this.dressingRooms,
-    required this.toilets,
-    required this.rooms,
-    required this.parkings,
-  });
-}
+typedef RegionData = ({
+  IList<Corridor> corridors,
+  IList<Stairs> stairs,
+  IList<Ramp> ramps,
+  IList<Stairway> stairways,
+  IList<Lift> lifts,
+  IList<Lodge> lodges,
+  IList<InformationPoint> informationPoints,
+  IList<DressingRoom> dressingRooms,
+  IList<Toilet> toilets,
+  IList<DigitalGuideRoom> rooms,
+  IList<Parking> parkings,
+});
