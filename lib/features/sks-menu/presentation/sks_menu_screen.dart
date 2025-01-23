@@ -141,6 +141,8 @@ class _SKSMenuUnavailableAnimation extends HookWidget {
         ) *
         0.6;
 
+    final animationTopOffset = -0.2;
+
     return Scaffold(
       backgroundColor: context.colorTheme.whiteSoap,
       appBar: DetailViewAppBar(
@@ -158,7 +160,7 @@ class _SKSMenuUnavailableAnimation extends HookWidget {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    Transform.translate(offset: Offset(0, -0.1 * animationSize),
+                    Transform.translate(offset: Offset(0, animationTopOffset * animationSize),
                       child: SizedBox.square(
                         dimension: animationSize,
                         child: Lottie.asset(
@@ -185,7 +187,7 @@ class _SKSMenuUnavailableAnimation extends HookWidget {
                       child: Transform.translate(
                         offset: Offset(
                           0,
-                          -(animationSize * 0.20), // the animation has some extra space at the bottom
+                          animationSize * (-0.1 + animationTopOffset), // the animation has some extra space at the bottom
                         ),
                         child: Column(
                           children: [
