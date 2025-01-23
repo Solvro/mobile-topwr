@@ -23,7 +23,8 @@ class DigitalGuideTranslationsDressingRoom
   }) = _DigitalGuideTranslationsDressingRoom;
 
   factory DigitalGuideTranslationsDressingRoom.fromJson(
-          Map<String, dynamic> json,) =>
+    Map<String, dynamic> json,
+  ) =>
       _$DigitalGuideTranslationsDressingRoomFromJson(json);
 }
 
@@ -37,6 +38,7 @@ class DigitalGuideTranslationDressingRoom
     required String comment,
   }) = _DigitalGuideTranslationDressingRoom;
   factory DigitalGuideTranslationDressingRoom.fromJson(
-          Map<String, dynamic> json,) =>
+    Map<String, dynamic> json,
+  ) =>
       _$DigitalGuideTranslationDressingRoomFromJson(json);
 }

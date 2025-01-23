@@ -13,7 +13,8 @@ import "../data/repository/dressing_rooms_repository.dart";
 
 class DigitalGuideDressingRoomsExpansionTileContent extends ConsumerWidget {
   const DigitalGuideDressingRoomsExpansionTileContent(
-      this.digitalGuideResponse,);
+    this.digitalGuideResponse,
+  );
 
   final DigitalGuideResponse digitalGuideResponse;
 
@@ -23,7 +24,8 @@ class DigitalGuideDressingRoomsExpansionTileContent extends ConsumerWidget {
         ref.watch(dressingRoomsRepositoryProvider(digitalGuideResponse));
     return dressingRoomsResponse.when(
       data: (data) => _DigitalGuideDressingRoomsExpansionTileContent(
-          dressingRoom: data.firstOrNull,),
+        dressingRoom: data.firstOrNull,
+      ),
       error: (error, _) => MyErrorWidget(error),
       loading: () => const Center(
         child: CircularProgressIndicator(),
@@ -43,7 +45,8 @@ class _DigitalGuideDressingRoomsExpansionTileContent extends StatelessWidget {
   Widget build(BuildContext context) {
     if (dressingRoom == null) {
       return Center(
-          child: Text(context.localize.no_dressing_room_in_the_building),);
+        child: Text(context.localize.no_dressing_room_in_the_building),
+      );
     }
     final lodgeInformation = dressingRoom!.translations.pl;
     return Padding(
