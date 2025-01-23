@@ -43,7 +43,7 @@ class _DigitalGuideLodgeExpansionTileContent extends StatelessWidget {
     if (lodge == null) {
       return Center(child: Text(context.localize.no_lodge_in_the_building));
     }
-    final DigitalGuideTranslationLodge lodgeInformation =
+    final lodgeInformation =
         lodge!.translations.pl;
     return Padding(
       padding: const EdgeInsets.all(DigitalGuideConfig.paddingMedium),
