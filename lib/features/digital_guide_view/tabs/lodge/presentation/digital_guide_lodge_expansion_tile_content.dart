@@ -56,14 +56,18 @@ class _DigitalGuideLodgeExpansionTileContent extends StatelessWidget {
             ),
             child: Text(lodgeInformation.location),
           ),
-          Text(context.localize.working_hours, style: context.textTheme.title),
-          const SizedBox(
-            height: DigitalGuideConfig.heightSmall,
-          ),
-          Text(lodgeInformation.workingDaysAndHours),
-          const SizedBox(
-            height: DigitalGuideConfig.heightSmall,
-          ),
+          if (lodgeInformation.workingDaysAndHours.isNotEmpty)
+            Text(
+              context.localize.working_hours,
+              style: context.textTheme.title,
+            ),
+          if (lodgeInformation.workingDaysAndHours.isNotEmpty)
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: DigitalGuideConfig.heightSmall,
+              ),
+              child: Text(lodgeInformation.workingDaysAndHours),
+            ),
           if (lodgeInformation.comment.isNotEmpty)
             Padding(
               padding: const EdgeInsets.only(

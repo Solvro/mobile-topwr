@@ -48,7 +48,7 @@ class _DigitalGuideDressingRoomsExpansionTileContent extends StatelessWidget {
         child: Text(context.localize.no_dressing_room_in_the_building),
       );
     }
-    final lodgeInformation = dressingRoom!.translations.pl;
+    final dressingRoomInformation = dressingRoom!.translations.pl;
     return Padding(
       padding: const EdgeInsets.all(DigitalGuideConfig.paddingMedium),
       child: Column(
@@ -59,17 +59,21 @@ class _DigitalGuideDressingRoomsExpansionTileContent extends StatelessWidget {
             padding: const EdgeInsets.symmetric(
               vertical: DigitalGuideConfig.heightSmall,
             ),
-            child: Text(lodgeInformation.location),
+            child: Text(dressingRoomInformation.location),
           ),
-          Text(context.localize.working_hours, style: context.textTheme.title),
-          const SizedBox(
-            height: DigitalGuideConfig.heightSmall,
-          ),
-          Text(lodgeInformation.workingDaysAndHours),
-          const SizedBox(
-            height: DigitalGuideConfig.heightSmall,
-          ),
-          if (lodgeInformation.comment.isNotEmpty)
+          if (dressingRoomInformation.workingDaysAndHours.isNotEmpty)
+            Text(
+              context.localize.working_hours,
+              style: context.textTheme.title,
+            ),
+          if (dressingRoomInformation.workingDaysAndHours.isNotEmpty)
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: DigitalGuideConfig.heightSmall,
+              ),
+              child: Text(dressingRoomInformation.workingDaysAndHours),
+            ),
+          if (dressingRoomInformation.comment.isNotEmpty)
             Padding(
               padding: const EdgeInsets.only(
                 bottom: DigitalGuideConfig.paddingSmall,
@@ -79,8 +83,8 @@ class _DigitalGuideDressingRoomsExpansionTileContent extends StatelessWidget {
                 style: context.textTheme.title,
               ),
             ),
-          Text(lodgeInformation.comment),
-          if (lodgeInformation.comment.isNotEmpty)
+          Text(dressingRoomInformation.comment),
+          if (dressingRoomInformation.comment.isNotEmpty)
             const SizedBox(
               height: DigitalGuideConfig.heightMedium,
             ),
