@@ -28,3 +28,6 @@
 5) Lodges data
   * /lodges/?building={buildingId}
 
+6) Dressing rooms data
+  * /dressing_rooms/?building={buildingId}
+

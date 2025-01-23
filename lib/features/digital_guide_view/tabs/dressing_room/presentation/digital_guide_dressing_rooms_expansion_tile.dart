@@ -8,21 +8,24 @@ import "../../../../../utils/context_extensions.dart";
 import "../../../../../widgets/my_error_widget.dart";
 import "../../../data/models/digital_guide_response.dart";
 import "../../../presentation/widgets/digital_guide_photo_row.dart";
-import "../data/models/digital_guide_lodge.dart";
-import "../data/repository/lodges_repository.dart";
+import "../data/models/digital_guide_dressing_room.dart";
+import "../data/repository/dressing_rooms_repository.dart";
 
-class DigitalGuideLodgeExpansionTileContent extends ConsumerWidget {
-  const DigitalGuideLodgeExpansionTileContent(this.digitalGuideResponse);
+class DigitalGuideDressingRoomsExpansionTileContent extends ConsumerWidget {
+  const DigitalGuideDressingRoomsExpansionTileContent(
+    this.digitalGuideResponse,
+  );
 
   final DigitalGuideResponse digitalGuideResponse;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final lodgeResponse =
-        ref.watch(lodgesRepositoryProvider(digitalGuideResponse));
-    return lodgeResponse.when(
-      data: (data) =>
-          _DigitalGuideLodgeExpansionTileContent(lodge: data.firstOrNull),
+    final dressingRoomsResponse =
+        ref.watch(dressingRoomsRepositoryProvider(digitalGuideResponse));
+    return dressingRoomsResponse.when(
+      data: (data) => _DigitalGuideDressingRoomsExpansionTileContent(
+        dressingRoom: data.firstOrNull,
+      ),
       error: (error, _) => MyErrorWidget(error),
       loading: () => const Center(
         child: CircularProgressIndicator(),
@@ -31,19 +34,21 @@ class DigitalGuideLodgeExpansionTileContent extends ConsumerWidget {
   }
 }
 
-class _DigitalGuideLodgeExpansionTileContent extends StatelessWidget {
-  final DigitalGuideLodge? lodge;
+class _DigitalGuideDressingRoomsExpansionTileContent extends StatelessWidget {
+  final DigitalGuideDressingRoom? dressingRoom;
 
-  const _DigitalGuideLodgeExpansionTileContent({
-    required this.lodge,
+  const _DigitalGuideDressingRoomsExpansionTileContent({
+    required this.dressingRoom,
   });
 
   @override
   Widget build(BuildContext context) {
-    if (lodge == null) {
-      return Center(child: Text(context.localize.no_lodge_in_the_building));
+    if (dressingRoom == null) {
+      return Center(
+        child: Text(context.localize.no_dressing_room_in_the_building),
+      );
     }
-    final lodgeInformation = lodge!.translations.pl;
+    final dressingRoomInformation = dressingRoom!.translations.pl;
     return Padding(
       padding: const EdgeInsets.all(DigitalGuideConfig.paddingMedium),
       child: Column(
@@ -54,21 +59,21 @@ class _DigitalGuideLodgeExpansionTileContent extends StatelessWidget {
             padding: const EdgeInsets.symmetric(
               vertical: DigitalGuideConfig.heightSmall,
             ),
-            child: Text(lodgeInformation.location),
+            child: Text(dressingRoomInformation.location),
           ),
-          if (lodgeInformation.workingDaysAndHours.isNotEmpty)
+          if (dressingRoomInformation.workingDaysAndHours.isNotEmpty)
             Text(
               context.localize.working_hours,
               style: context.textTheme.title,
             ),
-          if (lodgeInformation.workingDaysAndHours.isNotEmpty)
+          if (dressingRoomInformation.workingDaysAndHours.isNotEmpty)
             Padding(
               padding: const EdgeInsets.symmetric(
                 vertical: DigitalGuideConfig.heightSmall,
               ),
-              child: Text(lodgeInformation.workingDaysAndHours),
+              child: Text(dressingRoomInformation.workingDaysAndHours),
             ),
-          if (lodgeInformation.comment.isNotEmpty)
+          if (dressingRoomInformation.comment.isNotEmpty)
             Padding(
               padding: const EdgeInsets.only(
                 bottom: DigitalGuideConfig.paddingSmall,
@@ -78,13 +83,14 @@ class _DigitalGuideLodgeExpansionTileContent extends StatelessWidget {
                 style: context.textTheme.title,
               ),
             ),
-          Text(lodgeInformation.comment),
-          if (lodgeInformation.comment.isNotEmpty)
+          Text(dressingRoomInformation.comment),
+          if (dressingRoomInformation.comment.isNotEmpty)
             const SizedBox(
               height: DigitalGuideConfig.heightMedium,
             ),
           DigitalGuidePhotoRow(
-            imagesIDs: lodge!.imagesIds?.toIList() ?? const IList.empty(),
+            imagesIDs:
+                dressingRoom!.imagesIds?.toIList() ?? const IList.empty(),
           ),
         ],
       ),
