@@ -40,9 +40,7 @@ class MyApp extends ConsumerWidget {
         theme: context.wiredashTheme,
         child: MaterialApp.router(
           builder: (context, child) => InAppReviewWidget(
-            child: UpdateDialogWrapper(
-              child: child!,
-            ),
+            child: UpdateDialogWrapper(child: child!),
           ),
           title: MyAppConfig.title,
           localizationsDelegates: AppLocalizations.localizationsDelegates,

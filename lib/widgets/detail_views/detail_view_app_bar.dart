@@ -7,10 +7,10 @@ class DetailViewAppBar extends AppBar {
     super.key,
     super.actions,
   }) : super(
+          title: const DetailViewPopButton(),
           centerTitle: false,
           automaticallyImplyLeading: false,
           scrolledUnderElevation: 0,
           titleSpacing: 4,
-          title: const DetailViewPopButton(),
         );
 }

@@ -5,6 +5,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../config/ui_config.dart";
 import "../../utils/context_extensions.dart";
+import "../../widgets/horizontal_symmetric_safe_area.dart";
 import "../../widgets/my_error_widget.dart";
 import "../../widgets/search_box_app_bar.dart";
 import "../../widgets/search_not_found.dart";
@@ -34,8 +35,9 @@ class _DepartmentsView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Scaffold(
+    return HorizontalSymmetricSafeAreaScaffold(
       appBar: SearchBoxAppBar(
+        primary: true,
         addLeadingPopButton: true,
         context,
         title: context.localize.departments,

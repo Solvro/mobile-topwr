@@ -284,8 +284,22 @@
   "strategic_club_abbr": "KS",
   "emptySection": "Brak członków zespołu w tej wersji",
   "digital_guide_offline" : "Cyfrowego Przewodnika",
+  "communique" : "Komunikat",
+  "audio_message" : "Komunikat Dźwiękowy",
+  "audio_message_comment" : "Sygnał znacznika może różnić się tempem i brzmieniem",
   "platforms" : "Podesty",
   "stairs" : "Schody",
   "key_information" : "Najważniejsze informacje",
-  "working_hours" : "Godziny otwarcia"
+  "working_hours" : "Godziny otwarcia",
+  "motorImpairment": "Dysfunkcja ruchu",
+  "visualImpairment": "Dysfunkcja wzroku",
+  "blind": "Niewidomy",
+  "lowVision": "Słabo widzący",
+  "sensorySensitivity": "Wrażliwość sensoryczna",
+  "cognitiveImpairment": "Trudności poznawcze",
+  "accessibility_profiles":"Profile dostępności",
+  "you_can_adjust": "Możesz dostosować informacje pod swoje specjalne potrzeby",
+  "additional_information": "Dodatkowe informacje",
+  "lodge": "Portiernia",
+  "no_lodge_in_the_building": "W tym budynku nie ma portierni"
 }

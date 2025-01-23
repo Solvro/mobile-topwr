@@ -12,6 +12,7 @@ import "../../../config/ui_config.dart";
 import "../../../gen/assets.gen.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../widgets/detail_views/detail_view_app_bar.dart";
+import "../../../widgets/horizontal_symmetric_safe_area.dart";
 import "../../../widgets/my_error_widget.dart";
 import "../../../widgets/my_text_button.dart";
 import "../../../widgets/text_and_url_widget.dart";
@@ -52,7 +53,7 @@ class SksMenuView extends HookConsumerWidget {
           isLastMenuButtonClicked: isLastMenuButtonClicked.value,
         );
       },
-      error: (error, stackTrace) => Scaffold(
+      error: (error, stackTrace) => HorizontalSymmetricSafeAreaScaffold(
         appBar: DetailViewAppBar(
           actions: const [
             SksUserDataButton(),
@@ -60,8 +61,8 @@ class SksMenuView extends HookConsumerWidget {
         ),
         body: MyErrorWidget(error),
       ),
-      loading: () => const Scaffold(
-        body: Center(
+      loading: () => HorizontalSymmetricSafeAreaScaffold(
+        body: const Center(
           child: SksMenuViewLoading(),
         ),
       ),
@@ -83,7 +84,7 @@ class _SksMenuView extends ConsumerWidget {
     if (!isLastMenuButtonClicked && !sksMenuData.isMenuOnline) {
       return const _SKSMenuUnavailableAnimation();
     }
-    return Scaffold(
+    return HorizontalSymmetricSafeAreaScaffold(
       appBar: DetailViewAppBar(
         actions: const [
           SksUserDataButton(),
@@ -143,7 +144,7 @@ class _SKSMenuUnavailableAnimation extends HookWidget {
 
     final animationTopOffset = -0.2;
 
-    return Scaffold(
+    return HorizontalSymmetricSafeAreaScaffold(
       backgroundColor: context.colorTheme.whiteSoap,
       appBar: DetailViewAppBar(
         actions: const [

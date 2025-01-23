@@ -2,6 +2,7 @@
 * Two variables should be added to .env
   * DIGITAL_GUIDE_URL
   * DIGITAL_GUIDE_AUTHORIZATION_TOKEN
+  * DIGITAL_GUIDE_URL   (no token required)
 
 # Tips
 * All HTTP requests must include the authorization token ("Token ${Env.digitalGuideAuthorizationToken"})
@@ -13,8 +14,17 @@
   * DIGITAL_GUIDE_URL/buildings/{id}
   * DIGITAL_GUIDE_URL/images/{id}
 2) Surroundings data
-  * /surrounding/data/repository/surrounding_repository.dart
+  * tabs/surrounding/data/repository/surrounding_repository.dart
   * DIGITAL_GUIDE_URL/surroundings/{id}
-3) Rooms data
+
+3) Micronavigation data
+  * /tabs/micronavigation/data/repository/micronavigation_repository.dart
+  * DIGITAL_GUIDE_ADDONS_URL/beaconplus/?location={external_id}
+
+4) Rooms data
   * /rooms/data/repository/rooms_repository.dart
   * DIGITAL_GUIDE_URL/rooms/{id}
+
+5) Lodges data
+  * /lodges/?building={buildingId}
+

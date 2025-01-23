@@ -171,6 +171,12 @@ abstract class FilterConfig {
   static const paddingMedium = 8.0;
   static const spacingBetweenWidgets = 12.0;
   static final radius = BorderRadius.circular(8);
+  static const buttonPadding =
+      EdgeInsets.symmetric(vertical: 10, horizontal: 20);
+}
+
+class DialogsConfig {
+  static final padding = const EdgeInsets.all(20).copyWith(top: 6);
 }
 
 abstract class LottieAnimationConfig {
@@ -242,6 +248,8 @@ abstract class DigitalGuideConfig {
       EdgeInsets.symmetric(vertical: 24, horizontal: 24);
   static const borderRadiusSmall = 4.0;
   static const borderRadiusMedium = 8.0;
+  static const borderRadiusBig = 16.0;
+  static const borderRadiusHuge = 32.0;
   static const heightTiny = 4.0;
   static const heightSmall = 8.0;
   static const heightMedium = 16.0;
@@ -252,6 +260,7 @@ abstract class DigitalGuideConfig {
   static const mediumButtonPadding =
       EdgeInsets.symmetric(vertical: 8, horizontal: 14);
   static const paddingMedium = 16.0;
+  static const paddingBig = 24.0;
   static const difficultiesCardIconSize = 35.0;
   static const photoRowHeight = 75.0;
 

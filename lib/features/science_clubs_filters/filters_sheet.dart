@@ -6,6 +6,7 @@ import "../../config/ui_config.dart";
 import "../../hooks/use_filters_sheet_height.dart";
 import "../../theme/app_theme.dart";
 import "../../utils/context_extensions.dart";
+import "../../widgets/horizontal_symmetric_safe_area.dart";
 import "filters_controller.dart";
 import "filters_search_controller.dart";
 import "widgets/apply_filters_button.dart";
@@ -25,37 +26,39 @@ class FiltersSheet extends StatelessWidget {
         searchFiltersControllerProvider,
         areFiltersEnabledProvider,
       ],
-      child: SizedBox(
-        height: sheetHeight,
-        child: Padding(
-          padding: const EdgeInsets.only(top: 16),
-          child: Column(
-            children: [
-              FiltersHeader(),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: ListView(
-                    shrinkWrap: true,
-                    children: [
-                      const TypesWrap(),
-                      const DepartmentsWrap(),
-                      const TagsWrap(),
-                      const _NoFiltersFound(),
-                      const SizedBox(
-                        height: FilterConfig.spacingBetweenWidgets,
-                      ),
-                      ApplyFiltersButton(
-                        onPressed: context.maybePop,
-                      ),
-                      const SizedBox(
-                        height: FilterConfig.spacingBetweenWidgets,
-                      ),
-                    ],
+      child: HorizontalSymmetricSafeArea(
+        child: SizedBox(
+          height: sheetHeight,
+          child: Padding(
+            padding: const EdgeInsets.only(top: 16),
+            child: Column(
+              children: [
+                FiltersHeader(),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: ListView(
+                      shrinkWrap: true,
+                      children: [
+                        const TypesWrap(),
+                        const DepartmentsWrap(),
+                        const TagsWrap(),
+                        const _NoFiltersFound(),
+                        const SizedBox(
+                          height: FilterConfig.spacingBetweenWidgets,
+                        ),
+                        ApplyFiltersButton(
+                          onPressed: context.maybePop,
+                        ),
+                        const SizedBox(
+                          height: FilterConfig.spacingBetweenWidgets,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
