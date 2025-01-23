@@ -301,5 +301,7 @@
   "you_can_adjust": "Możesz dostosować informacje pod swoje specjalne potrzeby",
   "additional_information": "Dodatkowe informacje",
   "lodge": "Portiernia",
-  "no_lodge_in_the_building": "W tym budynku nie ma portierni"
+  "dressing_room": "Szatnia",
+  "no_lodge_in_the_building": "W tym budynku nie ma portierni",
+  "no_dressing_room_in_the_building": "W tym budynku nie ma szatni"
 }
