@@ -142,7 +142,7 @@ class _SKSMenuUnavailableAnimation extends HookWidget {
         ) *
         0.6;
 
-    final animationTopOffset = -0.2;
+    const animationTopOffset = -0.2;
 
     return HorizontalSymmetricSafeAreaScaffold(
       backgroundColor: context.colorTheme.whiteSoap,
@@ -161,7 +161,8 @@ class _SKSMenuUnavailableAnimation extends HookWidget {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    Transform.translate(offset: Offset(0, animationTopOffset * animationSize),
+                    Transform.translate(
+                      offset: Offset(0, animationTopOffset * animationSize),
                       child: SizedBox.square(
                         dimension: animationSize,
                         child: Lottie.asset(
@@ -188,7 +189,9 @@ class _SKSMenuUnavailableAnimation extends HookWidget {
                       child: Transform.translate(
                         offset: Offset(
                           0,
-                          animationSize * (-0.1 + animationTopOffset), // the animation has some extra space at the bottom
+                          animationSize *
+                              (-0.1 +
+                                  animationTopOffset), // the animation has some extra space at the bottom
                         ),
                         child: Column(
                           children: [
