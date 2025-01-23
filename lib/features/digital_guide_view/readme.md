@@ -25,3 +25,6 @@
   * /rooms/data/repository/rooms_repository.dart
   * DIGITAL_GUIDE_URL/rooms/{id}
 
+5) Lodges data
+  * /lodges/?building={buildingId}
+
