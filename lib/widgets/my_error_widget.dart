@@ -53,7 +53,7 @@ class MyErrorWidget extends HookWidget {
               Align(
                 child: Text(
                   textAlign: TextAlign.center,
-                  style: context.textTheme.headline,
+                  style: context.textTheme.headline.copyWith(fontSize: 25),
                   context.localize.generic_error_message,
                 ),
               ),
