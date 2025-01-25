@@ -13,6 +13,7 @@ import "../features/parkings_view/api_client/iparking_commands.dart";
 import "../features/parkings_view/widgets/offline_parkings_view.dart";
 import "../gen/assets.gen.dart";
 import "../theme/app_theme.dart";
+import "../utils/context_extensions.dart";
 
 class MyErrorWidget extends HookWidget {
   const MyErrorWidget(this.error, {super.key});
@@ -53,7 +54,7 @@ class MyErrorWidget extends HookWidget {
                 child: Text(
                   textAlign: TextAlign.center,
                   style: context.textTheme.headline,
-                  error.toString(),
+                  context.localize.generic_error_message,
                 ),
               ),
             ],
