@@ -5,6 +5,7 @@ import "package:flutter/material.dart";
 import "../../config/ui_config.dart";
 import "../../theme/app_theme.dart";
 import "../academic_calendar/widgets/academic_calendar_consumer.dart";
+import "../planner_advert/widgets/planner_advert_widget.dart";
 import "keep_alive_home_view_providers.dart";
 import "widgets/buildings_section/buildings_section.dart";
 import "widgets/logo_app_bar.dart";
@@ -23,6 +24,7 @@ class HomeView extends StatelessWidget {
         padding: EdgeInsets.only(top: 12, bottom: 4),
         child: NavActionsSection(),
       ),
+      PlannerAdvertBanner(),
       const ScienceClubsSection(),
       const BuildingsSection(),
     ].lock;
@@ -35,7 +37,7 @@ class HomeView extends StatelessWidget {
         child: ListView.separated(
           itemBuilder: (context, index) => sections[index],
           separatorBuilder: (context, index) => SizedBox(
-            height: index == 1 ? 0 : HomeViewConfig.paddingMedium,
+            height: index == 1 || index == 2 ? 0 : HomeViewConfig.paddingMedium,
           ),
           itemCount: sections.length,
         ),
