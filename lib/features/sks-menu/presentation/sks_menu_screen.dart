@@ -15,6 +15,7 @@ import "../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../../widgets/horizontal_symmetric_safe_area.dart";
 import "../../../widgets/my_error_widget.dart";
 import "../../../widgets/my_text_button.dart";
+import "../../../widgets/technical_message.dart";
 import "../../../widgets/text_and_url_widget.dart";
 import "../../sks_people_live/presentation/widgets/sks_user_data_button.dart";
 import "../data/models/sks_menu_response.dart";
@@ -22,7 +23,6 @@ import "../data/repository/sks_menu_repository.dart";
 import "widgets/sks_menu_header.dart";
 import "widgets/sks_menu_section.dart";
 import "widgets/sks_menu_view_loading.dart";
-import "widgets/technical_message.dart";
 
 @RoutePage()
 class SksMenuView extends HookConsumerWidget {
