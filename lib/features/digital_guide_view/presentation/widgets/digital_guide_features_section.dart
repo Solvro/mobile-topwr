@@ -11,6 +11,7 @@ import "../../tabs/adapted_toilets/presentation/adapted_toilets_expansion_tile_c
 import "../../tabs/amenities/presentation/amenities_expansion_tile_content.dart";
 import "../../tabs/dressing_room/presentation/digital_guide_dressing_rooms_expansion_tile.dart";
 import "../../tabs/evacuation/evacuation_widget.dart";
+import "../../tabs/lifts/presentation/digital_guide_lifts_expansion_tile_content.dart";
 import "../../tabs/localization/presentation/localization_expansion_tile_content.dart";
 import "../../tabs/lodge/presentation/digital_guide_lodge_expansion_tile_content.dart";
 import "../../tabs/micronavigation/presentation/micronavigation_expansion_tile_content.dart";
@@ -65,7 +66,11 @@ class DigitalGuideFeaturesSection extends ConsumerWidget {
       ),
       (
         title: context.localize.elevators,
-        content: [LocalizationExpansionTileContent()],
+        content: [
+          DigitalGuideLiftExpansionTileContent(
+            digitalGuideResponse: digitalGuideData,
+          ),
+        ],
       ),
       if (hasToilets)
         (
