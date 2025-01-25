@@ -65,7 +65,7 @@ class DigitalGuideFeaturesSection extends ConsumerWidget {
         content: [LocalizationExpansionTileContent()],
       ),
       (
-        title: context.localize.elevators,
+        title: context.localize.lifts,
         content: [
           DigitalGuideLiftExpansionTileContent(
             digitalGuideResponse: digitalGuideData,
