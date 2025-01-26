@@ -33,8 +33,9 @@ class _PlannerAdvertBanner extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return data.isEnabled
-        ? Padding(
+    return !data.isEnabled
+        ? const SizedBox.shrink()
+        : Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: HomeViewConfig.paddingSmall,
             ),
@@ -46,11 +47,8 @@ class _PlannerAdvertBanner extends ConsumerWidget {
                 Icons.open_in_new_rounded,
                 color: context.colorTheme.whiteSoap,
               ),
-              onTap: () async {
-                unawaited(ref.launch(data.url));
-              },
+              onTap: () async => unawaited(ref.launch(data.url)),
             ),
-          )
-        : const SizedBox.shrink();
+          );
   }
 }
