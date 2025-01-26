@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 
+import "../my_cached_image.dart";
 import "../zoomable_images.dart";
 
 class SliverLogo extends StatelessWidget {
@@ -11,7 +12,7 @@ class SliverLogo extends StatelessWidget {
     required this.activeGradient,
     required this.logoDirectusUrl,
     this.boxfit = BoxFit.contain,
-    this.noShimmeringLoading = false,
+    this.loadingType = LoadingType.shimmerLoading,
   });
 
   final double logoSize;
@@ -20,7 +21,7 @@ class SliverLogo extends StatelessWidget {
   final LinearGradient? activeGradient;
   final String? logoDirectusUrl;
   final BoxFit boxfit;
-  final bool noShimmeringLoading;
+  final LoadingType loadingType;
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +50,7 @@ class SliverLogo extends StatelessWidget {
                     child: ZoomableOptimizedDirectusImage(
                       logoDirectusUrl,
                       boxFit: boxfit,
-                      noShimmeringLoading: noShimmeringLoading,
+                      loadingType: loadingType,
                       shouldHaveRectBackground: true,
                     ),
                   ),

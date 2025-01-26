@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 
 import "../../../config/ui_config.dart";
+import "../../../widgets/my_cached_image.dart";
 import "../../../widgets/optimized_directus_image.dart";
 import "../../../widgets/wide_tile_card.dart";
 import "../repository/science_clubs_repository.dart";
@@ -43,7 +44,7 @@ class ScienceClubCard extends StatelessWidget {
             child: OptimizedDirectusImage(
               sciClub.logo?.filename_disk,
               boxFit: BoxFit.scaleDown,
-              noShimmeringLoading: true,
+              loadingType: LoadingType.noLoading,
             ),
           ),
         ),
