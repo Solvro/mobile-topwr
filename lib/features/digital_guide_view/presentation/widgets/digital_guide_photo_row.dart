@@ -39,10 +39,14 @@ class DigitalGuidePhotoRow extends StatelessWidget {
                           DigitalGuideConfig.borderRadiusMedium,
                         ),
                         child: GestureDetector(
-                          onTap: () async => showGallery(context, initId: id),
+                          onTap: () async {
+                            if (imagesIDs.length != 1) {
+                              await showGallery(context, initId: id);
+                            }
+                          },
                           child: DigitalGuideImage(
                             id: id,
-                            zoomable: false,
+                            zoomable: imagesIDs.length == 1,
                           ),
                         ),
                       ),
