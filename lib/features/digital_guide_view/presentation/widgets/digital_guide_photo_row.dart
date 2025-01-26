@@ -40,7 +40,7 @@ class DigitalGuidePhotoRow extends StatelessWidget {
                         ),
                         child: GestureDetector(
                           onTap: () async {
-                            if (imagesIDs.length != 1) {
+                            if (imagesIDs.length > 1) {
                               await showGallery(context, initId: id);
                             }
                           },
