@@ -1,74 +1,47 @@
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:latlong2/latlong.dart";
 
+import "../../../../../config/ui_config.dart";
 import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/context_extensions.dart";
-import "../../../../../utils/launch_url_util.dart";
-import "../../../../../widgets/my_error_widget.dart";
+import "../../../../buildings_view/model/building_model.dart";
+import "../../../../map_view/utils/google_maps_link_utils.dart";
 import "../../../data/models/digital_guide_response.dart";
-import "../../../data/repository/image_repository.dart";
+import "../../../presentation/widgets/digital_guide_image.dart";
 
 class LocalizationExpansionTileContent extends ConsumerWidget {
   const LocalizationExpansionTileContent({
     super.key,
     required this.digitalGuideData,
+    required this.building,
   });
 
   final DigitalGuideResponse digitalGuideData;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final asyncImageUrl =
-        ref.watch(imageRepositoryProvider(digitalGuideData.locationMapId));
-
-    return asyncImageUrl.when(
-      data: (imageUrl) => _LocalizationExpansionTileContent(
-        imageUrl: imageUrl,
-        buildingName: digitalGuideData.translations.plTranslation.name,
-        buildingAddress: digitalGuideData.translations.plTranslation.address,
-      ),
-      error: (error, stackTrace) => MyErrorWidget(error),
-      loading: () => const Center(
-        child: CircularProgressIndicator(),
-      ),
-    );
-  }
-}
-
-class _LocalizationExpansionTileContent extends ConsumerWidget {
-  const _LocalizationExpansionTileContent({
-    required this.imageUrl,
-    required this.buildingName,
-    required this.buildingAddress,
-  });
-
-  final String? imageUrl;
-  final String buildingName;
-  final String buildingAddress;
+  final BuildingModel building;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Column(
       children: [
-        if (imageUrl != null)
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(16),
-              child: Image.network(
-                imageUrl!,
-                fit: BoxFit.cover,
-              ),
-            ),
+        Padding(
+          padding: const EdgeInsets.all(DigitalGuideConfig.paddingMedium),
+          child: ClipRRect(
+            borderRadius:
+                BorderRadius.circular(DigitalGuideConfig.borderRadiusMedium),
+            child: DigitalGuideImage(id: digitalGuideData.locationMapId),
           ),
+        ),
         TextButton.icon(
           icon: Icon(
             Icons.navigation,
             color: context.colorTheme.orangePomegranade,
             size: 16,
           ),
-          onPressed: () async =>
-              _navigateToBuilding(context, ref, buildingName, buildingAddress),
+          onPressed: () async => _navigateToBuilding(
+            ref,
+            building,
+          ),
           label: Text.rich(
             TextSpan(
               text: context.localize.navigate_to_building,
@@ -85,14 +58,11 @@ class _LocalizationExpansionTileContent extends ConsumerWidget {
   }
 
   Future<void> _navigateToBuilding(
-    BuildContext context,
     WidgetRef ref,
-    String buildingName,
-    String buildingAddress,
+    BuildingModel building,
   ) async {
-    final query = "$buildingName, $buildingAddress";
-    final googleMapsUrl =
-        "https://www.google.com/maps/dir/?api=1&destination=${Uri.encodeComponent(query)}&travelmode=driving&origin=current+location";
-    await ref.launch(googleMapsUrl);
+    final LatLng buildingCoordinates =
+        LatLng(building.latitude, building.longitude);
+    await GoogleMapsLinkUtils.navigateTo(buildingCoordinates, ref);
   }
 }
