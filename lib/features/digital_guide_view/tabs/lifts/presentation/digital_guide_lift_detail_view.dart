@@ -6,12 +6,11 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "../../../../../config/ui_config.dart";
 import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/context_extensions.dart";
-import "../../../../../utils/ilist_nonempty.dart";
 import "../../../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../../../../widgets/horizontal_symmetric_safe_area.dart";
 import "../../../presentation/widgets/accessibility_button.dart";
 import "../../../presentation/widgets/bullet_list.dart";
-import "../../../presentation/widgets/digital_guide_photo_row.dart";
+import "../../../presentation/widgets/digital_guide_image.dart";
 import "../data/models/digital_guide_lift.dart";
 
 @RoutePage()
@@ -64,7 +63,6 @@ class DigitalGuideLiftDetailView extends ConsumerWidget {
         const SizedBox(
           height: DigitalGuideConfig.heightMedium,
         ),
-      DigitalGuidePhotoRow(imagesIDs: lift.imagesIds.toIList()),
     ];
     return HorizontalSymmetricSafeAreaScaffold(
       appBar: DetailViewAppBar(
@@ -72,11 +70,36 @@ class DigitalGuideLiftDetailView extends ConsumerWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(DigitalGuideConfig.paddingMedium),
-        child: ListView.builder(
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: widgets.length,
-          shrinkWrap: true,
-          itemBuilder: (context, index) => widgets[index],
+        child: CustomScrollView(
+          slivers: [
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (_, index) => widgets[index],
+                childCount: widgets.length,
+              ),
+            ),
+            if (lift.imagesIds != null)
+              SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(
+                        DigitalGuideConfig.heightMedium,
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(
+                          DigitalGuideConfig.borderRadiusSmall,
+                        ),
+                        child: DigitalGuideImage(
+                          id: lift.imagesIds![index],
+                        ),
+                      ),
+                    );
+                  },
+                  childCount: lift.imagesIds!.length,
+                ),
+              ),
+          ],
         ),
       ),
     );
