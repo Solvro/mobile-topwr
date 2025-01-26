@@ -31,3 +31,6 @@
 6) Dressing rooms data
   * /dressing_rooms/?building={buildingId}
 
+7) Lifts data
+* /lifts/?building={buildingId}
+

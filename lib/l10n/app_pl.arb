@@ -151,7 +151,7 @@
   "surroundings": "Otoczenie",
   "transport" : "Dojazd",
   "entrances" : "Wejścia",
-  "elevators" : "Windy",
+  "lifts" : "Windy",
   "adapted_toilets" : "Toalety dostosowane",
   "adapted_toilet_description": "Toaleta dla osób z niepełnosprawnościami",
   "adapted_toilet_description_men": "Toaleta dla mężczyzn z niepełnosprawnościami",
@@ -304,6 +304,8 @@
   "dressing_room": "Szatnia",
   "no_lodge_in_the_building": "W tym budynku nie ma portierni",
   "no_dressing_room_in_the_building": "W tym budynku nie ma szatni",
-
+  "floors_served_by_lift": "Piętra obsługiwane przez windę",
+  "dimensions" : "Wymiary",
+  "max_capacity" : "Maksymalny udźwig",
   "generic_error_message": "Upsss...Coś poszło nie tak"
 }
