@@ -306,5 +306,6 @@
   "no_dressing_room_in_the_building": "W tym budynku nie ma szatni",
   "floors_served_by_lift": "Piętra obsługiwane przez windę",
   "dimensions" : "Wymiary",
-  "max_capacity" : "Maksymalny udźwig"
+  "max_capacity" : "Maksymalny udźwig",
+  "generic_error_message": "Upsss...Coś poszło nie tak"
 }
