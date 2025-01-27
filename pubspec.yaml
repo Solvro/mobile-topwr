@@ -37,7 +37,7 @@ dependencies:
   theme_tailor_annotation: ^3.0.1
   theme_tailor: ^3.0.1
 
-  #State managment
+  #State management
   flutter_riverpod: ^2.6.1
   riverpod_annotation: ^2.6.1
   hooks_riverpod: ^2.6.1
@@ -142,6 +142,7 @@ dev_dependencies:
   #Other
   svg_optimizer: ^0.0.1
   flutter_launcher_icons: "^0.14.1"
+  test: ^1.25.8
 
 dependency_overrides:
   collection: ^1.19.1
