@@ -47,7 +47,7 @@ class _ImageWithoutBackground extends StatelessWidget {
       child: MyCachedImage(
         imageUrl?.directusUrlWithoutParams,
         boxFit: BoxFit.scaleDown,
-        noShimmeringLoading: true,
+        loadingType: LoadingType.circularProgressIndicator,
       ),
     );
   }
@@ -77,7 +77,7 @@ class _ImageWithWhiteBackground extends StatelessWidget {
             child: MyCachedImage(
               imageUrl?.directusUrlWithoutParams,
               boxFit: BoxFit.scaleDown,
-              noShimmeringLoading: true,
+              loadingType: LoadingType.circularProgressIndicator,
             ),
           ),
         ),
@@ -90,13 +90,13 @@ class ZoomableOptimizedDirectusImage extends StatelessWidget {
   const ZoomableOptimizedDirectusImage(
     this.imageUrl, {
     super.key,
-    this.noShimmeringLoading = false,
+    this.loadingType = LoadingType.shimmerLoading,
     this.boxFit = BoxFit.cover,
     this.shouldHaveRectBackground = false,
   });
 
   final String? imageUrl;
-  final bool noShimmeringLoading;
+  final LoadingType loadingType;
   final BoxFit boxFit;
   final bool shouldHaveRectBackground;
 
@@ -112,7 +112,7 @@ class ZoomableOptimizedDirectusImage extends StatelessWidget {
       child: OptimizedDirectusImage(
         imageUrl,
         boxFit: boxFit,
-        noShimmeringLoading: noShimmeringLoading,
+        loadingType: loadingType,
       ),
     );
   }
@@ -122,13 +122,13 @@ class ZoomableCachedImage extends StatelessWidget {
   const ZoomableCachedImage(
     this.imageUrl, {
     super.key,
-    this.noShimmeringLoading = false,
+    this.loadingType = LoadingType.shimmerLoading,
     this.boxFit = BoxFit.cover,
     this.shouldHaveRectBackground = false,
   });
 
   final String? imageUrl;
-  final bool noShimmeringLoading;
+  final LoadingType loadingType;
   final BoxFit boxFit;
   final bool shouldHaveRectBackground;
 
@@ -144,7 +144,7 @@ class ZoomableCachedImage extends StatelessWidget {
       child: MyCachedImage(
         imageUrl,
         boxFit: boxFit,
-        noShimmeringLoading: noShimmeringLoading,
+        loadingType: loadingType,
       ),
     );
   }

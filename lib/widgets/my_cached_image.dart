@@ -10,13 +10,13 @@ class MyCachedImage extends StatelessWidget {
   const MyCachedImage(
     this.imageUrl, {
     super.key,
-    this.noShimmeringLoading = false,
+    this.loadingType = LoadingType.shimmerLoading,
     this.boxFit = BoxFit.cover,
     this.size,
   });
 
   final String? imageUrl;
-  final bool noShimmeringLoading;
+  final LoadingType loadingType;
   final BoxFit boxFit;
   final Size? size;
 
@@ -30,15 +30,19 @@ class MyCachedImage extends StatelessWidget {
       imageUrl: imageUrl ?? "",
       fit: boxFit,
       cacheManager: CacheManager(MyCachedImageConfig.cacheConfig),
-      placeholder: noShimmeringLoading
-          ? null
-          : (context, url) => Center(
-                child: ShimmeringEffect(
-                  child: Container(
-                    color: Colors.white,
-                  ),
+      placeholder: switch (loadingType) {
+        LoadingType.noLoading => null,
+        LoadingType.shimmerLoading => (context, url) => Center(
+              child: ShimmeringEffect(
+                child: Container(
+                  color: Colors.white,
                 ),
               ),
+            ),
+        LoadingType.circularProgressIndicator => (context, url) => const Center(
+              child: CircularProgressIndicator(),
+            )
+      },
       errorWidget: (context, url, error) =>
           FlutterSplashScreen(size: size?.height),
       height: size?.height,
@@ -46,3 +50,5 @@ class MyCachedImage extends StatelessWidget {
     );
   }
 }
+
+enum LoadingType { noLoading, shimmerLoading, circularProgressIndicator }
