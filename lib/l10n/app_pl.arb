@@ -304,6 +304,7 @@
   "dressing_room": "Szatnia",
   "no_lodge_in_the_building": "W tym budynku nie ma portierni",
   "no_dressing_room_in_the_building": "W tym budynku nie ma szatni",
+  "general_offline" : "pobierania danych",
   "floors_served_by_lift": "Piętra obsługiwane przez windę",
   "dimensions" : "Wymiary",
   "max_capacity" : "Maksymalny udźwig",

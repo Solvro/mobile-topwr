@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 
-import "../../../../widgets/loading_widgets/shimmer_loading.dart";
+import "../shimmer_loading.dart";
 
 class HorizontalRectangularSectionLoading extends StatelessWidget {
   const HorizontalRectangularSectionLoading({super.key});
