@@ -4,6 +4,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../utils/context_extensions.dart";
 import "../../../../widgets/my_expansion_tile.dart";
+import "../../../buildings_view/model/building_model.dart";
 import "../../data/models/digital_guide_response.dart";
 import "../../data/models/level_with_regions.dart";
 import "../../data/repository/levels_repository.dart";
@@ -23,9 +24,11 @@ typedef TileContent = ({String title, List<Widget> content});
 class DigitalGuideFeaturesSection extends ConsumerWidget {
   const DigitalGuideFeaturesSection({
     required this.digitalGuideData,
+    required this.building,
   });
 
   final DigitalGuideResponse digitalGuideData;
+  final BuildingModel building;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -38,7 +41,12 @@ class DigitalGuideFeaturesSection extends ConsumerWidget {
     final items = <TileContent>[
       (
         title: context.localize.localization,
-        content: [LocalizationExpansionTileContent()],
+        content: [
+          LocalizationExpansionTileContent(
+            digitalGuideData: digitalGuideData,
+            building: building,
+          ),
+        ],
       ),
       (
         title: context.localize.amenities,
@@ -58,11 +66,11 @@ class DigitalGuideFeaturesSection extends ConsumerWidget {
       ),
       (
         title: context.localize.transport,
-        content: [LocalizationExpansionTileContent()],
+        content: [],
       ),
       (
         title: context.localize.entrances,
-        content: [LocalizationExpansionTileContent()],
+        content: [],
       ),
       (
         title: context.localize.lifts,
@@ -91,7 +99,7 @@ class DigitalGuideFeaturesSection extends ConsumerWidget {
       ),
       (
         title: context.localize.building_structure,
-        content: [LocalizationExpansionTileContent()],
+        content: [],
       ),
       (
         title: context.localize.room_information,

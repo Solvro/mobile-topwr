@@ -308,5 +308,7 @@
   "floors_served_by_lift": "Piętra obsługiwane przez windę",
   "dimensions" : "Wymiary",
   "max_capacity" : "Maksymalny udźwig",
-  "generic_error_message": "Upsss...Coś poszło nie tak"
+  "generic_error_message": "Upsss...Coś poszło nie tak",
+  "you_can_adjust": "Możesz dostosować informacje pod swoje specjalne potrzeby",
+  "navigate_to_building": "Nawiguj do budynku"
 }
