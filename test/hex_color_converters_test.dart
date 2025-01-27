@@ -2,7 +2,6 @@ import "package:test/test.dart";
 import "package:topwr/theme/colors.dart";
 
 void main() {
-
   test("Hex color values should be the same when using converter", () {
     final colorValues = {
       ColorsConsts.blackMirage: "#293241",
