@@ -12,7 +12,7 @@ class HexColor extends Color {
         g,
         b,
         a,
-      );
+      ).toUpperCase();
 }
 
 abstract class _FromHexConverter {
