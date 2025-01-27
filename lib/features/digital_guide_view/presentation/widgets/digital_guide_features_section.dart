@@ -66,21 +66,11 @@ class DigitalGuideFeaturesSection extends ConsumerWidget {
       ),
       (
         title: context.localize.transport,
-        content: [
-          LocalizationExpansionTileContent(
-            digitalGuideData: digitalGuideData,
-            building: building,
-          ),
-        ],
+        content: [],
       ),
       (
         title: context.localize.entrances,
-        content: [
-          LocalizationExpansionTileContent(
-            digitalGuideData: digitalGuideData,
-            building: building,
-          ),
-        ],
+        content: [],
       ),
       (
         title: context.localize.lifts,
@@ -108,22 +98,8 @@ class DigitalGuideFeaturesSection extends ConsumerWidget {
         ],
       ),
       (
-        title: context.localize.micro_navigation,
-        content: [
-          LocalizationExpansionTileContent(
-            digitalGuideData: digitalGuideData,
-            building: building,
-          ),
-        ],
-      ),
-      (
         title: context.localize.building_structure,
-        content: [
-          LocalizationExpansionTileContent(
-            digitalGuideData: digitalGuideData,
-            building: building,
-          ),
-        ],
+        content: [],
       ),
       (
         title: context.localize.room_information,
