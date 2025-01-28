@@ -13,8 +13,7 @@ import "../../../../../../widgets/my_error_widget.dart";
 import "../../../../../navigator/utils/navigation_commands.dart";
 import "../../../../data/models/region.dart";
 import "../../../../presentation/widgets/digital_guide_nav_link.dart";
-import "../../data/models/region_data.dart";
-import "../../data/repository/region_data_repository.dart";
+import "../../domain/digital_guide_region_use_cases.dart";
 
 @RoutePage()
 class RegionView extends ConsumerWidget {
@@ -26,7 +25,8 @@ class RegionView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final regionDataAsync = ref.watch(regionDataRepositoryProvider(region));
+    final regionDataAsync =
+        ref.watch(digitalGuideRegionUrseCasesProvider(region));
 
     return regionDataAsync.when(
       data: (regionData) => _RegionView(region: region, regionData: regionData),
