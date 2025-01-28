@@ -1,3 +1,5 @@
+import "dart:async";
+
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
@@ -177,7 +179,7 @@ class RegionDataSliverList extends ConsumerWidget {
         (context, index) => Column(
           children: [
             DigitalGuideNavLink(
-              onTap: () async => regionDataSliverListItem.onTap,
+              onTap: () async => regionDataSliverListItem.onTap?.call(index),
               text: regionDataSliverListItem.text(index),
             ),
             const SizedBox(

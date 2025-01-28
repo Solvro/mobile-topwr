@@ -24,7 +24,7 @@ Future<IList<DigitalGuideLift>> liftsRepository(
     );
   }
 
-  final liftsIds = level.regions.expand((region) => region.liftsIds);
+  final liftsIds = level.regions.expand((region) => region.lifts);
   final lifts = await Future.wait(liftsIds.map(getDigitalGuideLift));
   return lifts.toIList();
 }
