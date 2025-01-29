@@ -4,11 +4,12 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 import "../../../data/models/region.dart";
 import "../../lifts/data/models/digital_guide_lift.dart";
 import "../../lifts/data/repository/lifts_repository.dart";
+import "../../lodge/data/models/digital_guide_lodge.dart";
+import "../../lodge/data/repository/lodges_repository.dart";
 import "../../rooms/data/models/digital_guide_room.dart";
 import "../data/models/corridor.dart";
 import "../data/models/dressing_room.dart";
 import "../data/models/information_point.dart";
-import "../data/models/lodge.dart";
 import "../data/models/parking.dart";
 import "../data/models/ramp.dart";
 import "../data/models/stairs.dart";
@@ -17,7 +18,6 @@ import "../data/models/toilet.dart";
 import "../data/repository/corridors_repository.dart";
 import "../data/repository/dressing_rooms_repository.dart";
 import "../data/repository/information_points_repository.dart";
-import "../data/repository/lodges_repository.dart";
 import "../data/repository/ramps_repository.dart";
 import "../data/repository/region_parkings_repository.dart";
 import "../data/repository/region_rooms_repository.dart";
@@ -33,7 +33,7 @@ typedef RegionData = ({
   IList<Ramp> ramps,
   IList<Stairway> stairways,
   IList<DigitalGuideLift> lifts,
-  IList<Lodge> lodges,
+  IList<DigitalGuideLodge> lodges,
   IList<InformationPoint> informationPoints,
   IList<DressingRoom> dressingRooms,
   IList<Toilet> toilets,
@@ -52,7 +52,7 @@ Future<RegionData> digitalGuideRegionUrseCases(Ref ref, Region region) async {
       await ref.watch(stairwaysRepositoryProvider(region.stairways).future);
   final lifts = await ref.watch(liftsRepositoryProvider(region.lifts).future);
   final lodges =
-      await ref.watch(lodgesRepositoryProvider(region.lodges).future);
+      await ref.watch(lodgesFromIDsRepositoryProvider(region.lodges).future);
   final informationPoints = await ref.watch(
     informationPointsRepositoryProvider(region.informationPoints).future,
   );
