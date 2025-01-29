@@ -2,9 +2,9 @@ name: Lint & formatting
 
 on:
   push:
-    branches: ["**"]
+    branches: [ "**" ]
   pull_request:
-    branches: ["**"]
+    branches: [ "**" ]
 
 jobs:
   build:
@@ -14,13 +14,13 @@ jobs:
       - uses: actions/checkout@v4
       - uses: subosito/flutter-action@v2
         with:
-          channel: "stable" 
+          channel: "stable"
           flutter-version-file: pubspec.yaml
       - run: flutter --version
-    
+
       - name: Install dependencies
         run: flutter pub get
-      
+
       - name: Example .env
         run: cp example.env .env
 
@@ -32,6 +32,9 @@ jobs:
 
       - name: Analyze project source
         run: flutter analyze --fatal-infos
-        
+
       - name: riverpod custom lint
         run: dart run custom_lint
+
+      - name: Hex Color Converters test
+        run: flutter test test/hex_color_converters_test.dart
