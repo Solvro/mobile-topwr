@@ -23,3 +23,22 @@ Future<IList<DigitalGuideDressingRoom>> dressingRoomsRepository(
     onRetry: () => ref.invalidateSelf(),
   );
 }
+
+@riverpod
+Future<IList<DigitalGuideDressingRoom>> dressingRoomsFromIDsRepository(
+  Ref ref,
+  List<int> dressingRoomsIDs,
+) async {
+  Future<DigitalGuideDressingRoom> getDressingRoom(int dressingRoomID) async {
+    return ref.getAndCacheDataFromDigitalGuide(
+      "dressing_rooms/$dressingRoomID",
+      DigitalGuideDressingRoom.fromJson,
+      onRetry: () => ref.invalidateSelf(),
+    );
+  }
+
+  final dressingRooms =
+      await Future.wait(dressingRoomsIDs.map(getDressingRoom));
+
+  return dressingRooms.lock;
+}

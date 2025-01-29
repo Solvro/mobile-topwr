@@ -2,13 +2,14 @@ import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 import "../../../data/models/region.dart";
+import "../../dressing_room/data/models/digital_guide_dressing_room.dart";
+import "../../dressing_room/data/repository/dressing_rooms_repository.dart";
 import "../../lifts/data/models/digital_guide_lift.dart";
 import "../../lifts/data/repository/lifts_repository.dart";
 import "../../lodge/data/models/digital_guide_lodge.dart";
 import "../../lodge/data/repository/lodges_repository.dart";
 import "../../rooms/data/models/digital_guide_room.dart";
 import "../data/models/corridor.dart";
-import "../data/models/dressing_room.dart";
 import "../data/models/information_point.dart";
 import "../data/models/parking.dart";
 import "../data/models/ramp.dart";
@@ -16,7 +17,6 @@ import "../data/models/stairs.dart";
 import "../data/models/stairway.dart";
 import "../data/models/toilet.dart";
 import "../data/repository/corridors_repository.dart";
-import "../data/repository/dressing_rooms_repository.dart";
 import "../data/repository/information_points_repository.dart";
 import "../data/repository/ramps_repository.dart";
 import "../data/repository/region_parkings_repository.dart";
@@ -35,7 +35,7 @@ typedef RegionData = ({
   IList<DigitalGuideLift> lifts,
   IList<DigitalGuideLodge> lodges,
   IList<InformationPoint> informationPoints,
-  IList<DressingRoom> dressingRooms,
+  IList<DigitalGuideDressingRoom> dressingRooms,
   IList<Toilet> toilets,
   IList<DigitalGuideRoom> rooms,
   IList<Parking> parkings,
@@ -57,7 +57,7 @@ Future<RegionData> digitalGuideRegionUrseCases(Ref ref, Region region) async {
     informationPointsRepositoryProvider(region.informationPoints).future,
   );
   final dressingRooms = await ref.watch(
-    dressingRoomsRepositoryProvider(region.dressingRooms).future,
+    dressingRoomsFromIDsRepositoryProvider(region.dressingRooms).future,
   );
   final toilets =
       await ref.watch(toiletsRepositoryProvider(region.toilets).future);
