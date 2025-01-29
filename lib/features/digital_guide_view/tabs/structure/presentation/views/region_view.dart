@@ -11,6 +11,7 @@ import "../../../../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../../../../../widgets/loading_widgets/shimmer_loading.dart";
 import "../../../../../../widgets/my_error_widget.dart";
 import "../../../../../navigator/utils/navigation_commands.dart";
+import "../../../../data/models/level.dart";
 import "../../../../data/models/region.dart";
 import "../../../../presentation/widgets/digital_guide_nav_link.dart";
 import "../../domain/digital_guide_region_use_cases.dart";
@@ -18,9 +19,11 @@ import "../../domain/digital_guide_region_use_cases.dart";
 @RoutePage()
 class RegionView extends ConsumerWidget {
   const RegionView({
+    required this.level,
     required this.region,
   });
 
+  final Level level;
   final Region region;
 
   @override
@@ -29,7 +32,8 @@ class RegionView extends ConsumerWidget {
         ref.watch(digitalGuideRegionUrseCasesProvider(region));
 
     return regionDataAsync.when(
-      data: (regionData) => _RegionView(region: region, regionData: regionData),
+      data: (regionData) =>
+          _RegionView(level: level, region: region, regionData: regionData),
       error: (error, stackTrace) => Scaffold(
         appBar: DetailViewAppBar(),
         body: MyErrorWidget(error),
@@ -47,10 +51,12 @@ class RegionView extends ConsumerWidget {
 
 class _RegionView extends ConsumerWidget {
   const _RegionView({
+    required this.level,
     required this.region,
     required this.regionData,
   });
 
+  final Level level;
   final Region region;
   final RegionData regionData;
 
@@ -82,7 +88,10 @@ class _RegionView extends ConsumerWidget {
       ),
       RegionDataSliverListItem(
         text: (index) => context.localize.lift,
-        onTap: (index) async => () {},
+        onTap: (index) async => ref.navigateLiftDetails(
+          regionData.lifts[index],
+          level.translations.plTranslation.name,
+        ),
         itemCount: region.lifts.length,
       ),
       RegionDataSliverListItem(

@@ -2,11 +2,12 @@ import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 import "../../../data/models/region.dart";
+import "../../lifts/data/models/digital_guide_lift.dart";
+import "../../lifts/data/repository/lifts_repository.dart";
 import "../../rooms/data/models/digital_guide_room.dart";
 import "../data/models/corridor.dart";
 import "../data/models/dressing_room.dart";
 import "../data/models/information_point.dart";
-import "../data/models/lift.dart";
 import "../data/models/lodge.dart";
 import "../data/models/parking.dart";
 import "../data/models/ramp.dart";
@@ -16,7 +17,6 @@ import "../data/models/toilet.dart";
 import "../data/repository/corridors_repository.dart";
 import "../data/repository/dressing_rooms_repository.dart";
 import "../data/repository/information_points_repository.dart";
-import "../data/repository/lifts_repository.dart";
 import "../data/repository/lodges_repository.dart";
 import "../data/repository/ramps_repository.dart";
 import "../data/repository/region_parkings_repository.dart";
@@ -32,7 +32,7 @@ typedef RegionData = ({
   IList<Stairs> stairs,
   IList<Ramp> ramps,
   IList<Stairway> stairways,
-  IList<Lift> lifts,
+  IList<DigitalGuideLift> lifts,
   IList<Lodge> lodges,
   IList<InformationPoint> informationPoints,
   IList<DressingRoom> dressingRooms,

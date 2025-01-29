@@ -24,7 +24,8 @@ Future<IList<LevelWithLifts>> getLevelWithLiftsUseCase(
       .watch(levelsWithRegionsRepositoryProvider(digitalGuideData).future);
   final levelsWithLiftsData = await Future.wait(
     levels.map((level) async {
-      final lifts = await ref.watch(liftsRepositoryProvider(level).future);
+      final lifts =
+          await ref.watch(liftsFromLevelRepositoryProvider(level).future);
       return (level: level.level, lifts: lifts);
     }),
   );

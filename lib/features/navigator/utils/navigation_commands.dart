@@ -134,8 +134,16 @@ extension NavigationX on WidgetRef {
     await _router.push(LevelRoute(levelInfo: levelInfo));
   }
 
-  Future<void> navigateDigitalGuideRegion(Region region) async {
-    await _router.push(RegionRoute(region: region));
+  Future<void> navigateDigitalGuideRegion(
+    digitalGuide.Level level,
+    Region region,
+  ) async {
+    await _router.push(
+      RegionRoute(
+        level: level,
+        region: region,
+      ),
+    );
   }
 
   Future<void> navigateDigitalGuideCorridor(Corridor corridor) async {

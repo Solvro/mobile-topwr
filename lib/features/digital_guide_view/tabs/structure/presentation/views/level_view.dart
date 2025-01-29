@@ -62,6 +62,7 @@ class LevelView extends ConsumerWidget {
                     DigitalGuideNavLink(
                       onTap: () async {
                         await ref.navigateDigitalGuideRegion(
+                          levelInfo.level,
                           levelInfo.regions[index],
                         );
                       },
