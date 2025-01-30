@@ -13,8 +13,8 @@ class TechnicalMessage extends StatelessWidget {
     this.title,
     this.alertType = AlertType.error,
     this.icon,
-    this.onTap, 
-    this.backgoundColor, 
+    this.onTap,
+    this.backgoundColor,
     this.textColor,
   });
   final String message;
@@ -34,9 +34,10 @@ class TechnicalMessage extends StatelessWidget {
         borderRadius:
             BorderRadius.circular(AppWidgetsConfig.borderRadiusMedium),
         child: ColoredBox(
-          color: backgoundColor ?? (alertType == AlertType.error
-              ? context.colorTheme.orangePomegranade
-              : context.colorTheme.blueAzure), 
+          color: backgoundColor ??
+              (alertType == AlertType.error
+                  ? context.colorTheme.orangePomegranade
+                  : context.colorTheme.blueAzure),
           child: ListTile(
             onTap: onTap,
             trailing: icon,

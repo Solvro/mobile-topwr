@@ -49,8 +49,11 @@ class _PlannerAdvertBanner extends ConsumerWidget {
                 color: context.colorTheme.whiteSoap,
               ),
               onTap: () async => unawaited(ref.launch(data.url)),
-              backgoundColor: data.backgroundColor != null ? HexColor(data.backgroundColor!) : null,
-              textColor: data.textColor != null ? HexColor(data.textColor!) : null,
+              backgoundColor: data.backgroundColor != null
+                  ? HexColor(data.backgroundColor!)
+                  : null,
+              textColor:
+                  data.textColor != null ? HexColor(data.textColor!) : null,
             ),
           );
   }
