@@ -56,7 +56,7 @@ class Parking with _$Parking implements GoogleNavigable {
       showPark: "1", 
       lp: "1",
       address: address["streetAddress"] as String,
-      trend: "0",
+      trend: json["trend"] as String,
     );
   }
 
