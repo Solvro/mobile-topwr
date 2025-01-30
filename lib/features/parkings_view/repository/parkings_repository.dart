@@ -1,6 +1,7 @@
 import "dart:async";
 import "dart:collection";
 
+import "package:dio/dio.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
@@ -20,44 +21,53 @@ part "parkings_repository.g.dart";
 @riverpod
 Future<IList<Parking>> parkingsRepository(Ref ref) async {
   final graphqlClient = await ref.watch(grapqlClientProvider.future);
-  final response = await graphqlClient.query$GetUseParkingApiWrapper();
-  final useParkingApiWrapper = response.parsedData?.CacheReferenceNumber?.useParkingApiWrapper ?? false;
+  final parkingConfigResp = await graphqlClient.query$GetUseParkingApiWrapper();
+  final useParkingApiWrapper = parkingConfigResp
+          .parsedData?.CacheReferenceNumber?.useParkingApiWrapper ??
+      false;
+  final restClient = ref.watch(restClientProvider);
 
-  if(!useParkingApiWrapper){
+  if (!useParkingApiWrapper) {
     ref.setRefresh(ParkingsConfig.parkingsRefreshInterval);
-    final response = await ref.postIParkingCommand<Map<String, dynamic>>(
-      FetchPlacesCommand(DateTime.now()),
-    );
+    final classicUrl = parkingConfigResp
+        .parsedData?.CacheReferenceNumber?.classicParkingGetParks;
+    Response<Map<String, dynamic>> response;
+    if (classicUrl == null) {
+      response = await ref.postIParkingCommand<Map<String, dynamic>>(
+        FetchPlacesCommand(DateTime.now()),
+      );
+    } else {
+      response = await restClient.get(classicUrl);
+    }
+
     final parkings = response.data?["places"] as List<dynamic>;
-    final list = parkings.whereType<Map<String, dynamic>>().map(Parking.fromJson);
+    final list = parkings
+        .whereType<Map<String, dynamic>>()
+        .map(
+          classicUrl == null
+              ? Parking.fromJson
+              : (json) => Parking.fromJsonWithOverridenPhotoPrefix(
+                    json,
+                    parkingConfigResp.parsedData?.CacheReferenceNumber
+                            ?.parkingPhotoPrefix ??
+                        "",
+                  ),
+        )
+        .toList();
     return _sortParkingsByFav(list, ref).toIList();
   }
 
-  //final restClient = ref.watch(restClientProvider);
-  // final parkings = restClient.get(Env.parkingApiUrl) as List<dynamic>;
-  final parkings = [
-  {
-    "parkingId": 4,
-    "freeSpots": 33,
-    "totalSpots": 97,
-    "name": "best parking",
-    "symbol": "WRO",
-    "openingHours": "08:00:00",
-    "closingHours": "22:00:00",
-    "address": {
-      "streetAddress": "Example 201, 11-041 Wrocław",
-      "geoLatitude": 21.37,
-      "geoLongitude": -4.2,
-    },
-  },];
+  final javaUrl =
+      parkingConfigResp.parsedData?.CacheReferenceNumber?.javaWrapperURL ??
+          Env.parkingApiUrl;
 
-
-  final List<Parking> parkingList = parkings
-      .whereType<Map<String, dynamic>>() 
-      .map(Parking.fromJsonApiWrapper) 
-      .toList();
-    return _sortParkingsByFav(parkingList, ref).toIList();
-  
+  final parkings = await restClient.get<List<dynamic>>("$javaUrl/");
+  final List<Parking> parkingList = parkings.data
+          ?.whereType<Map<String, dynamic>>()
+          .map(Parking.fromJsonApiWrapper)
+          .toList() ??
+      [];
+  return _sortParkingsByFav(parkingList, ref).toIList();
 }
 
 DoubleLinkedQueue<Parking> _sortParkingsByFav(

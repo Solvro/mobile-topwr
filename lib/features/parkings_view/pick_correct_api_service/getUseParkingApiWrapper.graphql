@@ -1,5 +1,9 @@
 query GetUseParkingApiWrapper {
   CacheReferenceNumber {
     useParkingApiWrapper
+    classicParkingGetCharts
+    classicParkingGetParks
+    javaWrapperURL
+    parkingPhotoPrefix
   }
 }
