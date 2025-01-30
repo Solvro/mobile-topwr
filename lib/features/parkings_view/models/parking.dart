@@ -42,13 +42,13 @@ class Parking with _$Parking implements GoogleNavigable {
     return Parking(
       id: json["parkingId"].toString(),
       parkingId: json["parkingId"].toString(),
-      numberOfPlaces: json["totalSpots"].toString(),
+      numberOfPlaces: json["freeSpots"].toString(),
       symbol: json["symbol"] as String,
       type: null,
       name: json["name"] as String,
       openHour: (json["openingHours"] as String?)?.formatIParkingDate,
       closeHour: (json["closingHours"] as String?)?.formatIParkingDate,
-      places: json["freeSpots"].toString(),
+      places: json["totalSpots"].toString(),
       geoLan: address["geoLongitude"].toString(),
       geoLat: address["geoLatitude"].toString(),
       photo: "",
@@ -104,4 +104,3 @@ extension GetTrendArrowX on String {
     }
   }
 }
-
