@@ -34,4 +34,6 @@ abstract class Env {
       _Env.digitalGuideAuthorizationToken;
   @EnviedField()
   static final String digitalGuideAddonsUrl = _Env.digitalGuideAddonsUrl;
+  @EnviedField()
+  static final String parkingApiUrl = _Env.parkingApiUrl;
 }

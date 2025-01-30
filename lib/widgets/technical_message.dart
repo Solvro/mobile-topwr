@@ -14,12 +14,16 @@ class TechnicalMessage extends StatelessWidget {
     this.alertType = AlertType.error,
     this.icon,
     this.onTap,
+    this.backgoundColor,
+    this.textColor,
   });
   final String message;
   final String? title;
   final AlertType alertType;
   final Icon? icon;
   final VoidCallback? onTap;
+  final Color? backgoundColor;
+  final Color? textColor;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -30,9 +34,10 @@ class TechnicalMessage extends StatelessWidget {
         borderRadius:
             BorderRadius.circular(AppWidgetsConfig.borderRadiusMedium),
         child: ColoredBox(
-          color: alertType == AlertType.error
-              ? context.colorTheme.orangePomegranade
-              : context.colorTheme.blueAzure,
+          color: backgoundColor ??
+              (alertType == AlertType.error
+                  ? context.colorTheme.orangePomegranade
+                  : context.colorTheme.blueAzure),
           child: ListTile(
             onTap: onTap,
             trailing: icon,
@@ -42,7 +47,9 @@ class TechnicalMessage extends StatelessWidget {
             ),
             subtitle: Text(
               message,
-              style: context.textTheme.bodyWhite,
+              style: context.textTheme.bodyWhite.copyWith(
+                color: textColor,
+              ),
             ),
           ),
         ),

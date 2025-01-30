@@ -5,6 +5,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
+import "../../../theme/hex_color.dart";
 import "../../../utils/launch_url_util.dart";
 import "../../../widgets/loading_widgets/simple_previews/horizontal_rectangular_section_loading.dart";
 import "../../../widgets/my_error_widget.dart";
@@ -48,6 +49,11 @@ class _PlannerAdvertBanner extends ConsumerWidget {
                 color: context.colorTheme.whiteSoap,
               ),
               onTap: () async => unawaited(ref.launch(data.url)),
+              backgoundColor: data.backgroundColor != null
+                  ? HexColor(data.backgroundColor!)
+                  : null,
+              textColor:
+                  data.textColor != null ? HexColor(data.textColor!) : null,
             ),
           );
   }
