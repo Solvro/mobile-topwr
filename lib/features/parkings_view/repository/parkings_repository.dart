@@ -6,6 +6,8 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../api_base/gql_client_provider.dart";
+import "../../../api_base_rest/client/dio_client.dart";
+import "../../../config/env.dart";
 import "../../../utils/ref_extensions.dart";
 import "../api_client/iparking_client.dart";
 import "../api_client/iparking_commands.dart";
@@ -17,8 +19,8 @@ part "parkings_repository.g.dart";
 
 @riverpod
 Future<IList<Parking>> parkingsRepository(Ref ref) async {
-  final apiClient = await ref.watch(grapqlClientProvider.future);
-  final response = await apiClient.query$GetUseParkingApiWrapper();
+  final graphqlClient = await ref.watch(grapqlClientProvider.future);
+  final response = await graphqlClient.query$GetUseParkingApiWrapper();
   final useParkingApiWrapper = response.parsedData?.CacheReferenceNumber?.useParkingApiWrapper ?? false;
 
   if(!useParkingApiWrapper){
@@ -31,7 +33,31 @@ Future<IList<Parking>> parkingsRepository(Ref ref) async {
     return _sortParkingsByFav(list, ref).toIList();
   }
 
-  return IList.empty();
+  //final restClient = ref.watch(restClientProvider);
+  // final parkings = restClient.get(Env.parkingApiUrl) as List<dynamic>;
+  final parkings = [
+  {
+    "parkingId": 4,
+    "freeSpots": 33,
+    "totalSpots": 97,
+    "name": "best parking",
+    "symbol": "WRO",
+    "openingHours": "08:00:00",
+    "closingHours": "22:00:00",
+    "address": {
+      "streetAddress": "Example 201, 11-041 Wrocław",
+      "geoLatitude": 21.37,
+      "geoLongitude": -4.2,
+    },
+  },];
+
+
+  final List<Parking> parkingList = parkings
+      .whereType<Map<String, dynamic>>() 
+      .map(Parking.fromJsonApiWrapper) 
+      .toList();
+    return _sortParkingsByFav(parkingList, ref).toIList();
+  
 }
 
 DoubleLinkedQueue<Parking> _sortParkingsByFav(

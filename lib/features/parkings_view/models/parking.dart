@@ -36,6 +36,30 @@ class Parking with _$Parking implements GoogleNavigable {
   factory Parking.fromJson(Map<String, dynamic> json) =>
       _$ParkingFromJson(json);
 
+  factory Parking.fromJsonApiWrapper(Map<String, dynamic> json) {
+    final address = json["address"] as Map<String, dynamic>;
+    
+    return Parking(
+      id: json["parkingId"].toString(),
+      parkingId: json["parkingId"].toString(),
+      numberOfPlaces: json["totalSpots"].toString(),
+      symbol: json["symbol"] as String,
+      type: null,
+      name: json["name"] as String,
+      openHour: (json["openingHours"] as String?)?.formatIParkingDate,
+      closeHour: (json["closingHours"] as String?)?.formatIParkingDate,
+      places: json["freeSpots"].toString(),
+      geoLan: address["geoLongitude"].toString(),
+      geoLat: address["geoLatitude"].toString(),
+      photo: "",
+      active: "1", 
+      showPark: "1", 
+      lp: "1",
+      address: address["streetAddress"] as String,
+      trend: "0",
+    );
+  }
+
   String get iParkPhotoUrl {
     return ParkingsConfig.rootUrl + photo.trim();
   }
@@ -80,3 +104,4 @@ extension GetTrendArrowX on String {
     }
   }
 }
+
