@@ -3,6 +3,8 @@ query GetPlannerAdvertContent {
         isEnabled,
         title,
         description,
-        url
+        url,
+      	backgroundColor,
+      	textColor
     }
 }

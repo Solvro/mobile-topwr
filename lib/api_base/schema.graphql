@@ -1852,6 +1852,8 @@ type PlannerAdvert {
   description: String!
   url: String!
   isEnabled: Boolean!
+  textColor: String
+  backgroundColor: String
 }
 
 """"""
@@ -1861,6 +1863,8 @@ type version_PlannerAdvert {
   description: String!
   url: String!
   isEnabled: Boolean!
+  textColor: String
+  backgroundColor: String
 }
 
 type Subscription {
