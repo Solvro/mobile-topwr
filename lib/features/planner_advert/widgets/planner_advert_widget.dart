@@ -44,11 +44,15 @@ class _PlannerAdvertBanner extends ConsumerWidget {
               title: data.title,
               message: data.description,
               alertType: AlertType.info,
-              icon: Icon(
-                Icons.open_in_new_rounded,
-                color: context.colorTheme.whiteSoap,
-              ),
-              onTap: () async => unawaited(ref.launch(data.url)),
+              icon: data.url != null
+                  ? Icon(
+                      Icons.open_in_new_rounded,
+                      color: context.colorTheme.whiteSoap,
+                    )
+                  : null,
+              onTap: data.url != null
+                  ? () async => unawaited(ref.launch(data.url!))
+                  : null,
               backgoundColor: data.backgroundColor != null
                   ? HexColor(data.backgroundColor!)
                   : null,

@@ -1850,7 +1850,7 @@ type PlannerAdvert {
   id: ID!
   title: String
   description: String!
-  url: String!
+  url: String
   isEnabled: Boolean!
   textColor: String
   backgroundColor: String
@@ -1861,7 +1861,7 @@ type version_PlannerAdvert {
   id: ID!
   title: String
   description: String!
-  url: String!
+  url: String
   isEnabled: Boolean!
   textColor: String
   backgroundColor: String
