@@ -68,7 +68,6 @@ class ExamSessionCountdown extends ConsumerWidget {
                   color: context.colorTheme.whiteSoap,
                 ),
               ),
-              //    )
             ],
           ),
         ),
