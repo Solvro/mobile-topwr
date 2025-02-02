@@ -23,7 +23,7 @@ class DigitalGuideEntranceDetailsView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final List<Widget> widgets = [
       Text(
-        entrance.translations.plTranslation.name,
+        entrance.translations.pl.name,
         style: context.textTheme.title.copyWith(fontSize: 24),
       ),
       const SizedBox(height: DigitalGuideConfig.heightMedium),
@@ -41,8 +41,8 @@ class DigitalGuideEntranceDetailsView extends ConsumerWidget {
             "Wejście wymaga specjalnych uprawnień."
           else
             "Wejście nie wymaga specjalnych uprawnień.",
-          entrance.translations.plTranslation.location,
-          entrance.translations.plTranslation.comment,
+          entrance.translations.pl.location,
+          entrance.translations.pl.comment,
           if (entrance.isEmergencyExit)
             "To jest wejście ewakuacyjne."
           else
@@ -94,13 +94,8 @@ class DigitalGuideEntranceDetailsView extends ConsumerWidget {
                   return Padding(
                     padding:
                         const EdgeInsets.all(DigitalGuideConfig.heightMedium),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(
-                        DigitalGuideConfig.borderRadiusSmall,
-                      ),
-                      child: DigitalGuideImage(
-                        id: entrance.imagesIndices[index],
-                      ),
+                    child: DigitalGuideImage(
+                      id: entrance.imagesIndices[index],
                     ),
                   );
                 },

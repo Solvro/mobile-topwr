@@ -54,7 +54,7 @@ class DigitalGuideEntrace with _$DigitalGuideEntrace {
 @freezed
 class DigitalGuideTranslationsEntrace with _$DigitalGuideTranslationsEntrace {
   const factory DigitalGuideTranslationsEntrace({
-    @JsonKey(name: "pl") required DigitalGuideTranslationEntrace plTranslation,
+    @JsonKey(name: "pl") required DigitalGuideTranslationEntrace pl,
   }) = _DigitalGuideTranslationsEntrace;
 
   factory DigitalGuideTranslationsEntrace.fromJson(Map<String, dynamic> json) =>
@@ -64,28 +64,26 @@ class DigitalGuideTranslationsEntrace with _$DigitalGuideTranslationsEntrace {
 @freezed
 class DigitalGuideTranslationEntrace with _$DigitalGuideTranslationEntrace {
   const factory DigitalGuideTranslationEntrace({
-    @JsonKey(defaultValue: "No comment") required String name,
-    @JsonKey(defaultValue: "No comment") required String location,
-    @JsonKey(defaultValue: "No comment") required String isMainComment,
-    @JsonKey(defaultValue: "No comment") required String isForPersonelComment,
-    @JsonKey(defaultValue: "No comment")
+    @JsonKey(fromJson: _catchString) required String name,
+    @JsonKey(fromJson: _catchString) required String location,
+    @JsonKey(fromJson: _catchString) required String isMainComment,
+    @JsonKey(fromJson: _catchString) required String isForPersonelComment,
+    @JsonKey(fromJson: _catchString)
     required String isBuildingMarkedFromEntranceComment,
-    @JsonKey(defaultValue: "No comment")
+    @JsonKey(fromJson: _catchString)
     required String isBuildingMarkedInEnComment,
-    @JsonKey(defaultValue: "No comment") required String isLitComment,
-    @JsonKey(defaultValue: "No comment") required String isEmergencyExitComment,
-    @JsonKey(defaultValue: "No comment")
+    @JsonKey(fromJson: _catchString) required String isLitComment,
+    @JsonKey(fromJson: _catchString) required String isEmergencyExitComment,
+    @JsonKey(fromJson: _catchString)
     required String isProtectionFromWeatherComment,
-    @JsonKey(defaultValue: "No comment") required String isSolidSurfaceComment,
-    @JsonKey(defaultValue: "No comment")
+    @JsonKey(fromJson: _catchString) required String isSolidSurfaceComment,
+    @JsonKey(fromJson: _catchString)
     required String areDifferentTypesOfSurfaceComment,
-    @JsonKey(defaultValue: "No comment") required String areBenchesComment,
-    @JsonKey(defaultValue: "No comment") required String entranceThreats,
-    @JsonKey(defaultValue: "No comment")
-    required String hasSoundTransmitterComment,
-    @JsonKey(defaultValue: "No comment")
-    required String hasTactilePavingComment,
-    @JsonKey(defaultValue: "No comment") required String comment,
+    @JsonKey(fromJson: _catchString) required String areBenchesComment,
+    @JsonKey(fromJson: _catchString) required String entranceThreats,
+    @JsonKey(fromJson: _catchString) required String hasSoundTransmitterComment,
+    @JsonKey(fromJson: _catchString) required String hasTactilePavingComment,
+    @JsonKey(fromJson: _catchString) required String comment,
   }) = _DigitalGuideTranslationEntrace;
 
   factory DigitalGuideTranslationEntrace.fromJson(Map<String, dynamic> json) =>
@@ -102,4 +100,8 @@ int _stringToInt(String str) {
 
 int _catchInt(int? intiger) {
   return intiger ?? 0;
+}
+
+String _catchString(String? str) {
+  return str ?? "";
 }

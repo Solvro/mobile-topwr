@@ -8,9 +8,6 @@ import "../models/digital_guide_entrace.dart";
 
 part "entrances_use_cases.g.dart";
 
-final selectedEntranceProvider =
-    StateProvider<DigitalGuideEntrace?>((ref) => null);
-
 @riverpod
 Future<IList<DigitalGuideEntrace>> getEntrancesUseCase(
   Ref ref,
@@ -19,8 +16,5 @@ Future<IList<DigitalGuideEntrace>> getEntrancesUseCase(
   final entrances =
       await ref.watch(entrancesRepositoryProvider(digitalGuideData).future);
 
-  return entrances.where((entrance) {
-    //return entrance.isMain;
-    return true;
-  }).toIList();
+  return entrances.toIList();
 }

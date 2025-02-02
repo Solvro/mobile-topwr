@@ -18,7 +18,7 @@ class EntrancesList extends ConsumerWidget {
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) => DigitalGuideNavLink(
           onTap: () {},
-          text: entrancesData[index].translations.plTranslation.name,
+          text: entrancesData[index].translations.pl.name,
         ),
         separatorBuilder: (context, index) => const SizedBox(
           height: DigitalGuideConfig.heightMedium,

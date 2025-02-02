@@ -4,7 +4,6 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "../../../../../config/ui_config.dart";
 import "../../../../navigator/utils/navigation_commands.dart";
 import "../../../presentation/widgets/digital_guide_nav_link.dart";
-import "../data/business/entrances_use_cases.dart";
 import "../data/models/digital_guide_entrace.dart";
 
 class DigitalGuideEntranceWidget extends ConsumerWidget {
@@ -20,20 +19,11 @@ class DigitalGuideEntranceWidget extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        ListView.separated(
-          physics: const NeverScrollableScrollPhysics(),
-          itemBuilder: (context, index) => DigitalGuideNavLink(
-            onTap: () async {
-              ref.read(selectedEntranceProvider.notifier).state = entrance;
-              await ref.navigateEntrancesDetails(entrance);
-            },
-            text: entrance.translations.plTranslation.name,
-          ),
-          separatorBuilder: (context, index) => const SizedBox(
-            height: DigitalGuideConfig.heightMedium,
-          ),
-          itemCount: 1,
-          shrinkWrap: true,
+        DigitalGuideNavLink(
+          onTap: () async {
+            await ref.navigateEntrancesDetails(entrance);
+          },
+          text: entrance.translations.pl.name,
         ),
         const SizedBox(height: DigitalGuideConfig.heightMedium),
       ],
