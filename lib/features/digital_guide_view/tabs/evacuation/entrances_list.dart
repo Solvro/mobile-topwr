@@ -5,6 +5,7 @@ import "../../../../config/ui_config.dart";
 import "../../../../widgets/my_error_widget.dart";
 import "../../data/models/digital_guide_response.dart";
 import "../../presentation/widgets/digital_guide_nav_link.dart";
+import "../entraces/data/models/digital_guide_entrace.dart";
 import "../entraces/data/repository/entraces_repository.dart";
 
 class EntrancesList extends ConsumerWidget {
@@ -18,7 +19,7 @@ class EntrancesList extends ConsumerWidget {
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) => DigitalGuideNavLink(
           onTap: () {},
-          text: entrancesData[index].translations.pl.name,
+          text: toNonNullString(entrancesData[index].translations.pl.name),
         ),
         separatorBuilder: (context, index) => const SizedBox(
           height: DigitalGuideConfig.heightMedium,

@@ -23,7 +23,7 @@ class DigitalGuideEntranceWidget extends ConsumerWidget {
           onTap: () async {
             await ref.navigateEntrancesDetails(entrance);
           },
-          text: entrance.translations.pl.name,
+          text: toNonNullString(entrance.translations.pl.name),
         ),
         const SizedBox(height: DigitalGuideConfig.heightMedium),
       ],

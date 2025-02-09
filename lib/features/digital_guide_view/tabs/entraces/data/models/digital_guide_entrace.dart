@@ -64,8 +64,8 @@ class DigitalGuideTranslationsEntrace with _$DigitalGuideTranslationsEntrace {
 @freezed
 class DigitalGuideTranslationEntrace with _$DigitalGuideTranslationEntrace {
   const factory DigitalGuideTranslationEntrace({
-    @JsonKey(fromJson: _catchString) required String name,
-    @JsonKey(fromJson: _catchString) required String location,
+    String? name,
+    required String? location,
     @JsonKey(fromJson: _catchString) required String isMainComment,
     @JsonKey(fromJson: _catchString) required String isForPersonelComment,
     @JsonKey(fromJson: _catchString)
@@ -104,4 +104,12 @@ int _catchInt(int? intiger) {
 
 String _catchString(String? str) {
   return str ?? "";
+}
+
+String toNonNullString(dynamic value) {
+  return value?.toString() ?? "";
+}
+
+IList<String> getNonNullableList(List<String?> items) {
+  return items.where((item) => item != null).cast<String>().toIList();
 }

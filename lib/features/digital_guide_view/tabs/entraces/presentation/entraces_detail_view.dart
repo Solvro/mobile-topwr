@@ -1,5 +1,4 @@
 import "package:auto_route/auto_route.dart";
-import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
@@ -23,12 +22,12 @@ class DigitalGuideEntranceDetailsView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final List<Widget> widgets = [
       Text(
-        entrance.translations.pl.name,
+        entrance.translations.pl.name ?? "",
         style: context.textTheme.title.copyWith(fontSize: 24),
       ),
       const SizedBox(height: DigitalGuideConfig.heightMedium),
       BulletList(
-        items: [
+        items: getNonNullableList([
           if (entrance.isMain)
             "To wejście jest główne."
           else
@@ -47,7 +46,7 @@ class DigitalGuideEntranceDetailsView extends ConsumerWidget {
             "To jest wejście ewakuacyjne."
           else
             "Wejście nie wymaga specjalnych uprawnień.",
-        ].lock,
+        ]),
       ),
       const SizedBox(height: DigitalGuideConfig.heightBig),
       ListView.separated(
