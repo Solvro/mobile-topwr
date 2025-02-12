@@ -109,7 +109,8 @@ class _DigitalGuideTilesLoading extends StatelessWidget {
         itemBuilder: (context, index) {
           return const Padding(
             padding: EdgeInsets.symmetric(
-                vertical: GuideDetailViewConfig.paddingMedium),
+              vertical: GuideDetailViewConfig.paddingMedium,
+            ),
             child: _LoadingTile(),
           );
         },
