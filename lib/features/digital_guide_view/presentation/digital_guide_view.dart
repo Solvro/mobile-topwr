@@ -19,6 +19,7 @@ import "../data/repository/digital_guide_repository.dart";
 import "widgets/accessibility_button.dart";
 import "widgets/digital_guide_data_source_link.dart";
 import "widgets/digital_guide_features_section.dart";
+import "widgets/digital_guide_loading_view.dart";
 import "widgets/headlines_section.dart";
 import "widgets/report_change_button.dart";
 
@@ -49,13 +50,7 @@ class DigitalGuideView extends ConsumerWidget {
         appBar: DetailViewAppBar(),
         body: MyErrorWidget(error),
       ),
-      // TODO(Bartosh): shimmer loading
-      loading: () => HorizontalSymmetricSafeAreaScaffold(
-        appBar: DetailViewAppBar(),
-        body: const Center(
-          child: CircularProgressIndicator(),
-        ),
-      ),
+      loading: () => const DigitalGuideLoadingView(),
     );
   }
 }
