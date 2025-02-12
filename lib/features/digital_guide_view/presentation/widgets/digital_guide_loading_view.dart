@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
-import "../../../../config/ui_config.dart" show DetailViewsConfig, GuideDetailViewConfig;
+import "../../../../config/ui_config.dart"
+    show DetailViewsConfig, GuideDetailViewConfig;
 import "../../../../widgets/loading_widgets/shimmer_loading.dart";
 
 class DigitalGuideLoadingView extends StatelessWidget {
@@ -29,7 +30,7 @@ class _DigitalGuideTitleSectionLoading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 16.0),
+      padding: const EdgeInsets.only(top: 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -61,10 +62,11 @@ class _DigitalGuideHeaderLoading extends StatelessWidget {
   Widget build(BuildContext context) {
     return ShimmerLoadingItem(
       child: Container(
-        margin: const EdgeInsets.only(top: 16.0),
+        margin: const EdgeInsets.only(top: 16),
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(GuideDetailViewConfig.borderRadius),
+          borderRadius:
+              BorderRadius.circular(GuideDetailViewConfig.borderRadius),
         ),
         width: double.infinity,
         height: DetailViewsConfig.imageHeight,
@@ -79,7 +81,7 @@ class _DigitalGuideInfoSectionLoading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 16.0),
+      padding: const EdgeInsets.only(top: 16),
       child: ShimmerLoadingItem(
         child: Container(
           color: Colors.white,
@@ -99,14 +101,15 @@ class _DigitalGuideTilesLoading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       child: ListView.builder(
         physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         itemCount: itemCount,
         itemBuilder: (context, index) {
           return const Padding(
-            padding: EdgeInsets.symmetric(vertical: GuideDetailViewConfig.paddingMedium),
+            padding: EdgeInsets.symmetric(
+                vertical: GuideDetailViewConfig.paddingMedium),
             child: _LoadingTile(),
           );
         },
@@ -124,7 +127,8 @@ class _LoadingTile extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(GuideDetailViewConfig.borderRadius),
+          borderRadius:
+              BorderRadius.circular(GuideDetailViewConfig.borderRadius),
         ),
         width: double.infinity,
         height: 70,
