@@ -23,8 +23,9 @@ class TransportationExpansionTileContent extends ConsumerWidget {
     ref.watch(transportationRepositoryProvider(digitalGuideData));
 
     return asyncTransportationData.when(
-      data: (surroundingData) => _TransportationExpansionTileContent(
-        transportationResponse: surroundingData,
+      data: (data) => _TransportationExpansionTileContent(
+        transportation: data,
+        building: digitalGuideData.id,
       ),
       error: (error, stackTrace) => MyErrorWidget(error),
       loading: () => const Center(
@@ -36,10 +37,12 @@ class TransportationExpansionTileContent extends ConsumerWidget {
 
 class _TransportationExpansionTileContent extends ConsumerWidget {
   const _TransportationExpansionTileContent({
-    required this.transportationResponse,
+    required this.transportation,
+    required this.building,
   });
 
-  final TransportationResponse transportationResponse;
+  final DigitalGuideTransportation transportation;
+  final int building;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -53,14 +56,14 @@ class _TransportationExpansionTileContent extends ConsumerWidget {
         children: [
           DigitalGuideNavLink(
             onTap: () async {
-              await ref.navigatePublicTransportDetails(TransportationResponse);
+              await ref.navigatePublicTransportDetails(transportation);
             },
             text: context.localize.public_transport,
           ),
           const SizedBox(height: 16),
           DigitalGuideNavLink(
             onTap: () async {
-              await ref.navigatePrivateTransportDetails(TransportationResponse);
+              await ref.navigatePrivateTransportDetails(transportation);
             },
             text: context.localize.private_transport,
           ),

@@ -4,91 +4,83 @@ part "digital_guide_transportation.freezed.dart";
 part "digital_guide_transportation.g.dart";
 
 @freezed
-class TransportationResponse with _$TransportationResponse {
-  const factory TransportationResponse({
+class DigitalGuideTransportation with _$DigitalGuideTransportation {
+  const factory DigitalGuideTransportation({
     required int id,
-    required TransportationResponseTranslations translations,
-    @JsonKey(name: "nearest_public_parking_location_distance") required double nearestPublicParkingLocationDistance,
-    @JsonKey(name: "is_paid_parking", fromJson: _stringToBool) required bool isPaidParking,
-    @JsonKey(name: "nearest_university_parking_location_distance") required double nearestUniversityParkingLocationDistance,
-    @JsonKey(name: "nearest_disabled_parking_spaces_distance") required double nearestDisabledParkingSpacesDistance,
-    @JsonKey(name: "nearest_public_transport_stop_distance") required double nearestPublicTransportStopDistance,
-    @JsonKey(name: "daily_tram_bus_lines") required String dailyTramBusLines,
-    @JsonKey(name: "are_pass_traffic_lights_from_stop_to_entry", fromJson: _stringToBool) required bool arePassTrafficLightsFromStopToEntry,
-    @JsonKey(name: "are_not_pass_traffic_lights_from_stop_to_entry", fromJson: _stringToBool) required bool areNotPassTrafficLightsFromStopToEntry,
-    @JsonKey(name: "are_obstacles_for_wheelchair_user", fromJson: _stringToBool) required bool areObstaclesForWheelchairUser,
-    @JsonKey(name: "are_obstacles_for_blind", fromJson: _stringToBool) required bool areObstaclesForBlind,
-    @JsonKey(name: "are_facilities_for_blind_from_stop_to_entry", fromJson: _stringToBool) required bool areFacilitiesForBlindFromStopToEntry,
-    @JsonKey(name: "alternative_public_transport_stop_distance") required double alternativePublicTransportStopDistance,
-    @JsonKey(name: "alternative_daily_tram_bus_lines_stop") required String alternativeDailyTramBusLinesStop,
-    @JsonKey(name: "are_pass_traffic_lights_from_stop_to_entry_alt_road") required String arePassTrafficLightsFromStopToEntryAltRoad,
-    @JsonKey(name: "are_not_pass_traffic_lights_from_stop_to_entry_alt_road") required String areNotPassTrafficLightsFromStopToEntryAltRoad,
-    @JsonKey(name: "are_obstacles_for_wheelchair_user_alt_road") required String areObstaclesForWheelchairUserAltRoad,
-    @JsonKey(name: "are_obstacles_for_blind_from_stop_to_entry_alt_road") required String areObstaclesForBlindFromStopToEntryAltRoad,
-    @JsonKey(name: "are_facilities_for_blind_from_stop_to_entry_alt_road") required String areFacilitiesForBlindFromStopToEntryAltRoad,
-    @JsonKey(name: "are_bicycle_stands", fromJson: _stringToBool) required bool areBicycleStands,
-    @JsonKey(name: "is_bicycle_path_lead_to_building", fromJson: _stringToBool) required bool isBicyclePathLeadToBuilding,
-    @JsonKey(name: "distance_to_bicycle_path") required double distanceToBicyclePath,
-    @JsonKey(name: "is_bicycle_path_lead_clearly_separated", fromJson: _stringToBool) required bool isBicyclePathLeadClearlySeparated,
-    @JsonKey(name: "is_city_bike_station", fromJson: _stringToBool) required bool isCityBikeStation,
-    @JsonKey(name: "city_bike_station_distance") required double cityBikeStationDistance,
-  }) = _TransportationResponse;
+    required int building,
+    required DigitalGuideTranslationsTransportation translations,
+    double? nearestPublicTransportStopDistance,
+    @JsonKey(fromJson: _stringToBool) bool? arePassTrafficLightsFromStopToEntry,
+    @JsonKey(fromJson: _stringToBool) bool? areNotPassTrafficLightsFromStopToEntry,
+    double? alternativePublicTransportStopDistance,
+    @JsonKey(fromJson: _stringToBool) bool? arePassTrafficLightsFromStopToEntryAltRoad,
+    @JsonKey(fromJson: _stringToBool) bool? areNotPassTrafficLightsFromStopToEntryAltRoad,
+    double? nearestPublicParkingLocationDistance,
+    @JsonKey(fromJson: _stringToBool) bool? isPaidParking,
+    @JsonKey(fromJson: _stringToBool) bool? nearestUniversityParkingLocationDistance,
+    @JsonKey(fromJson: _stringToBool) bool? nearestDisabledParkingSpacesDistance,
+    @JsonKey(fromJson: _stringToBool) bool? areBicycleStands,
+    @JsonKey(fromJson: _stringToBool) bool? isCityBikeStation,
+    double? cityBikeStationDistance,
+    @JsonKey(fromJson: _stringToBool) bool? isBicyclePathLeadToBuilding,
+    double? distanceToBicyclePath,
+    @JsonKey(fromJson: _stringToBool) bool? isBicyclePathLeadClearlySeparated,
+    @JsonKey(fromJson: _stringToBool) bool? areObstaclesForBlind,
+    @JsonKey(fromJson: _stringToBool) bool? areObstaclesForWheelchairUser,
+    @JsonKey(fromJson: _stringToBool) bool? areFacilitiesForBlindFromStopToEntry,
+    @JsonKey(fromJson: _stringToBool) bool? areObstaclesForWheelchairUserAltRoad,
+    @JsonKey(fromJson: _stringToBool) bool? areObstaclesForBlindFromStopToEntryAltRoad,
+    @JsonKey(fromJson: _stringToBool) bool? areFacilitiesForBlindFromStopToEntryAltRoad,
+  }) = _DigitalGuideTransportation;
 
-  factory TransportationResponse.fromJson(Map<String, dynamic> json) =>
-      _$TransportationResponseFromJson(json);
+  factory DigitalGuideTransportation.fromJson(Map<String, dynamic> json) =>
+      _$DigitalGuideTransportationFromJson(json);
 }
 
 @freezed
-class TransportationResponseTranslations with _$TransportationResponseTranslations {
-  const factory TransportationResponseTranslations({
+class DigitalGuideTranslationsTransportation with _$DigitalGuideTranslationsTransportation {
+  const factory DigitalGuideTranslationsTransportation({
     @JsonKey(name: "pl")
-    required TransportationResponseTranslationsDetails plTranslation,
-  }) = _TransportationResponseTranslations;
+    required DigitalGuideTranslationTransportation pl,
+  }) = _DigitalGuideTranslationsTransportation;
 
-  factory TransportationResponseTranslations.fromJson(
-      Map<String, dynamic> json,
-      ) =>
-      _$TransportationResponseTranslationsFromJson(json);
+  factory DigitalGuideTranslationsTransportation.fromJson(Map<String, dynamic> json) =>
+      _$DigitalGuideTranslationsTransportationFromJson(json);
 }
 
 @freezed
-class TransportationResponseTranslationsDetails
-    with _$TransportationResponseTranslationsDetails {
-  const factory TransportationResponseTranslationsDetails({
-    @JsonKey(name: "nearest_public_parking_location") required String nearestPublicParkingLocation,
-    @JsonKey(name: "is_paid_parking_comment") required String isPaidParkingComment,
-    @JsonKey(name: "nearest_university_parking_location") required String nearestUniversityParkingLocation,
-    @JsonKey(name: "nearest_disabled_parking_spaces") required String nearestDisabledParkingSpaces,
-    @JsonKey(name: "nearest_public_transport_stop") required String nearestPublicTransportStop,
-    @JsonKey(name: "nearest_public_transport_stop_distance_comment") required String nearestPublicTransportStopDistanceComment,
-    @JsonKey(name: "are_pass_traffic_lights_from_stop_to_entry_comment") required String arePassTrafficLightsFromStopToEntryComment,
-    @JsonKey(name: "are_not_pass_traffic_lights_from_stop_to_entry_comment") required String areNotPassTrafficLightsFromStopToEntryComment,
-    @JsonKey(name: "are_obstacles_for_wheelchair_user_comment") required String areObstaclesForWheelchairUserComment,
-    @JsonKey(name: "are_obstacles_for_blind_comment") required String areObstaclesForBlindComment,
-    @JsonKey(name: "are_facilities_for_blind_from_stop_to_entry_comment") required String areFacilitiesForBlindFromStopToEntryComment,
-    @JsonKey(name: "alternative_public_transport_stop") required String alternativePublicTransportStop,
-    @JsonKey(name: "alternative_public_transport_stop_distance_comment") required String alternativePublicTransportStopDistanceComment,
-    @JsonKey(name: "are_pass_traffic_lights_from_stop_to_entry_alt_road_comment") required String arePassTrafficLightsFromStopToEntryAltRoadComment,
-    @JsonKey(name: "are_not_pass_traffic_lights_from_stop_to_entry_alt_road_comment") required String areNotPassTrafficLightsFromStopToEntryAltRoadComment,
-    @JsonKey(name: "are_obstacles_for_wheelchair_user_alt_road_comment") required String areObstaclesForWheelchairUserAltRoadComment,
-    @JsonKey(name: "are_obstacles_for_blind_from_stop_to_entry_alt_road_comment") required String areObstaclesForBlindFromStopToEntryAltRoadComment,
-    @JsonKey(name: "are_facilities_for_blind_from_stop_to_entry_alt_road_comment") required String areFacilitiesForBlindFromStopToEntryAltRoadComment,
-    @JsonKey(name: "are_bicycle_stands_comment") required String areBicycleStandsComment,
-    @JsonKey(name: "is_bicycle_path_lead_to_building_comment") required String isBicyclePathLeadToBuildingComment,
-    @JsonKey(name: "is_bicycle_path_lead_clearly_separated_comment") required String isBicyclePathLeadClearlySeparatedComment,
-    @JsonKey(name: "is_city_bike_station_comment") required String isCityBikeStationComment,
-  }) = _TransportationResponseTranslationsDetails;
+class DigitalGuideTranslationTransportation with _$DigitalGuideTranslationTransportation {
+  @JsonSerializable(fieldRename: FieldRename.snake)
+  const factory DigitalGuideTranslationTransportation({
+    String? nearestPublicTransportStop,
+    String? nearestPublicTransportStopDistanceComment,
+    String? dailyTramBusLines,
+    String? arePassTrafficLightsFromStopToEntryComment,
+    String? areNotPassTrafficLightsFromStopToEntryComment,
+    String? alternativePublicTransportStop,
+    String? alternativePublicTransportStopDistanceComment,
+    String? alternativeDailyTramBusLinesStop,
+    String? arePassTrafficLightsFromStopToEntryAltRoadComment,
+    String? areNotPassTrafficLightsFromStopToEntryAltRoadComment,
+    String? nearestPublicParkingLocation,
+    String? isPaidParkingComment,
+    String? nearestUniversityParkingLocation,
+    String? nearestDisabledParkingSpaces,
+    String? areBicycleStandsComment,
+    String? isCityBikeStationComment,
+    String? isBicyclePathLeadToBuildingComment,
+    String? isBicyclePathLeadClearlySeparatedComment,
+    String? areObstaclesForBlindComment,
+    String? areFacilitiesForBlindFromStopToEntryComment,
+    String? areObstaclesForWheelchairUserAltRoadComment,
+    String? areObstaclesForBlindFromStopToEntryAltRoadComment,
+    String? areFacilitiesForBlindFromStopToEntryAltRoadComment,
+  }) = _DigitalGuideTranslationTransportation;
 
-  factory TransportationResponseTranslationsDetails.fromJson(
-      Map<String, dynamic> json,
-      ) =>
-      _$TransportationResponseTranslationsDetailsFromJson(json);
+  factory DigitalGuideTranslationTransportation.fromJson(Map<String, dynamic> json) =>
+      _$DigitalGuideTranslationTransportationFromJson(json);
 }
 
-bool _stringToBool(String value) {
-  return value == "True";
-}
-
-int _stringToInt(String value) {
-  return int.parse(value);
+bool _stringToBool(String? value) {
+  return value?.toLowerCase() == "true";
 }

@@ -1,4 +1,3 @@
-
 import "package:auto_route/annotations.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
@@ -43,7 +42,7 @@ class DigitalGuideView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncDigitalGuideData =
-    ref.watch(digitalGuideRepositoryProvider(ourId));
+        ref.watch(digitalGuideRepositoryProvider(ourId));
     return asyncDigitalGuideData.when(
       data: (data) {
         return _DigitalGuideView(
@@ -92,7 +91,7 @@ class _DigitalGuideView extends ConsumerWidget {
             icon: Assets.svg.contactIcons.compass,
           ),
           ...digitalGuideData.phoneNumbers.map(
-                (phoneNumber) => ContactIconsModel(
+            (phoneNumber) => ContactIconsModel(
               text: "+48$phoneNumber",
               icon: Assets.svg.contactIcons.phone,
               url: "tel:+48$phoneNumber",
@@ -122,7 +121,7 @@ class _DigitalGuideView extends ConsumerWidget {
         slivers: [
           SliverList(
             delegate: SliverChildBuilderDelegate(
-                  (context, index) {
+              (context, index) {
                 return widgets1[index];
               },
               childCount: widgets1.length,
@@ -134,7 +133,7 @@ class _DigitalGuideView extends ConsumerWidget {
           ),
           SliverList(
             delegate: SliverChildBuilderDelegate(
-                  (context, index) {
+              (context, index) {
                 return widgets2[index];
               },
               childCount: widgets2.length,

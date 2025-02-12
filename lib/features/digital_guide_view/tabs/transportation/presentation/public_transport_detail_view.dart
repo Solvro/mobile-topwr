@@ -2,6 +2,7 @@ import "package:auto_route/auto_route.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:logger/logger.dart";
 
 import "../../../../../config/ui_config.dart";
 import "../../../../../theme/app_theme.dart";
@@ -12,26 +13,87 @@ import "../../../presentation/widgets/bullet_list.dart";
 import "../../../presentation/widgets/digital_guide_image.dart";
 import "../../../presentation/widgets/digital_guide_nav_link.dart";
 import "../data/models/digital_guide_transportation.dart";
-
+var logger =Logger();
 @RoutePage()
 class PublicTransportDetailView extends ConsumerWidget {
   const PublicTransportDetailView({
     required this.transportationResponse,
   });
 
-  final TransportationResponse transportationResponse;
+  final DigitalGuideTransportation transportationResponse;
+
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    logger.d(transportationResponse.arePassTrafficLightsFromStopToEntry);
     final List<Widget> widgets = [
+      Text(
+        context.localize.private_transport,
+        style: context.textTheme.headline.copyWith(fontSize: 20),
+      ),
       const SizedBox(height: DigitalGuideConfig.heightMedium),
       BulletList(
         items: [
-          transportationResponse.translations.plTranslation.nearestDisabledParkingSpaces,
-          transportationResponse.translations.plTranslation.nearestPublicParkingLocation,
+          if (transportationResponse
+                  .translations.pl.nearestPublicTransportStop !=
+              "")
+            "${context.localize.nearest_public_transport_stop}${transportationResponse
+                    .translations.pl.nearestPublicTransportStop!}${context.localize.distance}${transportationResponse.nearestPublicTransportStopDistance !=
+                        null
+                    ? (context.localize.distance +
+                        transportationResponse
+                            .nearestPublicTransportStopDistance
+                            .toString() +
+                        context.localize.meters)
+                    : " "} ${transportationResponse.translations.pl
+                            .nearestPublicTransportStopDistanceComment !=
+                        ""
+                    ? (context.localize.chose_the_path + transportationResponse.translations.pl
+                        .nearestPublicTransportStopDistanceComment!)
+                    : ""} ${transportationResponse.translations.pl.dailyTramBusLines !=
+                        null
+                    ? (context.localize.transport_lines +
+                        transportationResponse
+                            .translations.pl.dailyTramBusLines!)
+                    : ""}",
+          if(transportationResponse
+                            .arePassTrafficLightsFromStopToEntry!)
+                    "${context.localize.pass_traffic_lights} ",
+                    if(transportationResponse
+                            .areNotPassTrafficLightsFromStopToEntry!)
+                    context.localize.no_pass_traffic_lights,
+          if (transportationResponse
+                  .translations.pl.alternativePublicTransportStop != "")
+            "${context.localize.nearest_public_transport_stop_alt}${transportationResponse
+                    .translations.pl.alternativePublicTransportStop!}${context.localize.distance} ${transportationResponse
+                            .alternativePublicTransportStopDistance !=
+                        null
+                    ? (context
+                            .localize.distance +
+                        transportationResponse
+                            .alternativePublicTransportStopDistance
+                            .toString() +
+                        context.localize.meters)
+                    : ""}${transportationResponse.translations.pl
+                            .alternativePublicTransportStopDistanceComment !=
+                        ""
+                    ? (context.localize.chose_the_path + transportationResponse.translations.pl
+                        .alternativePublicTransportStopDistanceComment!)
+                    : ""}${transportationResponse
+                            .translations.pl.alternativeDailyTramBusLinesStop !=
+                        ""
+                    ? (context.localize.transport_lines +
+                        transportationResponse
+                            .translations.pl.alternativeDailyTramBusLinesStop!)
+                    : ""}",
+                if (transportationResponse
+        .arePassTrafficLightsFromStopToEntryAltRoad!)
+                context.localize.pass_traffic_lights,
+    if (transportationResponse
+                            .areNotPassTrafficLightsFromStopToEntryAltRoad!)
+                    context.localize.no_pass_traffic_lights,
         ].lock,
       ),
-      const SizedBox(height: DigitalGuideConfig.heightBig),
     ];
 
     return Scaffold(

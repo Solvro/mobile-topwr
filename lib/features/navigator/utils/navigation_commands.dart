@@ -11,6 +11,8 @@ import "../../digital_guide/tabs/micronavigation/data/models/micronavigation_res
 import "../../digital_guide/tabs/rooms/data/models/digital_guide_room.dart";
 import "../../parkings/parkings_view/models/parking.dart";
 import "../../digital_guide_view/tabs/adapted_toilets/data/models/adapted_toilet.dart";
+import "../../digital_guide_view/tabs/lifts/data/models/digital_guide_lift.dart";
+import "../../digital_guide_view/tabs/micronavigation/data/models/micronavigation_response.dart";
 import "../../digital_guide_view/tabs/rooms/data/models/digital_guide_room.dart";
 import "../../digital_guide_view/tabs/transportation/data/models/digital_guide_transportation.dart";
 import "../../parkings_view/models/parking.dart";
@@ -87,34 +89,61 @@ extension NavigationX on WidgetRef {
     await _router.push(const SksMenuRoute());
   }
 
-  Future<void> navigateDigitalGuide(String ourId) async {
-    await _router.push(DigitalGuideRoute(ourId: ourId));
+  Future<void> navigateDigitalGuide(
+    String ourId,
+    BuildingModel building,
+  ) async {
+    await _router.push(DigitalGuideRoute(ourId: ourId, building: building));
   }
 
   Future<void> navigateAdaptedToiletDetails(AdaptedToilet adaptedToilet) async {
     await _router.push(AdaptedToiletDetailRoute(adaptedToilet: adaptedToilet));
   }
 
+  Future<void> navigateMicronavigationDetails(
+    MicronavigationResponse micronavigationResponse,
+  ) async {
+    await _router.push(
+      MicronavigationDetailRoute(
+        micronavigationResponse: micronavigationResponse,
+      ),
+    );
+  }
+
   Future<void> navigateRoomDetails(DigitalGuideRoom room) async {
     await _router.push(DigitalGuideRoomDetailRoute(room: room));
   }
-  Future<void> navigatePublicTransportDetails(TransportationResponse transportationResponse) async {
-    await _router.push(PublicTransportDetailRoute(transportationResponse: transportationResponse));
+
+  Future<void> navigatePublicTransportDetails(
+      DigitalGuideTransportation transportationResponse) async {
+    await _router.push(PublicTransportDetailRoute(
+        transportationResponse: transportationResponse));
   }
-  Future<void> navigatePrivateTransportDetails(TransportationResponse transportationResponse) async {
-    await _router.push(PrivateTransportDetailRoute(transportationResponse: transportationResponse));
+
+  Future<void> navigatePrivateTransportDetails(
+      DigitalGuideTransportation transportationResponse) async {
+    await _router.push(PrivateTransportDetailRoute(
+        transportationResponse: transportationResponse));
+  }
+
+  Future<void> navigateLiftDetails(
+    DigitalGuideLift lift,
+    String levelName,
+  ) async {
+    await _router
+        .push(DigitalGuideLiftDetailRoute(lift: lift, levelName: levelName));
   }
 
   Future<void> navigateBuildingDetailAction(BuildingModel building) async {
     return switch (building.externalDigitalGuideMode) {
       "web_url" => launch(building.externalDigitalGuideIdOrURL!),
-      "digital_guide_building" => navigateDigitalGuide(building.id),
+      "digital_guide_building" => navigateDigitalGuide(building.id, building),
       "digital_guide_other_place" => Logger().i(
-        "Other Digital Guide place, not yet implemented",
-      ),
+          "Other Digital Guide place, not yet implemented",
+        ),
       _ => Logger().w(
-        "Unknown externalDigitalGuideMode: ${building.externalDigitalGuideMode}",
-      )
+          "Unknown externalDigitalGuideMode: ${building.externalDigitalGuideMode}",
+        )
     };
   }
 }
