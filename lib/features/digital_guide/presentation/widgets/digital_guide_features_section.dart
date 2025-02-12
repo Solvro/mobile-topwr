@@ -66,12 +66,12 @@ class DigitalGuideFeaturesSection extends ConsumerWidget {
         ],
       ),
       (
-      title: context.localize.transport,
-      content: [
-        TransportationExpansionTileContent(
-          digitalGuideData: digitalGuideData,
-        ),
-      ],
+        title: context.localize.transport,
+        content: [
+          TransportationExpansionTileContent(
+            digitalGuideData: digitalGuideData,
+          ),
+        ],
       ),
       (
         title: context.localize.entrances,

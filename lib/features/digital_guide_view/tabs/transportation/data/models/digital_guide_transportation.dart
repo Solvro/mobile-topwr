@@ -5,20 +5,24 @@ part "digital_guide_transportation.g.dart";
 
 @freezed
 class DigitalGuideTransportation with _$DigitalGuideTransportation {
+  @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideTransportation({
     required int id,
     required int building,
     required DigitalGuideTranslationsTransportation translations,
     double? nearestPublicTransportStopDistance,
     @JsonKey(fromJson: _stringToBool) bool? arePassTrafficLightsFromStopToEntry,
-    @JsonKey(fromJson: _stringToBool) bool? areNotPassTrafficLightsFromStopToEntry,
+    @JsonKey(fromJson: _stringToBool)
+    bool? areNotPassTrafficLightsFromStopToEntry,
     double? alternativePublicTransportStopDistance,
-    @JsonKey(fromJson: _stringToBool) bool? arePassTrafficLightsFromStopToEntryAltRoad,
-    @JsonKey(fromJson: _stringToBool) bool? areNotPassTrafficLightsFromStopToEntryAltRoad,
+    @JsonKey(fromJson: _stringToBool)
+    bool? arePassTrafficLightsFromStopToEntryAltRoad,
+    @JsonKey(fromJson: _stringToBool)
+    bool? areNotPassTrafficLightsFromStopToEntryAltRoad,
     double? nearestPublicParkingLocationDistance,
     @JsonKey(fromJson: _stringToBool) bool? isPaidParking,
-    @JsonKey(fromJson: _stringToBool) bool? nearestUniversityParkingLocationDistance,
-    @JsonKey(fromJson: _stringToBool) bool? nearestDisabledParkingSpacesDistance,
+    double? nearestUniversityParkingLocationDistance,
+    double? nearestDisabledParkingSpacesDistance,
     @JsonKey(fromJson: _stringToBool) bool? areBicycleStands,
     @JsonKey(fromJson: _stringToBool) bool? isCityBikeStation,
     double? cityBikeStationDistance,
@@ -27,10 +31,14 @@ class DigitalGuideTransportation with _$DigitalGuideTransportation {
     @JsonKey(fromJson: _stringToBool) bool? isBicyclePathLeadClearlySeparated,
     @JsonKey(fromJson: _stringToBool) bool? areObstaclesForBlind,
     @JsonKey(fromJson: _stringToBool) bool? areObstaclesForWheelchairUser,
-    @JsonKey(fromJson: _stringToBool) bool? areFacilitiesForBlindFromStopToEntry,
-    @JsonKey(fromJson: _stringToBool) bool? areObstaclesForWheelchairUserAltRoad,
-    @JsonKey(fromJson: _stringToBool) bool? areObstaclesForBlindFromStopToEntryAltRoad,
-    @JsonKey(fromJson: _stringToBool) bool? areFacilitiesForBlindFromStopToEntryAltRoad,
+    @JsonKey(fromJson: _stringToBool)
+    bool? areFacilitiesForBlindFromStopToEntry,
+    @JsonKey(fromJson: _stringToBool)
+    bool? areObstaclesForWheelchairUserAltRoad,
+    @JsonKey(fromJson: _stringToBool)
+    bool? areObstaclesForBlindFromStopToEntryAltRoad,
+    @JsonKey(fromJson: _stringToBool)
+    bool? areFacilitiesForBlindFromStopToEntryAltRoad,
   }) = _DigitalGuideTransportation;
 
   factory DigitalGuideTransportation.fromJson(Map<String, dynamic> json) =>
@@ -38,18 +46,21 @@ class DigitalGuideTransportation with _$DigitalGuideTransportation {
 }
 
 @freezed
-class DigitalGuideTranslationsTransportation with _$DigitalGuideTranslationsTransportation {
+class DigitalGuideTranslationsTransportation
+    with _$DigitalGuideTranslationsTransportation {
   const factory DigitalGuideTranslationsTransportation({
-    @JsonKey(name: "pl")
-    required DigitalGuideTranslationTransportation pl,
+    @JsonKey(name: "pl") required DigitalGuideTranslationTransportation pl,
   }) = _DigitalGuideTranslationsTransportation;
 
-  factory DigitalGuideTranslationsTransportation.fromJson(Map<String, dynamic> json) =>
+  factory DigitalGuideTranslationsTransportation.fromJson(
+    Map<String, dynamic> json,
+  ) =>
       _$DigitalGuideTranslationsTransportationFromJson(json);
 }
 
 @freezed
-class DigitalGuideTranslationTransportation with _$DigitalGuideTranslationTransportation {
+class DigitalGuideTranslationTransportation
+    with _$DigitalGuideTranslationTransportation {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideTranslationTransportation({
     String? nearestPublicTransportStop,
@@ -77,7 +88,9 @@ class DigitalGuideTranslationTransportation with _$DigitalGuideTranslationTransp
     String? areFacilitiesForBlindFromStopToEntryAltRoadComment,
   }) = _DigitalGuideTranslationTransportation;
 
-  factory DigitalGuideTranslationTransportation.fromJson(Map<String, dynamic> json) =>
+  factory DigitalGuideTranslationTransportation.fromJson(
+    Map<String, dynamic> json,
+  ) =>
       _$DigitalGuideTranslationTransportationFromJson(json);
 }
 

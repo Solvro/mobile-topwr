@@ -115,15 +115,23 @@ extension NavigationX on WidgetRef {
   }
 
   Future<void> navigatePublicTransportDetails(
-      DigitalGuideTransportation transportationResponse) async {
-    await _router.push(PublicTransportDetailRoute(
-        transportationResponse: transportationResponse));
+    DigitalGuideTransportation transportationResponse,
+  ) async {
+    await _router.push(
+      PublicTransportDetailRoute(
+        transportationResponse: transportationResponse,
+      ),
+    );
   }
 
   Future<void> navigatePrivateTransportDetails(
-      DigitalGuideTransportation transportationResponse) async {
-    await _router.push(PrivateTransportDetailRoute(
-        transportationResponse: transportationResponse));
+    DigitalGuideTransportation transportationResponse,
+  ) async {
+    await _router.push(
+      PrivateTransportDetailRoute(
+        transportationResponse: transportationResponse,
+      ),
+    );
   }
 
   Future<void> navigateLiftDetails(

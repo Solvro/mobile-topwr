@@ -9,8 +9,6 @@ import "../../../../../utils/context_extensions.dart";
 import "../../../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../../presentation/widgets/accessibility_button.dart";
 import "../../../presentation/widgets/bullet_list.dart";
-import "../../../presentation/widgets/digital_guide_image.dart";
-import "../../../presentation/widgets/digital_guide_nav_link.dart";
 import "../data/models/digital_guide_transportation.dart";
 
 @RoutePage()
@@ -20,14 +18,13 @@ class PrivateTransportDetailView extends ConsumerWidget {
   });
 
   final DigitalGuideTransportation transportationResponse;
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final List<Widget> widgets = [
-    Text(
-      context.localize.private_transport,
-      style: context.textTheme.headline.copyWith(fontSize: 20),
-    ),
+      Text(
+        context.localize.private_transport,
+        style: context.textTheme.headline.copyWith(fontSize: 20),
+      ),
       const SizedBox(height: DigitalGuideConfig.heightMedium),
       BulletList(
         items: [
@@ -44,8 +41,7 @@ class PrivateTransportDetailView extends ConsumerWidget {
                             .toString() +
                         context.localize.meters
                     : ""),
-          if (transportationResponse.translations.pl.isPaidParkingComment !=
-              "")
+          if (transportationResponse.translations.pl.isPaidParkingComment != "")
             transportationResponse.translations.pl.isPaidParkingComment!,
           if (transportationResponse
                   .translations.pl.nearestUniversityParkingLocation !=
@@ -87,22 +83,7 @@ class PrivateTransportDetailView extends ConsumerWidget {
                         context.localize.meters
                     : ""),
           if (transportationResponse.isBicyclePathLeadToBuilding != null)
-            "${context.localize.bicycle_path_to_building}${transportationResponse.translations.pl
-                            .isBicyclePathLeadToBuildingComment !=
-                ""
-                    ? transportationResponse
-                        .translations.pl.isBicyclePathLeadToBuildingComment!
-                    : ""} ${transportationResponse.distanceToBicyclePath != null
-                    ? context.localize.distance +
-                        transportationResponse.distanceToBicyclePath
-                            .toString() +
-                        context.localize.meters
-                    : ""} ${transportationResponse.translations.pl
-                            .isBicyclePathLeadClearlySeparatedComment !=
-                ""
-                    ? transportationResponse.translations.pl
-                        .isBicyclePathLeadClearlySeparatedComment!
-                    : ""}",
+            "${context.localize.bicycle_path_to_building}${transportationResponse.translations.pl.isBicyclePathLeadToBuildingComment != "" ? transportationResponse.translations.pl.isBicyclePathLeadToBuildingComment! : ""} ${transportationResponse.distanceToBicyclePath != null ? context.localize.distance + transportationResponse.distanceToBicyclePath.toString() + context.localize.meters : ""} ${transportationResponse.translations.pl.isBicyclePathLeadClearlySeparatedComment != "" ? transportationResponse.translations.pl.isBicyclePathLeadClearlySeparatedComment! : ""}",
         ].lock,
       ),
     ];

@@ -10,14 +10,14 @@ part "transportation_repository.g.dart";
 
 @riverpod
 Future<DigitalGuideTransportation> transportationRepository(
-    Ref ref,
-    DigitalGuideResponse building,
-    ) async {
+  Ref ref,
+  DigitalGuideResponse building,
+) async {
   const endpoint = "access/";
-  
-  final data= await ref.getAndCacheDataFromDigitalGuide(
+
+  final data = await ref.getAndCacheDataFromDigitalGuide(
     endpoint,
-        (List<dynamic> json) => json
+    (List<dynamic> json) => json
         .whereType<Map<String, dynamic>>()
         .map(DigitalGuideTransportation.fromJson)
         .toIList(),
