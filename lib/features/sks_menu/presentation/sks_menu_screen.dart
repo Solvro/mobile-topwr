@@ -142,7 +142,7 @@ class _SKSMenuUnavailableAnimation extends HookWidget {
         ) *
         0.6;
 
-    const animationTopOffset = -0.2;
+    const animationTopOffset = -0.1;
 
     return HorizontalSymmetricSafeAreaScaffold(
       backgroundColor: context.colorTheme.whiteSoap,
@@ -159,11 +159,11 @@ class _SKSMenuUnavailableAnimation extends HookWidget {
             child: Align(
               alignment: const Alignment(0, -0.2),
               child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    Transform.translate(
-                      offset: Offset(0, animationTopOffset * animationSize),
-                      child: SizedBox.square(
+                child: Transform.translate(
+                  offset: Offset(0, animationTopOffset * animationSize),
+                  child: Column(
+                    children: [
+                      SizedBox.square(
                         dimension: animationSize,
                         child: Lottie.asset(
                           Assets.animations.sksClosed,
@@ -174,50 +174,45 @@ class _SKSMenuUnavailableAnimation extends HookWidget {
                           renderCache: RenderCache.drawingCommands,
                           onLoaded: (composition) {
                             final totalDuration = composition.duration;
-                            Future.delayed(
-                                totalDuration *
-                                    0.8, // in my opinion the animation is a bit boring at the end, so we can show the texts a bit earlier
-                                () {
+                            Future.delayed(totalDuration * 0.8, () {
                               isAnimationCompleted.value = true;
                             });
                           },
                         ),
                       ),
-                    ),
-                    Opacity(
-                      opacity: isAnimationCompleted.value ? 1 : 0,
-                      child: Transform.translate(
-                        offset: Offset(
-                          0,
-                          animationSize *
-                              (-0.1 +
-                                  animationTopOffset), // the animation has some extra space at the bottom
-                        ),
-                        child: Column(
-                          children: [
-                            Text(
-                              context.localize.sks_menu_closed,
-                              style: context.textTheme.headline.copyWith(
-                                fontWeight: FontWeight.bold,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                            if (onShowLastMenuTap != null)
-                              Padding(
-                                padding: const EdgeInsets.only(top: 12),
-                                child: MyTextButton(
-                                  actionTitle:
-                                      context.localize.sks_show_last_menu,
-                                  onClick: onShowLastMenuTap,
-                                  showBorder: true,
-                                  color: context.colorTheme.blueAzure,
+                      Opacity(
+                        opacity: isAnimationCompleted.value ? 1 : 0,
+                        child: Transform.translate(
+                          offset: Offset(
+                            0,
+                            -(animationSize * 0.1),
+                          ),
+                          child: Column(
+                            children: [
+                              Text(
+                                context.localize.sks_menu_closed,
+                                style: context.textTheme.headline.copyWith(
+                                  fontWeight: FontWeight.bold,
                                 ),
+                                textAlign: TextAlign.center,
                               ),
-                          ],
+                              if (onShowLastMenuTap != null)
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 12),
+                                  child: MyTextButton(
+                                    actionTitle:
+                                        context.localize.sks_show_last_menu,
+                                    onClick: onShowLastMenuTap,
+                                    showBorder: true,
+                                    color: context.colorTheme.blueAzure,
+                                  ),
+                                ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
