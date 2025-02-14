@@ -8,7 +8,7 @@ class DigitalGuideLoadingView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const ColoredBox(
-      color: Colors.white, // Set the background color to white
+      color: Colors.white,
       child: Shimmer(
         linearGradient: shimmerGradient,
         child: Column(

@@ -44,13 +44,19 @@ class DigitalGuideView extends ConsumerWidget {
     final asyncDigitalGuideData =
         ref.watch(digitalGuideRepositoryProvider(ourId));
     return asyncDigitalGuideData.when(
-      data: (data) =>
-          _DigitalGuideView(data.digitalGuideData, data.photoUrl, building),
-      error: (error, stackTrace) => HorizontalSymmetricSafeAreaScaffold(
-        appBar: DetailViewAppBar(),
-        body: MyErrorWidget(error),
-      ),
-      loading: () => const DigitalGuideLoadingView(),
+      data: (data) {
+        return _DigitalGuideView(
+            data.digitalGuideData, data.photoUrl, building);
+      },
+      error: (error, stackTrace) {
+        return HorizontalSymmetricSafeAreaScaffold(
+          appBar: DetailViewAppBar(),
+          body: MyErrorWidget(error),
+        );
+      },
+      loading: () {
+        return const DigitalGuideLoadingView();
+      },
     );
   }
 }
