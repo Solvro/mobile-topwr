@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
-import "../../../../config/ui_config.dart";
+import "../../../../config/ui_config.dart"
+    show DetailViewsConfig, DigitalGuideConfig, GuideDetailViewConfig;
 import "../../../../widgets/loading_widgets/shimmer_loading.dart";
 
 class DigitalGuideLoadingView extends StatelessWidget {
@@ -7,20 +8,17 @@ class DigitalGuideLoadingView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const ColoredBox(
-      color: Colors.white,
-      child: Shimmer(
-        linearGradient: shimmerGradient,
-        child: Column(
-          children: [
-            _DigitalGuideHeaderLoading(),
-            _DigitalGuideTitleSectionLoading(),
-            _DigitalGuideInfoSectionLoading(),
-            Expanded(
-              child: _DigitalGuideTilesLoading(),
-            ),
-          ],
-        ),
+    return const Shimmer(
+      linearGradient: shimmerGradient,
+      child: Column(
+        children: [
+          _DigitalGuideHeaderLoading(),
+          _DigitalGuideTitleSectionLoading(),
+          _DigitalGuideInfoSectionLoading(),
+          Expanded(
+            child: _DigitalGuideTilesLoading(),
+          ),
+        ],
       ),
     );
   }
@@ -43,7 +41,7 @@ class _DigitalGuideTitleSectionLoading extends StatelessWidget {
               height: DigitalGuideConfig.paddingBig,
             ),
           ),
-          const SizedBox(height: DigitalGuideConfig.borderRadiusMedium),
+          const SizedBox(height: DigitalGuideConfig.paddingSmall),
           ShimmerLoadingItem(
             child: Container(
               color: Colors.white,
@@ -105,8 +103,7 @@ class _DigitalGuideTilesLoading extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(
-        horizontal: DigitalGuideConfig.borderRadiusBig,
-      ),
+          horizontal: DigitalGuideConfig.borderRadiusBig),
       child: ListView.builder(
         physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
