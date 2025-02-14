@@ -46,7 +46,10 @@ class DigitalGuideView extends ConsumerWidget {
     return asyncDigitalGuideData.when(
       data: (data) {
         return _DigitalGuideView(
-            data.digitalGuideData, data.photoUrl, building);
+          data.digitalGuideData,
+          data.photoUrl,
+          building,
+        );
       },
       error: (error, stackTrace) {
         return HorizontalSymmetricSafeAreaScaffold(
