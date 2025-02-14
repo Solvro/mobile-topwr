@@ -55,14 +55,20 @@ class _TransportationExpansionTileContent extends ConsumerWidget {
         children: [
           DigitalGuideNavLink(
             onTap: () async {
-              await ref.navigatePublicTransportDetails(transportation);
+              await ref.navigateTransportDetails(
+                transportation: transportation,
+                isPublic: true,
+              );
             },
             text: context.localize.public_transport,
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: DigitalGuideConfig.heightMedium),
           DigitalGuideNavLink(
             onTap: () async {
-              await ref.navigatePrivateTransportDetails(transportation);
+              await ref.navigateTransportDetails(
+                transportation: transportation,
+                isPublic: false,
+              );
             },
             text: context.localize.private_transport,
           ),

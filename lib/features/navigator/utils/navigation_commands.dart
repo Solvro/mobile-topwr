@@ -114,22 +114,14 @@ extension NavigationX on WidgetRef {
     await _router.push(DigitalGuideRoomDetailRoute(room: room));
   }
 
-  Future<void> navigatePublicTransportDetails(
-    DigitalGuideTransportation transportationResponse,
-  ) async {
+  Future<void> navigateTransportDetails({
+    required DigitalGuideTransportation transportation,
+    required bool isPublic,
+  }) async {
     await _router.push(
-      PublicTransportDetailRoute(
-        transportationResponse: transportationResponse,
-      ),
-    );
-  }
-
-  Future<void> navigatePrivateTransportDetails(
-    DigitalGuideTransportation transportationResponse,
-  ) async {
-    await _router.push(
-      PrivateTransportDetailRoute(
-        transportationResponse: transportationResponse,
+      TransportationDetailRoute(
+        transportation: transportation,
+        isPublic: isPublic,
       ),
     );
   }

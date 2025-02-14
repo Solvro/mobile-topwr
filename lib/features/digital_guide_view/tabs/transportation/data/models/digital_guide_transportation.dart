@@ -39,6 +39,8 @@ class DigitalGuideTransportation with _$DigitalGuideTransportation {
     bool? areObstaclesForBlindFromStopToEntryAltRoad,
     @JsonKey(fromJson: _stringToBool)
     bool? areFacilitiesForBlindFromStopToEntryAltRoad,
+    String? dailyTramBusLines,
+    String? alternativeDailyTramBusLinesStop,
   }) = _DigitalGuideTransportation;
 
   factory DigitalGuideTransportation.fromJson(Map<String, dynamic> json) =>
@@ -65,12 +67,10 @@ class DigitalGuideTranslationTransportation
   const factory DigitalGuideTranslationTransportation({
     String? nearestPublicTransportStop,
     String? nearestPublicTransportStopDistanceComment,
-    String? dailyTramBusLines,
     String? arePassTrafficLightsFromStopToEntryComment,
     String? areNotPassTrafficLightsFromStopToEntryComment,
     String? alternativePublicTransportStop,
     String? alternativePublicTransportStopDistanceComment,
-    String? alternativeDailyTramBusLinesStop,
     String? arePassTrafficLightsFromStopToEntryAltRoadComment,
     String? areNotPassTrafficLightsFromStopToEntryAltRoadComment,
     String? nearestPublicParkingLocation,
