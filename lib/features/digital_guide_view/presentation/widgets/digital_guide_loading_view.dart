@@ -105,7 +105,8 @@ class _DigitalGuideTilesLoading extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(
-          horizontal: DigitalGuideConfig.borderRadiusBig,),
+        horizontal: DigitalGuideConfig.borderRadiusBig,
+      ),
       child: ListView.builder(
         physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
