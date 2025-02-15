@@ -17,6 +17,7 @@ jobs:
           channel: "stable"
           flutter-version-file: pubspec.yaml
       - run: flutter --version
+      - run: flutter config --explicit-package-dependencies
 
       - name: Install dependencies
         run: flutter pub get
