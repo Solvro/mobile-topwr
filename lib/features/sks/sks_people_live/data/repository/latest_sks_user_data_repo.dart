@@ -7,7 +7,7 @@ import "../../../../../api_base_rest/client/dio_client.dart";
 import "../../../../../config/env.dart";
 import "../../../../../utils/ref_extensions.dart";
 import "../models/sks_user_data.dart";
-import "../sks_people_live_consts.dart";
+import "../sks_people_live_config.dart";
 
 part "latest_sks_user_data_repo.g.dart";
 

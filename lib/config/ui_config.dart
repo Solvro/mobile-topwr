@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 
-import "../features/parking_chart/utils/range_hour_points.dart";
+import "../features/parkings/parking_chart/utils/range_hour_points.dart";
 import "../theme/hex_color.dart";
 
 abstract class MyAppConfig {

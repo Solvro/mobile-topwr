@@ -5,11 +5,11 @@ import "package:logger/logger.dart";
 
 import "../../../utils/launch_url_util.dart";
 import "../../buildings_view/model/building_model.dart";
-import "../../digital_guide_view/tabs/adapted_toilets/data/models/adapted_toilet.dart";
-import "../../digital_guide_view/tabs/lifts/data/models/digital_guide_lift.dart";
-import "../../digital_guide_view/tabs/micronavigation/data/models/micronavigation_response.dart";
-import "../../digital_guide_view/tabs/rooms/data/models/digital_guide_room.dart";
-import "../../parkings_view/models/parking.dart";
+import "../../digital_guide/tabs/adapted_toilets/data/models/adapted_toilet.dart";
+import "../../digital_guide/tabs/lifts/data/models/digital_guide_lift.dart";
+import "../../digital_guide/tabs/micronavigation/data/models/micronavigation_response.dart";
+import "../../digital_guide/tabs/rooms/data/models/digital_guide_room.dart";
+import "../../parkings/parkings_view/models/parking.dart";
 import "../app_router.dart";
 import "../navigation_controller.dart";
 

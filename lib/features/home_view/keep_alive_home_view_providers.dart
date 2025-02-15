@@ -5,10 +5,10 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 import "../academic_calendar/repository/academic_calendar_repo.dart";
 import "../app_streak/business/get_days_use_case.dart";
 import "../buildings_view/repository/buildings_repository.dart";
-import "../departments_view/repository/departments_repository.dart";
+import "../departments/departments_view/repository/departments_repository.dart";
 import "../guide_view/repository/guide_repository.dart";
-import "../parkings_view/repository/parkings_repository.dart";
-import "../science_clubs_view/repository/science_clubs_repository.dart";
+import "../parkings/parkings_view/repository/parkings_repository.dart";
+import "../science_club/science_clubs_view/repository/science_clubs_repository.dart";
 import "home_view.dart";
 
 part "keep_alive_home_view_providers.g.dart";

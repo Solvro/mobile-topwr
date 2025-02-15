@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 
-import "../features/science_clubs_view/widgets/strategic_badge.dart";
-import "../features/science_clubs_view/widgets/verified_badge.dart";
+import "../features/science_club/science_clubs_view/widgets/strategic_badge.dart";
+import "../features/science_club/science_clubs_view/widgets/verified_badge.dart";
 
 class DualTextSpan extends TextSpan {
   DualTextSpan(

@@ -50,6 +50,7 @@ class SksChartSheet extends ConsumerWidget {
                 ),
                 Expanded(
                   child: ListView(
+                    physics: const NeverScrollableScrollPhysics(),
                     children: [
                       Padding(
                         padding: const EdgeInsets.symmetric(

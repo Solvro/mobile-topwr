@@ -5,8 +5,8 @@ import "../../../../theme/app_theme.dart";
 import "../../../../widgets/my_cached_image.dart";
 import "../../../../widgets/optimized_directus_image.dart";
 import "../../../../widgets/tile_splash.dart";
-import "../../../departments_view/repository/departments_extensions.dart";
-import "../../../departments_view/repository/departments_repository.dart";
+import "../../../departments/departments_view/repository/departments_extensions.dart";
+import "../../../departments/departments_view/repository/departments_repository.dart";
 
 class DepartmentHomeTile extends StatelessWidget {
   final Department department;
