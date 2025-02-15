@@ -177,13 +177,15 @@ class AppLocalizationsPl extends AppLocalizations {
   String get noChartData => 'Dane wykresów są niedostępne w nocy';
 
   @override
-  String get offlineParkings => 'Błąd połączenia: niestety, moduł parkingów nie może poprawnie działać bez połączenia internetowego.';
+  String get offlineParkings =>
+      'Błąd połączenia: niestety, moduł parkingów nie może poprawnie działać bez połączenia internetowego.';
 
   @override
   String get refresh => 'Odśwież';
 
   @override
-  String get offline_error_message => 'Wystąpił błąd podczas pobierania danych dotyczących ';
+  String get offline_error_message =>
+      'Wystąpił błąd podczas pobierania danych dotyczących ';
 
   @override
   String get offline_try_again => 'Spróbuj ponownie później.';
@@ -282,7 +284,8 @@ class AppLocalizationsPl extends AppLocalizations {
   String get bug_report_title => 'Zgłoś błąd lub sugestię';
 
   @override
-  String get bug_report_subtitle => 'Wyślij zgłoszenie bezpośrednio do twórców aplikacji.';
+  String get bug_report_subtitle =>
+      'Wyślij zgłoszenie bezpośrednio do twórców aplikacji.';
 
   @override
   String get new_feature => 'Nowa funckcjonalność';
@@ -294,7 +297,8 @@ class AppLocalizationsPl extends AppLocalizations {
   String get praise => 'Pochwała';
 
   @override
-  String get until_the_end_of_the_semester_break => 'do końca przerwy międzysemestralnej';
+  String get until_the_end_of_the_semester_break =>
+      'do końca przerwy międzysemestralnej';
 
   @override
   String get until_the_session_ends => 'do zakończenia sesji';
@@ -321,7 +325,8 @@ class AppLocalizationsPl extends AppLocalizations {
   String get hi_student => 'Hej studencie!';
 
   @override
-  String get guide_development_info => 'Pamiętaj, że przewodnik jest wciąż w fazie rozwoju :)';
+  String get guide_development_info =>
+      'Pamiętaj, że przewodnik jest wciąż w fazie rozwoju :)';
 
   @override
   String get guide_ideas_info => 'Masz ciekawy pomysł? Podziel się z nami!';
@@ -359,7 +364,8 @@ class AppLocalizationsPl extends AppLocalizations {
   String get hey_check_out_the_new_features => 'Hej, sprawdź nowości';
 
   @override
-  String get here_you_will_see_what_we_changed_in_the_latest_version => 'Tutaj zobaczysz co zmieniliśmy w najnowszej wersji';
+  String get here_you_will_see_what_we_changed_in_the_latest_version =>
+      'Tutaj zobaczysz co zmieniliśmy w najnowszej wersji';
 
   @override
   String get data_come_from_website => 'Dane pochodzą ze strony';
@@ -425,7 +431,8 @@ class AppLocalizationsPl extends AppLocalizations {
   String get report_change_subject => 'Sugestia zmiany - ToPWR';
 
   @override
-  String get report_change_error_toast_message => 'Wystąpił błąd przy otwieraniu hiperłącza, sprawdź uprawnienia aplikacji';
+  String get report_change_error_toast_message =>
+      'Wystąpił błąd przy otwieraniu hiperłącza, sprawdź uprawnienia aplikacji';
 
   @override
   String get localization => 'Lokalizacja';
@@ -449,13 +456,16 @@ class AppLocalizationsPl extends AppLocalizations {
   String get adapted_toilets => 'Toalety dostosowane';
 
   @override
-  String get adapted_toilet_description => 'Toaleta dla osób z niepełnosprawnościami';
+  String get adapted_toilet_description =>
+      'Toaleta dla osób z niepełnosprawnościami';
 
   @override
-  String get adapted_toilet_description_men => 'Toaleta dla mężczyzn z niepełnosprawnościami';
+  String get adapted_toilet_description_men =>
+      'Toaleta dla mężczyzn z niepełnosprawnościami';
 
   @override
-  String get adapted_toilet_description_women => 'Toaleta dla kobiet z niepełnosprawnościami';
+  String get adapted_toilet_description_women =>
+      'Toaleta dla kobiet z niepełnosprawnościami';
 
   @override
   String get micro_navigation => 'Mikronawigacja';
@@ -482,28 +492,35 @@ class AppLocalizationsPl extends AppLocalizations {
   }
 
   @override
-  String get assistance_dog => 'Do budynku i wszystkich jego pomieszczeń można wejść z psem asystującym i psem przewodnikiem';
+  String get assistance_dog =>
+      'Do budynku i wszystkich jego pomieszczeń można wejść z psem asystującym i psem przewodnikiem';
 
   @override
   String get induction_loop => 'W budynku jest/są pętle indukcyjne';
 
   @override
-  String get micronavigation_system => 'W budynku zostały zainstalowane urządzenia systemu nawigacyjno-informacyjnego';
+  String get micronavigation_system =>
+      'W budynku zostały zainstalowane urządzenia systemu nawigacyjno-informacyjnego';
 
   @override
-  String get orientation_paths => 'W budynku zastosowane zostały ścieżki naprowadzające (dotykowe)';
+  String get orientation_paths =>
+      'W budynku zastosowane zostały ścieżki naprowadzające (dotykowe)';
 
   @override
-  String get information_boards_with_braille_description => 'W budynku znajdują się czytelne tablice informacyjne zawierające opisy w alfabecie Braille\'a';
+  String get information_boards_with_braille_description =>
+      'W budynku znajdują się czytelne tablice informacyjne zawierające opisy w alfabecie Braille\'a';
 
   @override
-  String get information_boards_with_large_font => 'W budynku znajdują się czytelne tablice informacyjne zawierające napisy w dużej czcionce';
+  String get information_boards_with_large_font =>
+      'W budynku znajdują się czytelne tablice informacyjne zawierające napisy w dużej czcionce';
 
   @override
-  String get sign_language_interpreter => 'W budynku zapewniona jest możliwość skorzystania z usług tłumacza języka migowego';
+  String get sign_language_interpreter =>
+      'W budynku zapewniona jest możliwość skorzystania z usług tłumacza języka migowego';
 
   @override
-  String get emergency_chairs => 'W budynku zamieszczone zostały krzesła ewakuacyjne';
+  String get emergency_chairs =>
+      'W budynku zamieszczone zostały krzesła ewakuacyjne';
 
   @override
   String parking_location(Object location) {
@@ -536,7 +553,8 @@ class AppLocalizationsPl extends AppLocalizations {
   String get confirm => 'Zatwierdź';
 
   @override
-  String get push_notifications_dialog_info => 'Obecnie nie korzystamy z powiadomień push, ale planujemy dodać je w przyszłości. Możesz wyrazić na nie zgodę już teraz.';
+  String get push_notifications_dialog_info =>
+      'Obecnie nie korzystamy z powiadomień push, ale planujemy dodać je w przyszłości. Możesz wyrazić na nie zgodę już teraz.';
 
   @override
   String get sks_menu_technical_info => 'KOMUNIKAT';
@@ -545,7 +563,8 @@ class AppLocalizationsPl extends AppLocalizations {
   String get sks_note => 'UWAGA';
 
   @override
-  String get sks_menu_you_see_last_menu => 'Aktualne menu SKS jest niedostępne. Przeglądasz ostatnio dostępną wersję.';
+  String get sks_menu_you_see_last_menu =>
+      'Aktualne menu SKS jest niedostępne. Przeglądasz ostatnio dostępną wersję.';
 
   @override
   String my_offline_error_message(String data_type) {
@@ -556,10 +575,12 @@ class AppLocalizationsPl extends AppLocalizations {
   String get measured_number_of_users => 'Zmierzona liczba użytkowników';
 
   @override
-  String get forecasted_number_of_users => 'Średnia liczba użytkowników z ostatnich 21 dni';
+  String get forecasted_number_of_users =>
+      'Średnia liczba użytkowników z ostatnich 21 dni';
 
   @override
-  String get sks_chart_title => 'Przybliżona liczba osób w Strefie Kultury Studenckiej';
+  String get sks_chart_title =>
+      'Przybliżona liczba osób w Strefie Kultury Studenckiej';
 
   @override
   String get number_of_people => 'Liczba osób';
@@ -576,7 +597,8 @@ class AppLocalizationsPl extends AppLocalizations {
   }
 
   @override
-  String get adapted_toilet_no_authorization => 'Wejście do toalety nie wymaga żadnych specjalnych uprawnień.';
+  String get adapted_toilet_no_authorization =>
+      'Wejście do toalety nie wymaga żadnych specjalnych uprawnień.';
 
   @override
   String adapted_toilet_graphically_marked(String comment) {
@@ -584,7 +606,8 @@ class AppLocalizationsPl extends AppLocalizations {
   }
 
   @override
-  String get adapted_toilet_not_graphically_marked => 'Wejście do toalety nie jest oznakowane graficznie.';
+  String get adapted_toilet_not_graphically_marked =>
+      'Wejście do toalety nie jest oznakowane graficznie.';
 
   @override
   String adapted_toilet_is_marked(String comment) {
@@ -592,7 +615,8 @@ class AppLocalizationsPl extends AppLocalizations {
   }
 
   @override
-  String get adapted_toilet_is_not_marked => 'Lokalizacja toalety nie jest oznaczona za pomocą informacji kierunkowej.';
+  String get adapted_toilet_is_not_marked =>
+      'Lokalizacja toalety nie jest oznaczona za pomocą informacji kierunkowej.';
 
   @override
   String get images => 'Zdjęcia';
@@ -604,10 +628,12 @@ class AppLocalizationsPl extends AppLocalizations {
   String get accessibility_profile => 'Profil dostępności';
 
   @override
-  String get accessibility_profile_empty => 'Brak informacji dotyczących wybranego profilu dostępności';
+  String get accessibility_profile_empty =>
+      'Brak informacji dotyczących wybranego profilu dostępności';
 
   @override
-  String accessibility_card_information(String message, String accessibility_level, String disability_description) {
+  String accessibility_card_information(String message,
+      String accessibility_level, String disability_description) {
     return '$message jest $accessibility_level dla osób $disability_description';
   }
 
@@ -657,10 +683,12 @@ class AppLocalizationsPl extends AppLocalizations {
   }
 
   @override
-  String get people_with_cognitive_difficulties => 'posiadających trudności poznawcze';
+  String get people_with_cognitive_difficulties =>
+      'posiadających trudności poznawcze';
 
   @override
-  String get people_with_hard_of_hearing => 'posiadających trudności ze słyszeniem';
+  String get people_with_hard_of_hearing =>
+      'posiadających trudności ze słyszeniem';
 
   @override
   String get people_visually_impaired => 'słabo widzących';
@@ -672,7 +700,8 @@ class AppLocalizationsPl extends AppLocalizations {
   String get people_with_motor_disability => 'posiadających dysfunkcje ruchu';
 
   @override
-  String get people_with_high_sensory_sensitivity => 'o wysokiej wrażliwości sensorycznej';
+  String get people_with_high_sensory_sensitivity =>
+      'o wysokiej wrażliwości sensorycznej';
 
   @override
   String see_all_photos(num photos) {
@@ -797,7 +826,8 @@ class AppLocalizationsPl extends AppLocalizations {
   String get audio_message => 'Komunikat Dźwiękowy';
 
   @override
-  String get audio_message_comment => 'Sygnał znacznika może różnić się tempem i brzmieniem';
+  String get audio_message_comment =>
+      'Sygnał znacznika może różnić się tempem i brzmieniem';
 
   @override
   String get platforms => 'Podesty';
@@ -833,7 +863,8 @@ class AppLocalizationsPl extends AppLocalizations {
   String get accessibility_profiles => 'Profile dostępności';
 
   @override
-  String get you_can_adjust => 'Możesz dostosować informacje pod swoje specjalne potrzeby';
+  String get you_can_adjust =>
+      'Możesz dostosować informacje pod swoje specjalne potrzeby';
 
   @override
   String get additional_information => 'Dodatkowe informacje';
