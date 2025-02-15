@@ -264,7 +264,7 @@
   "accessibility_level_feminine" : "{level, select, 0{niedostępna} 1{niedostępna} 2{częściowo dostępna} 3{dostępna} other{niedostępna}}",
   "accessibility_level_masculine" : "{level, select, 0{niedostępny} 1{niedostępny} 2{częściowo dostępny} 3{dostępny} other{niedostępny}}",
   "accessibility_level_neuter" : "{level, select, 0{niedostępne} 1{niedostępne} 2{częściowo dostępne} 3{dostępne} other{niedostępne}}",
-  
+
   "people_with_cognitive_difficulties" : "posiadających trudności poznawcze",
   "people_with_hard_of_hearing" : "posiadających trudności ze słyszeniem",
   "people_visually_impaired" : "słabo widzących",
@@ -309,6 +309,16 @@
   "dimensions" : "Wymiary",
   "max_capacity" : "Maksymalny udźwig",
   "generic_error_message": "Upsss...Coś poszło nie tak",
-  "you_can_adjust": "Możesz dostosować informacje pod swoje specjalne potrzeby",
-  "navigate_to_building": "Nawiguj do budynku"
+  "navigate_to_building": "Nawiguj do budynku",
+  "public_transport": "Publiczny środek komunikacji miejskiej (autobus, tramwaj)",
+  "private_transport": "Prywatny środek transportu (samochód, rower)",
+  "distance": " W odległości ",
+  "meters_abbrev": " m. ",
+  "bicycle_path_leads_to_building": "Do budynku prowadzi ścieżka rowerowa. ",
+  "transport_lines": "Linie komunikacji miejskiej: ",
+  "pass_traffic_lights": "Do przystanku prowadzą przejścia z sygnalizacją świetlną. ",
+  "no_pass_traffic_lights": "Do przystanku prowadzą przejścia bez sygnalizacji świetlnej. ",
+  "nearest_public_transport_stop": "Najbliższy przystanek komunikacji miejskiej to ",
+  "nearest_public_transport_stop_alt": "Alternatywny przystanek komunikacji miejskiej to ",
+  "chose_the_path": "Gdzie można dotrzeć obierając drogę "
 }

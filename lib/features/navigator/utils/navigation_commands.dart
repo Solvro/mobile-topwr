@@ -9,6 +9,7 @@ import "../../digital_guide/tabs/adapted_toilets/data/models/adapted_toilet.dart
 import "../../digital_guide/tabs/lifts/data/models/digital_guide_lift.dart";
 import "../../digital_guide/tabs/micronavigation/data/models/micronavigation_response.dart";
 import "../../digital_guide/tabs/rooms/data/models/digital_guide_room.dart";
+import "../../digital_guide_view/tabs/transportation/data/models/digital_guide_transportation.dart";
 import "../../parkings/parkings_view/models/parking.dart";
 import "../app_router.dart";
 import "../navigation_controller.dart";
@@ -106,6 +107,18 @@ extension NavigationX on WidgetRef {
 
   Future<void> navigateRoomDetails(DigitalGuideRoom room) async {
     await _router.push(DigitalGuideRoomDetailRoute(room: room));
+  }
+
+  Future<void> navigateTransportDetails({
+    required DigitalGuideTransportation transportation,
+    required bool isPublic,
+  }) async {
+    await _router.push(
+      TransportationDetailRoute(
+        transportation: transportation,
+        isPublic: isPublic,
+      ),
+    );
   }
 
   Future<void> navigateLiftDetails(

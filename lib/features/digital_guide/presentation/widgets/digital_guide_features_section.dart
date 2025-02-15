@@ -5,6 +5,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../widgets/my_expansion_tile.dart";
 import "../../../buildings_view/model/building_model.dart";
+import "../../../digital_guide_view/tabs/transportation/presentation/transportation_expansion_tile_content.dart";
 import "../../data/models/digital_guide_response.dart";
 import "../../data/models/level_with_regions.dart";
 import "../../data/repository/levels_repository.dart";
@@ -66,7 +67,11 @@ class DigitalGuideFeaturesSection extends ConsumerWidget {
       ),
       (
         title: context.localize.transport,
-        content: [],
+        content: [
+          TransportationExpansionTileContent(
+            digitalGuideData: digitalGuideData,
+          ),
+        ],
       ),
       (
         title: context.localize.entrances,

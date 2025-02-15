@@ -57,6 +57,7 @@ class DigitalGuideResponse with _$DigitalGuideResponse {
     @JsonKey(name: "evacuation_map") required int evacuationMapId,
     @JsonKey(name: "location_map") required int locationMapId,
     @JsonKey(name: "levels") required List<int> levelsIndices,
+    @JsonKey(name: "access") required int accessId,
   }) = _DigitalGuideResponse;
 
   factory DigitalGuideResponse.fromJson(Map<String, dynamic> json) =>
