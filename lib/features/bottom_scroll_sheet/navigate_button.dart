@@ -6,7 +6,7 @@ import "../../theme/app_theme.dart";
 import "../../utils/context_extensions.dart";
 import "../map_view/controllers/controllers_set.dart";
 import "../map_view/widgets/map_config.dart";
-import "../parkings_view/widgets/parkings_icons.icons.dart";
+import "../parkings/parkings_view/widgets/parkings_icons.icons.dart";
 
 class NavigateButton<T extends GoogleNavigable> extends ConsumerWidget {
   const NavigateButton({super.key});

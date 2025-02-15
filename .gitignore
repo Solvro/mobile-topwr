@@ -145,6 +145,8 @@ app.*.symbols
 *.tailor.dart
 *.gen.dart
 *.gr.dart
+lib/l10n/app_localizations_pl.dart
+lib/l10n/app_localizations.dart
 
 #Env setup
 .env

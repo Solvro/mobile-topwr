@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 
 import "../config/ui_config.dart";
-import "../features/science_clubs_view/widgets/ensure_visible_tags.dart";
+import "../features/science_club/science_clubs_view/widgets/ensure_visible_tags.dart";
 import "../theme/app_theme.dart";
 import "optimized_directus_image.dart";
 

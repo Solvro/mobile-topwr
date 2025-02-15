@@ -4,7 +4,7 @@ import "package:flutter/material.dart";
 
 import "../features/bottom_nav_bar/bottom_nav_bar_icon_icons.icons.dart";
 import "../features/navigator/app_router.dart";
-import "../features/parkings_view/widgets/parkings_icons.icons.dart";
+import "../features/parkings/parkings_view/widgets/parkings_icons.icons.dart";
 import "../utils/context_extensions.dart";
 
 enum NavBarEnum {

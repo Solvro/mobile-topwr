@@ -1,6 +1,5 @@
 import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
-import "package:flutter_gen/gen_l10n/app_localizations.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:wiredash/wiredash.dart";
 
@@ -14,6 +13,7 @@ import "features/navigator/navigation_controller.dart";
 import "features/splash_screen/splash_screen.dart";
 import "features/splash_screen/splash_screen_controller.dart";
 import "features/update_dialog/presentation/update_dialog_wrapper.dart";
+import "l10n/app_localizations.dart";
 import "theme/app_theme.dart";
 import "theme/colors.dart";
 

@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 
 import "../config/ui_config.dart";
-import "../features/sks_menu/data/models/dish_category_enum.dart";
+import "../features/sks/sks_menu/data/models/dish_category_enum.dart";
 import "../theme/app_theme.dart";
 
 enum AlertType { info, error }
