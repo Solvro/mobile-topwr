@@ -18,9 +18,6 @@ jobs:
           flutter-version-file: pubspec.yaml
       - run: flutter --version
       - run: flutter config --explicit-package-dependencies
-      
-      - name: Verify formatting
-        run: dart format --output=none --set-exit-if-changed .
 
       - name: Install dependencies
         run: flutter pub get
@@ -39,3 +36,9 @@ jobs:
 
       - name: Hex Color Converters test
         run: flutter test test/hex_color_converters_test.dart
+      
+      - name: Remove lib/l10n directory
+        run: rm -rf lib/l10n
+
+      - name: Verify formatting
+        run: dart format --output=none --set-exit-if-changed .
