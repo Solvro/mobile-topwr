@@ -24,7 +24,7 @@ import "../navigation_tab_view/navigation_tab_view.dart";
 import "../parkings_view/parkings_view.dart";
 import "../science_club_detail_view/science_club_detail_view.dart";
 import "../science_clubs_view/science_clubs_view.dart";
-import "../sks_menu/presentation/sks_menu_screen.dart";
+import "../sks/sks_menu/presentation/sks_menu_screen.dart";
 import "root_view.dart";
 
 part "app_router.g.dart";
