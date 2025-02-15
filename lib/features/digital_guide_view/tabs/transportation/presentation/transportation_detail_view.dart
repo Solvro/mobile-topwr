@@ -7,8 +7,8 @@ import "../../../../../config/ui_config.dart";
 import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/context_extensions.dart";
 import "../../../../../widgets/detail_views/detail_view_app_bar.dart";
-import "../../../presentation/widgets/accessibility_button.dart";
-import "../../../presentation/widgets/bullet_list.dart";
+import "../../../../digital_guide/presentation/widgets/accessibility_button.dart";
+import "../../../../digital_guide/presentation/widgets/bullet_list.dart";
 import "../data/models/digital_guide_transportation.dart";
 
 @RoutePage()
@@ -25,69 +25,69 @@ class TransportationDetailView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final plTransl = transportation.translations.pl;
     final publicTransport = [
-      if (plTransl.nearestPublicTransportStop!.isNotEmpty)
+      if (plTransl.nearestPublicTransportStop.isNotEmpty)
         context.localize.nearest_public_transport_stop +
-            plTransl.nearestPublicTransportStop! +
+            plTransl.nearestPublicTransportStop +
             context.distance(
               transportation.nearestPublicTransportStopDistance,
             ) +
-            (plTransl.arePassTrafficLightsFromStopToEntryComment!.isNotEmpty
+            (plTransl.arePassTrafficLightsFromStopToEntryComment.isNotEmpty
                 ? context.localize.chose_the_path +
-                    plTransl.nearestPublicTransportStopDistanceComment!
+                    plTransl.nearestPublicTransportStopDistanceComment
                 : ""),
-      if (transportation.dailyTramBusLines!.isNotEmpty)
-        context.localize.transport_lines + transportation.dailyTramBusLines!,
-      if (transportation.arePassTrafficLightsFromStopToEntry!)
+      if (transportation.dailyTramBusLines.isNotEmpty)
+        context.localize.transport_lines + transportation.dailyTramBusLines,
+      if (transportation.arePassTrafficLightsFromStopToEntry)
         context.localize.pass_traffic_lights +
-            plTransl.arePassTrafficLightsFromStopToEntryComment!,
-      if (transportation.areNotPassTrafficLightsFromStopToEntry!)
+            plTransl.arePassTrafficLightsFromStopToEntryComment,
+      if (transportation.areNotPassTrafficLightsFromStopToEntry)
         context.localize.no_pass_traffic_lights +
-            plTransl.areNotPassTrafficLightsFromStopToEntryComment!,
-      if (plTransl.alternativePublicTransportStop!.isNotEmpty)
+            plTransl.areNotPassTrafficLightsFromStopToEntryComment,
+      if (plTransl.alternativePublicTransportStop.isNotEmpty)
         context.localize.nearest_public_transport_stop_alt +
-            plTransl.alternativePublicTransportStop! +
+            plTransl.alternativePublicTransportStop +
             context.distance(
               transportation.alternativePublicTransportStopDistance,
             ) +
-            (plTransl.alternativePublicTransportStopDistanceComment!.isNotEmpty
+            (plTransl.alternativePublicTransportStopDistanceComment.isNotEmpty
                 ? context.localize.chose_the_path +
-                    plTransl.alternativePublicTransportStopDistanceComment!
+                    plTransl.alternativePublicTransportStopDistanceComment
                 : ""),
-      if (transportation.alternativeDailyTramBusLinesStop!.isNotEmpty)
+      if (transportation.alternativeDailyTramBusLinesStop.isNotEmpty)
         context.localize.transport_lines +
-            transportation.alternativeDailyTramBusLinesStop!,
-      if (transportation.arePassTrafficLightsFromStopToEntryAltRoad!)
+            transportation.alternativeDailyTramBusLinesStop,
+      if (transportation.arePassTrafficLightsFromStopToEntryAltRoad)
         context.localize.pass_traffic_lights +
-            plTransl.arePassTrafficLightsFromStopToEntryAltRoadComment!,
-      if (transportation.areNotPassTrafficLightsFromStopToEntryAltRoad!)
+            plTransl.arePassTrafficLightsFromStopToEntryAltRoadComment,
+      if (transportation.areNotPassTrafficLightsFromStopToEntryAltRoad)
         context.localize.no_pass_traffic_lights +
-            plTransl.areNotPassTrafficLightsFromStopToEntryAltRoadComment!,
+            plTransl.areNotPassTrafficLightsFromStopToEntryAltRoadComment,
     ].lock;
     final privateTransport = [
-      if (plTransl.nearestPublicParkingLocation!.isNotEmpty)
-        plTransl.nearestPublicParkingLocation! +
+      if (plTransl.nearestPublicParkingLocation.isNotEmpty)
+        plTransl.nearestPublicParkingLocation +
             context.distance(
               transportation.nearestPublicParkingLocationDistance,
             ) +
-            plTransl.isPaidParkingComment!,
-      if (plTransl.nearestUniversityParkingLocation!.isNotEmpty)
-        plTransl.nearestUniversityParkingLocation! +
+            plTransl.isPaidParkingComment,
+      if (plTransl.nearestUniversityParkingLocation.isNotEmpty)
+        plTransl.nearestUniversityParkingLocation +
             context.distance(
               transportation.nearestUniversityParkingLocationDistance,
             ),
-      if (plTransl.nearestDisabledParkingSpaces!.isNotEmpty)
-        plTransl.nearestDisabledParkingSpaces! +
+      if (plTransl.nearestDisabledParkingSpaces.isNotEmpty)
+        plTransl.nearestDisabledParkingSpaces +
             context.distance(
               transportation.nearestDisabledParkingSpacesDistance,
             ) +
-            plTransl.areBicycleStandsComment!,
-      plTransl.isCityBikeStationComment! +
+            plTransl.areBicycleStandsComment,
+      plTransl.isCityBikeStationComment +
           context.distance(transportation.cityBikeStationDistance),
-      if (transportation.isBicyclePathLeadToBuilding != null)
+      if (transportation.isBicyclePathLeadToBuilding)
         context.localize.bicycle_path_leads_to_building +
-            plTransl.isBicyclePathLeadToBuildingComment! +
+            plTransl.isBicyclePathLeadToBuildingComment +
             context.distance(transportation.distanceToBicyclePath) +
-            plTransl.isBicyclePathLeadClearlySeparatedComment!,
+            plTransl.isBicyclePathLeadClearlySeparatedComment,
     ].lock;
     final List<Widget> widgets = [
       Text(
@@ -124,9 +124,7 @@ class TransportationDetailView extends ConsumerWidget {
 }
 
 extension DistanceX on BuildContext {
-  String distance(double? dist) {
-    return (dist != null
-        ? localize.distance + dist.toString() + localize.meters_abbrev
-        : "");
+  String distance(double dist) {
+    return localize.distance + dist.toString() + localize.meters_abbrev;
   }
 }

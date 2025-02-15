@@ -17,17 +17,6 @@ import "../digital_guide/tabs/micronavigation/data/models/micronavigation_respon
 import "../digital_guide/tabs/micronavigation/presentation/micronavigation_detail_view.dart";
 import "../digital_guide/tabs/rooms/data/models/digital_guide_room.dart";
 import "../digital_guide/tabs/rooms/presentation/digital_guide_room_detail_view.dart";
-import "../department_detail_view/department_detail_view.dart";
-import "../departments_view/departments_view.dart";
-import "../digital_guide_view/presentation/digital_guide_view.dart";
-import "../digital_guide_view/tabs/adapted_toilets/data/models/adapted_toilet.dart";
-import "../digital_guide_view/tabs/adapted_toilets/presentation/adapted_toilet_detail_view.dart";
-import "../digital_guide_view/tabs/lifts/data/models/digital_guide_lift.dart";
-import "../digital_guide_view/tabs/lifts/presentation/digital_guide_lift_detail_view.dart";
-import "../digital_guide_view/tabs/micronavigation/data/models/micronavigation_response.dart";
-import "../digital_guide_view/tabs/micronavigation/presentation/micronavigation_detail_view.dart";
-import "../digital_guide_view/tabs/rooms/data/models/digital_guide_room.dart";
-import "../digital_guide_view/tabs/rooms/presentation/digital_guide_room_detail_view.dart";
 import "../digital_guide_view/tabs/transportation/data/models/digital_guide_transportation.dart";
 import "../digital_guide_view/tabs/transportation/presentation/transportation_detail_view.dart";
 import "../guide_detail_view/guide_detail_view.dart";
@@ -38,10 +27,6 @@ import "../parkings/parkings_view/parkings_view.dart";
 import "../science_club/science_club_detail_view/science_club_detail_view.dart";
 import "../science_club/science_clubs_view/science_clubs_view.dart";
 import "../sks/sks_menu/presentation/sks_menu_screen.dart";
-import "../parkings_view/parkings_view.dart";
-import "../science_club_detail_view/science_club_detail_view.dart";
-import "../science_clubs_view/science_clubs_view.dart";
-import "../sks_menu/presentation/sks_menu_screen.dart";
 import "root_view.dart";
 
 part "app_router.g.dart";
