@@ -3,6 +3,7 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../config/ui_config.dart";
+import "../../../../../theme/app_theme.dart";
 import "../../../../../widgets/my_error_widget.dart";
 import "../../../../digital_guide_view/data/models/digital_guide_response.dart";
 import "../../../../navigator/utils/navigation_commands.dart";
@@ -64,11 +65,14 @@ class _MicronavigationExpansionTileContent extends ConsumerWidget {
 
     return Padding(
       padding: const EdgeInsets.only(bottom: DigitalGuideConfig.paddingMedium),
-      child: ListView.builder(
-        physics: const NeverScrollableScrollPhysics(),
-        itemCount: widgets.length,
-        shrinkWrap: true,
-        itemBuilder: (context, index) => widgets[index],
+      child: Material(
+        color: context.colorTheme.greyLight,
+        child: ListView.builder(
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: widgets.length,
+          shrinkWrap: true,
+          itemBuilder: (context, index) => widgets[index],
+        ),
       ),
     );
   }

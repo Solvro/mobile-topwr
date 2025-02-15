@@ -3,6 +3,7 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../config/ui_config.dart";
+import "../../../../../theme/app_theme.dart";
 import "../../../../../widgets/my_error_widget.dart";
 import "../../../data/models/digital_guide_response.dart";
 import "../domain/digital_guide_rooms_use_cases.dart";
@@ -42,14 +43,17 @@ class _DigitalGuideRoomExpansionTileContent extends ConsumerWidget {
         horizontal: DigitalGuideConfig.paddingMedium,
         vertical: DigitalGuideConfig.paddingMedium,
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: levelsWithRooms.map((level) {
-          return DigitalGuideRoomLevel(
-            level: level.level,
-            rooms: level.rooms,
-          );
-        }).toList(),
+      child: Material(
+        color: context.colorTheme.greyLight,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: levelsWithRooms.map((level) {
+            return DigitalGuideRoomLevel(
+              level: level.level,
+              rooms: level.rooms,
+            );
+          }).toList(),
+        ),
       ),
     );
   }
