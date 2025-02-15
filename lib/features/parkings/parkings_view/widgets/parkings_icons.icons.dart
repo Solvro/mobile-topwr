@@ -15,12 +15,10 @@
 ///
 import 'package:flutter/widgets.dart';
 
-import '../../../gen/fonts.gen.dart';
-
 class ParkingsIcons {
   ParkingsIcons._();
 
-  static const _kFontFam = FontFamily.iParkingIcons;
+  static const _kFontFam = 'IParkingIcons';
   static const String? _kFontPkg = null;
 
   static const IconData directions_car =

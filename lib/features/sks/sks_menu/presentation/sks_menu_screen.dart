@@ -17,6 +17,7 @@ import "../../../../widgets/my_error_widget.dart";
 import "../../../../widgets/my_text_button.dart";
 import "../../../../widgets/technical_message.dart";
 import "../../../../widgets/text_and_url_widget.dart";
+import "../../sks_people_live/data/repository/latest_sks_user_data_repo.dart";
 import "../../sks_people_live/presentation/widgets/sks_user_data_button.dart";
 import "../data/models/sks_menu_response.dart";
 import "../data/repository/sks_menu_repository.dart";
@@ -92,6 +93,8 @@ class _SksMenuView extends ConsumerWidget {
       ),
       body: RefreshIndicator(
         onRefresh: () async {
+          // ignore: unused_result
+          await ref.refresh(getLatestSksUserDataProvider.future);
           await ref.read(sksMenuRepositoryProvider.notifier).clearCache();
           return ref.refresh(sksMenuRepositoryProvider.future);
         },
