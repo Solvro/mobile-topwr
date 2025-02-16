@@ -38,8 +38,9 @@ class DigitalGuideEntranceDetailsView extends ConsumerWidget {
           "${formatBool(key: "isForPersonel", value: entrance.isForPersonel)}. ${entrance.translations.pl.location}",
           "${formatBool(key: "isLit", value: entrance.isLit)}. ${entrance.translations.pl.isLitComment}",
           formatBool(
-              key: "isProtectionFromWeather",
-              value: entrance.isProtectionFromWeather),
+            key: "isProtectionFromWeather",
+            value: entrance.isProtectionFromWeather,
+          ),
           formatBool(key: "isEmergencyExit", value: entrance.isEmergencyExit),
           formatBool(
             key: "isBuildingMarkedInEn",
