@@ -91,6 +91,9 @@ class DigitalGuideTranslationEntrace with _$DigitalGuideTranslationEntrace {
 }
 
 bool _stringToBool(String str) {
+  if(str==""){
+    return true;
+  }
   return str.toLowerCase() == "true";
 }
 
