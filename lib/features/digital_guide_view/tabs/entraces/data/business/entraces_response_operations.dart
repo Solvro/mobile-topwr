@@ -13,7 +13,10 @@ extension DigitalGuideEntraceOperations on BuildContext {
     final IList<String> commentsList = [
       "${formatBool(key: "isBuildingMarkedFromEntrance", value: entrance.isBuildingMarkedFromEntrance)}. ${comments.isBuildingMarkedFromEntranceComment}",
       "${formatBool(key: "isSolidSurface", value: entrance.isSolidSurface)}. ${comments.isSolidSurfaceComment}",
-      "${formatBool(key: "hasSoundTransmitter", value: entrance.hasSoundTransmitter,)}. ${comments.hasSoundTransmitterComment}",
+      "${formatBool(
+        key: "hasSoundTransmitter",
+        value: entrance.hasSoundTransmitter,
+      )}. ${comments.hasSoundTransmitterComment}",
       "${formatBool(key: "hasTactilePaving", value: entrance.hasTactilePaving)}. ${comments.hasTactilePavingComment}",
       comments.entranceThreats,
     ].where((c) => c.isNotEmpty).toIList();

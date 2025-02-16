@@ -27,7 +27,7 @@ class DigitalGuideEntranceDetailsView extends ConsumerWidget {
     // Przykładowe dane z JSON (zastąp danymi z twojego modelu)
     final widgets = [
       Text(
-        entrance.translations.pl.name??"",
+        entrance.translations.pl.name ?? "",
         style: context.textTheme.title.copyWith(fontSize: 24),
       ),
       const SizedBox(height: DigitalGuideConfig.heightMedium),
@@ -37,9 +37,14 @@ class DigitalGuideEntranceDetailsView extends ConsumerWidget {
           formatBool(key: "isAccessible", value: entrance.isAccessible),
           "${formatBool(key: "isForPersonel", value: entrance.isForPersonel)}. ${entrance.translations.pl.location}",
           "${formatBool(key: "isLit", value: entrance.isLit)}. ${entrance.translations.pl.isLitComment}",
-          formatBool(key: "isProtectionFromWeather", value: entrance.isProtectionFromWeather),
+          formatBool(
+              key: "isProtectionFromWeather",
+              value: entrance.isProtectionFromWeather),
           formatBool(key: "isEmergencyExit", value: entrance.isEmergencyExit),
-          formatBool(key: "isBuildingMarkedInEn", value: entrance.isBuildingMarkedInEn,),
+          formatBool(
+            key: "isBuildingMarkedInEn",
+            value: entrance.isBuildingMarkedInEn,
+          ),
           "${formatBool(key: "areBenches", value: entrance.areBenches)}. ${entrance.translations.pl.areBenchesComment}",
         ]),
       ),
