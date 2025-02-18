@@ -29,7 +29,7 @@ Future<IList<DigitalGuideDressingRoom>> dressingRoomsFromIDsRepository(
   Ref ref,
   List<int> dressingRoomsIDs,
 ) async {
-  Future<DigitalGuideDressingRoom> getDressingRoom(int dressingRoomID) async {
+  Future<DigitalGuideDressingRoom> getDressingRoomById(int dressingRoomID) async {
     return ref.getAndCacheDataFromDigitalGuide(
       "dressing_rooms/$dressingRoomID",
       DigitalGuideDressingRoom.fromJson,
@@ -38,7 +38,7 @@ Future<IList<DigitalGuideDressingRoom>> dressingRoomsFromIDsRepository(
   }
 
   final dressingRooms =
-      await Future.wait(dressingRoomsIDs.map(getDressingRoom));
+      await Future.wait(dressingRoomsIDs.map(getDressingRoomById));
 
   return dressingRooms.lock;
 }
