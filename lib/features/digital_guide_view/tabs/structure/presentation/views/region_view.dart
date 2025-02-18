@@ -10,10 +10,10 @@ import "../../../../../../utils/context_extensions.dart";
 import "../../../../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../../../../../widgets/loading_widgets/shimmer_loading.dart";
 import "../../../../../../widgets/my_error_widget.dart";
+import "../../../../../digital_guide/data/models/level.dart";
+import "../../../../../digital_guide/data/models/region.dart";
+import "../../../../../digital_guide/presentation/widgets/digital_guide_nav_link.dart";
 import "../../../../../navigator/utils/navigation_commands.dart";
-import "../../../../data/models/level.dart";
-import "../../../../data/models/region.dart";
-import "../../../../presentation/widgets/digital_guide_nav_link.dart";
 import "../../domain/digital_guide_region_use_cases.dart";
 
 @RoutePage()
