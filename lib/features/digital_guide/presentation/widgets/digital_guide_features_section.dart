@@ -5,7 +5,6 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../widgets/my_expansion_tile.dart";
 import "../../../buildings_view/model/building_model.dart";
-import "../../tabs/structure/presentation/structure_expansion_tile_content.dart";
 import "../../../digital_guide_view/tabs/transportation/presentation/transportation_expansion_tile_content.dart";
 import "../../data/models/digital_guide_response.dart";
 import "../../data/models/level_with_regions.dart";
@@ -19,6 +18,7 @@ import "../../tabs/localization/presentation/localization_expansion_tile_content
 import "../../tabs/lodge/presentation/digital_guide_lodge_expansion_tile_content.dart";
 import "../../tabs/micronavigation/presentation/micronavigation_expansion_tile_content.dart";
 import "../../tabs/rooms/presentation/digital_guide_rooms_expansion_tile_content.dart";
+import "../../tabs/structure/presentation/structure_expansion_tile_content.dart";
 import "../../tabs/surrounding/presentation/surroundings_expansion_tile_content.dart";
 
 typedef TileContent = ({String title, List<Widget> content});

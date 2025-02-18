@@ -25,7 +25,8 @@ Future<IList<LevelWithRooms>> getLevelsWithRoomsUseCase(
 
   final levelsWithRoomsData = await Future.wait(
     levels.map((level) async {
-      final rooms = await ref.watch(roomsRepositoryProvider(level).future);
+      final rooms =
+          await ref.watch(roomsByLevelRepositoryProvider(level).future);
       return (level: level.level, rooms: rooms);
     }),
   );

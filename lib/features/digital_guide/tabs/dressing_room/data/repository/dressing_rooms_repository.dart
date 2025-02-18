@@ -29,7 +29,9 @@ Future<IList<DigitalGuideDressingRoom>> dressingRoomsFromIDsRepository(
   Ref ref,
   List<int> dressingRoomsIDs,
 ) async {
-  Future<DigitalGuideDressingRoom> getDressingRoomById(int dressingRoomID) async {
+  Future<DigitalGuideDressingRoom> getDressingRoomById(
+    int dressingRoomID,
+  ) async {
     return ref.getAndCacheDataFromDigitalGuide(
       "dressing_rooms/$dressingRoomID",
       DigitalGuideDressingRoom.fromJson,

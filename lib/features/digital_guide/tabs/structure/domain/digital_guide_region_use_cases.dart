@@ -9,6 +9,7 @@ import "../../lifts/data/repository/lifts_repository.dart";
 import "../../lodge/data/models/digital_guide_lodge.dart";
 import "../../lodge/data/repository/lodges_repository.dart";
 import "../../rooms/data/models/digital_guide_room.dart";
+import "../../rooms/data/repository/rooms_repository.dart";
 import "../data/models/corridor.dart";
 import "../data/models/information_point.dart";
 import "../data/models/parking.dart";
@@ -20,7 +21,6 @@ import "../data/repository/corridors_repository.dart";
 import "../data/repository/information_points_repository.dart";
 import "../data/repository/ramps_repository.dart";
 import "../data/repository/region_parkings_repository.dart";
-import "../data/repository/region_rooms_repository.dart";
 import "../data/repository/stairs_repository.dart";
 import "../data/repository/stairways_repository.dart";
 import "../data/repository/toilets_repository.dart";
@@ -42,7 +42,7 @@ typedef RegionData = ({
 });
 
 @riverpod
-Future<RegionData> digitalGuideRegionUrseCases(Ref ref, Region region) async {
+Future<RegionData> digitalGuideRegionUseCases(Ref ref, Region region) async {
   final corridors =
       await ref.watch(corridorsRepositoryProvider(region.corridors).future);
   final stairs =
@@ -62,7 +62,7 @@ Future<RegionData> digitalGuideRegionUrseCases(Ref ref, Region region) async {
   final toilets =
       await ref.watch(toiletsRepositoryProvider(region.toilets).future);
   final rooms =
-      await ref.watch(regionRoomsRepositoryProvider(region.rooms).future);
+      await ref.watch(roomsByIDsRepositoryProvider(region.rooms).future);
   final parkings =
       await ref.watch(regionParkingsRepositoryProvider(region.parkings).future);
 

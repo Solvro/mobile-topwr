@@ -1,5 +1,3 @@
-import "dart:async";
-
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
@@ -10,11 +8,13 @@ import "../../../../../../utils/context_extensions.dart";
 import "../../../../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../../../../../widgets/loading_widgets/shimmer_loading.dart";
 import "../../../../../../widgets/my_error_widget.dart";
+import "../../../../../navigator/utils/navigation_commands.dart";
 import "../../../../data/models/level.dart";
 import "../../../../data/models/region.dart";
-import "../../../../presentation/widgets/digital_guide_nav_link.dart";
-import "../../../../../navigator/utils/navigation_commands.dart";
+import "../../data/models/toilet.dart";
 import "../../domain/digital_guide_region_use_cases.dart";
+import "region_data_sliver_list.dart";
+import "region_data_sliver_list_item.dart";
 
 @RoutePage()
 class RegionView extends ConsumerWidget {
@@ -29,7 +29,7 @@ class RegionView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final regionDataAsync =
-        ref.watch(digitalGuideRegionUrseCasesProvider(region));
+        ref.watch(digitalGuideRegionUseCasesProvider(region));
 
     return regionDataAsync.when(
       data: (regionData) =>
@@ -110,7 +110,7 @@ class _RegionView extends ConsumerWidget {
         itemCount: region.dressingRooms.length,
       ),
       RegionDataSliverListItem(
-        text: (index) => regionData.toilets[index].menToilet
+        text: (index) => regionData.toilets[index].toiletType == ToiletType.men
             ? context.localize.men_toilet
             : context.localize.women_toilet,
         onTap: (index) async => () {},
@@ -141,21 +141,24 @@ class _RegionView extends ConsumerWidget {
               delegate: SliverChildListDelegate([
                 Text(
                   region.translations.plTranslation.name,
-                  style: context.textTheme.headline.copyWith(fontSize: 22),
+                  style: context.textTheme.headline
+                      .copyWith(fontSize: DigitalGuideConfig.headlineFont),
                 ),
                 const SizedBox(
                   height: DigitalGuideConfig.heightSmall,
                 ),
                 Text(
                   context.localize.region_location,
-                  style: context.textTheme.boldBody.copyWith(fontSize: 16),
+                  style: context.textTheme.boldBody
+                      .copyWith(fontSize: DigitalGuideConfig.bodyFont),
                 ),
                 const SizedBox(
                   height: DigitalGuideConfig.heightSmall,
                 ),
                 Text(
                   region.translations.plTranslation.location,
-                  style: context.textTheme.body.copyWith(fontSize: 16),
+                  style: context.textTheme.body
+                      .copyWith(fontSize: DigitalGuideConfig.bodyFont),
                 ),
                 const SizedBox(
                   height: DigitalGuideConfig.heightMedium,
@@ -172,44 +175,4 @@ class _RegionView extends ConsumerWidget {
       ),
     );
   }
-}
-
-class RegionDataSliverList extends ConsumerWidget {
-  const RegionDataSliverList({
-    required this.regionDataSliverListItem,
-  });
-
-  final RegionDataSliverListItem regionDataSliverListItem;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return SliverList(
-      delegate: SliverChildBuilderDelegate(
-        (context, index) => Column(
-          children: [
-            DigitalGuideNavLink(
-              onTap: () async => regionDataSliverListItem.onTap?.call(index),
-              text: regionDataSliverListItem.text(index),
-            ),
-            const SizedBox(
-              height: DigitalGuideConfig.heightMedium,
-            ),
-          ],
-        ),
-        childCount: regionDataSliverListItem.itemCount,
-      ),
-    );
-  }
-}
-
-class RegionDataSliverListItem {
-  final String Function(int) text;
-  final Future<void> Function(int index)? onTap;
-  final int itemCount;
-
-  RegionDataSliverListItem({
-    required this.text,
-    this.onTap,
-    required this.itemCount,
-  });
 }

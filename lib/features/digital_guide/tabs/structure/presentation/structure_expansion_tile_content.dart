@@ -4,11 +4,11 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../config/ui_config.dart";
 import "../../../../../widgets/my_error_widget.dart";
+import "../../../../navigator/utils/navigation_commands.dart";
 import "../../../data/models/digital_guide_response.dart";
 import "../../../data/models/level_with_regions.dart";
 import "../../../data/repository/levels_repository.dart";
 import "../../../presentation/widgets/digital_guide_nav_link.dart";
-import "../../../../navigator/utils/navigation_commands.dart";
 
 class StructureExpansionTileContent extends ConsumerWidget {
   const StructureExpansionTileContent({

@@ -7,8 +7,8 @@ part "toilet.freezed.dart";
 class Toilet with _$Toilet {
   const factory Toilet({
     required ToiletTranslations translations,
-    @JsonKey(name: "is_available_for", fromJson: decideMenToilet)
-    required bool menToilet,
+    @JsonKey(name: "is_available_for", fromJson: getToiletType)
+    required ToiletType toiletType,
   }) = _Toilet;
 
   factory Toilet.fromJson(Map<String, dynamic> json) => _$ToiletFromJson(json);
@@ -34,6 +34,8 @@ class ToiletTranslation with _$ToiletTranslation {
       _$ToiletTranslationFromJson(json);
 }
 
-bool decideMenToilet(String option) {
-  return option == "1";
+enum ToiletType { men, women }
+
+ToiletType getToiletType(String option) {
+  return option == "1" ? ToiletType.men : ToiletType.women;
 }
