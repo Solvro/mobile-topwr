@@ -20,10 +20,10 @@ import "../digital_guide/tabs/micronavigation/data/models/micronavigation_respon
 import "../digital_guide/tabs/micronavigation/presentation/micronavigation_detail_view.dart";
 import "../digital_guide/tabs/rooms/data/models/digital_guide_room.dart";
 import "../digital_guide/tabs/rooms/presentation/digital_guide_room_detail_view.dart";
-import "../digital_guide_view/tabs/structure/data/models/corridor.dart";
-import "../digital_guide_view/tabs/structure/presentation/views/corridor_view.dart";
-import "../digital_guide_view/tabs/structure/presentation/views/level_view.dart";
-import "../digital_guide_view/tabs/structure/presentation/views/region_view.dart";
+import "../digital_guide/tabs/structure/data/models/corridor.dart";
+import "../digital_guide/tabs/structure/presentation/views/corridor_view.dart";
+import "../digital_guide/tabs/structure/presentation/views/level_view.dart";
+import "../digital_guide/tabs/structure/presentation/views/region_view.dart";
 import "../digital_guide_view/tabs/transportation/data/models/digital_guide_transportation.dart";
 import "../digital_guide_view/tabs/transportation/presentation/transportation_detail_view.dart";
 import "../guide_detail_view/guide_detail_view.dart";

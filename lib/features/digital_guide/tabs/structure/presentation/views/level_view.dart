@@ -6,9 +6,9 @@ import "../../../../../../config/ui_config.dart";
 import "../../../../../../theme/app_theme.dart";
 import "../../../../../../utils/context_extensions.dart";
 import "../../../../../../widgets/detail_views/detail_view_app_bar.dart";
-import "../../../../../digital_guide/data/models/level_with_regions.dart";
-import "../../../../../digital_guide/presentation/widgets/digital_guide_nav_link.dart";
 import "../../../../../navigator/utils/navigation_commands.dart";
+import "../../../../data/models/level_with_regions.dart";
+import "../../../../presentation/widgets/digital_guide_nav_link.dart";
 
 @RoutePage()
 class LevelView extends ConsumerWidget {

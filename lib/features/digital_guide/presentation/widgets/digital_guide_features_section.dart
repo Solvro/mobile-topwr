@@ -5,7 +5,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../widgets/my_expansion_tile.dart";
 import "../../../buildings_view/model/building_model.dart";
-import "../../../digital_guide_view/tabs/structure/presentation/structure_expansion_tile_content.dart";
+import "../../tabs/structure/presentation/structure_expansion_tile_content.dart";
 import "../../../digital_guide_view/tabs/transportation/presentation/transportation_expansion_tile_content.dart";
 import "../../data/models/digital_guide_response.dart";
 import "../../data/models/level_with_regions.dart";
