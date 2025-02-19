@@ -32,6 +32,7 @@ class SksChartSheet extends ConsumerWidget {
     final sheetHeight = useFiltersSheetHeight(
       context,
       prefferedHeightFactor: screenWidth > 400 ? .62 : .68,
+      width: screenWidth,
     );
 
     return switch (asyncChartData) {
