@@ -6,9 +6,11 @@ part "digital_guide_room.g.dart";
 
 @freezed
 class DigitalGuideRoom with _$DigitalGuideRoom {
+  @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideRoom({
     required int id,
     required DigitalGuideTranslationsRoom translations,
+    required List<int> roomStairs,
     @JsonKey(name: "images") required List<int>? imagesIds,
   }) = _DigitalGuideRoom;
 
