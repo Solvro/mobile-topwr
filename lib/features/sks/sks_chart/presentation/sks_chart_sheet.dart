@@ -32,6 +32,7 @@ class SksChartSheet extends ConsumerWidget {
     final sheetHeight = useFiltersSheetHeight(
       context,
       prefferedHeightFactor: screenWidth > 400 ? .62 : .68,
+      width: screenWidth,
     );
 
     return switch (asyncChartData) {
@@ -48,6 +49,7 @@ class SksChartSheet extends ConsumerWidget {
                       .copyWith(bottom: SksChartConfig.paddingMedium),
                   child: const _SksSheetHeader(),
                 ),
+                Text(sheetHeight.toString()),
                 Expanded(
                   child: ListView(
                     physics: const NeverScrollableScrollPhysics(),

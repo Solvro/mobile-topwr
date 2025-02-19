@@ -1,0 +1,1 @@
+/Users/bartoszwaclawiak/dev/Flutter Projects/ToPWR/mobile-topwr/build/app/intermediates/cxx/Debug/6f193u25/obj/x86_64
