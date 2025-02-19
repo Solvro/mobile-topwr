@@ -49,7 +49,6 @@ class SksChartSheet extends ConsumerWidget {
                       .copyWith(bottom: SksChartConfig.paddingMedium),
                   child: const _SksSheetHeader(),
                 ),
-                Text(sheetHeight.toString()),
                 Expanded(
                   child: ListView(
                     physics: const NeverScrollableScrollPhysics(),
