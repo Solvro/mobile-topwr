@@ -29,6 +29,7 @@ class LevelTranslations with _$LevelTranslations {
 class LevelTranslation with _$LevelTranslation {
   const factory LevelTranslation({
     required String name,
+    @JsonKey(name: "room_numbers_range") required String roomNumbersRange,
   }) = _LevelTranslation;
 
   factory LevelTranslation.fromJson(Map<String, dynamic> json) =>

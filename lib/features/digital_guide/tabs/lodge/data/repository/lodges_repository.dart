@@ -23,3 +23,21 @@ Future<IList<DigitalGuideLodge>> lodgesRepository(
     onRetry: () => ref.invalidateSelf(),
   );
 }
+
+@riverpod
+Future<IList<DigitalGuideLodge>> lodgesFromIDsRepository(
+  Ref ref,
+  List<int> lodgesIDs,
+) async {
+  Future<DigitalGuideLodge> getLodge(int lodgeID) async {
+    return ref.getAndCacheDataFromDigitalGuide(
+      "lodges/$lodgeID",
+      DigitalGuideLodge.fromJson,
+      onRetry: () => ref.invalidateSelf(),
+    );
+  }
+
+  final lodges = await Future.wait(lodgesIDs.map(getLodge));
+
+  return lodges.lock;
+}

@@ -64,13 +64,14 @@ class AdaptedToiletDetailView extends ConsumerWidget {
             context.localize.adapted_toilet_is_not_marked,
         ].lock,
       ),
-      const SizedBox(height: DigitalGuideConfig.heightBig),
+      if (adaptedToilet.doorsIndices.isNotEmpty)
+        const SizedBox(height: DigitalGuideConfig.heightMedium),
       ListView.separated(
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
           return DigitalGuideNavLink(
             onTap: () {},
-            text: context.localize.doors,
+            text: context.localize.door,
           );
         },
         itemCount: adaptedToilet.doorsIndices.length,
@@ -79,11 +80,11 @@ class AdaptedToiletDetailView extends ConsumerWidget {
         ),
         shrinkWrap: true,
       ),
-      const SizedBox(height: DigitalGuideConfig.heightBig),
+      const SizedBox(height: DigitalGuideConfig.heightMedium),
       if (adaptedToilet.imagesIndices.isNotEmpty)
         Text(
           context.localize.images,
-          style: context.textTheme.title.copyWith(fontSize: 24),
+          style: context.textTheme.title.copyWith(fontSize: 22),
         ),
     ];
 

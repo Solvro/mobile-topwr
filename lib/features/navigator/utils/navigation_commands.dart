@@ -5,10 +5,15 @@ import "package:logger/logger.dart";
 
 import "../../../utils/launch_url_util.dart";
 import "../../buildings_view/model/building_model.dart";
+// ignore: library_prefixes
+import "../../digital_guide/data/models/level.dart" as digitalGuide;
+import "../../digital_guide/data/models/level_with_regions.dart";
+import "../../digital_guide/data/models/region.dart";
 import "../../digital_guide/tabs/adapted_toilets/data/models/adapted_toilet.dart";
 import "../../digital_guide/tabs/lifts/data/models/digital_guide_lift.dart";
 import "../../digital_guide/tabs/micronavigation/data/models/micronavigation_response.dart";
 import "../../digital_guide/tabs/rooms/data/models/digital_guide_room.dart";
+import "../../digital_guide/tabs/structure/data/models/corridor.dart";
 import "../../digital_guide_view/tabs/transportation/data/models/digital_guide_transportation.dart";
 import "../../parkings/parkings_view/models/parking.dart";
 import "../app_router.dart";
@@ -127,6 +132,26 @@ extension NavigationX on WidgetRef {
   ) async {
     await _router
         .push(DigitalGuideLiftDetailRoute(lift: lift, levelName: levelName));
+  }
+
+  Future<void> navigateDigitalGuideLevel(LevelWithRegions levelInfo) async {
+    await _router.push(LevelRoute(levelInfo: levelInfo));
+  }
+
+  Future<void> navigateDigitalGuideRegion(
+    digitalGuide.Level level,
+    Region region,
+  ) async {
+    await _router.push(
+      RegionRoute(
+        level: level,
+        region: region,
+      ),
+    );
+  }
+
+  Future<void> navigateDigitalGuideCorridor(Corridor corridor) async {
+    await _router.push(CorridorRoute(corridor: corridor));
   }
 
   Future<void> navigateBuildingDetailAction(BuildingModel building) async {

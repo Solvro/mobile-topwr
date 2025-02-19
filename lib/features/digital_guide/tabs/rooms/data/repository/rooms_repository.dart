@@ -11,20 +11,29 @@ import "../models/digital_guide_room.dart";
 part "rooms_repository.g.dart";
 
 @riverpod
-Future<IList<DigitalGuideRoom>> roomsRepository(
+Future<IList<DigitalGuideRoom>> roomsByLevelRepository(
   Ref ref,
   LevelWithRegions level,
 ) async {
-  Future<DigitalGuideRoom> getDigitalGuideRoom(int roomId) async {
-    final endpoint = "rooms/$roomId";
+  final roomsIds = level.regions.expand((region) => region.rooms).toList();
+  final rooms = await ref.read(roomsByIDsRepositoryProvider(roomsIds).future);
+  return rooms;
+}
+
+@riverpod
+Future<IList<DigitalGuideRoom>> roomsByIDsRepository(
+  Ref ref,
+  List<int> roomsIDs,
+) async {
+  Future<DigitalGuideRoom> getRoom(int roomID) async {
     return ref.getAndCacheDataFromDigitalGuide(
-      endpoint,
+      "rooms/$roomID",
       DigitalGuideRoom.fromJson,
       onRetry: () => ref.invalidateSelf(),
     );
   }
 
-  final roomsIds = level.regions.expand((region) => region.roomsIds);
-  final rooms = await Future.wait(roomsIds.map(getDigitalGuideRoom));
-  return rooms.toIList();
+  final rooms = await Future.wait(roomsIDs.map(getRoom));
+
+  return rooms.lock;
 }

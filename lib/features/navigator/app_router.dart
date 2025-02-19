@@ -8,6 +8,9 @@ import "../about_us_view/about_us_view.dart";
 import "../buildings_view/buildings_view.dart";
 import "../departments/department_detail_view/department_detail_view.dart";
 import "../departments/departments_view/departments_view.dart";
+import "../digital_guide/data/models/level.dart";
+import "../digital_guide/data/models/level_with_regions.dart";
+import "../digital_guide/data/models/region.dart";
 import "../digital_guide/presentation/digital_guide_view.dart";
 import "../digital_guide/tabs/adapted_toilets/data/models/adapted_toilet.dart";
 import "../digital_guide/tabs/adapted_toilets/presentation/adapted_toilet_detail_view.dart";
@@ -17,6 +20,10 @@ import "../digital_guide/tabs/micronavigation/data/models/micronavigation_respon
 import "../digital_guide/tabs/micronavigation/presentation/micronavigation_detail_view.dart";
 import "../digital_guide/tabs/rooms/data/models/digital_guide_room.dart";
 import "../digital_guide/tabs/rooms/presentation/digital_guide_room_detail_view.dart";
+import "../digital_guide/tabs/structure/data/models/corridor.dart";
+import "../digital_guide/tabs/structure/presentation/views/corridor_view.dart";
+import "../digital_guide/tabs/structure/presentation/views/level_view.dart";
+import "../digital_guide/tabs/structure/presentation/views/region_view.dart";
 import "../digital_guide_view/tabs/transportation/data/models/digital_guide_transportation.dart";
 import "../digital_guide_view/tabs/transportation/presentation/transportation_detail_view.dart";
 import "../guide_detail_view/guide_detail_view.dart";
@@ -115,14 +122,20 @@ class AppRouter extends RootStackRouter {
           page: DigitalGuideRoute.page,
         ),
         AutoRoute(
-          path: "/digital-guide/:id/room-details",
-          page: DigitalGuideRoomDetailRoute.page,
+          page: AdaptedToiletDetailRoute.page,
         ),
         AutoRoute(
-          path: "/digital-guide/:id/lift-details",
+          page: LevelRoute.page,
+        ),
+        AutoRoute(
+          page: RegionRoute.page,
+        ),
+        AutoRoute(
           page: DigitalGuideLiftDetailRoute.page,
         ),
-        AutoRoute(page: TransportationDetailRoute.page),
+        AutoRoute(
+          page: CorridorRoute.page,
+        ),
         AutoRoute(
           path: "/digital-guide/:id/micronavigation-details",
           page: MicronavigationDetailRoute.page,
