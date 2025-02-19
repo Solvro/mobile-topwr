@@ -1,4 +1,3 @@
-import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
@@ -40,10 +39,10 @@ class _RoomStairsContent extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final IList<String> roomStairsComments =
+    final roomStairsComments =
         context.getRoomStairsCommentsList(roomStairsResponse);
 
-    final IList<String> roomStairsAccessibilityComments =
+    final roomStairsAccessibilityComments =
         context.getRoomStairsAccessibilityCommentsList(roomStairsResponse);
 
     return Padding(
