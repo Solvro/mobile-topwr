@@ -9,12 +9,12 @@ double useFiltersSheetHeight(
   double prefferedHeightFactor = FilterConfig.bottomSheetHeightFactor,
   double? width,
 }) {
-
   final height = MediaQuery.sizeOf(context).height;
 
-  final maximumHeight = FilterConfig.absoluteMaximumBottomSheetHeightFactor * height;
+  final maximumHeight =
+      FilterConfig.absoluteMaximumBottomSheetHeightFactor * height;
 
-  if(width != null && width > 600) {
+  if (width != null && width > 600) {
     return maximumHeight;
   }
 
