@@ -6,7 +6,7 @@ import "../../../gen/assets.gen.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../utils/determine_contact_icon.dart";
 import "../../../widgets/detail_views/contact_section.dart";
-import "../data/digital_guide_object_model.dart";
+import "../data/models/digital_guide_object_model.dart";
 
 class DigitalGuideObjectsAmenietesTabTileContent extends StatelessWidget {
   const DigitalGuideObjectsAmenietesTabTileContent({

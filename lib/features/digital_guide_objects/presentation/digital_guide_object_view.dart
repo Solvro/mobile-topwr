@@ -19,8 +19,8 @@ import "../../digital_guide/presentation/widgets/digital_guide_data_source_link.
 import "../../digital_guide/presentation/widgets/digital_guide_loading_view.dart";
 import "../../digital_guide/presentation/widgets/headlines_section.dart";
 import "../../digital_guide/presentation/widgets/report_change_button.dart";
-import "../data/digital_guide_object_model.dart";
-import "../data/digital_guide_object_repository.dart";
+import "../data/models/digital_guide_object_model.dart";
+import "../data/repositories/digital_guide_object_repository.dart";
 import "digital_g_objects_featers_list.dart";
 
 @RoutePage()

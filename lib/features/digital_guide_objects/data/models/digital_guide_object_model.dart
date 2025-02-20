@@ -3,12 +3,16 @@ import "package:freezed_annotation/freezed_annotation.dart";
 part "digital_guide_object_model.freezed.dart";
 part "digital_guide_object_model.g.dart";
 
+bool _stringToBool(String? str) {
+  return str?.toLowerCase() == "true";
+}
+
 @freezed
 class DigitalGuideObjectModel with _$DigitalGuideObjectModel {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideObjectModel({
     required int id,
-    required Translations translations,
+    required DigitalGuideObjectTranslations translations,
     String? linkToObjectLocation,
     String? isPossibilityToEnterWithAssistanceDog,
     String? isMicronavigationSystem,
@@ -30,20 +34,20 @@ class DigitalGuideObjectModel with _$DigitalGuideObjectModel {
 }
 
 @freezed
-class Translations with _$Translations {
+class DigitalGuideObjectTranslations with _$DigitalGuideObjectTranslations {
   @JsonSerializable(fieldRename: FieldRename.snake)
-  const factory Translations({
-    required Pl pl,
-  }) = _Translations;
+  const factory DigitalGuideObjectTranslations({
+    required DigitalGuideObjectTranslation pl,
+  }) = _DigitalGuideObjectTranslations;
 
-  factory Translations.fromJson(Map<String, dynamic> json) =>
-      _$TranslationsFromJson(json);
+  factory DigitalGuideObjectTranslations.fromJson(Map<String, dynamic> json) =>
+      _$DigitalGuideObjectTranslationsFromJson(json);
 }
 
 @freezed
-class Pl with _$Pl {
+class DigitalGuideObjectTranslation with _$DigitalGuideObjectTranslation {
   @JsonSerializable(fieldRename: FieldRename.snake)
-  const factory Pl({
+  const factory DigitalGuideObjectTranslation({
     required String name,
     required String address,
     required String accessibilityLevelForMotorDisabilityComment,
@@ -54,5 +58,6 @@ class Pl with _$Pl {
     required String accessibilityLevelForCognitiveDifficultiesComment,
   }) = _Pl;
 
-  factory Pl.fromJson(Map<String, dynamic> json) => _$PlFromJson(json);
+  factory DigitalGuideObjectTranslation.fromJson(Map<String, dynamic> json) =>
+      _$DigitalGuideObjectTranslationFromJson(json);
 }
