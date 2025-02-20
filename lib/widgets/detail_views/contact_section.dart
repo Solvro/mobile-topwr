@@ -14,11 +14,14 @@ class ContactSection extends StatelessWidget {
     required this.list,
     this.title,
     this.topPadding = 24,
+    this.bottomSpace,
   });
 
   final IList<ContactIconsModel> list;
   final String? title;
   final double topPadding;
+  final IList<Widget>?
+      bottomSpace; // widgets to be additionally attached below the list, but stil one the same background
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +50,7 @@ class ContactSection extends StatelessWidget {
                 icon: item.icon,
               ),
             ),
+          if (bottomSpace != null) ...bottomSpace!,
         ],
       ),
     );

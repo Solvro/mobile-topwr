@@ -14,17 +14,25 @@ class DigitalGuideObjectModel with _$DigitalGuideObjectModel {
     required int id,
     required DigitalGuideObjectTranslations translations,
     String? linkToObjectLocation,
-    String? isPossibilityToEnterWithAssistanceDog,
-    String? isMicronavigationSystem,
-    String? areGuidancePaths,
-    String? areInformationBoardsWithBrailleDescription,
-    String? areInformationBoardsWithLargeFont,
-    required String accessibilityLevelForMotorDisability,
-    required String accessibilityLevelForBlind,
-    required String accessibilityLevelForVisuallyImpaired,
-    required String accessibilityLevelForHardOfHearing,
-    required String accessibilityLevelForHighSensorySensitivity,
-    required String accessibilityLevelForCognitiveDifficulties,
+    @JsonKey(fromJson: _stringToBool)
+    required bool isPossibilityToEnterWithAssistanceDog,
+    @JsonKey(fromJson: _stringToBool) required bool isMicronavigationSystem,
+    @JsonKey(fromJson: _stringToBool) required bool areGuidancePaths,
+    @JsonKey(fromJson: _stringToBool)
+    required bool areInformationBoardsWithBrailleDescription,
+    @JsonKey(fromJson: _stringToBool)
+    required bool areInformationBoardsWithLargeFont,
+    @JsonKey(fromJson: _stringToInt)
+    required int accessibilityLevelForMotorDisability,
+    @JsonKey(fromJson: _stringToInt) required int accessibilityLevelForBlind,
+    @JsonKey(fromJson: _stringToInt)
+    required int accessibilityLevelForVisuallyImpaired,
+    @JsonKey(fromJson: _stringToInt)
+    required int accessibilityLevelForHardOfHearing,
+    @JsonKey(fromJson: _stringToInt)
+    required int accessibilityLevelForHighSensorySensitivity,
+    @JsonKey(fromJson: _stringToInt)
+    required int accessibilityLevelForCognitiveDifficulties,
     String? locationMap,
     required List<int> images,
   }) = _DigitalGuideObjectModel;
@@ -50,14 +58,28 @@ class DigitalGuideObjectTranslation with _$DigitalGuideObjectTranslation {
   const factory DigitalGuideObjectTranslation({
     required String name,
     required String address,
-    required String accessibilityLevelForMotorDisabilityComment,
-    required String accessibilityLevelForBlindComment,
-    required String accessibilityLevelForVisuallyImpairedComment,
-    String? accessibilityLevelForHardOfHearingComment,
-    required String accessibilityLevelForHighSensorySensitivityComment,
-    required String accessibilityLevelForCognitiveDifficultiesComment,
-  }) = _Pl;
+    @JsonKey(fromJson: _emptyStringToNull)
+    required String? accessibilityLevelForMotorDisabilityComment,
+    @JsonKey(fromJson: _emptyStringToNull)
+    required String? accessibilityLevelForBlindComment,
+    @JsonKey(fromJson: _emptyStringToNull)
+    required String? accessibilityLevelForVisuallyImpairedComment,
+    @JsonKey(fromJson: _emptyStringToNull)
+    required String? accessibilityLevelForHardOfHearingComment,
+    @JsonKey(fromJson: _emptyStringToNull)
+    required String? accessibilityLevelForHighSensorySensitivityComment,
+    @JsonKey(fromJson: _emptyStringToNull)
+    required String? accessibilityLevelForCognitiveDifficultiesComment,
+  }) = _DigitalGuideObjectTranslation;
 
   factory DigitalGuideObjectTranslation.fromJson(Map<String, dynamic> json) =>
       _$DigitalGuideObjectTranslationFromJson(json);
+}
+
+int _stringToInt(String str) {
+  return int.tryParse(str) ?? 1;
+}
+
+String? _emptyStringToNull(String str) {
+  return str.isEmpty ? null : str;
 }

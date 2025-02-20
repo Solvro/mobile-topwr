@@ -19,6 +19,7 @@ import "../../digital_guide/presentation/widgets/digital_guide_data_source_link.
 import "../../digital_guide/presentation/widgets/digital_guide_loading_view.dart";
 import "../../digital_guide/presentation/widgets/headlines_section.dart";
 import "../../digital_guide/presentation/widgets/report_change_button.dart";
+import "../../digital_guide/tabs/surrounding/presentation/widgets/accessibility_information_cards_list.dart";
 import "../data/models/digital_guide_object_model.dart";
 import "../data/repositories/digital_guide_object_repository.dart";
 import "digital_g_objects_featers_list.dart";
@@ -86,13 +87,45 @@ class _DigitalGObjectView extends ConsumerWidget {
         description: "",
       ),
       ContactSection(
-        list: IList<ContactIconsModel>([
+        list: [
           ContactIconsModel(
             text: digitalGuideData.translations.pl.address
                 .replaceAll("ulica", "ul."),
             icon: Assets.svg.contactIcons.compass,
           ),
-        ]),
+        ].lock,
+        bottomSpace: [
+          AccessibilityInformationCardsList(
+            accLevels: (
+              accessibilityLevelForBlind:
+                  digitalGuideData.accessibilityLevelForBlind,
+              accessibilityLevelForVisuallyImpaired:
+                  digitalGuideData.accessibilityLevelForVisuallyImpaired,
+              accessibilityLevelForMotorDisability:
+                  digitalGuideData.accessibilityLevelForMotorDisability,
+              accessibilityLevelForCognitiveDifficulties:
+                  digitalGuideData.accessibilityLevelForCognitiveDifficulties,
+              accessibilityLevelForHardOfHearing:
+                  digitalGuideData.accessibilityLevelForHardOfHearing,
+              accessibilityLevelForHighSensorySensitivity:
+                  digitalGuideData.accessibilityLevelForHighSensorySensitivity,
+            ),
+            accComments: (
+              commentForBlind: digitalGuideData
+                  .translations.pl.accessibilityLevelForBlindComment,
+              commentForVisuallyImpaired: digitalGuideData
+                  .translations.pl.accessibilityLevelForVisuallyImpairedComment,
+              commentForMotorDisability: digitalGuideData
+                  .translations.pl.accessibilityLevelForMotorDisabilityComment,
+              commentForCognitiveDifficulties: digitalGuideData.translations.pl
+                  .accessibilityLevelForCognitiveDifficultiesComment,
+              commentForHardOfHearing: digitalGuideData
+                  .translations.pl.accessibilityLevelForHardOfHearingComment,
+              commentForHighSensorySensitivity: digitalGuideData.translations.pl
+                  .accessibilityLevelForHighSensorySensitivityComment,
+            ),
+          ),
+        ].lock,
       ),
       const SizedBox(height: DigitalGuideConfig.heightBig),
     ];

@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import "package:flutter/widgets.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
+import "../../../../config/ui_config.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../widgets/my_expansion_tile.dart";
 import "../../../buildings_view/model/building_model.dart";
@@ -148,7 +149,10 @@ class DigitalGuideFeaturesSection extends ConsumerWidget {
         (context, index) {
           final item = items[index];
           return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+            padding: const EdgeInsets.symmetric(
+              horizontal: DigitalGuideConfig.paddingBig,
+              vertical: DigitalGuideConfig.heightSmall,
+            ),
             child: MyExpansionTile(
               title: item.title,
               children: item.content,

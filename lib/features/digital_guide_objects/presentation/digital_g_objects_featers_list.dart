@@ -33,8 +33,8 @@ class DigitalGuideObjectsFeaturesSection extends ConsumerWidget {
       (
         title: context.localize.amenities,
         content: [
-          DigitalGuideObjectsAmenietesTabTileContent(
           DigitalGuideObjectAmenietesTabTileContent(
+            digitalGuideData: digitalGuideData,
           ),
         ],
       ),
@@ -43,11 +43,12 @@ class DigitalGuideObjectsFeaturesSection extends ConsumerWidget {
           (
             title: tile.translations.pl.name,
             content: [
+              // No `AccessibilityInformationCardsList` here, cause not entry on the API has one
               Padding(
                 padding: const EdgeInsets.all(DigitalGuideConfig.paddingMedium),
                 child: MyHtmlWidget(
                   tile.translations.pl.content,
-                  textStyle: context.textTheme.boldBody,
+                  textStyle: context.textTheme.body,
                 ),
               ),
               DigitalGuidePhotoRow(imagesIDs: tile.images.lock),
@@ -60,11 +61,11 @@ class DigitalGuideObjectsFeaturesSection extends ConsumerWidget {
         (context, index) {
           final item = items[index];
           return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
             padding: const EdgeInsets.symmetric(
               horizontal: DigitalGuideConfig.paddingBig,
               vertical: DigitalGuideConfig.heightSmall,
             ),
+            child: MyExpansionTile(
               title: item.title,
               children: item.content,
             ),
