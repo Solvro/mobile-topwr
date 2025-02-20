@@ -118,7 +118,7 @@ class _DigitalGObjectView extends ConsumerWidget {
               childCount: widgets1.length,
             ),
           ),
-          DigitalGObjectsFeaturesSection(
+          DigitalGuideObjectsFeaturesSection(
             digitalGuideData: digitalGuideData,
             building: building,
           ),

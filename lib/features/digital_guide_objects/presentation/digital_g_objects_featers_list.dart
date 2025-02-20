@@ -11,12 +11,12 @@ import "../../buildings_view/model/building_model.dart";
 import "../../digital_guide/presentation/widgets/digital_guide_photo_row.dart";
 import "../data/models/digital_guide_object_model.dart";
 import "../data/repositories/digital_guide_tabs_repository.dart";
-import "digital_g_objs_amenietes_tab_tile_content.dart";
+import "digital_g_objects_amenietes_tab_tile_content.dart";
 
 typedef TileContent = ({String title, List<Widget> content});
 
-class DigitalGObjectsFeaturesSection extends ConsumerWidget {
-  const DigitalGObjectsFeaturesSection({
+class DigitalGuideObjectsFeaturesSection extends ConsumerWidget {
+  const DigitalGuideObjectsFeaturesSection({
     required this.digitalGuideData,
     required this.building,
   });

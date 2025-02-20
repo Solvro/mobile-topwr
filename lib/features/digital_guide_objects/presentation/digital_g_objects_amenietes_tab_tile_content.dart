@@ -8,8 +8,8 @@ import "../../../utils/determine_contact_icon.dart";
 import "../../../widgets/detail_views/contact_section.dart";
 import "../data/models/digital_guide_object_model.dart";
 
-class DigitalGuideObjectsAmenietesTabTileContent extends StatelessWidget {
-  const DigitalGuideObjectsAmenietesTabTileContent({
+class DigitalGuideObjectAmenietesTabTileContent extends StatelessWidget {
+  const DigitalGuideObjectAmenietesTabTileContent({
     required this.digitalGuideData,
   });
 
@@ -20,17 +20,17 @@ class DigitalGuideObjectsAmenietesTabTileContent extends StatelessWidget {
     return ContactSection(
       topPadding: DigitalGuideConfig.heightTiny,
       list: [
-        if (digitalGuideData.areGuidancePaths == "True")
+        if (digitalGuideData.areGuidancePaths)
           ContactIconsModel(
             text: context.localize.orientation_paths,
             icon: Assets.svg.digitalGuide.orientationPaths,
           ),
-        if (digitalGuideData.isMicronavigationSystem == "True")
+        if (digitalGuideData.isMicronavigationSystem)
           ContactIconsModel(
             text: context.localize.micronavigation_system,
             icon: Assets.svg.digitalGuide.micronavigation,
           ),
-        if (digitalGuideData.isPossibilityToEnterWithAssistanceDog == "True")
+        if (digitalGuideData.isPossibilityToEnterWithAssistanceDog)
           ContactIconsModel(
             text: context.localize.assistance_dog,
             icon: Assets.svg.digitalGuide.assistanceDog,
