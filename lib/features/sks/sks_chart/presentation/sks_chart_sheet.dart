@@ -61,6 +61,7 @@ class SksChartSheet extends ConsumerWidget {
                           maxNumberOfUsers: maxNumberOfUsers,
                           chartData:
                               asyncChartData.value ?? const IList.empty(),
+                          height: sheetHeight,
                         ),
                       ),
                       Padding(

@@ -15,11 +15,13 @@ class SksChartCard extends StatelessWidget {
     required this.currentNumberOfUsers,
     required this.maxNumberOfUsers,
     required this.chartData,
+    required this.height,
   });
 
   final SksUserData? currentNumberOfUsers;
   final double maxNumberOfUsers;
   final IList<SksChartData> chartData;
+  final double height;
 
   @override
   Widget build(BuildContext context) {
@@ -42,9 +44,12 @@ class SksChartCard extends StatelessWidget {
             const SizedBox(
               height: SksChartConfig.heightLarge,
             ),
-            SksChart(
-              maxNumberOfUsers: maxNumberOfUsers,
-              chartData: chartData,
+            SizedBox(
+              height: 0.5 * height,
+              child: SksChart(
+                maxNumberOfUsers: maxNumberOfUsers,
+                chartData: chartData,
+              ),
             ),
             const Padding(
               padding: EdgeInsets.only(
