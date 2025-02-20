@@ -9,6 +9,9 @@ part "digital_guide_lift.g.dart";
 
 @freezed
 class DigitalGuideLift with _$DigitalGuideLift {
+
+  const DigitalGuideLift._();
+
   const factory DigitalGuideLift({
     required int id,
     required DigitalGuideTranslationsLift translations,
