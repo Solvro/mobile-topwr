@@ -68,10 +68,14 @@ class DigitalGuideLift with _$DigitalGuideLift {
     @JsonKey(name: "is_display_showing_floor", fromJson: _stringToBool)
     required bool isDisplayShowingFloor,
     @JsonKey(
-        name: "is_outside_arrival_notification_sound", fromJson: _stringToBool)
+      name: "is_outside_arrival_notification_sound",
+      fromJson: _stringToBool,
+    )
     required bool isOutsideArrivalNotificationSound,
     @JsonKey(
-        name: "is_inside_arrival_notification_sound", fromJson: _stringToBool)
+      name: "is_inside_arrival_notification_sound",
+      fromJson: _stringToBool,
+    )
     required bool isInsideArrivalNotificationSound,
     @JsonKey(name: "is_good_door_wall_contrast", fromJson: _stringToBool)
     required bool isGoodDoorWallContrast,
@@ -105,9 +109,11 @@ class DigitalGuideLift with _$DigitalGuideLift {
       l10n.control_panel_outside(outsideControlPanelHeight),
       if (isInsideConvexButton) l10n.lift_button_are_convex,
       l10n.is_with_outsite_notification(
-          isOutsideArrivalNotificationSound.toString().toLowerCase()),
+        isOutsideArrivalNotificationSound.toString().toLowerCase(),
+      ),
       l10n.is_with_inside_notification(
-          isOutsideArrivalNotificationSound.toString().toLowerCase()),
+        isOutsideArrivalNotificationSound.toString().toLowerCase(),
+      ),
     ]);
   }
 
@@ -117,11 +123,14 @@ class DigitalGuideLift with _$DigitalGuideLift {
       if (isInsideConvexButton) l10n.lift_button_are_convex,
       l10n.is_lit(isInsideLit.toString().toLowerCase()),
       l10n.is_with_outsite_notification(
-          isOutsideArrivalNotificationSound.toString().toLowerCase()),
+        isOutsideArrivalNotificationSound.toString().toLowerCase(),
+      ),
       l10n.is_with_inside_notification(
-          isOutsideArrivalNotificationSound.toString().toLowerCase()),
+        isOutsideArrivalNotificationSound.toString().toLowerCase(),
+      ),
       l10n.is_door_good_contrast(
-          isGoodDoorWallContrast.toString().toLowerCase()),
+        isGoodDoorWallContrast.toString().toLowerCase(),
+      ),
     ]);
   }
 
