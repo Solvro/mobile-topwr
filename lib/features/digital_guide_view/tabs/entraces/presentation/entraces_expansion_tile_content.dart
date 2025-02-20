@@ -4,9 +4,9 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../config/ui_config.dart";
 import "../../../../../widgets/my_error_widget.dart";
-import "../../../data/models/digital_guide_response.dart";
+import "../../../../digital_guide/data/models/digital_guide_response.dart";
+import "../../../../digital_guide/tabs/entraces/data/models/digital_guide_entrace.dart";
 import "../data/business/entrances_use_cases.dart";
-import "../data/models/digital_guide_entrace.dart";
 import "digital_guide_entrance_widget.dart";
 
 class EntrancesExpansionTileContent extends ConsumerWidget {

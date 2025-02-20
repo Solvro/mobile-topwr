@@ -8,12 +8,12 @@ import "../../../../../gen/assets.gen.dart";
 import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/context_extensions.dart";
 import "../../../../../widgets/detail_views/detail_view_app_bar.dart";
-import "../../../presentation/widgets/accessibility_button.dart";
-import "../../../presentation/widgets/accessibility_profile_card.dart";
-import "../../../presentation/widgets/bullet_list.dart";
-import "../../../presentation/widgets/digital_guide_nav_link.dart";
-import "../../../presentation/widgets/digital_guide_photo_row.dart";
-import "../data/models/digital_guide_entrace.dart";
+import "../../../../digital_guide/presentation/widgets/accessibility_button.dart";
+import "../../../../digital_guide/presentation/widgets/accessibility_profile_card.dart";
+import "../../../../digital_guide/presentation/widgets/bullet_list.dart";
+import "../../../../digital_guide/presentation/widgets/digital_guide_nav_link.dart";
+import "../../../../digital_guide/presentation/widgets/digital_guide_photo_row.dart";
+import "../../../../digital_guide/tabs/entraces/data/models/digital_guide_entrace.dart";
 
 @RoutePage()
 class DigitalGuideEntranceDetailsView extends ConsumerWidget {

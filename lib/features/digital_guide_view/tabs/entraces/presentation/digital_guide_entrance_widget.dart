@@ -2,9 +2,9 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../config/ui_config.dart";
+import "../../../../digital_guide/presentation/widgets/digital_guide_nav_link.dart";
+import "../../../../digital_guide/tabs/entraces/data/models/digital_guide_entrace.dart";
 import "../../../../navigator/utils/navigation_commands.dart";
-import "../../../presentation/widgets/digital_guide_nav_link.dart";
-import "../data/models/digital_guide_entrace.dart";
 
 class DigitalGuideEntranceWidget extends ConsumerWidget {
   const DigitalGuideEntranceWidget({
