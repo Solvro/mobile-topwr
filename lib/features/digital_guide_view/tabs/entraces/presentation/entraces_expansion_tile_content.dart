@@ -6,7 +6,7 @@ import "../../../../../config/ui_config.dart";
 import "../../../../../widgets/my_error_widget.dart";
 import "../../../../digital_guide/data/models/digital_guide_response.dart";
 import "../../../../digital_guide/tabs/entraces/data/models/digital_guide_entrace.dart";
-import "../data/business/entrances_use_cases.dart";
+import "../business/entrances_use_cases.dart";
 import "digital_guide_entrance_widget.dart";
 
 class EntrancesExpansionTileContent extends ConsumerWidget {

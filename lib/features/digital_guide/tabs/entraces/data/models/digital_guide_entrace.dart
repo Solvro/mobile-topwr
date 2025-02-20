@@ -84,11 +84,3 @@ bool _stringToBool(String? str) {
   }
   return str.toLowerCase() == "true";
 }
-
-String toNonNullString(dynamic value) {
-  return value?.toString() ?? "";
-}
-
-IList<String> getNonNullableList(List<String?> items) {
-  return items.where((item) => item != null).cast<String>().toIList();
-}
