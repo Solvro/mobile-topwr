@@ -52,11 +52,14 @@ class DigitalGuideEntranceDetailsView extends ConsumerWidget {
                 .entrance_is_for_personel(entrance.isForPersonel.toString()),
             context.localize.entrance_is_lit(entrance.isLit.toString()),
             context.localize.entrance_is_protection_from_weather(
-                entrance.isProtectionFromWeather.toString()),
+              entrance.isProtectionFromWeather.toString(),
+            ),
             context.localize.entrance_is_emergency_exit(
-                entrance.isEmergencyExit.toString()),
+              entrance.isEmergencyExit.toString(),
+            ),
             context.localize.entrance_is_building_marked_in_en(
-                entrance.isBuildingMarkedInEn.toString()),
+              entrance.isBuildingMarkedInEn.toString(),
+            ),
             context.localize
                 .entrance_are_benches(entrance.areBenches.toString()),
           ]),
