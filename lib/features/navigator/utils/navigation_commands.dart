@@ -96,6 +96,14 @@ extension NavigationX on WidgetRef {
     await _router.push(DigitalGuideRoute(ourId: ourId, building: building));
   }
 
+  Future<void> navigateDigitalGuideObject(
+    String ourId,
+    BuildingModel building,
+  ) async {
+    await _router
+        .push(DigitalGuideObjectRoute(ourId: ourId, building: building));
+  }
+
   Future<void> navigateAdaptedToiletDetails(AdaptedToilet adaptedToilet) async {
     await _router.push(AdaptedToiletDetailRoute(adaptedToilet: adaptedToilet));
   }
@@ -162,9 +170,8 @@ extension NavigationX on WidgetRef {
     return switch (building.externalDigitalGuideMode) {
       "web_url" => launch(building.externalDigitalGuideIdOrURL!),
       "digital_guide_building" => navigateDigitalGuide(building.id, building),
-      "digital_guide_other_place" => Logger().i(
-          "Other Digital Guide place, not yet implemented",
-        ),
+      "other_digital_guide_place" =>
+        navigateDigitalGuideObject(building.id, building),
       _ => Logger().w(
           "Unknown externalDigitalGuideMode: ${building.externalDigitalGuideMode}",
         )
