@@ -56,6 +56,7 @@ For models used in DetailView, use `XDetails`
 1. If a feature is a view, name it accordingly: `departments_view` or `department_detail_view`.
 2. If a feature is not view-oriented, use a simple, descriptive keyword: `academic_calendar`, `navigator`, `parking_chart`.
 
+
 ## Extensions
 For all `extensions`, append `X` in the name.
 ```dart

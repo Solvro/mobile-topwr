@@ -14,6 +14,7 @@ import "../digital_guide/data/models/region.dart";
 import "../digital_guide/presentation/digital_guide_view.dart";
 import "../digital_guide/tabs/adapted_toilets/data/models/adapted_toilet.dart";
 import "../digital_guide/tabs/adapted_toilets/presentation/adapted_toilet_detail_view.dart";
+import "../digital_guide/tabs/doors/presentation/door_view.dart";
 import "../digital_guide/tabs/lifts/data/models/digital_guide_lift.dart";
 import "../digital_guide/tabs/lifts/presentation/digital_guide_lift_detail_view.dart";
 import "../digital_guide/tabs/micronavigation/data/models/micronavigation_response.dart";
@@ -24,8 +25,8 @@ import "../digital_guide/tabs/structure/data/models/corridor.dart";
 import "../digital_guide/tabs/structure/presentation/views/corridor_view.dart";
 import "../digital_guide/tabs/structure/presentation/views/level_view.dart";
 import "../digital_guide/tabs/structure/presentation/views/region_view.dart";
-import "../digital_guide_view/tabs/transportation/data/models/digital_guide_transportation.dart";
-import "../digital_guide_view/tabs/transportation/presentation/transportation_detail_view.dart";
+import "../digital_guide/tabs/transportation/data/models/digital_guide_transportation.dart";
+import "../digital_guide/tabs/transportation/presentation/transportation_detail_view.dart";
 import "../guide_detail_view/guide_detail_view.dart";
 import "../guide_view/guide_view.dart";
 import "../home_view/home_view.dart";
@@ -37,6 +38,7 @@ import "../sks/sks_menu/presentation/sks_menu_screen.dart";
 import "root_view.dart";
 
 part "app_router.g.dart";
+
 part "app_router.gr.dart";
 
 class _NoTransitionRoute extends CustomRoute {
@@ -137,12 +139,21 @@ class AppRouter extends RootStackRouter {
           page: CorridorRoute.page,
         ),
         AutoRoute(
+          page: DigitalGuideRoomDetailRoute.page,
+        ),
+        AutoRoute(
           path: "/digital-guide/:id/micronavigation-details",
           page: MicronavigationDetailRoute.page,
         ),
         AutoRoute(
           path: "/digital-guide/:id/adapted-toilet-details",
           page: AdaptedToiletDetailRoute.page,
+        ),
+        AutoRoute(
+          page: DoorRoute.page,
+        ),
+        AutoRoute(
+          page: TransportationDetailRoute.page,
         ),
       ];
 }

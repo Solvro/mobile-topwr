@@ -7,8 +7,8 @@ import "../../../../../config/ui_config.dart";
 import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/context_extensions.dart";
 import "../../../../../widgets/detail_views/detail_view_app_bar.dart";
-import "../../../../digital_guide/presentation/widgets/accessibility_button.dart";
-import "../../../../digital_guide/presentation/widgets/bullet_list.dart";
+import "../../../presentation/widgets/accessibility_button.dart";
+import "../../../presentation/widgets/bullet_list.dart";
 import "../data/models/digital_guide_transportation.dart";
 
 @RoutePage()

@@ -239,6 +239,16 @@
   "adapted_toilet_is_not_marked": "Lokalizacja toalety nie jest oznaczona za pomocą informacji kierunkowej.",
   "images": "Zdjęcia",
   "door": "Drzwi",
+  "door_visible_from_outside" : "{value, select, True{Drzwi od strony zewnętrznej wyraźnie odznaczają się od ścian.} False{Drzwi od strony zewnętrznej nie odznaczają się wyraźnie od ścian.} other{}}",
+  "door_visible_from_inside" : "{value, select, True{Drzwi od strony wewnętrznej wyraźnie odznaczają się od ścian.} False{Drzwi od strony wewnętrznej nie odznaczają się wyraźnie od ścian.} other{}}",
+  "single_leaf_door" : "Są to drzwi jednoskrzydłowe.",
+  "single_leaf_door_sliding": "Są to drzwi przesuwne jednoskrzydłowe.",
+  "double_leaf_door" : "Są to drzwi dwuskrzydłowe.",
+  "double_leaf_door_sliding": "Są to drzwi przesuwne dwuskrzydłowe.",
+  "swing_door": "Są to drzwi wahadłowe.",
+  "main_wing_highlighted": "{value, select, True{Główne skrzydło drzwi jest wyróżnione.} False{Główne skrzydło drzwi nie jest wyróżnione.} other{}}",
+  "increased_force_required": "{value, select, True{Do otwarcia drzwi wymagane jest użycie wzmożonej siły.} False{Do otwarcia drzwi nie jest wymagane użycie wzmożonej siły.} other{}}",
+  "door_closer" : "{value, select, True{W drzwiach zamontowany jest wspomagacz zamykania/samozamykacz.} False{W drzwiach nie jest zamontowany wspomagacz zamykania/samozamykacz.} other{}}",
   "accessibility_profile" : "Profil dostępności",
   "accessibility_profile_empty" : "Brak informacji dotyczących wybranego profilu dostępności",
   "accessibility_card_information" : "{message} jest {accessibility_level} dla osób {disability_description}",
@@ -288,6 +298,12 @@
   "room_stairs_is_railing" : "{value, select, false{Przy schodach nie znajduje się poręcz.} true{Przy schodach znajduje się poręcz.} other{}}",
   "room_stairs_is_good_railing_contrast" : "{value, select, false{Poręcz nie wyróżnia się na tle otoczenia.} true{Poręcz wyróżnia się na tle otoczenia.} other{}}",
   "room_stairs_is_round_cross_section_railing" : "{value, select, false{Poręcz nie jest zaokrąglona i może posiadać ostre krawędzie.} true{Poręcz nie posiada ostrych krawędzi i jest zaokrąglona.} other{}}",
+
+  "room_platforms_is_good_floor_platform_contrast": "{value, select, false{Brak dobrego kontrastu podłogi względem platformy.} true{Dobry kontrast podłogi względem platformy.} other{}}",
+  "room_platforms_have_access_for_people_in_wheelchair": "{value, select, false{Brak dostępu dla osób poruszających się na wózku inwalidzkim.} true{Jest dostęp dla osób poruszających się na wózku inwalidzkim.} other{}}",
+  "room_platforms_is_platform_entrance_marked": "{value, select, false{Wejście na platformę nie jest oznaczone.} true{Wejście na platformę jest oznaczone.} other{}}",
+  "room_platforms_are_no_objects_narrow_communication_zone": "{value, select, false{W strefie komunikacyjnej znajdują się przeszkody.} true{Brak przeszkód w strefie komunikacyjnej.} other{}}",
+
   "strategicBadgeTooltip": "Koło Strategiczne PWr",
   "strategic_club_abbr": "KS",
   "emptySection": "Brak członków zespołu w tej wersji",
@@ -296,9 +312,7 @@
   "audio_message" : "Komunikat Dźwiękowy",
   "audio_message_comment" : "Sygnał znacznika może różnić się tempem i brzmieniem",
   "platforms" : "Podesty",
-  "stairs" : "Schody",
   "key_information" : "Najważniejsze informacje",
-  "working_hours" : "Godziny otwarcia",
   "motorImpairment": "Dysfunkcja ruchu",
   "visualImpairment": "Dysfunkcja wzroku",
   "blind": "Niewidomy",
@@ -306,10 +320,7 @@
   "sensorySensitivity": "Wrażliwość sensoryczna",
   "cognitiveImpairment": "Trudności poznawcze",
   "accessibility_profiles":"Profile dostępności",
-  "you_can_adjust": "Możesz dostosować informacje pod swoje specjalne potrzeby",
   "additional_information": "Dodatkowe informacje",
-  "lodge": "Portiernia",
-  "dressing_room": "Szatnia",
   "no_lodge_in_the_building": "W tym budynku nie ma portierni",
   "no_dressing_room_in_the_building": "W tym budynku nie ma szatni",
   "general_offline" : "pobierania danych",
@@ -317,7 +328,6 @@
   "dimensions" : "Wymiary",
   "max_capacity" : "Maksymalny udźwig",
   "generic_error_message": "Upsss...Coś poszło nie tak",
-  "navigate_to_building": "Nawiguj do budynku",
   "public_transport": "Publiczny środek komunikacji miejskiej (autobus, tramwaj)",
   "private_transport": "Prywatny środek transportu (samochód, rower)",
   "distance": " W odległości ",
@@ -345,6 +355,7 @@
   "ramp" : "Pochylnia",
   "lift" : "Winda",
   "parking" : "Parking",
+  "corridor" : "Korytarz",
   "corridor_simple_layout_text" : "Korytarz ma prosty i przejrzysty układ, który jest powtarzalny na każdej kondygnacji. {comment}",
   "@corridor_simple_layout_text": {
     "description": "comment",
@@ -382,13 +393,6 @@
     }
   },
   "room_entrances_text" : "Z korytarza możliwe jest wejście do następujących pomieszczeń: {comment}",
-  "@floor_marked_text": {
-    "placeholders": {
-      "comment": {
-        "type": "String"
-      }
-    }
-  },
   "no_room_entrances_text" : "Z korytarza nie ma możliwości wejścia do żadnego pomieszczenia.",
   "information_board_text" : "W korytarzu nie ma tablicy informacyjnej ze spisem pomieszczeń. {comment}",
   "@information_board_text": {
@@ -482,5 +486,6 @@
   "is_with_inside_notification": "Podczas jazdy windą {value, select, false{nie} other{}} jest wydawane dźwiękowe powiadomienie o dojechaniu na wybrane piętro.",
   "is_door_good_contrast": "Drzwi windy {value, select, false{nie} other{}} kontrastują ze ścianą.",
   "is_inside_lit": "Poziom oświetlenia wewnątrz windy {value, select, false{nie} other{}} jest odpowiedni.",
-  "is_lift_floor_info": "Winda {value, select, false{nie} other{}} wyświetla informacje o numerze piętra, na którym się aktualnie znajduje."
+  "is_lift_floor_info": "Winda {value, select, false{nie} other{}} wyświetla informacje o numerze piętra, na którym się aktualnie znajduje.",
+  "platform_dimensions" : "Wymiary platformy: "
 }

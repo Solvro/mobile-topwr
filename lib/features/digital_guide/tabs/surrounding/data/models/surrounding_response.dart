@@ -1,5 +1,7 @@
 import "package:freezed_annotation/freezed_annotation.dart";
 
+import "../../../../../../utils/type_converter.dart";
+
 part "surrounding_response.freezed.dart";
 part "surrounding_response.g.dart";
 
@@ -10,57 +12,57 @@ class SurroundingResponse with _$SurroundingResponse {
     required SurroundingResponseTranslations translations,
     @JsonKey(
       name: "are_no_barriers",
-      fromJson: _stringToBool,
+      fromJson: stringToBool,
     )
     required bool areNoBarriers,
     @JsonKey(
       name: "are_lowered_curbs",
-      fromJson: _stringToBool,
+      fromJson: stringToBool,
     )
     required bool areLoweredCurbs,
     @JsonKey(
       name: "is_pavement_rough",
-      fromJson: _stringToBool,
+      fromJson: stringToBool,
     )
     required bool isPavementRough,
     @JsonKey(
       name: "are_parking_spaces",
-      fromJson: _stringToBool,
+      fromJson: stringToBool,
     )
     required bool areParkingSpaces,
     @JsonKey(
       name: "are_parking_spaces_for_pwd",
-      fromJson: _stringToBool,
+      fromJson: stringToBool,
     )
     required bool areParkingSpacesForPwd,
     @JsonKey(
       name: "are_high_curbs_at_parking_space_for_pwd",
-      fromJson: _stringToBool,
+      fromJson: stringToBool,
     )
     required bool areHighCurbsAtParkingSpaceForPwd,
     @JsonKey(
       name: "is_path_to_accessible_entrance_marked",
-      fromJson: _stringToBool,
+      fromJson: stringToBool,
     )
     required bool isPathToAccessibleEntranceMarked,
     @JsonKey(
       name: "are_dangerous_elements",
-      fromJson: _stringToBool,
+      fromJson: stringToBool,
     )
     required bool areDangerousElements,
     @JsonKey(
       name: "is_lit",
-      fromJson: _stringToBool,
+      fromJson: stringToBool,
     )
     required bool isLit,
     @JsonKey(
       name: "is_noisy_street_near_building",
-      fromJson: _stringToBool,
+      fromJson: stringToBool,
     )
     required bool isNoisyStreetNearBuilding,
     @JsonKey(
       name: "is_sidewalk_separated_from_the_road",
-      fromJson: _stringToBool,
+      fromJson: stringToBool,
     )
     required bool isSidewalkSeparatedFromTheRoad,
     @JsonKey(
@@ -159,10 +161,6 @@ class SurroundingResponseTranslationsDetails
     Map<String, dynamic> json,
   ) =>
       _$SurroundingResponseTranslationsDetailsFromJson(json);
-}
-
-bool _stringToBool(String value) {
-  return value.toLowerCase() == "true";
 }
 
 int _stringToInt(String value) {
