@@ -450,5 +450,42 @@
   "no_vending_machines_text" : "W korytarzu nie ma automatów sprzedających.",
   "emergency_plan_text" : "W korytarzu znajdują się plany ewakuacyjne.",
   "no_emergency_plan_text" : "W korytarzu nie ma planów ewakuacyjnych.",
+  "lift_width_text": "Szerokość drzwi wynosi {width} centymetrów.",
+  "@lift_width_text": {
+    "placeholders": {
+      "width": {
+        "type": "int"
+      }
+    }
+  },
+  "lift_dimensions_text": "Wymiary windy wynoszą",
+  "lift_glazed": "W windzie znajduje się lustro ułatwiające wysiadanie.",
+  "control_panel_inside": "Panel sterujący w windzie znajduje się na wysokości {height} centymetrów.",
+  "@control_panel_inside": {
+    "placeholders": {
+      "height": {
+        "type": "int"
+      }
+    }
+  },
+  "control_panel_outside": "Panel sterujący na zewnątrz windy znajduje się na wysokości {height} centymetrów.",
+  "@control_panel_outside": {
+    "placeholders": {
+      "height": {
+        "type": "int"
+      }
+    }
+  },
+  "lift_info_boart_text": "Winda jest oznaczona tablicą informacyjną.",
+  "is_voice_comunicates": "Winda nie wydaje komunikatów głosowych.",
+  "with_voice_comunicates": "Winda wydaje komunikaty głosowe.",
+  "without_inside_braile_comunicates": "Przyciski wewnątrz windy nie posiadają oznaczeń w języku Braille'a.",
+  "with_inside_braile_comunicates": "Przyciski wewnątrz windy posiadają oznaczenia w języku Braille'a.",
+  "lift_button_are_convex": "Przyciski na panelu wewnątrz windy są wypukłe.",
+  "is_with_outsite_notification": "Podczas oczekiwania na windę {value, select, false{nie} other{}} jest wydawane dźwiękowe powiadomienie o jej przyjechaniu.",
+  "is_with_inside_notification": "Podczas jazdy windą {value, select, false{nie} other{}} jest wydawane dźwiękowe powiadomienie o dojechaniu na wybrane piętro.",
+  "is_door_good_contrast": "Drzwi windy {value, select, false{nie} other{}} kontrastują ze ścianą.",
+  "is_inside_lit": "Poziom oświetlenia wewnątrz windy {value, select, false{nie} other{}} jest odpowiedni.",
+  "is_lift_floor_info": "Winda {value, select, false{nie} other{}} wyświetla informacje o numerze piętra, na którym się aktualnie znajduje.",
   "platform_dimensions" : "Wymiary platformy: "
 }

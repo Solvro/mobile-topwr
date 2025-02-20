@@ -60,6 +60,18 @@ class DigitalGuideResponse with _$DigitalGuideResponse {
     @JsonKey(name: "location_map") required int locationMapId,
     @JsonKey(name: "levels") required List<int> levelsIndices,
     @JsonKey(name: "access") required int accessId,
+    @JsonKey(name: "accessibility_level_for_motor_disability")
+    required String accessibilityLevelForMotorDisability,
+    @JsonKey(name: "accessibility_level_for_blind")
+    required String accessibilityLevelForBlind,
+    @JsonKey(name: "accessibility_level_for_visually_impaired")
+    required String accessibilityLevelForVisuallyImpaired,
+    @JsonKey(name: "accessibility_level_for_hard_of_hearing")
+    required String accessibilityLevelForHardOfHearing,
+    @JsonKey(name: "accessibility_level_for_high_sensory_sensitivity")
+    required String accessibilityLevelForHighSensorySensitivity,
+    @JsonKey(name: "accessibility_level_for_cognitive_difficulties")
+    required String accessibilityLevelForCognitiveDifficulties,
   }) = _DigitalGuideResponse;
 
   factory DigitalGuideResponse.fromJson(Map<String, dynamic> json) =>
