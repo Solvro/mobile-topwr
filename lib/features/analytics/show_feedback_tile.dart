@@ -16,8 +16,8 @@ class ShowFeedbackTile extends StatelessWidget {
     return WideTileCard(
       title: context.localize.bug_report_title,
       subtitle: context.localize.bug_report_subtitle,
-      onTap: () {
-        Wiredash.of(context).show(
+      onTap: () async {
+        await Wiredash.of(context).show(
           options: WiredashFeedbackOptions(
             labels: context.labels,
           ),

@@ -6,6 +6,7 @@ import "../../config/ui_config.dart";
 import "../../utils/context_extensions.dart";
 import "../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../widgets/detail_views/sliver_header_section.dart";
+import "../../widgets/horizontal_symmetric_safe_area.dart";
 import "../../widgets/loading_widgets/scrolable_loader_builder.dart";
 import "../../widgets/loading_widgets/simple_previews/preview_card_loading.dart";
 import "../../widgets/my_error_widget.dart";
@@ -23,7 +24,7 @@ class AboutUsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return HorizontalSymmetricSafeAreaScaffold(
       appBar: DetailViewAppBar(),
       body: const _AboutUsView(),
     );
@@ -57,7 +58,7 @@ class _AboutUsView extends ConsumerWidget {
                   ),
                   SectionHeader(text: context.localize.meet_our_team),
                   TeamSection(
-                    members: value.getMemberData(),
+                    multiversionTeam: value.getMemberData(),
                   ),
                   const AppVersionTile(),
                 ],
@@ -92,7 +93,7 @@ class _AboutUsLoading extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(AboutUsConfig.defaultPadding),
           child: SizedBox(
-            height: MediaQuery.of(context).size.height / 4,
+            height: MediaQuery.sizeOf(context).height / 4,
             child: ScrollableLoaderBuilder(
               itemsSpacing: 8,
               scrollDirection: Axis.vertical,

@@ -1,8 +1,9 @@
 import "dart:ui";
 
 import "package:flutter/widgets.dart";
-import "package:flutter_gen/gen_l10n/app_localizations.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
+
+import "../l10n/app_localizations.dart";
 
 part "watch_locale.g.dart";
 

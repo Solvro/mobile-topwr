@@ -5,11 +5,12 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../widgets/my_error_widget.dart";
 import "../../config/ui_config.dart";
+import "../../theme/app_theme.dart";
 import "../../utils/context_extensions.dart";
 import "../../utils/launch_url_util.dart";
 import "../../widgets/search_box_app_bar.dart";
 import "../../widgets/wide_tile_card.dart";
-import "../departments_view/widgets/departments_view_loading.dart";
+import "../departments/departments_view/widgets/departments_view_loading.dart";
 import "guide_view_controller.dart";
 import "repository/guide_repository.dart";
 import "widgets/guide_grid.dart";
@@ -94,7 +95,14 @@ class _GuideInfo extends ConsumerWidget {
     return WideTileCard(
       title: context.localize.hi_student,
       subtitle: context.localize.guide_ideas_info,
-      secondSubtitle: context.localize.guide_click_here,
+      trailing: SizedBox.square(
+        dimension: WideTileCardConfig.imageSize,
+        child: Icon(
+          Icons.lightbulb_outline,
+          size: 55,
+          color: context.colorTheme.greyPigeon,
+        ),
+      ),
       onTap: () async {
         await ref.launch(emailLaunchUri.toString());
       },

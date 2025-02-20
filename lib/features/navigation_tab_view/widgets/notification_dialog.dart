@@ -14,7 +14,7 @@ Future<void> showNotificationDialog({
     confirmText: context.localize.confirm,
     dialogContent: Text(
       context.localize.push_notifications_dialog_info,
-      style: context.textTheme.body,
+      style: context.textTheme.lightTitle,
     ),
   );
 }

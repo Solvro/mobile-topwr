@@ -29,7 +29,7 @@
   "exam_friday": "w Egzaminacyjny Piątek",
   "exam_saturday": "w Egzaminacyjną Sobotę",
   "exam_sunday": "w Egzaminacyjną Niedzielę",
-  "follow_solvro": "Obserwuj Solvro",
+  "follow_solvro": "Obserwuj nas na socialach!",
   "unknown_day": "w ten piękny dzień!",
   "read_more": "Czytaj dalej",
   "whats_up": "Co słychać?",
@@ -37,7 +37,7 @@
   "days": "dni",
   "to_start_session": "do rozpoczęcia sesji",
   "map_button": "Mapa",
-  "meet_our_team": "Poznaj nasz zespół",
+  "meet_our_team": "Poznaj nas!",
   "sections": "Wydziały",
   "list": "Lista",
   "departments": "Wydziały",
@@ -106,8 +106,7 @@
   "hi_student": "Hej studencie!",
   "guide_development_info": "Pamiętaj, że przewodnik jest wciąż w fazie rozwoju :)",
   "guide_ideas_info": "Masz ciekawy pomysł? Podziel się z nami!",
-  "guide_click_here": "Zgłoś swój pomysł",
-  "guide_subject_default_content": "Pomsył na rozwój ToPWR",
+  "guide_subject_default_content": "Pomysł na rozwój ToPWR",
   "streak_counter": "Używasz ToPWR nieprzerwanie od {days, plural, =1{1 dnia} other{{days} dni}}🔥",
   "@streak_counter": {
     "description": "A message with a single parameter",
@@ -115,16 +114,6 @@
       "days": {
         "type": "int",
         "example": "15"
-      }
-    }
-  },
-  "relative_time": "Ostatnia aktualizacja: {difference, plural, =0{mniej niż minutę temu} =1{minutę temu} =2{minuty temu} few{{difference} minuty temu} many{{difference} minut temu} other{{difference} minut temu}}",
-  "@relative-time": {
-    "description": "A message with a single parameter",
-    "placeholders": {
-      "minutes": {
-        "type": "int",
-        "example": "10"
       }
     }
   },
@@ -144,6 +133,7 @@
   "sks_menu_meat_dishes": "Dania mięsne",
   "sks_menu_side_dishes": "Dodatki",
   "sks_menu_drinks": "Kompoty i napoje",
+  "sks_menu_desserts": "Desery",
   "sks_full_name" : "Strefa Kultury Studenckiej",
   "leave_a_review" : "Oceń aplikację",
   "rest_header": "Pozostałe",
@@ -155,14 +145,17 @@
   "report_change_button" : "Zgłoś zmianę",
   "report_change_email" : "kn.solvro@pwr.edu.pl",
   "report_change_subject" : "Sugestia zmiany - ToPWR",
-  "report_change_error_toast_message" : "Nie można otworzyć aplikacji mailowej",
+  "report_change_error_toast_message" : "Wystąpił błąd przy otwieraniu hiperłącza, sprawdź uprawnienia aplikacji",
   "localization" : "Lokalizacja",
   "amenities" : "Udogodnienia",
   "surroundings": "Otoczenie",
   "transport" : "Dojazd",
   "entrances" : "Wejścia",
-  "elevators" : "Windy",
-  "toilets" : "Toilets",
+  "lifts" : "Windy",
+  "adapted_toilets" : "Toalety dostosowane",
+  "adapted_toilet_description": "Toaleta dla osób z niepełnosprawnościami",
+  "adapted_toilet_description_men": "Toaleta dla mężczyzn z niepełnosprawnościami",
+  "adapted_toilet_description_women": "Toaleta dla kobiet z niepełnosprawnościami",
   "micro_navigation" : "Mikronawigacja",
   "building_structure" : "Struktura budynku",
   "room_information" : "Pomieszczenia",
@@ -180,12 +173,14 @@
   "assistance_dog" : "Do budynku i wszystkich jego pomieszczeń można wejść z psem asystującym i psem przewodnikiem",
   "induction_loop": "W budynku jest/są pętle indukcyjne",
   "micronavigation_system": "W budynku zostały zainstalowane urządzenia systemu nawigacyjno-informacyjnego",
-  "guidance_paths": "W budynku zastosowane zostały ścieżki naprowadzające (dotykowe)",
+  "orientation_paths": "W budynku zastosowane zostały ścieżki naprowadzające (dotykowe)",
   "information_boards_with_braille_description": "W budynku znajdują się czytelne tablice informacyjne zawierające opisy w alfabecie Braille'a",
   "information_boards_with_large_font": "W budynku znajdują się czytelne tablice informacyjne zawierające napisy w dużej czcionce",
   "sign_language_interpreter": "W budynku zapewniona jest możliwość skorzystania z usług tłumacza języka migowego",
   "emergency_chairs": "W budynku zamieszczone zostały krzesła ewakuacyjne",
   "parking_location" : "Miejsca parkingowe znajdują się {location}",
+  "parking_pwd_location" : "Miejsca parkingowe dla niepełnospranych znajdują się {location}",
+  "closest_facilities" : "Najbliższe sąsiednie budynki i obiekty kampusu to: {places}",
   "digital_guide_website" : "www.przewodnik.pwr.edu.pl",
   "sks_old_menu": "Zobacz ostatnie menu",
   "sks_menu_closed" : "SKS Menu jest teraz niedostępne",
@@ -204,5 +199,243 @@
         "example": "wydziałów"
       }
     }
-  }
+  },
+  "measured_number_of_users": "Zmierzona liczba użytkowników",
+  "forecasted_number_of_users": "Średnia liczba użytkowników z ostatnich 21 dni",
+  "sks_chart_title" : "Przybliżona liczba osób w Strefie Kultury Studenckiej",
+  "number_of_people" : "Liczba osób",
+  "evacuation_text": "Ewakuacja i pierwsza pomoc",
+  "digital_guide": "Przewodnik",
+  "adapted_toilet_authorization": "Toaleta jest dostępna wyłącznie dla osób uprawnionych. {comment}",
+  "@adapted_toilet_authorization": {
+    "description": "Adapted toilet needs authorization with ending from API",
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "adapted_toilet_no_authorization": "Wejście do toalety nie wymaga żadnych specjalnych uprawnień.",
+  "adapted_toilet_graphically_marked": "Wejście do toalety jest dobrze oznakowane graficznie, za pomocą: {comment}",
+  "@adapted_toilet_graphically_marked": {
+    "description": "Adapted toilet is graphically marked info with ending from API",
+    "placeholders": {
+      "comment": {
+        "type": "String",
+        "example": "piktogramów toalety damskiej i dostosowanej do potrzeb osób z niepełnosprawnością na drzwiach wejściowych do ogólnodostępnej toalety damskiej."
+      }
+    }
+  },
+  "adapted_toilet_not_graphically_marked": "Wejście do toalety nie jest oznakowane graficznie.",
+  "adapted_toilet_is_marked": "Lokalizacja toalety jest oznaczona za pomocą informacji kierunkowej. {comment}",
+  "@adapted_toilet_is_marked": {
+    "description": "Adapted toilet is marked info with ending from API",
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "adapted_toilet_is_not_marked": "Lokalizacja toalety nie jest oznaczona za pomocą informacji kierunkowej.",
+  "images": "Zdjęcia",
+  "door": "Drzwi",
+  "accessibility_profile" : "Profil dostępności",
+  "accessibility_profile_empty" : "Brak informacji dotyczących wybranego profilu dostępności",
+  "accessibility_card_information" : "{message} jest {accessibility_level} dla osób {disability_description}",
+  "@accessibility_card_information" : {
+    "placeholders" : {
+      "message" : {
+        "type": "String",
+        "example": "Otoczenie budynku"
+      },
+
+      "accessibility_level" : {
+        "type": "String",
+        "example": "częściowo dostępne/dostępne/niedostępne"
+      },
+
+      "disability_description" : {
+        "type": "String",
+        "example": "posiadających trudności poznawcze"
+      }
+    }
+  },
+
+  "accessibility_level_feminine" : "{level, select, 0{niedostępna} 1{niedostępna} 2{częściowo dostępna} 3{dostępna} other{niedostępna}}",
+  "accessibility_level_masculine" : "{level, select, 0{niedostępny} 1{niedostępny} 2{częściowo dostępny} 3{dostępny} other{niedostępny}}",
+  "accessibility_level_neuter" : "{level, select, 0{niedostępne} 1{niedostępne} 2{częściowo dostępne} 3{dostępne} other{niedostępne}}",
+
+  "people_with_cognitive_difficulties" : "posiadających trudności poznawcze",
+  "people_with_hard_of_hearing" : "posiadających trudności ze słyszeniem",
+  "people_visually_impaired" : "słabo widzących",
+  "people_blind" : "niewidomych",
+  "people_with_motor_disability" : "posiadających dysfunkcje ruchu",
+  "people_with_high_sensory_sensitivity" : "o wysokiej wrażliwości sensorycznej",
+  "see_all_photos" : "Zobacz {photos, plural, =0{{photos} zdjęć} =1{{photos} zdjęcie} few{wszystkie {photos} zdjęcia} other{wszystkie {photos} zdjęć}}",
+  "are_dangerous_elements_comment_prefix" : "W otoczeniu budynku znajdują się następujące obiekty, które mogą stanowić zagrożenie: {text}",
+  "are_high_curbs_at_parking_space_for_pwd" : "Przy miejscach postojowych dla osób z niepełnosprawnościami {value, select, false{nie} other{}} znajduje się wysoki krawężnik. ",
+  "is_lit" : "Otoczenie budynku {value, select, false{nie} other{}} jest oświetlone po zmroku. ",
+  "is_pavement_rough" : "Nawierzchnia przy budynku {value, select, false{nie} other{}} jest równa. ",
+  "are_lowered_curbs" : "Krawężniki w okolicach budynku {value, select, false{nie} other{}} są obniżone. ",
+  "are_no_barriers": "Wokół budynku {value, select, true{nie ma barier uniemożliwiających dojścia} false{znajdują się bariery uniemożliwiające dojście} other{}} do budynku. ",
+  "is_path_to_accessible_entrance_marked" : "Ścieżka do wejścia dostępnego dla osób z niepełnosprawnościami {value, select, false{nie} other{}} jest wyraźnie oznaczona. ",
+  "is_noisy_street_near_building" : "W okolicy {value, select, false{nie ma ruchliwej, hałaśliwej ulicy. } true{znajduje się ruchliwa, hałaśliwa ulica. } other{}}",
+  "strategicBadgeTooltip": "Koło Strategiczne PWr",
+  "strategic_club_abbr": "KS",
+  "emptySection": "Brak członków zespołu w tej wersji",
+  "digital_guide_offline" : "Cyfrowego Przewodnika",
+  "communique" : "Komunikat",
+  "audio_message" : "Komunikat Dźwiękowy",
+  "audio_message_comment" : "Sygnał znacznika może różnić się tempem i brzmieniem",
+  "platforms" : "Podesty",
+  "stairs" : "Schody",
+  "key_information" : "Najważniejsze informacje",
+  "working_hours" : "Godziny otwarcia",
+  "motorImpairment": "Dysfunkcja ruchu",
+  "visualImpairment": "Dysfunkcja wzroku",
+  "blind": "Niewidomy",
+  "lowVision": "Słabo widzący",
+  "sensorySensitivity": "Wrażliwość sensoryczna",
+  "cognitiveImpairment": "Trudności poznawcze",
+  "accessibility_profiles":"Profile dostępności",
+  "you_can_adjust": "Możesz dostosować informacje pod swoje specjalne potrzeby",
+  "additional_information": "Dodatkowe informacje",
+  "lodge": "Portiernia",
+  "dressing_room": "Szatnia",
+  "no_lodge_in_the_building": "W tym budynku nie ma portierni",
+  "no_dressing_room_in_the_building": "W tym budynku nie ma szatni",
+  "general_offline" : "pobierania danych",
+  "floors_served_by_lift": "Piętra obsługiwane przez windę",
+  "dimensions" : "Wymiary",
+  "max_capacity" : "Maksymalny udźwig",
+  "generic_error_message": "Upsss...Coś poszło nie tak",
+  "navigate_to_building": "Nawiguj do budynku",
+  "public_transport": "Publiczny środek komunikacji miejskiej (autobus, tramwaj)",
+  "private_transport": "Prywatny środek transportu (samochód, rower)",
+  "distance": " W odległości ",
+  "meters_abbrev": " m. ",
+  "bicycle_path_leads_to_building": "Do budynku prowadzi ścieżka rowerowa. ",
+  "transport_lines": "Linie komunikacji miejskiej: ",
+  "pass_traffic_lights": "Do przystanku prowadzą przejścia z sygnalizacją świetlną. ",
+  "no_pass_traffic_lights": "Do przystanku prowadzą przejścia bez sygnalizacji świetlnej. ",
+  "nearest_public_transport_stop": "Najbliższy przystanek komunikacji miejskiej to ",
+  "nearest_public_transport_stop_alt": "Alternatywny przystanek komunikacji miejskiej to ",
+  "chose_the_path": "Gdzie można dotrzeć obierając drogę ",
+  "you_can_adjust": "Możesz dostosować informacje pod swoje specjalne potrzeby",
+  "navigate_to_building": "Nawiguj do budynku",
+  "working_hours" : "Godziny otwarcia",
+  "rooms_distribution" : "Rozkład pomieszczeń:",
+  "region_location" : "Lokalizacja strefy:",
+  "level" : "Piętro",
+  "region" : "Strefa", 
+  "stairs" : "Schody",
+  "lodge" : "Portiernia",
+  "information_point" : "Punkt informacyjny",
+  "dressing_room" : "Szatnia",
+  "men_toilet" : "Toaleta męska",
+  "women_toilet" : "Toaleta damska",
+  "ramp" : "Pochylnia",
+  "lift" : "Winda",
+  "parking" : "Parking",
+  "corridor_simple_layout_text" : "Korytarz ma prosty i przejrzysty układ, który jest powtarzalny na każdej kondygnacji. {comment}",
+  "@corridor_simple_layout_text": {
+    "description": "comment",
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "corridor_no_simple_layout_text" : "Układ korytarza nie jest prosty, czytelny ani powtarzalny na każdej kondygnacji. {comment}",
+  "@corridor_no_simple_layout_text": {
+    "description": "comment",
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "floor_marked_text" : "Korytarz jest oznakowany. Widoczny jest numer piętra. {comment}",
+  "@floor_marked_text": {
+    "description": "comment",
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "floor_not_marked_text" : "Korytarz nie jest oznakowany. Nie ma widocznego numeru piętra. {comment}",
+  "@floor_not_marked_text": {
+    "description": "comment",
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "room_entrances_text" : "Z korytarza możliwe jest wejście do następujących pomieszczeń: {comment}",
+  "@floor_marked_text": {
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "no_room_entrances_text" : "Z korytarza nie ma możliwości wejścia do żadnego pomieszczenia.",
+  "information_board_text" : "W korytarzu nie ma tablicy informacyjnej ze spisem pomieszczeń. {comment}",
+  "@information_board_text": {
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "no_information_board_text" : "W korytarzu nie ma tablicy informacyjnej ze spisem pomieszczeń. {comment}",
+  "@no_information_board_text": {
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "room_puropose_described_in_en_text" : "Funkcje pomieszczeń nie są opisane w języku angielskim.",
+  "room_puropose_not_described_in_en_text" : "Funkcje pomieszczeń nie są opisane w języku angielskim.",
+  "consistent_level_color_pattern_text" : "Kolor, wzór i krój oznakowania pomieszczeń są spójne dla całego piętra.",
+  "not_consistent_level_color_pattern_text" : "Kolor, wzór i krój oznakowania pomieszczeń nie są spójne dla całego piętra.",
+  "pictorial_directional_signs_text" : "W kluczowych punktach korytarza znajdują się wyraźne i kontrastowe oznakowania kierunkowe. {comment}",
+  "@pictorial_directional_signs_text": {
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "no_pictorial_directional_signs_text" : "W kluczowych punktach korytarza nie ma wyraźnych i kontrastowych oznakowań kierunkowych. {comment}",
+  "@no_pictorial_directional_signs_text": {
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "seats_text" : "W korytarzu znajdują się miejsca siedzące. Są to: {comment}",
+  "@seats_text": {
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "no_seats_text" : "W korytarzu nie ma miejsc siedzących.",
+  "vending_machines_text" : "W korytarzu znajdują się automaty sprzedające. {comment}",
+  "@vending_machines_text": {
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "no_vending_machines_text" : "W korytarzu nie ma automatów sprzedających.",
+  "emergency_plan_text" : "W korytarzu znajdują się plany ewakuacyjne.",
+  "no_emergency_plan_text" : "W korytarzu nie ma planów ewakuacyjnych."
 }

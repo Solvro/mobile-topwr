@@ -11,21 +11,15 @@ class OptimizedDirectusImage extends MyCachedImage {
     super.imageUrl, {
     super.key,
     super.boxFit,
-    super.noShimmeringLoading,
+    super.loadingType,
   });
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        assert(
-          constraints.maxWidth != double.infinity,
-          "MaxWidth constraints around `OptimizedDirectusImage` must be finite. Either wrap it inside a parent with a finite width or use `MyCachedImage` directly.",
-        );
-        assert(
-          constraints.maxHeight != double.infinity,
-          "MaxHeight constraints around `OptimizedDirectusImage` must be finite. Either wrap it inside a parent with a finite height or use `MyCachedImage` directly.",
-        );
+        _assertConstraints(constraints);
+
         final pixelsDensity = MediaQuery.devicePixelRatioOf(context);
         return _LoadSizeOnce(
           initialSize: Size(
@@ -34,12 +28,23 @@ class OptimizedDirectusImage extends MyCachedImage {
           ),
           builder: (BuildContext context, Size size) => MyCachedImage(
             imageUrl?.directusUrlWithSize(size, boxFit),
-            noShimmeringLoading: noShimmeringLoading,
+            loadingType: loadingType,
             boxFit: boxFit,
             size: size,
           ),
         );
       },
+    );
+  }
+
+  void _assertConstraints(BoxConstraints constraints) {
+    assert(
+      constraints.maxWidth != double.infinity,
+      "MaxWidth constraints around `OptimizedDirectusImage` must be finite. Either wrap it inside a parent with a finite width or use `MyCachedImage` directly.",
+    );
+    assert(
+      constraints.maxHeight != double.infinity,
+      "MaxHeight constraints around `OptimizedDirectusImage` must be finite. Either wrap it inside a parent with a finite height or use `MyCachedImage` directly.",
     );
   }
 }

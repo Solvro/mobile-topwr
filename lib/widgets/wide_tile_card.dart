@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 
 import "../config/ui_config.dart";
-import "../features/science_clubs_view/widgets/ensure_visible_tags.dart";
+import "../features/science_club/science_clubs_view/widgets/ensure_visible_tags.dart";
 import "../theme/app_theme.dart";
 import "optimized_directus_image.dart";
 
@@ -40,6 +40,7 @@ class WideTileCard extends StatelessWidget {
     this.crossAxisAlignment = CrossAxisAlignment.start,
     super.key,
     this.showBadge = false,
+    this.showStrategicBadge = false,
   });
 
   final String title;
@@ -55,6 +56,7 @@ class WideTileCard extends StatelessWidget {
   final LinearGradient? activeGradient;
   final CrossAxisAlignment crossAxisAlignment;
   final bool showBadge;
+  final bool showStrategicBadge;
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -78,6 +80,7 @@ class WideTileCard extends StatelessWidget {
                     subtitle,
                     secondSubtitle,
                     showBadge: showBadge,
+                    showStrategicBadge: showStrategicBadge,
                     isActive: isActive,
                   ),
                 ),
@@ -98,6 +101,7 @@ class _TitlesColumn extends StatelessWidget {
     this.secondSubtitle, {
     required this.isActive,
     this.showBadge = false,
+    this.showStrategicBadge = false,
   });
 
   final String title;
@@ -105,6 +109,7 @@ class _TitlesColumn extends StatelessWidget {
   final String? secondSubtitle;
   final bool isActive;
   final bool showBadge;
+  final bool showStrategicBadge;
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -132,7 +137,8 @@ class _TitlesColumn extends StatelessWidget {
                 ? context.textTheme.bodyWhite
                 : context.textTheme.bodyBlue,
             maxTotalLines: 4,
-            badge: showBadge,
+            showVerifiedBadge: showBadge,
+            showStrategicBadge: showStrategicBadge,
           ),
         );
       },

@@ -65,7 +65,7 @@ class _NavActionButton extends StatelessWidget {
             child: InkWell(
               onTap: onTap,
               borderRadius: BorderRadius.circular(56),
-              splashColor: context.colorTheme.whiteSoap.withOpacity(0.3),
+              splashColor: context.colorTheme.whiteSoap.withValues(alpha: 0.3),
               child: SizedBox.square(
                 dimension: 56,
                 child: Center(

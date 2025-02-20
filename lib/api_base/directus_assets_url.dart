@@ -13,6 +13,11 @@ extension DirectusAssetsUrlX on String {
   String directusUrlWithSize(Size size, BoxFit fit) {
     return "$directusUrl?width=${size.width.toInt()}&height=${size.height.toInt()}&fit=${fit.directusFit}";
   }
+
+  String get directusUrlWithoutParams {
+    final uri = Uri.parse(directusUrl);
+    return uri.replace(query: "").toString();
+  }
 }
 
 extension _GetDirectusFitX on BoxFit {

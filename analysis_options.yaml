@@ -18,6 +18,8 @@ linter:
     sort_pub_dependencies: false
 
 analyzer:
+  errors:
+    invalid_annotation_target: ignore
   exclude:
     - "**/*.g.dart"
     - "**/*.freezed.dart"
@@ -28,6 +30,7 @@ analyzer:
     - "**/*.graphql.dart"
     - "**/*.icons.dart"
     - "**/firebase_options.dart"
+    - "lib/l10n/app_localizations*.dart"
   plugins:
     - custom_lint
 

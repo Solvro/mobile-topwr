@@ -1,12 +1,12 @@
 import "package:flutter/material.dart";
 
-import "../features/parking_chart/utils/range_hour_points.dart";
+import "../features/parkings/parking_chart/utils/range_hour_points.dart";
 import "../theme/hex_color.dart";
 
 abstract class MyAppConfig {
   static const title = "ToPWR";
-  static const legalese =
-      "\u{a9} 2024 Koło Naukowe Solvro, Politechnika Wrocławska";
+  static String legalese =
+      "\u{a9} 2024-${DateTime.now().year} Koło Naukowe Solvro, Politechnika Wrocławska";
 }
 
 abstract class AppWidgetsConfig {
@@ -89,6 +89,7 @@ abstract class WideTileCardConfig {
 }
 
 abstract class DetailViewsConfig {
+  static const imageHeight = 254.0;
   static const double spacerHeight = 16;
 }
 
@@ -164,10 +165,18 @@ abstract class GuideViewConfig {
 
 abstract class FilterConfig {
   static const bottomSheetHeightFactor = 0.65;
+  static const minimalHeight = 400.0;
+  static const absoluteMaximumBottomSheetHeightFactor = 0.9;
   static const searchFilterPadding = 15.0;
   static const paddingMedium = 8.0;
   static const spacingBetweenWidgets = 12.0;
   static final radius = BorderRadius.circular(8);
+  static const buttonPadding =
+      EdgeInsets.symmetric(vertical: 10, horizontal: 20);
+}
+
+class DialogsConfig {
+  static final padding = const EdgeInsets.all(20).copyWith(top: 6);
 }
 
 abstract class LottieAnimationConfig {
@@ -202,6 +211,28 @@ abstract class SksConfig {
   static const outerPadding = EdgeInsets.only(right: 12, bottom: 2);
 }
 
+abstract class SksChartConfig {
+  static const borderDashArray = 4.0;
+  static const borderRadius = 16.0;
+  static const paddingLarge = 16.0;
+  static const paddingMedium = 12.0;
+  static const paddingSmall = 8.0;
+  static const paddingExtraSmall = 4.0;
+  static const legendItemSize = 18.0;
+  static const heightSmall = 8.0;
+  static const heightMedium = 12.0;
+  static const heightLarge = 16.0;
+  static const paddingLargeLTR = EdgeInsets.only(
+    left: SksChartConfig.paddingLarge,
+    top: SksChartConfig.paddingLarge,
+    right: SksChartConfig.paddingLarge,
+  );
+  static const sksChartDataUrl = "https://live.pwr.edu.pl/sks";
+  static const sksAddress = "Hoene-Wrońskiego 10";
+  static const sksPostalCode = "50-370 Wrocław";
+  static const buildingCode = "C-18";
+}
+
 abstract class NavigationTabViewConfig {
   static const universalPadding = 12.0;
   static const radius = 8.0;
@@ -209,13 +240,39 @@ abstract class NavigationTabViewConfig {
 }
 
 abstract class DigitalGuideConfig {
+  static const symetricalPaddingSmall =
+      EdgeInsets.symmetric(vertical: 4, horizontal: 4);
+  static const symetricalPaddingMedium =
+      EdgeInsets.symmetric(vertical: 8, horizontal: 8);
   static const symetricalPaddingBig =
       EdgeInsets.symmetric(vertical: 24, horizontal: 24);
+  static const borderRadiusSmall = 4.0;
   static const borderRadiusMedium = 8.0;
+  static const borderRadiusBig = 16.0;
+  static const borderRadiusHuge = 32.0;
+  static const heightTiny = 4.0;
   static const heightSmall = 8.0;
+  static const heightMedium = 16.0;
   static const heightBig = 24.0;
   static const heightHuge = 48.0;
+  static const widePaddingMedium = EdgeInsets.symmetric(horizontal: 8);
+  static const paddingSmall = 4.0;
+  static const mediumButtonPadding =
+      EdgeInsets.symmetric(vertical: 8, horizontal: 14);
   static const paddingMedium = 16.0;
+  static const paddingBig = 24.0;
+  static const difficultiesCardIconSize = 35.0;
+  static const photoRowHeight = 75.0;
+  static const bodyFont = 16.0;
+  static const headlineFont = 22.0;
+
+  // Basically there are 4 levels of accessability, but 0 and 1 are shown as the same on digital guide site
+  static const accessibilityLevelColors = [
+    Color(0xFFB1261E), // 0 == red == unaccessible
+    Color(0xFFB1261E), // 1 == red == unaccessible
+    Color(0xFFE07E0F), // 2 == orange == partially accessible
+    Color(0xFF28BC2F), // 3 == green == accessible
+  ];
 }
 
 abstract class AlertDialogConfig {

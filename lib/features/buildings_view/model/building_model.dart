@@ -15,6 +15,8 @@ class BuildingModel extends Building implements GoogleNavigable {
           cover: building.cover,
           naturalName: building.naturalName,
           disableBuildingPrefix: building.disableBuildingPrefix,
+          externalDigitalGuideMode: building.externalDigitalGuideMode,
+          externalDigitalGuideIdOrURL: building.externalDigitalGuideIdOrURL,
         );
 
   @override

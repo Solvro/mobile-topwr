@@ -1,5 +1,3 @@
-import "dart:async";
-
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
@@ -9,9 +7,8 @@ import "../../../utils/context_extensions.dart";
 import "../../../widgets/big_preview_card.dart";
 import "../../../widgets/my_error_widget.dart";
 import "../../../widgets/subsection_header.dart";
-
 import "../../navigator/utils/navigation_commands.dart";
-import "../../science_clubs_view/repository/science_clubs_repository.dart";
+import "../../science_club/science_clubs_view/repository/science_clubs_repository.dart";
 import "loading_widgets/big_scrollable_section_loading.dart";
 import "paddings.dart";
 
@@ -25,12 +22,6 @@ class ScienceClubsSection extends ConsumerWidget {
             title: context.localize.study_circles,
             actionTitle: context.localize.list,
             onClick: ref.navigateScienceClubs,
-          ),
-          FilledButton(
-            onPressed: () {
-              unawaited(ref.navigateDigitalGuide(101));
-            },
-            child: const Text("Navigate to digital guide screen!"),
           ),
           const _ScienceClubsList(),
         ],
@@ -80,8 +71,7 @@ class _ScienceClubsDataList extends ConsumerWidget {
       itemCount: scienceClubs.length,
       itemBuilder: (BuildContext context, int index) {
         final sciClub = scienceClubs[index];
-        final sciClubCard = _BuildScienceClubCard(sciClub: sciClub, ref: ref);
-
+        final sciClubCard = _ScienceClubCard(sciClub: sciClub);
         if (index != scienceClubs.length - 1) {
           return MediumLeftPadding(
             child: sciClubCard,
@@ -96,25 +86,22 @@ class _ScienceClubsDataList extends ConsumerWidget {
   }
 }
 
-class _BuildScienceClubCard extends StatelessWidget {
-  const _BuildScienceClubCard({
-    required this.sciClub,
-    required this.ref,
-  });
+class _ScienceClubCard extends ConsumerWidget {
+  const _ScienceClubCard({required this.sciClub});
 
   final ScienceClub sciClub;
-  final WidgetRef ref;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return BigPreviewCard(
       title: sciClub.name,
       shortDescription: sciClub.shortDescription ?? "",
       directusUrl: (sciClub.useCoverAsPreviewPhoto ?? false)
           ? sciClub.cover?.filename_disk
           : sciClub.logo?.filename_disk,
-      showBadge: sciClub.source == ScienceClubsViewConfig.source,
+      showVerifiedBadge: sciClub.source == ScienceClubsViewConfig.source,
       onClick: () async => ref.navigateSciClubsDetail(sciClub.id),
+      showStrategicBadge: sciClub.isStrategic,
     );
   }
 }

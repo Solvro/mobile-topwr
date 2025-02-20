@@ -5,20 +5,37 @@ import "../../../utils/where_non_null_iterable.dart";
 import "../repository/about_us_repository.dart";
 import "member_data.dart";
 
+typedef MultiversionTeam = ({
+  String versionName,
+  IList<MemberData> members,
+});
+
 class AboutUsDetails {
   final AboutUs? aboutUs;
-  final IList<AboutUsTeam> aboutUsTeam;
+  final IList<TeamVersion> versions;
+  final IList<TeamMember> teamMembers;
+  AboutUsDetails({
+    required this.aboutUs,
+    required this.versions,
+    required this.teamMembers,
+  });
 
-  AboutUsDetails({required this.aboutUs, required this.aboutUsTeam});
-
-  IList<MemberData> getMemberData() {
-    return aboutUsTeam.map((e) {
-      return MemberData(
-        name: e.name,
-        directusImageUrl: e.photo?.filename_disk,
-        socialLinks: e.socialLinks.whereNonNull.map((e) => e.url).toIList(),
-        subtitle: e.subtitle,
-      );
+  IList<MultiversionTeam> getMemberData() {
+    return versions.map((version) {
+      final members = teamMembers
+          .where((member) => member.appVersion?.id == version.id)
+          .map((e) {
+        return MemberData(
+          name: e.name,
+          directusImageUrl: e.photo?.filename_disk,
+          socialLinks: e.socialLinks.whereNonNull
+              .map((e) => e.AboutUs_Team_Social_Links_id?.url)
+              .whereNonNull
+              .toIList(),
+          subtitle: e.subtitle,
+        );
+      }).toIList();
+      return (versionName: version.name ?? "v.0.0.0", members: members);
     }).toIList();
   }
 

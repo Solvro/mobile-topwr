@@ -9,14 +9,25 @@ query getAbousUsDetails {
       url
     }
   }
-  AboutUs_Team{
+  TeamVersions {
     name
-    socialLinks{
-      url
+    id
+  }
+  TeamVersion_Members {
+    appVersion {
+      name
+      id
     }
-    photo{
+    name
+    subtitle
+    photo {
       filename_disk
     }
-    subtitle
+    socialLinks {
+    AboutUs_Team_Social_Links_id {
+      url
+    }
+    }
   }
+  
 }

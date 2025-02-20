@@ -13,7 +13,7 @@ import "../../widgets/loading_widgets/simple_previews/preview_text_prototype.dar
 import "../../widgets/my_error_widget.dart";
 import "../../widgets/my_expansion_tile.dart";
 import "../../widgets/my_html_widget.dart";
-import "../../widgets/optimized_directus_image.dart";
+import "../../widgets/zoomable_images.dart";
 import "repository/guide_detail_view_repository.dart";
 import "utils/get_the_latest_date.dart";
 import "widgets/faq_expansion_tile.dart";
@@ -58,8 +58,8 @@ class _GuideDetailDataView extends ConsumerWidget {
                   flexibleSpace: Stack(
                     children: [
                       SizedBox(
-                        height: 254,
-                        child: OptimizedDirectusImage(
+                        height: DetailViewsConfig.imageHeight,
+                        child: ZoomableOptimizedDirectusImage(
                           value.cover?.filename_disk,
                         ),
                       ),

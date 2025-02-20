@@ -11,7 +11,10 @@ abstract class ColorsConsts {
   // Pomegranade #E43D32
   static const orangePomegranade = HexColor.consts(0xffe43d32);
 
-  // Pigeon #77859D
+  // #E54B2C
+  static const orangePomegranadeLighter = Color(0xFFE54B2C);
+
+  // Pigeon #76859D
   static const greyPigeon = HexColor.consts(0xff76859d);
 
   // Grey #F7F7F8
