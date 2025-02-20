@@ -1,9 +1,11 @@
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
+import "../../../utils/context_extensions.dart";
 import "../../../widgets/my_expansion_tile.dart";
 import "../../buildings_view/model/building_model.dart";
 import "../data/digital_guide_object_model.dart";
+import "digital_g_objs_amenietes_tab_tile_content.dart";
 
 typedef TileContent = ({String title, List<Widget> content});
 
@@ -18,7 +20,16 @@ class DigitalGObjectsFeaturesSection extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final items = <TileContent>[];
+    final items = <TileContent>[
+      (
+        title: context.localize.amenities,
+        content: [
+          DigitalGuideObjectsAmenietesTabTileContent(
+          DigitalGuideObjectAmenietesTabTileContent(
+          ),
+        ],
+      ),
+    ];
 
     return SliverList(
       delegate: SliverChildBuilderDelegate(
