@@ -7,7 +7,6 @@ import "../../../../../config/ui_config.dart";
 import "../../../../../gen/assets.gen.dart";
 import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/context_extensions.dart";
-import "../../../../../utils/where_non_null_iterable.dart";
 import "../../../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../../presentation/widgets/accessibility_button.dart";
 import "../../../presentation/widgets/accessibility_profile_card.dart";
@@ -65,7 +64,7 @@ class DigitalGuideEntranceDetailsView extends ConsumerWidget {
             context.localize.entrance_are_benches(
               entrance.areBenches.toString(),
             ),
-          ].whereNonNull.toIList(),
+          ].lock,
         ),
       ),
       const SizedBox(height: DigitalGuideConfig.heightBig),
@@ -76,12 +75,8 @@ class DigitalGuideEntranceDetailsView extends ConsumerWidget {
       const SizedBox(height: DigitalGuideConfig.heightBig),
       DigitalGuideNavLink(onTap: () {}, text: context.localize.door),
       const SizedBox(height: DigitalGuideConfig.heightBig),
-      DigitalGuidePhotoRow(imagesIDs: entrance.imagesIndices),
+      DigitalGuidePhotoRow(imagesIDs: entrance.imagesIndices.lock),
       const SizedBox(height: DigitalGuideConfig.heightMedium),
-      DigitalGuideNavLink(
-        onTap: () {},
-        text: "Zobacz wszystkie ${entrance.imagesIndices.length} zdjęć",
-      ),
     ];
 
     return Scaffold(
@@ -89,7 +84,6 @@ class DigitalGuideEntranceDetailsView extends ConsumerWidget {
       body: Padding(
         padding: const EdgeInsets.all(DigitalGuideConfig.paddingMedium),
         child: ListView.builder(
-          physics: const NeverScrollableScrollPhysics(),
           itemCount: widgets.length,
           shrinkWrap: true,
           itemBuilder: (context, index) => widgets[index],

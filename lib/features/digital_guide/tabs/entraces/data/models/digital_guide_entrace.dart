@@ -1,4 +1,3 @@
-import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 
 part "digital_guide_entrace.freezed.dart";
@@ -28,11 +27,11 @@ class DigitalGuideEntrace with _$DigitalGuideEntrace {
     @JsonKey(fromJson: _stringToBool) required bool hasSoundTransmitter,
     @JsonKey(fromJson: _stringToBool) required bool hasTactilePaving,
     required int? building,
-    required IList<int> stairsIndices,
-    required IList<int> liftsIndices,
-    required IList<int> doorsIndices,
-    required IList<int> rampsIndices,
-    required IList<int> imagesIndices,
+    @JsonKey(name: "stairs") required List<int> stairsIndices,
+    @JsonKey(name: "lifts") required List<int> liftsIndices,
+    @JsonKey(name: "doors") required List<int> doorsIndices,
+    @JsonKey(name: "ramps") required List<int> rampsIndices,
+    @JsonKey(name: "images") required List<int> imagesIndices,
   }) = _DigitalGuideEntrace;
 
   factory DigitalGuideEntrace.fromJson(Map<String, dynamic> json) =>

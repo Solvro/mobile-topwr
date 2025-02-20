@@ -6,7 +6,7 @@ import "../../../../../config/ui_config.dart";
 import "../../../../../widgets/my_error_widget.dart";
 import "../../../data/models/digital_guide_response.dart";
 import "../data/models/digital_guide_entrace.dart";
-import "../business/entrances_use_cases.dart";
+import "../data/repository/entraces_repository.dart";
 import "digital_guide_entrance_widget.dart";
 
 class EntrancesExpansionTileContent extends ConsumerWidget {
@@ -18,9 +18,7 @@ class EntrancesExpansionTileContent extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final entrances = ref.watch(
-      getEntrancesUseCaseProvider(digitalGuideData),
-    );
+    final entrances = ref.watch(entrancesRepositoryProvider(digitalGuideData));
     return entrances.when(
       data: _EntrancesExpansionTileContent.new,
       loading: () => const Center(
