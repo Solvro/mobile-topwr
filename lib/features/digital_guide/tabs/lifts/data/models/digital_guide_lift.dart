@@ -10,8 +10,6 @@ part "digital_guide_lift.g.dart";
 @freezed
 class DigitalGuideLift with _$DigitalGuideLift {
 
-  const DigitalGuideLift._();
-
   const factory DigitalGuideLift({
     required int id,
     required DigitalGuideTranslationsLift translations,
@@ -83,6 +81,8 @@ class DigitalGuideLift with _$DigitalGuideLift {
     @JsonKey(name: "is_good_door_wall_contrast", fromJson: _stringToBool)
     required bool isGoodDoorWallContrast,
   }) = _DigitalGuideLift;
+
+  const DigitalGuideLift._();
 
   IList<String> getMotorImpairmentValue(AppLocalizations l10n) {
     final pl = translations.pl;
