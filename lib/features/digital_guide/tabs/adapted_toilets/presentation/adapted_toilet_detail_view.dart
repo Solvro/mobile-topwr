@@ -8,6 +8,7 @@ import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/context_extensions.dart";
 import "../../../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../../../../widgets/horizontal_symmetric_safe_area.dart";
+import "../../../../navigator/utils/navigation_commands.dart";
 import "../../../presentation/widgets/accessibility_button.dart";
 import "../../../presentation/widgets/bullet_list.dart";
 import "../../../presentation/widgets/digital_guide_image.dart";
@@ -70,7 +71,7 @@ class AdaptedToiletDetailView extends ConsumerWidget {
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
           return DigitalGuideNavLink(
-            onTap: () {},
+            onTap: () async => ref.navigateDigitalGuideDoor(adaptedToilet.doorsIndices[index]),
             text: context.localize.door,
           );
         },

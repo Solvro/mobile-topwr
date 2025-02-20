@@ -7,6 +7,7 @@ import "../../../../../../config/ui_config.dart";
 import "../../../../../../theme/app_theme.dart";
 import "../../../../../../utils/context_extensions.dart";
 import "../../../../../../widgets/detail_views/detail_view_app_bar.dart";
+import "../../../../../navigator/utils/navigation_commands.dart";
 import "../../../../presentation/widgets/bullet_list.dart";
 import "../../../../presentation/widgets/digital_guide_image.dart";
 import "../../../../presentation/widgets/digital_guide_nav_link.dart";
@@ -117,7 +118,7 @@ class CorridorView extends ConsumerWidget {
                   physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
                     return DigitalGuideNavLink(
-                      onTap: () {},
+                      onTap: () async => ref.navigateDigitalGuideDoor(corridor.doorsIndices[index]),
                       text: context.localize.door,
                     );
                   },

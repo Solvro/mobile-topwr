@@ -1,5 +1,7 @@
 import "package:freezed_annotation/freezed_annotation.dart";
 
+import "../../../../utils/type_converter.dart";
+
 part "digital_guide_response.freezed.dart";
 part "digital_guide_response.g.dart";
 
@@ -12,42 +14,42 @@ class DigitalGuideResponse with _$DigitalGuideResponse {
     @JsonKey(name: "number_of_storeys") required int numberOfStoreys,
     @JsonKey(
       name: "is_possibility_to_enter_with_assistance_dog",
-      fromJson: _stringToBool,
+      fromJson: stringToBool,
     )
     required bool canAssistanceDog,
     @JsonKey(
       name: "is_induction_loop",
-      fromJson: _stringToBool,
+      fromJson: stringToBool,
     )
     required bool isInductionLoop,
     @JsonKey(
       name: "is_micronavigation_system",
-      fromJson: _stringToBool,
+      fromJson: stringToBool,
     )
     required bool isMicroNavigationSystem,
     @JsonKey(
       name: "are_guidance_paths",
-      fromJson: _stringToBool,
+      fromJson: stringToBool,
     )
     required bool areGuidancePaths,
     @JsonKey(
       name: "are_information_boards_with_braille_description",
-      fromJson: _stringToBool,
+      fromJson: stringToBool,
     )
     required bool areBrailleBoards,
     @JsonKey(
       name: "are_information_boards_with_large_font",
-      fromJson: _stringToBool,
+      fromJson: stringToBool,
     )
     required bool areLargeFontBoards,
     @JsonKey(
       name: "is_sign_language_interpreter",
-      fromJson: _stringToBool,
+      fromJson: stringToBool,
     )
     required bool isSignLanguageInterpreter,
     @JsonKey(
       name: "are_emergency_chairs",
-      fromJson: _stringToBool,
+      fromJson: stringToBool,
     )
     required bool areEmergencyChairs,
     @JsonKey(name: "telephone_number", fromJson: _formatPhoneNumbers)
@@ -86,10 +88,6 @@ class DigitalGuideTranslation with _$DigitalGuideTranslation {
 
   factory DigitalGuideTranslation.fromJson(Map<String, dynamic> json) =>
       _$DigitalGuideTranslationFromJson(json);
-}
-
-bool _stringToBool(String value) {
-  return value.toLowerCase() == "true";
 }
 
 List<String> _formatPhoneNumbers(String phoneNumber) {

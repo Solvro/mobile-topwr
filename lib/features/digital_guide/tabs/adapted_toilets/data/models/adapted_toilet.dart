@@ -3,6 +3,7 @@ import "package:flutter/material.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 
 import "../../../../../../utils/context_extensions.dart";
+import "../../../../../../utils/type_converter.dart";
 
 part "adapted_toilet.freezed.dart";
 part "adapted_toilet.g.dart";
@@ -11,15 +12,15 @@ part "adapted_toilet.g.dart";
 class AdaptedToilet with _$AdaptedToilet {
   const factory AdaptedToilet({
     required AdaptedToiletTranslations translations,
-    @JsonKey(name: "is_access_accessible_for_pwd", fromJson: _stringToBool)
+    @JsonKey(name: "is_access_accessible_for_pwd", fromJson: stringToBool)
     required bool isAccessAccessibleForPwd,
     @JsonKey(name: "has_additional_purpose", fromJson: _stringToInt)
     required int hasAdditionalPurpose,
     @JsonKey(name: "is_need_authorization", fromJson: isNeedAuthorizationToEnum)
     required IsNeedAuthorizationEnum isNeedAuthorization,
-    @JsonKey(name: "is_entrance_graphically_marked", fromJson: _stringToBool)
+    @JsonKey(name: "is_entrance_graphically_marked", fromJson: stringToBool)
     required bool isEntranceGraphicallyMarked,
-    @JsonKey(name: "is_marked", fromJson: _stringToBool) required bool isMarked,
+    @JsonKey(name: "is_marked", fromJson: stringToBool) required bool isMarked,
     @JsonKey(name: "images") required IList<int> imagesIndices,
     @JsonKey(name: "doors") required IList<int> doorsIndices,
   }) = _AdaptedToilet;
@@ -58,10 +59,6 @@ class AdaptedToiletTranslation with _$AdaptedToiletTranslation {
 
   factory AdaptedToiletTranslation.fromJson(Map<String, dynamic> json) =>
       _$AdaptedToiletTranslationFromJson(json);
-}
-
-bool _stringToBool(String str) {
-  return str.toLowerCase() == "true";
 }
 
 int _stringToInt(String str) {

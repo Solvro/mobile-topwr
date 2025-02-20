@@ -14,6 +14,7 @@ import "../digital_guide/data/models/region.dart";
 import "../digital_guide/presentation/digital_guide_view.dart";
 import "../digital_guide/tabs/adapted_toilets/data/models/adapted_toilet.dart";
 import "../digital_guide/tabs/adapted_toilets/presentation/adapted_toilet_detail_view.dart";
+import "../digital_guide/tabs/doors/presentation/door_view.dart";
 import "../digital_guide/tabs/lifts/data/models/digital_guide_lift.dart";
 import "../digital_guide/tabs/lifts/presentation/digital_guide_lift_detail_view.dart";
 import "../digital_guide/tabs/micronavigation/data/models/micronavigation_response.dart";
@@ -143,6 +144,9 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           path: "/digital-guide/:id/adapted-toilet-details",
           page: AdaptedToiletDetailRoute.page,
+        ),
+        AutoRoute(
+          page: DoorRoute.page,
         ),
       ];
 }

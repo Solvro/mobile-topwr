@@ -154,6 +154,10 @@ extension NavigationX on WidgetRef {
     await _router.push(CorridorRoute(corridor: corridor));
   }
 
+  Future<void> navigateDigitalGuideDoor(int doorID) async {
+    await _router.push(DoorRoute(doorsID: doorID));
+  }
+
   Future<void> navigateBuildingDetailAction(BuildingModel building) async {
     return switch (building.externalDigitalGuideMode) {
       "web_url" => launch(building.externalDigitalGuideIdOrURL!),

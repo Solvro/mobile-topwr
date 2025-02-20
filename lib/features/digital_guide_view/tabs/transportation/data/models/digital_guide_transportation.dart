@@ -1,5 +1,7 @@
 import "package:freezed_annotation/freezed_annotation.dart";
 
+import "../../../../../../utils/type_converter.dart";
+
 part "digital_guide_transportation.freezed.dart";
 part "digital_guide_transportation.g.dart";
 
@@ -11,36 +13,36 @@ class DigitalGuideTransportation with _$DigitalGuideTransportation {
     required int building,
     required DigitalGuideTranslationsTransportation translations,
     required double nearestPublicTransportStopDistance,
-    @JsonKey(fromJson: _stringToBool)
+    @JsonKey(fromJson: stringToBool)
     required bool arePassTrafficLightsFromStopToEntry,
-    @JsonKey(fromJson: _stringToBool)
+    @JsonKey(fromJson: stringToBool)
     required bool areNotPassTrafficLightsFromStopToEntry,
     required double alternativePublicTransportStopDistance,
-    @JsonKey(fromJson: _stringToBool)
+    @JsonKey(fromJson: stringToBool)
     required bool arePassTrafficLightsFromStopToEntryAltRoad,
-    @JsonKey(fromJson: _stringToBool)
+    @JsonKey(fromJson: stringToBool)
     required bool areNotPassTrafficLightsFromStopToEntryAltRoad,
     required double nearestPublicParkingLocationDistance,
-    @JsonKey(fromJson: _stringToBool) required bool isPaidParking,
+    @JsonKey(fromJson: stringToBool) required bool isPaidParking,
     required double nearestUniversityParkingLocationDistance,
     required double nearestDisabledParkingSpacesDistance,
-    @JsonKey(fromJson: _stringToBool) required bool areBicycleStands,
-    @JsonKey(fromJson: _stringToBool) required bool isCityBikeStation,
+    @JsonKey(fromJson: stringToBool) required bool areBicycleStands,
+    @JsonKey(fromJson: stringToBool) required bool isCityBikeStation,
     required double cityBikeStationDistance,
-    @JsonKey(fromJson: _stringToBool) required bool isBicyclePathLeadToBuilding,
+    @JsonKey(fromJson: stringToBool) required bool isBicyclePathLeadToBuilding,
     required double distanceToBicyclePath,
-    @JsonKey(fromJson: _stringToBool)
+    @JsonKey(fromJson: stringToBool)
     required bool isBicyclePathLeadClearlySeparated,
-    @JsonKey(fromJson: _stringToBool) required bool areObstaclesForBlind,
-    @JsonKey(fromJson: _stringToBool)
+    @JsonKey(fromJson: stringToBool) required bool areObstaclesForBlind,
+    @JsonKey(fromJson: stringToBool)
     required bool areObstaclesForWheelchairUser,
-    @JsonKey(fromJson: _stringToBool)
+    @JsonKey(fromJson: stringToBool)
     required bool areFacilitiesForBlindFromStopToEntry,
-    @JsonKey(fromJson: _stringToBool)
+    @JsonKey(fromJson: stringToBool)
     required bool areObstaclesForWheelchairUserAltRoad,
-    @JsonKey(fromJson: _stringToBool)
+    @JsonKey(fromJson: stringToBool)
     required bool areObstaclesForBlindFromStopToEntryAltRoad,
-    @JsonKey(fromJson: _stringToBool)
+    @JsonKey(fromJson: stringToBool)
     required bool areFacilitiesForBlindFromStopToEntryAltRoad,
     required String dailyTramBusLines,
     required String alternativeDailyTramBusLinesStop,
@@ -95,8 +97,4 @@ class DigitalGuideTranslationTransportation
     Map<String, dynamic> json,
   ) =>
       _$DigitalGuideTranslationTransportationFromJson(json);
-}
-
-bool _stringToBool(String? value) {
-  return value?.toLowerCase() == "true";
 }
