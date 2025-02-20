@@ -82,15 +82,32 @@ class DigitalGuideLift with _$DigitalGuideLift {
   }
 
   IList<String> getLowVisionImpairment(AppLocalizations l10n){
-    final pl = translations.pl;
     return IList(
       [
         if(isVoicePrompts) l10n.with_voice_comunicates,
         if(isInsideConvexButton) l10n.lift_button_are_convex,
+        l10n.is_lit(isInsideLit.toString().toLowerCase()),
         l10n.is_with_outsite_notification(isOutsideArrivalNotificationSound.toString().toLowerCase()),
         l10n.is_with_inside_notification(isOutsideArrivalNotificationSound.toString().toLowerCase()),
         l10n.is_door_good_contrast(isGoodDoorWallContrast.toString().toLowerCase()),
       ]
+    );
+  }
+
+  IList<String> getSensorySensitivityImpairment(AppLocalizations l10n){
+    return IList(
+      [
+        l10n.is_lift_floor_info(isDisplayShowingFloor.toString().toLowerCase()),
+      ]
+    );
+  }
+
+  IList<String> getCognitiveImpairment(AppLocalizations l10n){
+    return IList(
+      [
+        if(isSigned) l10n.lift_info_boart_text,
+        l10n.is_lit(isInsideLit.toString().toLowerCase()),
+      ],
     );
   }
 
