@@ -28,7 +28,7 @@ import "../digital_guide/tabs/structure/presentation/views/level_view.dart";
 import "../digital_guide/tabs/structure/presentation/views/region_view.dart";
 import "../digital_guide/tabs/transportation/data/models/digital_guide_transportation.dart";
 import "../digital_guide/tabs/transportation/presentation/transportation_detail_view.dart";
-import "../digital_guide_view/tabs/entraces/presentation/entraces_detail_view.dart";
+import "../digital_guide/tabs/entraces/presentation/entraces_detail_view.dart";
 import "../guide_detail_view/guide_detail_view.dart";
 import "../guide_view/guide_view.dart";
 import "../home_view/home_view.dart";

@@ -2,9 +2,9 @@ import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "../../../../digital_guide/data/models/digital_guide_response.dart";
-import "../../../../digital_guide/tabs/entraces/data/models/digital_guide_entrace.dart";
-import "../../../../digital_guide/tabs/entraces/data/repository/entraces_repository.dart";
+import "../../../data/models/digital_guide_response.dart";
+import "../data/models/digital_guide_entrace.dart";
+import "../data/repository/entraces_repository.dart";
 
 part "entrances_use_cases.g.dart";
 
