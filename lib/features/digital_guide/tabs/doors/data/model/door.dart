@@ -5,21 +5,16 @@ part "door.g.dart";
 
 @freezed
 class Door with _$Door {
+  @JsonSerializable(fieldRename: FieldRename.snake)
   const factory Door({
     required DoorTranslations translations,
-    @JsonKey(name: "is_main_wing_highlighted")
     required String isMainWingHighlighted,
-    @JsonKey(name: "is_good_door_visible_from_outside")
     required String isGoodDoorVisibleFromOutside,
-    @JsonKey(name: "is_good_door_visible_from_inside")
     required String isGoodDoorVisibleFromInside,
-    @JsonKey(name: "are_open_automatically")
     required String areOpenAutomatically,
-    @JsonKey(name: "is_increased_force_required")
     required String isIncreasedForceRequired,
-    @JsonKey(name: "is_door_closer") required String isDoorCloser,
-    @JsonKey(name: "door_type", fromJson: stringToDoorType)
-    required DoorType doorType,
+    required String isDoorCloser,
+    @JsonKey(fromJson: stringToDoorType) required DoorType doorType,
   }) = _Door;
 
   factory Door.fromJson(Map<String, dynamic> json) => _$DoorFromJson(json);
@@ -37,18 +32,14 @@ class DoorTranslations with _$DoorTranslations {
 
 @freezed
 class DoorTranslation with _$DoorTranslation {
+  @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DoorTranslation({
     required String comment,
-    @JsonKey(name: "from_to") required String fromTo,
-    @JsonKey(name: "is_main_wing_highlighted_comment")
+    required String fromTo,
     required String isMainWingHighlightedComment,
-    @JsonKey(name: "is_good_door_visible_from_outside_comment")
     required String isGoodDoorVisibleFromOutsideComment,
-    @JsonKey(name: "is_good_door_visible_from_inside_comment")
     required String isGoodDoorVisibleFromInsideComment,
-    @JsonKey(name: "is_increased_force_required_comment")
     required String isIncreasedForceRequiredComment,
-    @JsonKey(name: "is_door_closer_comment")
     required String isDoorCloserComment,
   }) = _DoorTranslation;
 
