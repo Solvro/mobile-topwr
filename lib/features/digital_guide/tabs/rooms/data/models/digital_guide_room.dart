@@ -11,6 +11,7 @@ class DigitalGuideRoom with _$DigitalGuideRoom {
     required int id,
     required DigitalGuideTranslationsRoom translations,
     required List<int> roomStairs,
+    required List<int> platforms,
     @JsonKey(name: "images") required List<int>? imagesIds,
   }) = _DigitalGuideRoom;
 
