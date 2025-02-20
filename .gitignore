@@ -138,7 +138,7 @@ app.*.symbols
 !.vscode/settings.json
 
 # Excluding generated files
-/pubspec.lock
+/.pubspec.lock
 *.g.dart
 *.freezed.dart
 *.graphql.dart
@@ -148,7 +148,6 @@ app.*.symbols
 lib/l10n/app_localizations*.dart
 
 #Env setup
-.env
 *.env.dev
 .env.dev
 env.g.dart
@@ -158,3 +157,6 @@ env.g.dart
 
 # FVM Version Cache
 .fvm/
+
+
+topwr-github-key
