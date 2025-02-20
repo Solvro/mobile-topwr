@@ -5,11 +5,11 @@ import "package:logger/logger.dart";
 
 import "../../../utils/launch_url_util.dart";
 import "../../buildings_view/model/building_model.dart";
-// ignore: library_prefixes
-import "../../digital_guide/data/models/level.dart" as digitalGuide;
+import "../../digital_guide/data/models/level.dart" as digital_guide;
 import "../../digital_guide/data/models/level_with_regions.dart";
 import "../../digital_guide/data/models/region.dart";
 import "../../digital_guide/tabs/adapted_toilets/data/models/adapted_toilet.dart";
+import "../../digital_guide/tabs/entraces/data/models/digital_guide_entrace.dart";
 import "../../digital_guide/tabs/lifts/data/models/digital_guide_lift.dart";
 import "../../digital_guide/tabs/micronavigation/data/models/micronavigation_response.dart";
 import "../../digital_guide/tabs/rooms/data/models/digital_guide_room.dart";
@@ -114,6 +114,10 @@ extension NavigationX on WidgetRef {
     await _router.push(DigitalGuideRoomDetailRoute(room: room));
   }
 
+  Future<void> navigateEntrancesDetails(DigitalGuideEntrace entrance) async {
+    await _router.push(DigitalGuideEntranceDetailsRoute(entrance: entrance));
+  }
+
   Future<void> navigateTransportDetails({
     required DigitalGuideTransportation transportation,
     required bool isPublic,
@@ -139,7 +143,7 @@ extension NavigationX on WidgetRef {
   }
 
   Future<void> navigateDigitalGuideRegion(
-    digitalGuide.Level level,
+    digital_guide.Level level,
     Region region,
   ) async {
     await _router.push(

@@ -11,6 +11,7 @@ import "../../data/repository/levels_repository.dart";
 import "../../tabs/adapted_toilets/presentation/adapted_toilets_expansion_tile_content.dart";
 import "../../tabs/amenities/presentation/amenities_expansion_tile_content.dart";
 import "../../tabs/dressing_room/presentation/digital_guide_dressing_rooms_expansion_tile.dart";
+import "../../tabs/entraces/presentation/entraces_expansion_tile_content.dart";
 import "../../tabs/evacuation/evacuation_widget.dart";
 import "../../tabs/lifts/presentation/digital_guide_lifts_expansion_tile_content.dart";
 import "../../tabs/localization/presentation/localization_expansion_tile_content.dart";
@@ -76,7 +77,11 @@ class DigitalGuideFeaturesSection extends ConsumerWidget {
       ),
       (
         title: context.localize.entrances,
-        content: [],
+        content: [
+          EntrancesExpansionTileContent(
+            digitalGuideData: digitalGuideData,
+          ),
+        ],
       ),
       (
         title: context.localize.lifts,
