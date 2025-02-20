@@ -14,22 +14,18 @@ class DigitalGuideEntrace with _$DigitalGuideEntrace {
     @JsonKey(fromJson: _stringToBool) required bool isMain,
     @JsonKey(fromJson: _stringToBool) required bool isAccessible,
     @JsonKey(fromJson: _stringToBool) required bool isForPersonel,
-    @JsonKey(fromJson: _stringToBool) required bool isBuildingMarkedFromEntrance,
+    @JsonKey(fromJson: _stringToBool)
+    required bool isBuildingMarkedFromEntrance,
     @JsonKey(fromJson: _stringToBool) required bool isBuildingMarkedInEn,
     @JsonKey(fromJson: _stringToBool) required bool isLit,
     @JsonKey(fromJson: _stringToBool) required bool isEmergencyExit,
     @JsonKey(fromJson: _stringToBool) required bool isProtectionFromWeather,
     @JsonKey(fromJson: _stringToBool) required bool isSolidSurface,
     @JsonKey(fromJson: _stringToBool) required bool areDifferentTypesOfSurface,
-
     @JsonKey(fromJson: _stringToBool) required bool areBenches,
-
     required int? numberOfDoors,
-
     required String? doorsDistance,
-
     @JsonKey(fromJson: _stringToBool) required bool hasSoundTransmitter,
-
     @JsonKey(fromJson: _stringToBool) required bool hasTactilePaving,
     required int? building,
     @JsonKey(name: "stairs") required IList<int> stairsIndices,
@@ -80,7 +76,6 @@ class DigitalGuideTranslationEntrace with _$DigitalGuideTranslationEntrace {
 }
 
 bool _stringToBool(String? str) {
-
   if (str == null) {
     return false;
   }

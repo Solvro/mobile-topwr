@@ -26,13 +26,13 @@ class DigitalGuideEntranceDetailsView extends ConsumerWidget {
     final comments = entrance.translations.pl;
 
     final IList<String> commentsList = [
-      "${context.localize.entrance_is_building_marked_from_entrance(entrance.isBuildingMarkedFromEntrance.toString())}. ${comments.isBuildingMarkedFromEntranceComment??""}",
-      "${context.localize.entrance_is_solid_surface(entrance.isSolidSurface.toString())}. ${comments.isSolidSurfaceComment??""}",
-      "${context.localize.entrance_are_different_types_of_surface(entrance.areDifferentTypesOfSurface.toString())}. ${comments.areDifferentTypesOfSurfaceComment??""}",
-      comments.entranceThreats??"",
-      "${context.localize.entrance_has_sound_transmitter(entrance.hasSoundTransmitter.toString())}. ${comments.hasSoundTransmitterComment??""}",
-      "${context.localize.entrance_has_tactile_paving(entrance.hasTactilePaving.toString())}. ${comments.hasTactilePavingComment??""}",
-    ].where((item) =>item.trim().isNotEmpty).cast<String>().toIList();
+      "${context.localize.entrance_is_building_marked_from_entrance(entrance.isBuildingMarkedFromEntrance.toString())}. ${comments.isBuildingMarkedFromEntranceComment ?? ""}",
+      "${context.localize.entrance_is_solid_surface(entrance.isSolidSurface.toString())}. ${comments.isSolidSurfaceComment ?? ""}",
+      "${context.localize.entrance_are_different_types_of_surface(entrance.areDifferentTypesOfSurface.toString())}. ${comments.areDifferentTypesOfSurfaceComment ?? ""}",
+      comments.entranceThreats ?? "",
+      "${context.localize.entrance_has_sound_transmitter(entrance.hasSoundTransmitter.toString())}. ${comments.hasSoundTransmitterComment ?? ""}",
+      "${context.localize.entrance_has_tactile_paving(entrance.hasTactilePaving.toString())}. ${comments.hasTactilePavingComment ?? ""}",
+    ].where((item) => item.trim().isNotEmpty).cast<String>().toIList();
     final widgets = [
       Text(
         entrance.translations.pl.name ?? "",
@@ -43,19 +43,25 @@ class DigitalGuideEntranceDetailsView extends ConsumerWidget {
         padding: const EdgeInsets.symmetric(
           horizontal: DigitalGuideConfig.paddingMedium,
         ),
-          child:BulletList(
-        items: getNonNullableList([
-          context.localize.entrance_is_main(entrance.isMain.toString()),
-          context.localize.entrance_is_accessible(entrance.isAccessible.toString()),
-          context.localize.entrance_is_for_personel(entrance.isForPersonel.toString()),
-          context.localize.entrance_is_lit(entrance.isLit.toString()),
-          context.localize.entrance_is_protection_from_weather(entrance.isProtectionFromWeather.toString()),
-          context.localize.entrance_is_emergency_exit(entrance.isEmergencyExit.toString()),
-          context.localize.entrance_is_building_marked_in_en(entrance.isBuildingMarkedInEn.toString()),
-          context.localize.entrance_are_benches(entrance.areBenches.toString()),
-       ]),
-
-      ),),
+        child: BulletList(
+          items: getNonNullableList([
+            context.localize.entrance_is_main(entrance.isMain.toString()),
+            context.localize
+                .entrance_is_accessible(entrance.isAccessible.toString()),
+            context.localize
+                .entrance_is_for_personel(entrance.isForPersonel.toString()),
+            context.localize.entrance_is_lit(entrance.isLit.toString()),
+            context.localize.entrance_is_protection_from_weather(
+                entrance.isProtectionFromWeather.toString()),
+            context.localize.entrance_is_emergency_exit(
+                entrance.isEmergencyExit.toString()),
+            context.localize.entrance_is_building_marked_in_en(
+                entrance.isBuildingMarkedInEn.toString()),
+            context.localize
+                .entrance_are_benches(entrance.areBenches.toString()),
+          ]),
+        ),
+      ),
       const SizedBox(height: DigitalGuideConfig.heightBig),
       AccessibilityProfileCard(
         items: commentsList,
