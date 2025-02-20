@@ -314,6 +314,7 @@
   "platforms" : "Podesty",
   "key_information" : "Najważniejsze informacje",
   "motorImpairment": "Dysfunkcja ruchu",
+  "hearingImpairment" : "Dysfunkcja słuchu",
   "visualImpairment": "Dysfunkcja wzroku",
   "blind": "Niewidomy",
   "lowVision": "Słabo widzący",

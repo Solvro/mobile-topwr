@@ -1,3 +1,4 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
@@ -54,7 +55,14 @@ class _RoomStairsContent extends ConsumerWidget {
             height: DigitalGuideConfig.heightBig,
           ),
           AccessibilityProfileCard(
-            items: roomStairsAccessibilityComments,
+            items: (
+              blind: roomStairsAccessibilityComments,
+              cognitive: ["cog"].lock,
+              lowVision: ["vision"].lock,
+              motor: ["motor"].lock,
+              sensor: ["sensor"].lock,
+              hearing: ["hearing"].lock
+            ),
             icon: Assets.svg.digitalGuide.accessibilityAlerts.blindProfile,
           ),
         ],

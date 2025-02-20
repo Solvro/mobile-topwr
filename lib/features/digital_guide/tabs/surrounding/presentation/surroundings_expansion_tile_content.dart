@@ -76,7 +76,7 @@ class _SurroundingExpansionTileContent extends ConsumerWidget {
         height: DigitalGuideConfig.heightTiny,
       ),
       AccessibilityProfileCard(
-        items: context.getSurroundingsCommentsList(surroundingResponse),
+        items: context.getSurroundingsCommentsTuple(surroundingResponse),
         icon: Assets.svg.digitalGuide.accessibilityAlerts.blindProfile,
       ),
       const SizedBox(
