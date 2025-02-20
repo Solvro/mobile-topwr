@@ -81,6 +81,8 @@ class DigitalGuideLift with _$DigitalGuideLift {
     required bool isGoodDoorWallContrast,
   }) = _DigitalGuideLift;
 
+  const DigitalGuideLift._();
+
   IList<String> getMotorImpairmentValue(AppLocalizations l10n) {
     final pl = translations.pl;
     return IList([
