@@ -1,4 +1,5 @@
 import "package:auto_route/auto_route.dart";
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
@@ -12,8 +13,6 @@ import "../../../presentation/widgets/accessibility_profile_card.dart";
 import "../../../presentation/widgets/bullet_list.dart";
 import "../../../presentation/widgets/digital_guide_nav_link.dart";
 import "../../../presentation/widgets/digital_guide_photo_row.dart";
-import "../data/business/entraces_response_operations.dart";
-import "../data/business/formatting_utils.dart";
 import "../data/models/digital_guide_entrace.dart";
 
 @RoutePage()
@@ -24,34 +23,42 @@ class DigitalGuideEntranceDetailsView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // Przykładowe dane z JSON (zastąp danymi z twojego modelu)
+    final comments = entrance.translations.pl;
+
+    final IList<String> commentsList = [
+      "${context.localize.entrance_is_building_marked_from_entrance(entrance.isBuildingMarkedFromEntrance.toString())}. ${comments.isBuildingMarkedFromEntranceComment??""}",
+      "${context.localize.entrance_is_solid_surface(entrance.isSolidSurface.toString())}. ${comments.isSolidSurfaceComment??""}",
+      "${context.localize.entrance_are_different_types_of_surface(entrance.areDifferentTypesOfSurface.toString())}. ${comments.areDifferentTypesOfSurfaceComment??""}",
+      comments.entranceThreats??"",
+      "${context.localize.entrance_has_sound_transmitter(entrance.hasSoundTransmitter.toString())}. ${comments.hasSoundTransmitterComment??""}",
+      "${context.localize.entrance_has_tactile_paving(entrance.hasTactilePaving.toString())}. ${comments.hasTactilePavingComment??""}",
+    ].where((item) =>item.trim().isNotEmpty).cast<String>().toIList();
     final widgets = [
       Text(
         entrance.translations.pl.name ?? "",
         style: context.textTheme.title.copyWith(fontSize: 24),
       ),
       const SizedBox(height: DigitalGuideConfig.heightMedium),
-      BulletList(
+      Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: DigitalGuideConfig.paddingMedium,
+        ),
+          child:BulletList(
         items: getNonNullableList([
-          formatBool(key: "isMain", value: entrance.isMain),
-          formatBool(key: "isAccessible", value: entrance.isAccessible),
-          "${formatBool(key: "isForPersonel", value: entrance.isForPersonel)}. ${entrance.translations.pl.location}",
-          "${formatBool(key: "isLit", value: entrance.isLit)}. ${entrance.translations.pl.isLitComment}",
-          formatBool(
-            key: "isProtectionFromWeather",
-            value: entrance.isProtectionFromWeather,
-          ),
-          formatBool(key: "isEmergencyExit", value: entrance.isEmergencyExit),
-          formatBool(
-            key: "isBuildingMarkedInEn",
-            value: entrance.isBuildingMarkedInEn,
-          ),
-          "${formatBool(key: "areBenches", value: entrance.areBenches)}. ${entrance.translations.pl.areBenchesComment}",
-        ]),
-      ),
+          context.localize.entrance_is_main(entrance.isMain.toString()),
+          context.localize.entrance_is_accessible(entrance.isAccessible.toString()),
+          context.localize.entrance_is_for_personel(entrance.isForPersonel.toString()),
+          context.localize.entrance_is_lit(entrance.isLit.toString()),
+          context.localize.entrance_is_protection_from_weather(entrance.isProtectionFromWeather.toString()),
+          context.localize.entrance_is_emergency_exit(entrance.isEmergencyExit.toString()),
+          context.localize.entrance_is_building_marked_in_en(entrance.isBuildingMarkedInEn.toString()),
+          context.localize.entrance_are_benches(entrance.areBenches.toString()),
+       ]),
+
+      ),),
       const SizedBox(height: DigitalGuideConfig.heightBig),
       AccessibilityProfileCard(
-        items: context.getEntranceCommentsList(entrance),
+        items: commentsList,
         icon: Assets.svg.digitalGuide.accessibilityAlerts.blindProfile,
       ),
       const SizedBox(height: DigitalGuideConfig.heightBig),
