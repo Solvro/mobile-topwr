@@ -15,6 +15,7 @@ import "../../../presentation/widgets/bullet_list.dart";
 import "../../../presentation/widgets/digital_guide_nav_link.dart";
 import "../../../presentation/widgets/digital_guide_photo_row.dart";
 import "../data/models/digital_guide_room.dart";
+import "../platforms/presentation/room_platforms_content.dart";
 import "../stairs/presentation/room_stairs_content.dart";
 
 @RoutePage()
@@ -82,19 +83,31 @@ class DigitalGuideRoomDetailView extends ConsumerWidget {
       const SizedBox(
         height: DigitalGuideConfig.heightMedium,
       ),
-      DigitalGuideNavLink(
-        onTap: () {},
-        text: context.localize.platforms,
-      ),
       const SizedBox(
         height: DigitalGuideConfig.heightMedium,
       ),
       if (room.roomStairs.isNotEmpty)
-        MyExpansionTile(
-          title: context.localize.stairs,
-          children: [RoomStairsContent(roomStairsId: room.roomStairs[0])],
-        ),
+        ...room.roomStairs.asMap().entries.map((entry) {
+          final String index = entry.key == 0 ? "" : (entry.key + 1).toString();
+          return MyExpansionTile(
+            title: "${context.localize.stairs} $index",
+            children: [
+              RoomStairsContent(roomStairsId: entry.value),
+            ],
+          );
+        }),
+      if (room.platforms.isNotEmpty)
+        ...room.platforms.asMap().entries.map((entry) {
+          final String index = entry.key == 0 ? "" : (entry.key + 1).toString();
+          return MyExpansionTile(
+            title: "${context.localize.platforms} $index",
+            children: [
+              RoomPlatformsContent(platformId: entry.value),
+            ],
+          );
+        }),
     ];
+
     return HorizontalSymmetricSafeAreaScaffold(
       appBar: DetailViewAppBar(
         actions: [AccessibilityButton()],

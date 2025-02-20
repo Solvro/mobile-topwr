@@ -38,6 +38,7 @@ import "../sks/sks_menu/presentation/sks_menu_screen.dart";
 import "root_view.dart";
 
 part "app_router.g.dart";
+
 part "app_router.gr.dart";
 
 class _NoTransitionRoute extends CustomRoute {
@@ -136,6 +137,9 @@ class AppRouter extends RootStackRouter {
         ),
         AutoRoute(
           page: CorridorRoute.page,
+        ),
+        AutoRoute(
+          page: DigitalGuideRoomDetailRoute.page,
         ),
         AutoRoute(
           path: "/digital-guide/:id/micronavigation-details",

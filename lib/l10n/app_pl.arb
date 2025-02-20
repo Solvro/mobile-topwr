@@ -298,6 +298,12 @@
   "room_stairs_is_railing" : "{value, select, false{Przy schodach nie znajduje się poręcz.} true{Przy schodach znajduje się poręcz.} other{}}",
   "room_stairs_is_good_railing_contrast" : "{value, select, false{Poręcz nie wyróżnia się na tle otoczenia.} true{Poręcz wyróżnia się na tle otoczenia.} other{}}",
   "room_stairs_is_round_cross_section_railing" : "{value, select, false{Poręcz nie jest zaokrąglona i może posiadać ostre krawędzie.} true{Poręcz nie posiada ostrych krawędzi i jest zaokrąglona.} other{}}",
+
+  "room_platforms_is_good_floor_platform_contrast": "{value, select, false{Brak dobrego kontrastu podłogi względem platformy.} true{Dobry kontrast podłogi względem platformy.} other{}}",
+  "room_platforms_have_access_for_people_in_wheelchair": "{value, select, false{Brak dostępu dla osób poruszających się na wózku inwalidzkim.} true{Jest dostęp dla osób poruszających się na wózku inwalidzkim.} other{}}",
+  "room_platforms_is_platform_entrance_marked": "{value, select, false{Wejście na platformę nie jest oznaczone.} true{Wejście na platformę jest oznaczone.} other{}}",
+  "room_platforms_are_no_objects_narrow_communication_zone": "{value, select, false{W strefie komunikacyjnej znajdują się przeszkody.} true{Brak przeszkód w strefie komunikacyjnej.} other{}}",
+
   "strategicBadgeTooltip": "Koło Strategiczne PWr",
   "strategic_club_abbr": "KS",
   "emptySection": "Brak członków zespołu w tej wersji",
@@ -306,9 +312,7 @@
   "audio_message" : "Komunikat Dźwiękowy",
   "audio_message_comment" : "Sygnał znacznika może różnić się tempem i brzmieniem",
   "platforms" : "Podesty",
-  "stairs" : "Schody",
   "key_information" : "Najważniejsze informacje",
-  "working_hours" : "Godziny otwarcia",
   "motorImpairment": "Dysfunkcja ruchu",
   "visualImpairment": "Dysfunkcja wzroku",
   "blind": "Niewidomy",
@@ -316,10 +320,7 @@
   "sensorySensitivity": "Wrażliwość sensoryczna",
   "cognitiveImpairment": "Trudności poznawcze",
   "accessibility_profiles":"Profile dostępności",
-  "you_can_adjust": "Możesz dostosować informacje pod swoje specjalne potrzeby",
   "additional_information": "Dodatkowe informacje",
-  "lodge": "Portiernia",
-  "dressing_room": "Szatnia",
   "no_lodge_in_the_building": "W tym budynku nie ma portierni",
   "no_dressing_room_in_the_building": "W tym budynku nie ma szatni",
   "general_offline" : "pobierania danych",
@@ -327,7 +328,6 @@
   "dimensions" : "Wymiary",
   "max_capacity" : "Maksymalny udźwig",
   "generic_error_message": "Upsss...Coś poszło nie tak",
-  "navigate_to_building": "Nawiguj do budynku",
   "public_transport": "Publiczny środek komunikacji miejskiej (autobus, tramwaj)",
   "private_transport": "Prywatny środek transportu (samochód, rower)",
   "distance": " W odległości ",
@@ -393,13 +393,6 @@
     }
   },
   "room_entrances_text" : "Z korytarza możliwe jest wejście do następujących pomieszczeń: {comment}",
-  "@floor_marked_text": {
-    "placeholders": {
-      "comment": {
-        "type": "String"
-      }
-    }
-  },
   "no_room_entrances_text" : "Z korytarza nie ma możliwości wejścia do żadnego pomieszczenia.",
   "information_board_text" : "W korytarzu nie ma tablicy informacyjnej ze spisem pomieszczeń. {comment}",
   "@information_board_text": {
@@ -456,5 +449,6 @@
   },
   "no_vending_machines_text" : "W korytarzu nie ma automatów sprzedających.",
   "emergency_plan_text" : "W korytarzu znajdują się plany ewakuacyjne.",
-  "no_emergency_plan_text" : "W korytarzu nie ma planów ewakuacyjnych."
+  "no_emergency_plan_text" : "W korytarzu nie ma planów ewakuacyjnych.",
+  "platform_dimensions" : "Wymiary platformy: "
 }
