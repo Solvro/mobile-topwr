@@ -25,8 +25,8 @@ import "../digital_guide/tabs/structure/data/models/corridor.dart";
 import "../digital_guide/tabs/structure/presentation/views/corridor_view.dart";
 import "../digital_guide/tabs/structure/presentation/views/level_view.dart";
 import "../digital_guide/tabs/structure/presentation/views/region_view.dart";
-import "../digital_guide_view/tabs/transportation/data/models/digital_guide_transportation.dart";
-import "../digital_guide_view/tabs/transportation/presentation/transportation_detail_view.dart";
+import "../digital_guide/tabs/transportation/data/models/digital_guide_transportation.dart";
+import "../digital_guide/tabs/transportation/presentation/transportation_detail_view.dart";
 import "../guide_detail_view/guide_detail_view.dart";
 import "../guide_view/guide_view.dart";
 import "../home_view/home_view.dart";
@@ -147,6 +147,9 @@ class AppRouter extends RootStackRouter {
         ),
         AutoRoute(
           page: DoorRoute.page,
+        ),
+        AutoRoute(
+          page: TransportationDetailRoute.page,
         ),
       ];
 }
