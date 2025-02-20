@@ -1,0 +1,10 @@
+query GetPlannerAdvertContent {
+    PlannerAdvert {
+        isEnabled,
+        title,
+        description,
+        url,
+      	backgroundColor,
+      	textColor
+    }
+}

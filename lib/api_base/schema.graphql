@@ -97,6 +97,8 @@ type Query {
   Buildings_by_id(id: ID!, version: String): Buildings
   Buildings_aggregated(groupBy: [String], filter: Buildings_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [Buildings_aggregated!]!
   Buildings_by_version(version: String!, id: ID!): version_Buildings
+  PlannerAdvert(version: String): PlannerAdvert
+  PlannerAdvert_by_version(version: String!): version_PlannerAdvert
 }
 
 type Scientific_Circles_Tags {
@@ -1205,6 +1207,11 @@ type CacheReferenceNumber {
   date_updated: Date
   date_updated_func: datetime_functions
   referenceNumber: Int
+  useParkingApiWrapper: Boolean
+  javaWrapperURL: String
+  classicParkingGetParks: String
+  classicParkingGetCharts: String
+  parkingPhotoPrefix: String
 }
 
 """"""
@@ -1214,6 +1221,11 @@ type version_CacheReferenceNumber {
   date_updated: Date
   date_updated_func: datetime_functions
   referenceNumber: Int
+  useParkingApiWrapper: Boolean
+  javaWrapperURL: String
+  classicParkingGetParks: String
+  classicParkingGetCharts: String
+  parkingPhotoPrefix: String
 }
 
 type AboutUs_Team_Social_Links_aggregated {
@@ -1834,6 +1846,27 @@ type version_Buildings {
   externalDigitalGuideMode: String
 }
 
+type PlannerAdvert {
+  id: ID!
+  title: String
+  description: String!
+  url: String
+  isEnabled: Boolean!
+  textColor: String
+  backgroundColor: String
+}
+
+""""""
+type version_PlannerAdvert {
+  id: ID!
+  title: String
+  description: String!
+  url: String
+  isEnabled: Boolean!
+  textColor: String
+  backgroundColor: String
+}
+
 type Subscription {
   directus_files_mutated(event: EventEnum): directus_files_mutated
   Scientific_Circles_Tags_mutated(event: EventEnum): Scientific_Circles_Tags_mutated
@@ -1862,6 +1895,7 @@ type Subscription {
   TeamVersion_Members_mutated(event: EventEnum): TeamVersion_Members_mutated
   TeamVersions_mutated(event: EventEnum): TeamVersions_mutated
   Buildings_mutated(event: EventEnum): Buildings_mutated
+  PlannerAdvert_mutated(event: EventEnum): PlannerAdvert_mutated
 }
 
 type directus_files_mutated {
@@ -2030,4 +2064,10 @@ type Buildings_mutated {
   key: ID!
   event: EventEnum
   data: Buildings
+}
+
+type PlannerAdvert_mutated {
+  key: ID!
+  event: EventEnum
+  data: PlannerAdvert
 }

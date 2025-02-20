@@ -2,8 +2,8 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../config/ui_config.dart";
+import "../../../widgets/loading_widgets/simple_previews/horizontal_rectangular_section_loading.dart";
 import "../../../widgets/my_error_widget.dart";
-import "../../home_view/widgets/loading_widgets/horizontal_rectangular_section_loading.dart";
 import "../repository/academic_calendar_repo.dart";
 import "countdown_widget/exam_session_countdown.dart";
 import "home_screen_greeting.dart";

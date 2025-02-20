@@ -63,21 +63,13 @@ Read more at: https://solvro.pwr.edu.pl/portfolio/to-pwr/.
 
 # Development
 
-Recommended flutter version: `Channel stable, 3.24.0`
+Recommended flutter version: `Channel stable, 3.29.0`
 
-1. ### Before you start, you need to add `.env` file to project's root with appropriate content:
-
-```bash
-API_URL="https://<our-server-url>/graphql"
-ASSETS_URL="https://<our-server-url>/assets"
-IPARKING_URL="https://<secret parking's source>.pl"
-WIREDASH_ID="<...>" # can be left empty
-WIREDASH_SECRET="<...>" # can be left empty
-SKS_URL="https://<...>/api/v1"
-DIGITAL_GUIDE_URL="https://<...>/api"
-DIGITAL_GUIDE_AUTHORIZATION_TOKEN="<...>"
-```
-If you need our server url please write us an email [kn.solvro@pwr.edu.pl](mailto:kn.solvro@pwr.edu.pl) or contact us via our [website](https://solvro.pwr.edu.pl/contact/)
+### For secrets storing, we're using [git-crypt](https://github.com/AGWA/git-crypt). You need to:
+1. pull the repo
+2. Install git-crypt: https://github.com/AGWA/git-crypt/blob/master/INSTALL.md
+3. get our cryptographic key
+4. run `git-crypt unlock <<name-of-the-key>>`
 
   ### Code generation
   Some of app's dependecies utilize code generation feature and generated files **are not currently included** to control version and this github repository, so before building, running or developing application, it's crucial to run code generation (to generate all needed files) in terminal with:

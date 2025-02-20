@@ -30,6 +30,7 @@ analyzer:
     - "**/*.graphql.dart"
     - "**/*.icons.dart"
     - "**/firebase_options.dart"
+    - "lib/l10n/app_localizations*.dart"
   plugins:
     - custom_lint
 

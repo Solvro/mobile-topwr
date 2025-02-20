@@ -10,7 +10,7 @@ import "../../utils/context_extensions.dart";
 import "../../utils/launch_url_util.dart";
 import "../../widgets/search_box_app_bar.dart";
 import "../../widgets/wide_tile_card.dart";
-import "../departments_view/widgets/departments_view_loading.dart";
+import "../departments/departments_view/widgets/departments_view_loading.dart";
 import "guide_view_controller.dart";
 import "repository/guide_repository.dart";
 import "widgets/guide_grid.dart";

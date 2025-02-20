@@ -11,7 +11,7 @@ class OptimizedDirectusImage extends MyCachedImage {
     super.imageUrl, {
     super.key,
     super.boxFit,
-    super.noShimmeringLoading,
+    super.loadingType,
   });
 
   @override
@@ -28,7 +28,7 @@ class OptimizedDirectusImage extends MyCachedImage {
           ),
           builder: (BuildContext context, Size size) => MyCachedImage(
             imageUrl?.directusUrlWithSize(size, boxFit),
-            noShimmeringLoading: noShimmeringLoading,
+            loadingType: loadingType,
             boxFit: boxFit,
             size: size,
           ),

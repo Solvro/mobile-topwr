@@ -5,6 +5,7 @@ import "package:flutter/material.dart";
 import "../../config/ui_config.dart";
 import "../../theme/app_theme.dart";
 import "../academic_calendar/widgets/academic_calendar_consumer.dart";
+import "../planner_advert/widgets/planner_advert_widget.dart";
 import "keep_alive_home_view_providers.dart";
 import "widgets/buildings_section/buildings_section.dart";
 import "widgets/logo_app_bar.dart";
@@ -17,45 +18,28 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final safeAreaInsets = MediaQuery.of(context).padding;
-    final horizontalPadding = safeAreaInsets.left;
-
     final sections = [
       const AcademicCalendarConsumer(),
       const Padding(
         padding: EdgeInsets.only(top: 12, bottom: 4),
         child: NavActionsSection(),
       ),
+      PlannerAdvertBanner(),
       const ScienceClubsSection(),
       const BuildingsSection(),
     ].lock;
 
     return Scaffold(
+      primary: false,
       backgroundColor: context.colorTheme.whiteSoap,
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(kToolbarHeight),
-        child: SafeArea(
-          child: Padding(
-            padding: EdgeInsets.only(left: horizontalPadding),
-            child: LogoAppBar(context),
+      appBar: LogoAppBar(context),
+      body: KeepAliveHomeViewProviders(
+        child: ListView.separated(
+          itemBuilder: (context, index) => sections[index],
+          separatorBuilder: (context, index) => SizedBox(
+            height: index == 1 || index == 2 ? 0 : HomeViewConfig.paddingMedium,
           ),
-        ),
-      ),
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.only(
-            left: horizontalPadding, // Align with the top bar
-            right: safeAreaInsets.right,
-          ),
-          child: KeepAliveHomeViewProviders(
-            child: ListView.separated(
-              itemBuilder: (context, index) => sections[index],
-              separatorBuilder: (context, index) => SizedBox(
-                height: index == 1 ? 0 : HomeViewConfig.paddingMedium,
-              ),
-              itemCount: sections.length,
-            ),
-          ),
+          itemCount: sections.length,
         ),
       ),
     );

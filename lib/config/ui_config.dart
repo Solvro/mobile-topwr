@@ -1,12 +1,12 @@
 import "package:flutter/material.dart";
 
-import "../features/parking_chart/utils/range_hour_points.dart";
+import "../features/parkings/parking_chart/utils/range_hour_points.dart";
 import "../theme/hex_color.dart";
 
 abstract class MyAppConfig {
   static const title = "ToPWR";
-  static const legalese =
-      "\u{a9} 2024 Koło Naukowe Solvro, Politechnika Wrocławska";
+  static String legalese =
+      "\u{a9} 2024-${DateTime.now().year} Koło Naukowe Solvro, Politechnika Wrocławska";
 }
 
 abstract class AppWidgetsConfig {
@@ -171,6 +171,12 @@ abstract class FilterConfig {
   static const paddingMedium = 8.0;
   static const spacingBetweenWidgets = 12.0;
   static final radius = BorderRadius.circular(8);
+  static const buttonPadding =
+      EdgeInsets.symmetric(vertical: 10, horizontal: 20);
+}
+
+class DialogsConfig {
+  static final padding = const EdgeInsets.all(20).copyWith(top: 6);
 }
 
 abstract class LottieAnimationConfig {
@@ -242,6 +248,8 @@ abstract class DigitalGuideConfig {
       EdgeInsets.symmetric(vertical: 24, horizontal: 24);
   static const borderRadiusSmall = 4.0;
   static const borderRadiusMedium = 8.0;
+  static const borderRadiusBig = 16.0;
+  static const borderRadiusHuge = 32.0;
   static const heightTiny = 4.0;
   static const heightSmall = 8.0;
   static const heightMedium = 16.0;
@@ -252,8 +260,11 @@ abstract class DigitalGuideConfig {
   static const mediumButtonPadding =
       EdgeInsets.symmetric(vertical: 8, horizontal: 14);
   static const paddingMedium = 16.0;
+  static const paddingBig = 24.0;
   static const difficultiesCardIconSize = 35.0;
   static const photoRowHeight = 75.0;
+  static const bodyFont = 16.0;
+  static const headlineFont = 22.0;
 
   // Basically there are 4 levels of accessability, but 0 and 1 are shown as the same on digital guide site
   static const accessibilityLevelColors = [

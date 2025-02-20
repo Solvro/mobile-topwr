@@ -13,7 +13,8 @@ enum TtlKey {
   buildingsRepository,
   guideDetailsRepository,
   guideRepository,
-  changelogRepository
+  changelogRepository,
+  plannerAdvertRepository
   // ... add a new key here if you create a new repository
 }
 
@@ -38,6 +39,7 @@ abstract class TtlStrategy {
         day, // leaving as day for now, cause maybe some uni orgs will update it by themselves
       TtlKey.guideRepository => week,
       TtlKey.changelogRepository => week,
+      TtlKey.plannerAdvertRepository => day
     };
   }
 }

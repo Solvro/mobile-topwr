@@ -16,11 +16,11 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.1.12+67
+version: 1.1.13+68
 
 environment:
   sdk: ^3.5.3
-  flutter: 3.27.0
+  flutter: 3.29.0
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
 # consider running `flutter pub upgrade --major-versions`. Alternatively,
@@ -37,7 +37,7 @@ dependencies:
   theme_tailor_annotation: ^3.0.1
   theme_tailor: ^3.0.1
 
-  #State managment
+  #State management
   flutter_riverpod: ^2.6.1
   riverpod_annotation: ^2.6.1
   hooks_riverpod: ^2.6.1
@@ -73,6 +73,7 @@ dependencies:
   animated_list_plus: ^0.5.2
   dotted_border: ^2.1.0
   fluttertoast: ^8.2.8
+  carousel_slider_plus: ^7.1.0
 
   #Data
   freezed_annotation: ^2.4.4
@@ -114,8 +115,9 @@ dependencies:
   protontime: ^2.0.0
   logger: ^2.4.0
   separate: ^1.0.3
-  wiredash: ^2.2.2
+  wiredash: ^2.4.0
   flutter_hooks: ^0.20.5
+  audioplayers: ^6.1.0
 
 dev_dependencies:
   flutter_test:
@@ -140,6 +142,7 @@ dev_dependencies:
   #Other
   svg_optimizer: ^0.0.1
   flutter_launcher_icons: "^0.14.1"
+  test: ^1.25.8
 
 dependency_overrides:
   collection: ^1.19.1
