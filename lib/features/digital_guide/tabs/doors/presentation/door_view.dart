@@ -16,17 +16,24 @@ import "../data/repository/doors_repository.dart";
 
 @RoutePage()
 class DoorView extends ConsumerWidget {
-  const DoorView({required this.doorsID,});
+  const DoorView({
+    required this.doorsID,
+  });
 
   final int doorsID;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final asyncDoors = ref.watch(doorsRepositoryProvider(doorsID));    
+    final asyncDoors = ref.watch(doorsRepositoryProvider(doorsID));
 
     return asyncDoors.when(
-      data: (data) => _DoorsView(door: data,),
-      error: (error, stackTrace,) {
+      data: (data) => _DoorsView(
+        door: data,
+      ),
+      error: (
+        error,
+        stackTrace,
+      ) {
         return HorizontalSymmetricSafeAreaScaffold(
           appBar: DetailViewAppBar(),
           body: MyErrorWidget(error),
@@ -46,13 +53,12 @@ class _DoorsView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     final IList<String> textStrings = [
-      if(door.translations.pl.comment.isNotEmpty) door.translations.pl.comment,
+      if (door.translations.pl.comment.isNotEmpty) door.translations.pl.comment,
       door.translations.pl.fromTo,
       "${context.localize.door_visible_from_outside(door.isGoodDoorVisibleFromOutside)} ${door.translations.pl.isGoodDoorVisibleFromOutsideComment}",
       "${context.localize.door_visible_from_inside(door.isGoodDoorVisibleFromInside)} ${door.translations.pl.isGoodDoorVisibleFromInsideComment}",
-      if(door.doorType == DoorType.singleLeafDoor) 
+      if (door.doorType == DoorType.singleLeafDoor)
         context.localize.single_leaf_door
       else if (door.doorType == DoorType.doubleLeafDoor)
         context.localize.double_leaf_door
@@ -65,7 +71,10 @@ class _DoorsView extends ConsumerWidget {
       "${context.localize.main_wing_highlighted(door.isMainWingHighlighted)} ${door.translations.pl.isMainWingHighlightedComment}",
       "${context.localize.increased_force_required(door.isIncreasedForceRequired)} ${door.translations.pl.isIncreasedForceRequiredComment}",
       "${context.localize.door_closer(door.isDoorCloser)} ${door.translations.pl.isDoorCloserComment}",
-    ].map((string) => string.trim()).where((string) => string.isNotEmpty).toIList();
+    ]
+        .map((string) => string.trim())
+        .where((string) => string.isNotEmpty)
+        .toIList();
 
     return Scaffold(
       appBar: DetailViewAppBar(),
@@ -93,5 +102,4 @@ class _DoorsView extends ConsumerWidget {
       ),
     );
   }
-  
 }

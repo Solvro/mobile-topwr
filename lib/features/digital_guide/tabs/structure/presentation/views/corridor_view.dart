@@ -118,7 +118,9 @@ class CorridorView extends ConsumerWidget {
                   physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
                     return DigitalGuideNavLink(
-                      onTap: () async => ref.navigateDigitalGuideDoor(corridor.doorsIndices[index]),
+                      onTap: () async => ref.navigateDigitalGuideDoor(
+                        corridor.doorsIndices[index],
+                      ),
                       text: context.localize.door,
                     );
                   },

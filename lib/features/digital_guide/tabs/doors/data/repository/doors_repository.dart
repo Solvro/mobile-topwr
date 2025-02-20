@@ -10,7 +10,7 @@ part "doors_repository.g.dart";
 @riverpod
 Future<Door> doorsRepository(Ref ref, int doorsID) async {
   return ref.getAndCacheDataFromDigitalGuide(
-    "doors/$doorsID", 
+    "doors/$doorsID",
     Door.fromJson,
     onRetry: () => ref.invalidateSelf(),
   );

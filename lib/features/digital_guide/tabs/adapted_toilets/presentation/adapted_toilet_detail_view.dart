@@ -71,7 +71,8 @@ class AdaptedToiletDetailView extends ConsumerWidget {
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
           return DigitalGuideNavLink(
-            onTap: () async => ref.navigateDigitalGuideDoor(adaptedToilet.doorsIndices[index]),
+            onTap: () async =>
+                ref.navigateDigitalGuideDoor(adaptedToilet.doorsIndices[index]),
             text: context.localize.door,
           );
         },
