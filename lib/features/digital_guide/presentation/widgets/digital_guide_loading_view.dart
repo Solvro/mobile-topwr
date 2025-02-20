@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+
 import "../../../../config/ui_config.dart"
     show DetailViewsConfig, DigitalGuideConfig, GuideDetailViewConfig;
 import "../../../../widgets/loading_widgets/shimmer_loading.dart";
@@ -8,17 +9,19 @@ class DigitalGuideLoadingView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Shimmer(
-      linearGradient: shimmerGradient,
-      child: Column(
-        children: [
-          _DigitalGuideHeaderLoading(),
-          _DigitalGuideTitleSectionLoading(),
-          _DigitalGuideInfoSectionLoading(),
-          Expanded(
-            child: _DigitalGuideTilesLoading(),
-          ),
-        ],
+    return const Scaffold(
+      body: Shimmer(
+        linearGradient: shimmerGradient,
+        child: Column(
+          children: [
+            _DigitalGuideHeaderLoading(),
+            _DigitalGuideTitleSectionLoading(),
+            _DigitalGuideInfoSectionLoading(),
+            Expanded(
+              child: _DigitalGuideTilesLoading(),
+            ),
+          ],
+        ),
       ),
     );
   }
