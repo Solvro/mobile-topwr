@@ -18,25 +18,21 @@ class DigitalGuideEntrace with _$DigitalGuideEntrace {
       fromJson: _stringToBool,
     )
     required bool isForPersonnel,
-
     @JsonKey(
       name: "is_building_marked_from_entrance",
       fromJson: _stringToBool,
     )
     required bool isBuildingMarkedFromEntrance,
-
     @JsonKey(
       name: "is_emergency_exit",
       fromJson: _stringToBool,
     )
     required bool isEmergencyExit,
-
     @JsonKey(
       name: "is_protection_from_weather",
       fromJson: _stringToBool,
     )
     required bool isProtectionFromWeather,
-
     @JsonKey(
       name: "is_solid_surface",
       fromJson: _stringToBool,
@@ -68,7 +64,6 @@ class DigitalGuideTranslationEntrace with _$DigitalGuideTranslationEntrace {
   factory DigitalGuideTranslationEntrace.fromJson(Map<String, dynamic> json) =>
       _$DigitalGuideTranslationEntraceFromJson(json);
 }
-
 
 bool _stringToBool(String value) {
   return value.toLowerCase() == "true";
