@@ -19,7 +19,7 @@ class DigitalGuideLift with _$DigitalGuideLift {
     required bool isMarkedFromEntrance,
     @JsonKey(name: "is_marked_from_entrance_in_en", fromJson: _stringToBool)
     required bool isMarkedFromEntranceInEn,
-    @JsonKey(name: "is_used_by") required int isUsedBy,
+    @JsonKey(name: "is_used_by", fromJson: int.tryParse) required int? isUsedBy,
     @JsonKey(name: "is_signed", fromJson: _stringToBool) required bool isSigned,
     @JsonKey(name: "is_signed_in_en", fromJson: _stringToBool)
     required bool isSignedInEn,
@@ -29,7 +29,7 @@ class DigitalGuideLift with _$DigitalGuideLift {
     @JsonKey(name: "door_width") required int doorWidth,
     @JsonKey(name: "is_open_automatically", fromJson: _stringToBool)
     required bool isOpenAutomatically,
-    @JsonKey(name: "door_type") required int doorType,
+    @JsonKey(name: "door_type", fromJson: int.tryParse) required int? doorType,
     @JsonKey(name: "is_increased_force_required")
     required String isIncreasedForceRequired,
     @JsonKey(name: "is_two_sided", fromJson: _stringToBool)
