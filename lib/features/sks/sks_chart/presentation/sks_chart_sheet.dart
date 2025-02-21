@@ -7,6 +7,8 @@ import "../../../../hooks/use_filters_sheet_height.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../widgets/horizontal_symmetric_safe_area.dart";
+import "../../../../widgets/loading_widgets/simple_previews/horizontal_rectangular_section_loading.dart";
+import "../../../../widgets/loading_widgets/simple_previews/preview_card_loading.dart";
 import "../../../../widgets/my_error_widget.dart";
 import "../../../../widgets/text_and_url_widget.dart";
 import "../../../bottom_scroll_sheet/drag_handle.dart";
@@ -14,8 +16,6 @@ import "../../sks_people_live/data/repository/latest_sks_user_data_repo.dart";
 import "../data/models/sks_chart_data.dart";
 import "../data/repository/sks_chart_repository.dart";
 import "sks_chart_card.dart";
-
-// TODO(mikolaj-jalocha): create shimmer loading
 
 class SksChartSheet extends ConsumerWidget {
   const SksChartSheet({super.key});
@@ -36,7 +36,7 @@ class SksChartSheet extends ConsumerWidget {
 
     return switch (asyncChartData) {
       AsyncError(:final error) => MyErrorWidget(error),
-      AsyncLoading() => const SizedBox.shrink(),
+      AsyncLoading() => _SksChartLoading(sheetHeight: sheetHeight),
       AsyncValue() => HorizontalSymmetricSafeArea(
           child: SizedBox(
             height: sheetHeight,
@@ -80,6 +80,47 @@ class SksChartSheet extends ConsumerWidget {
           ),
         ),
     };
+  }
+}
+
+class _SksChartLoading extends StatelessWidget {
+  const _SksChartLoading({
+    required this.sheetHeight,
+  });
+
+  final double sheetHeight;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: sheetHeight,
+      width: double.infinity,
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 16)
+                .copyWith(bottom: 16),
+            child: const HorizontalRectangularSectionLoading(),
+          ),
+          const Flexible(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              child: PreviewCardLoading(
+                height: 300,
+                width: double.infinity,
+              ),
+            ),
+          ),
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+            child: PreviewCardLoading(
+              height: 10,
+              width: double.infinity,
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
 
