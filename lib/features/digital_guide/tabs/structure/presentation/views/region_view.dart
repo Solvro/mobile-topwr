@@ -70,11 +70,13 @@ class _RegionView extends ConsumerWidget {
             ref.navigateDigitalGuideCorridor(regionData.corridors[index]),
         itemCount: region.corridors.length,
       ),
-      RegionDataSliverListItem(
-        text: (index) => context.localize.stairs,
-        onTap: (index) async => () {},
-        itemCount: region.corridors.length,
-      ),
+      if (regionData.stairs.isNotEmpty)
+        RegionDataSliverListItem(
+          text: (index) => context.localize.stairs,
+          onTap: (index) async =>
+              ref.navigateDigitalGuideStairs(regionData.stairs[index]),
+          itemCount: region.stairs.length,
+        ),
       RegionDataSliverListItem(
         text: (index) => context.localize.ramp,
         onTap: (index) async => () {},
