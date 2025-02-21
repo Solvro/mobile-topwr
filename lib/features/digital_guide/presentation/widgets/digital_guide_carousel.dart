@@ -33,13 +33,17 @@ class DigitalGuideCarouselWithIndicator extends HookWidget {
           CarouselSlider(
             items: imgListId
                 .map(
-                  (item) => ClipRRect(
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(DigitalGuideConfig.borderRadiusMedium),
-                    ),
-                    child: DigitalGuideImage(
-                      id: item,
-                      zoomable: false,
+                  (item) => InteractiveViewer(
+                    minScale: 1,
+                    maxScale: 5,
+                    child: ClipRRect(
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(DigitalGuideConfig.borderRadiusMedium),
+                      ),
+                      child: DigitalGuideImage(
+                        id: item,
+                        zoomable: false,
+                      ),
                     ),
                   ),
                 )
@@ -70,6 +74,7 @@ class DigitalGuideCarouselWithIndicator extends HookWidget {
                     shape: BoxShape.circle,
                     color: Colors.black
                         .withAlpha(current.value == entry.key ? 230 : 102),
+                    border: Border.all(color: Colors.white),
                   ),
                 ),
               );

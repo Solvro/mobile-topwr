@@ -22,7 +22,7 @@ extension ShowFullscreenImageX on BuildContext {
           },
           child: InteractiveViewer(
             minScale: 1,
-            maxScale: 3,
+            maxScale: 5,
             child: shouldHaveRectBackground
                 ? _ImageWithWhiteBackground(imageUrl: imageUrl)
                 : _ImageWithoutBackground(imageUrl: imageUrl),
