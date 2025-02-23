@@ -2,9 +2,7 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../../config/ui_config.dart";
-import "../../../../../../gen/assets.gen.dart";
 import "../../../../../../widgets/my_error_widget.dart";
-import "../../../../presentation/widgets/accessibility_profile_card.dart";
 import "../../../../presentation/widgets/bullet_list.dart";
 import "../models/room_platforms_response.dart";
 import "../repository/room_platforms_repository.dart";
@@ -42,9 +40,6 @@ class _RoomPlatformsContent extends ConsumerWidget {
     final roomPlatformsComment =
         context.getRoomPlatformsCommentsList(roomPlatformsResponse);
 
-    final roomPlatformsAccessibilityComments = context
-        .getRoomPlatformsAccessibilityCommentsList(roomPlatformsResponse);
-
     return Padding(
       padding: DigitalGuideConfig.symetricalPaddingBig.copyWith(top: 0),
       child: Column(
@@ -52,10 +47,6 @@ class _RoomPlatformsContent extends ConsumerWidget {
           BulletList(items: roomPlatformsComment),
           const SizedBox(
             height: DigitalGuideConfig.heightBig,
-          ),
-          AccessibilityProfileCard(
-            items: roomPlatformsAccessibilityComments,
-            icon: Assets.svg.digitalGuide.accessibilityAlerts.blindProfile,
           ),
         ],
       ),

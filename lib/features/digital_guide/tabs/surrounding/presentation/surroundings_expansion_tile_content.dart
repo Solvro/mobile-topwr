@@ -3,7 +3,6 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../config/ui_config.dart";
-import "../../../../../gen/assets.gen.dart";
 import "../../../../../utils/context_extensions.dart";
 import "../../../../../widgets/my_error_widget.dart";
 import "../../../data/models/digital_guide_response.dart";
@@ -12,7 +11,7 @@ import "../../../presentation/widgets/bullet_list.dart";
 import "../../../presentation/widgets/digital_guide_photo_row.dart";
 import "../data/models/surrounding_response.dart";
 import "../data/repository/surrounding_repository.dart";
-import "../utils/surrounding_response_operations.dart";
+import "../utils/surroundings_accessibility_comments_manager.dart";
 import "widgets/accessibility_information_cards_list.dart";
 
 class SurroundingsExpansionTileContent extends ConsumerWidget {
@@ -69,15 +68,11 @@ class _SurroundingExpansionTileContent extends ConsumerWidget {
           ),
         ].toIList(),
       ),
-      const SizedBox(
-        height: DigitalGuideConfig.heightBig,
-      ),
-      const SizedBox(
-        height: DigitalGuideConfig.heightTiny,
-      ),
       AccessibilityProfileCard(
-        items: context.getSurroundingsCommentsTuple(surroundingResponse),
-        icon: Assets.svg.digitalGuide.accessibilityAlerts.blindProfile,
+        accessibilityCommentsManager: SurroundingsAccessibilityCommentsManager(
+          surroundingResponse: surroundingResponse,
+          context: context,
+        ),
       ),
       const SizedBox(
         height: DigitalGuideConfig.heightMedium,
