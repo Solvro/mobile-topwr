@@ -41,7 +41,8 @@ class AccessibilityProfileCard extends ConsumerWidget {
               DecoratedBox(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(
-                      DigitalGuideConfig.borderRadiusMedium,),
+                    DigitalGuideConfig.borderRadiusMedium,
+                  ),
                   border: Border.all(color: context.colorTheme.blackMirage),
                 ),
                 child: Padding(
