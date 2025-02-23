@@ -42,29 +42,31 @@ class SksMenuHeader extends StatelessWidget {
             ),
           ),
         ),
-        if (isMenuOnline)
-          Text(
-            "${context.localize.last_modified}: ${Protontime.format(
-              stamp,
-              language: "pl",
-            )}",
-            style: context.textTheme.bodyGrey,
-          ),
-        Padding(
-          padding: const EdgeInsets.only(top: SksMenuConfig.paddingSmall),
-          child: Text(
-            context.localize.working_hours,
-            style: context.textTheme.bodyGrey,
-          ),
+        Text(
+          context.localize.working_hours,
+          style: context.textTheme.body,
         ),
         Text(
           "${context.localize.canteen} ${openingHours.canteen.openingTime} - ${openingHours.canteen.closingTime}",
-          style: context.textTheme.bodyGrey,
+          style: context.textTheme.body,
         ),
         Text(
           "${context.localize.cafe} ${openingHours.cafe.openingTime} - ${openingHours.cafe.closingTime}",
-          style: context.textTheme.bodyGrey,
+          style: context.textTheme.body,
         ),
+        if (isMenuOnline)
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: SksMenuConfig.paddingSmall,
+            ),
+            child: Text(
+              "${context.localize.last_modified}: ${Protontime.format(
+                stamp,
+                language: "pl",
+              )}",
+              style: context.textTheme.bodyGrey,
+            ),
+          ),
       ],
     );
   }
