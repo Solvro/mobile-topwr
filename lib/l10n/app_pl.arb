@@ -313,7 +313,6 @@
   "audio_message_comment" : "Sygnał znacznika może różnić się tempem i brzmieniem",
   "platforms" : "Podesty",
   "key_information" : "Najważniejsze informacje",
-  "working_hours" : "Godziny otwarcia",
   "entrance_is_main" : "To {value, select, false{nie } other{}}jest wejście główne",
   "entrance_is_accessible" : "Wejście {value, select, false{nie } other{}}jest dostępne",
   "entrance_is_for_personel" : "Wejście {value, select, false{nie } other{}}wymaga specjalnych uprawnień",
@@ -501,5 +500,7 @@
   "is_door_good_contrast": "Drzwi windy {value, select, false{nie} other{}} kontrastują ze ścianą.",
   "is_inside_lit": "Poziom oświetlenia wewnątrz windy {value, select, false{nie} other{}} jest odpowiedni.",
   "is_lift_floor_info": "Winda {value, select, false{nie} other{}} wyświetla informacje o numerze piętra, na którym się aktualnie znajduje.",
-  "platform_dimensions" : "Wymiary platformy: "
+  "platform_dimensions" : "Wymiary platformy: ",
+  "canteen" : "Stołówka: ",
+  "cafe" : "Kawiarnia: "
 }
