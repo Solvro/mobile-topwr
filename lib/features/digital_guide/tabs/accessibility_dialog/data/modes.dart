@@ -37,6 +37,10 @@ class CognitiveImpairment extends ModeWithKey {
       : super("_prefs_accessibility_cognitive_impairment");
 }
 
+class HearingImpairment extends ModeWithKey {
+  const HearingImpairment() : super("_prefs_accessibility_hearing_impairment");
+}
+
 class VisualImpairment extends ModeWithChildren {
   const VisualImpairment()
       : super(

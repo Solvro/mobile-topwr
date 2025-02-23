@@ -5,4 +5,5 @@ final topLevelModes = [
   const VisualImpairment(),
   const SensorySensitivity(),
   const CognitiveImpairment(),
+  const HearingImpairment(),
 ];

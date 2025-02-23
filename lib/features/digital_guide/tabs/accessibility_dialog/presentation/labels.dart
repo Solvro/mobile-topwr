@@ -12,6 +12,7 @@ extension AccessibilityModeLocalizationX on AccessibilityMode {
       LowVision() => context.localize.lowVision,
       SensorySensitivity() => context.localize.sensorySensitivity,
       CognitiveImpairment() => context.localize.cognitiveImpairment,
+      HearingImpairment() => context.localize.hearingImpairment,
     };
   }
 }

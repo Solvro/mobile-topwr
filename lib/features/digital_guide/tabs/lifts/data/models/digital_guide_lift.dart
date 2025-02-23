@@ -1,7 +1,4 @@
-import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
-
-import "../../../../../../l10n/app_localizations.dart";
 
 part "digital_guide_lift.freezed.dart";
 
@@ -80,76 +77,6 @@ class DigitalGuideLift with _$DigitalGuideLift {
     @JsonKey(name: "is_good_door_wall_contrast", fromJson: _stringToBool)
     required bool isGoodDoorWallContrast,
   }) = _DigitalGuideLift;
-
-  const DigitalGuideLift._();
-
-  IList<String> getMotorImpairmentValue(AppLocalizations l10n) {
-    final pl = translations.pl;
-    return IList([
-      l10n.lift_width_text(doorWidth),
-      l10n.lift_dimensions_text + translations.pl.liftDimensions,
-      if (isGlazed) l10n.lift_glazed,
-      l10n.control_panel_inside(insideControlPanelHeight),
-      l10n.control_panel_outside(outsideControlPanelHeight),
-      if (isRailing) pl.isRailingComment,
-    ]);
-  }
-
-  IList<String> getBlindImpairmentValue(AppLocalizations l10n) {
-    final pl = translations.pl;
-    return IList([
-      if (isSigned) l10n.lift_info_boart_text,
-      l10n.lift_width_text(doorWidth),
-      if (isVoicePrompts) l10n.with_voice_comunicates,
-      if (isInsideButtonBraille)
-        l10n.with_inside_braile_comunicates
-      else
-        l10n.without_inside_braile_comunicates,
-      l10n.lift_dimensions_text + pl.liftDimensions,
-      if (isGlazed) l10n.lift_glazed,
-      l10n.control_panel_inside(insideControlPanelHeight),
-      l10n.control_panel_outside(outsideControlPanelHeight),
-      if (isInsideConvexButton) l10n.lift_button_are_convex,
-      l10n.is_with_outsite_notification(
-        isOutsideArrivalNotificationSound.toString().toLowerCase(),
-      ),
-      l10n.is_with_inside_notification(
-        isOutsideArrivalNotificationSound.toString().toLowerCase(),
-      ),
-    ]);
-  }
-
-  IList<String> getLowVisionImpairment(AppLocalizations l10n) {
-    return IList([
-      if (isVoicePrompts) l10n.with_voice_comunicates,
-      if (isInsideConvexButton) l10n.lift_button_are_convex,
-      l10n.is_lit(isInsideLit.toString().toLowerCase()),
-      l10n.is_with_outsite_notification(
-        isOutsideArrivalNotificationSound.toString().toLowerCase(),
-      ),
-      l10n.is_with_inside_notification(
-        isOutsideArrivalNotificationSound.toString().toLowerCase(),
-      ),
-      l10n.is_door_good_contrast(
-        isGoodDoorWallContrast.toString().toLowerCase(),
-      ),
-    ]);
-  }
-
-  IList<String> getSensorySensitivityImpairment(AppLocalizations l10n) {
-    return IList([
-      l10n.is_lift_floor_info(isDisplayShowingFloor.toString().toLowerCase()),
-    ]);
-  }
-
-  IList<String> getCognitiveImpairment(AppLocalizations l10n) {
-    return IList(
-      [
-        if (isSigned) l10n.lift_info_boart_text,
-        l10n.is_lit(isInsideLit.toString().toLowerCase()),
-      ],
-    );
-  }
 
   factory DigitalGuideLift.fromJson(Map<String, dynamic> json) =>
       _$DigitalGuideLiftFromJson(json);

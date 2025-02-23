@@ -9,8 +9,10 @@ import "../../../../../utils/context_extensions.dart";
 import "../../../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../../../../widgets/horizontal_symmetric_safe_area.dart";
 import "../../../presentation/widgets/accessibility_button.dart";
+import "../../../presentation/widgets/accessibility_profile_card.dart";
 import "../../../presentation/widgets/bullet_list.dart";
 import "../../../presentation/widgets/digital_guide_image.dart";
+import "../business/lifts_accessibility_comments_manager.dart";
 import "../data/models/digital_guide_lift.dart";
 
 @RoutePage()
@@ -58,6 +60,13 @@ class DigitalGuideLiftDetailView extends ConsumerWidget {
           "${context.localize.dimensions}: ${liftInformation.liftDimensions}",
           "${context.localize.max_capacity}: ${liftInformation.maximumLiftCapacity}",
         ].toIList(),
+      ),
+      AccessibilityProfileCard(
+        accessibilityCommentsManager: LiftsAccessibilityCommentsManager(
+          l10n: context.localize,
+          liftResponse: lift,
+        ),
+        backgroundColor: context.colorTheme.whiteSoap,
       ),
       if (lift.imagesIds != null && lift.imagesIds!.isNotEmpty)
         const SizedBox(

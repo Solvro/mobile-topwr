@@ -327,6 +327,7 @@
   "entrance_has_sound_transmitter" : "Przy wejściu {value, select, false{nie } other{}}znajduje się znacznik dźwiękowy systemu nawigacyjno-informacyjnego",
   "entrance_has_tactile_paving" : "Przed wejściem {value, select, false{nie } other{}}znajdują się ścieżki naprowadzające",
   "motorImpairment": "Dysfunkcja ruchu",
+  "hearingImpairment" : "Dysfunkcja słuchu",
   "visualImpairment": "Dysfunkcja wzroku",
   "blind": "Niewidomy",
   "lowVision": "Słabo widzący",
