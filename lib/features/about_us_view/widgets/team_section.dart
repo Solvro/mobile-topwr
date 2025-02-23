@@ -1,9 +1,12 @@
+import "dart:async";
+
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/cupertino.dart";
 import "package:flutter/material.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:flutter_svg/svg.dart";
+import "package:shimmer/shimmer.dart";
 
 import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
@@ -16,6 +19,7 @@ import "../models/member_data.dart";
 
 class TeamSection extends HookWidget {
   const TeamSection({super.key, required this.multiversionTeam});
+
   final IList<MultiversionTeam> multiversionTeam;
 
   @override
@@ -59,6 +63,7 @@ class _SelectTab extends StatelessWidget {
 
   final MultiversionTeam version;
   final bool isSelected;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -79,39 +84,82 @@ class _SelectTab extends StatelessWidget {
   }
 }
 
-class _SingleVersionTeamList extends StatelessWidget {
-  const _SingleVersionTeamList({required this.version});
+class _SingleVersionTeamList extends StatefulWidget {
+  const _SingleVersionTeamList({required this.version, super.key});
 
   final MultiversionTeam version;
 
   @override
+  _SingleVersionTeamListState createState() => _SingleVersionTeamListState();
+}
+
+class _SingleVersionTeamListState extends State<_SingleVersionTeamList> {
+  bool _showShimmer = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _startShimmerTimer();
+  }
+
+  @override
+  void didUpdateWidget(covariant _SingleVersionTeamList oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.version != widget.version) {
+      setState(() {
+        _showShimmer = true;
+      });
+      _startShimmerTimer();
+    }
+  }
+
+  void _startShimmerTimer() {
+    Timer(const Duration(milliseconds: 500), () {
+      if (mounted) {
+        setState(() {
+          _showShimmer = false;
+        });
+      }
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final version = widget.version;
+    final content = version.members.isEmpty
+        ? Column(
+            children: [
+              const Icon(Icons.escalator_warning),
+              Text(context.localize.emptySection),
+            ],
+          )
+        : ListView.builder(
+            physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemCount: version.members.length,
+            prototypeItem: _TeamMemberCard(member: version.members.first),
+            itemBuilder: (BuildContext ctx, int index) {
+              return _TeamMemberCard(member: version.members[index]);
+            },
+          );
+
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: AboutUsConfig.defaultPadding,
-      ),
-      child: version.members.isEmpty
-          ? Column(
-              children: [
-                const Icon(Icons.escalator_warning),
-                Text(context.localize.emptySection),
-              ],
+      padding:
+          const EdgeInsets.symmetric(horizontal: AboutUsConfig.defaultPadding),
+      child: _showShimmer
+          ? Shimmer.fromColors(
+              baseColor: Colors.grey[300]!,
+              highlightColor: Colors.grey[100]!,
+              child: content,
             )
-          : ListView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: version.members.length,
-              prototypeItem: _TeamMemberCard(member: version.members.first),
-              itemBuilder: (BuildContext ctx, int index) {
-                return _TeamMemberCard(member: version.members[index]);
-              },
-            ),
+          : content,
     );
   }
 }
 
 class _TeamMemberCard extends StatelessWidget {
   const _TeamMemberCard({required this.member});
+
   final MemberData member;
 
   @override
@@ -152,6 +200,7 @@ class _TeamMemberCard extends StatelessWidget {
 
 class _Icon extends ConsumerWidget {
   const _Icon({required this.icon, required this.launchUrl});
+
   final String launchUrl;
   final String icon;
 
@@ -175,6 +224,7 @@ class _Description extends StatelessWidget {
     required this.subtitle,
     required this.links,
   });
+
   final String name;
   final String subtitle;
   final IList<ContactIconsModel> links;
