@@ -85,7 +85,7 @@ class _SelectTab extends StatelessWidget {
 }
 
 class _SingleVersionTeamList extends StatefulWidget {
-  const _SingleVersionTeamList({required this.version, super.key});
+  const _SingleVersionTeamList({required this.version});
 
   final MultiversionTeam version;
 
