@@ -78,7 +78,6 @@ class DigitalGuideLift with _$DigitalGuideLift {
     required bool isGoodDoorWallContrast,
   }) = _DigitalGuideLift;
 
-
   factory DigitalGuideLift.fromJson(Map<String, dynamic> json) =>
       _$DigitalGuideLiftFromJson(json);
 }
