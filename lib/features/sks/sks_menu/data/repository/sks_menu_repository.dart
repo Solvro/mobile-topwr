@@ -7,16 +7,19 @@ import "../../../../../utils/datetime_utils.dart";
 import "../../presentation/sks_menu_screen.dart";
 import "../models/dish_category_enum.dart";
 import "../models/sks_menu_response.dart";
+import "../models/sks_opening_hours.dart";
 
 part "sks_menu_repository.g.dart";
 
 @riverpod
 class SksMenuRepository extends _$SksMenuRepository {
   static final _mealsUrl = "${Env.sksUrl}/meals/current";
+  static final _openingHoursUrl = "${Env.sksUrl}/info";
   static const _ttlDays = 1;
 
   Future<void> clearCache() async {
-    return ref.clearCache(_mealsUrl, _ttlDays);
+    await ref.clearCache(_mealsUrl, _ttlDays);
+    await ref.clearCache(_openingHoursUrl, _ttlDays);
   }
 
   @override
@@ -28,6 +31,19 @@ class SksMenuRepository extends _$SksMenuRepository {
       extraValidityCheck: (data) {
         return data.isMenuOnline &&
             DateTime.now().date.isSameDay(data.lastUpdate.date);
+      },
+      localizedOfflineMessage: SksMenuView.localizedOfflineMessage,
+      onRetry: () => ref.invalidateSelf(),
+    );
+    final openingHoursResponse = await ref.getAndCacheData(
+      _openingHoursUrl,
+      _ttlDays,
+      SksOpeningHours.fromJson,
+      extraValidityCheck: (data) {
+        return data.openingHours.canteen.openingTime.isNotEmpty &&
+            data.openingHours.canteen.closingTime.isNotEmpty &&
+            data.openingHours.cafe.openingTime.isNotEmpty &&
+            data.openingHours.cafe.closingTime.isNotEmpty;
       },
       localizedOfflineMessage: SksMenuView.localizedOfflineMessage,
       onRetry: () => ref.invalidateSelf(),
@@ -47,6 +63,7 @@ class SksMenuRepository extends _$SksMenuRepository {
       lastUpdate: sksMenuResponse.lastUpdate,
       meals: trueMeals,
       technicalInfos: technicalInfos,
+      openingHours: openingHoursResponse.openingHours,
     );
   }
 }

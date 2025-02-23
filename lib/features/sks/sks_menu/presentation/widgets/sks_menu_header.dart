@@ -6,16 +6,18 @@ import "../../../../../config/ui_config.dart";
 import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/context_extensions.dart";
 import "../../../../../utils/datetime_utils.dart";
+import "../../data/models/sks_opening_hours.dart";
 
 class SksMenuHeader extends StatelessWidget {
   const SksMenuHeader({
     required this.dateTimeOfLastUpdate,
     required this.isMenuOnline,
-    super.key,
+    required this.openingHours,
   });
 
   final String dateTimeOfLastUpdate;
   final bool isMenuOnline;
+  final OpeningHours openingHours;
   @override
   Widget build(BuildContext context) {
     final stamp = DateTime.tryParse(dateTimeOfLastUpdate) ?? DateTime.now();
@@ -40,13 +42,30 @@ class SksMenuHeader extends StatelessWidget {
             ),
           ),
         ),
+        Text(
+          context.localize.working_hours,
+          style: context.textTheme.body,
+        ),
+        Text(
+          "${context.localize.canteen} ${openingHours.canteen.openingTime} - ${openingHours.canteen.closingTime}",
+          style: context.textTheme.body,
+        ),
+        Text(
+          "${context.localize.cafe} ${openingHours.cafe.openingTime} - ${openingHours.cafe.closingTime}",
+          style: context.textTheme.body,
+        ),
         if (isMenuOnline)
-          Text(
-            "${context.localize.last_modified}: ${Protontime.format(
-              stamp,
-              language: "pl",
-            )}",
-            style: context.textTheme.bodyGrey,
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: SksMenuConfig.paddingSmall,
+            ),
+            child: Text(
+              "${context.localize.last_modified}: ${Protontime.format(
+                stamp,
+                language: "pl",
+              )}",
+              style: context.textTheme.bodyGrey,
+            ),
           ),
       ],
     );

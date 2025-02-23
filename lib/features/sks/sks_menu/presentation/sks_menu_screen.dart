@@ -112,6 +112,7 @@ class _SksMenuView extends ConsumerWidget {
             SksMenuHeader(
               dateTimeOfLastUpdate: sksMenuData.lastUpdate.toIso8601String(),
               isMenuOnline: sksMenuData.isMenuOnline,
+              openingHours: sksMenuData.openingHours,
             ),
             Padding(
               padding: const EdgeInsets.all(HomeViewConfig.paddingMedium),
