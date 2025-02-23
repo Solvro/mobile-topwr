@@ -12,8 +12,8 @@ import "../../../presentation/widgets/accessibility_button.dart";
 import "../../../presentation/widgets/accessibility_profile_card.dart";
 import "../../../presentation/widgets/bullet_list.dart";
 import "../../../presentation/widgets/digital_guide_image.dart";
+import "../business/lifts_accessibility_comments_manager.dart";
 import "../data/models/digital_guide_lift.dart";
-import "../utils/lifts_accessibility_comments_manager.dart";
 
 @RoutePage()
 class DigitalGuideLiftDetailView extends ConsumerWidget {
@@ -66,6 +66,7 @@ class DigitalGuideLiftDetailView extends ConsumerWidget {
           l10n: context.localize,
           liftResponse: lift,
         ),
+        backgroundColor: context.colorTheme.whiteSoap,
       ),
       if (lift.imagesIds != null && lift.imagesIds!.isNotEmpty)
         const SizedBox(

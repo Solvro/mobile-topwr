@@ -1,7 +1,7 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 
 import "../../../../../l10n/app_localizations.dart";
-import "../../../utils/accessibility_comments_manager.dart";
+import "../../../business/accessibility_comments_manager.dart";
 import "../data/models/digital_guide_lift.dart";
 
 class LiftsAccessibilityCommentsManager extends AccessibilityCommentsManager {

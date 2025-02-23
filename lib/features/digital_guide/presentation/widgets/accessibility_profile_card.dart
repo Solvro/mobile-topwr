@@ -4,16 +4,18 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "../../../../../../theme/app_theme.dart";
 import "../../../../../config/ui_config.dart";
 import "../../../../../utils/context_extensions.dart";
+import "../../business/accessibility_comments_manager.dart";
 import "../../tabs/accessibility_dialog/data/active_accessibility_modes_repository.dart";
-import "../../utils/accessibility_comments_manager.dart";
 import "bullet_list.dart";
 
 class AccessibilityProfileCard extends ConsumerWidget {
   final AccessibilityCommentsManager accessibilityCommentsManager;
+  final Color? backgroundColor;
 
   const AccessibilityProfileCard({
     super.key,
     required this.accessibilityCommentsManager,
+    this.backgroundColor,
   });
 
   @override
@@ -55,7 +57,7 @@ class AccessibilityProfileCard extends ConsumerWidget {
                 top: -15,
                 left: 20,
                 child: ColoredBox(
-                  color: context.colorTheme.greyLight,
+                  color: backgroundColor ?? context.colorTheme.greyLight,
                   child: Padding(
                     padding:
                         const EdgeInsets.all(DigitalGuideConfig.paddingSmall),

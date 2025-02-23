@@ -9,9 +9,9 @@ import "../../../data/models/digital_guide_response.dart";
 import "../../../presentation/widgets/accessibility_profile_card.dart";
 import "../../../presentation/widgets/bullet_list.dart";
 import "../../../presentation/widgets/digital_guide_photo_row.dart";
+import "../business/surroundings_accessibility_comments_manager.dart";
 import "../data/models/surrounding_response.dart";
 import "../data/repository/surrounding_repository.dart";
-import "../utils/surroundings_accessibility_comments_manager.dart";
 import "widgets/accessibility_information_cards_list.dart";
 
 class SurroundingsExpansionTileContent extends ConsumerWidget {
@@ -84,7 +84,7 @@ class _SurroundingExpansionTileContent extends ConsumerWidget {
       AccessibilityProfileCard(
         accessibilityCommentsManager: SurroundingsAccessibilityCommentsManager(
           surroundingResponse: surroundingResponse,
-          context: context,
+          l10n: context.localize,
         ),
       ),
       const SizedBox(
