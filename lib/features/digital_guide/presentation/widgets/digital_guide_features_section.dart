@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import "package:flutter/widgets.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
+import "../../../../config/ui_config.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../widgets/my_expansion_tile.dart";
 import "../../../buildings_view/model/building_model.dart";
@@ -11,6 +12,7 @@ import "../../data/repository/levels_repository.dart";
 import "../../tabs/adapted_toilets/presentation/adapted_toilets_expansion_tile_content.dart";
 import "../../tabs/amenities/presentation/amenities_expansion_tile_content.dart";
 import "../../tabs/dressing_room/presentation/digital_guide_dressing_rooms_expansion_tile.dart";
+import "../../tabs/entraces/presentation/entraces_expansion_tile_content.dart";
 import "../../tabs/evacuation/evacuation_widget.dart";
 import "../../tabs/lifts/presentation/digital_guide_lifts_expansion_tile_content.dart";
 import "../../tabs/localization/presentation/localization_expansion_tile_content.dart";
@@ -76,7 +78,11 @@ class DigitalGuideFeaturesSection extends ConsumerWidget {
       ),
       (
         title: context.localize.entrances,
-        content: [],
+        content: [
+          EntrancesExpansionTileContent(
+            digitalGuideData: digitalGuideData,
+          ),
+        ],
       ),
       (
         title: context.localize.lifts,
@@ -148,7 +154,10 @@ class DigitalGuideFeaturesSection extends ConsumerWidget {
         (context, index) {
           final item = items[index];
           return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+            padding: const EdgeInsets.symmetric(
+              horizontal: DigitalGuideConfig.paddingBig,
+              vertical: DigitalGuideConfig.heightSmall,
+            ),
             child: MyExpansionTile(
               title: item.title,
               children: item.content,

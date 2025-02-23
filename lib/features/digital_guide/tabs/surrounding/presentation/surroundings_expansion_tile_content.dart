@@ -52,7 +52,20 @@ class _SurroundingExpansionTileContent extends ConsumerWidget {
         height: DigitalGuideConfig.heightSmall,
       ),
       AccessibilityInformationCardsList(
-        surroundingResponse: surroundingResponse,
+        accLevels: (
+          accessibilityLevelForBlind:
+              surroundingResponse.accessibilityLevelForBlind,
+          accessibilityLevelForVisuallyImpaired:
+              surroundingResponse.accessibilityLevelForVisuallyImpaired,
+          accessibilityLevelForMotorDisability:
+              surroundingResponse.accessibilityLevelForMotorDisability,
+          accessibilityLevelForCognitiveDifficulties:
+              surroundingResponse.accessibilityLevelForCognitiveDifficulties,
+          accessibilityLevelForHardOfHearing:
+              surroundingResponse.accessibilityLevelForHardOfHearing,
+          accessibilityLevelForHighSensorySensitivity:
+              surroundingResponse.accessibilityLevelForHighSensorySensitivity,
+        ),
       ),
       const SizedBox(
         height: DigitalGuideConfig.heightBig,
