@@ -523,7 +523,7 @@
   "cafe" : "Kawiarnia: ",
 
   "toilet_isNeedAuthorization": "{value, select, false{Nie jest wymagana autoryzacja.} true{Wymagana jest autoryzacja.} other{}}",
-  "toilet_isWastebasekt": "{value, select, false{Nie ma kosza na śmieci.} true{Znajduje się kosz na śmieci.} other{}}",
+  "toilet_isWastebasket": "{value, select, false{Nie ma kosza na śmieci.} true{Znajduje się kosz na śmieci.} other{}}",
   "toilet_areClothesHooks": "{value, select, false{Nie ma wieszaków na ubrania.} true{Znajdują się wieszaki na ubrania.} other{}}",
   "toilet_isHandDryer": "{value, select, false{Nie ma suszarki do rąk.} true{Znajduje się suszarka do rąk.} other{}}",
   "toilet_isTowelDispenser": "{value, select, false{Nie ma dozownika na ręczniki.} true{Znajduje się dozownik na ręczniki.} other{}}",
