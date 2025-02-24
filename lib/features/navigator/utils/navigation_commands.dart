@@ -15,6 +15,7 @@ import "../../digital_guide/tabs/micronavigation/data/models/micronavigation_res
 import "../../digital_guide/tabs/rooms/data/models/digital_guide_room.dart";
 import "../../digital_guide/tabs/structure/data/models/corridor.dart";
 import "../../digital_guide/tabs/structure/data/models/stairs.dart";
+import "../../digital_guide/tabs/structure/data/models/toilet.dart";
 import "../../digital_guide/tabs/transportation/data/models/digital_guide_transportation.dart";
 import "../../parkings/parkings_view/models/parking.dart";
 import "../app_router.dart";
@@ -169,6 +170,10 @@ extension NavigationX on WidgetRef {
 
   Future<void> navigateDigitalGuideStairs(Stairs stairs) async {
     await _router.push(StairsRoute(stairs: stairs));
+  }
+
+  Future<void> navigateDigitalGuideToilets(Toilet toilet) async {
+    await _router.push(ToiletsRoute(toilet: toilet));
   }
 
   Future<void> navigateDigitalGuideDoor(int doorID) async {

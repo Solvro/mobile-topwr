@@ -115,7 +115,8 @@ class _RegionView extends ConsumerWidget {
         text: (index) => regionData.toilets[index].toiletType == ToiletType.men
             ? context.localize.men_toilet
             : context.localize.women_toilet,
-        onTap: (index) async => () {},
+        onTap: (index) async =>
+            ref.navigateDigitalGuideToilets(regionData.toilets[index]),
         itemCount: region.toilets.length,
       ),
       RegionDataSliverListItem(
