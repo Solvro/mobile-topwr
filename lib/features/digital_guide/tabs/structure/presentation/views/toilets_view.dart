@@ -46,11 +46,6 @@ class ToiletsView extends ConsumerWidget {
                 toiletsInformation.comment,
               ].where((item) => item.trim().isNotEmpty).toIList(),
             ),
-            const SizedBox(
-              height: DigitalGuideConfig.heightBig,
-            ),
-            // if (toilet.doorsIds.isNotEmpty)
-            //   const SizedBox(height: DigitalGuideConfig.heightMedium),
             ListView.separated(
               padding: const EdgeInsets.symmetric(
                 vertical: DigitalGuideConfig.heightBig,
