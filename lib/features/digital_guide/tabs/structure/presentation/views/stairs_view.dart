@@ -6,8 +6,10 @@ import "../../../../../../config/ui_config.dart";
 import "../../../../../../theme/app_theme.dart";
 import "../../../../../../utils/context_extensions.dart";
 import "../../../../../../widgets/detail_views/detail_view_app_bar.dart";
+import "../../../../../navigator/utils/navigation_commands.dart";
 import "../../../../presentation/widgets/accessibility_profile_card.dart";
 import "../../../../presentation/widgets/bullet_list.dart";
+import "../../../../presentation/widgets/digital_guide_nav_link.dart";
 import "../../data/bussiness/stairs_accessibility_comments_manager.dart";
 import "../../data/models/stairs.dart";
 
@@ -42,6 +44,22 @@ class StairsView extends ConsumerWidget {
             ),
             const SizedBox(
               height: DigitalGuideConfig.heightBig,
+            ),
+            ListView.separated(
+              physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) {
+                return DigitalGuideNavLink(
+                  onTap: () async => ref.navigateDigitalGuideRailing(
+                    stairs.railingsIDs[index],
+                  ),
+                  text: context.localize.railing,
+                );
+              },
+              itemCount: stairs.railingsIDs.length,
+              separatorBuilder: (context, index) => const SizedBox(
+                height: DigitalGuideConfig.heightMedium,
+              ),
+              shrinkWrap: true,
             ),
             AccessibilityProfileCard(
               accessibilityCommentsManager: StairsAccessibilityCommentsManager(
