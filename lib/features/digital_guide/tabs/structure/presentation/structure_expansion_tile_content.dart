@@ -3,6 +3,7 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../config/ui_config.dart";
+import "../../../../../theme/app_theme.dart";
 import "../../../../../widgets/my_error_widget.dart";
 import "../../../../navigator/utils/navigation_commands.dart";
 import "../../../data/models/digital_guide_response.dart";
@@ -52,21 +53,24 @@ class _StructureExpansionTileContent extends ConsumerWidget {
         left: DigitalGuideConfig.heightMedium,
         right: DigitalGuideConfig.heightMedium,
       ),
-      child: ListView.separated(
-        physics: const NeverScrollableScrollPhysics(),
-        itemBuilder: (context, index) => DigitalGuideNavLink(
-          onTap: () async {
-            await ref.navigateDigitalGuideLevel(
-              levels[index],
-            );
-          },
-          text: levels[index].level.translations.plTranslation.name,
+      child: Material(
+        color: context.colorTheme.greyLight,
+        child: ListView.separated(
+          physics: const NeverScrollableScrollPhysics(),
+          itemBuilder: (context, index) => DigitalGuideNavLink(
+            onTap: () async {
+              await ref.navigateDigitalGuideLevel(
+                levels[index],
+              );
+            },
+            text: levels[index].level.translations.plTranslation.name,
+          ),
+          separatorBuilder: (context, index) => const SizedBox(
+            height: DigitalGuideConfig.heightMedium,
+          ),
+          itemCount: levels.length,
+          shrinkWrap: true,
         ),
-        separatorBuilder: (context, index) => const SizedBox(
-          height: DigitalGuideConfig.heightMedium,
-        ),
-        itemCount: levels.length,
-        shrinkWrap: true,
       ),
     );
   }
