@@ -13,15 +13,11 @@ class DigitalGuideTransportation with _$DigitalGuideTransportation {
     required int building,
     required DigitalGuideTranslationsTransportation translations,
     required double nearestPublicTransportStopDistance,
-    @JsonKey(fromJson: stringToBool)
-    required bool arePassTrafficLightsFromStopToEntry,
-    @JsonKey(fromJson: stringToBool)
-    required bool areNotPassTrafficLightsFromStopToEntry,
+    required String arePassTrafficLightsFromStopToEntry,
+    required String areNotPassTrafficLightsFromStopToEntry,
     required double alternativePublicTransportStopDistance,
-    @JsonKey(fromJson: stringToBool)
-    required bool arePassTrafficLightsFromStopToEntryAltRoad,
-    @JsonKey(fromJson: stringToBool)
-    required bool areNotPassTrafficLightsFromStopToEntryAltRoad,
+    required String arePassTrafficLightsFromStopToEntryAltRoad,
+    required String areNotPassTrafficLightsFromStopToEntryAltRoad,
     required double nearestPublicParkingLocationDistance,
     @JsonKey(fromJson: stringToBool) required bool isPaidParking,
     required double nearestUniversityParkingLocationDistance,
@@ -33,17 +29,12 @@ class DigitalGuideTransportation with _$DigitalGuideTransportation {
     required double distanceToBicyclePath,
     @JsonKey(fromJson: stringToBool)
     required bool isBicyclePathLeadClearlySeparated,
-    @JsonKey(fromJson: stringToBool) required bool areObstaclesForBlind,
-    @JsonKey(fromJson: stringToBool)
-    required bool areObstaclesForWheelchairUser,
-    @JsonKey(fromJson: stringToBool)
-    required bool areFacilitiesForBlindFromStopToEntry,
-    @JsonKey(fromJson: stringToBool)
-    required bool areObstaclesForWheelchairUserAltRoad,
-    @JsonKey(fromJson: stringToBool)
-    required bool areObstaclesForBlindFromStopToEntryAltRoad,
-    @JsonKey(fromJson: stringToBool)
-    required bool areFacilitiesForBlindFromStopToEntryAltRoad,
+    required String areObstaclesForBlind,
+    required String areObstaclesForWheelchairUser,
+    required String areFacilitiesForBlindFromStopToEntry,
+    required String areObstaclesForWheelchairUserAltRoad,
+    required String areObstaclesForBlindFromStopToEntryAltRoad,
+    required String areFacilitiesForBlindFromStopToEntryAltRoad,
     required String dailyTramBusLines,
     required String alternativeDailyTramBusLinesStop,
   }) = _DigitalGuideTransportation;

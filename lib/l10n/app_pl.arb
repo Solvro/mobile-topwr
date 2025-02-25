@@ -531,6 +531,24 @@
   "toilet_isSpaceUnderWashbasinForWheelChair": "{value, select, false{Brak przestrzeni pod umywalką na wózek inwalidzki.} true{Jest przestrzeń pod umywalką na wózek inwalidzki.} other{}}",
   "toilet_isLightSwitch": "{value, select, false{Nie ma włącznika światła.} true{Znajduje się włącznik światła.} other{}}",
   "toilet_isGoodLit": "{value, select, false{Oświetlenie jest niewystarczające.} true{Oświetlenie jest dobre.} other{}}",
-  "toilet_isGoodDevicesWallContrast": "{value, select, false{Urządzenia nie wyróżniają się na tle ściany.} true{Urządzenia wyróżniają się na tle ściany.} other{}}"
-
+  "toilet_isGoodDevicesWallContrast": "{value, select, false{Urządzenia nie wyróżniają się na tle ściany.} true{Urządzenia wyróżniają się na tle ściany.} other{}}",
+  "transport_are_pass_traffic_lights" : "{value, select, false{Na drodze z przystanku do wejścia do budynku nie występuje przejście dla pieszych z sygnalizacją świetlną.} true{Na drodze z przystanku do wejścia do budynku występuje przejście dla pieszych z sygnalizacją świetlną.} other{}}",
+  "transport_are_not_pass_traffic_lights" : "{value, select, false{Na drodze z przystanku do wejścia do budynku nie występuje przejście dla pieszych bez sygnalizacji świetlnej.} true{Na drodze z przystanku do wejścia do budynku występuje przejście dla pieszych bez sygnalizacji świetlnej.} other{}}",
+  "transport_wheelchair_obstacles" : "{value, select, true{Na drodze z przystanku do wejścia do budynku znajdują się przeszkody dla osoby poruszającej się na wózku:} false{Na drodze z przystanku do wejścia do budynku nie znajdują się przeszkody dla osoby poruszającej się na wózku.} other{}}",
+  "transport_alt_are_pass_traffic_lights" : "{value, select, false{Na drodze z alternatywnego przystanku do wejścia do budynku nie występuje przejście dla pieszych z sygnalizacją świetlną.} true{Na drodze z alternatywnego przystanku do wejścia do budynku występuje przejście dla pieszych z sygnalizacją świetlną.} other{}}",
+  "transport_alt_are_not_pass_traffic_lights" : "{value, select, false{Na drodze z alternatywnego przystanku do wejścia do budynku nie występuje przejście dla pieszych bez sygnalizacji świetlnej.} true{Na drodze z alternatywnego przystanku do wejścia do budynku występuje przejście dla pieszych bez sygnalizacji świetlnej.} other{}}",
+  "transport_alt_wheelchair_obstacles" : "{value, select, true{Na drodze z przystanku alternatywnego do wejścia do budynku znajdują się przeszkody dla osoby poruszającej się na wózku:} false{Na drodze z przystanku alternatywnego do wejścia do budynku nie znajdują się przeszkody dla osoby poruszającej się na wózku.} other{}}",
+  "transport_obstacles_for_blind" : "{value, select, true{Na drodze z przystanku do wejścia do budynku znajdują się przeszkody dla osoby niewidomej:} false{Na drodze z przystanku do wejścia do budynku nie znajdują się przeszkody dla osoby niewidomej.} other{}}",
+  "transport_alt_obstacles_for_blind" : "{value, select, true{Na drodze z przystanku do wejścia do budynku znajdują się przeszkody dla osoby niewidomej:} false{Na drodze z przystanku do wejścia do budynku nie znajdują się przeszkody dla osoby niewidomej.} other{}}",
+  "transport_facilities_for_blind" : "{value, select, true{Na drodze z przystanku do wejścia do budynku znajdują się udogodnienia dla osoby niewidomej:} false{Na drodze z przystanku do wejścia do budynku nie znajdują się udogodnienia dla osoby niewidomej.} other{}}",
+  "transport_alt_facilities_for_blind" : "{value, select, true{Na drodze z przystanku alternatywnego do wejścia do budynku znajdują się udogodnienia dla osoby niewidomej:} false{Na drodze z przystanku alternatywnego do wejścia do budynku nie znajdują się udogodnienia dla osoby niewidomej.} other{}}",
+  "transport_closest_parking_for_disabled" : "Najbliższe miejsce parkingowe dla osób z niepełnosprawnością znajduje się {comment} metrów od wejścia dostępnego",
+  "@transport_closest_parking_for_disabled": {
+    "description": "comment",
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  }
 }
