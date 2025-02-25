@@ -539,5 +539,13 @@
   "railing_is_railing_extended_30cm": "{value, select, false{Poręcze nie są przedłużone o 30 cm.} true{Poręcze są przedłużone o 30 cm.} other{}}",
   "railing_is_railing_obstacle": "{value, select, false{Poręcze nie stanowią przeszkody.} true{Poręcze stanowią przeszkodę.} unknown{Nie wiadomo, czy poręcze stanowią przeszkodę.} other{}}",
   "railing_height": "{value, plural, =0{Brak informacji o wysokości poręczy.} one{Poręcz ma {value} cm wysokości.} other{Poręcze mają {value} cm wysokości.}}",
-  "railing": "Poręcz"
+  "railing": "Poręcz",
+  "ramps_is_ramp_marked": "{value, select, false{Pochylnia nie jest oznakowana.} true{Pochylnia jest oznakowana.} other{}}",
+  "ramps_is_increased_force_needed": "{value, select, false{Nie jest potrzebna zwiększona siła do pokonania pochylni} true{Do pokonania pochylni potrzebna jest zwiększona siła.} other{}}",
+  "ramps_is_permanent_ramp": "{value, select, false{Pochylnia nie jest stałym elementem konstrukcyjnym.} true{Pochylnia jest stałym elementem konstrukcyjnym.} other{}}",
+  "ramps_is_good_lit": "{value, select, false{Oświetlenie jest niewystarczające.} true{Oświetlenie jest dobre.} other{}}",
+  "ramps_are_nonslip_elements": "{value, select, false{Powierzchnia pochylni nie posiada elementów antypoślizgowych.} true{Powierzchnia pochylni posiada elementy antypoślizgowe.} other{}}",
+  "ramps_width": "Szerokość pochylni wynosi ",
+  "number_of_ramp_landings": "Liczba spoczników: ",
+  "dimensions_of_the_landings": "Wymiary spoczników to "
 }
