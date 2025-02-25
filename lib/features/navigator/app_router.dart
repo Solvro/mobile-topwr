@@ -28,6 +28,7 @@ import "../digital_guide/tabs/structure/data/models/stairs.dart";
 import "../digital_guide/tabs/structure/data/models/toilet.dart";
 import "../digital_guide/tabs/structure/presentation/views/corridor_view.dart";
 import "../digital_guide/tabs/structure/presentation/views/level_view.dart";
+import "../digital_guide/tabs/structure/presentation/views/railings_view.dart";
 import "../digital_guide/tabs/structure/presentation/views/region_view.dart";
 import "../digital_guide/tabs/structure/presentation/views/stairs_view.dart";
 import "../digital_guide/tabs/structure/presentation/views/toilets_view.dart";
@@ -171,6 +172,9 @@ class AppRouter extends RootStackRouter {
         ),
         AutoRoute(
           page: TransportationDetailRoute.page,
+        ),
+        AutoRoute(
+          page: RailingsRoute.page,
         ),
       ];
 }

@@ -3,6 +3,7 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../config/ui_config.dart";
+import "../../../../../theme/app_theme.dart";
 import "../../../../../widgets/my_error_widget.dart";
 import "../../../data/models/digital_guide_response.dart";
 import "../data/models/digital_guide_entrace.dart";
@@ -41,11 +42,14 @@ class _EntrancesExpansionTileContent extends ConsumerWidget {
         vertical: DigitalGuideConfig.heightMedium,
         horizontal: DigitalGuideConfig.heightMedium,
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: entrances.map((entrance) {
-          return DigitalGuideEntranceWidget(entrance: entrance);
-        }).toList(),
+      child: Material(
+        color: context.colorTheme.greyLight,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: entrances.map((entrance) {
+            return DigitalGuideEntranceWidget(entrance: entrance);
+          }).toList(),
+        ),
       ),
     );
   }
