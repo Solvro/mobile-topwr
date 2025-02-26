@@ -145,7 +145,6 @@ class _SingleVersionTeamListState extends State<_SingleVersionTeamList> {
   Widget build(BuildContext context) {
     final version = widget.version;
 
-    // Obliczamy oczekiwaną wysokość widoku na podstawie liczby członków.
     final double expectedHeight = version.members.isEmpty
         ? 100.0
         : version.members.length * WideTileCardConfig.imageSize;
