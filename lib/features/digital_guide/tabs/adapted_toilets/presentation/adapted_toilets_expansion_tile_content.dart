@@ -3,6 +3,7 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../config/ui_config.dart";
+import "../../../../../theme/app_theme.dart";
 import "../../../../../widgets/my_error_widget.dart";
 import "../../../data/models/digital_guide_response.dart";
 import "../business/adapted_toilets_use_cases.dart";
@@ -43,14 +44,17 @@ class _AdaptedToiletsExpansionTileContent extends ConsumerWidget {
         left: DigitalGuideConfig.heightMedium,
         right: DigitalGuideConfig.heightMedium,
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: levelsWithToilets.map((level) {
-          return AdaptedToiletLevel(
-            level: level.level,
-            adaptedToilets: level.adaptedToilets,
-          );
-        }).toList(),
+      child: Material(
+        color: context.colorTheme.greyLight,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: levelsWithToilets.map((level) {
+            return AdaptedToiletLevel(
+              level: level.level,
+              adaptedToilets: level.adaptedToilets,
+            );
+          }).toList(),
+        ),
       ),
     );
   }

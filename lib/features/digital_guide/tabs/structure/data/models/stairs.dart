@@ -1,3 +1,4 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 
 part "stairs.g.dart";
@@ -20,6 +21,7 @@ class Stairs with _$Stairs {
     required String areStepsRaisedMarkings,
     required double stairsStepHeight,
     required String isProperlyMarkedFreeSpaceUnderStairs,
+    @JsonKey(name: "railings") required IList<int> railingsIDs,
   }) = _Stairs;
 
   factory Stairs.fromJson(Map<String, dynamic> json) => _$StairsFromJson(json);

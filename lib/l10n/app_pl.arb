@@ -528,7 +528,6 @@
   "platform_dimensions" : "Wymiary platformy: ",
   "canteen" : "Stołówka: ",
   "cafe" : "Kawiarnia: ",
-
   "toilet_isNeedAuthorization": "{value, select, false{Nie jest wymagana autoryzacja.} true{Wymagana jest autoryzacja.} other{}}",
   "toilet_isWastebasket": "{value, select, false{Nie ma kosza na śmieci.} true{Znajduje się kosz na śmieci.} other{}}",
   "toilet_areClothesHooks": "{value, select, false{Nie ma wieszaków na ubrania.} true{Znajdują się wieszaki na ubrania.} other{}}",
@@ -538,6 +537,22 @@
   "toilet_isSpaceUnderWashbasinForWheelChair": "{value, select, false{Brak przestrzeni pod umywalką na wózek inwalidzki.} true{Jest przestrzeń pod umywalką na wózek inwalidzki.} other{}}",
   "toilet_isLightSwitch": "{value, select, false{Nie ma włącznika światła.} true{Znajduje się włącznik światła.} other{}}",
   "toilet_isGoodLit": "{value, select, false{Oświetlenie jest niewystarczające.} true{Oświetlenie jest dobre.} other{}}",
-  "toilet_isGoodDevicesWallContrast": "{value, select, false{Urządzenia nie wyróżniają się na tle ściany.} true{Urządzenia wyróżniają się na tle ściany.} other{}}"
-
+  "toilet_isGoodDevicesWallContrast": "{value, select, false{Urządzenia nie wyróżniają się na tle ściany.} true{Urządzenia wyróżniają się na tle ściany.} other{}}",
+  "railing_is_railing_on_landings": "{value, select, false{Brak poręczy na podestach.} true{Poręcze są zamontowane na podestach.} other{}}",
+  "railing_is_two_sided_railing": "{value, select, false{Poręcze nie są dwustronne.} true{Poręcze są dwustronne.} other{}}",
+  "railing_is_braille_convex_marking": "{value, select, false{Brak oznaczeń w alfabecie Braille'a lub wypukłych.} true{Obecne są oznaczenia w alfabecie Braille'a lub wypukłe.} other{}}",
+  "railing_is_good_railing_contrast": "{value, select, false{Brak dobrego kontrastu poręczy.} true{Poręcze mają dobry kontrast.} other{}}",
+  "railing_is_round_cross_section_railing": "{value, select, false{Poręcze nie mają okrągłego przekroju.} true{Poręcze mają okrągły przekrój.} other{}}",
+  "railing_is_railing_extended_30cm": "{value, select, false{Poręcze nie są przedłużone o 30 cm.} true{Poręcze są przedłużone o 30 cm.} other{}}",
+  "railing_is_railing_obstacle": "{value, select, false{Poręcze nie stanowią przeszkody.} true{Poręcze stanowią przeszkodę.} unknown{Nie wiadomo, czy poręcze stanowią przeszkodę.} other{}}",
+  "railing_height": "{value, plural, =0{Brak informacji o wysokości poręczy.} one{Poręcz ma {value} cm wysokości.} other{Poręcze mają {value} cm wysokości.}}",
+  "railing": "Poręcz",
+  "ramps_is_ramp_marked": "{value, select, false{Pochylnia nie jest oznakowana.} true{Pochylnia jest oznakowana.} other{}}",
+  "ramps_is_increased_force_needed": "{value, select, false{Nie jest potrzebna zwiększona siła do pokonania pochylni} true{Do pokonania pochylni potrzebna jest zwiększona siła.} other{}}",
+  "ramps_is_permanent_ramp": "{value, select, false{Pochylnia nie jest stałym elementem konstrukcyjnym.} true{Pochylnia jest stałym elementem konstrukcyjnym.} other{}}",
+  "ramps_is_good_lit": "{value, select, false{Oświetlenie jest niewystarczające.} true{Oświetlenie jest dobre.} other{}}",
+  "ramps_are_nonslip_elements": "{value, select, false{Powierzchnia pochylni nie posiada elementów antypoślizgowych.} true{Powierzchnia pochylni posiada elementy antypoślizgowe.} other{}}",
+  "ramps_width": "Szerokość pochylni wynosi ",
+  "number_of_ramp_landings": "Liczba spoczników: ",
+  "dimensions_of_the_landings": "Wymiary spoczników to "
 }

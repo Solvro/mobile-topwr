@@ -90,6 +90,19 @@ class _RegionView extends ConsumerWidget {
               ref.navigateDigitalGuideStairway(regionData.stairways[index]),
           itemCount: region.stairways.length,
         ),
+      if (regionData.ramps.isNotEmpty)
+        RegionDataSliverListItem(
+          text: (index) => context.localize.ramp,
+          onTap: (index) async =>
+              ref.navigateDigitalGuideRamps(regionData.ramps[index]),
+          itemCount: region.ramps.length,
+        ),
+      RegionDataSliverListItem(
+        text: (index) =>
+            regionData.stairways[index].translations.plTranslation.name,
+        onTap: (index) async => () {},
+        itemCount: region.stairways.length,
+      ),
       RegionDataSliverListItem(
         text: (index) => context.localize.lift,
         onTap: (index) async => ref.navigateLiftDetails(
