@@ -1,3 +1,4 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 
 part "ramp.freezed.dart";
@@ -14,6 +15,7 @@ class Ramp with _$Ramp {
     required double rampWidth,
     required String isGoodLit,
     required String areNonslipElements,
+    @JsonKey(name: "railings") required IList<int> railingsIDs,
   }) = _Ramp;
 
   factory Ramp.fromJson(Map<String, dynamic> json) => _$RampFromJson(json);
