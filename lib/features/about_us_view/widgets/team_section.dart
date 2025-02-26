@@ -50,7 +50,7 @@ class TeamSection extends HookWidget {
         const SizedBox(height: 20),
         _SingleVersionTeamList(
           version: selectedTab.value,
-          shimmerTime: 500,
+          shimmerTime: 300,
         ),
       ],
     );
