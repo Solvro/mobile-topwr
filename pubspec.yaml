@@ -118,7 +118,6 @@ dependencies:
   wiredash: ^2.4.0
   flutter_hooks: ^0.20.5
   audioplayers: ^6.1.0
-  shimmer: ^2.0.0
 
 dev_dependencies:
   flutter_test:

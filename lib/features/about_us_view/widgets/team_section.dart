@@ -6,7 +6,6 @@ import "package:flutter/material.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:flutter_svg/svg.dart";
-import "package:shimmer/shimmer.dart";
 
 import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
@@ -49,7 +48,10 @@ class TeamSection extends HookWidget {
           ),
         ),
         const SizedBox(height: 20),
-        _SingleVersionTeamList(version: selectedTab.value),
+        _SingleVersionTeamList(
+          version: selectedTab.value,
+          shimmerTime: 500,
+        ),
       ],
     );
   }
@@ -85,21 +87,28 @@ class _SelectTab extends StatelessWidget {
 }
 
 class _SingleVersionTeamList extends StatefulWidget {
-  const _SingleVersionTeamList({required this.version});
+  const _SingleVersionTeamList(
+      {required this.version, required this.shimmerTime});
 
   final MultiversionTeam version;
+  final int shimmerTime;
 
   @override
-  _SingleVersionTeamListState createState() => _SingleVersionTeamListState();
+  _SingleVersionTeamListState createState() =>
+      _SingleVersionTeamListState(shimmerTime: shimmerTime);
 }
 
 class _SingleVersionTeamListState extends State<_SingleVersionTeamList> {
-  bool _showShimmer = true;
+  _SingleVersionTeamListState({required this.shimmerTime});
+
+  bool _showLoader = true;
+  int shimmerTime = 300;
+  Timer? _timer;
 
   @override
   void initState() {
     super.initState();
-    _startShimmerTimer();
+    _startLoaderTimer();
   }
 
   @override
@@ -107,27 +116,41 @@ class _SingleVersionTeamListState extends State<_SingleVersionTeamList> {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.version != widget.version) {
       setState(() {
-        _showShimmer = true;
+        _showLoader = true;
       });
-      _startShimmerTimer();
+      _startLoaderTimer();
     }
   }
 
-  void _startShimmerTimer() {
-    Timer(const Duration(milliseconds: 500), () {
+  void _startLoaderTimer() {
+    _timer?.cancel();
+    _timer = Timer(Duration(milliseconds: shimmerTime), () {
       if (mounted) {
         setState(() {
-          _showShimmer = false;
+          _showLoader = false;
         });
       }
     });
   }
 
   @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final version = widget.version;
+
+    // Obliczamy oczekiwaną wysokość widoku na podstawie liczby członków.
+    final double expectedHeight = version.members.isEmpty
+        ? 100.0
+        : version.members.length * WideTileCardConfig.imageSize;
+
     final content = version.members.isEmpty
         ? Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Icon(Icons.escalator_warning),
               Text(context.localize.emptySection),
@@ -146,13 +169,28 @@ class _SingleVersionTeamListState extends State<_SingleVersionTeamList> {
     return Padding(
       padding:
           const EdgeInsets.symmetric(horizontal: AboutUsConfig.defaultPadding),
-      child: _showShimmer
-          ? Shimmer.fromColors(
-              baseColor: Colors.grey[300]!,
-              highlightColor: Colors.grey[100]!,
-              child: content,
-            )
-          : content,
+      child: SizedBox(
+        height: expectedHeight,
+        child: Stack(
+          children: [
+            content,
+            AnimatedOpacity(
+              opacity: _showLoader ? 1.0 : 0.0,
+              duration: const Duration(milliseconds: 1),
+              child: const ColoredBox(
+                color: Colors.white,
+                child: Align(
+                  alignment: Alignment.topCenter,
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 16),
+                    child: CircularProgressIndicator(),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
