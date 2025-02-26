@@ -321,6 +321,13 @@
   "number_of_stair_gears": "Liczba biegów schodowych: ",
   "number_of_stair_landings": "Liczba spoczników:",
 
+  "are_objects_narrow_communication_zone": "Przedmioty {value, select, false{nie zwężają przejścia} true{zwężają przejście} other{}}",
+  "are_information_boards": "Tablice informacyjne{value, select, false{ nie} true{Z} other{}} są dostępne",
+  "are_information_boards_in_en": "Tablice informacyjne{value, select, false{ nie} true{Z} other{}} są dostępne po angielsku",
+  "are_room_entrances": "{value, select, false{Nie } true{Z} other{Z}}najdują wejścia do pomieszczeń",
+  "are_floor_markings": "{value, select, false{Nie z} true{Z} other{Z}}najdują się oznaczenia podłogowe",
+  "is_typhlomap": "Tyflomapa{value, select, false{ nie} true{} other{}} jest dostępna",
+
   "strategicBadgeTooltip": "Koło Strategiczne PWr",
   "strategic_club_abbr": "KS",
   "emptySection": "Brak członków zespołu w tej wersji",

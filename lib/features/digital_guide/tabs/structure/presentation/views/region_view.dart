@@ -82,10 +82,12 @@ class _RegionView extends ConsumerWidget {
         onTap: (index) async => () {},
         itemCount: region.corridors.length,
       ),
+      if (regionData.stairways.isNotEmpty)
       RegionDataSliverListItem(
         text: (index) =>
             regionData.stairways[index].translations.plTranslation.name,
-        onTap: (index) async => () {},
+        onTap: (index) async =>
+            ref.navigateDigitalGuideStairway(regionData.stairways[index]),
         itemCount: region.stairways.length,
       ),
       RegionDataSliverListItem(

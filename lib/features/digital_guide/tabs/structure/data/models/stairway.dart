@@ -1,3 +1,4 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 
 part "stairway.g.dart";
@@ -5,8 +6,19 @@ part "stairway.freezed.dart";
 
 @freezed
 class Stairway with _$Stairway {
+  @JsonSerializable(fieldRename: FieldRename.snake)
   const factory Stairway({
     required StairwayTranslations translations,
+    required String areObjectsNarrowCommunicationZone,
+    required String areInformationBoards,
+    required String areInformationBoardsInEn,
+    required String areRoomEntrances,
+    required String areFloorMarkings,
+    required String isTyphlomap,
+    @JsonKey(name: "doors") required IList<int> doors,
+    @JsonKey(name: "lifts") required IList<int> lifts,
+    @JsonKey(name: "stairs") required IList<int> stairs,
+    @JsonKey(name: "images") required IList<int> images,
   }) = _Stairway;
 
   factory Stairway.fromJson(Map<String, dynamic> json) =>
@@ -15,6 +27,7 @@ class Stairway with _$Stairway {
 
 @freezed
 class StairwayTranslations with _$StairwayTranslations {
+  @JsonSerializable(fieldRename: FieldRename.snake)
   const factory StairwayTranslations({
     @JsonKey(name: "pl") required StairwayTranslation plTranslation,
   }) = _StairwayTranslations;
@@ -25,8 +38,17 @@ class StairwayTranslations with _$StairwayTranslations {
 
 @freezed
 class StairwayTranslation with _$StairwayTranslation {
+  @JsonSerializable(fieldRename: FieldRename.snake)
   const factory StairwayTranslation({
     required String name,
+    required String location,
+    required String areObjectsNarrowCommunicationZoneComment,
+    required String areInformationBoardsComment,
+    required String areInformationBoardsInEnComment,
+    required String areRoomEntrancesComment,
+    required String areFloorMarkingsComment,
+    required String isTyphlomapComment,
+    required String comment,
   }) = _StairwayTranslation;
 
   factory StairwayTranslation.fromJson(Map<String, dynamic> json) =>
