@@ -172,6 +172,7 @@ extension NavigationX on WidgetRef {
   Future<void> navigateDigitalGuideStairs(Stairs stairs) async {
     await _router.push(StairsRoute(stairs: stairs));
   }
+
   Future<void> navigateDigitalGuideStairway(Stairway stairway) async {
     await _router.push(StairwayRoute(stairway: stairway));
   }

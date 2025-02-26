@@ -154,9 +154,9 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           page: StairsRoute.page,
         ),
-    AutoRoute(
-      page: StairwayRoute.page,
-    ),
+        AutoRoute(
+          page: StairwayRoute.page,
+        ),
         AutoRoute(
           page: ToiletsRoute.page,
         ),

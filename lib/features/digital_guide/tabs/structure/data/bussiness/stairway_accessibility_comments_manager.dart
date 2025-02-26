@@ -4,7 +4,8 @@ import "../../../../../../l10n/app_localizations.dart";
 import "../../../../business/accessibility_comments_manager.dart";
 import "../models/stairway.dart";
 
-class StairwayAccessibilityCommentsManager extends AccessibilityCommentsManager {
+class StairwayAccessibilityCommentsManager
+    extends AccessibilityCommentsManager {
   StairwayAccessibilityCommentsManager({
     required this.stairway,
     required this.l10n,

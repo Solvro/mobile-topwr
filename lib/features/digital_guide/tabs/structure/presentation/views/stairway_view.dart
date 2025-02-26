@@ -75,7 +75,7 @@ class StairwayView extends ConsumerWidget {
                 ),
               ),
               if (stairway.doors.isNotEmpty)
-              const SizedBox(height: DigitalGuideConfig.heightMedium),
+                const SizedBox(height: DigitalGuideConfig.heightMedium),
               ListView.separated(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
