@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v4
         
       - name: Copy ENV_FILE to .env
-        run: echo "${{ secrets.ENV_FILE }}" > .env
+        run: printf "%s" "${{ secrets.ENV_FILE }}" > .env
        
       - name: Place Key Properties
         run: echo "${{ secrets.KEY_PROPERTIES }}" > android/key.properties
@@ -21,8 +21,7 @@ jobs:
         run: echo "${{ secrets.STORE_FILE_JKS_B64 }}" | base64 -d > android/app/storeFile.jks
 
       - name: Decode and place TOPWR Key JSON
-        run: echo "${{ secrets.SERVICE_ACCOUNT_KEY_JSON_B64 }}" | base64 -d > android/service-acount-key.json
-
+        run: echo "${{ secrets.SERVICE_ACCOUNT_KEY_JSON_B64 }}" | base64 -d > android/service-account-key.json
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:

@@ -1,6 +1,6 @@
 default_platform(:android)
 
-json_key_file = "service-acount-key.json"
+json_key_file = "service-account-key.json"
 topwr_package_name = "com.solvro.topwr"
 
 platform :android do
