@@ -87,8 +87,10 @@ class _SelectTab extends StatelessWidget {
 }
 
 class _SingleVersionTeamList extends StatefulWidget {
-  const _SingleVersionTeamList(
-      {required this.version, required this.shimmerTime});
+  const _SingleVersionTeamList({
+    required this.version,
+    required this.shimmerTime,
+  });
 
   final MultiversionTeam version;
   final int shimmerTime;
