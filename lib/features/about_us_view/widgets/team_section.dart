@@ -102,7 +102,7 @@ class _SingleVersionTeamListState extends State<_SingleVersionTeamList> {
   _SingleVersionTeamListState({required this.shimmerTime});
 
   bool _showLoader = true;
-  int shimmerTime;
+  final int shimmerTime;
   Timer? _timer;
 
   @override
