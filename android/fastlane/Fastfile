@@ -13,7 +13,6 @@ platform :android do
       json_key: json_key_file
     ).first.to_i
   
-    sh "flutter clean"
     sh "flutter build appbundle --release --build-number=#{build_number+1}"
     upload_to_play_store(
       track: "beta",
