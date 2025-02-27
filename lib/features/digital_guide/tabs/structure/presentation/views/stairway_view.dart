@@ -32,72 +32,67 @@ class StairwayView extends ConsumerWidget {
         padding: const EdgeInsets.symmetric(
           horizontal: DigitalGuideConfig.heightBig,
         ),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
+        child: ListView.builder(
+          padding: const EdgeInsets.symmetric(
+            horizontal: DigitalGuideConfig.heightBig,
+          ),
+          itemCount: 6 + stairway.stairsIds.length + stairway.doorsIds.length + (stairway.imagesIds.isNotEmpty ? 2 : 0),
+          itemBuilder: (context, index) {
+            if (index == 0) {
+              return Text(
                 stairway.translations.plTranslation.name,
                 style: context.textTheme.headline
                     .copyWith(fontSize: DigitalGuideConfig.headlineFont),
-              ),
-              const SizedBox(
+              );
+            } else if (index == 1) {
+              return const SizedBox(
                 height: DigitalGuideConfig.heightSmall,
-              ),
-              BulletList(
+              );
+            } else if (index == 2) {
+              return BulletList(
                 items: [
                   stairwayInformation.location,
                   stairwayInformation.comment,
                 ].where((item) => item.trim().isNotEmpty).toIList(),
-              ),
-              const SizedBox(
+              );
+            } else if (index == 3) {
+              return const SizedBox(
                 height: DigitalGuideConfig.heightSmall,
-              ),
-              AccessibilityProfileCard(
+              );
+            } else if (index == 4) {
+              return AccessibilityProfileCard(
                 accessibilityCommentsManager:
                     StairwayAccessibilityCommentsManager(
                   stairway: stairway,
                   l10n: context.localize,
                 ),
                 backgroundColor: context.colorTheme.whiteSoap,
-              ),
-              const SizedBox(height: DigitalGuideConfig.heightBig),
-              ListView.separated(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: stairway.stairsIds.length,
-                itemBuilder: (context, index) => DigitalGuideNavLink(
-                  onTap: () async =>
-                      ref.navigateDigitalGuideStairs(stairway.stairsIds[index]),
-                  text: context.localize.stairs,
+              );
+            } else if (index == 5) {
+              return const SizedBox(height: DigitalGuideConfig.heightBig);
+            } else if (index < 6 + stairway.stairsIds.length) {
+              int stairsIndex = index - 6;
+              return DigitalGuideNavLink(
+                onTap: () async =>
+                    ref.navigateDigitalGuideStairs(stairway.stairsIds[stairsIndex]),
+                text: context.localize.stairs,
+              );
+            } else if (index < 6 + stairway.stairsIds.length + stairway.doorsIds.length) {
+              int doorsIndex = index - 6 - stairway.stairsIds.length;
+              return DigitalGuideNavLink(
+                onTap: () async => ref.navigateDigitalGuideDoor(
+                  stairway.doorsIds[doorsIndex],
                 ),
-                separatorBuilder: (context, index) => const SizedBox(
-                  height: DigitalGuideConfig.heightSmall,
-                ),
-              ),
-              if (stairway.doorsIds.isNotEmpty)
-                const SizedBox(height: DigitalGuideConfig.heightMedium),
-              ListView.separated(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: stairway.doorsIds.length,
-                itemBuilder: (context, index) => DigitalGuideNavLink(
-                  onTap: () async => ref.navigateDigitalGuideDoor(
-                    stairway.doorsIds[index],
-                  ),
-                  text: context.localize.door,
-                ),
-                separatorBuilder: (context, index) => const SizedBox(
-                  height: DigitalGuideConfig.heightSmall,
-                ),
-              ),
-              if (stairway.imagesIds.isNotEmpty)
-                Text(
-                  context.localize.images,
-                  style: context.textTheme.title
-                      .copyWith(fontSize: DigitalGuideConfig.headlineFont),
-                ),
-              Padding(
+                text: context.localize.door,
+              );
+            } else if (stairway.imagesIds.isNotEmpty && index == 6 + stairway.stairsIds.length + stairway.doorsIds.length) {
+              return Text(
+                context.localize.images,
+                style: context.textTheme.title
+                    .copyWith(fontSize: DigitalGuideConfig.headlineFont),
+              );
+            } else {
+              return Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: DigitalGuideConfig.heightBig,
                   vertical: DigitalGuideConfig.heightBig,
@@ -105,9 +100,9 @@ class StairwayView extends ConsumerWidget {
                 child: DigitalGuidePhotoRow(
                   imagesIDs: stairway.imagesIds,
                 ),
-              ),
-            ],
-          ),
+              );
+            }
+          },
         ),
       ),
     );
