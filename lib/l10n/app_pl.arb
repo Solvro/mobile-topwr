@@ -566,5 +566,14 @@
   "ramps_are_nonslip_elements": "{value, select, false{Powierzchnia pochylni nie posiada elementów antypoślizgowych.} true{Powierzchnia pochylni posiada elementy antypoślizgowe.} other{}}",
   "ramps_width": "Szerokość pochylni wynosi ",
   "number_of_ramp_landings": "Liczba spoczników: ",
-  "dimensions_of_the_landings": "Wymiary spoczników to "
+  "dimensions_of_the_landings": "Wymiary spoczników to ",
+  "dressing_room_is_marked": "{value, select, false{Lada nie jest oznaczona.} true{Lada jest oznaczona.} other{}}",
+  "dressing_room_is_visible_from_afar": "{value, select, false{Lada nie jest widoczna z daleka.} true{Lada jest widoczna z daleka.} other{}}",
+  "dressing_room_are_access_barriers": "{value, select, false{Brak barier w dostępie do lady.} true{Występują bariery w dostępie do lady.} other{}}",
+  "dressing_room_are_seats_available": "{value, select, false{Brak miejsc siedzących przy ladzie.} true{Przy ladzie dostępne są miejsca siedzące.} other{}}",
+  "dressing_room_is_movement_space": "{value, select, false{Brak przestrzeni manewrowej przy ladzie.} true{Przy ladzie dostępna jest przestrzeń manewrowa.} other{}}",
+  "dressing_room_is_good_lit": "{value, select, false{Lada nie jest dobrze oświetlona.} true{Lada jest dobrze oświetlona.} other{}}",
+  "dressing_room_counter_height": "{value, plural, =0{Wysokość lady nie została określona.} other{Wysokość lady wynosi {value} cm.}}",
+  "dressing_room_counter_is_space_under": "{value, select, false{Pod ladą nie ma wolnej przestrzeni.} true{Pod ladą znajduje się wolna przestrzeń.} other{}}",
+  "dressing_room_counter_is_space_on": "{value, select, false{Na ladzie nie ma wolnej przestrzeni.} true{Na ladzie znajduje się wolna przestrzeń.} other{}}"
 }
