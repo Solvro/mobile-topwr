@@ -16,14 +16,14 @@ platform :android do
     sh "flutter build appbundle --release --build-number=#{build_number+1}"
     upload_to_play_store(
       track: "beta",
-	  json_key: json_key_file,
+      json_key: json_key_file,
       aab: "../build/app/outputs/bundle/release/app-release.aab",
       skip_upload_apk: true,
       skip_upload_changelogs: true,
-	  skip_upload_metadata: true,
-	  skip_upload_images: true,
-	  skip_upload_screenshots: true,
-	  validate_only: false
+      skip_upload_metadata: true,
+      skip_upload_images: true,
+      skip_upload_screenshots: true,
+      validate_only: false
     )
   end
 end
