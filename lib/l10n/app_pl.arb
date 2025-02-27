@@ -566,5 +566,23 @@
   "ramps_are_nonslip_elements": "{value, select, false{Powierzchnia pochylni nie posiada elementów antypoślizgowych.} true{Powierzchnia pochylni posiada elementy antypoślizgowe.} other{}}",
   "ramps_width": "Szerokość pochylni wynosi ",
   "number_of_ramp_landings": "Liczba spoczników: ",
-  "dimensions_of_the_landings": "Wymiary spoczników to "
+  "dimensions_of_the_landings": "Wymiary spoczników to ",
+  "isMarked": "Lokalizacja punktu informacyjnego została wyraźnie oznaczona.",
+  "are_seats_available": "Przy punkcie informacyjnym nie ma miejsc siedzących",
+  "is_space_on_counter": "Na ladzie jest miejsce, aby podpisać dokumenty",
+  "are_access_bariers": "Dostęp do punktu informacyjnego jest dobry. Podłoga jest równa, a w otoczeniu nie ma żadnych przeszkód.",
+  "is_space_under_counter": "Pod dolną częścią lady {value, select, false{nie ma miejsca} true{jest miejsce} other{}} na wjechanie wózkiem.",
+  "counter_heigth_text": "Wysokość lady punktu informacyjnego wynosi {value}",
+  "@counter_heigth_text": {
+    "placeholders":{
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "is_movement_space": "Przy punkcie informacyjnym {value, select, false{nie} other{}} jest odpowiednia przestrzeń do poruszania się dla osób z niepełnosprawnościami.",
+  "is_good_lit_info_point": "Punkt informacyjny {value, select, false{nie} other{}} jest odpowiednio oświetlony.",
+  "is_visible_from_afar": "Punkt informacyjny {value, select, false{nie} other{}} jest widoczny z dużej odległości. Lada {value, select, false{nie} other{}} wyróżnia się na tle otoczenia.",
+  "has_sound_transmitter": "Pomieszczenie {value, select, false{nie} other{}} jest wyposażone w pętle indukcyjną, system FM ani tłumacza języka migowego.",
+  "information_point": "Punkt Informacyjny"
 }

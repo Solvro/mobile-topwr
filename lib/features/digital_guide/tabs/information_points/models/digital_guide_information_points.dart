@@ -1,5 +1,7 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 
+import "../../../../../l10n/app_localizations.dart";
 import "../../../../../utils/type_converter.dart";
 
 part "digital_guide_information_points.freezed.dart";
@@ -22,13 +24,27 @@ class DigitalGuideInformationPoint with _$DigitalGuideInformationPoint {
     @JsonKey(fromJson: stringToBool) required bool isSpaceUnderCounter,
     @JsonKey(fromJson: stringToBool) required bool isSpaceOnCounter,
     @JsonKey(fromJson: stringToBool) required bool hasInductionLoop,
+    // @JsonKey(fromJson: stringToBool) required bool hasSoundTransmitter,
     required int building,
     required List<dynamic> rings,
     required List<dynamic> images,
   }) = _DigitalGuideInformationPoint;
 
+  const DigitalGuideInformationPoint._();
+
   factory DigitalGuideInformationPoint.fromJson(Map<String, dynamic> json) =>
       _$DigitalGuideInformationPointFromJson(json);
+
+  IList<String> getBulletList(AppLocalizations l10n) {
+    final pl = translations.pl;
+    return [
+      pl.location,
+      if (isMarked) l10n.isMarked,
+      if (areSeatsAvailable) l10n.are_seats_available,
+      if (isSpaceOnCounter) l10n.is_space_on_counter,
+      pl.workingDaysAndHours,
+    ].lock;
+  }
 }
 
 @freezed
