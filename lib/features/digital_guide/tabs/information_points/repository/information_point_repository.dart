@@ -9,7 +9,9 @@ part "information_point_repository.g.dart";
 
 @riverpod
 Future<DigitalGuideInformationPoint?> informationPointRepository(
-    Ref ref, int buildingId,) async {
+  Ref ref,
+  int buildingId,
+) async {
   final data = await ref.getAndCacheDataFromDigitalGuide(
     "information_points/?building=$buildingId",
     (List<dynamic> json) => json

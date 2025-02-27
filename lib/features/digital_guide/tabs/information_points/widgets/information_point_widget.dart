@@ -25,7 +25,9 @@ class InformationPointWidget extends StatelessWidget {
           ),
           AccessibilityProfileCard(
             accessibilityCommentsManager: InformationPointAccessibilityManager(
-                l10n: l10n, infoPoint: data),
+              l10n: l10n,
+              infoPoint: data,
+            ),
           ),
         ],
       ),

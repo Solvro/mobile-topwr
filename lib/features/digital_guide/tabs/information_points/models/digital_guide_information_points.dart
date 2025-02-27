@@ -55,7 +55,8 @@ class DigitalGuideInformationPointTranslations
   }) = _DigitalGuideInformationPointTranslations;
 
   factory DigitalGuideInformationPointTranslations.fromJson(
-          Map<String, dynamic> json) =>
+    Map<String, dynamic> json,
+  ) =>
       _$DigitalGuideInformationPointTranslationsFromJson(json);
 }
 
@@ -79,6 +80,7 @@ class DigitalGuideInformationPointTranslationDetails
   }) = _DigitalGuideInformationPointTranslationDetails;
 
   factory DigitalGuideInformationPointTranslationDetails.fromJson(
-          Map<String, dynamic> json) =>
+    Map<String, dynamic> json,
+  ) =>
       _$DigitalGuideInformationPointTranslationDetailsFromJson(json);
 }

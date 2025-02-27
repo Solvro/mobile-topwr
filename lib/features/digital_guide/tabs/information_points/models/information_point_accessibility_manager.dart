@@ -45,10 +45,12 @@ class InformationPointAccessibilityManager
     return IList([
       if (infoPoint.areAccessBarriers) l10n.are_access_bariers,
       l10n.is_movement_space(
-          infoPoint.isMovementSpace.toString().toLowerCase()),
+        infoPoint.isMovementSpace.toString().toLowerCase(),
+      ),
       l10n.counter_heigth_text(infoPoint.counterHeight),
       l10n.is_space_under_counter(
-          infoPoint.isSpaceUnderCounter.toString().toLowerCase()),
+        infoPoint.isSpaceUnderCounter.toString().toLowerCase(),
+      ),
     ]);
   }
 
