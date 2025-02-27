@@ -77,6 +77,7 @@ class DigitalGuideTranslationTransportation
     required String isCityBikeStationComment,
     required String isBicyclePathLeadToBuildingComment,
     required String isBicyclePathLeadClearlySeparatedComment,
+    required String areObstaclesForWheelchairUserComment,
     required String areObstaclesForBlindComment,
     required String areFacilitiesForBlindFromStopToEntryComment,
     required String areObstaclesForWheelchairUserAltRoadComment,

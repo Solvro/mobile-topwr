@@ -40,14 +40,6 @@ class TransportationDetailView extends ConsumerWidget {
                 : ""),
       if (transportation.dailyTramBusLines.isNotEmpty)
         context.localize.transport_lines + transportation.dailyTramBusLines,
-      if (transportation.arePassTrafficLightsFromStopToEntry.toLowerCase() ==
-          "true")
-        context.localize.pass_traffic_lights +
-            plTransl.arePassTrafficLightsFromStopToEntryComment,
-      if (transportation.areNotPassTrafficLightsFromStopToEntry.toLowerCase() ==
-          "true")
-        context.localize.no_pass_traffic_lights +
-            plTransl.areNotPassTrafficLightsFromStopToEntryComment,
       if (plTransl.alternativePublicTransportStop.isNotEmpty)
         context.localize.nearest_public_transport_stop_alt +
             plTransl.alternativePublicTransportStop +
@@ -61,16 +53,6 @@ class TransportationDetailView extends ConsumerWidget {
       if (transportation.alternativeDailyTramBusLinesStop.isNotEmpty)
         context.localize.transport_lines +
             transportation.alternativeDailyTramBusLinesStop,
-      if (transportation.arePassTrafficLightsFromStopToEntryAltRoad
-              .toLowerCase() ==
-          "true")
-        context.localize.pass_traffic_lights +
-            plTransl.arePassTrafficLightsFromStopToEntryAltRoadComment,
-      if (transportation.areNotPassTrafficLightsFromStopToEntryAltRoad
-              .toLowerCase() ==
-          "true")
-        context.localize.no_pass_traffic_lights +
-            plTransl.areNotPassTrafficLightsFromStopToEntryAltRoadComment,
     ].lock;
     final privateTransport = [
       if (plTransl.nearestPublicParkingLocation.isNotEmpty)
@@ -84,12 +66,6 @@ class TransportationDetailView extends ConsumerWidget {
             context.distance(
               transportation.nearestUniversityParkingLocationDistance,
             ),
-      if (plTransl.nearestDisabledParkingSpaces.isNotEmpty)
-        plTransl.nearestDisabledParkingSpaces +
-            context.distance(
-              transportation.nearestDisabledParkingSpacesDistance,
-            ) +
-            plTransl.areBicycleStandsComment,
       plTransl.isCityBikeStationComment +
           context.distance(transportation.cityBikeStationDistance),
       if (transportation.isBicyclePathLeadToBuilding)

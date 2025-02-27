@@ -6,8 +6,10 @@ import "../data/models/digital_guide_transportation.dart";
 
 class PublicTransportationAccessibilityCommentsManager
     extends AccessibilityCommentsManager {
-  PublicTransportationAccessibilityCommentsManager(
-      {required this.transportation, required this.l10n,});
+  PublicTransportationAccessibilityCommentsManager({
+    required this.transportation,
+    required this.l10n,
+  });
 
   final DigitalGuideTransportation transportation;
   final AppLocalizations l10n;
@@ -54,7 +56,7 @@ class PublicTransportationAccessibilityCommentsManager
     final comments = transportation.translations.pl;
 
     final IList<String> commentsList = [
-      "${l10n.transport_wheelchair_obstacles(transportation.areObstaclesForWheelchairUser.toLowerCase())} ${comments.areObstaclesForBlindComment}",
+      "${l10n.transport_wheelchair_obstacles(transportation.areObstaclesForWheelchairUser.toLowerCase())} ${comments.areObstaclesForWheelchairUserComment}",
       "${l10n.transport_alt_wheelchair_obstacles(transportation.areObstaclesForWheelchairUserAltRoad.toLowerCase())} ${comments.areObstaclesForWheelchairUserAltRoadComment}",
       "${l10n.transport_are_not_pass_traffic_lights(transportation.areNotPassTrafficLightsFromStopToEntry.toLowerCase())} ${comments.areNotPassTrafficLightsFromStopToEntryComment}",
       "${l10n.transport_are_pass_traffic_lights(transportation.arePassTrafficLightsFromStopToEntry.toLowerCase())} ${comments.arePassTrafficLightsFromStopToEntryComment}",
