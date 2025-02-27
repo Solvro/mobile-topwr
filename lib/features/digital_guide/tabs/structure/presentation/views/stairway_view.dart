@@ -26,6 +26,64 @@ class StairwayView extends ConsumerWidget {
     final StairwayTranslation stairwayInformation =
         stairway.translations.plTranslation;
 
+    final List<Widget> widgets = [
+      Text(
+        stairway.translations.plTranslation.name,
+        style: context.textTheme.headline
+            .copyWith(fontSize: DigitalGuideConfig.headlineFont),
+      ),
+      const SizedBox(
+        height: DigitalGuideConfig.heightSmall,
+      ),
+      BulletList(
+        items: [
+          stairwayInformation.location,
+          stairwayInformation.comment,
+        ].where((item) => item.trim().isNotEmpty).toIList(),
+      ),
+      const SizedBox(
+        height: DigitalGuideConfig.heightSmall,
+      ),
+      AccessibilityProfileCard(
+        accessibilityCommentsManager:
+            StairwayAccessibilityCommentsManager(
+          stairway: stairway,
+          l10n: context.localize,
+        ),
+        backgroundColor: context.colorTheme.whiteSoap,
+      ),
+      const SizedBox(height: DigitalGuideConfig.heightBig),
+      ...List.generate(stairway.stairsIds.length, (index) => DigitalGuideNavLink(
+        onTap: () async =>
+            ref.navigateDigitalGuideStairs(stairway.stairsIds[index]),
+        text: context.localize.stairs,
+      )),
+      if (stairway.doorsIds.isNotEmpty)
+        const SizedBox(height: DigitalGuideConfig.heightMedium),
+      ...List.generate(stairway.doorsIds.length, (index) => DigitalGuideNavLink(
+        onTap: () async => ref.navigateDigitalGuideDoor(
+          stairway.doorsIds[index],
+        ),
+        text: context.localize.door,
+      )),
+      if (stairway.imagesIds.isNotEmpty) ...[
+        Text(
+          context.localize.images,
+          style: context.textTheme.title
+              .copyWith(fontSize: DigitalGuideConfig.headlineFont),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: DigitalGuideConfig.heightBig,
+            vertical: DigitalGuideConfig.heightBig,
+          ),
+          child: DigitalGuidePhotoRow(
+            imagesIDs: stairway.imagesIds,
+          ),
+        ),
+      ],
+    ];
+
     return Scaffold(
       appBar: DetailViewAppBar(),
       body: Padding(
@@ -38,70 +96,7 @@ class StairwayView extends ConsumerWidget {
           ),
           itemCount: 6 + stairway.stairsIds.length + stairway.doorsIds.length + (stairway.imagesIds.isNotEmpty ? 2 : 0),
           itemBuilder: (context, index) {
-            if (index == 0) {
-              return Text(
-                stairway.translations.plTranslation.name,
-                style: context.textTheme.headline
-                    .copyWith(fontSize: DigitalGuideConfig.headlineFont),
-              );
-            } else if (index == 1) {
-              return const SizedBox(
-                height: DigitalGuideConfig.heightSmall,
-              );
-            } else if (index == 2) {
-              return BulletList(
-                items: [
-                  stairwayInformation.location,
-                  stairwayInformation.comment,
-                ].where((item) => item.trim().isNotEmpty).toIList(),
-              );
-            } else if (index == 3) {
-              return const SizedBox(
-                height: DigitalGuideConfig.heightSmall,
-              );
-            } else if (index == 4) {
-              return AccessibilityProfileCard(
-                accessibilityCommentsManager:
-                    StairwayAccessibilityCommentsManager(
-                  stairway: stairway,
-                  l10n: context.localize,
-                ),
-                backgroundColor: context.colorTheme.whiteSoap,
-              );
-            } else if (index == 5) {
-              return const SizedBox(height: DigitalGuideConfig.heightBig);
-            } else if (index < 6 + stairway.stairsIds.length) {
-              int stairsIndex = index - 6;
-              return DigitalGuideNavLink(
-                onTap: () async =>
-                    ref.navigateDigitalGuideStairs(stairway.stairsIds[stairsIndex]),
-                text: context.localize.stairs,
-              );
-            } else if (index < 6 + stairway.stairsIds.length + stairway.doorsIds.length) {
-              int doorsIndex = index - 6 - stairway.stairsIds.length;
-              return DigitalGuideNavLink(
-                onTap: () async => ref.navigateDigitalGuideDoor(
-                  stairway.doorsIds[doorsIndex],
-                ),
-                text: context.localize.door,
-              );
-            } else if (stairway.imagesIds.isNotEmpty && index == 6 + stairway.stairsIds.length + stairway.doorsIds.length) {
-              return Text(
-                context.localize.images,
-                style: context.textTheme.title
-                    .copyWith(fontSize: DigitalGuideConfig.headlineFont),
-              );
-            } else {
-              return Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: DigitalGuideConfig.heightBig,
-                  vertical: DigitalGuideConfig.heightBig,
-                ),
-                child: DigitalGuidePhotoRow(
-                  imagesIDs: stairway.imagesIds,
-                ),
-              );
-            }
+            return widgets[index];
           },
         ),
       ),
