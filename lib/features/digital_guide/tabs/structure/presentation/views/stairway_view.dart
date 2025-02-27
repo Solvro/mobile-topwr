@@ -90,14 +90,17 @@ class StairwayView extends ConsumerWidget {
         padding: const EdgeInsets.symmetric(
           horizontal: DigitalGuideConfig.heightBig,
         ),
-        child: ListView.builder(
+        child: ListView.separated(
           padding: const EdgeInsets.symmetric(
             horizontal: DigitalGuideConfig.heightBig,
           ),
-          itemCount: 6 + stairway.stairsIds.length + stairway.doorsIds.length + (stairway.imagesIds.isNotEmpty ? 2 : 0),
+          itemCount: widgets.length,
           itemBuilder: (context, index) {
             return widgets[index];
           },
+          separatorBuilder: (context, index) => const SizedBox(
+            height: DigitalGuideConfig.heightSmall,
+          ),
         ),
       ),
     );
