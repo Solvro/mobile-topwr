@@ -8,7 +8,10 @@ import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/context_extensions.dart";
 import "../../../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../../presentation/widgets/accessibility_button.dart";
+import "../../../presentation/widgets/accessibility_profile_card.dart";
 import "../../../presentation/widgets/bullet_list.dart";
+import "../business/non_public_transportation_accessibility_comments_manager.dart";
+import "../business/public_transportation_accessibility_comments_manager.dart";
 import "../data/models/digital_guide_transportation.dart";
 
 @RoutePage()
@@ -37,12 +40,6 @@ class TransportationDetailView extends ConsumerWidget {
                 : ""),
       if (transportation.dailyTramBusLines.isNotEmpty)
         context.localize.transport_lines + transportation.dailyTramBusLines,
-      if (transportation.arePassTrafficLightsFromStopToEntry)
-        context.localize.pass_traffic_lights +
-            plTransl.arePassTrafficLightsFromStopToEntryComment,
-      if (transportation.areNotPassTrafficLightsFromStopToEntry)
-        context.localize.no_pass_traffic_lights +
-            plTransl.areNotPassTrafficLightsFromStopToEntryComment,
       if (plTransl.alternativePublicTransportStop.isNotEmpty)
         context.localize.nearest_public_transport_stop_alt +
             plTransl.alternativePublicTransportStop +
@@ -56,12 +53,6 @@ class TransportationDetailView extends ConsumerWidget {
       if (transportation.alternativeDailyTramBusLinesStop.isNotEmpty)
         context.localize.transport_lines +
             transportation.alternativeDailyTramBusLinesStop,
-      if (transportation.arePassTrafficLightsFromStopToEntryAltRoad)
-        context.localize.pass_traffic_lights +
-            plTransl.arePassTrafficLightsFromStopToEntryAltRoadComment,
-      if (transportation.areNotPassTrafficLightsFromStopToEntryAltRoad)
-        context.localize.no_pass_traffic_lights +
-            plTransl.areNotPassTrafficLightsFromStopToEntryAltRoadComment,
     ].lock;
     final privateTransport = [
       if (plTransl.nearestPublicParkingLocation.isNotEmpty)
@@ -75,12 +66,6 @@ class TransportationDetailView extends ConsumerWidget {
             context.distance(
               transportation.nearestUniversityParkingLocationDistance,
             ),
-      if (plTransl.nearestDisabledParkingSpaces.isNotEmpty)
-        plTransl.nearestDisabledParkingSpaces +
-            context.distance(
-              transportation.nearestDisabledParkingSpacesDistance,
-            ) +
-            plTransl.areBicycleStandsComment,
       plTransl.isCityBikeStationComment +
           context.distance(transportation.cityBikeStationDistance),
       if (transportation.isBicyclePathLeadToBuilding)
@@ -98,6 +83,18 @@ class TransportationDetailView extends ConsumerWidget {
       ),
       const SizedBox(height: DigitalGuideConfig.heightMedium),
       BulletList(items: isPublic ? publicTransport : privateTransport),
+      AccessibilityProfileCard(
+        accessibilityCommentsManager: isPublic
+            ? PublicTransportationAccessibilityCommentsManager(
+                transportation: transportation,
+                l10n: context.localize,
+              )
+            : NonPublicTransportationAccessibilityCommentsManager(
+                transportation: transportation,
+                l10n: context.localize,
+              ),
+        backgroundColor: context.colorTheme.whiteSoap,
+      ),
     ];
 
     return Scaffold(
