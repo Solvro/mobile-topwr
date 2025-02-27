@@ -10,8 +10,8 @@ import "../../../../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../../../../navigator/utils/navigation_commands.dart";
 import "../../../../presentation/widgets/accessibility_profile_card.dart";
 import "../../../../presentation/widgets/bullet_list.dart";
-import "../../../../presentation/widgets/digital_guide_image.dart";
 import "../../../../presentation/widgets/digital_guide_nav_link.dart";
+import "../../../../presentation/widgets/digital_guide_photo_row.dart";
 import "../../data/bussiness/stairway_accessibility_comments_manager.dart";
 import "../../data/models/stairway.dart";
 
@@ -61,28 +61,29 @@ class StairwayView extends ConsumerWidget {
                 ),
                 backgroundColor: context.colorTheme.whiteSoap,
               ),
-              const SizedBox(height: DigitalGuideConfig.heightMedium),
+              const SizedBox(height: DigitalGuideConfig.heightBig),
               ListView.separated(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: stairway.stairs.length,
+                itemCount: stairway.stairsIds.length,
                 itemBuilder: (context, index) => DigitalGuideNavLink(
-                  onTap: () {}, //async => ref.navigateDigitalGuideStairs(),
+                  onTap: () async =>
+                      ref.navigateDigitalGuideStairs(stairway.stairsIds[index]),
                   text: context.localize.stairs,
                 ),
                 separatorBuilder: (context, index) => const SizedBox(
                   height: DigitalGuideConfig.heightSmall,
                 ),
               ),
-              if (stairway.doors.isNotEmpty)
+              if (stairway.doorsIds.isNotEmpty)
                 const SizedBox(height: DigitalGuideConfig.heightMedium),
               ListView.separated(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: stairway.doors.length,
+                itemCount: stairway.doorsIds.length,
                 itemBuilder: (context, index) => DigitalGuideNavLink(
                   onTap: () async => ref.navigateDigitalGuideDoor(
-                    stairway.doors[index],
+                    stairway.doorsIds[index],
                   ),
                   text: context.localize.door,
                 ),
@@ -90,7 +91,7 @@ class StairwayView extends ConsumerWidget {
                   height: DigitalGuideConfig.heightSmall,
                 ),
               ),
-              if (stairway.images.isNotEmpty)
+              if (stairway.imagesIds.isNotEmpty)
                 Text(
                   context.localize.images,
                   style: context.textTheme.title
@@ -101,21 +102,8 @@ class StairwayView extends ConsumerWidget {
                   horizontal: DigitalGuideConfig.heightBig,
                   vertical: DigitalGuideConfig.heightBig,
                 ),
-                child: ListView.separated(
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: stairway.images.length,
-                  itemBuilder: (context, index) => ClipRRect(
-                    borderRadius: BorderRadius.circular(
-                      DigitalGuideConfig.borderRadiusSmall,
-                    ),
-                    child: DigitalGuideImage(
-                      id: stairway.images[index],
-                    ),
-                  ),
-                  separatorBuilder: (context, index) => const SizedBox(
-                    height: DigitalGuideConfig.heightSmall,
-                  ),
-                  shrinkWrap: true,
+                child: DigitalGuidePhotoRow(
+                  imagesIDs: stairway.imagesIds,
                 ),
               ),
             ],

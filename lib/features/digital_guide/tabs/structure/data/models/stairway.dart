@@ -15,10 +15,10 @@ class Stairway with _$Stairway {
     required String areRoomEntrances,
     required String areFloorMarkings,
     required String isTyphlomap,
-    @JsonKey(name: "doors") required IList<int> doors,
-    @JsonKey(name: "lifts") required IList<int> lifts,
-    @JsonKey(name: "stairs") required IList<int> stairs,
-    @JsonKey(name: "images") required IList<int> images,
+    @JsonKey(name: "doors") required IList<int> doorsIds,
+    @JsonKey(name: "lifts") required IList<int> liftsIds,
+    @JsonKey(name: "stairs") required IList<int> stairsIds,
+    @JsonKey(name: "images") required IList<int> imagesIds,
   }) = _Stairway;
 
   factory Stairway.fromJson(Map<String, dynamic> json) =>
