@@ -1,0 +1,47 @@
+name: Deploy beta app on android to google play
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy-android:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        
+      - name: Copy ENV_FILE to .env
+        run: printf "%s" "${{ secrets.ENV_FILE }}" > .env
+       
+      - name: Place Key Properties
+        run: echo "${{ secrets.KEY_PROPERTIES }}" > android/key.properties
+
+      - name: Decode and place Keystore
+        run: echo "${{ secrets.STORE_FILE_JKS_B64 }}" | base64 -d > android/app/storeFile.jks
+
+      - name: Decode and place TOPWR Key JSON
+        run: echo "${{ secrets.SERVICE_ACCOUNT_KEY_JSON_B64 }}" | base64 -d > android/service-account-key.json
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+          flutter-version-file: pubspec.yaml
+
+      - run: flutter --version
+      - run: flutter config --explicit-package-dependencies
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Setup localizations
+        run: flutter gen-l10n
+
+      - name: Generate files
+        run: dart run build_runner build --delete-conflicting-outputs
+
+      - name: Fetch metadata, latest build version and deploy beta with Fastlane
+        run: |
+          cd android
+          fastlane supply init
+          fastlane beta

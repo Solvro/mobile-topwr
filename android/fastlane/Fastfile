@@ -1,0 +1,29 @@
+default_platform(:android)
+
+json_key_file = "service-account-key.json"
+topwr_package_name = "com.solvro.topwr"
+
+platform :android do
+
+  desc "Deploy the beta (for testers) version to Google Play"
+  lane :beta do
+	build_number = google_play_track_version_codes(
+      package_name: topwr_package_name,
+      track: "beta",
+      json_key: json_key_file
+    ).first.to_i
+  
+    sh "flutter build appbundle --release --build-number=#{build_number+1}"
+    upload_to_play_store(
+      track: "beta",
+      json_key: json_key_file,
+      aab: "../build/app/outputs/bundle/release/app-release.aab",
+      skip_upload_apk: true,
+      skip_upload_changelogs: true,
+      skip_upload_metadata: true,
+      skip_upload_images: true,
+      skip_upload_screenshots: true,
+      validate_only: false
+    )
+  end
+end
