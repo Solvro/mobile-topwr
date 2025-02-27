@@ -26,7 +26,7 @@ class StairsView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final asyncStairs = ref.watch(singleStairsRepositoryProvider(stairsId));
+    final asyncStairs = ref.watch(stairsRepositoryProvider(stairsId));
 
     return asyncStairs.when(
       loading: () {
