@@ -18,13 +18,19 @@ jobs:
           channel: "stable"
           flutter-version-file: pubspec.yaml
       - run: flutter --version
-      
-      - name: Verify formatting
-        run: dart format --output=none --set-exit-if-changed .
-    
+
       - name: Install dependencies
         run: flutter pub get
-    
+        
+      - name: Remove lib/l10n directory
+        run: rm -rf lib/l10n/*.dart
+
+      - name: Verify formatting
+        run: dart format --output=none --set-exit-if-changed .
+      
+      - name: Regenerate the localization files
+        run: flutter gen-l10n
+
       - name: Example .env
         run: cp example.env .env
 
