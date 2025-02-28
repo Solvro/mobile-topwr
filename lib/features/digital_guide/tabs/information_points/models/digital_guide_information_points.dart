@@ -24,7 +24,7 @@ class DigitalGuideInformationPoint with _$DigitalGuideInformationPoint {
     @JsonKey(fromJson: stringToBool) required bool isSpaceUnderCounter,
     @JsonKey(fromJson: stringToBool) required bool isSpaceOnCounter,
     @JsonKey(fromJson: stringToBool) required bool hasInductionLoop,
-    // @JsonKey(fromJson: stringToBool) required bool hasSoundTransmitter,
+    @JsonKey(fromJson: stringToBool) required bool hasSoundTransmitter,
     required int building,
     required List<dynamic> rings,
     required List<dynamic> images,

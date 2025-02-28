@@ -29,7 +29,9 @@ class InformationPointAccessibilityManager
 
   @override
   IList<String> getCommentsListForHearingImpairment() {
-    return const IList.empty();
+    return IList([
+      l10n.has_sound_transmitter(infoPoint.hasSoundTransmitter.toString().toLowerCase()),
+    ]);
   }
 
   @override
