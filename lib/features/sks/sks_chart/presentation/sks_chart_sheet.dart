@@ -50,7 +50,7 @@ class SksChartSheet extends ConsumerWidget {
                 ),
                 Expanded(
                   child: ListView(
-                    physics: const NeverScrollableScrollPhysics(),
+                    physics: const BouncingScrollPhysics(),
                     children: [
                       Padding(
                         padding: const EdgeInsets.symmetric(
@@ -61,6 +61,7 @@ class SksChartSheet extends ConsumerWidget {
                           maxNumberOfUsers: maxNumberOfUsers,
                           chartData:
                               asyncChartData.value ?? const IList.empty(),
+                          height: sheetHeight,
                         ),
                       ),
                       Padding(
