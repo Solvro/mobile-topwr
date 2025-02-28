@@ -45,7 +45,7 @@ class NavigationController extends _$NavigationController {
   }
 
   Future<void> pushNamed(String uri) async {
-    final lastRoute = fullStack.lastOrNull;
+    final lastRoute = _fullStack.lastOrNull;
     final isCurrentlyWithinTabView = ref
         .read(appRouterProvider)
         .routesWithinTabBar
@@ -95,7 +95,7 @@ class NavigationController extends _$NavigationController {
   }
 
   // so the problem is that we use both nested and global navigator and they have separate navigation stacks
-  List<TRoute> get fullStack => [
+  List<TRoute> get _fullStack => [
     ..._stack, // nested navigator stack
     ..._router?.root.stackData
             .map(
@@ -110,7 +110,7 @@ class NavigationController extends _$NavigationController {
     return (
       isStackPoppable: _stack.length > 1,
       activeTab: _stack.lastWhereOrNull((element) => element.isTabView)?.tabBarEnum ?? NavBarEnum.home,
-      fullNavigationStack: fullStack.toIList(),
+      fullNavigationStack: _fullStack.toIList(),
     );
   }
 }
