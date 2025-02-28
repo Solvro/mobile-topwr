@@ -25,7 +25,7 @@ import "../digital_guide/tabs/rooms/data/models/digital_guide_room.dart";
 import "../digital_guide/tabs/rooms/presentation/digital_guide_room_detail_view.dart";
 import "../digital_guide/tabs/structure/data/models/corridor.dart";
 import "../digital_guide/tabs/structure/data/models/ramp.dart";
-import "../digital_guide/tabs/structure/data/models/stairs.dart";
+import "../digital_guide/tabs/structure/data/models/stairway.dart";
 import "../digital_guide/tabs/structure/data/models/toilet.dart";
 import "../digital_guide/tabs/structure/presentation/views/corridor_view.dart";
 import "../digital_guide/tabs/structure/presentation/views/level_view.dart";
@@ -33,6 +33,7 @@ import "../digital_guide/tabs/structure/presentation/views/railings_view.dart";
 import "../digital_guide/tabs/structure/presentation/views/ramps_view.dart";
 import "../digital_guide/tabs/structure/presentation/views/region_view.dart";
 import "../digital_guide/tabs/structure/presentation/views/stairs_view.dart";
+import "../digital_guide/tabs/structure/presentation/views/stairway_view.dart";
 import "../digital_guide/tabs/structure/presentation/views/toilets_view.dart";
 import "../digital_guide/tabs/transportation/data/models/digital_guide_transportation.dart";
 import "../digital_guide/tabs/transportation/presentation/transportation_detail_view.dart";
@@ -154,6 +155,9 @@ class AppRouter extends RootStackRouter {
         AutoRoute(page: DigitalGuideEntranceDetailsRoute.page),
         AutoRoute(
           page: StairsRoute.page,
+        ),
+        AutoRoute(
+          page: StairwayRoute.page,
         ),
         AutoRoute(
           page: ToiletsRoute.page,

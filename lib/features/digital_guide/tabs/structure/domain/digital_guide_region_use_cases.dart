@@ -46,7 +46,7 @@ Future<RegionData> digitalGuideRegionUseCases(Ref ref, Region region) async {
   final corridors =
       await ref.watch(corridorsRepositoryProvider(region.corridors).future);
   final stairs =
-      await ref.watch(stairsRepositoryProvider(region.stairs).future);
+      await ref.watch(stairsListRepositoryProvider(region.stairs).future);
   final ramps = await ref.watch(rampsRepositoryProvider(region.ramps).future);
   final stairways =
       await ref.watch(stairwaysRepositoryProvider(region.stairways).future);

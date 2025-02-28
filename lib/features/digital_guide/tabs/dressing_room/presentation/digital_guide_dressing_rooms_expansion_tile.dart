@@ -7,9 +7,11 @@ import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/context_extensions.dart";
 import "../../../../../widgets/my_error_widget.dart";
 import "../../../data/models/digital_guide_response.dart";
+import "../../../presentation/widgets/accessibility_profile_card.dart";
 import "../../../presentation/widgets/digital_guide_photo_row.dart";
 import "../data/models/digital_guide_dressing_room.dart";
 import "../data/repository/dressing_rooms_repository.dart";
+import "../domain/dressing_room_accessibility_comments_manager.dart";
 
 class DigitalGuideDressingRoomsExpansionTileContent extends ConsumerWidget {
   const DigitalGuideDressingRoomsExpansionTileContent(
@@ -91,6 +93,18 @@ class _DigitalGuideDressingRoomsExpansionTileContent extends StatelessWidget {
           DigitalGuidePhotoRow(
             imagesIDs:
                 dressingRoom!.imagesIds?.toIList() ?? const IList.empty(),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: DigitalGuideConfig.paddingBig,
+            ),
+            child: AccessibilityProfileCard(
+              accessibilityCommentsManager:
+                  DressingRoomAccessibilityCommentsManager(
+                l10n: context.localize,
+                dressingRoomResponse: dressingRoom!,
+              ),
+            ),
           ),
         ],
       ),

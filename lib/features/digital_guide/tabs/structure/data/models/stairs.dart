@@ -8,6 +8,7 @@ part "stairs.freezed.dart";
 class Stairs with _$Stairs {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory Stairs({
+    required int id,
     required StairsTranslations translations,
     required String isStairsSignInfo,
     required String isStairsSignInfoInEn,

@@ -321,6 +321,13 @@
   "number_of_stair_gears": "Liczba biegów schodowych: ",
   "number_of_stair_landings": "Liczba spoczników:",
 
+  "are_objects_narrow_communication_zone": "Przedmioty {value, select, false{nie zwężają przejścia} true{zwężają przejście} other{}}",
+  "are_information_boards": "Tablice informacyjne{value, select, false{ nie} true{} other{}} są dostępne",
+  "are_information_boards_in_en": "Tablice informacyjne{value, select, false{ nie} true{} other{}} są dostępne po angielsku",
+  "are_room_entrances": "{value, select, false{Nie z} true{Z} other{Z}}najdują się wejścia do pomieszczeń",
+  "are_floor_markings": "{value, select, false{Nie z} true{Z} other{Z}}najdują się oznaczenia podłogowe",
+  "is_typhlomap": "Tyflomapa{value, select, false{ nie} true{} other{}} jest dostępna",
+
   "strategicBadgeTooltip": "Koło Strategiczne PWr",
   "strategic_club_abbr": "KS",
   "emptySection": "Brak członków zespołu w tej wersji",
@@ -584,5 +591,14 @@
   "is_good_lit_info_point": "Punkt informacyjny {value, select, false{nie} other{}} jest odpowiednio oświetlony.",
   "is_visible_from_afar": "Punkt informacyjny {value, select, false{nie} other{}} jest widoczny z dużej odległości. Lada {value, select, false{nie} other{}} wyróżnia się na tle otoczenia.",
   "has_sound_transmitter": "Pomieszczenie {value, select, false{nie} other{}} jest wyposażone w pętle indukcyjną, system FM ani tłumacza języka migowego.",
-  "information_point": "Punkt Informacyjny"
+  "information_point": "Punkt Informacyjny",
+  "dressing_room_is_marked": "{value, select, false{Lada nie jest oznaczona.} true{Lada jest oznaczona.} other{}}",
+  "dressing_room_is_visible_from_afar": "{value, select, false{Lada nie jest widoczna z daleka.} true{Lada jest widoczna z daleka.} other{}}",
+  "dressing_room_are_access_barriers": "{value, select, false{Brak barier w dostępie do lady.} true{Występują bariery w dostępie do lady.} other{}}",
+  "dressing_room_are_seats_available": "{value, select, false{Brak miejsc siedzących przy ladzie.} true{Przy ladzie dostępne są miejsca siedzące.} other{}}",
+  "dressing_room_is_movement_space": "{value, select, false{Brak przestrzeni manewrowej przy ladzie.} true{Przy ladzie dostępna jest przestrzeń manewrowa.} other{}}",
+  "dressing_room_is_good_lit": "{value, select, false{Lada nie jest dobrze oświetlona.} true{Lada jest dobrze oświetlona.} other{}}",
+  "dressing_room_counter_height": "{value, plural, =0{Wysokość lady nie została określona.} other{Wysokość lady wynosi {value} cm.}}",
+  "dressing_room_counter_is_space_under": "{value, select, false{Pod ladą nie ma wolnej przestrzeni.} true{Pod ladą znajduje się wolna przestrzeń.} other{}}",
+  "dressing_room_counter_is_space_on": "{value, select, false{Na ladzie nie ma wolnej przestrzeni.} true{Na ladzie znajduje się wolna przestrzeń.} other{}}"
 }
