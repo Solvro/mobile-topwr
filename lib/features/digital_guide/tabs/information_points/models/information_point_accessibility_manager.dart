@@ -36,7 +36,8 @@ class InformationPointAccessibilityManager
   IList<String> getCommentsListForLowVision() {
     return IList([
       l10n.is_good_lit_info_point(infoPoint.isGoodLit.toString().toLowerCase()),
-      l10n.is_visible_from_afar(infoPoint.isVisibleFromAfar.toString().toLowerCase()),
+      l10n.is_visible_from_afar(
+          infoPoint.isVisibleFromAfar.toString().toLowerCase()),
     ]);
   }
 
