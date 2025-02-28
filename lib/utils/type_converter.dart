@@ -1,3 +1,3 @@
-bool stringToBool(String text) {
-  return text.toLowerCase() == "true";
+bool stringToBool(String? text) {
+  return text?.toLowerCase() == "true";
 }

@@ -8,12 +8,15 @@ import "../../../../widgets/my_expansion_tile.dart";
 import "../../../buildings_view/model/building_model.dart";
 import "../../data/models/digital_guide_response.dart";
 import "../../data/models/level_with_regions.dart";
+import "../../data/models/optional_tiles_data.dart";
 import "../../data/repository/levels_repository.dart";
+import "../../data/repository/optional_tiles_data_repository.dart";
 import "../../tabs/adapted_toilets/presentation/adapted_toilets_expansion_tile_content.dart";
 import "../../tabs/amenities/presentation/amenities_expansion_tile_content.dart";
 import "../../tabs/dressing_room/presentation/digital_guide_dressing_rooms_expansion_tile.dart";
 import "../../tabs/entraces/presentation/entraces_expansion_tile_content.dart";
 import "../../tabs/evacuation/evacuation_widget.dart";
+import "../../tabs/information_points/widgets/information_point_widget.dart";
 import "../../tabs/lifts/presentation/digital_guide_lifts_expansion_tile_content.dart";
 import "../../tabs/localization/presentation/localization_expansion_tile_content.dart";
 import "../../tabs/lodge/presentation/digital_guide_lodge_expansion_tile_content.dart";
@@ -42,9 +45,15 @@ class DigitalGuideFeaturesSection extends ConsumerWidget {
             ?.hasAdaptedToilets() ??
         false;
 
+    final optionalTilesData = ref
+            .watch(optionalTilesDataRepositoryProvider(digitalGuideData.id))
+            .value ??
+        const OptionalTilesData();
+    final l10n = context.localize;
+
     final items = <TileContent>[
       (
-        title: context.localize.localization,
+        title: l10n.localization,
         content: [
           LocalizationExpansionTileContent(
             digitalGuideData: digitalGuideData,
@@ -53,7 +62,7 @@ class DigitalGuideFeaturesSection extends ConsumerWidget {
         ],
       ),
       (
-        title: context.localize.amenities,
+        title: l10n.amenities,
         content: [
           AmenitiesExpansionTileContent(
             digitalGuideData: digitalGuideData,
@@ -61,7 +70,7 @@ class DigitalGuideFeaturesSection extends ConsumerWidget {
         ],
       ),
       (
-        title: context.localize.surroundings,
+        title: l10n.surroundings,
         content: [
           SurroundingsExpansionTileContent(
             digitalGuideData: digitalGuideData,
@@ -69,7 +78,7 @@ class DigitalGuideFeaturesSection extends ConsumerWidget {
         ],
       ),
       (
-        title: context.localize.transport,
+        title: l10n.transport,
         content: [
           TransportationExpansionTileContent(
             digitalGuideData: digitalGuideData,
@@ -77,7 +86,7 @@ class DigitalGuideFeaturesSection extends ConsumerWidget {
         ],
       ),
       (
-        title: context.localize.entrances,
+        title: l10n.entrances,
         content: [
           EntrancesExpansionTileContent(
             digitalGuideData: digitalGuideData,
@@ -85,7 +94,7 @@ class DigitalGuideFeaturesSection extends ConsumerWidget {
         ],
       ),
       (
-        title: context.localize.lifts,
+        title: l10n.lifts,
         content: [
           DigitalGuideLiftExpansionTileContent(
             digitalGuideResponse: digitalGuideData,
@@ -94,7 +103,7 @@ class DigitalGuideFeaturesSection extends ConsumerWidget {
       ),
       if (hasToilets)
         (
-          title: context.localize.adapted_toilets,
+          title: l10n.adapted_toilets,
           content: [
             AdaptedToiletsExpansionTileContent(
               digitalGuideData: digitalGuideData,
@@ -102,7 +111,7 @@ class DigitalGuideFeaturesSection extends ConsumerWidget {
           ],
         ),
       (
-        title: context.localize.micro_navigation,
+        title: l10n.micro_navigation,
         content: [
           MicronavigationExpansionTileContent(
             digitalGuideData: digitalGuideData,
@@ -110,13 +119,13 @@ class DigitalGuideFeaturesSection extends ConsumerWidget {
         ],
       ),
       (
-        title: context.localize.building_structure,
+        title: l10n.building_structure,
         content: [
           StructureExpansionTileContent(digitalGuideData: digitalGuideData),
         ],
       ),
       (
-        title: context.localize.room_information,
+        title: l10n.room_information,
         content: [
           DigitalGuideRoomExpansionTileContent(
             digitalGuideResponse: digitalGuideData,
@@ -124,7 +133,7 @@ class DigitalGuideFeaturesSection extends ConsumerWidget {
         ],
       ),
       (
-        title: context.localize.evacuation,
+        title: l10n.evacuation,
         content: [
           EvacuationWidget(
             digitalGuideData: digitalGuideData,
@@ -132,7 +141,7 @@ class DigitalGuideFeaturesSection extends ConsumerWidget {
         ],
       ),
       (
-        title: context.localize.lodge,
+        title: l10n.lodge,
         content: [
           DigitalGuideLodgeExpansionTileContent(
             digitalGuideData,
@@ -140,13 +149,22 @@ class DigitalGuideFeaturesSection extends ConsumerWidget {
         ],
       ),
       (
-        title: context.localize.dressing_room,
+        title: l10n.dressing_room,
         content: [
           DigitalGuideDressingRoomsExpansionTileContent(
             digitalGuideData,
           ),
         ],
       ),
+      if (optionalTilesData.informationPoint != null)
+        (
+          title: l10n.information_point,
+          content: [
+            InformationPointWidget(
+              data: optionalTilesData.informationPoint!,
+            ),
+          ]
+        ),
     ];
 
     return SliverList(
