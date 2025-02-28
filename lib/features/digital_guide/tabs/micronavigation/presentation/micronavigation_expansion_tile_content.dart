@@ -12,25 +12,18 @@ import "../data/models/micronavigation_response.dart";
 import "../data/repository/micronavigation_repository.dart";
 
 class MicronavigationExpansionTileContent extends ConsumerWidget {
-  const MicronavigationExpansionTileContent({
-    super.key,
-    required this.digitalGuideData,
-  });
+  const MicronavigationExpansionTileContent({super.key, required this.digitalGuideData});
 
   final DigitalGuideResponse digitalGuideData;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final asyncMicronavigationData = ref.watch(
-      getMicronavigationDataProvider(
-        digitalGuideData.externalId,
-      ),
-    );
+    final asyncMicronavigationData = ref.watch(getMicronavigationDataProvider(digitalGuideData.externalId));
 
     return asyncMicronavigationData.when(
-      data: (micronavigationDataList) => _MicronavigationExpansionTileContent(
-        micronavigationResponses: micronavigationDataList,
-      ),
+      data:
+          (micronavigationDataList) =>
+              _MicronavigationExpansionTileContent(micronavigationResponses: micronavigationDataList),
       error: (error, stackTrace) => MyErrorWidget(error),
       loading: () => const Center(child: CircularProgressIndicator()),
     );
@@ -38,30 +31,29 @@ class MicronavigationExpansionTileContent extends ConsumerWidget {
 }
 
 class _MicronavigationExpansionTileContent extends ConsumerWidget {
-  const _MicronavigationExpansionTileContent({
-    required this.micronavigationResponses,
-  });
+  const _MicronavigationExpansionTileContent({required this.micronavigationResponses});
 
   final IList<MicronavigationResponse> micronavigationResponses;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final widgets = micronavigationResponses.map((response) {
-      return Padding(
-        padding: const EdgeInsets.fromLTRB(
-          DigitalGuideConfig.paddingMedium,
-          DigitalGuideConfig.paddingMedium,
-          DigitalGuideConfig.paddingMedium,
-          0,
-        ),
-        child: DigitalGuideNavLink(
-          onTap: () async {
-            await ref.navigateMicronavigationDetails(response);
-          },
-          text: response.nameOverride.pl ?? "",
-        ),
-      );
-    }).toIList();
+    final widgets =
+        micronavigationResponses.map((response) {
+          return Padding(
+            padding: const EdgeInsets.fromLTRB(
+              DigitalGuideConfig.paddingMedium,
+              DigitalGuideConfig.paddingMedium,
+              DigitalGuideConfig.paddingMedium,
+              0,
+            ),
+            child: DigitalGuideNavLink(
+              onTap: () async {
+                await ref.navigateMicronavigationDetails(response);
+              },
+              text: response.nameOverride.pl ?? "",
+            ),
+          );
+        }).toIList();
 
     return Padding(
       padding: const EdgeInsets.only(bottom: DigitalGuideConfig.paddingMedium),

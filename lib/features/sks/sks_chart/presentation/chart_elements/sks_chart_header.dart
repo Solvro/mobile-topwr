@@ -9,11 +9,7 @@ import "../../../sks_people_live/presentation/widgets/sks_user_data_button.dart"
 // TODO(mikolaj-jalocha): add navigation in separate button. Please see parking's chart.
 
 class SksChartHeader extends StatelessWidget {
-  const SksChartHeader({
-    super.key,
-    required this.numberOfPeople,
-    required this.trend,
-  });
+  const SksChartHeader({super.key, required this.numberOfPeople, required this.trend});
 
   final String numberOfPeople;
   final Trend? trend;
@@ -26,26 +22,15 @@ class SksChartHeader extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              SksChartConfig.buildingCode,
-              style: context.textTheme.headline,
-            ),
-            Text(
-              "${context.localize.street_abbreviation} ${SksChartConfig.sksAddress}",
-              style: context.textTheme.body,
-            ),
+            Text(SksChartConfig.buildingCode, style: context.textTheme.headline),
+            Text("${context.localize.street_abbreviation} ${SksChartConfig.sksAddress}", style: context.textTheme.body),
             Text(SksChartConfig.sksPostalCode, style: context.textTheme.body),
           ],
         ),
         Row(
           children: [
-            Text(
-              numberOfPeople,
-              style: context.textTheme.body.copyWith(fontSize: 18),
-            ),
-            const SizedBox(
-              width: SksChartConfig.heightSmall,
-            ),
+            Text(numberOfPeople, style: context.textTheme.body.copyWith(fontSize: 18)),
+            const SizedBox(width: SksChartConfig.heightSmall),
             trend?.icon ?? const SizedBox.shrink(),
           ],
         ),

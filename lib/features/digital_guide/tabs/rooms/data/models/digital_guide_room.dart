@@ -15,15 +15,12 @@ class DigitalGuideRoom with _$DigitalGuideRoom {
     @JsonKey(name: "images") required List<int>? imagesIds,
   }) = _DigitalGuideRoom;
 
-  factory DigitalGuideRoom.fromJson(Map<String, dynamic> json) =>
-      _$DigitalGuideRoomFromJson(json);
+  factory DigitalGuideRoom.fromJson(Map<String, dynamic> json) => _$DigitalGuideRoomFromJson(json);
 }
 
 @freezed
 class DigitalGuideTranslationsRoom with _$DigitalGuideTranslationsRoom {
-  const factory DigitalGuideTranslationsRoom({
-    required DigitalGuideTranslationRoom pl,
-  }) = _DigitalGuideTranslationsRoom;
+  const factory DigitalGuideTranslationsRoom({required DigitalGuideTranslationRoom pl}) = _DigitalGuideTranslationsRoom;
 
   factory DigitalGuideTranslationsRoom.fromJson(Map<String, dynamic> json) =>
       _$DigitalGuideTranslationsRoomFromJson(json);

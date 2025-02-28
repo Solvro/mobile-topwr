@@ -13,9 +13,6 @@ typedef Tag = Query$GetTags$Tags;
 
 @riverpod
 Future<IList<Tag>> tagsRepository(Ref ref) async {
-  final results = await ref.queryGraphql(
-    WatchOptions$Query$GetTags(eagerlyFetchResults: true),
-    TtlKey.tagsRepository,
-  );
+  final results = await ref.queryGraphql(WatchOptions$Query$GetTags(eagerlyFetchResults: true), TtlKey.tagsRepository);
   return (results?.Tags).toIList();
 }

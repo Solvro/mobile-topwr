@@ -13,26 +13,15 @@ class AccessibilityButton extends StatelessWidget {
       padding: const EdgeInsets.only(right: 8),
       child: OutlinedButton(
         onPressed: () {
-          unawaited(
-            showDialog(
-              context: context,
-              builder: (_) => const AccessibilityDialog(),
-            ),
-          );
+          unawaited(showDialog(context: context, builder: (_) => const AccessibilityDialog()));
         },
         style: OutlinedButton.styleFrom(
-          shape: RoundedRectangleBorder(
-            borderRadius:
-                BorderRadius.circular(DigitalGuideConfig.borderRadiusMedium),
-          ),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(DigitalGuideConfig.borderRadiusMedium)),
           side: BorderSide(color: context.colorTheme.greyPigeon),
           backgroundColor: context.colorTheme.greyLight,
           padding: const EdgeInsets.symmetric(horizontal: 16),
         ),
-        child: Icon(
-          Icons.accessibility_new,
-          color: context.colorTheme.blackMirage,
-        ),
+        child: Icon(Icons.accessibility_new, color: context.colorTheme.blackMirage),
       ),
     );
   }

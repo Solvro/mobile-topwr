@@ -6,9 +6,7 @@ import "../../../../presentation/widgets/digital_guide_nav_link.dart";
 import "region_data_sliver_list_item.dart";
 
 class RegionDataSliverList extends ConsumerWidget {
-  const RegionDataSliverList({
-    required this.regionDataSliverListItem,
-  });
+  const RegionDataSliverList({required this.regionDataSliverListItem});
 
   final RegionDataSliverListItem regionDataSliverListItem;
 
@@ -22,9 +20,7 @@ class RegionDataSliverList extends ConsumerWidget {
               onTap: () async => regionDataSliverListItem.onTap?.call(index),
               text: regionDataSliverListItem.text(index),
             ),
-            const SizedBox(
-              height: DigitalGuideConfig.heightMedium,
-            ),
+            const SizedBox(height: DigitalGuideConfig.heightMedium),
           ],
         ),
         childCount: regionDataSliverListItem.itemCount,

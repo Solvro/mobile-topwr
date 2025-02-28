@@ -20,10 +20,7 @@ class LocalTimestampRepository {
   String get _storeKey => "${ApiBaseConfig.ttlPrefsPrefix}$_key";
 
   TimestampTtl getTimestamp() {
-    return TimestampTtl.tryParse(
-      _prefs.getString(_storeKey),
-      _key,
-    );
+    return TimestampTtl.tryParse(_prefs.getString(_storeKey), _key);
   }
 
   Future<bool> saveTimestamp<T>(QueryResult<T> response) async {
@@ -37,10 +34,7 @@ class LocalTimestampRepository {
 }
 
 @riverpod
-Future<LocalTimestampRepository> localTimestampRepository(
-  Ref ref,
-  TtlKey key,
-) async {
+Future<LocalTimestampRepository> localTimestampRepository(Ref ref, TtlKey key) async {
   final prefs = await ref.watch(sharedPreferencesSingletonProvider.future);
   return LocalTimestampRepository(key, prefs);
 }

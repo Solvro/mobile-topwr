@@ -15,37 +15,25 @@ import "../models/raw_chart_data.dart";
 part "chart_repository.g.dart";
 
 @riverpod
-Future<IList<ChartPoint>> chartRepository(
-  Ref ref,
-  Parking parking,
-) async {
+Future<IList<ChartPoint>> chartRepository(Ref ref, Parking parking) async {
   final graphqlClient = await ref.watch(grapqlClientProvider.future);
   final parkingConfigResp = await graphqlClient.query$GetUseParkingApiWrapper();
-  final useParkingApiWrapper = parkingConfigResp
-          .parsedData?.CacheReferenceNumber?.useParkingApiWrapper ??
-      false;
+  final useParkingApiWrapper = parkingConfigResp.parsedData?.CacheReferenceNumber?.useParkingApiWrapper ?? false;
   final restClient = ref.watch(restClientProvider);
 
   if (!useParkingApiWrapper) {
-    final classicUrl = parkingConfigResp
-        .parsedData?.CacheReferenceNumber?.classicParkingGetCharts;
+    final classicUrl = parkingConfigResp.parsedData?.CacheReferenceNumber?.classicParkingGetCharts;
     Response<Map<String, dynamic>> response;
     if (classicUrl == null) {
-      response = await ref.postIParkingCommand<Map<String, dynamic>>(
-        FetchChartCommand(parking.id),
-      );
+      response = await ref.postIParkingCommand<Map<String, dynamic>>(FetchChartCommand(parking.id));
     } else {
       response = await restClient.get("$classicUrl/${parking.id}");
     }
 
-    final rawData = RawChartData.fromJson(
-      response.data?["slots"],
-    );
+    final rawData = RawChartData.fromJson(response.data?["slots"]);
     return rawData.toChartPoints().toIList();
   }
-  final javaUrl =
-      parkingConfigResp.parsedData?.CacheReferenceNumber?.javaWrapperURL ??
-          Env.parkingApiUrl;
+  final javaUrl = parkingConfigResp.parsedData?.CacheReferenceNumber?.javaWrapperURL ?? Env.parkingApiUrl;
 
   final response = await restClient.get("$javaUrl/chart/${parking.id}");
   final rawData = RawChartData.fromJson(

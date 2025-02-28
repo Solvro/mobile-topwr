@@ -23,10 +23,7 @@ class DepartmentHomeTile extends StatelessWidget {
     return Container(
       height: size,
       width: size,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        gradient: department.gradient,
-      ),
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), gradient: department.gradient),
       child: Stack(
         children: [
           Center(
@@ -50,15 +47,13 @@ class DepartmentHomeTile extends StatelessWidget {
               children: [
                 Text(
                   department.code,
-                  style: context.textTheme.titleWhite
-                      .copyWith(shadows: HomeViewConfig.squareCardTextShadow),
+                  style: context.textTheme.titleWhite.copyWith(shadows: HomeViewConfig.squareCardTextShadow),
                 ),
                 Text(
                   department.name,
                   maxLines: 3,
                   overflow: TextOverflow.ellipsis,
-                  style: context.textTheme.bodyWhite
-                      .copyWith(shadows: HomeViewConfig.squareCardTextShadow),
+                  style: context.textTheme.bodyWhite.copyWith(shadows: HomeViewConfig.squareCardTextShadow),
                 ),
               ],
             ),

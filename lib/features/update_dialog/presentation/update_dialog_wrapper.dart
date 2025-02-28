@@ -8,16 +8,11 @@ import "android_update.dart";
 import "ios_update.dart";
 
 class UpdateDialogWrapper extends HookConsumerWidget {
-  const UpdateDialogWrapper({
-    super.key,
-    required this.child,
-  });
+  const UpdateDialogWrapper({super.key, required this.child});
   final Widget child;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return !kIsWeb && Platform.isAndroid
-        ? AndroidUpdateWidget(child: child)
-        : IosUpdateWidget(child: child);
+    return !kIsWeb && Platform.isAndroid ? AndroidUpdateWidget(child: child) : IosUpdateWidget(child: child);
   }
 }

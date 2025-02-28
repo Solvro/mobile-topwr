@@ -14,10 +14,7 @@ class ButtonLoading extends StatelessWidget {
             child: Container(
               width: 110,
               height: 36,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(100),
-              ),
+              decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(100)),
             ),
           ),
         ],

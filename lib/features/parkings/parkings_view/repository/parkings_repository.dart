@@ -22,62 +22,47 @@ part "parkings_repository.g.dart";
 Future<IList<Parking>> parkingsRepository(Ref ref) async {
   final graphqlClient = await ref.watch(grapqlClientProvider.future);
   final parkingConfigResp = await graphqlClient.query$GetUseParkingApiWrapper();
-  final useParkingApiWrapper = parkingConfigResp
-          .parsedData?.CacheReferenceNumber?.useParkingApiWrapper ??
-      false;
+  final useParkingApiWrapper = parkingConfigResp.parsedData?.CacheReferenceNumber?.useParkingApiWrapper ?? false;
   final restClient = ref.watch(restClientProvider);
 
   if (!useParkingApiWrapper) {
     ref.setRefresh(ParkingsConfig.parkingsRefreshInterval);
-    final classicUrl = parkingConfigResp
-        .parsedData?.CacheReferenceNumber?.classicParkingGetParks;
+    final classicUrl = parkingConfigResp.parsedData?.CacheReferenceNumber?.classicParkingGetParks;
     Response<Map<String, dynamic>> response;
     if (classicUrl == null) {
-      response = await ref.postIParkingCommand<Map<String, dynamic>>(
-        FetchPlacesCommand(DateTime.now()),
-      );
+      response = await ref.postIParkingCommand<Map<String, dynamic>>(FetchPlacesCommand(DateTime.now()));
     } else {
       response = await restClient.get(classicUrl);
     }
 
     final parkings = response.data?["places"] as List<dynamic>;
-    final list = parkings
-        .whereType<Map<String, dynamic>>()
-        .map(
-          classicUrl == null
-              ? Parking.fromJson
-              : (json) => Parking.fromJsonWithOverridenPhotoPrefix(
+    final list =
+        parkings
+            .whereType<Map<String, dynamic>>()
+            .map(
+              classicUrl == null
+                  ? Parking.fromJson
+                  : (json) => Parking.fromJsonWithOverridenPhotoPrefix(
                     json,
-                    parkingConfigResp.parsedData?.CacheReferenceNumber
-                            ?.parkingPhotoPrefix ??
-                        "",
+                    parkingConfigResp.parsedData?.CacheReferenceNumber?.parkingPhotoPrefix ?? "",
                   ),
-        )
-        .toList();
+            )
+            .toList();
     return _sortParkingsByFav(list, ref).toIList();
   }
 
-  final javaUrl =
-      parkingConfigResp.parsedData?.CacheReferenceNumber?.javaWrapperURL ??
-          Env.parkingApiUrl;
+  final javaUrl = parkingConfigResp.parsedData?.CacheReferenceNumber?.javaWrapperURL ?? Env.parkingApiUrl;
 
   final parkings = await restClient.get<List<dynamic>>("$javaUrl/");
-  final List<Parking> parkingList = parkings.data
-          ?.whereType<Map<String, dynamic>>()
-          .map(Parking.fromJsonApiWrapper)
-          .toList() ??
-      [];
+  final List<Parking> parkingList =
+      parkings.data?.whereType<Map<String, dynamic>>().map(Parking.fromJsonApiWrapper).toList() ?? [];
   return _sortParkingsByFav(parkingList, ref).toIList();
 }
 
-DoubleLinkedQueue<Parking> _sortParkingsByFav(
-  Iterable<Parking> list,
-  Ref ref,
-) {
+DoubleLinkedQueue<Parking> _sortParkingsByFav(Iterable<Parking> list, Ref ref) {
   final finalParkings = DoubleLinkedQueue<Parking>();
   for (final parking in list) {
-    final isFavorite =
-        ref.watch(localFavParkingsRepositoryProvider(parking.id)) ?? false;
+    final isFavorite = ref.watch(localFavParkingsRepositoryProvider(parking.id)) ?? false;
     if (isFavorite) {
       finalParkings.addFirst(parking);
     } else {

@@ -7,43 +7,36 @@ import "typography.dart";
 part "app_text_theme.tailor.dart";
 
 @tailorMixinComponent
-class AppTextTheme extends ThemeExtension<AppTextTheme>
-    with _$AppTextThemeTailorMixin {
+class AppTextTheme extends ThemeExtension<AppTextTheme> with _$AppTextThemeTailorMixin {
   const AppTextTheme({
     // Headline 17px, w500
     this.headline = const HeadlineTextStyle(),
     this.headlineWhite = const HeadlineTextStyle(color: ColorsConsts.whiteSoap),
-    this.headlineOrange =
-        const HeadlineTextStyle(color: ColorsConsts.orangePomegranade),
+    this.headlineOrange = const HeadlineTextStyle(color: ColorsConsts.orangePomegranade),
 
     // Title 15px, w500
     this.title = const TitleTextStyle(),
     this.titleWhite = const TitleTextStyle(color: ColorsConsts.whiteSoap),
     this.titleGrey = const TitleTextStyle(color: ColorsConsts.greyPigeon),
-    this.titleOrange =
-        const TitleTextStyle(color: ColorsConsts.orangePomegranade),
+    this.titleOrange = const TitleTextStyle(color: ColorsConsts.orangePomegranade),
 
     // Body 13px, w400
     this.body = const BodyTextStyle(),
     this.bodyWhite = const BodyTextStyle(color: ColorsConsts.whiteSoap),
     this.bodyGrey = const BodyTextStyle(color: ColorsConsts.greyPigeon),
-    this.bodyOrange =
-        const BodyTextStyle(color: ColorsConsts.orangePomegranade),
+    this.bodyOrange = const BodyTextStyle(color: ColorsConsts.orangePomegranade),
     this.bodyBlue = const BodyTextStyle(color: ColorsConsts.blueAzure),
 
     // TitleLight 15px, w400
     this.lightTitle = const LightTitleTextStyle(),
-    this.lightTitleOrange =
-        const LightTitleTextStyle(color: ColorsConsts.orangePomegranade),
+    this.lightTitleOrange = const LightTitleTextStyle(color: ColorsConsts.orangePomegranade),
 
     // BodyBold 13px, w500
     this.boldBody = const BoldBodyTextStyle(),
-    this.boldBodyOrange =
-        const BoldBodyTextStyle(color: ColorsConsts.orangePomegranade),
+    this.boldBodyOrange = const BoldBodyTextStyle(color: ColorsConsts.orangePomegranade),
 
     // small 13px, w400
-    this.smallOrange =
-        const SmallTextStyle(color: ColorsConsts.orangePomegranade),
+    this.smallOrange = const SmallTextStyle(color: ColorsConsts.orangePomegranade),
   });
 
   @override

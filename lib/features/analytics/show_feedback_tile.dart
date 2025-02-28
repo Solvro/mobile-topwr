@@ -17,11 +17,7 @@ class ShowFeedbackTile extends StatelessWidget {
       title: context.localize.bug_report_title,
       subtitle: context.localize.bug_report_subtitle,
       onTap: () async {
-        await Wiredash.of(context).show(
-          options: WiredashFeedbackOptions(
-            labels: context.labels,
-          ),
-        );
+        await Wiredash.of(context).show(options: WiredashFeedbackOptions(labels: context.labels));
       },
       trailing: Lottie.asset(
         Assets.animations.bug,

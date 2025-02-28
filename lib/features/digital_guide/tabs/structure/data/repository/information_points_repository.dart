@@ -7,10 +7,7 @@ import "../models/information_point.dart";
 part "information_points_repository.g.dart";
 
 @riverpod
-Future<IList<InformationPoint>> informationPointsRepository(
-  Ref ref,
-  List<int> informationPointsIDs,
-) async {
+Future<IList<InformationPoint>> informationPointsRepository(Ref ref, List<int> informationPointsIDs) async {
   Future<InformationPoint> getInformationPoint(int informationPointID) async {
     return ref.getAndCacheDataFromDigitalGuide(
       "information_points/$informationPointID",
@@ -19,8 +16,7 @@ Future<IList<InformationPoint>> informationPointsRepository(
     );
   }
 
-  final informationPoints =
-      await Future.wait(informationPointsIDs.map(getInformationPoint));
+  final informationPoints = await Future.wait(informationPointsIDs.map(getInformationPoint));
 
   return informationPoints.lock;
 }

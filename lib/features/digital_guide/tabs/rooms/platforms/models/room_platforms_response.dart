@@ -15,18 +15,14 @@ class RoomPlatformsResponse with _$RoomPlatformsResponse {
     required String areNoObjectsNarrowCommunicationZone,
   }) = _RoomPlatformsResponse;
 
-  factory RoomPlatformsResponse.fromJson(Map<String, dynamic> json) =>
-      _$RoomPlatformsResponseFromJson(json);
+  factory RoomPlatformsResponse.fromJson(Map<String, dynamic> json) => _$RoomPlatformsResponseFromJson(json);
 }
 
 @freezed
 class RoomPlatformsTranslations with _$RoomPlatformsTranslations {
-  const factory RoomPlatformsTranslations({
-    required RoomPlatformsTranslation pl,
-  }) = _RoomPlatformsTranslations;
+  const factory RoomPlatformsTranslations({required RoomPlatformsTranslation pl}) = _RoomPlatformsTranslations;
 
-  factory RoomPlatformsTranslations.fromJson(Map<String, dynamic> json) =>
-      _$RoomPlatformsTranslationsFromJson(json);
+  factory RoomPlatformsTranslations.fromJson(Map<String, dynamic> json) => _$RoomPlatformsTranslationsFromJson(json);
 }
 
 @freezed
@@ -43,6 +39,5 @@ class RoomPlatformsTranslation with _$RoomPlatformsTranslation {
     required String areNoObjectsNarrowCommunicationZoneComment,
   }) = _RoomPlatformTranslation;
 
-  factory RoomPlatformsTranslation.fromJson(Map<String, dynamic> json) =>
-      _$RoomPlatformsTranslationFromJson(json);
+  factory RoomPlatformsTranslation.fromJson(Map<String, dynamic> json) => _$RoomPlatformsTranslationFromJson(json);
 }

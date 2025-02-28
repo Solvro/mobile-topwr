@@ -30,10 +30,7 @@ extension DioSafeRequestsX on Ref {
       return await request();
     } on DioException catch (e) {
       Logger().e(e);
-      throw RestFrameworkOfflineException(
-        localizedMessage: localizedMessage,
-        onRetry: onRetry,
-      );
+      throw RestFrameworkOfflineException(localizedMessage: localizedMessage, onRetry: onRetry);
     }
   }
 
@@ -44,10 +41,6 @@ extension DioSafeRequestsX on Ref {
     AuthHeader? authHeader,
   }) async {
     final dio = watch(authRestClientProvider(authHeader));
-    return safeRequest(
-      () => dio.get<T>(url),
-      localizedMessage: localizedMessage,
-      onRetry: onRetry,
-    );
+    return safeRequest(() => dio.get<T>(url), localizedMessage: localizedMessage, onRetry: onRetry);
   }
 }

@@ -12,35 +12,24 @@ import "../../../data/repository/levels_repository.dart";
 import "../../../presentation/widgets/digital_guide_nav_link.dart";
 
 class StructureExpansionTileContent extends ConsumerWidget {
-  const StructureExpansionTileContent({
-    required this.digitalGuideData,
-  });
+  const StructureExpansionTileContent({required this.digitalGuideData});
 
   final DigitalGuideResponse digitalGuideData;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final levelDataAsync =
-        ref.watch(levelsWithRegionsRepositoryProvider(digitalGuideData));
+    final levelDataAsync = ref.watch(levelsWithRegionsRepositoryProvider(digitalGuideData));
 
     return levelDataAsync.when(
-      data: (data) => _StructureExpansionTileContent(
-        digitalGuideResponse: digitalGuideData,
-        levels: data,
-      ),
-      loading: () => const Center(
-        child: CircularProgressIndicator(),
-      ),
+      data: (data) => _StructureExpansionTileContent(digitalGuideResponse: digitalGuideData, levels: data),
+      loading: () => const Center(child: CircularProgressIndicator()),
       error: (error, _) => MyErrorWidget(error),
     );
   }
 }
 
 class _StructureExpansionTileContent extends ConsumerWidget {
-  const _StructureExpansionTileContent({
-    required this.digitalGuideResponse,
-    required this.levels,
-  });
+  const _StructureExpansionTileContent({required this.digitalGuideResponse, required this.levels});
 
   final DigitalGuideResponse digitalGuideResponse;
   final IList<LevelWithRegions> levels;
@@ -57,17 +46,14 @@ class _StructureExpansionTileContent extends ConsumerWidget {
         color: context.colorTheme.greyLight,
         child: ListView.separated(
           physics: const NeverScrollableScrollPhysics(),
-          itemBuilder: (context, index) => DigitalGuideNavLink(
-            onTap: () async {
-              await ref.navigateDigitalGuideLevel(
-                levels[index],
-              );
-            },
-            text: levels[index].level.translations.plTranslation.name,
-          ),
-          separatorBuilder: (context, index) => const SizedBox(
-            height: DigitalGuideConfig.heightMedium,
-          ),
+          itemBuilder:
+              (context, index) => DigitalGuideNavLink(
+                onTap: () async {
+                  await ref.navigateDigitalGuideLevel(levels[index]);
+                },
+                text: levels[index].level.translations.plTranslation.name,
+              ),
+          separatorBuilder: (context, index) => const SizedBox(height: DigitalGuideConfig.heightMedium),
           itemCount: levels.length,
           shrinkWrap: true,
         ),

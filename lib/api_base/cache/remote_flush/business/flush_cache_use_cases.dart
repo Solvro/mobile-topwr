@@ -10,10 +10,8 @@ import "../data/remote_cache_ref_number_repo.dart";
 
 extension FlushCacheUseCasesX on WidgetRef {
   Future<void> flushAllCacheIfNeeded() async {
-    final remoteRefNumber =
-        await watch(remoteCacheRefNumberRepoProvider.future) ?? 0;
-    final localRefNumber =
-        await watch(localCacheRefNumberRepoProvider.future) ?? 0;
+    final remoteRefNumber = await watch(remoteCacheRefNumberRepoProvider.future) ?? 0;
+    final localRefNumber = await watch(localCacheRefNumberRepoProvider.future) ?? 0;
     if (remoteRefNumber > localRefNumber) {
       await _flushAll(remoteRefNumber);
     }
@@ -21,11 +19,7 @@ extension FlushCacheUseCasesX on WidgetRef {
   }
 
   Future<void> _flushAll(int remoteRefNumber) async {
-    await Future.wait([
-      for (final key in TtlKey.values)
-        watch(ttlServiceProvider(key).notifier).flushCache(),
-    ]);
-    await watch(localCacheRefNumberRepoProvider.notifier)
-        .saveNumber(remoteRefNumber);
+    await Future.wait([for (final key in TtlKey.values) watch(ttlServiceProvider(key).notifier).flushCache()]);
+    await watch(localCacheRefNumberRepoProvider.notifier).saveNumber(remoteRefNumber);
   }
 }

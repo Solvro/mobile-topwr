@@ -16,19 +16,13 @@ class MicronavigationResponse with _$MicronavigationResponse {
     required List<MicronavigationLanguage> languages,
   }) = _MicronavigationResponse;
 
-  factory MicronavigationResponse.fromJson(Map<String, dynamic> json) =>
-      _$MicronavigationResponseFromJson(json);
+  factory MicronavigationResponse.fromJson(Map<String, dynamic> json) => _$MicronavigationResponseFromJson(json);
 }
 
 @freezed
 class MicronavigationTranslations with _$MicronavigationTranslations {
-  const factory MicronavigationTranslations({
-    String? pl,
-    String? en,
-    String? nb,
-    String? de,
-    String? uk,
-  }) = _MicronavigationTranslations;
+  const factory MicronavigationTranslations({String? pl, String? en, String? nb, String? de, String? uk}) =
+      _MicronavigationTranslations;
 
   factory MicronavigationTranslations.fromJson(Map<String, dynamic> json) =>
       _$MicronavigationTranslationsFromJson(json);
@@ -45,6 +39,5 @@ class MicronavigationLanguage with _$MicronavigationLanguage {
     required int order,
   }) = _MicronavigationLanguage;
 
-  factory MicronavigationLanguage.fromJson(Map<String, dynamic> json) =>
-      _$MicronavigationLanguageFromJson(json);
+  factory MicronavigationLanguage.fromJson(Map<String, dynamic> json) => _$MicronavigationLanguageFromJson(json);
 }

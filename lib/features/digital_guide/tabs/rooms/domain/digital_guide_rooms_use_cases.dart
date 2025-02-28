@@ -10,29 +10,17 @@ import "../data/repository/rooms_repository.dart";
 
 part "digital_guide_rooms_use_cases.g.dart";
 
-typedef LevelWithRooms = ({
-  Level level,
-  IList<DigitalGuideRoom> rooms,
-});
+typedef LevelWithRooms = ({Level level, IList<DigitalGuideRoom> rooms});
 
 @riverpod
-Future<IList<LevelWithRooms>> getLevelsWithRoomsUseCase(
-  Ref ref,
-  DigitalGuideResponse digitalGuideData,
-) async {
-  final levels = await ref
-      .watch(levelsWithRegionsRepositoryProvider(digitalGuideData).future);
+Future<IList<LevelWithRooms>> getLevelsWithRoomsUseCase(Ref ref, DigitalGuideResponse digitalGuideData) async {
+  final levels = await ref.watch(levelsWithRegionsRepositoryProvider(digitalGuideData).future);
 
   final levelsWithRoomsData = await Future.wait(
     levels.map((level) async {
-      final rooms =
-          await ref.watch(roomsByLevelRepositoryProvider(level).future);
+      final rooms = await ref.watch(roomsByLevelRepositoryProvider(level).future);
       return (level: level.level, rooms: rooms);
     }),
   );
-  return levelsWithRoomsData
-      .where(
-        (levelsWithRooms) => levelsWithRooms.rooms.isNotEmpty,
-      )
-      .toIList();
+  return levelsWithRoomsData.where((levelsWithRooms) => levelsWithRooms.rooms.isNotEmpty).toIList();
 }

@@ -6,17 +6,12 @@ import "../map_view/controllers/controllers_set.dart";
 import "../map_view/widgets/map_config.dart";
 
 class MapViewPopBehaviour<T extends GoogleNavigable> extends ConsumerWidget {
-  const MapViewPopBehaviour({
-    required this.child,
-    required this.screenHeight,
-    super.key,
-  });
+  const MapViewPopBehaviour({required this.child, required this.screenHeight, super.key});
   final double screenHeight;
   final Widget child;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isAlmostFullyExtended =
-        ref.watch(bottomSheetPixelsProvider) / screenHeight > 0.98;
+    final isAlmostFullyExtended = ref.watch(bottomSheetPixelsProvider) / screenHeight > 0.98;
 
     final isAnyActive = ref.watch(context.activeMarkerController<T>()) != null;
 

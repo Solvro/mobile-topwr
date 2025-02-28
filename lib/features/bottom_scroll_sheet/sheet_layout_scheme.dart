@@ -10,10 +10,7 @@ import "drag_handle.dart";
 import "navigate_button.dart";
 
 class SheetLayoutScheme<T extends GoogleNavigable> extends ConsumerWidget {
-  const SheetLayoutScheme({
-    this.scrollController,
-    super.key,
-  });
+  const SheetLayoutScheme({this.scrollController, super.key});
 
   final ScrollController? scrollController;
 
@@ -22,24 +19,15 @@ class SheetLayoutScheme<T extends GoogleNavigable> extends ConsumerWidget {
     final appBar = SearchBoxAppBar(
       context,
       title: context.mapViewTexts<T>().title,
-      onQueryChanged: ref
-          .watch(context.mapDataController<T>().notifier)
-          .onSearchQueryChanged,
-      onSearchBoxTap:
-          ref.watch(bottomSheetPixelsProvider.notifier).onSearchBoxTap,
-      actions: [
-        if (ref.watch(context.activeMarkerController<T>()) != null)
-          NavigateButton<T>(),
-      ],
+      onQueryChanged: ref.watch(context.mapDataController<T>().notifier).onSearchQueryChanged,
+      onSearchBoxTap: ref.watch(bottomSheetPixelsProvider.notifier).onSearchBoxTap,
+      actions: [if (ref.watch(context.activeMarkerController<T>()) != null) NavigateButton<T>()],
     );
 
     return CustomScrollView(
       controller: scrollController,
       slivers: [
-        const SliverPersistentHeader(
-          pinned: true,
-          delegate: DragHandle(),
-        ),
+        const SliverPersistentHeader(pinned: true, delegate: DragHandle()),
         SliverAppBar(
           primary: false,
           pinned: true,

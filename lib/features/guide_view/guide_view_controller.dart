@@ -21,9 +21,5 @@ class SearchGuideController extends _$SearchGuideController {
 Future<IList<GuidePost>> guideListController(Ref ref) async {
   final originalList = await ref.watch(guideRepositoryProvider.future);
   final query = ref.watch(searchGuideControllerProvider);
-  return originalList
-      .where(
-        (element) => element.name.containsLowerCase(query),
-      )
-      .toIList();
+  return originalList.where((element) => element.name.containsLowerCase(query)).toIList();
 }

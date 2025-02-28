@@ -10,8 +10,7 @@ import "timstamp_repo_mixin.dart";
 part "streak_start_repo.g.dart";
 
 @riverpod
-class StreakStartRepository extends _$StreakStartRepository
-    with TimestampRepository {
+class StreakStartRepository extends _$StreakStartRepository with TimestampRepository {
   @override
   @protected
   final storeKey = StreakRepositoriesConfig.streakStartKey;

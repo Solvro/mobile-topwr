@@ -5,13 +5,11 @@ import "../theme/hex_color.dart";
 
 abstract class MyAppConfig {
   static const title = "ToPWR";
-  static String legalese =
-      "\u{a9} 2024-${DateTime.now().year} Koło Naukowe Solvro, Politechnika Wrocławska";
+  static String legalese = "\u{a9} 2024-${DateTime.now().year} Koło Naukowe Solvro, Politechnika Wrocławska";
 }
 
 abstract class AppWidgetsConfig {
-  static const paddingMedium =
-      EdgeInsets.symmetric(horizontal: 16, vertical: 12);
+  static const paddingMedium = EdgeInsets.symmetric(horizontal: 16, vertical: 12);
   static const borderRadiusMedium = 8.0;
 }
 
@@ -33,8 +31,7 @@ abstract class DepartmentsConfig {
   static const listSeparatorSize = 16.0;
   static const logoMicroPadding = 10.0;
 
-  static const departmentsViewGridDelegate =
-      SliverGridDelegateWithMaxCrossAxisExtent(
+  static const departmentsViewGridDelegate = SliverGridDelegateWithMaxCrossAxisExtent(
     maxCrossAxisExtent: 600,
     mainAxisExtent: 92,
     crossAxisSpacing: 16,
@@ -52,11 +49,7 @@ abstract class HomeViewConfig {
   static const bottomPadding = 24.0;
 
   static const squareCardTextShadow = [
-    Shadow(
-      color: HexColor.consts(0x6621334D66),
-      blurRadius: 4,
-      offset: Offset(0, 2),
-    ),
+    Shadow(color: HexColor.consts(0x6621334D66), blurRadius: 4, offset: Offset(0, 2)),
   ];
 }
 
@@ -80,11 +73,7 @@ abstract class WideTileCardConfig {
   static const radius = Radius.circular(8);
 
   static const defaultActiveShadows = [
-    BoxShadow(
-      color: Color.fromRGBO(250, 100, 101, 0.16),
-      blurRadius: 11,
-      spreadRadius: 6,
-    ),
+    BoxShadow(color: Color.fromRGBO(250, 100, 101, 0.16), blurRadius: 11, spreadRadius: 6),
   ];
 }
 
@@ -106,8 +95,7 @@ abstract class ScienceClubsViewConfig {
 
   static const buttonBorderRadius = 100.0;
 
-  static const researchGroupTabGridDelegate =
-      SliverGridDelegateWithMaxCrossAxisExtent(
+  static const researchGroupTabGridDelegate = SliverGridDelegateWithMaxCrossAxisExtent(
     maxCrossAxisExtent: 600,
     mainAxisExtent: 92,
     crossAxisSpacing: 16,
@@ -127,12 +115,7 @@ abstract class ScienceClubCardConfig {
 }
 
 abstract class ParkingsConfig {
-  static const padding = EdgeInsets.only(
-    left: 13,
-    top: 10,
-    bottom: 15,
-    right: 10,
-  );
+  static const padding = EdgeInsets.only(left: 13, top: 10, bottom: 15, right: 10);
   static const extraIndentPadd = EdgeInsets.only(left: 2, right: 40);
 }
 
@@ -171,8 +154,7 @@ abstract class FilterConfig {
   static const paddingMedium = 8.0;
   static const spacingBetweenWidgets = 12.0;
   static final radius = BorderRadius.circular(8);
-  static const buttonPadding =
-      EdgeInsets.symmetric(vertical: 10, horizontal: 20);
+  static const buttonPadding = EdgeInsets.symmetric(vertical: 10, horizontal: 20);
 }
 
 class DialogsConfig {
@@ -187,11 +169,7 @@ abstract class MyTooltipConfig {
   static const borderRadius = 8.0;
 
   static const defaultActiveShadows = [
-    BoxShadow(
-      color: Color.fromRGBO(250, 100, 101, 0.16),
-      blurRadius: 11,
-      spreadRadius: 6,
-    ),
+    BoxShadow(color: Color.fromRGBO(250, 100, 101, 0.16), blurRadius: 11, spreadRadius: 6),
   ];
 }
 
@@ -240,12 +218,9 @@ abstract class NavigationTabViewConfig {
 }
 
 abstract class DigitalGuideConfig {
-  static const symetricalPaddingSmall =
-      EdgeInsets.symmetric(vertical: 4, horizontal: 4);
-  static const symetricalPaddingMedium =
-      EdgeInsets.symmetric(vertical: 8, horizontal: 8);
-  static const symetricalPaddingBig =
-      EdgeInsets.symmetric(vertical: 24, horizontal: 24);
+  static const symetricalPaddingSmall = EdgeInsets.symmetric(vertical: 4, horizontal: 4);
+  static const symetricalPaddingMedium = EdgeInsets.symmetric(vertical: 8, horizontal: 8);
+  static const symetricalPaddingBig = EdgeInsets.symmetric(vertical: 24, horizontal: 24);
   static const borderRadiusSmall = 4.0;
   static const borderRadiusMedium = 8.0;
   static const borderRadiusBig = 16.0;
@@ -257,8 +232,7 @@ abstract class DigitalGuideConfig {
   static const heightHuge = 48.0;
   static const widePaddingMedium = EdgeInsets.symmetric(horizontal: 8);
   static const paddingSmall = 4.0;
-  static const mediumButtonPadding =
-      EdgeInsets.symmetric(vertical: 8, horizontal: 14);
+  static const mediumButtonPadding = EdgeInsets.symmetric(vertical: 8, horizontal: 14);
   static const paddingMedium = 16.0;
   static const paddingBig = 24.0;
   static const difficultiesCardIconSize = 35.0;

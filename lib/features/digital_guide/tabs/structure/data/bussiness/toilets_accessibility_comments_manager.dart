@@ -5,10 +5,7 @@ import "../../../../business/accessibility_comments_manager.dart";
 import "../models/toilet.dart";
 
 class ToiletsAccessibilityCommentsManager extends AccessibilityCommentsManager {
-  ToiletsAccessibilityCommentsManager({
-    required this.toilet,
-    required this.l10n,
-  });
+  ToiletsAccessibilityCommentsManager({required this.toilet, required this.l10n});
 
   final Toilet toilet;
   final AppLocalizations l10n;

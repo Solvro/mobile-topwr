@@ -5,10 +5,7 @@ import "package:upgrader/upgrader.dart";
 import "../../navigator/app_router.dart";
 
 class IosUpdateWidget extends ConsumerWidget {
-  const IosUpdateWidget({
-    super.key,
-    required this.child,
-  });
+  const IosUpdateWidget({super.key, required this.child});
 
   final Widget child;
 

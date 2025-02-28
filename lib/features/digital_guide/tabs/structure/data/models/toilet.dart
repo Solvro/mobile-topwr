@@ -9,8 +9,7 @@ class Toilet with _$Toilet {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory Toilet({
     required ToiletTranslations translations,
-    @JsonKey(name: "is_available_for", fromJson: getToiletType)
-    required ToiletType toiletType,
+    @JsonKey(name: "is_available_for", fromJson: getToiletType) required ToiletType toiletType,
     required String isNeedAuthorization,
     required String isWastebasket,
     required String areClothesHooks,
@@ -29,12 +28,10 @@ class Toilet with _$Toilet {
 
 @freezed
 class ToiletTranslations with _$ToiletTranslations {
-  const factory ToiletTranslations({
-    @JsonKey(name: "pl") required ToiletTranslation plTranslation,
-  }) = _ToiletTranslations;
+  const factory ToiletTranslations({@JsonKey(name: "pl") required ToiletTranslation plTranslation}) =
+      _ToiletTranslations;
 
-  factory ToiletTranslations.fromJson(Map<String, dynamic> json) =>
-      _$ToiletTranslationsFromJson(json);
+  factory ToiletTranslations.fromJson(Map<String, dynamic> json) => _$ToiletTranslationsFromJson(json);
 }
 
 @freezed
@@ -57,8 +54,7 @@ class ToiletTranslation with _$ToiletTranslation {
     required String comment,
   }) = _ToiletTranslation;
 
-  factory ToiletTranslation.fromJson(Map<String, dynamic> json) =>
-      _$ToiletTranslationFromJson(json);
+  factory ToiletTranslation.fromJson(Map<String, dynamic> json) => _$ToiletTranslationFromJson(json);
 }
 
 enum ToiletType { men, women }

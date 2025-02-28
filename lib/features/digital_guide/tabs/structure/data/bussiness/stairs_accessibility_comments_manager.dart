@@ -5,10 +5,7 @@ import "../../../../business/accessibility_comments_manager.dart";
 import "../models/stairs.dart";
 
 class StairsAccessibilityCommentsManager extends AccessibilityCommentsManager {
-  StairsAccessibilityCommentsManager({
-    required this.stairs,
-    required this.l10n,
-  });
+  StairsAccessibilityCommentsManager({required this.stairs, required this.l10n});
 
   final Stairs stairs;
   final AppLocalizations l10n;
@@ -52,10 +49,8 @@ class StairsAccessibilityCommentsManager extends AccessibilityCommentsManager {
   IList<String> getCommentsListForMotorImpairment() {
     final StairsTranslation pl = stairs.translations.plTranslation;
     return IList([
-      if (pl.numberOfStairGears.isNotEmpty)
-        "${l10n.number_of_stair_gears} ${pl.numberOfStairGears}",
-      if (pl.numberOfStairLandings.isNotEmpty)
-        "${l10n.number_of_stair_landings} ${pl.numberOfStairLandings}",
+      if (pl.numberOfStairGears.isNotEmpty) "${l10n.number_of_stair_gears} ${pl.numberOfStairGears}",
+      if (pl.numberOfStairLandings.isNotEmpty) "${l10n.number_of_stair_landings} ${pl.numberOfStairLandings}",
     ]);
   }
 

@@ -27,15 +27,9 @@ class ReportChangeButton extends ConsumerWidget {
               backgroundColor: context.colorTheme.orangePomegranade,
               padding: AppWidgetsConfig.paddingMedium,
               minimumSize: const Size(144, 40),
-              shape: RoundedRectangleBorder(
-                borderRadius:
-                    BorderRadius.circular(AppWidgetsConfig.borderRadiusMedium),
-              ),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppWidgetsConfig.borderRadiusMedium)),
             ),
-            child: Text(
-              context.localize.report_change_button,
-              style: TextStyle(color: context.colorTheme.whiteSoap),
-            ),
+            child: Text(context.localize.report_change_button, style: TextStyle(color: context.colorTheme.whiteSoap)),
           ),
         ],
       ),

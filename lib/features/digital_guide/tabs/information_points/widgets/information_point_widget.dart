@@ -20,14 +20,9 @@ class InformationPointWidget extends StatelessWidget {
       padding: DigitalGuideConfig.symetricalPaddingBig,
       child: Column(
         children: [
-          BulletList(
-            items: data.getBulletList(l10n),
-          ),
+          BulletList(items: data.getBulletList(l10n)),
           AccessibilityProfileCard(
-            accessibilityCommentsManager: InformationPointAccessibilityManager(
-              l10n: l10n,
-              infoPoint: data,
-            ),
+            accessibilityCommentsManager: InformationPointAccessibilityManager(l10n: l10n, infoPoint: data),
           ),
         ],
       ),

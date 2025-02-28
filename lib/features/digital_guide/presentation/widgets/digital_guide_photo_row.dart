@@ -27,40 +27,32 @@ class DigitalGuidePhotoRow extends StatelessWidget {
         SizedBox(
           height: DigitalGuideConfig.photoRowHeight,
           child: Row(
-            children: displayImages
-                .map(
-                  (id) => Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: DigitalGuideConfig.paddingSmall,
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(
-                          DigitalGuideConfig.borderRadiusMedium,
-                        ),
-                        child: GestureDetector(
-                          onTap: () async {
-                            if (imagesIDs.length > 1) {
-                              await showGallery(context, initId: id);
-                            }
-                          },
-                          child: DigitalGuideImage(
-                            id: id,
-                            zoomable: imagesIDs.length == 1,
+            children:
+                displayImages
+                    .map(
+                      (id) => Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: DigitalGuideConfig.paddingSmall),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(DigitalGuideConfig.borderRadiusMedium),
+                            child: GestureDetector(
+                              onTap: () async {
+                                if (imagesIDs.length > 1) {
+                                  await showGallery(context, initId: id);
+                                }
+                              },
+                              child: DigitalGuideImage(id: id, zoomable: imagesIDs.length == 1),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ),
-                )
-                .toList(),
+                    )
+                    .toList(),
           ),
         ),
         if (imagesIDs.length > 3)
           Padding(
-            padding: const EdgeInsets.only(
-              top: DigitalGuideConfig.heightSmall,
-            ),
+            padding: const EdgeInsets.only(top: DigitalGuideConfig.heightSmall),
             child: DigitalGuideNavLink(
               onTap: () async => showGallery(context),
               text: context.localize.see_all_photos(imagesIDs.length),
@@ -73,10 +65,7 @@ class DigitalGuidePhotoRow extends StatelessWidget {
   Future<void> showGallery(BuildContext context, {int? initId}) async {
     await showDialog(
       context: context,
-      builder: (context) => DigitalGuideCarouselWithIndicator(
-        imgListId: imagesIDs,
-        initId: initId,
-      ),
+      builder: (context) => DigitalGuideCarouselWithIndicator(imgListId: imagesIDs, initId: initId),
     );
   }
 }

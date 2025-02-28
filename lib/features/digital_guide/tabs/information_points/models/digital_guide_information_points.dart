@@ -48,21 +48,16 @@ class DigitalGuideInformationPoint with _$DigitalGuideInformationPoint {
 }
 
 @freezed
-class DigitalGuideInformationPointTranslations
-    with _$DigitalGuideInformationPointTranslations {
-  factory DigitalGuideInformationPointTranslations({
-    required DigitalGuideInformationPointTranslationDetails pl,
-  }) = _DigitalGuideInformationPointTranslations;
+class DigitalGuideInformationPointTranslations with _$DigitalGuideInformationPointTranslations {
+  factory DigitalGuideInformationPointTranslations({required DigitalGuideInformationPointTranslationDetails pl}) =
+      _DigitalGuideInformationPointTranslations;
 
-  factory DigitalGuideInformationPointTranslations.fromJson(
-    Map<String, dynamic> json,
-  ) =>
+  factory DigitalGuideInformationPointTranslations.fromJson(Map<String, dynamic> json) =>
       _$DigitalGuideInformationPointTranslationsFromJson(json);
 }
 
 @freezed
-class DigitalGuideInformationPointTranslationDetails
-    with _$DigitalGuideInformationPointTranslationDetails {
+class DigitalGuideInformationPointTranslationDetails with _$DigitalGuideInformationPointTranslationDetails {
   @JsonSerializable(fieldRename: FieldRename.snake)
   factory DigitalGuideInformationPointTranslationDetails({
     required String location,
@@ -79,8 +74,6 @@ class DigitalGuideInformationPointTranslationDetails
     required String comment,
   }) = _DigitalGuideInformationPointTranslationDetails;
 
-  factory DigitalGuideInformationPointTranslationDetails.fromJson(
-    Map<String, dynamic> json,
-  ) =>
+  factory DigitalGuideInformationPointTranslationDetails.fromJson(Map<String, dynamic> json) =>
       _$DigitalGuideInformationPointTranslationDetailsFromJson(json);
 }

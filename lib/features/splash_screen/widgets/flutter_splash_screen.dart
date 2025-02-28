@@ -5,10 +5,7 @@ import "../../../gen/assets.gen.dart";
 import "fade_in_splash_gradient.dart";
 
 class FlutterSplashScreen extends StatelessWidget {
-  const FlutterSplashScreen({
-    super.key,
-    this.size,
-  });
+  const FlutterSplashScreen({super.key, this.size});
   final double? size;
   @override
   Widget build(BuildContext context) {
@@ -21,9 +18,7 @@ class FlutterSplashScreen extends StatelessWidget {
             child: SizedBox(
               height: size ?? SplashScreenConfig.androidSplashSizeInDp,
               width: size ?? SplashScreenConfig.androidSplashSizeInDp,
-              child: Image.asset(
-                Assets.png.splashScreen.splashLogo.path,
-              ),
+              child: Image.asset(Assets.png.splashScreen.splashLogo.path),
             ),
           ),
         ],

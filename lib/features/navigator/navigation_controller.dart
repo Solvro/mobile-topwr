@@ -14,11 +14,7 @@ part "navigation_controller.g.dart";
 
 typedef TRoute = PageRouteInfo<dynamic>;
 
-typedef NavigationState = ({
-  bool isStackPoppable,
-  NavBarEnum activeTab,
-  IList<TRoute> fullNavigationStack,
-});
+typedef NavigationState = ({bool isStackPoppable, NavBarEnum activeTab, IList<TRoute> fullNavigationStack});
 
 @riverpod
 GlobalKey<AutoRouterState> navigatorKey(Ref ref) {
@@ -27,13 +23,11 @@ GlobalKey<AutoRouterState> navigatorKey(Ref ref) {
 
 @riverpod
 class NavigationController extends _$NavigationController {
-  GlobalKey<AutoRouterState> get _navigatorKey =>
-      ref.watch(navigatorKeyProvider);
+  GlobalKey<AutoRouterState> get _navigatorKey => ref.watch(navigatorKeyProvider);
 
   StackRouter? get _router => _navigatorKey.currentState?.controller;
 
-  Iterable<TRoute> get _stack =>
-      _router?.stackData.map((e) => e.route.toPageRouteInfo()) ?? [];
+  Iterable<TRoute> get _stack => _router?.stackData.map((e) => e.route.toPageRouteInfo()) ?? [];
 
   Future<void> keepTrackOfTabBarState(Future<void>? popFutureResults) async {
     await Future.delayed(
@@ -52,22 +46,20 @@ class NavigationController extends _$NavigationController {
 
   Future<void> pushNamed(String uri) async {
     final lastRoute = fullStack.lastOrNull;
-    final isCurrentlyWithinTabView =
-        ref.read(appRouterProvider).routesWithinTabBar.any(
-              (route) => route.name == lastRoute?.routeName,
-            );
-    final isDestinationWithinTabView =
-        ref.read(appRouterProvider).routesWithinTabBar.any(
-              (route) => route.path.split("/").first == uri.split("/").first,
-            );
+    final isCurrentlyWithinTabView = ref
+        .read(appRouterProvider)
+        .routesWithinTabBar
+        .any((route) => route.name == lastRoute?.routeName);
+    final isDestinationWithinTabView = ref
+        .read(appRouterProvider)
+        .routesWithinTabBar
+        .any((route) => route.path.split("/").first == uri.split("/").first);
     final properlyWorkingURI = !isDestinationWithinTabView ? "/$uri" : uri;
-    final shouldPopBefore =
-        !isCurrentlyWithinTabView && isDestinationWithinTabView;
+    final shouldPopBefore = !isCurrentlyWithinTabView && isDestinationWithinTabView;
     if (shouldPopBefore) {
       _popGlobalRouter();
     }
-    final popFutureResults =
-        _router?.pushNamed(properlyWorkingURI); // push the route
+    final popFutureResults = _router?.pushNamed(properlyWorkingURI); // push the route
     await keepTrackOfTabBarState(popFutureResults);
   }
 
@@ -86,11 +78,7 @@ class NavigationController extends _$NavigationController {
     _router?.popUntil(
       (element) =>
           element.settings is! AutoRoutePage ||
-          (element.settings as AutoRoutePage)
-              .routeData
-              .topMatch
-              .toPageRouteInfo()
-              .isTabView,
+          (element.settings as AutoRoutePage).routeData.topMatch.toPageRouteInfo().isTabView,
     );
   }
 
@@ -98,11 +86,7 @@ class NavigationController extends _$NavigationController {
     _router?.root.popUntil(
       (element) =>
           element.settings is! AutoRoutePage ||
-          (element.settings as AutoRoutePage)
-              .routeData
-              .topMatch
-              .toPageRouteInfo()
-              .isRouteGlobalRoute,
+          (element.settings as AutoRoutePage).routeData.topMatch.toPageRouteInfo().isRouteGlobalRoute,
     );
   }
 
@@ -112,24 +96,20 @@ class NavigationController extends _$NavigationController {
 
   // so the problem is that we use both nested and global navigator and they have separate navigation stacks
   List<TRoute> get fullStack => [
-        ..._stack, // nested navigator stack
-        ..._router?.root.stackData
-                .map(
-                  (e) => e.route.toPageRouteInfo(), // global navigator stack
-                )
-                .where(
-                  (element) => !element.isRouteGlobalRoute,
-                ) ??
-            [],
-      ]; // we spread both stacks to get proper combined stack
+    ..._stack, // nested navigator stack
+    ..._router?.root.stackData
+            .map(
+              (e) => e.route.toPageRouteInfo(), // global navigator stack
+            )
+            .where((element) => !element.isRouteGlobalRoute) ??
+        [],
+  ]; // we spread both stacks to get proper combined stack
 
   @override
   NavigationState build() {
     return (
       isStackPoppable: _stack.length > 1,
-      activeTab:
-          _stack.lastWhereOrNull((element) => element.isTabView)?.tabBarEnum ??
-              NavBarEnum.home,
+      activeTab: _stack.lastWhereOrNull((element) => element.isTabView)?.tabBarEnum ?? NavBarEnum.home,
       fullNavigationStack: fullStack.toIList(),
     );
   }
@@ -138,9 +118,7 @@ class NavigationController extends _$NavigationController {
 @riverpod
 TRoute? previousRouteOnStack(Ref ref, String currentRouteName) {
   final fullStack = ref.watch(navigationControllerProvider).fullNavigationStack;
-  final currentRouteIndex = fullStack.lastIndexWhere(
-    (element) => element.routeName == currentRouteName,
-  );
+  final currentRouteIndex = fullStack.lastIndexWhere((element) => element.routeName == currentRouteName);
   if (currentRouteIndex > 0) {
     return fullStack[currentRouteIndex - 1];
   }

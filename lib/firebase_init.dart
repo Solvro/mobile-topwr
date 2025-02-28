@@ -10,16 +10,12 @@ import "firebase_options.dart";
 
 Future<void> firebaseInit() async {
   // * General Firebase setup
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   // * Crashlytics setup
   if (!kDebugMode) {
     FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
     PlatformDispatcher.instance.onError = (error, stack) {
-      unawaited(
-        FirebaseCrashlytics.instance.recordError(error, stack, fatal: true),
-      );
+      unawaited(FirebaseCrashlytics.instance.recordError(error, stack, fatal: true));
       return true;
     };
   }

@@ -6,13 +6,7 @@ import "typography.dart";
 
 part "iparking_theme.tailor.dart";
 
-const iparkingShadows = [
-  Shadow(
-    blurRadius: 4,
-    color: Colors.black26,
-    offset: Offset(0, 4),
-  ),
-];
+const iparkingShadows = [Shadow(blurRadius: 4, color: Colors.black26, offset: Offset(0, 4))];
 
 class ParkingTextStyle extends BodyTextStyle {
   const ParkingTextStyle({
@@ -20,16 +14,11 @@ class ParkingTextStyle extends BodyTextStyle {
     super.fontSize,
     super.shadows = iparkingShadows,
     super.color = ColorsConsts.whiteSoap,
-  }) : super(
-          height: 1.4,
-        );
+  }) : super(height: 1.4);
 }
 
 class ParkingBoldTextStyle extends ParkingTextStyle {
-  const ParkingBoldTextStyle({
-    super.fontSize,
-    super.color,
-  }) : super(fontWeight: FontWeight.w500);
+  const ParkingBoldTextStyle({super.fontSize, super.color}) : super(fontWeight: FontWeight.w500);
 }
 
 class ParkingTitleTextStyle extends ParkingBoldTextStyle {
@@ -37,13 +26,11 @@ class ParkingTitleTextStyle extends ParkingBoldTextStyle {
 }
 
 class ParkingLightSubtitleTextStyle extends ParkingTextStyle {
-  const ParkingLightSubtitleTextStyle({super.color, super.fontWeight})
-      : super(fontSize: 14);
+  const ParkingLightSubtitleTextStyle({super.color, super.fontWeight}) : super(fontSize: 14);
 }
 
 class ParkingSubtitleTextStyle extends ParkingLightSubtitleTextStyle {
-  const ParkingSubtitleTextStyle({super.color})
-      : super(fontWeight: FontWeight.w500);
+  const ParkingSubtitleTextStyle({super.color}) : super(fontWeight: FontWeight.w500);
 }
 
 class ParkingSmallTextStyle extends ParkingTextStyle {
@@ -51,8 +38,7 @@ class ParkingSmallTextStyle extends ParkingTextStyle {
 }
 
 class ParkingChartTextStyle extends ParkingTextStyle {
-  const ParkingChartTextStyle({super.color})
-      : super(shadows: const [], fontSize: 10);
+  const ParkingChartTextStyle({super.color}) : super(shadows: const [], fontSize: 10);
 }
 
 extension ParkingTextShadow on TextStyle {
@@ -60,8 +46,7 @@ extension ParkingTextShadow on TextStyle {
 }
 
 @tailorMixinComponent
-class IParkingTheme extends ThemeExtension<IParkingTheme>
-    with _$IParkingThemeTailorMixin {
+class IParkingTheme extends ThemeExtension<IParkingTheme> with _$IParkingThemeTailorMixin {
   @override
   final TextStyle title;
   @override

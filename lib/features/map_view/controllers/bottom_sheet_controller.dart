@@ -5,11 +5,9 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 part "bottom_sheet_controller.g.dart";
 
 @Riverpod(dependencies: [])
-Raw<DraggableScrollableController> bottomSheetController(Ref ref) =>
-    DraggableScrollableController();
+Raw<DraggableScrollableController> bottomSheetController(Ref ref) => DraggableScrollableController();
 
-extension SafeDraggableScrollableControllerWrapperX
-    on DraggableScrollableController {
+extension SafeDraggableScrollableControllerWrapperX on DraggableScrollableController {
   void resetSafe() {
     if (isAttached) reset();
   }
@@ -30,20 +28,14 @@ class BottomSheetPixels extends _$BottomSheetPixels {
   }
 
   void _update() {
-    Future.microtask(
-      () => state = ref.read(bottomSheetControllerProvider).pixelsSafe,
-    );
+    Future.microtask(() => state = ref.read(bottomSheetControllerProvider).pixelsSafe);
   }
 
   Future<void> onSearchBoxTap() async {
     const fullScreenFrac = 1.0;
     final controller = ref.read(bottomSheetControllerProvider);
     if (controller.isAttached && controller.size < fullScreenFrac) {
-      await controller.animateTo(
-        fullScreenFrac,
-        duration: Durations.medium2,
-        curve: Curves.decelerate,
-      );
+      await controller.animateTo(fullScreenFrac, duration: Durations.medium2, curve: Curves.decelerate);
     }
   }
 }

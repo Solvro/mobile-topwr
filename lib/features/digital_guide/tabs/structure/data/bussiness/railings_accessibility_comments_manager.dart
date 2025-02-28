@@ -4,12 +4,8 @@ import "../../../../../../l10n/app_localizations.dart";
 import "../../../../business/accessibility_comments_manager.dart";
 import "../models/railing.dart";
 
-class RailingsAccessibilityCommentsManager
-    extends AccessibilityCommentsManager {
-  RailingsAccessibilityCommentsManager({
-    required this.railing,
-    required this.l10n,
-  });
+class RailingsAccessibilityCommentsManager extends AccessibilityCommentsManager {
+  RailingsAccessibilityCommentsManager({required this.railing, required this.l10n});
 
   final Railing railing;
   final AppLocalizations l10n;

@@ -12,16 +12,11 @@ class AccessibilityProfileCard extends ConsumerWidget {
   final AccessibilityCommentsManager accessibilityCommentsManager;
   final Color? backgroundColor;
 
-  const AccessibilityProfileCard({
-    super.key,
-    required this.accessibilityCommentsManager,
-    this.backgroundColor,
-  });
+  const AccessibilityProfileCard({super.key, required this.accessibilityCommentsManager, this.backgroundColor});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final currentModesAsync =
-        ref.watch(activeAccessibilityModesRepositoryProvider);
+    final currentModesAsync = ref.watch(activeAccessibilityModesRepositoryProvider);
 
     return currentModesAsync.when(
       loading: () => const Center(child: CircularProgressIndicator()),
@@ -31,8 +26,7 @@ class AccessibilityProfileCard extends ConsumerWidget {
           return const SizedBox.shrink();
         }
 
-        final itemList =
-            accessibilityCommentsManager.getCommentsForModes(currentModes);
+        final itemList = accessibilityCommentsManager.getCommentsForModes(currentModes);
         final icon = accessibilityCommentsManager.getIconForModes(currentModes);
 
         return Padding(
@@ -42,14 +36,11 @@ class AccessibilityProfileCard extends ConsumerWidget {
             children: [
               DecoratedBox(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(
-                    DigitalGuideConfig.borderRadiusMedium,
-                  ),
+                  borderRadius: BorderRadius.circular(DigitalGuideConfig.borderRadiusMedium),
                   border: Border.all(color: context.colorTheme.blackMirage),
                 ),
                 child: Padding(
-                  padding:
-                      const EdgeInsets.all(DigitalGuideConfig.paddingMedium),
+                  padding: const EdgeInsets.all(DigitalGuideConfig.paddingMedium),
                   child: BulletList(items: itemList),
                 ),
               ),
@@ -59,14 +50,10 @@ class AccessibilityProfileCard extends ConsumerWidget {
                 child: ColoredBox(
                   color: backgroundColor ?? context.colorTheme.greyLight,
                   child: Padding(
-                    padding:
-                        const EdgeInsets.all(DigitalGuideConfig.paddingSmall),
+                    padding: const EdgeInsets.all(DigitalGuideConfig.paddingSmall),
                     child: Row(
                       children: [
-                        Text(
-                          context.localize.accessibility_profile,
-                          style: context.textTheme.title,
-                        ),
+                        Text(context.localize.accessibility_profile, style: context.textTheme.title),
                         const SizedBox(width: DigitalGuideConfig.heightSmall),
                         icon,
                       ],

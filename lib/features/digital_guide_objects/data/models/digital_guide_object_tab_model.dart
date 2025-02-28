@@ -20,15 +20,11 @@ class DigitalGuideObjectTabResponse with _$DigitalGuideObjectTabResponse {
 }
 
 @freezed
-class DigitalGuideObjectTabTranslations
-    with _$DigitalGuideObjectTabTranslations {
-  const factory DigitalGuideObjectTabTranslations({
-    required DigitalGuideObjectTabTranslation pl,
-  }) = _DigitalGuideObjectTabTranslations;
+class DigitalGuideObjectTabTranslations with _$DigitalGuideObjectTabTranslations {
+  const factory DigitalGuideObjectTabTranslations({required DigitalGuideObjectTabTranslation pl}) =
+      _DigitalGuideObjectTabTranslations;
 
-  factory DigitalGuideObjectTabTranslations.fromJson(
-    Map<String, dynamic> json,
-  ) =>
+  factory DigitalGuideObjectTabTranslations.fromJson(Map<String, dynamic> json) =>
       _$DigitalGuideObjectTabTranslationsFromJson(json);
 }
 
@@ -46,8 +42,6 @@ class DigitalGuideObjectTabTranslation with _$DigitalGuideObjectTabTranslation {
     required String accessibilityContentForCognitiveDifficultiesComment,
   }) = _DigitalGuideObjectTabTranslation;
 
-  factory DigitalGuideObjectTabTranslation.fromJson(
-    Map<String, dynamic> json,
-  ) =>
+  factory DigitalGuideObjectTabTranslation.fromJson(Map<String, dynamic> json) =>
       _$DigitalGuideObjectTabTranslationFromJson(json);
 }

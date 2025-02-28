@@ -8,11 +8,7 @@ import "../models/parking.dart";
 import "parking_wide_tile_card.dart";
 
 class ParkingTile extends ConsumerWidget {
-  const ParkingTile(
-    this.parking, {
-    required this.isActive,
-    super.key,
-  });
+  const ParkingTile(this.parking, {required this.isActive, super.key});
 
   final Parking parking;
   final bool isActive;

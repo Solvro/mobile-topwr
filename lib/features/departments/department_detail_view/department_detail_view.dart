@@ -33,57 +33,46 @@ class DepartmentDetailView extends ConsumerWidget {
       body: switch (state) {
         AsyncError(:final error) => MyErrorWidget(error),
         AsyncValue(:final DepartmentDetails value) => CustomScrollView(
-            slivers: [
-              SliverPersistentHeader(
-                delegate: DepartmentSliverHeaderSection(
-                  activeGradient: value.Departments_by_id?.gradient,
-                  logoDirectusImageUrl:
-                      value.Departments_by_id?.logo?.filename_disk,
-                ),
+          slivers: [
+            SliverPersistentHeader(
+              delegate: DepartmentSliverHeaderSection(
+                activeGradient: value.Departments_by_id?.gradient,
+                logoDirectusImageUrl: value.Departments_by_id?.logo?.filename_disk,
               ),
-              SliverList(
-                delegate: SliverChildListDelegate([
-                  const SizedBox(height: 8),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 24),
-                    child: Text(
-                      value.Departments_by_id?.name ?? "",
-                      style: context.textTheme.headline,
-                      textAlign: TextAlign.center,
-                      maxLines: 2,
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                  Text(
-                    value.Departments_by_id?.address?.divideAddressInto3Lines ??
-                        "",
-                    style: context.textTheme.body.copyWith(height: 1.2),
+            ),
+            SliverList(
+              delegate: SliverChildListDelegate([
+                const SizedBox(height: 8),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: Text(
+                    value.Departments_by_id?.name ?? "",
+                    style: context.textTheme.headline,
                     textAlign: TextAlign.center,
+                    maxLines: 2,
                   ),
-                  const SizedBox(height: DetailViewsConfig.spacerHeight),
-                  ContactSection(
-                    title: context.localize.deans_office,
-                    list: (value.Departments_by_id?.links)
-                        .whereNonNull
-                        .map(
-                          (link) => ContactIconsModel(
-                            text: link.name,
-                            url: link.link,
-                          ),
-                        )
-                        .toIList(),
-                  ),
-                  FieldsOfStudySection(
-                    fieldsOfStudy: (value.Departments_by_id?.fieldsOfStudies)
-                        .whereNonNull
-                        .toIList(),
-                  ),
-                  DepartmentScienceClubsSection(value),
-                  const SizedBox(height: DetailViewsConfig.spacerHeight * 2),
-                ]),
-              ),
-            ],
-          ),
+                ),
+                const SizedBox(height: 12),
+                Text(
+                  value.Departments_by_id?.address?.divideAddressInto3Lines ?? "",
+                  style: context.textTheme.body.copyWith(height: 1.2),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: DetailViewsConfig.spacerHeight),
+                ContactSection(
+                  title: context.localize.deans_office,
+                  list:
+                      (value.Departments_by_id?.links).whereNonNull
+                          .map((link) => ContactIconsModel(text: link.name, url: link.link))
+                          .toIList(),
+                ),
+                FieldsOfStudySection(fieldsOfStudy: (value.Departments_by_id?.fieldsOfStudies).whereNonNull.toIList()),
+                DepartmentScienceClubsSection(value),
+                const SizedBox(height: DetailViewsConfig.spacerHeight * 2),
+              ]),
+            ),
+          ],
+        ),
         _ => const DepartmentDetailViewLoading(),
       },
     );

@@ -35,17 +35,11 @@ class SksChartCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SksChartHeader(
-              numberOfPeople:
-                  currentNumberOfUsers?.activeUsers.toString() ?? "",
+              numberOfPeople: currentNumberOfUsers?.activeUsers.toString() ?? "",
               trend: currentNumberOfUsers?.trend,
             ),
-            const SizedBox(
-              height: SksChartConfig.heightLarge,
-            ),
-            SksChart(
-              maxNumberOfUsers: maxNumberOfUsers,
-              chartData: chartData,
-            ),
+            const SizedBox(height: SksChartConfig.heightLarge),
+            SksChart(maxNumberOfUsers: maxNumberOfUsers, chartData: chartData),
             const Padding(
               padding: EdgeInsets.only(
                 left: SksChartConfig.paddingLarge,

@@ -5,12 +5,8 @@ import "../../../business/accessibility_comments_manager.dart";
 import "../../accessibility_dialog/data/modes.dart";
 import "../data/models/digital_guide_transportation.dart";
 
-class NonPublicTransportationAccessibilityCommentsManager
-    extends AccessibilityCommentsManager {
-  NonPublicTransportationAccessibilityCommentsManager({
-    required this.transportation,
-    required this.l10n,
-  });
+class NonPublicTransportationAccessibilityCommentsManager extends AccessibilityCommentsManager {
+  NonPublicTransportationAccessibilityCommentsManager({required this.transportation, required this.l10n});
 
   final DigitalGuideTransportation transportation;
   final AppLocalizations l10n;
@@ -19,12 +15,11 @@ class NonPublicTransportationAccessibilityCommentsManager
   IList<String> _alwaysAppearingComments() {
     final comments = transportation.translations.pl;
 
-    final IList<String> commentsList = [
-      comments.nearestDisabledParkingSpaces,
-      l10n.transport_closest_parking_for_disabled(
-        transportation.nearestDisabledParkingSpacesDistance.toString(),
-      ),
-    ].where((c) => c.trim().isNotEmpty).toIList();
+    final IList<String> commentsList =
+        [
+          comments.nearestDisabledParkingSpaces,
+          l10n.transport_closest_parking_for_disabled(transportation.nearestDisabledParkingSpacesDistance.toString()),
+        ].where((c) => c.trim().isNotEmpty).toIList();
 
     return commentsList;
   }

@@ -8,10 +8,7 @@ import "../models/stairway.dart";
 part "stairways_repository.g.dart";
 
 @riverpod
-Future<IList<Stairway>> stairwaysRepository(
-  Ref ref,
-  List<int> stairwaysIDs,
-) async {
+Future<IList<Stairway>> stairwaysRepository(Ref ref, List<int> stairwaysIDs) async {
   Future<Stairway> getStairway(int stairwayID) async {
     return ref.getAndCacheDataFromDigitalGuide(
       "stairways/$stairwayID",

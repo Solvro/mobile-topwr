@@ -40,9 +40,7 @@ class SliverLogo extends StatelessWidget {
               child: Container(
                 width: logoSize,
                 height: logoSize,
-                decoration: BoxDecoration(
-                  gradient: activeGradient,
-                ),
+                decoration: BoxDecoration(gradient: activeGradient),
                 child: FittedBox(
                   fit: BoxFit.scaleDown,
                   child: SizedBox.square(

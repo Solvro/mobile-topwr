@@ -13,9 +13,7 @@ class WideTileLoading extends StatelessWidget {
     return Shimmer(
       linearGradient: shimmerGradient,
       child: Container(
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(WideTileCardConfig.radius),
-        ),
+        decoration: const BoxDecoration(borderRadius: BorderRadius.all(WideTileCardConfig.radius)),
         clipBehavior: Clip.antiAlias,
         child: const Row(
           children: [
@@ -42,13 +40,9 @@ class _TitlesColumnLoading extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            PreviewTextPrototype(
-              width: constraints.maxWidth * _firstTextLoadingWidthFraction,
-            ),
+            PreviewTextPrototype(width: constraints.maxWidth * _firstTextLoadingWidthFraction),
             const SizedBox(height: WideTileCardConfig.titlesSpacing),
-            PreviewTextPrototype(
-              width: constraints.maxWidth * _secondTextLoadingWidthFraction,
-            ),
+            PreviewTextPrototype(width: constraints.maxWidth * _secondTextLoadingWidthFraction),
             const SizedBox(height: WideTileCardConfig.titlesSpacing),
           ],
         );

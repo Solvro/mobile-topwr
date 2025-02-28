@@ -16,10 +16,7 @@ import "../data/models/digital_guide_transportation.dart";
 
 @RoutePage()
 class TransportationDetailView extends ConsumerWidget {
-  const TransportationDetailView({
-    required this.transportation,
-    required this.isPublic,
-  });
+  const TransportationDetailView({required this.transportation, required this.isPublic});
 
   final DigitalGuideTransportation transportation;
   final bool isPublic;
@@ -27,91 +24,73 @@ class TransportationDetailView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final plTransl = transportation.translations.pl;
-    final publicTransport = [
-      if (plTransl.nearestPublicTransportStop.isNotEmpty)
-        context.localize.nearest_public_transport_stop +
-            plTransl.nearestPublicTransportStop +
-            context.distance(
-              transportation.nearestPublicTransportStopDistance,
-            ) +
-            (plTransl.arePassTrafficLightsFromStopToEntryComment.isNotEmpty
-                ? context.localize.chose_the_path +
-                    plTransl.nearestPublicTransportStopDistanceComment
-                : ""),
-      if (transportation.dailyTramBusLines.isNotEmpty)
-        context.localize.transport_lines + transportation.dailyTramBusLines,
-      if (plTransl.alternativePublicTransportStop.isNotEmpty)
-        context.localize.nearest_public_transport_stop_alt +
-            plTransl.alternativePublicTransportStop +
-            context.distance(
-              transportation.alternativePublicTransportStopDistance,
-            ) +
-            (plTransl.alternativePublicTransportStopDistanceComment.isNotEmpty
-                ? context.localize.chose_the_path +
-                    plTransl.alternativePublicTransportStopDistanceComment
-                : ""),
-      if (transportation.alternativeDailyTramBusLinesStop.isNotEmpty)
-        context.localize.transport_lines +
-            transportation.alternativeDailyTramBusLinesStop,
-    ].lock;
-    final privateTransport = [
-      if (plTransl.nearestPublicParkingLocation.isNotEmpty)
-        plTransl.nearestPublicParkingLocation +
-            context.distance(
-              transportation.nearestPublicParkingLocationDistance,
-            ) +
-            plTransl.isPaidParkingComment,
-      if (plTransl.nearestUniversityParkingLocation.isNotEmpty)
-        plTransl.nearestUniversityParkingLocation +
-            context.distance(
-              transportation.nearestUniversityParkingLocationDistance,
-            ),
-      plTransl.isCityBikeStationComment +
-          context.distance(transportation.cityBikeStationDistance),
-      if (transportation.isBicyclePathLeadToBuilding)
-        context.localize.bicycle_path_leads_to_building +
-            plTransl.isBicyclePathLeadToBuildingComment +
-            context.distance(transportation.distanceToBicyclePath) +
-            plTransl.isBicyclePathLeadClearlySeparatedComment,
-    ].lock;
+    final publicTransport =
+        [
+          if (plTransl.nearestPublicTransportStop.isNotEmpty)
+            context.localize.nearest_public_transport_stop +
+                plTransl.nearestPublicTransportStop +
+                context.distance(transportation.nearestPublicTransportStopDistance) +
+                (plTransl.arePassTrafficLightsFromStopToEntryComment.isNotEmpty
+                    ? context.localize.chose_the_path + plTransl.nearestPublicTransportStopDistanceComment
+                    : ""),
+          if (transportation.dailyTramBusLines.isNotEmpty)
+            context.localize.transport_lines + transportation.dailyTramBusLines,
+          if (plTransl.alternativePublicTransportStop.isNotEmpty)
+            context.localize.nearest_public_transport_stop_alt +
+                plTransl.alternativePublicTransportStop +
+                context.distance(transportation.alternativePublicTransportStopDistance) +
+                (plTransl.alternativePublicTransportStopDistanceComment.isNotEmpty
+                    ? context.localize.chose_the_path + plTransl.alternativePublicTransportStopDistanceComment
+                    : ""),
+          if (transportation.alternativeDailyTramBusLinesStop.isNotEmpty)
+            context.localize.transport_lines + transportation.alternativeDailyTramBusLinesStop,
+        ].lock;
+    final privateTransport =
+        [
+          if (plTransl.nearestPublicParkingLocation.isNotEmpty)
+            plTransl.nearestPublicParkingLocation +
+                context.distance(transportation.nearestPublicParkingLocationDistance) +
+                plTransl.isPaidParkingComment,
+          if (plTransl.nearestUniversityParkingLocation.isNotEmpty)
+            plTransl.nearestUniversityParkingLocation +
+                context.distance(transportation.nearestUniversityParkingLocationDistance),
+          plTransl.isCityBikeStationComment + context.distance(transportation.cityBikeStationDistance),
+          if (transportation.isBicyclePathLeadToBuilding)
+            context.localize.bicycle_path_leads_to_building +
+                plTransl.isBicyclePathLeadToBuildingComment +
+                context.distance(transportation.distanceToBicyclePath) +
+                plTransl.isBicyclePathLeadClearlySeparatedComment,
+        ].lock;
     final List<Widget> widgets = [
       Text(
-        isPublic
-            ? context.localize.public_transport
-            : context.localize.private_transport,
+        isPublic ? context.localize.public_transport : context.localize.private_transport,
         style: context.textTheme.headline.copyWith(fontSize: 20),
       ),
       const SizedBox(height: DigitalGuideConfig.heightMedium),
       BulletList(items: isPublic ? publicTransport : privateTransport),
       AccessibilityProfileCard(
-        accessibilityCommentsManager: isPublic
-            ? PublicTransportationAccessibilityCommentsManager(
-                transportation: transportation,
-                l10n: context.localize,
-              )
-            : NonPublicTransportationAccessibilityCommentsManager(
-                transportation: transportation,
-                l10n: context.localize,
-              ),
+        accessibilityCommentsManager:
+            isPublic
+                ? PublicTransportationAccessibilityCommentsManager(
+                  transportation: transportation,
+                  l10n: context.localize,
+                )
+                : NonPublicTransportationAccessibilityCommentsManager(
+                  transportation: transportation,
+                  l10n: context.localize,
+                ),
         backgroundColor: context.colorTheme.whiteSoap,
       ),
     ];
 
     return Scaffold(
-      appBar: DetailViewAppBar(
-        actions: [AccessibilityButton()],
-      ),
+      appBar: DetailViewAppBar(actions: [AccessibilityButton()]),
       body: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: DigitalGuideConfig.heightBig,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: DigitalGuideConfig.heightBig),
         child: CustomScrollView(
           slivers: [
             SliverList(
-              delegate: SliverChildBuilderDelegate(
-                (context, index) => widgets[index],
-                childCount: widgets.length,
-              ),
+              delegate: SliverChildBuilderDelegate((context, index) => widgets[index], childCount: widgets.length),
             ),
           ],
         ),

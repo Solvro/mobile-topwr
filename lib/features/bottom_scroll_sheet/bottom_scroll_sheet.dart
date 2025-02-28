@@ -21,16 +21,13 @@ class BottomScrollSheet<T extends GoogleNavigable> extends ConsumerWidget {
         final screenHeight = constraints.maxHeight;
         final sheetSize = context.mapSheetSize<T>();
 
-        final isAnyActive =
-            ref.watch(context.activeMarkerController<T>()) != null;
-        final recommendedSheetHeight = isAnyActive
-            ? sheetSize.recomendedActiveSheetHeight
-            : sheetSize.recomendedSheetHeight;
+        final isAnyActive = ref.watch(context.activeMarkerController<T>()) != null;
+        final recommendedSheetHeight =
+            isAnyActive ? sheetSize.recomendedActiveSheetHeight : sheetSize.recomendedSheetHeight;
 
         final minSheetHeight = sheetSize.minSheetHeight;
 
-        final double recommendedSheetFraction =
-            min(1, recommendedSheetHeight / screenHeight);
+        final double recommendedSheetFraction = min(1, recommendedSheetHeight / screenHeight);
         final minSheetFraction = min(0.25, minSheetHeight / screenHeight);
 
         return MapViewPopBehaviour<T>(
@@ -44,8 +41,7 @@ class BottomScrollSheet<T extends GoogleNavigable> extends ConsumerWidget {
             builder: (BuildContext context, ScrollController scrollController) {
               return Container(
                 clipBehavior: Clip.antiAlias,
-                decoration:
-                    _RoundedTopDecoration(color: context.colorTheme.whiteSoap),
+                decoration: _RoundedTopDecoration(color: context.colorTheme.whiteSoap),
                 child: SheetLayoutScheme<T>(scrollController: scrollController),
               );
             },
@@ -58,10 +54,10 @@ class BottomScrollSheet<T extends GoogleNavigable> extends ConsumerWidget {
 
 class _RoundedTopDecoration extends BoxDecoration {
   const _RoundedTopDecoration({super.color})
-      : super(
-          borderRadius: const BorderRadius.only(
-            topLeft: MapViewBottomSheetConfig.bottomSheetRadius,
-            topRight: MapViewBottomSheetConfig.bottomSheetRadius,
-          ),
-        );
+    : super(
+        borderRadius: const BorderRadius.only(
+          topLeft: MapViewBottomSheetConfig.bottomSheetRadius,
+          topRight: MapViewBottomSheetConfig.bottomSheetRadius,
+        ),
+      );
 }

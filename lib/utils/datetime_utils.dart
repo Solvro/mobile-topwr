@@ -12,8 +12,7 @@ extension DateTimeUtilsX on DateTime {
     final DateFormat dayFormat = DateFormat("EEEE", "pl_PL");
     final DateFormat dateFormat = DateFormat("dd.MM.yyyy");
     final String day = dayFormat.format(this);
-    final String capitalizedDay =
-        day[0].toUpperCase() + day.substring(1).toLowerCase();
+    final String capitalizedDay = day[0].toUpperCase() + day.substring(1).toLowerCase();
     final String date = dateFormat.format(this);
     return "$capitalizedDay, $date";
   }

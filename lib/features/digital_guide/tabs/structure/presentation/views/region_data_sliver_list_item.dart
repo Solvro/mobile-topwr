@@ -3,9 +3,5 @@ class RegionDataSliverListItem {
   final Future<void> Function(int index)? onTap;
   final int itemCount;
 
-  RegionDataSliverListItem({
-    required this.text,
-    this.onTap,
-    required this.itemCount,
-  });
+  RegionDataSliverListItem({required this.text, this.onTap, required this.itemCount});
 }

@@ -24,12 +24,9 @@ class Ramp with _$Ramp {
 @freezed
 class RampTranslations with _$RampTranslations {
   @JsonSerializable(fieldRename: FieldRename.snake)
-  const factory RampTranslations({
-    @JsonKey(name: "pl") required RampTranslation plTranslation,
-  }) = _RampTranslations;
+  const factory RampTranslations({@JsonKey(name: "pl") required RampTranslation plTranslation}) = _RampTranslations;
 
-  factory RampTranslations.fromJson(Map<String, dynamic> json) =>
-      _$RampTranslationsFromJson(json);
+  factory RampTranslations.fromJson(Map<String, dynamic> json) => _$RampTranslationsFromJson(json);
 }
 
 @freezed
@@ -47,6 +44,5 @@ class RampTranslation with _$RampTranslation {
     required String comment,
   }) = _RampTranslation;
 
-  factory RampTranslation.fromJson(Map<String, dynamic> json) =>
-      _$RampTranslationFromJson(json);
+  factory RampTranslation.fromJson(Map<String, dynamic> json) => _$RampTranslationFromJson(json);
 }

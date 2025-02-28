@@ -27,8 +27,7 @@ extension LaunchUrlUtilX on WidgetRef? {
       return launchUrl(uri);
     }
 
-    final String toastMsg =
-        this?.context.localize.report_change_error_toast_message ?? "";
+    final String toastMsg = this?.context.localize.report_change_error_toast_message ?? "";
 
     if (toastMsg.isNotEmpty) {
       await Fluttertoast.showToast(

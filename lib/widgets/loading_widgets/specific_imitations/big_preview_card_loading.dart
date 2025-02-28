@@ -17,10 +17,7 @@ class BigPreviewCardLoading extends StatelessWidget {
             child: Container(
               width: BigPreviewCardConfig.cardWidth,
               height: 155,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(8),
-              ),
+              decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(8)),
             ),
           ),
           const ShimmerLoadingItem(child: _LoadingText()),
@@ -42,15 +39,9 @@ class _LoadingText extends StatelessWidget {
         const SizedBox(height: gap),
         PreviewTextPrototype(width: BigPreviewCardConfig.cardWidth, height: 25),
         const SizedBox(height: gap),
-        PreviewTextPrototype(
-          width: BigPreviewCardConfig.cardWidth / 1.3,
-          height: 25,
-        ),
+        PreviewTextPrototype(width: BigPreviewCardConfig.cardWidth / 1.3, height: 25),
         const SizedBox(height: gap),
-        PreviewTextPrototype(
-          width: BigPreviewCardConfig.cardWidth / 2.5,
-          height: 25,
-        ),
+        PreviewTextPrototype(width: BigPreviewCardConfig.cardWidth / 2.5, height: 25),
       ],
     );
   }

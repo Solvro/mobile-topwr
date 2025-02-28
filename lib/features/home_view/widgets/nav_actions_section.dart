@@ -11,38 +11,27 @@ class NavActionsSection extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) => Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            _NavActionButton(
-              context.localize.sks_menu,
-              Icon(
-                Icons.restaurant_menu,
-                color: context.colorTheme.whiteSoap,
-                size: 32,
-              ),
-              ref.navigateToSksMenu,
-            ),
-            _NavActionButton(
-              context.localize.parkings_title,
-              Icon(
-                Icons.directions_car,
-                color: context.colorTheme.whiteSoap,
-                size: 32,
-              ),
-              ref.navigateParkings,
-            ),
-            _NavActionButton(
-              context.localize.about_us,
-              Image.asset(
-                Assets.png.splashScreen.splashLogo.path,
-                fit: BoxFit.fill,
-              ),
-              ref.navigateAboutUs,
-            ),
-          ],
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        _NavActionButton(
+          context.localize.sks_menu,
+          Icon(Icons.restaurant_menu, color: context.colorTheme.whiteSoap, size: 32),
+          ref.navigateToSksMenu,
         ),
-      );
+        _NavActionButton(
+          context.localize.parkings_title,
+          Icon(Icons.directions_car, color: context.colorTheme.whiteSoap, size: 32),
+          ref.navigateParkings,
+        ),
+        _NavActionButton(
+          context.localize.about_us,
+          Image.asset(Assets.png.splashScreen.splashLogo.path, fit: BoxFit.fill),
+          ref.navigateAboutUs,
+        ),
+      ],
+    ),
+  );
 }
 
 class _NavActionButton extends StatelessWidget {
@@ -58,28 +47,17 @@ class _NavActionButton extends StatelessWidget {
         Material(
           color: Colors.transparent,
           child: Ink(
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: context.colorTheme.orangePomegranade,
-            ),
+            decoration: BoxDecoration(shape: BoxShape.circle, color: context.colorTheme.orangePomegranade),
             child: InkWell(
               onTap: onTap,
               borderRadius: BorderRadius.circular(56),
               splashColor: context.colorTheme.whiteSoap.withValues(alpha: 0.3),
-              child: SizedBox.square(
-                dimension: 56,
-                child: Center(
-                  child: icon,
-                ),
-              ),
+              child: SizedBox.square(dimension: 56, child: Center(child: icon)),
             ),
           ),
         ),
         const SizedBox(height: 8),
-        Text(
-          title,
-          style: context.textTheme.boldBody,
-        ),
+        Text(title, style: context.textTheme.boldBody),
       ],
     );
   }

@@ -19,9 +19,10 @@ Future<SksUserData> getLatestSksUserData(Ref ref) async {
   final sksData = SksUserData.fromJson(response.data as Map<String, dynamic>);
 
   final currentTime = DateTime.now();
-  final sksRefreshInterval = sksData.isResultRecent
-      ? sksData.nextUpdateTimestamp.difference(currentTime)
-      : SksPeopleRepositoryConfig.defaultSksRefreshTime;
+  final sksRefreshInterval =
+      sksData.isResultRecent
+          ? sksData.nextUpdateTimestamp.difference(currentTime)
+          : SksPeopleRepositoryConfig.defaultSksRefreshTime;
 
   ref.setRefresh(sksRefreshInterval);
 

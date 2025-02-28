@@ -35,8 +35,7 @@ class MapView<T extends GoogleNavigable> extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isBigScreen = MediaQuery.sizeOf(context).width >
-        MapViewBottomSheetConfig.horizontalPanelModeMinWidth;
+    final isBigScreen = MediaQuery.sizeOf(context).width > MapViewBottomSheetConfig.horizontalPanelModeMinWidth;
     return ProviderScope(
       overrides: [
         bottomSheetControllerProvider,
@@ -54,14 +53,10 @@ class MapView<T extends GoogleNavigable> extends ConsumerWidget {
         initialActiveItemId: initialActiveItemId,
         child: Scaffold(
           backgroundColor: context.colorTheme.whiteSoap,
-          body: kIsWeb || isBigScreen
-              ? _HorizontalWebLayout<T>()
-              : Stack(
-                  children: [
-                    MapWidget<T>(),
-                    BottomScrollSheet<T>(),
-                  ],
-                ),
+          body:
+              kIsWeb || isBigScreen
+                  ? _HorizontalWebLayout<T>()
+                  : Stack(children: [MapWidget<T>(), BottomScrollSheet<T>()]),
         ),
       ),
     );
@@ -69,9 +64,7 @@ class MapView<T extends GoogleNavigable> extends ConsumerWidget {
 }
 
 class _HorizontalWebLayout<T extends GoogleNavigable> extends StatelessWidget {
-  const _HorizontalWebLayout({
-    super.key,
-  });
+  const _HorizontalWebLayout({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -79,13 +72,7 @@ class _HorizontalWebLayout<T extends GoogleNavigable> extends StatelessWidget {
     return MapViewPopBehaviour<T>(
       screenHeight: MediaQuery.sizeOf(context).height,
       child: Row(
-        children: [
-          SizedBox(
-            width: panelWidth,
-            child: SheetLayoutScheme<T>(),
-          ),
-          Expanded(child: MapWidget<T>()),
-        ],
+        children: [SizedBox(width: panelWidth, child: SheetLayoutScheme<T>()), Expanded(child: MapWidget<T>())],
       ),
     );
   }

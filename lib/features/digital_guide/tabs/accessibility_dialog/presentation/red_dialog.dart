@@ -10,12 +10,7 @@ class RedDialog extends StatelessWidget {
   final String subtitle;
   final Widget child;
 
-  const RedDialog({
-    super.key,
-    required this.title,
-    required this.child,
-    required this.subtitle,
-  });
+  const RedDialog({super.key, required this.title, required this.child, required this.subtitle});
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -25,21 +20,10 @@ class RedDialog extends StatelessWidget {
           color: context.colorTheme.whiteSoap,
           borderRadius: BorderRadius.circular(8),
           border: Border(
-            top: BorderSide(
-              color: context.colorTheme.orangePomegranade,
-            ),
-            bottom: BorderSide(
-              color: context.colorTheme.orangePomegranade,
-              width: 5,
-            ),
+            top: BorderSide(color: context.colorTheme.orangePomegranade),
+            bottom: BorderSide(color: context.colorTheme.orangePomegranade, width: 5),
           ),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withAlpha(64),
-              offset: const Offset(0, 4),
-              blurRadius: 4,
-            ),
-          ],
+          boxShadow: [BoxShadow(color: Colors.black.withAlpha(64), offset: const Offset(0, 4), blurRadius: 4)],
         ),
         child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 332),
@@ -47,11 +31,7 @@ class RedDialog extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               _DialogHeader(title: title),
-              Flexible(
-                child: SingleChildScrollView(
-                  child: _DialogContent(subtitle: subtitle, child: child),
-                ),
-              ),
+              Flexible(child: SingleChildScrollView(child: _DialogContent(subtitle: subtitle, child: child))),
             ],
           ),
         ),
@@ -61,10 +41,7 @@ class RedDialog extends StatelessWidget {
 }
 
 class _DialogContent extends StatelessWidget {
-  const _DialogContent({
-    required this.subtitle,
-    required this.child,
-  });
+  const _DialogContent({required this.subtitle, required this.child});
 
   final String subtitle;
   final Widget child;
@@ -78,10 +55,7 @@ class _DialogContent extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Text(
             subtitle,
-            style: context.aboutUsTheme.body.copyWith(
-              height: 1.4,
-              color: context.colorTheme.greyPigeon,
-            ),
+            style: context.aboutUsTheme.body.copyWith(height: 1.4, color: context.colorTheme.greyPigeon),
           ),
         ),
         const SizedBox(height: 6),
@@ -110,12 +84,7 @@ class _DialogFooter extends StatelessWidget {
           padding: FilterConfig.buttonPadding,
           shape: RoundedRectangleBorder(borderRadius: FilterConfig.radius),
         ),
-        child: Center(
-          child: Text(
-            context.localize.apply,
-            style: context.textTheme.titleWhite,
-          ),
-        ),
+        child: Center(child: Text(context.localize.apply, style: context.textTheme.titleWhite)),
       ),
     );
   }
@@ -133,12 +102,7 @@ class _DialogHeader extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Expanded(
-            child: Text(
-              title,
-              style: context.textTheme.headline.copyWith(height: 1.4),
-            ),
-          ),
+          Expanded(child: Text(title, style: context.textTheme.headline.copyWith(height: 1.4))),
           IconButton(
             icon: const Icon(Icons.close),
             color: context.colorTheme.greyPigeon,

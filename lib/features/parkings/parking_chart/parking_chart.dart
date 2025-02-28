@@ -23,38 +23,27 @@ class ParkingChart extends ConsumerWidget {
     final chartData = ref.watch(chartRepositoryProvider(parking));
     return switch (chartData) {
       AsyncError(:final error) => Material(
-          borderRadius: const BorderRadius.all(WideTileCardConfig.radius),
-          color: context.colorTheme.greyLight.withValues(alpha: 0.8),
-          child: MyErrorWidget(error),
-        ),
-      AsyncValue(:final IList<ChartPoint> value) => value.isEmpty
-          ? Center(
-              child: Text(
-                context.localize.noChartData,
-                style: context.iParkingTheme.subtitleLight.withoutShadows,
-              ),
+        borderRadius: const BorderRadius.all(WideTileCardConfig.radius),
+        color: context.colorTheme.greyLight.withValues(alpha: 0.8),
+        child: MyErrorWidget(error),
+      ),
+      AsyncValue(:final IList<ChartPoint> value) =>
+        value.isEmpty
+            ? Center(
+              child: Text(context.localize.noChartData, style: context.iParkingTheme.subtitleLight.withoutShadows),
             )
-          : Padding(
-              padding: const EdgeInsets.only(
-                top: 14,
-                right: 25,
-                bottom: 9,
-              ),
+            : Padding(
+              padding: const EdgeInsets.only(top: 14, right: 25, bottom: 9),
               child: ChartWidget(value, parking),
             ),
       _ => Padding(
-          padding: const EdgeInsets.only(
-            top: 18,
-            left: 8,
-            right: 8,
-            bottom: 10,
-          ),
-          child: PreviewCardLoading(
-            height: double.infinity,
-            width: double.infinity,
-            color: context.colorTheme.greyPigeon.withValues(alpha: 0.1),
-          ),
+        padding: const EdgeInsets.only(top: 18, left: 8, right: 8, bottom: 10),
+        child: PreviewCardLoading(
+          height: double.infinity,
+          width: double.infinity,
+          color: context.colorTheme.greyPigeon.withValues(alpha: 0.1),
         ),
+      ),
     };
   }
 }

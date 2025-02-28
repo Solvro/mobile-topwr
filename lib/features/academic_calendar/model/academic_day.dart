@@ -14,6 +14,5 @@ class AcademicDay with _$AcademicDay {
     required WeekdayEnum weekday,
   }) = _AcademicDay;
 
-  factory AcademicDay.fromJson(Map<String, dynamic> json) =>
-      _$AcademicDayFromJson(json);
+  factory AcademicDay.fromJson(Map<String, dynamic> json) => _$AcademicDayFromJson(json);
 }

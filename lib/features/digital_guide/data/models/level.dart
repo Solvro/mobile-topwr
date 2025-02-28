@@ -17,12 +17,9 @@ class Level with _$Level {
 
 @freezed
 class LevelTranslations with _$LevelTranslations {
-  const factory LevelTranslations({
-    @JsonKey(name: "pl") required LevelTranslation plTranslation,
-  }) = _LevelTranslations;
+  const factory LevelTranslations({@JsonKey(name: "pl") required LevelTranslation plTranslation}) = _LevelTranslations;
 
-  factory LevelTranslations.fromJson(Map<String, dynamic> json) =>
-      _$LevelTranslationsFromJson(json);
+  factory LevelTranslations.fromJson(Map<String, dynamic> json) => _$LevelTranslationsFromJson(json);
 }
 
 @freezed
@@ -32,6 +29,5 @@ class LevelTranslation with _$LevelTranslation {
     @JsonKey(name: "room_numbers_range") required String roomNumbersRange,
   }) = _LevelTranslation;
 
-  factory LevelTranslation.fromJson(Map<String, dynamic> json) =>
-      _$LevelTranslationFromJson(json);
+  factory LevelTranslation.fromJson(Map<String, dynamic> json) => _$LevelTranslationFromJson(json);
 }

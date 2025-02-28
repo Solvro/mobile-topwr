@@ -27,17 +27,13 @@ class TechnicalMessage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(
-        HomeViewConfig.paddingMedium,
-      ),
+      padding: const EdgeInsets.all(HomeViewConfig.paddingMedium),
       child: ClipRRect(
-        borderRadius:
-            BorderRadius.circular(AppWidgetsConfig.borderRadiusMedium),
+        borderRadius: BorderRadius.circular(AppWidgetsConfig.borderRadiusMedium),
         child: ColoredBox(
-          color: backgoundColor ??
-              (alertType == AlertType.error
-                  ? context.colorTheme.orangePomegranade
-                  : context.colorTheme.blueAzure),
+          color:
+              backgoundColor ??
+              (alertType == AlertType.error ? context.colorTheme.orangePomegranade : context.colorTheme.blueAzure),
           child: ListTile(
             onTap: onTap,
             trailing: icon,
@@ -45,12 +41,7 @@ class TechnicalMessage extends StatelessWidget {
               title ?? DishCategory.technicalInfo.getLocalizedName(context),
               style: context.textTheme.titleWhite,
             ),
-            subtitle: Text(
-              message,
-              style: context.textTheme.bodyWhite.copyWith(
-                color: textColor,
-              ),
-            ),
+            subtitle: Text(message, style: context.textTheme.bodyWhite.copyWith(color: textColor)),
           ),
         ),
       ),

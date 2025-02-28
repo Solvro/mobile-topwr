@@ -24,14 +24,9 @@ class MyExpansionTile extends StatelessWidget {
     return ExpansionTile(
       title: Text(title, style: context.textTheme.title),
       backgroundColor: backgroundColor ?? context.colorTheme.greyLight,
-      collapsedBackgroundColor:
-          collapsedBackgroundColor ?? context.colorTheme.greyLight,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(GuideDetailViewConfig.borderRadius),
-      ),
-      collapsedShape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(GuideDetailViewConfig.borderRadius),
-      ),
+      collapsedBackgroundColor: collapsedBackgroundColor ?? context.colorTheme.greyLight,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(GuideDetailViewConfig.borderRadius)),
+      collapsedShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(GuideDetailViewConfig.borderRadius)),
       iconColor: context.colorTheme.orangePomegranade,
       collapsedIconColor: context.colorTheme.orangePomegranade,
       initiallyExpanded: initiallyExpanded,
@@ -49,8 +44,7 @@ class MyExpansionTileLoading extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius:
-              BorderRadius.circular(GuideDetailViewConfig.borderRadius),
+          borderRadius: BorderRadius.circular(GuideDetailViewConfig.borderRadius),
         ),
         width: double.infinity,
         height: 45,

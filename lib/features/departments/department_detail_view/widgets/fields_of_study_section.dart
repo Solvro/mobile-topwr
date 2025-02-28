@@ -7,8 +7,7 @@ import "../repository/getDepartmentDetails.graphql.dart";
 import "../utils/fields_of_studies.dart";
 import "field_of_study_expansion_tile.dart";
 
-typedef FieldOfStudy
-    = Query$GetDepartmentDetails$Departments_by_id$fieldsOfStudies;
+typedef FieldOfStudy = Query$GetDepartmentDetails$Departments_by_id$fieldsOfStudies;
 
 class FieldsOfStudySection extends StatelessWidget {
   const FieldsOfStudySection({super.key, required this.fieldsOfStudy});
@@ -26,10 +25,7 @@ class FieldsOfStudySection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            context.localize.fields_of_study,
-            style: context.textTheme.headline,
-          ),
+          Text(context.localize.fields_of_study, style: context.textTheme.headline),
           if (firstDegree.isNotEmpty)
             FieldOfStudyExpansionTile(
               title: context.localize.first_degree,
@@ -37,10 +33,7 @@ class FieldsOfStudySection extends StatelessWidget {
               initiallyExpanded: true,
             ),
           if (secondDegree.isNotEmpty)
-            FieldOfStudyExpansionTile(
-              title: context.localize.second_degree,
-              fieldsOfStudy: secondDegree,
-            ),
+            FieldOfStudyExpansionTile(title: context.localize.second_degree, fieldsOfStudy: secondDegree),
           if (longCycle.isNotEmpty)
             FieldOfStudyExpansionTile(
               title: context.localize.long_cycle,

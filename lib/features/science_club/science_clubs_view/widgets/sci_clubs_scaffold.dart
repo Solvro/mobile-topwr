@@ -19,9 +19,7 @@ class SciClubsScaffold extends ConsumerWidget {
         primary: true,
         context,
         title: context.localize.study_circles,
-        onQueryChanged: ref
-            .watch(searchScienceClubsControllerProvider.notifier)
-            .onTextChanged,
+        onQueryChanged: ref.watch(searchScienceClubsControllerProvider.notifier).onTextChanged,
       ),
       body: Stack(
         children: [

@@ -18,43 +18,25 @@ import "region_data_sliver_list_item.dart";
 
 @RoutePage()
 class RegionView extends ConsumerWidget {
-  const RegionView({
-    required this.level,
-    required this.region,
-  });
+  const RegionView({required this.level, required this.region});
 
   final Level level;
   final Region region;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final regionDataAsync =
-        ref.watch(digitalGuideRegionUseCasesProvider(region));
+    final regionDataAsync = ref.watch(digitalGuideRegionUseCasesProvider(region));
 
     return regionDataAsync.when(
-      data: (regionData) =>
-          _RegionView(level: level, region: region, regionData: regionData),
-      error: (error, stackTrace) => Scaffold(
-        appBar: DetailViewAppBar(),
-        body: MyErrorWidget(error),
-      ),
-      loading: () => const Center(
-        child: ShimmeringEffect(
-          child: ColoredBox(
-            color: Colors.white,
-          ),
-        ),
-      ),
+      data: (regionData) => _RegionView(level: level, region: region, regionData: regionData),
+      error: (error, stackTrace) => Scaffold(appBar: DetailViewAppBar(), body: MyErrorWidget(error)),
+      loading: () => const Center(child: ShimmeringEffect(child: ColoredBox(color: Colors.white))),
     );
   }
 }
 
 class _RegionView extends ConsumerWidget {
-  const _RegionView({
-    required this.level,
-    required this.region,
-    required this.regionData,
-  });
+  const _RegionView({required this.level, required this.region, required this.regionData});
 
   final Level level;
   final Region region;
@@ -64,17 +46,14 @@ class _RegionView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final sliverListItems = [
       RegionDataSliverListItem(
-        text: (index) =>
-            regionData.corridors[index].translations.plTranslation.name,
-        onTap: (index) async =>
-            ref.navigateDigitalGuideCorridor(regionData.corridors[index]),
+        text: (index) => regionData.corridors[index].translations.plTranslation.name,
+        onTap: (index) async => ref.navigateDigitalGuideCorridor(regionData.corridors[index]),
         itemCount: region.corridors.length,
       ),
       if (regionData.stairs.isNotEmpty)
         RegionDataSliverListItem(
           text: (index) => context.localize.stairs,
-          onTap: (index) async =>
-              ref.navigateDigitalGuideStairs(regionData.stairs[index].id),
+          onTap: (index) async => ref.navigateDigitalGuideStairs(regionData.stairs[index].id),
           itemCount: region.stairs.length,
         ),
       RegionDataSliverListItem(
@@ -84,25 +63,19 @@ class _RegionView extends ConsumerWidget {
       ),
       if (regionData.stairways.isNotEmpty)
         RegionDataSliverListItem(
-          text: (index) =>
-              regionData.stairways[index].translations.plTranslation.name,
-          onTap: (index) async =>
-              ref.navigateDigitalGuideStairway(regionData.stairways[index]),
+          text: (index) => regionData.stairways[index].translations.plTranslation.name,
+          onTap: (index) async => ref.navigateDigitalGuideStairway(regionData.stairways[index]),
           itemCount: region.stairways.length,
         ),
       if (regionData.ramps.isNotEmpty)
         RegionDataSliverListItem(
           text: (index) => context.localize.ramp,
-          onTap: (index) async =>
-              ref.navigateDigitalGuideRamps(regionData.ramps[index]),
+          onTap: (index) async => ref.navigateDigitalGuideRamps(regionData.ramps[index]),
           itemCount: region.ramps.length,
         ),
       RegionDataSliverListItem(
         text: (index) => context.localize.lift,
-        onTap: (index) async => ref.navigateLiftDetails(
-          regionData.lifts[index],
-          level.translations.plTranslation.name,
-        ),
+        onTap: (index) async => ref.navigateLiftDetails(regionData.lifts[index], level.translations.plTranslation.name),
         itemCount: region.lifts.length,
       ),
       RegionDataSliverListItem(
@@ -121,17 +94,17 @@ class _RegionView extends ConsumerWidget {
         itemCount: region.dressingRooms.length,
       ),
       RegionDataSliverListItem(
-        text: (index) => regionData.toilets[index].toiletType == ToiletType.men
-            ? context.localize.men_toilet
-            : context.localize.women_toilet,
-        onTap: (index) async =>
-            ref.navigateDigitalGuideToilets(regionData.toilets[index]),
+        text:
+            (index) =>
+                regionData.toilets[index].toiletType == ToiletType.men
+                    ? context.localize.men_toilet
+                    : context.localize.women_toilet,
+        onTap: (index) async => ref.navigateDigitalGuideToilets(regionData.toilets[index]),
         itemCount: region.toilets.length,
       ),
       RegionDataSliverListItem(
         text: (index) => regionData.rooms[index].translations.pl.name,
-        onTap: (index) async =>
-            ref.navigateRoomDetails(regionData.rooms[index]),
+        onTap: (index) async => ref.navigateRoomDetails(regionData.rooms[index]),
         itemCount: region.rooms.length,
       ),
       RegionDataSliverListItem(
@@ -144,43 +117,30 @@ class _RegionView extends ConsumerWidget {
     return Scaffold(
       appBar: DetailViewAppBar(),
       body: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: DigitalGuideConfig.heightBig,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: DigitalGuideConfig.heightBig),
         child: CustomScrollView(
           slivers: [
             SliverList(
               delegate: SliverChildListDelegate([
                 Text(
                   region.translations.plTranslation.name,
-                  style: context.textTheme.headline
-                      .copyWith(fontSize: DigitalGuideConfig.headlineFont),
+                  style: context.textTheme.headline.copyWith(fontSize: DigitalGuideConfig.headlineFont),
                 ),
-                const SizedBox(
-                  height: DigitalGuideConfig.heightSmall,
-                ),
+                const SizedBox(height: DigitalGuideConfig.heightSmall),
                 Text(
                   context.localize.region_location,
-                  style: context.textTheme.boldBody
-                      .copyWith(fontSize: DigitalGuideConfig.bodyFont),
+                  style: context.textTheme.boldBody.copyWith(fontSize: DigitalGuideConfig.bodyFont),
                 ),
-                const SizedBox(
-                  height: DigitalGuideConfig.heightSmall,
-                ),
+                const SizedBox(height: DigitalGuideConfig.heightSmall),
                 Text(
                   region.translations.plTranslation.location,
-                  style: context.textTheme.body
-                      .copyWith(fontSize: DigitalGuideConfig.bodyFont),
+                  style: context.textTheme.body.copyWith(fontSize: DigitalGuideConfig.bodyFont),
                 ),
-                const SizedBox(
-                  height: DigitalGuideConfig.heightMedium,
-                ),
+                const SizedBox(height: DigitalGuideConfig.heightMedium),
               ]),
             ),
             ...sliverListItems.map(
-              (regionDataSliverListItem) => RegionDataSliverList(
-                regionDataSliverListItem: regionDataSliverListItem,
-              ),
+              (regionDataSliverListItem) => RegionDataSliverList(regionDataSliverListItem: regionDataSliverListItem),
             ),
           ],
         ),

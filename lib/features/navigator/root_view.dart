@@ -18,8 +18,7 @@ class RootView extends ConsumerWidget {
     return PopScope(
       canPop: !specialPop, // android pop bug workaround
       child: NavigatorPopHandler(
-        onPopWithResult:
-            specialPop ? (result) async => ref.handleAndroidSpecialPop() : null,
+        onPopWithResult: specialPop ? (result) async => ref.handleAndroidSpecialPop() : null,
         child: UpdateChangelogWrapper(
           child: HorizontalSymmetricSafeAreaScaffold(
             bottomNavigationBar: const BottomNavBar(),

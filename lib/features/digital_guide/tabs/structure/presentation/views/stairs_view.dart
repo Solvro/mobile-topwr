@@ -32,73 +32,51 @@ class StairsView extends ConsumerWidget {
       loading: () {
         return const DigitalGuideLoadingView();
       },
-      error: (
-        error,
-        stackTrace,
-      ) {
-        return HorizontalSymmetricSafeAreaScaffold(
-          appBar: DetailViewAppBar(),
-          body: MyErrorWidget(error),
-        );
+      error: (error, stackTrace) {
+        return HorizontalSymmetricSafeAreaScaffold(appBar: DetailViewAppBar(), body: MyErrorWidget(error));
       },
-      data: (data) => _StairsView(
-        stairs: data,
-      ),
+      data: (data) => _StairsView(stairs: data),
     );
   }
 }
 
 class _StairsView extends ConsumerWidget {
-  const _StairsView({
-    required this.stairs,
-  });
+  const _StairsView({required this.stairs});
   final Stairs stairs;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final StairsTranslation stairsInformation =
-        stairs.translations.plTranslation;
+    final StairsTranslation stairsInformation = stairs.translations.plTranslation;
     return Scaffold(
       appBar: DetailViewAppBar(),
       body: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: DigitalGuideConfig.heightBig,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: DigitalGuideConfig.heightBig),
         child: Column(
           children: [
             BulletList(
-              items: [
-                stairsInformation.location,
-                if (stairsInformation.stairsWidth.isNotEmpty)
-                  "${context.localize.stairs_width} ${stairsInformation.stairsWidth}",
-                "${context.localize.stairs_are_emergency_stairs(stairsInformation.areEmergencyStairsComment.toLowerCase())} ${stairsInformation.areEmergencyStairsComment}",
-                if (stairsInformation.comment.isNotEmpty)
-                  stairsInformation.comment,
-              ].where((item) => item.trim().isNotEmpty).toIList(),
+              items:
+                  [
+                    stairsInformation.location,
+                    if (stairsInformation.stairsWidth.isNotEmpty)
+                      "${context.localize.stairs_width} ${stairsInformation.stairsWidth}",
+                    "${context.localize.stairs_are_emergency_stairs(stairsInformation.areEmergencyStairsComment.toLowerCase())} ${stairsInformation.areEmergencyStairsComment}",
+                    if (stairsInformation.comment.isNotEmpty) stairsInformation.comment,
+                  ].where((item) => item.trim().isNotEmpty).toIList(),
             ),
-            const SizedBox(
-              height: DigitalGuideConfig.heightBig,
-            ),
+            const SizedBox(height: DigitalGuideConfig.heightBig),
             ListView.separated(
               physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
                 return DigitalGuideNavLink(
-                  onTap: () async => ref.navigateDigitalGuideRailing(
-                    stairs.railingsIDs[index],
-                  ),
+                  onTap: () async => ref.navigateDigitalGuideRailing(stairs.railingsIDs[index]),
                   text: context.localize.railing,
                 );
               },
               itemCount: stairs.railingsIDs.length,
-              separatorBuilder: (context, index) => const SizedBox(
-                height: DigitalGuideConfig.heightMedium,
-              ),
+              separatorBuilder: (context, index) => const SizedBox(height: DigitalGuideConfig.heightMedium),
               shrinkWrap: true,
             ),
             AccessibilityProfileCard(
-              accessibilityCommentsManager: StairsAccessibilityCommentsManager(
-                stairs: stairs,
-                l10n: context.localize,
-              ),
+              accessibilityCommentsManager: StairsAccessibilityCommentsManager(stairs: stairs, l10n: context.localize),
               backgroundColor: context.colorTheme.whiteSoap,
             ),
           ],

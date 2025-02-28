@@ -11,9 +11,6 @@ double useFiltersSheetHeight(
   final height = MediaQuery.sizeOf(context).height;
   return min(
     FilterConfig.absoluteMaximumBottomSheetHeightFactor * height,
-    max(
-      height * prefferedHeightFactor,
-      FilterConfig.minimalHeight,
-    ),
+    max(height * prefferedHeightFactor, FilterConfig.minimalHeight),
   );
 }

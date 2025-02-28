@@ -7,6 +7,9 @@
 
 include: package:total_lints/app.yaml
 
+formatter:
+  page_width: 120
+
 linter:
   rules:
     prefer_relative_imports: true

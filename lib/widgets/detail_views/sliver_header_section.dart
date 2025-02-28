@@ -7,11 +7,7 @@ import "../zoomable_images.dart";
 import "sliver_logo.dart";
 
 class SliverHeaderSection extends SliverPersistentHeaderDelegate {
-  SliverHeaderSection({
-    this.activeGradient,
-    required this.logoDirectusImageUrl,
-    required this.backgroundImageUrl,
-  });
+  SliverHeaderSection({this.activeGradient, required this.logoDirectusImageUrl, required this.backgroundImageUrl});
 
   final String? logoDirectusImageUrl;
   final String? backgroundImageUrl;
@@ -37,11 +33,7 @@ class SliverHeaderSection extends SliverPersistentHeaderDelegate {
   }
 
   @override
-  Widget build(
-    BuildContext context,
-    double shrinkOffset,
-    bool overlapsContent,
-  ) {
+  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
     final progress = shrinkOffset / maxExtent;
     final logoSize = calcLogoSize(shrinkOffset);
     final logoOpacity = calcLogoOpacity(shrinkOffset, logoSize);

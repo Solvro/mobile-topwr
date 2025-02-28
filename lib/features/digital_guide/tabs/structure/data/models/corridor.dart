@@ -16,8 +16,7 @@ class Corridor with _$Corridor {
     @JsonKey(fromJson: stringToBool) required bool areRoomsEntrances,
     @JsonKey(fromJson: stringToBool) required bool isInformationBoard,
     @JsonKey(fromJson: stringToBool) required bool areRoomPurposeDescribedInEn,
-    @JsonKey(fromJson: stringToBool)
-    required bool isConsistentLevelColorPattern,
+    @JsonKey(fromJson: stringToBool) required bool isConsistentLevelColorPattern,
     @JsonKey(fromJson: stringToBool) required bool arePictorialDirectionalSigns,
     @JsonKey(fromJson: stringToBool) required bool areSeats,
     @JsonKey(fromJson: stringToBool) required bool areVendingMachines,
@@ -26,18 +25,15 @@ class Corridor with _$Corridor {
     @JsonKey(name: "images") required IList<int> imagesIndices,
   }) = _Corridor;
 
-  factory Corridor.fromJson(Map<String, dynamic> json) =>
-      _$CorridorFromJson(json);
+  factory Corridor.fromJson(Map<String, dynamic> json) => _$CorridorFromJson(json);
 }
 
 @freezed
 class CorridorTranslations with _$CorridorTranslations {
-  const factory CorridorTranslations({
-    @JsonKey(name: "pl") required CorridorTranslation plTranslation,
-  }) = _CorridorTranslations;
+  const factory CorridorTranslations({@JsonKey(name: "pl") required CorridorTranslation plTranslation}) =
+      _CorridorTranslations;
 
-  factory CorridorTranslations.fromJson(Map<String, dynamic> json) =>
-      _$CorridorTranslationsFromJson(json);
+  factory CorridorTranslations.fromJson(Map<String, dynamic> json) => _$CorridorTranslationsFromJson(json);
 }
 
 @freezed
@@ -56,6 +52,5 @@ class CorridorTranslation with _$CorridorTranslation {
     required String comment,
   }) = _CorridorTranslation;
 
-  factory CorridorTranslation.fromJson(Map<String, dynamic> json) =>
-      _$CorridorTranslationFromJson(json);
+  factory CorridorTranslation.fromJson(Map<String, dynamic> json) => _$CorridorTranslationFromJson(json);
 }

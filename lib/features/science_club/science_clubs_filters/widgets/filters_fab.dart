@@ -14,39 +14,25 @@ class FiltersFAB extends ConsumerWidget {
 
     final parentProvider = ProviderScope.containerOf(context);
     return FloatingActionButton(
-      onPressed: () async => showModalBottomSheet(
-        context: context,
-        constraints: const BoxConstraints(),
-        isScrollControlled: true,
-        builder: (context) => UncontrolledProviderScope(
-          container: parentProvider,
-          child: const FiltersSheet(),
-        ),
-      ),
-      backgroundColor: isActive
-          ? context.colorTheme.orangePomegranade
-          : context.colorTheme.whiteSoap,
+      onPressed:
+          () async => showModalBottomSheet(
+            context: context,
+            constraints: const BoxConstraints(),
+            isScrollControlled: true,
+            builder: (context) => UncontrolledProviderScope(container: parentProvider, child: const FiltersSheet()),
+          ),
+      backgroundColor: isActive ? context.colorTheme.orangePomegranade : context.colorTheme.whiteSoap,
       child: Stack(
         children: [
           Padding(
             padding: const EdgeInsets.all(8),
             child: Icon(
               Icons.tune,
-              color: !isActive
-                  ? context.colorTheme.orangePomegranade
-                  : context.colorTheme.whiteSoap,
+              color: !isActive ? context.colorTheme.orangePomegranade : context.colorTheme.whiteSoap,
             ),
           ),
           if (isActive)
-            Positioned(
-              top: 4,
-              right: 4,
-              child: Icon(
-                Icons.circle,
-                size: 8,
-                color: context.colorTheme.whiteSoap,
-              ),
-            ),
+            Positioned(top: 4, right: 4, child: Icon(Icons.circle, size: 8, color: context.colorTheme.whiteSoap)),
         ],
       ),
     );

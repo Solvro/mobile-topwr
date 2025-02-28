@@ -31,38 +31,22 @@ class DigitalGuideEntranceDetailsView extends ConsumerWidget {
     //   "${context.localize.entrance_has_tactile_paving(entrance.hasTactilePaving.toString())}. ${comments.hasTactilePavingComment ?? ""}",
     // ].where((item) => item.trim().isNotEmpty).toIList();
     final widgets = [
-      Text(
-        entrance.translations.pl.name ?? "",
-        style: context.textTheme.title.copyWith(fontSize: 24),
-      ),
+      Text(entrance.translations.pl.name ?? "", style: context.textTheme.title.copyWith(fontSize: 24)),
       const SizedBox(height: DigitalGuideConfig.heightMedium),
       Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: DigitalGuideConfig.paddingMedium,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: DigitalGuideConfig.paddingMedium),
         child: BulletList(
-          items: [
-            context.localize.entrance_is_main(entrance.isMain.toString()),
-            context.localize.entrance_is_accessible(
-              entrance.isAccessible.toString(),
-            ),
-            context.localize.entrance_is_for_personel(
-              entrance.isForPersonel.toString(),
-            ),
-            context.localize.entrance_is_lit(entrance.isLit.toString()),
-            context.localize.entrance_is_protection_from_weather(
-              entrance.isProtectionFromWeather.toString(),
-            ),
-            context.localize.entrance_is_emergency_exit(
-              entrance.isEmergencyExit.toString(),
-            ),
-            context.localize.entrance_is_building_marked_in_en(
-              entrance.isBuildingMarkedInEn.toString(),
-            ),
-            context.localize.entrance_are_benches(
-              entrance.areBenches.toString(),
-            ),
-          ].lock,
+          items:
+              [
+                context.localize.entrance_is_main(entrance.isMain.toString()),
+                context.localize.entrance_is_accessible(entrance.isAccessible.toString()),
+                context.localize.entrance_is_for_personel(entrance.isForPersonel.toString()),
+                context.localize.entrance_is_lit(entrance.isLit.toString()),
+                context.localize.entrance_is_protection_from_weather(entrance.isProtectionFromWeather.toString()),
+                context.localize.entrance_is_emergency_exit(entrance.isEmergencyExit.toString()),
+                context.localize.entrance_is_building_marked_in_en(entrance.isBuildingMarkedInEn.toString()),
+                context.localize.entrance_are_benches(entrance.areBenches.toString()),
+              ].lock,
         ),
       ),
       const SizedBox(height: DigitalGuideConfig.heightBig),

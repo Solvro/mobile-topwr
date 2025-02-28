@@ -16,10 +16,7 @@ class DigitsRow extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         for (final digit in Digit.values)
-          IntBox(
-            singleInt: dayLeftString?.getDigit(digit) ??
-                CountdownConfig.defaultDigit.toString(),
-          ),
+          IntBox(singleInt: dayLeftString?.getDigit(digit) ?? CountdownConfig.defaultDigit.toString()),
       ],
     );
   }
@@ -27,10 +24,7 @@ class DigitsRow extends StatelessWidget {
 
 class IntBox extends StatelessWidget {
   final String singleInt;
-  const IntBox({
-    super.key,
-    required this.singleInt,
-  });
+  const IntBox({super.key, required this.singleInt});
 
   @override
   Widget build(BuildContext context) {
@@ -40,20 +34,9 @@ class IntBox extends StatelessWidget {
       decoration: BoxDecoration(
         color: context.colorTheme.whiteSoap,
         borderRadius: BorderRadius.circular(4),
-        boxShadow: const [
-          BoxShadow(
-            color: Color(0x66c62d2e),
-            offset: Offset(-1, 1),
-            blurRadius: 4,
-          ),
-        ],
+        boxShadow: const [BoxShadow(color: Color(0x66c62d2e), offset: Offset(-1, 1), blurRadius: 4)],
       ),
-      child: Center(
-        child: Text(
-          singleInt,
-          style: context.textTheme.headline,
-        ),
-      ),
+      child: Center(child: Text(singleInt, style: context.textTheme.headline)),
     );
   }
 }

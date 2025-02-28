@@ -6,11 +6,7 @@ import "../theme/app_theme.dart";
 import "../utils/launch_url_util.dart";
 
 class TextAndUrl extends ConsumerWidget {
-  const TextAndUrl(
-    this.url,
-    this.text, {
-    super.key,
-  });
+  const TextAndUrl(this.url, this.text, {super.key});
 
   final String url;
   final String text;
@@ -22,9 +18,7 @@ class TextAndUrl extends ConsumerWidget {
       child: Text.rich(
         TextSpan(
           text: text,
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
+          style: const TextStyle(fontWeight: FontWeight.bold),
           children: [
             TextSpan(
               text: url.replaceFirst("https://", " www."),
@@ -33,8 +27,7 @@ class TextAndUrl extends ConsumerWidget {
                 decorationColor: context.colorTheme.orangePomegranade,
                 fontWeight: FontWeight.bold,
               ),
-              recognizer: TapGestureRecognizer()
-                ..onTap = () async => ref.launch(url),
+              recognizer: TapGestureRecognizer()..onTap = () async => ref.launch(url),
             ),
           ],
         ),

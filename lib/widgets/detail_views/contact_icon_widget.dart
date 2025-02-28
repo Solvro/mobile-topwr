@@ -3,10 +3,7 @@ import "package:flutter_svg/svg.dart";
 import "../../theme/app_theme.dart";
 
 class ContactIconWidget extends StatelessWidget {
-  const ContactIconWidget({
-    super.key,
-    required this.icon,
-  });
+  const ContactIconWidget({super.key, required this.icon});
 
   final String icon;
 
@@ -20,15 +17,7 @@ class ContactIconWidget extends StatelessWidget {
           width: 35,
           height: 35,
           color: context.colorTheme.whiteSoap,
-          child: Center(
-            child: SizedBox(
-              width: 20,
-              child: SvgPicture.asset(
-                icon,
-                fit: BoxFit.fitWidth,
-              ),
-            ),
-          ),
+          child: Center(child: SizedBox(width: 20, child: SvgPicture.asset(icon, fit: BoxFit.fitWidth))),
         ),
       ),
     );

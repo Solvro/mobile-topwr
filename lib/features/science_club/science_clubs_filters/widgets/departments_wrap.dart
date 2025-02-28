@@ -21,35 +21,30 @@ class DepartmentsWrap extends ConsumerWidget {
     return switch (departments) {
       AsyncError() => const SizedBox.shrink(),
       AsyncValue(:final IList<Department> value) => Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            if (value.isNotEmpty)
-              FiltersSectionHeader(context.localize.departments),
-            Wrap(
-              children: [
-                for (final department in value)
-                  Consumer(
-                    builder: (context, ref, child) {
-                      final controller = ref
-                          .watch(selectedDepartmentControllerProvider.notifier);
-                      final isSelected = ref.watchContains(
-                        selectedDepartmentControllerProvider,
-                        department,
-                      );
-                      return MyFilterChip(
-                        label: department.code,
-                        onTap: () => controller.toggleFilter(department),
-                        selected: isSelected,
-                        selectedColor: department.gradient.colors.first,
-                        selectedBorderColor: department.gradient.colors.last,
-                        tooltip: department.name,
-                      );
-                    },
-                  ),
-              ],
-            ),
-          ],
-        ),
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if (value.isNotEmpty) FiltersSectionHeader(context.localize.departments),
+          Wrap(
+            children: [
+              for (final department in value)
+                Consumer(
+                  builder: (context, ref, child) {
+                    final controller = ref.watch(selectedDepartmentControllerProvider.notifier);
+                    final isSelected = ref.watchContains(selectedDepartmentControllerProvider, department);
+                    return MyFilterChip(
+                      label: department.code,
+                      onTap: () => controller.toggleFilter(department),
+                      selected: isSelected,
+                      selectedColor: department.gradient.colors.first,
+                      selectedBorderColor: department.gradient.colors.last,
+                      tooltip: department.name,
+                    );
+                  },
+                ),
+            ],
+          ),
+        ],
+      ),
       _ => const FilterChipsLoading(),
     };
   }

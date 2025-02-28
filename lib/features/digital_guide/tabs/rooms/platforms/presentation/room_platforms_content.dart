@@ -15,17 +15,12 @@ class RoomPlatformsContent extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final asyncRoomPlatforms =
-        ref.watch(roomPlatformsRepositoryProvider(platformId));
+    final asyncRoomPlatforms = ref.watch(roomPlatformsRepositoryProvider(platformId));
 
     return asyncRoomPlatforms.when(
-      data: (roomPlatformsData) => _RoomPlatformsContent(
-        roomPlatformsResponse: roomPlatformsData,
-      ),
+      data: (roomPlatformsData) => _RoomPlatformsContent(roomPlatformsResponse: roomPlatformsData),
       error: (error, stackTrace) => MyErrorWidget(error),
-      loading: () => const Center(
-        child: CircularProgressIndicator(),
-      ),
+      loading: () => const Center(child: CircularProgressIndicator()),
     );
   }
 }
@@ -37,18 +32,12 @@ class _RoomPlatformsContent extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final roomPlatformsComment =
-        context.getRoomPlatformsCommentsList(roomPlatformsResponse);
+    final roomPlatformsComment = context.getRoomPlatformsCommentsList(roomPlatformsResponse);
 
     return Padding(
       padding: DigitalGuideConfig.symetricalPaddingBig.copyWith(top: 0),
       child: Column(
-        children: [
-          BulletList(items: roomPlatformsComment),
-          const SizedBox(
-            height: DigitalGuideConfig.heightBig,
-          ),
-        ],
+        children: [BulletList(items: roomPlatformsComment), const SizedBox(height: DigitalGuideConfig.heightBig)],
       ),
     );
   }

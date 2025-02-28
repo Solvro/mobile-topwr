@@ -17,15 +17,15 @@ class BuildingsSection extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) => Column(
-        children: [
-          SubsectionHeader(
-            title: context.localize.buildings_title,
-            actionTitle: context.localize.map_button,
-            onClick: () async => ref.navigateBuildings(null),
-          ),
-          const _BuildingsList(),
-        ],
-      );
+    children: [
+      SubsectionHeader(
+        title: context.localize.buildings_title,
+        actionTitle: context.localize.map_button,
+        onClick: () async => ref.navigateBuildings(null),
+      ),
+      const _BuildingsList(),
+    ],
+  );
 }
 
 class _BuildingsList extends ConsumerWidget {
@@ -37,16 +37,9 @@ class _BuildingsList extends ConsumerWidget {
     return switch (state) {
       AsyncError(:final error) => MyErrorWidget(error),
       AsyncValue(:final IList<BuildingModel> value) => SmallHorizontalPadding(
-          child: MediumBottomPadding(
-            child: SizedBox(
-              height: 120,
-              child: _DataListBuildingsTiles(value),
-            ),
-          ),
-        ),
-      _ => const MediumLeftPadding(
-          child: ScrollableSectionLoading(),
-        ),
+        child: MediumBottomPadding(child: SizedBox(height: 120, child: _DataListBuildingsTiles(value))),
+      ),
+      _ => const MediumLeftPadding(child: ScrollableSectionLoading()),
     };
   }
 }
@@ -66,13 +59,9 @@ class _DataListBuildingsTiles extends ConsumerWidget {
         final mapItemCard = _BuildMapItemCard(mapItem: mapItem, ref: ref);
 
         if (index != buildings.length - 1) {
-          return MediumLeftPadding(
-            child: mapItemCard,
-          );
+          return MediumLeftPadding(child: mapItemCard);
         } else {
-          return MediumHorizontalPadding(
-            child: mapItemCard,
-          );
+          return MediumHorizontalPadding(child: mapItemCard);
         }
       },
     );
@@ -80,10 +69,7 @@ class _DataListBuildingsTiles extends ConsumerWidget {
 }
 
 class _BuildMapItemCard extends StatelessWidget {
-  const _BuildMapItemCard({
-    required this.mapItem,
-    required this.ref,
-  });
+  const _BuildMapItemCard({required this.mapItem, required this.ref});
 
   final BuildingModel mapItem;
   final WidgetRef ref;

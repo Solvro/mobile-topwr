@@ -18,15 +18,11 @@ class DigitalGuideLodgeExpansionTileContent extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final lodgeResponse =
-        ref.watch(lodgesRepositoryProvider(digitalGuideResponse));
+    final lodgeResponse = ref.watch(lodgesRepositoryProvider(digitalGuideResponse));
     return lodgeResponse.when(
-      data: (data) =>
-          _DigitalGuideLodgeExpansionTileContent(lodge: data.firstOrNull),
+      data: (data) => _DigitalGuideLodgeExpansionTileContent(lodge: data.firstOrNull),
       error: (error, _) => MyErrorWidget(error),
-      loading: () => const Center(
-        child: CircularProgressIndicator(),
-      ),
+      loading: () => const Center(child: CircularProgressIndicator()),
     );
   }
 }
@@ -34,9 +30,7 @@ class DigitalGuideLodgeExpansionTileContent extends ConsumerWidget {
 class _DigitalGuideLodgeExpansionTileContent extends StatelessWidget {
   final DigitalGuideLodge? lodge;
 
-  const _DigitalGuideLodgeExpansionTileContent({
-    required this.lodge,
-  });
+  const _DigitalGuideLodgeExpansionTileContent({required this.lodge});
 
   @override
   Widget build(BuildContext context) {
@@ -51,41 +45,24 @@ class _DigitalGuideLodgeExpansionTileContent extends StatelessWidget {
         children: [
           Text(context.localize.localization, style: context.textTheme.title),
           Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: DigitalGuideConfig.heightSmall,
-            ),
+            padding: const EdgeInsets.symmetric(vertical: DigitalGuideConfig.heightSmall),
             child: Text(lodgeInformation.location),
           ),
           if (lodgeInformation.workingDaysAndHours.isNotEmpty)
-            Text(
-              context.localize.working_hours,
-              style: context.textTheme.title,
-            ),
+            Text(context.localize.working_hours, style: context.textTheme.title),
           if (lodgeInformation.workingDaysAndHours.isNotEmpty)
             Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: DigitalGuideConfig.heightSmall,
-              ),
+              padding: const EdgeInsets.symmetric(vertical: DigitalGuideConfig.heightSmall),
               child: Text(lodgeInformation.workingDaysAndHours),
             ),
           if (lodgeInformation.comment.isNotEmpty)
             Padding(
-              padding: const EdgeInsets.only(
-                bottom: DigitalGuideConfig.paddingSmall,
-              ),
-              child: Text(
-                context.localize.additional_information,
-                style: context.textTheme.title,
-              ),
+              padding: const EdgeInsets.only(bottom: DigitalGuideConfig.paddingSmall),
+              child: Text(context.localize.additional_information, style: context.textTheme.title),
             ),
           Text(lodgeInformation.comment),
-          if (lodgeInformation.comment.isNotEmpty)
-            const SizedBox(
-              height: DigitalGuideConfig.heightMedium,
-            ),
-          DigitalGuidePhotoRow(
-            imagesIDs: lodge!.imagesIds?.toIList() ?? const IList.empty(),
-          ),
+          if (lodgeInformation.comment.isNotEmpty) const SizedBox(height: DigitalGuideConfig.heightMedium),
+          DigitalGuidePhotoRow(imagesIDs: lodge!.imagesIds?.toIList() ?? const IList.empty()),
         ],
       ),
     );

@@ -27,44 +27,33 @@ class RampsView extends ConsumerWidget {
     return Scaffold(
       appBar: DetailViewAppBar(),
       body: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: DigitalGuideConfig.heightBig,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: DigitalGuideConfig.heightBig),
         child: Column(
           children: [
             BulletList(
-              items: [
-                rampsInformation.location,
-                "${context.localize.ramps_width} ${ramps.rampWidth} cm.",
-                context.localize.ramps_is_permanent_ramp(ramps.isPermanentRamp),
-                if (rampsInformation.comment.isNotEmpty)
-                  rampsInformation.comment,
-              ].where((item) => item.trim().isNotEmpty).toIList(),
+              items:
+                  [
+                    rampsInformation.location,
+                    "${context.localize.ramps_width} ${ramps.rampWidth} cm.",
+                    context.localize.ramps_is_permanent_ramp(ramps.isPermanentRamp),
+                    if (rampsInformation.comment.isNotEmpty) rampsInformation.comment,
+                  ].where((item) => item.trim().isNotEmpty).toIList(),
             ),
-            const SizedBox(
-              height: DigitalGuideConfig.heightBig,
-            ),
+            const SizedBox(height: DigitalGuideConfig.heightBig),
             ListView.separated(
               physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
                 return DigitalGuideNavLink(
-                  onTap: () async => ref.navigateDigitalGuideRailing(
-                    ramps.railingsIDs[index],
-                  ),
+                  onTap: () async => ref.navigateDigitalGuideRailing(ramps.railingsIDs[index]),
                   text: context.localize.railing,
                 );
               },
               itemCount: ramps.railingsIDs.length,
-              separatorBuilder: (context, index) => const SizedBox(
-                height: DigitalGuideConfig.heightMedium,
-              ),
+              separatorBuilder: (context, index) => const SizedBox(height: DigitalGuideConfig.heightMedium),
               shrinkWrap: true,
             ),
             AccessibilityProfileCard(
-              accessibilityCommentsManager: RampsAccessibilityCommentsManager(
-                ramps: ramps,
-                l10n: context.localize,
-              ),
+              accessibilityCommentsManager: RampsAccessibilityCommentsManager(ramps: ramps, l10n: context.localize),
               backgroundColor: context.colorTheme.whiteSoap,
             ),
           ],

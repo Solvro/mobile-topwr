@@ -10,34 +10,23 @@ class ContactIconsModel {
   final String? url;
   final int order;
 
-  ContactIconsModel({
-    String? text,
-    this.url,
-    String? icon,
-  })  : icon = icon ?? url.determineIcon(),
-        order = url.determineIconOrder(),
-        text = text ?? url;
+  ContactIconsModel({String? text, this.url, String? icon})
+    : icon = icon ?? url.determineIcon(),
+      order = url.determineIconOrder(),
+      text = text ?? url;
 }
 
 extension IconDeterminerX on String? {
   String determineIcon() {
     return this != null
-        ? ContactIconsConfig.iconsPaths.entries
-                .firstWhereOrNull(
-                  (e) => this!.contains(e.key),
-                )
-                ?.value ??
+        ? ContactIconsConfig.iconsPaths.entries.firstWhereOrNull((e) => this!.contains(e.key))?.value ??
             ContactIconsConfig.defaultIcon
         : ContactIconsConfig.defaultIcon;
   }
 
   int determineIconOrder() {
     return this != null
-        ? ContactIconsConfig.iconsOrder.entries
-                .firstWhereOrNull(
-                  (e) => this!.contains(e.key),
-                )
-                ?.value ??
+        ? ContactIconsConfig.iconsOrder.entries.firstWhereOrNull((e) => this!.contains(e.key))?.value ??
             ContactIconsConfig.defaultIconOrder
         : ContactIconsConfig.defaultIconOrder;
   }

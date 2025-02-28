@@ -21,12 +21,8 @@ class ParkingsIcons {
   static const _kFontFam = 'IParkingIcons';
   static const String? _kFontPkg = null;
 
-  static const IconData directions_car =
-      IconData(0xe807, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData ip_close =
-      IconData(0xe808, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData ipark_info =
-      IconData(0xe809, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData map_nav =
-      IconData(0xe80a, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData directions_car = IconData(0xe807, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData ip_close = IconData(0xe808, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData ipark_info = IconData(0xe809, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData map_nav = IconData(0xe80a, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }

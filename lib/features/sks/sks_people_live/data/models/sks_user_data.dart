@@ -16,13 +16,8 @@ class SksUserData with _$SksUserData {
     required DateTime nextUpdateTimestamp,
   }) = _SksUserData;
 
-  factory SksUserData.fromJson(Map<String, dynamic> json) =>
-      _$SksUserDataFromJson(json);
+  factory SksUserData.fromJson(Map<String, dynamic> json) => _$SksUserDataFromJson(json);
 }
 
 @JsonEnum(fieldRename: FieldRename.screamingSnake)
-enum Trend {
-  increasing,
-  decreasing,
-  stable,
-}
+enum Trend { increasing, decreasing, stable }

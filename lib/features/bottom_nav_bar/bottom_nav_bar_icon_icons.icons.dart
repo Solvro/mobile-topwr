@@ -21,16 +21,10 @@ class BottomNavBarIcons {
   static const _kFontFam = 'BottomNavBarIcons';
   static const String? _kFontPkg = null;
 
-  static const IconData departments_icon =
-      IconData(0xe807, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData map_icon =
-      IconData(0xe808, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData info_icon =
-      IconData(0xe809, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData home_icon =
-      IconData(0xe80a, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData sci_clubs_icon =
-      IconData(0xeb63, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData view_grid =
-      IconData(0xeba8, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData departments_icon = IconData(0xe807, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData map_icon = IconData(0xe808, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData info_icon = IconData(0xe809, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData home_icon = IconData(0xe80a, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData sci_clubs_icon = IconData(0xeb63, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData view_grid = IconData(0xeba8, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }

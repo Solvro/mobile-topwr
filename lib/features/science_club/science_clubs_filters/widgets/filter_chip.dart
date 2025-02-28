@@ -24,15 +24,11 @@ class MyFilterChip extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Theme(
-      data: Theme.of(context).copyWith(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: context.colorTheme.orangePomegranade,
-        ),
-      ),
+      data: Theme.of(
+        context,
+      ).copyWith(colorScheme: ColorScheme.fromSeed(seedColor: context.colorTheme.orangePomegranade)),
       child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: ScienceClubsViewConfig.microPadding,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: ScienceClubsViewConfig.microPadding),
         child: ChoiceChip(
           tooltip: tooltip ?? label,
           showCheckmark: false,
@@ -41,19 +37,12 @@ class MyFilterChip extends ConsumerWidget {
           onSelected: (_) => onTap(),
           selectedColor: selectedColor ?? context.colorTheme.orangePomegranade,
           backgroundColor: Colors.transparent,
-          labelStyle: TextStyle(
-            color: selected ? Colors.white : context.colorTheme.greyPigeon,
-          ),
+          labelStyle: TextStyle(color: selected ? Colors.white : context.colorTheme.greyPigeon),
           side: BorderSide(
-            color: selected
-                ? selectedBorderColor ?? context.colorTheme.orangePomegranade
-                : context.colorTheme.greyPigeon,
+            color:
+                selected ? selectedBorderColor ?? context.colorTheme.orangePomegranade : context.colorTheme.greyPigeon,
           ),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(
-              ScienceClubsViewConfig.buttonBorderRadius,
-            ),
-          ),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(ScienceClubsViewConfig.buttonBorderRadius)),
         ),
       ),
     );

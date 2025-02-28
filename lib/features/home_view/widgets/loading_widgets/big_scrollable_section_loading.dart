@@ -20,9 +20,7 @@ class BigScrollableSectionLoading extends StatelessWidget {
       mainAxisItemSize: BigPreviewCardConfig.cardWidth,
       scrollDirection: Axis.horizontal,
       itemBuilder: (context, index) {
-        return const MediumLeftPadding(
-          child: BigPreviewCardLoading(),
-        );
+        return const MediumLeftPadding(child: BigPreviewCardLoading());
       },
     );
   }

@@ -8,12 +8,7 @@ abstract class ApiBaseConfig {
   static const ttlPrefsPrefix = "TTL_CACHE_TIMESTAMP_PREFIX_";
 }
 
-@Envied(
-  path: ".env",
-  obfuscate: true,
-  useConstantCase: true,
-  requireEnvFile: true,
-)
+@Envied(path: ".env", obfuscate: true, useConstantCase: true, requireEnvFile: true)
 abstract class Env {
   @EnviedField()
   static final String apiUrl = _Env.apiUrl;
@@ -30,8 +25,7 @@ abstract class Env {
   @EnviedField()
   static final String digitalGuideUrl = _Env.digitalGuideUrl;
   @EnviedField()
-  static final String digitalGuideAuthorizationToken =
-      _Env.digitalGuideAuthorizationToken;
+  static final String digitalGuideAuthorizationToken = _Env.digitalGuideAuthorizationToken;
   @EnviedField()
   static final String digitalGuideAddonsUrl = _Env.digitalGuideAddonsUrl;
   @EnviedField()

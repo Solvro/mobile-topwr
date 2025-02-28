@@ -15,8 +15,7 @@ class SksMenuResponse with _$SksMenuResponse {
     required List<SksMenuDish> meals,
   }) = _SksMenuResponse;
 
-  factory SksMenuResponse.fromJson(Map<String, dynamic> json) =>
-      _$SksMenuResponseFromJson(json);
+  factory SksMenuResponse.fromJson(Map<String, dynamic> json) => _$SksMenuResponseFromJson(json);
 }
 
 @freezed
@@ -29,6 +28,5 @@ class ExtendedSksMenuResponse with _$ExtendedSksMenuResponse {
     required OpeningHours openingHours,
   }) = _ExtendedSksMenuResponse;
 
-  factory ExtendedSksMenuResponse.fromJson(Map<String, dynamic> json) =>
-      _$ExtendedSksMenuResponseFromJson(json);
+  factory ExtendedSksMenuResponse.fromJson(Map<String, dynamic> json) => _$ExtendedSksMenuResponseFromJson(json);
 }

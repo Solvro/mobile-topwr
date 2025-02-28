@@ -16,10 +16,7 @@ class Toolbar extends StatelessWidget {
           children: [
             MyLocationButton(),
             SizedBox(height: 4),
-            MapCompass.cupertino(
-              hideIfRotatedNorth: true,
-              padding: EdgeInsets.zero,
-            ),
+            MapCompass.cupertino(hideIfRotatedNorth: true, padding: EdgeInsets.zero),
           ],
         ),
       ),

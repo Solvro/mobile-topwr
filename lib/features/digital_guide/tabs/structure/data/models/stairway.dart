@@ -21,19 +21,16 @@ class Stairway with _$Stairway {
     @JsonKey(name: "images") required IList<int> imagesIds,
   }) = _Stairway;
 
-  factory Stairway.fromJson(Map<String, dynamic> json) =>
-      _$StairwayFromJson(json);
+  factory Stairway.fromJson(Map<String, dynamic> json) => _$StairwayFromJson(json);
 }
 
 @freezed
 class StairwayTranslations with _$StairwayTranslations {
   @JsonSerializable(fieldRename: FieldRename.snake)
-  const factory StairwayTranslations({
-    @JsonKey(name: "pl") required StairwayTranslation plTranslation,
-  }) = _StairwayTranslations;
+  const factory StairwayTranslations({@JsonKey(name: "pl") required StairwayTranslation plTranslation}) =
+      _StairwayTranslations;
 
-  factory StairwayTranslations.fromJson(Map<String, dynamic> json) =>
-      _$StairwayTranslationsFromJson(json);
+  factory StairwayTranslations.fromJson(Map<String, dynamic> json) => _$StairwayTranslationsFromJson(json);
 }
 
 @freezed
@@ -51,6 +48,5 @@ class StairwayTranslation with _$StairwayTranslation {
     required String comment,
   }) = _StairwayTranslation;
 
-  factory StairwayTranslation.fromJson(Map<String, dynamic> json) =>
-      _$StairwayTranslationFromJson(json);
+  factory StairwayTranslation.fromJson(Map<String, dynamic> json) => _$StairwayTranslationFromJson(json);
 }

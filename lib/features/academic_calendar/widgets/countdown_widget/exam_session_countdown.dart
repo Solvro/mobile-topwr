@@ -26,30 +26,18 @@ class ExamSessionCountdown extends ConsumerWidget {
           decoration: BoxDecoration(
             gradient: context.colorTheme.toPwrGradient,
             borderRadius: BorderRadius.circular(8),
-            boxShadow: const [
-              BoxShadow(
-                spreadRadius: 6,
-                blurRadius: 11,
-                color: Color(0x28fa6465),
-              ),
-            ],
+            boxShadow: const [BoxShadow(spreadRadius: 6, blurRadius: 11, color: Color(0x28fa6465))],
           ),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.all(16),
-                child: DigitsRow(academicCalendar),
-              ),
+              Padding(padding: const EdgeInsets.all(16), child: DigitsRow(academicCalendar)),
               Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      context.localize.days,
-                      style: context.textTheme.headlineWhite,
-                    ),
+                    Text(context.localize.days, style: context.textTheme.headlineWhite),
                     Padding(
                       padding: const EdgeInsets.only(right: 8),
                       child: Text(
@@ -65,10 +53,7 @@ class ExamSessionCountdown extends ConsumerWidget {
                 alignment: Alignment.centerRight,
                 child: Padding(
                   padding: const EdgeInsets.all(16),
-                  child: Icon(
-                    Icons.open_in_new_rounded,
-                    color: context.colorTheme.whiteSoap,
-                  ),
+                  child: Icon(Icons.open_in_new_rounded, color: context.colorTheme.whiteSoap),
                 ),
               ),
             ],

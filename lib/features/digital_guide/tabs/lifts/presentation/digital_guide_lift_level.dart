@@ -11,11 +11,7 @@ import "../../../presentation/widgets/digital_guide_nav_link.dart";
 import "../data/models/digital_guide_lift.dart";
 
 class DigitalGuideLiftLevel extends ConsumerWidget {
-  const DigitalGuideLiftLevel({
-    super.key,
-    required this.level,
-    required this.lifts,
-  });
+  const DigitalGuideLiftLevel({super.key, required this.level, required this.lifts});
 
   final Level level;
   final IList<DigitalGuideLift> lifts;
@@ -25,33 +21,25 @@ class DigitalGuideLiftLevel extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          level.translations.plTranslation.name,
-          style: context.textTheme.lightTitle,
-        ),
+        Text(level.translations.plTranslation.name, style: context.textTheme.lightTitle),
         const SizedBox(height: 10),
         ListView.separated(
           physics: const NeverScrollableScrollPhysics(),
-          itemBuilder: (context, index) => DigitalGuideNavLink(
-            onTap: () async {
-              await ref.navigateLiftDetails(
-                lifts[index],
-                level.translations.plTranslation.name,
-              );
-            },
-            text: context.localize.additional_information,
-          ),
-          separatorBuilder: (context, index) => SizedBox(
-            height: index == lifts.length - 1
-                ? DigitalGuideConfig.heightSmall
-                : DigitalGuideConfig.heightMedium,
-          ),
+          itemBuilder:
+              (context, index) => DigitalGuideNavLink(
+                onTap: () async {
+                  await ref.navigateLiftDetails(lifts[index], level.translations.plTranslation.name);
+                },
+                text: context.localize.additional_information,
+              ),
+          separatorBuilder:
+              (context, index) => SizedBox(
+                height: index == lifts.length - 1 ? DigitalGuideConfig.heightSmall : DigitalGuideConfig.heightMedium,
+              ),
           itemCount: lifts.length,
           shrinkWrap: true,
         ),
-        const SizedBox(
-          height: DigitalGuideConfig.heightMedium,
-        ),
+        const SizedBox(height: DigitalGuideConfig.heightMedium),
       ],
     );
   }

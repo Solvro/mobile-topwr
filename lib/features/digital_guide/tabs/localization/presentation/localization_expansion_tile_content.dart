@@ -11,11 +11,7 @@ import "../../../data/models/digital_guide_response.dart";
 import "../../../presentation/widgets/digital_guide_image.dart";
 
 class LocalizationExpansionTileContent extends ConsumerWidget {
-  const LocalizationExpansionTileContent({
-    super.key,
-    required this.digitalGuideData,
-    required this.building,
-  });
+  const LocalizationExpansionTileContent({super.key, required this.digitalGuideData, required this.building});
 
   final DigitalGuideResponse digitalGuideData;
   final BuildingModel building;
@@ -27,21 +23,13 @@ class LocalizationExpansionTileContent extends ConsumerWidget {
         Padding(
           padding: const EdgeInsets.all(DigitalGuideConfig.paddingMedium),
           child: ClipRRect(
-            borderRadius:
-                BorderRadius.circular(DigitalGuideConfig.borderRadiusMedium),
+            borderRadius: BorderRadius.circular(DigitalGuideConfig.borderRadiusMedium),
             child: DigitalGuideImage(id: digitalGuideData.locationMapId),
           ),
         ),
         TextButton.icon(
-          icon: Icon(
-            Icons.navigation,
-            color: context.colorTheme.orangePomegranade,
-            size: 16,
-          ),
-          onPressed: () async => _navigateToBuilding(
-            ref,
-            building,
-          ),
+          icon: Icon(Icons.navigation, color: context.colorTheme.orangePomegranade, size: 16),
+          onPressed: () async => _navigateToBuilding(ref, building),
           label: Text.rich(
             TextSpan(
               text: context.localize.navigate_to_building,
@@ -57,12 +45,8 @@ class LocalizationExpansionTileContent extends ConsumerWidget {
     );
   }
 
-  Future<void> _navigateToBuilding(
-    WidgetRef ref,
-    BuildingModel building,
-  ) async {
-    final LatLng buildingCoordinates =
-        LatLng(building.latitude, building.longitude);
+  Future<void> _navigateToBuilding(WidgetRef ref, BuildingModel building) async {
+    final LatLng buildingCoordinates = LatLng(building.latitude, building.longitude);
     await GoogleMapsLinkUtils.navigateTo(buildingCoordinates, ref);
   }
 }

@@ -21,15 +21,11 @@ class NewsSection extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) => Column(
-        children: [
-          SubsectionHeader(
-            title: context.localize.guide,
-            actionTitle: context.localize.list,
-            onClick: ref.navigateGuide,
-          ),
-          const _NewsList(),
-        ],
-      );
+    children: [
+      SubsectionHeader(title: context.localize.guide, actionTitle: context.localize.list, onClick: ref.navigateGuide),
+      const _NewsList(),
+    ],
+  );
 }
 
 class _NewsList extends ConsumerWidget {
@@ -41,23 +37,18 @@ class _NewsList extends ConsumerWidget {
     return switch (state) {
       AsyncError(:final error) => MyErrorWidget(error),
       AsyncValue(:final IList<GuidePost> value) => SmallHorizontalPadding(
-          child: SizedBox(
-            height: BigPreviewCardConfig.cardHeight,
-            child: _NewsDataList(value),
-          ),
-        ),
+        child: SizedBox(height: BigPreviewCardConfig.cardHeight, child: _NewsDataList(value)),
+      ),
       _ => const Padding(
-          padding: EdgeInsets.only(
-            left: HomeViewConfig.paddingMedium,
-            top: HomeViewConfig.paddingMedium *
-                2, // twice the padding of normal state, just to look cool
-          ),
-          child: SizedBox(
-            height:
-                BigPreviewCardConfig.cardHeight - HomeViewConfig.paddingMedium,
-            child: BigScrollableSectionLoading(),
-          ),
+        padding: EdgeInsets.only(
+          left: HomeViewConfig.paddingMedium,
+          top: HomeViewConfig.paddingMedium * 2, // twice the padding of normal state, just to look cool
         ),
+        child: SizedBox(
+          height: BigPreviewCardConfig.cardHeight - HomeViewConfig.paddingMedium,
+          child: BigScrollableSectionLoading(),
+        ),
+      ),
     };
   }
 }
@@ -79,13 +70,9 @@ class _NewsDataList extends ConsumerWidget {
         final postCard = _BuildNewsCard(post: post, ref: ref);
 
         if (index != posts.length - 1) {
-          return MediumLeftPadding(
-            child: postCard,
-          );
+          return MediumLeftPadding(child: postCard);
         } else {
-          return MediumHorizontalPadding(
-            child: postCard,
-          );
+          return MediumHorizontalPadding(child: postCard);
         }
       },
     );
@@ -93,10 +80,7 @@ class _NewsDataList extends ConsumerWidget {
 }
 
 class _BuildNewsCard extends StatelessWidget {
-  const _BuildNewsCard({
-    required this.post,
-    required this.ref,
-  });
+  const _BuildNewsCard({required this.post, required this.ref});
 
   final GuidePost post;
   final WidgetRef ref;
@@ -108,9 +92,7 @@ class _BuildNewsCard extends StatelessWidget {
       shortDescription: post.short_description ?? "",
       directusUrl: post.cover?.filename_disk,
       onClick: () {
-        unawaited(
-          ref.navigateGuideDetail(post.id),
-        );
+        unawaited(ref.navigateGuideDetail(post.id));
       },
       boxFit: BoxFit.cover,
     );

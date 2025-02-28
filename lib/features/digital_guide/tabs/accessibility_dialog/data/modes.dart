@@ -28,13 +28,11 @@ class LowVision extends ModeWithKey {
 }
 
 class SensorySensitivity extends ModeWithKey {
-  const SensorySensitivity()
-      : super("_prefs_accessibility_sensory_sensitivity");
+  const SensorySensitivity() : super("_prefs_accessibility_sensory_sensitivity");
 }
 
 class CognitiveImpairment extends ModeWithKey {
-  const CognitiveImpairment()
-      : super("_prefs_accessibility_cognitive_impairment");
+  const CognitiveImpairment() : super("_prefs_accessibility_cognitive_impairment");
 }
 
 class HearingImpairment extends ModeWithKey {
@@ -42,11 +40,5 @@ class HearingImpairment extends ModeWithKey {
 }
 
 class VisualImpairment extends ModeWithChildren {
-  const VisualImpairment()
-      : super(
-          const [
-            LowVision(),
-            Blind(),
-          ],
-        );
+  const VisualImpairment() : super(const [LowVision(), Blind()]);
 }

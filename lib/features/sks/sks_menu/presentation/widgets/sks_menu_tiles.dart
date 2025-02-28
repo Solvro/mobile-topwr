@@ -23,10 +23,11 @@ class SksMenuTile extends StatelessWidget {
         backgroundColor: context.colorTheme.whiteSoap,
         initiallyExpanded: true,
         title: title,
-        children: dishes
-            .map<Widget>((dish) => SksMenuDishDetailsTile(dish: dish))
-            .separate((i, e0, e1) => const SizedBox(height: 12))
-            .toList(),
+        children:
+            dishes
+                .map<Widget>((dish) => SksMenuDishDetailsTile(dish: dish))
+                .separate((i, e0, e1) => const SizedBox(height: 12))
+                .toList(),
       ),
     );
   }
@@ -43,30 +44,16 @@ class SksMenuDishDetailsTile extends StatelessWidget {
       decoration: BoxDecoration(
         color: context.colorTheme.whiteSoap,
         borderRadius: BorderRadius.circular(SksMenuConfig.borderRadius),
-        border: Border.all(
-          color: context.colorTheme.orangePomegranade.withAlpha(50),
-        ),
+        border: Border.all(color: context.colorTheme.orangePomegranade.withAlpha(50)),
       ),
       child: ListTile(
-        title: Text(
-          dish.name,
-          style: context.textTheme.lightTitle,
-        ),
+        title: Text(dish.name, style: context.textTheme.lightTitle),
         trailing: RichText(
           text: TextSpan(
             children: [
-              TextSpan(
-                text: " ${dish.size}",
-                style: context.textTheme.bodyGrey,
-              ),
-              TextSpan(
-                text: " | ",
-                style: context.textTheme.title,
-              ),
-              TextSpan(
-                text: "${dish.price} zł",
-                style: context.textTheme.title,
-              ),
+              TextSpan(text: " ${dish.size}", style: context.textTheme.bodyGrey),
+              TextSpan(text: " | ", style: context.textTheme.title),
+              TextSpan(text: "${dish.price} zł", style: context.textTheme.title),
             ],
           ),
         ),

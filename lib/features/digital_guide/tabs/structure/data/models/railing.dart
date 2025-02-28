@@ -14,24 +14,20 @@ class Railing with _$Railing {
     required String isBrailleConvexMarking,
     required String isGoodRailingContrast,
     required String isRoundCrossSectionRailing,
-    @JsonKey(name: "is_railing_extended_30cm")
-    required String isRailingExtended30cm,
+    @JsonKey(name: "is_railing_extended_30cm") required String isRailingExtended30cm,
     required String isRailingObstacle,
   }) = _Railing;
 
-  factory Railing.fromJson(Map<String, dynamic> json) =>
-      _$RailingFromJson(json);
+  factory Railing.fromJson(Map<String, dynamic> json) => _$RailingFromJson(json);
 }
 
 @freezed
 class RailingTranslations with _$RailingTranslations {
   @JsonSerializable(fieldRename: FieldRename.snake)
-  const factory RailingTranslations({
-    @JsonKey(name: "pl") required RailingTranslation plTranslation,
-  }) = _RailingTranslations;
+  const factory RailingTranslations({@JsonKey(name: "pl") required RailingTranslation plTranslation}) =
+      _RailingTranslations;
 
-  factory RailingTranslations.fromJson(Map<String, dynamic> json) =>
-      _$RailingTranslationsFromJson(json);
+  factory RailingTranslations.fromJson(Map<String, dynamic> json) => _$RailingTranslationsFromJson(json);
 }
 
 @freezed
@@ -43,12 +39,10 @@ class RailingTranslation with _$RailingTranslation {
     required String isBrailleConvexMarkingComment,
     required String isGoodRailingContrastComment,
     required String isRoundCrossSectionRailingComment,
-    @JsonKey(name: "is_railing_extended_30cm_comment")
-    required String isRailingExtended30cmComment,
+    @JsonKey(name: "is_railing_extended_30cm_comment") required String isRailingExtended30cmComment,
     required String isRailingObstacleComment,
     required String comment,
   }) = _RailingTranslation;
 
-  factory RailingTranslation.fromJson(Map<String, dynamic> json) =>
-      _$RailingTranslationFromJson(json);
+  factory RailingTranslation.fromJson(Map<String, dynamic> json) => _$RailingTranslationFromJson(json);
 }

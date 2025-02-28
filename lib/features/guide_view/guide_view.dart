@@ -22,12 +22,7 @@ class GuideView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ProviderScope(
-      overrides: [
-        searchGuideControllerProvider,
-      ],
-      child: const _GuideView(),
-    );
+    return ProviderScope(overrides: [searchGuideControllerProvider], child: const _GuideView());
   }
 }
 
@@ -40,8 +35,7 @@ class _GuideView extends ConsumerWidget {
       appBar: SearchBoxAppBar(
         context,
         title: context.localize.guide,
-        onQueryChanged:
-            ref.watch(searchGuideControllerProvider.notifier).onTextChanged,
+        onQueryChanged: ref.watch(searchGuideControllerProvider.notifier).onTextChanged,
       ),
       body: const _GuideViewContent(),
     );
@@ -58,18 +52,13 @@ class _GuideViewContent extends ConsumerWidget {
     return switch (guideList) {
       AsyncError(:final error) => MyErrorWidget(error),
       AsyncValue(:final IList<GuidePost> value) => GuideGrid(
-          children: [
-            for (final item in value) GuideTile(item),
-            _GuideInfo(
-              emailAddress: "kn.solvro@pwr.edu.pl",
-              subject: context.localize.guide_subject_default_content,
-            ),
-          ].lock,
-        ),
-      _ => const Padding(
-          padding: GuideViewConfig.gridPadding,
-          child: DepartmentsViewLoading(),
-        ),
+        children:
+            [
+              for (final item in value) GuideTile(item),
+              _GuideInfo(emailAddress: "kn.solvro@pwr.edu.pl", subject: context.localize.guide_subject_default_content),
+            ].lock,
+      ),
+      _ => const Padding(padding: GuideViewConfig.gridPadding, child: DepartmentsViewLoading()),
     };
   }
 }
@@ -79,15 +68,8 @@ class _GuideInfo extends ConsumerWidget {
   final String? subject;
   late final Uri emailLaunchUri;
 
-  _GuideInfo({
-    required this.emailAddress,
-    this.subject,
-  }) {
-    emailLaunchUri = Uri(
-      scheme: "mailto",
-      path: emailAddress,
-      query: "subject=$subject",
-    );
+  _GuideInfo({required this.emailAddress, this.subject}) {
+    emailLaunchUri = Uri(scheme: "mailto", path: emailAddress, query: "subject=$subject");
   }
 
   @override
@@ -97,11 +79,7 @@ class _GuideInfo extends ConsumerWidget {
       subtitle: context.localize.guide_ideas_info,
       trailing: SizedBox.square(
         dimension: WideTileCardConfig.imageSize,
-        child: Icon(
-          Icons.lightbulb_outline,
-          size: 55,
-          color: context.colorTheme.greyPigeon,
-        ),
+        child: Icon(Icons.lightbulb_outline, size: 55, color: context.colorTheme.greyPigeon),
       ),
       onTap: () async {
         await ref.launch(emailLaunchUri.toString());

@@ -21,32 +21,27 @@ class TagsWrap extends ConsumerWidget {
     return switch (tags) {
       AsyncError() => const SizedBox.shrink(),
       AsyncValue(:final IList<Tag> value) => Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            if (value.whereNonNull.isNotEmpty)
-              FiltersSectionHeader(context.localize.categories),
-            Wrap(
-              children: [
-                for (final tag in value.whereNonNull)
-                  Consumer(
-                    builder: (context, ref, child) {
-                      final controller =
-                          ref.watch(selectedTagControllerProvider.notifier);
-                      final isSelected = ref.watchContains(
-                        selectedTagControllerProvider,
-                        tag,
-                      );
-                      return MyFilterChip(
-                        label: tag.name,
-                        onTap: () => controller.toggleFilter(tag),
-                        selected: isSelected,
-                      );
-                    },
-                  ),
-              ],
-            ),
-          ],
-        ),
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if (value.whereNonNull.isNotEmpty) FiltersSectionHeader(context.localize.categories),
+          Wrap(
+            children: [
+              for (final tag in value.whereNonNull)
+                Consumer(
+                  builder: (context, ref, child) {
+                    final controller = ref.watch(selectedTagControllerProvider.notifier);
+                    final isSelected = ref.watchContains(selectedTagControllerProvider, tag);
+                    return MyFilterChip(
+                      label: tag.name,
+                      onTap: () => controller.toggleFilter(tag),
+                      selected: isSelected,
+                    );
+                  },
+                ),
+            ],
+          ),
+        ],
+      ),
       _ => const FilterChipsLoading(),
     };
   }

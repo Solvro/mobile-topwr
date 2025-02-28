@@ -15,7 +15,8 @@ class FiltersSearch extends HookConsumerWidget {
     final isExpanded = useState(false);
     final textController = useTextEditingController();
 
-    final expandedWidth = MediaQuery.sizeOf(context).width -
+    final expandedWidth =
+        MediaQuery.sizeOf(context).width -
         2 * FilterConfig.searchFilterPadding -
         MediaQuery.viewInsetsOf(context).horizontal;
 
@@ -28,9 +29,10 @@ class FiltersSearch extends HookConsumerWidget {
         width: expandedWidth,
         textController: textController,
         onSuffixTap: () {},
-        onChanged: ref
-            .watch(searchFiltersControllerProvider.notifier)
-            .onTextChanged, // I had to fork the lib and add this callback myself 😭
+        onChanged:
+            ref
+                .watch(searchFiltersControllerProvider.notifier)
+                .onTextChanged, // I had to fork the lib and add this callback myself 😭
         textFieldColor: context.colorTheme.greyLight,
         textFieldIconColor: context.colorTheme.blackMirage,
         color: context.colorTheme.whiteSoap,
@@ -41,9 +43,7 @@ class FiltersSearch extends HookConsumerWidget {
         searchBarOpen: (int x) {
           isExpanded.value = x == 1; // this lib is stupid as f...
           if (!isExpanded.value) {
-            ref
-                .read(searchFiltersControllerProvider.notifier)
-                .onTextChanged("");
+            ref.read(searchFiltersControllerProvider.notifier).onTextChanged("");
           }
         },
         height: 48,
