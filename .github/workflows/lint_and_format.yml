@@ -18,13 +18,13 @@ jobs:
           channel: "stable"
           flutter-version-file: pubspec.yaml
       - run: flutter --version
-
-      - name: Install dependencies
-        run: flutter pub get
       
       - name: Verify formatting
         run: dart format --output=none --set-exit-if-changed .
-      
+    
+      - name: Install dependencies
+        run: flutter pub get
+    
       - name: Example .env
         run: cp example.env .env
 
