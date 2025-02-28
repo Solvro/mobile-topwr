@@ -17,17 +17,11 @@ const modes = <ModeWithKey>[
 ];
 
 @riverpod
-Future<ISet<ModeWithKey>> activeAccessibilityModesRepository(
-  Ref ref,
-) async {
-  final modeStatesTuples = modes.map(
-    (mode) => (mode, ref.watch(accessibilityModeRepositoryProvider(mode))),
-  );
+Future<ISet<ModeWithKey>> activeAccessibilityModesRepository(Ref ref) async {
+  final modeStatesTuples = modes.map((mode) => (mode, ref.watch(accessibilityModeRepositoryProvider(mode))));
 
-  final activeModes = modeStatesTuples
-      .where((tuple) => tuple.$2.asData?.value ?? false)
-      .map((tuple) => tuple.$1)
-      .toISet();
+  final activeModes =
+      modeStatesTuples.where((tuple) => tuple.$2.asData?.value ?? false).map((tuple) => tuple.$1).toISet();
 
   return activeModes;
 }

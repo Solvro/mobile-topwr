@@ -28,72 +28,43 @@ class DigitalGuideRoomDetailView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final roomInformation = room.translations.pl;
     final widgets = [
-      Text(
-        roomInformation.name,
-        style: context.textTheme.headline.copyWith(fontSize: 18),
-      ),
+      Text(roomInformation.name, style: context.textTheme.headline.copyWith(fontSize: 18)),
       const SizedBox(height: DigitalGuideConfig.heightTiny),
       Text(
         roomInformation.roomPurpose,
-        style: context.textTheme.headline
-            .copyWith(fontSize: 12, fontWeight: FontWeight.normal),
+        style: context.textTheme.headline.copyWith(fontSize: 12, fontWeight: FontWeight.normal),
       ),
+      if (roomInformation.workingDaysAndHours.isNotEmpty) const SizedBox(height: DigitalGuideConfig.heightMedium),
       if (roomInformation.workingDaysAndHours.isNotEmpty)
-        const SizedBox(height: DigitalGuideConfig.heightMedium),
-      if (roomInformation.workingDaysAndHours.isNotEmpty)
-        Text(
-          "${context.localize.working_hours}:",
-          style: context.textTheme.headline,
-        ),
-      if (roomInformation.workingDaysAndHours.isNotEmpty)
-        const SizedBox(height: DigitalGuideConfig.heightSmall),
-      Text(
-        roomInformation.workingDaysAndHours,
-        style: context.textTheme.body.copyWith(fontSize: 16),
-      ),
-      if (roomInformation.workingDaysAndHours.isNotEmpty)
-        const SizedBox(height: DigitalGuideConfig.heightMedium),
-      Text(
-        context.localize.key_information,
-        style: context.textTheme.headline,
-      ),
+        Text("${context.localize.working_hours}:", style: context.textTheme.headline),
+      if (roomInformation.workingDaysAndHours.isNotEmpty) const SizedBox(height: DigitalGuideConfig.heightSmall),
+      Text(roomInformation.workingDaysAndHours, style: context.textTheme.body.copyWith(fontSize: 16)),
+      if (roomInformation.workingDaysAndHours.isNotEmpty) const SizedBox(height: DigitalGuideConfig.heightMedium),
+      Text(context.localize.key_information, style: context.textTheme.headline),
       const SizedBox(height: DigitalGuideConfig.heightSmall),
       BulletList(
-        items: [
-          roomInformation.location,
-          roomInformation.comment,
-          roomInformation.areEntrancesComment,
-          roomInformation.isOneLevelFloorComment,
-          roomInformation.arePlacesForWheelchairsComment,
-          roomInformation.isOneLevelFloorComment,
-        ].toIList(),
+        items:
+            [
+              roomInformation.location,
+              roomInformation.comment,
+              roomInformation.areEntrancesComment,
+              roomInformation.isOneLevelFloorComment,
+              roomInformation.arePlacesForWheelchairsComment,
+              roomInformation.isOneLevelFloorComment,
+            ].toIList(),
       ),
-      if (room.imagesIds != null && room.imagesIds!.isNotEmpty)
-        const SizedBox(
-          height: DigitalGuideConfig.heightMedium,
-        ),
+      if (room.imagesIds != null && room.imagesIds!.isNotEmpty) const SizedBox(height: DigitalGuideConfig.heightMedium),
       DigitalGuidePhotoRow(imagesIDs: room.imagesIds.toIList()),
-      const SizedBox(
-        height: DigitalGuideConfig.heightMedium,
-      ),
-      DigitalGuideNavLink(
-        onTap: () {},
-        text: context.localize.door,
-      ),
-      const SizedBox(
-        height: DigitalGuideConfig.heightMedium,
-      ),
-      const SizedBox(
-        height: DigitalGuideConfig.heightMedium,
-      ),
+      const SizedBox(height: DigitalGuideConfig.heightMedium),
+      DigitalGuideNavLink(onTap: () {}, text: context.localize.door),
+      const SizedBox(height: DigitalGuideConfig.heightMedium),
+      const SizedBox(height: DigitalGuideConfig.heightMedium),
       if (room.roomStairs.isNotEmpty)
         ...room.roomStairs.asMap().entries.map((entry) {
           final String index = entry.key == 0 ? "" : (entry.key + 1).toString();
           return MyExpansionTile(
             title: "${context.localize.stairs} $index",
-            children: [
-              RoomStairsContent(roomStairsId: entry.value),
-            ],
+            children: [RoomStairsContent(roomStairsId: entry.value)],
           );
         }),
       if (room.platforms.isNotEmpty)
@@ -101,17 +72,13 @@ class DigitalGuideRoomDetailView extends ConsumerWidget {
           final String index = entry.key == 0 ? "" : (entry.key + 1).toString();
           return MyExpansionTile(
             title: "${context.localize.platforms} $index",
-            children: [
-              RoomPlatformsContent(platformId: entry.value),
-            ],
+            children: [RoomPlatformsContent(platformId: entry.value)],
           );
         }),
     ];
 
     return HorizontalSymmetricSafeAreaScaffold(
-      appBar: DetailViewAppBar(
-        actions: [AccessibilityButton()],
-      ),
+      appBar: DetailViewAppBar(actions: [AccessibilityButton()]),
       body: Padding(
         padding: const EdgeInsets.all(DigitalGuideConfig.paddingMedium),
         child: ListView.builder(

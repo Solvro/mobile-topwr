@@ -27,10 +27,7 @@ class MyMapController<T extends GoogleNavigable> {
     await controller.animateTo(
       dest: item.location,
       zoom: MapWidgetConfig.defaultMarkerZoom,
-      offset: Offset(
-        0,
-        -ref.read(bottomSheetControllerProvider).pixelsSafe / 2,
-      ),
+      offset: Offset(0, -ref.read(bottomSheetControllerProvider).pixelsSafe / 2),
       rotation: 0,
     );
   }

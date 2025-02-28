@@ -16,9 +16,7 @@ Future<void> showCustomDialog({
       final double maxWidth = MediaQuery.sizeOf(context).width * 0.89;
       return Center(
         child: ConstrainedBox(
-          constraints: BoxConstraints(
-            maxWidth: maxWidth,
-          ),
+          constraints: BoxConstraints(maxWidth: maxWidth),
           child: _MyAlertDialog(
             dialogContent: dialogContent,
             onConfirmTapped: () => onConfirmTapped(context),
@@ -35,11 +33,7 @@ class _MyAlertDialog extends StatelessWidget {
   final VoidCallback onConfirmTapped;
   final String confirmText;
 
-  const _MyAlertDialog({
-    required this.dialogContent,
-    required this.onConfirmTapped,
-    required this.confirmText,
-  });
+  const _MyAlertDialog({required this.dialogContent, required this.onConfirmTapped, required this.confirmText});
 
   @override
   Widget build(BuildContext context) {
@@ -60,9 +54,7 @@ class _MyAlertDialog extends StatelessWidget {
                 onPressed: onConfirmTapped,
                 child: Text(
                   confirmText,
-                  style: context.textTheme.bodyOrange.copyWith(
-                    fontSize: AlertDialogConfig.buttonFontSize,
-                  ),
+                  style: context.textTheme.bodyOrange.copyWith(fontSize: AlertDialogConfig.buttonFontSize),
                 ),
               ),
             ),
@@ -70,9 +62,7 @@ class _MyAlertDialog extends StatelessWidget {
               child: TextButton(
                 child: Text(
                   context.localize.close,
-                  style: context.textTheme.body.copyWith(
-                    fontSize: AlertDialogConfig.buttonFontSize,
-                  ),
+                  style: context.textTheme.body.copyWith(fontSize: AlertDialogConfig.buttonFontSize),
                 ),
                 onPressed: () {
                   Navigator.of(context).pop();

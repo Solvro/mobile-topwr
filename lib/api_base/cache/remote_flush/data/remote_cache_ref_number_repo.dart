@@ -11,7 +11,6 @@ part "remote_cache_ref_number_repo.g.dart";
 Future<int?> remoteCacheRefNumberRepo(Ref ref) async {
   final apiClient = await ref.watch(grapqlClientProvider.future);
   final remoteValue = await apiClient.query$GetRemoteRefCacheNumber();
-  final safeRemoteValue =
-      await GqlOfflineException.graphqlTryCatch(remoteValue, null);
+  final safeRemoteValue = await GqlOfflineException.graphqlTryCatch(remoteValue, null);
   return safeRemoteValue.parsedData?.CacheReferenceNumber?.referenceNumber;
 }

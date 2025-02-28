@@ -8,12 +8,7 @@ import "../theme/app_theme.dart";
 import "../utils/context_extensions.dart";
 
 class SearchBox extends HookWidget {
-  const SearchBox({
-    super.key,
-    required this.onQueryChanged,
-    this.onTap,
-    this.searchText,
-  });
+  const SearchBox({super.key, required this.onQueryChanged, this.onTap, this.searchText});
   final VoidCallback? onTap;
   final String? searchText;
   final void Function(String query) onQueryChanged;
@@ -24,31 +19,22 @@ class SearchBox extends HookWidget {
     final controller = useTextEditingController();
     final showCloseIcon = useState(false);
 
-    final onTapOutside = useCallback(
-      (_) {
-        if (focusNode.hasFocus) {
-          focusNode.unfocus();
-        }
-      },
-      [focusNode],
-    );
+    final onTapOutside = useCallback((_) {
+      if (focusNode.hasFocus) {
+        focusNode.unfocus();
+      }
+    }, [focusNode]);
 
-    final onChanged = useCallback(
-      (String query) {
-        showCloseIcon.value = query != "";
-        onQueryChanged(query);
-      },
-      [showCloseIcon, onQueryChanged],
-    );
+    final onChanged = useCallback((String query) {
+      showCloseIcon.value = query != "";
+      onQueryChanged(query);
+    }, [showCloseIcon, onQueryChanged]);
 
-    final onSuffixPressed = useCallback(
-      () {
-        context.unfocus();
-        controller.clear();
-        onChanged("");
-      },
-      [controller, onChanged, context],
-    );
+    final onSuffixPressed = useCallback(() {
+      context.unfocus();
+      controller.clear();
+      onChanged("");
+    }, [controller, onChanged, context]);
 
     final color = context.colorTheme.blackMirage.withValues(alpha: 0.48);
 
@@ -65,24 +51,18 @@ class SearchBox extends HookWidget {
         fillColor: context.colorTheme.greyLight,
         hintText: "${searchText ?? context.localize.search}...",
         hintStyle: context.textTheme.lightTitle.copyWith(color: color),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-          borderSide: BorderSide.none,
-        ),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: BorderSide.none),
         prefixIcon: Padding(
           padding: const EdgeInsets.all(10),
           child: SvgPicture.asset(Assets.svg.searchBox.vectorsearch),
         ),
-        suffixIcon: showCloseIcon.value
-            ? IconButton(
-                icon: Icon(
-                  Icons.cancel,
-                  color: context.colorTheme.blackMirage,
-                  size: 19,
-                ),
-                onPressed: onSuffixPressed,
-              )
-            : null,
+        suffixIcon:
+            showCloseIcon.value
+                ? IconButton(
+                  icon: Icon(Icons.cancel, color: context.colorTheme.blackMirage, size: 19),
+                  onPressed: onSuffixPressed,
+                )
+                : null,
       ),
     );
   }

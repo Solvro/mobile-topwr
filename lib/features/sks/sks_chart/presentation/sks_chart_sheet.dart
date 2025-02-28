@@ -29,64 +29,50 @@ class SksChartSheet extends ConsumerWidget {
     final maxNumberOfUsers = asyncChartData.value?.maxNumberOfUsers ?? 0;
 
     final screenWidth = MediaQuery.sizeOf(context).width;
-    final sheetHeight = useFiltersSheetHeight(
-      context,
-      prefferedHeightFactor: screenWidth > 400 ? .62 : .68,
-    );
+    final sheetHeight = useFiltersSheetHeight(context, prefferedHeightFactor: screenWidth > 400 ? .62 : .68);
 
     return switch (asyncChartData) {
       AsyncError(:final error) => MyErrorWidget(error),
       AsyncLoading() => _SksChartLoading(sheetHeight: sheetHeight),
       AsyncValue() => HorizontalSymmetricSafeArea(
-          child: SizedBox(
-            height: sheetHeight,
-            width: double.infinity,
-            child: Column(
-              children: [
-                Padding(
-                  padding: SksChartConfig.paddingLargeLTR
-                      .copyWith(bottom: SksChartConfig.paddingMedium),
-                  child: const _SksSheetHeader(),
-                ),
-                Expanded(
-                  child: ListView(
-                    physics: const NeverScrollableScrollPhysics(),
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: SksChartConfig.paddingMedium,
-                        ),
-                        child: SksChartCard(
-                          currentNumberOfUsers: currentNumberOfUsers,
-                          maxNumberOfUsers: maxNumberOfUsers,
-                          chartData:
-                              asyncChartData.value ?? const IList.empty(),
-                        ),
+        child: SizedBox(
+          height: sheetHeight,
+          width: double.infinity,
+          child: Column(
+            children: [
+              Padding(
+                padding: SksChartConfig.paddingLargeLTR.copyWith(bottom: SksChartConfig.paddingMedium),
+                child: const _SksSheetHeader(),
+              ),
+              Expanded(
+                child: ListView(
+                  physics: const NeverScrollableScrollPhysics(),
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: SksChartConfig.paddingMedium),
+                      child: SksChartCard(
+                        currentNumberOfUsers: currentNumberOfUsers,
+                        maxNumberOfUsers: maxNumberOfUsers,
+                        chartData: asyncChartData.value ?? const IList.empty(),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(
-                          SksChartConfig.paddingSmall,
-                        ),
-                        child: TextAndUrl(
-                          SksChartConfig.sksChartDataUrl,
-                          "${context.localize.data_come_from_website}: ",
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(SksChartConfig.paddingSmall),
+                      child: TextAndUrl(SksChartConfig.sksChartDataUrl, "${context.localize.data_come_from_website}: "),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
+      ),
     };
   }
 }
 
 class _SksChartLoading extends StatelessWidget {
-  const _SksChartLoading({
-    required this.sheetHeight,
-  });
+  const _SksChartLoading({required this.sheetHeight});
 
   final double sheetHeight;
 
@@ -98,25 +84,18 @@ class _SksChartLoading extends StatelessWidget {
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 16)
-                .copyWith(bottom: 16),
+            padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 16).copyWith(bottom: 16),
             child: const HorizontalRectangularSectionLoading(),
           ),
           const Flexible(
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
-              child: PreviewCardLoading(
-                height: 300,
-                width: double.infinity,
-              ),
+              child: PreviewCardLoading(height: 300, width: double.infinity),
             ),
           ),
           const Padding(
             padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-            child: PreviewCardLoading(
-              height: 10,
-              width: double.infinity,
-            ),
+            child: PreviewCardLoading(height: 10, width: double.infinity),
           ),
         ],
       ),
@@ -135,11 +114,7 @@ class _SksSheetHeader extends StatelessWidget {
         const SizedBox(height: SksChartConfig.heightSmall),
         Padding(
           padding: const EdgeInsets.all(8).copyWith(bottom: 0),
-          child: Text(
-            context.localize.sks_chart_title,
-            style: context.textTheme.headline,
-            textAlign: TextAlign.center,
-          ),
+          child: Text(context.localize.sks_chart_title, style: context.textTheme.headline, textAlign: TextAlign.center),
         ),
       ],
     );

@@ -10,9 +10,7 @@ Dio restClient(Ref ref) {
   return Dio();
 }
 
-typedef AuthHeader = ({
-  String authotization,
-});
+typedef AuthHeader = ({String authotization});
 
 @riverpod
 Dio authRestClient(Ref ref, AuthHeader? authHeader) {

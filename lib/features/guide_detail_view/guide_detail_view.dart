@@ -21,19 +21,13 @@ import "widgets/tooltip_on_click.dart";
 
 @RoutePage()
 class GuideDetailView extends StatelessWidget {
-  const GuideDetailView({
-    @PathParam("id") required this.id,
-    super.key,
-  });
+  const GuideDetailView({@PathParam("id") required this.id, super.key});
 
   final String id;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: DetailViewAppBar(),
-      body: _GuideDetailDataView(id: id),
-    );
+    return Scaffold(appBar: DetailViewAppBar(), body: _GuideDetailDataView(id: id));
   }
 }
 
@@ -48,89 +42,77 @@ class _GuideDetailDataView extends ConsumerWidget {
     return switch (state) {
       AsyncError(:final error) => MyErrorWidget(error),
       AsyncValue(:final GuideDetails value) => Builder(
-          builder: (context) {
-            final lastModifiedDate =
-                context.getTheLatesUpdatedDateGuide(questions: value.questions);
-            return CustomScrollView(
-              slivers: [
-                SliverAppBar(
-                  expandedHeight: 254,
-                  flexibleSpace: Stack(
-                    children: [
-                      SizedBox(
-                        height: DetailViewsConfig.imageHeight,
-                        child: ZoomableOptimizedDirectusImage(
-                          value.cover?.filename_disk,
-                        ),
-                      ),
-                      if (lastModifiedDate != null)
-                        Positioned(
-                          top: GuideDetailViewConfig.paddingMedium,
-                          right: GuideDetailViewConfig.paddingSmall,
-                          child: Tooltip(
+        builder: (context) {
+          final lastModifiedDate = context.getTheLatesUpdatedDateGuide(questions: value.questions);
+          return CustomScrollView(
+            slivers: [
+              SliverAppBar(
+                expandedHeight: 254,
+                flexibleSpace: Stack(
+                  children: [
+                    SizedBox(
+                      height: DetailViewsConfig.imageHeight,
+                      child: ZoomableOptimizedDirectusImage(value.cover?.filename_disk),
+                    ),
+                    if (lastModifiedDate != null)
+                      Positioned(
+                        top: GuideDetailViewConfig.paddingMedium,
+                        right: GuideDetailViewConfig.paddingSmall,
+                        child: Tooltip(
+                          message: context.localize.last_modified,
+                          child: TooltipOnTap(
                             message: context.localize.last_modified,
-                            child: TooltipOnTap(
-                              message: context.localize.last_modified,
-                              child: DateChip(date: lastModifiedDate),
-                            ),
+                            child: DateChip(date: lastModifiedDate),
                           ),
                         ),
-                    ],
-                  ),
-                  automaticallyImplyLeading: false,
+                      ),
+                  ],
                 ),
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: const EdgeInsets.all(24),
-                    child: MyHtmlWidget(value.description ?? ""),
-                  ),
+                automaticallyImplyLeading: false,
+              ),
+              SliverToBoxAdapter(
+                child: Padding(padding: const EdgeInsets.all(24), child: MyHtmlWidget(value.description ?? "")),
+              ),
+              SliverPadding(
+                padding: const EdgeInsets.only(bottom: GuideDetailViewConfig.paddingLarge),
+                sliver: SliverList.separated(
+                  itemCount: value.questions?.length ?? 0,
+                  itemBuilder: (context, index) {
+                    final question = value.questions?[index]?.FAQ_id;
+                    return FaqExpansionTile(title: question?.question ?? "", description: question?.answer ?? "");
+                  },
+                  separatorBuilder: (context, index) => const SizedBox(height: 8),
                 ),
-                SliverPadding(
-                  padding: const EdgeInsets.only(
-                    bottom: GuideDetailViewConfig.paddingLarge,
-                  ),
-                  sliver: SliverList.separated(
-                    itemCount: value.questions?.length ?? 0,
-                    itemBuilder: (context, index) {
-                      final question = value.questions?[index]?.FAQ_id;
-                      return FaqExpansionTile(
-                        title: question?.question ?? "",
-                        description: question?.answer ?? "",
-                      );
-                    },
-                    separatorBuilder: (context, index) =>
-                        const SizedBox(height: 8),
-                  ),
+              ),
+              SliverPadding(
+                padding: const EdgeInsets.only(
+                  bottom: GuideDetailViewConfig.bottomPadding,
+                  left: GuideDetailViewConfig.paddingLarge,
+                  right: GuideDetailViewConfig.paddingLarge,
                 ),
-                SliverPadding(
-                  padding: const EdgeInsets.only(
-                    bottom: GuideDetailViewConfig.bottomPadding,
-                    left: GuideDetailViewConfig.paddingLarge,
-                    right: GuideDetailViewConfig.paddingLarge,
-                  ),
-                  sliver: SliverToBoxAdapter(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
+                sliver: SliverToBoxAdapter(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "${context.localize.created_at} ${context.getTheLatesCreatedDateGuide(questions: value.questions)}",
+                        style: context.textTheme.bodyGrey,
+                        textAlign: TextAlign.end,
+                      ),
+                      if (lastModifiedDate != null)
                         Text(
-                          "${context.localize.created_at} ${context.getTheLatesCreatedDateGuide(questions: value.questions)}",
+                          "${context.localize.last_modified} ${DateFormat("dd.MM.yyyy").format(lastModifiedDate)}",
                           style: context.textTheme.bodyGrey,
                           textAlign: TextAlign.end,
                         ),
-                        if (lastModifiedDate != null)
-                          Text(
-                            "${context.localize.last_modified} ${DateFormat("dd.MM.yyyy").format(lastModifiedDate)}",
-                            style: context.textTheme.bodyGrey,
-                            textAlign: TextAlign.end,
-                          ),
-                      ],
-                    ),
+                    ],
                   ),
                 ),
-              ],
-            );
-          },
-        ),
+              ),
+            ],
+          );
+        },
+      ),
       _ => const _GuideDetailLoading(),
     };
   }
@@ -146,28 +128,16 @@ class _GuideDetailLoading extends StatelessWidget {
       child: ListView(
         physics: const NeverScrollableScrollPhysics(),
         children: [
-          ShimmerLoadingItem(
-            child: Container(
-              color: Colors.white,
-              width: double.infinity,
-              height: 300,
-            ),
-          ),
+          ShimmerLoadingItem(child: Container(color: Colors.white, width: double.infinity, height: 300)),
           Padding(
             padding: const EdgeInsets.all(GuideDetailViewConfig.paddingMedium),
             child: ListView.separated(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, _) {
-                return ShimmerLoadingItem(
-                  child: PreviewTextPrototype(
-                    width: double.infinity,
-                  ),
-                );
+                return ShimmerLoadingItem(child: PreviewTextPrototype(width: double.infinity));
               },
-              separatorBuilder: (context, _) => const SizedBox(
-                height: 8,
-              ),
+              separatorBuilder: (context, _) => const SizedBox(height: 8),
               itemCount: 5,
             ),
           ),
@@ -180,9 +150,7 @@ class _GuideDetailLoading extends StatelessWidget {
                 itemBuilder: (context, _) {
                   return const MyExpansionTileLoading();
                 },
-                separatorBuilder: (context, _) => const SizedBox(
-                  height: 8,
-                ),
+                separatorBuilder: (context, _) => const SizedBox(height: 8),
                 itemCount: 3,
               ),
             ),

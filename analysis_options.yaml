@@ -7,6 +7,9 @@
 
 include: package:total_lints/app.yaml
 
+formatter:
+  page_width: 120
+
 linter:
   rules:
     prefer_relative_imports: true
@@ -14,8 +17,9 @@ linter:
     prefer_single_quotes: false
     prefer_double_quotes: true # I hate single quotes
     use_setters_to_change_properties: false
-    lines_longer_than_80_chars: false # I'd love to be able to set here some other number, but 80 is too low
-    sort_pub_dependencies: false
+    lines_longer_than_80_chars: false # we use 120 (at least for now)
+    sort_pub_dependencies: false # Tomek has a custom order
+    require_trailing_commas: false # clashes with the new formatter
 
 analyzer:
   errors:
@@ -35,7 +39,5 @@ analyzer:
     - custom_lint
 
 custom_lint:
-  enable_all_lint_rules: false
   rules:
-    # this works weirdly
-    provider_dependencies: false
+    - provider_dependencies: false # this works weirdly

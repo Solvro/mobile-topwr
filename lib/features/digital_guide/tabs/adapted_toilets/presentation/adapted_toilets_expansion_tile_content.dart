@@ -10,22 +10,16 @@ import "../business/adapted_toilets_use_cases.dart";
 import "adapted_toilet_level.dart";
 
 class AdaptedToiletsExpansionTileContent extends ConsumerWidget {
-  const AdaptedToiletsExpansionTileContent({
-    required this.digitalGuideData,
-  });
+  const AdaptedToiletsExpansionTileContent({required this.digitalGuideData});
 
   final DigitalGuideResponse digitalGuideData;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final levelsWithToilets = ref.watch(
-      getLevelsWithToiletsUseCaseProvider(digitalGuideData),
-    );
+    final levelsWithToilets = ref.watch(getLevelsWithToiletsUseCaseProvider(digitalGuideData));
     return levelsWithToilets.when(
       data: _AdaptedToiletsExpansionTileContent.new,
-      loading: () => const Center(
-        child: CircularProgressIndicator(),
-      ),
+      loading: () => const Center(child: CircularProgressIndicator()),
       error: (error, _) => MyErrorWidget(error),
     );
   }
@@ -48,12 +42,10 @@ class _AdaptedToiletsExpansionTileContent extends ConsumerWidget {
         color: context.colorTheme.greyLight,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: levelsWithToilets.map((level) {
-            return AdaptedToiletLevel(
-              level: level.level,
-              adaptedToilets: level.adaptedToilets,
-            );
-          }).toList(),
+          children:
+              levelsWithToilets.map((level) {
+                return AdaptedToiletLevel(level: level.level, adaptedToilets: level.adaptedToilets);
+              }).toList(),
         ),
       ),
     );

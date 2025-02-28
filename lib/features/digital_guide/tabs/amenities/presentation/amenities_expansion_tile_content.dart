@@ -9,9 +9,7 @@ import "../../../../../widgets/detail_views/contact_section.dart";
 import "../../../data/models/digital_guide_response.dart";
 
 class AmenitiesExpansionTileContent extends StatelessWidget {
-  const AmenitiesExpansionTileContent({
-    required this.digitalGuideData,
-  });
+  const AmenitiesExpansionTileContent({required this.digitalGuideData});
 
   final DigitalGuideResponse digitalGuideData;
 
@@ -19,48 +17,40 @@ class AmenitiesExpansionTileContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return ContactSection(
       topPadding: DigitalGuideConfig.heightTiny,
-      list: [
-        if (digitalGuideData.canAssistanceDog)
-          ContactIconsModel(
-            text: context.localize.assistance_dog,
-            icon: Assets.svg.digitalGuide.assistanceDog,
-          ),
-        if (digitalGuideData.isInductionLoop)
-          ContactIconsModel(
-            text: context.localize.induction_loop,
-            icon: Assets.svg.digitalGuide.inductionLoop,
-          ),
-        if (digitalGuideData.isMicroNavigationSystem)
-          ContactIconsModel(
-            text: context.localize.micronavigation_system,
-            icon: Assets.svg.digitalGuide.micronavigation,
-          ),
-        if (digitalGuideData.areGuidancePaths)
-          ContactIconsModel(
-            text: context.localize.orientation_paths,
-            icon: Assets.svg.digitalGuide.orientationPaths,
-          ),
-        if (digitalGuideData.areBrailleBoards)
-          ContactIconsModel(
-            text: context.localize.information_boards_with_braille_description,
-            icon: Assets.svg.digitalGuide.braille,
-          ),
-        if (digitalGuideData.areLargeFontBoards)
-          ContactIconsModel(
-            text: context.localize.information_boards_with_large_font,
-            icon: Assets.svg.digitalGuide.largeFont,
-          ),
-        if (digitalGuideData.isSignLanguageInterpreter)
-          ContactIconsModel(
-            text: context.localize.sign_language_interpreter,
-            icon: Assets.svg.digitalGuide.signLanguage,
-          ),
-        if (digitalGuideData.areEmergencyChairs)
-          ContactIconsModel(
-            text: context.localize.emergency_chairs,
-            icon: Assets.svg.digitalGuide.emergencyChairs,
-          ),
-      ].lock,
+      list:
+          [
+            if (digitalGuideData.canAssistanceDog)
+              ContactIconsModel(text: context.localize.assistance_dog, icon: Assets.svg.digitalGuide.assistanceDog),
+            if (digitalGuideData.isInductionLoop)
+              ContactIconsModel(text: context.localize.induction_loop, icon: Assets.svg.digitalGuide.inductionLoop),
+            if (digitalGuideData.isMicroNavigationSystem)
+              ContactIconsModel(
+                text: context.localize.micronavigation_system,
+                icon: Assets.svg.digitalGuide.micronavigation,
+              ),
+            if (digitalGuideData.areGuidancePaths)
+              ContactIconsModel(
+                text: context.localize.orientation_paths,
+                icon: Assets.svg.digitalGuide.orientationPaths,
+              ),
+            if (digitalGuideData.areBrailleBoards)
+              ContactIconsModel(
+                text: context.localize.information_boards_with_braille_description,
+                icon: Assets.svg.digitalGuide.braille,
+              ),
+            if (digitalGuideData.areLargeFontBoards)
+              ContactIconsModel(
+                text: context.localize.information_boards_with_large_font,
+                icon: Assets.svg.digitalGuide.largeFont,
+              ),
+            if (digitalGuideData.isSignLanguageInterpreter)
+              ContactIconsModel(
+                text: context.localize.sign_language_interpreter,
+                icon: Assets.svg.digitalGuide.signLanguage,
+              ),
+            if (digitalGuideData.areEmergencyChairs)
+              ContactIconsModel(text: context.localize.emergency_chairs, icon: Assets.svg.digitalGuide.emergencyChairs),
+          ].lock,
     );
   }
 }

@@ -24,42 +24,36 @@ class MyErrorWidget extends HookWidget {
   Widget build(BuildContext context) {
     Logger().e(error.toString());
     useEffect(() {
-      Future.microtask(
-        () async =>
-            FirebaseCrashlytics.instance.recordError(error, StackTrace.current),
-      );
+      Future.microtask(() async => FirebaseCrashlytics.instance.recordError(error, StackTrace.current));
       return null;
-    }, [
-      error,
-    ]);
+    }, [error]);
     return switch (error) {
       ParkingsOfflineException() => const OfflineParkingsView(),
       GqlOfflineException(:final ttlKey) => OfflineGraphQLMessage(ttlKey),
-      RestFrameworkOfflineException(:final localizedMessage, :final onRetry) =>
-        OfflineMessage(
-          localizedMessage(context),
-          onRefresh: onRetry,
-        ),
+      RestFrameworkOfflineException(:final localizedMessage, :final onRetry) => OfflineMessage(
+        localizedMessage(context),
+        onRefresh: onRetry,
+      ),
       _ => Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Lottie.asset(
-                renderCache: RenderCache.raster,
-                repeat: false,
-                Assets.animations.error,
-                frameRate: const FrameRate(LottieAnimationConfig.frameRate),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Lottie.asset(
+              renderCache: RenderCache.raster,
+              repeat: false,
+              Assets.animations.error,
+              frameRate: const FrameRate(LottieAnimationConfig.frameRate),
+            ),
+            Align(
+              child: Text(
+                textAlign: TextAlign.center,
+                style: context.textTheme.headline.copyWith(fontSize: 25),
+                context.localize.generic_error_message,
               ),
-              Align(
-                child: Text(
-                  textAlign: TextAlign.center,
-                  style: context.textTheme.headline.copyWith(fontSize: 25),
-                  context.localize.generic_error_message,
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
+      ),
     };
   }
 }

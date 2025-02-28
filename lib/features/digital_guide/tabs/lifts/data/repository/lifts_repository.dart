@@ -11,10 +11,7 @@ import "../models/digital_guide_lift.dart";
 part "lifts_repository.g.dart";
 
 @riverpod
-Future<IList<DigitalGuideLift>> liftsRepository(
-  Ref ref,
-  List<int> liftIDs,
-) async {
+Future<IList<DigitalGuideLift>> liftsRepository(Ref ref, List<int> liftIDs) async {
   Future<DigitalGuideLift> getLift(int liftID) async {
     return ref.getAndCacheDataFromDigitalGuide(
       "lifts/$liftID",
@@ -29,10 +26,7 @@ Future<IList<DigitalGuideLift>> liftsRepository(
 }
 
 @riverpod
-Future<IList<DigitalGuideLift>> liftsFromLevelRepository(
-  Ref ref,
-  LevelWithRegions level,
-) async {
+Future<IList<DigitalGuideLift>> liftsFromLevelRepository(Ref ref, LevelWithRegions level) async {
   final liftsIds = level.regions.expand((region) => region.lifts).toList();
   return liftsRepository(ref, liftsIds);
 }

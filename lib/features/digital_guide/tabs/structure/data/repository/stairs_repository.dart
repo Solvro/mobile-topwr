@@ -9,17 +9,11 @@ part "stairs_repository.g.dart";
 
 @riverpod
 Future<IList<Stairs>> stairsListRepository(Ref ref, List<int> stairsIDs) async {
-  final stairs = await Future.wait(
-    stairsIDs.map((id) => ref.watch(stairsRepositoryProvider(id).future)),
-  );
+  final stairs = await Future.wait(stairsIDs.map((id) => ref.watch(stairsRepositoryProvider(id).future)));
   return stairs.lock;
 }
 
 @riverpod
 Future<Stairs> stairsRepository(Ref ref, int stairsID) async {
-  return ref.getAndCacheDataFromDigitalGuide(
-    "stairs/$stairsID",
-    Stairs.fromJson,
-    onRetry: () => ref.invalidateSelf(),
-  );
+  return ref.getAndCacheDataFromDigitalGuide("stairs/$stairsID", Stairs.fromJson, onRetry: () => ref.invalidateSelf());
 }

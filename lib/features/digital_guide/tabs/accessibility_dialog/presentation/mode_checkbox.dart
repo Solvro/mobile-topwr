@@ -18,21 +18,14 @@ class ModeCheckbox extends ConsumerWidget {
     // ignore: avoid_positional_boolean_parameters
     void onChanged(bool? value) {
       if (value != null) {
-        unawaited(
-          ref
-              .read(accessibilityModeServiceProvider(mode).notifier)
-              .setMode(newValue: value),
-        );
+        unawaited(ref.read(accessibilityModeServiceProvider(mode).notifier).setMode(newValue: value));
       }
     }
 
     return CheckboxListTile(
       dense: true,
       controlAffinity: ListTileControlAffinity.leading,
-      title: Text(
-        mode.localizedLabel(context),
-        style: context.aboutUsTheme.body,
-      ),
+      title: Text(mode.localizedLabel(context), style: context.aboutUsTheme.body),
       value: value.value ?? false,
       onChanged: onChanged,
     );

@@ -11,22 +11,10 @@ class MarkersConsumerLayer<T extends GoogleNavigable> extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final asyncItems = ref
-        .watch(context.mapSourceRepository<T>())
-        .valueOrNull
-        .whereNonNull
-        .toList();
+    final asyncItems = ref.watch(context.mapSourceRepository<T>()).valueOrNull.whereNonNull.toList();
     final activeItem = ref.watch(context.activeMarkerController<T>());
     return MarkerLayer(
-      markers: asyncItems
-          .map(
-            (item) => context.markerBuilder<T>()(
-              item,
-              ref,
-              isActive: activeItem == item,
-            ),
-          )
-          .toList(),
+      markers: asyncItems.map((item) => context.markerBuilder<T>()(item, ref, isActive: activeItem == item)).toList(),
       rotate: true,
     );
   }

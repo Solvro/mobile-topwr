@@ -23,32 +23,24 @@ class StairwayView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final StairwayTranslation stairwayInformation =
-        stairway.translations.plTranslation;
+    final StairwayTranslation stairwayInformation = stairway.translations.plTranslation;
 
     final widgets = [
       Text(
         stairway.translations.plTranslation.name,
-        style: context.textTheme.headline
-            .copyWith(fontSize: DigitalGuideConfig.headlineFont),
+        style: context.textTheme.headline.copyWith(fontSize: DigitalGuideConfig.headlineFont),
       ),
-      const SizedBox(
-        height: DigitalGuideConfig.heightSmall,
-      ),
+      const SizedBox(height: DigitalGuideConfig.heightSmall),
       BulletList(
-        items: [
-          stairwayInformation.location,
-          stairwayInformation.comment,
-        ].where((item) => item.trim().isNotEmpty).toIList(),
+        items:
+            [
+              stairwayInformation.location,
+              stairwayInformation.comment,
+            ].where((item) => item.trim().isNotEmpty).toIList(),
       ),
-      const SizedBox(
-        height: DigitalGuideConfig.heightSmall,
-      ),
+      const SizedBox(height: DigitalGuideConfig.heightSmall),
       AccessibilityProfileCard(
-        accessibilityCommentsManager: StairwayAccessibilityCommentsManager(
-          stairway: stairway,
-          l10n: context.localize,
-        ),
+        accessibilityCommentsManager: StairwayAccessibilityCommentsManager(stairway: stairway, l10n: context.localize),
         backgroundColor: context.colorTheme.whiteSoap,
       ),
       const SizedBox(height: DigitalGuideConfig.heightBig),
@@ -56,57 +48,43 @@ class StairwayView extends ConsumerWidget {
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         itemCount: stairway.stairsIds.length,
-        itemBuilder: (context, index) => DigitalGuideNavLink(
-          onTap: () async =>
-              ref.navigateDigitalGuideStairs(stairway.stairsIds[index]),
-          text: context.localize.stairs,
-        ),
-        separatorBuilder: (context, index) => const SizedBox(
-          height: DigitalGuideConfig.heightSmall,
-        ),
+        itemBuilder:
+            (context, index) => DigitalGuideNavLink(
+              onTap: () async => ref.navigateDigitalGuideStairs(stairway.stairsIds[index]),
+              text: context.localize.stairs,
+            ),
+        separatorBuilder: (context, index) => const SizedBox(height: DigitalGuideConfig.heightSmall),
       ),
-      if (stairway.doorsIds.isNotEmpty)
-        const SizedBox(height: DigitalGuideConfig.heightMedium),
+      if (stairway.doorsIds.isNotEmpty) const SizedBox(height: DigitalGuideConfig.heightMedium),
       ListView.separated(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         itemCount: stairway.doorsIds.length,
-        itemBuilder: (context, index) => DigitalGuideNavLink(
-          onTap: () async => ref.navigateDigitalGuideDoor(
-            stairway.doorsIds[index],
-          ),
-          text: context.localize.door,
-        ),
-        separatorBuilder: (context, index) => const SizedBox(
-          height: DigitalGuideConfig.heightSmall,
-        ),
+        itemBuilder:
+            (context, index) => DigitalGuideNavLink(
+              onTap: () async => ref.navigateDigitalGuideDoor(stairway.doorsIds[index]),
+              text: context.localize.door,
+            ),
+        separatorBuilder: (context, index) => const SizedBox(height: DigitalGuideConfig.heightSmall),
       ),
       if (stairway.imagesIds.isNotEmpty)
         Text(
           context.localize.images,
-          style: context.textTheme.title
-              .copyWith(fontSize: DigitalGuideConfig.headlineFont),
+          style: context.textTheme.title.copyWith(fontSize: DigitalGuideConfig.headlineFont),
         ),
       Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: DigitalGuideConfig.heightBig,
           vertical: DigitalGuideConfig.heightBig,
         ),
-        child: DigitalGuidePhotoRow(
-          imagesIDs: stairway.imagesIds,
-        ),
+        child: DigitalGuidePhotoRow(imagesIDs: stairway.imagesIds),
       ),
     ];
     return Scaffold(
       appBar: DetailViewAppBar(),
       body: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: DigitalGuideConfig.heightBig,
-        ),
-        child: ListView.builder(
-          itemBuilder: (context, index) => widgets[index],
-          itemCount: widgets.length,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: DigitalGuideConfig.heightBig),
+        child: ListView.builder(itemBuilder: (context, index) => widgets[index], itemCount: widgets.length),
       ),
     );
   }

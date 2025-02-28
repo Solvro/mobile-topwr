@@ -9,9 +9,7 @@ extension _FixNullGettersX on FieldOfStudy {
 
 extension WhereTypesX on IList<FieldOfStudy> {
   Iterable<FieldOfStudy> get whereFirstDegree {
-    return where(
-      (item) => !item.is2ndDegreeF && !item.isLongCycleStudiesF,
-    );
+    return where((item) => !item.is2ndDegreeF && !item.isLongCycleStudiesF);
   }
 
   Iterable<FieldOfStudy> get whereSecondDegree {

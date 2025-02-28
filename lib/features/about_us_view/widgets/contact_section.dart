@@ -16,14 +16,10 @@ class ContactSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:
-          const EdgeInsets.symmetric(horizontal: AboutUsConfig.defaultPadding),
+      padding: const EdgeInsets.symmetric(horizontal: AboutUsConfig.defaultPadding),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          for (final item in links)
-            _ContactIcon(url: item.url ?? "", icon: item.icon),
-        ],
+        children: [for (final item in links) _ContactIcon(url: item.url ?? "", icon: item.icon)],
       ),
     );
   }
@@ -45,12 +41,8 @@ class _ContactIcon extends ConsumerWidget {
           borderRadius: BorderRadius.circular(AboutUsConfig.borderRadius),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(
-            AboutUsConfig.iconPadding,
-          ),
-          child: Center(
-            child: SvgPicture.asset(icon),
-          ),
+          padding: const EdgeInsets.all(AboutUsConfig.iconPadding),
+          child: Center(child: SvgPicture.asset(icon)),
         ),
       ),
     );

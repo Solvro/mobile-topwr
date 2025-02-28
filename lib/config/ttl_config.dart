@@ -14,7 +14,7 @@ enum TtlKey {
   guideDetailsRepository,
   guideRepository,
   changelogRepository,
-  plannerAdvertRepository
+  plannerAdvertRepository,
   // ... add a new key here if you create a new repository
 }
 
@@ -22,8 +22,7 @@ abstract class TtlStrategy {
   // no cache in debug mode
   static const day = kDebugMode ? Duration(minutes: 30) : Duration(days: 1);
   static const week = kDebugMode ? Duration(minutes: 30) : Duration(days: 7);
-  static const thirtyDays =
-      kDebugMode ? Duration(minutes: 30) : Duration(days: 30);
+  static const thirtyDays = kDebugMode ? Duration(minutes: 30) : Duration(days: 30);
 
   static Duration get(TtlKey key) {
     return switch (key) {
@@ -39,15 +38,12 @@ abstract class TtlStrategy {
         day, // leaving as day for now, cause maybe some uni orgs will update it by themselves
       TtlKey.guideRepository => week,
       TtlKey.changelogRepository => week,
-      TtlKey.plannerAdvertRepository => day
+      TtlKey.plannerAdvertRepository => day,
     };
   }
 }
 
 abstract class MyCachedImageConfig {
   static const cacheKey = "topwr_my_cached_image_cache";
-  static final cacheConfig = Config(
-    cacheKey,
-    stalePeriod: const Duration(days: 7),
-  );
+  static final cacheConfig = Config(cacheKey, stalePeriod: const Duration(days: 7));
 }

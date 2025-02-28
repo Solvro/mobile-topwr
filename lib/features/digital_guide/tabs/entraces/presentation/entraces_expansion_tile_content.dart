@@ -11,9 +11,7 @@ import "../data/repository/entraces_repository.dart";
 import "digital_guide_entrance_widget.dart";
 
 class EntrancesExpansionTileContent extends ConsumerWidget {
-  const EntrancesExpansionTileContent({
-    required this.digitalGuideData,
-  });
+  const EntrancesExpansionTileContent({required this.digitalGuideData});
 
   final DigitalGuideResponse digitalGuideData;
 
@@ -22,9 +20,7 @@ class EntrancesExpansionTileContent extends ConsumerWidget {
     final entrances = ref.watch(entrancesRepositoryProvider(digitalGuideData));
     return entrances.when(
       data: _EntrancesExpansionTileContent.new,
-      loading: () => const Center(
-        child: CircularProgressIndicator(),
-      ),
+      loading: () => const Center(child: CircularProgressIndicator()),
       error: (error, _) => MyErrorWidget(error),
     );
   }
@@ -46,9 +42,10 @@ class _EntrancesExpansionTileContent extends ConsumerWidget {
         color: context.colorTheme.greyLight,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: entrances.map((entrance) {
-            return DigitalGuideEntranceWidget(entrance: entrance);
-          }).toList(),
+          children:
+              entrances.map((entrance) {
+                return DigitalGuideEntranceWidget(entrance: entrance);
+              }).toList(),
         ),
       ),
     );

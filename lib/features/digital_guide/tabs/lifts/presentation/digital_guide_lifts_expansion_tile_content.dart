@@ -10,23 +10,17 @@ import "../domain/digital_guide_lifts_use_cases.dart";
 import "digital_guide_lift_level.dart";
 
 class DigitalGuideLiftExpansionTileContent extends ConsumerWidget {
-  const DigitalGuideLiftExpansionTileContent({
-    required this.digitalGuideResponse,
-  });
+  const DigitalGuideLiftExpansionTileContent({required this.digitalGuideResponse});
 
   final DigitalGuideResponse digitalGuideResponse;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final levelsWithLifts =
-        ref.watch(getLevelWithLiftsUseCaseProvider(digitalGuideResponse));
+    final levelsWithLifts = ref.watch(getLevelWithLiftsUseCaseProvider(digitalGuideResponse));
     return levelsWithLifts.when(
-      data: (data) =>
-          _DigitalGuideLiftExpansionTileContent(levelsWithLifts: data),
+      data: (data) => _DigitalGuideLiftExpansionTileContent(levelsWithLifts: data),
       error: (error, _) => MyErrorWidget(error),
-      loading: () => const Center(
-        child: CircularProgressIndicator(),
-      ),
+      loading: () => const Center(child: CircularProgressIndicator()),
     );
   }
 }
@@ -47,12 +41,10 @@ class _DigitalGuideLiftExpansionTileContent extends ConsumerWidget {
         color: context.colorTheme.greyLight,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: levelsWithLifts.map((level) {
-            return DigitalGuideLiftLevel(
-              level: level.level,
-              lifts: level.lifts,
-            );
-          }).toList(),
+          children:
+              levelsWithLifts.map((level) {
+                return DigitalGuideLiftLevel(level: level.level, lifts: level.lifts);
+              }).toList(),
         ),
       ),
     );

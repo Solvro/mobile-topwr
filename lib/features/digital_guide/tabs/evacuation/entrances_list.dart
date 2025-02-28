@@ -14,22 +14,18 @@ class EntrancesList extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final entrances = ref.watch(entrancesRepositoryProvider(digitalGuideData));
     return entrances.when(
-      data: (entrancesData) => ListView.separated(
-        physics: const NeverScrollableScrollPhysics(),
-        itemBuilder: (context, index) => DigitalGuideNavLink(
-          onTap: () {},
-          text: entrancesData[index].translations.pl.name ?? "",
-        ),
-        separatorBuilder: (context, index) => const SizedBox(
-          height: DigitalGuideConfig.heightMedium,
-        ),
-        itemCount: entrancesData.length,
-        shrinkWrap: true,
-      ),
+      data:
+          (entrancesData) => ListView.separated(
+            physics: const NeverScrollableScrollPhysics(),
+            itemBuilder:
+                (context, index) =>
+                    DigitalGuideNavLink(onTap: () {}, text: entrancesData[index].translations.pl.name ?? ""),
+            separatorBuilder: (context, index) => const SizedBox(height: DigitalGuideConfig.heightMedium),
+            itemCount: entrancesData.length,
+            shrinkWrap: true,
+          ),
       error: (error, stackTrace) => MyErrorWidget(error),
-      loading: () => const Center(
-        child: CircularProgressIndicator(),
-      ),
+      loading: () => const Center(child: CircularProgressIndicator()),
     );
   }
 }

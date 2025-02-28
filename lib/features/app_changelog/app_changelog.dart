@@ -7,10 +7,7 @@ import "widgets/app_changelog_header.dart";
 import "widgets/app_changelog_list.dart";
 
 class AppChangelog extends StatelessWidget {
-  const AppChangelog({
-    super.key,
-    required this.changelog,
-  });
+  const AppChangelog({super.key, required this.changelog});
 
   final Changelog changelog;
 
@@ -23,22 +20,15 @@ class AppChangelog extends StatelessWidget {
           maxHeight: MediaQuery.sizeOf(context).height * 0.6,
           maxWidth: MediaQuery.sizeOf(context).width * 0.7,
         ),
-        decoration: BoxDecoration(
-          color: context.colorTheme.whiteSoap,
-          borderRadius: BorderRadius.circular(8),
-        ),
+        decoration: BoxDecoration(color: context.colorTheme.whiteSoap, borderRadius: BorderRadius.circular(8)),
         child: Stack(
           children: [
             Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                AppChangelogHeader(
-                  version: changelog.versionString!,
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
+                AppChangelogHeader(version: changelog.versionString!),
+                const SizedBox(height: 15),
                 AppChangelogList(changelog: changelog),
               ],
             ),
@@ -47,11 +37,7 @@ class AppChangelog extends StatelessWidget {
               top: 0,
               child: GestureDetector(
                 onTap: context.maybePop,
-                child: Icon(
-                  Icons.close,
-                  color: context.colorTheme.greyPigeon,
-                  size: 20,
-                ),
+                child: Icon(Icons.close, color: context.colorTheme.greyPigeon, size: 20),
               ),
             ),
           ],

@@ -12,11 +12,12 @@ class AboutTheAppTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: Future.microtask(PackageInfo.fromPlatform),
-      builder: (context, snapshot) => NavigationTile(
-        onTap: () async => showMyLicenceDialog(context, snapshot.data?.version),
-        title: context.localize.about_the_app,
-        icon: Icons.info,
-      ),
+      builder:
+          (context, snapshot) => NavigationTile(
+            onTap: () async => showMyLicenceDialog(context, snapshot.data?.version),
+            title: context.localize.about_the_app,
+            icon: Icons.info,
+          ),
     );
   }
 }

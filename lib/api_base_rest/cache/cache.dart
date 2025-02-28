@@ -9,10 +9,7 @@ import "../client/offline_error.dart";
 import "cache_manager.dart";
 
 extension DataCachingX on Ref {
-  Future<void> clearCache(
-    String fullUrl,
-    int ttlDays,
-  ) async {
+  Future<void> clearCache(String fullUrl, int ttlDays) async {
     final cacheManager = watch(restCacheManagerProvider(ttlDays));
     await cacheManager.removeFile(fullUrl);
   }
@@ -32,9 +29,7 @@ extension DataCachingX on Ref {
     final cachedFile = await cacheManager.getFileFromCache(fullUrl);
     if (cachedFile != null) {
       final cachedData = await cachedFile.file.readAsString();
-      final data = fromJson(
-        jsonDecode(cachedData) as JSON,
-      );
+      final data = fromJson(jsonDecode(cachedData) as JSON);
       if (extraValidityCheck(data)) {
         return data;
       }

@@ -6,11 +6,7 @@ import "../../../../../../theme/app_theme.dart";
 class BulletList extends StatelessWidget {
   final IList<String> items;
 
-  const BulletList({
-    super.key,
-    required this.items,
-    this.fontSize = 13,
-  });
+  const BulletList({super.key, required this.items, this.fontSize = 13});
   final double fontSize;
   @override
   Widget build(BuildContext context) {
@@ -24,14 +20,8 @@ class BulletList extends StatelessWidget {
         return RichText(
           text: TextSpan(
             children: [
-              TextSpan(
-                text: "\u2022 ",
-                style: context.textTheme.body.copyWith(fontSize: fontSize + 3),
-              ),
-              TextSpan(
-                text: item,
-                style: context.textTheme.body.copyWith(fontSize: fontSize),
-              ),
+              TextSpan(text: "\u2022 ", style: context.textTheme.body.copyWith(fontSize: fontSize + 3)),
+              TextSpan(text: item, style: context.textTheme.body.copyWith(fontSize: fontSize)),
             ],
           ),
         );

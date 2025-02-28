@@ -27,14 +27,8 @@ class RailingsView extends ConsumerWidget {
 
     return asyncRailing.when(
       data: (data) => _RailingsView(railing: data),
-      error: (
-        error,
-        stackTrace,
-      ) {
-        return HorizontalSymmetricSafeAreaScaffold(
-          appBar: DetailViewAppBar(),
-          body: MyErrorWidget(error),
-        );
+      error: (error, stackTrace) {
+        return HorizontalSymmetricSafeAreaScaffold(appBar: DetailViewAppBar(), body: MyErrorWidget(error));
       },
       loading: () {
         return const DigitalGuideLoadingView();
@@ -52,25 +46,20 @@ class _RailingsView extends ConsumerWidget {
     return Scaffold(
       appBar: DetailViewAppBar(),
       body: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: DigitalGuideConfig.heightBig,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: DigitalGuideConfig.heightBig),
         child: Column(
           children: [
             BulletList(
-              items: [
-                if (railing.translations.plTranslation.comment.isNotEmpty)
-                  railing.translations.plTranslation.comment,
-                if (railing.railingHeight != null)
-                  context.localize.railing_height(railing.railingHeight!),
-              ].where((item) => item.trim().isNotEmpty).toIList(),
+              items:
+                  [
+                    if (railing.translations.plTranslation.comment.isNotEmpty)
+                      railing.translations.plTranslation.comment,
+                    if (railing.railingHeight != null) context.localize.railing_height(railing.railingHeight!),
+                  ].where((item) => item.trim().isNotEmpty).toIList(),
             ),
-            const SizedBox(
-              height: DigitalGuideConfig.heightBig,
-            ),
+            const SizedBox(height: DigitalGuideConfig.heightBig),
             AccessibilityProfileCard(
-              accessibilityCommentsManager:
-                  RailingsAccessibilityCommentsManager(
+              accessibilityCommentsManager: RailingsAccessibilityCommentsManager(
                 railing: railing,
                 l10n: context.localize,
               ),

@@ -3,10 +3,7 @@ import "package:flutter/widgets.dart";
 import "../../../../config/ui_config.dart";
 
 class HeadlinesSection extends StatelessWidget {
-  const HeadlinesSection({
-    required this.name,
-    required this.description,
-  });
+  const HeadlinesSection({required this.name, required this.description});
 
   final String name;
   final String description;
@@ -18,10 +15,7 @@ class HeadlinesSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            name,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
-          ),
+          Text(name, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
           if (description.isNotEmpty) Text(description),
         ],
       ),

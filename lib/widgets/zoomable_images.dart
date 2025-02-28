@@ -6,10 +6,7 @@ import "my_cached_image.dart";
 import "optimized_directus_image.dart";
 
 extension ShowFullscreenImageX on BuildContext {
-  Future<void> showFullScreenImage(
-    String? imageUrl, {
-    bool shouldHaveRectBackground = false,
-  }) async {
+  Future<void> showFullScreenImage(String? imageUrl, {bool shouldHaveRectBackground = false}) async {
     if (imageUrl == null) {
       return;
     }
@@ -23,9 +20,10 @@ extension ShowFullscreenImageX on BuildContext {
           child: InteractiveViewer(
             minScale: 1,
             maxScale: 5,
-            child: shouldHaveRectBackground
-                ? _ImageWithWhiteBackground(imageUrl: imageUrl)
-                : _ImageWithoutBackground(imageUrl: imageUrl),
+            child:
+                shouldHaveRectBackground
+                    ? _ImageWithWhiteBackground(imageUrl: imageUrl)
+                    : _ImageWithoutBackground(imageUrl: imageUrl),
           ),
         );
       },
@@ -34,9 +32,7 @@ extension ShowFullscreenImageX on BuildContext {
 }
 
 class _ImageWithoutBackground extends StatelessWidget {
-  const _ImageWithoutBackground({
-    required this.imageUrl,
-  });
+  const _ImageWithoutBackground({required this.imageUrl});
 
   final String? imageUrl;
 
@@ -54,9 +50,7 @@ class _ImageWithoutBackground extends StatelessWidget {
 }
 
 class _ImageWithWhiteBackground extends StatelessWidget {
-  const _ImageWithWhiteBackground({
-    required this.imageUrl,
-  });
+  const _ImageWithWhiteBackground({required this.imageUrl});
 
   final String? imageUrl;
 
@@ -66,10 +60,7 @@ class _ImageWithWhiteBackground extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(10),
         child: Container(
-          decoration: BoxDecoration(
-            color: ColorsConsts.greyLight,
-            borderRadius: BorderRadius.circular(30),
-          ),
+          decoration: BoxDecoration(color: ColorsConsts.greyLight, borderRadius: BorderRadius.circular(30)),
           width: MediaQuery.sizeOf(context).shortestSide,
           height: MediaQuery.sizeOf(context).shortestSide,
           child: Padding(
@@ -104,16 +95,9 @@ class ZoomableOptimizedDirectusImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
-        await context.showFullScreenImage(
-          imageUrl,
-          shouldHaveRectBackground: shouldHaveRectBackground,
-        );
+        await context.showFullScreenImage(imageUrl, shouldHaveRectBackground: shouldHaveRectBackground);
       },
-      child: OptimizedDirectusImage(
-        imageUrl,
-        boxFit: boxFit,
-        loadingType: loadingType,
-      ),
+      child: OptimizedDirectusImage(imageUrl, boxFit: boxFit, loadingType: loadingType),
     );
   }
 }
@@ -136,16 +120,9 @@ class ZoomableCachedImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
-        await context.showFullScreenImage(
-          imageUrl,
-          shouldHaveRectBackground: shouldHaveRectBackground,
-        );
+        await context.showFullScreenImage(imageUrl, shouldHaveRectBackground: shouldHaveRectBackground);
       },
-      child: MyCachedImage(
-        imageUrl,
-        boxFit: boxFit,
-        loadingType: loadingType,
-      ),
+      child: MyCachedImage(imageUrl, boxFit: boxFit, loadingType: loadingType),
     );
   }
 }

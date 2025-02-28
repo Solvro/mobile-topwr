@@ -5,19 +5,14 @@ import "../../hooks/use_effect_on_init.dart";
 import "show_changelog.dart";
 
 class UpdateChangelogWrapper extends HookConsumerWidget {
-  const UpdateChangelogWrapper({
-    super.key,
-    required this.child,
-  });
+  const UpdateChangelogWrapper({super.key, required this.child});
 
   final Widget child;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     useEffectOnInit(() {
-      Future.microtask(
-        () async => context.mounted ? showChangelog(context, ref) : null,
-      );
+      Future.microtask(() async => context.mounted ? showChangelog(context, ref) : null);
       return null;
     });
     return child;

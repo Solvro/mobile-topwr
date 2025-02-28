@@ -5,10 +5,7 @@ import "splash_screen_controller.dart";
 import "widgets/flutter_splash_screen.dart";
 
 class SplashScreen extends ConsumerWidget {
-  const SplashScreen({
-    super.key,
-    required this.child,
-  });
+  const SplashScreen({super.key, required this.child});
   final Widget child;
 
   @override

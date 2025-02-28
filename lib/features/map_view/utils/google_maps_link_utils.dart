@@ -7,10 +7,7 @@ import "package:logger/logger.dart";
 import "../../../utils/launch_url_util.dart";
 
 class GoogleMapsLinkUtils {
-  static Future<void> navigateTo(
-    LatLng latLng,
-    WidgetRef? ref,
-  ) async {
+  static Future<void> navigateTo(LatLng latLng, WidgetRef? ref) async {
     final link = _NavigationLaunchLink(latLng);
     final launchedFirst = await ref.launch(link.adaptiveLink);
     if (!launchedFirst) {
@@ -31,14 +28,11 @@ class _NavigationLaunchLink {
 
   String get _locationStr => "${latLng.latitude},${latLng.longitude}";
 
-  String get _androidLink =>
-      "https://www.google.com/maps/dir/?api=1&destination=$_locationStr";
+  String get _androidLink => "https://www.google.com/maps/dir/?api=1&destination=$_locationStr";
 
-  String get _iosLink =>
-      "comgooglemaps://?saddr=&daddr=$_locationStr&directionsmode=driving";
+  String get _iosLink => "comgooglemaps://?saddr=&daddr=$_locationStr&directionsmode=driving";
 
   String get adaptiveLink => Platform.isAndroid ? _androidLink : _iosLink;
 
-  String get backupLink =>
-      "https://www.google.com/maps/search/?api=1&query=$_locationStr";
+  String get backupLink => "https://www.google.com/maps/search/?api=1&query=$_locationStr";
 }

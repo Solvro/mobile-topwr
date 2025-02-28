@@ -16,17 +16,14 @@ class AccessibilityModeService extends _$AccessibilityModeService {
   Future<bool> build(AccessibilityMode mode) async {
     return switch (mode) {
       ModeWithChildren() => _calculateModeWithChildrenState(mode),
-      ModeWithKey() => ref.watch(
-          accessibilityModeRepositoryProvider(mode).future,
-        ),
+      ModeWithKey() => ref.watch(accessibilityModeRepositoryProvider(mode).future),
     };
   }
 
   Future<void> setMode({required bool newValue}) async {
     final modeStronglyTyped = mode; // needed for typing system
     await switch (modeStronglyTyped) {
-      ModeWithChildren() =>
-        _setModeWithChildrenState(modeStronglyTyped, newValue),
+      ModeWithChildren() => _setModeWithChildrenState(modeStronglyTyped, newValue),
       ModeWithKey() => _setSingularModeState(modeStronglyTyped, newValue),
     };
   }
@@ -34,34 +31,20 @@ class AccessibilityModeService extends _$AccessibilityModeService {
   // true if any of its children are true
   Future<bool> _calculateModeWithChildrenState(ModeWithChildren mode) async {
     final submodesValues = await Future.wait(
-      mode.children.map(
-        (child) => ref.watch(accessibilityModeServiceProvider(child).future),
-      ),
+      mode.children.map((child) => ref.watch(accessibilityModeServiceProvider(child).future)),
     );
     return submodesValues.anyIs(true);
   }
 
   // sets all childrens' of the mode to newValue
-  Future<void> _setModeWithChildrenState(
-    ModeWithChildren mode,
-    bool newValue,
-  ) async {
+  Future<void> _setModeWithChildrenState(ModeWithChildren mode, bool newValue) async {
     for (final child in mode.children) {
-      await ref
-          .read(accessibilityModeServiceProvider(child).notifier)
-          .setMode(newValue: newValue);
+      await ref.read(accessibilityModeServiceProvider(child).notifier).setMode(newValue: newValue);
     }
   }
 
   // calls directly the repository
-  Future<void> _setSingularModeState(
-    ModeWithKey modeStronglyTyped,
-    bool newValue,
-  ) {
-    return ref
-        .read(
-          accessibilityModeRepositoryProvider(modeStronglyTyped).notifier,
-        )
-        .setMode(newValue: newValue);
+  Future<void> _setSingularModeState(ModeWithKey modeStronglyTyped, bool newValue) {
+    return ref.read(accessibilityModeRepositoryProvider(modeStronglyTyped).notifier).setMode(newValue: newValue);
   }
 }

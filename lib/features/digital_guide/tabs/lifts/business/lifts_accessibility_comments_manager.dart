@@ -5,10 +5,7 @@ import "../../../business/accessibility_comments_manager.dart";
 import "../data/models/digital_guide_lift.dart";
 
 class LiftsAccessibilityCommentsManager extends AccessibilityCommentsManager {
-  LiftsAccessibilityCommentsManager({
-    required this.l10n,
-    required this.liftResponse,
-  });
+  LiftsAccessibilityCommentsManager({required this.l10n, required this.liftResponse});
 
   AppLocalizations l10n;
   DigitalGuideLift liftResponse;
@@ -29,23 +26,17 @@ class LiftsAccessibilityCommentsManager extends AccessibilityCommentsManager {
       l10n.control_panel_inside(liftResponse.insideControlPanelHeight),
       l10n.control_panel_outside(liftResponse.outsideControlPanelHeight),
       if (liftResponse.isInsideConvexButton) l10n.lift_button_are_convex,
-      l10n.is_with_outsite_notification(
-        liftResponse.isOutsideArrivalNotificationSound.toString().toLowerCase(),
-      ),
-      l10n.is_with_inside_notification(
-        liftResponse.isOutsideArrivalNotificationSound.toString().toLowerCase(),
-      ),
+      l10n.is_with_outsite_notification(liftResponse.isOutsideArrivalNotificationSound.toString().toLowerCase()),
+      l10n.is_with_inside_notification(liftResponse.isOutsideArrivalNotificationSound.toString().toLowerCase()),
     ]);
   }
 
   @override
   IList<String> getCommentsListForCognitiveImpairment() {
-    return IList(
-      [
-        if (liftResponse.isSigned) l10n.lift_info_boart_text,
-        l10n.is_lit(liftResponse.isInsideLit.toString().toLowerCase()),
-      ],
-    );
+    return IList([
+      if (liftResponse.isSigned) l10n.lift_info_boart_text,
+      l10n.is_lit(liftResponse.isInsideLit.toString().toLowerCase()),
+    ]);
   }
 
   @override
@@ -60,15 +51,9 @@ class LiftsAccessibilityCommentsManager extends AccessibilityCommentsManager {
       if (liftResponse.isVoicePrompts) l10n.with_voice_comunicates,
       if (liftResponse.isInsideConvexButton) l10n.lift_button_are_convex,
       l10n.is_lit(liftResponse.isInsideLit.toString().toLowerCase()),
-      l10n.is_with_outsite_notification(
-        liftResponse.isOutsideArrivalNotificationSound.toString().toLowerCase(),
-      ),
-      l10n.is_with_inside_notification(
-        liftResponse.isOutsideArrivalNotificationSound.toString().toLowerCase(),
-      ),
-      l10n.is_door_good_contrast(
-        liftResponse.isGoodDoorWallContrast.toString().toLowerCase(),
-      ),
+      l10n.is_with_outsite_notification(liftResponse.isOutsideArrivalNotificationSound.toString().toLowerCase()),
+      l10n.is_with_inside_notification(liftResponse.isOutsideArrivalNotificationSound.toString().toLowerCase()),
+      l10n.is_door_good_contrast(liftResponse.isGoodDoorWallContrast.toString().toLowerCase()),
     ]);
   }
 
@@ -87,10 +72,6 @@ class LiftsAccessibilityCommentsManager extends AccessibilityCommentsManager {
 
   @override
   IList<String> getCommentsListForSensorySensitivity() {
-    return IList([
-      l10n.is_lift_floor_info(
-        liftResponse.isDisplayShowingFloor.toString().toLowerCase(),
-      ),
-    ]);
+    return IList([l10n.is_lift_floor_info(liftResponse.isDisplayShowingFloor.toString().toLowerCase())]);
   }
 }

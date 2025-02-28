@@ -29,8 +29,7 @@ class SksMenuRepository extends _$SksMenuRepository {
       _ttlDays,
       SksMenuResponse.fromJson,
       extraValidityCheck: (data) {
-        return data.isMenuOnline &&
-            DateTime.now().date.isSameDay(data.lastUpdate.date);
+        return data.isMenuOnline && DateTime.now().date.isSameDay(data.lastUpdate.date);
       },
       localizedOfflineMessage: SksMenuView.localizedOfflineMessage,
       onRetry: () => ref.invalidateSelf(),
@@ -49,14 +48,10 @@ class SksMenuRepository extends _$SksMenuRepository {
       onRetry: () => ref.invalidateSelf(),
     );
 
-    final trueMeals = sksMenuResponse.meals
-        .where((e) => e.category != DishCategory.technicalInfo)
-        .toIList();
+    final trueMeals = sksMenuResponse.meals.where((e) => e.category != DishCategory.technicalInfo).toIList();
 
-    final technicalInfos = sksMenuResponse.meals
-        .where((e) => e.category == DishCategory.technicalInfo)
-        .map((e) => e.name)
-        .toIList();
+    final technicalInfos =
+        sksMenuResponse.meals.where((e) => e.category == DishCategory.technicalInfo).map((e) => e.name).toIList();
 
     return ExtendedSksMenuResponse(
       isMenuOnline: sksMenuResponse.isMenuOnline,

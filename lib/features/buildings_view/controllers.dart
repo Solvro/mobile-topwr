@@ -16,22 +16,15 @@ import "utils/utils.dart";
 part "controllers.g.dart";
 
 @Riverpod(dependencies: [])
-class ActiveBuildingController extends _$ActiveBuildingController
-    with ActiveMarkerController<BuildingModel> {
+class ActiveBuildingController extends _$ActiveBuildingController with ActiveMarkerController<BuildingModel> {
   @override
   BuildingModel? build() {
     return null;
   }
 }
 
-@Riverpod(
-  dependencies: [
-    bottomSheetController,
-    ActiveBuildingController,
-  ],
-)
-class BuildingsViewController extends _$BuildingsViewController
-    with MapDataController<BuildingModel> {
+@Riverpod(dependencies: [bottomSheetController, ActiveBuildingController])
+class BuildingsViewController extends _$BuildingsViewController with MapDataController<BuildingModel> {
   BuildingsViewController() {
     mapControllers = mapControllersBuildings;
   }
@@ -50,8 +43,7 @@ class BuildingsViewController extends _$BuildingsViewController
         if (ref.isStringABuildingCode(filterStr)) {
           return item.name.containsBuildingCode(filterStr);
         } else {
-          return item.addres.containsLowerCase(filterStr) ||
-              item.naturalName.containsLowerCase(filterStr);
+          return item.addres.containsLowerCase(filterStr) || item.naturalName.containsLowerCase(filterStr);
         }
       default:
         return item.name.containsBuildingCode(filterStr) ||
@@ -61,12 +53,7 @@ class BuildingsViewController extends _$BuildingsViewController
   }
 }
 
-@Riverpod(
-  dependencies: [
-    bottomSheetController,
-    ActiveBuildingController,
-  ],
-)
+@Riverpod(dependencies: [bottomSheetController, ActiveBuildingController])
 MyMapController<BuildingModel> buildingsMapController(Ref ref) {
   return MyMapController(ref, mapControllersBuildings);
 }

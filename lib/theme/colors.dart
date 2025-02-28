@@ -27,22 +27,14 @@ abstract class ColorsConsts {
   static const toPwrGradient = LinearGradient(
     begin: Alignment(-1, -0.1),
     end: Alignment(1, 0.1),
-    colors: [
-      Color(0xfff67448),
-      Color(0xffee6645),
-      Color(0xffdf371b),
-    ],
+    colors: [Color(0xfff67448), Color(0xffee6645), Color(0xffdf371b)],
     stops: [0.0, 0.25, 0.72],
   );
 
   static const buildingsGradient = LinearGradient(
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
-    colors: [
-      Color.fromRGBO(96, 130, 180, 0.3),
-      Color.fromRGBO(33, 45, 63, 0.5),
-      Color.fromRGBO(22, 37, 58, 0.5),
-    ],
+    colors: [Color.fromRGBO(96, 130, 180, 0.3), Color.fromRGBO(33, 45, 63, 0.5), Color.fromRGBO(22, 37, 58, 0.5)],
     stops: [0.0, 0.7396, 1.0],
   );
 

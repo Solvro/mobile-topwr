@@ -27,8 +27,7 @@ class DigitalGuideTransportation with _$DigitalGuideTransportation {
     required double cityBikeStationDistance,
     @JsonKey(fromJson: stringToBool) required bool isBicyclePathLeadToBuilding,
     required double distanceToBicyclePath,
-    @JsonKey(fromJson: stringToBool)
-    required bool isBicyclePathLeadClearlySeparated,
+    @JsonKey(fromJson: stringToBool) required bool isBicyclePathLeadClearlySeparated,
     required String areObstaclesForBlind,
     required String areObstaclesForWheelchairUser,
     required String areFacilitiesForBlindFromStopToEntry,
@@ -39,26 +38,21 @@ class DigitalGuideTransportation with _$DigitalGuideTransportation {
     required String alternativeDailyTramBusLinesStop,
   }) = _DigitalGuideTransportation;
 
-  factory DigitalGuideTransportation.fromJson(Map<String, dynamic> json) =>
-      _$DigitalGuideTransportationFromJson(json);
+  factory DigitalGuideTransportation.fromJson(Map<String, dynamic> json) => _$DigitalGuideTransportationFromJson(json);
 }
 
 @freezed
-class DigitalGuideTranslationsTransportation
-    with _$DigitalGuideTranslationsTransportation {
+class DigitalGuideTranslationsTransportation with _$DigitalGuideTranslationsTransportation {
   const factory DigitalGuideTranslationsTransportation({
     @JsonKey(name: "pl") required DigitalGuideTranslationTransportation pl,
   }) = _DigitalGuideTranslationsTransportation;
 
-  factory DigitalGuideTranslationsTransportation.fromJson(
-    Map<String, dynamic> json,
-  ) =>
+  factory DigitalGuideTranslationsTransportation.fromJson(Map<String, dynamic> json) =>
       _$DigitalGuideTranslationsTransportationFromJson(json);
 }
 
 @freezed
-class DigitalGuideTranslationTransportation
-    with _$DigitalGuideTranslationTransportation {
+class DigitalGuideTranslationTransportation with _$DigitalGuideTranslationTransportation {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideTranslationTransportation({
     required String nearestPublicTransportStop,
@@ -85,8 +79,6 @@ class DigitalGuideTranslationTransportation
     required String areFacilitiesForBlindFromStopToEntryAltRoadComment,
   }) = _DigitalGuideTranslationTransportation;
 
-  factory DigitalGuideTranslationTransportation.fromJson(
-    Map<String, dynamic> json,
-  ) =>
+  factory DigitalGuideTranslationTransportation.fromJson(Map<String, dynamic> json) =>
       _$DigitalGuideTranslationTransportationFromJson(json);
 }

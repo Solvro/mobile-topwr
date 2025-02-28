@@ -61,27 +61,16 @@ class _DialogContent extends StatelessWidget {
               children: [
                 Text(
                   applicationName,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: AboutUsConfig.dialogTitleFontSize,
-                  ),
+                  style: const TextStyle(fontWeight: FontWeight.w500, fontSize: AboutUsConfig.dialogTitleFontSize),
                 ),
-                Text(
-                  applicationVersion,
-                  style: context.textTheme.lightTitle,
-                ),
+                Text(applicationVersion, style: context.textTheme.lightTitle),
               ],
             ),
             applicationIcon,
           ],
         ),
-        const SizedBox(
-          height: 20,
-        ),
-        Text(
-          applicationLegalese,
-          style: context.textTheme.body,
-        ),
+        const SizedBox(height: 20),
+        Text(applicationLegalese, style: context.textTheme.body),
       ],
     );
   }

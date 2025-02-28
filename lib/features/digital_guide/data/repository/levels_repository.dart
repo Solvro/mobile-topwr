@@ -25,16 +25,9 @@ Future<IList<Region>> regionsRepository(Ref ref, List<int> regionIDs) async {
 }
 
 @riverpod
-Future<IList<Level>> rawLevelsRepository(
-  Ref ref,
-  DigitalGuideResponse buildingData,
-) async {
+Future<IList<Level>> rawLevelsRepository(Ref ref, DigitalGuideResponse buildingData) async {
   Future<Level> getLevel(int levelID) async {
-    return ref.getAndCacheDataFromDigitalGuide(
-      "levels/$levelID",
-      Level.fromJson,
-      onRetry: () => ref.invalidateSelf(),
-    );
+    return ref.getAndCacheDataFromDigitalGuide("levels/$levelID", Level.fromJson, onRetry: () => ref.invalidateSelf());
   }
 
   final rawLevels = await Future.wait(buildingData.levelsIndices.map(getLevel));
@@ -42,23 +35,12 @@ Future<IList<Level>> rawLevelsRepository(
 }
 
 @riverpod
-Future<IList<LevelWithRegions>> levelsWithRegionsRepository(
-  Ref ref,
-  DigitalGuideResponse buildingData,
-) async {
-  final rawLevels =
-      await ref.watch(rawLevelsRepositoryProvider(buildingData).future);
+Future<IList<LevelWithRegions>> levelsWithRegionsRepository(Ref ref, DigitalGuideResponse buildingData) async {
+  final rawLevels = await ref.watch(rawLevelsRepositoryProvider(buildingData).future);
   Future<LevelWithRegions> expandLevelWithRegions(Level level) async {
-    return (
-      level: level,
-      regions: await ref
-          .watch(regionsRepositoryProvider(level.regionIndices).future),
-    );
+    return (level: level, regions: await ref.watch(regionsRepositoryProvider(level.regionIndices).future));
   }
 
   final levels = await Future.wait(rawLevels.map(expandLevelWithRegions));
-  return levels.lock.sort(
-    (level1, level2) =>
-        level1.level.floorNumber.compareTo(level2.level.floorNumber),
-  );
+  return levels.lock.sort((level1, level2) => level1.level.floorNumber.compareTo(level2.level.floorNumber));
 }

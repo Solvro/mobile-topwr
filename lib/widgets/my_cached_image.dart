@@ -32,19 +32,11 @@ class MyCachedImage extends StatelessWidget {
       cacheManager: CacheManager(MyCachedImageConfig.cacheConfig),
       placeholder: switch (loadingType) {
         LoadingType.noLoading => null,
-        LoadingType.shimmerLoading => (context, url) => Center(
-              child: ShimmeringEffect(
-                child: Container(
-                  color: Colors.white,
-                ),
-              ),
-            ),
-        LoadingType.circularProgressIndicator => (context, url) => const Center(
-              child: CircularProgressIndicator(),
-            )
+        LoadingType.shimmerLoading =>
+          (context, url) => Center(child: ShimmeringEffect(child: Container(color: Colors.white))),
+        LoadingType.circularProgressIndicator => (context, url) => const Center(child: CircularProgressIndicator()),
       },
-      errorWidget: (context, url, error) =>
-          FlutterSplashScreen(size: size?.height),
+      errorWidget: (context, url, error) => FlutterSplashScreen(size: size?.height),
       height: size?.height,
       width: size?.width,
     );

@@ -16,10 +16,8 @@ Future<IList<DigitalGuideObjectTabResponse>> digitalGuideObjectTabsRepository(
   final url = "objects_category?object=${object.id}";
   return ref.getAndCacheDataFromDigitalGuide(
     url,
-    (List<dynamic> json) => json
-        .whereType<Map<String, dynamic>>()
-        .map(DigitalGuideObjectTabResponse.fromJson)
-        .toIList(),
+    (List<dynamic> json) =>
+        json.whereType<Map<String, dynamic>>().map(DigitalGuideObjectTabResponse.fromJson).toIList(),
     onRetry: () => ref.invalidateSelf(),
   );
 }

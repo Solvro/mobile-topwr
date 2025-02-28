@@ -52,13 +52,8 @@ part "app_router.g.dart";
 part "app_router.gr.dart";
 
 class _NoTransitionRoute extends CustomRoute {
-  _NoTransitionRoute({
-    required super.path,
-    required super.page,
-  }) : super(
-          reverseDurationInMilliseconds: 0,
-          durationInMilliseconds: 0,
-        );
+  _NoTransitionRoute({required super.path, required super.page})
+    : super(reverseDurationInMilliseconds: 0, durationInMilliseconds: 0);
 }
 
 @AutoRouterConfig(replaceInRouteName: "View,Route")
@@ -70,122 +65,44 @@ class AppRouter extends RootStackRouter {
   // These have bottom nav bar visible
   // also they need to handle in app deeplinks differently
   List<AutoRoute> get routesWithinTabBar => [
-        _NoTransitionRoute(
-          path: "",
-          page: HomeRoute.page,
-        ),
-        _NoTransitionRoute(
-          path: "buildings/:initialActiveItemId",
-          page: BuildingsRoute.page,
-        ),
-        RedirectRoute(path: "buildings", redirectTo: "buildings/null"),
-        _NoTransitionRoute(
-          path: "parkings/:initialActiveItemId",
-          page: ParkingsRoute.page,
-        ),
-        RedirectRoute(path: "parkings", redirectTo: "parkings/null"),
-        _NoTransitionRoute(
-          path: "guide",
-          page: GuideRoute.page,
-        ),
-        _NoTransitionRoute(
-          path: "navigation",
-          page: NavigationTabRoute.page,
-        ),
-        AutoRoute(
-          path: "guide/:id",
-          page: GuideDetailRoute.page,
-        ),
-      ];
+    _NoTransitionRoute(path: "", page: HomeRoute.page),
+    _NoTransitionRoute(path: "buildings/:initialActiveItemId", page: BuildingsRoute.page),
+    RedirectRoute(path: "buildings", redirectTo: "buildings/null"),
+    _NoTransitionRoute(path: "parkings/:initialActiveItemId", page: ParkingsRoute.page),
+    RedirectRoute(path: "parkings", redirectTo: "parkings/null"),
+    _NoTransitionRoute(path: "guide", page: GuideRoute.page),
+    _NoTransitionRoute(path: "navigation", page: NavigationTabRoute.page),
+    AutoRoute(path: "guide/:id", page: GuideDetailRoute.page),
+  ];
 
   @override
   List<AutoRoute> get routes => [
-        AutoRoute(
-          path: "/",
-          page: RootRoute.page,
-          children: routesWithinTabBar,
-        ),
-        AutoRoute(
-          path: "/sks-menu",
-          page: SksMenuRoute.page,
-        ),
-        AutoRoute(
-          path: "/departments",
-          page: DepartmentsRoute.page,
-        ),
-        AutoRoute(
-          path: "/departments/:id",
-          page: DepartmentDetailRoute.page,
-        ),
-        AutoRoute(
-          path: "/sci-clubs",
-          page: ScienceClubsRoute.page,
-        ),
-        AutoRoute(
-          path: "/sci-clubs/:id",
-          page: ScienceClubDetailRoute.page,
-        ),
-        AutoRoute(
-          path: "/aboutUs",
-          page: AboutUsRoute.page,
-        ),
-        AutoRoute(
-          path: "/digital-guide/:id",
-          page: DigitalGuideRoute.page,
-        ),
-        AutoRoute(
-          path: "/digital-guide-other/:id",
-          page: DigitalGuideObjectRoute.page,
-        ),
-        AutoRoute(
-          page: AdaptedToiletDetailRoute.page,
-        ),
-        AutoRoute(
-          page: LevelRoute.page,
-        ),
-        AutoRoute(
-          page: RegionRoute.page,
-        ),
-        AutoRoute(
-          page: DigitalGuideLiftDetailRoute.page,
-        ),
-        AutoRoute(
-          page: CorridorRoute.page,
-        ),
-        AutoRoute(page: DigitalGuideEntranceDetailsRoute.page),
-        AutoRoute(
-          page: StairsRoute.page,
-        ),
-        AutoRoute(
-          page: StairwayRoute.page,
-        ),
-        AutoRoute(
-          page: ToiletsRoute.page,
-        ),
-        AutoRoute(
-          page: DigitalGuideRoomDetailRoute.page,
-        ),
-        AutoRoute(
-          path: "/digital-guide/:id/micronavigation-details",
-          page: MicronavigationDetailRoute.page,
-        ),
-        AutoRoute(
-          path: "/digital-guide/:id/adapted-toilet-details",
-          page: AdaptedToiletDetailRoute.page,
-        ),
-        AutoRoute(
-          page: DoorRoute.page,
-        ),
-        AutoRoute(
-          page: TransportationDetailRoute.page,
-        ),
-        AutoRoute(
-          page: RailingsRoute.page,
-        ),
-        AutoRoute(
-          page: RampsRoute.page,
-        ),
-      ];
+    AutoRoute(path: "/", page: RootRoute.page, children: routesWithinTabBar),
+    AutoRoute(path: "/sks-menu", page: SksMenuRoute.page),
+    AutoRoute(path: "/departments", page: DepartmentsRoute.page),
+    AutoRoute(path: "/departments/:id", page: DepartmentDetailRoute.page),
+    AutoRoute(path: "/sci-clubs", page: ScienceClubsRoute.page),
+    AutoRoute(path: "/sci-clubs/:id", page: ScienceClubDetailRoute.page),
+    AutoRoute(path: "/aboutUs", page: AboutUsRoute.page),
+    AutoRoute(path: "/digital-guide/:id", page: DigitalGuideRoute.page),
+    AutoRoute(path: "/digital-guide-other/:id", page: DigitalGuideObjectRoute.page),
+    AutoRoute(page: AdaptedToiletDetailRoute.page),
+    AutoRoute(page: LevelRoute.page),
+    AutoRoute(page: RegionRoute.page),
+    AutoRoute(page: DigitalGuideLiftDetailRoute.page),
+    AutoRoute(page: CorridorRoute.page),
+    AutoRoute(page: DigitalGuideEntranceDetailsRoute.page),
+    AutoRoute(page: StairsRoute.page),
+    AutoRoute(page: StairwayRoute.page),
+    AutoRoute(page: ToiletsRoute.page),
+    AutoRoute(page: DigitalGuideRoomDetailRoute.page),
+    AutoRoute(path: "/digital-guide/:id/micronavigation-details", page: MicronavigationDetailRoute.page),
+    AutoRoute(path: "/digital-guide/:id/adapted-toilet-details", page: AdaptedToiletDetailRoute.page),
+    AutoRoute(page: DoorRoute.page),
+    AutoRoute(page: TransportationDetailRoute.page),
+    AutoRoute(page: RailingsRoute.page),
+    AutoRoute(page: RampsRoute.page),
+  ];
 }
 
 @riverpod

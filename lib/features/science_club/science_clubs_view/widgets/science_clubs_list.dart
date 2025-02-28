@@ -19,12 +19,9 @@ class ScienceClubsList extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(scienceClubsListControllerProvider);
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: ScienceClubsViewConfig.mediumPadding,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: ScienceClubsViewConfig.mediumPadding),
       child: switch (state) {
-        AsyncValue(:final IList<ScienceClub> value) =>
-          _ScienceClubsListView(value),
+        AsyncValue(:final IList<ScienceClub> value) => _ScienceClubsListView(value),
         AsyncError(:final error) => MyErrorWidget(error),
         _ => const ScienceClubsViewLoading(),
       },
@@ -40,20 +37,17 @@ class _ScienceClubsListView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     if (filteredCircles.isEmpty) {
-      return SearchNotFound(
-        message: context.localize.sci_circle_not_found,
-      );
+      return SearchNotFound(message: context.localize.sci_circle_not_found);
     }
     return GridView.builder(
-      padding: const EdgeInsets.only(
-        bottom: ScienceClubsViewConfig.mediumPadding,
-      ),
+      padding: const EdgeInsets.only(bottom: ScienceClubsViewConfig.mediumPadding),
       gridDelegate: ScienceClubsViewConfig.researchGroupTabGridDelegate,
       itemCount: filteredCircles.length,
-      itemBuilder: (context, index) => ScienceClubCard(
-        filteredCircles[index],
-        () async => ref.navigateSciClubsDetail(filteredCircles[index].id),
-      ),
+      itemBuilder:
+          (context, index) => ScienceClubCard(
+            filteredCircles[index],
+            () async => ref.navigateSciClubsDetail(filteredCircles[index].id),
+          ),
     );
   }
 }

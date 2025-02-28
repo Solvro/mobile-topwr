@@ -9,46 +9,28 @@ import "../../utils/launch_url_util.dart";
 import "contact_icon_widget.dart";
 
 class ContactSection extends StatelessWidget {
-  const ContactSection({
-    super.key,
-    required this.list,
-    this.title,
-    this.topPadding = 24,
-    this.bottomSpace,
-  });
+  const ContactSection({super.key, required this.list, this.title, this.topPadding = 24, this.bottomSpace});
 
   final IList<ContactIconsModel> list;
   final String? title;
   final double topPadding;
   final IList<Widget>?
-      bottomSpace; // widgets to be additionally attached below the list, but stil one the same background
+  bottomSpace; // widgets to be additionally attached below the list, but stil one the same background
 
   @override
   Widget build(BuildContext context) {
     final sorted = list.sort((a, b) => a.order.compareTo(b.order));
     return Container(
-      padding: EdgeInsets.only(
-        top: topPadding,
-        left: 24,
-        right: 24,
-        bottom: 8,
-      ),
+      padding: EdgeInsets.only(top: topPadding, left: 24, right: 24, bottom: 8),
       color: context.colorTheme.greyLight,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if (title != null) ...[
-            Text(title!, style: context.textTheme.headline),
-            const SizedBox(height: 16),
-          ],
+          if (title != null) ...[Text(title!, style: context.textTheme.headline), const SizedBox(height: 16)],
           for (final item in sorted)
             Padding(
               padding: const EdgeInsets.only(bottom: 16),
-              child: _ContactIcon(
-                url: item.url ?? "",
-                text: item.text ?? "",
-                icon: item.icon,
-              ),
+              child: _ContactIcon(url: item.url ?? "", text: item.text ?? "", icon: item.icon),
             ),
           if (bottomSpace != null) ...bottomSpace!,
         ],
@@ -58,11 +40,7 @@ class ContactSection extends StatelessWidget {
 }
 
 class _ContactIcon extends ConsumerWidget {
-  const _ContactIcon({
-    required this.url,
-    required this.icon,
-    required this.text,
-  });
+  const _ContactIcon({required this.url, required this.icon, required this.text});
 
   final String url;
   final String text;
@@ -80,12 +58,9 @@ class _ContactIcon extends ConsumerWidget {
               text: text,
               style: context.textTheme.bodyOrange.copyWith(
                 color: url.isNotEmpty ? null : Colors.black,
-                decoration: url.isNotEmpty
-                    ? TextDecoration.underline
-                    : TextDecoration.none,
+                decoration: url.isNotEmpty ? TextDecoration.underline : TextDecoration.none,
               ),
-              recognizer: TapGestureRecognizer()
-                ..onTap = () async => ref.launch(url),
+              recognizer: TapGestureRecognizer()..onTap = () async => ref.launch(url),
             ),
           ),
         ),

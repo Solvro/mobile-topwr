@@ -6,10 +6,7 @@ import "../data/modes.dart";
 import "mode_checkbox.dart";
 
 class _SubModePadding extends Padding {
-  const _SubModePadding({super.child})
-      : super(
-          padding: const EdgeInsets.only(left: 25),
-        );
+  const _SubModePadding({super.child}) : super(padding: const EdgeInsets.only(left: 25));
 }
 
 class CheckboxesList extends HookWidget {
@@ -22,12 +19,11 @@ class CheckboxesList extends HookWidget {
         for (final mode in topLevelModes)
           switch (mode) {
             ModeWithChildren() => Column(
-                children: [
-                  ModeCheckbox(mode),
-                  for (final subMode in mode.children)
-                    _SubModePadding(child: ModeCheckbox(subMode)),
-                ],
-              ),
+              children: [
+                ModeCheckbox(mode),
+                for (final subMode in mode.children) _SubModePadding(child: ModeCheckbox(subMode)),
+              ],
+            ),
             ModeWithKey() => ModeCheckbox(mode),
           },
       ],

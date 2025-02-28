@@ -9,18 +9,12 @@ import "../models/digital_guide_transportation.dart";
 part "transportation_repository.g.dart";
 
 @riverpod
-Future<DigitalGuideTransportation> transportationRepository(
-  Ref ref,
-  DigitalGuideResponse building,
-) async {
+Future<DigitalGuideTransportation> transportationRepository(Ref ref, DigitalGuideResponse building) async {
   const endpoint = "access/";
 
   final data = await ref.getAndCacheDataFromDigitalGuide(
     endpoint,
-    (List<dynamic> json) => json
-        .whereType<Map<String, dynamic>>()
-        .map(DigitalGuideTransportation.fromJson)
-        .toIList(),
+    (List<dynamic> json) => json.whereType<Map<String, dynamic>>().map(DigitalGuideTransportation.fromJson).toIList(),
     onRetry: () => ref.invalidateSelf(),
   );
   return data.firstWhere((data) => data.building == building.id);

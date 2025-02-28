@@ -26,87 +26,48 @@ class DigitalGuideLiftDetailView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final liftInformation = lift.translations.pl;
     final widgets = [
-      Text(
-        context.localize.localization,
-        style: context.textTheme.headline.copyWith(fontSize: 22),
-      ),
+      Text(context.localize.localization, style: context.textTheme.headline.copyWith(fontSize: 22)),
       Padding(
-        padding: const EdgeInsets.only(
-          top: DigitalGuideConfig.heightMedium,
-          bottom: DigitalGuideConfig.heightSmall,
-        ),
-        child: Text(
-          levelName,
-          style: context.textTheme.headline,
-        ),
+        padding: const EdgeInsets.only(top: DigitalGuideConfig.heightMedium, bottom: DigitalGuideConfig.heightSmall),
+        child: Text(levelName, style: context.textTheme.headline),
       ),
-      Text(
-        liftInformation.location,
-        style: context.textTheme.body,
-      ),
+      Text(liftInformation.location, style: context.textTheme.body),
       Padding(
-        padding: const EdgeInsets.only(
-          top: DigitalGuideConfig.heightSmall,
-          bottom: DigitalGuideConfig.heightSmall,
-        ),
-        child: Text(
-          context.localize.key_information,
-          style: context.textTheme.headline,
-        ),
+        padding: const EdgeInsets.only(top: DigitalGuideConfig.heightSmall, bottom: DigitalGuideConfig.heightSmall),
+        child: Text(context.localize.key_information, style: context.textTheme.headline),
       ),
       BulletList(
-        items: [
-          "${context.localize.floors_served_by_lift}: ${liftInformation.floorsList}",
-          "${context.localize.dimensions}: ${liftInformation.liftDimensions}",
-          "${context.localize.max_capacity}: ${liftInformation.maximumLiftCapacity}",
-        ].toIList(),
+        items:
+            [
+              "${context.localize.floors_served_by_lift}: ${liftInformation.floorsList}",
+              "${context.localize.dimensions}: ${liftInformation.liftDimensions}",
+              "${context.localize.max_capacity}: ${liftInformation.maximumLiftCapacity}",
+            ].toIList(),
       ),
       AccessibilityProfileCard(
-        accessibilityCommentsManager: LiftsAccessibilityCommentsManager(
-          l10n: context.localize,
-          liftResponse: lift,
-        ),
+        accessibilityCommentsManager: LiftsAccessibilityCommentsManager(l10n: context.localize, liftResponse: lift),
         backgroundColor: context.colorTheme.whiteSoap,
       ),
-      if (lift.imagesIds != null && lift.imagesIds!.isNotEmpty)
-        const SizedBox(
-          height: DigitalGuideConfig.heightMedium,
-        ),
+      if (lift.imagesIds != null && lift.imagesIds!.isNotEmpty) const SizedBox(height: DigitalGuideConfig.heightMedium),
     ];
     return HorizontalSymmetricSafeAreaScaffold(
-      appBar: DetailViewAppBar(
-        actions: [AccessibilityButton()],
-      ),
+      appBar: DetailViewAppBar(actions: [AccessibilityButton()]),
       body: Padding(
         padding: const EdgeInsets.all(DigitalGuideConfig.paddingMedium),
         child: CustomScrollView(
           slivers: [
-            SliverList(
-              delegate: SliverChildBuilderDelegate(
-                (_, index) => widgets[index],
-                childCount: widgets.length,
-              ),
-            ),
+            SliverList(delegate: SliverChildBuilderDelegate((_, index) => widgets[index], childCount: widgets.length)),
             if (lift.imagesIds != null)
               SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.all(
-                        DigitalGuideConfig.heightMedium,
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(
-                          DigitalGuideConfig.borderRadiusSmall,
-                        ),
-                        child: DigitalGuideImage(
-                          id: lift.imagesIds![index],
-                        ),
-                      ),
-                    );
-                  },
-                  childCount: lift.imagesIds!.length,
-                ),
+                delegate: SliverChildBuilderDelegate((context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(DigitalGuideConfig.heightMedium),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(DigitalGuideConfig.borderRadiusSmall),
+                      child: DigitalGuideImage(id: lift.imagesIds![index]),
+                    ),
+                  );
+                }, childCount: lift.imagesIds!.length),
               ),
           ],
         ),

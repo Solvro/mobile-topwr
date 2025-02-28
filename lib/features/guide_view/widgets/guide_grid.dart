@@ -13,9 +13,7 @@ class GuideGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (children.isEmpty) {
-      return SearchNotFound(
-        message: context.localize.guide_not_found,
-      );
+      return SearchNotFound(message: context.localize.guide_not_found);
     }
     return GridView.builder(
       padding: GuideViewConfig.gridPadding,

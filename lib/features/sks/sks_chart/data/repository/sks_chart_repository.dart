@@ -14,11 +14,7 @@ Future<IList<SksChartData>> sksChartRepository(Ref ref) async {
   final latestChartDataUrl = "${Env.sksUrl}/sks-users/today/";
   final response = await dio.get(latestChartDataUrl);
   final data = response.data as List<dynamic>;
-  final chartDataList = data
-      .map(
-        (entry) => SksChartData.fromJson(entry as Map<String, dynamic>),
-      )
-      .toIList();
+  final chartDataList = data.map((entry) => SksChartData.fromJson(entry as Map<String, dynamic>)).toIList();
 
   return chartDataList;
 }

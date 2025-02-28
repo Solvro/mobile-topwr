@@ -32,12 +32,10 @@ abstract class NavBarConfig {
 }
 
 extension IsRouteATabViewOnStringX on String {
-  NavBarEnum? get tabBarEnum => NavBarConfig.tabViews.entries
-      .firstWhereOrNull((entry) => entry.value.routeName == this)
-      ?.key;
+  NavBarEnum? get tabBarEnum =>
+      NavBarConfig.tabViews.entries.firstWhereOrNull((entry) => entry.value.routeName == this)?.key;
 
-  bool get isTabView =>
-      NavBarConfig.tabViews.values.map((i) => i.routeName).contains(this);
+  bool get isTabView => NavBarConfig.tabViews.values.map((i) => i.routeName).contains(this);
 
   bool get isRouteGlobalRoute => this == RootRoute.name;
 }

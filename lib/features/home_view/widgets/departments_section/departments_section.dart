@@ -27,13 +27,8 @@ class DepartmentsSection extends ConsumerWidget {
         SmallHorizontalPadding(
           child: switch (state) {
             AsyncError(:final error) => MyErrorWidget(error),
-            AsyncValue(:final IList<Department> value) => SizedBox(
-                height: 120,
-                child: _DepartmentsDataList(value),
-              ),
-            _ => const MediumLeftPadding(
-                child: ScrollableSectionLoading(),
-              ),
+            AsyncValue(:final IList<Department> value) => SizedBox(height: 120, child: _DepartmentsDataList(value)),
+            _ => const MediumLeftPadding(child: ScrollableSectionLoading()),
           },
         ),
       ],
@@ -53,17 +48,12 @@ class _DepartmentsDataList extends ConsumerWidget {
       itemCount: departments.length,
       itemBuilder: (context, index) {
         final department = departments[index];
-        final departmentCard =
-            _BuildDepartmentCard(department: department, ref: ref);
+        final departmentCard = _BuildDepartmentCard(department: department, ref: ref);
 
         if (index != departments.length - 1) {
-          return MediumLeftPadding(
-            child: departmentCard,
-          );
+          return MediumLeftPadding(child: departmentCard);
         } else {
-          return MediumHorizontalPadding(
-            child: departmentCard,
-          );
+          return MediumHorizontalPadding(child: departmentCard);
         }
       },
     );
@@ -71,19 +61,13 @@ class _DepartmentsDataList extends ConsumerWidget {
 }
 
 class _BuildDepartmentCard extends StatelessWidget {
-  const _BuildDepartmentCard({
-    required this.department,
-    required this.ref,
-  });
+  const _BuildDepartmentCard({required this.department, required this.ref});
 
   final Department department;
   final WidgetRef ref;
 
   @override
   Widget build(BuildContext context) {
-    return DepartmentHomeTile(
-      department,
-      onClick: () async => ref.navigateDepartmentDetail(department.id),
-    );
+    return DepartmentHomeTile(department, onClick: () async => ref.navigateDepartmentDetail(department.id));
   }
 }

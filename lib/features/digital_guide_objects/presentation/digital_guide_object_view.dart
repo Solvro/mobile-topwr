@@ -26,37 +26,24 @@ import "digital_g_objects_featers_list.dart";
 
 @RoutePage()
 class DigitalGuideObjectView extends ConsumerWidget {
-  const DigitalGuideObjectView({
-    @PathParam("id") required this.ourId,
-    required this.building,
-  });
+  const DigitalGuideObjectView({@PathParam("id") required this.ourId, required this.building});
 
   final String ourId;
   final BuildingModel building;
 
   static String localizedOfflineMessage(BuildContext context) {
-    return context.localize.my_offline_error_message(
-      context.localize.digital_guide_offline,
-    );
+    return context.localize.my_offline_error_message(context.localize.digital_guide_offline);
   }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final asyncDigitalGuideData =
-        ref.watch(digitalGuideObjectRepositoryProvider(ourId));
+    final asyncDigitalGuideData = ref.watch(digitalGuideObjectRepositoryProvider(ourId));
     return asyncDigitalGuideData.when(
       data: (data) {
-        return _DigitalGObjectView(
-          data.digitalGuideData,
-          data.photoUrl,
-          building,
-        );
+        return _DigitalGObjectView(data.digitalGuideData, data.photoUrl, building);
       },
       error: (error, stackTrace) {
-        return HorizontalSymmetricSafeAreaScaffold(
-          appBar: DetailViewAppBar(),
-          body: MyErrorWidget(error),
-        );
+        return HorizontalSymmetricSafeAreaScaffold(appBar: DetailViewAppBar(), body: MyErrorWidget(error));
       },
       loading: () => const DigitalGuideLoadingView(),
     );
@@ -64,11 +51,7 @@ class DigitalGuideObjectView extends ConsumerWidget {
 }
 
 class _DigitalGObjectView extends ConsumerWidget {
-  const _DigitalGObjectView(
-    this.digitalGuideData,
-    this.photoUrl,
-    this.building,
-  );
+  const _DigitalGObjectView(this.digitalGuideData, this.photoUrl, this.building);
 
   final DigitalGuideObjectModel digitalGuideData;
   final String? photoUrl;
@@ -78,54 +61,43 @@ class _DigitalGObjectView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final widgets1 = [
       const SizedBox(height: DigitalGuideConfig.heightSmall),
-      SizedBox(
-        height: DetailViewsConfig.imageHeight,
-        child: ZoomableOptimizedDirectusImage(photoUrl?.directusUrl),
-      ),
-      HeadlinesSection(
-        name: digitalGuideData.translations.pl.name,
-        description: "",
-      ),
+      SizedBox(height: DetailViewsConfig.imageHeight, child: ZoomableOptimizedDirectusImage(photoUrl?.directusUrl)),
+      HeadlinesSection(name: digitalGuideData.translations.pl.name, description: ""),
       ContactSection(
-        list: [
-          ContactIconsModel(
-            text: digitalGuideData.translations.pl.address
-                .replaceAll("ulica", "ul."),
-            icon: Assets.svg.contactIcons.compass,
-          ),
-        ].lock,
-        bottomSpace: [
-          AccessibilityInformationCardsList(
-            accLevels: (
-              accessibilityLevelForBlind:
-                  digitalGuideData.accessibilityLevelForBlind,
-              accessibilityLevelForVisuallyImpaired:
-                  digitalGuideData.accessibilityLevelForVisuallyImpaired,
-              accessibilityLevelForMotorDisability:
-                  digitalGuideData.accessibilityLevelForMotorDisability,
-              accessibilityLevelForCognitiveDifficulties:
-                  digitalGuideData.accessibilityLevelForCognitiveDifficulties,
-              accessibilityLevelForHardOfHearing:
-                  digitalGuideData.accessibilityLevelForHardOfHearing,
-              accessibilityLevelForHighSensorySensitivity:
-                  digitalGuideData.accessibilityLevelForHighSensorySensitivity,
-            ),
-            accComments: (
-              commentForBlind: digitalGuideData
-                  .translations.pl.accessibilityLevelForBlindComment,
-              commentForVisuallyImpaired: digitalGuideData
-                  .translations.pl.accessibilityLevelForVisuallyImpairedComment,
-              commentForMotorDisability: digitalGuideData
-                  .translations.pl.accessibilityLevelForMotorDisabilityComment,
-              commentForCognitiveDifficulties: digitalGuideData.translations.pl
-                  .accessibilityLevelForCognitiveDifficultiesComment,
-              commentForHardOfHearing: digitalGuideData
-                  .translations.pl.accessibilityLevelForHardOfHearingComment,
-              commentForHighSensorySensitivity: digitalGuideData.translations.pl
-                  .accessibilityLevelForHighSensorySensitivityComment,
-            ),
-          ),
-        ].lock,
+        list:
+            [
+              ContactIconsModel(
+                text: digitalGuideData.translations.pl.address.replaceAll("ulica", "ul."),
+                icon: Assets.svg.contactIcons.compass,
+              ),
+            ].lock,
+        bottomSpace:
+            [
+              AccessibilityInformationCardsList(
+                accLevels: (
+                  accessibilityLevelForBlind: digitalGuideData.accessibilityLevelForBlind,
+                  accessibilityLevelForVisuallyImpaired: digitalGuideData.accessibilityLevelForVisuallyImpaired,
+                  accessibilityLevelForMotorDisability: digitalGuideData.accessibilityLevelForMotorDisability,
+                  accessibilityLevelForCognitiveDifficulties:
+                      digitalGuideData.accessibilityLevelForCognitiveDifficulties,
+                  accessibilityLevelForHardOfHearing: digitalGuideData.accessibilityLevelForHardOfHearing,
+                  accessibilityLevelForHighSensorySensitivity:
+                      digitalGuideData.accessibilityLevelForHighSensorySensitivity,
+                ),
+                accComments: (
+                  commentForBlind: digitalGuideData.translations.pl.accessibilityLevelForBlindComment,
+                  commentForVisuallyImpaired:
+                      digitalGuideData.translations.pl.accessibilityLevelForVisuallyImpairedComment,
+                  commentForMotorDisability:
+                      digitalGuideData.translations.pl.accessibilityLevelForMotorDisabilityComment,
+                  commentForCognitiveDifficulties:
+                      digitalGuideData.translations.pl.accessibilityLevelForCognitiveDifficultiesComment,
+                  commentForHardOfHearing: digitalGuideData.translations.pl.accessibilityLevelForHardOfHearingComment,
+                  commentForHighSensorySensitivity:
+                      digitalGuideData.translations.pl.accessibilityLevelForHighSensorySensitivityComment,
+                ),
+              ),
+            ].lock,
       ),
       const SizedBox(height: DigitalGuideConfig.heightBig),
     ];
@@ -138,30 +110,19 @@ class _DigitalGObjectView extends ConsumerWidget {
     ];
 
     return HorizontalSymmetricSafeAreaScaffold(
-      appBar: DetailViewAppBar(
-        actions: [AccessibilityButton()],
-      ),
+      appBar: DetailViewAppBar(actions: [AccessibilityButton()]),
       body: CustomScrollView(
         slivers: [
           SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (context, index) {
-                return widgets1[index];
-              },
-              childCount: widgets1.length,
-            ),
+            delegate: SliverChildBuilderDelegate((context, index) {
+              return widgets1[index];
+            }, childCount: widgets1.length),
           ),
-          DigitalGuideObjectsFeaturesSection(
-            digitalGuideData: digitalGuideData,
-            building: building,
-          ),
+          DigitalGuideObjectsFeaturesSection(digitalGuideData: digitalGuideData, building: building),
           SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (context, index) {
-                return widgets2[index];
-              },
-              childCount: widgets2.length,
-            ),
+            delegate: SliverChildBuilderDelegate((context, index) {
+              return widgets2[index];
+            }, childCount: widgets2.length),
           ),
         ],
       ),

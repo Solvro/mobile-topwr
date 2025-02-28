@@ -10,11 +10,7 @@ import "../../../presentation/widgets/digital_guide_nav_link.dart";
 import "../data/models/digital_guide_room.dart";
 
 class DigitalGuideRoomLevel extends ConsumerWidget {
-  const DigitalGuideRoomLevel({
-    super.key,
-    required this.level,
-    required this.rooms,
-  });
+  const DigitalGuideRoomLevel({super.key, required this.level, required this.rooms});
 
   final Level level;
   final IList<DigitalGuideRoom> rooms;
@@ -24,32 +20,25 @@ class DigitalGuideRoomLevel extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          level.translations.plTranslation.name,
-          style: context.textTheme.lightTitle,
-        ),
+        Text(level.translations.plTranslation.name, style: context.textTheme.lightTitle),
         const SizedBox(height: 10),
         ListView.separated(
           physics: const NeverScrollableScrollPhysics(),
-          itemBuilder: (context, index) => DigitalGuideNavLink(
-            onTap: () async {
-              await ref.navigateRoomDetails(
-                rooms[index],
-              );
-            },
-            text: rooms[index].translations.pl.name,
-          ),
-          separatorBuilder: (context, index) => SizedBox(
-            height: index == rooms.length - 1
-                ? DigitalGuideConfig.heightSmall
-                : DigitalGuideConfig.heightMedium,
-          ),
+          itemBuilder:
+              (context, index) => DigitalGuideNavLink(
+                onTap: () async {
+                  await ref.navigateRoomDetails(rooms[index]);
+                },
+                text: rooms[index].translations.pl.name,
+              ),
+          separatorBuilder:
+              (context, index) => SizedBox(
+                height: index == rooms.length - 1 ? DigitalGuideConfig.heightSmall : DigitalGuideConfig.heightMedium,
+              ),
           itemCount: rooms.length,
           shrinkWrap: true,
         ),
-        const SizedBox(
-          height: DigitalGuideConfig.heightMedium,
-        ),
+        const SizedBox(height: DigitalGuideConfig.heightMedium),
       ],
     );
   }

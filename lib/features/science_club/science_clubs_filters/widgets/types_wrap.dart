@@ -24,12 +24,8 @@ class TypesWrap extends ConsumerWidget {
             for (final type in types)
               Consumer(
                 builder: (context, ref, child) {
-                  final controller =
-                      ref.watch(selectedTypeControllerProvider.notifier);
-                  final isSelected = ref.watchContains(
-                    selectedTypeControllerProvider,
-                    type,
-                  );
+                  final controller = ref.watch(selectedTypeControllerProvider.notifier);
+                  final isSelected = ref.watchContains(selectedTypeControllerProvider, type);
                   return MyFilterChip(
                     label: context.sciClubTypeDisplayName(type),
                     onTap: () => controller.toggleFilter(type),

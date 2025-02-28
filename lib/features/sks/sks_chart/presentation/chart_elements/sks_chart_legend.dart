@@ -6,22 +6,14 @@ import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/context_extensions.dart";
 
 class SksChartLegend extends StatelessWidget {
-  const SksChartLegend({
-    super.key,
-  });
+  const SksChartLegend({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SksChartLegendItem(
-          text: context.localize.measured_number_of_users,
-          isPredicted: false,
-        ),
-        SksChartLegendItem(
-          text: context.localize.forecasted_number_of_users,
-          isPredicted: true,
-        ),
+        SksChartLegendItem(text: context.localize.measured_number_of_users, isPredicted: false),
+        SksChartLegendItem(text: context.localize.forecasted_number_of_users, isPredicted: true),
       ],
     );
   }
@@ -43,26 +35,12 @@ class SksChartLegendItem extends StatelessWidget {
             dashPattern: const [SksChartConfig.borderDashArray],
             color: context.colorTheme.blueAzure,
             padding: EdgeInsets.zero,
-            child: Container(
-              width: SksChartConfig.legendItemSize,
-            ),
+            child: Container(width: SksChartConfig.legendItemSize),
           )
         else
-          Container(
-            width: SksChartConfig.legendItemSize,
-            height: 2,
-            color: context.colorTheme.orangePomegranade,
-          ),
-        const SizedBox(
-          width: SksChartConfig.heightMedium,
-        ),
-        Expanded(
-          child: Text(
-            text,
-            style: context.textTheme.body,
-            softWrap: true,
-          ),
-        ),
+          Container(width: SksChartConfig.legendItemSize, height: 2, color: context.colorTheme.orangePomegranade),
+        const SizedBox(width: SksChartConfig.heightMedium),
+        Expanded(child: Text(text, style: context.textTheme.body, softWrap: true)),
       ],
     );
   }

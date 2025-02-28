@@ -24,10 +24,7 @@ class AboutUsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return HorizontalSymmetricSafeAreaScaffold(
-      appBar: DetailViewAppBar(),
-      body: const _AboutUsView(),
-    );
+    return HorizontalSymmetricSafeAreaScaffold(appBar: DetailViewAppBar(), body: const _AboutUsView());
   }
 }
 
@@ -40,32 +37,26 @@ class _AboutUsView extends ConsumerWidget {
     return switch (state) {
       AsyncError(:final error) => MyErrorWidget(error),
       AsyncValue(:final AboutUsDetails value) => CustomScrollView(
-          slivers: [
-            SliverPersistentHeader(
-              delegate: SliverHeaderSection(
-                logoDirectusImageUrl: AboutUsConfig.defaultLogoUrl,
-                backgroundImageUrl: value.aboutUs?.cover?.filename_disk,
-              ),
+        slivers: [
+          SliverPersistentHeader(
+            delegate: SliverHeaderSection(
+              logoDirectusImageUrl: AboutUsConfig.defaultLogoUrl,
+              backgroundImageUrl: value.aboutUs?.cover?.filename_disk,
             ),
-            SliverList(
-              delegate: SliverChildListDelegate(
-                [
-                  SectionHeader(text: context.localize.about_us),
-                  DescriptionSection(text: value.aboutUs?.description ?? ""),
-                  SectionHeader(text: context.localize.follow_solvro),
-                  ContactSection(
-                    links: value.getSocialIcons(),
-                  ),
-                  SectionHeader(text: context.localize.meet_our_team),
-                  TeamSection(
-                    multiversionTeam: value.getMemberData(),
-                  ),
-                  const AppVersionTile(),
-                ],
-              ),
-            ),
-          ],
-        ),
+          ),
+          SliverList(
+            delegate: SliverChildListDelegate([
+              SectionHeader(text: context.localize.about_us),
+              DescriptionSection(text: value.aboutUs?.description ?? ""),
+              SectionHeader(text: context.localize.follow_solvro),
+              ContactSection(links: value.getSocialIcons()),
+              SectionHeader(text: context.localize.meet_our_team),
+              TeamSection(multiversionTeam: value.getMemberData()),
+              const AppVersionTile(),
+            ]),
+          ),
+        ],
+      ),
       _ => const _AboutUsLoading(),
     };
   }
@@ -79,16 +70,10 @@ class _AboutUsLoading extends StatelessWidget {
     return ListView(
       physics: const NeverScrollableScrollPhysics(),
       children: [
-        const PreviewCardLoading(
-          width: double.infinity,
-          height: 300,
-        ),
+        const PreviewCardLoading(width: double.infinity, height: 300),
         const Padding(
           padding: EdgeInsets.all(AboutUsConfig.defaultPadding),
-          child: PreviewCardLoading(
-            width: double.infinity,
-            height: 150,
-          ),
+          child: PreviewCardLoading(width: double.infinity, height: 150),
         ),
         Padding(
           padding: const EdgeInsets.all(AboutUsConfig.defaultPadding),
@@ -99,10 +84,7 @@ class _AboutUsLoading extends StatelessWidget {
               scrollDirection: Axis.vertical,
               mainAxisItemSize: 16,
               itemBuilder: (BuildContext context, int index) {
-                return const PreviewCardLoading(
-                  width: double.infinity,
-                  height: AboutUsConfig.photoSize,
-                );
+                return const PreviewCardLoading(width: double.infinity, height: AboutUsConfig.photoSize);
               },
             ),
           ),

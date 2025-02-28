@@ -15,10 +15,7 @@ part "keep_alive_home_view_providers.g.dart";
 
 /// A [Widget] that prevents the [HomeView] scrollable section to flicker when scrolling by keeping all states stable.
 class KeepAliveHomeViewProviders extends ConsumerWidget {
-  const KeepAliveHomeViewProviders({
-    super.key,
-    required this.child,
-  });
+  const KeepAliveHomeViewProviders({super.key, required this.child});
   final Widget child;
   @override
   Widget build(BuildContext context, WidgetRef ref) {

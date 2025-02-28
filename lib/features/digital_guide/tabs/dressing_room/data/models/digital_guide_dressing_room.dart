@@ -21,26 +21,20 @@ class DigitalGuideDressingRoom with _$DigitalGuideDressingRoom {
     @JsonKey(name: "images") required List<int>? imagesIds,
   }) = _DigitalGuideDressingRoom;
 
-  factory DigitalGuideDressingRoom.fromJson(Map<String, dynamic> json) =>
-      _$DigitalGuideDressingRoomFromJson(json);
+  factory DigitalGuideDressingRoom.fromJson(Map<String, dynamic> json) => _$DigitalGuideDressingRoomFromJson(json);
 }
 
 @freezed
-class DigitalGuideTranslationsDressingRoom
-    with _$DigitalGuideTranslationsDressingRoom {
-  const factory DigitalGuideTranslationsDressingRoom({
-    required DigitalGuideTranslationDressingRoom pl,
-  }) = _DigitalGuideTranslationsDressingRoom;
+class DigitalGuideTranslationsDressingRoom with _$DigitalGuideTranslationsDressingRoom {
+  const factory DigitalGuideTranslationsDressingRoom({required DigitalGuideTranslationDressingRoom pl}) =
+      _DigitalGuideTranslationsDressingRoom;
 
-  factory DigitalGuideTranslationsDressingRoom.fromJson(
-    Map<String, dynamic> json,
-  ) =>
+  factory DigitalGuideTranslationsDressingRoom.fromJson(Map<String, dynamic> json) =>
       _$DigitalGuideTranslationsDressingRoomFromJson(json);
 }
 
 @freezed
-class DigitalGuideTranslationDressingRoom
-    with _$DigitalGuideTranslationDressingRoom {
+class DigitalGuideTranslationDressingRoom with _$DigitalGuideTranslationDressingRoom {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideTranslationDressingRoom({
     required String location,
@@ -55,8 +49,6 @@ class DigitalGuideTranslationDressingRoom
     required String isSpaceUnderCounterComment,
     required String isSpaceOnCounterComment,
   }) = _DigitalGuideTranslationDressingRoom;
-  factory DigitalGuideTranslationDressingRoom.fromJson(
-    Map<String, dynamic> json,
-  ) =>
+  factory DigitalGuideTranslationDressingRoom.fromJson(Map<String, dynamic> json) =>
       _$DigitalGuideTranslationDressingRoomFromJson(json);
 }

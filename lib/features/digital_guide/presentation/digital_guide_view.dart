@@ -25,37 +25,24 @@ import "widgets/report_change_button.dart";
 
 @RoutePage()
 class DigitalGuideView extends ConsumerWidget {
-  const DigitalGuideView({
-    @PathParam("id") required this.ourId,
-    required this.building,
-  });
+  const DigitalGuideView({@PathParam("id") required this.ourId, required this.building});
 
   final String ourId;
   final BuildingModel building;
 
   static String localizedOfflineMessage(BuildContext context) {
-    return context.localize.my_offline_error_message(
-      context.localize.digital_guide_offline,
-    );
+    return context.localize.my_offline_error_message(context.localize.digital_guide_offline);
   }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final asyncDigitalGuideData =
-        ref.watch(digitalGuideRepositoryProvider(ourId));
+    final asyncDigitalGuideData = ref.watch(digitalGuideRepositoryProvider(ourId));
     return asyncDigitalGuideData.when(
       data: (data) {
-        return _DigitalGuideView(
-          data.digitalGuideData,
-          data.photoUrl,
-          building,
-        );
+        return _DigitalGuideView(data.digitalGuideData, data.photoUrl, building);
       },
       error: (error, stackTrace) {
-        return HorizontalSymmetricSafeAreaScaffold(
-          appBar: DetailViewAppBar(),
-          body: MyErrorWidget(error),
-        );
+        return HorizontalSymmetricSafeAreaScaffold(appBar: DetailViewAppBar(), body: MyErrorWidget(error));
       },
       loading: () {
         return const DigitalGuideLoadingView();
@@ -75,10 +62,7 @@ class _DigitalGuideView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final widgets1 = [
       const SizedBox(height: DigitalGuideConfig.heightSmall),
-      SizedBox(
-        height: DetailViewsConfig.imageHeight,
-        child: ZoomableOptimizedDirectusImage(photoUrl?.directusUrl),
-      ),
+      SizedBox(height: DetailViewsConfig.imageHeight, child: ZoomableOptimizedDirectusImage(photoUrl?.directusUrl)),
       HeadlinesSection(
         name: digitalGuideData.translations.plTranslation.name,
         description: digitalGuideData.translations.plTranslation.extendedName,
@@ -86,8 +70,7 @@ class _DigitalGuideView extends ConsumerWidget {
       ContactSection(
         list: IList<ContactIconsModel>([
           ContactIconsModel(
-            text: digitalGuideData.translations.plTranslation.address
-                .replaceAll("ulica", "ul."),
+            text: digitalGuideData.translations.plTranslation.address.replaceAll("ulica", "ul."),
             icon: Assets.svg.contactIcons.compass,
           ),
           ...digitalGuideData.phoneNumbers.map(
@@ -114,30 +97,19 @@ class _DigitalGuideView extends ConsumerWidget {
     ];
 
     return HorizontalSymmetricSafeAreaScaffold(
-      appBar: DetailViewAppBar(
-        actions: [AccessibilityButton()],
-      ),
+      appBar: DetailViewAppBar(actions: [AccessibilityButton()]),
       body: CustomScrollView(
         slivers: [
           SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (context, index) {
-                return widgets1[index];
-              },
-              childCount: widgets1.length,
-            ),
+            delegate: SliverChildBuilderDelegate((context, index) {
+              return widgets1[index];
+            }, childCount: widgets1.length),
           ),
-          DigitalGuideFeaturesSection(
-            digitalGuideData: digitalGuideData,
-            building: building,
-          ),
+          DigitalGuideFeaturesSection(digitalGuideData: digitalGuideData, building: building),
           SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (context, index) {
-                return widgets2[index];
-              },
-              childCount: widgets2.length,
-            ),
+            delegate: SliverChildBuilderDelegate((context, index) {
+              return widgets2[index];
+            }, childCount: widgets2.length),
           ),
         ],
       ),

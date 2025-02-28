@@ -15,11 +15,6 @@ typedef Building = Query$GetBuildings$Buildings;
 
 @riverpod
 Future<IList<BuildingModel>> buildingsRepository(Ref ref) async {
-  final results = await ref.queryGraphql(
-    Options$Query$GetBuildings(),
-    TtlKey.buildingsRepository,
-  );
-  return (results?.Buildings.map(BuildingModel.from))
-      .toIList()
-      .sortByCodeOrder();
+  final results = await ref.queryGraphql(Options$Query$GetBuildings(), TtlKey.buildingsRepository);
+  return (results?.Buildings.map(BuildingModel.from)).toIList().sortByCodeOrder();
 }

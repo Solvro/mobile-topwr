@@ -7,15 +7,15 @@ import "fade_in_gradient_animation.dart";
 class FadeInSplashGradient extends FadeInGradientAnimation {
   /// Fades in from Android's single color splash to ToPWR LinearGradient on first build
   const FadeInSplashGradient({super.key})
-      : super(
-          gradientStart: const LinearGradient(
-            colors: [
-              SplashScreenConfig.androidNativeSplashColor,
-              SplashScreenConfig.androidNativeSplashColor,
-              SplashScreenConfig.androidNativeSplashColor,
-            ],
-          ),
-          gradientStop: ColorsConsts.toPwrGradient,
-          duration: SplashScreenConfig.animationDuration,
-        );
+    : super(
+        gradientStart: const LinearGradient(
+          colors: [
+            SplashScreenConfig.androidNativeSplashColor,
+            SplashScreenConfig.androidNativeSplashColor,
+            SplashScreenConfig.androidNativeSplashColor,
+          ],
+        ),
+        gradientStop: ColorsConsts.toPwrGradient,
+        duration: SplashScreenConfig.animationDuration,
+      );
 }

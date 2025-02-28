@@ -6,28 +6,26 @@ import "../repository/buildings_repository.dart";
 
 class BuildingModel extends Building implements GoogleNavigable {
   BuildingModel.from(Building building)
-      : super(
-          id: building.id,
-          name: building.name,
-          longitude: building.longitude,
-          latitude: building.latitude,
-          addres: building.addres,
-          cover: building.cover,
-          naturalName: building.naturalName,
-          disableBuildingPrefix: building.disableBuildingPrefix,
-          externalDigitalGuideMode: building.externalDigitalGuideMode,
-          externalDigitalGuideIdOrURL: building.externalDigitalGuideIdOrURL,
-        );
+    : super(
+        id: building.id,
+        name: building.name,
+        longitude: building.longitude,
+        latitude: building.latitude,
+        addres: building.addres,
+        cover: building.cover,
+        naturalName: building.naturalName,
+        disableBuildingPrefix: building.disableBuildingPrefix,
+        externalDigitalGuideMode: building.externalDigitalGuideMode,
+        externalDigitalGuideIdOrURL: building.externalDigitalGuideIdOrURL,
+      );
 
   @override
   LatLng get location => LatLng(latitude, longitude);
 
-  String? get addressFormatted =>
-      addres?.replaceFirst(",", "\n").replaceAll("\n ", "\n");
+  String? get addressFormatted => addres?.replaceFirst(",", "\n").replaceAll("\n ", "\n");
 
   String? get parseBuildingCode {
-    final List<String> separatedBuildingName =
-        name.split(BuildingSearchConfig.buildingCodeSeperator);
+    final List<String> separatedBuildingName = name.split(BuildingSearchConfig.buildingCodeSeperator);
 
     if (separatedBuildingName.length < 2) {
       return null;

@@ -7,19 +7,12 @@ class MyTooltip extends StatelessWidget {
   final String message;
   final Widget child;
   final bool preferBelow;
-  const MyTooltip({
-    required this.message,
-    required this.child,
-    this.preferBelow = false,
-  });
+  const MyTooltip({required this.message, required this.child, this.preferBelow = false});
 
   @override
   Widget build(BuildContext context) {
     return Tooltip(
-      richMessage: TextSpan(
-        text: message,
-        style: context.textTheme.body,
-      ),
+      richMessage: TextSpan(text: message, style: context.textTheme.body),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(MyTooltipConfig.borderRadius),
         color: context.colorTheme.whiteSoap,

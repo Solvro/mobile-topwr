@@ -11,15 +11,11 @@ class DigitalGuideDataSourceLink extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: DigitalGuideConfig.paddingMedium,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: DigitalGuideConfig.paddingMedium),
       child: Text.rich(
         TextSpan(
           text: "${context.localize.data_come_from_website}: ",
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
+          style: const TextStyle(fontWeight: FontWeight.bold),
           children: [
             TextSpan(
               text: context.localize.digital_guide_website,
@@ -28,13 +24,11 @@ class DigitalGuideDataSourceLink extends ConsumerWidget {
                 decorationColor: context.colorTheme.orangePomegranade,
                 fontWeight: FontWeight.bold,
               ),
-              recognizer: TapGestureRecognizer()
-                ..onTap = () async {
-                  await ref.launch(
-                    context.localize.digital_guide_website
-                        .replaceAll("www.", "https://"),
-                  );
-                },
+              recognizer:
+                  TapGestureRecognizer()
+                    ..onTap = () async {
+                      await ref.launch(context.localize.digital_guide_website.replaceAll("www.", "https://"));
+                    },
             ),
           ],
         ),

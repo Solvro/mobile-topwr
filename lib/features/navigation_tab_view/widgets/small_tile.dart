@@ -6,12 +6,7 @@ import "../../../theme/app_theme.dart";
 import "../../../widgets/my_splash_tile.dart";
 
 class SmallTileCard extends StatelessWidget {
-  const SmallTileCard({
-    required this.title,
-    required this.icon,
-    this.onTap,
-    super.key,
-  });
+  const SmallTileCard({required this.title, required this.icon, this.onTap, super.key});
 
   final String title;
   final VoidCallback? onTap;
@@ -22,11 +17,7 @@ class SmallTileCard extends StatelessWidget {
       onTap: onTap,
       child: Row(
         children: [
-          SizedBox(
-            width: WideTileCardConfig.imageSize / 3 * 2,
-            height: WideTileCardConfig.imageSize,
-            child: icon,
-          ),
+          SizedBox(width: WideTileCardConfig.imageSize / 3 * 2, height: WideTileCardConfig.imageSize, child: icon),
           Expanded(
             child: AutoSizeText(
               title,

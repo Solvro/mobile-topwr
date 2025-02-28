@@ -7,8 +7,7 @@ import "hex_color.dart";
 part "app_color_theme.tailor.dart";
 
 @tailorMixinComponent
-class AppColorTheme extends ThemeExtension<AppColorTheme>
-    with _$AppColorThemeTailorMixin {
+class AppColorTheme extends ThemeExtension<AppColorTheme> with _$AppColorThemeTailorMixin {
   const AppColorTheme({
     this.blackMirage = ColorsConsts.blackMirage,
     this.whiteSoap = ColorsConsts.whiteSoap,

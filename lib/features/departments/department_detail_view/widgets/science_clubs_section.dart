@@ -25,35 +25,23 @@ class DepartmentScienceClubsSection extends ConsumerWidget {
     return switch (state) {
       AsyncError(:final error) => MyErrorWidget(error),
       AsyncValue(:final IList<ScienceClub> value) => Builder(
-          builder: (context) {
-            final filtered = value
-                .where(
-                  (sciClubs) =>
-                      sciClubs.department?.id ==
-                      department?.Departments_by_id?.id,
-                )
-                .toIList();
-            return Column(
-              children: [
-                SubsectionHeader(
-                  title: context.localize.study_circles,
-                  actionTitle: context.localize.list,
-                  onClick: () async {
-                    unawaited(
-                      ref.navigateScienceClub(
-                        department?.Departments_by_id?.id,
-                      ),
-                    );
-                  },
-                ),
-                SizedBox(
-                  height: BigPreviewCardConfig.cardHeight,
-                  child: _ScienceClubsList(scienceClubs: filtered),
-                ),
-              ],
-            );
-          },
-        ),
+        builder: (context) {
+          final filtered =
+              value.where((sciClubs) => sciClubs.department?.id == department?.Departments_by_id?.id).toIList();
+          return Column(
+            children: [
+              SubsectionHeader(
+                title: context.localize.study_circles,
+                actionTitle: context.localize.list,
+                onClick: () async {
+                  unawaited(ref.navigateScienceClub(department?.Departments_by_id?.id));
+                },
+              ),
+              SizedBox(height: BigPreviewCardConfig.cardHeight, child: _ScienceClubsList(scienceClubs: filtered)),
+            ],
+          );
+        },
+      ),
       _ => const BigScrollableSectionLoading(),
     };
   }
@@ -78,9 +66,8 @@ class _ScienceClubsList extends ConsumerWidget {
           child: BigPreviewCard(
             title: sciClub.name,
             shortDescription: sciClub.shortDescription ?? "",
-            directusUrl: (sciClub.useCoverAsPreviewPhoto ?? false)
-                ? sciClub.cover?.filename_disk
-                : sciClub.logo?.filename_disk,
+            directusUrl:
+                (sciClub.useCoverAsPreviewPhoto ?? false) ? sciClub.cover?.filename_disk : sciClub.logo?.filename_disk,
             onClick: () async => ref.navigateSciClubsDetail(sciClub.id),
             showVerifiedBadge: sciClub.source == ScienceClubsViewConfig.source,
             showStrategicBadge: sciClub.isStrategic,

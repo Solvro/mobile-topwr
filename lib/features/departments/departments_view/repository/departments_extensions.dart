@@ -7,15 +7,11 @@ import "departments_repository.dart";
 
 extension DepartmentsX on Department {
   LinearGradient get gradient => LinearGradient(
-        colors: [
-          HexColor(
-            gradient_start ?? DepartmentsConfig.defaultColorFirst,
-          ),
-          HexColor(
-            gradient_end ?? DepartmentsConfig.defaultColorSecond,
-          ),
-        ]..sortByLightness(),
-      );
+    colors: [
+      HexColor(gradient_start ?? DepartmentsConfig.defaultColorFirst),
+      HexColor(gradient_end ?? DepartmentsConfig.defaultColorSecond),
+    ]..sortByLightness(),
+  );
 }
 
 extension _GetDepartmentsCodeX on Department? {
@@ -31,10 +27,6 @@ extension _GetDepartmentsCodeX on Department? {
 
 extension SortByCodeX on List<Department?> {
   void sortByCodeOrder() {
-    sort(
-      (a, b) => a.extractIntFromStrCode().compareTo(
-            b.extractIntFromStrCode(),
-          ),
-    );
+    sort((a, b) => a.extractIntFromStrCode().compareTo(b.extractIntFromStrCode()));
   }
 }

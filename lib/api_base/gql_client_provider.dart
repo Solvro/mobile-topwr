@@ -20,18 +20,12 @@ Future<GraphQLClient> grapqlClient(Ref ref) async {
     cache: hiveCache,
     link: HttpLink(Env.apiUrl),
     defaultPolicies: DefaultPolicies(
-      query: Policies(
-        fetch: FetchPolicy.networkOnly,
-      ),
-      watchQuery: Policies(
-        fetch: FetchPolicy.cacheAndNetwork,
-      ),
+      query: Policies(fetch: FetchPolicy.networkOnly),
+      watchQuery: Policies(fetch: FetchPolicy.cacheAndNetwork),
     ),
   );
 }
 
 extension GqlClientProviderX<T> on QueryOptions<T> {
-  QueryOptions<T> copyWithFetchPolicy(FetchPolicy policy) => copyWithPolicies(
-        Policies(fetch: policy),
-      );
+  QueryOptions<T> copyWithFetchPolicy(FetchPolicy policy) => copyWithPolicies(Policies(fetch: policy));
 }

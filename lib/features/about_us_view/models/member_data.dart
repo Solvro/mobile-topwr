@@ -11,12 +11,8 @@ class MemberData {
   final IList<ContactIconsModel> links;
   final String? directusImageUrl;
 
-  MemberData({
-    required this.socialLinks,
-    required this.name,
-    required this.subtitle,
-    required this.directusImageUrl,
-  }) : links = _determineLinksIcons(socialLinks);
+  MemberData({required this.socialLinks, required this.name, required this.subtitle, required this.directusImageUrl})
+    : links = _determineLinksIcons(socialLinks);
 
   static IList<ContactIconsModel> _determineLinksIcons(IList<String> urls) {
     return urls.map((url) => ContactIconsModel(url: url)).toIList();
@@ -36,9 +32,5 @@ class MemberData {
 
   @override
   int get hashCode =>
-      socialLinks.hashCode ^
-      name.hashCode ^
-      subtitle.hashCode ^
-      links.hashCode ^
-      directusImageUrl.hashCode;
+      socialLinks.hashCode ^ name.hashCode ^ subtitle.hashCode ^ links.hashCode ^ directusImageUrl.hashCode;
 }

@@ -13,10 +13,7 @@ extension ChartUtilsX on IList<ChartPoint> {
   double get minX => first.x;
   double get maxX => last.x;
 
-  double maxY(Parking parking) => max(
-        double.tryParse(parking.places) ?? 0,
-        map((e) => e.y).max,
-      );
+  double maxY(Parking parking) => max(double.tryParse(parking.places) ?? 0, map((e) => e.y).max);
 
   static String getLabelForValue(double numHourValue) {
     final hourPoint = HourLabel(numHourValue);

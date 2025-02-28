@@ -7,17 +7,8 @@ class DragHandle extends SliverPersistentHeaderDelegate {
   const DragHandle();
 
   @override
-  Widget build(
-    BuildContext context,
-    double shrinkOffset,
-    bool overlapsContent,
-  ) {
-    return ColoredBox(
-      color: context.colorTheme.whiteSoap,
-      child: const Center(
-        child: LineHandle(),
-      ),
-    );
+  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return ColoredBox(color: context.colorTheme.whiteSoap, child: const Center(child: LineHandle()));
   }
 
   @override
@@ -27,8 +18,7 @@ class DragHandle extends SliverPersistentHeaderDelegate {
   double get maxExtent => MapViewBottomSheetConfig.lineHandleSectionHeight;
 
   @override
-  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) =>
-      false;
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) => false;
 }
 
 class LineHandle extends StatelessWidget {

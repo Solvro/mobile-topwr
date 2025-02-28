@@ -13,27 +13,20 @@ class DualTextSpan extends TextSpan {
     bool showBadge = false,
     bool showStrategicBadge = false,
   }) : super(
-          children: [
-            TextSpan(
-              text: title,
-              style: titleStyle,
-              children: [
-                if (showBadge) const VerifiedBadge(),
-                if (showStrategicBadge) const StrategicBadge(),
-              ],
-            ),
-            if (subtitle != null)
-              TextSpan(
-                text: "\n\n", // padding/spacing workaround
-                style: TextStyle(fontSize: spacing, height: 1),
-              ),
-            if (subtitle != null)
-              TextSpan(
-                text: subtitle,
-                style: subtitleStyle,
-              ),
-          ],
-        );
+         children: [
+           TextSpan(
+             text: title,
+             style: titleStyle,
+             children: [if (showBadge) const VerifiedBadge(), if (showStrategicBadge) const StrategicBadge()],
+           ),
+           if (subtitle != null)
+             TextSpan(
+               text: "\n\n", // padding/spacing workaround
+               style: TextStyle(fontSize: spacing, height: 1),
+             ),
+           if (subtitle != null) TextSpan(text: subtitle, style: subtitleStyle),
+         ],
+       );
 }
 
 class DualTextMaxLines extends StatelessWidget {

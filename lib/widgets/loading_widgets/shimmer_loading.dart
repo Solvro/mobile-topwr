@@ -7,21 +7,14 @@ class ShimmeringEffect extends StatelessWidget {
   final Widget child;
   @override
   Widget build(BuildContext context) {
-    return Shimmer(
-      linearGradient: shimmerGradient,
-      child: ShimmerLoadingItem(child: child),
-    );
+    return Shimmer(linearGradient: shimmerGradient, child: ShimmerLoadingItem(child: child));
   }
 }
 
 /// Widget that shows shimmering effect onto passed child while loading the data.
 /// All [ShimmerLoadingItem] widgets must be wrapped by [Shimmer].
 class ShimmerLoadingItem extends StatefulWidget {
-  const ShimmerLoadingItem({
-    super.key,
-    this.isLoading = true,
-    required this.child,
-  });
+  const ShimmerLoadingItem({super.key, this.isLoading = true, required this.child});
 
   final bool isLoading;
   final Widget child;
@@ -71,20 +64,13 @@ class _ShimmerLoadingItemState extends State<ShimmerLoadingItem> {
     }
     final shimmerSize = shimmer.size;
     final gradient = shimmer.gradient;
-    final offsetWithinShimmer = shimmer.getDescendantOffset(
-      descendant: context.findRenderObject()! as RenderBox,
-    );
+    final offsetWithinShimmer = shimmer.getDescendantOffset(descendant: context.findRenderObject()! as RenderBox);
 
     return ShaderMask(
       blendMode: BlendMode.srcATop,
       shaderCallback: (bounds) {
         return gradient.createShader(
-          Rect.fromLTWH(
-            -offsetWithinShimmer.dx,
-            -offsetWithinShimmer.dy,
-            shimmerSize.width,
-            shimmerSize.height,
-          ),
+          Rect.fromLTWH(-offsetWithinShimmer.dx, -offsetWithinShimmer.dy, shimmerSize.width, shimmerSize.height),
         );
       },
       child: widget.child,
@@ -98,11 +84,7 @@ class Shimmer extends StatefulWidget {
     return context.findAncestorStateOfType<ShimmerState>();
   }
 
-  const Shimmer({
-    super.key,
-    required this.linearGradient,
-    this.child,
-  });
+  const Shimmer({super.key, required this.linearGradient, this.child});
 
   final LinearGradient linearGradient;
   final Widget? child;
@@ -113,13 +95,12 @@ class Shimmer extends StatefulWidget {
 
 class ShimmerState extends State<Shimmer> with SingleTickerProviderStateMixin {
   Gradient get gradient => LinearGradient(
-        colors: widget.linearGradient.colors,
-        stops: widget.linearGradient.stops,
-        begin: widget.linearGradient.begin,
-        end: widget.linearGradient.end,
-        transform:
-            _SlidingGradientTransform(slidePercent: _shimmerController.value),
-      );
+    colors: widget.linearGradient.colors,
+    stops: widget.linearGradient.stops,
+    begin: widget.linearGradient.begin,
+    end: widget.linearGradient.end,
+    transform: _SlidingGradientTransform(slidePercent: _shimmerController.value),
+  );
 
   late AnimationController _shimmerController;
 
@@ -139,15 +120,11 @@ class ShimmerState extends State<Shimmer> with SingleTickerProviderStateMixin {
     super.dispose();
   }
 
-  bool get isSized =>
-      (context.findRenderObject() as RenderBox?)?.hasSize ?? false;
+  bool get isSized => (context.findRenderObject() as RenderBox?)?.hasSize ?? false;
 
   Size get size => (context.findRenderObject()! as RenderBox).size;
 
-  Offset getDescendantOffset({
-    required RenderBox descendant,
-    Offset offset = Offset.zero,
-  }) {
+  Offset getDescendantOffset({required RenderBox descendant, Offset offset = Offset.zero}) {
     final shimmerBox = context.findRenderObject()! as RenderBox;
     return descendant.localToGlobal(offset, ancestor: shimmerBox);
   }
@@ -160,9 +137,7 @@ class ShimmerState extends State<Shimmer> with SingleTickerProviderStateMixin {
 
 /// Helper class for [Shimmer] responsible for animating the gradient
 class _SlidingGradientTransform extends GradientTransform {
-  const _SlidingGradientTransform({
-    required this.slidePercent,
-  });
+  const _SlidingGradientTransform({required this.slidePercent});
 
   final double slidePercent;
 
@@ -174,16 +149,8 @@ class _SlidingGradientTransform extends GradientTransform {
 
 /// [shimmerGradient] is a linear gradient that is used to create the shimmering effect.
 const shimmerGradient = LinearGradient(
-  colors: [
-    Color(0xFFEBEBF4),
-    Color(0xFFF4F4F4),
-    Color(0xFFEBEBF4),
-  ],
-  stops: [
-    0.1,
-    0.3,
-    0.4,
-  ],
+  colors: [Color(0xFFEBEBF4), Color(0xFFF4F4F4), Color(0xFFEBEBF4)],
+  stops: [0.1, 0.3, 0.4],
   begin: Alignment(-1, -0.3),
   end: Alignment(1, 0.3),
 );

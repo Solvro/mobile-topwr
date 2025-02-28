@@ -38,8 +38,7 @@ class SplashScreenController extends _$SplashScreenController {
   /// Preserves native splash screen, except of Android, where FlutterSplashScreen is showed as soon as possible
   static void preserveNativeSplashScreen() {
     if (_preserveNativeSplash) {
-      final WidgetsBinding widgetsBinding =
-          WidgetsFlutterBinding.ensureInitialized();
+      final WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
       FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
     }
   }

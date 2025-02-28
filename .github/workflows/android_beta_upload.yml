@@ -29,13 +29,9 @@ jobs:
           flutter-version-file: pubspec.yaml
 
       - run: flutter --version
-      - run: flutter config --explicit-package-dependencies
 
       - name: Install dependencies
         run: flutter pub get
-
-      - name: Setup localizations
-        run: flutter gen-l10n
 
       - name: Generate files
         run: dart run build_runner build --delete-conflicting-outputs

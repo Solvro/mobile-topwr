@@ -14,15 +14,11 @@ class GreetingBoldTextStyle extends BoldBodyTextStyle {
 }
 
 @tailorMixinComponent
-class GreetingTheme extends ThemeExtension<GreetingTheme>
-    with _$GreetingThemeTailorMixin {
+class GreetingTheme extends ThemeExtension<GreetingTheme> with _$GreetingThemeTailorMixin {
   @override
   final TextStyle textStyle;
   @override
   final TextStyle boldTextStyle;
 
-  const GreetingTheme({
-    this.textStyle = const GreetingTextStyle(),
-    this.boldTextStyle = const GreetingBoldTextStyle(),
-  });
+  const GreetingTheme({this.textStyle = const GreetingTextStyle(), this.boldTextStyle = const GreetingBoldTextStyle()});
 }

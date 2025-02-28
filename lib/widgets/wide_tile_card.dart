@@ -17,14 +17,11 @@ class PhotoTrailingWideTileCard extends WideTileCard {
     super.key,
     BoxFit boxFit = BoxFit.cover,
   }) : super(
-          trailing: SizedBox.square(
-            dimension: WideTileCardConfig.imageSize,
-            child: OptimizedDirectusImage(
-              directusPhotoUrl,
-              boxFit: boxFit,
-            ),
-          ),
-        );
+         trailing: SizedBox.square(
+           dimension: WideTileCardConfig.imageSize,
+           child: OptimizedDirectusImage(directusPhotoUrl, boxFit: boxFit),
+         ),
+       );
 }
 
 class WideTileCard extends StatelessWidget {
@@ -117,25 +114,15 @@ class _TitlesColumn extends StatelessWidget {
         const basePadding = WideTileCardConfig.basePadding;
 
         return Padding(
-          padding: const EdgeInsets.only(
-            left: basePadding,
-            top: basePadding,
-            right: basePadding,
-          ),
+          padding: const EdgeInsets.only(left: basePadding, top: basePadding, right: basePadding),
           child: EnsureVisibleTags(
             title: title,
-            titleStyle: isActive
-                ? context.textTheme.titleWhite
-                : context.textTheme.title,
+            titleStyle: isActive ? context.textTheme.titleWhite : context.textTheme.title,
             subtitle: subtitle,
-            subtitleStyle:
-                isActive ? context.textTheme.bodyWhite : context.textTheme.body,
-            spacing:
-                secondSubtitle == null ? WideTileCardConfig.titlesSpacing : 2,
+            subtitleStyle: isActive ? context.textTheme.bodyWhite : context.textTheme.body,
+            spacing: secondSubtitle == null ? WideTileCardConfig.titlesSpacing : 2,
             secondSubtitle: secondSubtitle,
-            secondSubtitleStyle: isActive
-                ? context.textTheme.bodyWhite
-                : context.textTheme.bodyBlue,
+            secondSubtitleStyle: isActive ? context.textTheme.bodyWhite : context.textTheme.bodyBlue,
             maxTotalLines: 4,
             showVerifiedBadge: showBadge,
             showStrategicBadge: showStrategicBadge,

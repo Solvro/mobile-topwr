@@ -9,26 +9,17 @@ import "../models/digital_guide_lodge.dart";
 part "lodges_repository.g.dart";
 
 @riverpod
-Future<IList<DigitalGuideLodge>> lodgesRepository(
-  Ref ref,
-  DigitalGuideResponse building,
-) async {
+Future<IList<DigitalGuideLodge>> lodgesRepository(Ref ref, DigitalGuideResponse building) async {
   final endpoint = "lodges/?building=${building.id}";
   return ref.getAndCacheDataFromDigitalGuide(
     endpoint,
-    (List<dynamic> json) => json
-        .whereType<Map<String, dynamic>>()
-        .map(DigitalGuideLodge.fromJson)
-        .toIList(),
+    (List<dynamic> json) => json.whereType<Map<String, dynamic>>().map(DigitalGuideLodge.fromJson).toIList(),
     onRetry: () => ref.invalidateSelf(),
   );
 }
 
 @riverpod
-Future<IList<DigitalGuideLodge>> lodgesFromIDsRepository(
-  Ref ref,
-  List<int> lodgesIDs,
-) async {
+Future<IList<DigitalGuideLodge>> lodgesFromIDsRepository(Ref ref, List<int> lodgesIDs) async {
   Future<DigitalGuideLodge> getLodge(int lodgeID) async {
     return ref.getAndCacheDataFromDigitalGuide(
       "lodges/$lodgeID",

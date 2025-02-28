@@ -9,8 +9,7 @@ const _prefsKEY = r"$$$_cacheReferenceNumber";
 
 @riverpod
 class LocalCacheRefNumberRepo extends _$LocalCacheRefNumberRepo {
-  Future<SharedPreferences> get _sharedPrefs async =>
-      ref.watch(sharedPreferencesSingletonProvider.future);
+  Future<SharedPreferences> get _sharedPrefs async => ref.watch(sharedPreferencesSingletonProvider.future);
 
   @override
   FutureOr<int?> build() async {

@@ -2,17 +2,11 @@ import "package:flutter/material.dart";
 
 class HexColor extends Color {
   /// hexString starts with #, and then 6 or 8 chars long
-  HexColor(String hexString)
-      : super(_FromHexConverter.getColorIntFromHexStr(hexString));
+  HexColor(String hexString) : super(_FromHexConverter.getColorIntFromHexStr(hexString));
 
   const HexColor.consts(super.value);
 
-  String get hexString => _ToHexConverter.getHexStrFromColorInt(
-        r,
-        g,
-        b,
-        a,
-      ).toUpperCase();
+  String get hexString => _ToHexConverter.getHexStrFromColorInt(r, g, b, a).toUpperCase();
 }
 
 abstract class _FromHexConverter {
@@ -46,6 +40,5 @@ abstract class _ToHexConverter {
     return "$alpha$red$green$blue";
   }
 
-  static String _removeOpacityChannelIf255(String str, double alpha) =>
-      str.substring(alpha == 1 ? 2 : 0);
+  static String _removeOpacityChannelIf255(String str, double alpha) => str.substring(alpha == 1 ? 2 : 0);
 }
