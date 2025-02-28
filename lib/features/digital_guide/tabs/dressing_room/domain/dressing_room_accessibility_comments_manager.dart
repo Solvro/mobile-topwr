@@ -15,10 +15,10 @@ class DressingRoomAccessibilityCommentsManager extends AccessibilityCommentsMana
     final DigitalGuideTranslationDressingRoom pl = dressingRoomResponse.translations.pl;
 
     return IList([
-      "${l10n.dressing_room_is_marked(dressingRoomResponse.isMarked.toLowerCase())} ${pl.isMarkedComment}",
+      "${l10n.corridor_typhlomap(dressingRoomResponse.isMarked.toLowerCase())} ${pl.isMarkedComment}",
       "${l10n.dressing_room_are_access_barriers(dressingRoomResponse.areAccessBarriers.toLowerCase())} ${pl.areAccessBarriersComment}",
       "${l10n.dressing_room_are_seats_available(dressingRoomResponse.areSeatsAvailable.toLowerCase())} ${pl.areSeatsAvailableComment}",
-      "${l10n.dressing_room_is_movement_space(dressingRoomResponse.isMovementSpace.toLowerCase())} ${pl.isMovementSpaceComment}",
+      "${l10n.corridor_dangerous_elements(dressingRoomResponse.isMovementSpace.toLowerCase())} ${pl.isMovementSpaceComment}",
     ]).where((item) => item.trim().isNotEmpty).toIList();
   }
 

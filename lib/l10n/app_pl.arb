@@ -634,5 +634,10 @@
   "dressing_room_is_good_lit": "{value, select, false{Lada nie jest dobrze oświetlona.} true{Lada jest dobrze oświetlona.} other{}}",
   "dressing_room_counter_height": "{value, plural, =0{Wysokość lady nie została określona.} other{Wysokość lady wynosi {value} cm.}}",
   "dressing_room_counter_is_space_under": "{value, select, false{Pod ladą nie ma wolnej przestrzeni.} true{Pod ladą znajduje się wolna przestrzeń.} other{}}",
-  "dressing_room_counter_is_space_on": "{value, select, false{Na ladzie nie ma wolnej przestrzeni.} true{Na ladzie znajduje się wolna przestrzeń.} other{}}"
+  "dressing_room_counter_is_space_on": "{value, select, false{Na ladzie nie ma wolnej przestrzeni.} true{Na ladzie znajduje się wolna przestrzeń.} other{}}",
+  
+  "corridor_typhlomap": "{value, select, false{W korytarzu nie jest dostępna tyflomapa.} true{W korytarzu znajduje się tyflomapa.} other{}}",
+  "corridor_dangerous_elements": "{value, select, false{W korytarzu nie ma innych stałych lub ruchomych elementów, które mogą stanowić problemy w poruszaniu się.} true{W korytarzu znajdują się inne stałe lub ruchome obiekty mogące stanowić problemy w poruszaniu się. Są to:} other{}}",
+  "corridor_info_plates_accessible": "{value, select, false{Oznakowanie pomieszczeń nie zawiera dodatkowych informacji.} true{Oznakowanie pomieszczeń zawiera dodatkowo:} other{}}",
+  "horizontal_markings_for_blind": "{value, select, false{W korytarzu nie ma oznaczeń poziomych dla osób niewidomych.} true{W korytarzu są oznaczenia poziome dla osób niewidomych.} other{}}"
 }

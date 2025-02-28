@@ -21,6 +21,10 @@ abstract class Corridor with _$Corridor {
     @JsonKey(fromJson: stringToBool) required bool areSeats,
     @JsonKey(fromJson: stringToBool) required bool areVendingMachines,
     @JsonKey(fromJson: stringToBool) required bool isEmergencyPlan,
+    required String isTyphlomap,
+    required String areDangerousElements,
+    required String arePlatesInfoAccessible,
+    required String areHorizontalMarkingsForBlind,
     @JsonKey(name: "doors") required IList<int> doorsIndices,
     @JsonKey(name: "images") required IList<int> imagesIndices,
   }) = _Corridor;
@@ -49,6 +53,10 @@ abstract class CorridorTranslation with _$CorridorTranslation {
     required String areSeatsComment,
     required String areVendingMachinesComment,
     required String vendingMachinesProducts,
+    required String isTyphlomapComment,
+    required String areDangerousElementsComment,
+    required String arePlatesInfoAccessibleComment,
+    required String areHorizontalMarkingsForBlindComment,
     required String comment,
   }) = _CorridorTranslation;
 
