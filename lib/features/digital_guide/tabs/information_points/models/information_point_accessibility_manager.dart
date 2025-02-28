@@ -31,7 +31,8 @@ class InformationPointAccessibilityManager
   IList<String> getCommentsListForHearingImpairment() {
     return IList([
       l10n.has_sound_transmitter(
-          infoPoint.hasSoundTransmitter.toString().toLowerCase(),),
+        infoPoint.hasSoundTransmitter.toString().toLowerCase(),
+      ),
     ]);
   }
 
@@ -40,7 +41,8 @@ class InformationPointAccessibilityManager
     return IList([
       l10n.is_good_lit_info_point(infoPoint.isGoodLit.toString().toLowerCase()),
       l10n.is_visible_from_afar(
-          infoPoint.isVisibleFromAfar.toString().toLowerCase(),),
+        infoPoint.isVisibleFromAfar.toString().toLowerCase(),
+      ),
     ]);
   }
 
