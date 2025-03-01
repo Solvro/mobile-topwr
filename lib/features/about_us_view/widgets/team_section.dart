@@ -96,15 +96,11 @@ class _SingleVersionTeamList extends StatefulWidget {
   final int shimmerTime;
 
   @override
-  _SingleVersionTeamListState createState() =>
-      _SingleVersionTeamListState(shimmerTime: shimmerTime);
+  _SingleVersionTeamListState createState() => _SingleVersionTeamListState();
 }
 
 class _SingleVersionTeamListState extends State<_SingleVersionTeamList> {
-  _SingleVersionTeamListState({required this.shimmerTime});
-
   bool _showLoader = true;
-  final int shimmerTime;
   Timer? _timer;
 
   @override
@@ -126,7 +122,7 @@ class _SingleVersionTeamListState extends State<_SingleVersionTeamList> {
 
   void _startLoaderTimer() {
     _timer?.cancel();
-    _timer = Timer(Duration(milliseconds: shimmerTime), () {
+    _timer = Timer(Duration(milliseconds: widget.shimmerTime), () {
       if (mounted) {
         setState(() {
           _showLoader = false;
@@ -178,9 +174,9 @@ class _SingleVersionTeamListState extends State<_SingleVersionTeamList> {
             AnimatedOpacity(
               opacity: _showLoader ? 1.0 : 0.0,
               duration: const Duration(milliseconds: 1),
-              child: const ColoredBox(
-                color: Colors.white,
-                child: Align(
+              child: ColoredBox(
+                color: context.colorTheme.whiteSoap,
+                child: const Align(
                   alignment: Alignment.topCenter,
                   child: Padding(
                     padding: EdgeInsets.only(top: 16),
