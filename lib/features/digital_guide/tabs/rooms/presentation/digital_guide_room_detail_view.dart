@@ -62,6 +62,13 @@ class DigitalGuideRoomDetailView extends ConsumerWidget {
         ),
         backgroundColor: context.colorTheme.whiteSoap,
       ),
+      AccessibilityProfileCard(
+        accessibilityCommentsManager: RoomsAccessibilityCommentsManager(
+          digitalGuideRoom: room,
+          l10n: context.localize,
+        ),
+        backgroundColor: context.colorTheme.whiteSoap,
+      ),
       if (room.imagesIds != null && room.imagesIds!.isNotEmpty)
         const SizedBox(
           height: DigitalGuideConfig.heightMedium,

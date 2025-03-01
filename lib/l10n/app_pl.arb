@@ -352,13 +352,13 @@
   "rooms_are_flashing_devices" : "{value, select, false{W pomieszczeniu nie znajdują się żadne urządzenia migające ani błyszczące mogące wywołać atak epilepsji.} true{W pomieszczeniu znajdują się urządzenia migające lub błyszczące mogące wywołać atak epilepsji.} other{}}",
   "rooms_are_places_accessible_from_main_entrance" : "{value, select, false{Miejsca dedykowane osobom poruszającym się na wózkach nie są dostępne z głównego wejścia do pomieszczenia.} true{Miejsca dedykowane osobom poruszającym się na wózkach są dostępne z głównego wejścia do pomieszczenia.} other{}}",
   "rooms_are_electrical_outlets" : "{value, select, false{Gniazdka elektryczne i inne włączniki w pomieszczeniu znajdują się na wysokości większej niż 110 centymetrów.} true{Gniazdka elektryczne i inne włączniki w pomieszczeniu są dostępne i znajdują się na wysokości maksymalnie 110 centymetrów.} other{}}",
-
   "are_objects_narrow_communication_zone": "Przedmioty {value, select, false{nie zwężają przejścia} true{zwężają przejście} other{}}",
   "are_information_boards": "Tablice informacyjne{value, select, false{ nie} true{} other{}} są dostępne",
   "are_information_boards_in_en": "Tablice informacyjne{value, select, false{ nie} true{} other{}} są dostępne po angielsku",
   "are_room_entrances": "{value, select, false{Nie z} true{Z} other{Z}}najdują się wejścia do pomieszczeń",
   "are_floor_markings": "{value, select, false{Nie z} true{Z} other{Z}}najdują się oznaczenia podłogowe",
   "is_typhlomap": "Tyflomapa{value, select, false{ nie} true{} other{}} jest dostępna",
+
 
   "strategicBadgeTooltip": "Koło Strategiczne PWr",
   "strategic_club_abbr": "KS",
