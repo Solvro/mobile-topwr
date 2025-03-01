@@ -14,16 +14,12 @@ void useInitialActiveId<T extends GoogleNavigable>(
   IList<T> items,
 ) {
   if (initialActiveId == null) return;
-  useEffect(
-    () {
-      final activeItem =
-          items.firstWhereOrNull((item) => item.id == initialActiveId);
-      if (activeItem != null) {
-        Future.microtask(() => activeMarkerController.selectItem(activeItem));
-        Future.delayed(Durations.short1, () => zoomOnMarker(activeItem));
-      }
-      return null;
-    },
-    [initialActiveId],
-  );
+  useEffect(() {
+    final activeItem = items.firstWhereOrNull((item) => item.id == initialActiveId);
+    if (activeItem != null) {
+      Future.microtask(() => activeMarkerController.selectItem(activeItem));
+      Future.delayed(Durations.short1, () => zoomOnMarker(activeItem));
+    }
+    return null;
+  }, [initialActiveId]);
 }

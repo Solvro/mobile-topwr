@@ -9,17 +9,12 @@ class ChartPoint extends FlSpot {
   const ChartPoint(super.x, super.y);
 
   ChartPoint.parse(String label, String value)
-      : super(
-          HourLabel.parse(label),
-          math.max(double.tryParse(value) ?? 0, 0),
-        );
+    : super(HourLabel.parse(label), math.max(double.tryParse(value) ?? 0, 0));
 }
 
 extension ToCharPointsX on RawChartData {
   Iterable<ChartPoint> toChartPoints() sync* {
-    for (final pair in IterableZip(
-      [labels, data],
-    )) {
+    for (final pair in IterableZip([labels, data])) {
       yield ChartPoint.parse(pair.first, pair.last);
     }
   }

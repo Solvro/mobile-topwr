@@ -8,9 +8,7 @@ extension LocalizeAcademicDayX on AcademicDay {
   String localize(BuildContext context) {
     if (isHolidays) return weekday.localizeHoliday(context);
     if (isExamSession) return weekday.localizeExamSession(context);
-    return isEven
-        ? weekday.localizeEven(context)
-        : weekday.localizeOdd(context);
+    return isEven ? weekday.localizeEven(context) : weekday.localizeOdd(context);
   }
 }
 

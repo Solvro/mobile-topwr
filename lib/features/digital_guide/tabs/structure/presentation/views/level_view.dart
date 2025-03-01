@@ -12,9 +12,7 @@ import "../../../../presentation/widgets/digital_guide_nav_link.dart";
 
 @RoutePage()
 class LevelView extends ConsumerWidget {
-  const LevelView({
-    required this.levelInfo,
-  });
+  const LevelView({required this.levelInfo});
   final LevelWithRegions levelInfo;
 
   @override
@@ -22,37 +20,26 @@ class LevelView extends ConsumerWidget {
     return Scaffold(
       appBar: DetailViewAppBar(),
       body: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: DigitalGuideConfig.heightBig,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: DigitalGuideConfig.heightBig),
         child: CustomScrollView(
           slivers: [
             SliverList(
               delegate: SliverChildListDelegate([
                 Text(
                   levelInfo.level.translations.plTranslation.name,
-                  style: context.textTheme.headline
-                      .copyWith(fontSize: DigitalGuideConfig.headlineFont),
+                  style: context.textTheme.headline.copyWith(fontSize: DigitalGuideConfig.headlineFont),
                 ),
-                const SizedBox(
-                  height: DigitalGuideConfig.heightSmall,
-                ),
+                const SizedBox(height: DigitalGuideConfig.heightSmall),
                 Text(
                   context.localize.rooms_distribution,
-                  style: context.textTheme.boldBody
-                      .copyWith(fontSize: DigitalGuideConfig.bodyFont),
+                  style: context.textTheme.boldBody.copyWith(fontSize: DigitalGuideConfig.bodyFont),
                 ),
-                const SizedBox(
-                  height: DigitalGuideConfig.heightSmall,
-                ),
+                const SizedBox(height: DigitalGuideConfig.heightSmall),
                 Text(
                   levelInfo.level.translations.plTranslation.roomNumbersRange,
-                  style: context.textTheme.body
-                      .copyWith(fontSize: DigitalGuideConfig.bodyFont),
+                  style: context.textTheme.body.copyWith(fontSize: DigitalGuideConfig.bodyFont),
                 ),
-                const SizedBox(
-                  height: DigitalGuideConfig.heightMedium,
-                ),
+                const SizedBox(height: DigitalGuideConfig.heightMedium),
               ]),
             ),
             SliverList(
@@ -61,17 +48,11 @@ class LevelView extends ConsumerWidget {
                   children: [
                     DigitalGuideNavLink(
                       onTap: () async {
-                        await ref.navigateDigitalGuideRegion(
-                          levelInfo.level,
-                          levelInfo.regions[index],
-                        );
+                        await ref.navigateDigitalGuideRegion(levelInfo.level, levelInfo.regions[index]);
                       },
-                      text: levelInfo
-                          .regions[index].translations.plTranslation.name,
+                      text: levelInfo.regions[index].translations.plTranslation.name,
                     ),
-                    const SizedBox(
-                      height: DigitalGuideConfig.heightMedium,
-                    ),
+                    const SizedBox(height: DigitalGuideConfig.heightMedium),
                   ],
                 ),
                 childCount: levelInfo.regions.length,

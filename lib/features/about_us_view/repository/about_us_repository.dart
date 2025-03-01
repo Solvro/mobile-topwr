@@ -15,10 +15,7 @@ typedef TeamMember = Query$getAbousUsDetails$TeamVersion_Members;
 
 @riverpod
 Future<AboutUsDetails?> aboutUsRepository(Ref ref) async {
-  final results = await ref.queryGraphql(
-    Options$Query$getAbousUsDetails(),
-    TtlKey.aboutUsRepository,
-  );
+  final results = await ref.queryGraphql(Options$Query$getAbousUsDetails(), TtlKey.aboutUsRepository);
   if (results == null) return null;
   return AboutUsDetails(
     aboutUs: results.AboutUs,

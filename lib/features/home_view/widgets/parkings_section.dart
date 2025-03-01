@@ -19,19 +19,16 @@ class ParkingsSection extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) => Column(
-        children: [
-          SubsectionHeader(
-            title: context.localize.parkings_title,
-            actionTitle: context.localize.map_button,
-            onClick: ref.navigateParkings,
-          ),
-          FilledButton(
-            onPressed: ref.navigateToSksMenu,
-            child: const Text("navigate to sks menu"),
-          ),
-          const _ParkingsList(),
-        ],
-      );
+    children: [
+      SubsectionHeader(
+        title: context.localize.parkings_title,
+        actionTitle: context.localize.map_button,
+        onClick: ref.navigateParkings,
+      ),
+      FilledButton(onPressed: ref.navigateToSksMenu, child: const Text("navigate to sks menu")),
+      const _ParkingsList(),
+    ],
+  );
 }
 
 class _ParkingsList extends ConsumerWidget {
@@ -43,14 +40,9 @@ class _ParkingsList extends ConsumerWidget {
     return switch (state) {
       AsyncError(:final error) => MyErrorWidget(error),
       AsyncValue(:final IList<Parking> value) => SmallHorizontalPadding(
-          child: SizedBox(
-            height: 120,
-            child: _DataListParkingsTiles(value),
-          ),
-        ),
-      _ => const MediumLeftPadding(
-          child: ScrollableSectionLoading(),
-        ),
+        child: SizedBox(height: 120, child: _DataListParkingsTiles(value)),
+      ),
+      _ => const MediumLeftPadding(child: ScrollableSectionLoading()),
     };
   }
 }
@@ -70,13 +62,9 @@ class _DataListParkingsTiles extends ConsumerWidget {
         final parkingCard = _BuildParkingCard(parking: parking, ref: ref);
 
         if (index != parkings.length - 1) {
-          return MediumLeftPadding(
-            child: parkingCard,
-          );
+          return MediumLeftPadding(child: parkingCard);
         } else {
-          return MediumHorizontalPadding(
-            child: parkingCard,
-          );
+          return MediumHorizontalPadding(child: parkingCard);
         }
       },
     );
@@ -84,10 +72,7 @@ class _DataListParkingsTiles extends ConsumerWidget {
 }
 
 class _BuildParkingCard extends StatelessWidget {
-  const _BuildParkingCard({
-    required this.parking,
-    required this.ref,
-  });
+  const _BuildParkingCard({required this.parking, required this.ref});
 
   final Parking parking;
   final WidgetRef ref;

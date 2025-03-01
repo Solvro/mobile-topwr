@@ -20,58 +20,45 @@ class MyAudioPlayer extends HookWidget {
     final currentTime = useState(Duration.zero);
     final totalTime = useState(Duration.zero);
 
-    useEffect(
-      () {
-        final stateSubscription =
-            audioPlayer.onPlayerStateChanged.listen((state) {
-          isPlaying.value = state == PlayerState.playing;
-        });
+    useEffect(() {
+      final stateSubscription = audioPlayer.onPlayerStateChanged.listen((state) {
+        isPlaying.value = state == PlayerState.playing;
+      });
 
-        final durationSubscription =
-            audioPlayer.onDurationChanged.listen((duration) {
-          totalTime.value = duration;
-        });
+      final durationSubscription = audioPlayer.onDurationChanged.listen((duration) {
+        totalTime.value = duration;
+      });
 
-        final positionSubscription =
-            audioPlayer.onPositionChanged.listen((position) {
-          currentTime.value = position;
-        });
+      final positionSubscription = audioPlayer.onPositionChanged.listen((position) {
+        currentTime.value = position;
+      });
 
-        return () async {
-          unawaited(stateSubscription.cancel());
-          unawaited(durationSubscription.cancel());
-          unawaited(positionSubscription.cancel());
-          unawaited(audioPlayer.dispose());
-        };
-      },
-      [audioPlayer],
-    );
+      return () async {
+        unawaited(stateSubscription.cancel());
+        unawaited(durationSubscription.cancel());
+        unawaited(positionSubscription.cancel());
+        unawaited(audioPlayer.dispose());
+      };
+    }, [audioPlayer]);
 
-    final togglePlayPause = useCallback(
-      () async {
-        if (isPlaying.value) {
-          await audioPlayer.pause();
-        } else {
-          await audioPlayer.play(UrlSource(audioUrl));
-        }
-      },
-      [audioUrl],
-    );
+    final togglePlayPause = useCallback(() async {
+      if (isPlaying.value) {
+        await audioPlayer.pause();
+      } else {
+        await audioPlayer.play(UrlSource(audioUrl));
+      }
+    }, [audioUrl]);
 
-    final seekAudio = useCallback(
-      (double value) async {
-        final position = Duration(seconds: value.toInt());
-        await audioPlayer.seek(position);
-      },
-      [],
-    );
+    final seekAudio = useCallback((double value) async {
+      final position = Duration(seconds: value.toInt());
+      await audioPlayer.seek(position);
+    }, []);
 
     return Container(
       padding: const EdgeInsets.all(DigitalGuideConfig.paddingSmall),
       decoration: BoxDecoration(
         color: Colors.grey[200],
-        borderRadius:
-            BorderRadius.circular(DigitalGuideConfig.borderRadiusHuge),
+        borderRadius: BorderRadius.circular(DigitalGuideConfig.borderRadiusHuge),
       ),
       child: Row(
         children: [
@@ -82,8 +69,7 @@ class MyAudioPlayer extends HookWidget {
           ),
           Text(
             "${formatDurationToMinutesString(currentTime.value)} / ${formatDurationToMinutesString(totalTime.value)}",
-            style:
-                TextStyle(fontSize: 14, color: context.colorTheme.blackMirage),
+            style: TextStyle(fontSize: 14, color: context.colorTheme.blackMirage),
           ),
           const SizedBox(width: DigitalGuideConfig.heightTiny),
           Expanded(

@@ -10,10 +10,7 @@ import "../../../presentation/widgets/digital_guide_nav_link.dart";
 import "../data/models/adapted_toilet.dart";
 
 class AdaptedToiletLevel extends ConsumerWidget {
-  const AdaptedToiletLevel({
-    required this.level,
-    required this.adaptedToilets,
-  });
+  const AdaptedToiletLevel({required this.level, required this.adaptedToilets});
 
   final Level level;
   final IList<AdaptedToilet> adaptedToilets;
@@ -23,30 +20,22 @@ class AdaptedToiletLevel extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          level.translations.plTranslation.name,
-          style: context.textTheme.lightTitle,
-        ),
+        Text(level.translations.plTranslation.name, style: context.textTheme.lightTitle),
         const SizedBox(height: 10),
         ListView.separated(
           physics: const NeverScrollableScrollPhysics(),
-          itemBuilder: (context, index) => DigitalGuideNavLink(
-            onTap: () async {
-              await ref.navigateAdaptedToiletDetails(
-                adaptedToilets[index],
-              );
-            },
-            text: adaptedToilets[index].getDescription(context),
-          ),
-          separatorBuilder: (context, index) => const SizedBox(
-            height: DigitalGuideConfig.heightMedium,
-          ),
+          itemBuilder:
+              (context, index) => DigitalGuideNavLink(
+                onTap: () async {
+                  await ref.navigateAdaptedToiletDetails(adaptedToilets[index]);
+                },
+                text: adaptedToilets[index].getDescription(context),
+              ),
+          separatorBuilder: (context, index) => const SizedBox(height: DigitalGuideConfig.heightMedium),
           itemCount: adaptedToilets.length,
           shrinkWrap: true,
         ),
-        const SizedBox(
-          height: DigitalGuideConfig.heightMedium,
-        ),
+        const SizedBox(height: DigitalGuideConfig.heightMedium),
       ],
     );
   }

@@ -10,28 +10,16 @@ import "../data/repository/lifts_repository.dart";
 
 part "digital_guide_lifts_use_cases.g.dart";
 
-typedef LevelWithLifts = ({
-  Level level,
-  IList<DigitalGuideLift> lifts,
-});
+typedef LevelWithLifts = ({Level level, IList<DigitalGuideLift> lifts});
 
 @riverpod
-Future<IList<LevelWithLifts>> getLevelWithLiftsUseCase(
-  Ref ref,
-  DigitalGuideResponse digitalGuideData,
-) async {
-  final levels = await ref
-      .watch(levelsWithRegionsRepositoryProvider(digitalGuideData).future);
+Future<IList<LevelWithLifts>> getLevelWithLiftsUseCase(Ref ref, DigitalGuideResponse digitalGuideData) async {
+  final levels = await ref.watch(levelsWithRegionsRepositoryProvider(digitalGuideData).future);
   final levelsWithLiftsData = await Future.wait(
     levels.map((level) async {
-      final lifts =
-          await ref.watch(liftsFromLevelRepositoryProvider(level).future);
+      final lifts = await ref.watch(liftsFromLevelRepositoryProvider(level).future);
       return (level: level.level, lifts: lifts);
     }),
   );
-  return levelsWithLiftsData
-      .where(
-        (levelsWithLifts) => levelsWithLifts.lifts.isNotEmpty,
-      )
-      .toIList();
+  return levelsWithLiftsData.where((levelsWithLifts) => levelsWithLifts.lifts.isNotEmpty).toIList();
 }

@@ -11,13 +11,8 @@ part "changelog_repository.g.dart";
 typedef Changelog = Query$GetChangelog$Changelog;
 
 @riverpod
-Future<IList<Changelog>> changelogRepository(
-  Ref ref,
-) async {
-  final results = await ref.queryGraphql(
-    Options$Query$GetChangelog(),
-    TtlKey.changelogRepository,
-  );
+Future<IList<Changelog>> changelogRepository(Ref ref) async {
+  final results = await ref.queryGraphql(Options$Query$GetChangelog(), TtlKey.changelogRepository);
 
   return results?.Changelog.toIList() ?? const IList<Changelog>.empty();
 }

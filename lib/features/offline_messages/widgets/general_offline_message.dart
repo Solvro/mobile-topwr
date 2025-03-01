@@ -21,13 +21,7 @@ class OfflineMessage extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
-          child: Align(
-            child: Text(
-              errMessage,
-              style: context.textTheme.title,
-              textAlign: TextAlign.center,
-            ),
-          ),
+          child: Align(child: Text(errMessage, style: context.textTheme.title, textAlign: TextAlign.center)),
         ),
         Padding(
           padding: const EdgeInsets.all(8),
@@ -40,11 +34,9 @@ class OfflineMessage extends StatelessWidget {
           ),
         ),
         Consumer(
-          builder: (BuildContext context, WidgetRef ref, Widget? _) =>
-              MyTextButton(
-            actionTitle: context.localize.refresh,
-            onClick: onRefresh,
-          ),
+          builder:
+              (BuildContext context, WidgetRef ref, Widget? _) =>
+                  MyTextButton(actionTitle: context.localize.refresh, onClick: onRefresh),
         ),
       ],
     );

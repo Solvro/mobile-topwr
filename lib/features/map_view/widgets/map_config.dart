@@ -5,18 +5,11 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "../../../config/map_view_config.dart";
 import "../controllers/controllers_set.dart";
 
-typedef MarkerBuilder<T> = Marker Function(
-  T item,
-  WidgetRef ref, {
-  required bool isActive,
-});
+typedef MarkerBuilder<T> = Marker Function(T item, WidgetRef ref, {required bool isActive});
 
 typedef MapTileBuilder<T> = Widget Function(T item, {required bool isActive});
 
-typedef MapViewTexts = ({
-  String emptyList,
-  String title,
-});
+typedef MapViewTexts = ({String emptyList, String title});
 
 class MapConfig<T extends GoogleNavigable> extends InheritedWidget {
   const MapConfig({
@@ -39,9 +32,7 @@ class MapConfig<T extends GoogleNavigable> extends InheritedWidget {
   final bool animateListTiles;
   final String? initialActiveItemId;
 
-  static MapConfig<T>? maybeOf<T extends GoogleNavigable>(
-    BuildContext context,
-  ) {
+  static MapConfig<T>? maybeOf<T extends GoogleNavigable>(BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType<MapConfig<T>>();
   }
 

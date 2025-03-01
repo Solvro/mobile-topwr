@@ -11,34 +11,23 @@ import "../data/models/digital_guide_transportation.dart";
 import "../data/repository/transportation_repository.dart";
 
 class TransportationExpansionTileContent extends ConsumerWidget {
-  const TransportationExpansionTileContent({
-    required this.digitalGuideData,
-  });
+  const TransportationExpansionTileContent({required this.digitalGuideData});
   final DigitalGuideResponse digitalGuideData;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final asyncTransportationData =
-        ref.watch(transportationRepositoryProvider(digitalGuideData));
+    final asyncTransportationData = ref.watch(transportationRepositoryProvider(digitalGuideData));
 
     return asyncTransportationData.when(
-      data: (data) => _TransportationExpansionTileContent(
-        transportation: data,
-        building: digitalGuideData.id,
-      ),
+      data: (data) => _TransportationExpansionTileContent(transportation: data, building: digitalGuideData.id),
       error: (error, stackTrace) => MyErrorWidget(error),
-      loading: () => const Center(
-        child: CircularProgressIndicator(),
-      ),
+      loading: () => const Center(child: CircularProgressIndicator()),
     );
   }
 }
 
 class _TransportationExpansionTileContent extends ConsumerWidget {
-  const _TransportationExpansionTileContent({
-    required this.transportation,
-    required this.building,
-  });
+  const _TransportationExpansionTileContent({required this.transportation, required this.building});
 
   final DigitalGuideTransportation transportation;
   final int building;
@@ -55,20 +44,14 @@ class _TransportationExpansionTileContent extends ConsumerWidget {
         children: [
           DigitalGuideNavLink(
             onTap: () async {
-              await ref.navigateTransportDetails(
-                transportation: transportation,
-                isPublic: true,
-              );
+              await ref.navigateTransportDetails(transportation: transportation, isPublic: true);
             },
             text: context.localize.public_transport,
           ),
           const SizedBox(height: DigitalGuideConfig.heightMedium),
           DigitalGuideNavLink(
             onTap: () async {
-              await ref.navigateTransportDetails(
-                transportation: transportation,
-                isPublic: false,
-              );
+              await ref.navigateTransportDetails(transportation: transportation, isPublic: false);
             },
             text: context.localize.private_transport,
           ),

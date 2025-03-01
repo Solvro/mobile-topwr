@@ -19,13 +19,7 @@ import "theme/colors.dart";
 
 void main() {
   SplashScreenController.preserveNativeSplashScreen();
-  runApp(
-    const ProviderScope(
-      child: SplashScreen(
-        child: MyApp(),
-      ),
-    ),
-  );
+  runApp(const ProviderScope(child: SplashScreen(child: MyApp())));
 }
 
 class MyApp extends ConsumerWidget {
@@ -39,9 +33,7 @@ class MyApp extends ConsumerWidget {
         secret: Env.wiredashSecret,
         theme: context.wiredashTheme,
         child: MaterialApp.router(
-          builder: (context, child) => InAppReviewWidget(
-            child: UpdateDialogWrapper(child: child!),
-          ),
+          builder: (context, child) => InAppReviewWidget(child: UpdateDialogWrapper(child: child!)),
           title: MyAppConfig.title,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
@@ -54,15 +46,17 @@ class MyApp extends ConsumerWidget {
             ),
           ),
           debugShowCheckedModeBanner: false,
-          routerConfig: ref.watch(appRouterProvider).config(
-            deepLinkTransformer: (uri) {
-              Future.delayed(
-                const Duration(milliseconds: 500),
-                ref.read(navigationControllerProvider.notifier).refreshState,
-              ); // TODO(simon-the-shark): remove this nasty workaround for active tab refresh
-              return SynchronousFuture(uri);
-            },
-          ),
+          routerConfig: ref
+              .watch(appRouterProvider)
+              .config(
+                deepLinkTransformer: (uri) {
+                  Future.delayed(
+                    const Duration(milliseconds: 500),
+                    ref.read(navigationControllerProvider.notifier).refreshState,
+                  ); // TODO(simon-the-shark): remove this nasty workaround for active tab refresh
+                  return SynchronousFuture(uri);
+                },
+              ),
         ),
       ),
     );

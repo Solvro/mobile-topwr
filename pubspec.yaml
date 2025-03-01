@@ -19,7 +19,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 version: 1.1.13+68
 
 environment:
-  sdk: ^3.5.3
+  sdk: ^3.7.0
   flutter: 3.29.0
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -124,7 +124,6 @@ dev_dependencies:
     sdk: flutter
 
   #Lints
-  flutter_lints: ^5.0.0
   custom_lint: ^0.6.8
   total_lints: ^3.4.0
   riverpod_lint: ^2.6.1

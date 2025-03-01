@@ -33,13 +33,9 @@ class Parking with _$Parking implements GoogleNavigable {
   }) = _ParkingPlace;
   const Parking._();
 
-  factory Parking.fromJson(Map<String, dynamic> json) =>
-      _$ParkingFromJson(json);
+  factory Parking.fromJson(Map<String, dynamic> json) => _$ParkingFromJson(json);
 
-  factory Parking.fromJsonWithOverridenPhotoPrefix(
-    Map<String, dynamic> json,
-    String url,
-  ) {
+  factory Parking.fromJsonWithOverridenPhotoPrefix(Map<String, dynamic> json, String url) {
     final parking = Parking.fromJson(json);
     return parking.copyWith(photo: url + parking.photo);
   }
@@ -59,7 +55,8 @@ class Parking with _$Parking implements GoogleNavigable {
       places: json["totalSpots"].toString(),
       geoLan: address["geoLongitude"].toString(),
       geoLat: address["geoLatitude"].toString(),
-      photo: json["photo"]?.toString() ??
+      photo:
+          json["photo"]?.toString() ??
           "https://www.viasigni.pl/wp-content/uploads/2022/10/parking-definicja-i-przepisy-okladka-wpisu.jpg",
       active: "1",
       showPark: "1",
@@ -76,8 +73,7 @@ class Parking with _$Parking implements GoogleNavigable {
     return ParkingsConfig.rootUrl + photo.trim();
   }
 
-  String get parsedNumberOfPlaces =>
-      numberOfPlaces.startsWith("-") ? "0" : numberOfPlaces;
+  String get parsedNumberOfPlaces => numberOfPlaces.startsWith("-") ? "0" : numberOfPlaces;
 
   double get latitude => double.tryParse(geoLat) ?? 0;
   double get longitude => double.tryParse(geoLan) ?? 0;
@@ -85,15 +81,12 @@ class Parking with _$Parking implements GoogleNavigable {
   @override
   LatLng get location => LatLng(latitude, longitude);
 
-  String get addressFormatted =>
-      address.replaceFirst(",", "\n").replaceAll("\n ", "\n");
+  String get addressFormatted => address.replaceFirst(",", "\n").replaceAll("\n ", "\n");
 
   static const parkingPrefix = "Parking";
-  String get nameNormalized =>
-      name.startsWith(parkingPrefix) ? name : "$parkingPrefix $name";
+  String get nameNormalized => name.startsWith(parkingPrefix) ? name : "$parkingPrefix $name";
 
-  String get openingHours =>
-      "${openHour?.formatIParkingDate ?? "06:00"} - ${closeHour?.formatIParkingDate ?? "22:00"}";
+  String get openingHours => "${openHour?.formatIParkingDate ?? "06:00"} - ${closeHour?.formatIParkingDate ?? "22:00"}";
 }
 
 extension _FormatIParkingDateX on String {

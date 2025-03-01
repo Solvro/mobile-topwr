@@ -5,22 +5,13 @@ import "../../../../../widgets/loading_widgets/scrolable_loader_builder.dart";
 import "../../../../../widgets/loading_widgets/shimmer_loading.dart";
 
 class SksMenuViewLoading extends StatelessWidget {
-  const SksMenuViewLoading({
-    super.key,
-  });
+  const SksMenuViewLoading({super.key});
 
   @override
   Widget build(BuildContext context) {
     return const Shimmer(
       linearGradient: shimmerGradient,
-      child: Column(
-        children: [
-          _SksMenuHeaderLoading(),
-          Expanded(
-            child: _SksMenuTilesLoading(),
-          ),
-        ],
-      ),
+      child: Column(children: [_SksMenuHeaderLoading(), Expanded(child: _SksMenuTilesLoading())]),
     );
   }
 }
@@ -36,8 +27,7 @@ class _SksMenuTilesLoading extends StatelessWidget {
       scrollDirection: Axis.vertical,
       itemBuilder: (BuildContext context, int index) {
         return Padding(
-          padding:
-              const EdgeInsets.symmetric(vertical: SksMenuConfig.paddingMedium),
+          padding: const EdgeInsets.symmetric(vertical: SksMenuConfig.paddingMedium),
           child: ShimmerLoadingItem(
             child: ListView.separated(
               shrinkWrap: true,
@@ -61,10 +51,7 @@ class _SksMenuHeaderLoading extends StatelessWidget {
   Widget build(BuildContext context) {
     return ShimmerLoadingItem(
       child: Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(SksMenuConfig.borderRadius),
-        ),
+        decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(SksMenuConfig.borderRadius)),
         width: double.infinity,
         height: 250,
       ),
@@ -84,10 +71,7 @@ class _LoadingTitle extends StatelessWidget {
         SksMenuConfig.paddingMedium,
       ),
       child: Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(SksMenuConfig.borderRadius),
-        ),
+        decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(SksMenuConfig.borderRadius)),
         width: double.infinity,
         height: 50,
       ),

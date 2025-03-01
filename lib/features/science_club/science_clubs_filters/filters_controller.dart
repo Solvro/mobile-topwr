@@ -28,51 +28,34 @@ mixin FilterController<T> on AutoDisposeNotifier<ISet<T>> {
 }
 
 @Riverpod(dependencies: [])
-class SelectedDepartmentController extends _$SelectedDepartmentController
-    with FilterController<Department> {
+class SelectedDepartmentController extends _$SelectedDepartmentController with FilterController<Department> {
   @override
   ISet<Department> build() => const ISet.empty();
 
   Future<void> selectDepartmentById(String id) async {
-    final department =
-        (await ref.read(departmentsRepositoryProvider.future)).firstWhere(
-      (element) => element.id == id,
-    );
+    final department = (await ref.read(departmentsRepositoryProvider.future)).firstWhere((element) => element.id == id);
     state = state.clear().add(department);
   }
 }
 
 @Riverpod(dependencies: [])
-class SelectedTagController extends _$SelectedTagController
-    with FilterController<Tag> {
+class SelectedTagController extends _$SelectedTagController with FilterController<Tag> {
   @override
   ISet<Tag> build() => const ISet.empty();
 }
 
 @Riverpod(dependencies: [])
-class SelectedTypeController extends _$SelectedTypeController
-    with FilterController<ScienceClubType> {
+class SelectedTypeController extends _$SelectedTypeController with FilterController<ScienceClubType> {
   @override
   ISet<ScienceClubType> build() => const ISet.empty();
 }
 
-@Riverpod(
-  dependencies: [
-    SelectedDepartmentController,
-    SelectedTagController,
-    SelectedTypeController,
-  ],
-)
+@Riverpod(dependencies: [SelectedDepartmentController, SelectedTagController, SelectedTypeController])
 bool areFiltersEnabled(Ref ref) {
-  final selectedTagsIsNotEmpty =
-      ref.watch(selectedTagControllerProvider.notEmpty);
-  final selectedDepartmentsIsNotEmpty =
-      ref.watch(selectedDepartmentControllerProvider.notEmpty);
-  final selectedTypesIsNotEmpty =
-      ref.watch(selectedTypeControllerProvider.notEmpty);
-  return selectedTagsIsNotEmpty ||
-      selectedDepartmentsIsNotEmpty ||
-      selectedTypesIsNotEmpty;
+  final selectedTagsIsNotEmpty = ref.watch(selectedTagControllerProvider.notEmpty);
+  final selectedDepartmentsIsNotEmpty = ref.watch(selectedDepartmentControllerProvider.notEmpty);
+  final selectedTypesIsNotEmpty = ref.watch(selectedTypeControllerProvider.notEmpty);
+  return selectedTagsIsNotEmpty || selectedDepartmentsIsNotEmpty || selectedTypesIsNotEmpty;
 }
 
 extension ClearAllFiltersX on WidgetRef {

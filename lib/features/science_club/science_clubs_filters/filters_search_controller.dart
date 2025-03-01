@@ -31,26 +31,19 @@ IList<ScienceClubType> typeFiltersFiltered(Ref ref) {
       .where(
         (x) =>
             x.name.containsLowerCase(query) ||
-            ref
-                .sciClubTypeDisplayName(x)
-                .toLowerCase()
-                .contains(query.toLowerCase()),
+            ref.sciClubTypeDisplayName(x).toLowerCase().contains(query.toLowerCase()),
       )
       .toIList();
 }
 
 @Riverpod(dependencies: [SearchFiltersController])
-Future<IList<Department>> departmentFiltersFiltered(
-  Ref ref,
-) async {
+Future<IList<Department>> departmentFiltersFiltered(Ref ref) async {
   final query = ref.watch(searchFiltersControllerProvider);
   final depts = await ref.watch(departmentsRepositoryProvider.future);
   return depts
       .where(
         (x) =>
-            x.name.containsLowerCase(query) ||
-            x.code.containsLowerCase(query) ||
-            x.betterCode.containsLowerCase(query),
+            x.name.containsLowerCase(query) || x.code.containsLowerCase(query) || x.betterCode.containsLowerCase(query),
       )
       .toIList();
 }
@@ -62,19 +55,11 @@ Future<IList<Tag>> tagFiltersFiltered(Ref ref) async {
   return tags.where((x) => x.name.containsLowerCase(query)).toIList();
 }
 
-@Riverpod(
-  dependencies: [
-    typeFiltersFiltered,
-    departmentFiltersFiltered,
-    tagFiltersFiltered,
-  ],
-)
+@Riverpod(dependencies: [typeFiltersFiltered, departmentFiltersFiltered, tagFiltersFiltered])
 bool areNoFiltersFound(Ref ref) {
   final source1Empty = !ref.watch(typeFiltersFilteredProvider.notEmpty);
-  final source2Empty =
-      !(ref.watch(departmentFiltersFilteredProvider.notEmpty) ?? false);
-  final source3Empty =
-      !(ref.watch(tagFiltersFilteredProvider.notEmpty) ?? false);
+  final source2Empty = !(ref.watch(departmentFiltersFilteredProvider.notEmpty) ?? false);
+  final source3Empty = !(ref.watch(tagFiltersFilteredProvider.notEmpty) ?? false);
 
   return source1Empty && source2Empty && source3Empty;
 }

@@ -28,19 +28,12 @@ class NotificationButton extends StatelessWidget {
         child: Container(
           padding: SksConfig.innerPadding,
           decoration: BoxDecoration(
-            border: Border.all(
-              color: context.colorTheme.orangePomegranade,
-            ),
+            border: Border.all(color: context.colorTheme.orangePomegranade),
             borderRadius: BorderRadius.circular(SksConfig.radius),
           ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: SksConfig.sizedBoxWidth,
-            ),
-            child: Icon(
-              Icons.notifications,
-              color: context.colorTheme.orangePomegranade,
-            ),
+            padding: const EdgeInsets.symmetric(horizontal: SksConfig.sizedBoxWidth),
+            child: Icon(Icons.notifications, color: context.colorTheme.orangePomegranade),
           ),
         ),
       ),

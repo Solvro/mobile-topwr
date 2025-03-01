@@ -30,29 +30,19 @@ class NavigationTabView extends ConsumerWidget {
         child1: SmallTileCard(
           onTap: ref.navigateDepartments,
           title: context.localize.departments,
-          icon: const Icon(
-            BottomNavBarIcons.departments_icon,
-            size: NavigationTabViewConfig.navIconSize,
-          ),
+          icon: const Icon(BottomNavBarIcons.departments_icon, size: NavigationTabViewConfig.navIconSize),
         ),
         child2: SmallTileCard(
           onTap: InAppRatingService.requestStoreListingReview,
           title: context.localize.leave_a_review,
-          icon: Icon(
-            Icons.star,
-            color: context.colorTheme.gold,
-            size: NavigationTabViewConfig.navIconSize,
-          ),
+          icon: Icon(Icons.star, color: context.colorTheme.gold, size: NavigationTabViewConfig.navIconSize),
         ),
       ),
       _NavigationRow(
         child1: SmallTileCard(
           onTap: ref.navigateToSksMenu,
           title: context.localize.sks_full_name,
-          icon: const Icon(
-            Icons.restaurant_menu,
-            size: NavigationTabViewConfig.navIconSize,
-          ),
+          icon: const Icon(Icons.restaurant_menu, size: NavigationTabViewConfig.navIconSize),
         ),
         child2: SmallTileCard(
           onTap: ref.navigateScienceClubs,
@@ -62,10 +52,7 @@ class NavigationTabView extends ConsumerWidget {
       ),
       Padding(
         padding: const EdgeInsets.only(top: 16),
-        child: Text(
-          context.localize.rest_header,
-          style: context.textTheme.headline,
-        ),
+        child: Text(context.localize.rest_header, style: context.textTheme.headline),
       ),
       // TODO(simon-the-shark): reverse this when the settings screen is ready
       // NavigationTile(
@@ -74,25 +61,16 @@ class NavigationTabView extends ConsumerWidget {
       //   icon: Icons.settings,
       // ),
       const Padding(
-        padding:
-            EdgeInsets.only(bottom: NavigationTabViewConfig.universalPadding),
+        padding: EdgeInsets.only(bottom: NavigationTabViewConfig.universalPadding),
         child: AboutTheAppTile(),
       ),
     ];
     return Scaffold(
-      appBar: LogoAppBar(
-        context,
-        logoSize: 40,
-        toolbarHeight: 90,
-        actions: const [
-          NotificationButton(),
-        ],
-      ),
+      appBar: LogoAppBar(context, logoSize: 40, toolbarHeight: 90, actions: const [NotificationButton()]),
       body: ListView.separated(
         padding: GuideViewConfig.gridPadding,
         itemBuilder: (context, index) => children[index],
-        separatorBuilder: (context, index) =>
-            const SizedBox(height: NavigationTabViewConfig.universalPadding),
+        separatorBuilder: (context, index) => const SizedBox(height: NavigationTabViewConfig.universalPadding),
         itemCount: children.length,
       ),
     );
@@ -108,13 +86,9 @@ class _NavigationRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Expanded(
-          child: child1,
-        ),
+        Expanded(child: child1),
         const SizedBox(width: NavigationTabViewConfig.universalPadding),
-        Expanded(
-          child: child2,
-        ),
+        Expanded(child: child2),
       ],
     );
   }

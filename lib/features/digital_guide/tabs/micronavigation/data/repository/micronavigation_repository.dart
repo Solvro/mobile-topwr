@@ -12,20 +12,13 @@ part "micronavigation_repository.g.dart";
 const _ttlDays = 7;
 
 @riverpod
-Future<IList<MicronavigationResponse>> getMicronavigationData(
-  Ref ref,
-  int id,
-) async {
-  final micronavigationUrl =
-      "${Env.digitalGuideAddonsUrl}/beaconplus/?location=$id";
+Future<IList<MicronavigationResponse>> getMicronavigationData(Ref ref, int id) async {
+  final micronavigationUrl = "${Env.digitalGuideAddonsUrl}/beaconplus/?location=$id";
 
   final responseData = await ref.getAndCacheData(
     micronavigationUrl,
     _ttlDays,
-    (List<dynamic> json) => json
-        .whereType<Map<String, dynamic>>()
-        .map(MicronavigationResponse.fromJson)
-        .toIList(),
+    (List<dynamic> json) => json.whereType<Map<String, dynamic>>().map(MicronavigationResponse.fromJson).toIList(),
     localizedOfflineMessage: DigitalGuideView.localizedOfflineMessage,
     extraValidityCheck: (data) {
       return data.isNotEmpty;

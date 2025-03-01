@@ -37,10 +37,7 @@ class BigPreviewCard extends StatelessWidget {
         child: InkWell(
           onTap: onClick,
           child: Ink(
-            decoration: BoxDecoration(
-              color: context.colorTheme.greyLight,
-              borderRadius: BorderRadius.circular(8),
-            ),
+            decoration: BoxDecoration(color: context.colorTheme.greyLight, borderRadius: BorderRadius.circular(8)),
             child: SizedBox(
               width: BigPreviewCardConfig.cardWidth,
               child: Column(
@@ -53,17 +50,9 @@ class BigPreviewCard extends StatelessWidget {
                       children: [
                         SizedBox(
                           width: double.maxFinite,
-                          child: Center(
-                            child: OptimizedDirectusImage(
-                              directusUrl,
-                              boxFit: boxFit,
-                            ),
-                          ),
+                          child: Center(child: OptimizedDirectusImage(directusUrl, boxFit: boxFit)),
                         ),
-                        if (date != null)
-                          DateChip(date: date!)
-                        else
-                          const SizedBox.shrink(),
+                        if (date != null) DateChip(date: date!) else const SizedBox.shrink(),
                       ],
                     ),
                   ),
@@ -92,9 +81,7 @@ class BigPreviewCard extends StatelessWidget {
                             onPressed: onClick,
                             color: context.colorTheme.orangePomegranade,
                             textColor: context.colorTheme.whiteSoap,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(4),
-                            ),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
                             child: Text(context.localize.read_more),
                           ),
                         ],

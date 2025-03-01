@@ -20,32 +20,20 @@ class FadeInGradientAnimation extends HookWidget {
   Widget build(BuildContext context) {
     final controller = useAnimationController(duration: duration);
     final gradientAnimation = useAnimation(
-      LinearGradientTween(
-        begin: gradientStart,
-        end: gradientStop,
-      ).animate(controller),
+      LinearGradientTween(begin: gradientStart, end: gradientStop).animate(controller),
     );
 
-    useEffectOnInit(
-      () {
-        controller.forward();
-        return null;
-      },
-    );
+    useEffectOnInit(() {
+      controller.forward();
+      return null;
+    });
 
-    return Container(
-      decoration: BoxDecoration(
-        gradient: gradientAnimation,
-      ),
-    );
+    return Container(decoration: BoxDecoration(gradient: gradientAnimation));
   }
 }
 
 class LinearGradientTween extends Tween<LinearGradient> {
-  LinearGradientTween({
-    required LinearGradient begin,
-    required LinearGradient end,
-  }) : super(begin: begin, end: end);
+  LinearGradientTween({required LinearGradient begin, required LinearGradient end}) : super(begin: begin, end: end);
 
   @override
   LinearGradient lerp(double t) => LinearGradient.lerp(begin, end, t)!;

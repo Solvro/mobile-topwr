@@ -13,8 +13,7 @@ class DigitalGuideEntrace with _$DigitalGuideEntrace {
     @JsonKey(fromJson: _stringToBool) required bool isMain,
     @JsonKey(fromJson: _stringToBool) required bool isAccessible,
     @JsonKey(fromJson: _stringToBool) required bool isForPersonel,
-    @JsonKey(fromJson: _stringToBool)
-    required bool isBuildingMarkedFromEntrance,
+    @JsonKey(fromJson: _stringToBool) required bool isBuildingMarkedFromEntrance,
     @JsonKey(fromJson: _stringToBool) required bool isBuildingMarkedInEn,
     @JsonKey(fromJson: _stringToBool) required bool isLit,
     @JsonKey(fromJson: _stringToBool) required bool isEmergencyExit,
@@ -34,15 +33,13 @@ class DigitalGuideEntrace with _$DigitalGuideEntrace {
     @JsonKey(name: "images") required List<int> imagesIndices,
   }) = _DigitalGuideEntrace;
 
-  factory DigitalGuideEntrace.fromJson(Map<String, dynamic> json) =>
-      _$DigitalGuideEntraceFromJson(json);
+  factory DigitalGuideEntrace.fromJson(Map<String, dynamic> json) => _$DigitalGuideEntraceFromJson(json);
 }
 
 @freezed
 class DigitalGuideTranslationsEntrace with _$DigitalGuideTranslationsEntrace {
-  const factory DigitalGuideTranslationsEntrace({
-    @JsonKey(name: "pl") required DigitalGuideTranslationEntrace pl,
-  }) = _DigitalGuideTranslationsEntrace;
+  const factory DigitalGuideTranslationsEntrace({@JsonKey(name: "pl") required DigitalGuideTranslationEntrace pl}) =
+      _DigitalGuideTranslationsEntrace;
 
   factory DigitalGuideTranslationsEntrace.fromJson(Map<String, dynamic> json) =>
       _$DigitalGuideTranslationsEntraceFromJson(json);

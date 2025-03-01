@@ -11,10 +11,7 @@ import "../models/adapted_toilet.dart";
 part "adapted_toilets_repository.g.dart";
 
 @riverpod
-Future<IList<AdaptedToilet>> adaptedToiletsRepository(
-  Ref ref,
-  LevelWithRegions level,
-) async {
+Future<IList<AdaptedToilet>> adaptedToiletsRepository(Ref ref, LevelWithRegions level) async {
   Future<AdaptedToilet> getAdaptedToilet(int adaptedToiletID) async {
     return ref.getAndCacheDataFromDigitalGuide(
       "adapted_toilets/$adaptedToiletID",
@@ -23,8 +20,7 @@ Future<IList<AdaptedToilet>> adaptedToiletsRepository(
     );
   }
 
-  final adaptedToiletsIDs =
-      level.regions.expand((region) => region.adaptedToilets);
+  final adaptedToiletsIDs = level.regions.expand((region) => region.adaptedToilets);
   final toilets = await Future.wait(adaptedToiletsIDs.map(getAdaptedToilet));
   return toilets.toIList();
 }

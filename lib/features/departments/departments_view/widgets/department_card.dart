@@ -18,10 +18,8 @@ class DepartmentCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Theme(
       data: context.defaultThemeWithOverrideTextStyles(
-        titleWhite: context.textTheme.titleWhite
-            .copyWith(shadows: HomeViewConfig.squareCardTextShadow),
-        bodyWhite: context.textTheme.bodyWhite
-            .copyWith(shadows: HomeViewConfig.squareCardTextShadow),
+        titleWhite: context.textTheme.titleWhite.copyWith(shadows: HomeViewConfig.squareCardTextShadow),
+        bodyWhite: context.textTheme.bodyWhite.copyWith(shadows: HomeViewConfig.squareCardTextShadow),
       ),
       child: WideTileCard(
         onTap: onClick,
@@ -37,8 +35,7 @@ class DepartmentCard extends StatelessWidget {
             child: Opacity(
               opacity: .5,
               child: Padding(
-                padding:
-                    const EdgeInsets.all(DepartmentsConfig.logoMicroPadding),
+                padding: const EdgeInsets.all(DepartmentsConfig.logoMicroPadding),
                 child: OptimizedDirectusImage(
                   department.logo?.filename_disk,
                   boxFit: BoxFit.scaleDown,

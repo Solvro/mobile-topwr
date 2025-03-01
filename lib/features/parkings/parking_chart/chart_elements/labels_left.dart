@@ -11,23 +11,20 @@ extension WillMaxLabelOverlapX on TitleMeta {
 
 class LeftLabels extends AxisTitles {
   LeftLabels(BuildContext context)
-      : super(
-          sideTitles: SideTitles(
-            showTitles: true,
-            reservedSize: 32,
-            getTitlesWidget: (value, meta) {
-              if (value == meta.max && meta.isMaxLabelOverlapping) {
-                return const SizedBox.shrink();
-              }
-              return SideTitleWidget(
-                axisSide: AxisSide.left,
-                space: 10,
-                child: Text(
-                  meta.formattedValue,
-                  style: context.iParkingTheme.chart,
-                ),
-              );
-            },
-          ),
-        );
+    : super(
+        sideTitles: SideTitles(
+          showTitles: true,
+          reservedSize: 32,
+          getTitlesWidget: (value, meta) {
+            if (value == meta.max && meta.isMaxLabelOverlapping) {
+              return const SizedBox.shrink();
+            }
+            return SideTitleWidget(
+              axisSide: AxisSide.left,
+              space: 10,
+              child: Text(meta.formattedValue, style: context.iParkingTheme.chart),
+            );
+          },
+        ),
+      );
 }

@@ -17,15 +17,15 @@ class ScienceClubsSection extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) => Column(
-        children: [
-          SubsectionHeader(
-            title: context.localize.study_circles,
-            actionTitle: context.localize.list,
-            onClick: ref.navigateScienceClubs,
-          ),
-          const _ScienceClubsList(),
-        ],
-      );
+    children: [
+      SubsectionHeader(
+        title: context.localize.study_circles,
+        actionTitle: context.localize.list,
+        onClick: ref.navigateScienceClubs,
+      ),
+      const _ScienceClubsList(),
+    ],
+  );
 }
 
 class _ScienceClubsList extends ConsumerWidget {
@@ -37,22 +37,15 @@ class _ScienceClubsList extends ConsumerWidget {
     return switch (state) {
       AsyncError(:final error) => MyErrorWidget(error),
       AsyncValue(:final IList<ScienceClub> value) => SmallHorizontalPadding(
-          child: SizedBox(
-            height: BigPreviewCardConfig.cardHeight,
-            child: _ScienceClubsDataList(value),
-          ),
-        ),
+        child: SizedBox(height: BigPreviewCardConfig.cardHeight, child: _ScienceClubsDataList(value)),
+      ),
       _ => const Padding(
-          padding: EdgeInsets.only(
-            left: HomeViewConfig.paddingMedium,
-            top: HomeViewConfig.paddingMedium * 2,
-          ),
-          child: SizedBox(
-            height:
-                BigPreviewCardConfig.cardHeight - HomeViewConfig.paddingMedium,
-            child: BigScrollableSectionLoading(),
-          ),
+        padding: EdgeInsets.only(left: HomeViewConfig.paddingMedium, top: HomeViewConfig.paddingMedium * 2),
+        child: SizedBox(
+          height: BigPreviewCardConfig.cardHeight - HomeViewConfig.paddingMedium,
+          child: BigScrollableSectionLoading(),
         ),
+      ),
     };
   }
 }
@@ -73,13 +66,9 @@ class _ScienceClubsDataList extends ConsumerWidget {
         final sciClub = scienceClubs[index];
         final sciClubCard = _ScienceClubCard(sciClub: sciClub);
         if (index != scienceClubs.length - 1) {
-          return MediumLeftPadding(
-            child: sciClubCard,
-          );
+          return MediumLeftPadding(child: sciClubCard);
         } else {
-          return MediumHorizontalPadding(
-            child: sciClubCard,
-          );
+          return MediumHorizontalPadding(child: sciClubCard);
         }
       },
     );
@@ -96,9 +85,8 @@ class _ScienceClubCard extends ConsumerWidget {
     return BigPreviewCard(
       title: sciClub.name,
       shortDescription: sciClub.shortDescription ?? "",
-      directusUrl: (sciClub.useCoverAsPreviewPhoto ?? false)
-          ? sciClub.cover?.filename_disk
-          : sciClub.logo?.filename_disk,
+      directusUrl:
+          (sciClub.useCoverAsPreviewPhoto ?? false) ? sciClub.cover?.filename_disk : sciClub.logo?.filename_disk,
       showVerifiedBadge: sciClub.source == ScienceClubsViewConfig.source,
       onClick: () async => ref.navigateSciClubsDetail(sciClub.id),
       showStrategicBadge: sciClub.isStrategic,

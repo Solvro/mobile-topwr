@@ -11,15 +11,13 @@ class DigitalGuideLodge with _$DigitalGuideLodge {
     @JsonKey(name: "images") required List<int>? imagesIds,
   }) = _DigitalGuideLodge;
 
-  factory DigitalGuideLodge.fromJson(Map<String, dynamic> json) =>
-      _$DigitalGuideLodgeFromJson(json);
+  factory DigitalGuideLodge.fromJson(Map<String, dynamic> json) => _$DigitalGuideLodgeFromJson(json);
 }
 
 @freezed
 class DigitalGuideTranslationsLodge with _$DigitalGuideTranslationsLodge {
-  const factory DigitalGuideTranslationsLodge({
-    required DigitalGuideTranslationLodge pl,
-  }) = _DigitalGuideTranslationsLodge;
+  const factory DigitalGuideTranslationsLodge({required DigitalGuideTranslationLodge pl}) =
+      _DigitalGuideTranslationsLodge;
 
   factory DigitalGuideTranslationsLodge.fromJson(Map<String, dynamic> json) =>
       _$DigitalGuideTranslationsLodgeFromJson(json);

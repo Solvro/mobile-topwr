@@ -12,14 +12,9 @@ typedef DepartmentDetailsDetails = Query$GetDepartmentDetails$Departments_by_id;
 typedef _Vars = Variables$Query$GetDepartmentDetails;
 
 @riverpod
-Future<DepartmentDetails?> departmentDetailsRepository(
-  Ref ref,
-  String id,
-) async {
+Future<DepartmentDetails?> departmentDetailsRepository(Ref ref, String id) async {
   return ref.queryGraphql(
-    Options$Query$GetDepartmentDetails(
-      variables: _Vars(id: id),
-    ),
+    Options$Query$GetDepartmentDetails(variables: _Vars(id: id)),
     TtlKey.departmentDetailsRepository,
   );
 }

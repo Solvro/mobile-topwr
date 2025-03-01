@@ -1,6 +1,5 @@
 extension type HourLabel(double numericalPoint) implements double {
-  HourLabel.parse(String time)
-      : numericalPoint = _convertToNumericalRepresentation(time);
+  HourLabel.parse(String time) : numericalPoint = _convertToNumericalRepresentation(time);
 
   String toStringRepr() {
     final hours = numericalPoint.floor();

@@ -10,23 +10,17 @@ import "../domain/digital_guide_rooms_use_cases.dart";
 import "digital_guide_room_level.dart";
 
 class DigitalGuideRoomExpansionTileContent extends ConsumerWidget {
-  const DigitalGuideRoomExpansionTileContent({
-    required this.digitalGuideResponse,
-  });
+  const DigitalGuideRoomExpansionTileContent({required this.digitalGuideResponse});
 
   final DigitalGuideResponse digitalGuideResponse;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final levelsWithRooms =
-        ref.watch(getLevelsWithRoomsUseCaseProvider(digitalGuideResponse));
+    final levelsWithRooms = ref.watch(getLevelsWithRoomsUseCaseProvider(digitalGuideResponse));
     return levelsWithRooms.when(
-      data: (data) =>
-          _DigitalGuideRoomExpansionTileContent(levelsWithRooms: data),
+      data: (data) => _DigitalGuideRoomExpansionTileContent(levelsWithRooms: data),
       error: (error, _) => MyErrorWidget(error),
-      loading: () => const Center(
-        child: CircularProgressIndicator(),
-      ),
+      loading: () => const Center(child: CircularProgressIndicator()),
     );
   }
 }
@@ -47,12 +41,10 @@ class _DigitalGuideRoomExpansionTileContent extends ConsumerWidget {
         color: context.colorTheme.greyLight,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: levelsWithRooms.map((level) {
-            return DigitalGuideRoomLevel(
-              level: level.level,
-              rooms: level.rooms,
-            );
-          }).toList(),
+          children:
+              levelsWithRooms.map((level) {
+                return DigitalGuideRoomLevel(level: level.level, rooms: level.rooms);
+              }).toList(),
         ),
       ),
     );

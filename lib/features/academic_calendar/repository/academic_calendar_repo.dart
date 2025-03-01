@@ -14,10 +14,7 @@ typedef AcademicWeekException = Query$GetAcademicCalendar$WeekExceptions;
 
 @riverpod
 Future<AcademicCalendar?> academicCalendarRepo(Ref ref) {
-  return ref.queryGraphql(
-    Options$Query$GetAcademicCalendar(),
-    TtlKey.academicCalendarRepository,
-  );
+  return ref.queryGraphql(Options$Query$GetAcademicCalendar(), TtlKey.academicCalendarRepository);
 }
 
 extension FixNestedTypesX on AcademicCalendar {

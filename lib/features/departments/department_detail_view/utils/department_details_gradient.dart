@@ -7,13 +7,9 @@ import "../repository/department_details_repository.dart";
 
 extension DepartmentDetailsDetailsX on DepartmentDetailsDetails {
   LinearGradient get gradient => LinearGradient(
-        colors: [
-          HexColor(
-            gradient_start ?? DepartmentsConfig.defaultColorFirst,
-          ),
-          HexColor(
-            gradient_end ?? DepartmentsConfig.defaultColorSecond,
-          ),
-        ]..sortByLightness(),
-      );
+    colors: [
+      HexColor(gradient_start ?? DepartmentsConfig.defaultColorFirst),
+      HexColor(gradient_end ?? DepartmentsConfig.defaultColorSecond),
+    ]..sortByLightness(),
+  );
 }

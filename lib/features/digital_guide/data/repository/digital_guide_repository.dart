@@ -8,8 +8,7 @@ import "../models/digital_guide_response.dart";
 part "digital_guide_repository.g.dart";
 
 @riverpod
-Future<({DigitalGuideResponse digitalGuideData, String? photoUrl})>
-    digitalGuideRepository(
+Future<({DigitalGuideResponse digitalGuideData, String? photoUrl})> digitalGuideRepository(
   Ref ref,
   String ourId,
 ) async {
@@ -24,8 +23,6 @@ Future<({DigitalGuideResponse digitalGuideData, String? photoUrl})>
     DigitalGuideResponse.fromJson,
     onRetry: () => ref.invalidateSelf(),
   );
-  return (
-    digitalGuideData: digitalGuideData,
-    photoUrl: building.cover?.filename_disk,
-  );
+
+  return (digitalGuideData: digitalGuideData, photoUrl: building.cover?.filename_disk);
 }

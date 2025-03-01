@@ -9,18 +9,11 @@ part "doors_repository.g.dart";
 
 @riverpod
 Future<Door> doorsRepository(Ref ref, int doorsID) async {
-  return ref.getAndCacheDataFromDigitalGuide(
-    "doors/$doorsID",
-    Door.fromJson,
-    onRetry: () => ref.invalidateSelf(),
-  );
+  return ref.getAndCacheDataFromDigitalGuide("doors/$doorsID", Door.fromJson, onRetry: () => ref.invalidateSelf());
 }
 
 @riverpod
-Future<IList<Door>> doorsListRepository(
-  Ref ref,
-  List<int> ids,
-) async {
+Future<IList<Door>> doorsListRepository(Ref ref, List<int> ids) async {
   Future<Door> getDoor(int id) => ref.watch(doorsRepositoryProvider(id).future);
   final doors = await Future.wait(ids.map(getDoor));
   return doors.lock;

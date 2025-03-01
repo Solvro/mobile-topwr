@@ -15,18 +15,15 @@ class AboutUsSection extends ConsumerWidget {
     return text.isEmpty
         ? const SizedBox.shrink()
         : Padding(
-            padding: const EdgeInsets.all(24).copyWith(top: 8),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  context.localize.about_us,
-                  style: context.textTheme.headline,
-                ),
-                const SizedBox(height: 16),
-                MyHtmlWidget(text),
-              ],
-            ),
-          );
+          padding: const EdgeInsets.all(24).copyWith(top: 8),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(context.localize.about_us, style: context.textTheme.headline),
+              const SizedBox(height: 16),
+              MyHtmlWidget(text),
+            ],
+          ),
+        );
   }
 }

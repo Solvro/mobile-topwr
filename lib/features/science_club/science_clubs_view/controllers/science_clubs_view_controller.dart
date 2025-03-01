@@ -42,41 +42,32 @@ Future<Iterable<ScienceClub>> _sciClubsFilteredByTextQuery(Ref ref) async {
   ],
 )
 Future<IList<ScienceClub>> scienceClubsListController(Ref ref) async {
-  final sciClubs =
-      (await ref.watch(_sciClubsFilteredByTextQueryProvider.future))
-          .whereNonNull;
+  final sciClubs = (await ref.watch(_sciClubsFilteredByTextQueryProvider.future)).whereNonNull;
 
   if (!ref.watch(areFiltersEnabledProvider)) {
     return sciClubs.toIList();
   }
 
-  final selectedTags =
-      ref.watch(selectedTagControllerProvider).map((it) => it.name);
+  final selectedTags = ref.watch(selectedTagControllerProvider).map((it) => it.name);
 
-  final selectedDepartments =
-      ref.watch(selectedDepartmentControllerProvider).map((it) => it.name);
+  final selectedDepartments = ref.watch(selectedDepartmentControllerProvider).map((it) => it.name);
 
-  final selectedTypes =
-      ref.watch(selectedTypeControllerProvider).map((it) => it.toJson());
+  final selectedTypes = ref.watch(selectedTypeControllerProvider).map((it) => it.toJson());
 
-  final filteredByTypes = selectedTypes.isEmpty
-      ? sciClubs
-      : sciClubs.where(
-          (club) => selectedTypes.contains(club.type),
-        );
+  final filteredByTypes =
+      selectedTypes.isEmpty ? sciClubs : sciClubs.where((club) => selectedTypes.contains(club.type));
 
-  final filteredByDepartments = selectedDepartments.isEmpty
-      ? filteredByTypes
-      : filteredByTypes.where(
-          (club) => selectedDepartments.contains(club.department?.name),
-        );
+  final filteredByDepartments =
+      selectedDepartments.isEmpty
+          ? filteredByTypes
+          : filteredByTypes.where((club) => selectedDepartments.contains(club.department?.name));
 
-  final filteredByTags = selectedTags.isEmpty
-      ? filteredByDepartments
-      : filteredByDepartments.where(
-          (club) => club.tags.whereNonNull
-              .any((tag) => selectedTags.contains(tag.Tags_id?.name)),
-        );
+  final filteredByTags =
+      selectedTags.isEmpty
+          ? filteredByDepartments
+          : filteredByDepartments.where(
+            (club) => club.tags.whereNonNull.any((tag) => selectedTags.contains(tag.Tags_id?.name)),
+          );
 
   return filteredByTags.toIList();
 }

@@ -10,15 +10,11 @@ class BodyTextStyle extends TextStyle {
     super.color = ColorsConsts.blackMirage,
     super.height = 1.2,
     super.shadows,
-  }) : super(
-          fontFamily: FontFamily.rubik,
-          letterSpacing: 0,
-        );
+  }) : super(fontFamily: FontFamily.rubik, letterSpacing: 0);
 }
 
 class BoldBodyTextStyle extends BodyTextStyle {
-  const BoldBodyTextStyle({super.fontSize, super.color})
-      : super(fontWeight: FontWeight.w500);
+  const BoldBodyTextStyle({super.fontSize, super.color}) : super(fontWeight: FontWeight.w500);
 }
 
 class HeadlineTextStyle extends BoldBodyTextStyle {

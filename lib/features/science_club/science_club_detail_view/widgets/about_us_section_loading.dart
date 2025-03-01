@@ -18,10 +18,7 @@ class AboutUsSectionLoading extends StatelessWidget {
             child: Container(
               height: 24,
               width: 100,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(16),
-              ),
+              decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(16)),
             ),
           ),
           const SizedBox(height: DetailViewsConfig.spacerHeight),
@@ -36,10 +33,7 @@ class AboutUsSectionLoading extends StatelessWidget {
                   return Container(
                     height: 16,
                     width: MediaQuery.sizeOf(context).width,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(16),
-                    ),
+                    decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(16)),
                   );
                 },
               ),

@@ -28,9 +28,7 @@ class TeamSection extends HookWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: AboutUsConfig.defaultPadding,
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: AboutUsConfig.defaultPadding),
           child: CupertinoSlidingSegmentedControl<MultiversionTeam>(
             backgroundColor: context.colorTheme.greyLight,
             thumbColor: context.colorTheme.orangePomegranadeLighter,
@@ -40,10 +38,7 @@ class TeamSection extends HookWidget {
             },
             children: {
               for (final version in multiversionTeam)
-                version: _SelectTab(
-                  version: version,
-                  isSelected: selectedTab.value == version,
-                ),
+                version: _SelectTab(version: version, isSelected: selectedTab.value == version),
             },
           ),
         ),
@@ -58,10 +53,7 @@ class TeamSection extends HookWidget {
 }
 
 class _SelectTab extends StatelessWidget {
-  const _SelectTab({
-    required this.version,
-    required this.isSelected,
-  });
+  const _SelectTab({required this.version, required this.isSelected});
 
   final MultiversionTeam version;
   final bool isSelected;
@@ -69,17 +61,14 @@ class _SelectTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        vertical: 7,
-      ),
+      padding: const EdgeInsets.symmetric(vertical: 7),
       child: Center(
         child: Text(
           version.versionName,
-          style: isSelected
-              ? context.textTheme.boldBody.copyWith(
-                  color: context.colorTheme.whiteSoap,
-                )
-              : context.textTheme.boldBody,
+          style:
+              isSelected
+                  ? context.textTheme.boldBody.copyWith(color: context.colorTheme.whiteSoap)
+                  : context.textTheme.boldBody,
         ),
       ),
     );
@@ -217,14 +206,8 @@ class _TeamMemberCard extends StatelessWidget {
                 dimension: AboutUsConfig.photoSize,
                 child: ZoomableOptimizedDirectusImage(member.directusImageUrl),
               ),
-              const SizedBox(
-                width: 14,
-              ),
-              _Description(
-                name: member.name ?? "",
-                subtitle: member.subtitle ?? "",
-                links: member.links,
-              ),
+              const SizedBox(width: 14),
+              _Description(name: member.name ?? "", subtitle: member.subtitle ?? "", links: member.links),
             ],
           ),
         ),
@@ -270,24 +253,11 @@ class _Description extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(
-          name,
-          style: context.aboutUsTheme.headlineSmaller,
-        ),
+        Text(name, style: context.aboutUsTheme.headlineSmaller),
         const SizedBox(height: 4),
         Text(subtitle, style: context.aboutUsTheme.bodySmaller),
-        const SizedBox(
-          height: 8,
-        ),
-        Row(
-          children: [
-            for (final icon in links)
-              _Icon(
-                launchUrl: icon.url ?? "",
-                icon: icon.icon,
-              ),
-          ],
-        ),
+        const SizedBox(height: 8),
+        Row(children: [for (final icon in links) _Icon(launchUrl: icon.url ?? "", icon: icon.icon)]),
       ],
     );
   }

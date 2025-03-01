@@ -11,13 +11,8 @@ class MyLocationButton extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return FloatingActionButton.small(
       backgroundColor: context.colorTheme.whiteSoap,
-      onPressed: ref
-          .watch(isFollowingCurrentLocationControllerProvider.notifier)
-          .buttonClicked,
-      child: Icon(
-        Icons.my_location,
-        color: context.colorTheme.orangePomegranade,
-      ),
+      onPressed: ref.watch(isFollowingCurrentLocationControllerProvider.notifier).buttonClicked,
+      child: Icon(Icons.my_location, color: context.colorTheme.orangePomegranade),
     );
   }
 }

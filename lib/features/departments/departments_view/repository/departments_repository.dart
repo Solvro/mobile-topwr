@@ -14,9 +14,6 @@ typedef Department = Query$GetDepartments$Departments;
 
 @riverpod
 Future<IList<Department>> departmentsRepository(Ref ref) async {
-  final results = await ref.queryGraphql(
-    Options$Query$GetDepartments(),
-    TtlKey.departmentsRepository,
-  );
+  final results = await ref.queryGraphql(Options$Query$GetDepartments(), TtlKey.departmentsRepository);
   return (results?.Departments?..sortByCodeOrder()).toIList();
 }

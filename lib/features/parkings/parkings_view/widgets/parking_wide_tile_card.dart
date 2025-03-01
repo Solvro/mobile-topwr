@@ -10,12 +10,7 @@ import "../models/parking.dart";
 import "parking_favourite.dart";
 
 class ParkingWideTileCard extends StatelessWidget {
-  const ParkingWideTileCard({
-    required this.parking,
-    this.onTap,
-    super.key,
-    required this.isActive,
-  });
+  const ParkingWideTileCard({required this.parking, this.onTap, super.key, required this.isActive});
 
   final VoidCallback? onTap;
   final Parking parking;
@@ -29,19 +24,12 @@ class ParkingWideTileCard extends StatelessWidget {
         height: isActive ? 300 : WideTileCardConfig.imageSize,
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(WideTileCardConfig.radius),
-          image: DecorationImage(
-            fit: BoxFit.cover,
-            image: NetworkImage(parking.iParkPhotoUrl),
-          ),
+          image: DecorationImage(fit: BoxFit.cover, image: NetworkImage(parking.iParkPhotoUrl)),
         ),
         clipBehavior: Clip.antiAlias,
         child: Stack(
           children: [
-            Container(
-              color: isActive
-                  ? context.colorTheme.blackMirage
-                  : const Color.fromRGBO(41, 50, 65, 0.60),
-            ),
+            Container(color: isActive ? context.colorTheme.blackMirage : const Color.fromRGBO(41, 50, 65, 0.60)),
             Container(
               width: double.infinity,
               padding: ParkingsConfig.padding,
@@ -51,17 +39,9 @@ class ParkingWideTileCard extends StatelessWidget {
               width: double.infinity,
               height: WideTileCardConfig.imageSize,
               padding: ParkingsConfig.padding,
-              child: _RightColumn(
-                parking,
-                isActive: isActive,
-              ),
+              child: _RightColumn(parking, isActive: isActive),
             ),
-            if (!isActive)
-              Positioned(
-                top: 1,
-                right: 2,
-                child: FavouriteParkingWidget(parking),
-              ),
+            if (!isActive) Positioned(top: 1, right: 2, child: FavouriteParkingWidget(parking)),
             if (isActive)
               Positioned(
                 top: 0,
@@ -69,11 +49,7 @@ class ParkingWideTileCard extends StatelessWidget {
                 child: IconButton(
                   padding: EdgeInsets.zero,
                   onPressed: onTap,
-                  icon: Icon(
-                    Icons.close,
-                    color: context.colorTheme.whiteSoap,
-                    size: 22,
-                  ),
+                  icon: Icon(Icons.close, color: context.colorTheme.whiteSoap, size: 22),
                 ),
               ),
           ],
@@ -96,37 +72,25 @@ class _LeftColumn extends StatelessWidget {
       children: [
         Text(
           parking.symbol,
-          style: isActive
-              ? context.iParkingTheme.title.withoutShadows
-              : context.iParkingTheme.title,
+          style: isActive ? context.iParkingTheme.title.withoutShadows : context.iParkingTheme.title,
         ),
         Padding(
           padding: ParkingsConfig.extraIndentPadd,
-          child: isActive
-              ? Text(
-                  "${context.localize.street_abbreviation} ${parking.addressFormatted}",
-                  style: context.iParkingTheme.subtitleLight.withoutShadows,
-                )
-              : Text(
-                  parking.nameNormalized,
-                  style: context.iParkingTheme.subtitle,
-                ),
+          child:
+              isActive
+                  ? Text(
+                    "${context.localize.street_abbreviation} ${parking.addressFormatted}",
+                    style: context.iParkingTheme.subtitleLight.withoutShadows,
+                  )
+                  : Text(parking.nameNormalized, style: context.iParkingTheme.subtitle),
         ),
         const SizedBox(height: 2),
         if (!isActive)
           Padding(
             padding: ParkingsConfig.extraIndentPadd,
-            child: Text(
-              parking.openingHours,
-              style: context.iParkingTheme.small,
-            ),
+            child: Text(parking.openingHours, style: context.iParkingTheme.small),
           ),
-        if (isActive)
-          Expanded(
-            child: Center(
-              child: ParkingChart(parking),
-            ),
-          ),
+        if (isActive) Expanded(child: Center(child: ParkingChart(parking))),
       ],
     );
   }
@@ -152,19 +116,13 @@ class _RightColumn extends StatelessWidget {
               message: context.localize.places_currently_available,
               child: Text(
                 parking.parsedNumberOfPlaces,
-                style: isActive
-                    ? context.iParkingTheme.title.withoutShadows
-                    : context.iParkingTheme.title,
+                style: isActive ? context.iParkingTheme.title.withoutShadows : context.iParkingTheme.title,
               ),
             ),
-            const SizedBox(
-              width: 4,
-            ),
+            const SizedBox(width: 4),
             Icon(
               parking.trend.arrowIcon,
-              color: isActive
-                  ? arrowColor(parking.trend, context)
-                  : context.colorTheme.whiteSoap,
+              color: isActive ? arrowColor(parking.trend, context) : context.colorTheme.whiteSoap,
               size: 21,
               shadows: iparkingShadows,
             ),

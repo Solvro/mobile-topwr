@@ -13,10 +13,7 @@ import "widgets/my_audio_player.dart";
 
 @RoutePage()
 class MicronavigationDetailView extends StatelessWidget {
-  const MicronavigationDetailView({
-    super.key,
-    required this.micronavigationResponse,
-  });
+  const MicronavigationDetailView({super.key, required this.micronavigationResponse});
 
   final MicronavigationResponse micronavigationResponse;
 
@@ -24,48 +21,28 @@ class MicronavigationDetailView extends StatelessWidget {
   Widget build(BuildContext context) {
     final widgets = [
       const SizedBox(height: DigitalGuideConfig.heightMedium),
-      Text(
-        micronavigationResponse.nameOverride.pl ?? "",
-        style: context.textTheme.title.copyWith(fontSize: 24),
-      ),
+      Text(micronavigationResponse.nameOverride.pl ?? "", style: context.textTheme.title.copyWith(fontSize: 24)),
       const SizedBox(height: DigitalGuideConfig.heightBig),
-      Text(
-        context.localize.communique,
-        style: context.textTheme.title,
-      ),
+      Text(context.localize.communique, style: context.textTheme.title),
       const SizedBox(height: DigitalGuideConfig.heightMedium),
       MyHtmlWidget(micronavigationResponse.webContent.pl ?? ""),
       const SizedBox(height: DigitalGuideConfig.heightMedium),
-      Text(
-        context.localize.audio_message,
-        style: context.textTheme.title,
-      ),
+      Text(context.localize.audio_message, style: context.textTheme.title),
       const SizedBox(height: DigitalGuideConfig.heightMedium),
-      Text(
-        context.localize.audio_message_comment,
-        style: context.textTheme.body,
-      ),
+      Text(context.localize.audio_message_comment, style: context.textTheme.body),
       Padding(
         padding: DigitalGuideConfig.symetricalPaddingBig,
         child: MyAudioPlayer(
-          audioUrl: micronavigationResponse.languages
-                  .where((a) => a.langCode == "pl")
-                  .firstOrNull
-                  ?.sound ??
-              "",
+          audioUrl: micronavigationResponse.languages.where((a) => a.langCode == "pl").firstOrNull?.sound ?? "",
         ),
       ),
     ];
 
     return HorizontalSymmetricSafeAreaScaffold(
       backgroundColor: context.colorTheme.greyLight,
-      appBar: DetailViewAppBar(
-        actions: [AccessibilityButton()],
-      ),
+      appBar: DetailViewAppBar(actions: [AccessibilityButton()]),
       body: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: DigitalGuideConfig.paddingBig,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: DigitalGuideConfig.paddingBig),
         child: ListView.builder(
           physics: const NeverScrollableScrollPhysics(),
           itemCount: widgets.length,

@@ -11,8 +11,7 @@ extension ContainsCaseUnsensitiveX on String? {
     if (buildingCode.contains(BuildingSearchConfig.buildingCodeSeperator)) {
       return containsLowerCase(buildingCode);
     }
-    return (this?.replaceAll(BuildingSearchConfig.buildingCodeSeperator, ""))
-        .containsLowerCase(buildingCode);
+    return (this?.replaceAll(BuildingSearchConfig.buildingCodeSeperator, "")).containsLowerCase(buildingCode);
   }
 }
 

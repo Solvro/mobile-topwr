@@ -45,14 +45,10 @@ class ChartWidget extends StatelessWidget {
                 touchTooltipData: LineTouchTooltipData(
                   getTooltipItems: (touchedSpots) {
                     return touchedSpots.map((touchedSpot) {
-                      final value =
-                          touchedSpot.y.toInt(); // Convert double to int
+                      final value = touchedSpot.y.toInt(); // Convert double to int
                       return LineTooltipItem(
                         value.toString(),
-                        TextStyle(
-                          color: context.colorTheme.whiteSoap,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        TextStyle(color: context.colorTheme.whiteSoap, fontWeight: FontWeight.bold),
                       );
                     }).toList();
                   },

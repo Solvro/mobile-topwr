@@ -30,9 +30,7 @@ class SksMenuView extends HookConsumerWidget {
   const SksMenuView({super.key});
 
   static String localizedOfflineMessage(BuildContext context) {
-    return context.localize.my_offline_error_message(
-      context.localize.sks_menu,
-    );
+    return context.localize.my_offline_error_message(context.localize.sks_menu);
   }
 
   @override
@@ -49,33 +47,20 @@ class SksMenuView extends HookConsumerWidget {
             },
           );
         }
-        return _SksMenuView(
-          sksMenuData: sksMenuData,
-          isLastMenuButtonClicked: isLastMenuButtonClicked.value,
-        );
+        return _SksMenuView(sksMenuData: sksMenuData, isLastMenuButtonClicked: isLastMenuButtonClicked.value);
       },
-      error: (error, stackTrace) => HorizontalSymmetricSafeAreaScaffold(
-        appBar: DetailViewAppBar(
-          actions: const [
-            SksUserDataButton(),
-          ],
-        ),
-        body: MyErrorWidget(error),
-      ),
-      loading: () => HorizontalSymmetricSafeAreaScaffold(
-        body: const Center(
-          child: SksMenuViewLoading(),
-        ),
-      ),
+      error:
+          (error, stackTrace) => HorizontalSymmetricSafeAreaScaffold(
+            appBar: DetailViewAppBar(actions: const [SksUserDataButton()]),
+            body: MyErrorWidget(error),
+          ),
+      loading: () => HorizontalSymmetricSafeAreaScaffold(body: const Center(child: SksMenuViewLoading())),
     );
   }
 }
 
 class _SksMenuView extends ConsumerWidget {
-  const _SksMenuView({
-    required this.sksMenuData,
-    required this.isLastMenuButtonClicked,
-  });
+  const _SksMenuView({required this.sksMenuData, required this.isLastMenuButtonClicked});
 
   final ExtendedSksMenuResponse sksMenuData;
   final bool isLastMenuButtonClicked;
@@ -86,11 +71,7 @@ class _SksMenuView extends ConsumerWidget {
       return const _SKSMenuUnavailableAnimation();
     }
     return HorizontalSymmetricSafeAreaScaffold(
-      appBar: DetailViewAppBar(
-        actions: const [
-          SksUserDataButton(),
-        ],
-      ),
+      appBar: DetailViewAppBar(actions: const [SksUserDataButton()]),
       body: RefreshIndicator(
         onRefresh: () async {
           // ignore: unused_result
@@ -107,23 +88,18 @@ class _SksMenuView extends ConsumerWidget {
                 title: context.localize.sks_note,
                 message: context.localize.sks_menu_you_see_last_menu,
               ),
-            for (final technicalInfo in sksMenuData.technicalInfos)
-              TechnicalMessage(message: technicalInfo),
+            for (final technicalInfo in sksMenuData.technicalInfos) TechnicalMessage(message: technicalInfo),
             SksMenuHeader(
               dateTimeOfLastUpdate: sksMenuData.lastUpdate.toIso8601String(),
               isMenuOnline: sksMenuData.isMenuOnline,
+              openingHours: sksMenuData.openingHours,
             ),
             Padding(
               padding: const EdgeInsets.all(HomeViewConfig.paddingMedium),
               child: SksMenuSection(sksMenuData.meals),
             ),
-            TextAndUrl(
-              SksMenuConfig.sksDataSource,
-              "${context.localize.data_come_from_website}: ",
-            ),
-            const SizedBox(
-              height: ScienceClubsViewConfig.mediumPadding,
-            ),
+            TextAndUrl(SksMenuConfig.sksDataSource, "${context.localize.data_come_from_website}: "),
+            const SizedBox(height: ScienceClubsViewConfig.mediumPadding),
           ],
         ),
       ),
@@ -139,21 +115,13 @@ class _SKSMenuUnavailableAnimation extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final isAnimationCompleted = useState(false);
-    final animationSize = min(
-          MediaQuery.sizeOf(context).width,
-          MediaQuery.sizeOf(context).height,
-        ) *
-        0.6;
+    final animationSize = min(MediaQuery.sizeOf(context).width, MediaQuery.sizeOf(context).height) * 0.6;
 
     const animationTopOffset = -0.1;
 
     return HorizontalSymmetricSafeAreaScaffold(
       backgroundColor: context.colorTheme.whiteSoap,
-      appBar: DetailViewAppBar(
-        actions: const [
-          SksUserDataButton(),
-        ],
-      ),
+      appBar: DetailViewAppBar(actions: const [SksUserDataButton()]),
       body: LayoutBuilder(
         builder: (context, box) {
           return SizedBox(
@@ -172,8 +140,7 @@ class _SKSMenuUnavailableAnimation extends HookWidget {
                           Assets.animations.sksClosed,
                           fit: BoxFit.cover,
                           repeat: false,
-                          frameRate:
-                              const FrameRate(LottieAnimationConfig.frameRate),
+                          frameRate: const FrameRate(LottieAnimationConfig.frameRate),
                           renderCache: RenderCache.drawingCommands,
                           onLoaded: (composition) {
                             final totalDuration = composition.duration;
@@ -186,25 +153,19 @@ class _SKSMenuUnavailableAnimation extends HookWidget {
                       Opacity(
                         opacity: isAnimationCompleted.value ? 1 : 0,
                         child: Transform.translate(
-                          offset: Offset(
-                            0,
-                            -(animationSize * 0.1),
-                          ),
+                          offset: Offset(0, -(animationSize * 0.1)),
                           child: Column(
                             children: [
                               Text(
                                 context.localize.sks_menu_closed,
-                                style: context.textTheme.headline.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                ),
+                                style: context.textTheme.headline.copyWith(fontWeight: FontWeight.bold),
                                 textAlign: TextAlign.center,
                               ),
                               if (onShowLastMenuTap != null)
                                 Padding(
                                   padding: const EdgeInsets.only(top: 12),
                                   child: MyTextButton(
-                                    actionTitle:
-                                        context.localize.sks_show_last_menu,
+                                    actionTitle: context.localize.sks_show_last_menu,
                                     onClick: onShowLastMenuTap,
                                     showBorder: true,
                                     color: context.colorTheme.blueAzure,

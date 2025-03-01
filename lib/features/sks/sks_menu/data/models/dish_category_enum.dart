@@ -23,8 +23,7 @@ extension GetLocalizedNameX on DishCategory {
     return switch (this) {
       DishCategory.salad => context.localize.sks_menu_salads,
       DishCategory.soup => context.localize.sks_menu_main_soups,
-      DishCategory.vegetarianDish =>
-        context.localize.sks_menu_vegetarian_dishes,
+      DishCategory.vegetarianDish => context.localize.sks_menu_vegetarian_dishes,
       DishCategory.meatDish => context.localize.sks_menu_meat_dishes,
       DishCategory.sideDish => context.localize.sks_menu_side_dishes,
       DishCategory.drink => context.localize.sks_menu_drinks,

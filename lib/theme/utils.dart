@@ -9,17 +9,16 @@ extension OverrideTextThemeStylesX on BuildContext {
     TextStyle? titleWhite,
     TextStyle? bodyWhite,
     TextStyle? boldBodyOrange,
-  }) =>
-      Theme.of(this).copyWith(
-        extensions: [
-          appTheme.copyWith(
-            textTheme: textTheme.copyWith(
-              title: title,
-              titleWhite: titleWhite,
-              bodyWhite: bodyWhite,
-              boldBodyOrange: boldBodyOrange,
-            ),
-          ),
-        ],
-      );
+  }) => Theme.of(this).copyWith(
+    extensions: [
+      appTheme.copyWith(
+        textTheme: textTheme.copyWith(
+          title: title,
+          titleWhite: titleWhite,
+          bodyWhite: bodyWhite,
+          boldBodyOrange: boldBodyOrange,
+        ),
+      ),
+    ],
+  );
 }

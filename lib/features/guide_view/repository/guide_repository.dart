@@ -13,9 +13,6 @@ typedef GuidePost = Query$GetGuide$FAQ_Types;
 
 @riverpod
 Future<IList<GuidePost>> guideRepository(Ref ref) async {
-  final results = await ref.queryGraphql(
-    Options$Query$GetGuide(),
-    TtlKey.guideRepository,
-  );
+  final results = await ref.queryGraphql(Options$Query$GetGuide(), TtlKey.guideRepository);
   return (results?.FAQ_Types).toIList();
 }

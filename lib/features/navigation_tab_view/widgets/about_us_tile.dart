@@ -13,9 +13,7 @@ class AboutUsTile extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Theme(
-      data: context.defaultThemeWithOverrideTextStyles(
-        title: context.textTheme.titleOrange,
-      ),
+      data: context.defaultThemeWithOverrideTextStyles(title: context.textTheme.titleOrange),
       child: PhotoTrailingWideTileCard(
         title: context.localize.guide_about_us,
         subtitle: context.localize.guide_meet_creators,

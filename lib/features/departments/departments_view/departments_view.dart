@@ -21,12 +21,7 @@ class DepartmentsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ProviderScope(
-      overrides: [
-        searchDepartmentsControllerProvider,
-      ],
-      child: const _DepartmentsView(),
-    );
+    return ProviderScope(overrides: [searchDepartmentsControllerProvider], child: const _DepartmentsView());
   }
 }
 
@@ -41,9 +36,7 @@ class _DepartmentsView extends ConsumerWidget {
         addLeadingPopButton: true,
         context,
         title: context.localize.departments,
-        onQueryChanged: ref
-            .watch(searchDepartmentsControllerProvider.notifier)
-            .onTextChanged,
+        onQueryChanged: ref.watch(searchDepartmentsControllerProvider.notifier).onTextChanged,
       ),
       body: const _DepartmentsViewListBody(),
     );
@@ -60,8 +53,7 @@ class _DepartmentsViewListBody extends ConsumerWidget {
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: switch (state) {
         AsyncError(:final error) => MyErrorWidget(error),
-        AsyncValue(:final IList<Department> value) =>
-          _DepartmentsDataView(value),
+        AsyncValue(:final IList<Department> value) => _DepartmentsDataView(value),
         _ => const DepartmentsViewLoading(),
       },
     );
@@ -82,11 +74,11 @@ class _DepartmentsDataView extends ConsumerWidget {
       padding: const EdgeInsets.only(bottom: 24),
       gridDelegate: DepartmentsConfig.departmentsViewGridDelegate,
       itemCount: departments.length,
-      itemBuilder: (context, index) => DepartmentCard(
-        departments[index],
-        onClick: () async =>
-            ref.navigateDepartmentDetail(departments[index].id),
-      ),
+      itemBuilder:
+          (context, index) => DepartmentCard(
+            departments[index],
+            onClick: () async => ref.navigateDepartmentDetail(departments[index].id),
+          ),
     );
   }
 }

@@ -12,16 +12,13 @@ class SksChartData with _$SksChartData {
     required DateTime externalTimestamp,
   }) = _SksChartData;
 
-  factory SksChartData.fromJson(Map<String, dynamic> json) =>
-      _$SksChartDataFromJson(json);
+  factory SksChartData.fromJson(Map<String, dynamic> json) => _$SksChartDataFromJson(json);
 }
 
 extension SksChartDataIListX on IList<SksChartData> {
   double get maxNumberOfUsers {
     return map(
-      (data) => data.activeUsers > data.movingAverage21
-          ? data.activeUsers
-          : data.movingAverage21,
+      (data) => data.activeUsers > data.movingAverage21 ? data.activeUsers : data.movingAverage21,
     ).reduce((a, b) => a > b ? a : b).toDouble();
   }
 }

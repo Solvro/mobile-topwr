@@ -24,18 +24,14 @@ class RoomStairsResponse with _$RoomStairsResponse {
     required String isEdgeBetweenRampRowEntranceMarked,
   }) = _RoomStairsResponse;
 
-  factory RoomStairsResponse.fromJson(Map<String, dynamic> json) =>
-      _$RoomStairsResponseFromJson(json);
+  factory RoomStairsResponse.fromJson(Map<String, dynamic> json) => _$RoomStairsResponseFromJson(json);
 }
 
 @freezed
 class RoomStairsTranslations with _$RoomStairsTranslations {
-  const factory RoomStairsTranslations({
-    required RoomStairsTranslation pl,
-  }) = _RoomStairsTranslations;
+  const factory RoomStairsTranslations({required RoomStairsTranslation pl}) = _RoomStairsTranslations;
 
-  factory RoomStairsTranslations.fromJson(Map<String, dynamic> json) =>
-      _$RoomStairsTranslationsFromJson(json);
+  factory RoomStairsTranslations.fromJson(Map<String, dynamic> json) => _$RoomStairsTranslationsFromJson(json);
 }
 
 @freezed
@@ -58,6 +54,5 @@ class RoomStairsTranslation with _$RoomStairsTranslation {
     required String comment,
   }) = _RoomStairsTranslation;
 
-  factory RoomStairsTranslation.fromJson(Map<String, dynamic> json) =>
-      _$RoomStairsTranslationFromJson(json);
+  factory RoomStairsTranslation.fromJson(Map<String, dynamic> json) => _$RoomStairsTranslationFromJson(json);
 }

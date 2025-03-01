@@ -22,10 +22,6 @@ Future<IList<Department>> departmentsList(Ref ref) async {
   final originalList = await ref.watch(departmentsRepositoryProvider.future);
   final query = ref.watch(searchDepartmentsControllerProvider);
   return originalList
-      .where(
-        (element) =>
-            element.name.containsLowerCase(query) ||
-            element.code.containsLowerCase(query),
-      )
+      .where((element) => element.name.containsLowerCase(query) || element.code.containsLowerCase(query))
       .toIList();
 }

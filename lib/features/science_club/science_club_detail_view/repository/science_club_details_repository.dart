@@ -7,20 +7,14 @@ import "getScienceClubDetails.graphql.dart";
 
 part "science_club_details_repository.g.dart";
 
-typedef ScienceClubDetails
-    = Query$GetScienceClubDetails$Scientific_Circles_by_id;
+typedef ScienceClubDetails = Query$GetScienceClubDetails$Scientific_Circles_by_id;
 
 typedef _Vars = Variables$Query$GetScienceClubDetails;
 
 @riverpod
-Future<ScienceClubDetails?> scienceClubDetailsRepository(
-  Ref ref,
-  String id,
-) async {
+Future<ScienceClubDetails?> scienceClubDetailsRepository(Ref ref, String id) async {
   final results = await ref.queryGraphql(
-    Options$Query$GetScienceClubDetails(
-      variables: _Vars(id: id),
-    ),
+    Options$Query$GetScienceClubDetails(variables: _Vars(id: id)),
     TtlKey.scienceClubDetailsRepository,
   );
   return results?.Scientific_Circles_by_id;

@@ -22,8 +22,7 @@ class AboutUsBodySmaller extends BodyTextStyle {
 }
 
 @tailorMixinComponent
-class AboutUsTheme extends ThemeExtension<AboutUsTheme>
-    with _$AboutUsThemeTailorMixin {
+class AboutUsTheme extends ThemeExtension<AboutUsTheme> with _$AboutUsThemeTailorMixin {
   @override
   final TextStyle headline;
   @override

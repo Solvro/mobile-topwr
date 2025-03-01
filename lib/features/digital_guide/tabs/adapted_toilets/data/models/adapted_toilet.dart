@@ -12,31 +12,25 @@ part "adapted_toilet.g.dart";
 class AdaptedToilet with _$AdaptedToilet {
   const factory AdaptedToilet({
     required AdaptedToiletTranslations translations,
-    @JsonKey(name: "is_access_accessible_for_pwd", fromJson: stringToBool)
-    required bool isAccessAccessibleForPwd,
-    @JsonKey(name: "has_additional_purpose", fromJson: _stringToInt)
-    required int hasAdditionalPurpose,
+    @JsonKey(name: "is_access_accessible_for_pwd", fromJson: stringToBool) required bool isAccessAccessibleForPwd,
+    @JsonKey(name: "has_additional_purpose", fromJson: _stringToInt) required int hasAdditionalPurpose,
     @JsonKey(name: "is_need_authorization", fromJson: isNeedAuthorizationToEnum)
     required IsNeedAuthorizationEnum isNeedAuthorization,
-    @JsonKey(name: "is_entrance_graphically_marked", fromJson: stringToBool)
-    required bool isEntranceGraphicallyMarked,
+    @JsonKey(name: "is_entrance_graphically_marked", fromJson: stringToBool) required bool isEntranceGraphicallyMarked,
     @JsonKey(name: "is_marked", fromJson: stringToBool) required bool isMarked,
     @JsonKey(name: "images") required IList<int> imagesIndices,
     @JsonKey(name: "doors") required IList<int> doorsIndices,
   }) = _AdaptedToilet;
 
-  factory AdaptedToilet.fromJson(Map<String, dynamic> json) =>
-      _$AdaptedToiletFromJson(json);
+  factory AdaptedToilet.fromJson(Map<String, dynamic> json) => _$AdaptedToiletFromJson(json);
 }
 
 @freezed
 class AdaptedToiletTranslations with _$AdaptedToiletTranslations {
-  const factory AdaptedToiletTranslations({
-    @JsonKey(name: "pl") required AdaptedToiletTranslation plTranslation,
-  }) = _AdaptedToiletTranslations;
+  const factory AdaptedToiletTranslations({@JsonKey(name: "pl") required AdaptedToiletTranslation plTranslation}) =
+      _AdaptedToiletTranslations;
 
-  factory AdaptedToiletTranslations.fromJson(Map<String, dynamic> json) =>
-      _$AdaptedToiletTranslationsFromJson(json);
+  factory AdaptedToiletTranslations.fromJson(Map<String, dynamic> json) => _$AdaptedToiletTranslationsFromJson(json);
 }
 
 @freezed
@@ -45,20 +39,16 @@ class AdaptedToiletTranslation with _$AdaptedToiletTranslation {
     required String location,
     @JsonKey(name: "toilet_description") required String toiletDescription,
     @JsonKey(name: "number_of_cabins") required String numberOfCabins,
-    @JsonKey(name: "is_access_accessible_for_pwd_comment")
-    required String isAccessAccessibleForPwdComment,
-    @JsonKey(name: "is_need_authorization_comment")
-    required String isNeedAuthorizationComment,
+    @JsonKey(name: "is_access_accessible_for_pwd_comment") required String isAccessAccessibleForPwdComment,
+    @JsonKey(name: "is_need_authorization_comment") required String isNeedAuthorizationComment,
     @JsonKey(name: "is_area_allowing_movement_in_front_entrance_comment")
     required String isAreaAllowingMovementInFrontEntranceComment,
-    @JsonKey(name: "is_entrance_graphically_marked_comment")
-    required String isEntranceGraphicallyMarkedComment,
+    @JsonKey(name: "is_entrance_graphically_marked_comment") required String isEntranceGraphicallyMarkedComment,
     @JsonKey(name: "is_marked_comment") required String isMarkedComment,
     required String comment,
   }) = _AdaptedToiletTranslation;
 
-  factory AdaptedToiletTranslation.fromJson(Map<String, dynamic> json) =>
-      _$AdaptedToiletTranslationFromJson(json);
+  factory AdaptedToiletTranslation.fromJson(Map<String, dynamic> json) => _$AdaptedToiletTranslationFromJson(json);
 }
 
 int _stringToInt(String str) {

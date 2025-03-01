@@ -14,9 +14,7 @@ class ScrollableSectionLoading extends StatelessWidget {
       crossAxisForcedSize: 120,
       scrollDirection: Axis.horizontal,
       itemBuilder: (context, index) {
-        return const MediumLeftPadding(
-          child: PreviewCardLoading.square(size: 120),
-        );
+        return const MediumLeftPadding(child: PreviewCardLoading.square(size: 120));
       },
     );
   }

@@ -11,10 +11,7 @@ typedef PlannerAdvertContent = Query$GetPlannerAdvertContent$PlannerAdvert;
 
 @riverpod
 Future<PlannerAdvertContent?> plannerAdvertContentRepository(Ref ref) async {
-  final results = await ref.queryGraphql(
-    Options$Query$GetPlannerAdvertContent(),
-    TtlKey.plannerAdvertRepository,
-  );
+  final results = await ref.queryGraphql(Options$Query$GetPlannerAdvertContent(), TtlKey.plannerAdvertRepository);
 
   return results?.PlannerAdvert;
 }

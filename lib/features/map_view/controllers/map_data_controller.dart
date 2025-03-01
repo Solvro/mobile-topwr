@@ -3,8 +3,7 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "controllers_set.dart";
 
-mixin MapDataController<T extends GoogleNavigable>
-    on AutoDisposeAsyncNotifier<IList<T>> {
+mixin MapDataController<T extends GoogleNavigable> on AutoDisposeAsyncNotifier<IList<T>> {
   String _textFieldFilterText = "";
   late final MapControllers<T> mapControllers;
 

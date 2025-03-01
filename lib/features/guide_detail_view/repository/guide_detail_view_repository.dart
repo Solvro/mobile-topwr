@@ -11,14 +11,9 @@ typedef GuideDetails = Query$GetGuideDetails$FAQ_Types_by_id;
 typedef _Vars = Variables$Query$GetGuideDetails;
 
 @riverpod
-Future<GuideDetails?> guideDetailsRepository(
-  Ref ref,
-  String id,
-) async {
+Future<GuideDetails?> guideDetailsRepository(Ref ref, String id) async {
   final results = await ref.queryGraphql(
-    Options$Query$GetGuideDetails(
-      variables: _Vars(id: id),
-    ),
+    Options$Query$GetGuideDetails(variables: _Vars(id: id)),
     TtlKey.guideDetailsRepository,
   );
   return results?.FAQ_Types_by_id;

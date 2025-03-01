@@ -44,11 +44,7 @@ class ScienceClubsView extends StatelessWidget {
 }
 
 class _ScienceClubsView extends StatelessWidget {
-  const _ScienceClubsView({
-    required this.tagsIds,
-    required this.deptsIds,
-    required this.types,
-  });
+  const _ScienceClubsView({required this.tagsIds, required this.deptsIds, required this.types});
   final IList<String> tagsIds;
   final IList<String> deptsIds;
   final IList<String> types;
@@ -56,41 +52,34 @@ class _ScienceClubsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeLoadInitialRepos(
-      builder: (
-        context, {
-        required safeLoadedDepartments,
-        required safeLoadedTags,
-      }) =>
-          HookConsumer(
-        builder: (context, ref, child) {
-          useInitialFilterIds(
-            tagsIds.map((it) => it.toLowerCase()).toIList(),
-            () async => ref.read(tagsRepositoryProvider.future),
-            ref.watch(selectedTagControllerProvider.notifier),
-            (ids, tag) => ids.contains(tag.name.toLowerCase()),
-          );
+      builder:
+          (context, {required safeLoadedDepartments, required safeLoadedTags}) => HookConsumer(
+            builder: (context, ref, child) {
+              useInitialFilterIds(
+                tagsIds.map((it) => it.toLowerCase()).toIList(),
+                () async => ref.read(tagsRepositoryProvider.future),
+                ref.watch(selectedTagControllerProvider.notifier),
+                (ids, tag) => ids.contains(tag.name.toLowerCase()),
+              );
 
-          useInitialFilterIds(
-            deptsIds,
-            () async => ref.read(departmentsRepositoryProvider.future),
-            ref.watch(selectedDepartmentControllerProvider.notifier),
-            (ids, dept) => ids.contains(dept.id),
-          );
+              useInitialFilterIds(
+                deptsIds,
+                () async => ref.read(departmentsRepositoryProvider.future),
+                ref.watch(selectedDepartmentControllerProvider.notifier),
+                (ids, dept) => ids.contains(dept.id),
+              );
 
-          useInitialFilterIds(
-            types.map((it) => it.toLowerCase()).toIList(),
-            () async => ScienceClubType.values.toIList(),
-            ref.watch(selectedTypeControllerProvider.notifier),
-            (ids, type) => ids.contains(type.toJson()?.toLowerCase()),
-          );
+              useInitialFilterIds(
+                types.map((it) => it.toLowerCase()).toIList(),
+                () async => ScienceClubType.values.toIList(),
+                ref.watch(selectedTypeControllerProvider.notifier),
+                (ids, type) => ids.contains(type.toJson()?.toLowerCase()),
+              );
 
-          return SciClubsScaffold(
-            showFab: safeLoadedDepartments && safeLoadedTags,
-            child: child,
-          );
-        },
-        child: const ScienceClubsList(),
-      ),
+              return SciClubsScaffold(showFab: safeLoadedDepartments && safeLoadedTags, child: child);
+            },
+            child: const ScienceClubsList(),
+          ),
     );
   }
 }

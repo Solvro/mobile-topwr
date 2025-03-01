@@ -9,16 +9,10 @@ import "../models/digital_guide_entrace.dart";
 part "entraces_repository.g.dart";
 
 @riverpod
-Future<IList<DigitalGuideEntrace>> entrancesRepository(
-  Ref ref,
-  DigitalGuideResponse building,
-) async {
+Future<IList<DigitalGuideEntrace>> entrancesRepository(Ref ref, DigitalGuideResponse building) async {
   return ref.getAndCacheDataFromDigitalGuide(
     "entrances/?building=${building.id}",
-    (List<dynamic> json) => json
-        .whereType<Map<String, dynamic>>()
-        .map(DigitalGuideEntrace.fromJson)
-        .toIList(),
+    (List<dynamic> json) => json.whereType<Map<String, dynamic>>().map(DigitalGuideEntrace.fromJson).toIList(),
     onRetry: () => ref.invalidateSelf(),
   );
 }

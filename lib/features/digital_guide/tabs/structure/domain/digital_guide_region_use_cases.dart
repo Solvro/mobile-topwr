@@ -27,44 +27,34 @@ import "../data/repository/toilets_repository.dart";
 
 part "digital_guide_region_use_cases.g.dart";
 
-typedef RegionData = ({
-  IList<Corridor> corridors,
-  IList<Stairs> stairs,
-  IList<Ramp> ramps,
-  IList<Stairway> stairways,
-  IList<DigitalGuideLift> lifts,
-  IList<DigitalGuideLodge> lodges,
-  IList<InformationPoint> informationPoints,
-  IList<DigitalGuideDressingRoom> dressingRooms,
-  IList<Toilet> toilets,
-  IList<DigitalGuideRoom> rooms,
-  IList<Parking> parkings,
-});
+typedef RegionData =
+    ({
+      IList<Corridor> corridors,
+      IList<Stairs> stairs,
+      IList<Ramp> ramps,
+      IList<Stairway> stairways,
+      IList<DigitalGuideLift> lifts,
+      IList<DigitalGuideLodge> lodges,
+      IList<InformationPoint> informationPoints,
+      IList<DigitalGuideDressingRoom> dressingRooms,
+      IList<Toilet> toilets,
+      IList<DigitalGuideRoom> rooms,
+      IList<Parking> parkings,
+    });
 
 @riverpod
 Future<RegionData> digitalGuideRegionUseCases(Ref ref, Region region) async {
-  final corridors =
-      await ref.watch(corridorsRepositoryProvider(region.corridors).future);
-  final stairs =
-      await ref.watch(stairsRepositoryProvider(region.stairs).future);
+  final corridors = await ref.watch(corridorsRepositoryProvider(region.corridors).future);
+  final stairs = await ref.watch(stairsListRepositoryProvider(region.stairs).future);
   final ramps = await ref.watch(rampsRepositoryProvider(region.ramps).future);
-  final stairways =
-      await ref.watch(stairwaysRepositoryProvider(region.stairways).future);
+  final stairways = await ref.watch(stairwaysRepositoryProvider(region.stairways).future);
   final lifts = await ref.watch(liftsRepositoryProvider(region.lifts).future);
-  final lodges =
-      await ref.watch(lodgesFromIDsRepositoryProvider(region.lodges).future);
-  final informationPoints = await ref.watch(
-    informationPointsRepositoryProvider(region.informationPoints).future,
-  );
-  final dressingRooms = await ref.watch(
-    dressingRoomsFromIDsRepositoryProvider(region.dressingRooms).future,
-  );
-  final toilets =
-      await ref.watch(toiletsRepositoryProvider(region.toilets).future);
-  final rooms =
-      await ref.watch(roomsByIDsRepositoryProvider(region.rooms).future);
-  final parkings =
-      await ref.watch(regionParkingsRepositoryProvider(region.parkings).future);
+  final lodges = await ref.watch(lodgesFromIDsRepositoryProvider(region.lodges).future);
+  final informationPoints = await ref.watch(informationPointsRepositoryProvider(region.informationPoints).future);
+  final dressingRooms = await ref.watch(dressingRoomsFromIDsRepositoryProvider(region.dressingRooms).future);
+  final toilets = await ref.watch(toiletsRepositoryProvider(region.toilets).future);
+  final rooms = await ref.watch(roomsByIDsRepositoryProvider(region.rooms).future);
+  final parkings = await ref.watch(regionParkingsRepositoryProvider(region.parkings).future);
 
   return (
     corridors: corridors,

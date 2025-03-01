@@ -8,10 +8,7 @@ import "../../../../widgets/zoomable_images.dart";
 import "../../data/repository/image_repository.dart";
 
 class DigitalGuideImage extends ConsumerWidget {
-  const DigitalGuideImage({
-    required this.id,
-    this.zoomable = true,
-  });
+  const DigitalGuideImage({required this.id, this.zoomable = true});
 
   final int id;
   final bool zoomable;
@@ -21,13 +18,7 @@ class DigitalGuideImage extends ConsumerWidget {
     return asyncImageUrl.when(
       data: zoomable ? ZoomableCachedImage.new : MyCachedImage.new,
       error: (error, stackTrace) => MyErrorWidget(error),
-      loading: () => Center(
-        child: ShimmeringEffect(
-          child: Container(
-            color: Colors.white,
-          ),
-        ),
-      ),
+      loading: () => Center(child: ShimmeringEffect(child: Container(color: Colors.white))),
     );
   }
 }

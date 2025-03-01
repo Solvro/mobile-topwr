@@ -10,11 +10,7 @@ part "ramps_repository.g.dart";
 @riverpod
 Future<IList<Ramp>> rampsRepository(Ref ref, List<int> rampsIDs) async {
   Future<Ramp> getRamp(int rampID) async {
-    return ref.getAndCacheDataFromDigitalGuide(
-      "ramps/$rampID",
-      Ramp.fromJson,
-      onRetry: () => ref.invalidateSelf(),
-    );
+    return ref.getAndCacheDataFromDigitalGuide("ramps/$rampID", Ramp.fromJson, onRetry: () => ref.invalidateSelf());
   }
 
   final ramps = await Future.wait(rampsIDs.map(getRamp));

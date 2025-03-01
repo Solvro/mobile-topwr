@@ -12,18 +12,14 @@ class DescriptionSection extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
-      padding:
-          const EdgeInsets.symmetric(horizontal: AboutUsConfig.defaultPadding),
+      padding: const EdgeInsets.symmetric(horizontal: AboutUsConfig.defaultPadding),
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(AboutUsConfig.borderRadius),
           color: context.colorTheme.greyLight,
         ),
-        child: Padding(
-          padding: const EdgeInsets.all(AboutUsConfig.defaultPadding),
-          child: MyHtmlWidget(text),
-        ),
+        child: Padding(padding: const EdgeInsets.all(AboutUsConfig.defaultPadding), child: MyHtmlWidget(text)),
       ),
     );
   }

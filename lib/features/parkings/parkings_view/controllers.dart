@@ -14,8 +14,7 @@ import "repository/parkings_repository.dart";
 part "controllers.g.dart";
 
 @Riverpod(dependencies: [])
-class ActiveParkingController extends _$ActiveParkingController
-    with ActiveMarkerController<Parking> {
+class ActiveParkingController extends _$ActiveParkingController with ActiveMarkerController<Parking> {
   @override
   Parking? build() {
     return null;
@@ -23,8 +22,7 @@ class ActiveParkingController extends _$ActiveParkingController
 }
 
 @Riverpod(dependencies: [ActiveParkingController, bottomSheetController])
-class ParkingsViewController extends _$ParkingsViewController
-    with MapDataController<Parking> {
+class ParkingsViewController extends _$ParkingsViewController with MapDataController<Parking> {
   ParkingsViewController() {
     mapControllers = parkingsMapControllers;
   }

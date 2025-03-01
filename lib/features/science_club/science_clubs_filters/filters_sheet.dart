@@ -22,10 +22,7 @@ class FiltersSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     final sheetHeight = useFiltersSheetHeight(context);
     return ProviderScope(
-      overrides: [
-        searchFiltersControllerProvider,
-        areFiltersEnabledProvider,
-      ],
+      overrides: [searchFiltersControllerProvider, areFiltersEnabledProvider],
       child: HorizontalSymmetricSafeArea(
         child: SizedBox(
           height: sheetHeight,
@@ -44,15 +41,9 @@ class FiltersSheet extends StatelessWidget {
                         const DepartmentsWrap(),
                         const TagsWrap(),
                         const _NoFiltersFound(),
-                        const SizedBox(
-                          height: FilterConfig.spacingBetweenWidgets,
-                        ),
-                        ApplyFiltersButton(
-                          onPressed: context.maybePop,
-                        ),
-                        const SizedBox(
-                          height: FilterConfig.spacingBetweenWidgets,
-                        ),
+                        const SizedBox(height: FilterConfig.spacingBetweenWidgets),
+                        ApplyFiltersButton(onPressed: context.maybePop),
+                        const SizedBox(height: FilterConfig.spacingBetweenWidgets),
                       ],
                     ),
                   ),
@@ -71,13 +62,7 @@ class FiltersSectionHeader extends StatelessWidget {
   final String text;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8),
-      child: Text(
-        text,
-        style: context.textTheme.title,
-      ),
-    );
+    return Padding(padding: const EdgeInsets.all(8), child: Text(text, style: context.textTheme.title));
   }
 }
 

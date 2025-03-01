@@ -13,48 +13,36 @@ class AppVersionTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        vertical: WideTileCardConfig.basePadding,
-      ),
+      padding: const EdgeInsets.symmetric(vertical: WideTileCardConfig.basePadding),
       child: FutureBuilder(
         future: Future.microtask(PackageInfo.fromPlatform),
-        builder: (context, snapshot) => ListTile(
-          title: Text(
-            "${MyAppConfig.title} ${snapshot.data?.version} ${context.localize.app_info}",
-            style: context.textTheme.bodyGrey,
-          ),
-          leading: Icon(
-            Icons.info,
-            color: context.colorTheme.orangePomegranade,
-            size: 22,
-          ),
-          contentPadding: const EdgeInsets.symmetric(
-            horizontal: WideTileCardConfig.basePadding,
-          ),
-          horizontalTitleGap: 8,
-          onTap: () async {
-            // TODO(simon-the-shark): customize [LicensePage] theme
-            await showMyLicenceDialog(context, snapshot.data?.version);
-          },
-        ),
+        builder:
+            (context, snapshot) => ListTile(
+              title: Text(
+                "${MyAppConfig.title} ${snapshot.data?.version} ${context.localize.app_info}",
+                style: context.textTheme.bodyGrey,
+              ),
+              leading: Icon(Icons.info, color: context.colorTheme.orangePomegranade, size: 22),
+              contentPadding: const EdgeInsets.symmetric(horizontal: WideTileCardConfig.basePadding),
+              horizontalTitleGap: 8,
+              onTap: () async {
+                // TODO(simon-the-shark): customize [LicensePage] theme
+                await showMyLicenceDialog(context, snapshot.data?.version);
+              },
+            ),
       ),
     );
   }
 }
 
-Future<void> showMyLicenceDialog(
-  BuildContext context,
-  String? applicationVersion,
-) {
+Future<void> showMyLicenceDialog(BuildContext context, String? applicationVersion) {
   return showCustomLicenseDialog(
     context: context,
     applicationIcon: Container(
       width: 50,
       height: 50,
       clipBehavior: Clip.antiAlias,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-      ),
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
       child: const FlutterSplashScreen(),
     ),
     applicationName: MyAppConfig.title,

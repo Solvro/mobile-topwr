@@ -11,17 +11,12 @@ void useInitialFilterIds<T>(
   bool Function(IList<String> ids, T item) test,
 ) {
   if (ids == null) return;
-  useEffect(
-    () {
-      Future.microtask(() async {
-        final items = await itemsCallback();
-        filterController.clearFilter();
-        items.where((item) => test(ids, item)).forEach(
-              filterController.toggleFilter,
-            );
-      });
-      return null;
-    },
-    [ids],
-  );
+  useEffect(() {
+    Future.microtask(() async {
+      final items = await itemsCallback();
+      filterController.clearFilter();
+      items.where((item) => test(ids, item)).forEach(filterController.toggleFilter);
+    });
+    return null;
+  }, [ids]);
 }

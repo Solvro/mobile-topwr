@@ -7,10 +7,7 @@ import "../repository/academic_calendar_repo.dart";
 import "../utils/localize_academic_day.dart";
 
 class Greeting extends StatelessWidget {
-  const Greeting(
-    this.academicCalendar, {
-    super.key,
-  });
+  const Greeting(this.academicCalendar, {super.key});
   final AcademicCalendar academicCalendar;
   @override
   Widget build(BuildContext context) {
@@ -20,14 +17,8 @@ class Greeting extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            context.localize.home_screen_greeting,
-            style: context.greetingTheme.textStyle,
-          ),
-          Text(
-            academicCalendar.academicDay?.localize(context) ?? "",
-            style: context.greetingTheme.boldTextStyle,
-          ),
+          Text(context.localize.home_screen_greeting, style: context.greetingTheme.textStyle),
+          Text(academicCalendar.academicDay?.localize(context) ?? "", style: context.greetingTheme.boldTextStyle),
         ],
       ),
     );

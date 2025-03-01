@@ -16,27 +16,18 @@ import "digital_g_objects_amenietes_tab_tile_content.dart";
 typedef TileContent = ({String title, List<Widget> content});
 
 class DigitalGuideObjectsFeaturesSection extends ConsumerWidget {
-  const DigitalGuideObjectsFeaturesSection({
-    required this.digitalGuideData,
-    required this.building,
-  });
+  const DigitalGuideObjectsFeaturesSection({required this.digitalGuideData, required this.building});
 
   final DigitalGuideObjectModel digitalGuideData;
   final BuildingModel building;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final otherTiles = ref.watch(
-      digitalGuideObjectTabsRepositoryProvider(digitalGuideData),
-    );
+    final otherTiles = ref.watch(digitalGuideObjectTabsRepositoryProvider(digitalGuideData));
     final items = <TileContent>[
       (
         title: context.localize.amenities,
-        content: [
-          DigitalGuideObjectAmenietesTabTileContent(
-            digitalGuideData: digitalGuideData,
-          ),
-        ],
+        content: [DigitalGuideObjectAmenietesTabTileContent(digitalGuideData: digitalGuideData)],
       ),
       if (otherTiles.valueOrNull != null)
         for (final tile in otherTiles.valueOrNull!)
@@ -46,10 +37,7 @@ class DigitalGuideObjectsFeaturesSection extends ConsumerWidget {
               // No `AccessibilityInformationCardsList` here, cause not entry on the API has one
               Padding(
                 padding: const EdgeInsets.all(DigitalGuideConfig.paddingMedium),
-                child: MyHtmlWidget(
-                  tile.translations.pl.content,
-                  textStyle: context.textTheme.body,
-                ),
+                child: MyHtmlWidget(tile.translations.pl.content, textStyle: context.textTheme.body),
               ),
               DigitalGuidePhotoRow(imagesIDs: tile.images.lock),
             ],
@@ -57,22 +45,16 @@ class DigitalGuideObjectsFeaturesSection extends ConsumerWidget {
     ];
 
     return SliverList(
-      delegate: SliverChildBuilderDelegate(
-        (context, index) {
-          final item = items[index];
-          return Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: DigitalGuideConfig.paddingBig,
-              vertical: DigitalGuideConfig.heightSmall,
-            ),
-            child: MyExpansionTile(
-              title: item.title,
-              children: item.content,
-            ),
-          );
-        },
-        childCount: items.length,
-      ),
+      delegate: SliverChildBuilderDelegate((context, index) {
+        final item = items[index];
+        return Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: DigitalGuideConfig.paddingBig,
+            vertical: DigitalGuideConfig.heightSmall,
+          ),
+          child: MyExpansionTile(title: item.title, children: item.content),
+        );
+      }, childCount: items.length),
     );
   }
 }

@@ -13,11 +13,7 @@ import "model/building_model.dart";
 import "utils/utils.dart";
 
 class BuildingTile extends ConsumerWidget {
-  const BuildingTile(
-    this.building, {
-    required this.isActive,
-    super.key,
-  });
+  const BuildingTile(this.building, {required this.isActive, super.key});
 
   final BuildingModel building;
   final bool isActive;
@@ -28,30 +24,21 @@ class BuildingTile extends ConsumerWidget {
         PhotoTrailingWideTileCard(
           activeGradient: context.colorTheme.toPwrGradient,
           directusPhotoUrl: building.cover?.filename_disk,
-          title:
-              "${building.disableBuildingPrefix ? "" : "${context.localize.building_prefix} "}${building.name}",
+          title: "${building.disableBuildingPrefix ? "" : "${context.localize.building_prefix} "}${building.name}",
           subtitle: context.changeNull(building.addressFormatted),
           isActive: isActive,
           onTap: () {
-            unawaited(
-              ref.read(buildingsMapControllerProvider).onMarkerTap(building),
-            );
+            unawaited(ref.read(buildingsMapControllerProvider).onMarkerTap(building));
           },
         ),
-        if (building.externalDigitalGuideMode != null &&
-            building.externalDigitalGuideIdOrURL != null)
+        if (building.externalDigitalGuideMode != null && building.externalDigitalGuideIdOrURL != null)
           Positioned(
             top: 2,
             right: WideTileCardConfig.imageSize,
             child: IconButton(
               iconSize: 18,
               visualDensity: VisualDensity.compact,
-              icon: Icon(
-                Icons.info,
-                color: isActive
-                    ? context.colorTheme.whiteSoap
-                    : context.colorTheme.greyPigeon,
-              ),
+              icon: Icon(Icons.info, color: isActive ? context.colorTheme.whiteSoap : context.colorTheme.greyPigeon),
               onPressed: () {
                 unawaited(ref.navigateBuildingDetailAction(building));
               },

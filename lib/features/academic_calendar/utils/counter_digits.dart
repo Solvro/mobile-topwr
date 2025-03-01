@@ -10,23 +10,21 @@ enum Digit { first, second, third }
 extension DaysLeftStringConverterX on AcademicCalendar {
   String get daysLeftFromNowString {
     final calendarData = this.AcademicCalendarData;
-    final daysLeft = calendarData != null
-        ? (calendarData.isHolidays()
-            ? data?.semesterStartDate.daysLeftFromNow
-            : calendarData.isExamSession()
+    final daysLeft =
+        calendarData != null
+            ? (calendarData.isHolidays()
+                ? data?.semesterStartDate.daysLeftFromNow
+                : calendarData.isExamSession()
                 ? data?.examSessionLastDay.daysLeftFromNow
                 : data?.examSessionStartDate.daysLeftFromNow)
-        : null;
+            : null;
 
-    return max(_default, daysLeft ?? _default)
-        .toString()
-        .padLeft(Digit.values.length, _default.toString());
+    return max(_default, daysLeft ?? _default).toString().padLeft(Digit.values.length, _default.toString());
   }
 }
 
 extension GetDigitX on String {
-  String getDigit(Digit digit) =>
-      length > digit.index ? this[digit.index] : _default.toString();
+  String getDigit(Digit digit) => length > digit.index ? this[digit.index] : _default.toString();
 }
 
 int get _default => CountdownConfig.defaultDigit;

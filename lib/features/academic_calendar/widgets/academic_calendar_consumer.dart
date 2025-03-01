@@ -17,29 +17,24 @@ class AcademicCalendarConsumer extends ConsumerWidget {
 
     return switch (state) {
       AsyncError(:final error) => Padding(
-          padding: const EdgeInsets.only(top: HomeViewConfig.paddingSmall),
-          child: MyErrorWidget(error),
-        ),
+        padding: const EdgeInsets.only(top: HomeViewConfig.paddingSmall),
+        child: MyErrorWidget(error),
+      ),
       AsyncValue(:final AcademicCalendar value) => Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [Greeting(value), const SizedBox(height: HomeViewConfig.paddingMedium), ExamSessionCountdown(value)],
+      ),
+      _ => const Padding(
+        padding: EdgeInsets.symmetric(horizontal: HomeViewConfig.paddingMedium),
+        child: Column(
           children: [
-            Greeting(value),
-            const SizedBox(height: HomeViewConfig.paddingMedium),
-            ExamSessionCountdown(value),
+            HorizontalRectangularSectionLoading(),
+            SizedBox(height: HomeViewConfig.paddingMedium),
+            HorizontalRectangularSectionLoading(),
           ],
         ),
-      _ => const Padding(
-          padding:
-              EdgeInsets.symmetric(horizontal: HomeViewConfig.paddingMedium),
-          child: Column(
-            children: [
-              HorizontalRectangularSectionLoading(),
-              SizedBox(height: HomeViewConfig.paddingMedium),
-              HorizontalRectangularSectionLoading(),
-            ],
-          ),
-        ),
+      ),
     };
   }
 }

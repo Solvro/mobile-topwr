@@ -4,11 +4,7 @@ import "package:flutter/material.dart";
 import "package:flutter_map/flutter_map.dart";
 import "package:latlong2/latlong.dart";
 
-typedef MapSheetSize = ({
-  double recomendedSheetHeight,
-  double recomendedActiveSheetHeight,
-  double minSheetHeight,
-});
+typedef MapSheetSize = ({double recomendedSheetHeight, double recomendedActiveSheetHeight, double minSheetHeight});
 
 abstract class MapViewBottomSheetConfig {
   static const bottomSheetRadius = Radius.circular(24);
@@ -37,8 +33,7 @@ abstract class MapWidgetConfig {
   static const defaultMarkerZoom = 17.0;
   static const initialZoom = 15.0;
   static const initialCenter = LatLng(51.10738, 17.05964);
-  static const interactionOptions =
-      InteractionOptions(flags: InteractiveFlag.all & ~InteractiveFlag.rotate);
+  static const interactionOptions = InteractionOptions(flags: InteractiveFlag.all & ~InteractiveFlag.rotate);
 
   static const mapMarkerWidth = 22.0;
   static const mapMarkerHeight = 34.0;
@@ -50,8 +45,7 @@ abstract class OpenStreetMapConfig {
   static const tileUrl = "https://tile.openstreetmap.org/{z}/{x}/{y}.png";
   static const attribution = "© OpenStreetMap contributors";
   static const copyright = "https://openstreetmap.org/copyright";
-  static final userAgent =
-      Platform.isIOS ? "com.solvro.ToPwr" : "com.solvro.topwr";
+  static final userAgent = Platform.isIOS ? "com.solvro.ToPwr" : "com.solvro.topwr";
 }
 
 abstract class MapCacheConfig {

@@ -12,10 +12,7 @@ import "sks_chart_labels.dart";
 import "sks_chart_line_touch_data.dart";
 
 class SksChart extends StatelessWidget {
-  const SksChart({
-    required this.maxNumberOfUsers,
-    required this.chartData,
-  });
+  const SksChart({required this.maxNumberOfUsers, required this.chartData});
 
   final double maxNumberOfUsers;
   final IList<SksChartData> chartData;
@@ -35,11 +32,7 @@ class SksChart extends StatelessWidget {
             maxY: maxNumberOfUsers + (maxNumberOfUsers / 10).toInt(),
             lineBarsData: [
               LineChartBarData(
-                belowBarData: BarAreaData(
-                  show: true,
-                  gradient: ColorsConsts.toPwrGradient,
-                  applyCutOffY: true,
-                ),
+                belowBarData: BarAreaData(show: true, gradient: ColorsConsts.toPwrGradient, applyCutOffY: true),
                 isCurved: true,
                 color: context.colorTheme.orangePomegranade,
                 dotData: FlDotData(
@@ -47,23 +40,18 @@ class SksChart extends StatelessWidget {
                     return false;
                   },
                 ),
-                spots: chartData.asMap().entries.map<FlSpot>((e) {
-                  if (e.value.externalTimestamp.isAfter(DateTime.now())) {
-                    return FlSpot.nullSpot;
-                  } else {
-                    return FlSpot(
-                      e.key.toDouble(),
-                      e.value.activeUsers.toDouble(),
-                    );
-                  }
-                }).toList(),
+                spots:
+                    chartData.asMap().entries.map<FlSpot>((e) {
+                      if (e.value.externalTimestamp.isAfter(DateTime.now())) {
+                        return FlSpot.nullSpot;
+                      } else {
+                        return FlSpot(e.key.toDouble(), e.value.activeUsers.toDouble());
+                      }
+                    }).toList(),
               ),
               LineChartBarData(
                 isCurved: true,
-                dashArray: [
-                  SksChartConfig.borderDashArray.toInt(),
-                  SksChartConfig.borderDashArray.toInt(),
-                ],
+                dashArray: [SksChartConfig.borderDashArray.toInt(), SksChartConfig.borderDashArray.toInt()],
                 dotData: FlDotData(
                   checkToShowDot: (FlSpot spot, LineChartBarData barData) {
                     return false;
@@ -71,38 +59,28 @@ class SksChart extends StatelessWidget {
                 ),
                 barWidth: 1.25,
                 color: context.colorTheme.blueAzure,
-                spots: chartData.asMap().entries.map<FlSpot>((e) {
-                  return FlSpot(
-                    e.key.toDouble(),
-                    e.value.movingAverage21.toDouble(),
-                  );
-                }).toList(),
+                spots:
+                    chartData.asMap().entries.map<FlSpot>((e) {
+                      return FlSpot(e.key.toDouble(), e.value.movingAverage21.toDouble());
+                    }).toList(),
               ),
               // this is the biggest hack you'll ever see in your life
               // this is transparent data const = 0 that allows the chart to have a hour tooltip
               LineChartBarData(
                 color: Colors.transparent,
-                spots: chartData.asMap().entries.map<FlSpot>((e) {
-                  return FlSpot(
-                    e.key.toDouble(),
-                    0,
-                  );
-                }).toList(),
+                spots:
+                    chartData.asMap().entries.map<FlSpot>((e) {
+                      return FlSpot(e.key.toDouble(), 0);
+                    }).toList(),
               ),
             ],
             titlesData: FlTitlesData(
               topTitles: const HideLabels(),
               rightTitles: const HideLabels(),
               leftTitles: SksChartRightTiles(context),
-              bottomTitles: SksChartBottomTitles(
-                context,
-                chartData,
-              ),
+              bottomTitles: SksChartBottomTitles(context, chartData),
             ),
-            lineTouchData: SksChartLineTouchData(
-              context,
-              chartData.map((e) => e.externalTimestamp).toIList(),
-            ),
+            lineTouchData: SksChartLineTouchData(context, chartData.map((e) => e.externalTimestamp).toIList()),
           ),
         ),
       ),

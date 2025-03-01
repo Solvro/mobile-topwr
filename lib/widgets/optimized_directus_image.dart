@@ -7,12 +7,7 @@ import "my_cached_image.dart";
 
 /// It requests image from Directus already with the size of a parent widget. (less data to download)
 class OptimizedDirectusImage extends MyCachedImage {
-  const OptimizedDirectusImage(
-    super.imageUrl, {
-    super.key,
-    super.boxFit,
-    super.loadingType,
-  });
+  const OptimizedDirectusImage(super.imageUrl, {super.key, super.boxFit, super.loadingType});
 
   @override
   Widget build(BuildContext context) {
@@ -22,16 +17,14 @@ class OptimizedDirectusImage extends MyCachedImage {
 
         final pixelsDensity = MediaQuery.devicePixelRatioOf(context);
         return _LoadSizeOnce(
-          initialSize: Size(
-            constraints.maxWidth * pixelsDensity,
-            constraints.maxHeight * pixelsDensity,
-          ),
-          builder: (BuildContext context, Size size) => MyCachedImage(
-            imageUrl?.directusUrlWithSize(size, boxFit),
-            loadingType: loadingType,
-            boxFit: boxFit,
-            size: size,
-          ),
+          initialSize: Size(constraints.maxWidth * pixelsDensity, constraints.maxHeight * pixelsDensity),
+          builder:
+              (BuildContext context, Size size) => MyCachedImage(
+                imageUrl?.directusUrlWithSize(size, boxFit),
+                loadingType: loadingType,
+                boxFit: boxFit,
+                size: size,
+              ),
         );
       },
     );
@@ -52,22 +45,17 @@ class OptimizedDirectusImage extends MyCachedImage {
 /// This HookWidget will build its child once with the initial size and won't rebuild it if the size changes.
 /// If we wouldn't use it, the `OptimizedDirectusImage` would rebuild on every layout change, causing fetching of a new image (of new size).
 class _LoadSizeOnce extends HookWidget {
-  const _LoadSizeOnce({
-    required this.initialSize,
-    required this.builder,
-  });
+  const _LoadSizeOnce({required this.initialSize, required this.builder});
   final Widget Function(BuildContext context, Size size) builder;
   final Size initialSize;
 
   @override
   Widget build(BuildContext context) {
     final size = useState(Size.zero);
-    useEffectOnInit(
-      () {
-        size.value = initialSize;
-        return null;
-      },
-    );
+    useEffectOnInit(() {
+      size.value = initialSize;
+      return null;
+    });
     return builder(context, size.value);
   }
 }

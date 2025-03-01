@@ -22,12 +22,9 @@ class Door with _$Door {
 
 @freezed
 class DoorTranslations with _$DoorTranslations {
-  const factory DoorTranslations({
-    required DoorTranslation pl,
-  }) = _DoorTranslations;
+  const factory DoorTranslations({required DoorTranslation pl}) = _DoorTranslations;
 
-  factory DoorTranslations.fromJson(Map<String, dynamic> json) =>
-      _$DoorTranslationsFromJson(json);
+  factory DoorTranslations.fromJson(Map<String, dynamic> json) => _$DoorTranslationsFromJson(json);
 }
 
 @freezed
@@ -43,17 +40,10 @@ class DoorTranslation with _$DoorTranslation {
     required String isDoorCloserComment,
   }) = _DoorTranslation;
 
-  factory DoorTranslation.fromJson(Map<String, dynamic> json) =>
-      _$DoorTranslationFromJson(json);
+  factory DoorTranslation.fromJson(Map<String, dynamic> json) => _$DoorTranslationFromJson(json);
 }
 
-enum DoorType {
-  singleLeafDoor,
-  singleLeafDoorSliding,
-  doubleLeafDoor,
-  doubleLeafDoorSliding,
-  swingDoor,
-}
+enum DoorType { singleLeafDoor, singleLeafDoorSliding, doubleLeafDoor, doubleLeafDoorSliding, swingDoor }
 
 DoorType stringToDoorType(String string) {
   switch (string) {

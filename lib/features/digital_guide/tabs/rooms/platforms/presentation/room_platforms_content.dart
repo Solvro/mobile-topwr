@@ -2,9 +2,7 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../../config/ui_config.dart";
-import "../../../../../../gen/assets.gen.dart";
 import "../../../../../../widgets/my_error_widget.dart";
-import "../../../../presentation/widgets/accessibility_profile_card.dart";
 import "../../../../presentation/widgets/bullet_list.dart";
 import "../models/room_platforms_response.dart";
 import "../repository/room_platforms_repository.dart";
@@ -17,17 +15,12 @@ class RoomPlatformsContent extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final asyncRoomPlatforms =
-        ref.watch(roomPlatformsRepositoryProvider(platformId));
+    final asyncRoomPlatforms = ref.watch(roomPlatformsRepositoryProvider(platformId));
 
     return asyncRoomPlatforms.when(
-      data: (roomPlatformsData) => _RoomPlatformsContent(
-        roomPlatformsResponse: roomPlatformsData,
-      ),
+      data: (roomPlatformsData) => _RoomPlatformsContent(roomPlatformsResponse: roomPlatformsData),
       error: (error, stackTrace) => MyErrorWidget(error),
-      loading: () => const Center(
-        child: CircularProgressIndicator(),
-      ),
+      loading: () => const Center(child: CircularProgressIndicator()),
     );
   }
 }
@@ -39,25 +32,12 @@ class _RoomPlatformsContent extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final roomPlatformsComment =
-        context.getRoomPlatformsCommentsList(roomPlatformsResponse);
-
-    final roomPlatformsAccessibilityComments = context
-        .getRoomPlatformsAccessibilityCommentsList(roomPlatformsResponse);
+    final roomPlatformsComment = context.getRoomPlatformsCommentsList(roomPlatformsResponse);
 
     return Padding(
       padding: DigitalGuideConfig.symetricalPaddingBig.copyWith(top: 0),
       child: Column(
-        children: [
-          BulletList(items: roomPlatformsComment),
-          const SizedBox(
-            height: DigitalGuideConfig.heightBig,
-          ),
-          AccessibilityProfileCard(
-            items: roomPlatformsAccessibilityComments,
-            icon: Assets.svg.digitalGuide.accessibilityAlerts.blindProfile,
-          ),
-        ],
+        children: [BulletList(items: roomPlatformsComment), const SizedBox(height: DigitalGuideConfig.heightBig)],
       ),
     );
   }

@@ -33,22 +33,12 @@ class EnsureVisibleTags extends DualTextMaxLines {
       return super.build(context);
     }
     final placeholderDimensions = [
-      if (showVerifiedBadge)
-        const PlaceholderDimensions(
-          size: Size(12, 12),
-          alignment: PlaceholderAlignment.middle,
-        ),
-      if (showStrategicBadge)
-        const PlaceholderDimensions(
-          size: Size(12, 12),
-          alignment: PlaceholderAlignment.middle,
-        ),
+      if (showVerifiedBadge) const PlaceholderDimensions(size: Size(12, 12), alignment: PlaceholderAlignment.middle),
+      if (showStrategicBadge) const PlaceholderDimensions(size: Size(12, 12), alignment: PlaceholderAlignment.middle),
     ];
     return LayoutBuilder(
       builder: (context, constraints) {
-        final maxForTitleLines = maxTotalLines -
-            (subtitle == null ? 0 : 1) -
-            (secondSubtitle == null ? 0 : 1);
+        final maxForTitleLines = maxTotalLines - (subtitle == null ? 0 : 1) - (secondSubtitle == null ? 0 : 1);
         final titleLines = min(
           maxForTitleLines,
           TextSpan(
@@ -57,30 +47,23 @@ class EnsureVisibleTags extends DualTextMaxLines {
           ).calculateLines(constraints.maxWidth),
         );
         TextSpan titleSpan({double? fontSize}) => TextSpan(
-              text: title,
-              style: fontSize == null
-                  ? titleStyle
-                  : titleStyle?.copyWith(fontSize: fontSize),
-              children: [
-                if (showVerifiedBadge) const VerifiedBadge(),
-                if (showStrategicBadge) const StrategicBadge(),
-              ],
-            );
+          text: title,
+          style: fontSize == null ? titleStyle : titleStyle?.copyWith(fontSize: fontSize),
+          children: [if (showVerifiedBadge) const VerifiedBadge(), if (showStrategicBadge) const StrategicBadge()],
+        );
 
-        final shouldItOverrideEvenDept = titleSpan(fontSize: 12).calculateLines(
-              constraints.maxWidth,
-              placeholderDimensions: placeholderDimensions,
-            ) >
+        final shouldItOverrideEvenDept =
+            titleSpan(fontSize: 12).calculateLines(constraints.maxWidth, placeholderDimensions: placeholderDimensions) >
             titleLines;
-        final finalTitleLines =
-            shouldItOverrideEvenDept ? titleLines + 1 : titleLines;
-        final int subtitleLines = subtitle == null
-            ? 0
-            : secondSubtitle == "" || secondSubtitle == null
+        final finalTitleLines = shouldItOverrideEvenDept ? titleLines + 1 : titleLines;
+        final int subtitleLines =
+            subtitle == null
+                ? 0
+                : secondSubtitle == "" || secondSubtitle == null
                 ? maxTotalLines - finalTitleLines
                 : shouldItOverrideEvenDept
-                    ? 0
-                    : 1;
+                ? 0
+                : 1;
         final thirdLines = maxTotalLines - finalTitleLines - subtitleLines;
 
         return Column(
@@ -95,10 +78,7 @@ class EnsureVisibleTags extends DualTextMaxLines {
             if (subtitleLines > 0) SizedBox(height: spacing),
             if (subtitleLines > 0)
               AutoSizeText.rich(
-                TextSpan(
-                  text: subtitle,
-                  style: subtitleStyle,
-                ),
+                TextSpan(text: subtitle, style: subtitleStyle),
                 maxLines: subtitleLines,
                 overflow: TextOverflow.ellipsis,
               ),

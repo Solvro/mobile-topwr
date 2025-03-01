@@ -7,10 +7,7 @@ import "../../../presentation/widgets/digital_guide_nav_link.dart";
 import "../data/models/digital_guide_entrace.dart";
 
 class DigitalGuideEntranceWidget extends ConsumerWidget {
-  const DigitalGuideEntranceWidget({
-    required this.entrance,
-    super.key,
-  });
+  const DigitalGuideEntranceWidget({required this.entrance, super.key});
 
   final DigitalGuideEntrace entrance;
 

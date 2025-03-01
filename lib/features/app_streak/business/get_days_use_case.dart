@@ -17,8 +17,7 @@ Future<int> getUsageDaysUseCase(Ref ref) async {
     await ref.read(streakStartRepositoryProvider.notifier).resetStamp();
     return 1;
   }
-  final startStreakDate =
-      (await ref.watch(streakStartRepositoryProvider.future)).date;
+  final startStreakDate = (await ref.watch(streakStartRepositoryProvider.future)).date;
   final daysUsing = today.difference(startStreakDate).inDays + 1;
   await ref.read(lastEntryRepositoryProvider.notifier).resetStamp();
   return daysUsing;

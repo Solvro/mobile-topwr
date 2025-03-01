@@ -45,10 +45,7 @@ class MapWidget<T extends GoogleNavigable> extends HookConsumerWidget {
               userAgentPackageName: OpenStreetMapConfig.userAgent,
               tileProvider: CachedTileProvider(
                 maxStale: const Duration(days: MapCacheConfig.cacheDuration),
-                store: HiveCacheStore(
-                  null,
-                  hiveBoxName: MapCacheConfig.cacheBoxName,
-                ),
+                store: HiveCacheStore(null, hiveBoxName: MapCacheConfig.cacheBoxName),
               ),
             ),
             MarkersConsumerLayer<T>(),

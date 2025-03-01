@@ -15,13 +15,11 @@ class AppStreakCounter extends ConsumerWidget {
     final days = ref.watch(getUsageDaysUseCaseProvider);
     return switch (days) {
       AsyncData(:final int value) => Center(
-          child: Text(
-            context.localize.streak_counter(value),
-            style: context.textTheme.lightTitle.copyWith(
-              fontStyle: FontStyle.italic,
-            ),
-          ),
+        child: Text(
+          context.localize.streak_counter(value),
+          style: context.textTheme.lightTitle.copyWith(fontStyle: FontStyle.italic),
         ),
+      ),
       _ => const SizedBox.shrink(),
     };
   }

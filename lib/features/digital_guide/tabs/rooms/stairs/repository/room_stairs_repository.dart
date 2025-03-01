@@ -7,10 +7,7 @@ import "../models/room_stairs_response.dart";
 part "room_stairs_repository.g.dart";
 
 @riverpod
-Future<RoomStairsResponse> roomStairsRepository(
-  Ref ref,
-  int roomStairsId,
-) async {
+Future<RoomStairsResponse> roomStairsRepository(Ref ref, int roomStairsId) async {
   return ref.getAndCacheDataFromDigitalGuide(
     "room_stairs/$roomStairsId",
     RoomStairsResponse.fromJson,

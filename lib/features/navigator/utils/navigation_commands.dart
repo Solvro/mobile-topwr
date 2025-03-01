@@ -14,6 +14,9 @@ import "../../digital_guide/tabs/lifts/data/models/digital_guide_lift.dart";
 import "../../digital_guide/tabs/micronavigation/data/models/micronavigation_response.dart";
 import "../../digital_guide/tabs/rooms/data/models/digital_guide_room.dart";
 import "../../digital_guide/tabs/structure/data/models/corridor.dart";
+import "../../digital_guide/tabs/structure/data/models/ramp.dart";
+import "../../digital_guide/tabs/structure/data/models/stairway.dart";
+import "../../digital_guide/tabs/structure/data/models/toilet.dart";
 import "../../digital_guide/tabs/transportation/data/models/digital_guide_transportation.dart";
 import "../../parkings/parkings_view/models/parking.dart";
 import "../app_router.dart";
@@ -22,8 +25,7 @@ import "../navigation_controller.dart";
 /// just a one place to gather implementation details of navigation flow
 /// - for easy maintenance
 extension NavigationX on WidgetRef {
-  NavigationController get _router =>
-      read(navigationControllerProvider.notifier);
+  NavigationController get _router => read(navigationControllerProvider.notifier);
 
   Future<void> navigateHome() async {
     await _router.push(const HomeRoute());
@@ -58,11 +60,7 @@ extension NavigationX on WidgetRef {
   }
 
   Future<void> navigateScienceClub(String? departmentFilterId) async {
-    await _router.push(
-      ScienceClubsRoute(
-        deptsIdsSequence: departmentFilterId,
-      ),
-    );
+    await _router.push(ScienceClubsRoute(deptsIdsSequence: departmentFilterId));
   }
 
   Future<void> navigateSciClubsDetail(String id) async {
@@ -89,33 +87,20 @@ extension NavigationX on WidgetRef {
     await _router.push(const SksMenuRoute());
   }
 
-  Future<void> navigateDigitalGuide(
-    String ourId,
-    BuildingModel building,
-  ) async {
+  Future<void> navigateDigitalGuide(String ourId, BuildingModel building) async {
     await _router.push(DigitalGuideRoute(ourId: ourId, building: building));
   }
 
-  Future<void> navigateDigitalGuideObject(
-    String ourId,
-    BuildingModel building,
-  ) async {
-    await _router
-        .push(DigitalGuideObjectRoute(ourId: ourId, building: building));
+  Future<void> navigateDigitalGuideObject(String ourId, BuildingModel building) async {
+    await _router.push(DigitalGuideObjectRoute(ourId: ourId, building: building));
   }
 
   Future<void> navigateAdaptedToiletDetails(AdaptedToilet adaptedToilet) async {
     await _router.push(AdaptedToiletDetailRoute(adaptedToilet: adaptedToilet));
   }
 
-  Future<void> navigateMicronavigationDetails(
-    MicronavigationResponse micronavigationResponse,
-  ) async {
-    await _router.push(
-      MicronavigationDetailRoute(
-        micronavigationResponse: micronavigationResponse,
-      ),
-    );
+  Future<void> navigateMicronavigationDetails(MicronavigationResponse micronavigationResponse) async {
+    await _router.push(MicronavigationDetailRoute(micronavigationResponse: micronavigationResponse));
   }
 
   Future<void> navigateRoomDetails(DigitalGuideRoom room) async {
@@ -130,55 +115,55 @@ extension NavigationX on WidgetRef {
     required DigitalGuideTransportation transportation,
     required bool isPublic,
   }) async {
-    await _router.push(
-      TransportationDetailRoute(
-        transportation: transportation,
-        isPublic: isPublic,
-      ),
-    );
+    await _router.push(TransportationDetailRoute(transportation: transportation, isPublic: isPublic));
   }
 
-  Future<void> navigateLiftDetails(
-    DigitalGuideLift lift,
-    String levelName,
-  ) async {
-    await _router
-        .push(DigitalGuideLiftDetailRoute(lift: lift, levelName: levelName));
+  Future<void> navigateLiftDetails(DigitalGuideLift lift, String levelName) async {
+    await _router.push(DigitalGuideLiftDetailRoute(lift: lift, levelName: levelName));
   }
 
   Future<void> navigateDigitalGuideLevel(LevelWithRegions levelInfo) async {
     await _router.push(LevelRoute(levelInfo: levelInfo));
   }
 
-  Future<void> navigateDigitalGuideRegion(
-    digital_guide.Level level,
-    Region region,
-  ) async {
-    await _router.push(
-      RegionRoute(
-        level: level,
-        region: region,
-      ),
-    );
+  Future<void> navigateDigitalGuideRegion(digital_guide.Level level, Region region) async {
+    await _router.push(RegionRoute(level: level, region: region));
   }
 
   Future<void> navigateDigitalGuideCorridor(Corridor corridor) async {
     await _router.push(CorridorRoute(corridor: corridor));
   }
 
+  Future<void> navigateDigitalGuideStairs(int stairsId) async {
+    await _router.push(StairsRoute(stairsId: stairsId));
+  }
+
+  Future<void> navigateDigitalGuideStairway(Stairway stairway) async {
+    await _router.push(StairwayRoute(stairway: stairway));
+  }
+
+  Future<void> navigateDigitalGuideRamps(Ramp ramps) async {
+    await _router.push(RampsRoute(ramps: ramps));
+  }
+
+  Future<void> navigateDigitalGuideToilets(Toilet toilet) async {
+    await _router.push(ToiletsRoute(toilet: toilet));
+  }
+
   Future<void> navigateDigitalGuideDoor(int doorID) async {
     await _router.push(DoorRoute(doorsID: doorID));
+  }
+
+  Future<void> navigateDigitalGuideRailing(int railingId) async {
+    await _router.push(RailingsRoute(railingId: railingId));
   }
 
   Future<void> navigateBuildingDetailAction(BuildingModel building) async {
     return switch (building.externalDigitalGuideMode) {
       "web_url" => launch(building.externalDigitalGuideIdOrURL!),
       "digital_guide_building" => navigateDigitalGuide(building.id, building),
-      "other_digital_guide_place" =>
-        navigateDigitalGuideObject(building.id, building),
-      _ => Logger().w(
-          "Unknown externalDigitalGuideMode: ${building.externalDigitalGuideMode}",
-        )
+      "other_digital_guide_place" => navigateDigitalGuideObject(building.id, building),
+      _ => Logger().w("Unknown externalDigitalGuideMode: ${building.externalDigitalGuideMode}"),
     };
   }
 }

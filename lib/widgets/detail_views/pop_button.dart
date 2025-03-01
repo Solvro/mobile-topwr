@@ -6,29 +6,21 @@ import "../../features/navigator/navigation_controller.dart";
 import "../../theme/app_theme.dart";
 
 class DetailViewPopButton extends ConsumerWidget {
-  const DetailViewPopButton({
-    super.key,
-  });
+  const DetailViewPopButton({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentRoute = ModalRoute.of(context)?.settings.name;
-    final title = currentRoute == null
-        ? null
-        : ref
-            .watch(previousRouteOnStackProvider(currentRoute))
-            ?.getFormatedRouteName(context);
+    final title =
+        currentRoute == null
+            ? null
+            : ref.watch(previousRouteOnStackProvider(currentRoute))?.getFormatedRouteName(context);
 
     return TextButton(
       onPressed: () {
         Navigator.pop(context);
       },
-      style: TextButton.styleFrom(
-        padding: const EdgeInsets.all(12),
-      ),
-      child: Text(
-        title == null ? "<" : "< $title",
-        style: context.textTheme.boldBodyOrange,
-      ),
+      style: TextButton.styleFrom(padding: const EdgeInsets.all(12)),
+      child: Text(title == null ? "<" : "< $title", style: context.textTheme.boldBodyOrange),
     );
   }
 }

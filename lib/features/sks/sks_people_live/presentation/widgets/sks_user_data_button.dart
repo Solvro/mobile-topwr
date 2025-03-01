@@ -15,15 +15,17 @@ class SksUserDataButton extends ConsumerWidget {
     final asyncSksUserData = ref.watch(getLatestSksUserDataProvider);
 
     return asyncSksUserData.when(
-      data: (sksUsersData) => _SksButton(
-        sksUsersData,
-        onTap: () async => showModalBottomSheet(
-          context: context,
-          isScrollControlled: true,
-          constraints: const BoxConstraints(),
-          builder: (BuildContext context) => const SksChartSheet(),
-        ),
-      ),
+      data:
+          (sksUsersData) => _SksButton(
+            sksUsersData,
+            onTap:
+                () async => showModalBottomSheet(
+                  context: context,
+                  isScrollControlled: true,
+                  constraints: const BoxConstraints(),
+                  builder: (BuildContext context) => const SksChartSheet(),
+                ),
+          ),
       error: (error, stackTrace) => const SizedBox.shrink(),
       loading: () => const SizedBox.shrink(),
     );
@@ -47,27 +49,15 @@ class _SksButton extends StatelessWidget {
             Container(
               padding: SksConfig.innerPadding,
               decoration: BoxDecoration(
-                border: Border.all(
-                  color: context.colorTheme.orangePomegranade,
-                ),
+                border: Border.all(color: context.colorTheme.orangePomegranade),
                 borderRadius: BorderRadius.circular(SksConfig.radius),
               ),
               child: Row(
                 children: [
-                  Icon(
-                    Icons.supervised_user_circle,
-                    color: context.colorTheme.orangePomegranade,
-                  ),
-                  const SizedBox(
-                    width: SksConfig.sizedBoxWidth,
-                  ),
-                  Text(
-                    sksUserData.activeUsers.toString(),
-                    style: context.textTheme.titleOrange,
-                  ),
-                  const SizedBox(
-                    width: SksConfig.sizedBoxWidth,
-                  ),
+                  Icon(Icons.supervised_user_circle, color: context.colorTheme.orangePomegranade),
+                  const SizedBox(width: SksConfig.sizedBoxWidth),
+                  Text(sksUserData.activeUsers.toString(), style: context.textTheme.titleOrange),
+                  const SizedBox(width: SksConfig.sizedBoxWidth),
                   sksUserData.trend.icon,
                 ],
               ),

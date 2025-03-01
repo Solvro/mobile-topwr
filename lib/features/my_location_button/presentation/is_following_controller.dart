@@ -7,16 +7,14 @@ import "../data/location_permission_status_provider.dart";
 part "is_following_controller.g.dart";
 
 @riverpod
-class IsFollowingCurrentLocationController
-    extends _$IsFollowingCurrentLocationController {
+class IsFollowingCurrentLocationController extends _$IsFollowingCurrentLocationController {
   @override
   bool build() {
     return false;
   }
 
   Future<void> buttonClicked() async {
-    final isGranted =
-        await ref.read(locationPermissionStatusProvider.notifier).request();
+    final isGranted = await ref.read(locationPermissionStatusProvider.notifier).request();
     if (isGranted) {
       state = true;
     }
