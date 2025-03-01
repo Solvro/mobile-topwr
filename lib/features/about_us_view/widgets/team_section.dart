@@ -43,10 +43,7 @@ class TeamSection extends HookWidget {
           ),
         ),
         const SizedBox(height: 20),
-        _SingleVersionTeamList(
-          version: selectedTab.value,
-          shimmerTime: 300,
-        ),
+        _SingleVersionTeamList(version: selectedTab.value, shimmerTime: 300),
       ],
     );
   }
@@ -76,10 +73,7 @@ class _SelectTab extends StatelessWidget {
 }
 
 class _SingleVersionTeamList extends StatefulWidget {
-  const _SingleVersionTeamList({
-    required this.version,
-    required this.shimmerTime,
-  });
+  const _SingleVersionTeamList({required this.version, required this.shimmerTime});
 
   final MultiversionTeam version;
   final int shimmerTime;
@@ -130,31 +124,27 @@ class _SingleVersionTeamListState extends State<_SingleVersionTeamList> {
   Widget build(BuildContext context) {
     final version = widget.version;
 
-    final double expectedHeight = version.members.isEmpty
-        ? 100.0
-        : version.members.length * WideTileCardConfig.imageSize;
+    final double expectedHeight =
+        version.members.isEmpty ? 100.0 : version.members.length * WideTileCardConfig.imageSize;
 
-    final content = version.members.isEmpty
-        ? Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(Icons.escalator_warning),
-              Text(context.localize.emptySection),
-            ],
-          )
-        : ListView.builder(
-            physics: const NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            itemCount: version.members.length,
-            prototypeItem: _TeamMemberCard(member: version.members.first),
-            itemBuilder: (BuildContext ctx, int index) {
-              return _TeamMemberCard(member: version.members[index]);
-            },
-          );
+    final content =
+        version.members.isEmpty
+            ? Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [const Icon(Icons.escalator_warning), Text(context.localize.emptySection)],
+            )
+            : ListView.builder(
+              physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: version.members.length,
+              prototypeItem: _TeamMemberCard(member: version.members.first),
+              itemBuilder: (BuildContext ctx, int index) {
+                return _TeamMemberCard(member: version.members[index]);
+              },
+            );
 
     return Padding(
-      padding:
-          const EdgeInsets.symmetric(horizontal: AboutUsConfig.defaultPadding),
+      padding: const EdgeInsets.symmetric(horizontal: AboutUsConfig.defaultPadding),
       child: SizedBox(
         height: expectedHeight,
         child: Stack(
@@ -167,10 +157,7 @@ class _SingleVersionTeamListState extends State<_SingleVersionTeamList> {
                 color: context.colorTheme.whiteSoap,
                 child: const Align(
                   alignment: Alignment.topCenter,
-                  child: Padding(
-                    padding: EdgeInsets.only(top: 16),
-                    child: CircularProgressIndicator(),
-                  ),
+                  child: Padding(padding: EdgeInsets.only(top: 16), child: CircularProgressIndicator()),
                 ),
               ),
             ),
@@ -237,11 +224,7 @@ class _Icon extends ConsumerWidget {
 }
 
 class _Description extends StatelessWidget {
-  const _Description({
-    required this.name,
-    required this.subtitle,
-    required this.links,
-  });
+  const _Description({required this.name, required this.subtitle, required this.links});
 
   final String name;
   final String subtitle;
