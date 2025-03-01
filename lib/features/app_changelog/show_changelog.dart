@@ -21,7 +21,7 @@ Future<void> showChangelog(BuildContext context, WidgetRef ref) async {
       await ref.read(localChangelogRepositoryProvider(changelogForCurrentVersion.versionString!).future) ?? true;
 
   if (!changelogSeen && context.mounted && _canShowDialog(changelogForCurrentVersion)) {
-    await showDialog(context: context, builder: (context) => AppChangelog(changelog: changelogForCurrentVersion));
+    await showDialog<void>(context: context, builder: (context) => AppChangelog(changelog: changelogForCurrentVersion));
   }
 }
 

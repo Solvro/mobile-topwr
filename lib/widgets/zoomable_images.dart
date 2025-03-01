@@ -10,7 +10,7 @@ extension ShowFullscreenImageX on BuildContext {
     if (imageUrl == null) {
       return;
     }
-    await showDialog(
+    await showDialog<void>(
       context: this,
       builder: (context) {
         return GestureDetector(

@@ -22,6 +22,10 @@ linter:
     require_trailing_commas: false # clashes with the new formatter
 
 analyzer:
+  language:
+    strict-casts: true
+    strict-inference: true
+    strict-raw-types: true
   errors:
     invalid_annotation_target: ignore
   exclude:

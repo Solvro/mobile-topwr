@@ -12,7 +12,7 @@ part "sks_chart_repository.g.dart";
 Future<IList<SksChartData>> sksChartRepository(Ref ref) async {
   final dio = ref.watch(restClientProvider);
   final latestChartDataUrl = "${Env.sksUrl}/sks-users/today/";
-  final response = await dio.get(latestChartDataUrl);
+  final response = await dio.get<dynamic>(latestChartDataUrl);
   final data = response.data as List<dynamic>;
   final chartDataList = data.map((entry) => SksChartData.fromJson(entry as Map<String, dynamic>)).toIList();
 

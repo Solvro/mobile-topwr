@@ -51,7 +51,7 @@ import "root_view.dart";
 part "app_router.g.dart";
 part "app_router.gr.dart";
 
-class _NoTransitionRoute extends CustomRoute {
+class _NoTransitionRoute extends CustomRoute<void> {
   _NoTransitionRoute({required super.path, required super.page})
     : super(reverseDurationInMilliseconds: 0, durationInMilliseconds: 0);
 }

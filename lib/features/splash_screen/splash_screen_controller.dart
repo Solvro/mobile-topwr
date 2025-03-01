@@ -28,7 +28,7 @@ class SplashScreenController extends _$SplashScreenController {
   @override
   Future<void> build() async {
     await _initializationLogic();
-    await Future.delayed(SplashScreenConfig.additionalWaitDuration);
+    await Future<void>.delayed(SplashScreenConfig.additionalWaitDuration);
     hideNativeSplashScreen();
   }
 

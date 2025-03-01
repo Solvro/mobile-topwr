@@ -63,7 +63,7 @@ class DigitalGuidePhotoRow extends StatelessWidget {
   }
 
   Future<void> showGallery(BuildContext context, {int? initId}) async {
-    await showDialog(
+    await showDialog<void>(
       context: context,
       builder: (context) => DigitalGuideCarouselWithIndicator(imgListId: imagesIDs, initId: initId),
     );
