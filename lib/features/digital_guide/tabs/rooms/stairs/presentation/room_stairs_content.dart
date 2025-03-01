@@ -37,13 +37,11 @@ class _RoomStairsContent extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final comments = roomStairsResponse.translations.pl;
 
-    final roomStairsComments = [
-      roomStairsResponse.translations.pl.location,
-      "${context.localize.room_stairs_is_nonslip_surface(
-        roomStairsResponse.isNonslipSurface.toLowerCase(),
-      )} ${comments.isNonslipSurfaceComment}",
-    ].lock;
-
+    final roomStairsComments =
+        [
+          roomStairsResponse.translations.pl.location,
+          "${context.localize.room_stairs_is_nonslip_surface(roomStairsResponse.isNonslipSurface.toLowerCase())} ${comments.isNonslipSurfaceComment}",
+        ].lock;
 
     return Padding(
       padding: DigitalGuideConfig.symetricalPaddingBig.copyWith(top: 0),
@@ -51,8 +49,7 @@ class _RoomStairsContent extends ConsumerWidget {
         children: [
           BulletList(items: roomStairsComments),
           AccessibilityProfileCard(
-            accessibilityCommentsManager:
-                RoomStairsAccessibilityCommentsManager(
+            accessibilityCommentsManager: RoomStairsAccessibilityCommentsManager(
               roomStairsResponse: roomStairsResponse,
               l10n: context.localize,
             ),

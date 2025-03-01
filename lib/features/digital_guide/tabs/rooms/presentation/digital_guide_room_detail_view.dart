@@ -56,23 +56,10 @@ class DigitalGuideRoomDetailView extends ConsumerWidget {
             ].toIList(),
       ),
       AccessibilityProfileCard(
-        accessibilityCommentsManager: RoomsAccessibilityCommentsManager(
-          digitalGuideRoom: room,
-          l10n: context.localize,
-        ),
+        accessibilityCommentsManager: RoomsAccessibilityCommentsManager(digitalGuideRoom: room, l10n: context.localize),
         backgroundColor: context.colorTheme.whiteSoap,
       ),
-      AccessibilityProfileCard(
-        accessibilityCommentsManager: RoomsAccessibilityCommentsManager(
-          digitalGuideRoom: room,
-          l10n: context.localize,
-        ),
-        backgroundColor: context.colorTheme.whiteSoap,
-      ),
-      if (room.imagesIds != null && room.imagesIds!.isNotEmpty)
-        const SizedBox(
-          height: DigitalGuideConfig.heightMedium,
-        ),
+      if (room.imagesIds != null && room.imagesIds!.isNotEmpty) const SizedBox(height: DigitalGuideConfig.heightMedium),
 
       DigitalGuidePhotoRow(imagesIDs: room.imagesIds.toIList()),
       const SizedBox(height: DigitalGuideConfig.heightMedium),
@@ -83,13 +70,10 @@ class DigitalGuideRoomDetailView extends ConsumerWidget {
         ...room.roomStairs.asMap().entries.map((entry) {
           final String index = entry.key == 0 ? "" : (entry.key + 1).toString();
           return Padding(
-            padding:
-                const EdgeInsets.only(bottom: DigitalGuideConfig.paddingMedium),
+            padding: const EdgeInsets.only(bottom: DigitalGuideConfig.paddingMedium),
             child: MyExpansionTile(
               title: "${context.localize.stairs} $index",
-              children: [
-                RoomStairsContent(roomStairsId: entry.value),
-              ],
+              children: [RoomStairsContent(roomStairsId: entry.value)],
             ),
           );
         }),
@@ -97,14 +81,10 @@ class DigitalGuideRoomDetailView extends ConsumerWidget {
         ...room.platforms.asMap().entries.map((entry) {
           final String index = entry.key == 0 ? "" : (entry.key + 1).toString();
           return Padding(
-            padding: const EdgeInsets.only(
-              bottom: DigitalGuideConfig.paddingMedium,
-            ),
+            padding: const EdgeInsets.only(bottom: DigitalGuideConfig.paddingMedium),
             child: MyExpansionTile(
               title: "${context.localize.platforms} $index",
-              children: [
-                RoomPlatformsContent(platformId: entry.value),
-              ],
+              children: [RoomPlatformsContent(platformId: entry.value)],
             ),
           );
         }),
