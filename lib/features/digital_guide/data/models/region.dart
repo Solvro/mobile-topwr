@@ -47,5 +47,5 @@ class RegionTranslation with _$RegionTranslation {
 }
 
 int _stringToInt(String value) {
-  return int.parse(value);
+  return int.tryParse(value) ?? 1;
 }

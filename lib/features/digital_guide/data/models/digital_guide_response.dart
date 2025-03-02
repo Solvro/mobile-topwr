@@ -71,5 +71,5 @@ List<String> _formatPhoneNumbers(String phoneNumber) {
 }
 
 int _stringToInt(String value) {
-  return int.parse(value);
+  return int.tryParse(value) ?? 1;
 }

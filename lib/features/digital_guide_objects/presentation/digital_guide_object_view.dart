@@ -74,7 +74,7 @@ class _DigitalGObjectView extends ConsumerWidget {
         bottomSpace:
             [
               AccessibilityInformationCardsList(
-                prefix: "Polinka",
+                prefix: context.localize.polinka_prefix,
                 accessibilityLevelType: context.localize.accessibility_level_feminine,
                 accLevels: (
                   accessibilityLevelForBlind: digitalGuideData.accessibilityLevelForBlind,
