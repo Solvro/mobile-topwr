@@ -6,13 +6,13 @@ import "../../../../../config/ui_config.dart";
 import "../../../../../utils/context_extensions.dart";
 import "../../../../../widgets/my_error_widget.dart";
 import "../../../data/models/digital_guide_response.dart";
+import "../../../presentation/widgets/accessibility_information_cards_list.dart";
 import "../../../presentation/widgets/accessibility_profile_card.dart";
 import "../../../presentation/widgets/bullet_list.dart";
 import "../../../presentation/widgets/digital_guide_photo_row.dart";
 import "../business/surroundings_accessibility_comments_manager.dart";
 import "../data/models/surrounding_response.dart";
 import "../data/repository/surrounding_repository.dart";
-import "widgets/accessibility_information_cards_list.dart";
 
 class SurroundingsExpansionTileContent extends ConsumerWidget {
   const SurroundingsExpansionTileContent({required this.digitalGuideData});
@@ -41,6 +41,9 @@ class _SurroundingExpansionTileContent extends ConsumerWidget {
     final widgets = [
       const SizedBox(height: DigitalGuideConfig.heightSmall),
       AccessibilityInformationCardsList(
+        padding: const EdgeInsets.only(bottom: DigitalGuideConfig.paddingMedium),
+        prefix: context.localize.surroundings,
+        accessibilityLevelType: context.localize.accessibility_level_neuter,
         accLevels: (
           accessibilityLevelForBlind: surroundingResponse.accessibilityLevelForBlind,
           accessibilityLevelForVisuallyImpaired: surroundingResponse.accessibilityLevelForVisuallyImpaired,
@@ -50,7 +53,6 @@ class _SurroundingExpansionTileContent extends ConsumerWidget {
           accessibilityLevelForHighSensorySensitivity: surroundingResponse.accessibilityLevelForHighSensorySensitivity,
         ),
       ),
-      const SizedBox(height: DigitalGuideConfig.heightBig),
       BulletList(
         items:
             [

@@ -11,6 +11,7 @@ import "../../../../../../widgets/my_error_widget.dart";
 import "../../../../../navigator/utils/navigation_commands.dart";
 import "../../../../data/models/level.dart";
 import "../../../../data/models/region.dart";
+import "../../../../presentation/widgets/accessibility_information_cards_list.dart";
 import "../../data/models/toilet.dart";
 import "../../domain/digital_guide_region_use_cases.dart";
 import "region_data_sliver_list.dart";
@@ -126,7 +127,20 @@ class _RegionView extends ConsumerWidget {
                   region.translations.plTranslation.name,
                   style: context.textTheme.headline.copyWith(fontSize: DigitalGuideConfig.headlineFont),
                 ),
-                const SizedBox(height: DigitalGuideConfig.heightSmall),
+                AccessibilityInformationCardsList(
+                  prefix: context.localize.region_prefix,
+                  accessibilityLevelType: context.localize.accessibility_level_feminine,
+                  padding: DigitalGuideConfig.symetricalPaddingSmall,
+                  accLevels: (
+                    accessibilityLevelForBlind: region.accessibilityLevelForBlind,
+                    accessibilityLevelForVisuallyImpaired: region.accessibilityLevelForVisuallyImpaired,
+                    accessibilityLevelForMotorDisability: region.accessibilityLevelForMotorDisability,
+                    accessibilityLevelForCognitiveDifficulties: region.accessibilityLevelForCognitiveDifficulties,
+                    accessibilityLevelForHardOfHearing: region.accessibilityLevelForHardOfHearing,
+                    accessibilityLevelForHighSensorySensitivity: region.accessibilityLevelForHighSensorySensitivity,
+                  ),
+                ),
+
                 Text(
                   context.localize.region_location,
                   style: context.textTheme.boldBody.copyWith(fontSize: DigitalGuideConfig.bodyFont),

@@ -41,7 +41,6 @@ class LiftsAccessibilityCommentsManager extends AccessibilityCommentsManager {
 
   @override
   IList<String> getCommentsListForHearingImpairment() {
-    // TODO(thesun901): Implement hearing impairment comments for lifts
     return IList(const []);
   }
 

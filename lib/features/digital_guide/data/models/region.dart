@@ -20,6 +20,12 @@ class Region with _$Region {
     required List<int> stairways,
     required List<int> rooms,
     required List<int> parkings,
+    @JsonKey(fromJson: _stringToInt) required int accessibilityLevelForMotorDisability,
+    @JsonKey(fromJson: _stringToInt) required int accessibilityLevelForBlind,
+    @JsonKey(fromJson: _stringToInt) required int accessibilityLevelForVisuallyImpaired,
+    @JsonKey(fromJson: _stringToInt) required int accessibilityLevelForHardOfHearing,
+    @JsonKey(fromJson: _stringToInt) required int accessibilityLevelForHighSensorySensitivity,
+    @JsonKey(fromJson: _stringToInt) required int accessibilityLevelForCognitiveDifficulties,
   }) = _Region;
 
   factory Region.fromJson(Map<String, dynamic> json) => _$RegionFromJson(json);
@@ -38,4 +44,8 @@ class RegionTranslation with _$RegionTranslation {
   const factory RegionTranslation({required String name, required String location}) = _RegionTranslation;
 
   factory RegionTranslation.fromJson(Map<String, dynamic> json) => _$RegionTranslationFromJson(json);
+}
+
+int _stringToInt(String value) {
+  return int.tryParse(value) ?? 1;
 }
