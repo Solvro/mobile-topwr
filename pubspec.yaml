@@ -133,10 +133,7 @@ dev_dependencies:
     sdk: flutter
 
   #Lints
-  solvro_config:
-    git:
-      url: https://github.com/Solvro/lib-mobile-solvro-config.git
-      ref: e010abb
+  solvro_config: ^0.0.1
 
   #CodeGen
   build_runner: ^2.4.15
@@ -284,3 +281,5 @@ flutter_launcher_icons:
   macos:
     generate: true
     image_path: "assets/png/app_icon.png"
+lint_staged:
+  "lib/**.dart": dart format && dart fix --apply
