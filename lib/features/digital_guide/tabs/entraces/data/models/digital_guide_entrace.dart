@@ -4,7 +4,7 @@ part "digital_guide_entrace.freezed.dart";
 part "digital_guide_entrace.g.dart";
 
 @freezed
-class DigitalGuideEntrace with _$DigitalGuideEntrace {
+abstract class DigitalGuideEntrace with _$DigitalGuideEntrace {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideEntrace({
     required int id,
@@ -37,7 +37,7 @@ class DigitalGuideEntrace with _$DigitalGuideEntrace {
 }
 
 @freezed
-class DigitalGuideTranslationsEntrace with _$DigitalGuideTranslationsEntrace {
+abstract class DigitalGuideTranslationsEntrace with _$DigitalGuideTranslationsEntrace {
   const factory DigitalGuideTranslationsEntrace({@JsonKey(name: "pl") required DigitalGuideTranslationEntrace pl}) =
       _DigitalGuideTranslationsEntrace;
 
@@ -46,7 +46,7 @@ class DigitalGuideTranslationsEntrace with _$DigitalGuideTranslationsEntrace {
 }
 
 @freezed
-class DigitalGuideTranslationEntrace with _$DigitalGuideTranslationEntrace {
+abstract class DigitalGuideTranslationEntrace with _$DigitalGuideTranslationEntrace {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideTranslationEntrace({
     required String? name,

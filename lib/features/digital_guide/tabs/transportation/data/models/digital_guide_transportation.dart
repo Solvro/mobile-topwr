@@ -6,7 +6,7 @@ part "digital_guide_transportation.freezed.dart";
 part "digital_guide_transportation.g.dart";
 
 @freezed
-class DigitalGuideTransportation with _$DigitalGuideTransportation {
+abstract class DigitalGuideTransportation with _$DigitalGuideTransportation {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideTransportation({
     required int id,
@@ -42,7 +42,7 @@ class DigitalGuideTransportation with _$DigitalGuideTransportation {
 }
 
 @freezed
-class DigitalGuideTranslationsTransportation with _$DigitalGuideTranslationsTransportation {
+abstract class DigitalGuideTranslationsTransportation with _$DigitalGuideTranslationsTransportation {
   const factory DigitalGuideTranslationsTransportation({
     @JsonKey(name: "pl") required DigitalGuideTranslationTransportation pl,
   }) = _DigitalGuideTranslationsTransportation;
@@ -52,7 +52,7 @@ class DigitalGuideTranslationsTransportation with _$DigitalGuideTranslationsTran
 }
 
 @freezed
-class DigitalGuideTranslationTransportation with _$DigitalGuideTranslationTransportation {
+abstract class DigitalGuideTranslationTransportation with _$DigitalGuideTranslationTransportation {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideTranslationTransportation({
     required String nearestPublicTransportStop,

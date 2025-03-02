@@ -34,7 +34,7 @@ extension DataCachingX on Ref {
         return data;
       }
     }
-    final response = await safeGetWatch(
+    final response = await safeGetWatch<T>(
       fullUrl,
       localizedMessage: localizedOfflineMessage,
       onRetry: onRetry,

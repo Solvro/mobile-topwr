@@ -6,7 +6,7 @@ part "micronavigation_response.freezed.dart";
 part "micronavigation_response.g.dart";
 
 @freezed
-class MicronavigationResponse with _$MicronavigationResponse {
+abstract class MicronavigationResponse with _$MicronavigationResponse {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory MicronavigationResponse({
     required int id,
@@ -20,7 +20,7 @@ class MicronavigationResponse with _$MicronavigationResponse {
 }
 
 @freezed
-class MicronavigationTranslations with _$MicronavigationTranslations {
+abstract class MicronavigationTranslations with _$MicronavigationTranslations {
   const factory MicronavigationTranslations({String? pl, String? en, String? nb, String? de, String? uk}) =
       _MicronavigationTranslations;
 
@@ -29,7 +29,7 @@ class MicronavigationTranslations with _$MicronavigationTranslations {
 }
 
 @freezed
-class MicronavigationLanguage with _$MicronavigationLanguage {
+abstract class MicronavigationLanguage with _$MicronavigationLanguage {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory MicronavigationLanguage({
     required int id,

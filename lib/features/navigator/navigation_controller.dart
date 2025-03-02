@@ -59,7 +59,7 @@ class NavigationController extends _$NavigationController {
     if (shouldPopBefore) {
       _popGlobalRouter();
     }
-    final popFutureResults = _router?.pushNamed(properlyWorkingURI); // push the route
+    final popFutureResults = _router?.pushPath(properlyWorkingURI); // push the route
     await keepTrackOfTabBarState(popFutureResults);
   }
 

@@ -4,7 +4,7 @@ part "door.freezed.dart";
 part "door.g.dart";
 
 @freezed
-class Door with _$Door {
+abstract class Door with _$Door {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory Door({
     required DoorTranslations translations,
@@ -21,14 +21,14 @@ class Door with _$Door {
 }
 
 @freezed
-class DoorTranslations with _$DoorTranslations {
+abstract class DoorTranslations with _$DoorTranslations {
   const factory DoorTranslations({required DoorTranslation pl}) = _DoorTranslations;
 
   factory DoorTranslations.fromJson(Map<String, dynamic> json) => _$DoorTranslationsFromJson(json);
 }
 
 @freezed
-class DoorTranslation with _$DoorTranslation {
+abstract class DoorTranslation with _$DoorTranslation {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DoorTranslation({
     required String comment,

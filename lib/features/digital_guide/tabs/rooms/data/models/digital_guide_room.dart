@@ -5,7 +5,7 @@ part "digital_guide_room.freezed.dart";
 part "digital_guide_room.g.dart";
 
 @freezed
-class DigitalGuideRoom with _$DigitalGuideRoom {
+abstract class DigitalGuideRoom with _$DigitalGuideRoom {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideRoom({
     required int id,
@@ -42,7 +42,7 @@ class DigitalGuideRoom with _$DigitalGuideRoom {
 }
 
 @freezed
-class DigitalGuideTranslationsRoom with _$DigitalGuideTranslationsRoom {
+abstract class DigitalGuideTranslationsRoom with _$DigitalGuideTranslationsRoom {
   const factory DigitalGuideTranslationsRoom({required DigitalGuideTranslationRoom pl}) = _DigitalGuideTranslationsRoom;
 
   factory DigitalGuideTranslationsRoom.fromJson(Map<String, dynamic> json) =>
@@ -50,7 +50,7 @@ class DigitalGuideTranslationsRoom with _$DigitalGuideTranslationsRoom {
 }
 
 @freezed
-class DigitalGuideTranslationRoom with _$DigitalGuideTranslationRoom {
+abstract class DigitalGuideTranslationRoom with _$DigitalGuideTranslationRoom {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideTranslationRoom({
     required String name,

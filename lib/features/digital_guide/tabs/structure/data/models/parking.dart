@@ -4,14 +4,14 @@ part "parking.freezed.dart";
 part "parking.g.dart";
 
 @freezed
-class Parking with _$Parking {
+abstract class Parking with _$Parking {
   const factory Parking({required ParkingTranslations translations}) = _Parking;
 
   factory Parking.fromJson(Map<String, dynamic> json) => _$ParkingFromJson(json);
 }
 
 @freezed
-class ParkingTranslations with _$ParkingTranslations {
+abstract class ParkingTranslations with _$ParkingTranslations {
   const factory ParkingTranslations({@JsonKey(name: "pl") required ParkingTranslation plTranslation}) =
       _ParkingTranslations;
 
@@ -19,7 +19,7 @@ class ParkingTranslations with _$ParkingTranslations {
 }
 
 @freezed
-class ParkingTranslation with _$ParkingTranslation {
+abstract class ParkingTranslation with _$ParkingTranslation {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory ParkingTranslation({required String entryLocation}) = _ParkingTranslation;
 

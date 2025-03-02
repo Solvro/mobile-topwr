@@ -5,7 +5,7 @@ part "ramp.freezed.dart";
 part "ramp.g.dart";
 
 @freezed
-class Ramp with _$Ramp {
+abstract class Ramp with _$Ramp {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory Ramp({
     required RampTranslations translations,
@@ -22,7 +22,7 @@ class Ramp with _$Ramp {
 }
 
 @freezed
-class RampTranslations with _$RampTranslations {
+abstract class RampTranslations with _$RampTranslations {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory RampTranslations({@JsonKey(name: "pl") required RampTranslation plTranslation}) = _RampTranslations;
 
@@ -30,7 +30,7 @@ class RampTranslations with _$RampTranslations {
 }
 
 @freezed
-class RampTranslation with _$RampTranslation {
+abstract class RampTranslation with _$RampTranslation {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory RampTranslation({
     required String location,

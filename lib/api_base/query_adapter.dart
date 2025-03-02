@@ -14,7 +14,7 @@ class GqlOfflineException implements Exception {
 
     if (event.exception?.linkException != null) {
       // wait, just to show loading on the ui for a little while
-      await Future.delayed(const Duration(milliseconds: 300));
+      await Future<void>.delayed(const Duration(milliseconds: 300));
       throw ttlKey == null ? Exception() : GqlOfflineException(ttlKey);
     }
 

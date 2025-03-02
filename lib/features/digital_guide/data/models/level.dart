@@ -4,7 +4,7 @@ part "level.freezed.dart";
 part "level.g.dart";
 
 @freezed
-class Level with _$Level {
+abstract class Level with _$Level {
   const factory Level({
     required int id,
     @JsonKey(name: "floor_number") required int floorNumber,
@@ -16,14 +16,14 @@ class Level with _$Level {
 }
 
 @freezed
-class LevelTranslations with _$LevelTranslations {
+abstract class LevelTranslations with _$LevelTranslations {
   const factory LevelTranslations({@JsonKey(name: "pl") required LevelTranslation plTranslation}) = _LevelTranslations;
 
   factory LevelTranslations.fromJson(Map<String, dynamic> json) => _$LevelTranslationsFromJson(json);
 }
 
 @freezed
-class LevelTranslation with _$LevelTranslation {
+abstract class LevelTranslation with _$LevelTranslation {
   const factory LevelTranslation({
     required String name,
     @JsonKey(name: "room_numbers_range") required String roomNumbersRange,

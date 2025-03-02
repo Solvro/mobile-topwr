@@ -6,7 +6,7 @@ part "surrounding_response.freezed.dart";
 part "surrounding_response.g.dart";
 
 @freezed
-class SurroundingResponse with _$SurroundingResponse {
+abstract class SurroundingResponse with _$SurroundingResponse {
   const factory SurroundingResponse({
     required int id,
     required SurroundingResponseTranslations translations,
@@ -43,7 +43,7 @@ class SurroundingResponse with _$SurroundingResponse {
 }
 
 @freezed
-class SurroundingResponseTranslations with _$SurroundingResponseTranslations {
+abstract class SurroundingResponseTranslations with _$SurroundingResponseTranslations {
   const factory SurroundingResponseTranslations({
     @JsonKey(name: "pl") required SurroundingResponseTranslationsDetails plTranslation,
   }) = _SurroundingResponseTranslations;
@@ -53,7 +53,7 @@ class SurroundingResponseTranslations with _$SurroundingResponseTranslations {
 }
 
 @freezed
-class SurroundingResponseTranslationsDetails with _$SurroundingResponseTranslationsDetails {
+abstract class SurroundingResponseTranslationsDetails with _$SurroundingResponseTranslationsDetails {
   const factory SurroundingResponseTranslationsDetails({
     @JsonKey(name: "are_no_barriers_comment") required String areNoBarriersComment,
     @JsonKey(name: "are_lowered_curbs_comment") required String areLoweredCurbsComment,

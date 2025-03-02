@@ -8,7 +8,7 @@ part "sks_menu_response.freezed.dart";
 part "sks_menu_response.g.dart";
 
 @freezed
-class SksMenuResponse with _$SksMenuResponse {
+abstract class SksMenuResponse with _$SksMenuResponse {
   const factory SksMenuResponse({
     required bool isMenuOnline,
     required DateTime lastUpdate,
@@ -19,7 +19,7 @@ class SksMenuResponse with _$SksMenuResponse {
 }
 
 @freezed
-class ExtendedSksMenuResponse with _$ExtendedSksMenuResponse {
+abstract class ExtendedSksMenuResponse with _$ExtendedSksMenuResponse {
   const factory ExtendedSksMenuResponse({
     required bool isMenuOnline,
     required DateTime lastUpdate,

@@ -34,32 +34,41 @@ dependencies:
     sdk: flutter
 
   #Theme
-  theme_tailor_annotation: ^3.0.1
-  theme_tailor: ^3.0.1
+  theme_tailor_annotation: # remove this when idiots push a release
+    git:
+      url: https://github.com/Iteo/theme_tailor.git
+      ref: a8b469c
+      path: packages/theme_tailor_annotation
 
-  #State management
+  theme_tailor: # remove this when idiots push a release
+    git:
+      url: https://github.com/Iteo/theme_tailor.git
+      ref: a8b469c
+      path: packages/theme_tailor
+
+  #State managements
   flutter_riverpod: ^2.6.1
   riverpod_annotation: ^2.6.1
   hooks_riverpod: ^2.6.1
 
   #Storage
   hive: ^2.2.3
-  shared_preferences: ^2.3.5
+  shared_preferences: ^2.5.2
   cached_network_image: ^3.4.1
-  dio_cache_interceptor_hive_store: ^3.2.2
+  dio_cache_interceptor_hive_store: ^4.0.0
   flutter_cache_manager: ^3.4.1
 
   #Network
   url_launcher: ^6.3.1
-  html: ^0.15.4
-  dio: ^5.7.0
+  html: ^0.15.5
+  dio: ^5.8.0+1
   graphql: ^5.1.3
 
   #Widgets
   cupertino_icons: ^1.0.8
-  flutter_native_splash: ^2.4.2
+  flutter_native_splash: ^2.4.5
   flutter_svg: ^2.0.10
-  flutter_widget_from_html_core: ^0.15.2
+  flutter_widget_from_html_core: ^0.16.0
   anim_search_bar:
     git:
       url: https://github.com/simon-the-shark/anim_search_bar.git
@@ -68,83 +77,88 @@ dependencies:
     git:
       url: https://github.com/ChrisElliotUK/auto_size_text.git
       ref: patch-1
-  lottie: ^3.1.3
+  lottie: ^3.3.1
   fl_chart: ^0.69.2
   animated_list_plus: ^0.5.2
   dotted_border: ^2.1.0
-  fluttertoast: ^8.2.8
+  fluttertoast: ^8.2.12
   carousel_slider_plus: ^7.1.0
 
   #Data
-  freezed_annotation: ^2.4.4
+  freezed_annotation: ^3.0.0
   json_annotation: ^4.9.0
   collection: ^1.19.1
-  fast_immutable_collections: ^10.2.4
+  fast_immutable_collections: ^11.0.3
 
   #Navigation
-  auto_route: ^9.2.2
+  auto_route: ^10.0.0
 
   #Maps
-  flutter_map: ^7.0.2
-  flutter_map_cancellable_tile_provider: ^3.0.2
+  flutter_map: ^8.1.0
+  flutter_map_cancellable_tile_provider: ^3.1.0
   flutter_map_location_marker: ^9.1.1
-  flutter_map_compass: ^1.1.0
-  flutter_map_cache: ^1.5.1
-  flutter_map_animations: ^0.7.1
+  flutter_map_compass: ^1.1.1
+  flutter_map_cache: ^1.5.2
+  flutter_map_animations: ^0.9.0
   flutter_compass: ^0.8.1
 
   #Firebase
-  firebase_crashlytics: ^4.1.3
-  firebase_analytics: ^11.3.3
-  firebase_core: ^3.6.0
-  firebase_performance: ^0.10.0
-  firebase_messaging: ^15.1.3
+  firebase_crashlytics: ^4.3.4
+  firebase_analytics: ^11.4.4
+  firebase_core: ^3.12.1
+  firebase_performance: ^0.10.1
+  firebase_messaging: ^15.2.4
 
   #Utility
-  intl: ^0.19.0
+  intl: ^0.20.2
   latlong2: ^0.9.1
-  permission_handler: ^11.3.1
-  package_info_plus: ^8.1.0
-  envied: ^0.5.4
-  path_provider: ^2.1.4
+  permission_handler: ^11.4.0
+  package_info_plus: ^8.3.0
+  envied: ^1.1.1
+  path_provider: ^2.1.5
 
   #Other
   in_app_update: ^4.2.3
-  upgrader: ^11.3.0
+  upgrader: ^11.3.1
   in_app_review: ^2.0.9
   protontime: ^2.0.0
-  logger: ^2.4.0
+  logger: ^2.5.0
   separate: ^1.0.3
   wiredash: ^2.4.0
-  flutter_hooks: ^0.20.5
-  audioplayers: ^6.1.0
+  flutter_hooks: ^0.21.2
+  audioplayers: ^6.2.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   #Lints
-  custom_lint: ^0.6.8
-  total_lints: ^3.4.0
-  riverpod_lint: ^2.6.1
+  solvro_config: ^0.0.9
 
   #CodeGen
-  build_runner: ^2.4.13
-  freezed: ^2.5.7
-  json_serializable: ^6.8.0
-  riverpod_generator: ^2.4.3
-  envied_generator: ^0.5.4
-  graphql_codegen: ^1.0.1
-  flutter_gen_runner: ^5.8.0
-  auto_route_generator: ^9.0.0
+  build_runner: ^2.4.15
+  freezed: ^3.0.2
+  json_serializable: ^6.9.4
+  riverpod_generator: ^2.6.5
+  envied_generator: ^1.1.1
+  graphql_codegen: ^1.2.1
+  flutter_gen_runner: ^5.9.0
+  auto_route_generator: ^10.0.1
 
   #Other
   svg_optimizer: ^0.0.1
-  flutter_launcher_icons: "^0.14.1"
-  test: ^1.25.8
+  flutter_launcher_icons: "^0.14.3"
+  test: ^1.25.15
 
 dependency_overrides:
-  collection: ^1.19.1
+  flutter_map: ^8.1.0
+  source_gen: ^2.0.0
+  intl: ^0.20.2
+  theme_tailor_annotation: # remove this when idiots push a release
+    git:
+      url: https://github.com/Iteo/theme_tailor.git
+      ref: a8b469c
+      path: packages/theme_tailor_annotation
 
 flutter:
   uses-material-design: true
@@ -267,3 +281,5 @@ flutter_launcher_icons:
   macos:
     generate: true
     image_path: "assets/png/app_icon.png"
+lint_staged:
+  "lib/**.dart": dart format && dart fix --apply

@@ -6,7 +6,7 @@ part "digital_guide_response.freezed.dart";
 part "digital_guide_response.g.dart";
 
 @freezed
-class DigitalGuideResponse with _$DigitalGuideResponse {
+abstract class DigitalGuideResponse with _$DigitalGuideResponse {
   const factory DigitalGuideResponse({
     required int id,
     @JsonKey(name: "external_id") required int externalId,
@@ -46,7 +46,7 @@ class DigitalGuideResponse with _$DigitalGuideResponse {
 }
 
 @freezed
-class DigitalGuideTranslations with _$DigitalGuideTranslations {
+abstract class DigitalGuideTranslations with _$DigitalGuideTranslations {
   const factory DigitalGuideTranslations({@JsonKey(name: "pl") required DigitalGuideTranslation plTranslation}) =
       _DigitalGuideTranslations;
 
@@ -54,7 +54,7 @@ class DigitalGuideTranslations with _$DigitalGuideTranslations {
 }
 
 @freezed
-class DigitalGuideTranslation with _$DigitalGuideTranslation {
+abstract class DigitalGuideTranslation with _$DigitalGuideTranslation {
   const factory DigitalGuideTranslation({
     required String name,
     @JsonKey(name: "extended_name") required String extendedName,

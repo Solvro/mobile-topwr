@@ -5,7 +5,7 @@ part "digital_guide_lift.freezed.dart";
 part "digital_guide_lift.g.dart";
 
 @freezed
-class DigitalGuideLift with _$DigitalGuideLift {
+abstract class DigitalGuideLift with _$DigitalGuideLift {
   const factory DigitalGuideLift({
     required int id,
     required DigitalGuideTranslationsLift translations,
@@ -51,7 +51,7 @@ class DigitalGuideLift with _$DigitalGuideLift {
 }
 
 @freezed
-class DigitalGuideTranslationsLift with _$DigitalGuideTranslationsLift {
+abstract class DigitalGuideTranslationsLift with _$DigitalGuideTranslationsLift {
   const factory DigitalGuideTranslationsLift({required DigitalGuideTranslationLift pl}) = _DigitalGuideTranslationsLift;
 
   factory DigitalGuideTranslationsLift.fromJson(Map<String, dynamic> json) =>
@@ -59,7 +59,7 @@ class DigitalGuideTranslationsLift with _$DigitalGuideTranslationsLift {
 }
 
 @freezed
-class DigitalGuideTranslationLift with _$DigitalGuideTranslationLift {
+abstract class DigitalGuideTranslationLift with _$DigitalGuideTranslationLift {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideTranslationLift({
     required String location,

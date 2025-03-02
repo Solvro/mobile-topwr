@@ -4,7 +4,7 @@ part "digital_guide_dressing_room.freezed.dart";
 part "digital_guide_dressing_room.g.dart";
 
 @freezed
-class DigitalGuideDressingRoom with _$DigitalGuideDressingRoom {
+abstract class DigitalGuideDressingRoom with _$DigitalGuideDressingRoom {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideDressingRoom({
     required int id,
@@ -25,7 +25,7 @@ class DigitalGuideDressingRoom with _$DigitalGuideDressingRoom {
 }
 
 @freezed
-class DigitalGuideTranslationsDressingRoom with _$DigitalGuideTranslationsDressingRoom {
+abstract class DigitalGuideTranslationsDressingRoom with _$DigitalGuideTranslationsDressingRoom {
   const factory DigitalGuideTranslationsDressingRoom({required DigitalGuideTranslationDressingRoom pl}) =
       _DigitalGuideTranslationsDressingRoom;
 
@@ -34,7 +34,7 @@ class DigitalGuideTranslationsDressingRoom with _$DigitalGuideTranslationsDressi
 }
 
 @freezed
-class DigitalGuideTranslationDressingRoom with _$DigitalGuideTranslationDressingRoom {
+abstract class DigitalGuideTranslationDressingRoom with _$DigitalGuideTranslationDressingRoom {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideTranslationDressingRoom({
     required String location,

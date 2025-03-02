@@ -5,7 +5,7 @@ part "stairs.g.dart";
 part "stairs.freezed.dart";
 
 @freezed
-class Stairs with _$Stairs {
+abstract class Stairs with _$Stairs {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory Stairs({
     required int id,
@@ -29,7 +29,7 @@ class Stairs with _$Stairs {
 }
 
 @freezed
-class StairsTranslations with _$StairsTranslations {
+abstract class StairsTranslations with _$StairsTranslations {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory StairsTranslations({@JsonKey(name: "pl") required StairsTranslation plTranslation}) =
       _StairsTranslations;
@@ -38,7 +38,7 @@ class StairsTranslations with _$StairsTranslations {
 }
 
 @freezed
-class StairsTranslation with _$StairsTranslation {
+abstract class StairsTranslation with _$StairsTranslation {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory StairsTranslation({
     required String location,

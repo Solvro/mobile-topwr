@@ -4,7 +4,7 @@ part "digital_guide_object_tab_model.freezed.dart";
 part "digital_guide_object_tab_model.g.dart";
 
 @freezed
-class DigitalGuideObjectTabResponse with _$DigitalGuideObjectTabResponse {
+abstract class DigitalGuideObjectTabResponse with _$DigitalGuideObjectTabResponse {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideObjectTabResponse({
     required int id,
@@ -20,7 +20,7 @@ class DigitalGuideObjectTabResponse with _$DigitalGuideObjectTabResponse {
 }
 
 @freezed
-class DigitalGuideObjectTabTranslations with _$DigitalGuideObjectTabTranslations {
+abstract class DigitalGuideObjectTabTranslations with _$DigitalGuideObjectTabTranslations {
   const factory DigitalGuideObjectTabTranslations({required DigitalGuideObjectTabTranslation pl}) =
       _DigitalGuideObjectTabTranslations;
 
@@ -29,7 +29,7 @@ class DigitalGuideObjectTabTranslations with _$DigitalGuideObjectTabTranslations
 }
 
 @freezed
-class DigitalGuideObjectTabTranslation with _$DigitalGuideObjectTabTranslation {
+abstract class DigitalGuideObjectTabTranslation with _$DigitalGuideObjectTabTranslation {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideObjectTabTranslation({
     required String name,
