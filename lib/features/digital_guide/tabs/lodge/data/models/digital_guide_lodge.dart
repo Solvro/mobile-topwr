@@ -4,7 +4,7 @@ part "digital_guide_lodge.freezed.dart";
 part "digital_guide_lodge.g.dart";
 
 @freezed
-class DigitalGuideLodge with _$DigitalGuideLodge {
+abstract class DigitalGuideLodge with _$DigitalGuideLodge {
   const factory DigitalGuideLodge({
     required int id,
     required DigitalGuideTranslationsLodge translations,
@@ -15,7 +15,7 @@ class DigitalGuideLodge with _$DigitalGuideLodge {
 }
 
 @freezed
-class DigitalGuideTranslationsLodge with _$DigitalGuideTranslationsLodge {
+abstract class DigitalGuideTranslationsLodge with _$DigitalGuideTranslationsLodge {
   const factory DigitalGuideTranslationsLodge({required DigitalGuideTranslationLodge pl}) =
       _DigitalGuideTranslationsLodge;
 
@@ -24,7 +24,7 @@ class DigitalGuideTranslationsLodge with _$DigitalGuideTranslationsLodge {
 }
 
 @freezed
-class DigitalGuideTranslationLodge with _$DigitalGuideTranslationLodge {
+abstract class DigitalGuideTranslationLodge with _$DigitalGuideTranslationLodge {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideTranslationLodge({
     required String location,

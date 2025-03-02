@@ -8,7 +8,7 @@ part "digital_guide_information_points.freezed.dart";
 part "digital_guide_information_points.g.dart";
 
 @freezed
-class DigitalGuideInformationPoint with _$DigitalGuideInformationPoint {
+abstract class DigitalGuideInformationPoint with _$DigitalGuideInformationPoint {
   @JsonSerializable(fieldRename: FieldRename.snake)
   factory DigitalGuideInformationPoint({
     required int id,
@@ -48,7 +48,7 @@ class DigitalGuideInformationPoint with _$DigitalGuideInformationPoint {
 }
 
 @freezed
-class DigitalGuideInformationPointTranslations with _$DigitalGuideInformationPointTranslations {
+abstract class DigitalGuideInformationPointTranslations with _$DigitalGuideInformationPointTranslations {
   factory DigitalGuideInformationPointTranslations({required DigitalGuideInformationPointTranslationDetails pl}) =
       _DigitalGuideInformationPointTranslations;
 
@@ -57,7 +57,7 @@ class DigitalGuideInformationPointTranslations with _$DigitalGuideInformationPoi
 }
 
 @freezed
-class DigitalGuideInformationPointTranslationDetails with _$DigitalGuideInformationPointTranslationDetails {
+abstract class DigitalGuideInformationPointTranslationDetails with _$DigitalGuideInformationPointTranslationDetails {
   @JsonSerializable(fieldRename: FieldRename.snake)
   factory DigitalGuideInformationPointTranslationDetails({
     required String location,

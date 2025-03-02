@@ -7,7 +7,7 @@ part "corridor.freezed.dart";
 part "corridor.g.dart";
 
 @freezed
-class Corridor with _$Corridor {
+abstract class Corridor with _$Corridor {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory Corridor({
     required CorridorTranslations translations,
@@ -29,7 +29,7 @@ class Corridor with _$Corridor {
 }
 
 @freezed
-class CorridorTranslations with _$CorridorTranslations {
+abstract class CorridorTranslations with _$CorridorTranslations {
   const factory CorridorTranslations({@JsonKey(name: "pl") required CorridorTranslation plTranslation}) =
       _CorridorTranslations;
 
@@ -37,7 +37,7 @@ class CorridorTranslations with _$CorridorTranslations {
 }
 
 @freezed
-class CorridorTranslation with _$CorridorTranslation {
+abstract class CorridorTranslation with _$CorridorTranslation {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory CorridorTranslation({
     required String name,

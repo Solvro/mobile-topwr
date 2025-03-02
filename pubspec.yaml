@@ -136,7 +136,7 @@ dev_dependencies:
   solvro_config:
     git:
       url: https://github.com/Solvro/lib-mobile-solvro-config.git
-      ref: 70ac10d
+      ref: e010abb
 
   #CodeGen
   build_runner: ^2.4.15
@@ -154,13 +154,9 @@ dev_dependencies:
   test: ^1.25.15
 
 dependency_overrides:
-  analyzer: ^7.3.0
   flutter_map: ^8.1.0
   source_gen: ^2.0.0
   intl: ^0.20.2
-  analyzer_plugin: ^0.13.0
-  custom_lint: ^0.7.5
-  custom_lint_builder: ^0.7.5
   theme_tailor_annotation: # remove this when idiots push a release
     git:
       url: https://github.com/Iteo/theme_tailor.git

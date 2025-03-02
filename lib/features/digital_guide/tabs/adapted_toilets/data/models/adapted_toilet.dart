@@ -9,7 +9,7 @@ part "adapted_toilet.freezed.dart";
 part "adapted_toilet.g.dart";
 
 @freezed
-class AdaptedToilet with _$AdaptedToilet {
+abstract class AdaptedToilet with _$AdaptedToilet {
   const factory AdaptedToilet({
     required AdaptedToiletTranslations translations,
     @JsonKey(name: "is_access_accessible_for_pwd", fromJson: stringToBool) required bool isAccessAccessibleForPwd,
@@ -26,7 +26,7 @@ class AdaptedToilet with _$AdaptedToilet {
 }
 
 @freezed
-class AdaptedToiletTranslations with _$AdaptedToiletTranslations {
+abstract class AdaptedToiletTranslations with _$AdaptedToiletTranslations {
   const factory AdaptedToiletTranslations({@JsonKey(name: "pl") required AdaptedToiletTranslation plTranslation}) =
       _AdaptedToiletTranslations;
 
@@ -34,7 +34,7 @@ class AdaptedToiletTranslations with _$AdaptedToiletTranslations {
 }
 
 @freezed
-class AdaptedToiletTranslation with _$AdaptedToiletTranslation {
+abstract class AdaptedToiletTranslation with _$AdaptedToiletTranslation {
   const factory AdaptedToiletTranslation({
     required String location,
     @JsonKey(name: "toilet_description") required String toiletDescription,

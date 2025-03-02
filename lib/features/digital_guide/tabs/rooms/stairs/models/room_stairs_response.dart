@@ -4,7 +4,7 @@ part "room_stairs_response.freezed.dart";
 part "room_stairs_response.g.dart";
 
 @freezed
-class RoomStairsResponse with _$RoomStairsResponse {
+abstract class RoomStairsResponse with _$RoomStairsResponse {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory RoomStairsResponse({
     required int id,
@@ -28,14 +28,14 @@ class RoomStairsResponse with _$RoomStairsResponse {
 }
 
 @freezed
-class RoomStairsTranslations with _$RoomStairsTranslations {
+abstract class RoomStairsTranslations with _$RoomStairsTranslations {
   const factory RoomStairsTranslations({required RoomStairsTranslation pl}) = _RoomStairsTranslations;
 
   factory RoomStairsTranslations.fromJson(Map<String, dynamic> json) => _$RoomStairsTranslationsFromJson(json);
 }
 
 @freezed
-class RoomStairsTranslation with _$RoomStairsTranslation {
+abstract class RoomStairsTranslation with _$RoomStairsTranslation {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory RoomStairsTranslation({
     required String location,

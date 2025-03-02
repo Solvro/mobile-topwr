@@ -4,7 +4,7 @@ part "sks_user_data.freezed.dart";
 part "sks_user_data.g.dart";
 
 @freezed
-class SksUserData with _$SksUserData {
+abstract class SksUserData with _$SksUserData {
   const factory SksUserData({
     required int activeUsers,
     required int movingAverage21,

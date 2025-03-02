@@ -4,7 +4,7 @@ part "railing.g.dart";
 part "railing.freezed.dart";
 
 @freezed
-class Railing with _$Railing {
+abstract class Railing with _$Railing {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory Railing({
     required RailingTranslations translations,
@@ -22,7 +22,7 @@ class Railing with _$Railing {
 }
 
 @freezed
-class RailingTranslations with _$RailingTranslations {
+abstract class RailingTranslations with _$RailingTranslations {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory RailingTranslations({@JsonKey(name: "pl") required RailingTranslation plTranslation}) =
       _RailingTranslations;
@@ -31,7 +31,7 @@ class RailingTranslations with _$RailingTranslations {
 }
 
 @freezed
-class RailingTranslation with _$RailingTranslation {
+abstract class RailingTranslation with _$RailingTranslation {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory RailingTranslation({
     required String isRailingOnLandingsComment,

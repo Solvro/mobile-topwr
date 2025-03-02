@@ -8,7 +8,7 @@ bool _stringToBool(String? str) {
 }
 
 @freezed
-class DigitalGuideObjectModel with _$DigitalGuideObjectModel {
+abstract class DigitalGuideObjectModel with _$DigitalGuideObjectModel {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideObjectModel({
     required int id,
@@ -33,7 +33,7 @@ class DigitalGuideObjectModel with _$DigitalGuideObjectModel {
 }
 
 @freezed
-class DigitalGuideObjectTranslations with _$DigitalGuideObjectTranslations {
+abstract class DigitalGuideObjectTranslations with _$DigitalGuideObjectTranslations {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideObjectTranslations({required DigitalGuideObjectTranslation pl}) =
       _DigitalGuideObjectTranslations;
@@ -43,7 +43,7 @@ class DigitalGuideObjectTranslations with _$DigitalGuideObjectTranslations {
 }
 
 @freezed
-class DigitalGuideObjectTranslation with _$DigitalGuideObjectTranslation {
+abstract class DigitalGuideObjectTranslation with _$DigitalGuideObjectTranslation {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideObjectTranslation({
     required String name,

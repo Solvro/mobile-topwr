@@ -5,7 +5,7 @@ part "toilet.g.dart";
 part "toilet.freezed.dart";
 
 @freezed
-class Toilet with _$Toilet {
+abstract class Toilet with _$Toilet {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory Toilet({
     required ToiletTranslations translations,
@@ -27,7 +27,7 @@ class Toilet with _$Toilet {
 }
 
 @freezed
-class ToiletTranslations with _$ToiletTranslations {
+abstract class ToiletTranslations with _$ToiletTranslations {
   const factory ToiletTranslations({@JsonKey(name: "pl") required ToiletTranslation plTranslation}) =
       _ToiletTranslations;
 
@@ -35,7 +35,7 @@ class ToiletTranslations with _$ToiletTranslations {
 }
 
 @freezed
-class ToiletTranslation with _$ToiletTranslation {
+abstract class ToiletTranslation with _$ToiletTranslation {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory ToiletTranslation({
     required String location,

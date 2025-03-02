@@ -6,7 +6,7 @@ part "academic_day.freezed.dart";
 part "academic_day.g.dart";
 
 @freezed
-class AcademicDay with _$AcademicDay {
+abstract class AcademicDay with _$AcademicDay {
   const factory AcademicDay({
     required bool isEven,
     required bool isHolidays,

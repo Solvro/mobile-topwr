@@ -9,7 +9,7 @@ part "parking.freezed.dart";
 part "parking.g.dart";
 
 @freezed
-class Parking with _$Parking implements GoogleNavigable {
+abstract class Parking with _$Parking implements GoogleNavigable {
   @Implements<GoogleNavigable>()
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory Parking({

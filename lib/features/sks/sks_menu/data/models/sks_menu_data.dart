@@ -6,7 +6,7 @@ part "sks_menu_data.freezed.dart";
 part "sks_menu_data.g.dart";
 
 @freezed
-class SksMenuDish with _$SksMenuDish {
+abstract class SksMenuDish with _$SksMenuDish {
   const factory SksMenuDish({
     required String id,
     required String name,
