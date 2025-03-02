@@ -17,6 +17,7 @@ import "../../buildings_view/model/building_model.dart";
 import "../data/models/digital_guide_response.dart";
 import "../data/repository/digital_guide_repository.dart";
 import "widgets/accessibility_button.dart";
+import "widgets/accessibility_information_cards_list.dart";
 import "widgets/digital_guide_data_source_link.dart";
 import "widgets/digital_guide_features_section.dart";
 import "widgets/digital_guide_loading_view.dart";
@@ -66,6 +67,20 @@ class _DigitalGuideView extends ConsumerWidget {
       HeadlinesSection(
         name: digitalGuideData.translations.plTranslation.name,
         description: digitalGuideData.translations.plTranslation.extendedName,
+      ),
+
+      AccessibilityInformationCardsList(
+        padding: DigitalGuideConfig.symetricalPaddingMedium,
+        prefix: context.localize.building_prefix,
+        accessibilityLevelType: context.localize.accessibility_level_masculine,
+        accLevels: (
+          accessibilityLevelForBlind: digitalGuideData.accessibilityLevelForBlind,
+          accessibilityLevelForVisuallyImpaired: digitalGuideData.accessibilityLevelForVisuallyImpaired,
+          accessibilityLevelForMotorDisability: digitalGuideData.accessibilityLevelForMotorDisability,
+          accessibilityLevelForCognitiveDifficulties: digitalGuideData.accessibilityLevelForCognitiveDifficulties,
+          accessibilityLevelForHardOfHearing: digitalGuideData.accessibilityLevelForHardOfHearing,
+          accessibilityLevelForHighSensorySensitivity: digitalGuideData.accessibilityLevelForHighSensorySensitivity,
+        ),
       ),
       ContactSection(
         list: IList<ContactIconsModel>([

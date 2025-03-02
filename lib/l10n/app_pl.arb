@@ -414,6 +414,7 @@
   "working_hours" : "Godziny otwarcia",
   "rooms_distribution" : "Rozkład pomieszczeń:",
   "region_location" : "Lokalizacja strefy:",
+  "region_prefix" : "Wskazana strefa budynku",
   "level" : "Piętro",
   "region" : "Strefa", 
   "stairs" : "Schody",

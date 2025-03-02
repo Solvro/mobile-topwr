@@ -29,14 +29,17 @@ class DigitalGuideResponse with _$DigitalGuideResponse {
     @JsonKey(name: "location_map") required int locationMapId,
     @JsonKey(name: "levels") required List<int> levelsIndices,
     @JsonKey(name: "access") required int accessId,
-    @JsonKey(name: "accessibility_level_for_motor_disability") required String accessibilityLevelForMotorDisability,
-    @JsonKey(name: "accessibility_level_for_blind") required String accessibilityLevelForBlind,
-    @JsonKey(name: "accessibility_level_for_visually_impaired") required String accessibilityLevelForVisuallyImpaired,
-    @JsonKey(name: "accessibility_level_for_hard_of_hearing") required String accessibilityLevelForHardOfHearing,
-    @JsonKey(name: "accessibility_level_for_high_sensory_sensitivity")
-    required String accessibilityLevelForHighSensorySensitivity,
-    @JsonKey(name: "accessibility_level_for_cognitive_difficulties")
-    required String accessibilityLevelForCognitiveDifficulties,
+    @JsonKey(name: "accessibility_level_for_motor_disability", fromJson: _stringToInt)
+    required int accessibilityLevelForMotorDisability,
+    @JsonKey(name: "accessibility_level_for_blind", fromJson: _stringToInt) required int accessibilityLevelForBlind,
+    @JsonKey(name: "accessibility_level_for_visually_impaired", fromJson: _stringToInt)
+    required int accessibilityLevelForVisuallyImpaired,
+    @JsonKey(name: "accessibility_level_for_hard_of_hearing", fromJson: _stringToInt)
+    required int accessibilityLevelForHardOfHearing,
+    @JsonKey(name: "accessibility_level_for_high_sensory_sensitivity", fromJson: _stringToInt)
+    required int accessibilityLevelForHighSensorySensitivity,
+    @JsonKey(name: "accessibility_level_for_cognitive_difficulties", fromJson: _stringToInt)
+    required int accessibilityLevelForCognitiveDifficulties,
   }) = _DigitalGuideResponse;
 
   factory DigitalGuideResponse.fromJson(Map<String, dynamic> json) => _$DigitalGuideResponseFromJson(json);
@@ -65,4 +68,8 @@ class DigitalGuideTranslation with _$DigitalGuideTranslation {
 List<String> _formatPhoneNumbers(String phoneNumber) {
   final matches = RegExp(r"\d{9}").allMatches(phoneNumber.replaceAll("+48", "").replaceAll(RegExp(r"\D"), ""));
   return matches.map((match) => match.group(0)!).toList();
+}
+
+int _stringToInt(String value) {
+  return int.parse(value);
 }
