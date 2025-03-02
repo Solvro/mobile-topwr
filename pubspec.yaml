@@ -133,9 +133,10 @@ dev_dependencies:
     sdk: flutter
 
   #Lints
-  # custom_lint: ^0.6.8
-  # total_lints: ^3.4.0
-  # riverpod_lint: ^2.6.1
+  solvro_config:
+    git:
+      url: https://github.com/Solvro/lib-mobile-solvro-config.git
+      ref: 70ac10d
 
   #CodeGen
   build_runner: ^2.4.15
