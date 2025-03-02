@@ -11,9 +11,11 @@ import "../../../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../../../../widgets/horizontal_symmetric_safe_area.dart";
 import "../../../../../widgets/my_expansion_tile.dart";
 import "../../../presentation/widgets/accessibility_button.dart";
+import "../../../presentation/widgets/accessibility_profile_card.dart";
 import "../../../presentation/widgets/bullet_list.dart";
 import "../../../presentation/widgets/digital_guide_nav_link.dart";
 import "../../../presentation/widgets/digital_guide_photo_row.dart";
+import "../business/rooms_accessibility_comments_manager.dart";
 import "../data/models/digital_guide_room.dart";
 import "../platforms/presentation/room_platforms_content.dart";
 import "../stairs/presentation/room_stairs_content.dart";
@@ -53,7 +55,12 @@ class DigitalGuideRoomDetailView extends ConsumerWidget {
               roomInformation.isOneLevelFloorComment,
             ].toIList(),
       ),
+      AccessibilityProfileCard(
+        accessibilityCommentsManager: RoomsAccessibilityCommentsManager(digitalGuideRoom: room, l10n: context.localize),
+        backgroundColor: context.colorTheme.whiteSoap,
+      ),
       if (room.imagesIds != null && room.imagesIds!.isNotEmpty) const SizedBox(height: DigitalGuideConfig.heightMedium),
+
       DigitalGuidePhotoRow(imagesIDs: room.imagesIds.toIList()),
       const SizedBox(height: DigitalGuideConfig.heightMedium),
       DigitalGuideNavLink(onTap: () {}, text: context.localize.door),
@@ -62,17 +69,23 @@ class DigitalGuideRoomDetailView extends ConsumerWidget {
       if (room.roomStairs.isNotEmpty)
         ...room.roomStairs.asMap().entries.map((entry) {
           final String index = entry.key == 0 ? "" : (entry.key + 1).toString();
-          return MyExpansionTile(
-            title: "${context.localize.stairs} $index",
-            children: [RoomStairsContent(roomStairsId: entry.value)],
+          return Padding(
+            padding: const EdgeInsets.only(bottom: DigitalGuideConfig.paddingMedium),
+            child: MyExpansionTile(
+              title: "${context.localize.stairs} $index",
+              children: [RoomStairsContent(roomStairsId: entry.value)],
+            ),
           );
         }),
       if (room.platforms.isNotEmpty)
         ...room.platforms.asMap().entries.map((entry) {
           final String index = entry.key == 0 ? "" : (entry.key + 1).toString();
-          return MyExpansionTile(
-            title: "${context.localize.platforms} $index",
-            children: [RoomPlatformsContent(platformId: entry.value)],
+          return Padding(
+            padding: const EdgeInsets.only(bottom: DigitalGuideConfig.paddingMedium),
+            child: MyExpansionTile(
+              title: "${context.localize.platforms} $index",
+              children: [RoomPlatformsContent(platformId: entry.value)],
+            ),
           );
         }),
     ];

@@ -298,12 +298,22 @@
   "room_stairs_is_railing" : "{value, select, false{Przy schodach nie znajduje się poręcz.} true{Przy schodach znajduje się poręcz.} other{}}",
   "room_stairs_is_good_railing_contrast" : "{value, select, false{Poręcz nie wyróżnia się na tle otoczenia.} true{Poręcz wyróżnia się na tle otoczenia.} other{}}",
   "room_stairs_is_round_cross_section_railing" : "{value, select, false{Poręcz nie jest zaokrąglona i może posiadać ostre krawędzie.} true{Poręcz nie posiada ostrych krawędzi i jest zaokrąglona.} other{}}",
+  "room_stairs_are_steps_edges_marked_in_contrasted_way" : "{value, select, false{Stopnie nie są widoczne. Ich krawędzie nie są oznaczone w sposób kontrastowy.} true{Stopnie są widoczne. Ich krawędzie są oznaczone w sposób kontrastowy.} other{}}",
+  "room_stairs_stairs_width": "Szerokość schodów wynosi {width} centymetrów",
+  "@room_stairs_stairs_width": {
+    "description": "",
+    "placeholders": {
+      "width": {
+        "type": "String"
+      }
+    }
+  },
+
 
   "room_platforms_is_good_floor_platform_contrast": "{value, select, false{Brak dobrego kontrastu podłogi względem platformy.} true{Dobry kontrast podłogi względem platformy.} other{}}",
-  "room_platforms_have_access_for_people_in_wheelchair": "{value, select, false{Brak dostępu dla osób poruszających się na wózku inwalidzkim.} true{Jest dostęp dla osób poruszających się na wózku inwalidzkim.} other{}}",
-  "room_platforms_is_platform_entrance_marked": "{value, select, false{Wejście na platformę nie jest oznaczone.} true{Wejście na platformę jest oznaczone.} other{}}",
+  "room_platforms_have_access_for_people_in_wheelchair": "{value, select, false{Podest nie ma zapewnionego dostępu dla osób, które poruszają się na wózku.} true{Podest ma zapewniony dostęp dla osób, które poruszają się na wózku.} other{}}",
+  "room_platforms_is_platform_entrance_marked": "{value, select, false{Wejście na podest nie jest oznaczone elementami ostrzegawczymi.} true{Wejście na podest jest oznaczone elementami ostrzegawczymi.} other{}}",
   "room_platforms_are_no_objects_narrow_communication_zone": "{value, select, false{W strefie komunikacyjnej znajdują się przeszkody.} true{Brak przeszkód w strefie komunikacyjnej.} other{}}",
-
   "stairs_is_stairs_sign_info": "{value, select, false{Brak informacji o oznakowaniu schodów.} true{Oznakowanie schodów jest dostępne.} other{}}",
   "stairs_is_stairs_sign_info_in_en": "{value, select, false{Brak informacji o oznakowaniu schodów w języku angielskim.} true{Oznakowanie schodów w języku angielskim jest dostępne.} other{}}",
   "stairs_is_good_lit": "{value, select, false{Schody są słabo oświetlone.} true{Schody są dobrze oświetlone.} other{}}",
@@ -320,13 +330,35 @@
   "stairs_width": "Szerokość schodów:",
   "number_of_stair_gears": "Liczba biegów schodowych: ",
   "number_of_stair_landings": "Liczba spoczników:",
-
+  "rooms_is_one_level_floor" : "{value, select, false{Posadzka w pomieszczeniu nie znajduje się na jednym poziomie.} true{Posadzka w pomieszczeniu znajduje się na jednym poziomie.} other{}}",
+  "rooms_are_places_for_wheelchairs" : "{value, select, false{W pomieszczeniu nie ma miejsc dedykowanych osobom poruszającym się na wózkach.} true{W pomieszczeniu znajdują się miejsca dedykowanych osobom poruszającym się na wózkach.} other{}}",
+  "rooms_are_any_dangerous_elements" : "{value, select, false{W pomieszczeniu nie występują żadne niebezpieczne elementy konstrukcyjne.} true{W pomieszczeniu występują niebezpieczne elementy konstrukcyjne.} other{}}",
+  "rooms_is_generally_available_desk" : "{value, select, false{W pomieszczeniu nie znajduje się ogólnodostępne biurko, stolik lub blat.} true{W pomieszczeniu znajduje się ogólnodostępne biurko, stolik lub blat, którego wysokość wynosi} other{}}",
+  "rooms_has_induction_loop" : "{value, select, false{Pomieszczenie nie jest wyposażone w pętle indukcyjną, system FM ani tłumacza języka migowego.} true{Pomieszczenie jest wyposażone w} other{}}",
+  "rooms_is_space_under_counter" : "{value, select, true{Ogólnodostępny blat, biurko lub stolik jest dostępny dla osób poruszających się na wózkach.} false{Ogólnodostępny blat, biurko lub stolik nie ma zapewnionego miejsca na kolana i wjechanie wózkiem.} other{}}",
+  "rooms_is_good_floor_room_contrast" : "{value, select, false{Kontrast kolorów w pomieszczeniu jest niski.} true{Kontrast kolorów w pomieszczeniu jest wyraźny.} other{}}",
+  "rooms_is_good_lit" : "{value, select, false{Poziom oświetlenia w pomieszczeniu nie jest odpowiedni.} true{Poziom oświetlenia w pomieszczeniu jest odpowiedni.} other{}}",
+  "rooms_is_floor_shiny" : "{value, select, false{Podłoga w pomieszczeniu nie jest błyszcząca i nie powoduje ona odblasków.} true{W pomieszczeniu znajduje się podłoga, która jest błyszcząca i może powodować odblaski lub wyglądać na śliską.} other{}}",
+  "rooms_is_blackboard" : "{value, select, true{W pomieszczeniu znajduje się tablica, w odległości {distance} od miejsca siedzącego} other{}}",
+    "@rooms_is_blackboard": {
+    "description": "",
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "rooms_are_movable_elements" : "{value, select, false{W pomieszczeniu nie znajdują się inne stałe lub ruchome elementy stanowiące zagrożenie lub też potencjalne problemy w poruszaniu się.} true{W pomieszczeniu znajdują się inne stałe lub ruchome elementy stanowiące zagrożenie lub też potencjalne problemy w poruszaniu się.} other{}}",
+  "rooms_are_flashing_devices" : "{value, select, false{W pomieszczeniu nie znajdują się żadne urządzenia migające ani błyszczące mogące wywołać atak epilepsji.} true{W pomieszczeniu znajdują się urządzenia migające lub błyszczące mogące wywołać atak epilepsji.} other{}}",
+  "rooms_are_places_accessible_from_main_entrance" : "{value, select, false{Miejsca dedykowane osobom poruszającym się na wózkach nie są dostępne z głównego wejścia do pomieszczenia.} true{Miejsca dedykowane osobom poruszającym się na wózkach są dostępne z głównego wejścia do pomieszczenia.} other{}}",
+  "rooms_are_electrical_outlets" : "{value, select, false{Gniazdka elektryczne i inne włączniki w pomieszczeniu znajdują się na wysokości większej niż 110 centymetrów.} true{Gniazdka elektryczne i inne włączniki w pomieszczeniu są dostępne i znajdują się na wysokości maksymalnie 110 centymetrów.} other{}}",
   "are_objects_narrow_communication_zone": "Przedmioty {value, select, false{nie zwężają przejścia} true{zwężają przejście} other{}}",
   "are_information_boards": "Tablice informacyjne{value, select, false{ nie} true{} other{}} są dostępne",
   "are_information_boards_in_en": "Tablice informacyjne{value, select, false{ nie} true{} other{}} są dostępne po angielsku",
   "are_room_entrances": "{value, select, false{Nie z} true{Z} other{Z}}najdują się wejścia do pomieszczeń",
   "are_floor_markings": "{value, select, false{Nie z} true{Z} other{Z}}najdują się oznaczenia podłogowe",
   "is_typhlomap": "Tyflomapa{value, select, false{ nie} true{} other{}} jest dostępna",
+
 
   "strategicBadgeTooltip": "Koło Strategiczne PWr",
   "strategic_club_abbr": "KS",
@@ -525,7 +557,7 @@
   "is_door_good_contrast": "Drzwi windy {value, select, false{nie} other{}} kontrastują ze ścianą.",
   "is_inside_lit": "Poziom oświetlenia wewnątrz windy {value, select, false{nie} other{}} jest odpowiedni.",
   "is_lift_floor_info": "Winda {value, select, false{nie} other{}} wyświetla informacje o numerze piętra, na którym się aktualnie znajduje.",
-  "platform_dimensions" : "Wymiary platformy: ",
+  "platform_dimensions" : "Wymiary podestu wynoszą ",
   "canteen" : "Stołówka: ",
   "cafe" : "Kawiarnia: ",
   "toilet_isNeedAuthorization": "{value, select, false{Nie jest wymagana autoryzacja.} true{Wymagana jest autoryzacja.} other{}}",
