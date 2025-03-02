@@ -133,7 +133,7 @@ dev_dependencies:
     sdk: flutter
 
   #Lints
-  solvro_config: ^0.0.1
+  solvro_config: ^0.0.2
 
   #CodeGen
   build_runner: ^2.4.15

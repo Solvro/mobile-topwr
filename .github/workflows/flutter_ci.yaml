@@ -1,4 +1,4 @@
-name: Lint & formatting
+name: CI
 
 on:
   push:
@@ -8,6 +8,10 @@ on:
     branches: [ "**" ]
 
 jobs:
+  spell-check:
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/spell_check.yml@v1
+    with:
+      modified_files_only: true
   build:
     runs-on: ubuntu-latest
 
@@ -17,6 +21,7 @@ jobs:
         with:
           channel: "stable"
           flutter-version-file: pubspec.yaml
+          
       - run: flutter --version
 
       - name: Install dependencies
@@ -40,10 +45,9 @@ jobs:
       - name: Analyze project source
         run: flutter analyze --fatal-infos
 
-      - name: riverpod custom lint
-        run: dart run custom_lint
+      - name: Run custom lints
+        run: dart run custom_lint --fatal-infos
 
-      - name: Hex Color Converters test
-        run: flutter test test/hex_color_converters_test.dart
-      
-
+      - name: Flutter tests
+        run: flutter test
+  
