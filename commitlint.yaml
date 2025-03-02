@@ -3,5 +3,28 @@ rules:
   scope-enum: # define your own scopes here
     - 2
     - always
-    - - example-scope-1
-      - example-scope-2
+    - - digital-guide
+      - about-us
+      - academic-calendar
+      - analytics
+      - changelog
+      - app-streak
+      - navigation
+      - buildings
+      - departments
+      - guide
+      - home
+      - in-app-review
+      - map
+      - navigation-tab # last screen in tab view
+      - parkings
+      - advert
+      - sks-menu
+      - sks-people-live
+      - sks-chart
+      - splash-screen
+      - update-dialog
+      - theme
+      - api-base
+      - contact-icons
+    # YES, you can add new ones if you have a new feature
