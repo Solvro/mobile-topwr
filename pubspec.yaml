@@ -96,10 +96,7 @@ dependencies:
   #Maps
   flutter_map: ^8.1.0
   flutter_map_cancellable_tile_provider: ^3.1.0
-  flutter_map_location_marker: # TODO: upgrade when they release a new version
-    git:
-      url: https://github.com/tlserver/flutter_map_location_marker
-      ref: 3c8bfd4
+  flutter_map_location_marker: ^10.0.0
 
   flutter_map_compass: ^1.1.1
   flutter_map_cache: ^1.5.2
