@@ -8,9 +8,11 @@ import "../../../../../../theme/app_theme.dart";
 import "../../../../../../utils/context_extensions.dart";
 import "../../../../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../../../../navigator/utils/navigation_commands.dart";
+import "../../../../presentation/widgets/accessibility_profile_card.dart";
 import "../../../../presentation/widgets/bullet_list.dart";
 import "../../../../presentation/widgets/digital_guide_image.dart";
 import "../../../../presentation/widgets/digital_guide_nav_link.dart";
+import "../../business/corridors_accessibility_comments_manager.dart";
 import "../../data/models/corridor.dart";
 
 @RoutePage()
@@ -115,6 +117,19 @@ class CorridorView extends ConsumerWidget {
                   ),
                 );
               }, childCount: corridor.imagesIndices.length),
+            ),
+            SliverList(
+              delegate: SliverChildListDelegate([
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: DigitalGuideConfig.paddingBig),
+                  child: AccessibilityProfileCard(
+                    accessibilityCommentsManager: CorridorsAccessibilityCommentsManager(
+                      l10n: context.localize,
+                      corridor: corridor,
+                    ),
+                  ),
+                ),
+              ]),
             ),
           ],
         ),

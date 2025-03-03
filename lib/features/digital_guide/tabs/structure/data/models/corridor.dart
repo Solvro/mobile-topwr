@@ -1,8 +1,6 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 
-import "../../../../../../utils/type_converter.dart";
-
 part "corridor.freezed.dart";
 part "corridor.g.dart";
 
@@ -11,16 +9,32 @@ abstract class Corridor with _$Corridor {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory Corridor({
     required CorridorTranslations translations,
-    @JsonKey(fromJson: stringToBool) required bool isSimpleCorridorLayout,
-    @JsonKey(fromJson: stringToBool) required bool isFloorMarked,
-    @JsonKey(fromJson: stringToBool) required bool areRoomsEntrances,
-    @JsonKey(fromJson: stringToBool) required bool isInformationBoard,
-    @JsonKey(fromJson: stringToBool) required bool areRoomPurposeDescribedInEn,
-    @JsonKey(fromJson: stringToBool) required bool isConsistentLevelColorPattern,
-    @JsonKey(fromJson: stringToBool) required bool arePictorialDirectionalSigns,
-    @JsonKey(fromJson: stringToBool) required bool areSeats,
-    @JsonKey(fromJson: stringToBool) required bool areVendingMachines,
-    @JsonKey(fromJson: stringToBool) required bool isEmergencyPlan,
+    required bool isSimpleCorridorLayout,
+    required bool isFloorMarked,
+    required bool areRoomsEntrances,
+    required bool isInformationBoard,
+    required bool areRoomPurposeDescribedInEn,
+    required bool isConsistentLevelColorPattern,
+    required bool arePictorialDirectionalSigns,
+    required bool areSeats,
+    required bool areVendingMachines,
+    required bool isEmergencyPlan,
+    required String isTyphlomap,
+    required String areDangerousElements,
+    required String arePlatesInfoAccessible,
+    required String areHorizontalMarkingsForBlind,
+    required String arePlatesWithRoomsListHaveReadableFont,
+    required String areRoomsMarked,
+    required String arePictogramsUsed,
+    required String isGlare,
+    required String isGoodWallsColorContrast,
+    required String isGoodLit,
+    required String areHorizontalMarkingsForVisuallyImpaired,
+    required String isEnoughMinWidthLength,
+    required String areRailings,
+    required String isCorrectLightSwitchesSocketsHeight,
+    required String isCorridorCausesEcho,
+    required String areAnyFlashingDevices,
     @JsonKey(name: "doors") required IList<int> doorsIndices,
     @JsonKey(name: "images") required IList<int> imagesIndices,
   }) = _Corridor;
@@ -49,6 +63,22 @@ abstract class CorridorTranslation with _$CorridorTranslation {
     required String areSeatsComment,
     required String areVendingMachinesComment,
     required String vendingMachinesProducts,
+    required String isTyphlomapComment,
+    required String areDangerousElementsComment,
+    required String arePlatesInfoAccessibleComment,
+    required String areHorizontalMarkingsForBlindComment,
+    required String arePlatesWithRoomsListHaveReadableFontComment,
+    required String areRoomsMarkedComment,
+    required String arePictogramsUsedComment,
+    required String isGlareComment,
+    required String isGoodWallsColorContrastComment,
+    required String isGoodLitComment,
+    required String areHorizontalMarkingsForVisuallyImpairedComment,
+    required String isEnoughMinWidthLengthComment,
+    required String areRailingsComment,
+    required String isCorrectLightSwitchesSocketsHeightComment,
+    required String isCorridorCausesEchoComment,
+    required String areAnyFlashingDevicesComment,
     required String comment,
   }) = _CorridorTranslation;
 
