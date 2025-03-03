@@ -1,8 +1,6 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 
-import "../../../../../../utils/type_converter.dart";
-
 part "corridor.freezed.dart";
 part "corridor.g.dart";
 

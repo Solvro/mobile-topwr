@@ -4,12 +4,8 @@ import "../../../../../l10n/app_localizations.dart";
 import "../../../business/accessibility_comments_manager.dart";
 import "../data/models/corridor.dart";
 
-class CorridorsAccessibilityCommentsManager
-    extends AccessibilityCommentsManager {
-  CorridorsAccessibilityCommentsManager({
-    required this.l10n,
-    required this.corridor,
-  });
+class CorridorsAccessibilityCommentsManager extends AccessibilityCommentsManager {
+  CorridorsAccessibilityCommentsManager({required this.l10n, required this.corridor});
 
   final AppLocalizations l10n;
   final Corridor corridor;
@@ -23,10 +19,7 @@ class CorridorsAccessibilityCommentsManager
       "${l10n.corridor_info_plates_accessible(corridor.arePlatesInfoAccessible.toLowerCase())} ${comments.arePlatesInfoAccessibleComment}",
       "${l10n.corridor_horizontal_markings_for_blind(corridor.areHorizontalMarkingsForBlind.toLowerCase())} ${comments.areHorizontalMarkingsForBlindComment}",
       "${l10n.corridor_dangerous_elements(corridor.areDangerousElements.toLowerCase())} ${comments.areDangerousElementsComment}",
-    ])
-        .map((element) => element.trim())
-        .where((element) => element.isNotEmpty)
-        .toIList();
+    ]).map((element) => element.trim()).where((element) => element.isNotEmpty).toIList();
   }
 
   @override
@@ -39,20 +32,14 @@ class CorridorsAccessibilityCommentsManager
       "${l10n.corridor_is_glare(corridor.isGlare.toLowerCase())} ${comments.isGlareComment}",
       "${l10n.corridor_echo(corridor.isCorridorCausesEcho.toLowerCase())} ${comments.isCorridorCausesEchoComment}",
       "${l10n.corridor_flashing_device(corridor.areAnyFlashingDevices.toLowerCase())} ${comments.areAnyFlashingDevicesComment}",
-    ])
-        .map((element) => element.trim())
-        .where((element) => element.isNotEmpty)
-        .toIList();
+    ]).map((element) => element.trim()).where((element) => element.isNotEmpty).toIList();
   }
 
   @override
   IList<String> getCommentsListForHearingImpairment() {
     return IList([
       "${l10n.corridor_echo(corridor.isCorridorCausesEcho.toLowerCase())} ${corridor.translations.plTranslation.isCorridorCausesEchoComment}",
-    ])
-        .map((element) => element.trim())
-        .where((element) => element.isNotEmpty)
-        .toIList();
+    ]).map((element) => element.trim()).where((element) => element.isNotEmpty).toIList();
   }
 
   @override
@@ -69,10 +56,7 @@ class CorridorsAccessibilityCommentsManager
       "${l10n.corridor_good_walls_contrast(corridor.isGoodWallsColorContrast.toLowerCase())} ${comments.isGoodWallsColorContrastComment}",
       "${l10n.corridor_good_lit(corridor.isGoodLit.toLowerCase())} ${comments.isGoodLitComment}",
       "${l10n.corridor_horizontal_markings_for_visually_impaired(corridor.areHorizontalMarkingsForVisuallyImpaired.toLowerCase())} ${comments.areHorizontalMarkingsForVisuallyImpairedComment}",
-    ])
-        .map((element) => element.trim())
-        .where((element) => element.isNotEmpty)
-        .toIList();
+    ]).map((element) => element.trim()).where((element) => element.isNotEmpty).toIList();
   }
 
   @override
@@ -84,10 +68,7 @@ class CorridorsAccessibilityCommentsManager
       "${l10n.corridor_railings(corridor.areRailings.toLowerCase())} ${comments.areRailingsComment}",
       "${l10n.corridor_light_switches_sockets_height(corridor.isCorrectLightSwitchesSocketsHeight.toLowerCase())} ${comments.isCorrectLightSwitchesSocketsHeightComment}",
       "${l10n.corridor_dangerous_elements(corridor.areDangerousElements.toLowerCase())} ${comments.areDangerousElementsComment}",
-    ])
-        .map((element) => element.trim())
-        .where((element) => element.isNotEmpty)
-        .toIList();
+    ]).map((element) => element.trim()).where((element) => element.isNotEmpty).toIList();
   }
 
   @override

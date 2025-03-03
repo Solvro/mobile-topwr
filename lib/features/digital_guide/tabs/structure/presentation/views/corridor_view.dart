@@ -121,12 +121,9 @@ class CorridorView extends ConsumerWidget {
             SliverList(
               delegate: SliverChildListDelegate([
                 Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: DigitalGuideConfig.paddingBig,
-                  ),
+                  padding: const EdgeInsets.symmetric(vertical: DigitalGuideConfig.paddingBig),
                   child: AccessibilityProfileCard(
-                    accessibilityCommentsManager:
-                        CorridorsAccessibilityCommentsManager(
+                    accessibilityCommentsManager: CorridorsAccessibilityCommentsManager(
                       l10n: context.localize,
                       corridor: corridor,
                     ),
