@@ -11,6 +11,7 @@ import "../../../../../../widgets/my_error_widget.dart";
 import "../../../../../navigator/utils/navigation_commands.dart";
 import "../../../../data/models/level.dart";
 import "../../../../data/models/region.dart";
+import "../../../../presentation/widgets/accessibility_button.dart";
 import "../../../../presentation/widgets/accessibility_information_cards_list.dart";
 import "../../data/models/toilet.dart";
 import "../../domain/digital_guide_region_use_cases.dart";
@@ -30,7 +31,9 @@ class RegionView extends ConsumerWidget {
 
     return regionDataAsync.when(
       data: (regionData) => _RegionView(level: level, region: region, regionData: regionData),
-      error: (error, stackTrace) => Scaffold(appBar: DetailViewAppBar(), body: MyErrorWidget(error)),
+      error:
+          (error, stackTrace) =>
+              Scaffold(appBar: DetailViewAppBar(actions: [AccessibilityButton()]), body: MyErrorWidget(error)),
       loading: () => const Center(child: ShimmeringEffect(child: ColoredBox(color: Colors.white))),
     );
   }

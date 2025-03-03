@@ -10,6 +10,7 @@ import "../../../../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../../../../../widgets/horizontal_symmetric_safe_area.dart";
 import "../../../../../../widgets/my_error_widget.dart";
 import "../../../../../navigator/utils/navigation_commands.dart";
+import "../../../../presentation/widgets/accessibility_button.dart";
 import "../../../../presentation/widgets/accessibility_profile_card.dart";
 import "../../../../presentation/widgets/bullet_list.dart";
 import "../../../../presentation/widgets/digital_guide_loading_view.dart";
@@ -47,7 +48,7 @@ class _StairsView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final StairsTranslation stairsInformation = stairs.translations.plTranslation;
     return Scaffold(
-      appBar: DetailViewAppBar(),
+      appBar: DetailViewAppBar(actions: [AccessibilityButton()]),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: DigitalGuideConfig.heightBig),
         child: Column(
