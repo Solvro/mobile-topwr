@@ -125,7 +125,8 @@ class CorridorView extends ConsumerWidget {
                     vertical: DigitalGuideConfig.paddingBig,
                   ),
                   child: AccessibilityProfileCard(
-                    accessibilityCommentsManager: CorridorsAccessibilityCommentsManager(
+                    accessibilityCommentsManager:
+                        CorridorsAccessibilityCommentsManager(
                       l10n: context.localize,
                       corridor: corridor,
                     ),

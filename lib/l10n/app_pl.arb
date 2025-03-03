@@ -639,5 +639,21 @@
   "corridor_typhlomap": "{value, select, false{W korytarzu nie jest dostępna tyflomapa.} true{W korytarzu znajduje się tyflomapa.} other{}}",
   "corridor_dangerous_elements": "{value, select, false{W korytarzu nie ma innych stałych lub ruchomych elementów, które mogą stanowić problemy w poruszaniu się.} true{W korytarzu znajdują się inne stałe lub ruchome obiekty mogące stanowić problemy w poruszaniu się. Są to:} other{}}",
   "corridor_info_plates_accessible": "{value, select, false{Oznakowanie pomieszczeń nie zawiera dodatkowych informacji.} true{Oznakowanie pomieszczeń zawiera dodatkowo:} other{}}",
-  "horizontal_markings_for_blind": "{value, select, false{W korytarzu nie ma oznaczeń poziomych dla osób niewidomych.} true{W korytarzu są oznaczenia poziome dla osób niewidomych.} other{}}"
+  "corridor_horizontal_markings_for_blind": "{value, select, false{W korytarzu nie ma oznaczeń poziomych dla osób niewidomych.} true{W korytarzu są oznaczenia poziome dla osób niewidomych.} other{}}",
+
+  "corridor_plates_with_rooms_list_have_readable_font" : "{value, select, false{} true{Tablica informacyjna ze spisem pomieszczeń ma czytelny tekst.} other{}}",
+  "corridor_rooms_marked": "{value, select, false{Oznakowanie pomieszczeń nie zawiera dodatkowych informacji.} true{Pomieszczenia w korytarzu są wyraźnie oznakowane.} other{}}",
+  "corridor_pictogram_used":"{value, select, false{Informacja wizualna nie wykorzystuje piktogramów.} true{Informacja wizualna wykorzystuje piktogramy.} other{}}",
+  "corridor_is_glare" : "{value, select, false{Podłoga w korytarzu nie błyszczy się.} true{Podłoga w korytarzu może się intensywnie błyszczeć, powodując oślepienie i wygladając na śliską.} other{}}",
+  "corridor_good_walls_contrast" : "{value, select, false{W korytarzu nie ma wyraźnego kontrastu kolorów między ścianami a podłogą.} true{} other{}}",
+  "corridor_good_lit" : "{value, select, false{Korytarz nie jest odpowiednio oświetlony.} true{Korytarz jest odpowiednio oświetlony.} other{}}",
+  "corridor_horizontal_markings_for_visually_impaired" : "{value, select, false{W korytarzu nie ma oznaczeń poziomych dla osób słabowidzących.} true{W korytarzu są oznaczenia poziome dla osób słabowidzących.} other{}}",
+
+  "corridor_min_width_length" : "{value, select, false{Szerokość korytarza nie zapewnia pełnej dostępności i wynosi} true{Szerokość korytarza zapewnia pełną dostępność i wynosi minimum 150 centymetrów.} other{}}",
+  "corridor_railings" : "{value, select, false{W korytarzu nie ma poręczy ściennych.} true{W korytarzu znajdują się poręcze ścienne.} other{}}",
+  "corridor_light_switches_sockets_height" : "{value, select, false{W korytarzu wszystkie włączniki światła i gniazdka elektryczne znajdują się na wysokości powyżej 110 centymetrów.} true{W korytarzu wszystkie włączniki światła i gniazdka elektryczne znajdują się na wysokości maksymalnie 110 centymetrów.} other{}}",
+
+  "corridor_echo" : "{value, select, false{Akustyka korytarza nie powoduje powstawania echa, które może utrudniać komunikację.} true{Akustyka korytarza powoduje powstawanie echa, które może utrudniać komunikację.} other{}}",
+
+  "corridor_flashing_device": "{value, select, false{W korytarzu nie ma obiektów migających lub błyszczących, które mogą wywołać atak epilepsji.} true{W korytarzu znajdują się obiekty migające lub błyszczące, które mogą wywołać atak epilepsji.} other{}}"
 }
