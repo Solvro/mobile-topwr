@@ -30,7 +30,7 @@ Future<IList<ChartPoint>> chartRepository(Ref ref, Parking parking) async {
       response = await restClient.get("$classicUrl/${parking.id}");
     }
 
-    final rawData = RawChartData.fromJson(response.data?["slots"] as Map<String, dynamic>);
+    final rawData = RawChartData.fromJson((response.data?["slots"] as Map).cast());
     return rawData.toChartPoints().toIList();
   }
   final javaUrl = parkingConfigResp.parsedData?.CacheReferenceNumber?.javaWrapperURL ?? Env.parkingApiUrl;
@@ -38,7 +38,7 @@ Future<IList<ChartPoint>> chartRepository(Ref ref, Parking parking) async {
   final response = await restClient.get<dynamic>("$javaUrl/chart/${parking.id}");
   final rawData = RawChartData.fromJson(
     // ignore: avoid_dynamic_calls
-    response.data?["slots"] as Map<String, dynamic>,
+    (response.data?["slots"] as Map).cast(),
   );
   return rawData.toChartPoints().toIList();
 }

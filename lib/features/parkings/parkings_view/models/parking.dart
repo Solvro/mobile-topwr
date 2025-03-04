@@ -41,7 +41,7 @@ abstract class Parking with _$Parking implements GoogleNavigable {
   }
 
   factory Parking.fromJsonApiWrapper(Map<String, dynamic> json) {
-    final address = json["address"] as Map<String, dynamic>;
+    final address = Map<String, dynamic>.from(json["address"] as Map);
 
     return Parking(
       id: json["parkingId"].toString(),
