@@ -18,8 +18,7 @@ class EntrancesList extends ConsumerWidget {
           (entrancesData) => ListView.separated(
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder:
-                (context, index) =>
-                    DigitalGuideNavLink(onTap: () {}, text: entrancesData[index].translations.pl.name ?? ""),
+                (context, index) => DigitalGuideNavLink(onTap: () {}, text: entrancesData[index].translations.pl.name),
             separatorBuilder: (context, index) => const SizedBox(height: DigitalGuideConfig.heightMedium),
             itemCount: entrancesData.length,
             shrinkWrap: true,

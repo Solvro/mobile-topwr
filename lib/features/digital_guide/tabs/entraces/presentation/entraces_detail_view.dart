@@ -8,9 +8,11 @@ import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/context_extensions.dart";
 import "../../../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../../presentation/widgets/accessibility_button.dart";
+import "../../../presentation/widgets/accessibility_profile_card.dart";
 import "../../../presentation/widgets/bullet_list.dart";
 import "../../../presentation/widgets/digital_guide_nav_link.dart";
 import "../../../presentation/widgets/digital_guide_photo_row.dart";
+import "../bussiness/entraces_accessibility_comments_manager.dart";
 import "../data/models/digital_guide_entrace.dart";
 
 @RoutePage()
@@ -21,17 +23,8 @@ class DigitalGuideEntranceDetailsView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // final comments = entrance.translations.pl;
-    // final commentsList = [
-    //   "${context.localize.entrance_is_building_marked_from_entrance(entrance.isBuildingMarkedFromEntrance.toString())}. ${comments.isBuildingMarkedFromEntranceComment ?? ""}",
-    //   "${context.localize.entrance_is_solid_surface(entrance.isSolidSurface.toString())}. ${comments.isSolidSurfaceComment ?? ""}",
-    //   "${context.localize.entrance_are_different_types_of_surface(entrance.areDifferentTypesOfSurface.toString())}. ${comments.areDifferentTypesOfSurfaceComment ?? ""}",
-    //   comments.entranceThreats ?? "",
-    //   "${context.localize.entrance_has_sound_transmitter(entrance.hasSoundTransmitter.toString())}. ${comments.hasSoundTransmitterComment ?? ""}",
-    //   "${context.localize.entrance_has_tactile_paving(entrance.hasTactilePaving.toString())}. ${comments.hasTactilePavingComment ?? ""}",
-    // ].where((item) => item.trim().isNotEmpty).toIList();
     final widgets = [
-      Text(entrance.translations.pl.name ?? "", style: context.textTheme.title.copyWith(fontSize: 24)),
+      Text(entrance.translations.pl.name, style: context.textTheme.title.copyWith(fontSize: 24)),
       const SizedBox(height: DigitalGuideConfig.heightMedium),
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: DigitalGuideConfig.paddingMedium),
@@ -50,15 +43,16 @@ class DigitalGuideEntranceDetailsView extends ConsumerWidget {
         ),
       ),
       const SizedBox(height: DigitalGuideConfig.heightBig),
-      // TODO(thesun901): apply changes with the new Manager class
-      // AccessibilityProfileCard(
-      //   items: commentsList,
-      //   icon: Assets.svg.digitalGuide.accessibilityAlerts.blindProfile,
-      // ),
+      AccessibilityProfileCard(
+        accessibilityCommentsManager: EntracesAccessibilityCommentsManager(
+          digitalGuideEntrace: entrance,
+          l10n: context.localize,
+        ),
+      ),
       const SizedBox(height: DigitalGuideConfig.heightBig),
       DigitalGuideNavLink(onTap: () {}, text: context.localize.door),
       const SizedBox(height: DigitalGuideConfig.heightBig),
-      DigitalGuidePhotoRow(imagesIDs: entrance.imagesIndices.lock),
+      DigitalGuidePhotoRow(imagesIDs: entrance.imagesIndices),
       const SizedBox(height: DigitalGuideConfig.heightMedium),
     ];
 
