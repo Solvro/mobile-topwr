@@ -30,17 +30,17 @@ class CorridorView extends ConsumerWidget {
     final textStrings =
         [
           corridor.translations.plTranslation.comment,
-          "${l10n.corridor_simple_layout_text(corridor.isSimpleCorridorLayout)} ${comments.isSimpleCorridorLayoutComment}",
-          "${l10n.corridor_floor_marked(corridor.isFloorMarked)} ${comments.isFloorMarkedComment}",
-          "${l10n.corridor_room_entrances(corridor.areRoomsEntrances)} ${comments.areRoomsEntrancesComment}",
-          "${l10n.corridor_information_board(corridor.isInformationBoard)} ${comments.isInformationBoardComment}",
-          "${l10n.corridor_room_purpose_described_in_en(corridor.areRoomPurposeDescribedInEn)} ${comments.areRoomPurposeDescribedInEnComment}",
-          "${l10n.corridor_consistent_level_color_pattern(corridor.isConsistentLevelColorPattern)} ${comments.isConsistentLevelColorPatternComment}",
-          "${l10n.corridor_pictorial_directional_signs(corridor.arePictorialDirectionalSigns)} ${comments.arePictorialDirectionalSignsComment}",
-          "${l10n.corridor_seats(corridor.areSeats)} ${comments.areSeatsComment}",
-          "${l10n.corridor_vending_machines(corridor.areVendingMachines)} ${comments.areVendingMachinesComment}",
+          "${l10n.corridor_simple_layout_text(corridor.isSimpleCorridorLayout.toLowerCase())} ${comments.isSimpleCorridorLayoutComment}",
+          "${l10n.corridor_floor_marked(corridor.isFloorMarked.toLowerCase())} ${comments.isFloorMarkedComment}",
+          "${l10n.corridor_room_entrances(corridor.areRoomsEntrances.toLowerCase())} ${comments.areRoomsEntrancesComment}",
+          "${l10n.corridor_information_board(corridor.isInformationBoard.toLowerCase())} ${comments.isInformationBoardComment}",
+          "${l10n.corridor_room_purpose_described_in_en(corridor.areRoomPurposeDescribedInEn.toLowerCase())} ${comments.areRoomPurposeDescribedInEnComment}",
+          "${l10n.corridor_consistent_level_color_pattern(corridor.isConsistentLevelColorPattern.toLowerCase())} ${comments.isConsistentLevelColorPatternComment}",
+          "${l10n.corridor_pictorial_directional_signs(corridor.arePictorialDirectionalSigns.toLowerCase())} ${comments.arePictorialDirectionalSignsComment}",
+          "${l10n.corridor_seats(corridor.areSeats.toLowerCase())} ${comments.areSeatsComment}",
+          "${l10n.corridor_vending_machines(corridor.areVendingMachines.toLowerCase())} ${comments.areVendingMachinesComment}",
           if (corridor.areVendingMachines.toLowerCase() == "true") comments.vendingMachinesProducts,
-          "${l10n.corridor_emergency_plan(corridor.isEmergencyPlan)} ${comments.isEmergencyPlanComment}",
+          "${l10n.corridor_emergency_plan(corridor.isEmergencyPlan.toLowerCase())} ${comments.isEmergencyPlanComment}",
         ].map((element) => element.trim()).where((element) => element.isNotEmpty).toIList();
 
     return Scaffold(
