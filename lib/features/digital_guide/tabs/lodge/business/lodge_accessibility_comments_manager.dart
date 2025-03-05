@@ -12,8 +12,12 @@ class LodgeAccessibilityCommentsManager extends AccessibilityCommentsManager {
 
   @override
   IList<String> getCommentsListForBlind() {
-    // TODO: implement getCommentsListForBlind
-    throw UnimplementedError();
+    final comments = lodge.translations.pl;
+
+    return IList([
+      "${l10n.lodge_access_barriers(lodge.areAccessBarriers.toLowerCase())} ${comments.areAccessBarriersComment}",
+      if (lodge.counterHeight > 0) l10n.lodge_counter_height(lodge.counterHeight),
+    ]).map((element) => element.trim()).where((element) => element.isNotEmpty).toIList();
   }
 
   @override
@@ -24,14 +28,17 @@ class LodgeAccessibilityCommentsManager extends AccessibilityCommentsManager {
 
   @override
   IList<String> getCommentsListForHearingImpairment() {
-    // TODO: implement getCommentsListForHearingImpairment
-    throw UnimplementedError();
+    return IList<String>(const []);
   }
 
   @override
   IList<String> getCommentsListForLowVision() {
-    // TODO: implement getCommentsListForLowVision
-    throw UnimplementedError();
+    final comments = lodge.translations.pl;
+
+    return IList([
+      "${l10n.lodge_visible_from_afar(lodge.isVisibleFromAfar.toLowerCase())} ${comments.isVisibleFromAfarComment}",
+      "${l10n.lodge_good_lit(lodge.isGoodLit.toLowerCase())} ${comments.isGoodLitComment}",
+    ]).map((element) => element.trim()).where((element) => element.isNotEmpty).toIList();
   }
 
   @override
@@ -41,14 +48,13 @@ class LodgeAccessibilityCommentsManager extends AccessibilityCommentsManager {
     return IList([
       "${l10n.lodge_access_barriers(lodge.areAccessBarriers.toLowerCase())} ${comments.areAccessBarriersComment}",
       "${l10n.lodge_movement_space(lodge.isMovementSpace.toLowerCase())} ${comments.isMovementSpaceComment}",
-      l10n.lodge_counter_height(lodge.counterHeight),
+      if (lodge.counterHeight > 0) l10n.lodge_counter_height(lodge.counterHeight),
       "${l10n.lodge_space_under_counter(lodge.isSpaceUnderCounter.toLowerCase())} ${comments.isSpaceUnderCounterComment}",
     ]).map((element) => element.trim()).where((element) => element.isNotEmpty).toIList();
   }
 
   @override
   IList<String> getCommentsListForSensorySensitivity() {
-    // TODO: implement getCommentsListForSensorySensitivity
-    throw UnimplementedError();
+    return IList<String>(const []);
   }
 }

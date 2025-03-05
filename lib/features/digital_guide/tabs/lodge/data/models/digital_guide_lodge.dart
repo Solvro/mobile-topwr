@@ -13,6 +13,8 @@ abstract class DigitalGuideLodge with _$DigitalGuideLodge {
     required String isMovementSpace,
     required double counterHeight,
     required String isSpaceUnderCounter,
+    required String isVisibleFromAfar,
+    required String isGoodLit,
     @JsonKey(name: "images") required List<int>? imagesIds,
   }) = _DigitalGuideLodge;
 
@@ -38,6 +40,8 @@ abstract class DigitalGuideTranslationLodge with _$DigitalGuideTranslationLodge 
     required String areAccessBarriersComment,
     required String isMovementSpaceComment,
     required String isSpaceUnderCounterComment,
+    required String isVisibleFromAfarComment,
+    required String isGoodLitComment,
   }) = _DigitalGuideTranslationLodge;
   factory DigitalGuideTranslationLodge.fromJson(Map<String, dynamic> json) =>
       _$DigitalGuideTranslationLodgeFromJson(json);
