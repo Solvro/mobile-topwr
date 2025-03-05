@@ -7,7 +7,9 @@ import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/context_extensions.dart";
 import "../../../../../widgets/my_error_widget.dart";
 import "../../../data/models/digital_guide_response.dart";
+import "../../../presentation/widgets/accessibility_profile_card.dart";
 import "../../../presentation/widgets/digital_guide_photo_row.dart";
+import "../business/lodge_accessibility_comments_manager.dart";
 import "../data/models/digital_guide_lodge.dart";
 import "../data/repository/lodges_repository.dart";
 
@@ -63,6 +65,13 @@ class _DigitalGuideLodgeExpansionTileContent extends StatelessWidget {
           Text(lodgeInformation.comment),
           if (lodgeInformation.comment.isNotEmpty) const SizedBox(height: DigitalGuideConfig.heightMedium),
           DigitalGuidePhotoRow(imagesIDs: lodge!.imagesIds?.toIList() ?? const IList.empty()),
+          if (lodge != null)
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: DigitalGuideConfig.paddingBig),
+              child: AccessibilityProfileCard(
+                accessibilityCommentsManager: LodgeAccessibilityCommentsManager(l10n: context.localize, lodge: lodge!),
+              ),
+            ),
         ],
       ),
     );
