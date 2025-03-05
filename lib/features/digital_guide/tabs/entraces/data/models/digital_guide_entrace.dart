@@ -1,3 +1,4 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 
 part "digital_guide_entrace.freezed.dart";
@@ -21,16 +22,16 @@ abstract class DigitalGuideEntrace with _$DigitalGuideEntrace {
     @JsonKey(fromJson: _stringToBool) required bool isSolidSurface,
     @JsonKey(fromJson: _stringToBool) required bool areDifferentTypesOfSurface,
     @JsonKey(fromJson: _stringToBool) required bool areBenches,
-    required int? numberOfDoors,
-    required String? doorsDistance,
+    required int numberOfDoors,
+    required String doorsDistance,
     @JsonKey(fromJson: _stringToBool) required bool hasSoundTransmitter,
     @JsonKey(fromJson: _stringToBool) required bool hasTactilePaving,
     required int? building,
-    @JsonKey(name: "stairs") required List<int> stairsIndices,
-    @JsonKey(name: "lifts") required List<int> liftsIndices,
-    @JsonKey(name: "doors") required List<int> doorsIndices,
-    @JsonKey(name: "ramps") required List<int> rampsIndices,
-    @JsonKey(name: "images") required List<int> imagesIndices,
+    @JsonKey(name: "stairs") required IList<int> stairsIndices,
+    @JsonKey(name: "lifts") required IList<int> liftsIndices,
+    @JsonKey(name: "doors") required IList<int> doorsIndices,
+    @JsonKey(name: "ramps") required IList<int> rampsIndices,
+    @JsonKey(name: "images") required IList<int> imagesIndices,
   }) = _DigitalGuideEntrace;
 
   factory DigitalGuideEntrace.fromJson(Map<String, dynamic> json) => _$DigitalGuideEntraceFromJson(json);
@@ -49,22 +50,22 @@ abstract class DigitalGuideTranslationsEntrace with _$DigitalGuideTranslationsEn
 abstract class DigitalGuideTranslationEntrace with _$DigitalGuideTranslationEntrace {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideTranslationEntrace({
-    required String? name,
-    required String? location,
-    required String? isMainComment,
-    required String? isForPersonelComment,
-    required String? isBuildingMarkedFromEntranceComment,
-    required String? isBuildingMarkedInEnComment,
-    required String? isLitComment,
-    required String? isEmergencyExitComment,
-    required String? isProtectionFromWeatherComment,
-    required String? isSolidSurfaceComment,
-    required String? areDifferentTypesOfSurfaceComment,
-    required String? areBenchesComment,
-    required String? entranceThreats,
-    required String? hasSoundTransmitterComment,
-    required String? hasTactilePavingComment,
-    required String? comment,
+    required String name,
+    required String location,
+    required String isMainComment,
+    required String isForPersonelComment,
+    required String isBuildingMarkedFromEntranceComment,
+    required String isBuildingMarkedInEnComment,
+    required String isLitComment,
+    required String isEmergencyExitComment,
+    required String isProtectionFromWeatherComment,
+    required String isSolidSurfaceComment,
+    required String areDifferentTypesOfSurfaceComment,
+    required String areBenchesComment,
+    required String entranceThreats,
+    required String hasSoundTransmitterComment,
+    required String hasTactilePavingComment,
+    required String comment,
   }) = _DigitalGuideTranslationEntrace;
 
   factory DigitalGuideTranslationEntrace.fromJson(Map<String, dynamic> json) =>
