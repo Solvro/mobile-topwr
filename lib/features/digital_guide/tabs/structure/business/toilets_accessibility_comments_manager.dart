@@ -1,8 +1,8 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 
-import "../../../../../../l10n/app_localizations.dart";
-import "../../../../business/accessibility_comments_manager.dart";
-import "../models/toilet.dart";
+import "../../../../../l10n/app_localizations.dart";
+import "../../../business/accessibility_comments_manager.dart";
+import "../data/models/toilet.dart";
 
 class ToiletsAccessibilityCommentsManager extends AccessibilityCommentsManager {
   ToiletsAccessibilityCommentsManager({required this.toilet, required this.l10n});

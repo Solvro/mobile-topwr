@@ -1,8 +1,8 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 
-import "../../../../../../l10n/app_localizations.dart";
-import "../../../../business/accessibility_comments_manager.dart";
-import "../models/stairs.dart";
+import "../../../../../l10n/app_localizations.dart";
+import "../../../business/accessibility_comments_manager.dart";
+import "../data/models/stairs.dart";
 
 class StairsAccessibilityCommentsManager extends AccessibilityCommentsManager {
   StairsAccessibilityCommentsManager({required this.stairs, required this.l10n});

@@ -12,7 +12,7 @@ import "../../../../presentation/widgets/accessibility_button.dart";
 import "../../../../presentation/widgets/accessibility_profile_card.dart";
 import "../../../../presentation/widgets/bullet_list.dart";
 import "../../../../presentation/widgets/digital_guide_loading_view.dart";
-import "../../data/bussiness/railings_accessibility_comments_manager.dart";
+import "../../business/railings_accessibility_comments_manager.dart";
 import "../../data/models/railing.dart";
 import "../../data/repository/railings_repository.dart";
 
