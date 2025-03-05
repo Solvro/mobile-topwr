@@ -4,6 +4,10 @@ import "package:flutter/widgets.dart";
 import "../../../../theme/app_theme.dart";
 import "../utils/chart_utils.dart";
 
+const int rotationAngle = -45;
+const double pi = 3.141592653;
+const int degreesToRadiansFactor = 180;
+
 class BottomLabels extends AxisTitles {
   BottomLabels(BuildContext context)
     : super(
@@ -15,7 +19,7 @@ class BottomLabels extends AxisTitles {
               (double val, _) => Padding(
                 padding: const EdgeInsets.only(top: 4),
                 child: Transform.rotate(
-                  angle: -45 / 180 * 3.1415926535,
+                  angle: rotationAngle / degreesToRadiansFactor * pi,
                   child: SideTitleWidget(
                     axisSide: AxisSide.bottom,
                     child: Text(ChartUtilsX.getLabelForValue(val), style: context.iParkingTheme.chart),
