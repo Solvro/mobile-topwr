@@ -11,7 +11,7 @@ import "../../../../presentation/widgets/accessibility_button.dart";
 import "../../../../presentation/widgets/accessibility_profile_card.dart";
 import "../../../../presentation/widgets/bullet_list.dart";
 import "../../../../presentation/widgets/digital_guide_nav_link.dart";
-import "../../data/bussiness/toilets_accessibility_comments_manager.dart";
+import "../../business/toilets_accessibility_comments_manager.dart";
 import "../../data/models/toilet.dart";
 
 @RoutePage()

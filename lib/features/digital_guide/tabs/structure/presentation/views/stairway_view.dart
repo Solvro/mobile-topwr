@@ -13,7 +13,7 @@ import "../../../../presentation/widgets/accessibility_profile_card.dart";
 import "../../../../presentation/widgets/bullet_list.dart";
 import "../../../../presentation/widgets/digital_guide_nav_link.dart";
 import "../../../../presentation/widgets/digital_guide_photo_row.dart";
-import "../../data/bussiness/stairway_accessibility_comments_manager.dart";
+import "../../business/stairway_accessibility_comments_manager.dart";
 import "../../data/models/stairway.dart";
 
 @RoutePage()

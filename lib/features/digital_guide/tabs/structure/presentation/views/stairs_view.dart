@@ -15,7 +15,7 @@ import "../../../../presentation/widgets/accessibility_profile_card.dart";
 import "../../../../presentation/widgets/bullet_list.dart";
 import "../../../../presentation/widgets/digital_guide_loading_view.dart";
 import "../../../../presentation/widgets/digital_guide_nav_link.dart";
-import "../../data/bussiness/stairs_accessibility_comments_manager.dart";
+import "../../business/stairs_accessibility_comments_manager.dart";
 import "../../data/models/stairs.dart";
 import "../../data/repository/stairs_repository.dart";
 

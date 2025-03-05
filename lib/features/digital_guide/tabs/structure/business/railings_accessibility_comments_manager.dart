@@ -1,8 +1,8 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 
-import "../../../../../../l10n/app_localizations.dart";
-import "../../../../business/accessibility_comments_manager.dart";
-import "../models/railing.dart";
+import "../../../../../l10n/app_localizations.dart";
+import "../../../business/accessibility_comments_manager.dart";
+import "../data/models/railing.dart";
 
 class RailingsAccessibilityCommentsManager extends AccessibilityCommentsManager {
   RailingsAccessibilityCommentsManager({required this.railing, required this.l10n});
