@@ -572,5 +572,21 @@
 
   "corridor_echo" : "{value, select, false{Akustyka korytarza nie powoduje powstawania echa, które może utrudniać komunikację.} true{Akustyka korytarza powoduje powstawanie echa, które może utrudniać komunikację.} other{}}",
 
-  "corridor_flashing_device": "{value, select, false{W korytarzu nie ma obiektów migających lub błyszczących, które mogą wywołać atak epilepsji.} true{W korytarzu znajdują się obiekty migające lub błyszczące, które mogą wywołać atak epilepsji.} other{}}"
+  "corridor_flashing_device": "{value, select, false{W korytarzu nie ma obiektów migających lub błyszczących, które mogą wywołać atak epilepsji.} true{W korytarzu znajdują się obiekty migające lub błyszczące, które mogą wywołać atak epilepsji.} other{}}",
+
+  "entrance_is_main": "{value, select, false{Wejście nie jest główne.} true{Wejście jest główne.} other{}}",
+  "entrance_is_accessible": "{value, select, false{Wejście nie jest dostępne.} true{Wejście jest dostępne.} other{}}",
+  "entrance_is_for_personel": "{value, select, false{Wejście nie jest przeznaczone dla personelu.} true{Wejście jest przeznaczone dla personelu.} other{}}",
+  "entrance_is_building_marked_from_entrance": "{value, select, false{Budynek nie jest oznakowany przy wejściu.} true{Budynek jest oznakowany przy wejściu.} other{}}",
+  "entrance_is_building_marked_in_en": "{value, select, false{Budynek nie jest oznakowany w języku angielskim.} true{Budynek jest oznakowany w języku angielskim.} other{}}",
+  "entrance_is_lit": "{value, select, false{Wejście nie jest dobrze oświetlone.} true{Wejście jest dobrze oświetlone.} other{}}",
+  "entrance_is_emergency_exit": "{value, select, false{Wejście nie jest wyjściem ewakuacyjnym.} true{Wejście jest wyjściem ewakuacyjnym.} other{}}",
+  "entrance_is_protection_from_weather": "{value, select, false{Wejście nie jest osłonięte przed warunkami atmosferycznymi.} true{Wejście jest osłonięte przed warunkami atmosferycznymi.} other{}}",
+  "entrance_is_solid_surface": "{value, select, false{Podłoże przy wejściu nie jest równe i stabilne.} true{Podłoże przy wejściu jest równe i stabilne.} other{}}",
+  "entrance_are_different_types_of_surface": "{value, select, false{Brak różnych typów nawierzchni przy wejściu.} true{Występują różne typy nawierzchni przy wejściu.} other{}}",
+  "entrance_are_benches": "{value, select, false{Brak ławek przy wejściu.} true{Przy wejściu znajdują się ławki.} other{}}",
+  "entrance_number_of_doors": "{value, plural, =0{Brak drzwi przy wejściu.} other{Liczba drzwi przy wejściu: {value}.}}",
+  "entrance_doors_distance": "Odległość między drzwiami wynosi {value} cm.",
+  "entrance_has_sound_transmitter": "{value, select, false{Brak nadajnika dźwięku przy wejściu.} true{Przy wejściu znajduje się nadajnik dźwięku.} other{}}",
+  "entrance_has_tactile_paving": "{value, select, false{Brak ścieżki dotykowej przy wejściu.} true{Przy wejściu znajduje się ścieżka dotykowa.} other{}}"
 }
