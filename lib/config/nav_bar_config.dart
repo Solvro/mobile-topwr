@@ -65,6 +65,8 @@ extension IsRouteATabViewX on PageRouteInfo<dynamic> {
       RegionRoute.name => context.localize.region,
       CorridorRoute.name => context.localize.corridor,
       AdaptedToiletDetailRoute.name => context.localize.adapted_toilets,
+      DigitalGuideEntranceDetailsRoute.name => context.localize.entrances,
+      DigitalGuideRoomDetailRoute.name => context.localize.room_information,
       _ => null,
     };
   }

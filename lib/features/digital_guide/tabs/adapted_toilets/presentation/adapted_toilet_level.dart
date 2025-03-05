@@ -27,6 +27,7 @@ class AdaptedToiletLevel extends ConsumerWidget {
           itemBuilder:
               (context, index) => DigitalGuideNavLink(
                 onTap: () async {
+                  debugPrint("halo");
                   await ref.navigateAdaptedToiletDetails(adaptedToilets[index]);
                 },
                 text: adaptedToilets[index].getDescription(context),

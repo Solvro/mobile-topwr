@@ -100,6 +100,7 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: TransportationDetailRoute.page),
     AutoRoute(page: RailingsRoute.page),
     AutoRoute(page: RampsRoute.page),
+    AutoRoute(page: AdaptedToiletDetailRoute.page),
   ];
 }
 
