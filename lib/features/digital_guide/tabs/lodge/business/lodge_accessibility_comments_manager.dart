@@ -22,8 +22,7 @@ class LodgeAccessibilityCommentsManager extends AccessibilityCommentsManager {
 
   @override
   IList<String> getCommentsListForCognitiveImpairment() {
-    // TODO: implement getCommentsListForCognitiveImpairment
-    throw UnimplementedError();
+    return IList<String>(const []);
   }
 
   @override
