@@ -8,6 +8,7 @@ import "../../../../../../utils/context_extensions.dart";
 import "../../../../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../../../../navigator/utils/navigation_commands.dart";
 import "../../../../data/models/level_with_regions.dart";
+import "../../../../presentation/widgets/accessibility_button.dart";
 import "../../../../presentation/widgets/digital_guide_nav_link.dart";
 
 @RoutePage()
@@ -18,7 +19,7 @@ class LevelView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: DetailViewAppBar(),
+      appBar: DetailViewAppBar(actions: [AccessibilityButton()]),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: DigitalGuideConfig.heightBig),
         child: CustomScrollView(

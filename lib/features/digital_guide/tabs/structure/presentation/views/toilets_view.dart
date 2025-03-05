@@ -7,6 +7,7 @@ import "../../../../../../theme/app_theme.dart";
 import "../../../../../../utils/context_extensions.dart";
 import "../../../../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../../../../navigator/utils/navigation_commands.dart";
+import "../../../../presentation/widgets/accessibility_button.dart";
 import "../../../../presentation/widgets/accessibility_profile_card.dart";
 import "../../../../presentation/widgets/bullet_list.dart";
 import "../../../../presentation/widgets/digital_guide_nav_link.dart";
@@ -24,7 +25,7 @@ class ToiletsView extends ConsumerWidget {
     final ToiletTranslation toiletsInformation = toilet.translations.plTranslation;
 
     return Scaffold(
-      appBar: DetailViewAppBar(),
+      appBar: DetailViewAppBar(actions: [AccessibilityButton()]),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: DigitalGuideConfig.heightBig),
         child: ListView(

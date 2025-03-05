@@ -427,101 +427,6 @@
   "ramp" : "Pochylnia",
   "lift" : "Winda",
   "parking" : "Parking",
-  "corridor" : "Korytarz",
-  "corridor_simple_layout_text" : "Korytarz ma prosty i przejrzysty układ, który jest powtarzalny na każdej kondygnacji. {comment}",
-  "@corridor_simple_layout_text": {
-    "description": "comment",
-    "placeholders": {
-      "comment": {
-        "type": "String"
-      }
-    }
-  },
-  "corridor_no_simple_layout_text" : "Układ korytarza nie jest prosty, czytelny ani powtarzalny na każdej kondygnacji. {comment}",
-  "@corridor_no_simple_layout_text": {
-    "description": "comment",
-    "placeholders": {
-      "comment": {
-        "type": "String"
-      }
-    }
-  },
-  "floor_marked_text" : "Korytarz jest oznakowany. Widoczny jest numer piętra. {comment}",
-  "@floor_marked_text": {
-    "description": "comment",
-    "placeholders": {
-      "comment": {
-        "type": "String"
-      }
-    }
-  },
-  "floor_not_marked_text" : "Korytarz nie jest oznakowany. Nie ma widocznego numeru piętra. {comment}",
-  "@floor_not_marked_text": {
-    "description": "comment",
-    "placeholders": {
-      "comment": {
-        "type": "String"
-      }
-    }
-  },
-  "room_entrances_text" : "Z korytarza możliwe jest wejście do następujących pomieszczeń: {comment}",
-  "no_room_entrances_text" : "Z korytarza nie ma możliwości wejścia do żadnego pomieszczenia.",
-  "information_board_text" : "W korytarzu nie ma tablicy informacyjnej ze spisem pomieszczeń. {comment}",
-  "@information_board_text": {
-    "placeholders": {
-      "comment": {
-        "type": "String"
-      }
-    }
-  },
-  "no_information_board_text" : "W korytarzu nie ma tablicy informacyjnej ze spisem pomieszczeń. {comment}",
-  "@no_information_board_text": {
-    "placeholders": {
-      "comment": {
-        "type": "String"
-      }
-    }
-  },
-  "room_puropose_described_in_en_text" : "Funkcje pomieszczeń nie są opisane w języku angielskim.",
-  "room_puropose_not_described_in_en_text" : "Funkcje pomieszczeń nie są opisane w języku angielskim.",
-  "consistent_level_color_pattern_text" : "Kolor, wzór i krój oznakowania pomieszczeń są spójne dla całego piętra.",
-  "not_consistent_level_color_pattern_text" : "Kolor, wzór i krój oznakowania pomieszczeń nie są spójne dla całego piętra.",
-  "pictorial_directional_signs_text" : "W kluczowych punktach korytarza znajdują się wyraźne i kontrastowe oznakowania kierunkowe. {comment}",
-  "@pictorial_directional_signs_text": {
-    "placeholders": {
-      "comment": {
-        "type": "String"
-      }
-    }
-  },
-  "no_pictorial_directional_signs_text" : "W kluczowych punktach korytarza nie ma wyraźnych i kontrastowych oznakowań kierunkowych. {comment}",
-  "@no_pictorial_directional_signs_text": {
-    "placeholders": {
-      "comment": {
-        "type": "String"
-      }
-    }
-  },
-  "seats_text" : "W korytarzu znajdują się miejsca siedzące. Są to: {comment}",
-  "@seats_text": {
-    "placeholders": {
-      "comment": {
-        "type": "String"
-      }
-    }
-  },
-  "no_seats_text" : "W korytarzu nie ma miejsc siedzących.",
-  "vending_machines_text" : "W korytarzu znajdują się automaty sprzedające. {comment}",
-  "@vending_machines_text": {
-    "placeholders": {
-      "comment": {
-        "type": "String"
-      }
-    }
-  },
-  "no_vending_machines_text" : "W korytarzu nie ma automatów sprzedających.",
-  "emergency_plan_text" : "W korytarzu znajdują się plany ewakuacyjne.",
-  "no_emergency_plan_text" : "W korytarzu nie ma planów ewakuacyjnych.",
   "lift_width_text": "Szerokość drzwi wynosi {width} centymetrów.",
   "@lift_width_text": {
     "placeholders": {
@@ -636,6 +541,18 @@
   "dressing_room_counter_is_space_under": "{value, select, false{Pod ladą nie ma wolnej przestrzeni.} true{Pod ladą znajduje się wolna przestrzeń.} other{}}",
   "dressing_room_counter_is_space_on": "{value, select, false{Na ladzie nie ma wolnej przestrzeni.} true{Na ladzie znajduje się wolna przestrzeń.} other{}}",
   
+  "corridor" : "Korytarz",
+  "corridor_simple_layout_text": "{value, select, false{Układ korytarza nie jest prosty, czytelny ani powtarzalny na każdej kondygnacji.} true{Korytarz ma prosty i przejrzysty układ, który jest powtarzalny na każdej kondygnacji.} other{}}",
+  "corridor_floor_marked": "{value, select, false{Korytarz nie jest oznakowany. Nie ma widocznego numeru piętra.} true{Korytarz jest oznakowany. Widoczny jest numer piętra.} other{}}",
+  "corridor_room_entrances": "{value, select, false{Z korytarza nie ma możliwości wejścia do żadnego pomieszczenia.} true{Z korytarza możliwe jest wejście do następujących pomieszczeń:} other{}}",
+  "corridor_information_board": "{value, select, false{W korytarzu nie ma tablicy informacyjnej ze spisem pomieszczeń.} true{W korytarzu znajduje się tablica informacyjna ze spisem pomieszczeń.} other{}}",
+  "corridor_room_purpose_described_in_en" : "{value, select, false{Funkcje pomieszczeń nie są opisane w języku angielskim.} true{Funkcje pomieszczeń są opisane w języku angielskim.} other{}}",
+  "corridor_consistent_level_color_pattern" : "{value, select, false{Kolor, wzór i krój oznakowania pomieszczeń nie są spójne dla całego piętra.} true{Kolor, wzór i krój oznakowania pomieszczeń są spójne dla całego piętra.} other{}}",
+  "corridor_pictorial_directional_signs" : "{value, select, false{W kluczowych punktach korytarza nie ma wyraźnych i kontrastowych oznakowań kierunkowych.} true{W kluczowych punktach korytarza znajdują się wyraźne i kontrastowe oznakowania kierunkowe.} other{}}",
+  "corridor_seats" : "{value, select, false{W korytarzu nie ma miejsc siedzących.} true{W korytarzu znajdują się miejsca siedzące. Są to:} other{}}",
+  "corridor_vending_machines" : "{value, select, false{W korytarzu nie ma automatów sprzedających.} true{W korytarzu znajdują się automaty sprzedające.} other{}}",
+  "corridor_emergency_plan" : "{value, select, false{W korytarzu nie ma planów ewakuacyjnych.} true{W korytarzu znajdują się plany ewakuacyjne.} other{}}",
+
   "corridor_typhlomap": "{value, select, false{W korytarzu nie jest dostępna tyflomapa.} true{W korytarzu znajduje się tyflomapa.} other{}}",
   "corridor_dangerous_elements": "{value, select, false{W korytarzu nie ma innych stałych lub ruchomych elementów, które mogą stanowić problemy w poruszaniu się.} true{W korytarzu znajdują się inne stałe lub ruchome obiekty mogące stanowić problemy w poruszaniu się. Są to:} other{}}",
   "corridor_info_plates_accessible": "{value, select, false{Oznakowanie pomieszczeń nie zawiera dodatkowych informacji.} true{Oznakowanie pomieszczeń zawiera dodatkowo:} other{}}",

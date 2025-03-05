@@ -9,6 +9,7 @@ import "../../../../../utils/context_extensions.dart";
 import "../../../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../../../../widgets/horizontal_symmetric_safe_area.dart";
 import "../../../../../widgets/my_error_widget.dart";
+import "../../../presentation/widgets/accessibility_button.dart";
 import "../../../presentation/widgets/bullet_list.dart";
 import "../../../presentation/widgets/digital_guide_loading_view.dart";
 import "../data/model/door.dart";
@@ -65,7 +66,7 @@ class _DoorsView extends ConsumerWidget {
         ].map((string) => string.trim()).where((string) => string.isNotEmpty).toIList();
 
     return Scaffold(
-      appBar: DetailViewAppBar(),
+      appBar: DetailViewAppBar(actions: [AccessibilityButton()]),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: DigitalGuideConfig.heightBig),
         child: CustomScrollView(

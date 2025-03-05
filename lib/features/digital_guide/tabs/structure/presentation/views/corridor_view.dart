@@ -8,6 +8,7 @@ import "../../../../../../theme/app_theme.dart";
 import "../../../../../../utils/context_extensions.dart";
 import "../../../../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../../../../navigator/utils/navigation_commands.dart";
+import "../../../../presentation/widgets/accessibility_button.dart";
 import "../../../../presentation/widgets/accessibility_profile_card.dart";
 import "../../../../presentation/widgets/bullet_list.dart";
 import "../../../../presentation/widgets/digital_guide_image.dart";
@@ -23,57 +24,27 @@ class CorridorView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final textStrings = [
-      corridor.translations.plTranslation.comment,
-      if (corridor.isSimpleCorridorLayout)
-        context.localize.corridor_simple_layout_text(corridor.translations.plTranslation.isSimpleCorridorLayoutComment)
-      else
-        context.localize.corridor_no_simple_layout_text(
-          corridor.translations.plTranslation.isSimpleCorridorLayoutComment,
-        ),
-      if (corridor.isFloorMarked)
-        context.localize.floor_marked_text(corridor.translations.plTranslation.isFloorMarkedComment)
-      else
-        context.localize.floor_not_marked_text(corridor.translations.plTranslation.isFloorMarkedComment),
-      if (corridor.areRoomsEntrances)
-        context.localize.room_entrances_text(corridor.translations.plTranslation.areRoomsEntrancesComment)
-      else
-        context.localize.no_room_entrances_text,
-      if (corridor.isInformationBoard)
-        context.localize.information_board_text(corridor.translations.plTranslation.isInformationBoardComment)
-      else
-        context.localize.no_information_board_text(corridor.translations.plTranslation.isInformationBoardComment),
-      if (corridor.areRoomPurposeDescribedInEn)
-        context.localize.room_puropose_described_in_en_text
-      else
-        context.localize.room_puropose_not_described_in_en_text,
-      if (corridor.isConsistentLevelColorPattern)
-        context.localize.room_puropose_described_in_en_text
-      else
-        context.localize.not_consistent_level_color_pattern_text,
-      if (corridor.arePictorialDirectionalSigns)
-        context.localize.pictorial_directional_signs_text(
-          corridor.translations.plTranslation.arePictorialDirectionalSignsComment,
-        )
-      else
-        context.localize.no_pictorial_directional_signs_text(
-          corridor.translations.plTranslation.arePictorialDirectionalSignsComment,
-        ),
-      if (corridor.areSeats)
-        context.localize.seats_text(corridor.translations.plTranslation.areSeatsComment)
-      else
-        context.localize.no_seats_text,
-      if (corridor.areVendingMachines)
-        context.localize.vending_machines_text(corridor.translations.plTranslation.areVendingMachinesComment),
-      if (corridor.areVendingMachines)
-        corridor.translations.plTranslation.vendingMachinesProducts
-      else
-        context.localize.no_vending_machines_text,
-      if (corridor.isEmergencyPlan) context.localize.emergency_plan_text else context.localize.no_emergency_plan_text,
-    ];
+    final l10n = context.localize;
+    final comments = corridor.translations.plTranslation;
+
+    final textStrings =
+        [
+          corridor.translations.plTranslation.comment,
+          "${l10n.corridor_simple_layout_text(corridor.isSimpleCorridorLayout.toLowerCase())} ${comments.isSimpleCorridorLayoutComment}",
+          "${l10n.corridor_floor_marked(corridor.isFloorMarked.toLowerCase())} ${comments.isFloorMarkedComment}",
+          "${l10n.corridor_room_entrances(corridor.areRoomsEntrances.toLowerCase())} ${comments.areRoomsEntrancesComment}",
+          "${l10n.corridor_information_board(corridor.isInformationBoard.toLowerCase())} ${comments.isInformationBoardComment}",
+          "${l10n.corridor_room_purpose_described_in_en(corridor.areRoomPurposeDescribedInEn.toLowerCase())} ${comments.areRoomPurposeDescribedInEnComment}",
+          "${l10n.corridor_consistent_level_color_pattern(corridor.isConsistentLevelColorPattern.toLowerCase())} ${comments.isConsistentLevelColorPatternComment}",
+          "${l10n.corridor_pictorial_directional_signs(corridor.arePictorialDirectionalSigns.toLowerCase())} ${comments.arePictorialDirectionalSignsComment}",
+          "${l10n.corridor_seats(corridor.areSeats.toLowerCase())} ${comments.areSeatsComment}",
+          "${l10n.corridor_vending_machines(corridor.areVendingMachines.toLowerCase())} ${comments.areVendingMachinesComment}",
+          if (corridor.areVendingMachines.toLowerCase() == "true") comments.vendingMachinesProducts,
+          "${l10n.corridor_emergency_plan(corridor.isEmergencyPlan.toLowerCase())} ${comments.isEmergencyPlanComment}",
+        ].map((element) => element.trim()).where((element) => element.isNotEmpty).toIList();
 
     return Scaffold(
-      appBar: DetailViewAppBar(),
+      appBar: DetailViewAppBar(actions: [AccessibilityButton()]),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: DigitalGuideConfig.heightBig),
         child: CustomScrollView(
@@ -85,7 +56,7 @@ class CorridorView extends ConsumerWidget {
                   style: context.textTheme.headline.copyWith(fontSize: DigitalGuideConfig.headlineFont),
                 ),
                 const SizedBox(height: DigitalGuideConfig.heightMedium),
-                BulletList(items: textStrings.lock),
+                BulletList(items: textStrings),
                 if (corridor.doorsIndices.isNotEmpty) const SizedBox(height: DigitalGuideConfig.heightMedium),
                 ListView.separated(
                   physics: const NeverScrollableScrollPhysics(),
