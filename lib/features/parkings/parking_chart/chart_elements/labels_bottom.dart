@@ -1,3 +1,5 @@
+import "dart:math";
+
 import "package:fl_chart/fl_chart.dart";
 import "package:flutter/widgets.dart";
 
@@ -5,7 +7,6 @@ import "../../../../theme/app_theme.dart";
 import "../utils/chart_utils.dart";
 
 const int rotationAngle = -45;
-const double pi = 3.141592653;
 const int degreesToRadiansFactor = 180;
 
 class BottomLabels extends AxisTitles {
