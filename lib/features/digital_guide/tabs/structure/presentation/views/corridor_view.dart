@@ -34,7 +34,7 @@ class CorridorView extends ConsumerWidget {
           "${l10n.corridor_floor_marked(corridor.isFloorMarked)} ${comments.isFloorMarkedComment}",
           "${l10n.corridor_room_entrances(corridor.areRoomsEntrances)} ${comments.areRoomsEntrancesComment}",
           "${l10n.corridor_information_board(corridor.isInformationBoard)} ${comments.isInformationBoardComment}",
-          "${l10n.corridor_room_puropose_described_in_en(corridor.areRoomPurposeDescribedInEn)} ${comments.areRoomPurposeDescribedInEnComment}",
+          "${l10n.corridor_room_purpose_described_in_en(corridor.areRoomPurposeDescribedInEn)} ${comments.areRoomPurposeDescribedInEnComment}",
           "${l10n.corridor_consistent_level_color_pattern(corridor.isConsistentLevelColorPattern)} ${comments.isConsistentLevelColorPatternComment}",
           "${l10n.corridor_pictorial_directional_signs(corridor.arePictorialDirectionalSigns)} ${comments.arePictorialDirectionalSignsComment}",
           "${l10n.corridor_seats(corridor.areSeats)} ${comments.areSeatsComment}",

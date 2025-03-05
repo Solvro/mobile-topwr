@@ -546,7 +546,7 @@
   "corridor_floor_marked": "{value, select, false{Korytarz nie jest oznakowany. Nie ma widocznego numeru piętra.} true{Korytarz jest oznakowany. Widoczny jest numer piętra.} other{}}",
   "corridor_room_entrances": "{value, select, false{Z korytarza nie ma możliwości wejścia do żadnego pomieszczenia.} true{Z korytarza możliwe jest wejście do następujących pomieszczeń:} other{}}",
   "corridor_information_board": "{value, select, false{W korytarzu nie ma tablicy informacyjnej ze spisem pomieszczeń.} true{W korytarzu znajduje się tablica informacyjna ze spisem pomieszczeń.} other{}}",
-  "corridor_room_puropose_described_in_en" : "{value, select, false{Funkcje pomieszczeń nie są opisane w języku angielskim.} true{Funkcje pomieszczeń są opisane w języku angielskim.} other{}}",
+  "corridor_room_purpose_described_in_en" : "{value, select, false{Funkcje pomieszczeń nie są opisane w języku angielskim.} true{Funkcje pomieszczeń są opisane w języku angielskim.} other{}}",
   "corridor_consistent_level_color_pattern" : "{value, select, false{Kolor, wzór i krój oznakowania pomieszczeń nie są spójne dla całego piętra.} true{Kolor, wzór i krój oznakowania pomieszczeń są spójne dla całego piętra.} other{}}",
   "corridor_pictorial_directional_signs" : "{value, select, false{W kluczowych punktach korytarza nie ma wyraźnych i kontrastowych oznakowań kierunkowych.} true{W kluczowych punktach korytarza znajdują się wyraźne i kontrastowe oznakowania kierunkowe.} other{}}",
   "corridor_seats" : "{value, select, false{W korytarzu nie ma miejsc siedzących.} true{W korytarzu znajdują się miejsca siedzące. Są to:} other{}}",
