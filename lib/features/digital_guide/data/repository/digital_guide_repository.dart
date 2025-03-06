@@ -1,3 +1,4 @@
+import "package:flutter/foundation.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
@@ -18,11 +19,13 @@ Future<({DigitalGuideResponse digitalGuideData, String? photoUrl})> digitalGuide
     orElse: () => throw Exception("No such building: $ourId"),
   );
   final digitalGuideId = building.externalDigitalGuideIdOrURL;
+  debugPrint("before");
   final digitalGuideData = await ref.getAndCacheDataFromDigitalGuide(
     "buildings/$digitalGuideId",
     DigitalGuideResponse.fromJson,
     onRetry: () => ref.invalidateSelf(),
   );
+  debugPrint("after");
 
   return (digitalGuideData: digitalGuideData, photoUrl: building.cover?.filename_disk);
 }

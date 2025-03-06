@@ -572,5 +572,7 @@
 
   "corridor_echo" : "{value, select, false{Akustyka korytarza nie powoduje powstawania echa, które może utrudniać komunikację.} true{Akustyka korytarza powoduje powstawanie echa, które może utrudniać komunikację.} other{}}",
 
-  "corridor_flashing_device": "{value, select, false{W korytarzu nie ma obiektów migających lub błyszczących, które mogą wywołać atak epilepsji.} true{W korytarzu znajdują się obiekty migające lub błyszczące, które mogą wywołać atak epilepsji.} other{}}"
+  "corridor_flashing_device": "{value, select, false{W korytarzu nie ma obiektów migających lub błyszczących, które mogą wywołać atak epilepsji.} true{W korytarzu znajdują się obiekty migające lub błyszczące, które mogą wywołać atak epilepsji.} other{}}",
+
+  "no_micro_navigation" : "There is no micronavigation for this building"
 }
