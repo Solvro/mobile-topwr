@@ -42,7 +42,7 @@ class AdaptedToiletsAccessibilityCommentsManager extends AccessibilityCommentsMa
 
   @override
   IList<String> getCommentsListForHearingImpairment() {
-    return IList(const []);
+    return const IList.empty();
   }
 
   @override
@@ -77,7 +77,7 @@ class AdaptedToiletsAccessibilityCommentsManager extends AccessibilityCommentsMa
       else
         l10n.adapted_toilet_is_access_not_accessible_for_pwd,
       if (adaptedToilet.isFreeSpace)
-        l10n.adapted_toilet_is_150x150_free_space(pl.is150x150FreeSpaceComment)
+        l10n.adapted_toilet_is_150x150_free_space(pl.isFreeSpaceComment)
       else
         l10n.adapted_toilet_is_not_150x150_free_space,
       if (adaptedToilet.isSideManeuveringSpace)

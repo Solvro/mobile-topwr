@@ -14,7 +14,7 @@ import "../../../presentation/widgets/accessibility_profile_card.dart";
 import "../../../presentation/widgets/bullet_list.dart";
 import "../../../presentation/widgets/digital_guide_image.dart";
 import "../../../presentation/widgets/digital_guide_nav_link.dart";
-import "../business/adapted_toilet_accesibility_comments_menager.dart";
+import "../business/adapted_toilet_accessibility_comments_menager.dart";
 import "../data/models/adapted_toilet.dart";
 
 @RoutePage()
