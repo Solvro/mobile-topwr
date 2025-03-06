@@ -580,7 +580,7 @@
   "lodge_space_under_counter": "{value, select, false{Pod dolną częścią lady nie ma miejsca na wjechanie wózkiem.} true{Pod dolną częścią lady jest miejsce na wjechanie wózkiem.} other{}}",
   "lodge_visible_from_afar": "{value, select, false{Portiernia nie jest widoczna z dużej odległości. Lada nie wyróżnia się na tle otoczenia.} true{Portiernia jest widoczna z dużej odległości. Lada wyróżnia się na tle otoczenia.} other{}}",
   "lodge_good_lit": "{value, select, false{Portiernia nie jest odpowiednio oświetlona.} true{Portiernia jest odpowiednio oświetlona.} other{}}",
-  "is_elevated_threshold": "W drzwiach{value, select, false{ nie} other{}} znajduje się próg",
+  "is_elevated_threshold": "W drzwiach{value, select, false{ nie} other{}} znajduje się próg. ",
   "elevated_threshold_text": "Jego wysokość wynosi ",
   "handle_heigth_text": "Klamka znajduje się na wysokości {value} cm",
   "@handle_heigth_text": {

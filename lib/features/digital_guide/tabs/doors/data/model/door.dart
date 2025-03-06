@@ -51,8 +51,8 @@ abstract class DoorTranslation with _$DoorTranslation {
     required String isGoodDoorVisibleFromInsideComment,
     required String isIncreasedForceRequiredComment,
     required String isDoorCloserComment,
-    @Default("") String handleHeigth,
-    @Default("") String isElevatedThresholdComment,
+    required String handleHeight,
+    required String isElevatedThresholdComment,
   }) = _DoorTranslation;
 
   factory DoorTranslation.fromJson(Map<String, dynamic> json) => _$DoorTranslationFromJson(json);
