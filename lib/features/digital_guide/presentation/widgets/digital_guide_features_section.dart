@@ -58,10 +58,11 @@ class DigitalGuideFeaturesSection extends ConsumerWidget {
           title: l10n.adapted_toilets,
           content: [AdaptedToiletsExpansionTileContent(digitalGuideData: digitalGuideData)],
         ),
-      (
-        title: l10n.micro_navigation,
-        content: [MicronavigationExpansionTileContent(digitalGuideData: digitalGuideData)],
-      ),
+      if (digitalGuideData.externalId != null)
+        (
+          title: l10n.micro_navigation,
+          content: [MicronavigationExpansionTileContent(digitalGuideData: digitalGuideData)],
+        ),
       (title: l10n.building_structure, content: [StructureExpansionTileContent(digitalGuideData: digitalGuideData)]),
       (
         title: l10n.room_information,

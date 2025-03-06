@@ -4,6 +4,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../config/ui_config.dart";
 import "../../../../../theme/app_theme.dart";
+import "../../../../../utils/context_extensions.dart";
 import "../../../../../widgets/my_error_widget.dart";
 import "../../../../navigator/utils/navigation_commands.dart";
 import "../../../data/models/digital_guide_response.dart";
@@ -18,7 +19,9 @@ class MicronavigationExpansionTileContent extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final asyncMicronavigationData = ref.watch(getMicronavigationDataProvider(digitalGuideData.externalId));
+    if (digitalGuideData.externalId == null) return MyErrorWidget(context.localize.no_micro_navigation);
+
+    final asyncMicronavigationData = ref.watch(getMicronavigationDataProvider(digitalGuideData.externalId!));
 
     return asyncMicronavigationData.when(
       data:
