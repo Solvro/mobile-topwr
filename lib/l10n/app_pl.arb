@@ -572,5 +572,13 @@
 
   "corridor_echo" : "{value, select, false{Akustyka korytarza nie powoduje powstawania echa, które może utrudniać komunikację.} true{Akustyka korytarza powoduje powstawanie echa, które może utrudniać komunikację.} other{}}",
 
-  "corridor_flashing_device": "{value, select, false{W korytarzu nie ma obiektów migających lub błyszczących, które mogą wywołać atak epilepsji.} true{W korytarzu znajdują się obiekty migające lub błyszczące, które mogą wywołać atak epilepsji.} other{}}"
+  "corridor_flashing_device": "{value, select, false{W korytarzu nie ma obiektów migających lub błyszczących, które mogą wywołać atak epilepsji.} true{W korytarzu znajdują się obiekty migające lub błyszczące, które mogą wywołać atak epilepsji.} other{}}",
+
+  "lodge_access_barriers": "{value, select, false{Na drodze dojścia do portierni} true{Na drodze dojścia do portierni podłoga jest równa, a w otoczeniu nie ma żadnych przeszkód.} other{}}",
+  "lodge_movement_space": "{value, select, false{Przy portierni nie ma dostępnej odpowiedniej przestrzeni do poruszania się dla osób z niepełnosprawnościami.} true{Przy portierni jest odpowiednia przestrzeń do poruszania się dla osób z niepełnosprawnościami.} other{}}",
+  "lodge_counter_height": "Wysokość lady portierni wynosi {comment} centymetrów.",
+  "lodge_space_under_counter": "{value, select, false{Pod dolną częścią lady nie ma miejsca na wjechanie wózkiem.} true{Pod dolną częścią lady jest miejsce na wjechanie wózkiem.} other{}}",
+  "lodge_visible_from_afar": "{value, select, false{Portiernia nie jest widoczna z dużej odległości. Lada nie wyróżnia się na tle otoczenia.} true{Portiernia jest widoczna z dużej odległości. Lada wyróżnia się na tle otoczenia.} other{}}",
+  "lodge_good_lit": "{value, select, false{Portiernia nie jest odpowiednio oświetlona.} true{Portiernia jest odpowiednio oświetlona.} other{}}"
+
 }
