@@ -10,6 +10,7 @@ import "../../../../../utils/ilist_nonempty.dart";
 import "../../../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../../../../widgets/horizontal_symmetric_safe_area.dart";
 import "../../../../../widgets/my_expansion_tile.dart";
+import "../../../../navigator/utils/navigation_commands.dart";
 import "../../../presentation/widgets/accessibility_button.dart";
 import "../../../presentation/widgets/accessibility_profile_card.dart";
 import "../../../presentation/widgets/bullet_list.dart";
@@ -63,9 +64,19 @@ class DigitalGuideRoomDetailView extends ConsumerWidget {
 
       DigitalGuidePhotoRow(imagesIDs: room.imagesIds.toIList()),
       const SizedBox(height: DigitalGuideConfig.heightMedium),
-      DigitalGuideNavLink(onTap: () {}, text: context.localize.door),
-      const SizedBox(height: DigitalGuideConfig.heightMedium),
-      const SizedBox(height: DigitalGuideConfig.heightMedium),
+      ListView.separated(
+        physics: const NeverScrollableScrollPhysics(),
+        itemBuilder: (context, index) {
+          return DigitalGuideNavLink(
+            onTap: () async => ref.navigateDigitalGuideDoor(room.doors[index]),
+            text: context.localize.door,
+          );
+        },
+        itemCount: room.doors.length,
+        separatorBuilder: (context, index) => const SizedBox(height: DigitalGuideConfig.heightMedium),
+        shrinkWrap: true,
+      ),
+      const SizedBox(height: 2 * DigitalGuideConfig.heightMedium),
       if (room.roomStairs.isNotEmpty)
         ...room.roomStairs.asMap().entries.map((entry) {
           final String index = entry.key == 0 ? "" : (entry.key + 1).toString();

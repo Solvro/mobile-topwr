@@ -3,6 +3,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../config/ui_config.dart";
 import "../../../../widgets/my_error_widget.dart";
+import "../../../navigator/utils/navigation_commands.dart";
 import "../../data/models/digital_guide_response.dart";
 import "../../presentation/widgets/digital_guide_nav_link.dart";
 import "../entraces/data/repository/entraces_repository.dart";
@@ -18,8 +19,10 @@ class EntrancesList extends ConsumerWidget {
           (entrancesData) => ListView.separated(
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder:
-                (context, index) =>
-                    DigitalGuideNavLink(onTap: () {}, text: entrancesData[index].translations.pl.name ?? ""),
+                (context, index) => DigitalGuideNavLink(
+                  onTap: () async => ref.navigateEntrancesDetails(entrancesData[index]),
+                  text: entrancesData[index].translations.pl.name ?? "",
+                ),
             separatorBuilder: (context, index) => const SizedBox(height: DigitalGuideConfig.heightMedium),
             itemCount: entrancesData.length,
             shrinkWrap: true,
