@@ -1,5 +1,7 @@
 import "package:freezed_annotation/freezed_annotation.dart";
 
+import "../../../../../../utils/type_converter.dart";
+
 part "door.freezed.dart";
 part "door.g.dart";
 
@@ -15,6 +17,17 @@ abstract class Door with _$Door {
     required String isIncreasedForceRequired,
     required String isDoorCloser,
     @JsonKey(fromJson: stringToDoorType) required DoorType doorType,
+    @JsonKey(fromJson: stringToBool) required bool isGraphic,
+    @JsonKey(fromJson: stringToBool) required bool areVisible,
+    @JsonKey(fromJson: stringToBool) required bool areGlazed,
+    @JsonKey(fromJson: stringToBool) required bool areOpenOutwards,
+    @JsonKey(fromJson: stringToBool) required bool isClosureFromInside,
+    required String openingSystemType,
+    @JsonKey(fromJson: stringToBool) required bool isHandleHighlighted,
+    @JsonKey(fromJson: stringToBool) required bool isSameOpeningSystem,
+    @JsonKey(fromJson: stringToBool) required bool isKeyNeeded,
+    @JsonKey(fromJson: stringToBool) required bool isElevatedThreshold,
+    required int doorWidth,
   }) = _Door;
 
   factory Door.fromJson(Map<String, dynamic> json) => _$DoorFromJson(json);
@@ -38,6 +51,8 @@ abstract class DoorTranslation with _$DoorTranslation {
     required String isGoodDoorVisibleFromInsideComment,
     required String isIncreasedForceRequiredComment,
     required String isDoorCloserComment,
+    required String handleHeight,
+    required String isElevatedThresholdComment,
   }) = _DoorTranslation;
 
   factory DoorTranslation.fromJson(Map<String, dynamic> json) => _$DoorTranslationFromJson(json);
