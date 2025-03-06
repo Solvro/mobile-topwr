@@ -22,12 +22,12 @@ class LodgeAccessibilityCommentsManager extends AccessibilityCommentsManager {
 
   @override
   IList<String> getCommentsListForCognitiveImpairment() {
-    return IList<String>(const []);
+    return const IList.empty();
   }
 
   @override
   IList<String> getCommentsListForHearingImpairment() {
-    return IList<String>(const []);
+    return const IList.empty();
   }
 
   @override
@@ -54,6 +54,6 @@ class LodgeAccessibilityCommentsManager extends AccessibilityCommentsManager {
 
   @override
   IList<String> getCommentsListForSensorySensitivity() {
-    return IList<String>(const []);
+    return const IList.empty();
   }
 }
