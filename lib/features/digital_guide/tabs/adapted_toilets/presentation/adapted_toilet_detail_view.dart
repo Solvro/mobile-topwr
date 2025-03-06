@@ -10,9 +10,11 @@ import "../../../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../../../../widgets/horizontal_symmetric_safe_area.dart";
 import "../../../../navigator/utils/navigation_commands.dart";
 import "../../../presentation/widgets/accessibility_button.dart";
+import "../../../presentation/widgets/accessibility_profile_card.dart";
 import "../../../presentation/widgets/bullet_list.dart";
 import "../../../presentation/widgets/digital_guide_image.dart";
 import "../../../presentation/widgets/digital_guide_nav_link.dart";
+import "../business/adapted_toilet_accessibility_comments_menager.dart";
 import "../data/models/adapted_toilet.dart";
 
 @RoutePage()
@@ -53,6 +55,13 @@ class AdaptedToiletDetailView extends ConsumerWidget {
               else
                 context.localize.adapted_toilet_is_not_marked,
             ].lock,
+      ),
+      AccessibilityProfileCard(
+        accessibilityCommentsManager: AdaptedToiletsAccessibilityCommentsManager(
+          l10n: context.localize,
+          adaptedToilet: adaptedToilet,
+        ),
+        backgroundColor: context.colorTheme.whiteSoap,
       ),
       if (adaptedToilet.doorsIndices.isNotEmpty) const SizedBox(height: DigitalGuideConfig.heightMedium),
       ListView.separated(

@@ -238,7 +238,149 @@
     }
   },
   "adapted_toilet_is_not_marked": "Lokalizacja toalety nie jest oznaczona za pomocą informacji kierunkowej.",
-  "images": "Zdjęcia",
+  "adapted_toilet_is_access_accessible_for_pwd": "Dostęp do toalety jest dostosowany do potrzeb osób z niepełnosprawnością. {comment}",
+  "@adapted_toilet_is_access_accessible_for_pwd": {
+    "description": "Information about toilet access for people with disabilities",
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "adapted_toilet_is_access_not_accessible_for_pwd": "Dostęp do toalety nie jest dostosowany do potrzeb osób z niepełnosprawnością.",
+  "adapted_toilet_is_150x150_free_space": "W toalecie znajduje się wolna przestrzeń o wymiarach co najmniej 150 x 150 cm. {comment}",
+  "@adapted_toilet_is_150x150_free_space": {
+    "description": "Information about free space of 150x150 cm",
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "adapted_toilet_is_not_150x150_free_space": "W toalecie nie znajduje się wolna przestrzeń o wymiarach co najmniej 150 x 150 centymetrów.",
+  "adapted_toilet_is_good_floor_wall_contrast": "Kontrast pomiędzy podłogą a ścianami jest dobrze widoczny. {comment}",
+  "@adapted_toilet_is_good_floor_wall_contrast": {
+    "description": "Information about floor-wall contrast",
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "adapted_toilet_is_not_good_floor_wall_contrast": "Kontrast pomiędzy podłogą a ścianami nie jest dobrze widoczny.",
+  "adapted_toilet_is_side_maneuvering_space": "W toalecie znajduje się przestrzeń manewrowa ze strony {comment}",
+  "@adapted_toilet_is_side_maneuvering_space": {
+    "description": "Information about side maneuvering space",
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "adapted_toilet_is_not_side_maneuvering_space": "W toalecie nie znajduje się przestrzeń manewrowa.",
+  "adapted_toilet_is_pulldown_handle": "W toalecie znajduje się {comment}",
+  "@adapted_toilet_is_pulldown_handle": {
+    "description": "Information about pulldown handle",
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "adapted_toilet_is_not_pulldown_handle": "W toalecie nie znajduje się uchwyt uchylny.",
+  "adapted_toilet_is_not_fixed_handle": "W toalecie nie znajduje się uchwyt zamontowany na stałe.",
+  "adapted_toilet_is_good_pulldown_handle_wall_contrast": "Uchwyt uchylny kontrastuje z kolorem ściany. {comment}",
+  "@adapted_toilet_is_good_pulldown_handle_wall_contrast": {
+    "description": "Information about pulldown handle contrast",
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "adapted_toilet_is_not_good_pulldown_handle_wall_contrast": "Uchwyt uchylny nie kontrastuje z kolorem ściany.",
+  "adapted_toilet_is_mirror": "W toalecie znajduje się lustro o rozmiarze {comment}",
+  "@adapted_toilet_is_mirror": {
+    "description": "Information about mirror placement",
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "adapted_toilet_is_not_mirror": "W toalecie nie ma lustra.",
+  "adapted_toilet_are_clothes_hooks": "W toalecie znajdują się wieszaki na ubrania {comment}",
+  "@adapted_toilet_are_clothes_hooks": {
+    "description": "Information about clothes hooks",
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "adapted_toilet_are_not_clothes_hooks": "W toalecie nie znajdują się wieszaki na ubrania.",
+  "adapted_toilet_is_wastebasket": "W toalecie znajduje się kosz na śmieci {comment}",
+  "@adapted_toilet_is_wastebasket": {
+    "description": "Information about wastebasket",
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "adapted_toilet_is_not_wastebasket": "W toalecie nie znajduje się kosz na śmieci.",
+  "adapted_toilet_is_towel_dispenser": "W toalecie znajduje się dozownik na ręczniki {comment}",
+  "@adapted_toilet_is_towel_dispenser": {
+    "description": "Information about towel dispenser",
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "adapted_toilet_is_not_towel_dispenser": "W toalecie nie znajduje się dozownik na ręczniki.",
+  "adapted_toilet_seat_hight" : "Sedes znajduje sie na wysokości {height} cm",
+  "adapted_toilet_is_space_under_washbasin_for_wheelchair": "Pod umywalką znajduje się przestrzeń umożliwiająca podjazd wózkiem inwalidzkim. {comment}",
+  "@adapted_toilet_is_space_under_washbasin_for_wheelchair": {
+    "description": "Information about space under washbasin for wheelchair",
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "adapted_toilet_is_not_space_under_washbasin_for_wheelchair": "Pod umywalką nie znajduje się przestrzeń umożliwiająca podjazd wózkiem inwalidzkim.",
+  "adapted_toilet_is_light_switch": "W toalecie znajduje się włącznik światła {comment}",
+  "@adapted_toilet_is_light_switch": {
+    "description": "Information about the presence of a light switch",
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "adapted_toilet_is_not_light_switch": "W toalecie nie znajduje się włącznik światła.",
+  "adapted_toilet_is_good_lit": "Oświetlenie w toalecie jest odpowiednie. {comment}",
+  "@adapted_toilet_is_good_lit": {
+    "description": "Information about the lighting quality in the toilet",
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "adapted_toilet_is_not_good_lit": "Oświetlenie w toalecie nie jest odpowiednie.",
+  "adapted_toilet_is_hand_dryer": "W toalecie znajduje się suszarka do rąk {comment}",
+    "@adapted_toilet_is_hand_dryer": {
+        "description": "Information about the presence of a hand dryer",
+        "placeholders": {
+        "comment": {
+            "type": "String"
+        }
+        }
+    },
+    "adapted_toilet_is_not_hand_dryer": "W toalecie nie ma suszarki do rąk.",
+"images": "Zdjęcia",
   "door": "Drzwi",
   "door_visible_from_outside" : "{value, select, True{Drzwi od strony zewnętrznej wyraźnie odznaczają się od ścian.} False{Drzwi od strony zewnętrznej nie odznaczają się wyraźnie od ścian.} other{}}",
   "door_visible_from_inside" : "{value, select, True{Drzwi od strony wewnętrznej wyraźnie odznaczają się od ścian.} False{Drzwi od strony wewnętrznej nie odznaczają się wyraźnie od ścian.} other{}}",
@@ -420,7 +562,6 @@
   "region" : "Strefa", 
   "stairs" : "Schody",
   "lodge" : "Portiernia",
-  "information_point" : "Punkt informacyjny",
   "dressing_room" : "Szatnia",
   "men_toilet" : "Toaleta męska",
   "women_toilet" : "Toaleta damska",
