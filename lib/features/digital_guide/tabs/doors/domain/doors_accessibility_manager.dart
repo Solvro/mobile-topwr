@@ -17,7 +17,7 @@ class DoorsAccessibilityManager extends AccessibilityCommentsManager {
     return IList([
       l10n.is_graphic(door.isGraphic.toString().toLowerCase()),
       l10n.lift_width_text(door.doorWidth),
-      if (pl.handleHeight != "") l10n.handle_heigth_text(pl.handleHeight),
+      if (pl.handleHeight.isNotEmpty) l10n.handle_heigth_text(pl.handleHeight),
       l10n.is_same_opening_system(door.isSameOpeningSystem.toString().toLowerCase()),
       l10n.is_elevated_threshold(door.isElevatedThreshold.toString().toLowerCase()) +
           l10n.elevated_threshold_text +
