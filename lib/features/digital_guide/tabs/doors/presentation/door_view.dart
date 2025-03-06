@@ -10,10 +10,12 @@ import "../../../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../../../../widgets/horizontal_symmetric_safe_area.dart";
 import "../../../../../widgets/my_error_widget.dart";
 import "../../../presentation/widgets/accessibility_button.dart";
+import "../../../presentation/widgets/accessibility_profile_card.dart";
 import "../../../presentation/widgets/bullet_list.dart";
 import "../../../presentation/widgets/digital_guide_loading_view.dart";
 import "../data/model/door.dart";
 import "../data/repository/doors_repository.dart";
+import "../domain/doors_accessibility_manager.dart";
 
 @RoutePage()
 class DoorView extends ConsumerWidget {
@@ -44,6 +46,7 @@ class _DoorsView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = context.localize;
     final IList<String> textStrings =
         [
           if (door.translations.pl.comment.isNotEmpty) door.translations.pl.comment,
@@ -79,6 +82,11 @@ class _DoorsView extends ConsumerWidget {
                 ),
                 const SizedBox(height: DigitalGuideConfig.heightMedium),
                 BulletList(items: textStrings),
+                const SizedBox(height: DigitalGuideConfig.heightMedium),
+                AccessibilityProfileCard(
+                  accessibilityCommentsManager: DoorsAccessibilityManager(l10n: l10n, door: door),
+                  backgroundColor: context.colorTheme.whiteSoap,
+                ),
               ]),
             ),
           ],
