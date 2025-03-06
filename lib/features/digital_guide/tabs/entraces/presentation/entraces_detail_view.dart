@@ -7,6 +7,7 @@ import "../../../../../config/ui_config.dart";
 import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/context_extensions.dart";
 import "../../../../../widgets/detail_views/detail_view_app_bar.dart";
+import "../../../../navigator/utils/navigation_commands.dart";
 import "../../../presentation/widgets/accessibility_button.dart";
 import "../../../presentation/widgets/bullet_list.dart";
 import "../../../presentation/widgets/digital_guide_nav_link.dart";
@@ -56,8 +57,19 @@ class DigitalGuideEntranceDetailsView extends ConsumerWidget {
       //   icon: Assets.svg.digitalGuide.accessibilityAlerts.blindProfile,
       // ),
       const SizedBox(height: DigitalGuideConfig.heightBig),
-      DigitalGuideNavLink(onTap: () {}, text: context.localize.door),
-      const SizedBox(height: DigitalGuideConfig.heightBig),
+      ListView.separated(
+        physics: const NeverScrollableScrollPhysics(),
+        itemBuilder: (context, index) {
+          return DigitalGuideNavLink(
+            onTap: () async => ref.navigateDigitalGuideDoor(entrance.doorsIndices[index]),
+            text: context.localize.door,
+          );
+        },
+        itemCount: entrance.doorsIndices.length,
+        separatorBuilder: (context, index) => const SizedBox(height: DigitalGuideConfig.heightMedium),
+        shrinkWrap: true,
+      ),
+      const SizedBox(height: DigitalGuideConfig.heightMedium),
       DigitalGuidePhotoRow(imagesIDs: entrance.imagesIndices.lock),
       const SizedBox(height: DigitalGuideConfig.heightMedium),
     ];
