@@ -10,11 +10,9 @@ import "../../../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../../../navigator/utils/navigation_commands.dart";
 import "../../../presentation/widgets/accessibility_button.dart";
 import "../../../presentation/widgets/accessibility_profile_card.dart";
-import "../../../presentation/widgets/accessibility_profile_card.dart";
 import "../../../presentation/widgets/bullet_list.dart";
 import "../../../presentation/widgets/digital_guide_nav_link.dart";
 import "../../../presentation/widgets/digital_guide_photo_row.dart";
-import "../bussiness/entraces_accessibility_comments_manager.dart";
 import "../bussiness/entraces_accessibility_comments_manager.dart";
 import "../data/models/digital_guide_entrace.dart";
 
