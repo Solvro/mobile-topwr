@@ -48,13 +48,13 @@ class DigitalGuideEntranceDetailsView extends ConsumerWidget {
       const SizedBox(height: DigitalGuideConfig.heightBig),
       AccessibilityProfileCard(
         accessibilityCommentsManager: EntracesAccessibilityCommentsManager(
-          digitalGuideEntrace: entrance,
+          digitalGuideEntrance: entrance,
           l10n: context.localize,
         ),
       ),
       AccessibilityProfileCard(
         accessibilityCommentsManager: EntracesAccessibilityCommentsManager(
-          digitalGuideEntrace: entrance,
+          digitalGuideEntrance: entrance,
           l10n: context.localize,
         ),
       ),
