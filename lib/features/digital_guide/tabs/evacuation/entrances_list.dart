@@ -21,7 +21,7 @@ class EntrancesList extends ConsumerWidget {
             itemBuilder:
                 (context, index) => DigitalGuideNavLink(
                   onTap: () async => ref.navigateEntrancesDetails(entrancesData[index]),
-                  text: entrancesData[index].translations.pl.name ?? "",
+                  text: entrancesData[index].translations.pl.name,
                 ),
             separatorBuilder: (context, index) => const SizedBox(height: DigitalGuideConfig.heightMedium),
             itemCount: entrancesData.length,
