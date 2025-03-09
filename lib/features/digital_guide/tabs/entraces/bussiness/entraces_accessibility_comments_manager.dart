@@ -4,8 +4,8 @@ import "../../../../../l10n/app_localizations.dart";
 import "../../../business/accessibility_comments_manager.dart";
 import "../data/models/digital_guide_entrace.dart";
 
-class EntracesAccessibilityCommentsManager extends AccessibilityCommentsManager {
-  EntracesAccessibilityCommentsManager({required this.digitalGuideEntrance, required this.l10n});
+class EntrancesAccessibilityCommentsManager extends AccessibilityCommentsManager {
+  EntrancesAccessibilityCommentsManager({required this.digitalGuideEntrance, required this.l10n});
 
   final DigitalGuideEntrace digitalGuideEntrance;
   final AppLocalizations l10n;

@@ -25,7 +25,7 @@ class DigitalGuideEntranceDetailsView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final widgets = [
-      Text(entrance.translations.pl.name, style: context.textTheme.title.copyWith(fontSize: 24)),
+      Text(entrance.translations.pl.name ?? "", style: context.textTheme.title.copyWith(fontSize: 24)),
       const SizedBox(height: DigitalGuideConfig.heightMedium),
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: DigitalGuideConfig.paddingMedium),
@@ -45,13 +45,7 @@ class DigitalGuideEntranceDetailsView extends ConsumerWidget {
       ),
       const SizedBox(height: DigitalGuideConfig.heightBig),
       AccessibilityProfileCard(
-        accessibilityCommentsManager: EntracesAccessibilityCommentsManager(
-          digitalGuideEntrance: entrance,
-          l10n: context.localize,
-        ),
-      ),
-      AccessibilityProfileCard(
-        accessibilityCommentsManager: EntracesAccessibilityCommentsManager(
+        accessibilityCommentsManager: EntrancesAccessibilityCommentsManager(
           digitalGuideEntrance: entrance,
           l10n: context.localize,
         ),
@@ -70,7 +64,7 @@ class DigitalGuideEntranceDetailsView extends ConsumerWidget {
         shrinkWrap: true,
       ),
       const SizedBox(height: DigitalGuideConfig.heightMedium),
-      DigitalGuidePhotoRow(imagesIDs: entrance.imagesIndices),
+      DigitalGuidePhotoRow(imagesIDs: entrance.imagesIndices.lock),
       const SizedBox(height: DigitalGuideConfig.heightMedium),
     ];
 
