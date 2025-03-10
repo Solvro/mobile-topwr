@@ -5,6 +5,7 @@ import "package:auto_route/annotations.dart";
 import "package:flutter/material.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
+import "package:intl/intl.dart";
 import "package:lottie/lottie.dart";
 
 import "../../../../../theme/app_theme.dart";
@@ -86,7 +87,9 @@ class _SksMenuView extends ConsumerWidget {
               TechnicalMessage(
                 alertType: AlertType.info,
                 title: context.localize.sks_note,
-                message: context.localize.sks_menu_you_see_last_menu,
+                message: context.localize.sks_menu_you_see_last_menu(
+                  DateFormat("dd-MM-yyyy").format(sksMenuData.lastUpdate),
+                ),
               ),
             for (final technicalInfo in sksMenuData.technicalInfos) TechnicalMessage(message: technicalInfo),
             SksMenuHeader(
