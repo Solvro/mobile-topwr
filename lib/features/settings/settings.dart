@@ -17,7 +17,7 @@ class SettingsView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final widgets = [
       Text(context.localize.settings, style: context.textTheme.headline),
-      NavigationTile(onTap: () {}, title: context.localize.lenguage, icon: Icons.speaker_notes_rounded),
+      NavigationTile(onTap: () {}, title: context.localize.language, icon: Icons.speaker_notes_rounded),
     ];
 
     return Scaffold(
