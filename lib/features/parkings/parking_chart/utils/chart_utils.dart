@@ -23,7 +23,4 @@ extension ChartUtilsX on IList<ChartPoint> {
     return hourPoint.toStringRepr();
   }
 
-  static bool showDotOrNot(FlSpot spot, LineChartBarData barData) {
-    return ParkingChartConfig.showDots.contains(spot.x);
-  }
 }

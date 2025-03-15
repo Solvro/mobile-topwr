@@ -11,6 +11,7 @@ import "../chart_elements/chart_line.dart";
 import "../chart_elements/labels_bottom.dart";
 import "../chart_elements/labels_left.dart";
 import "../models/chart_point.dart";
+import "../models/hour_label.dart";
 import "../utils/chart_utils.dart";
 import "reversed_label.dart";
 
@@ -45,9 +46,10 @@ class ChartWidget extends StatelessWidget {
                 touchTooltipData: LineTouchTooltipData(
                   getTooltipItems: (touchedSpots) {
                     return touchedSpots.map((touchedSpot) {
+                      final hour = HourLabel(touchedSpot.x).toStringRepr();
                       final value = touchedSpot.y.toInt(); // Convert double to int
                       return LineTooltipItem(
-                        value.toString(),
+                        "$hour\n$value",
                         TextStyle(color: context.colorTheme.whiteSoap, fontWeight: FontWeight.bold),
                       );
                     }).toList();
