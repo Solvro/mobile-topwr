@@ -87,6 +87,10 @@ extension NavigationX on WidgetRef {
     await _router.push(const SksMenuRoute());
   }
 
+  Future<void> navigateSettings() async {
+    await _router.push(const SettingsRoute());
+  }
+
   Future<void> navigateDigitalGuide(String ourId, BuildingModel building) async {
     await _router.push(DigitalGuideRoute(ourId: ourId, building: building));
   }
