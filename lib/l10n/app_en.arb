@@ -1,0 +1,763 @@
+{
+  "@@locale": "en",
+  "home_screen_greeting": "Hi, nice to see you",
+  "even_monday": "on an Even Monday",
+  "even_tuesday": "on an Even Tuesday",
+  "even_wednesday": "on an Even Wednesday",
+  "even_thursday": "on an Even Thursday",
+  "even_friday": "on an Even Friday",
+  "even_saturday": "on an Even Saturday",
+  "even_sunday": "on an Even Sunday",
+  "odd_monday": "on an Odd Monday",
+  "odd_tuesday": "on an Odd Tuesday",
+  "odd_wednesday": "on an Odd Wednesday",
+  "odd_thursday": "on an Odd Thursday",
+  "odd_friday": "on an Odd Friday",
+  "odd_saturday": "on an Odd Saturday",
+  "odd_sunday": "on an Odd Sunday",
+  "holiday_monday": "on a Holiday Monday",
+  "holiday_tuesday": "on a Holiday Tuesday",
+  "holiday_wednesday": "on a Holiday Wednesday",
+  "holiday_thursday": "on a Holiday Thursday",
+  "holiday_friday": "on a Holiday Friday",
+  "holiday_saturday": "on a Holiday Saturday",
+  "holiday_sunday": "on a Holiday Sunday",
+  "exam_monday": "on an Exam Monday",
+  "exam_tuesday": "on an Exam Tuesday",
+  "exam_wednesday": "on an Exam Wednesday",
+  "exam_thursday": "on an Exam Thursday",
+  "exam_friday": "on an Exam Friday",
+  "exam_saturday": "on an Exam Saturday",
+  "exam_sunday": "on an Exam Sunday",
+  "follow_solvro": "Follow us on social media!",
+  "unknown_day": "on this beautiful day!",
+  "read_more": "Read more",
+  "whats_up": "What's up?",
+  "study_circles": "Student organizations",
+  "days": "days",
+  "to_start_session": "until the session starts",
+  "map_button": "Map",
+  "meet_our_team": "Meet us!",
+  "sections": "Departments",
+  "list": "List",
+  "departments": "Departments",
+  "department": "Department",
+  "search": "Search",
+  "contact": "Contact",
+  "about_us": "About us",
+  "navigate": "Navigate",
+  "building_prefix": "Building",
+  "polinka_prefix": "Polinka",
+  "department_not_found": "Department not found",
+  "sci_circle_not_found": "No student organizations found",
+  "all": "All",
+  "parkings_title": "Parking",
+  "parkings_not_found": "Parking not found",
+  "building_not_found": "Building not found",
+  "buildings_title": "Buildings",
+  "freePlaces": "Free spaces",
+  "noChartData": "Chart data is unavailable at night",
+  "offlineParkings": "Connection error: Unfortunately, the parking module cannot function properly without an internet connection.",
+  "refresh": "Refresh",
+  "offline_error_message": "An error occurred while retrieving data about ",
+  "offline_try_again": "Try again later.",
+  "offline_news": "news",
+  "offline_sci_clubs": "science clubs",
+  "offline_buildings": "buildings",
+  "offline_departments": "departments",
+  "offline_academic_calendar": "academic calendar",
+  "offline_about_us": "about us",
+  "offline_department_details": "department",
+  "offline_guide_details": "guide entry",
+  "offline_guide_posts": "guide posts",
+  "offline_changelog": "changes",
+  "guide": "Guide",
+  "deans_office": "Dean's Office",
+  "fields_of_study": "Fields of Study",
+  "guide_about_us": "About Us!",
+  "guide_meet_creators": "Meet the creators of the ToPWR mobile app!",
+  "guide_not_found": "No guide entries found",
+  "first_degree": "First Degree",
+  "second_degree": "Second Degree",
+  "long_cycle": "Long-cycle Master's",
+  "no_address": "No address",
+  "student_medias": "Student media",
+  "cultural_agendas": "Cultural organizations",
+  "scientific_cirlces": "Scientific clubs",
+  "student_organizations": "Student organizations",
+  "org_types": "Types of organizations",
+  "categories": "Categories",
+  "filters": "Filters",
+  "clear": "Clear",
+  "filters_didnt_found_anything": "No filters found",
+  "street_abbreviation": "St.",
+  "bug_report_title": "Report a bug or suggestion",
+  "bug_report_subtitle": "Send feedback directly to the app creators.",
+  "new_feature": "New feature",
+  "bug": "Bug",
+  "praise": "Praise",
+  "until_the_end_of_the_semester_break": "until the end of the semester break",
+  "until_the_session_ends": "until the session ends",
+  "app_info": "(app information)",
+  "show_license": "Show license",
+  "close": "Close",
+  "no_version": "No version",
+  "places_currently_available": "Currently available spaces",
+  "student_councils": "Student Council",
+  "hi_student": "Hey student!",
+  "guide_development_info": "Remember, the guide is still under development :)",
+  "guide_ideas_info": "Have a cool idea? Share it with us!",
+  "guide_subject_default_content": "Idea for ToPWR development",
+  "streak_counter": "You've been using ToPWR continuously for {days, plural, =1{1 day} other{{days} days}}🔥",
+  "@streak_counter": {
+    "description": "A message with a single parameter",
+    "placeholders": {
+      "days": {
+        "type": "int",
+        "example": "15"
+      }
+    }
+  },
+  "last_modified": "Last updated",
+  "created_at": "Created",
+  "apply": "Apply",
+  "changes": "Changes",
+  "version": "version",
+  "hey_check_out_the_new_features": "Hey, check out the new features",
+  "here_you_will_see_what_we_changed_in_the_latest_version": "Here you will see what we changed in the latest version",
+  "data_come_from_website": "Data comes from the website",
+  "sks_menu": "SKS Menu",
+  "home_screen": "Home screen",
+  "sks_menu_salads": "Salads",
+  "sks_menu_main_soups": "Soups",
+  "sks_menu_vegetarian_dishes": "Vegetarian dishes",
+  "sks_menu_meat_dishes": "Meat dishes",
+  "sks_menu_side_dishes": "Side dishes",
+  "sks_menu_drinks": "Compotes and drinks",
+  "sks_menu_desserts": "Desserts",
+  "sks_full_name": "Student Culture Zone",
+  "leave_a_review": "Rate the app",
+  "rest_header": "Other",
+  "settings": "Settings",
+  "about_the_app": "About the app",
+  "other_view": "Other",
+  "map": "Map",
+  "report_change_title": "Something changed?",
+  "report_change_button": "Report a change",
+  "report_change_email": "kn.solvro@pwr.edu.pl",
+  "report_change_subject": "Change suggestion - ToPWR",
+  "report_change_error_toast_message": "An error occurred while opening the hyperlink, check the app's permissions",
+  "localization": "Location",
+  "amenities": "Amenities",
+  "surroundings": "Surroundings",
+  "transport": "Transport",
+  "entrances": "Entrances",
+  "lifts": "Lifts",
+  "adapted_toilets": "Accessible toilets",
+  "micro_navigation": "Micro-navigation",
+  "building_structure": "Building structure",
+  "room_information": "Rooms",
+  "evacuation": "Evacuation",
+  "storeys": "{number, plural, =1{{number} floor} few{{number} floors} other{{number} floors}}",
+  "@storeys": {
+    "description": "number of storeys with one parameter",
+    "placeholders": {
+      "number": {
+        "type": "int",
+        "example": "10"
+      }
+    }
+  },
+
+
+
+
+
+
+
+
+
+  
+  "assistance_dog" : "Do budynku i wszystkich jego pomieszczeń można wejść z psem asystującym i psem przewodnikiem",
+  "induction_loop": "W budynku jest/są pętle indukcyjne",
+  "micronavigation_system": "W budynku zostały zainstalowane urządzenia systemu nawigacyjno-informacyjnego",
+  "orientation_paths": "W budynku zastosowane zostały ścieżki naprowadzające (dotykowe)",
+  "information_boards_with_braille_description": "W budynku znajdują się czytelne tablice informacyjne zawierające opisy w alfabecie Braille'a",
+  "information_boards_with_large_font": "W budynku znajdują się czytelne tablice informacyjne zawierające napisy w dużej czcionce",
+  "sign_language_interpreter": "W budynku zapewniona jest możliwość skorzystania z usług tłumacza języka migowego",
+  "emergency_chairs": "W budynku zamieszczone zostały krzesła ewakuacyjne",
+  "parking_location" : "Miejsca parkingowe znajdują się {location}",
+  "parking_pwd_location" : "Miejsca parkingowe dla niepełnospranych znajdują się {location}",
+  "closest_facilities" : "Najbliższe sąsiednie budynki i obiekty kampusu to: {places}",
+  "digital_guide_website" : "www.przewodnik.pwr.edu.pl",
+  "sks_old_menu": "Zobacz ostatnie menu",
+  "sks_menu_closed" : "SKS Menu jest teraz niedostępne",
+  "sks_show_last_menu" : "Pokaż ostatnio dostępne menu",
+  "confirm": "Zatwierdź",
+  "push_notifications_dialog_info": "Obecnie nie korzystamy z powiadomień push, ale planujemy dodać je w przyszłości. Możesz wyrazić na nie zgodę już teraz.",
+  "sks_menu_technical_info": "KOMUNIKAT",
+  "sks_note": "UWAGA",
+  "sks_menu_you_see_last_menu": "Aktualne menu SKS jest niedostępne. Przeglądasz ostatnio dostępną wersję z: {date}",  "my_offline_error_message": "Wystąpił błąd podczas pobierania danych dotyczących {data_type}",
+  "@my_offline_error_message": {
+    "description": "An error message with a single parameter",
+    "placeholders": {
+      "data_type": {
+        "type": "String",
+        "example": "wydziałów"
+      }
+    }
+  },
+  "measured_number_of_users": "Zmierzona liczba użytkowników",
+  "forecasted_number_of_users": "Średnia liczba użytkowników z ostatnich 21 dni",
+  "sks_chart_title" : "Przybliżona liczba osób w Strefie Kultury Studenckiej",
+  "number_of_people" : "Liczba osób",
+  "evacuation_text": "Ewakuacja i pierwsza pomoc",
+  "digital_guide": "Przewodnik",
+  "adapted_toilet_authorization": "Toaleta jest dostępna wyłącznie dla osób uprawnionych. {comment}",
+  "@adapted_toilet_authorization": {
+    "description": "Adapted toilet needs authorization with ending from API",
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "adapted_toilet_no_authorization": "Wejście do toalety nie wymaga żadnych specjalnych uprawnień.",
+  "adapted_toilet_graphically_marked": "Wejście do toalety jest dobrze oznakowane graficznie, za pomocą: {comment}",
+  "@adapted_toilet_graphically_marked": {
+    "description": "Adapted toilet is graphically marked info with ending from API",
+    "placeholders": {
+      "comment": {
+        "type": "String",
+        "example": "piktogramów toalety damskiej i dostosowanej do potrzeb osób z niepełnosprawnością na drzwiach wejściowych do ogólnodostępnej toalety damskiej."
+      }
+    }
+  },
+  "adapted_toilet_not_graphically_marked": "Wejście do toalety nie jest oznakowane graficznie.",
+  "adapted_toilet_is_marked": "Lokalizacja toalety jest oznaczona za pomocą informacji kierunkowej. {comment}",
+  "@adapted_toilet_is_marked": {
+    "description": "Adapted toilet is marked info with ending from API",
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "adapted_toilet_is_not_marked": "Lokalizacja toalety nie jest oznaczona za pomocą informacji kierunkowej.",
+  "adapted_toilet_is_access_accessible_for_pwd": "Dostęp do toalety jest dostosowany do potrzeb osób z niepełnosprawnością. {comment}",
+  "@adapted_toilet_is_access_accessible_for_pwd": {
+    "description": "Information about toilet access for people with disabilities",
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "adapted_toilet_is_access_not_accessible_for_pwd": "Dostęp do toalety nie jest dostosowany do potrzeb osób z niepełnosprawnością.",
+  "adapted_toilet_is_150x150_free_space": "W toalecie znajduje się wolna przestrzeń o wymiarach co najmniej 150 x 150 cm. {comment}",
+  "@adapted_toilet_is_150x150_free_space": {
+    "description": "Information about free space of 150x150 cm",
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "adapted_toilet_is_not_150x150_free_space": "W toalecie nie znajduje się wolna przestrzeń o wymiarach co najmniej 150 x 150 centymetrów.",
+  "adapted_toilet_is_good_floor_wall_contrast": "Kontrast pomiędzy podłogą a ścianami jest dobrze widoczny. {comment}",
+  "@adapted_toilet_is_good_floor_wall_contrast": {
+    "description": "Information about floor-wall contrast",
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "adapted_toilet_is_not_good_floor_wall_contrast": "Kontrast pomiędzy podłogą a ścianami nie jest dobrze widoczny.",
+  "adapted_toilet_is_side_maneuvering_space": "W toalecie znajduje się przestrzeń manewrowa ze strony {comment}",
+  "@adapted_toilet_is_side_maneuvering_space": {
+    "description": "Information about side maneuvering space",
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "adapted_toilet_is_not_side_maneuvering_space": "W toalecie nie znajduje się przestrzeń manewrowa.",
+  "adapted_toilet_is_pulldown_handle": "W toalecie znajduje się {comment}",
+  "@adapted_toilet_is_pulldown_handle": {
+    "description": "Information about pulldown handle",
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "adapted_toilet_is_not_pulldown_handle": "W toalecie nie znajduje się uchwyt uchylny.",
+  "adapted_toilet_is_not_fixed_handle": "W toalecie nie znajduje się uchwyt zamontowany na stałe.",
+  "adapted_toilet_is_good_pulldown_handle_wall_contrast": "Uchwyt uchylny kontrastuje z kolorem ściany. {comment}",
+  "@adapted_toilet_is_good_pulldown_handle_wall_contrast": {
+    "description": "Information about pulldown handle contrast",
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "adapted_toilet_is_not_good_pulldown_handle_wall_contrast": "Uchwyt uchylny nie kontrastuje z kolorem ściany.",
+  "adapted_toilet_is_mirror": "W toalecie znajduje się lustro o rozmiarze {comment}",
+  "@adapted_toilet_is_mirror": {
+    "description": "Information about mirror placement",
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "adapted_toilet_is_not_mirror": "W toalecie nie ma lustra.",
+  "adapted_toilet_are_clothes_hooks": "W toalecie znajdują się wieszaki na ubrania {comment}",
+  "@adapted_toilet_are_clothes_hooks": {
+    "description": "Information about clothes hooks",
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "adapted_toilet_are_not_clothes_hooks": "W toalecie nie znajdują się wieszaki na ubrania.",
+  "adapted_toilet_is_wastebasket": "W toalecie znajduje się kosz na śmieci {comment}",
+  "@adapted_toilet_is_wastebasket": {
+    "description": "Information about wastebasket",
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "adapted_toilet_is_not_wastebasket": "W toalecie nie znajduje się kosz na śmieci.",
+  "adapted_toilet_is_towel_dispenser": "W toalecie znajduje się dozownik na ręczniki {comment}",
+  "@adapted_toilet_is_towel_dispenser": {
+    "description": "Information about towel dispenser",
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "adapted_toilet_is_not_towel_dispenser": "W toalecie nie znajduje się dozownik na ręczniki.",
+  "adapted_toilet_seat_hight" : "Sedes znajduje sie na wysokości {height} cm",
+  "adapted_toilet_is_space_under_washbasin_for_wheelchair": "Pod umywalką znajduje się przestrzeń umożliwiająca podjazd wózkiem inwalidzkim. {comment}",
+  "@adapted_toilet_is_space_under_washbasin_for_wheelchair": {
+    "description": "Information about space under washbasin for wheelchair",
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "adapted_toilet_is_not_space_under_washbasin_for_wheelchair": "Pod umywalką nie znajduje się przestrzeń umożliwiająca podjazd wózkiem inwalidzkim.",
+  "adapted_toilet_is_light_switch": "W toalecie znajduje się włącznik światła {comment}",
+  "@adapted_toilet_is_light_switch": {
+    "description": "Information about the presence of a light switch",
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "adapted_toilet_is_not_light_switch": "W toalecie nie znajduje się włącznik światła.",
+  "adapted_toilet_is_good_lit": "Oświetlenie w toalecie jest odpowiednie. {comment}",
+  "@adapted_toilet_is_good_lit": {
+    "description": "Information about the lighting quality in the toilet",
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "adapted_toilet_is_not_good_lit": "Oświetlenie w toalecie nie jest odpowiednie.",
+  "adapted_toilet_is_hand_dryer": "W toalecie znajduje się suszarka do rąk {comment}",
+    "@adapted_toilet_is_hand_dryer": {
+        "description": "Information about the presence of a hand dryer",
+        "placeholders": {
+        "comment": {
+            "type": "String"
+        }
+        }
+    },
+    "adapted_toilet_is_not_hand_dryer": "W toalecie nie ma suszarki do rąk.",
+"images": "Zdjęcia",
+  "door": "Drzwi",
+  "door_visible_from_outside" : "{value, select, True{Drzwi od strony zewnętrznej wyraźnie odznaczają się od ścian.} False{Drzwi od strony zewnętrznej nie odznaczają się wyraźnie od ścian.} other{}}",
+  "door_visible_from_inside" : "{value, select, True{Drzwi od strony wewnętrznej wyraźnie odznaczają się od ścian.} False{Drzwi od strony wewnętrznej nie odznaczają się wyraźnie od ścian.} other{}}",
+  "single_leaf_door" : "Są to drzwi jednoskrzydłowe.",
+  "single_leaf_door_sliding": "Są to drzwi przesuwne jednoskrzydłowe.",
+  "double_leaf_door" : "Są to drzwi dwuskrzydłowe.",
+  "double_leaf_door_sliding": "Są to drzwi przesuwne dwuskrzydłowe.",
+  "swing_door": "Są to drzwi wahadłowe.",
+  "main_wing_highlighted": "{value, select, True{Główne skrzydło drzwi jest wyróżnione.} False{Główne skrzydło drzwi nie jest wyróżnione.} other{}}",
+  "increased_force_required": "{value, select, True{Do otwarcia drzwi wymagane jest użycie wzmożonej siły.} False{Do otwarcia drzwi nie jest wymagane użycie wzmożonej siły.} other{}}",
+  "door_closer" : "{value, select, True{W drzwiach zamontowany jest wspomagacz zamykania/samozamykacz.} False{W drzwiach nie jest zamontowany wspomagacz zamykania/samozamykacz.} other{}}",
+  "accessibility_profile" : "Profil dostępności",
+  "accessibility_profile_empty" : "Brak informacji dotyczących wybranego profilu dostępności",
+  "accessibility_card_information" : "{message} jest {accessibility_level} dla osób {disability_description}",
+  "@accessibility_card_information" : {
+    "placeholders" : {
+      "message" : {
+        "type": "String",
+        "example": "Otoczenie budynku"
+      },
+
+      "accessibility_level" : {
+        "type": "String",
+        "example": "częściowo dostępne/dostępne/niedostępne"
+      },
+
+      "disability_description" : {
+        "type": "String",
+        "example": "posiadających trudności poznawcze"
+      }
+    }
+  },
+
+  "accessibility_level_feminine" : "{level, select, 0{niedostępna} 1{niedostępna} 2{częściowo dostępna} 3{dostępna} other{niedostępna}}",
+  "accessibility_level_masculine" : "{level, select, 0{niedostępny} 1{niedostępny} 2{częściowo dostępny} 3{dostępny} other{niedostępny}}",
+  "accessibility_level_neuter" : "{level, select, 0{niedostępne} 1{niedostępne} 2{częściowo dostępne} 3{dostępne} other{niedostępne}}",
+
+  "people_with_cognitive_difficulties" : "posiadających trudności poznawcze",
+  "people_with_hard_of_hearing" : "posiadających trudności ze słyszeniem",
+  "people_visually_impaired" : "słabo widzących",
+  "people_blind" : "niewidomych",
+  "people_with_motor_disability" : "posiadających dysfunkcje ruchu",
+  "people_with_high_sensory_sensitivity" : "o wysokiej wrażliwości sensorycznej",
+  "see_all_photos" : "Zobacz {photos, plural, =0{{photos} zdjęć} =1{{photos} zdjęcie} few{wszystkie {photos} zdjęcia} other{wszystkie {photos} zdjęć}}",
+  "are_dangerous_elements_comment_prefix" : "W otoczeniu budynku znajdują się następujące obiekty, które mogą stanowić zagrożenie: {text}",
+  "are_high_curbs_at_parking_space_for_pwd" : "Przy miejscach postojowych dla osób z niepełnosprawnościami {value, select, false{nie} other{}} znajduje się wysoki krawężnik. ",
+  "is_lit" : "Otoczenie budynku {value, select, false{nie} other{}} jest oświetlone po zmroku. ",
+  "is_pavement_rough" : "Nawierzchnia przy budynku {value, select, false{nie} other{}} jest równa. ",
+  "are_lowered_curbs" : "Krawężniki w okolicach budynku {value, select, false{nie} other{}} są obniżone. ",
+  "are_no_barriers": "Wokół budynku {value, select, true{nie ma barier uniemożliwiających dojścia} false{znajdują się bariery uniemożliwiające dojście} other{}} do budynku. ",
+  "is_path_to_accessible_entrance_marked" : "Ścieżka do wejścia dostępnego dla osób z niepełnosprawnościami {value, select, false{nie} other{}} jest wyraźnie oznaczona. ",
+  "is_noisy_street_near_building" : "W okolicy {value, select, false{nie ma ruchliwej, hałaśliwej ulicy. } true{znajduje się ruchliwa, hałaśliwa ulica. } other{}}",
+  "room_stairs_is_good_lit" : "{value, select, false{Schody nie są odpowiednio oświetlone.} true{Schody są odpowiednio oświetlone.} other{}}",
+  "room_stairs_is_nonslip_surface" : "{value, select, false{Powierzchnia schodów nie jest antypoślizgowa.} true{Powierzchnia schodów jest antypoślizgowa} other{}}",
+  "room_stairs_is_stairs_surface_shiny" : "{value, select, false{Powierzchnia schodów nie jest błyszcząca i nie wygląda na śliską.} true{Powierzchnia schodów błyszczy się i może wyglądać na śliską.} other{}}",
+  "room_stairs_is_good_stairs_wall_contrast" : "{value, select, false{Kontrast pomiędzy schodami a ścianą nie jest wyraźny.} true{Kontrast pomiędzy schodami a ścianą jest wyraźny.} other{}}",
+  "room_stairs_are_all_steps_have_same_dimensions" : "{value, select, false{Stopnie nie mają takich samych wymiarów.} true{Stopnie mają takie same wymiary.} other{}}",
+  "room_stairs_is_railing" : "{value, select, false{Przy schodach nie znajduje się poręcz.} true{Przy schodach znajduje się poręcz.} other{}}",
+  "room_stairs_is_good_railing_contrast" : "{value, select, false{Poręcz nie wyróżnia się na tle otoczenia.} true{Poręcz wyróżnia się na tle otoczenia.} other{}}",
+  "room_stairs_is_round_cross_section_railing" : "{value, select, false{Poręcz nie jest zaokrąglona i może posiadać ostre krawędzie.} true{Poręcz nie posiada ostrych krawędzi i jest zaokrąglona.} other{}}",
+  "room_stairs_are_steps_edges_marked_in_contrasted_way" : "{value, select, false{Stopnie nie są widoczne. Ich krawędzie nie są oznaczone w sposób kontrastowy.} true{Stopnie są widoczne. Ich krawędzie są oznaczone w sposób kontrastowy.} other{}}",
+  "room_stairs_stairs_width": "Szerokość schodów wynosi {width} centymetrów",
+  "@room_stairs_stairs_width": {
+    "description": "",
+    "placeholders": {
+      "width": {
+        "type": "String"
+      }
+    }
+  },
+
+
+  "room_platforms_is_good_floor_platform_contrast": "{value, select, false{Brak dobrego kontrastu podłogi względem platformy.} true{Dobry kontrast podłogi względem platformy.} other{}}",
+  "room_platforms_have_access_for_people_in_wheelchair": "{value, select, false{Podest nie ma zapewnionego dostępu dla osób, które poruszają się na wózku.} true{Podest ma zapewniony dostęp dla osób, które poruszają się na wózku.} other{}}",
+  "room_platforms_is_platform_entrance_marked": "{value, select, false{Wejście na podest nie jest oznaczone elementami ostrzegawczymi.} true{Wejście na podest jest oznaczone elementami ostrzegawczymi.} other{}}",
+  "room_platforms_are_no_objects_narrow_communication_zone": "{value, select, false{W strefie komunikacyjnej znajdują się przeszkody.} true{Brak przeszkód w strefie komunikacyjnej.} other{}}",
+  "stairs_is_stairs_sign_info": "{value, select, false{Brak informacji o oznakowaniu schodów.} true{Oznakowanie schodów jest dostępne.} other{}}",
+  "stairs_is_stairs_sign_info_in_en": "{value, select, false{Brak informacji o oznakowaniu schodów w języku angielskim.} true{Oznakowanie schodów w języku angielskim jest dostępne.} other{}}",
+  "stairs_is_good_lit": "{value, select, false{Schody są słabo oświetlone.} true{Schody są dobrze oświetlone.} other{}}",
+  "stairs_is_stairs_surface_shiny": "{value, select, false{Powierzchnia schodów nie jest błyszcząca.} true{Powierzchnia schodów jest błyszcząca.} other{}}",
+  "stairs_is_nonslip_surface": "{value, select, false{Schody nie mają powierzchni antypoślizgowej.} true{Schody mają powierzchnię antypoślizgową.} other{}}",
+  "stairs_is_good_stairs_wall_contrast": "{value, select, false{Brak dobrego kontrastu między schodami a ścianą.} true{Jest dobry kontrast między schodami a ścianą.} other{}}",
+  "stairs_are_emergency_stairs": "{value, select, false{Schody nie są ewakuacyjne.} true{Schody są ewakuacyjne.} other{}}",
+  "stairs_are_first_and_last_steps_marked": "{value, select, false{Pierwszy i ostatni stopień nie są oznaczone.} true{Pierwszy i ostatni stopień są oznaczone.} other{}}",
+  "stairs_are_grades_nose_pads": "{value, select, false{Schody nie mają nakładek na noski stopni.} true{Schody mają nakładki na noski stopni.} other{}}",
+  "stairs_are_steps_raised_markings": "{value, select, false{Brak wypukłych oznaczeń na stopniach.} true{Stopnie mają wypukłe oznaczenia.} other{}}",
+  "stairs_step_height": "{value, plural, =0{Brak schodów.} one{Stopień ma {value} cm wysokości.} other{Stopnie mają {value} cm wysokości.}}",
+  "stairs_is_properly_marked_free_space_under_stairs": "{value, select, false{Brak odpowiedniego oznaczenia wolnej przestrzeni pod schodami.} true{Wolna przestrzeń pod schodami jest odpowiednio oznaczona.} other{}}",
+  "floor_list": "Liczba pięterL",
+  "stairs_width": "Szerokość schodów:",
+  "number_of_stair_gears": "Liczba biegów schodowych: ",
+  "number_of_stair_landings": "Liczba spoczników:",
+  "rooms_is_one_level_floor" : "{value, select, false{Posadzka w pomieszczeniu nie znajduje się na jednym poziomie.} true{Posadzka w pomieszczeniu znajduje się na jednym poziomie.} other{}}",
+  "rooms_are_places_for_wheelchairs" : "{value, select, false{W pomieszczeniu nie ma miejsc dedykowanych osobom poruszającym się na wózkach.} true{W pomieszczeniu znajdują się miejsca dedykowanych osobom poruszającym się na wózkach.} other{}}",
+  "rooms_are_any_dangerous_elements" : "{value, select, false{W pomieszczeniu nie występują żadne niebezpieczne elementy konstrukcyjne.} true{W pomieszczeniu występują niebezpieczne elementy konstrukcyjne.} other{}}",
+  "rooms_is_generally_available_desk" : "{value, select, false{W pomieszczeniu nie znajduje się ogólnodostępne biurko, stolik lub blat.} true{W pomieszczeniu znajduje się ogólnodostępne biurko, stolik lub blat, którego wysokość wynosi} other{}}",
+  "rooms_has_induction_loop" : "{value, select, false{Pomieszczenie nie jest wyposażone w pętle indukcyjną, system FM ani tłumacza języka migowego.} true{Pomieszczenie jest wyposażone w} other{}}",
+  "rooms_is_space_under_counter" : "{value, select, true{Ogólnodostępny blat, biurko lub stolik jest dostępny dla osób poruszających się na wózkach.} false{Ogólnodostępny blat, biurko lub stolik nie ma zapewnionego miejsca na kolana i wjechanie wózkiem.} other{}}",
+  "rooms_is_good_floor_room_contrast" : "{value, select, false{Kontrast kolorów w pomieszczeniu jest niski.} true{Kontrast kolorów w pomieszczeniu jest wyraźny.} other{}}",
+  "rooms_is_good_lit" : "{value, select, false{Poziom oświetlenia w pomieszczeniu nie jest odpowiedni.} true{Poziom oświetlenia w pomieszczeniu jest odpowiedni.} other{}}",
+  "rooms_is_floor_shiny" : "{value, select, false{Podłoga w pomieszczeniu nie jest błyszcząca i nie powoduje ona odblasków.} true{W pomieszczeniu znajduje się podłoga, która jest błyszcząca i może powodować odblaski lub wyglądać na śliską.} other{}}",
+  "rooms_is_blackboard" : "{value, select, true{W pomieszczeniu znajduje się tablica, w odległości {distance} od miejsca siedzącego} other{}}",
+    "@rooms_is_blackboard": {
+    "description": "",
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "rooms_are_movable_elements" : "{value, select, false{W pomieszczeniu nie znajdują się inne stałe lub ruchome elementy stanowiące zagrożenie lub też potencjalne problemy w poruszaniu się.} true{W pomieszczeniu znajdują się inne stałe lub ruchome elementy stanowiące zagrożenie lub też potencjalne problemy w poruszaniu się.} other{}}",
+  "rooms_are_flashing_devices" : "{value, select, false{W pomieszczeniu nie znajdują się żadne urządzenia migające ani błyszczące mogące wywołać atak epilepsji.} true{W pomieszczeniu znajdują się urządzenia migające lub błyszczące mogące wywołać atak epilepsji.} other{}}",
+  "rooms_are_places_accessible_from_main_entrance" : "{value, select, false{Miejsca dedykowane osobom poruszającym się na wózkach nie są dostępne z głównego wejścia do pomieszczenia.} true{Miejsca dedykowane osobom poruszającym się na wózkach są dostępne z głównego wejścia do pomieszczenia.} other{}}",
+  "rooms_are_electrical_outlets" : "{value, select, false{Gniazdka elektryczne i inne włączniki w pomieszczeniu znajdują się na wysokości większej niż 110 centymetrów.} true{Gniazdka elektryczne i inne włączniki w pomieszczeniu są dostępne i znajdują się na wysokości maksymalnie 110 centymetrów.} other{}}",
+  "are_objects_narrow_communication_zone": "Przedmioty {value, select, false{nie zwężają przejścia} true{zwężają przejście} other{}}",
+  "are_information_boards": "Tablice informacyjne{value, select, false{ nie} true{} other{}} są dostępne",
+  "are_information_boards_in_en": "Tablice informacyjne{value, select, false{ nie} true{} other{}} są dostępne po angielsku",
+  "are_room_entrances": "{value, select, false{Nie z} true{Z} other{Z}}najdują się wejścia do pomieszczeń",
+  "are_floor_markings": "{value, select, false{Nie z} true{Z} other{Z}}najdują się oznaczenia podłogowe",
+  "is_typhlomap": "Tyflomapa{value, select, false{ nie} true{} other{}} jest dostępna",
+
+
+  "strategicBadgeTooltip": "Koło Strategiczne PWr",
+  "strategic_club_abbr": "KS",
+  "emptySection": "Brak członków zespołu w tej wersji",
+  "digital_guide_offline" : "Cyfrowego Przewodnika",
+  "communique" : "Komunikat",
+  "audio_message" : "Komunikat Dźwiękowy",
+  "audio_message_comment" : "Sygnał znacznika może różnić się tempem i brzmieniem",
+  "platforms" : "Podesty",
+  "key_information" : "Najważniejsze informacje",
+  "entrance_is_main" : "To {value, select, false{nie } other{}}jest wejście główne",
+  "entrance_is_accessible" : "Wejście {value, select, false{nie } other{}}jest dostępne",
+  "entrance_is_for_personel" : "Wejście {value, select, false{nie } other{}}wymaga specjalnych uprawnień",
+  "entrance_is_building_marked_from_entrance" : "Budynek {value, select, false{nie } other{}}jest wyraźnie oznaczony od strony wejścia",
+  "entrance_is_building_marked_in_en" : "Budynek {value, select, false{nie } other{}}jest oznaczony w języku angielskim",
+  "entrance_is_lit": "Wejście {value, select, false{nie } other{}}jest oświetlone po zmroku",
+  "entrance_is_emergency_exit" : "Wejście {value, select, false{nie } other{}}jest ewakuacyjne",
+  "entrance_is_protection_from_weather" : "Wejście {value, select, false{nie } other{}} jest chronione przed warunkami atmosferycznymi",
+  "entrance_is_solid_surface" : "Teren przed wejściem {value, select, false{nie } other{}}jest równy",
+  "entrance_are_different_types_of_surface" : "Przed wejściem {value, select, false{nie } other{}}znajdują się różne rodzaje nawierzchni",
+  "entrance_are_benches": "Przed wejściem {value, select, false{nie } other{}}znajdują się ławki",
+  "entrance_has_sound_transmitter" : "Przy wejściu {value, select, false{nie } other{}}znajduje się znacznik dźwiękowy systemu nawigacyjno-informacyjnego",
+  "entrance_has_tactile_paving" : "Przed wejściem {value, select, false{nie } other{}}znajdują się ścieżki naprowadzające",
+  "motorImpairment": "Dysfunkcja ruchu",
+  "hearingImpairment" : "Dysfunkcja słuchu",
+  "visualImpairment": "Dysfunkcja wzroku",
+  "blind": "Niewidomy",
+  "lowVision": "Słabo widzący",
+  "sensorySensitivity": "Wrażliwość sensoryczna",
+  "cognitiveImpairment": "Trudności poznawcze",
+  "accessibility_profiles":"Profile dostępności",
+  "additional_information": "Dodatkowe informacje",
+  "no_lodge_in_the_building": "W tym budynku nie ma portierni",
+  "no_dressing_room_in_the_building": "W tym budynku nie ma szatni",
+  "general_offline" : "pobierania danych",
+  "floors_served_by_lift": "Piętra obsługiwane przez windę",
+  "dimensions" : "Wymiary",
+  "max_capacity" : "Maksymalny udźwig",
+  "generic_error_message": "Upsss...Coś poszło nie tak",
+  "public_transport": "Publiczny środek komunikacji miejskiej (autobus, tramwaj)",
+  "private_transport": "Prywatny środek transportu (samochód, rower)",
+  "distance": " W odległości ",
+  "meters_abbrev": " m. ",
+  "bicycle_path_leads_to_building": "Do budynku prowadzi ścieżka rowerowa. ",
+  "transport_lines": "Linie komunikacji miejskiej: ",
+  "pass_traffic_lights": "Do przystanku prowadzą przejścia z sygnalizacją świetlną. ",
+  "no_pass_traffic_lights": "Do przystanku prowadzą przejścia bez sygnalizacji świetlnej. ",
+  "nearest_public_transport_stop": "Najbliższy przystanek komunikacji miejskiej to ",
+  "nearest_public_transport_stop_alt": "Alternatywny przystanek komunikacji miejskiej to ",
+  "chose_the_path": "Gdzie można dotrzeć obierając drogę ",
+  "you_can_adjust": "Możesz dostosować informacje pod swoje specjalne potrzeby",
+  "navigate_to_building": "Nawiguj do budynku",
+  "working_hours" : "Godziny otwarcia",
+  "rooms_distribution" : "Rozkład pomieszczeń:",
+  "region_location" : "Lokalizacja strefy:",
+  "region_prefix" : "Wskazana strefa budynku",
+  "level" : "Piętro",
+  "region" : "Strefa", 
+  "stairs" : "Schody",
+  "lodge" : "Portiernia",
+  "dressing_room" : "Szatnia",
+  "men_toilet" : "Toaleta męska",
+  "women_toilet" : "Toaleta damska",
+  "ramp" : "Pochylnia",
+  "lift" : "Winda",
+  "parking" : "Parking",
+  "lift_width_text": "Szerokość drzwi wynosi {width} centymetrów.",
+  "@lift_width_text": {
+    "placeholders": {
+      "width": {
+        "type": "int"
+      }
+    }
+  },
+  "lift_dimensions_text": "Wymiary windy wynoszą",
+  "lift_glazed": "W windzie znajduje się lustro ułatwiające wysiadanie.",
+  "control_panel_inside": "Panel sterujący w windzie znajduje się na wysokości {height} centymetrów.",
+  "@control_panel_inside": {
+    "placeholders": {
+      "height": {
+        "type": "int"
+      }
+    }
+  },
+  "control_panel_outside": "Panel sterujący na zewnątrz windy znajduje się na wysokości {height} centymetrów.",
+  "@control_panel_outside": {
+    "placeholders": {
+      "height": {
+        "type": "int"
+      }
+    }
+  },
+  "lift_info_boart_text": "Winda jest oznaczona tablicą informacyjną.",
+  "is_voice_comunicates": "Winda nie wydaje komunikatów głosowych.",
+  "with_voice_comunicates": "Winda wydaje komunikaty głosowe.",
+  "without_inside_braile_comunicates": "Przyciski wewnątrz windy nie posiadają oznaczeń w języku Braille'a.",
+  "with_inside_braile_comunicates": "Przyciski wewnątrz windy posiadają oznaczenia w języku Braille'a.",
+  "lift_button_are_convex": "Przyciski na panelu wewnątrz windy są wypukłe.",
+  "is_with_outsite_notification": "Podczas oczekiwania na windę {value, select, false{nie} other{}} jest wydawane dźwiękowe powiadomienie o jej przyjechaniu.",
+  "is_with_inside_notification": "Podczas jazdy windą {value, select, false{nie} other{}} jest wydawane dźwiękowe powiadomienie o dojechaniu na wybrane piętro.",
+  "is_door_good_contrast": "Drzwi windy {value, select, false{nie} other{}} kontrastują ze ścianą.",
+  "is_inside_lit": "Poziom oświetlenia wewnątrz windy {value, select, false{nie} other{}} jest odpowiedni.",
+  "is_lift_floor_info": "Winda {value, select, false{nie} other{}} wyświetla informacje o numerze piętra, na którym się aktualnie znajduje.",
+  "platform_dimensions" : "Wymiary podestu wynoszą ",
+  "canteen" : "Stołówka: ",
+  "cafe" : "Kawiarnia: ",
+  "toilet_isNeedAuthorization": "{value, select, false{Nie jest wymagana autoryzacja.} true{Wymagana jest autoryzacja.} other{}}",
+  "toilet_isWastebasket": "{value, select, false{Nie ma kosza na śmieci.} true{Znajduje się kosz na śmieci.} other{}}",
+  "toilet_areClothesHooks": "{value, select, false{Nie ma wieszaków na ubrania.} true{Znajdują się wieszaki na ubrania.} other{}}",
+  "toilet_isHandDryer": "{value, select, false{Nie ma suszarki do rąk.} true{Znajduje się suszarka do rąk.} other{}}",
+  "toilet_isTowelDispenser": "{value, select, false{Nie ma dozownika na ręczniki.} true{Znajduje się dozownik na ręczniki.} other{}}",
+  "toilet_isWashbasin": "{value, select, false{Nie ma umywalki.} true{Znajduje się umywalka.} other{}}",
+  "toilet_isSpaceUnderWashbasinForWheelChair": "{value, select, false{Brak przestrzeni pod umywalką na wózek inwalidzki.} true{Jest przestrzeń pod umywalką na wózek inwalidzki.} other{}}",
+  "toilet_isLightSwitch": "{value, select, false{Nie ma włącznika światła.} true{Znajduje się włącznik światła.} other{}}",
+  "toilet_isGoodLit": "{value, select, false{Oświetlenie jest niewystarczające.} true{Oświetlenie jest dobre.} other{}}",
+  "toilet_isGoodDevicesWallContrast": "{value, select, false{Urządzenia nie wyróżniają się na tle ściany.} true{Urządzenia wyróżniają się na tle ściany.} other{}}",
+  "transport_are_pass_traffic_lights" : "{value, select, false{Na drodze z przystanku do wejścia do budynku nie występuje przejście dla pieszych z sygnalizacją świetlną.} true{Na drodze z przystanku do wejścia do budynku występuje przejście dla pieszych z sygnalizacją świetlną.} other{}}",
+  "transport_are_not_pass_traffic_lights" : "{value, select, false{Na drodze z przystanku do wejścia do budynku nie występuje przejście dla pieszych bez sygnalizacji świetlnej.} true{Na drodze z przystanku do wejścia do budynku występuje przejście dla pieszych bez sygnalizacji świetlnej.} other{}}",
+  "transport_wheelchair_obstacles" : "{value, select, true{Na drodze z przystanku do wejścia do budynku znajdują się przeszkody dla osoby poruszającej się na wózku:} false{Na drodze z przystanku do wejścia do budynku nie znajdują się przeszkody dla osoby poruszającej się na wózku.} other{}}",
+  "transport_alt_are_pass_traffic_lights" : "{value, select, false{Na drodze z alternatywnego przystanku do wejścia do budynku nie występuje przejście dla pieszych z sygnalizacją świetlną.} true{Na drodze z alternatywnego przystanku do wejścia do budynku występuje przejście dla pieszych z sygnalizacją świetlną.} other{}}",
+  "transport_alt_are_not_pass_traffic_lights" : "{value, select, false{Na drodze z alternatywnego przystanku do wejścia do budynku nie występuje przejście dla pieszych bez sygnalizacji świetlnej.} true{Na drodze z alternatywnego przystanku do wejścia do budynku występuje przejście dla pieszych bez sygnalizacji świetlnej.} other{}}",
+  "transport_alt_wheelchair_obstacles" : "{value, select, true{Na drodze z przystanku alternatywnego do wejścia do budynku znajdują się przeszkody dla osoby poruszającej się na wózku:} false{Na drodze z przystanku alternatywnego do wejścia do budynku nie znajdują się przeszkody dla osoby poruszającej się na wózku.} other{}}",
+  "transport_obstacles_for_blind" : "{value, select, true{Na drodze z przystanku do wejścia do budynku znajdują się przeszkody dla osoby niewidomej:} false{Na drodze z przystanku do wejścia do budynku nie znajdują się przeszkody dla osoby niewidomej.} other{}}",
+  "transport_alt_obstacles_for_blind" : "{value, select, true{Na drodze z przystanku do wejścia do budynku znajdują się przeszkody dla osoby niewidomej:} false{Na drodze z przystanku do wejścia do budynku nie znajdują się przeszkody dla osoby niewidomej.} other{}}",
+  "transport_facilities_for_blind" : "{value, select, true{Na drodze z przystanku do wejścia do budynku znajdują się udogodnienia dla osoby niewidomej:} false{Na drodze z przystanku do wejścia do budynku nie znajdują się udogodnienia dla osoby niewidomej.} other{}}",
+  "transport_alt_facilities_for_blind" : "{value, select, true{Na drodze z przystanku alternatywnego do wejścia do budynku znajdują się udogodnienia dla osoby niewidomej:} false{Na drodze z przystanku alternatywnego do wejścia do budynku nie znajdują się udogodnienia dla osoby niewidomej.} other{}}",
+  "transport_closest_parking_for_disabled" : "Najbliższe miejsce parkingowe dla osób z niepełnosprawnością znajduje się {comment} metrów od wejścia dostępnego",
+  "@transport_closest_parking_for_disabled": {
+    "description": "comment",
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
+  "railing_is_railing_on_landings": "{value, select, false{Brak poręczy na podestach.} true{Poręcze są zamontowane na podestach.} other{}}",
+  "railing_is_two_sided_railing": "{value, select, false{Poręcze nie są dwustronne.} true{Poręcze są dwustronne.} other{}}",
+  "railing_is_braille_convex_marking": "{value, select, false{Brak oznaczeń w alfabecie Braille'a lub wypukłych.} true{Obecne są oznaczenia w alfabecie Braille'a lub wypukłe.} other{}}",
+  "railing_is_good_railing_contrast": "{value, select, false{Brak dobrego kontrastu poręczy.} true{Poręcze mają dobry kontrast.} other{}}",
+  "railing_is_round_cross_section_railing": "{value, select, false{Poręcze nie mają okrągłego przekroju.} true{Poręcze mają okrągły przekrój.} other{}}",
+  "railing_is_railing_extended_30cm": "{value, select, false{Poręcze nie są przedłużone o 30 cm.} true{Poręcze są przedłużone o 30 cm.} other{}}",
+  "railing_is_railing_obstacle": "{value, select, false{Poręcze nie stanowią przeszkody.} true{Poręcze stanowią przeszkodę.} unknown{Nie wiadomo, czy poręcze stanowią przeszkodę.} other{}}",
+  "railing_height": "{value, plural, =0{Brak informacji o wysokości poręczy.} one{Poręcz ma {value} cm wysokości.} other{Poręcze mają {value} cm wysokości.}}",
+  "railing": "Poręcz",
+  "ramps_is_ramp_marked": "{value, select, false{Pochylnia nie jest oznakowana.} true{Pochylnia jest oznakowana.} other{}}",
+  "ramps_is_increased_force_needed": "{value, select, false{Nie jest potrzebna zwiększona siła do pokonania pochylni} true{Do pokonania pochylni potrzebna jest zwiększona siła.} other{}}",
+  "ramps_is_permanent_ramp": "{value, select, false{Pochylnia nie jest stałym elementem konstrukcyjnym.} true{Pochylnia jest stałym elementem konstrukcyjnym.} other{}}",
+  "ramps_is_good_lit": "{value, select, false{Oświetlenie jest niewystarczające.} true{Oświetlenie jest dobre.} other{}}",
+  "ramps_are_nonslip_elements": "{value, select, false{Powierzchnia pochylni nie posiada elementów antypoślizgowych.} true{Powierzchnia pochylni posiada elementy antypoślizgowe.} other{}}",
+  "ramps_width": "Szerokość pochylni wynosi ",
+  "number_of_ramp_landings": "Liczba spoczników: ",
+  "dimensions_of_the_landings": "Wymiary spoczników to ",
+  "isMarked": "Lokalizacja punktu informacyjnego została wyraźnie oznaczona.",
+  "are_seats_available": "Przy punkcie informacyjnym nie ma miejsc siedzących",
+  "is_space_on_counter": "Na ladzie jest miejsce, aby podpisać dokumenty",
+  "are_access_bariers": "Dostęp do punktu informacyjnego jest dobry. Podłoga jest równa, a w otoczeniu nie ma żadnych przeszkód.",
+  "is_space_under_counter": "Pod dolną częścią lady {value, select, false{nie ma miejsca} true{jest miejsce} other{}} na wjechanie wózkiem.",
+  "counter_heigth_text": "Wysokość lady punktu informacyjnego wynosi {value}",
+  "@counter_heigth_text": {
+    "placeholders":{
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "is_movement_space": "Przy punkcie informacyjnym {value, select, false{nie} other{}} jest odpowiednia przestrzeń do poruszania się dla osób z niepełnosprawnościami.",
+  "is_good_lit_info_point": "Punkt informacyjny {value, select, false{nie} other{}} jest odpowiednio oświetlony.",
+  "is_visible_from_afar": "Punkt informacyjny {value, select, false{nie} other{}} jest widoczny z dużej odległości. Lada {value, select, false{nie} other{}} wyróżnia się na tle otoczenia.",
+  "has_sound_transmitter": "Pomieszczenie {value, select, false{nie} other{}} jest wyposażone w pętle indukcyjną, system FM ani tłumacza języka migowego.",
+  "information_point": "Punkt Informacyjny",
+  "dressing_room_is_marked": "{value, select, false{Lada nie jest oznaczona.} true{Lada jest oznaczona.} other{}}",
+  "dressing_room_is_visible_from_afar": "{value, select, false{Lada nie jest widoczna z daleka.} true{Lada jest widoczna z daleka.} other{}}",
+  "dressing_room_are_access_barriers": "{value, select, false{Brak barier w dostępie do lady.} true{Występują bariery w dostępie do lady.} other{}}",
+  "dressing_room_are_seats_available": "{value, select, false{Brak miejsc siedzących przy ladzie.} true{Przy ladzie dostępne są miejsca siedzące.} other{}}",
+  "dressing_room_is_movement_space": "{value, select, false{Brak przestrzeni manewrowej przy ladzie.} true{Przy ladzie dostępna jest przestrzeń manewrowa.} other{}}",
+  "dressing_room_is_good_lit": "{value, select, false{Lada nie jest dobrze oświetlona.} true{Lada jest dobrze oświetlona.} other{}}",
+  "dressing_room_counter_height": "{value, plural, =0{Wysokość lady nie została określona.} other{Wysokość lady wynosi {value} cm.}}",
+  "dressing_room_counter_is_space_under": "{value, select, false{Pod ladą nie ma wolnej przestrzeni.} true{Pod ladą znajduje się wolna przestrzeń.} other{}}",
+  "dressing_room_counter_is_space_on": "{value, select, false{Na ladzie nie ma wolnej przestrzeni.} true{Na ladzie znajduje się wolna przestrzeń.} other{}}",
+  
+  "corridor" : "Korytarz",
+  "corridor_simple_layout_text": "{value, select, false{Układ korytarza nie jest prosty, czytelny ani powtarzalny na każdej kondygnacji.} true{Korytarz ma prosty i przejrzysty układ, który jest powtarzalny na każdej kondygnacji.} other{}}",
+  "corridor_floor_marked": "{value, select, false{Korytarz nie jest oznakowany. Nie ma widocznego numeru piętra.} true{Korytarz jest oznakowany. Widoczny jest numer piętra.} other{}}",
+  "corridor_room_entrances": "{value, select, false{Z korytarza nie ma możliwości wejścia do żadnego pomieszczenia.} true{Z korytarza możliwe jest wejście do następujących pomieszczeń:} other{}}",
+  "corridor_information_board": "{value, select, false{W korytarzu nie ma tablicy informacyjnej ze spisem pomieszczeń.} true{W korytarzu znajduje się tablica informacyjna ze spisem pomieszczeń.} other{}}",
+  "corridor_room_purpose_described_in_en" : "{value, select, false{Funkcje pomieszczeń nie są opisane w języku angielskim.} true{Funkcje pomieszczeń są opisane w języku angielskim.} other{}}",
+  "corridor_consistent_level_color_pattern" : "{value, select, false{Kolor, wzór i krój oznakowania pomieszczeń nie są spójne dla całego piętra.} true{Kolor, wzór i krój oznakowania pomieszczeń są spójne dla całego piętra.} other{}}",
+  "corridor_pictorial_directional_signs" : "{value, select, false{W kluczowych punktach korytarza nie ma wyraźnych i kontrastowych oznakowań kierunkowych.} true{W kluczowych punktach korytarza znajdują się wyraźne i kontrastowe oznakowania kierunkowe.} other{}}",
+  "corridor_seats" : "{value, select, false{W korytarzu nie ma miejsc siedzących.} true{W korytarzu znajdują się miejsca siedzące. Są to:} other{}}",
+  "corridor_vending_machines" : "{value, select, false{W korytarzu nie ma automatów sprzedających.} true{W korytarzu znajdują się automaty sprzedające.} other{}}",
+  "corridor_emergency_plan" : "{value, select, false{W korytarzu nie ma planów ewakuacyjnych.} true{W korytarzu znajdują się plany ewakuacyjne.} other{}}",
+
+  "corridor_typhlomap": "{value, select, false{W korytarzu nie jest dostępna tyflomapa.} true{W korytarzu znajduje się tyflomapa.} other{}}",
+  "corridor_dangerous_elements": "{value, select, false{W korytarzu nie ma innych stałych lub ruchomych elementów, które mogą stanowić problemy w poruszaniu się.} true{W korytarzu znajdują się inne stałe lub ruchome obiekty mogące stanowić problemy w poruszaniu się. Są to:} other{}}",
+  "corridor_info_plates_accessible": "{value, select, false{Oznakowanie pomieszczeń nie zawiera dodatkowych informacji.} true{Oznakowanie pomieszczeń zawiera dodatkowo:} other{}}",
+  "corridor_horizontal_markings_for_blind": "{value, select, false{W korytarzu nie ma oznaczeń poziomych dla osób niewidomych.} true{W korytarzu są oznaczenia poziome dla osób niewidomych.} other{}}",
+
+  "corridor_plates_with_rooms_list_have_readable_font" : "{value, select, false{} true{Tablica informacyjna ze spisem pomieszczeń ma czytelny tekst.} other{}}",
+  "corridor_rooms_marked": "{value, select, false{Oznakowanie pomieszczeń nie zawiera dodatkowych informacji.} true{Pomieszczenia w korytarzu są wyraźnie oznakowane.} other{}}",
+  "corridor_pictogram_used":"{value, select, false{Informacja wizualna nie wykorzystuje piktogramów.} true{Informacja wizualna wykorzystuje piktogramy.} other{}}",
+  "corridor_is_glare" : "{value, select, false{Podłoga w korytarzu nie błyszczy się.} true{Podłoga w korytarzu może się intensywnie błyszczeć, powodując oślepienie i wygladając na śliską.} other{}}",
+  "corridor_good_walls_contrast" : "{value, select, false{W korytarzu nie ma wyraźnego kontrastu kolorów między ścianami a podłogą.} true{} other{}}",
+  "corridor_good_lit" : "{value, select, false{Korytarz nie jest odpowiednio oświetlony.} true{Korytarz jest odpowiednio oświetlony.} other{}}",
+  "corridor_horizontal_markings_for_visually_impaired" : "{value, select, false{W korytarzu nie ma oznaczeń poziomych dla osób słabowidzących.} true{W korytarzu są oznaczenia poziome dla osób słabowidzących.} other{}}",
+
+  "corridor_min_width_length" : "{value, select, false{Szerokość korytarza nie zapewnia pełnej dostępności i wynosi} true{Szerokość korytarza zapewnia pełną dostępność i wynosi minimum 150 centymetrów.} other{}}",
+  "corridor_railings" : "{value, select, false{W korytarzu nie ma poręczy ściennych.} true{W korytarzu znajdują się poręcze ścienne.} other{}}",
+  "corridor_light_switches_sockets_height" : "{value, select, false{W korytarzu wszystkie włączniki światła i gniazdka elektryczne znajdują się na wysokości powyżej 110 centymetrów.} true{W korytarzu wszystkie włączniki światła i gniazdka elektryczne znajdują się na wysokości maksymalnie 110 centymetrów.} other{}}",
+
+  "corridor_echo" : "{value, select, false{Akustyka korytarza nie powoduje powstawania echa, które może utrudniać komunikację.} true{Akustyka korytarza powoduje powstawanie echa, które może utrudniać komunikację.} other{}}",
+
+  "corridor_flashing_device": "{value, select, false{W korytarzu nie ma obiektów migających lub błyszczących, które mogą wywołać atak epilepsji.} true{W korytarzu znajdują się obiekty migające lub błyszczące, które mogą wywołać atak epilepsji.} other{}}",
+
+  "entrance_is_main": "{value, select, false{Wejście nie jest główne.} true{Wejście jest główne.} other{}}",
+  "entrance_is_accessible": "{value, select, false{Wejście nie jest dostępne.} true{Wejście jest dostępne.} other{}}",
+  "entrance_is_for_personel": "{value, select, false{Wejście nie jest przeznaczone dla personelu.} true{Wejście jest przeznaczone dla personelu.} other{}}",
+  "entrance_is_building_marked_from_entrance": "{value, select, false{Budynek nie jest oznakowany przy wejściu.} true{Budynek jest oznakowany przy wejściu.} other{}}",
+  "entrance_is_building_marked_in_en": "{value, select, false{Budynek nie jest oznakowany w języku angielskim.} true{Budynek jest oznakowany w języku angielskim.} other{}}",
+  "entrance_is_lit": "{value, select, false{Wejście nie jest dobrze oświetlone.} true{Wejście jest dobrze oświetlone.} other{}}",
+  "entrance_is_emergency_exit": "{value, select, false{Wejście nie jest wyjściem ewakuacyjnym.} true{Wejście jest wyjściem ewakuacyjnym.} other{}}",
+  "entrance_is_protection_from_weather": "{value, select, false{Wejście nie jest osłonięte przed warunkami atmosferycznymi.} true{Wejście jest osłonięte przed warunkami atmosferycznymi.} other{}}",
+  "entrance_is_solid_surface": "{value, select, false{Podłoże przy wejściu nie jest równe i stabilne.} true{Podłoże przy wejściu jest równe i stabilne.} other{}}",
+  "entrance_are_different_types_of_surface": "{value, select, false{Brak różnych typów nawierzchni przy wejściu.} true{Występują różne typy nawierzchni przy wejściu.} other{}}",
+  "entrance_are_benches": "{value, select, false{Brak ławek przy wejściu.} true{Przy wejściu znajdują się ławki.} other{}}",
+  "entrance_number_of_doors": "{value, plural, =0{Brak drzwi przy wejściu.} other{Liczba drzwi przy wejściu: {value}.}}",
+  "entrance_doors_distance": "Odległość między drzwiami wynosi {value} cm.",
+  "entrance_has_sound_transmitter": "{value, select, false{Brak nadajnika dźwięku przy wejściu.} true{Przy wejściu znajduje się nadajnik dźwięku.} other{}}",
+  "entrance_has_tactile_paving": "{value, select, false{Brak ścieżki dotykowej przy wejściu.} true{Przy wejściu znajduje się ścieżka dotykowa.} other{}}",
+  "corridor_flashing_device": "{value, select, false{W korytarzu nie ma obiektów migających lub błyszczących, które mogą wywołać atak epilepsji.} true{W korytarzu znajdują się obiekty migające lub błyszczące, które mogą wywołać atak epilepsji.} other{}}",
+  "no_micro_navigation" : "There is no micronavigation for this building",
+  "lodge_access_barriers": "{value, select, false{Na drodze dojścia do portierni} true{Na drodze dojścia do portierni podłoga jest równa, a w otoczeniu nie ma żadnych przeszkód.} other{}}",
+  "lodge_movement_space": "{value, select, false{Przy portierni nie ma dostępnej odpowiedniej przestrzeni do poruszania się dla osób z niepełnosprawnościami.} true{Przy portierni jest odpowiednia przestrzeń do poruszania się dla osób z niepełnosprawnościami.} other{}}",
+  "lodge_counter_height": "Wysokość lady portierni wynosi {comment} centymetrów.",
+  "lodge_space_under_counter": "{value, select, false{Pod dolną częścią lady nie ma miejsca na wjechanie wózkiem.} true{Pod dolną częścią lady jest miejsce na wjechanie wózkiem.} other{}}",
+  "lodge_visible_from_afar": "{value, select, false{Portiernia nie jest widoczna z dużej odległości. Lada nie wyróżnia się na tle otoczenia.} true{Portiernia jest widoczna z dużej odległości. Lada wyróżnia się na tle otoczenia.} other{}}",
+  "lodge_good_lit": "{value, select, false{Portiernia nie jest odpowiednio oświetlona.} true{Portiernia jest odpowiednio oświetlona.} other{}}",
+  "is_elevated_threshold": "W drzwiach{value, select, false{ nie} other{}} znajduje się próg. ",
+  "elevated_threshold_text": "Jego wysokość wynosi ",
+  "handle_heigth_text": "Klamka znajduje się na wysokości {value} cm",
+  "@handle_heigth_text": {
+    "placeholders":{
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "are_glazed": "Drzwi {value, select, false{nie } other{}}są przeszklone.",
+  "are_visible": "Między klamką a drzwiami {value, select, false{nie } other{}}jest odpowiedni kontrast.",
+  "is_graphic": "Drzwi {value, select, false{nie } other{}}są oznakowane.",
+  "is_closure_from_inside": "Drzwi {value, select, false{nie } other{}}otwierają się do wewnątrz.",
+  "is_same_opening_system": "Drzwi po obu stronach {value, select, false{nie } other{}}otwierają się w identyczny sposób.",
+  "entrance_has_tactile_paving": "{value, select, false{Brak ścieżki dotykowej przy wejściu.} true{Przy wejściu znajduje się ścieżka dotykowa.} other{}}"
+}
