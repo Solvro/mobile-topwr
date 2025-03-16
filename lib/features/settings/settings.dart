@@ -21,7 +21,9 @@ class SettingsView extends ConsumerWidget {
       NavigationTile(
         onTap: () async {
           final selectedLang = await LanguageDialog.show(context);
-          if (selectedLang != null) {}
+          if (selectedLang != null) {
+            /* TODO: Handle selected language */
+          }
         },
         title: context.localize.language,
         icon: Icons.speaker_notes_rounded,
