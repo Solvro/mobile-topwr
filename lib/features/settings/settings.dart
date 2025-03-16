@@ -8,6 +8,7 @@ import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
 
 import "../navigation_tab_view/widgets/navigation_tile.dart";
+import "widgets/language_settings_view.dart";
 
 @RoutePage()
 class SettingsView extends ConsumerWidget {
@@ -17,18 +18,26 @@ class SettingsView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final widgets = [
       Text(context.localize.settings, style: context.textTheme.headline),
-      NavigationTile(onTap: () {}, title: context.localize.language, icon: Icons.speaker_notes_rounded),
+      NavigationTile(
+        onTap: () async {
+          final selectedLang = await LanguageDialog.show(context);
+          if (selectedLang != null) {}
+        },
+        title: context.localize.language,
+        icon: Icons.speaker_notes_rounded,
+      ),
     ];
 
     return Scaffold(
+      backgroundColor: context.colorTheme.whiteSoap,
       appBar: DetailViewAppBar(),
       body: Padding(
-        padding: const EdgeInsets.all(DigitalGuideConfig.paddingMedium),
+        padding: const EdgeInsets.all(AboutUsConfig.spacerHeight),
         child: ListView.separated(
           physics: const NeverScrollableScrollPhysics(),
           itemCount: widgets.length,
           itemBuilder: (context, index) => widgets[index],
-          separatorBuilder: (context, index) => const SizedBox(height: DigitalGuideConfig.heightSmall),
+          separatorBuilder: (context, index) => const SizedBox(height: AboutUsConfig.spacerHeight),
           shrinkWrap: true,
         ),
       ),
