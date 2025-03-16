@@ -21,8 +21,8 @@ class LanguageDialog extends ConsumerWidget {
         builder: (context, setState) {
           String selectedLanguage = context.localize.localeName;
           final languages = [
-            {"code": "pl", "name": "Polski"},
-            {"code": "en", "name": "English"},
+            {"code": "pl", "name": "Polski 🇵🇱"},
+            {"code": "en", "name": "English 🇬🇧"},
           ];
 
           return SizedBox(
