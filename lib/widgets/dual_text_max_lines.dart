@@ -3,7 +3,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../features/science_club/science_clubs_view/widgets/strategic_badge.dart";
 import "../features/science_club/science_clubs_view/widgets/verified_badge.dart";
-import "../services/translations_service/repository/translations_repository.dart";
+import "../services/translations_service/data/repository/translations_repository.dart";
 
 class DualTextSpan extends TextSpan {
   DualTextSpan(
@@ -56,33 +56,54 @@ class DualTextMaxLinesWithTranslation extends ConsumerWidget {
   final bool showStrategicBadge;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    if (!translate) return _buildText(title, subtitle);
+    if (!translate) {
+      return RichText(
+        maxLines: maxTotalLines,
+        overflow: TextOverflow.ellipsis,
+        text: DualTextSpan(
+          title,
+          titleStyle,
+          subtitle,
+          subtitleStyle,
+          spacing,
+          showBadge: showVerifiedBadge,
+          showStrategicBadge: showStrategicBadge,
+        ),
+      );
+    }
 
     final translatedTitle = ref.watch(translationsRepositoryProvider(title));
     final translatedSubtitle = subtitle != null ? ref.watch(translationsRepositoryProvider(subtitle!)) : null;
 
-    if (translatedTitle is AsyncLoading || translatedSubtitle is AsyncLoading) {
-      return const Center(child: CircularProgressIndicator());
-    }
-
-    if (translatedTitle is AsyncError || translatedSubtitle is AsyncError) {
-      return _buildText(title, subtitle);
-    }
-
-    return _buildText(translatedTitle.value ?? title, translatedSubtitle?.value ?? subtitle);
+    return switch ((translatedTitle, translatedSubtitle)) {
+      (AsyncLoading(), _) || (_, AsyncLoading()) => const Center(child: CircularProgressIndicator()),
+      (AsyncData(), AsyncData()) => RichText(
+        maxLines: maxTotalLines,
+        overflow: TextOverflow.ellipsis,
+        text: DualTextSpan(
+          translatedTitle.value ?? "",
+          titleStyle,
+          translatedSubtitle?.value,
+          subtitleStyle,
+          spacing,
+          showBadge: showVerifiedBadge,
+          showStrategicBadge: showStrategicBadge,
+        ),
+      ),
+      _ => RichText(
+        maxLines: maxTotalLines,
+        overflow: TextOverflow.ellipsis,
+        text: DualTextSpan(
+          title,
+          titleStyle,
+          subtitle,
+          subtitleStyle,
+          spacing,
+          showBadge: showVerifiedBadge,
+          showStrategicBadge: showStrategicBadge,
+        ),
+      ),
+    };
   }
 
-  Widget _buildText(String title, String? subtitle) => RichText(
-    maxLines: maxTotalLines,
-    overflow: TextOverflow.ellipsis,
-    text: DualTextSpan(
-      title,
-      titleStyle,
-      subtitle,
-      subtitleStyle,
-      spacing,
-      showBadge: showVerifiedBadge,
-      showStrategicBadge: showStrategicBadge,
-    ),
-  );
 }

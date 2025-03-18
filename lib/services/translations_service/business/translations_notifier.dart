@@ -1,31 +1,17 @@
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "../../../config/shared_prefs.dart";
-import "../models/supported_languages.dart";
+import "../data/models/supported_languages.dart";
+import "../data/repository/translations_repository.dart";
 
 part "translations_notifier.g.dart";
 
 @riverpod
 class Translations extends _$Translations {
-  static const localesKey = "locales_preference";
-
   @override
-  Future<SupportedLocales> build() async {
-    final sharedPreferences = await ref.watch(sharedPreferencesSingletonProvider.future);
+  Future<SupportedLocales> build() async => await ref.watch(fetchPrefferedLanguageProvider.future);
 
-    final localeString = sharedPreferences.getString(localesKey);
-
-    if (localeString == null) {
-      return SupportedLocales.en;
-    }
-
-    return SupportedLocales.fromString(localeString);
-  }
-
-  Future<void> changeLocale(SupportedLocales locale) async {
-    final sharedPreferences = await ref.watch(sharedPreferencesSingletonProvider.future);
-
-    await sharedPreferences.setString(localesKey, locale.name);
+  Future<void> setLocale(SupportedLocales locale) async {
+    await ref.read(setPrefferedLanguageProvider(locale).future);
     state = AsyncData(locale);
   }
 }

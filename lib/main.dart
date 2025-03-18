@@ -15,11 +15,12 @@ import "features/splash_screen/splash_screen_controller.dart";
 import "features/update_dialog/presentation/update_dialog_wrapper.dart";
 import "l10n/app_localizations.dart";
 import "services/translations_service/business/translations_notifier.dart";
-import "services/translations_service/models/supported_languages.dart";
+import "services/translations_service/data/models/supported_languages.dart";
 import "theme/app_theme.dart";
 import "theme/colors.dart";
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   SplashScreenController.preserveNativeSplashScreen();
   runApp(const ProviderScope(child: SplashScreen(child: MyApp())));
 }

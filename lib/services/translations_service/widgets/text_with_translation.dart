@@ -1,7 +1,7 @@
 import "package:flutter/widgets.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../repository/translations_repository.dart";
+import "../data/repository/translations_repository.dart";
 
 class TextWithTranslation extends ConsumerWidget {
   final String text;
@@ -39,19 +39,31 @@ class TextWithTranslation extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    if (!translate) return _buildText(text);
+    if (!translate) {
+      return Text(
+        text,
+        key: textKey,
+        style: style,
+        strutStyle: strutStyle,
+        textAlign: textAlign,
+        textDirection: textDirection,
+        softWrap: softWrap,
+        overflow: overflow,
+        maxLines: maxLines,
+        semanticsLabel: semanticsLabel,
+        textWidthBasis: textWidthBasis,
+        textHeightBehavior: textHeightBehavior,
+        selectionColor: selectionColor,
+      );
+    }
 
     final translation = ref.watch(translationsRepositoryProvider(text));
 
-    return _buildText(switch (translation) {
-      AsyncData(:final value) => value,
-      _ => text,
-    });
-  }
-
-  Widget _buildText(String displayText) {
     return Text(
-      displayText,
+      switch (translation) {
+        AsyncData(:final value) => value,
+        _ => text,
+      },
       key: textKey,
       style: style,
       strutStyle: strutStyle,
