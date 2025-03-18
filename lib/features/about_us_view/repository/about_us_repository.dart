@@ -2,8 +2,8 @@ import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "../../../config/ttl_config.dart";
 import "../../../api_base/query_adapter.dart";
+import "../../../config/ttl_config.dart";
 import "../models/about_us_details.dart";
 import "getAboutUsDetails.graphql.dart";
 

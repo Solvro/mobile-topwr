@@ -21,7 +21,7 @@ Future<String> translationsRepository(Ref ref, String originalText) async {
   }
 
   final translation = await db.getTranslation(originalText.hashCode, locale);
-  if(translation != null) return translation.translatedText;
+  if (translation != null) return translation.translatedText;
 
   final dio = ref.watch(translationsClientProvider);
 
@@ -31,19 +31,16 @@ Future<String> translationsRepository(Ref ref, String originalText) async {
     translatedLanguageCode: locale.name,
   );
 
-  final response = await dio.post<Map<String, dynamic>>(
-    "/translations/openAI",
-    data: request.toJson(),
-  );
+  final response = await dio.post<Map<String, dynamic>>("/translations/openAI", data: request.toJson());
 
   final translationModel = TranslationResponse.fromJson(response.data!).getTranslation();
   await db.addTranslation(translationModel);
-  
+
   return translationModel.translatedText;
 }
 
 @riverpod
-Future<void> setPrefferedLanguage(Ref ref,SupportedLocales localeCode) async {
+Future<void> setPrefferedLanguage(Ref ref, SupportedLocales localeCode) async {
   final sharedPreferences = await ref.watch(sharedPreferencesSingletonProvider.future);
 
   await sharedPreferences.setString(TranslationsConfig.localesKey, localeCode.name);

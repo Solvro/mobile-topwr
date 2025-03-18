@@ -23,12 +23,12 @@ abstract class TranslationResponse with _$TranslationResponse {
   TranslationResponse._();
 
   Translation getTranslation() => Translation(
-    originalTextHash: originalText.hashCode, 
-    translatedText: translatedText, 
-    originalLanguageCode: SupportedLocales.fromString(originalLanguageCode), 
-    translatedLanguageCode: SupportedLocales.fromString(translatedLanguageCode), 
-    isApproved: isApproved, 
-    createdAt: DateTime.now(), 
+    originalTextHash: originalText.hashCode,
+    translatedText: translatedText,
+    originalLanguageCode: SupportedLocales.fromString(originalLanguageCode),
+    translatedLanguageCode: SupportedLocales.fromString(translatedLanguageCode),
+    isApproved: isApproved,
+    createdAt: DateTime.now(),
   );
 
   factory TranslationResponse.fromJson(Map<String, dynamic> json) => _$TranslationResponseFromJson(json);
@@ -46,7 +46,7 @@ abstract class TranslationRequest with _$TranslationRequest {
 }
 
 class Translations extends Table {
-  IntColumn get originalTextHash => integer()(); 
+  IntColumn get originalTextHash => integer()();
   TextColumn get translatedText => text()();
   IntColumn get originalLanguageCode => intEnum<SupportedLocales>().withDefault(Constant(SupportedLocales.pl.index))();
   IntColumn get translatedLanguageCode => intEnum<SupportedLocales>()();
@@ -54,5 +54,5 @@ class Translations extends Table {
   DateTimeColumn get createdAt => dateTime().clientDefault(DateTime.now)();
 
   @override
-  Set<Column> get primaryKey => {originalTextHash, translatedLanguageCode}; 
+  Set<Column> get primaryKey => {originalTextHash, translatedLanguageCode};
 }

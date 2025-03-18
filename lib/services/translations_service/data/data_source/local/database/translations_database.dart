@@ -6,24 +6,22 @@ import "../../../models/translation.dart";
 import "../translations_data_source.dart";
 part "translations_database.g.dart";
 
-
 @DriftDatabase(tables: [Translations])
-class TranslationsDatabase extends _$TranslationsDatabase implements TranslationsDataSource{
+class TranslationsDatabase extends _$TranslationsDatabase implements TranslationsDataSource {
   TranslationsDatabase() : super(driftDatabase(name: "translations_database"));
 
   @override
   int get schemaVersion => 1;
-  
+
   @override
   Future<Translation?> getTranslation(int hash, SupportedLocales translatedLangCode) async {
-    return (select(translations)
-          ..where((t) => t.originalTextHash.equals(hash) & t.translatedLanguageCode.equals(translatedLangCode.index)))
-        .getSingleOrNull();
+    return (select(translations)..where(
+      (t) => t.originalTextHash.equals(hash) & t.translatedLanguageCode.equals(translatedLangCode.index),
+    )).getSingleOrNull();
   }
 
   @override
   Future<int> addTranslation(Translation translation) async {
-    print("added");
     return into(translations).insert(translation, mode: InsertMode.insertOrReplace);
   }
 

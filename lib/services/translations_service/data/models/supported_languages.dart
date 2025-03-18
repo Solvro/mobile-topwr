@@ -7,5 +7,5 @@ enum SupportedLocales {
   Locale toLocale() => Locale(name);
 
   factory SupportedLocales.fromString(String locale) =>
-     SupportedLocales.values.firstWhere((e) => e.name == locale, orElse: () => SupportedLocales.pl);
+      SupportedLocales.values.firstWhere((e) => e.name == locale, orElse: () => SupportedLocales.pl);
 }

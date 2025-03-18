@@ -7,8 +7,4 @@ import "../../../../../config/env.dart";
 part "translation_client.g.dart";
 
 @riverpod
-Dio translationsClient(Ref ref) => Dio(
-  BaseOptions(
-    baseUrl: Env.translateApiUrl
-  )
-);
+Dio translationsClient(Ref ref) => Dio(BaseOptions(baseUrl: Env.translateApiUrl));
