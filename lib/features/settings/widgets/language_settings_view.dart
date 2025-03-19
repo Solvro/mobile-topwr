@@ -14,15 +14,15 @@ class LanguageDialog extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final selectedLanguage = context.localize.localeName;
     return AlertDialog(
       backgroundColor: context.colorTheme.whiteSoap,
       contentPadding: const EdgeInsets.all(AboutUsConfig.spacerHeight),
       content: StatefulBuilder(
         builder: (context, setState) {
-          String selectedLanguage = context.localize.localeName;
           final languages = [
-            {"code": "pl", "name": "Polski 🇵🇱"},
-            {"code": "en", "name": "English 🇬🇧"},
+            {"code": "pl", "name": "🇵🇱 Polski"},
+            {"code": "en", "name": "🇬🇧 English"},
           ];
 
           return SizedBox(
@@ -52,7 +52,6 @@ class LanguageDialog extends ConsumerWidget {
                         trailing: selected ? const Icon(Icons.check) : null,
                         selected: selected,
                         onTap: () {
-                          setState(() => selectedLanguage = lang["code"]!);
                           Navigator.pop(context, lang["code"]);
                         },
                       ),
