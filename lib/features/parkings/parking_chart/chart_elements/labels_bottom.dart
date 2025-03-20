@@ -15,12 +15,12 @@ class BottomLabels extends AxisTitles {
           interval: 1,
           reservedSize: 48,
           getTitlesWidget:
-              (double val, _) => Padding(
+              (double val, TitleMeta meta) => Padding(
                 padding: const EdgeInsets.only(top: 4),
                 child: Transform.rotate(
                   angle: rotationAngle.radians,
                   child: SideTitleWidget(
-                    axisSide: AxisSide.bottom,
+                    meta: meta,
                     child: Text(ChartUtilsX.getLabelForValue(val), style: context.iParkingTheme.chart),
                   ),
                 ),

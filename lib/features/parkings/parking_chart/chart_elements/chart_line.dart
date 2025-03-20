@@ -4,7 +4,6 @@ import "package:flutter/material.dart";
 
 import "../../../../theme/app_theme.dart";
 import "../models/chart_point.dart";
-import "../utils/chart_utils.dart";
 
 class ChartLine extends LineChartBarData {
   ChartLine(BuildContext context, IList<ChartPoint> chartData)
@@ -13,7 +12,7 @@ class ChartLine extends LineChartBarData {
         color: context.colorTheme.greyLight,
         barWidth: 1,
         isStrokeCapRound: true,
-        dotData: const FlDotData(checkToShowDot: ChartUtilsX.showDotOrNot),
+        dotData: const FlDotData(show: false),
         belowBarData: BarAreaData(show: true, color: context.colorTheme.blueAzure.withValues(alpha: 0.2)),
         spots: chartData.unlockLazy,
       );

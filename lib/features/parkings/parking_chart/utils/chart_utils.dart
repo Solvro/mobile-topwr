@@ -2,7 +2,6 @@ import "dart:math";
 
 import "package:collection/collection.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
-import "package:fl_chart/fl_chart.dart";
 
 import "../../../../config/ui_config.dart";
 import "../../parkings_view/models/parking.dart";
@@ -21,9 +20,5 @@ extension ChartUtilsX on IList<ChartPoint> {
       return "";
     }
     return hourPoint.toStringRepr();
-  }
-
-  static bool showDotOrNot(FlSpot spot, LineChartBarData barData) {
-    return ParkingChartConfig.showDots.contains(spot.x);
   }
 }
