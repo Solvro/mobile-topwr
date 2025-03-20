@@ -45,6 +45,7 @@ Read more at: https://solvro.pwr.edu.pl/portfolio/to-pwr/.
 - fl_chart
 - wiredash
 - lottie
+- Drift (sqlite)
 
 ## Links
 
