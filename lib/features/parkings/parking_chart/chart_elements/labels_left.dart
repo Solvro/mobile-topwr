@@ -20,7 +20,7 @@ class LeftLabels extends AxisTitles {
               return const SizedBox.shrink();
             }
             return SideTitleWidget(
-              axisSide: AxisSide.left,
+              meta: meta,
               space: 10,
               child: Text(meta.formattedValue, style: context.iParkingTheme.chart),
             );
