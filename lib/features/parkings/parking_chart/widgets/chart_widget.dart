@@ -49,7 +49,7 @@ class ChartWidget extends StatelessWidget {
                       final hour = HourLabel(touchedSpot.x).toStringRepr();
                       final value = touchedSpot.y.toInt(); // Convert double to int
                       return LineTooltipItem(
-                        "$hour\n$value",
+                        "$value\n$hour",
                         TextStyle(color: context.colorTheme.whiteSoap, fontWeight: FontWeight.bold),
                       );
                     }).toList();
