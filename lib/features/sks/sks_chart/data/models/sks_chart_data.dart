@@ -18,10 +18,6 @@ abstract class SksChartData with _$SksChartData {
   factory SksChartData.fromJson(Map<String, dynamic> json) => _$SksChartDataFromJson(json);
 }
 
-// DateTime toLocalPolish(String dateTimeString) {
-//   return DateTime.parse(dateTimeString).toUtc().toLocal();
-// }
-
 extension SksChartDataIListX on IList<SksChartData> {
   double get maxNumberOfUsers {
     return map(
