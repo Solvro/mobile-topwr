@@ -39,8 +39,7 @@ class SksChartBottomTitles extends AxisTitles {
           reservedSize: 35,
           interval: 5,
           getTitlesWidget: (double value, TitleMeta meta) {
-            final DateTime? hourMinute =
-                chartData.isNotEmpty ? chartData[value.toInt()].externalTimestamp.toLocal() : null;
+            final DateTime? hourMinute = chartData.isNotEmpty ? chartData[value.toInt()].externalTimestamp : null;
             final String hourMinuteFormatted =
                 hourMinute != null && hourMinute.minute == 0 ? hourMinute.toHourMinuteString() : "";
 
