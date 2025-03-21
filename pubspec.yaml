@@ -57,6 +57,8 @@ dependencies:
   cached_network_image: ^3.4.1
   dio_cache_interceptor_hive_store: ^4.0.0
   flutter_cache_manager: ^3.4.1
+  drift: ^2.26.0
+  drift_flutter: ^0.2.4
 
   #Network
   url_launcher: ^6.3.1
@@ -132,6 +134,9 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+  #Storage
+  drift_dev: ^2.26.0
 
   #Lints
   solvro_config: ^1.0.1

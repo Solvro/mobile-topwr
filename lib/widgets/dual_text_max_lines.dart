@@ -1,7 +1,9 @@
 import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../features/science_club/science_clubs_view/widgets/strategic_badge.dart";
 import "../features/science_club/science_clubs_view/widgets/verified_badge.dart";
+import "../services/translations_service/data/repository/translations_repository.dart";
 
 class DualTextSpan extends TextSpan {
   DualTextSpan(
@@ -29,10 +31,11 @@ class DualTextSpan extends TextSpan {
        );
 }
 
-class DualTextMaxLines extends StatelessWidget {
-  const DualTextMaxLines({
+class DualTextMaxLinesWithTranslation extends ConsumerWidget {
+  const DualTextMaxLinesWithTranslation({
     required this.title,
     required this.maxTotalLines,
+    this.translate = true,
     this.subtitle,
     this.titleStyle,
     this.subtitleStyle,
@@ -42,6 +45,7 @@ class DualTextMaxLines extends StatelessWidget {
     super.key,
   });
 
+  final bool translate;
   final String title;
   final TextStyle? titleStyle;
   final String? subtitle;
@@ -51,19 +55,54 @@ class DualTextMaxLines extends StatelessWidget {
   final bool showVerifiedBadge;
   final bool showStrategicBadge;
   @override
-  Widget build(BuildContext context) {
-    return RichText(
-      maxLines: maxTotalLines,
-      overflow: TextOverflow.ellipsis,
-      text: DualTextSpan(
-        title,
-        titleStyle,
-        subtitle,
-        subtitleStyle,
-        spacing,
-        showBadge: showVerifiedBadge,
-        showStrategicBadge: showStrategicBadge,
+  Widget build(BuildContext context, WidgetRef ref) {
+    if (!translate) {
+      return RichText(
+        maxLines: maxTotalLines,
+        overflow: TextOverflow.ellipsis,
+        text: DualTextSpan(
+          title,
+          titleStyle,
+          subtitle,
+          subtitleStyle,
+          spacing,
+          showBadge: showVerifiedBadge,
+          showStrategicBadge: showStrategicBadge,
+        ),
+      );
+    }
+
+    final translatedTitle = ref.watch(translationsRepositoryProvider(title));
+    final translatedSubtitle = subtitle != null ? ref.watch(translationsRepositoryProvider(subtitle!)) : null;
+
+    return switch ((translatedTitle, translatedSubtitle)) {
+      (AsyncLoading(), _) || (_, AsyncLoading()) => const Center(child: CircularProgressIndicator()),
+      (AsyncData(), AsyncData()) => RichText(
+        maxLines: maxTotalLines,
+        overflow: TextOverflow.ellipsis,
+        text: DualTextSpan(
+          translatedTitle.value ?? "",
+          titleStyle,
+          translatedSubtitle?.value,
+          subtitleStyle,
+          spacing,
+          showBadge: showVerifiedBadge,
+          showStrategicBadge: showStrategicBadge,
+        ),
       ),
-    );
+      _ => RichText(
+        maxLines: maxTotalLines,
+        overflow: TextOverflow.ellipsis,
+        text: DualTextSpan(
+          title,
+          titleStyle,
+          subtitle,
+          subtitleStyle,
+          spacing,
+          showBadge: showVerifiedBadge,
+          showStrategicBadge: showStrategicBadge,
+        ),
+      ),
+    };
   }
 }

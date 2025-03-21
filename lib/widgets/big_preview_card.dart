@@ -64,7 +64,7 @@ class BigPreviewCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          DualTextMaxLines(
+                          DualTextMaxLinesWithTranslation(
                             title: title,
                             titleStyle: context.textTheme.title,
                             subtitle: shortDescription,

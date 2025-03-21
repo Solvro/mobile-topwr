@@ -14,10 +14,14 @@ import "features/splash_screen/splash_screen.dart";
 import "features/splash_screen/splash_screen_controller.dart";
 import "features/update_dialog/presentation/update_dialog_wrapper.dart";
 import "l10n/app_localizations.dart";
+import "services/translations_service/business/translations_notifier.dart";
+import "services/translations_service/data/models/supported_languages.dart";
+import "services/translations_service/widgets/remove_old_translations.dart";
 import "theme/app_theme.dart";
 import "theme/colors.dart";
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   SplashScreenController.preserveNativeSplashScreen();
   runApp(const ProviderScope(child: SplashScreen(child: MyApp())));
 }
@@ -27,36 +31,41 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return FlushCacheRemotelyWidget(
-      child: Wiredash(
-        projectId: Env.wiredashId,
-        secret: Env.wiredashSecret,
-        theme: context.wiredashTheme,
-        child: MaterialApp.router(
-          builder: (context, child) => InAppReviewWidget(child: UpdateDialogWrapper(child: child!)),
-          title: MyAppConfig.title,
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
-          supportedLocales: AppLocalizations.supportedLocales,
-          theme: ThemeData(
-            extensions: const [AppTheme()],
-            colorScheme: const ColorScheme.light().copyWith(
-              surface: ColorsConsts.whiteSoap,
-              primary: ColorsConsts.orangePomegranade,
-              secondary: ColorsConsts.blueAzure,
-            ),
-          ),
-          debugShowCheckedModeBanner: false,
-          routerConfig: ref
-              .watch(appRouterProvider)
-              .config(
-                deepLinkTransformer: (uri) {
-                  Future.delayed(
-                    const Duration(milliseconds: 500),
-                    ref.read(navigationControllerProvider.notifier).refreshState,
-                  ); // TODO(simon-the-shark): remove this nasty workaround for active tab refresh
-                  return SynchronousFuture(uri);
-                },
+    final translations = ref.watch(translationsProvider);
+
+    return RemoveOldTranslations(
+      child: FlushCacheRemotelyWidget(
+        child: Wiredash(
+          projectId: Env.wiredashId,
+          secret: Env.wiredashSecret,
+          theme: context.wiredashTheme,
+          child: MaterialApp.router(
+            locale: translations.value?.toLocale() ?? SupportedLocales.pl.toLocale(),
+            builder: (context, child) => InAppReviewWidget(child: UpdateDialogWrapper(child: child!)),
+            title: MyAppConfig.title,
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
+            theme: ThemeData(
+              extensions: const [AppTheme()],
+              colorScheme: const ColorScheme.light().copyWith(
+                surface: ColorsConsts.whiteSoap,
+                primary: ColorsConsts.orangePomegranade,
+                secondary: ColorsConsts.blueAzure,
               ),
+            ),
+            debugShowCheckedModeBanner: false,
+            routerConfig: ref
+                .watch(appRouterProvider)
+                .config(
+                  deepLinkTransformer: (uri) {
+                    Future.delayed(
+                      const Duration(milliseconds: 500),
+                      ref.read(navigationControllerProvider.notifier).refreshState,
+                    ); // TODO(simon-the-shark): remove this nasty workaround for active tab refresh
+                    return SynchronousFuture(uri);
+                  },
+                ),
+          ),
         ),
       ),
     );

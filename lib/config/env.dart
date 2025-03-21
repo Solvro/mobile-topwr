@@ -30,4 +30,6 @@ abstract class Env {
   static final String digitalGuideAddonsUrl = _Env.digitalGuideAddonsUrl;
   @EnviedField()
   static final String parkingApiUrl = _Env.parkingApiUrl;
+  @EnviedField()
+  static final String translateApiUrl = _Env.translateApiUrl;
 }

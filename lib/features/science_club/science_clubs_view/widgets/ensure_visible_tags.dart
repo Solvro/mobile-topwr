@@ -2,13 +2,14 @@ import "dart:math";
 
 import "package:auto_size_text/auto_size_text.dart";
 import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../utils/calculate_lines.dart";
 import "../../../../widgets/dual_text_max_lines.dart";
 import "strategic_badge.dart";
 import "verified_badge.dart";
 
-class EnsureVisibleTags extends DualTextMaxLines {
+class EnsureVisibleTags extends DualTextMaxLinesWithTranslation {
   /// DualTextMaxLines with third text row that must have at least one line
   const EnsureVisibleTags({
     required super.title,
@@ -28,9 +29,9 @@ class EnsureVisibleTags extends DualTextMaxLines {
   final TextStyle? secondSubtitleStyle;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     if (secondSubtitle == null) {
-      return super.build(context);
+      return super.build(context, ref);
     }
     final placeholderDimensions = [
       if (showVerifiedBadge) const PlaceholderDimensions(size: Size(12, 12), alignment: PlaceholderAlignment.middle),
