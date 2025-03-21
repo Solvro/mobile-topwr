@@ -29,7 +29,7 @@ class SksChartSheet extends ConsumerWidget {
     final maxNumberOfUsers = asyncChartData.value?.maxNumberOfUsers ?? 0;
 
     final screenWidth = MediaQuery.sizeOf(context).width;
-    final sheetHeight = useFiltersSheetHeight(context, prefferedHeightFactor: screenWidth > 400 ? .62 : .68);
+    final sheetHeight = useFiltersSheetHeight(context, prefferedHeightFactor: screenWidth > 400 ? .72 : .84);
 
     return switch (asyncChartData) {
       AsyncError(:final error) => MyErrorWidget(error),
@@ -45,23 +45,15 @@ class SksChartSheet extends ConsumerWidget {
                 child: const _SksSheetHeader(),
               ),
               Expanded(
-                child: ListView(
-                  physics: const NeverScrollableScrollPhysics(),
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: SksChartConfig.paddingMedium),
-                      child: SksChartCard(
-                        currentNumberOfUsers: currentNumberOfUsers,
-                        maxNumberOfUsers: maxNumberOfUsers,
-                        chartData: asyncChartData.value ?? const IList.empty(),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(SksChartConfig.paddingSmall),
-                      child: TextAndUrl(SksChartConfig.sksChartDataUrl, "${context.localize.data_come_from_website}: "),
-                    ),
-                  ],
+                child: SksChartCard(
+                  currentNumberOfUsers: currentNumberOfUsers,
+                  maxNumberOfUsers: maxNumberOfUsers,
+                  chartData: asyncChartData.value ?? const IList.empty(),
                 ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(SksChartConfig.paddingSmall),
+                child: TextAndUrl(SksChartConfig.sksChartDataUrl, "${context.localize.data_come_from_website}: "),
               ),
             ],
           ),
