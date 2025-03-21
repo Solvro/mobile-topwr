@@ -44,3 +44,7 @@ extension DateTimeUtilsX on DateTime {
     return isAfter(other) || isAtSameMomentAs(other);
   }
 }
+
+DateTime fromJsonToLocalTime(String dataTimeString) {
+  return DateTime.parse(dataTimeString).toLocal();
+}
