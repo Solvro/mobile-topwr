@@ -6,7 +6,8 @@ import "../../../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
-
+import "../../services/translations_service/business/translations_notifier.dart";
+import "../../services/translations_service/data/models/supported_languages.dart";
 import "../navigation_tab_view/widgets/navigation_tile.dart";
 import "widgets/language_settings_view.dart";
 
@@ -22,7 +23,8 @@ class SettingsView extends ConsumerWidget {
         onTap: () async {
           final selectedLang = await LanguageDialog.show(context);
           if (selectedLang != null) {
-            /* TODO: Handle selected language */
+            final supportedLocale = SupportedLocales.fromString(selectedLang);
+            await ref.read(translationsProvider.notifier).setLocale(supportedLocale);
           }
         },
         title: context.localize.language,

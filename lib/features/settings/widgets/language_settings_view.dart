@@ -20,10 +20,7 @@ class LanguageDialog extends ConsumerWidget {
       contentPadding: const EdgeInsets.all(AboutUsConfig.spacerHeight),
       content: StatefulBuilder(
         builder: (context, setState) {
-          final languages = [
-            {"code": "pl", "name": "🇵🇱 Polski"},
-            {"code": "en", "name": "🇬🇧 English"},
-          ];
+          final languages = [("pl", "🇵🇱 Polski"), ("en", "🇬🇧 English")];
 
           return SizedBox(
             width: double.maxFinite,
@@ -40,19 +37,18 @@ class LanguageDialog extends ConsumerWidget {
                   shrinkWrap: true,
                   itemCount: languages.length,
                   itemBuilder: (context, index) {
-                    final lang = languages[index];
-                    final selected = selectedLanguage == lang["code"];
+                    final (code, name) = languages[index];
+                    final selected = selectedLanguage == code;
                     return DecoratedBox(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(NavigationTabViewConfig.radius),
                         color: context.colorTheme.greyLight,
                       ),
                       child: ListTile(
-                        title: Text(lang["name"]!),
-                        trailing: selected ? const Icon(Icons.check) : null,
-                        selected: selected,
+                        title: Text(name),
+                        trailing: selected ? Icon(Icons.check, color: context.colorTheme.orangePomegranade) : null,
                         onTap: () {
-                          Navigator.pop(context, lang["code"]);
+                          Navigator.pop(context, code);
                         },
                       ),
                     );
