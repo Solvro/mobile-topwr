@@ -19,10 +19,9 @@ class SksChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(right: SksChartConfig.paddingLarge),
-      child: AspectRatio(
-        aspectRatio: 1.5,
+    return Expanded(
+      child: Padding(
+        padding: const EdgeInsets.only(right: SksChartConfig.paddingLarge),
         child: LineChart(
           duration: Duration.zero,
           LineChartData(
