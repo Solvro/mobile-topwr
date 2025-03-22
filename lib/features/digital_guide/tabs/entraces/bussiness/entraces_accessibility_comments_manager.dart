@@ -15,11 +15,11 @@ class EntrancesAccessibilityCommentsManager extends AccessibilityCommentsManager
     final DigitalGuideTranslationEntrace pl = digitalGuideEntrance.translations.pl;
 
     return IList([
-      "${l10n.entrance_is_building_marked_from_entrance(digitalGuideEntrance.isBuildingMarkedFromEntrance.toString().toLowerCase())} ${pl.isBuildingMarkedFromEntranceComment}",
-      "${l10n.entrance_is_building_marked_in_en(digitalGuideEntrance.isBuildingMarkedInEn.toString().toLowerCase())} ${pl.isBuildingMarkedInEnComment}",
-      "${l10n.entrance_has_tactile_paving(digitalGuideEntrance.hasTactilePaving.toString().toLowerCase())} ${pl.hasTactilePavingComment}",
-      "${l10n.entrance_has_sound_transmitter(digitalGuideEntrance.hasSoundTransmitter.toString().toLowerCase())} ${pl.hasSoundTransmitterComment}",
-    ]).where((item) => item.trim().isNotEmpty).toIList();
+      "${l10n.entrance_is_building_marked_from_entrance(digitalGuideEntrance.isBuildingMarkedFromEntrance.toLowerCase())} ${pl.isBuildingMarkedFromEntranceComment}",
+      "${l10n.entrance_is_building_marked_in_en(digitalGuideEntrance.isBuildingMarkedInEn.toLowerCase())} ${pl.isBuildingMarkedInEnComment}",
+      "${l10n.entrance_has_tactile_paving(digitalGuideEntrance.hasTactilePaving.toLowerCase())} ${pl.hasTactilePavingComment}",
+      "${l10n.entrance_has_sound_transmitter(digitalGuideEntrance.hasSoundTransmitter.toLowerCase())} ${pl.hasSoundTransmitterComment}",
+    ]).toIList();
   }
 
   @override
@@ -35,9 +35,7 @@ class EntrancesAccessibilityCommentsManager extends AccessibilityCommentsManager
   IList<String> getCommentsListForLowVision() {
     final DigitalGuideTranslationEntrace pl = digitalGuideEntrance.translations.pl;
 
-    return IList([
-      "${l10n.entrance_is_lit(digitalGuideEntrance.isLit.toString().toLowerCase())} ${pl.isLitComment}",
-    ]).where((item) => item.trim().isNotEmpty).toIList();
+    return IList(["${l10n.entrance_is_lit(digitalGuideEntrance.isLit.toLowerCase())} ${pl.isLitComment}"]).toIList();
   }
 
   @override
@@ -45,14 +43,11 @@ class EntrancesAccessibilityCommentsManager extends AccessibilityCommentsManager
     final DigitalGuideTranslationEntrace pl = digitalGuideEntrance.translations.pl;
 
     return IList([
-      "${l10n.entrance_is_accessible(digitalGuideEntrance.isAccessible.toString().toLowerCase())} ${pl.comment}",
-      l10n.entrance_number_of_doors(digitalGuideEntrance.numberOfDoors),
       if (digitalGuideEntrance.doorsDistance.isNotEmpty)
         l10n.entrance_doors_distance(digitalGuideEntrance.doorsDistance),
-      "${l10n.entrance_are_benches(digitalGuideEntrance.areBenches.toString().toLowerCase())} ${pl.areBenchesComment}",
-      "${l10n.entrance_is_protection_from_weather(digitalGuideEntrance.isProtectionFromWeather.toString().toLowerCase())} ${pl.isProtectionFromWeatherComment}",
-      "${l10n.entrance_is_solid_surface(digitalGuideEntrance.isSolidSurface.toString().toLowerCase())} ${pl.isSolidSurfaceComment}",
-      "${l10n.entrance_are_different_types_of_surface(digitalGuideEntrance.areDifferentTypesOfSurface.toString().toLowerCase())} ${pl.areDifferentTypesOfSurfaceComment}",
-    ]).where((item) => item.trim().isNotEmpty).toIList();
+      "${l10n.entrance_are_benches(digitalGuideEntrance.areBenches.toLowerCase())} ${pl.areBenchesComment}",
+      "${l10n.entrance_is_solid_surface(digitalGuideEntrance.isSolidSurface.toLowerCase())} ${pl.isSolidSurfaceComment}",
+      "${l10n.entrance_are_different_types_of_surface(digitalGuideEntrance.areDifferentTypesOfSurface.toLowerCase())} ${pl.areDifferentTypesOfSurfaceComment}",
+    ]).toIList();
   }
 }

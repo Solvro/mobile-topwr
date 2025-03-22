@@ -11,21 +11,21 @@ abstract class DigitalGuideEntrace with _$DigitalGuideEntrace {
     required int id,
     required DigitalGuideTranslationsEntrace translations,
     required int orderNumber,
-    @JsonKey(fromJson: _stringToBool) required bool isMain,
-    @JsonKey(fromJson: _stringToBool) required bool isAccessible,
-    @JsonKey(fromJson: _stringToBool) required bool isForPersonel,
-    @JsonKey(fromJson: _stringToBool) required bool isBuildingMarkedFromEntrance,
-    @JsonKey(fromJson: _stringToBool) required bool isBuildingMarkedInEn,
-    @JsonKey(fromJson: _stringToBool) required bool isLit,
-    @JsonKey(fromJson: _stringToBool) required bool isEmergencyExit,
-    @JsonKey(fromJson: _stringToBool) required bool isProtectionFromWeather,
-    @JsonKey(fromJson: _stringToBool) required bool isSolidSurface,
-    @JsonKey(fromJson: _stringToBool) required bool areDifferentTypesOfSurface,
-    @JsonKey(fromJson: _stringToBool) required bool areBenches,
+    required String isMain,
+    required String isAccessible,
+    required String isForPersonel,
+    required String isBuildingMarkedFromEntrance,
+    required String isBuildingMarkedInEn,
+    required String isLit,
+    required String isEmergencyExit,
+    required String isProtectionFromWeather,
+    required String isSolidSurface,
+    required String areDifferentTypesOfSurface,
+    required String areBenches,
     required int numberOfDoors,
     required String doorsDistance,
-    @JsonKey(fromJson: _stringToBool) required bool hasSoundTransmitter,
-    @JsonKey(fromJson: _stringToBool) required bool hasTactilePaving,
+    required String hasSoundTransmitter,
+    required String hasTactilePaving,
     required int? building,
     @JsonKey(name: "stairs") required IList<int> stairsIndices,
     @JsonKey(name: "lifts") required IList<int> liftsIndices,
@@ -70,14 +70,4 @@ abstract class DigitalGuideTranslationEntrace with _$DigitalGuideTranslationEntr
 
   factory DigitalGuideTranslationEntrace.fromJson(Map<String, dynamic> json) =>
       _$DigitalGuideTranslationEntraceFromJson(json);
-}
-
-bool _stringToBool(String? str) {
-  if (str == null) {
-    return false;
-  }
-  if (str == "") {
-    return true;
-  }
-  return str.toLowerCase() == "true";
 }

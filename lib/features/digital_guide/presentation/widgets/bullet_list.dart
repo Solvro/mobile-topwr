@@ -10,7 +10,7 @@ class BulletList extends StatelessWidget {
   final double fontSize;
   @override
   Widget build(BuildContext context) {
-    final nonEmptyItems = items.where((item) => item.isNotEmpty).toIList();
+    final nonEmptyItems = items.where((item) => item.trim().isNotEmpty).toIList();
     return ListView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),

@@ -47,49 +47,47 @@ class _DoorsView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.localize;
+
     final IList<String> textStrings =
         [
           if (door.translations.pl.comment.isNotEmpty) door.translations.pl.comment,
           door.translations.pl.fromTo,
-          "${context.localize.door_visible_from_outside(door.isGoodDoorVisibleFromOutside)} ${door.translations.pl.isGoodDoorVisibleFromOutsideComment}",
-          "${context.localize.door_visible_from_inside(door.isGoodDoorVisibleFromInside)} ${door.translations.pl.isGoodDoorVisibleFromInsideComment}",
+          "${l10n.door_visible_from_outside(door.isGoodDoorVisibleFromOutside)} ${door.translations.pl.isGoodDoorVisibleFromOutsideComment}",
+          "${l10n.door_visible_from_inside(door.isGoodDoorVisibleFromInside)} ${door.translations.pl.isGoodDoorVisibleFromInsideComment}",
           if (door.doorType == DoorType.singleLeafDoor)
-            context.localize.single_leaf_door
+            l10n.single_leaf_door
           else if (door.doorType == DoorType.doubleLeafDoor)
-            context.localize.double_leaf_door
-          else if (door.doorType == DoorType.singleLeafDoor)
-            context.localize.single_leaf_door_sliding
+            l10n.double_leaf_door
+          else if (door.doorType == DoorType.singleLeafDoorSliding)
+            l10n.single_leaf_door_sliding
           else if (door.doorType == DoorType.doubleLeafDoorSliding)
-            context.localize.double_leaf_door_sliding
+            l10n.double_leaf_door_sliding
           else if (door.doorType == DoorType.swingDoor)
-            context.localize.swing_door,
-          "${context.localize.main_wing_highlighted(door.isMainWingHighlighted)} ${door.translations.pl.isMainWingHighlightedComment}",
-          "${context.localize.increased_force_required(door.isIncreasedForceRequired)} ${door.translations.pl.isIncreasedForceRequiredComment}",
-          "${context.localize.door_closer(door.isDoorCloser)} ${door.translations.pl.isDoorCloserComment}",
+            l10n.swing_door,
+          "${l10n.main_wing_highlighted(door.isMainWingHighlighted)} ${door.translations.pl.isMainWingHighlightedComment}",
+          "${l10n.increased_force_required(door.isIncreasedForceRequired)} ${door.translations.pl.isIncreasedForceRequiredComment}",
+          "${l10n.door_closer(door.isDoorCloser)} ${door.translations.pl.isDoorCloserComment}",
         ].map((string) => string.trim()).where((string) => string.isNotEmpty).toIList();
+
+    final widgets = [
+      Text(l10n.door, style: context.textTheme.headline.copyWith(fontSize: DigitalGuideConfig.headlineFont)),
+      const SizedBox(height: DigitalGuideConfig.heightSmall),
+      BulletList(items: textStrings),
+      const SizedBox(height: DigitalGuideConfig.heightSmall),
+      AccessibilityProfileCard(
+        accessibilityCommentsManager: DoorsAccessibilityManager(l10n: l10n, door: door),
+        backgroundColor: context.colorTheme.whiteSoap,
+      ),
+    ];
 
     return Scaffold(
       appBar: DetailViewAppBar(actions: [AccessibilityButton()]),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: DigitalGuideConfig.heightBig),
-        child: CustomScrollView(
-          slivers: [
-            SliverList(
-              delegate: SliverChildListDelegate([
-                Text(
-                  context.localize.door,
-                  style: context.textTheme.headline.copyWith(fontSize: DigitalGuideConfig.headlineFont),
-                ),
-                const SizedBox(height: DigitalGuideConfig.heightMedium),
-                BulletList(items: textStrings),
-                const SizedBox(height: DigitalGuideConfig.heightMedium),
-                AccessibilityProfileCard(
-                  accessibilityCommentsManager: DoorsAccessibilityManager(l10n: l10n, door: door),
-                  backgroundColor: context.colorTheme.whiteSoap,
-                ),
-              ]),
-            ),
-          ],
+        child: ListView.builder(
+          itemCount: widgets.length,
+          shrinkWrap: true,
+          itemBuilder: (context, index) => widgets[index],
         ),
       ),
     );

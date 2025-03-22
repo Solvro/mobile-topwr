@@ -2,7 +2,7 @@ import "package:fast_immutable_collections/fast_immutable_collections.dart";
 
 import "../../../../../l10n/app_localizations.dart";
 import "../../../business/accessibility_comments_manager.dart";
-import "digital_guide_information_points.dart";
+import "../models/digital_guide_information_points.dart";
 
 class InformationPointAccessibilityManager extends AccessibilityCommentsManager {
   InformationPointAccessibilityManager({required this.l10n, required this.infoPoint});

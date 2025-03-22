@@ -13,9 +13,10 @@ abstract class AdaptedToilet with _$AdaptedToilet {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory AdaptedToilet({
     required AdaptedToiletTranslations translations,
+    //bools where API provides only "true" or "false" strings, but string where api provides also "unknown" string
     @JsonKey(fromJson: stringToBool) required bool isAccessAccessibleForPwd,
-    @JsonKey(fromJson: _stringToInt) required int hasAdditionalPurpose,
-    @JsonKey(fromJson: isNeedAuthorizationToEnum) required IsNeedAuthorizationEnum isNeedAuthorization,
+    @JsonKey(fromJson: stringToInt) required int hasAdditionalPurpose,
+    required String isNeedAuthorization,
     @JsonKey(fromJson: stringToBool) required bool isEntranceGraphicallyMarked,
     @JsonKey(fromJson: stringToBool) required bool isMarked,
     @JsonKey(name: "is_150x150_free_space", fromJson: stringToBool) required bool isFreeSpace,
@@ -80,19 +81,6 @@ abstract class AdaptedToiletTranslation with _$AdaptedToiletTranslation {
   }) = _AdaptedToiletTranslation;
 
   factory AdaptedToiletTranslation.fromJson(Map<String, dynamic> json) => _$AdaptedToiletTranslationFromJson(json);
-}
-
-int _stringToInt(String str) {
-  return int.tryParse(str) ?? 1;
-}
-
-IsNeedAuthorizationEnum isNeedAuthorizationToEnum(String str) {
-  return switch (str.toLowerCase()) {
-    "true" => IsNeedAuthorizationEnum.yes,
-    "false" => IsNeedAuthorizationEnum.no,
-    "unknown" => IsNeedAuthorizationEnum.unknown,
-    _ => IsNeedAuthorizationEnum.unknown,
-  };
 }
 
 enum IsNeedAuthorizationEnum { yes, no, unknown }

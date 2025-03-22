@@ -32,19 +32,18 @@ class StairwayView extends ConsumerWidget {
         style: context.textTheme.headline.copyWith(fontSize: DigitalGuideConfig.headlineFont),
       ),
       const SizedBox(height: DigitalGuideConfig.heightSmall),
-      BulletList(
-        items:
-            [
-              stairwayInformation.location,
-              stairwayInformation.comment,
-            ].where((item) => item.trim().isNotEmpty).toIList(),
-      ),
-      const SizedBox(height: DigitalGuideConfig.heightSmall),
+      BulletList(items: [stairwayInformation.location, stairwayInformation.comment].toIList()),
+      const SizedBox(height: DigitalGuideConfig.heightMedium),
       AccessibilityProfileCard(
         accessibilityCommentsManager: StairwayAccessibilityCommentsManager(stairway: stairway, l10n: context.localize),
         backgroundColor: context.colorTheme.whiteSoap,
       ),
-      const SizedBox(height: DigitalGuideConfig.heightBig),
+      if (stairway.imagesIds.isNotEmpty)
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: DigitalGuideConfig.paddingMedium),
+          child: DigitalGuidePhotoRow(imagesIDs: stairway.imagesIds),
+        ),
+      if (stairway.stairsIds.isNotEmpty) const SizedBox(height: DigitalGuideConfig.heightMedium),
       ListView.separated(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
@@ -54,7 +53,7 @@ class StairwayView extends ConsumerWidget {
               onTap: () async => ref.navigateDigitalGuideStairs(stairway.stairsIds[index]),
               text: context.localize.stairs,
             ),
-        separatorBuilder: (context, index) => const SizedBox(height: DigitalGuideConfig.heightSmall),
+        separatorBuilder: (context, index) => const SizedBox(height: DigitalGuideConfig.heightMedium),
       ),
       if (stairway.doorsIds.isNotEmpty) const SizedBox(height: DigitalGuideConfig.heightMedium),
       ListView.separated(
@@ -66,19 +65,7 @@ class StairwayView extends ConsumerWidget {
               onTap: () async => ref.navigateDigitalGuideDoor(stairway.doorsIds[index]),
               text: context.localize.door,
             ),
-        separatorBuilder: (context, index) => const SizedBox(height: DigitalGuideConfig.heightSmall),
-      ),
-      if (stairway.imagesIds.isNotEmpty)
-        Text(
-          context.localize.images,
-          style: context.textTheme.title.copyWith(fontSize: DigitalGuideConfig.headlineFont),
-        ),
-      Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: DigitalGuideConfig.heightBig,
-          vertical: DigitalGuideConfig.heightBig,
-        ),
-        child: DigitalGuidePhotoRow(imagesIDs: stairway.imagesIds),
+        separatorBuilder: (context, index) => const SizedBox(height: DigitalGuideConfig.heightMedium),
       ),
     ];
     return Scaffold(
