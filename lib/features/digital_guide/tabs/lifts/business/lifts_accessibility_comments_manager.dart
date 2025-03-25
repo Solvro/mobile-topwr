@@ -23,7 +23,7 @@ class LiftsAccessibilityCommentsManager extends AccessibilityCommentsManager {
       l10n.lift_control_panel_inside(liftResponse.insideControlPanelHeight),
       l10n.lift_control_panel_outside(liftResponse.outsideControlPanelHeight),
       l10n.lift_button_are_convex(liftResponse.isInsideConvexButton.toLowerCase()),
-      l10n.lift_is_with_outsite_notification(liftResponse.isOutsideArrivalNotificationSound.toLowerCase()),
+      l10n.lift_is_with_outside_notification(liftResponse.isOutsideArrivalNotificationSound.toLowerCase()),
       l10n.lift_is_with_inside_notification(liftResponse.isInsideArrivalNotificationSound.toLowerCase()),
     ]).toIList();
   }
@@ -45,7 +45,7 @@ class LiftsAccessibilityCommentsManager extends AccessibilityCommentsManager {
       l10n.lift_with_voice_comunicates(liftResponse.isVoicePrompts.toLowerCase()),
       l10n.lift_button_are_convex(liftResponse.isInsideConvexButton.toLowerCase()),
       l10n.lift_is_inside_lit(liftResponse.isInsideLit.toLowerCase()),
-      l10n.lift_is_with_outsite_notification(liftResponse.isOutsideArrivalNotificationSound.toLowerCase()),
+      l10n.lift_is_with_outside_notification(liftResponse.isOutsideArrivalNotificationSound.toLowerCase()),
       l10n.lift_is_with_inside_notification(liftResponse.isInsideArrivalNotificationSound.toLowerCase()),
       l10n.lift_is_door_good_contrast(liftResponse.isGoodDoorWallContrast.toLowerCase()),
     ]);
