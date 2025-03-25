@@ -12,6 +12,7 @@ class TechnicalMessage extends StatelessWidget {
     super.key,
     required this.message,
     this.title,
+    this.titleColor,
     this.alertType = AlertType.error,
     this.icon,
     this.onTap,
@@ -21,6 +22,7 @@ class TechnicalMessage extends StatelessWidget {
   });
   final String message;
   final String? title;
+  final Color? titleColor;
   final AlertType alertType;
   final Icon? icon;
   final VoidCallback? onTap;
@@ -42,7 +44,7 @@ class TechnicalMessage extends StatelessWidget {
             trailing: icon,
             title: TextWithTranslation(
               title ?? DishCategory.technicalInfo.getLocalizedName(context),
-              style: context.textTheme.titleWhite,
+              style: context.textTheme.titleWhite.copyWith(color: titleColor ?? Colors.white),
               translate: translate,
             ),
             subtitle: TextWithTranslation(

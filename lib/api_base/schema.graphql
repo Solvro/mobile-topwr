@@ -153,11 +153,11 @@ type directus_files {
   filename_download: String!
   title: String
   type: String
-  folder: String
-  uploaded_by: String
-  uploaded_on: Date
-  uploaded_on_func: datetime_functions
-  modified_by: String
+  folder(filter: directus_folders_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): directus_folders
+  uploaded_by(filter: directus_users_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): directus_users
+  created_on: Date
+  created_on_func: datetime_functions
+  modified_by(filter: directus_users_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): directus_users
   modified_on: Date
   modified_on_func: datetime_functions
   charset: String
@@ -174,50 +174,25 @@ type directus_files {
   metadata_func: count_functions
   focal_point_x: Int
   focal_point_y: Int
+  tus_id: String
+  tus_data: JSON
+  tus_data_func: count_functions
+  uploaded_on: Date
+  uploaded_on_func: datetime_functions
 }
 
-"""BigInt value"""
-scalar GraphQLBigInt
-
-"""
-The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
-"""
-scalar JSON
-
-type count_functions {
-  count: Int
+type directus_folders {
+  id: ID!
+  name: String!
+  parent(filter: directus_folders_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): directus_folders
 }
 
-input directus_files_filter {
+input directus_folders_filter {
   id: string_filter_operators
-  storage: string_filter_operators
-  filename_disk: string_filter_operators
-  filename_download: string_filter_operators
-  title: string_filter_operators
-  type: string_filter_operators
-  folder: string_filter_operators
-  uploaded_by: string_filter_operators
-  uploaded_on: date_filter_operators
-  uploaded_on_func: datetime_function_filter_operators
-  modified_by: string_filter_operators
-  modified_on: date_filter_operators
-  modified_on_func: datetime_function_filter_operators
-  charset: string_filter_operators
-  filesize: big_int_filter_operators
-  width: number_filter_operators
-  height: number_filter_operators
-  duration: number_filter_operators
-  embed: string_filter_operators
-  description: string_filter_operators
-  location: string_filter_operators
-  tags: string_filter_operators
-  tags_func: count_function_filter_operators
-  metadata: string_filter_operators
-  metadata_func: count_function_filter_operators
-  focal_point_x: number_filter_operators
-  focal_point_y: number_filter_operators
-  _and: [directus_files_filter]
-  _or: [directus_files_filter]
+  name: string_filter_operators
+  parent: directus_folders_filter
+  _and: [directus_folders_filter]
+  _or: [directus_folders_filter]
 }
 
 input string_filter_operators {
@@ -242,33 +217,134 @@ input string_filter_operators {
   _nempty: Boolean
 }
 
-input date_filter_operators {
-  _eq: String
-  _neq: String
-  _gt: String
-  _gte: String
-  _lt: String
-  _lte: String
-  _null: Boolean
-  _nnull: Boolean
-  _in: [String]
-  _nin: [String]
-  _between: [GraphQLStringOrFloat]
-  _nbetween: [GraphQLStringOrFloat]
+type directus_users {
+  id: ID!
+  first_name: String
+  last_name: String
+  email: String
+  password: Hash
+  location: String
+  title: String
+  description: String
+  tags: JSON
+  tags_func: count_functions
+  avatar(filter: directus_files_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): directus_files
+  language: String
+  tfa_secret: Hash
+  status: String
+  role(filter: directus_roles_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): directus_roles
+  token: Hash
+  last_access: Date
+  last_access_func: datetime_functions
+  last_page: String
+  provider: String
+  external_identifier: String
+  auth_data: JSON
+  auth_data_func: count_functions
+  email_notifications: Boolean
+  appearance: String
+  theme_dark: String
+  theme_light: String
+  theme_light_overrides: JSON
+  theme_light_overrides_func: count_functions
+  theme_dark_overrides: JSON
+  theme_dark_overrides_func: count_functions
 }
 
-"""A Float or a String"""
-scalar GraphQLStringOrFloat
+"""Hashed string values"""
+scalar Hash
 
-input datetime_function_filter_operators {
-  year: number_filter_operators
-  month: number_filter_operators
-  week: number_filter_operators
-  day: number_filter_operators
-  weekday: number_filter_operators
-  hour: number_filter_operators
-  minute: number_filter_operators
-  second: number_filter_operators
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+type count_functions {
+  count: Int
+}
+
+input directus_files_filter {
+  id: string_filter_operators
+  storage: string_filter_operators
+  filename_disk: string_filter_operators
+  filename_download: string_filter_operators
+  title: string_filter_operators
+  type: string_filter_operators
+  folder: directus_folders_filter
+  uploaded_by: directus_users_filter
+  created_on: date_filter_operators
+  created_on_func: datetime_function_filter_operators
+  modified_by: directus_users_filter
+  modified_on: date_filter_operators
+  modified_on_func: datetime_function_filter_operators
+  charset: string_filter_operators
+  filesize: big_int_filter_operators
+  width: number_filter_operators
+  height: number_filter_operators
+  duration: number_filter_operators
+  embed: string_filter_operators
+  description: string_filter_operators
+  location: string_filter_operators
+  tags: string_filter_operators
+  tags_func: count_function_filter_operators
+  metadata: string_filter_operators
+  metadata_func: count_function_filter_operators
+  focal_point_x: number_filter_operators
+  focal_point_y: number_filter_operators
+  tus_id: string_filter_operators
+  tus_data: string_filter_operators
+  tus_data_func: count_function_filter_operators
+  uploaded_on: date_filter_operators
+  uploaded_on_func: datetime_function_filter_operators
+  _and: [directus_files_filter]
+  _or: [directus_files_filter]
+}
+
+input directus_users_filter {
+  id: string_filter_operators
+  first_name: string_filter_operators
+  last_name: string_filter_operators
+  email: string_filter_operators
+  password: hash_filter_operators
+  location: string_filter_operators
+  title: string_filter_operators
+  description: string_filter_operators
+  tags: string_filter_operators
+  tags_func: count_function_filter_operators
+  avatar: directus_files_filter
+  language: string_filter_operators
+  tfa_secret: hash_filter_operators
+  status: string_filter_operators
+  role: directus_roles_filter
+  token: hash_filter_operators
+  last_access: date_filter_operators
+  last_access_func: datetime_function_filter_operators
+  last_page: string_filter_operators
+  provider: string_filter_operators
+  external_identifier: string_filter_operators
+  auth_data: string_filter_operators
+  auth_data_func: count_function_filter_operators
+  email_notifications: boolean_filter_operators
+  appearance: string_filter_operators
+  theme_dark: string_filter_operators
+  theme_light: string_filter_operators
+  theme_light_overrides: string_filter_operators
+  theme_light_overrides_func: count_function_filter_operators
+  theme_dark_overrides: string_filter_operators
+  theme_dark_overrides_func: count_function_filter_operators
+  _and: [directus_users_filter]
+  _or: [directus_users_filter]
+}
+
+input hash_filter_operators {
+  _null: Boolean
+  _nnull: Boolean
+  _empty: Boolean
+  _nempty: Boolean
+}
+
+input count_function_filter_operators {
+  count: number_filter_operators
 }
 
 input number_filter_operators {
@@ -286,6 +362,57 @@ input number_filter_operators {
   _nbetween: [GraphQLStringOrFloat]
 }
 
+"""A Float or a String"""
+scalar GraphQLStringOrFloat
+
+input directus_roles_filter {
+  id: string_filter_operators
+  name: string_filter_operators
+  icon: string_filter_operators
+  description: string_filter_operators
+  ip_access: string_filter_operators
+  enforce_tfa: boolean_filter_operators
+  admin_access: boolean_filter_operators
+  app_access: boolean_filter_operators
+  users: directus_users_filter
+  users_func: count_function_filter_operators
+  _and: [directus_roles_filter]
+  _or: [directus_roles_filter]
+}
+
+input boolean_filter_operators {
+  _eq: Boolean
+  _neq: Boolean
+  _null: Boolean
+  _nnull: Boolean
+}
+
+input date_filter_operators {
+  _eq: String
+  _neq: String
+  _gt: String
+  _gte: String
+  _lt: String
+  _lte: String
+  _null: Boolean
+  _nnull: Boolean
+  _in: [String]
+  _nin: [String]
+  _between: [GraphQLStringOrFloat]
+  _nbetween: [GraphQLStringOrFloat]
+}
+
+input datetime_function_filter_operators {
+  year: number_filter_operators
+  month: number_filter_operators
+  week: number_filter_operators
+  day: number_filter_operators
+  weekday: number_filter_operators
+  hour: number_filter_operators
+  minute: number_filter_operators
+  second: number_filter_operators
+}
+
 input big_int_filter_operators {
   _eq: GraphQLBigInt
   _neq: GraphQLBigInt
@@ -301,8 +428,20 @@ input big_int_filter_operators {
   _nbetween: [GraphQLBigInt]
 }
 
-input count_function_filter_operators {
-  count: number_filter_operators
+"""BigInt value"""
+scalar GraphQLBigInt
+
+type directus_roles {
+  id: ID!
+  name: String!
+  icon: String
+  description: String
+  ip_access: [String]
+  enforce_tfa: Boolean!
+  admin_access: Boolean!
+  app_access: Boolean
+  users(filter: directus_users_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): [directus_users]
+  users_func: count_functions
 }
 
 type Departments {
@@ -366,13 +505,6 @@ input FieldOfStudy_filter {
   hasWeekendModeOption: boolean_filter_operators
   _and: [FieldOfStudy_filter]
   _or: [FieldOfStudy_filter]
-}
-
-input boolean_filter_operators {
-  _eq: Boolean
-  _neq: Boolean
-  _null: Boolean
-  _nnull: Boolean
 }
 
 type FieldOfStudy {
@@ -476,7 +608,7 @@ type Scientific_Circles_Tags_aggregated_fields {
 
 """"""
 type version_Scientific_Circles_Tags {
-  id: ID!
+  id: ID
   Scientific_Circles_id: JSON
   Tags_id: JSON
 }
@@ -505,8 +637,8 @@ type Tags_aggregated_fields {
 
 """"""
 type version_Tags {
-  id: ID!
-  name: String!
+  id: ID
+  name: String
 }
 
 type Posts_Tags {
@@ -519,10 +651,10 @@ type Posts {
   id: ID!
   status: String
   sort: Int
-  user_created: String
+  user_created(filter: directus_users_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): directus_users
   date_created: Date
   date_created_func: datetime_functions
-  user_updated: String
+  user_updated(filter: directus_users_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): directus_users
   date_updated: Date
   date_updated_func: datetime_functions
   content: String
@@ -545,10 +677,10 @@ input Posts_filter {
   id: number_filter_operators
   status: string_filter_operators
   sort: number_filter_operators
-  user_created: string_filter_operators
+  user_created: directus_users_filter
   date_created: date_filter_operators
   date_created_func: datetime_function_filter_operators
-  user_updated: string_filter_operators
+  user_updated: directus_users_filter
   date_updated: date_filter_operators
   date_updated_func: datetime_function_filter_operators
   content: string_filter_operators
@@ -588,7 +720,7 @@ type Posts_Tags_aggregated_fields {
 
 """"""
 type version_Posts_Tags {
-  id: ID!
+  id: ID
   Posts_id: JSON
   Tags_id: JSON
 }
@@ -620,7 +752,7 @@ type Scientific_Circles_Links_aggregated_fields {
 
 """"""
 type version_Scientific_Circles_Links {
-  id: ID!
+  id: ID
   name: String
   link: String
   scientific_circle_id: JSON
@@ -662,26 +794,23 @@ type Posts_aggregated_fields {
 
 """"""
 type version_Posts {
-  id: ID!
+  id: ID
   status: String
   sort: Int
-  user_created: String
+  user_created: JSON
   date_created: Date
-  date_created_func: datetime_functions
-  user_updated: String
+  user_updated: JSON
   date_updated: Date
-  date_updated_func: datetime_functions
   content: String
-  title: String!
+  title: String
   department: JSON
   cover: JSON
   tags: JSON
-  tags_func: count_functions
 }
 
 type AcademicCalendarData {
   id: ID!
-  user_updated: String
+  user_updated(filter: directus_users_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): directus_users
   date_updated: Date
   date_updated_func: datetime_functions
   semesterStartDate: Date!
@@ -703,17 +832,13 @@ type date_functions {
 
 """"""
 type version_AcademicCalendarData {
-  id: ID!
-  user_updated: String
+  id: ID
+  user_updated: JSON
   date_updated: Date
-  date_updated_func: datetime_functions
-  semesterStartDate: Date!
-  semesterStartDate_func: date_functions
-  examSessionStartDate: Date!
-  examSessionStartDate_func: date_functions
-  isFirstWeekEven: Boolean!
-  examSessionLastDay: Date!
-  examSessionLastDay_func: date_functions
+  semesterStartDate: Date
+  examSessionStartDate: Date
+  isFirstWeekEven: Boolean
+  examSessionLastDay: Date
 }
 
 type WeekExceptions {
@@ -768,16 +893,15 @@ type WeekExceptions_aggregated_fields {
 
 """"""
 type version_WeekExceptions {
-  id: ID!
-  day: Date!
-  day_func: date_functions
-  changedWeekday: String!
-  changedDayIsEven: Boolean!
+  id: ID
+  day: Date
+  changedWeekday: String
+  changedDayIsEven: Boolean
 }
 
 type AboutUs {
   id: ID!
-  user_updated: String
+  user_updated(filter: directus_users_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): directus_users
   date_updated: Date
   date_updated_func: datetime_functions
   description: String!
@@ -794,7 +918,7 @@ type AboutUs_Solvro_Social_Links {
 
 input AboutUs_filter {
   id: number_filter_operators
-  user_updated: string_filter_operators
+  user_updated: directus_users_filter
   date_updated: date_filter_operators
   date_updated_func: datetime_function_filter_operators
   description: string_filter_operators
@@ -815,14 +939,12 @@ input AboutUs_Solvro_Social_Links_filter {
 
 """"""
 type version_AboutUs {
-  id: ID!
-  user_updated: String
+  id: ID
+  user_updated: JSON
   date_updated: Date
-  date_updated_func: datetime_functions
-  description: String!
+  description: String
   cover: JSON
   solvroSocialLinks: JSON
-  solvroSocialLinks_func: count_functions
 }
 
 type AboutUs_Team {
@@ -892,13 +1014,12 @@ type AboutUs_Team_aggregated_fields {
 
 """"""
 type version_AboutUs_Team {
-  id: ID!
-  name: String!
+  id: ID
+  name: String
   subtitle: String
   photo: JSON
-  sort: Int!
+  sort: Int
   socialLinks: JSON
-  socialLinks_func: count_functions
 }
 
 type AboutUs_Solvro_Social_Links_aggregated {
@@ -927,8 +1048,8 @@ type AboutUs_Solvro_Social_Links_aggregated_fields {
 
 """"""
 type version_AboutUs_Solvro_Social_Links {
-  id: ID!
-  url: String!
+  id: ID
+  url: String
   parent_id: JSON
 }
 
@@ -965,19 +1086,17 @@ type Departments_aggregated_fields {
 
 """"""
 type version_Departments {
-  id: ID!
-  name: String!
+  id: ID
+  name: String
   logo: JSON
   description: String
-  code: String!
+  code: String
   gradient_start: String
   gradient_end: String
   address: String
   betterCode: String
   links: JSON
-  links_func: count_functions
   fieldsOfStudies: JSON
-  fieldsOfStudies_func: count_functions
 }
 
 type FAQ {
@@ -1076,12 +1195,10 @@ type FAQ_aggregated_fields {
 
 """"""
 type version_FAQ {
-  id: ID!
+  id: ID
   status: String
   date_created: Date
-  date_created_func: datetime_functions
   date_updated: Date
-  date_updated_func: datetime_functions
   question: String
   answer: String
   type: JSON
@@ -1117,14 +1234,13 @@ type FAQ_Types_aggregated_fields {
 
 """"""
 type version_FAQ_Types {
-  id: ID!
+  id: ID
   name: String
   cover: JSON
   short_description: String
   description: String
-  order: Int!
+  order: Int
   questions: JSON
-  questions_func: count_functions
 }
 
 type Departments_Links_aggregated {
@@ -1154,7 +1270,7 @@ type Departments_Links_aggregated_fields {
 
 """"""
 type version_Departments_Links {
-  id: ID!
+  id: ID
   name: String
   link: String
   department_id: JSON
@@ -1191,9 +1307,9 @@ type FieldOfStudy_aggregated_fields {
 
 """"""
 type version_FieldOfStudy {
-  id: ID!
+  id: ID
   department_id: JSON
-  name: String!
+  name: String
   url: String
   isEnglish: Boolean
   is2ndDegree: Boolean
@@ -1216,10 +1332,9 @@ type CacheReferenceNumber {
 
 """"""
 type version_CacheReferenceNumber {
-  id: ID!
+  id: ID
   status: String
   date_updated: Date
-  date_updated_func: datetime_functions
   referenceNumber: Int
   useParkingApiWrapper: Boolean
   javaWrapperURL: String
@@ -1256,8 +1371,8 @@ type AboutUs_Team_Social_Links_aggregated_fields {
 
 """"""
 type version_AboutUs_Team_Social_Links {
-  id: ID!
-  url: String!
+  id: ID
+  url: String
   team_member_id: JSON
   sort: Int
 }
@@ -1291,7 +1406,7 @@ type FAQ_Types_FAQ_aggregated_fields {
 
 """"""
 type version_FAQ_Types_FAQ {
-  id: ID!
+  id: ID
   FAQ_Types_id: JSON
   FAQ_id: JSON
   sort: Int
@@ -1300,10 +1415,10 @@ type version_FAQ_Types_FAQ {
 type Changelog {
   id: ID!
   status: String
-  user_created: String
+  user_created(filter: directus_users_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): directus_users
   date_created: Date
   date_created_func: datetime_functions
-  user_updated: String
+  user_updated(filter: directus_users_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): directus_users
   date_updated: Date
   date_updated_func: datetime_functions
   versionString: String
@@ -1328,10 +1443,10 @@ type Changelog_Change {
 input Changelog_filter {
   id: number_filter_operators
   status: string_filter_operators
-  user_created: string_filter_operators
+  user_created: directus_users_filter
   date_created: date_filter_operators
   date_created_func: datetime_function_filter_operators
-  user_updated: string_filter_operators
+  user_updated: directus_users_filter
   date_updated: date_filter_operators
   date_updated_func: datetime_function_filter_operators
   versionString: string_filter_operators
@@ -1410,19 +1525,15 @@ type Changelog_aggregated_fields {
 
 """"""
 type version_Changelog {
-  id: ID!
+  id: ID
   status: String
-  user_created: String
+  user_created: JSON
   date_created: Date
-  date_created_func: datetime_functions
-  user_updated: String
+  user_updated: JSON
   date_updated: Date
-  date_updated_func: datetime_functions
   versionString: String
   changes: JSON
-  changes_func: count_functions
   screenshots: JSON
-  screenshots_func: count_functions
 }
 
 type Changelog_Change_aggregated {
@@ -1455,14 +1566,12 @@ type Changelog_Change_aggregated_fields {
 
 """"""
 type version_Changelog_Change {
-  id: ID!
+  id: ID
   sort: Int
   date_created: Date
-  date_created_func: datetime_functions
   date_updated: Date
-  date_updated_func: datetime_functions
-  changeDescription: String!
-  changeType: String!
+  changeDescription: String
+  changeType: String
   fk_changelog: JSON
 }
 
@@ -1493,11 +1602,9 @@ type Changelog_Screenshots_aggregated_fields {
 
 """"""
 type version_Changelog_Screenshots {
-  id: ID!
+  id: ID
   date_created: Date
-  date_created_func: datetime_functions
   date_updated: Date
-  date_updated_func: datetime_functions
   fk_changelog: JSON
   screenshot_preview: JSON
 }
@@ -1544,14 +1651,12 @@ type Scientific_Circles_aggregated_fields {
 
 """"""
 type version_Scientific_Circles {
-  id: ID!
+  id: ID
   status: String
   sort: Int
   date_created: Date
-  date_created_func: datetime_functions
   date_updated: Date
-  date_updated_func: datetime_functions
-  name: String!
+  name: String
   logo: JSON
   cover: JSON
   description: String
@@ -1561,11 +1666,9 @@ type version_Scientific_Circles {
   department: JSON
   desc2: String
   useCoverAsPreviewPhoto: Boolean
-  isStrategic: Boolean!
+  isStrategic: Boolean
   tags: JSON
-  tags_func: count_functions
   links: JSON
-  links_func: count_functions
 }
 
 type TeamVersion_Members_AboutUs_Team_Social_Links {
@@ -1577,10 +1680,10 @@ type TeamVersion_Members_AboutUs_Team_Social_Links {
 type TeamVersion_Members {
   id: ID!
   sort: Int
-  user_created: String
+  user_created(filter: directus_users_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): directus_users
   date_created: Date
   date_created_func: datetime_functions
-  user_updated: String
+  user_updated(filter: directus_users_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): directus_users
   date_updated: Date
   date_updated_func: datetime_functions
   name: String!
@@ -1594,10 +1697,10 @@ type TeamVersion_Members {
 type TeamVersions {
   id: ID!
   sort: Int
-  user_created: String
+  user_created(filter: directus_users_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): directus_users
   date_created: Date
   date_created_func: datetime_functions
-  user_updated: String
+  user_updated(filter: directus_users_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): directus_users
   date_updated: Date
   date_updated_func: datetime_functions
   name: String
@@ -1606,10 +1709,10 @@ type TeamVersions {
 input TeamVersions_filter {
   id: number_filter_operators
   sort: number_filter_operators
-  user_created: string_filter_operators
+  user_created: directus_users_filter
   date_created: date_filter_operators
   date_created_func: datetime_function_filter_operators
-  user_updated: string_filter_operators
+  user_updated: directus_users_filter
   date_updated: date_filter_operators
   date_updated_func: datetime_function_filter_operators
   name: string_filter_operators
@@ -1628,10 +1731,10 @@ input TeamVersion_Members_AboutUs_Team_Social_Links_filter {
 input TeamVersion_Members_filter {
   id: number_filter_operators
   sort: number_filter_operators
-  user_created: string_filter_operators
+  user_created: directus_users_filter
   date_created: date_filter_operators
   date_created_func: datetime_function_filter_operators
-  user_updated: string_filter_operators
+  user_updated: directus_users_filter
   date_updated: date_filter_operators
   date_updated_func: datetime_function_filter_operators
   name: string_filter_operators
@@ -1671,7 +1774,7 @@ type TeamVersion_Members_AboutUs_Team_Social_Links_aggregated_fields {
 
 """"""
 type version_TeamVersion_Members_AboutUs_Team_Social_Links {
-  id: ID!
+  id: ID
   TeamVersion_Members_id: JSON
   AboutUs_Team_Social_Links_id: JSON
 }
@@ -1711,20 +1814,17 @@ type TeamVersion_Members_aggregated_fields {
 
 """"""
 type version_TeamVersion_Members {
-  id: ID!
+  id: ID
   sort: Int
-  user_created: String
+  user_created: JSON
   date_created: Date
-  date_created_func: datetime_functions
-  user_updated: String
+  user_updated: JSON
   date_updated: Date
-  date_updated_func: datetime_functions
-  name: String!
+  name: String
   subtitle: String
   photo: JSON
   appVersion: JSON
   socialLinks: JSON
-  socialLinks_func: count_functions
 }
 
 type TeamVersions_aggregated {
@@ -1757,14 +1857,12 @@ type TeamVersions_aggregated_fields {
 
 """"""
 type version_TeamVersions {
-  id: ID!
+  id: ID
   sort: Int
-  user_created: String
+  user_created: JSON
   date_created: Date
-  date_created_func: datetime_functions
-  user_updated: String
+  user_updated: JSON
   date_updated: Date
-  date_updated_func: datetime_functions
   name: String
 }
 
@@ -1833,15 +1931,15 @@ type Buildings_aggregated_fields {
 
 """"""
 type version_Buildings {
-  id: ID!
-  name: String!
-  latitude: Float!
-  longitude: Float!
+  id: ID
+  name: String
+  latitude: Float
+  longitude: Float
   addres: String
   cover: JSON
   food: Boolean
   naturalName: String
-  disableBuildingPrefix: Boolean!
+  disableBuildingPrefix: Boolean
   externalDigitalGuideIdOrURL: String
   externalDigitalGuideMode: String
 }
@@ -1854,21 +1952,863 @@ type PlannerAdvert {
   isEnabled: Boolean!
   textColor: String
   backgroundColor: String
+  titleColor: String
 }
 
 """"""
 type version_PlannerAdvert {
-  id: ID!
+  id: ID
   title: String
-  description: String!
+  description: String
   url: String
-  isEnabled: Boolean!
+  isEnabled: Boolean
   textColor: String
   backgroundColor: String
+  titleColor: String
+}
+
+type Mutation {
+  create_Scientific_Circles_Tags_items(filter: Scientific_Circles_Tags_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [create_Scientific_Circles_Tags_input!]): [Scientific_Circles_Tags!]!
+  create_Scientific_Circles_Tags_item(data: create_Scientific_Circles_Tags_input!): Scientific_Circles_Tags
+  create_Tags_items(filter: Tags_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [create_Tags_input!]): [Tags!]!
+  create_Tags_item(data: create_Tags_input!): Tags
+  create_Posts_Tags_items(filter: Posts_Tags_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [create_Posts_Tags_input!]): [Posts_Tags!]!
+  create_Posts_Tags_item(data: create_Posts_Tags_input!): Posts_Tags
+  create_Scientific_Circles_Links_items(filter: Scientific_Circles_Links_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [create_Scientific_Circles_Links_input!]): [Scientific_Circles_Links!]!
+  create_Scientific_Circles_Links_item(data: create_Scientific_Circles_Links_input!): Scientific_Circles_Links
+  create_Posts_items(filter: Posts_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [create_Posts_input!]): [Posts!]!
+  create_Posts_item(data: create_Posts_input!): Posts
+  create_WeekExceptions_items(filter: WeekExceptions_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [create_WeekExceptions_input!]): [WeekExceptions!]!
+  create_WeekExceptions_item(data: create_WeekExceptions_input!): WeekExceptions
+  create_AboutUs_Team_items(filter: AboutUs_Team_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [create_AboutUs_Team_input!]): [AboutUs_Team!]!
+  create_AboutUs_Team_item(data: create_AboutUs_Team_input!): AboutUs_Team
+  create_AboutUs_Solvro_Social_Links_items(filter: AboutUs_Solvro_Social_Links_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [create_AboutUs_Solvro_Social_Links_input!]): [AboutUs_Solvro_Social_Links!]!
+  create_AboutUs_Solvro_Social_Links_item(data: create_AboutUs_Solvro_Social_Links_input!): AboutUs_Solvro_Social_Links
+  create_Departments_items(filter: Departments_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [create_Departments_input!]): [Departments!]!
+  create_Departments_item(data: create_Departments_input!): Departments
+  create_FAQ_items(filter: FAQ_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [create_FAQ_input!]): [FAQ!]!
+  create_FAQ_item(data: create_FAQ_input!): FAQ
+  create_FAQ_Types_items(filter: FAQ_Types_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [create_FAQ_Types_input!]): [FAQ_Types!]!
+  create_FAQ_Types_item(data: create_FAQ_Types_input!): FAQ_Types
+  create_Departments_Links_items(filter: Departments_Links_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [create_Departments_Links_input!]): [Departments_Links!]!
+  create_Departments_Links_item(data: create_Departments_Links_input!): Departments_Links
+  create_FieldOfStudy_items(filter: FieldOfStudy_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [create_FieldOfStudy_input!]): [FieldOfStudy!]!
+  create_FieldOfStudy_item(data: create_FieldOfStudy_input!): FieldOfStudy
+  create_AboutUs_Team_Social_Links_items(filter: AboutUs_Team_Social_Links_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [create_AboutUs_Team_Social_Links_input!]): [AboutUs_Team_Social_Links!]!
+  create_AboutUs_Team_Social_Links_item(data: create_AboutUs_Team_Social_Links_input!): AboutUs_Team_Social_Links
+  create_FAQ_Types_FAQ_items(filter: FAQ_Types_FAQ_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [create_FAQ_Types_FAQ_input!]): [FAQ_Types_FAQ!]!
+  create_FAQ_Types_FAQ_item(data: create_FAQ_Types_FAQ_input!): FAQ_Types_FAQ
+  create_Changelog_items(filter: Changelog_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [create_Changelog_input!]): [Changelog!]!
+  create_Changelog_item(data: create_Changelog_input!): Changelog
+  create_Changelog_Change_items(filter: Changelog_Change_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [create_Changelog_Change_input!]): [Changelog_Change!]!
+  create_Changelog_Change_item(data: create_Changelog_Change_input!): Changelog_Change
+  create_Changelog_Screenshots_items(filter: Changelog_Screenshots_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [create_Changelog_Screenshots_input!]): [Changelog_Screenshots!]!
+  create_Changelog_Screenshots_item(data: create_Changelog_Screenshots_input!): Changelog_Screenshots
+  create_Scientific_Circles_items(filter: Scientific_Circles_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [create_Scientific_Circles_input!]): [Scientific_Circles!]!
+  create_Scientific_Circles_item(data: create_Scientific_Circles_input!): Scientific_Circles
+  create_TeamVersion_Members_AboutUs_Team_Social_Links_items(filter: TeamVersion_Members_AboutUs_Team_Social_Links_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [create_TeamVersion_Members_AboutUs_Team_Social_Links_input!]): [TeamVersion_Members_AboutUs_Team_Social_Links!]!
+  create_TeamVersion_Members_AboutUs_Team_Social_Links_item(data: create_TeamVersion_Members_AboutUs_Team_Social_Links_input!): TeamVersion_Members_AboutUs_Team_Social_Links
+  create_TeamVersion_Members_items(filter: TeamVersion_Members_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [create_TeamVersion_Members_input!]): [TeamVersion_Members!]!
+  create_TeamVersion_Members_item(data: create_TeamVersion_Members_input!): TeamVersion_Members
+  create_TeamVersions_items(filter: TeamVersions_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [create_TeamVersions_input!]): [TeamVersions!]!
+  create_TeamVersions_item(data: create_TeamVersions_input!): TeamVersions
+  create_Buildings_items(filter: Buildings_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [create_Buildings_input!]): [Buildings!]!
+  create_Buildings_item(data: create_Buildings_input!): Buildings
+  update_Scientific_Circles_Tags_items(filter: Scientific_Circles_Tags_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, ids: [ID]!, data: update_Scientific_Circles_Tags_input!): [Scientific_Circles_Tags!]!
+  update_Scientific_Circles_Tags_batch(filter: Scientific_Circles_Tags_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [update_Scientific_Circles_Tags_input!]): [Scientific_Circles_Tags!]!
+  update_Scientific_Circles_Tags_item(id: ID!, data: update_Scientific_Circles_Tags_input!): Scientific_Circles_Tags
+  update_Tags_items(filter: Tags_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, ids: [ID]!, data: update_Tags_input!): [Tags!]!
+  update_Tags_batch(filter: Tags_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [update_Tags_input!]): [Tags!]!
+  update_Tags_item(id: ID!, data: update_Tags_input!): Tags
+  update_Posts_Tags_items(filter: Posts_Tags_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, ids: [ID]!, data: update_Posts_Tags_input!): [Posts_Tags!]!
+  update_Posts_Tags_batch(filter: Posts_Tags_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [update_Posts_Tags_input!]): [Posts_Tags!]!
+  update_Posts_Tags_item(id: ID!, data: update_Posts_Tags_input!): Posts_Tags
+  update_Scientific_Circles_Links_items(filter: Scientific_Circles_Links_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, ids: [ID]!, data: update_Scientific_Circles_Links_input!): [Scientific_Circles_Links!]!
+  update_Scientific_Circles_Links_batch(filter: Scientific_Circles_Links_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [update_Scientific_Circles_Links_input!]): [Scientific_Circles_Links!]!
+  update_Scientific_Circles_Links_item(id: ID!, data: update_Scientific_Circles_Links_input!): Scientific_Circles_Links
+  update_Posts_items(filter: Posts_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, ids: [ID]!, data: update_Posts_input!): [Posts!]!
+  update_Posts_batch(filter: Posts_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [update_Posts_input!]): [Posts!]!
+  update_Posts_item(id: ID!, data: update_Posts_input!): Posts
+  update_AcademicCalendarData(data: update_AcademicCalendarData_input!): AcademicCalendarData
+  update_WeekExceptions_items(filter: WeekExceptions_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, ids: [ID]!, data: update_WeekExceptions_input!): [WeekExceptions!]!
+  update_WeekExceptions_batch(filter: WeekExceptions_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [update_WeekExceptions_input!]): [WeekExceptions!]!
+  update_WeekExceptions_item(id: ID!, data: update_WeekExceptions_input!): WeekExceptions
+  update_AboutUs(data: update_AboutUs_input!): AboutUs
+  update_AboutUs_Team_items(filter: AboutUs_Team_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, ids: [ID]!, data: update_AboutUs_Team_input!): [AboutUs_Team!]!
+  update_AboutUs_Team_batch(filter: AboutUs_Team_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [update_AboutUs_Team_input!]): [AboutUs_Team!]!
+  update_AboutUs_Team_item(id: ID!, data: update_AboutUs_Team_input!): AboutUs_Team
+  update_AboutUs_Solvro_Social_Links_items(filter: AboutUs_Solvro_Social_Links_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, ids: [ID]!, data: update_AboutUs_Solvro_Social_Links_input!): [AboutUs_Solvro_Social_Links!]!
+  update_AboutUs_Solvro_Social_Links_batch(filter: AboutUs_Solvro_Social_Links_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [update_AboutUs_Solvro_Social_Links_input!]): [AboutUs_Solvro_Social_Links!]!
+  update_AboutUs_Solvro_Social_Links_item(id: ID!, data: update_AboutUs_Solvro_Social_Links_input!): AboutUs_Solvro_Social_Links
+  update_Departments_items(filter: Departments_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, ids: [ID]!, data: update_Departments_input!): [Departments!]!
+  update_Departments_batch(filter: Departments_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [update_Departments_input!]): [Departments!]!
+  update_Departments_item(id: ID!, data: update_Departments_input!): Departments
+  update_FAQ_items(filter: FAQ_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, ids: [ID]!, data: update_FAQ_input!): [FAQ!]!
+  update_FAQ_batch(filter: FAQ_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [update_FAQ_input!]): [FAQ!]!
+  update_FAQ_item(id: ID!, data: update_FAQ_input!): FAQ
+  update_FAQ_Types_items(filter: FAQ_Types_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, ids: [ID]!, data: update_FAQ_Types_input!): [FAQ_Types!]!
+  update_FAQ_Types_batch(filter: FAQ_Types_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [update_FAQ_Types_input!]): [FAQ_Types!]!
+  update_FAQ_Types_item(id: ID!, data: update_FAQ_Types_input!): FAQ_Types
+  update_Departments_Links_items(filter: Departments_Links_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, ids: [ID]!, data: update_Departments_Links_input!): [Departments_Links!]!
+  update_Departments_Links_batch(filter: Departments_Links_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [update_Departments_Links_input!]): [Departments_Links!]!
+  update_Departments_Links_item(id: ID!, data: update_Departments_Links_input!): Departments_Links
+  update_FieldOfStudy_items(filter: FieldOfStudy_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, ids: [ID]!, data: update_FieldOfStudy_input!): [FieldOfStudy!]!
+  update_FieldOfStudy_batch(filter: FieldOfStudy_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [update_FieldOfStudy_input!]): [FieldOfStudy!]!
+  update_FieldOfStudy_item(id: ID!, data: update_FieldOfStudy_input!): FieldOfStudy
+  update_CacheReferenceNumber(data: update_CacheReferenceNumber_input!): CacheReferenceNumber
+  update_AboutUs_Team_Social_Links_items(filter: AboutUs_Team_Social_Links_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, ids: [ID]!, data: update_AboutUs_Team_Social_Links_input!): [AboutUs_Team_Social_Links!]!
+  update_AboutUs_Team_Social_Links_batch(filter: AboutUs_Team_Social_Links_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [update_AboutUs_Team_Social_Links_input!]): [AboutUs_Team_Social_Links!]!
+  update_AboutUs_Team_Social_Links_item(id: ID!, data: update_AboutUs_Team_Social_Links_input!): AboutUs_Team_Social_Links
+  update_FAQ_Types_FAQ_items(filter: FAQ_Types_FAQ_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, ids: [ID]!, data: update_FAQ_Types_FAQ_input!): [FAQ_Types_FAQ!]!
+  update_FAQ_Types_FAQ_batch(filter: FAQ_Types_FAQ_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [update_FAQ_Types_FAQ_input!]): [FAQ_Types_FAQ!]!
+  update_FAQ_Types_FAQ_item(id: ID!, data: update_FAQ_Types_FAQ_input!): FAQ_Types_FAQ
+  update_Changelog_items(filter: Changelog_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, ids: [ID]!, data: update_Changelog_input!): [Changelog!]!
+  update_Changelog_batch(filter: Changelog_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [update_Changelog_input!]): [Changelog!]!
+  update_Changelog_item(id: ID!, data: update_Changelog_input!): Changelog
+  update_Changelog_Change_items(filter: Changelog_Change_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, ids: [ID]!, data: update_Changelog_Change_input!): [Changelog_Change!]!
+  update_Changelog_Change_batch(filter: Changelog_Change_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [update_Changelog_Change_input!]): [Changelog_Change!]!
+  update_Changelog_Change_item(id: ID!, data: update_Changelog_Change_input!): Changelog_Change
+  update_Changelog_Screenshots_items(filter: Changelog_Screenshots_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, ids: [ID]!, data: update_Changelog_Screenshots_input!): [Changelog_Screenshots!]!
+  update_Changelog_Screenshots_batch(filter: Changelog_Screenshots_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [update_Changelog_Screenshots_input!]): [Changelog_Screenshots!]!
+  update_Changelog_Screenshots_item(id: ID!, data: update_Changelog_Screenshots_input!): Changelog_Screenshots
+  update_Scientific_Circles_items(filter: Scientific_Circles_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, ids: [ID]!, data: update_Scientific_Circles_input!): [Scientific_Circles!]!
+  update_Scientific_Circles_batch(filter: Scientific_Circles_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [update_Scientific_Circles_input!]): [Scientific_Circles!]!
+  update_Scientific_Circles_item(id: ID!, data: update_Scientific_Circles_input!): Scientific_Circles
+  update_TeamVersion_Members_AboutUs_Team_Social_Links_items(filter: TeamVersion_Members_AboutUs_Team_Social_Links_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, ids: [ID]!, data: update_TeamVersion_Members_AboutUs_Team_Social_Links_input!): [TeamVersion_Members_AboutUs_Team_Social_Links!]!
+  update_TeamVersion_Members_AboutUs_Team_Social_Links_batch(filter: TeamVersion_Members_AboutUs_Team_Social_Links_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [update_TeamVersion_Members_AboutUs_Team_Social_Links_input!]): [TeamVersion_Members_AboutUs_Team_Social_Links!]!
+  update_TeamVersion_Members_AboutUs_Team_Social_Links_item(id: ID!, data: update_TeamVersion_Members_AboutUs_Team_Social_Links_input!): TeamVersion_Members_AboutUs_Team_Social_Links
+  update_TeamVersion_Members_items(filter: TeamVersion_Members_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, ids: [ID]!, data: update_TeamVersion_Members_input!): [TeamVersion_Members!]!
+  update_TeamVersion_Members_batch(filter: TeamVersion_Members_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [update_TeamVersion_Members_input!]): [TeamVersion_Members!]!
+  update_TeamVersion_Members_item(id: ID!, data: update_TeamVersion_Members_input!): TeamVersion_Members
+  update_TeamVersions_items(filter: TeamVersions_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, ids: [ID]!, data: update_TeamVersions_input!): [TeamVersions!]!
+  update_TeamVersions_batch(filter: TeamVersions_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [update_TeamVersions_input!]): [TeamVersions!]!
+  update_TeamVersions_item(id: ID!, data: update_TeamVersions_input!): TeamVersions
+  update_Buildings_items(filter: Buildings_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, ids: [ID]!, data: update_Buildings_input!): [Buildings!]!
+  update_Buildings_batch(filter: Buildings_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [update_Buildings_input!]): [Buildings!]!
+  update_Buildings_item(id: ID!, data: update_Buildings_input!): Buildings
+  update_PlannerAdvert(data: update_PlannerAdvert_input!): PlannerAdvert
+  delete_Scientific_Circles_Tags_items(ids: [ID]!): delete_many
+  delete_Scientific_Circles_Tags_item(id: ID!): delete_one
+  delete_Tags_items(ids: [ID]!): delete_many
+  delete_Tags_item(id: ID!): delete_one
+  delete_Posts_Tags_items(ids: [ID]!): delete_many
+  delete_Posts_Tags_item(id: ID!): delete_one
+  delete_Scientific_Circles_Links_items(ids: [ID]!): delete_many
+  delete_Scientific_Circles_Links_item(id: ID!): delete_one
+  delete_Posts_items(ids: [ID]!): delete_many
+  delete_Posts_item(id: ID!): delete_one
+  delete_WeekExceptions_items(ids: [ID]!): delete_many
+  delete_WeekExceptions_item(id: ID!): delete_one
+  delete_AboutUs_Team_items(ids: [ID]!): delete_many
+  delete_AboutUs_Team_item(id: ID!): delete_one
+  delete_AboutUs_Solvro_Social_Links_items(ids: [ID]!): delete_many
+  delete_AboutUs_Solvro_Social_Links_item(id: ID!): delete_one
+  delete_Departments_items(ids: [ID]!): delete_many
+  delete_Departments_item(id: ID!): delete_one
+  delete_FAQ_items(ids: [ID]!): delete_many
+  delete_FAQ_item(id: ID!): delete_one
+  delete_FAQ_Types_items(ids: [ID]!): delete_many
+  delete_FAQ_Types_item(id: ID!): delete_one
+  delete_Departments_Links_items(ids: [ID]!): delete_many
+  delete_Departments_Links_item(id: ID!): delete_one
+  delete_FieldOfStudy_items(ids: [ID]!): delete_many
+  delete_FieldOfStudy_item(id: ID!): delete_one
+  delete_AboutUs_Team_Social_Links_items(ids: [ID]!): delete_many
+  delete_AboutUs_Team_Social_Links_item(id: ID!): delete_one
+  delete_FAQ_Types_FAQ_items(ids: [ID]!): delete_many
+  delete_FAQ_Types_FAQ_item(id: ID!): delete_one
+  delete_Changelog_items(ids: [ID]!): delete_many
+  delete_Changelog_item(id: ID!): delete_one
+  delete_Changelog_Change_items(ids: [ID]!): delete_many
+  delete_Changelog_Change_item(id: ID!): delete_one
+  delete_Changelog_Screenshots_items(ids: [ID]!): delete_many
+  delete_Changelog_Screenshots_item(id: ID!): delete_one
+  delete_Scientific_Circles_items(ids: [ID]!): delete_many
+  delete_Scientific_Circles_item(id: ID!): delete_one
+  delete_TeamVersion_Members_AboutUs_Team_Social_Links_items(ids: [ID]!): delete_many
+  delete_TeamVersion_Members_AboutUs_Team_Social_Links_item(id: ID!): delete_one
+  delete_TeamVersion_Members_items(ids: [ID]!): delete_many
+  delete_TeamVersion_Members_item(id: ID!): delete_one
+  delete_TeamVersions_items(ids: [ID]!): delete_many
+  delete_TeamVersions_item(id: ID!): delete_one
+  delete_Buildings_items(ids: [ID]!): delete_many
+  delete_Buildings_item(id: ID!): delete_one
+}
+
+input create_Scientific_Circles_Tags_input {
+  id: ID
+  Scientific_Circles_id: create_Scientific_Circles_input
+  Tags_id: create_Tags_input
+}
+
+input create_Scientific_Circles_input {
+  id: ID
+  status: String
+  sort: Int
+  date_created: Date
+  date_updated: Date
+  name: String!
+  logo: create_directus_files_input
+  cover: create_directus_files_input
+  description: String
+  type: String
+  source: String
+  shortDescription: String
+  department: create_Departments_input
+  desc2: String
+  useCoverAsPreviewPhoto: Boolean
+  isStrategic: Boolean!
+  tags: [create_Scientific_Circles_Tags_input]
+  links: [create_Scientific_Circles_Links_input]
+}
+
+input create_directus_files_input {
+  id: ID
+  storage: String!
+  filename_disk: String
+  filename_download: String!
+  title: String
+  type: String
+  folder: create_directus_folders_input
+  uploaded_by: create_directus_users_input
+  created_on: Date
+  modified_by: create_directus_users_input
+  modified_on: Date
+  charset: String
+  filesize: GraphQLBigInt
+  width: Int
+  height: Int
+  duration: Int
+  embed: String
+  description: String
+  location: String
+  tags: JSON
+  metadata: JSON
+  focal_point_x: Int
+  focal_point_y: Int
+  tus_id: String
+  tus_data: JSON
+  uploaded_on: Date
+}
+
+input create_directus_folders_input {
+  id: ID
+  name: String!
+  parent: create_directus_folders_input
+}
+
+input create_directus_users_input {
+  id: ID
+  first_name: String
+  last_name: String
+  email: String
+  password: Hash
+  location: String
+  title: String
+  description: String
+  tags: JSON
+  avatar: create_directus_files_input
+  language: String
+  tfa_secret: Hash
+  status: String
+  role: create_directus_roles_input
+  token: Hash
+  last_access: Date
+  last_page: String
+  provider: String
+  external_identifier: String
+  auth_data: JSON
+  email_notifications: Boolean
+  appearance: String
+  theme_dark: String
+  theme_light: String
+  theme_light_overrides: JSON
+  theme_dark_overrides: JSON
+}
+
+input create_directus_roles_input {
+  id: ID
+  name: String!
+  icon: String
+  description: String
+  ip_access: [String]
+  enforce_tfa: Boolean!
+  admin_access: Boolean!
+  app_access: Boolean
+  users: [create_directus_users_input]
+}
+
+input create_Departments_input {
+  id: ID
+  name: String!
+  logo: create_directus_files_input
+  description: String
+  code: String!
+  gradient_start: String
+  gradient_end: String
+  address: String
+  betterCode: String
+  links: [create_Departments_Links_input]
+  fieldsOfStudies: [create_FieldOfStudy_input]
+}
+
+input create_Departments_Links_input {
+  id: ID
+  name: String
+  link: String
+  department_id: create_Departments_input
+}
+
+input create_FieldOfStudy_input {
+  id: ID
+  department_id: create_Departments_input
+  name: String!
+  url: String
+  isEnglish: Boolean
+  is2ndDegree: Boolean
+  isLongCycleStudies: Boolean
+  hasWeekendModeOption: Boolean
+}
+
+input create_Scientific_Circles_Links_input {
+  id: ID
+  name: String
+  link: String
+  scientific_circle_id: create_Scientific_Circles_input
+}
+
+input create_Tags_input {
+  id: ID
+  name: String!
+}
+
+input create_Posts_Tags_input {
+  id: ID
+  Posts_id: create_Posts_input
+  Tags_id: create_Tags_input
+}
+
+input create_Posts_input {
+  id: ID
+  status: String
+  sort: Int
+  user_created: create_directus_users_input
+  date_created: Date
+  user_updated: create_directus_users_input
+  date_updated: Date
+  content: String
+  title: String!
+  department: create_Departments_input
+  cover: create_directus_files_input
+  tags: [create_Posts_Tags_input]
+}
+
+input create_WeekExceptions_input {
+  id: ID
+  day: Date!
+  changedWeekday: String!
+  changedDayIsEven: Boolean!
+}
+
+input create_AboutUs_Team_input {
+  id: ID
+  name: String!
+  subtitle: String
+  photo: create_directus_files_input
+  sort: Int!
+  socialLinks: [create_AboutUs_Team_Social_Links_input]
+}
+
+input create_AboutUs_Team_Social_Links_input {
+  id: ID
+  url: String!
+  team_member_id: create_AboutUs_Team_input
+  sort: Int
+}
+
+input create_AboutUs_Solvro_Social_Links_input {
+  id: ID
+  url: String!
+  parent_id: create_AboutUs_input
+}
+
+input create_AboutUs_input {
+  id: ID
+  user_updated: create_directus_users_input
+  date_updated: Date
+  description: String!
+  cover: create_directus_files_input
+  solvroSocialLinks: [create_AboutUs_Solvro_Social_Links_input]
+}
+
+input create_FAQ_input {
+  id: ID
+  status: String
+  date_created: Date
+  date_updated: Date
+  question: String
+  answer: String
+  type: create_FAQ_Types_input
+}
+
+input create_FAQ_Types_input {
+  id: ID
+  name: String
+  cover: create_directus_files_input
+  short_description: String
+  description: String
+  order: Int!
+  questions: [create_FAQ_Types_FAQ_input]
+}
+
+input create_FAQ_Types_FAQ_input {
+  id: ID
+  FAQ_Types_id: create_FAQ_Types_input
+  FAQ_id: create_FAQ_input
+  sort: Int
+}
+
+input create_Changelog_input {
+  id: ID
+  status: String
+  user_created: create_directus_users_input
+  date_created: Date
+  user_updated: create_directus_users_input
+  date_updated: Date
+  versionString: String
+  changes: [create_Changelog_Change_input]
+  screenshots: [create_Changelog_Screenshots_input]
+}
+
+input create_Changelog_Change_input {
+  id: ID
+  sort: Int
+  date_created: Date
+  date_updated: Date
+  changeDescription: String!
+  changeType: String!
+  fk_changelog: create_Changelog_input
+}
+
+input create_Changelog_Screenshots_input {
+  id: ID
+  date_created: Date
+  date_updated: Date
+  fk_changelog: create_Changelog_input
+  screenshot_preview: create_directus_files_input
+}
+
+input create_TeamVersion_Members_AboutUs_Team_Social_Links_input {
+  id: ID
+  TeamVersion_Members_id: create_TeamVersion_Members_input
+  AboutUs_Team_Social_Links_id: create_AboutUs_Team_Social_Links_input
+}
+
+input create_TeamVersion_Members_input {
+  id: ID
+  sort: Int
+  user_created: create_directus_users_input
+  date_created: Date
+  user_updated: create_directus_users_input
+  date_updated: Date
+  name: String!
+  subtitle: String
+  photo: create_directus_files_input
+  appVersion: create_TeamVersions_input
+  socialLinks: [create_TeamVersion_Members_AboutUs_Team_Social_Links_input]
+}
+
+input create_TeamVersions_input {
+  id: ID
+  sort: Int
+  user_created: create_directus_users_input
+  date_created: Date
+  user_updated: create_directus_users_input
+  date_updated: Date
+  name: String
+}
+
+input create_Buildings_input {
+  id: ID
+  name: String!
+  latitude: Float!
+  longitude: Float!
+  addres: String
+  cover: create_directus_files_input
+  food: Boolean
+  naturalName: String
+  disableBuildingPrefix: Boolean!
+  externalDigitalGuideIdOrURL: String
+  externalDigitalGuideMode: String
+}
+
+input update_Scientific_Circles_Tags_input {
+  id: ID
+  Scientific_Circles_id: update_Scientific_Circles_input
+  Tags_id: update_Tags_input
+}
+
+input update_Scientific_Circles_input {
+  id: ID
+  status: String
+  sort: Int
+  date_created: Date
+  date_updated: Date
+  name: String
+  logo: update_directus_files_input
+  cover: update_directus_files_input
+  description: String
+  type: String
+  source: String
+  shortDescription: String
+  department: update_Departments_input
+  desc2: String
+  useCoverAsPreviewPhoto: Boolean
+  isStrategic: Boolean
+  tags: [update_Scientific_Circles_Tags_input]
+  links: [update_Scientific_Circles_Links_input]
+}
+
+input update_directus_files_input {
+  id: ID
+  storage: String
+  filename_disk: String
+  filename_download: String
+  title: String
+  type: String
+  folder: update_directus_folders_input
+  uploaded_by: update_directus_users_input
+  created_on: Date
+  modified_by: update_directus_users_input
+  modified_on: Date
+  charset: String
+  filesize: GraphQLBigInt
+  width: Int
+  height: Int
+  duration: Int
+  embed: String
+  description: String
+  location: String
+  tags: JSON
+  metadata: JSON
+  focal_point_x: Int
+  focal_point_y: Int
+  tus_id: String
+  tus_data: JSON
+  uploaded_on: Date
+}
+
+input update_directus_folders_input {
+  id: ID
+  name: String
+  parent: update_directus_folders_input
+}
+
+input update_directus_users_input {
+  id: ID
+  first_name: String
+  last_name: String
+  email: String
+  password: Hash
+  location: String
+  title: String
+  description: String
+  tags: JSON
+  avatar: update_directus_files_input
+  language: String
+  tfa_secret: Hash
+  status: String
+  role: update_directus_roles_input
+  token: Hash
+  last_access: Date
+  last_page: String
+  provider: String
+  external_identifier: String
+  auth_data: JSON
+  email_notifications: Boolean
+  appearance: String
+  theme_dark: String
+  theme_light: String
+  theme_light_overrides: JSON
+  theme_dark_overrides: JSON
+}
+
+input update_directus_roles_input {
+  id: ID
+  name: String
+  icon: String
+  description: String
+  ip_access: [String]
+  enforce_tfa: Boolean
+  admin_access: Boolean
+  app_access: Boolean
+  users: [update_directus_users_input]
+}
+
+input update_Departments_input {
+  id: ID
+  name: String
+  logo: update_directus_files_input
+  description: String
+  code: String
+  gradient_start: String
+  gradient_end: String
+  address: String
+  betterCode: String
+  links: [update_Departments_Links_input]
+  fieldsOfStudies: [update_FieldOfStudy_input]
+}
+
+input update_Departments_Links_input {
+  id: ID
+  name: String
+  link: String
+  department_id: update_Departments_input
+}
+
+input update_FieldOfStudy_input {
+  id: ID
+  department_id: update_Departments_input
+  name: String
+  url: String
+  isEnglish: Boolean
+  is2ndDegree: Boolean
+  isLongCycleStudies: Boolean
+  hasWeekendModeOption: Boolean
+}
+
+input update_Scientific_Circles_Links_input {
+  id: ID
+  name: String
+  link: String
+  scientific_circle_id: update_Scientific_Circles_input
+}
+
+input update_Tags_input {
+  id: ID
+  name: String
+}
+
+input update_Posts_Tags_input {
+  id: ID
+  Posts_id: update_Posts_input
+  Tags_id: update_Tags_input
+}
+
+input update_Posts_input {
+  id: ID
+  status: String
+  sort: Int
+  user_created: update_directus_users_input
+  date_created: Date
+  user_updated: update_directus_users_input
+  date_updated: Date
+  content: String
+  title: String
+  department: update_Departments_input
+  cover: update_directus_files_input
+  tags: [update_Posts_Tags_input]
+}
+
+input update_AcademicCalendarData_input {
+  id: ID
+  user_updated: update_directus_users_input
+  date_updated: Date
+  semesterStartDate: Date
+  examSessionStartDate: Date
+  isFirstWeekEven: Boolean
+  examSessionLastDay: Date
+}
+
+input update_WeekExceptions_input {
+  id: ID
+  day: Date
+  changedWeekday: String
+  changedDayIsEven: Boolean
+}
+
+input update_AboutUs_input {
+  id: ID
+  user_updated: update_directus_users_input
+  date_updated: Date
+  description: String
+  cover: update_directus_files_input
+  solvroSocialLinks: [update_AboutUs_Solvro_Social_Links_input]
+}
+
+input update_AboutUs_Solvro_Social_Links_input {
+  id: ID
+  url: String
+  parent_id: update_AboutUs_input
+}
+
+input update_AboutUs_Team_input {
+  id: ID
+  name: String
+  subtitle: String
+  photo: update_directus_files_input
+  sort: Int
+  socialLinks: [update_AboutUs_Team_Social_Links_input]
+}
+
+input update_AboutUs_Team_Social_Links_input {
+  id: ID
+  url: String
+  team_member_id: update_AboutUs_Team_input
+  sort: Int
+}
+
+input update_FAQ_input {
+  id: ID
+  status: String
+  date_created: Date
+  date_updated: Date
+  question: String
+  answer: String
+  type: update_FAQ_Types_input
+}
+
+input update_FAQ_Types_input {
+  id: ID
+  name: String
+  cover: update_directus_files_input
+  short_description: String
+  description: String
+  order: Int
+  questions: [update_FAQ_Types_FAQ_input]
+}
+
+input update_FAQ_Types_FAQ_input {
+  id: ID
+  FAQ_Types_id: update_FAQ_Types_input
+  FAQ_id: update_FAQ_input
+  sort: Int
+}
+
+input update_CacheReferenceNumber_input {
+  id: ID
+  status: String
+  date_updated: Date
+  referenceNumber: Int
+  useParkingApiWrapper: Boolean
+  javaWrapperURL: String
+  classicParkingGetParks: String
+  classicParkingGetCharts: String
+  parkingPhotoPrefix: String
+}
+
+input update_Changelog_input {
+  id: ID
+  status: String
+  user_created: update_directus_users_input
+  date_created: Date
+  user_updated: update_directus_users_input
+  date_updated: Date
+  versionString: String
+  changes: [update_Changelog_Change_input]
+  screenshots: [update_Changelog_Screenshots_input]
+}
+
+input update_Changelog_Change_input {
+  id: ID
+  sort: Int
+  date_created: Date
+  date_updated: Date
+  changeDescription: String
+  changeType: String
+  fk_changelog: update_Changelog_input
+}
+
+input update_Changelog_Screenshots_input {
+  id: ID
+  date_created: Date
+  date_updated: Date
+  fk_changelog: update_Changelog_input
+  screenshot_preview: update_directus_files_input
+}
+
+input update_TeamVersion_Members_AboutUs_Team_Social_Links_input {
+  id: ID
+  TeamVersion_Members_id: update_TeamVersion_Members_input
+  AboutUs_Team_Social_Links_id: update_AboutUs_Team_Social_Links_input
+}
+
+input update_TeamVersion_Members_input {
+  id: ID
+  sort: Int
+  user_created: update_directus_users_input
+  date_created: Date
+  user_updated: update_directus_users_input
+  date_updated: Date
+  name: String
+  subtitle: String
+  photo: update_directus_files_input
+  appVersion: update_TeamVersions_input
+  socialLinks: [update_TeamVersion_Members_AboutUs_Team_Social_Links_input]
+}
+
+input update_TeamVersions_input {
+  id: ID
+  sort: Int
+  user_created: update_directus_users_input
+  date_created: Date
+  user_updated: update_directus_users_input
+  date_updated: Date
+  name: String
+}
+
+input update_Buildings_input {
+  id: ID
+  name: String
+  latitude: Float
+  longitude: Float
+  addres: String
+  cover: update_directus_files_input
+  food: Boolean
+  naturalName: String
+  disableBuildingPrefix: Boolean
+  externalDigitalGuideIdOrURL: String
+  externalDigitalGuideMode: String
+}
+
+input update_PlannerAdvert_input {
+  id: ID
+  title: String
+  description: String
+  url: String
+  isEnabled: Boolean
+  textColor: String
+  backgroundColor: String
+  titleColor: String
+}
+
+type delete_many {
+  ids: [ID]!
+}
+
+type delete_one {
+  id: ID!
 }
 
 type Subscription {
+  directus_folders_mutated(event: EventEnum): directus_folders_mutated
+  directus_dashboards_mutated(event: EventEnum): directus_dashboards_mutated
   directus_files_mutated(event: EventEnum): directus_files_mutated
+  directus_permissions_mutated(event: EventEnum): directus_permissions_mutated
+  directus_roles_mutated(event: EventEnum): directus_roles_mutated
+  directus_panels_mutated(event: EventEnum): directus_panels_mutated
+  directus_flows_mutated(event: EventEnum): directus_flows_mutated
+  directus_operations_mutated(event: EventEnum): directus_operations_mutated
+  directus_notifications_mutated(event: EventEnum): directus_notifications_mutated
+  directus_presets_mutated(event: EventEnum): directus_presets_mutated
+  directus_translations_mutated(event: EventEnum): directus_translations_mutated
+  directus_shares_mutated(event: EventEnum): directus_shares_mutated
+  directus_versions_mutated(event: EventEnum): directus_versions_mutated
+  directus_revisions_mutated(event: EventEnum): directus_revisions_mutated
+  directus_users_mutated(event: EventEnum): directus_users_mutated
+  directus_activity_mutated(event: EventEnum): directus_activity_mutated
+  directus_webhooks_mutated(event: EventEnum): directus_webhooks_mutated
+  directus_settings_mutated(event: EventEnum): directus_settings_mutated
   Scientific_Circles_Tags_mutated(event: EventEnum): Scientific_Circles_Tags_mutated
   Tags_mutated(event: EventEnum): Tags_mutated
   Posts_Tags_mutated(event: EventEnum): Posts_Tags_mutated
@@ -1898,16 +2838,503 @@ type Subscription {
   PlannerAdvert_mutated(event: EventEnum): PlannerAdvert_mutated
 }
 
-type directus_files_mutated {
+type directus_folders_mutated {
   key: ID!
   event: EventEnum
-  data: directus_files
+  data: directus_folders
 }
 
 enum EventEnum {
   create
   update
   delete
+}
+
+type directus_dashboards_mutated {
+  key: ID!
+  event: EventEnum
+  data: directus_dashboards
+}
+
+type directus_dashboards {
+  id: ID!
+  name: String!
+  icon: String
+  note: String
+  date_created: Date
+  date_created_func: datetime_functions
+  user_created(filter: directus_users_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): directus_users
+  color: String
+  panels(filter: directus_panels_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): [directus_panels]
+  panels_func: count_functions
+}
+
+type directus_panels {
+  id: ID!
+  dashboard(filter: directus_dashboards_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): directus_dashboards
+  name: String
+  icon: String
+  color: String
+  show_header: Boolean!
+  note: String
+  type: String!
+  position_x: Int!
+  position_y: Int!
+  width: Int!
+  height: Int!
+  options: JSON
+  options_func: count_functions
+  date_created: Date
+  date_created_func: datetime_functions
+  user_created(filter: directus_users_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): directus_users
+}
+
+input directus_dashboards_filter {
+  id: string_filter_operators
+  name: string_filter_operators
+  icon: string_filter_operators
+  note: string_filter_operators
+  date_created: date_filter_operators
+  date_created_func: datetime_function_filter_operators
+  user_created: directus_users_filter
+  color: string_filter_operators
+  panels: directus_panels_filter
+  panels_func: count_function_filter_operators
+  _and: [directus_dashboards_filter]
+  _or: [directus_dashboards_filter]
+}
+
+input directus_panels_filter {
+  id: string_filter_operators
+  dashboard: directus_dashboards_filter
+  name: string_filter_operators
+  icon: string_filter_operators
+  color: string_filter_operators
+  show_header: boolean_filter_operators
+  note: string_filter_operators
+  type: string_filter_operators
+  position_x: number_filter_operators
+  position_y: number_filter_operators
+  width: number_filter_operators
+  height: number_filter_operators
+  options: string_filter_operators
+  options_func: count_function_filter_operators
+  date_created: date_filter_operators
+  date_created_func: datetime_function_filter_operators
+  user_created: directus_users_filter
+  _and: [directus_panels_filter]
+  _or: [directus_panels_filter]
+}
+
+type directus_files_mutated {
+  key: ID!
+  event: EventEnum
+  data: directus_files
+}
+
+type directus_permissions_mutated {
+  key: ID!
+  event: EventEnum
+  data: directus_permissions
+}
+
+type directus_permissions {
+  id: ID
+  role(filter: directus_roles_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): directus_roles
+  collection: String!
+  action: String!
+  permissions: JSON
+  permissions_func: count_functions
+  validation: JSON
+  validation_func: count_functions
+  presets: JSON
+  presets_func: count_functions
+  fields: [String]
+}
+
+type directus_roles_mutated {
+  key: ID!
+  event: EventEnum
+  data: directus_roles
+}
+
+type directus_panels_mutated {
+  key: ID!
+  event: EventEnum
+  data: directus_panels
+}
+
+type directus_flows_mutated {
+  key: ID!
+  event: EventEnum
+  data: directus_flows
+}
+
+type directus_flows {
+  id: ID!
+  name: String!
+  icon: String
+  color: String
+  description: String
+  status: String
+  trigger: String
+  accountability: String
+  options: JSON
+  options_func: count_functions
+  operation(filter: directus_operations_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): directus_operations
+  date_created: Date
+  date_created_func: datetime_functions
+  user_created(filter: directus_users_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): directus_users
+  operations(filter: directus_operations_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): [directus_operations]
+  operations_func: count_functions
+}
+
+type directus_operations {
+  id: ID!
+  name: String
+  key: String!
+  type: String!
+  position_x: Int!
+  position_y: Int!
+  options: JSON
+  options_func: count_functions
+  resolve(filter: directus_operations_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): directus_operations
+  reject(filter: directus_operations_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): directus_operations
+  flow(filter: directus_flows_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): directus_flows
+  date_created: Date
+  date_created_func: datetime_functions
+  user_created(filter: directus_users_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): directus_users
+}
+
+input directus_operations_filter {
+  id: string_filter_operators
+  name: string_filter_operators
+  key: string_filter_operators
+  type: string_filter_operators
+  position_x: number_filter_operators
+  position_y: number_filter_operators
+  options: string_filter_operators
+  options_func: count_function_filter_operators
+  resolve: directus_operations_filter
+  reject: directus_operations_filter
+  flow: directus_flows_filter
+  date_created: date_filter_operators
+  date_created_func: datetime_function_filter_operators
+  user_created: directus_users_filter
+  _and: [directus_operations_filter]
+  _or: [directus_operations_filter]
+}
+
+input directus_flows_filter {
+  id: string_filter_operators
+  name: string_filter_operators
+  icon: string_filter_operators
+  color: string_filter_operators
+  description: string_filter_operators
+  status: string_filter_operators
+  trigger: string_filter_operators
+  accountability: string_filter_operators
+  options: string_filter_operators
+  options_func: count_function_filter_operators
+  operation: directus_operations_filter
+  date_created: date_filter_operators
+  date_created_func: datetime_function_filter_operators
+  user_created: directus_users_filter
+  operations: directus_operations_filter
+  operations_func: count_function_filter_operators
+  _and: [directus_flows_filter]
+  _or: [directus_flows_filter]
+}
+
+type directus_operations_mutated {
+  key: ID!
+  event: EventEnum
+  data: directus_operations
+}
+
+type directus_notifications_mutated {
+  key: ID!
+  event: EventEnum
+  data: directus_notifications
+}
+
+type directus_notifications {
+  id: ID!
+  timestamp: Date
+  timestamp_func: datetime_functions
+  status: String
+  recipient(filter: directus_users_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): directus_users
+  sender(filter: directus_users_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): directus_users
+  subject: String!
+  message: String
+  collection: String
+  item: String
+}
+
+type directus_presets_mutated {
+  key: ID!
+  event: EventEnum
+  data: directus_presets
+}
+
+type directus_presets {
+  id: ID!
+  bookmark: String
+  user(filter: directus_users_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): directus_users
+  role(filter: directus_roles_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): directus_roles
+  collection: String
+  search: String
+  layout: String
+  layout_query: JSON
+  layout_query_func: count_functions
+  layout_options: JSON
+  layout_options_func: count_functions
+  refresh_interval: Int
+  filter: JSON
+  filter_func: count_functions
+  icon: String
+  color: String
+}
+
+type directus_translations_mutated {
+  key: ID!
+  event: EventEnum
+  data: directus_translations
+}
+
+type directus_translations {
+  id: ID!
+  language: String!
+  key: String!
+  value: String!
+}
+
+type directus_shares_mutated {
+  key: ID!
+  event: EventEnum
+  data: directus_shares
+}
+
+type directus_shares {
+  id: ID!
+  name: String
+  collection: String!
+  item: String!
+  role(filter: directus_roles_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): directus_roles
+
+  """$t:shared_leave_blank_for_passwordless_access"""
+  password: Hash
+  user_created(filter: directus_users_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): directus_users
+  date_created: Date
+  date_created_func: datetime_functions
+
+  """$t:shared_leave_blank_for_unlimited"""
+  date_start: Date
+  date_start_func: datetime_functions
+
+  """$t:shared_leave_blank_for_unlimited"""
+  date_end: Date
+  date_end_func: datetime_functions
+  times_used: Int
+
+  """$t:shared_leave_blank_for_unlimited"""
+  max_uses: Int
+}
+
+type directus_versions_mutated {
+  key: ID!
+  event: EventEnum
+  data: directus_versions
+}
+
+type directus_versions {
+  id: ID!
+  key: String!
+  name: String
+  collection: String!
+  item: String!
+  hash: String
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  user_created(filter: directus_users_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): directus_users
+  user_updated(filter: directus_users_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): directus_users
+}
+
+type directus_revisions_mutated {
+  key: ID!
+  event: EventEnum
+  data: directus_revisions
+}
+
+type directus_revisions {
+  id: ID!
+  activity(filter: directus_activity_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): directus_activity
+  collection: String!
+  item: String!
+  data: JSON
+  data_func: count_functions
+  delta: JSON
+  delta_func: count_functions
+  parent(filter: directus_revisions_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): directus_revisions
+  version(filter: directus_versions_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): directus_versions
+}
+
+type directus_activity {
+  id: ID!
+  action: String!
+  user(filter: directus_users_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): directus_users
+  timestamp: Date
+  timestamp_func: datetime_functions
+  ip: String
+  user_agent: String
+  collection: String!
+  item: String!
+  comment: String
+  origin: String
+  revisions(filter: directus_revisions_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): [directus_revisions]
+  revisions_func: count_functions
+}
+
+input directus_revisions_filter {
+  id: number_filter_operators
+  activity: directus_activity_filter
+  collection: string_filter_operators
+  item: string_filter_operators
+  data: string_filter_operators
+  data_func: count_function_filter_operators
+  delta: string_filter_operators
+  delta_func: count_function_filter_operators
+  parent: directus_revisions_filter
+  version: directus_versions_filter
+  _and: [directus_revisions_filter]
+  _or: [directus_revisions_filter]
+}
+
+input directus_activity_filter {
+  id: number_filter_operators
+  action: string_filter_operators
+  user: directus_users_filter
+  timestamp: date_filter_operators
+  timestamp_func: datetime_function_filter_operators
+  ip: string_filter_operators
+  user_agent: string_filter_operators
+  collection: string_filter_operators
+  item: string_filter_operators
+  comment: string_filter_operators
+  origin: string_filter_operators
+  revisions: directus_revisions_filter
+  revisions_func: count_function_filter_operators
+  _and: [directus_activity_filter]
+  _or: [directus_activity_filter]
+}
+
+input directus_versions_filter {
+  id: string_filter_operators
+  key: string_filter_operators
+  name: string_filter_operators
+  collection: string_filter_operators
+  item: string_filter_operators
+  hash: string_filter_operators
+  date_created: date_filter_operators
+  date_created_func: datetime_function_filter_operators
+  date_updated: date_filter_operators
+  date_updated_func: datetime_function_filter_operators
+  user_created: directus_users_filter
+  user_updated: directus_users_filter
+  _and: [directus_versions_filter]
+  _or: [directus_versions_filter]
+}
+
+type directus_users_mutated {
+  key: ID!
+  event: EventEnum
+  data: directus_users
+}
+
+type directus_activity_mutated {
+  key: ID!
+  event: EventEnum
+  data: directus_activity
+}
+
+type directus_webhooks_mutated {
+  key: ID!
+  event: EventEnum
+  data: directus_webhooks
+}
+
+type directus_webhooks {
+  id: ID!
+  name: String!
+  method: String
+  url: String!
+  status: String
+  data: Boolean
+  actions: [String]!
+  collections: [String]!
+  headers: JSON
+  headers_func: count_functions
+  was_active_before_deprecation: Boolean!
+  migrated_flow(filter: directus_flows_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): directus_flows
+}
+
+type directus_settings_mutated {
+  key: ID!
+  event: EventEnum
+  data: directus_settings
+}
+
+type directus_settings {
+  id: ID!
+  project_name: String
+  project_url: String
+
+  """$t:field_options.directus_settings.project_color_note"""
+  project_color: String
+  project_logo(filter: directus_files_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): directus_files
+  public_foreground(filter: directus_files_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): directus_files
+  public_background(filter: directus_files_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): directus_files
+  public_note: String
+  auth_login_attempts: Int
+  auth_password_policy: String
+  storage_asset_transform: String
+  storage_asset_presets: JSON
+  storage_asset_presets_func: count_functions
+  custom_css: String
+  storage_default_folder(filter: directus_folders_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): directus_folders
+  basemaps: JSON
+  basemaps_func: count_functions
+  mapbox_key: String
+  module_bar: JSON
+  module_bar_func: count_functions
+  project_descriptor: String
+  default_language: String
+  custom_aspect_ratios: JSON
+  custom_aspect_ratios_func: count_functions
+  public_favicon(filter: directus_files_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): directus_files
+  default_appearance: String
+  default_theme_light: String
+  theme_light_overrides: JSON
+  theme_light_overrides_func: count_functions
+  default_theme_dark: String
+  theme_dark_overrides: JSON
+  theme_dark_overrides_func: count_functions
+  report_error_url: String
+  report_bug_url: String
+  report_feature_url: String
+
+  """$t:fields.directus_settings.public_registration_note"""
+  public_registration: Boolean!
+
+  """$t:fields.directus_settings.public_registration_verify_email_note"""
+  public_registration_verify_email: Boolean
+  public_registration_role(filter: directus_roles_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): directus_roles
+
+  """$t:fields.directus_settings.public_registration_email_filter_note"""
+  public_registration_email_filter: JSON
+  public_registration_email_filter_func: count_functions
 }
 
 type Scientific_Circles_Tags_mutated {
