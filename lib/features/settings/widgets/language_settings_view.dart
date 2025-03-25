@@ -20,7 +20,7 @@ class LanguageDialog extends ConsumerWidget {
       contentPadding: const EdgeInsets.all(AboutUsConfig.spacerHeight),
       content: StatefulBuilder(
         builder: (context, setState) {
-          final languages = [("pl", "🇵🇱 Polski"), ("en", "🇬🇧 English")];
+          final languages = [(context.localize.polish_id, context.localize.polish_title), (context.localize.english_id, context.localize.english_title)];
 
           return SizedBox(
             width: double.maxFinite,
