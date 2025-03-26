@@ -44,7 +44,7 @@ class TechnicalMessage extends StatelessWidget {
             trailing: icon,
             title: TextWithTranslation(
               title ?? DishCategory.technicalInfo.getLocalizedName(context),
-              style: context.textTheme.titleWhite.copyWith(color: titleColor ?? context.colorTheme.whiteSoap),
+              style: context.textTheme.title.copyWith(color: titleColor ?? context.colorTheme.whiteSoap),
               translate: translate,
             ),
             subtitle: TextWithTranslation(
