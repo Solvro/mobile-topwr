@@ -93,7 +93,7 @@ dependencies:
   fast_immutable_collections: ^11.0.3
 
   #Navigation
-  auto_route: ^10.0.0
+  auto_route: 10.0.1
 
   #Maps
   flutter_map: ^8.1.0
