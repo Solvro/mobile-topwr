@@ -1,18 +1,28 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
-import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "../../../api_base/query_adapter.dart";
-import "../../../config/ttl_config.dart";
-import "../../../utils/ilist_nonempty.dart";
-import "getGuide.graphql.dart";
+import "../../../api_base_rest/cache/cache.dart";
+import "../../../config/env.dart";
 
+import "../../../config/ttl_config.dart";
+import "../guide_view.dart";
+import "../models/guide_data.dart";
 part "guide_repository.g.dart";
 
-typedef GuidePost = Query$GetGuide$FAQ_Types;
-
 @riverpod
-Future<IList<GuidePost>> guideRepository(Ref ref) async {
-  final results = await ref.queryGraphql(Options$Query$GetGuide(), TtlKey.guideRepository);
-  return (results?.FAQ_Types).toIList();
+class GuideRepository extends _$GuideRepository {
+  static final _apiUrl = Env.restApiUrl;
+  @override
+  Future<IList<GuideData>> build() async {
+    final guideResponse = await ref.getAndCacheData(
+      "$_apiUrl/guide_articles",
+      TtlStrategy.get(TtlKey.guideRepository).inDays,
+      GuideDataResponse.fromJson,
+      extraValidityCheck: (_) => true,
+      localizedOfflineMessage: GuideView.localizedOfflineMessage,
+      onRetry: ref.invalidateSelf,
+    );
+
+    return guideResponse.data.map((data) => data).toIList();
+  }
 }
