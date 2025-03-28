@@ -65,13 +65,11 @@ class _DigitalGuideDressingRoomsExpansionTileContent extends StatelessWidget {
           Text(dressingRoomInformation.comment),
           if (dressingRoomInformation.comment.isNotEmpty) const SizedBox(height: DigitalGuideConfig.heightMedium),
           DigitalGuidePhotoRow(imagesIDs: dressingRoom!.imagesIds?.toIList() ?? const IList.empty()),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: DigitalGuideConfig.paddingBig),
-            child: AccessibilityProfileCard(
-              accessibilityCommentsManager: DressingRoomAccessibilityCommentsManager(
-                l10n: context.localize,
-                dressingRoomResponse: dressingRoom!,
-              ),
+          const SizedBox(height: DigitalGuideConfig.heightSmall),
+          AccessibilityProfileCard(
+            accessibilityCommentsManager: DressingRoomAccessibilityCommentsManager(
+              l10n: context.localize,
+              dressingRoomResponse: dressingRoom!,
             ),
           ),
         ],

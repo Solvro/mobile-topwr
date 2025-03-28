@@ -22,7 +22,7 @@ class StairsAccessibilityCommentsManager extends AccessibilityCommentsManager {
       "${l10n.stairs_are_grades_nose_pads(stairs.areGradesNosePads.toLowerCase())} ${pl.areGradesNosePadsComment}",
       "${l10n.stairs_are_steps_raised_markings(stairs.areStepsRaisedMarkings.toLowerCase())} ${pl.areStepsRaisedMarkingsComment}",
       "${l10n.stairs_is_properly_marked_free_space_under_stairs(stairs.isProperlyMarkedFreeSpaceUnderStairs.toLowerCase())} ${pl.isProperlyMarkedFreeSpaceUnderStairsComment}",
-    ]).where((item) => item.trim().isNotEmpty).toIList();
+    ]).toIList();
   }
 
   @override
@@ -42,7 +42,7 @@ class StairsAccessibilityCommentsManager extends AccessibilityCommentsManager {
       "${l10n.stairs_is_good_lit(stairs.isGoodLit.toLowerCase())} ${pl.isGoodLitComment}",
       "${l10n.stairs_is_stairs_surface_shiny(stairs.isStairsSurfaceShiny.toLowerCase())} ${pl.isStairsSurfaceShinyComment}",
       "${l10n.stairs_is_good_stairs_wall_contrast(stairs.isGoodStairsWallContrast.toLowerCase())} ${pl.isGoodStairsWallContrastComment}",
-    ]).where((item) => item.trim().isNotEmpty).toIList();
+    ]).toIList();
   }
 
   @override

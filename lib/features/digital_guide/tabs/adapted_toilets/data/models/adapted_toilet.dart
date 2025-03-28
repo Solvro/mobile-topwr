@@ -13,26 +13,26 @@ abstract class AdaptedToilet with _$AdaptedToilet {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory AdaptedToilet({
     required AdaptedToiletTranslations translations,
-    @JsonKey(fromJson: stringToBool) required bool isAccessAccessibleForPwd,
-    @JsonKey(fromJson: _stringToInt) required int hasAdditionalPurpose,
-    @JsonKey(fromJson: isNeedAuthorizationToEnum) required IsNeedAuthorizationEnum isNeedAuthorization,
-    @JsonKey(fromJson: stringToBool) required bool isEntranceGraphicallyMarked,
-    @JsonKey(fromJson: stringToBool) required bool isMarked,
-    @JsonKey(name: "is_150x150_free_space", fromJson: stringToBool) required bool isFreeSpace,
-    @JsonKey(fromJson: stringToBool) required bool isGoodFloorWallContrast,
-    @JsonKey(fromJson: stringToBool) required bool isSideManeuveringSpace,
-    @JsonKey(fromJson: stringToBool) required bool isPulldownHandle,
-    @JsonKey(fromJson: stringToBool) required bool isFixedHandle,
-    @JsonKey(fromJson: stringToBool) required bool isGoodPulldownHandleWallContrast,
-    @JsonKey(fromJson: stringToBool) required bool isMirror,
-    @JsonKey(fromJson: stringToBool) required bool areClothesHooks,
+    required String isAccessAccessibleForPwd,
+    @JsonKey(fromJson: stringToInt) required int hasAdditionalPurpose,
+    required String isNeedAuthorization,
+    required String isEntranceGraphicallyMarked,
+    required String isMarked,
+    @JsonKey(name: "is_150x150_free_space") required String isFreeSpace,
+    required String isGoodFloorWallContrast,
+    required String isSideManeuveringSpace,
+    required String isPulldownHandle,
+    required String isFixedHandle,
+    required String isGoodPulldownHandleWallContrast,
+    required String isMirror,
+    required String areClothesHooks,
     required double toiletSeatHeight,
-    @JsonKey(fromJson: stringToBool) required bool isWastebasket,
-    @JsonKey(fromJson: stringToBool) required bool isTowelDispenser,
-    @JsonKey(fromJson: stringToBool) required bool isHandDryer,
-    @JsonKey(fromJson: stringToBool) required bool isSpaceUnderWashbasinForWheelchair,
-    @JsonKey(fromJson: stringToBool) required bool isLightSwitch,
-    @JsonKey(fromJson: stringToBool) required bool isGoodLit,
+    required String isWastebasket,
+    required String isTowelDispenser,
+    required String isHandDryer,
+    required String isSpaceUnderWashbasinForWheelchair,
+    required String isLightSwitch,
+    required String isGoodLit,
     @JsonKey(name: "images") required IList<int> imagesIndices,
     @JsonKey(name: "doors") required IList<int> doorsIndices,
   }) = _AdaptedToilet;
@@ -80,19 +80,6 @@ abstract class AdaptedToiletTranslation with _$AdaptedToiletTranslation {
   }) = _AdaptedToiletTranslation;
 
   factory AdaptedToiletTranslation.fromJson(Map<String, dynamic> json) => _$AdaptedToiletTranslationFromJson(json);
-}
-
-int _stringToInt(String str) {
-  return int.tryParse(str) ?? 1;
-}
-
-IsNeedAuthorizationEnum isNeedAuthorizationToEnum(String str) {
-  return switch (str.toLowerCase()) {
-    "true" => IsNeedAuthorizationEnum.yes,
-    "false" => IsNeedAuthorizationEnum.no,
-    "unknown" => IsNeedAuthorizationEnum.unknown,
-    _ => IsNeedAuthorizationEnum.unknown,
-  };
 }
 
 enum IsNeedAuthorizationEnum { yes, no, unknown }

@@ -119,7 +119,7 @@ class _RegionView extends ConsumerWidget {
     ];
 
     return Scaffold(
-      appBar: DetailViewAppBar(),
+      appBar: DetailViewAppBar(actions: [AccessibilityButton()]),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: DigitalGuideConfig.heightBig),
         child: CustomScrollView(

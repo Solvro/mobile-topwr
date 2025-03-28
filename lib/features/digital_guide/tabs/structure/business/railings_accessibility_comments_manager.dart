@@ -19,7 +19,7 @@ class RailingsAccessibilityCommentsManager extends AccessibilityCommentsManager 
       "${l10n.railing_is_two_sided_railing(railing.isTwoSidedRailing.toLowerCase())} ${pl.isTwoSidedRailingComment}",
       "${l10n.railing_is_braille_convex_marking(railing.isBrailleConvexMarking.toLowerCase())} ${pl.isBrailleConvexMarkingComment}",
       "${l10n.railing_is_round_cross_section_railing(railing.isRoundCrossSectionRailing.toLowerCase())} ${pl.isRoundCrossSectionRailingComment}",
-    ]).where((item) => item.trim().isNotEmpty).toIList();
+    ]).toIList();
   }
 
   @override
@@ -38,7 +38,7 @@ class RailingsAccessibilityCommentsManager extends AccessibilityCommentsManager 
     return IList([
       "${l10n.railing_is_good_railing_contrast(railing.isGoodRailingContrast.toLowerCase())} ${pl.isGoodRailingContrastComment}",
       "${l10n.railing_is_railing_extended_30cm(railing.isRailingExtended30cm.toLowerCase())} ${pl.isRailingExtended30cmComment}",
-    ]).where((item) => item.trim().isNotEmpty).toIList();
+    ]).toIList();
   }
 
   @override
@@ -46,7 +46,7 @@ class RailingsAccessibilityCommentsManager extends AccessibilityCommentsManager 
     final RailingTranslation pl = railing.translations.plTranslation;
     return IList([
       "${l10n.railing_is_railing_obstacle(railing.isRailingObstacle.toLowerCase())} ${pl.isRailingObstacleComment}",
-    ]).where((item) => item.trim().isNotEmpty).toIList();
+    ]).toIList();
   }
 
   @override

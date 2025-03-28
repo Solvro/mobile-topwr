@@ -4,8 +4,8 @@ import "../../../../../config/ui_config.dart";
 import "../../../../../utils/context_extensions.dart";
 import "../../../presentation/widgets/accessibility_profile_card.dart";
 import "../../../presentation/widgets/bullet_list.dart";
+import "../business/information_point_accessibility_manager.dart";
 import "../models/digital_guide_information_points.dart";
-import "../models/information_point_accessibility_manager.dart";
 
 class InformationPointWidget extends StatelessWidget {
   const InformationPointWidget({super.key, required this.data});

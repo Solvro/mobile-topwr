@@ -26,7 +26,10 @@ class DigitalGuideLiftDetailView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final liftInformation = lift.translations.pl;
     final widgets = [
-      Text(context.localize.localization, style: context.textTheme.headline.copyWith(fontSize: 22)),
+      Text(
+        context.localize.localization,
+        style: context.textTheme.headline.copyWith(fontSize: DigitalGuideConfig.headlineFont),
+      ),
       Padding(
         padding: const EdgeInsets.only(top: DigitalGuideConfig.heightMedium, bottom: DigitalGuideConfig.heightSmall),
         child: Text(levelName, style: context.textTheme.headline),

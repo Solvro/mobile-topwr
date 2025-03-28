@@ -30,7 +30,7 @@ class AccessibilityProfileCard extends ConsumerWidget {
         final icon = accessibilityCommentsManager.getIconForModes(currentModes);
 
         return Padding(
-          padding: const EdgeInsets.only(top: DigitalGuideConfig.paddingBig),
+          padding: const EdgeInsets.only(top: DigitalGuideConfig.paddingMedium),
           child: Stack(
             clipBehavior: Clip.none,
             children: [

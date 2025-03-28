@@ -2,7 +2,6 @@ import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 
 import "../../../../../l10n/app_localizations.dart";
-import "../../../../../utils/type_converter.dart";
 
 part "digital_guide_information_points.freezed.dart";
 part "digital_guide_information_points.g.dart";
@@ -14,17 +13,17 @@ abstract class DigitalGuideInformationPoint with _$DigitalGuideInformationPoint 
     required int id,
     required DigitalGuideInformationPointTranslations translations,
     required int orderNumber,
-    @JsonKey(fromJson: stringToBool) required bool isMarked,
-    @JsonKey(fromJson: stringToBool) required bool isVisibleFromAfar,
-    @JsonKey(fromJson: stringToBool) required bool areAccessBarriers,
-    @JsonKey(fromJson: stringToBool) required bool areSeatsAvailable,
-    @JsonKey(fromJson: stringToBool) required bool isMovementSpace,
-    @JsonKey(fromJson: stringToBool) required bool isGoodLit,
+    required String isMarked,
+    required String isVisibleFromAfar,
+    required String areAccessBarriers,
+    required String areSeatsAvailable,
+    required String isMovementSpace,
+    required String isGoodLit,
     required int counterHeight,
-    @JsonKey(fromJson: stringToBool) required bool isSpaceUnderCounter,
-    @JsonKey(fromJson: stringToBool) required bool isSpaceOnCounter,
-    @JsonKey(fromJson: stringToBool) required bool hasInductionLoop,
-    @JsonKey(fromJson: stringToBool) required bool hasSoundTransmitter,
+    required String isSpaceUnderCounter,
+    required String isSpaceOnCounter,
+    required String hasInductionLoop,
+    required String hasSoundTransmitter,
     required int building,
     required List<dynamic> rings,
     required List<dynamic> images,
@@ -39,9 +38,9 @@ abstract class DigitalGuideInformationPoint with _$DigitalGuideInformationPoint 
     final pl = translations.pl;
     return [
       pl.location,
-      if (isMarked) l10n.isMarked,
-      if (areSeatsAvailable) l10n.are_seats_available,
-      if (isSpaceOnCounter) l10n.is_space_on_counter,
+      l10n.is_marked(isMarked.toLowerCase()),
+      l10n.are_seats_available(areSeatsAvailable.toLowerCase()),
+      l10n.is_space_on_counter(isSpaceOnCounter.toLowerCase()),
       pl.workingDaysAndHours,
     ].lock;
   }

@@ -1,7 +1,5 @@
 import "package:freezed_annotation/freezed_annotation.dart";
 
-import "../../../../../../utils/type_converter.dart";
-
 part "digital_guide_transportation.freezed.dart";
 part "digital_guide_transportation.g.dart";
 
@@ -19,15 +17,15 @@ abstract class DigitalGuideTransportation with _$DigitalGuideTransportation {
     required String arePassTrafficLightsFromStopToEntryAltRoad,
     required String areNotPassTrafficLightsFromStopToEntryAltRoad,
     required double nearestPublicParkingLocationDistance,
-    @JsonKey(fromJson: stringToBool) required bool isPaidParking,
+    required String isPaidParking,
     required double nearestUniversityParkingLocationDistance,
     required double nearestDisabledParkingSpacesDistance,
-    @JsonKey(fromJson: stringToBool) required bool areBicycleStands,
-    @JsonKey(fromJson: stringToBool) required bool isCityBikeStation,
+    required String areBicycleStands,
+    required String isCityBikeStation,
     required double cityBikeStationDistance,
-    @JsonKey(fromJson: stringToBool) required bool isBicyclePathLeadToBuilding,
+    required String isBicyclePathLeadToBuilding,
     required double distanceToBicyclePath,
-    @JsonKey(fromJson: stringToBool) required bool isBicyclePathLeadClearlySeparated,
+    required String isBicyclePathLeadClearlySeparated,
     required String areObstaclesForBlind,
     required String areObstaclesForWheelchairUser,
     required String areFacilitiesForBlindFromStopToEntry,

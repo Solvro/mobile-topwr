@@ -29,19 +29,18 @@ class ToiletsAccessibilityCommentsManager extends AccessibilityCommentsManager {
   IList<String> getCommentsListForLowVision() {
     final ToiletTranslation pl = toilet.translations.plTranslation;
     return IList([
-      "${l10n.toilet_isGoodDevicesWallContrast(toilet.isGoodDevicesWallContrast.toLowerCase())} ${pl.isGoodDevicesWallContrastComment}",
-      "${l10n.toilet_isLightSwitch(toilet.isLightSwitch.toLowerCase())} ${pl.isLightSwitchComment}",
-      "${l10n.toilet_isGoodLit(toilet.isGoodLit.toLowerCase())} ${pl.isGoodLitComment}",
-      "${l10n.toilet_isGoodDevicesWallContrast(toilet.isGoodDevicesWallContrast.toLowerCase())} ${pl.isGoodDevicesWallContrastComment}",
-    ]).where((item) => item.trim().isNotEmpty).toIList();
+      "${l10n.toilet_is_good_devices_wall_contrast(toilet.isGoodDevicesWallContrast.toLowerCase())} ${pl.isGoodDevicesWallContrastComment}",
+      "${l10n.toilet_is_light_switch(toilet.isLightSwitch.toLowerCase())} ${pl.isLightSwitchComment}",
+      "${l10n.toilet_is_good_lit(toilet.isGoodLit.toLowerCase())} ${pl.isGoodLitComment}",
+    ]).toIList();
   }
 
   @override
   IList<String> getCommentsListForMotorImpairment() {
     final ToiletTranslation pl = toilet.translations.plTranslation;
     return IList([
-      "${l10n.toilet_isSpaceUnderWashbasinForWheelChair(toilet.isSpaceUnderWashbasinForWheelchair.toLowerCase())} ${pl.isSpaceUnderWashbasinForWheelchairComment}",
-    ]).where((item) => item.trim().isNotEmpty).toIList();
+      "${l10n.toilet_is_space_under_washbasin_for_wheelchair(toilet.isSpaceUnderWashbasinForWheelchair.toLowerCase())} ${pl.isSpaceUnderWashbasinForWheelchairComment}",
+    ]).toIList();
   }
 
   @override

@@ -34,7 +34,10 @@ class StairsView extends ConsumerWidget {
         return const DigitalGuideLoadingView();
       },
       error: (error, stackTrace) {
-        return HorizontalSymmetricSafeAreaScaffold(appBar: DetailViewAppBar(), body: MyErrorWidget(error));
+        return HorizontalSymmetricSafeAreaScaffold(
+          appBar: DetailViewAppBar(actions: [AccessibilityButton()]),
+          body: MyErrorWidget(error),
+        );
       },
       data: (data) => _StairsView(stairs: data),
     );
@@ -61,7 +64,7 @@ class _StairsView extends ConsumerWidget {
                       "${context.localize.stairs_width} ${stairsInformation.stairsWidth}",
                     "${context.localize.stairs_are_emergency_stairs(stairsInformation.areEmergencyStairsComment.toLowerCase())} ${stairsInformation.areEmergencyStairsComment}",
                     if (stairsInformation.comment.isNotEmpty) stairsInformation.comment,
-                  ].where((item) => item.trim().isNotEmpty).toIList(),
+                  ].toIList(),
             ),
             const SizedBox(height: DigitalGuideConfig.heightBig),
             ListView.separated(

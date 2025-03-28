@@ -19,7 +19,7 @@ class PublicTransportationAccessibilityCommentsManager extends AccessibilityComm
           "${l10n.transport_facilities_for_blind(transportation.areFacilitiesForBlindFromStopToEntry.toLowerCase())} ${comments.areFacilitiesForBlindFromStopToEntryComment}",
           "${l10n.transport_obstacles_for_blind(transportation.areObstaclesForBlindFromStopToEntryAltRoad.toLowerCase())} ${comments.areObstaclesForBlindFromStopToEntryAltRoadComment}",
           "${l10n.transport_facilities_for_blind(transportation.areFacilitiesForBlindFromStopToEntryAltRoad.toLowerCase())} ${comments.areFacilitiesForBlindFromStopToEntryAltRoadComment}",
-        ].where((c) => c.trim().isNotEmpty).toIList();
+        ].toIList();
 
     return commentsList;
   }
@@ -34,19 +34,19 @@ class PublicTransportationAccessibilityCommentsManager extends AccessibilityComm
           "${l10n.transport_are_pass_traffic_lights(transportation.arePassTrafficLightsFromStopToEntry.toLowerCase())} ${comments.arePassTrafficLightsFromStopToEntryComment}",
           "${l10n.transport_alt_are_not_pass_traffic_lights(transportation.areNotPassTrafficLightsFromStopToEntryAltRoad.toLowerCase())} ${comments.areNotPassTrafficLightsFromStopToEntryAltRoadComment}",
           "${l10n.transport_are_pass_traffic_lights(transportation.arePassTrafficLightsFromStopToEntryAltRoad.toLowerCase())} ${comments.arePassTrafficLightsFromStopToEntryAltRoadComment}",
-        ].where((c) => c.trim().isNotEmpty).toIList();
+        ].toIList();
 
     return commentsList;
   }
 
   @override
   IList<String> getCommentsListForHearingImpairment() {
-    return IList<String>(const []);
+    return const IList.empty();
   }
 
   @override
   IList<String> getCommentsListForLowVision() {
-    return IList<String>(const []);
+    return const IList.empty();
   }
 
   @override
@@ -61,13 +61,13 @@ class PublicTransportationAccessibilityCommentsManager extends AccessibilityComm
           "${l10n.transport_are_pass_traffic_lights(transportation.arePassTrafficLightsFromStopToEntry.toLowerCase())} ${comments.arePassTrafficLightsFromStopToEntryComment}",
           "${l10n.transport_alt_are_not_pass_traffic_lights(transportation.areNotPassTrafficLightsFromStopToEntryAltRoad.toLowerCase())} ${comments.areNotPassTrafficLightsFromStopToEntryAltRoadComment}",
           "${l10n.transport_are_pass_traffic_lights(transportation.arePassTrafficLightsFromStopToEntryAltRoad.toLowerCase())} ${comments.arePassTrafficLightsFromStopToEntryAltRoadComment}",
-        ].where((c) => c.trim().isNotEmpty).toIList();
+        ].toIList();
 
     return commentsList;
   }
 
   @override
   IList<String> getCommentsListForSensorySensitivity() {
-    return IList<String>(const []);
+    return const IList.empty();
   }
 }

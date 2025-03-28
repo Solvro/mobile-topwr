@@ -15,7 +15,7 @@ class RampsAccessibilityCommentsManager extends AccessibilityCommentsManager {
     final RampTranslation pl = ramps.translations.plTranslation;
     return IList([
       "${l10n.ramps_is_ramp_marked(ramps.isRampMarked.toLowerCase())} ${pl.isRampMarkedComment}",
-    ]).where((item) => item.trim().isNotEmpty).toIList();
+    ]).toIList();
   }
 
   @override
@@ -34,7 +34,7 @@ class RampsAccessibilityCommentsManager extends AccessibilityCommentsManager {
     return IList([
       "${l10n.ramps_is_good_lit(ramps.isGoodLit.toLowerCase())} ${pl.isGoodLitComment}",
       "${l10n.ramps_is_ramp_marked(ramps.isRampMarked.toLowerCase())} ${pl.isRampMarkedComment}",
-    ]).where((item) => item.trim().isNotEmpty).toIList();
+    ]).toIList();
   }
 
   @override

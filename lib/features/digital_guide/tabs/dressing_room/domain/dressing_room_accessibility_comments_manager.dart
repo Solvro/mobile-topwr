@@ -19,7 +19,7 @@ class DressingRoomAccessibilityCommentsManager extends AccessibilityCommentsMana
       "${l10n.dressing_room_are_access_barriers(dressingRoomResponse.areAccessBarriers.toLowerCase())} ${pl.areAccessBarriersComment}",
       "${l10n.dressing_room_are_seats_available(dressingRoomResponse.areSeatsAvailable.toLowerCase())} ${pl.areSeatsAvailableComment}",
       "${l10n.dressing_room_is_movement_space(dressingRoomResponse.isMovementSpace.toLowerCase())} ${pl.isMovementSpaceComment}",
-    ]).where((item) => item.trim().isNotEmpty).toIList();
+    ]).toIList();
   }
 
   @override
@@ -38,7 +38,7 @@ class DressingRoomAccessibilityCommentsManager extends AccessibilityCommentsMana
     return IList([
       "${l10n.dressing_room_is_good_lit(dressingRoomResponse.isGoodLit.toLowerCase())} ${pl.isGoodLitComment}",
       "${l10n.dressing_room_is_visible_from_afar(dressingRoomResponse.isVisibleFromAfar.toLowerCase())} ${pl.isVisibleFromAfarComment}",
-    ]).where((item) => item.trim().isNotEmpty).toIList();
+    ]).toIList();
   }
 
   @override
@@ -48,7 +48,7 @@ class DressingRoomAccessibilityCommentsManager extends AccessibilityCommentsMana
       "${l10n.dressing_room_are_seats_available(dressingRoomResponse.areSeatsAvailable.toLowerCase())} ${pl.areSeatsAvailableComment}",
       "${l10n.dressing_room_counter_is_space_under(dressingRoomResponse.isSpaceUnderCounter.toLowerCase())} ${pl.isSpaceUnderCounterComment}",
       "${l10n.dressing_room_counter_is_space_on(dressingRoomResponse.isSpaceOnCounter.toLowerCase())} ${pl.isSpaceOnCounterComment}",
-    ]).where((item) => item.trim().isNotEmpty).toIList();
+    ]).toIList();
   }
 
   @override

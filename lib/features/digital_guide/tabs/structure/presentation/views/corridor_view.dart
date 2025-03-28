@@ -11,8 +11,8 @@ import "../../../../../navigator/utils/navigation_commands.dart";
 import "../../../../presentation/widgets/accessibility_button.dart";
 import "../../../../presentation/widgets/accessibility_profile_card.dart";
 import "../../../../presentation/widgets/bullet_list.dart";
-import "../../../../presentation/widgets/digital_guide_image.dart";
 import "../../../../presentation/widgets/digital_guide_nav_link.dart";
+import "../../../../presentation/widgets/digital_guide_photo_row.dart";
 import "../../business/corridors_accessibility_comments_manager.dart";
 import "../../data/models/corridor.dart";
 
@@ -29,7 +29,7 @@ class CorridorView extends ConsumerWidget {
 
     final textStrings =
         [
-          corridor.translations.plTranslation.comment,
+          comments.comment,
           "${l10n.corridor_simple_layout_text(corridor.isSimpleCorridorLayout.toLowerCase())} ${comments.isSimpleCorridorLayoutComment}",
           "${l10n.corridor_floor_marked(corridor.isFloorMarked.toLowerCase())} ${comments.isFloorMarkedComment}",
           "${l10n.corridor_room_entrances(corridor.areRoomsEntrances.toLowerCase())} ${comments.areRoomsEntrancesComment}",
@@ -41,68 +41,44 @@ class CorridorView extends ConsumerWidget {
           "${l10n.corridor_vending_machines(corridor.areVendingMachines.toLowerCase())} ${comments.areVendingMachinesComment}",
           if (corridor.areVendingMachines.toLowerCase() == "true") comments.vendingMachinesProducts,
           "${l10n.corridor_emergency_plan(corridor.isEmergencyPlan.toLowerCase())} ${comments.isEmergencyPlanComment}",
-        ].map((element) => element.trim()).where((element) => element.isNotEmpty).toIList();
+        ].map((e) => e.trim()).where((e) => e.isNotEmpty).toIList();
+
+    final widgets = [
+      Text(comments.name, style: context.textTheme.headline.copyWith(fontSize: DigitalGuideConfig.headlineFont)),
+      const SizedBox(height: DigitalGuideConfig.heightMedium),
+      BulletList(items: textStrings),
+      if (corridor.doorsIndices.isNotEmpty) const SizedBox(height: DigitalGuideConfig.heightMedium),
+      AccessibilityProfileCard(
+        accessibilityCommentsManager: CorridorsAccessibilityCommentsManager(l10n: context.localize, corridor: corridor),
+        backgroundColor: context.colorTheme.whiteSoap,
+      ),
+      if (corridor.imagesIndices.isNotEmpty)
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: DigitalGuideConfig.paddingMedium),
+          child: DigitalGuidePhotoRow(imagesIDs: corridor.imagesIndices),
+        ),
+      if (corridor.doorsIndices.isNotEmpty)
+        ListView.separated(
+          physics: const NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
+          itemCount: corridor.doorsIndices.length,
+          separatorBuilder: (context, index) => const SizedBox(height: DigitalGuideConfig.heightMedium),
+          itemBuilder:
+              (context, index) => DigitalGuideNavLink(
+                onTap: () async => ref.navigateDigitalGuideDoor(corridor.doorsIndices[index]),
+                text: context.localize.door,
+              ),
+        ),
+    ];
 
     return Scaffold(
       appBar: DetailViewAppBar(actions: [AccessibilityButton()]),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: DigitalGuideConfig.heightBig),
-        child: CustomScrollView(
-          slivers: [
-            SliverList(
-              delegate: SliverChildListDelegate([
-                Text(
-                  corridor.translations.plTranslation.name,
-                  style: context.textTheme.headline.copyWith(fontSize: DigitalGuideConfig.headlineFont),
-                ),
-                const SizedBox(height: DigitalGuideConfig.heightMedium),
-                BulletList(items: textStrings),
-                if (corridor.doorsIndices.isNotEmpty) const SizedBox(height: DigitalGuideConfig.heightMedium),
-                ListView.separated(
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    return DigitalGuideNavLink(
-                      onTap: () async => ref.navigateDigitalGuideDoor(corridor.doorsIndices[index]),
-                      text: context.localize.door,
-                    );
-                  },
-                  itemCount: corridor.doorsIndices.length,
-                  separatorBuilder: (context, index) => const SizedBox(height: DigitalGuideConfig.heightMedium),
-                  shrinkWrap: true,
-                ),
-                const SizedBox(height: DigitalGuideConfig.heightMedium),
-                if (corridor.imagesIndices.isNotEmpty)
-                  Text(
-                    context.localize.images,
-                    style: context.textTheme.title.copyWith(fontSize: DigitalGuideConfig.headlineFont),
-                  ),
-              ]),
-            ),
-            SliverList(
-              delegate: SliverChildBuilderDelegate((context, index) {
-                return Padding(
-                  padding: const EdgeInsets.all(DigitalGuideConfig.heightMedium),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(DigitalGuideConfig.borderRadiusSmall),
-                    child: DigitalGuideImage(id: corridor.imagesIndices[index]),
-                  ),
-                );
-              }, childCount: corridor.imagesIndices.length),
-            ),
-            SliverList(
-              delegate: SliverChildListDelegate([
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: DigitalGuideConfig.paddingBig),
-                  child: AccessibilityProfileCard(
-                    accessibilityCommentsManager: CorridorsAccessibilityCommentsManager(
-                      l10n: context.localize,
-                      corridor: corridor,
-                    ),
-                  ),
-                ),
-              ]),
-            ),
-          ],
+        child: ListView.builder(
+          shrinkWrap: true,
+          itemCount: widgets.length,
+          itemBuilder: (context, index) => widgets[index],
         ),
       ),
     );

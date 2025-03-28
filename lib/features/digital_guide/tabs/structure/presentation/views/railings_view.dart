@@ -56,7 +56,7 @@ class _RailingsView extends ConsumerWidget {
                     if (railing.translations.plTranslation.comment.isNotEmpty)
                       railing.translations.plTranslation.comment,
                     if (railing.railingHeight != null) context.localize.railing_height(railing.railingHeight!),
-                  ].where((item) => item.trim().isNotEmpty).toIList(),
+                  ].toIList(),
             ),
             const SizedBox(height: DigitalGuideConfig.heightBig),
             AccessibilityProfileCard(

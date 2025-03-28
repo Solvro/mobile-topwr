@@ -20,7 +20,7 @@ class RoomPlatformsAccessibilityCommentsManager extends AccessibilityCommentsMan
           "${l10n.room_platforms_are_no_objects_narrow_communication_zone(roomPlatformsResponse.areNoObjectsNarrowCommunicationZone.toLowerCase())} ${comments.areNoObjectsNarrowCommunicationZoneComment}",
           "${l10n.room_platforms_have_access_for_people_in_wheelchair(roomPlatformsResponse.haveAccessForPeopleInWheelchair.toLowerCase())} ${comments.haveAccessForPeopleInWheelchairComment}",
           "${l10n.room_platforms_is_platform_entrance_marked(roomPlatformsResponse.isPlatformEntranceMarked.toLowerCase())} ${comments.isPlatformEntranceMarkedComment}",
-        ].where((c) => c.trim().isNotEmpty).toIList();
+        ].toIList();
 
     return commentList;
   }
@@ -44,7 +44,7 @@ class RoomPlatformsAccessibilityCommentsManager extends AccessibilityCommentsMan
           comments.areStepsLeadingToThePlatform,
           "${l10n.room_platforms_is_good_floor_platform_contrast(roomPlatformsResponse.isGoodFloorPlatformContrast.toLowerCase())} ${comments.isGoodFloorPlatformContrastComment}",
           "${l10n.room_platforms_is_platform_entrance_marked(roomPlatformsResponse.isPlatformEntranceMarked.toLowerCase())} ${comments.isPlatformEntranceMarkedComment}",
-        ].where((c) => c.trim().isNotEmpty).toIList();
+        ].toIList();
 
     return commentList;
   }
@@ -58,7 +58,7 @@ class RoomPlatformsAccessibilityCommentsManager extends AccessibilityCommentsMan
           "${l10n.platform_dimensions} ${comments.platformDimensions}",
           comments.areStepsLeadingToThePlatform,
           "${l10n.room_platforms_is_platform_entrance_marked(roomPlatformsResponse.isPlatformEntranceMarked.toLowerCase())} ${comments.isPlatformEntranceMarkedComment}",
-        ].where((c) => c.trim().isNotEmpty).toIList();
+        ].toIList();
 
     return commentList;
   }

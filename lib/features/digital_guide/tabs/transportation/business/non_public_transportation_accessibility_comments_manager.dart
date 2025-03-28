@@ -19,7 +19,7 @@ class NonPublicTransportationAccessibilityCommentsManager extends AccessibilityC
         [
           comments.nearestDisabledParkingSpaces,
           l10n.transport_closest_parking_for_disabled(transportation.nearestDisabledParkingSpacesDistance.toString()),
-        ].where((c) => c.trim().isNotEmpty).toIList();
+        ].toIList();
 
     return commentsList;
   }

@@ -12,9 +12,9 @@ import "../../../../navigator/utils/navigation_commands.dart";
 import "../../../presentation/widgets/accessibility_button.dart";
 import "../../../presentation/widgets/accessibility_profile_card.dart";
 import "../../../presentation/widgets/bullet_list.dart";
-import "../../../presentation/widgets/digital_guide_image.dart";
 import "../../../presentation/widgets/digital_guide_nav_link.dart";
-import "../business/adapted_toilet_accessibility_comments_menager.dart";
+import "../../../presentation/widgets/digital_guide_photo_row.dart";
+import "../business/adapted_toilet_accessibility_comments_manager.dart";
 import "../data/models/adapted_toilet.dart";
 
 @RoutePage()
@@ -35,27 +35,15 @@ class AdaptedToiletDetailView extends ConsumerWidget {
               adaptedToilet.translations.plTranslation.location,
               adaptedToilet.translations.plTranslation.numberOfCabins,
               adaptedToilet.translations.plTranslation.toiletDescription,
-              if (!adaptedToilet.isAccessAccessibleForPwd)
-                adaptedToilet.translations.plTranslation.isAccessAccessibleForPwdComment,
-              if (adaptedToilet.isNeedAuthorization != IsNeedAuthorizationEnum.unknown)
-                adaptedToilet.isNeedAuthorization == IsNeedAuthorizationEnum.yes
-                    ? context.localize.adapted_toilet_authorization(
-                      adaptedToilet.translations.plTranslation.isNeedAuthorizationComment,
-                    )
-                    : context.localize.adapted_toilet_no_authorization,
+              adaptedToilet.translations.plTranslation.isAccessAccessibleForPwdComment,
+              "${context.localize.adapted_toilet_authorization(adaptedToilet.isNeedAuthorization.toLowerCase())} ${adaptedToilet.translations.plTranslation.isNeedAuthorizationComment}",
               adaptedToilet.translations.plTranslation.isAreaAllowingMovementInFrontEntranceComment,
-              if (adaptedToilet.isEntranceGraphicallyMarked)
-                context.localize.adapted_toilet_graphically_marked(
-                  adaptedToilet.translations.plTranslation.isEntranceGraphicallyMarkedComment,
-                )
-              else
-                context.localize.adapted_toilet_not_graphically_marked,
-              if (adaptedToilet.isMarked)
-                context.localize.adapted_toilet_is_marked(adaptedToilet.translations.plTranslation.isMarkedComment)
-              else
-                context.localize.adapted_toilet_is_not_marked,
+              "${context.localize.adapted_toilet_graphically_marked(adaptedToilet.isEntranceGraphicallyMarked.toLowerCase())} ${adaptedToilet.translations.plTranslation.isEntranceGraphicallyMarkedComment}",
+              "${context.localize.adapted_toilet_is_marked(adaptedToilet.isMarked.toLowerCase())} ${adaptedToilet.translations.plTranslation.isMarkedComment}",
             ].lock,
       ),
+
+      const SizedBox(height: DigitalGuideConfig.heightSmall),
       AccessibilityProfileCard(
         accessibilityCommentsManager: AdaptedToiletsAccessibilityCommentsManager(
           l10n: context.localize,
@@ -63,6 +51,12 @@ class AdaptedToiletDetailView extends ConsumerWidget {
         ),
         backgroundColor: context.colorTheme.whiteSoap,
       ),
+      const SizedBox(height: DigitalGuideConfig.heightMedium),
+      if (adaptedToilet.imagesIndices.isNotEmpty)
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: DigitalGuideConfig.paddingMedium),
+          child: DigitalGuidePhotoRow(imagesIDs: adaptedToilet.imagesIndices),
+        ),
       if (adaptedToilet.doorsIndices.isNotEmpty) const SizedBox(height: DigitalGuideConfig.heightMedium),
       ListView.separated(
         physics: const NeverScrollableScrollPhysics(),
@@ -76,9 +70,6 @@ class AdaptedToiletDetailView extends ConsumerWidget {
         separatorBuilder: (context, index) => const SizedBox(height: DigitalGuideConfig.heightMedium),
         shrinkWrap: true,
       ),
-      const SizedBox(height: DigitalGuideConfig.heightMedium),
-      if (adaptedToilet.imagesIndices.isNotEmpty)
-        Text(context.localize.images, style: context.textTheme.title.copyWith(fontSize: 22)),
     ];
 
     return HorizontalSymmetricSafeAreaScaffold(
@@ -89,17 +80,6 @@ class AdaptedToiletDetailView extends ConsumerWidget {
           slivers: [
             SliverList(
               delegate: SliverChildBuilderDelegate((context, index) => widgets[index], childCount: widgets.length),
-            ),
-            SliverList(
-              delegate: SliverChildBuilderDelegate((context, index) {
-                return Padding(
-                  padding: const EdgeInsets.all(DigitalGuideConfig.heightMedium),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(DigitalGuideConfig.borderRadiusSmall),
-                    child: DigitalGuideImage(id: adaptedToilet.imagesIndices[index]),
-                  ),
-                );
-              }, childCount: adaptedToilet.imagesIndices.length),
             ),
           ],
         ),
