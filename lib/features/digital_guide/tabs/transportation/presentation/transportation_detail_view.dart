@@ -6,6 +6,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "../../../../../config/ui_config.dart";
 import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/context_extensions.dart";
+import "../../../../../utils/type_converter.dart";
 import "../../../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../../presentation/widgets/accessibility_button.dart";
 import "../../../presentation/widgets/accessibility_profile_card.dart";
@@ -55,7 +56,7 @@ class TransportationDetailView extends ConsumerWidget {
             plTransl.nearestUniversityParkingLocation +
                 context.distance(transportation.nearestUniversityParkingLocationDistance),
           plTransl.isCityBikeStationComment + context.distance(transportation.cityBikeStationDistance),
-          if (transportation.isBicyclePathLeadToBuilding)
+          if (stringToBool(transportation.isBicyclePathLeadToBuilding))
             context.localize.bicycle_path_leads_to_building +
                 plTransl.isBicyclePathLeadToBuildingComment +
                 context.distance(transportation.distanceToBicyclePath) +

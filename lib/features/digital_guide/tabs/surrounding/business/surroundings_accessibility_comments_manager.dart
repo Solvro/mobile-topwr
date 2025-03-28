@@ -26,14 +26,14 @@ class SurroundingsAccessibilityCommentsManager extends AccessibilityCommentsMana
 
     final IList<String> commentsList =
         [
-          "${l10n.are_no_barriers(surroundingResponse.areNoBarriers.toString().toLowerCase())} ${comments.areNoBarriersComment}",
-          "${l10n.are_lowered_curbs(surroundingResponse.areLoweredCurbs.toString().toLowerCase())} ${comments.areLoweredCurbsComment}",
-          "${l10n.is_pavement_rough(surroundingResponse.isPavementRough.toString().toLowerCase())} ${comments.isPavementRoughComment}",
+          "${l10n.are_no_barriers(surroundingResponse.areNoBarriers.toLowerCase())} ${comments.areNoBarriersComment}",
+          "${l10n.are_lowered_curbs(surroundingResponse.areLoweredCurbs.toLowerCase())} ${comments.areLoweredCurbsComment}",
+          "${l10n.is_pavement_rough(surroundingResponse.isPavementRough.toLowerCase())} ${comments.isPavementRoughComment}",
           parkingSpacesForPwdComment,
-          "${l10n.are_high_curbs_at_parking_space_for_pwd(surroundingResponse.areHighCurbsAtParkingSpaceForPwd.toString().toLowerCase())} ${comments.areHighCurbsAtParkingSpaceForPwdComment}",
+          "${l10n.are_high_curbs_at_parking_space_for_pwd(surroundingResponse.areHighCurbsAtParkingSpaceForPwd.toLowerCase())} ${comments.areHighCurbsAtParkingSpaceForPwdComment}",
           comments.isPathToAccessibleEntranceMarkedComment,
           areDangerousElementsComment,
-          "${l10n.is_path_to_accessible_entrance_marked(surroundingResponse.isPathToAccessibleEntranceMarked.toString().toLowerCase())} ${comments.isSidewalkSeparatedFromTheRoadComment}",
+          "${l10n.is_path_to_accessible_entrance_marked(surroundingResponse.isPathToAccessibleEntranceMarked.toLowerCase())} ${comments.isSidewalkSeparatedFromTheRoadComment}",
           comments.accessibilityLevelForBlindComment,
           comments.comment,
         ].where((c) => c.isNotEmpty).toIList();
@@ -91,7 +91,7 @@ class SurroundingsAccessibilityCommentsManager extends AccessibilityCommentsMana
     final IList<String> commentsList =
         [
           parkingSpacesForPwdComment,
-          "${l10n.is_lit(surroundingResponse.isLit.toString().toLowerCase())} ${comments.isLitComment}",
+          "${l10n.is_lit(surroundingResponse.isLit.toLowerCase())} ${comments.isLitComment}",
           comments.accessibilityLevelForVisuallyImpairedComment,
           comments.comment,
         ].where((c) => c.isNotEmpty).toIList();
@@ -110,11 +110,11 @@ class SurroundingsAccessibilityCommentsManager extends AccessibilityCommentsMana
 
     final IList<String> commentsList =
         [
-          "${l10n.are_no_barriers(surroundingResponse.areNoBarriers.toString().toLowerCase())} ${comments.areNoBarriersComment}",
-          "${l10n.are_lowered_curbs(surroundingResponse.areLoweredCurbs.toString().toLowerCase())} ${comments.areLoweredCurbsComment}",
-          "${l10n.is_pavement_rough(surroundingResponse.isPavementRough.toString().toLowerCase())} ${comments.isPavementRoughComment}",
+          "${l10n.are_no_barriers(surroundingResponse.areNoBarriers.toLowerCase())} ${comments.areNoBarriersComment}",
+          "${l10n.are_lowered_curbs(surroundingResponse.areLoweredCurbs.toLowerCase())} ${comments.areLoweredCurbsComment}",
+          "${l10n.is_pavement_rough(surroundingResponse.isPavementRough.toLowerCase())} ${comments.isPavementRoughComment}",
           parkingSpacesForPwdComment,
-          "${l10n.are_high_curbs_at_parking_space_for_pwd(surroundingResponse.areHighCurbsAtParkingSpaceForPwd.toString().toLowerCase())} ${comments.areHighCurbsAtParkingSpaceForPwdComment}",
+          "${l10n.are_high_curbs_at_parking_space_for_pwd(surroundingResponse.areHighCurbsAtParkingSpaceForPwd.toLowerCase())} ${comments.areHighCurbsAtParkingSpaceForPwdComment}",
           comments.isPathToAccessibleEntranceMarkedComment,
           comments.accessibilityLevelForMotorDisabilityComment,
           comments.comment,
@@ -135,7 +135,7 @@ class SurroundingsAccessibilityCommentsManager extends AccessibilityCommentsMana
     final IList<String> commentsList =
         [
           parkingSpacesForPwdComment,
-          "${l10n.is_noisy_street_near_building(surroundingResponse.isNoisyStreetNearBuilding.toString().toLowerCase())} ${comments.isNoisyStreetNearBuildingComment}",
+          "${l10n.is_noisy_street_near_building(surroundingResponse.isNoisyStreetNearBuilding.toLowerCase())} ${comments.isNoisyStreetNearBuildingComment}",
           comments.accessibilityLevelForHighSensorySensitivityComment,
           comments.comment,
         ].where((c) => c.isNotEmpty).toIList();

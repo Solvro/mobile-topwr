@@ -38,8 +38,8 @@ class AdaptedToiletDetailView extends ConsumerWidget {
               adaptedToilet.translations.plTranslation.isAccessAccessibleForPwdComment,
               "${context.localize.adapted_toilet_authorization(adaptedToilet.isNeedAuthorization.toLowerCase())} ${adaptedToilet.translations.plTranslation.isNeedAuthorizationComment}",
               adaptedToilet.translations.plTranslation.isAreaAllowingMovementInFrontEntranceComment,
-              "${context.localize.adapted_toilet_graphically_marked(adaptedToilet.isEntranceGraphicallyMarked.toString().toLowerCase())} ${adaptedToilet.translations.plTranslation.isEntranceGraphicallyMarkedComment}",
-              "${context.localize.adapted_toilet_is_marked(adaptedToilet.isMarked.toString().toLowerCase())} ${adaptedToilet.translations.plTranslation.isMarkedComment}",
+              "${context.localize.adapted_toilet_graphically_marked(adaptedToilet.isEntranceGraphicallyMarked.toLowerCase())} ${adaptedToilet.translations.plTranslation.isEntranceGraphicallyMarkedComment}",
+              "${context.localize.adapted_toilet_is_marked(adaptedToilet.isMarked.toLowerCase())} ${adaptedToilet.translations.plTranslation.isMarkedComment}",
             ].lock,
       ),
 
