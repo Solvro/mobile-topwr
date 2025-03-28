@@ -37,12 +37,14 @@ class _PlannerAdvertBanner extends ConsumerWidget {
           padding: const EdgeInsets.symmetric(horizontal: HomeViewConfig.paddingSmall),
           child: TechnicalMessage(
             title: data.title,
+            titleColor: data.titleColor != null ? HexColor(data.titleColor!) : null,
             message: data.description,
             alertType: AlertType.info,
             icon: data.url != null ? Icon(Icons.open_in_new_rounded, color: context.colorTheme.whiteSoap) : null,
             onTap: data.url != null ? () async => unawaited(ref.launch(data.url!)) : null,
             backgoundColor: data.backgroundColor != null ? HexColor(data.backgroundColor!) : null,
             textColor: data.textColor != null ? HexColor(data.textColor!) : null,
+            translate: true,
           ),
         );
   }

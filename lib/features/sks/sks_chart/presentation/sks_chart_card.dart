@@ -24,6 +24,7 @@ class SksChartCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: const EdgeInsets.symmetric(horizontal: SksChartConfig.paddingMedium),
       width: double.infinity,
       decoration: BoxDecoration(
         color: context.colorTheme.greyLight,

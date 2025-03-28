@@ -1,5 +1,7 @@
 import "package:freezed_annotation/freezed_annotation.dart";
 
+import "../../../../../utils/datetime_utils.dart";
+
 part "sks_user_data.freezed.dart";
 part "sks_user_data.g.dart";
 
@@ -8,7 +10,7 @@ abstract class SksUserData with _$SksUserData {
   const factory SksUserData({
     required int activeUsers,
     required int movingAverage21,
-    required DateTime externalTimestamp,
+    @JsonKey(fromJson: fromJsonToLocalTime) required DateTime externalTimestamp,
     required DateTime createdAt,
     required DateTime updatedAt,
     required Trend trend,
