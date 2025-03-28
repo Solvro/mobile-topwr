@@ -13,6 +13,7 @@ import "../navigator/utils/navigation_commands.dart";
 import "widgets/about_the_app_tile.dart";
 import "widgets/about_us_tile.dart";
 import "widgets/notification_button.dart";
+import "widgets/settings_title.dart";
 import "widgets/small_tile.dart";
 
 @RoutePage()
@@ -54,12 +55,7 @@ class NavigationTabView extends ConsumerWidget {
         padding: const EdgeInsets.only(top: 16),
         child: Text(context.localize.rest_header, style: context.textTheme.headline),
       ),
-      // TODO(simon-the-shark): reverse this when the settings screen is ready
-      // NavigationTile(
-      //   onTap: () {},
-      //   title: context.localize.settings,
-      //   icon: Icons.settings,
-      // ),
+      const Padding(padding: EdgeInsets.only(bottom: NavigationTabViewConfig.universalPadding), child: SettingsTitle()),
       const Padding(
         padding: EdgeInsets.only(bottom: NavigationTabViewConfig.universalPadding),
         child: AboutTheAppTile(),
