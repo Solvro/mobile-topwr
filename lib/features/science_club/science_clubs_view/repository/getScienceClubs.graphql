@@ -2,6 +2,7 @@ query GetScienceClubs {
   Scientific_Circles(limit: 300) {
     id
     name
+    status
     department {
       id
       name
