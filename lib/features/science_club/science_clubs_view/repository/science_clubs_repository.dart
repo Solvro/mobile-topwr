@@ -15,7 +15,10 @@ typedef ScienceClub = Query$GetScienceClubs$Scientific_Circles;
 @riverpod
 Future<IList<ScienceClub>> scienceClubsRepository(Ref ref) async {
   final results = await ref.queryGraphql(Options$Query$GetScienceClubs(), TtlKey.scienceClubsRepository);
-  return (results?.Scientific_Circles.sortBySourceTypes()).toIList();
+  return (results?.Scientific_Circles
+          .where((club) => club.status.toScienceClubStatus != ScienceClubStatus.archived)
+          .sortBySourceTypes())
+      .toIList();
 }
 
 extension IsSolvroX on ScienceClub {
@@ -54,4 +57,11 @@ extension SortBySourceTypeX on Iterable<ScienceClub> {
       ...studentDepartmentSourceWithoutPhotos,
     ];
   }
+}
+
+enum ScienceClubStatus { active, archived }
+
+extension ScienceClubStatusX on String? {
+  ScienceClubStatus get toScienceClubStatus =>
+      this == "archived" ? ScienceClubStatus.archived : ScienceClubStatus.active;
 }
