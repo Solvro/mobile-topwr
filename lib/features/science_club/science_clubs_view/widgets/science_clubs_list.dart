@@ -21,9 +21,7 @@ class ScienceClubsList extends ConsumerWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: ScienceClubsViewConfig.mediumPadding),
       child: switch (state) {
-        AsyncValue(:final IList<ScienceClub> value) => _ScienceClubsListView(
-          value.where((club) => club.status != "archived").toIList(),
-        ),
+        AsyncValue(:final IList<ScienceClub> value) => _ScienceClubsListView(value),
         AsyncError(:final error) => MyErrorWidget(error),
         _ => const ScienceClubsViewLoading(),
       },
