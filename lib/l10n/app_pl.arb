@@ -742,5 +742,6 @@
   "is_graphic": "Drzwi {value, select, false{nie } other{}}są oznakowane.",
   "is_closure_from_inside": "Drzwi {value, select, false{nie } other{}}otwierają się do wewnątrz.",
   "is_same_opening_system": "Drzwi po obu stronach {value, select, false{nie } other{}}otwierają się w identyczny sposób.",
-  "entrance_has_tactile_paving": "{value, select, false{Brak ścieżki dotykowej przy wejściu.} true{Przy wejściu znajduje się ścieżka dotykowa.} other{}}"
+  "entrance_has_tactile_paving": "{value, select, false{Brak ścieżki dotykowej przy wejściu.} true{Przy wejściu znajduje się ścieżka dotykowa.} other{}}",
+  "digital_guide_accessibility" : "Profile dostępności w cyfrowym przewodniku"
 }
