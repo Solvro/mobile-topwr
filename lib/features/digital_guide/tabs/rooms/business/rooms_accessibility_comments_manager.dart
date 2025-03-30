@@ -20,7 +20,7 @@ class RoomsAccessibilityCommentsManager extends AccessibilityCommentsManager {
           "${l10n.rooms_are_movable_elements(digitalGuideRoom.areMovableElements.toLowerCase())} ${comments.areMovableElementsComment}",
           "${l10n.rooms_is_generally_available_desk(digitalGuideRoom.isGenerallyAvailableDesk.toLowerCase())} ${comments.isGenerallyAvailableDeskComment}",
           "${l10n.rooms_are_any_dangerous_elements(digitalGuideRoom.areAnyDangerousElements.toLowerCase())} ${comments.areAnyDangerousElementsComment}",
-        ].where((c) => c.trim().isNotEmpty).toIList();
+        ].toIList();
 
     return commentList;
   }
@@ -33,7 +33,7 @@ class RoomsAccessibilityCommentsManager extends AccessibilityCommentsManager {
         [
           "${l10n.rooms_is_floor_shiny(digitalGuideRoom.isFloorShiny.toLowerCase())} ${comments.isFloorShinyComment}",
           "${l10n.rooms_are_flashing_devices(digitalGuideRoom.areFlashingDevices.toLowerCase())} ${comments.areFlashingDevicesComment}",
-        ].where((c) => c.trim().isNotEmpty).toIList();
+        ].toIList();
 
     return commentList;
   }
@@ -51,7 +51,7 @@ class RoomsAccessibilityCommentsManager extends AccessibilityCommentsManager {
         [
           "${l10n.rooms_has_induction_loop(digitalGuideRoom.hasInductionLoop.toLowerCase())} ${comments.hasInductionLoopComment}",
           "${l10n.rooms_are_flashing_devices(digitalGuideRoom.areFlashingDevices.toLowerCase())} ${comments.areFlashingDevicesComment}",
-        ].where((c) => c.trim().isNotEmpty).toIList();
+        ].toIList();
 
     return commentList;
   }
@@ -68,7 +68,7 @@ class RoomsAccessibilityCommentsManager extends AccessibilityCommentsManager {
           "${l10n.rooms_is_good_lit(digitalGuideRoom.isGoodLit.toLowerCase())} ${comments.isGoodLitComment}",
           "${l10n.rooms_is_floor_shiny(digitalGuideRoom.isFloorShiny.toLowerCase())} ${comments.isFloorShinyComment}",
           l10n.rooms_is_blackboard(comments.isBlackboardComment, digitalGuideRoom.isBlackboard.toLowerCase()),
-        ].where((c) => c.trim().isNotEmpty).toIList();
+        ].toIList();
 
     return commentList;
   }
@@ -86,7 +86,7 @@ class RoomsAccessibilityCommentsManager extends AccessibilityCommentsManager {
           l10n.rooms_is_space_under_counter(digitalGuideRoom.isSpaceUnderCounter.toLowerCase()),
           "${l10n.rooms_are_movable_elements(digitalGuideRoom.areMovableElements.toLowerCase())} ${comments.areMovableElementsComment}",
           "${l10n.rooms_are_electrical_outlets(digitalGuideRoom.areElectricalOutlets.toLowerCase())} ${comments.areElectricalOutletsComment}",
-        ].where((c) => c.trim().isNotEmpty).toIList();
+        ].toIList();
 
     return commentList;
   }

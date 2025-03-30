@@ -19,7 +19,7 @@ class CorridorsAccessibilityCommentsManager extends AccessibilityCommentsManager
       "${l10n.corridor_info_plates_accessible(corridor.arePlatesInfoAccessible.toLowerCase())} ${comments.arePlatesInfoAccessibleComment}",
       "${l10n.corridor_horizontal_markings_for_blind(corridor.areHorizontalMarkingsForBlind.toLowerCase())} ${comments.areHorizontalMarkingsForBlindComment}",
       "${l10n.corridor_dangerous_elements(corridor.areDangerousElements.toLowerCase())} ${comments.areDangerousElementsComment}",
-    ]).map((element) => element.trim()).where((element) => element.isNotEmpty).toIList();
+    ]).toIList();
   }
 
   @override
@@ -32,14 +32,14 @@ class CorridorsAccessibilityCommentsManager extends AccessibilityCommentsManager
       "${l10n.corridor_is_glare(corridor.isGlare.toLowerCase())} ${comments.isGlareComment}",
       "${l10n.corridor_echo(corridor.isCorridorCausesEcho.toLowerCase())} ${comments.isCorridorCausesEchoComment}",
       "${l10n.corridor_flashing_device(corridor.areAnyFlashingDevices.toLowerCase())} ${comments.areAnyFlashingDevicesComment}",
-    ]).map((element) => element.trim()).where((element) => element.isNotEmpty).toIList();
+    ]).toIList();
   }
 
   @override
   IList<String> getCommentsListForHearingImpairment() {
     return IList([
       "${l10n.corridor_echo(corridor.isCorridorCausesEcho.toLowerCase())} ${corridor.translations.plTranslation.isCorridorCausesEchoComment}",
-    ]).map((element) => element.trim()).where((element) => element.isNotEmpty).toIList();
+    ]).toIList();
   }
 
   @override
@@ -56,7 +56,7 @@ class CorridorsAccessibilityCommentsManager extends AccessibilityCommentsManager
       "${l10n.corridor_good_walls_contrast(corridor.isGoodWallsColorContrast.toLowerCase())} ${comments.isGoodWallsColorContrastComment}",
       "${l10n.corridor_good_lit(corridor.isGoodLit.toLowerCase())} ${comments.isGoodLitComment}",
       "${l10n.corridor_horizontal_markings_for_visually_impaired(corridor.areHorizontalMarkingsForVisuallyImpaired.toLowerCase())} ${comments.areHorizontalMarkingsForVisuallyImpairedComment}",
-    ]).map((element) => element.trim()).where((element) => element.isNotEmpty).toIList();
+    ]).toIList();
   }
 
   @override
@@ -68,11 +68,11 @@ class CorridorsAccessibilityCommentsManager extends AccessibilityCommentsManager
       "${l10n.corridor_railings(corridor.areRailings.toLowerCase())} ${comments.areRailingsComment}",
       "${l10n.corridor_light_switches_sockets_height(corridor.isCorrectLightSwitchesSocketsHeight.toLowerCase())} ${comments.isCorrectLightSwitchesSocketsHeightComment}",
       "${l10n.corridor_dangerous_elements(corridor.areDangerousElements.toLowerCase())} ${comments.areDangerousElementsComment}",
-    ]).map((element) => element.trim()).where((element) => element.isNotEmpty).toIList();
+    ]).toIList();
   }
 
   @override
   IList<String> getCommentsListForSensorySensitivity() {
-    return IList<String>(const []);
+    return const IList.empty();
   }
 }

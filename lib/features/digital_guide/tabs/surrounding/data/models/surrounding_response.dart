@@ -7,34 +7,27 @@ part "surrounding_response.g.dart";
 
 @freezed
 abstract class SurroundingResponse with _$SurroundingResponse {
+  @JsonSerializable(fieldRename: FieldRename.snake)
   const factory SurroundingResponse({
     required int id,
     required SurroundingResponseTranslations translations,
-    @JsonKey(name: "are_no_barriers", fromJson: stringToBool) required bool areNoBarriers,
-    @JsonKey(name: "are_lowered_curbs", fromJson: stringToBool) required bool areLoweredCurbs,
-    @JsonKey(name: "is_pavement_rough", fromJson: stringToBool) required bool isPavementRough,
-    @JsonKey(name: "are_parking_spaces", fromJson: stringToBool) required bool areParkingSpaces,
-    @JsonKey(name: "are_parking_spaces_for_pwd", fromJson: stringToBool) required bool areParkingSpacesForPwd,
-    @JsonKey(name: "are_high_curbs_at_parking_space_for_pwd", fromJson: stringToBool)
-    required bool areHighCurbsAtParkingSpaceForPwd,
-    @JsonKey(name: "is_path_to_accessible_entrance_marked", fromJson: stringToBool)
-    required bool isPathToAccessibleEntranceMarked,
-    @JsonKey(name: "are_dangerous_elements", fromJson: stringToBool) required bool areDangerousElements,
-    @JsonKey(name: "is_lit", fromJson: stringToBool) required bool isLit,
-    @JsonKey(name: "is_noisy_street_near_building", fromJson: stringToBool) required bool isNoisyStreetNearBuilding,
-    @JsonKey(name: "is_sidewalk_separated_from_the_road", fromJson: stringToBool)
-    required bool isSidewalkSeparatedFromTheRoad,
-    @JsonKey(name: "accessibility_level_for_motor_disability", fromJson: _stringToInt)
-    required int accessibilityLevelForMotorDisability,
-    @JsonKey(name: "accessibility_level_for_blind", fromJson: _stringToInt) required int accessibilityLevelForBlind,
-    @JsonKey(name: "accessibility_level_for_visually_impaired", fromJson: _stringToInt)
-    required int accessibilityLevelForVisuallyImpaired,
-    @JsonKey(name: "accessibility_level_for_hard_of_hearing", fromJson: _stringToInt)
-    required int accessibilityLevelForHardOfHearing,
-    @JsonKey(name: "accessibility_level_for_high_sensory_sensitivity", fromJson: _stringToInt)
-    required int accessibilityLevelForHighSensorySensitivity,
-    @JsonKey(name: "accessibility_level_for_cognitive_difficulties", fromJson: _stringToInt)
-    required int accessibilityLevelForCognitiveDifficulties,
+    required String areNoBarriers,
+    required String areLoweredCurbs,
+    required String isPavementRough,
+    required String areParkingSpaces,
+    required String areParkingSpacesForPwd,
+    required String areHighCurbsAtParkingSpaceForPwd,
+    required String isPathToAccessibleEntranceMarked,
+    required String areDangerousElements,
+    required String isLit,
+    required String isNoisyStreetNearBuilding,
+    required String isSidewalkSeparatedFromTheRoad,
+    @JsonKey(fromJson: stringToInt) required int accessibilityLevelForMotorDisability,
+    @JsonKey(fromJson: stringToInt) required int accessibilityLevelForBlind,
+    @JsonKey(fromJson: stringToInt) required int accessibilityLevelForVisuallyImpaired,
+    @JsonKey(fromJson: stringToInt) required int accessibilityLevelForHardOfHearing,
+    @JsonKey(fromJson: stringToInt) required int accessibilityLevelForHighSensorySensitivity,
+    @JsonKey(fromJson: stringToInt) required int accessibilityLevelForCognitiveDifficulties,
     required int building,
     required List<int> images,
   }) = _SurroundingResponse;
@@ -54,39 +47,29 @@ abstract class SurroundingResponseTranslations with _$SurroundingResponseTransla
 
 @freezed
 abstract class SurroundingResponseTranslationsDetails with _$SurroundingResponseTranslationsDetails {
+  @JsonSerializable(fieldRename: FieldRename.snake)
   const factory SurroundingResponseTranslationsDetails({
-    @JsonKey(name: "are_no_barriers_comment") required String areNoBarriersComment,
-    @JsonKey(name: "are_lowered_curbs_comment") required String areLoweredCurbsComment,
-    @JsonKey(name: "is_pavement_rough_comment") required String isPavementRoughComment,
-    @JsonKey(name: "are_parking_spaces_comment") required String areParkingSpacesComment,
-    @JsonKey(name: "are_parking_spaces_for_pwd_comment") required String areParkingSpacesForPwdComment,
-    @JsonKey(name: "are_high_curbs_at_parking_space_for_pwd_comment")
+    required String areNoBarriersComment,
+    required String areLoweredCurbsComment,
+    required String isPavementRoughComment,
+    required String areParkingSpacesComment,
+    required String areParkingSpacesForPwdComment,
     required String areHighCurbsAtParkingSpaceForPwdComment,
-    @JsonKey(name: "closest_buildings") required String closestBuildings,
-    @JsonKey(name: "is_path_to_accessible_entrance_marked_comment")
+    required String closestBuildings,
     required String isPathToAccessibleEntranceMarkedComment,
-    @JsonKey(name: "are_dangerous_elements_comment") required String areDangerousElementsComment,
-    @JsonKey(name: "is_lit_comment") required String isLitComment,
-    @JsonKey(name: "is_noisy_street_near_building_comment") required String isNoisyStreetNearBuildingComment,
-    @JsonKey(name: "is_sidewalk_separated_from_the_road_comment") required String isSidewalkSeparatedFromTheRoadComment,
-    @JsonKey(name: "accessibility_level_for_motor_disability_comment")
+    required String areDangerousElementsComment,
+    required String isLitComment,
+    required String isNoisyStreetNearBuildingComment,
+    required String isSidewalkSeparatedFromTheRoadComment,
     required String accessibilityLevelForMotorDisabilityComment,
-    @JsonKey(name: "accessibility_level_for_blind_comment") required String accessibilityLevelForBlindComment,
-    @JsonKey(name: "accessibility_level_for_visually_impaired_comment")
+    required String accessibilityLevelForBlindComment,
     required String accessibilityLevelForVisuallyImpairedComment,
-    @JsonKey(name: "accessibility_level_for_hard_of_hearing_comment")
     required String accessibilityLevelForHardOfHearingComment,
-    @JsonKey(name: "accessibility_level_for_high_sensory_sensitivity_comment")
     required String accessibilityLevelForHighSensorySensitivityComment,
-    @JsonKey(name: "accessibility_level_for_cognitive_difficulties_comment")
     required String accessibilityLevelForCognitiveDifficultiesComment,
     required String comment,
   }) = _SurroundingResponseTranslationsDetails;
 
   factory SurroundingResponseTranslationsDetails.fromJson(Map<String, dynamic> json) =>
       _$SurroundingResponseTranslationsDetailsFromJson(json);
-}
-
-int _stringToInt(String value) {
-  return int.tryParse(value) ?? 1;
 }

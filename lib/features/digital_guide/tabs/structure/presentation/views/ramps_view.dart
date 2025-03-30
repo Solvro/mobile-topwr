@@ -38,7 +38,7 @@ class RampsView extends ConsumerWidget {
                     "${context.localize.ramps_width} ${ramps.rampWidth} cm.",
                     context.localize.ramps_is_permanent_ramp(ramps.isPermanentRamp),
                     if (rampsInformation.comment.isNotEmpty) rampsInformation.comment,
-                  ].where((item) => item.trim().isNotEmpty).toIList(),
+                  ].toIList(),
             ),
             const SizedBox(height: DigitalGuideConfig.heightBig),
             ListView.separated(

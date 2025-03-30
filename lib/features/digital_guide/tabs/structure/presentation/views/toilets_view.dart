@@ -27,26 +27,35 @@ class ToiletsView extends ConsumerWidget {
     return Scaffold(
       appBar: DetailViewAppBar(actions: [AccessibilityButton()]),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: DigitalGuideConfig.heightBig),
+        padding: const EdgeInsets.symmetric(horizontal: DigitalGuideConfig.paddingBig),
         child: ListView(
           children: [
+            Text(
+              toilet.toiletType == ToiletType.men ? context.localize.men_toilet : context.localize.women_toilet,
+              style: context.textTheme.headline.copyWith(fontSize: DigitalGuideConfig.headlineFont),
+            ),
+            const SizedBox(height: DigitalGuideConfig.heightSmall),
             BulletList(
               items:
                   [
                     toiletsInformation.location,
                     toiletsInformation.toiletDescription,
                     toiletsInformation.numberOfCabins,
-                    "${context.localize.toilet_isNeedAuthorization(toilet.isNeedAuthorization.toLowerCase())} ${toiletsInformation.isNeedAuthorizationComment}",
-                    "${context.localize.toilet_areClothesHooks(toilet.areClothesHooks.toLowerCase())} ${toiletsInformation.areClothesHooksComment}",
-                    "${context.localize.toilet_isWastebasket(toilet.isWastebasket.toLowerCase())} ${toiletsInformation.isWastebasketComment}",
-                    "${context.localize.toilet_isHandDryer(toilet.isHandDryer.toLowerCase())} ${toiletsInformation.isHandDryerComment}",
-                    "${context.localize.toilet_isTowelDispenser(toilet.isTowelDispenser.toLowerCase())} ${toiletsInformation.isTowelDispenserComment}",
-                    "${context.localize.toilet_isWashbasin(toilet.isWashbasin.toLowerCase())} ${toiletsInformation.isWashbasinComment}",
+                    "${context.localize.toilet_is_need_authorization(toilet.isNeedAuthorization.toLowerCase())} ${toiletsInformation.isNeedAuthorizationComment}",
+                    "${context.localize.toilet_are_clothes_hooks(toilet.areClothesHooks.toLowerCase())} ${toiletsInformation.areClothesHooksComment}",
+                    "${context.localize.toilet_is_wastebasket(toilet.isWastebasket.toLowerCase())} ${toiletsInformation.isWastebasketComment}",
+                    "${context.localize.toilet_is_hand_dryer(toilet.isHandDryer.toLowerCase())} ${toiletsInformation.isHandDryerComment}",
+                    "${context.localize.toilet_is_towel_dispenser(toilet.isTowelDispenser.toLowerCase())} ${toiletsInformation.isTowelDispenserComment}",
+                    "${context.localize.toilet_is_washbasin(toilet.isWashbasin.toLowerCase())} ${toiletsInformation.isWashbasinComment}",
                     toiletsInformation.comment,
-                  ].where((item) => item.trim().isNotEmpty).toIList(),
+                  ].toIList(),
+            ),
+            AccessibilityProfileCard(
+              accessibilityCommentsManager: ToiletsAccessibilityCommentsManager(toilet: toilet, l10n: context.localize),
+              backgroundColor: context.colorTheme.whiteSoap,
             ),
             ListView.separated(
-              padding: const EdgeInsets.symmetric(vertical: DigitalGuideConfig.heightBig),
+              padding: const EdgeInsets.symmetric(vertical: DigitalGuideConfig.paddingBig),
               physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
                 return DigitalGuideNavLink(
@@ -57,10 +66,6 @@ class ToiletsView extends ConsumerWidget {
               itemCount: toilet.doorsIds.length,
               separatorBuilder: (context, index) => const SizedBox(height: DigitalGuideConfig.heightMedium),
               shrinkWrap: true,
-            ),
-            AccessibilityProfileCard(
-              accessibilityCommentsManager: ToiletsAccessibilityCommentsManager(toilet: toilet, l10n: context.localize),
-              backgroundColor: context.colorTheme.whiteSoap,
             ),
           ],
         ),
