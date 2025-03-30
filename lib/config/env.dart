@@ -32,4 +32,6 @@ abstract class Env {
   static final String parkingApiUrl = _Env.parkingApiUrl;
   @EnviedField()
   static final String translateApiUrl = _Env.translateApiUrl;
+  @EnviedField()
+  static final String translateApiToken = _Env.translateApiToken;
 }
