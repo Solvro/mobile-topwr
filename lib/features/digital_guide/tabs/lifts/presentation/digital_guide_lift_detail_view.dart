@@ -4,6 +4,7 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../config/ui_config.dart";
+import "../../../../../services/translations_service/widgets/text_with_translation.dart";
 import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/context_extensions.dart";
 import "../../../../../widgets/detail_views/detail_view_app_bar.dart";
@@ -29,9 +30,9 @@ class DigitalGuideLiftDetailView extends ConsumerWidget {
       Text(context.localize.localization, style: context.textTheme.headline.copyWith(fontSize: 22)),
       Padding(
         padding: const EdgeInsets.only(top: DigitalGuideConfig.heightMedium, bottom: DigitalGuideConfig.heightSmall),
-        child: Text(levelName, style: context.textTheme.headline),
+        child: TextWithTranslation(levelName, style: context.textTheme.headline),
       ),
-      Text(liftInformation.location, style: context.textTheme.body),
+      TextWithTranslation(liftInformation.location, style: context.textTheme.body),
       Padding(
         padding: const EdgeInsets.only(top: DigitalGuideConfig.heightSmall, bottom: DigitalGuideConfig.heightSmall),
         child: Text(context.localize.key_information, style: context.textTheme.headline),

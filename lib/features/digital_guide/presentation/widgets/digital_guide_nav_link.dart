@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 
 import "../../../../config/ui_config.dart";
+import "../../../../services/translations_service/widgets/text_with_translation.dart";
 import "../../../../theme/app_theme.dart";
 
 class DigitalGuideNavLink extends StatelessWidget {
@@ -24,7 +25,14 @@ class DigitalGuideNavLink extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Expanded(child: Text(text, style: context.textTheme.title, overflow: TextOverflow.ellipsis, maxLines: 3)),
+            Expanded(
+              child: TextWithTranslation(
+                text,
+                style: context.textTheme.title,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 3,
+              ),
+            ),
             Icon(Icons.chevron_right, color: context.colorTheme.blueAzure),
           ],
         ),

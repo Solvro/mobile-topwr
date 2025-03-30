@@ -2,6 +2,7 @@ import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 
 import "../../../../../config/ui_config.dart";
+import "../../../../../services/translations_service/widgets/text_with_translation.dart";
 import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/context_extensions.dart";
 import "../../../../../widgets/detail_views/detail_view_app_bar.dart";
@@ -21,7 +22,10 @@ class MicronavigationDetailView extends StatelessWidget {
   Widget build(BuildContext context) {
     final widgets = [
       const SizedBox(height: DigitalGuideConfig.heightMedium),
-      Text(micronavigationResponse.nameOverride.pl ?? "", style: context.textTheme.title.copyWith(fontSize: 24)),
+      TextWithTranslation(
+        micronavigationResponse.nameOverride.pl ?? "",
+        style: context.textTheme.title.copyWith(fontSize: 24),
+      ),
       const SizedBox(height: DigitalGuideConfig.heightBig),
       Text(context.localize.communique, style: context.textTheme.title),
       const SizedBox(height: DigitalGuideConfig.heightMedium),

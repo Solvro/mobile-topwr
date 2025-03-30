@@ -3,6 +3,7 @@ import "package:flutter_svg/svg.dart";
 
 import "../../../../../config/ui_config.dart";
 import "../../../../../theme/app_theme.dart";
+import "../../../../services/translations_service/widgets/text_with_translation.dart";
 import "../../../../widgets/my_html_widget.dart";
 
 class AccessibilityInformationCard extends StatelessWidget {
@@ -56,7 +57,12 @@ class AccessibilityInformationCard extends StatelessWidget {
                         padding: const EdgeInsets.all(DigitalGuideConfig.heightSmall),
                         child: MyHtmlWidget(text, textStyle: context.textTheme.body),
                       )
-                      : Text(text, style: context.textTheme.body, overflow: TextOverflow.ellipsis, maxLines: 2),
+                      : TextWithTranslation(
+                        text,
+                        style: context.textTheme.body,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
+                      ),
             ),
           ),
         ],

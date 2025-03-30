@@ -3,6 +3,7 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../config/ui_config.dart";
+import "../../../../../services/translations_service/widgets/text_with_translation.dart";
 import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/context_extensions.dart";
 import "../../../../../widgets/my_error_widget.dart";
@@ -48,21 +49,21 @@ class _DigitalGuideLodgeExpansionTileContent extends StatelessWidget {
           Text(context.localize.localization, style: context.textTheme.title),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: DigitalGuideConfig.heightSmall),
-            child: Text(lodgeInformation.location),
+            child: TextWithTranslation(lodgeInformation.location),
           ),
           if (lodgeInformation.workingDaysAndHours.isNotEmpty)
             Text(context.localize.working_hours, style: context.textTheme.title),
           if (lodgeInformation.workingDaysAndHours.isNotEmpty)
             Padding(
               padding: const EdgeInsets.symmetric(vertical: DigitalGuideConfig.heightSmall),
-              child: Text(lodgeInformation.workingDaysAndHours),
+              child: TextWithTranslation(lodgeInformation.workingDaysAndHours),
             ),
           if (lodgeInformation.comment.isNotEmpty)
             Padding(
               padding: const EdgeInsets.only(bottom: DigitalGuideConfig.paddingSmall),
               child: Text(context.localize.additional_information, style: context.textTheme.title),
             ),
-          Text(lodgeInformation.comment),
+          TextWithTranslation(lodgeInformation.comment),
           if (lodgeInformation.comment.isNotEmpty) const SizedBox(height: DigitalGuideConfig.heightMedium),
           DigitalGuidePhotoRow(imagesIDs: lodge!.imagesIds?.toIList() ?? const IList.empty()),
           Padding(

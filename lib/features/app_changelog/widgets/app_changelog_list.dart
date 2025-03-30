@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 
+import "../../../services/translations_service/widgets/text_with_translation.dart";
 import "../../../theme/app_theme.dart";
 import "../repository/changelog_repository.dart";
 
@@ -44,10 +45,10 @@ class _ListItem extends StatelessWidget {
             border: Border.all(color: context.colorTheme.orangePomegranade, width: 1.3),
             borderRadius: BorderRadius.circular(8),
           ),
-          child: Text(tag, style: context.textTheme.smallOrange),
+          child: TextWithTranslation(tag, style: context.textTheme.smallOrange),
         ),
         const SizedBox(width: 15),
-        Expanded(child: Text(description, style: context.textTheme.body, overflow: TextOverflow.clip)),
+        Expanded(child: TextWithTranslation(description, style: context.textTheme.body, overflow: TextOverflow.clip)),
       ],
     );
   }
