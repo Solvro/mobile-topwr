@@ -7,11 +7,5 @@ import "../../../../../config/env.dart";
 part "translation_client.g.dart";
 
 @riverpod
-Dio translationsClient(Ref ref) => Dio(
-  BaseOptions(
-    baseUrl: Env.translateApiUrl,
-    headers: {
-      "x-api-token": Env.translateApiToken
-    }
-  )
-);
+Dio translationsClient(Ref ref) =>
+    Dio(BaseOptions(baseUrl: Env.translateApiUrl, headers: {"x-api-token": Env.translateApiToken}));
