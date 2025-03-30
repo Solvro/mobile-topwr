@@ -3,6 +3,7 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../config/ui_config.dart";
+import "../../../../../services/translations_service/widgets/text_with_translation.dart";
 import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/context_extensions.dart";
 import "../../../../navigator/utils/navigation_commands.dart";
@@ -21,7 +22,7 @@ class DigitalGuideLiftLevel extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(level.translations.plTranslation.name, style: context.textTheme.lightTitle),
+        TextWithTranslation(level.translations.plTranslation.name, style: context.textTheme.lightTitle),
         const SizedBox(height: 10),
         ListView.separated(
           physics: const NeverScrollableScrollPhysics(),

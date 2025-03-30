@@ -8,6 +8,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:flutter_svg/svg.dart";
 
 import "../../../config/ui_config.dart";
+import "../../../services/translations_service/widgets/text_with_translation.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../utils/determine_contact_icon.dart";
@@ -60,7 +61,7 @@ class _SelectTab extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 7),
       child: Center(
-        child: Text(
+        child: TextWithTranslation(
           version.versionName,
           style:
               isSelected
@@ -236,9 +237,9 @@ class _Description extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(name, style: context.aboutUsTheme.headlineSmaller),
+        TextWithTranslation(name, style: context.aboutUsTheme.headlineSmaller),
         const SizedBox(height: 4),
-        Text(subtitle, style: context.aboutUsTheme.bodySmaller),
+        TextWithTranslation(subtitle, style: context.aboutUsTheme.bodySmaller),
         const SizedBox(height: 8),
         Row(children: [for (final icon in links) _Icon(launchUrl: icon.url ?? "", icon: icon.icon)]),
       ],

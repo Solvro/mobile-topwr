@@ -4,6 +4,7 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../config/ui_config.dart";
+import "../../../services/translations_service/widgets/text_with_translation.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../utils/determine_contact_icon.dart";
@@ -45,7 +46,7 @@ class DepartmentDetailView extends ConsumerWidget {
                 const SizedBox(height: 8),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24),
-                  child: Text(
+                  child: TextWithTranslation(
                     value.Departments_by_id?.name ?? "",
                     style: context.textTheme.headline,
                     textAlign: TextAlign.center,
@@ -53,7 +54,7 @@ class DepartmentDetailView extends ConsumerWidget {
                   ),
                 ),
                 const SizedBox(height: 12),
-                Text(
+                TextWithTranslation(
                   value.Departments_by_id?.address?.divideAddressInto3Lines ?? "",
                   style: context.textTheme.body.copyWith(height: 1.2),
                   textAlign: TextAlign.center,

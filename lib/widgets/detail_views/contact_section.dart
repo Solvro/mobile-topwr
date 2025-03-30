@@ -3,6 +3,7 @@ import "package:flutter/gestures.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
+import "../../services/translations_service/widgets/text_with_translation.dart";
 import "../../theme/app_theme.dart";
 import "../../utils/determine_contact_icon.dart";
 import "../../utils/launch_url_util.dart";
@@ -26,7 +27,10 @@ class ContactSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if (title != null) ...[Text(title!, style: context.textTheme.headline), const SizedBox(height: 16)],
+          if (title != null) ...[
+            TextWithTranslation(title!, style: context.textTheme.headline),
+            const SizedBox(height: 16),
+          ],
           for (final item in sorted)
             Padding(
               padding: const EdgeInsets.only(bottom: 16),

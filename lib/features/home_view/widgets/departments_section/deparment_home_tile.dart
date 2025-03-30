@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 
 import "../../../../config/ui_config.dart";
+import "../../../../services/translations_service/widgets/text_with_translation.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../widgets/my_cached_image.dart";
 import "../../../../widgets/optimized_directus_image.dart";
@@ -45,11 +46,11 @@ class DepartmentHomeTile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
+                TextWithTranslation(
                   department.code,
                   style: context.textTheme.titleWhite.copyWith(shadows: HomeViewConfig.squareCardTextShadow),
                 ),
-                Text(
+                TextWithTranslation(
                   department.name,
                   maxLines: 3,
                   overflow: TextOverflow.ellipsis,
