@@ -27,4 +27,5 @@ rules:
       - theme
       - api-base
       - contact-icons
+      - sci-clubs
     # YES, you can add new ones if you have a new feature
