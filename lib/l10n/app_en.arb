@@ -1,118 +1,454 @@
 {
   "@@locale": "en",
-  "language": "Language",
+  "@@last_modified": "2024-03-21",
   "polish_id": "pl",
+  "@polish_id": {
+    "description": "Language code for Polish"
+  },
   "english_id": "en",
+  "@english_id": {
+    "description": "Language code for English"
+  },
   "polish_title": "🇵🇱 Polish",
+  "@polish_title": {
+    "description": "Display title for Polish language with flag emoji"
+  },
   "english_title": "🇬🇧 English",
+  "@english_title": {
+    "description": "Display title for English language with flag emoji"
+  },
   "home_screen_greeting": "Hello, nice to see you",
+  "@home_screen_greeting": {
+    "description": "Welcome message shown on the home screen"
+  },
   "even_monday": "on Even Monday",
+  "@even_monday": {
+    "description": "Text shown for even week Monday"
+  },
   "even_tuesday": "on Even Tuesday",
+  "@even_tuesday": {
+    "description": "Text shown for even week Tuesday"
+  },
   "even_wednesday": "on Even Wednesday",
+  "@even_wednesday": {
+    "description": "Text shown for even week Wednesday"
+  },
   "even_thursday": "on Even Thursday",
+  "@even_thursday": {
+    "description": "Text shown for even week Thursday"
+  },
   "even_friday": "on Even Friday",
+  "@even_friday": {
+    "description": "Text shown for even week Friday"
+  },
   "even_saturday": "on Even Saturday",
+  "@even_saturday": {
+    "description": "Text shown for even week Saturday"
+  },
   "even_sunday": "on Even Sunday",
+  "@even_sunday": {
+    "description": "Text shown for even week Sunday"
+  },
   "odd_monday": "on Odd Monday",
+  "@odd_monday": {
+    "description": "Text shown for odd week Monday"
+  },
   "odd_tuesday": "on Odd Tuesday",
+  "@odd_tuesday": {
+    "description": "Text shown for odd week Tuesday"
+  },
   "odd_wednesday": "on Odd Wednesday",
+  "@odd_wednesday": {
+    "description": "Text shown for odd week Wednesday"
+  },
   "odd_thursday": "on Odd Thursday",
+  "@odd_thursday": {
+    "description": "Text shown for odd week Thursday"
+  },
   "odd_friday": "on Odd Friday",
+  "@odd_friday": {
+    "description": "Text shown for odd week Friday"
+  },
   "odd_saturday": "on Odd Saturday",
+  "@odd_saturday": {
+    "description": "Text shown for odd week Saturday"
+  },
   "odd_sunday": "on Odd Sunday",
+  "@odd_sunday": {
+    "description": "Text shown for odd week Sunday"
+  },
   "holiday_monday": "on Holiday Monday",
+  "@holiday_monday": {
+    "description": "Text shown for holiday Monday"
+  },
   "holiday_tuesday": "on Holiday Tuesday",
+  "@holiday_tuesday": {
+    "description": "Text shown for holiday Tuesday"
+  },
   "holiday_wednesday": "on Holiday Wednesday",
+  "@holiday_wednesday": {
+    "description": "Text shown for holiday Wednesday"
+  },
   "holiday_thursday": "on Holiday Thursday",
+  "@holiday_thursday": {
+    "description": "Text shown for holiday Thursday"
+  },
   "holiday_friday": "on Holiday Friday",
+  "@holiday_friday": {
+    "description": "Text shown for holiday Friday"
+  },
   "holiday_saturday": "on Holiday Saturday",
+  "@holiday_saturday": {
+    "description": "Text shown for holiday Saturday"
+  },
   "holiday_sunday": "on Holiday Sunday",
+  "@holiday_sunday": {
+    "description": "Text shown for holiday Sunday"
+  },
   "exam_monday": "on Exam Monday",
+  "@exam_monday": {
+    "description": "Text shown for exam period Monday"
+  },
   "exam_tuesday": "on Exam Tuesday",
+  "@exam_tuesday": {
+    "description": "Text shown for exam period Tuesday"
+  },
   "exam_wednesday": "on Exam Wednesday",
+  "@exam_wednesday": {
+    "description": "Text shown for exam period Wednesday"
+  },
   "exam_thursday": "on Exam Thursday",
+  "@exam_thursday": {
+    "description": "Text shown for exam period Thursday"
+  },
   "exam_friday": "on Exam Friday",
+  "@exam_friday": {
+    "description": "Text shown for exam period Friday"
+  },
   "exam_saturday": "on Exam Saturday",
+  "@exam_saturday": {
+    "description": "Text shown for exam period Saturday"
+  },
   "exam_sunday": "on Exam Sunday",
+  "@exam_sunday": {
+    "description": "Text shown for exam period Sunday"
+  },
   "follow_solvro": "Follow us on social media!",
+  "@follow_solvro": {
+    "description": "Call to action for following social media"
+  },
   "unknown_day": "on this beautiful day!",
+  "@unknown_day": {
+    "description": "Fallback text when day type is unknown"
+  },
   "read_more": "Read more",
+  "@read_more": {
+    "description": "Button text to expand content"
+  },
   "whats_up": "What's up?",
+  "@whats_up": {
+    "description": "Casual greeting text"
+  },
   "study_circles": "Student organizations",
+  "@study_circles": {
+    "description": "Title for student organizations section"
+  },
   "days": "days",
+  "@days": {
+    "description": "Unit of time measurement"
+  },
   "to_start_session": "until the session starts",
+  "@to_start_session": {
+    "description": "Text indicating time until session begins"
+  },
   "map_button": "Map",
+  "@map_button": {
+    "description": "Label for map navigation button"
+  },
   "meet_our_team": "Meet us!",
+  "@meet_our_team": {
+    "description": "Title for team introduction section"
+  },
   "sections": "Faculties",
+  "@sections": {
+    "description": "Title for sections/faculties list"
+  },
   "list": "List",
+  "@list": {
+    "description": "Label for list view"
+  },
   "departments": "Faculties",
+  "@departments": {
+    "description": "Title for departments/faculties section"
+  },
   "department": "Faculty",
+  "@department": {
+    "description": "Singular form of department/faculty"
+  },
   "search": "Search",
+  "@search": {
+    "description": "Label for search functionality"
+  },
   "contact": "Contact",
+  "@contact": {
+    "description": "Label for contact information"
+  },
   "about_us": "About us",
+  "@about_us": {
+    "description": "Label for about section"
+  },
   "navigate": "Navigate",
+  "@navigate": {
+    "description": "Label for navigation functionality"
+  },
   "building_prefix": "Building",
+  "@building_prefix": {
+    "description": "Prefix used before building names"
+  },
   "polinka_prefix": "Polinka",
+  "@polinka_prefix": {
+    "description": "Prefix used for Polinka-related items"
+  },
   "department_not_found": "Faculty not found",
+  "@department_not_found": {
+    "description": "Error message when faculty is not found"
+  },
   "sci_circle_not_found": "Student organizations not found",
+  "@sci_circle_not_found": {
+    "description": "Error message when student organizations are not found"
+  },
   "all": "All",
+  "@all": {
+    "description": "Label for showing all items"
+  },
   "parkings_title": "Parkings",
+  "@parkings_title": {
+    "description": "Title for parkings section"
+  },
   "parkings_not_found": "Parking not found",
+  "@parkings_not_found": {
+    "description": "Error message when parking is not found"
+  },
   "building_not_found": "Building not found",
+  "@building_not_found": {
+    "description": "Error message when building is not found"
+  },
   "buildings_title": "Buildings",
+  "@buildings_title": {
+    "description": "Title for buildings section"
+  },
   "freePlaces": "Free spaces",
+  "@freePlaces": {
+    "description": "Label for available parking spaces"
+  },
   "noChartData": "Chart data is unavailable at night",
+  "@noChartData": {
+    "description": "Message shown when chart data is not available"
+  },
   "offlineParkings": "Connection error: unfortunately, the parking module cannot function properly without an internet connection.",
+  "@offlineParkings": {
+    "description": "Error message when parking data cannot be fetched due to offline status"
+  },
   "refresh": "Refresh",
+  "@refresh": {
+    "description": "Label for refresh action"
+  },
   "offline_error_message": "An error occurred while fetching data about ",
+  "@offline_error_message": {
+    "description": "Generic offline error message prefix"
+  },
   "offline_try_again": "Please try again later.",
+  "@offline_try_again": {
+    "description": "Message prompting user to retry later"
+  },
   "offline_news": "news",
+  "@offline_news": {
+    "description": "Label for offline news data"
+  },
   "offline_sci_clubs": "scientific clubs",
+  "@offline_sci_clubs": {
+    "description": "Label for offline scientific clubs data"
+  },
   "offline_buildings": "buildings",
+  "@offline_buildings": {
+    "description": "Label for offline buildings data"
+  },
   "offline_departments": "faculties",
+  "@offline_departments": {
+    "description": "Label for offline departments data"
+  },
   "offline_academic_calendar": "academic calendar",
+  "@offline_academic_calendar": {
+    "description": "Label for offline academic calendar data"
+  },
   "offline_about_us": "about us",
+  "@offline_about_us": {
+    "description": "Label for offline about us data"
+  },
   "offline_department_details": "faculty",
+  "@offline_department_details": {
+    "description": "Label for offline department details data"
+  },
   "offline_guide_details": "guide entry",
+  "@offline_guide_details": {
+    "description": "Label for offline guide details data"
+  },
   "offline_guide_posts": "guide entries",
+  "@offline_guide_posts": {
+    "description": "Label for offline guide posts data"
+  },
   "offline_changelog": "changes",
+  "@offline_changelog": {
+    "description": "Label for offline changelog data"
+  },
   "guide": "Guide",
+  "@guide": {
+    "description": "Title for guide section"
+  },
   "deans_office": "Dean's Office",
+  "@deans_office": {
+    "description": "Label for Dean's Office section"
+  },
   "fields_of_study": "Fields of study",
+  "@fields_of_study": {
+    "description": "Title for fields of study section"
+  },
   "guide_about_us": "About Us!",
+  "@guide_about_us": {
+    "description": "Title for guide's about us section"
+  },
   "guide_meet_creators": "Meet the creators of the ToPWR mobile app!",
+  "@guide_meet_creators": {
+    "description": "Title for meeting app creators section"
+  },
   "guide_not_found": "Guide entries not found",
+  "@guide_not_found": {
+    "description": "Error message when guide entries are not found"
+  },
   "first_degree": "1st Degree",
+  "@first_degree": {
+    "description": "Label for first degree studies"
+  },
   "second_degree": "2nd Degree",
+  "@second_degree": {
+    "description": "Label for second degree studies"
+  },
   "long_cycle": "Long-cycle Master's",
+  "@long_cycle": {
+    "description": "Label for long-cycle master's studies"
+  },
   "no_address": "No address",
+  "@no_address": {
+    "description": "Message shown when address is not available"
+  },
   "student_medias": "Student media",
+  "@student_medias": {
+    "description": "Title for student media section"
+  },
   "cultural_agendas": "Cultural agendas",
+  "@cultural_agendas": {
+    "description": "Title for cultural agendas section"
+  },
   "scientific_cirlces": "Scientific clubs",
+  "@scientific_cirlces": {
+    "description": "Title for scientific clubs section"
+  },
   "student_organizations": "Student organizations",
+  "@student_organizations": {
+    "description": "Title for student organizations section"
+  },
   "org_types": "Types of organizations",
+  "@org_types": {
+    "description": "Title for organization types section"
+  },
   "categories": "Categories",
+  "@categories": {
+    "description": "Title for categories section"
+  },
   "filters": "Filters",
+  "@filters": {
+    "description": "Label for filters section"
+  },
   "clear": "Clear",
+  "@clear": {
+    "description": "Label for clear action"
+  },
   "filters_didnt_found_anything": "No filters found",
+  "@filters_didnt_found_anything": {
+    "description": "Message shown when no filters are found"
+  },
   "street_abbreviation": "st.",
+  "@street_abbreviation": {
+    "description": "Abbreviation for street"
+  },
   "bug_report_title": "Report a bug or suggestion",
+  "@bug_report_title": {
+    "description": "Title for bug report form"
+  },
   "bug_report_subtitle": "Send a report directly to the app's creators.",
+  "@bug_report_subtitle": {
+    "description": "Subtitle for bug report form"
+  },
   "new_feature": "New functionality",
+  "@new_feature": {
+    "description": "Label for new feature report type"
+  },
   "bug": "Bug",
+  "@bug": {
+    "description": "Label for bug report type"
+  },
   "praise": "Praise",
+  "@praise": {
+    "description": "Label for praise report type"
+  },
   "until_the_end_of_the_semester_break": "until the end of the semester break",
+  "@until_the_end_of_the_semester_break": {
+    "description": "Text indicating time until semester break ends"
+  },
   "until_the_session_ends": "until the session ends",
+  "@until_the_session_ends": {
+    "description": "Text indicating time until session ends"
+  },
   "app_info": "(app information)",
+  "@app_info": {
+    "description": "Label for app information section"
+  },
   "show_license": "Show license",
+  "@show_license": {
+    "description": "Button text to show license information"
+  },
   "close": "Close",
+  "@close": {
+    "description": "Label for close action"
+  },
   "no_version": "No version",
+  "@no_version": {
+    "description": "Message shown when version information is not available"
+  },
   "places_currently_available": "Currently available places",
+  "@places_currently_available": {
+    "description": "Label for currently available places"
+  },
   "student_councils": "Student Council",
+  "@student_councils": {
+    "description": "Title for student councils section"
+  },
   "hi_student": "Hey student!",
+  "@hi_student": {
+    "description": "Greeting message for students"
+  },
   "guide_development_info": "Remember, the guide is still under development :)",
+  "@guide_development_info": {
+    "description": "Development status message for guide section"
+  },
   "guide_ideas_info": "Have an interesting idea? Share it with us!",
+  "@guide_ideas_info": {
+    "description": "Call to action for sharing ideas"
+  },
   "guide_subject_default_content": "Idea for ToPWR development",
+  "@guide_subject_default_content": {
+    "description": "Default subject for guide feedback"
+  },
   "streak_counter": "You've been using ToPWR continuously for {days, plural, =1{1 day} other{{days} days}}🔥",
   "@streak_counter": {
     "description": "A message with a single parameter",
@@ -124,47 +460,173 @@
     }
   },
   "last_modified": "Last updated",
+  "@last_modified": {
+    "description": "Label for last modification date"
+  },
   "created_at": "Created at",
+  "@created_at": {
+    "description": "Label for creation date"
+  },
   "apply": "Apply",
+  "@apply": {
+    "description": "Label for apply action"
+  },
   "changes": "Changes",
+  "@changes": {
+    "description": "Title for changes section"
+  },
   "version": "version",
+  "@version": {
+    "description": "Label for version information"
+  },
   "hey_check_out_the_new_features": "Hey, check out the new features",
+  "@hey_check_out_the_new_features": {
+    "description": "Title for new features announcement"
+  },
   "here_you_will_see_what_we_changed_in_the_latest_version": "Here you'll see what we've changed in the latest version",
+  "@here_you_will_see_what_we_changed_in_the_latest_version": {
+    "description": "Description for changelog section"
+  },
   "data_come_from_website": "Data comes from the website",
+  "@data_come_from_website": {
+    "description": "Source attribution for data"
+  },
   "sks_menu": "SKS Menu",
+  "@sks_menu": {
+    "description": "Title for SKS menu section"
+  },
   "sks_menu_salads": "Salads",
+  "@sks_menu_salads": {
+    "description": "Label for salads menu section"
+  },
   "sks_menu_main_soups": "Soups",
+  "@sks_menu_main_soups": {
+    "description": "Label for soups menu section"
+  },
   "sks_menu_vegetarian_dishes": "Vegetarian dishes",
+  "@sks_menu_vegetarian_dishes": {
+    "description": "Label for vegetarian dishes menu section"
+  },
   "sks_menu_meat_dishes": "Meat dishes",
+  "@sks_menu_meat_dishes": {
+    "description": "Label for meat dishes menu section"
+  },
   "sks_menu_side_dishes": "Side dishes",
+  "@sks_menu_side_dishes": {
+    "description": "Label for side dishes menu section"
+  },
   "sks_menu_drinks": "Compotes and drinks",
+  "@sks_menu_drinks": {
+    "description": "Label for drinks menu section"
+  },
   "sks_menu_desserts": "Desserts",
+  "@sks_menu_desserts": {
+    "description": "Label for desserts menu section"
+  },
   "sks_full_name": "Student Culture Zone",
+  "@sks_full_name": {
+    "description": "Full name of the Student Culture Zone"
+  },
   "leave_a_review": "Rate the app",
+  "@leave_a_review": {
+    "description": "Button text for app rating"
+  },
   "rest_header": "Others",
+  "@rest_header": {
+    "description": "Header for miscellaneous section"
+  },
   "settings": "Settings",
+  "@settings": {
+    "description": "Title for settings section"
+  },
   "about_the_app": "About the app",
+  "@about_the_app": {
+    "description": "Title for app information section"
+  },
   "other_view": "Others",
+  "@other_view": {
+    "description": "Label for other view option"
+  },
   "map": "Map",
+  "@map": {
+    "description": "Label for map view"
+  },
   "report_change_title": "Something changed?",
+  "@report_change_title": {
+    "description": "Title for change report form"
+  },
   "report_change_button": "Report a change",
+  "@report_change_button": {
+    "description": "Button text for reporting changes"
+  },
   "report_change_email": "kn.solvro@pwr.edu.pl",
+  "@report_change_email": {
+    "description": "Email address for reporting changes"
+  },
   "report_change_subject": "Suggestion for change - ToPWR",
+  "@report_change_subject": {
+    "description": "Default subject for change reports"
+  },
   "report_change_error_toast_message": "An error occurred while opening the hyperlink, please check app permissions",
+  "@report_change_error_toast_message": {
+    "description": "Error message for hyperlink permission issues"
+  },
   "localization": "Location",
+  "@localization": {
+    "description": "Label for location information"
+  },
   "amenities": "Amenities",
+  "@amenities": {
+    "description": "Title for amenities section"
+  },
   "surroundings": "Surroundings",
+  "@surroundings": {
+    "description": "Title for surroundings section"
+  },
   "transport": "Transport",
+  "@transport": {
+    "description": "Title for transport section"
+  },
   "entrances": "Entrances",
+  "@entrances": {
+    "description": "Title for entrances section"
+  },
   "lifts": "Elevators",
+  "@lifts": {
+    "description": "Title for elevators section"
+  },
   "adapted_toilets": "Adapted toilets",
+  "@adapted_toilets": {
+    "description": "Label for adapted toilets accessibility feature"
+  },
   "adapted_toilet_description": "Toilet for people with disabilities",
+  "@adapted_toilet_description": {
+    "description": "Description for adapted toilet"
+  },
   "adapted_toilet_description_men": "Men's toilet for people with disabilities",
+  "@adapted_toilet_description_men": {
+    "description": "Description for men's adapted toilet"
+  },
   "adapted_toilet_description_women": "Women's toilet for people with disabilities",
+  "@adapted_toilet_description_women": {
+    "description": "Description for women's adapted toilet"
+  },
   "micro_navigation": "Micronavigation",
+  "@micro_navigation": {
+    "description": "Title for micronavigation section"
+  },
   "building_structure": "Building structure",
+  "@building_structure": {
+    "description": "Title for building structure section"
+  },
   "room_information": "Rooms",
+  "@room_information": {
+    "description": "Title for room information section"
+  },
   "evacuation": "Evacuation",
+  "@evacuation": {
+    "description": "Title for evacuation section"
+  },
   "storeys": "{number, plural, =1{{number} floor} few{{number} floors} other{{number} floors}}",
   "@storeys": {
     "description": "number of storeys with one parameter",
@@ -176,25 +638,105 @@
     }
   },
   "assistance_dog": "You can enter the building and all its rooms with an assistance dog or guide dog",
+  "@assistance_dog": {
+    "description": "Information about assistance dog accessibility"
+  },
   "induction_loop": "There are induction loops in the building",
+  "@induction_loop": {
+    "description": "Information about induction loop availability"
+  },
   "micronavigation_system": "Navigation and information system devices have been installed in the building",
+  "@micronavigation_system": {
+    "description": "Information about micronavigation system availability"
+  },
   "orientation_paths": "Tactile paths have been used in the building",
+  "@orientation_paths": {
+    "description": "Information about tactile path availability"
+  },
   "information_boards_with_braille_description": "There are clear information boards in the building containing descriptions in Braille",
+  "@information_boards_with_braille_description": {
+    "description": "Information about Braille information boards availability"
+  },
   "information_boards_with_large_font": "There are clear information boards in the building containing large print texts",
+  "@information_boards_with_large_font": {
+    "description": "Information about large print information boards availability"
+  },
   "sign_language_interpreter": "The building provides the possibility to use a sign language interpreter",
+  "@sign_language_interpreter": {
+    "description": "Information about sign language interpreter availability"
+  },
   "emergency_chairs": "Evacuation chairs have been installed in the building",
+  "@emergency_chairs": {
+    "description": "Information about emergency evacuation chairs availability"
+  },
   "parking_location": "Parking spaces are located {location}",
+  "@parking_location": {
+    "description": "Information about parking space location",
+    "placeholders": {
+      "location": {
+        "type": "String"
+      }
+    }
+  },
   "parking_pwd_location": "Parking spaces for the disabled are located {location}",
+  "@parking_pwd_location": {
+    "description": "Information about disabled parking space location",
+    "placeholders": {
+      "location": {
+        "type": "String"
+      }
+    }
+  },
   "closest_facilities": "The nearest neighboring buildings and campus facilities are: {places}",
+  "@closest_facilities": {
+    "description": "Information about nearby facilities",
+    "placeholders": {
+      "places": {
+        "type": "String"
+      }
+    }
+  },
   "digital_guide_website": "www.przewodnik.pwr.edu.pl",
+  "@digital_guide_website": {
+    "description": "URL for the digital guide website"
+  },
   "sks_old_menu": "See the last menu",
+  "@sks_old_menu": {
+    "description": "Button text to view previous menu"
+  },
   "sks_menu_closed": "SKS Menu is currently unavailable",
+  "@sks_menu_closed": {
+    "description": "Message shown when SKS menu is not available"
+  },
   "sks_show_last_menu": "Show the last available menu",
+  "@sks_show_last_menu": {
+    "description": "Button text to show last available menu"
+  },
   "confirm": "Confirm",
+  "@confirm": {
+    "description": "Label for confirm action"
+  },
   "push_notifications_dialog_info": "We are not using push notifications at the moment, but we plan to add them in the future. You can opt-in now.",
+  "@push_notifications_dialog_info": {
+    "description": "Information about push notifications status"
+  },
   "sks_menu_technical_info": "NOTICE",
+  "@sks_menu_technical_info": {
+    "description": "Label for technical notice"
+  },
   "sks_note": "NOTE",
+  "@sks_note": {
+    "description": "Label for note"
+  },
   "sks_menu_you_see_last_menu": "The current SKS menu is unavailable. You are viewing the last available version from: {date}",
+  "@sks_menu_you_see_last_menu": {
+    "description": "Message indicating last available menu date",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
   "my_offline_error_message": "An error occurred while fetching data about {data_type}",
   "@my_offline_error_message": {
     "description": "An error message with a single parameter",
@@ -206,11 +748,29 @@
     }
   },
   "measured_number_of_users": "Measured number of users",
+  "@measured_number_of_users": {
+    "description": "Label for the measured number of users"
+  },
   "forecasted_number_of_users": "Average number of users from the last 21 days",
-  "sks_chart_title": "Approximate number of people in the Student Culture Zone",
+  "@forecasted_number_of_users": {
+    "description": "Label for the average number of users from the last 21 days"
+  },
+  "sks_chart_title": "SKS occupancy",
+  "@sks_chart_title": {
+    "description": "Title for the SKS occupancy chart"
+  },
   "number_of_people": "Number of people",
+  "@number_of_people": {
+    "description": "Label for the number of people"
+  },
   "evacuation_text": "Evacuation and first aid",
-  "digital_guide": "Guide",
+  "@evacuation_text": {
+    "description": "Title for the evacuation and first aid section"
+  },
+  "digital_guide": "Digital guide",
+  "@digital_guide": {
+    "description": "Title for the digital guide section"
+  },
   "adapted_toilet_authorization": "{value, select, false{Access to the toilet does not require any special authorization.} true{The toilet is available only to authorized persons.} other{}}",
   "adapted_toilet_graphically_marked": "{value, select, false{The toilet entrance is not graphically marked.} true{The toilet entrance is well graphically marked.} other{}}",
   "adapted_toilet_is_marked": "{value, select, false{The location of the toilet is not marked with directional information.} true{The location of the toilet is marked with directional information.} other{}}",
@@ -483,29 +1043,101 @@
     }
   },
   "railing_is_railing_on_landings": "{value, select, false{No railings on landings.} true{Railings are installed on landings.} other{}}",
+  "@railing_is_railing_on_landings": {
+    "description": "Information about presence of railings on landings"
+  },
   "railing_is_two_sided_railing": "{value, select, false{Railings are not double-sided.} true{Railings are double-sided.} other{}}",
+  "@railing_is_two_sided_railing": {
+    "description": "Information about whether railings are double-sided"
+  },
   "railing_is_braille_convex_marking": "{value, select, false{No Braille or convex markings present.} true{Braille or convex markings are present.} other{}}",
+  "@railing_is_braille_convex_marking": {
+    "description": "Information about presence of Braille or convex markings on railings"
+  },
   "railing_is_good_railing_contrast": "{value, select, false{No good railing contrast.} true{Railings have good contrast.} other{}}",
+  "@railing_is_good_railing_contrast": {
+    "description": "Information about contrast of railings"
+  },
   "railing_is_round_cross_section_railing": "{value, select, false{Railings do not have a round cross-section.} true{Railings have a round cross-section.} other{}}",
+  "@railing_is_round_cross_section_railing": {
+    "description": "Information about railing cross-section shape"
+  },
   "railing_is_railing_extended_30cm": "{value, select, false{Railings are not extended by 30 cm.} true{Railings are extended by 30 cm.} other{}}",
+  "@railing_is_railing_extended_30cm": {
+    "description": "Information about railing extension length"
+  },
   "railing_is_railing_obstacle": "{value, select, false{Railings do not pose an obstacle.} true{Railings pose an obstacle.} unknown{It is unknown if the railings pose an obstacle.} other{}}",
+  "@railing_is_railing_obstacle": {
+    "description": "Information about whether railings pose an obstacle"
+  },
   "railing_height": "{value, plural, =0{No information on railing height.} one{The railing is {value} cm high.} other{The railings are {value} cm high.}}",
+  "@railing_height": {
+    "description": "Information about railing height",
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
   "railing": "Railing",
+  "@railing": {
+    "description": "Label for railing section"
+  },
   "ramps_is_ramp_marked": "{value, select, false{The ramp is not marked.} true{The ramp is marked.} other{}}",
+  "@ramps_is_ramp_marked": {
+    "description": "Information about ramp marking"
+  },
   "ramps_is_increased_force_needed": "{value, select, false{Increased force is not needed to overcome the ramp.} true{Increased force is needed to overcome the ramp.} other{}}",
+  "@ramps_is_increased_force_needed": {
+    "description": "Information about force needed to use ramp"
+  },
   "ramps_is_permanent_ramp": "{value, select, false{The ramp is not a permanent structural element.} true{The ramp is a permanent structural element.} other{}}",
+  "@ramps_is_permanent_ramp": {
+    "description": "Information about ramp permanence"
+  },
   "ramps_is_good_lit": "{value, select, false{Lighting is insufficient.} true{Lighting is good.} other{}}",
+  "@ramps_is_good_lit": {
+    "description": "Information about ramp lighting"
+  },
   "ramps_are_nonslip_elements": "{value, select, false{The surface of the ramp does not have non-slip elements.} true{The surface of the ramp has non-slip elements.} other{}}",
+  "@ramps_are_nonslip_elements": {
+    "description": "Information about non-slip elements on ramp"
+  },
   "ramps_width": "The ramp width is ",
+  "@ramps_width": {
+    "description": "Label for ramp width measurement"
+  },
   "number_of_ramp_landings": "Number of landings: ",
+  "@number_of_ramp_landings": {
+    "description": "Label for number of ramp landings"
+  },
   "dimensions_of_the_landings": "The dimensions of the landings are ",
+  "@dimensions_of_the_landings": {
+    "description": "Label for landing dimensions"
+  },
   "is_marked": "{value, select, true{The location of the information point is clearly marked.} false{The location of the information point is not clearly marked.} other{}}",
+  "@is_marked": {
+    "description": "Information about information point marking"
+  },
   "are_seats_available": "{value, select, false{There are no seating places at the information point.} true{There are seating places at the information point.} other{}}",
+  "@are_seats_available": {
+    "description": "Information about seating availability at information point"
+  },
   "is_space_on_counter": "{value, select, true{There is space on the counter to sign documents.} false{There is no space on the counter to sign documents.} other{}}",
+  "@is_space_on_counter": {
+    "description": "Information about counter space for signing documents"
+  },
   "are_access_bariers": "{value, select, true{Access to the information point is good. The floor is level, and there are no obstacles.} false{Access to the information point may be hindered by an uneven floor or obstacles.} other{}}",
+  "@are_access_bariers": {
+    "description": "Information about access barriers to information point"
+  },
   "is_space_under_counter": "Under the lower part of the counter there is {value, select, false{no} true{space} other{}} for a wheelchair.",
+  "@is_space_under_counter": {
+    "description": "Information about wheelchair space under counter"
+  },
   "counter_heigth_text": "The height of the information point counter is {value}",
   "@counter_heigth_text": {
+    "description": "Information about counter height",
     "placeholders": {
       "value": {
         "type": "int"
@@ -513,57 +1145,218 @@
     }
   },
   "is_movement_space": "At the information point there is {value, select, false{no} other{}} adequate space to move for people with disabilities.",
+  "@is_movement_space": {
+    "description": "Information about movement space at information point"
+  },
   "is_good_lit_info_point": "The information point is {value, select, false{not} other{}} properly lit.",
+  "@is_good_lit_info_point": {
+    "description": "Information about lighting at information point"
+  },
   "is_visible_from_afar": "The information point is {value, select, false{not} other{}} visible from a large distance. The counter is {value, select, false{not} other{}} distinguished from the surroundings.",
+  "@is_visible_from_afar": {
+    "description": "Information about visibility of information point"
+  },
   "has_sound_transmitter": "The room is {value, select, false{not} other{}} equipped with an induction loop, FM system, nor sign language interpreter.",
+  "@has_sound_transmitter": {
+    "description": "Information about sound transmission equipment"
+  },
   "information_point": "Information Point",
+  "@information_point": {
+    "description": "Label for information point section"
+  },
   "dressing_room_is_marked": "{value, select, false{The counter is not marked.} true{The counter is marked.} other{}}",
+  "@dressing_room_is_marked": {
+    "description": "Information about dressing room counter marking"
+  },
   "dressing_room_is_visible_from_afar": "{value, select, false{The counter is not visible from afar.} true{The counter is visible from afar.} other{}}",
+  "@dressing_room_is_visible_from_afar": {
+    "description": "Information about visibility of dressing room counter"
+  },
   "dressing_room_are_access_barriers": "{value, select, false{There are no access barriers to the counter.} true{There are access barriers to the counter.} other{}}",
+  "@dressing_room_are_access_barriers": {
+    "description": "Information about access barriers to dressing room counter"
+  },
   "dressing_room_are_seats_available": "{value, select, false{There are no seating places by the counter.} true{Seating places are available by the counter.} other{}}",
+  "@dressing_room_are_seats_available": {
+    "description": "Information about seating availability at dressing room counter"
+  },
   "dressing_room_is_movement_space": "{value, select, false{There is no maneuvering space by the counter.} true{There is maneuvering space by the counter.} other{}}",
+  "@dressing_room_is_movement_space": {
+    "description": "Information about movement space at dressing room counter"
+  },
   "dressing_room_is_good_lit": "{value, select, false{The counter is not well-lit.} true{The counter is well-lit.} other{}}",
+  "@dressing_room_is_good_lit": {
+    "description": "Information about lighting at dressing room counter"
+  },
   "dressing_room_counter_height": "{value, plural, =0{The height of the counter has not been specified.} other{The counter height is {value} cm.}}",
+  "@dressing_room_counter_height": {
+    "description": "Information about dressing room counter height",
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
   "dressing_room_counter_is_space_under": "{value, select, false{There is no free space under the counter.} true{There is free space under the counter.} other{}}",
+  "@dressing_room_counter_is_space_under": {
+    "description": "Information about space under dressing room counter"
+  },
   "dressing_room_counter_is_space_on": "{value, select, false{There is no free space on the counter.} true{There is free space on the counter.} other{}}",
+  "@dressing_room_counter_is_space_on": {
+    "description": "Information about space on dressing room counter"
+  },
   "corridor": "Corridor",
+  "@corridor": {
+    "description": "Label for corridor section"
+  },
   "corridor_simple_layout_text": "{value, select, false{The corridor layout is not simple, legible, or consistent on each floor.} true{The corridor has a simple and clear layout that is consistent on each floor.} other{}}",
+  "@corridor_simple_layout_text": {
+    "description": "Information about corridor layout"
+  },
   "corridor_floor_marked": "{value, select, false{The corridor is not marked. There is no visible floor number.} true{The corridor is marked. The floor number is visible.} other{}}",
+  "@corridor_floor_marked": {
+    "description": "Information about corridor floor marking"
+  },
   "corridor_room_entrances": "{value, select, false{There is no entry from the corridor to any room.} true{From the corridor, entries to the following rooms are possible:} other{}}",
+  "@corridor_room_entrances": {
+    "description": "Information about room entrances from corridor"
+  },
   "corridor_information_board": "{value, select, false{There is no information board with a list of rooms in the corridor.} true{There is an information board in the corridor with a list of rooms.} other{}}",
+  "@corridor_information_board": {
+    "description": "Information about corridor information board"
+  },
   "corridor_room_purpose_described_in_en": "{value, select, false{Room functions are not described in English.} true{Room functions are described in English.} other{}}",
+  "@corridor_room_purpose_described_in_en": {
+    "description": "Information about English descriptions of room purposes"
+  },
   "corridor_consistent_level_color_pattern": "{value, select, false{The color, pattern, and style of room signage are not consistent for the entire floor.} true{The color, pattern, and style of room signage are consistent for the entire floor.} other{}}",
+  "@corridor_consistent_level_color_pattern": {
+    "description": "Information about consistency of room signage"
+  },
   "corridor_pictorial_directional_signs": "{value, select, false{There are no clear and contrasting directional signs at key points in the corridor.} true{There are clear and contrasting directional signs at key points in the corridor.} other{}}",
+  "@corridor_pictorial_directional_signs": {
+    "description": "Information about directional signs in corridor"
+  },
   "corridor_seats": "{value, select, false{There are no seating places in the corridor.} true{There are seating places in the corridor. These are:} other{}}",
+  "@corridor_seats": {
+    "description": "Information about seating in corridor"
+  },
   "corridor_vending_machines": "{value, select, false{There are no vending machines in the corridor.} true{There are vending machines in the corridor.} other{}}",
+  "@corridor_vending_machines": {
+    "description": "Information about vending machines in corridor"
+  },
   "corridor_emergency_plan": "{value, select, false{There are no evacuation plans in the corridor.} true{There are evacuation plans in the corridor.} other{}}",
+  "@corridor_emergency_plan": {
+    "description": "Information about evacuation plans in corridor"
+  },
   "corridor_typhlomap": "{value, select, false{There is no typhlopmap available in the corridor.} true{There is a typhlopmap in the corridor.} other{}}",
+  "@corridor_typhlomap": {
+    "description": "Information about typhlomap availability in corridor"
+  },
   "corridor_dangerous_elements": "{value, select, false{There are no other permanent or movable elements in the corridor that may pose problems for movement.} true{There are other permanent or movable objects in the corridor that may pose problems for movement. These are:} other{}}",
+  "@corridor_dangerous_elements": {
+    "description": "Information about dangerous elements in corridor"
+  },
   "corridor_info_plates_accessible": "{value, select, false{Room signage does not contain additional information.} true{Room signage additionally contains:} other{}}",
+  "@corridor_info_plates_accessible": {
+    "description": "Information about accessibility of room signage"
+  },
   "corridor_horizontal_markings_for_blind": "{value, select, false{There are no horizontal markings for blind people in the corridor.} true{There are horizontal markings for blind people in the corridor.} other{}}",
+  "@corridor_horizontal_markings_for_blind": {
+    "description": "Information about horizontal markings for blind people"
+  },
   "corridor_plates_with_rooms_list_have_readable_font": "{value, select, false{} true{The information board with the list of rooms has a readable text.} other{}}",
+  "@corridor_plates_with_rooms_list_have_readable_font": {
+    "description": "Information about readability of room list text"
+  },
   "corridor_rooms_marked": "{value, select, false{Room signage does not contain additional information.} true{Rooms in the corridor are clearly marked.} other{}}",
+  "@corridor_rooms_marked": {
+    "description": "Information about room marking in corridor"
+  },
   "corridor_pictogram_used": "{value, select, false{Visual information does not use pictograms.} true{Visual information uses pictograms.} other{}}",
+  "@corridor_pictogram_used": {
+    "description": "Information about use of pictograms"
+  },
   "corridor_is_glare": "{value, select, false{The floor in the corridor does not shine.} true{The floor in the corridor may shine intensely, causing glare and appearing slippery.} other{}}",
+  "@corridor_is_glare": {
+    "description": "Information about floor glare in corridor"
+  },
   "corridor_good_walls_contrast": "{value, select, false{There is no clear color contrast between the walls and the floor in the corridor.} true{} other{}}",
+  "@corridor_good_walls_contrast": {
+    "description": "Information about wall-floor contrast in corridor"
+  },
   "corridor_good_lit": "{value, select, false{The corridor is not properly lit.} true{The corridor is properly lit.} other{}}",
+  "@corridor_good_lit": {
+    "description": "Information about corridor lighting"
+  },
   "corridor_horizontal_markings_for_visually_impaired": "{value, select, false{There are no horizontal markings for visually impaired people in the corridor.} true{There are horizontal markings for visually impaired people in the corridor.} other{}}",
+  "@corridor_horizontal_markings_for_visually_impaired": {
+    "description": "Information about horizontal markings for visually impaired"
+  },
   "corridor_min_width_length": "{value, select, false{The width of the corridor does not provide full accessibility and is} true{The width of the corridor provides full accessibility and is a minimum of 150 centimeters.} other{}}",
+  "@corridor_min_width_length": {
+    "description": "Information about corridor width"
+  },
   "corridor_railings": "{value, select, false{There are no wall railings in the corridor.} true{There are wall railings in the corridor.} other{}}",
+  "@corridor_railings": {
+    "description": "Information about wall railings in corridor"
+  },
   "corridor_light_switches_sockets_height": "{value, select, false{In the corridor all light switches and sockets are at a height above 110 centimeters.} true{In the corridor, all light switches and sockets are at a height of a maximum of 110 centimeters.} other{}}",
+  "@corridor_light_switches_sockets_height": {
+    "description": "Information about height of light switches and sockets"
+  },
   "corridor_echo": "{value, select, false{The acoustics of the corridor do not cause echoes that may hinder communication.} true{The acoustics of the corridor cause echoes that may hinder communication.} other{}}",
+  "@corridor_echo": {
+    "description": "Information about corridor acoustics"
+  },
   "corridor_flashing_device": "{value, select, false{There are no flashing or shiny objects in the corridor that may trigger an epileptic seizure.} true{There are flashing or shiny objects in the corridor that may trigger an epileptic seizure.} other{}}",
+  "@corridor_flashing_device": {
+    "description": "Information about flashing devices in corridor"
+  },
   "no_micro_navigation": "There is no micronavigation for this building.",
+  "@no_micro_navigation": {
+    "description": "Message about absence of micronavigation"
+  },
   "lodge_access_barriers": "{value, select, false{On the way to the lodge} true{On the way to the lodge, the floor is level, and there are no obstacles.} other{}}",
+  "@lodge_access_barriers": {
+    "description": "Information about access barriers to lodge"
+  },
   "lodge_movement_space": "{value, select, false{At the lodge, there is no appropriate space for movement for people with disabilities.} true{At the lodge, there is appropriate space for movement for people with disabilities.} other{}}",
+  "@lodge_movement_space": {
+    "description": "Information about movement space at lodge"
+  },
   "lodge_counter_height": "The height of the lodge counter is {comment} centimeters.",
+  "@lodge_counter_height": {
+    "description": "Information about lodge counter height",
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
   "lodge_space_under_counter": "{value, select, false{There is no space under the lower part of the counter for a wheelchair.} true{There is space under the lower part of the counter for a wheelchair.} other{}}",
+  "@lodge_space_under_counter": {
+    "description": "Information about wheelchair space under lodge counter"
+  },
   "lodge_visible_from_afar": "{value, select, false{The lodge is not visible from a great distance. The counter is not distinguished from the surroundings.} true{The lodge is visible from a great distance. The counter is distinguished from the surroundings.} other{}}",
+  "@lodge_visible_from_afar": {
+    "description": "Information about visibility of lodge"
+  },
   "lodge_good_lit": "{value, select, false{The lodge is not properly lit.} true{The lodge is properly lit.} other{}}",
+  "@lodge_good_lit": {
+    "description": "Information about lodge lighting"
+  },
   "is_elevated_threshold": "In the door, there is {value, select, false{no} other{}} threshold.",
+  "@is_elevated_threshold": {
+    "description": "Information about door threshold"
+  },
   "elevated_threshold_text": "Its height is ",
+  "@elevated_threshold_text": {
+    "description": "Label for threshold height"
+  },
   "handle_heigth_text": "The handle is at a height of {value} cm",
   "@handle_heigth_text": {
+    "description": "Information about handle height",
     "placeholders": {
       "value": {
         "type": "String"
@@ -571,10 +1364,507 @@
     }
   },
   "are_glazed": "The doors are {value, select, false{not } other{}}galzed.",
+  "@are_glazed": {
+    "description": "Information about door glazing"
+  },
   "are_visible": "There is {value, select, false{no } other{}}proper contrast between the handle and the door.",
+  "@are_visible": {
+    "description": "Information about handle-door contrast"
+  },
   "is_graphic": "The doors are {value, select, false{not } other{}}marked.",
+  "@is_graphic": {
+    "description": "Information about door marking"
+  },
   "is_closure_from_inside": "The doors open {value, select, false{not } other{}}inwards.",
+  "@is_closure_from_inside": {
+    "description": "Information about door opening direction"
+  },
   "is_same_opening_system": "The doors on both sides open {value, select, false{not } other{}}in the same way.",
+  "@is_same_opening_system": {
+    "description": "Information about consistency of door opening systems"
+  },
   "digital_guide_accessibility": "Digital guide accessibility profiles",
-  "home_screen": "Home screen"
+  "@digital_guide_accessibility": {
+    "description": "Title for digital guide accessibility section"
+  },
+  "home_screen": "Home screen",
+  "@home_screen": {
+    "description": "Label for home screen"
+  },
+  "adapted_doors": "Adapted doors",
+  "@adapted_doors": {
+    "description": "Label for adapted doors accessibility feature"
+  },
+  "adapted_doors_desc": "Doors with a width of at least 90 cm",
+  "@adapted_doors_desc": {
+    "description": "Description for adapted doors accessibility feature"
+  },
+  "adapted_toilets_desc": "Toilets with a width of at least 90 cm and a height of 45-50 cm",
+  "@adapted_toilets_desc": {
+    "description": "Description for adapted toilets accessibility feature"
+  },
+  "adapted_ramps": "Adapted ramps",
+  "@adapted_ramps": {
+    "description": "Label for adapted ramps accessibility feature"
+  },
+  "adapted_ramps_desc": "Ramps with a slope of at least 1:12",
+  "@adapted_ramps_desc": {
+    "description": "Description for adapted ramps accessibility feature"
+  },
+  "adapted_elevators": "Adapted elevators",
+  "@adapted_elevators": {
+    "description": "Label for adapted elevators accessibility feature"
+  },
+  "adapted_elevators_desc": "Elevators with a width of at least 90 cm and a height of 45-50 cm",
+  "@adapted_elevators_desc": {
+    "description": "Description for adapted elevators accessibility feature"
+  },
+  "adapted_parking": "Adapted parking",
+  "@adapted_parking": {
+    "description": "Label for adapted parking accessibility feature"
+  },
+  "adapted_parking_desc": "Parking spaces with a width of at least 3.5 m and a length of 5 m",
+  "@adapted_parking_desc": {
+    "description": "Description for adapted parking accessibility feature"
+  },
+  "adapted_entrance": "Adapted entrance",
+  "@adapted_entrance": {
+    "description": "Label for adapted entrance accessibility feature"
+  },
+  "adapted_entrance_desc": "Entrance with a width of at least 90 cm and a height of 45-50 cm",
+  "@adapted_entrance_desc": {
+    "description": "Description for adapted entrance accessibility feature"
+  },
+  "adapted_exit": "Adapted exit",
+  "@adapted_exit": {
+    "description": "Label for adapted exit accessibility feature"
+  },
+  "adapted_exit_desc": "Exit with a width of at least 90 cm and a height of 45-50 cm",
+  "@adapted_exit_desc": {
+    "description": "Description for adapted exit accessibility feature"
+  },
+  "adapted_restaurant": "Adapted restaurant",
+  "@adapted_restaurant": {
+    "description": "Label for adapted restaurant accessibility feature"
+  },
+  "adapted_restaurant_desc": "Restaurant with adapted tables and chairs",
+  "@adapted_restaurant_desc": {
+    "description": "Description for adapted restaurant accessibility feature"
+  },
+  "adapted_hotel": "Adapted hotel",
+  "@adapted_hotel": {
+    "description": "Label for adapted hotel accessibility feature"
+  },
+  "adapted_hotel_desc": "Hotel with adapted rooms and bathrooms",
+  "@adapted_hotel_desc": {
+    "description": "Description for adapted hotel accessibility feature"
+  },
+  "adapted_shop": "Adapted shop",
+  "@adapted_shop": {
+    "description": "Label for adapted shop accessibility feature"
+  },
+  "adapted_shop_desc": "Shop with adapted shelves and counters",
+  "@adapted_shop_desc": {
+    "description": "Description for adapted shop accessibility feature"
+  },
+  "adapted_museum": "Adapted museum",
+  "@adapted_museum": {
+    "description": "Label for adapted museum accessibility feature"
+  },
+  "adapted_museum_desc": "Museum with adapted exhibits and information",
+  "@adapted_museum_desc": {
+    "description": "Description for adapted museum accessibility feature"
+  },
+  "adapted_theater": "Adapted theater",
+  "@adapted_theater": {
+    "description": "Label for adapted theater accessibility feature"
+  },
+  "adapted_theater_desc": "Theater with adapted seating and stage",
+  "@adapted_theater_desc": {
+    "description": "Description for adapted theater accessibility feature"
+  },
+  "adapted_cinema": "Adapted cinema",
+  "@adapted_cinema": {
+    "description": "Label for adapted cinema accessibility feature"
+  },
+  "adapted_cinema_desc": "Cinema with adapted seating and screen",
+  "@adapted_cinema_desc": {
+    "description": "Description for adapted cinema accessibility feature"
+  },
+  "adapted_sports": "Adapted sports",
+  "@adapted_sports": {
+    "description": "Label for adapted sports accessibility feature"
+  },
+  "adapted_sports_desc": "Sports facilities with adapted equipment and areas",
+  "@adapted_sports_desc": {
+    "description": "Description for adapted sports accessibility feature"
+  },
+  "adapted_playground": "Adapted playground",
+  "@adapted_playground": {
+    "description": "Label for adapted playground accessibility feature"
+  },
+  "adapted_playground_desc": "Playground with adapted equipment and areas",
+  "@adapted_playground_desc": {
+    "description": "Description for adapted playground accessibility feature"
+  },
+  "adapted_beach": "Adapted beach",
+  "@adapted_beach": {
+    "description": "Label for adapted beach accessibility feature"
+  },
+  "adapted_beach_desc": "Beach with adapted access and facilities",
+  "@adapted_beach_desc": {
+    "description": "Description for adapted beach accessibility feature"
+  },
+  "adapted_pool": "Adapted pool",
+  "@adapted_pool": {
+    "description": "Label for adapted pool accessibility feature"
+  },
+  "adapted_pool_desc": "Pool with adapted access and facilities",
+  "@adapted_pool_desc": {
+    "description": "Description for adapted pool accessibility feature"
+  },
+  "adapted_gym": "Adapted gym",
+  "@adapted_gym": {
+    "description": "Label for adapted gym accessibility feature"
+  },
+  "adapted_gym_desc": "Gym with adapted equipment and areas",
+  "@adapted_gym_desc": {
+    "description": "Description for adapted gym accessibility feature"
+  },
+  "adapted_sauna": "Adapted sauna",
+  "@adapted_sauna": {
+    "description": "Label for adapted sauna accessibility feature"
+  },
+  "adapted_sauna_desc": "Sauna with adapted access and facilities",
+  "@adapted_sauna_desc": {
+    "description": "Description for adapted sauna accessibility feature"
+  },
+  "adapted_steam": "Adapted steam",
+  "@adapted_steam": {
+    "description": "Label for adapted steam accessibility feature"
+  },
+  "adapted_steam_desc": "Steam room with adapted access and facilities",
+  "@adapted_steam_desc": {
+    "description": "Description for adapted steam accessibility feature"
+  },
+  "adapted_spa": "Adapted spa",
+  "@adapted_spa": {
+    "description": "Label for adapted spa accessibility feature"
+  },
+  "adapted_spa_desc": "Spa with adapted access and facilities",
+  "@adapted_spa_desc": {
+    "description": "Description for adapted spa accessibility feature"
+  },
+  "adapted_massage": "Adapted massage",
+  "@adapted_massage": {
+    "description": "Label for adapted massage accessibility feature"
+  },
+  "adapted_massage_desc": "Massage room with adapted access and facilities",
+  "@adapted_massage_desc": {
+    "description": "Description for adapted massage accessibility feature"
+  },
+  "adapted_beauty": "Adapted beauty",
+  "@adapted_beauty": {
+    "description": "Label for adapted beauty accessibility feature"
+  },
+  "adapted_beauty_desc": "Beauty salon with adapted access and facilities",
+  "@adapted_beauty_desc": {
+    "description": "Description for adapted beauty accessibility feature"
+  },
+  "adapted_hair": "Adapted hair",
+  "@adapted_hair": {
+    "description": "Label for adapted hair accessibility feature"
+  },
+  "adapted_hair_desc": "Hair salon with adapted access and facilities",
+  "@adapted_hair_desc": {
+    "description": "Description for adapted hair accessibility feature"
+  },
+  "adapted_nail": "Adapted nail",
+  "@adapted_nail": {
+    "description": "Label for adapted nail accessibility feature"
+  },
+  "adapted_nail_desc": "Nail salon with adapted access and facilities",
+  "@adapted_nail_desc": {
+    "description": "Description for adapted nail accessibility feature"
+  },
+  "adapted_dental": "Adapted dental",
+  "@adapted_dental": {
+    "description": "Label for adapted dental accessibility feature"
+  },
+  "adapted_dental_desc": "Dental clinic with adapted access and facilities",
+  "@adapted_dental_desc": {
+    "description": "Description for adapted dental accessibility feature"
+  },
+  "adapted_medical": "Adapted medical",
+  "@adapted_medical": {
+    "description": "Label for adapted medical accessibility feature"
+  },
+  "adapted_medical_desc": "Medical clinic with adapted access and facilities",
+  "@adapted_medical_desc": {
+    "description": "Description for adapted medical accessibility feature"
+  },
+  "adapted_pharmacy": "Adapted pharmacy",
+  "@adapted_pharmacy": {
+    "description": "Label for adapted pharmacy accessibility feature"
+  },
+  "adapted_pharmacy_desc": "Pharmacy with adapted access and facilities",
+  "@adapted_pharmacy_desc": {
+    "description": "Description for adapted pharmacy accessibility feature"
+  },
+  "adapted_optical": "Adapted optical",
+  "@adapted_optical": {
+    "description": "Label for adapted optical accessibility feature"
+  },
+  "adapted_optical_desc": "Optical store with adapted access and facilities",
+  "@adapted_optical_desc": {
+    "description": "Description for adapted optical accessibility feature"
+  },
+  "adapted_hearing": "Adapted hearing",
+  "@adapted_hearing": {
+    "description": "Label for adapted hearing accessibility feature"
+  },
+  "adapted_hearing_desc": "Hearing center with adapted access and facilities",
+  "@adapted_hearing_desc": {
+    "description": "Description for adapted hearing accessibility feature"
+  },
+  "adapted_mobility": "Adapted mobility",
+  "@adapted_mobility": {
+    "description": "Label for adapted mobility accessibility feature"
+  },
+  "adapted_mobility_desc": "Mobility center with adapted access and facilities",
+  "@adapted_mobility_desc": {
+    "description": "Description for adapted mobility accessibility feature"
+  },
+  "adapted_vision": "Adapted vision",
+  "@adapted_vision": {
+    "description": "Label for adapted vision accessibility feature"
+  },
+  "adapted_vision_desc": "Vision center with adapted access and facilities",
+  "@adapted_vision_desc": {
+    "description": "Description for adapted vision accessibility feature"
+  },
+  "adapted_speech": "Adapted speech",
+  "@adapted_speech": {
+    "description": "Label for adapted speech accessibility feature"
+  },
+  "adapted_speech_desc": "Speech therapy center with adapted access and facilities",
+  "@adapted_speech_desc": {
+    "description": "Description for adapted speech accessibility feature"
+  },
+  "adapted_cognitive": "Adapted cognitive",
+  "@adapted_cognitive": {
+    "description": "Label for adapted cognitive accessibility feature"
+  },
+  "adapted_cognitive_desc": "Cognitive therapy center with adapted access and facilities",
+  "@adapted_cognitive_desc": {
+    "description": "Description for adapted cognitive accessibility feature"
+  },
+  "adapted_sensory": "Adapted sensory",
+  "@adapted_sensory": {
+    "description": "Label for adapted sensory accessibility feature"
+  },
+  "adapted_sensory_desc": "Sensory therapy center with adapted access and facilities",
+  "@adapted_sensory_desc": {
+    "description": "Description for adapted sensory accessibility feature"
+  },
+  "adapted_behavioral": "Adapted behavioral",
+  "@adapted_behavioral": {
+    "description": "Label for adapted behavioral accessibility feature"
+  },
+  "adapted_behavioral_desc": "Behavioral therapy center with adapted access and facilities",
+  "@adapted_behavioral_desc": {
+    "description": "Description for adapted behavioral accessibility feature"
+  },
+  "adapted_developmental": "Adapted developmental",
+  "@adapted_developmental": {
+    "description": "Label for adapted developmental accessibility feature"
+  },
+  "adapted_developmental_desc": "Developmental therapy center with adapted access and facilities",
+  "@adapted_developmental_desc": {
+    "description": "Description for adapted developmental accessibility feature"
+  },
+  "adapted_occupational": "Adapted occupational",
+  "@adapted_occupational": {
+    "description": "Label for adapted occupational accessibility feature"
+  },
+  "adapted_occupational_desc": "Occupational therapy center with adapted access and facilities",
+  "@adapted_occupational_desc": {
+    "description": "Description for adapted occupational accessibility feature"
+  },
+  "adapted_physical": "Adapted physical",
+  "@adapted_physical": {
+    "description": "Label for adapted physical accessibility feature"
+  },
+  "adapted_physical_desc": "Physical therapy center with adapted access and facilities",
+  "@adapted_physical_desc": {
+    "description": "Description for adapted physical accessibility feature"
+  },
+  "adapted_recreational": "Adapted recreational",
+  "@adapted_recreational": {
+    "description": "Label for adapted recreational accessibility feature"
+  },
+  "adapted_recreational_desc": "Recreational therapy center with adapted access and facilities",
+  "@adapted_recreational_desc": {
+    "description": "Description for adapted recreational accessibility feature"
+  },
+  "adapted_social": "Adapted social",
+  "@adapted_social": {
+    "description": "Label for adapted social accessibility feature"
+  },
+  "adapted_social_desc": "Social therapy center with adapted access and facilities",
+  "@adapted_social_desc": {
+    "description": "Description for adapted social accessibility feature"
+  },
+  "adapted_vocational": "Adapted vocational",
+  "@adapted_vocational": {
+    "description": "Label for adapted vocational accessibility feature"
+  },
+  "adapted_vocational_desc": "Vocational therapy center with adapted access and facilities",
+  "@adapted_vocational_desc": {
+    "description": "Description for adapted vocational accessibility feature"
+  },
+  "adapted_educational": "Adapted educational",
+  "@adapted_educational": {
+    "description": "Label for adapted educational accessibility feature"
+  },
+  "adapted_educational_desc": "Educational therapy center with adapted access and facilities",
+  "@adapted_educational_desc": {
+    "description": "Description for adapted educational accessibility feature"
+  },
+  "adapted_psychological": "Adapted psychological",
+  "@adapted_psychological": {
+    "description": "Label for adapted psychological accessibility feature"
+  },
+  "adapted_psychological_desc": "Psychological therapy center with adapted access and facilities",
+  "@adapted_psychological_desc": {
+    "description": "Description for adapted psychological accessibility feature"
+  },
+  "adapted_psychiatric": "Adapted psychiatric",
+  "@adapted_psychiatric": {
+    "description": "Label for adapted psychiatric accessibility feature"
+  },
+  "adapted_psychiatric_desc": "Psychiatric therapy center with adapted access and facilities",
+  "@adapted_psychiatric_desc": {
+    "description": "Description for adapted psychiatric accessibility feature"
+  },
+  "adapted_counseling": "Adapted counseling",
+  "@adapted_counseling": {
+    "description": "Label for adapted counseling accessibility feature"
+  },
+  "adapted_counseling_desc": "Counseling center with adapted access and facilities",
+  "@adapted_counseling_desc": {
+    "description": "Description for adapted counseling accessibility feature"
+  },
+  "adapted_support": "Adapted support",
+  "@adapted_support": {
+    "description": "Label for adapted support accessibility feature"
+  },
+  "adapted_support_desc": "Support center with adapted access and facilities",
+  "@adapted_support_desc": {
+    "description": "Description for adapted support accessibility feature"
+  },
+  "adapted_assistance": "Adapted assistance",
+  "@adapted_assistance": {
+    "description": "Label for adapted assistance accessibility feature"
+  },
+  "adapted_assistance_desc": "Assistance center with adapted access and facilities",
+  "@adapted_assistance_desc": {
+    "description": "Description for adapted assistance accessibility feature"
+  },
+  "adapted_guidance": "Adapted guidance",
+  "@adapted_guidance": {
+    "description": "Label for adapted guidance accessibility feature"
+  },
+  "adapted_guidance_desc": "Guidance center with adapted access and facilities",
+  "@adapted_guidance_desc": {
+    "description": "Description for adapted guidance accessibility feature"
+  },
+  "adapted_mentoring": "Adapted mentoring",
+  "@adapted_mentoring": {
+    "description": "Label for adapted mentoring accessibility feature"
+  },
+  "adapted_mentoring_desc": "Mentoring center with adapted access and facilities",
+  "@adapted_mentoring_desc": {
+    "description": "Description for adapted mentoring accessibility feature"
+  },
+  "adapted_coaching": "Adapted coaching",
+  "@adapted_coaching": {
+    "description": "Label for adapted coaching accessibility feature"
+  },
+  "adapted_coaching_desc": "Coaching center with adapted access and facilities",
+  "@adapted_coaching_desc": {
+    "description": "Description for adapted coaching accessibility feature"
+  },
+  "adapted_training": "Adapted training",
+  "@adapted_training": {
+    "description": "Label for adapted training accessibility feature"
+  },
+  "adapted_training_desc": "Training center with adapted access and facilities",
+  "@adapted_training_desc": {
+    "description": "Description for adapted training accessibility feature"
+  },
+  "adapted_workshop": "Adapted workshop",
+  "@adapted_workshop": {
+    "description": "Label for adapted workshop accessibility feature"
+  },
+  "adapted_workshop_desc": "Workshop center with adapted access and facilities",
+  "@adapted_workshop_desc": {
+    "description": "Description for adapted workshop accessibility feature"
+  },
+  "adapted_seminar": "Adapted seminar",
+  "@adapted_seminar": {
+    "description": "Label for adapted seminar accessibility feature"
+  },
+  "adapted_seminar_desc": "Seminar center with adapted access and facilities",
+  "@adapted_seminar_desc": {
+    "description": "Description for adapted seminar accessibility feature"
+  },
+  "adapted_conference": "Adapted conference",
+  "@adapted_conference": {
+    "description": "Label for adapted conference accessibility feature"
+  },
+  "adapted_conference_desc": "Conference center with adapted access and facilities",
+  "@adapted_conference_desc": {
+    "description": "Description for adapted conference accessibility feature"
+  },
+  "adapted_meeting": "Adapted meeting",
+  "@adapted_meeting": {
+    "description": "Label for adapted meeting accessibility feature"
+  },
+  "adapted_meeting_desc": "Meeting center with adapted access and facilities",
+  "@adapted_meeting_desc": {
+    "description": "Description for adapted meeting accessibility feature"
+  },
+  "adapted_event": "Adapted event",
+  "@adapted_event": {
+    "description": "Label for adapted event accessibility feature"
+  },
+  "adapted_event_desc": "Event center with adapted access and facilities",
+  "@adapted_event_desc": {
+    "description": "Description for adapted event accessibility feature"
+  },
+  "adapted_exhibition": "Adapted exhibition",
+  "@adapted_exhibition": {
+    "description": "Label for adapted exhibition accessibility feature"
+  },
+  "adapted_exhibition_desc": "Exhibition center with adapted access and facilities",
+  "@adapted_exhibition_desc": {
+    "description": "Description for adapted exhibition accessibility feature"
+  },
+  "adapted_gallery": "Adapted gallery",
+  "@adapted_gallery": {
+    "description": "Label for adapted gallery accessibility feature"
+  },
+  "adapted_gallery_desc": "Gallery with adapted access and facilities",
+  "@adapted_gallery_desc": {
+    "description": "Description for adapted gallery accessibility feature"
+  },
+  "adapted_studio": "Adapted studio",
+  "@adapted_studio": {
+    "description": "Label for adapted studio accessibility feature"
+  },
+  "adapted_studio_desc": "Studio with adapted access and facilities",
+  "@adapted_studio_desc": {
+    "description": "Description for adapted studio accessibility feature"
+  }
 }
