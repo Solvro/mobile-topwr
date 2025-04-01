@@ -14,7 +14,8 @@ import "../../widgets/loading_widgets/simple_previews/preview_text_prototype.dar
 import "../../widgets/my_error_widget.dart";
 import "../../widgets/my_expansion_tile.dart";
 import "../../widgets/zoomable_images.dart";
-import "repository/guide_detail_view_repository.dart";
+import "models/guide_details.dart";
+import "repository/guide_details_repository.dart";
 import "utils/get_the_latest_date.dart";
 import "widgets/faq_expansion_tile.dart";
 import "widgets/tooltip_on_click.dart";
@@ -23,7 +24,7 @@ import "widgets/tooltip_on_click.dart";
 class GuideDetailView extends StatelessWidget {
   const GuideDetailView({@PathParam("id") required this.id, super.key});
 
-  final String id;
+  final int id;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +33,7 @@ class GuideDetailView extends StatelessWidget {
 }
 
 class _GuideDetailDataView extends ConsumerWidget {
-  final String id;
+  final int id;
 
   const _GuideDetailDataView({required this.id});
 
@@ -43,7 +44,7 @@ class _GuideDetailDataView extends ConsumerWidget {
       AsyncError(:final error) => MyErrorWidget(error),
       AsyncValue(:final GuideDetails value) => Builder(
         builder: (context) {
-          final lastModifiedDate = context.getTheLatesUpdatedDateGuide(questions: value.questions);
+          final lastModifiedDate = context.getTheLatesUpdatedDateGuide(questions: value.guideQuestions);
           return CustomScrollView(
             slivers: [
               SliverAppBar(
@@ -52,20 +53,19 @@ class _GuideDetailDataView extends ConsumerWidget {
                   children: [
                     SizedBox(
                       height: DetailViewsConfig.imageHeight,
-                      child: ZoomableOptimizedDirectusImage(value.cover?.filename_disk),
+                      child: ZoomableOptimizedDirectusImage(value.imagePath),
                     ),
-                    if (lastModifiedDate != null)
-                      Positioned(
-                        top: GuideDetailViewConfig.paddingMedium,
-                        right: GuideDetailViewConfig.paddingSmall,
-                        child: Tooltip(
+                    Positioned(
+                      top: GuideDetailViewConfig.paddingMedium,
+                      right: GuideDetailViewConfig.paddingSmall,
+                      child: Tooltip(
+                        message: context.localize.last_modified,
+                        child: TooltipOnTap(
                           message: context.localize.last_modified,
-                          child: TooltipOnTap(
-                            message: context.localize.last_modified,
-                            child: DateChip(date: lastModifiedDate),
-                          ),
+                          child: DateChip(date: lastModifiedDate),
                         ),
                       ),
+                    ),
                   ],
                 ),
                 automaticallyImplyLeading: false,
@@ -73,16 +73,16 @@ class _GuideDetailDataView extends ConsumerWidget {
               SliverToBoxAdapter(
                 child: Padding(
                   padding: const EdgeInsets.all(24),
-                  child: MyHtmlWidgetWithTranslation(value.description ?? ""),
+                  child: MyHtmlWidgetWithTranslation(value.description.isEmpty ? value.shortDesc : value.description),
                 ),
               ),
               SliverPadding(
                 padding: const EdgeInsets.only(bottom: GuideDetailViewConfig.paddingLarge),
                 sliver: SliverList.separated(
-                  itemCount: value.questions?.length ?? 0,
+                  itemCount: value.guideQuestions.length,
                   itemBuilder: (context, index) {
-                    final question = value.questions?[index]?.FAQ_id;
-                    return FaqExpansionTile(title: question?.question ?? "", description: question?.answer ?? "");
+                    final question = value.guideQuestions[index];
+                    return FaqExpansionTile(title: question.title, description: question.answer);
                   },
                   separatorBuilder: (context, index) => const SizedBox(height: 8),
                 ),
@@ -98,16 +98,15 @@ class _GuideDetailDataView extends ConsumerWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "${context.localize.created_at} ${context.getTheLatesCreatedDateGuide(questions: value.questions)}",
+                        "${context.localize.created_at} ${context.getTheLatesCreatedDateGuide(questions: value.guideQuestions, locale: context.locale)}",
                         style: context.textTheme.bodyGrey,
                         textAlign: TextAlign.end,
                       ),
-                      if (lastModifiedDate != null)
-                        Text(
-                          "${context.localize.last_modified} ${DateFormat("dd.MM.yyyy", context.locale.countryCode).format(lastModifiedDate)}",
-                          style: context.textTheme.bodyGrey,
-                          textAlign: TextAlign.end,
-                        ),
+                      Text(
+                        "${context.localize.last_modified} ${DateFormat("dd.MM.yyyy", context.locale.countryCode).format(lastModifiedDate)}",
+                        style: context.textTheme.bodyGrey,
+                        textAlign: TextAlign.end,
+                      ),
                     ],
                   ),
                 ),

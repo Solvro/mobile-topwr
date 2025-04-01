@@ -14,7 +14,7 @@ class GuideTile extends ConsumerWidget {
       title: item.title,
       subtitle: item.shortDesc,
       directusPhotoUrl: item.imagePath,
-      onTap: () async => ref.navigateGuideDetail(item.id.toString()),
+      onTap: () async => ref.navigateGuideDetail(item.id),
     );
   }
 }

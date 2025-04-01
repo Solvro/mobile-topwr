@@ -93,7 +93,7 @@ class _BuildNewsCard extends StatelessWidget {
       shortDescription: post.shortDesc,
       directusUrl: post.imagePath,
       onClick: () {
-        unawaited(ref.navigateGuideDetail(post.id.toString()));
+        unawaited(ref.navigateGuideDetail(post.id));
       },
       boxFit: BoxFit.cover,
     );
