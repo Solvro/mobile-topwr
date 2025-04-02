@@ -3,8 +3,8 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../utils/contains_lower_case.dart";
-import "models/guide_data.dart";
-import "repository/guide_repository.dart";
+import "data/models/guide_data.dart";
+import "data/repository/guide_repository.dart";
 
 part "guide_view_controller.g.dart";
 

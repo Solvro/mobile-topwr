@@ -1,7 +1,7 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:intl/intl.dart";
-import "../models/guide_details.dart";
+import "../data/models/guide_details.dart";
 
 extension GetTheLatestDateGuideX on BuildContext {
   String getTheLatesCreatedDateGuide({required IList<GuideQuestion> questions, required Locale locale}) {

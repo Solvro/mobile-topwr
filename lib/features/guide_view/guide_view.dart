@@ -11,9 +11,9 @@ import "../../utils/launch_url_util.dart";
 import "../../widgets/search_box_app_bar.dart";
 import "../../widgets/wide_tile_card.dart";
 import "../departments/departments_view/widgets/departments_view_loading.dart";
+import "data/models/guide_data.dart";
+import "data/repository/guide_repository.dart";
 import "guide_view_controller.dart";
-import "models/guide_data.dart";
-import "repository/guide_repository.dart";
 import "widgets/guide_grid.dart";
 import "widgets/guide_tile.dart";
 

@@ -3,7 +3,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../widgets/wide_tile_card.dart";
 import "../../navigator/utils/navigation_commands.dart";
-import "../models/guide_data.dart";
+import "../data/models/guide_data.dart";
 
 class GuideTile extends ConsumerWidget {
   const GuideTile(this.item, {super.key});

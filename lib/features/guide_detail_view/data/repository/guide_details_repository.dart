@@ -1,10 +1,10 @@
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "../../../api_base_rest/cache/cache.dart";
-import "../../../config/env.dart";
-import "../../../config/ttl_config.dart";
-import "../../guide_view/guide_view.dart";
+import "../../../../api_base_rest/cache/cache.dart";
+import "../../../../config/env.dart";
+import "../../../../config/ttl_config.dart";
+import "../../../guide_view/guide_view.dart";
 import "../models/guide_details.dart";
 
 part "guide_details_repository.g.dart";

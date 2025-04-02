@@ -14,8 +14,8 @@ import "../../widgets/loading_widgets/simple_previews/preview_text_prototype.dar
 import "../../widgets/my_error_widget.dart";
 import "../../widgets/my_expansion_tile.dart";
 import "../../widgets/zoomable_images.dart";
-import "models/guide_details.dart";
-import "repository/guide_details_repository.dart";
+import "data/models/guide_details.dart";
+import "data/repository/guide_details_repository.dart";
 import "utils/get_the_latest_date.dart";
 import "widgets/faq_expansion_tile.dart";
 import "widgets/tooltip_on_click.dart";
