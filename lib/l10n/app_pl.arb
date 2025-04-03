@@ -1053,7 +1053,7 @@
     "description": "Feminine form of accessibility levels",
     "placeholders": {
       "level": {
-        "type": "int"
+        "type": "String"
       }
     }
   },
@@ -1062,7 +1062,7 @@
     "description": "Masculine form of accessibility levels",
     "placeholders": {
       "level": {
-        "type": "int"
+        "type": "String"
       }
     }
   },
@@ -1071,7 +1071,7 @@
     "description": "Neuter form of accessibility levels",
     "placeholders": {
       "level": {
-        "type": "int"
+        "type": "String"
       }
     }
   },
@@ -1663,7 +1663,7 @@
     "description": "Information about distance between entrance doors",
     "placeholders": {
       "value": {
-        "type": "int"
+        "type": "num"
       }
     }
   },
@@ -2352,7 +2352,7 @@
     "description": "Information about railing height",
     "placeholders": {
       "value": {
-        "type": "int"
+        "type": "num"
       }
     }
   },
@@ -2856,7 +2856,7 @@
     "description": "Information about lodge counter height",
     "placeholders": {
       "comment": {
-        "type": "String"
+        "type": "num"
       }
     }
   },

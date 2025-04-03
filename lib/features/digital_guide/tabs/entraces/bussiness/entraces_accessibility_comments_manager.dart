@@ -44,7 +44,7 @@ class EntrancesAccessibilityCommentsManager extends AccessibilityCommentsManager
 
     return IList([
       if (digitalGuideEntrance.doorsDistance.isNotEmpty)
-        l10n.entrance_doors_distance(digitalGuideEntrance.doorsDistance),
+        l10n.entrance_doors_distance(double.tryParse(digitalGuideEntrance.doorsDistance) ?? 0),
       "${l10n.entrance_are_benches(digitalGuideEntrance.areBenches.toLowerCase())} ${pl.areBenchesComment}",
       "${l10n.entrance_is_solid_surface(digitalGuideEntrance.isSolidSurface.toLowerCase())} ${pl.isSolidSurfaceComment}",
       "${l10n.entrance_are_different_types_of_surface(digitalGuideEntrance.areDifferentTypesOfSurface.toLowerCase())} ${pl.areDifferentTypesOfSurfaceComment}",
