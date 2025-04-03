@@ -1,6 +1,8 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 
+import "../../../../api_base_rest/shared_models/image_data.dart";
+
 part "guide_details.freezed.dart";
 part "guide_details.g.dart";
 
@@ -16,7 +18,7 @@ abstract class GuideDetails with _$GuideDetails {
     required String title,
     required String description,
     required String shortDesc,
-    required String imagePath,
+    required ImageData image,
     required DateTime createdAt,
     required DateTime updatedAt,
     required IList<GuideQuestion> guideQuestions,

@@ -53,7 +53,7 @@ class _GuideDetailDataView extends ConsumerWidget {
                   children: [
                     SizedBox(
                       height: DetailViewsConfig.imageHeight,
-                      child: ZoomableOptimizedDirectusImage(value.imagePath),
+                      child: ZoomableOptimizedDirectusImage(value.image.url),
                     ),
                     Positioned(
                       top: GuideDetailViewConfig.paddingMedium,

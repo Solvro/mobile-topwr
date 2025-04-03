@@ -91,7 +91,7 @@ class _BuildNewsCard extends StatelessWidget {
     return BigPreviewCard(
       title: post.title,
       shortDescription: post.shortDesc,
-      directusUrl: post.imagePath,
+      directusUrl: post.image.url,
       onClick: () {
         unawaited(ref.navigateGuideDetail(post.id));
       },

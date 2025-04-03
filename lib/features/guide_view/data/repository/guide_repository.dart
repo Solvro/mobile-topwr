@@ -14,7 +14,7 @@ part "guide_repository.g.dart";
 Future<IList<GuideData>> guideRepository(Ref ref) async {
   final apiUrl = Env.mainRestApiUrl;
   final guideResponse = await ref.getAndCacheData(
-    "$apiUrl/guide_articles",
+    "$apiUrl/guide_articles?image=true",
     TtlStrategy.get(TtlKey.guideRepository).inDays,
     GuideDataResponse.fromJson,
     extraValidityCheck: (_) => true,

@@ -13,7 +13,7 @@ class GuideTile extends ConsumerWidget {
     return PhotoTrailingWideTileCard(
       title: item.title,
       subtitle: item.shortDesc,
-      directusPhotoUrl: item.imagePath,
+      directusPhotoUrl: item.image.url,
       onTap: () async => ref.navigateGuideDetail(item.id),
     );
   }
