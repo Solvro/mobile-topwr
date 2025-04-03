@@ -25,7 +25,7 @@ class SksMenuHeader extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: SksMenuConfig.paddingSmall),
           child: Text(
-            DateTime.now().toDayDateString(),
+            DateTime.now().toDayDateString(context),
             style: context.textTheme.title.copyWith(fontSize: 20, color: context.colorTheme.blueAzure, height: 1),
           ),
         ),

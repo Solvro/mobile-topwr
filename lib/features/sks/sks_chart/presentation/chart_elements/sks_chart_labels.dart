@@ -41,7 +41,7 @@ class SksChartBottomTitles extends AxisTitles {
           getTitlesWidget: (double value, TitleMeta meta) {
             final DateTime? hourMinute = chartData.isNotEmpty ? chartData[value.toInt()].externalTimestamp : null;
             final String hourMinuteFormatted =
-                hourMinute != null && hourMinute.minute == 0 ? hourMinute.toHourMinuteString() : "";
+                hourMinute != null && hourMinute.minute == 0 ? hourMinute.toHourMinuteString(context) : "";
 
             return Padding(
               padding: const EdgeInsets.only(top: SksChartConfig.paddingSmall, left: 50),

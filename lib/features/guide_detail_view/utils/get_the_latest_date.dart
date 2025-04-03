@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:intl/intl.dart";
 
+import "../../../utils/context_extensions.dart";
 import "../../../utils/where_non_null_iterable.dart";
 import "../repository/getGuideDetails.graphql.dart";
 
@@ -9,7 +10,7 @@ extension GetTheLatestDateGuideX on BuildContext {
     final newestDate = questions?.whereNonNull
         .map((e) => e.FAQ_id?.date_created)
         .reduce((a, b) => (b == null || a != null && a.isAfter(b)) ? a : b);
-    final DateFormat formatter = DateFormat("dd.MM.yyyy");
+    final formatter = DateFormat("dd.MM.yyyy", locale.countryCode);
     return newestDate != null ? formatter.format(newestDate) : null;
   }
 

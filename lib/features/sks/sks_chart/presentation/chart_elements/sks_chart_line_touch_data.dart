@@ -31,7 +31,10 @@ class SksChartLineTouchData extends LineTouchData {
                   })
                   .take(touchedSpots.length - 1),
               // hour tooltip
-              LineTooltipItem(dateTime.get(touchedSpots[0].x.toInt()).toHourMinuteString(), context.textTheme.boldBody),
+              LineTooltipItem(
+                dateTime.get(touchedSpots[0].x.toInt()).toHourMinuteString(context),
+                context.textTheme.boldBody,
+              ),
             ].toList();
           },
         ),
