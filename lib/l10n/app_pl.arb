@@ -1,121 +1,458 @@
 {
   "@@locale": "pl",
+  "@@last_modified": "2024-03-21",
   "language": "Język",
   "@language": {
     "description": "Language selection label"
   },
   "polish_id": "pl",
+  "@polish_id": {
+    "description": "Language code for Polish"
+  },
   "english_id": "en",
+  "@english_id": {
+    "description": "Language code for English"
+  },
   "polish_title": "🇵🇱 Polski",
+  "@polish_title": {
+    "description": "Display title for Polish language with flag emoji"
+  },
   "english_title": "🇬🇧 English",
+  "@english_title": {
+    "description": "Display title for English language with flag emoji"
+  },
   "home_screen_greeting": "Cześć, miło Cię widzieć",
+  "@home_screen_greeting": {
+    "description": "Welcome message shown on the home screen"
+  },
   "even_monday": "w Parzysty Poniedziałek",
+  "@even_monday": {
+    "description": "Text shown for even week Monday"
+  },
   "even_tuesday": "w Parzysty Wtorek",
+  "@even_tuesday": {
+    "description": "Text shown for even week Tuesday"
+  },
   "even_wednesday": "w Parzystą Środę",
+  "@even_wednesday": {
+    "description": "Text shown for even week Wednesday"
+  },
   "even_thursday": "w Parzysty Czwartek",
+  "@even_thursday": {
+    "description": "Text shown for even week Thursday"
+  },
   "even_friday": "w Parzysty Piątek",
+  "@even_friday": {
+    "description": "Text shown for even week Friday"
+  },
   "even_saturday": "w Parzystą Sobotę",
+  "@even_saturday": {
+    "description": "Text shown for even week Saturday"
+  },
   "even_sunday": "w Parzystą Niedzielę",
+  "@even_sunday": {
+    "description": "Text shown for even week Sunday"
+  },
   "odd_monday": "w Nieparzysty Poniedziałek",
+  "@odd_monday": {
+    "description": "Text shown for odd week Monday"
+  },
   "odd_tuesday": "w Nieparzysty Wtorek",
+  "@odd_tuesday": {
+    "description": "Text shown for odd week Tuesday"
+  },
   "odd_wednesday": "w Nieparzystą Środę",
+  "@odd_wednesday": {
+    "description": "Text shown for odd week Wednesday"
+  },
   "odd_thursday": "w Nieparzysty Czwartek",
+  "@odd_thursday": {
+    "description": "Text shown for odd week Thursday"
+  },
   "odd_friday": "w Nieparzysty Piątek",
+  "@odd_friday": {
+    "description": "Text shown for odd week Friday"
+  },
   "odd_saturday": "w Nieparzystą Sobotę",
+  "@odd_saturday": {
+    "description": "Text shown for odd week Saturday"
+  },
   "odd_sunday": "w Nieparzystą Niedzielę",
+  "@odd_sunday": {
+    "description": "Text shown for odd week Sunday"
+  },
   "holiday_monday": "w Wakacyjny Poniedziałek",
+  "@holiday_monday": {
+    "description": "Text shown for holiday Monday"
+  },
   "holiday_tuesday": "w Wakacyjny Wtorek",
+  "@holiday_tuesday": {
+    "description": "Text shown for holiday Tuesday"
+  },
   "holiday_wednesday": "w Wakacyjną Środę",
+  "@holiday_wednesday": {
+    "description": "Text shown for holiday Wednesday"
+  },
   "holiday_thursday": "w Wakacyjny Czwartek",
+  "@holiday_thursday": {
+    "description": "Text shown for holiday Thursday"
+  },
   "holiday_friday": "w Wakacyjny Piątek",
+  "@holiday_friday": {
+    "description": "Text shown for holiday Friday"
+  },
   "holiday_saturday": "w Wakacyjną Sobotę",
+  "@holiday_saturday": {
+    "description": "Text shown for holiday Saturday"
+  },
   "holiday_sunday": "w Wakacyjną Niedzielę",
+  "@holiday_sunday": {
+    "description": "Text shown for holiday Sunday"
+  },
   "exam_monday": "w Egzaminacyjny Poniedziałek",
+  "@exam_monday": {
+    "description": "Text shown for exam period Monday"
+  },
   "exam_tuesday": "w Egzaminacyjny Wtorek",
+  "@exam_tuesday": {
+    "description": "Text shown for exam period Tuesday"
+  },
   "exam_wednesday": "w Egzaminacyjną Środę",
+  "@exam_wednesday": {
+    "description": "Text shown for exam period Wednesday"
+  },
   "exam_thursday": "w Egzaminacyjny Czwartek",
+  "@exam_thursday": {
+    "description": "Text shown for exam period Thursday"
+  },
   "exam_friday": "w Egzaminacyjny Piątek",
+  "@exam_friday": {
+    "description": "Text shown for exam period Friday"
+  },
   "exam_saturday": "w Egzaminacyjną Sobotę",
+  "@exam_saturday": {
+    "description": "Text shown for exam period Saturday"
+  },
   "exam_sunday": "w Egzaminacyjną Niedzielę",
+  "@exam_sunday": {
+    "description": "Text shown for exam period Sunday"
+  },
   "follow_solvro": "Obserwuj nas na socialach!",
+  "@follow_solvro": {
+    "description": "Call to action for following social media"
+  },
   "unknown_day": "w ten piękny dzień!",
+  "@unknown_day": {
+    "description": "Fallback text when day type is unknown"
+  },
   "read_more": "Czytaj dalej",
+  "@read_more": {
+    "description": "Button text to expand content"
+  },
   "whats_up": "Co słychać?",
+  "@whats_up": {
+    "description": "Casual greeting text"
+  },
   "study_circles": "Organizacje studenckie",
+  "@study_circles": {
+    "description": "Title for student organizations section"
+  },
   "days": "dni",
+  "@days": {
+    "description": "Unit of time measurement"
+  },
   "to_start_session": "do rozpoczęcia sesji",
+  "@to_start_session": {
+    "description": "Text indicating time until session begins"
+  },
   "map_button": "Mapa",
+  "@map_button": {
+    "description": "Label for map navigation button"
+  },
   "meet_our_team": "Poznaj nas!",
+  "@meet_our_team": {
+    "description": "Title for team introduction section"
+  },
   "sections": "Wydziały",
+  "@sections": {
+    "description": "Title for sections/faculties list"
+  },
   "list": "Lista",
+  "@list": {
+    "description": "Label for list view"
+  },
   "departments": "Wydziały",
+  "@departments": {
+    "description": "Title for departments/faculties section"
+  },
   "department": "Wydział",
+  "@department": {
+    "description": "Singular form of department/faculty"
+  },
   "search": "Szukaj",
+  "@search": {
+    "description": "Label for search functionality"
+  },
   "contact": "Kontakt",
+  "@contact": {
+    "description": "Label for contact information"
+  },
   "about_us": "O nas",
+  "@about_us": {
+    "description": "Label for about section"
+  },
   "navigate": "Nawiguj",
+  "@navigate": {
+    "description": "Label for navigation functionality"
+  },
   "building_prefix": "Budynek",
+  "@building_prefix": {
+    "description": "Prefix used before building names"
+  },
   "polinka_prefix": "Polinka",
+  "@polinka_prefix": {
+    "description": "Prefix used for Polinka-related items"
+  },
   "department_not_found": "Nie znaleziono wydziału",
+  "@department_not_found": {
+    "description": "Error message when faculty is not found"
+  },
   "sci_circle_not_found": "Nie znaleziono organizacji studenckich",
+  "@sci_circle_not_found": {
+    "description": "Error message when student organizations are not found"
+  },
   "all": "Wszystkie",
+  "@all": {
+    "description": "Label for showing all items"
+  },
   "parkings_title": "Parkingi",
+  "@parkings_title": {
+    "description": "Title for parkings section"
+  },
   "parkings_not_found": "Nie znaleziono parkingu",
+  "@parkings_not_found": {
+    "description": "Error message when parking is not found"
+  },
   "building_not_found": "Nie znaleziono budynku",
+  "@building_not_found": {
+    "description": "Error message when building is not found"
+  },
   "buildings_title": "Budynki",
+  "@buildings_title": {
+    "description": "Title for buildings section"
+  },
   "freePlaces": "Wolne miejsca",
+  "@freePlaces": {
+    "description": "Label for available parking spaces"
+  },
   "noChartData": "Dane wykresów są niedostępne w nocy",
+  "@noChartData": {
+    "description": "Message shown when chart data is not available"
+  },
   "offlineParkings": "Błąd połączenia: niestety, moduł parkingów nie może poprawnie działać bez połączenia internetowego.",
+  "@offlineParkings": {
+    "description": "Error message when parking data cannot be fetched due to offline status"
+  },
   "refresh": "Odśwież",
+  "@refresh": {
+    "description": "Label for refresh action"
+  },
   "offline_error_message": "Wystąpił błąd podczas pobierania danych dotyczących ",
+  "@offline_error_message": {
+    "description": "Generic offline error message prefix"
+  },
   "offline_try_again": "Spróbuj ponownie później.",
+  "@offline_try_again": {
+    "description": "Message prompting user to retry later"
+  },
   "offline_news": "wiadomości",
+  "@offline_news": {
+    "description": "Label for offline news data"
+  },
   "offline_sci_clubs": "kół naukowych",
+  "@offline_sci_clubs": {
+    "description": "Label for offline scientific clubs data"
+  },
   "offline_buildings": "budynków",
+  "@offline_buildings": {
+    "description": "Label for offline buildings data"
+  },
   "offline_departments": "wydziałów",
+  "@offline_departments": {
+    "description": "Label for offline departments data"
+  },
   "offline_academic_calendar": "kalendarza akademickiego",
+  "@offline_academic_calendar": {
+    "description": "Label for offline academic calendar data"
+  },
   "offline_about_us": "o nas",
+  "@offline_about_us": {
+    "description": "Label for offline about us data"
+  },
   "offline_department_details": "wydziału",
+  "@offline_department_details": {
+    "description": "Label for offline department details data"
+  },
   "offline_guide_details": "wpisu z przewodnika",
+  "@offline_guide_details": {
+    "description": "Label for offline guide details data"
+  },
   "offline_guide_posts": "wpisów z przewodnika",
+  "@offline_guide_posts": {
+    "description": "Label for offline guide posts data"
+  },
   "offline_changelog": "zmian",
+  "@offline_changelog": {
+    "description": "Label for offline changelog data"
+  },
   "guide": "Przewodnik",
+  "@guide": {
+    "description": "Title for guide section"
+  },
   "deans_office": "Dziekanat",
+  "@deans_office": {
+    "description": "Label for Dean's Office section"
+  },
   "fields_of_study": "Kierunki",
+  "@fields_of_study": {
+    "description": "Title for fields of study section"
+  },
   "guide_about_us": "O Nas!",
+  "@guide_about_us": {
+    "description": "Title for guide's about us section"
+  },
   "guide_meet_creators": "Poznaj twórców aplikacji mobilnej ToPWR!",
+  "@guide_meet_creators": {
+    "description": "Title for meeting app creators section"
+  },
   "guide_not_found": "Nie znaleziono wpisów przewodnika",
+  "@guide_not_found": {
+    "description": "Error message when guide entries are not found"
+  },
   "first_degree": "I Stopnia",
+  "@first_degree": {
+    "description": "Label for first degree studies"
+  },
   "second_degree": "II Stopnia",
+  "@second_degree": {
+    "description": "Label for second degree studies"
+  },
   "long_cycle": "Jednolite magisterskie",
+  "@long_cycle": {
+    "description": "Label for long-cycle master's studies"
+  },
   "no_address": "Brak adresu",
+  "@no_address": {
+    "description": "Message shown when address is not available"
+  },
   "student_medias": " Media studenckie",
+  "@student_medias": {
+    "description": "Title for student media section"
+  },
   "cultural_agendas": "Agendy kultury",
+  "@cultural_agendas": {
+    "description": "Title for cultural agendas section"
+  },
   "scientific_cirlces": "Koła naukowe",
+  "@scientific_cirlces": {
+    "description": "Title for scientific clubs section"
+  },
   "student_organizations": "Organizacje studenckie",
+  "@student_organizations": {
+    "description": "Title for student organizations section"
+  },
   "org_types": "Rodzaje organizacji",
+  "@org_types": {
+    "description": "Title for organization types section"
+  },
   "categories": "Kategorie tematyczne",
+  "@categories": {
+    "description": "Title for categories section"
+  },
   "filters": "Filtry",
+  "@filters": {
+    "description": "Label for filters section"
+  },
   "clear": "Wyczyść",
+  "@clear": {
+    "description": "Label for clear action"
+  },
   "filters_didnt_found_anything": "Nie znaleziono żadnych filtrów",
+  "@filters_didnt_found_anything": {
+    "description": "Message shown when no filters are found"
+  },
   "street_abbreviation": "ul.",
+  "@street_abbreviation": {
+    "description": "Abbreviation for street"
+  },
   "bug_report_title": "Zgłoś błąd lub sugestię",
+  "@bug_report_title": {
+    "description": "Title for bug report form"
+  },
   "bug_report_subtitle": "Wyślij zgłoszenie bezpośrednio do twórców aplikacji.",
+  "@bug_report_subtitle": {
+    "description": "Subtitle for bug report form"
+  },
   "new_feature": "Nowa funckcjonalność",
+  "@new_feature": {
+    "description": "Label for new feature report type"
+  },
   "bug": "Błąd",
+  "@bug": {
+    "description": "Label for bug report type"
+  },
   "praise": "Pochwała",
+  "@praise": {
+    "description": "Label for praise report type"
+  },
   "until_the_end_of_the_semester_break": "do końca przerwy międzysemestralnej",
+  "@until_the_end_of_the_semester_break": {
+    "description": "Text indicating time until semester break ends"
+  },
   "until_the_session_ends": "do zakończenia sesji",
+  "@until_the_session_ends": {
+    "description": "Text indicating time until session ends"
+  },
   "app_info": "(informacje o aplikacji)",
+  "@app_info": {
+    "description": "Label for app information section"
+  },
   "show_license": "Wyświetl licencję",
+  "@show_license": {
+    "description": "Button text to show license information"
+  },
   "close": "Zamknij",
+  "@close": {
+    "description": "Label for close action"
+  },
   "no_version": "Brak wersji",
+  "@no_version": {
+    "description": "Message shown when version information is not available"
+  },
   "places_currently_available": "Aktualnie wolne miejsca",
+  "@places_currently_available": {
+    "description": "Label for currently available places"
+  },
   "student_councils": "Samorząd",
+  "@student_councils": {
+    "description": "Title for student councils section"
+  },
   "hi_student": "Hej studencie!",
+  "@hi_student": {
+    "description": "Greeting message for students"
+  },
   "guide_development_info": "Pamiętaj, że przewodnik jest wciąż w fazie rozwoju :)",
+  "@guide_development_info": {
+    "description": "Development status message for guide section"
+  },
   "guide_ideas_info": "Masz ciekawy pomysł? Podziel się z nami!",
+  "@guide_ideas_info": {
+    "description": "Call to action for sharing ideas"
+  },
   "guide_subject_default_content": "Pomysł na rozwój ToPWR",
+  "@guide_subject_default_content": {
+    "description": "Default subject for guide feedback"
+  },
   "streak_counter": "Używasz ToPWR nieprzerwanie od {days, plural, =1{1 dnia} other{{days} dni}}🔥",
   "@streak_counter": {
     "description": "A message with a single parameter",
@@ -127,48 +464,177 @@
     }
   },
   "last_modified": "Ostatnia aktualizacja",
+  "@last_modified": {
+    "description": "Label for last modification date"
+  },
   "created_at": "Utworzono",
+  "@created_at": {
+    "description": "Label for creation date"
+  },
   "apply": "Zastosuj",
+  "@apply": {
+    "description": "Label for apply action"
+  },
   "changes": "Zmiany",
+  "@changes": {
+    "description": "Title for changes section"
+  },
   "version": "wersja",
+  "@version": {
+    "description": "Label for version information"
+  },
   "hey_check_out_the_new_features": "Hej, sprawdź nowości",
+  "@hey_check_out_the_new_features": {
+    "description": "Title for new features announcement"
+  },
   "here_you_will_see_what_we_changed_in_the_latest_version": "Tutaj zobaczysz co zmieniliśmy w najnowszej wersji",
+  "@here_you_will_see_what_we_changed_in_the_latest_version": {
+    "description": "Description for changelog section"
+  },
   "data_come_from_website": "Dane pochodzą ze strony",
+  "@data_come_from_website": {
+    "description": "Source attribution for data"
+  },
   "sks_menu": "SKS Menu",
+  "@sks_menu": {
+    "description": "Title for SKS menu section"
+  },
   "home_screen": "Ekran główny",
+  "@home_screen": {
+    "description": "Label for home screen"
+  },
   "sks_menu_salads": "Surówki",
+  "@sks_menu_salads": {
+    "description": "Label for salads menu section"
+  },
   "sks_menu_main_soups": "Zupy",
+  "@sks_menu_main_soups": {
+    "description": "Label for soups menu section"
+  },
   "sks_menu_vegetarian_dishes": "Dania jarskie",
+  "@sks_menu_vegetarian_dishes": {
+    "description": "Label for vegetarian dishes menu section"
+  },
   "sks_menu_meat_dishes": "Dania mięsne",
+  "@sks_menu_meat_dishes": {
+    "description": "Label for meat dishes menu section"
+  },
   "sks_menu_side_dishes": "Dodatki",
+  "@sks_menu_side_dishes": {
+    "description": "Label for side dishes menu section"
+  },
   "sks_menu_drinks": "Kompoty i napoje",
+  "@sks_menu_drinks": {
+    "description": "Label for drinks menu section"
+  },
   "sks_menu_desserts": "Desery",
+  "@sks_menu_desserts": {
+    "description": "Label for desserts menu section"
+  },
   "sks_full_name": "Strefa Kultury Studenckiej",
+  "@sks_full_name": {
+    "description": "Full name of the Student Culture Zone"
+  },
   "leave_a_review": "Oceń aplikację",
+  "@leave_a_review": {
+    "description": "Button text for app rating"
+  },
   "rest_header": "Pozostałe",
+  "@rest_header": {
+    "description": "Header for miscellaneous section"
+  },
   "settings": "Ustawienia",
+  "@settings": {
+    "description": "Title for settings section"
+  },
   "about_the_app": "O aplikacji",
+  "@about_the_app": {
+    "description": "Title for app information section"
+  },
   "other_view": "Inne",
+  "@other_view": {
+    "description": "Label for other view option"
+  },
   "map": "Mapa",
+  "@map": {
+    "description": "Label for map view"
+  },
   "report_change_title": "Coś się zmieniło?",
+  "@report_change_title": {
+    "description": "Title for change report form"
+  },
   "report_change_button": "Zgłoś zmianę",
+  "@report_change_button": {
+    "description": "Button text for reporting changes"
+  },
   "report_change_email": "kn.solvro@pwr.edu.pl",
+  "@report_change_email": {
+    "description": "Email address for reporting changes"
+  },
   "report_change_subject": "Sugestia zmiany - ToPWR",
+  "@report_change_subject": {
+    "description": "Default subject for change reports"
+  },
   "report_change_error_toast_message": "Wystąpił błąd przy otwieraniu hiperłącza, sprawdź uprawnienia aplikacji",
+  "@report_change_error_toast_message": {
+    "description": "Error message for hyperlink permission issues"
+  },
   "localization": "Lokalizacja",
+  "@localization": {
+    "description": "Label for location information"
+  },
   "amenities": "Udogodnienia",
+  "@amenities": {
+    "description": "Title for amenities section"
+  },
   "surroundings": "Otoczenie",
+  "@surroundings": {
+    "description": "Title for surroundings section"
+  },
   "transport": "Dojazd",
+  "@transport": {
+    "description": "Title for transport section"
+  },
   "entrances": "Wejścia",
+  "@entrances": {
+    "description": "Title for entrances section"
+  },
   "lifts": "Windy",
+  "@lifts": {
+    "description": "Title for elevators section"
+  },
   "adapted_toilets": "Toalety dostosowane",
+  "@adapted_toilets": {
+    "description": "Label for adapted toilets accessibility feature"
+  },
   "adapted_toilet_description": "Toaleta dla osób z niepełnosprawnościami",
+  "@adapted_toilet_description": {
+    "description": "Description for adapted toilet"
+  },
   "adapted_toilet_description_men": "Toaleta dla mężczyzn z niepełnosprawnościami",
+  "@adapted_toilet_description_men": {
+    "description": "Description for men's adapted toilet"
+  },
   "adapted_toilet_description_women": "Toaleta dla kobiet z niepełnosprawnościami",
+  "@adapted_toilet_description_women": {
+    "description": "Description for women's adapted toilet"
+  },
   "micro_navigation": "Mikronawigacja",
+  "@micro_navigation": {
+    "description": "Title for micronavigation section"
+  },
   "building_structure": "Struktura budynku",
+  "@building_structure": {
+    "description": "Title for building structure section"
+  },
   "room_information": "Pomieszczenia",
+  "@room_information": {
+    "description": "Title for room information section"
+  },
   "evacuation": "Ewakuacja",
+  "@evacuation": {
+    "description": "Title for evacuation section"
+  },
   "storeys": "{number, plural, =1{{number} piętro} few{{number} piętra} other{{number} pięter}}",
   "@storeys": {
     "description": "number of storeys with one parameter",
@@ -180,25 +646,105 @@
     }
   },
   "assistance_dog": "Do budynku i wszystkich jego pomieszczeń można wejść z psem asystującym i psem przewodnikiem",
+  "@assistance_dog": {
+    "description": "Information about assistance dog accessibility"
+  },
   "induction_loop": "W budynku jest/są pętle indukcyjne",
+  "@induction_loop": {
+    "description": "Information about induction loop availability"
+  },
   "micronavigation_system": "W budynku zostały zainstalowane urządzenia systemu nawigacyjno-informacyjnego",
+  "@micronavigation_system": {
+    "description": "Information about micronavigation system availability"
+  },
   "orientation_paths": "W budynku zastosowane zostały ścieżki naprowadzające (dotykowe)",
+  "@orientation_paths": {
+    "description": "Information about tactile path availability"
+  },
   "information_boards_with_braille_description": "W budynku znajdują się czytelne tablice informacyjne zawierające opisy w alfabecie Braille'a",
+  "@information_boards_with_braille_description": {
+    "description": "Information about Braille information boards availability"
+  },
   "information_boards_with_large_font": "W budynku znajdują się czytelne tablice informacyjne zawierające napisy w dużej czcionce",
+  "@information_boards_with_large_font": {
+    "description": "Information about large print information boards availability"
+  },
   "sign_language_interpreter": "W budynku zapewniona jest możliwość skorzystania z usług tłumacza języka migowego",
+  "@sign_language_interpreter": {
+    "description": "Information about sign language interpreter availability"
+  },
   "emergency_chairs": "W budynku zamieszczone zostały krzesła ewakuacyjne",
+  "@emergency_chairs": {
+    "description": "Information about emergency evacuation chairs availability"
+  },
   "parking_location": "Miejsca parkingowe znajdują się {location}",
+  "@parking_location": {
+    "description": "Information about parking space location",
+    "placeholders": {
+      "location": {
+        "type": "String"
+      }
+    }
+  },
   "parking_pwd_location": "Miejsca parkingowe dla niepełnospranych znajdują się {location}",
+  "@parking_pwd_location": {
+    "description": "Information about disabled parking space location",
+    "placeholders": {
+      "location": {
+        "type": "String"
+      }
+    }
+  },
   "closest_facilities": "Najbliższe sąsiednie budynki i obiekty kampusu to: {places}",
+  "@closest_facilities": {
+    "description": "Information about nearby facilities",
+    "placeholders": {
+      "places": {
+        "type": "String"
+      }
+    }
+  },
   "digital_guide_website": "www.przewodnik.pwr.edu.pl",
+  "@digital_guide_website": {
+    "description": "URL for the digital guide website"
+  },
   "sks_old_menu": "Zobacz ostatnie menu",
+  "@sks_old_menu": {
+    "description": "Button text to view previous menu"
+  },
   "sks_menu_closed": "SKS Menu jest teraz niedostępne",
+  "@sks_menu_closed": {
+    "description": "Message shown when SKS menu is not available"
+  },
   "sks_show_last_menu": "Pokaż ostatnio dostępne menu",
+  "@sks_show_last_menu": {
+    "description": "Button text to show last available menu"
+  },
   "confirm": "Zatwierdź",
+  "@confirm": {
+    "description": "Label for confirm action"
+  },
   "push_notifications_dialog_info": "Obecnie nie korzystamy z powiadomień push, ale planujemy dodać je w przyszłości. Możesz wyrazić na nie zgodę już teraz.",
+  "@push_notifications_dialog_info": {
+    "description": "Information about push notifications status"
+  },
   "sks_menu_technical_info": "KOMUNIKAT",
+  "@sks_menu_technical_info": {
+    "description": "Label for technical notice"
+  },
   "sks_note": "UWAGA",
+  "@sks_note": {
+    "description": "Label for note"
+  },
   "sks_menu_you_see_last_menu": "Aktualne menu SKS jest niedostępne. Przeglądasz ostatnio dostępną wersję z: {date}",
+  "@sks_menu_you_see_last_menu": {
+    "description": "Message indicating last available menu date",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
   "my_offline_error_message": "Wystąpił błąd podczas pobierania danych dotyczących {data_type}",
   "@my_offline_error_message": {
     "description": "An error message with a single parameter",
@@ -210,44 +756,281 @@
     }
   },
   "measured_number_of_users": "Zmierzona liczba użytkowników",
+  "@measured_number_of_users": {
+    "description": "Label for the measured number of users"
+  },
   "forecasted_number_of_users": "Średnia liczba użytkowników z ostatnich 21 dni",
+  "@forecasted_number_of_users": {
+    "description": "Label for the average number of users from the last 21 days"
+  },
   "sks_chart_title": "Przybliżona liczba osób w Strefie Kultury Studenckiej",
+  "@sks_chart_title": {
+    "description": "Title for the SKS occupancy chart"
+  },
   "number_of_people": "Liczba osób",
+  "@number_of_people": {
+    "description": "Label for the number of people"
+  },
   "evacuation_text": "Ewakuacja i pierwsza pomoc",
+  "@evacuation_text": {
+    "description": "Title for the evacuation and first aid section"
+  },
   "digital_guide": "Przewodnik",
+  "@digital_guide": {
+    "description": "Title for the digital guide section"
+  },
   "adapted_toilet_authorization": "{boolean, select, false{Wejście do toalety nie wymaga żadnych specjalnych uprawnień.} true{Toaleta jest dostępna wyłącznie dla osób uprawnionych.} other{}}",
+  "@adapted_toilet_authorization": {
+    "description": "Information about toilet access authorization",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "adapted_toilet_graphically_marked": "{boolean, select, false{Wejście do toalety nie jest oznakowane graficznie.} true{Wejście do toalety jest dobrze oznakowane graficznie.} other{}}",
+  "@adapted_toilet_graphically_marked": {
+    "description": "Information about toilet entrance marking",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "adapted_toilet_is_marked": "{boolean, select, false{Lokalizacja toalety nie jest oznaczona za pomocą informacji kierunkowej.} true{Lokalizacja toalety jest oznaczona za pomocą informacji kierunkowej.} other{}}",
+  "@adapted_toilet_is_marked": {
+    "description": "Information about toilet location marking",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "adapted_toilet_is_access_accessible_for_pwd": "{boolean, select, false{Dostęp do toalety nie jest dostosowany do potrzeb osób z niepełnosprawnością.} true{Dostęp do toalety jest dostosowany do potrzeb osób z niepełnosprawnością.} other{}}",
+  "@adapted_toilet_is_access_accessible_for_pwd": {
+    "description": "Information about toilet accessibility",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "adapted_toilet_is_150x150_free_space": "{boolean, select, false{W toalecie nie znajduje się wolna przestrzeń o wymiarach co najmniej 150 x 150 centymetrów.} true{W toalecie znajduje się wolna przestrzeń o wymiarach co najmniej 150 x 150 cm.} other{}}",
+  "@adapted_toilet_is_150x150_free_space": {
+    "description": "Information about free space in toilet",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "adapted_toilet_is_good_floor_wall_contrast": "{boolean, select, false{Kontrast pomiędzy podłogą a ścianami nie jest dobrze widoczny.} true{Kontrast pomiędzy podłogą a ścianami jest dobrze widoczny.} other{}}",
+  "@adapted_toilet_is_good_floor_wall_contrast": {
+    "description": "Information about floor-wall contrast in toilet",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "adapted_toilet_is_side_maneuvering_space": "{boolean, select, false{W toalecie nie znajduje się przestrzeń manewrowa.} true{W toalecie znajduje się przestrzeń manewrowa.} other{}}",
+  "@adapted_toilet_is_side_maneuvering_space": {
+    "description": "Information about maneuvering space in toilet",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "adapted_toilet_is_pulldown_handle": "{boolean, select, false{W toalecie nie znajduje się uchwyt uchylny.} true{W toalecie znajduje się uchwyt uchylny.} other{}}",
+  "@adapted_toilet_is_pulldown_handle": {
+    "description": "Information about fold-down handle in toilet",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "adapted_toilet_is_fixed_handle": "{boolean, select, false{W toalecie nie znajduje się uchwyt zamontowany na stałe.} true{W toalecie znajduje się uchwyt zamontowany na stałe.} other{}}",
+  "@adapted_toilet_is_fixed_handle": {
+    "description": "Information about fixed handle in toilet",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "adapted_toilet_is_good_pulldown_handle_wall_contrast": "{boolean, select, false{Uchwyt uchylny nie kontrastuje z kolorem ściany.} true{Uchwyt uchylny kontrastuje z kolorem ściany.} other{}}",
+  "@adapted_toilet_is_good_pulldown_handle_wall_contrast": {
+    "description": "Information about handle-wall contrast in toilet",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "adapted_toilet_is_mirror": "{boolean, select, false{W toalecie nie ma lustra.} true{W toalecie znajduje się lustro.} other{}}",
+  "@adapted_toilet_is_mirror": {
+    "description": "Information about mirror in toilet",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "adapted_toilet_are_clothes_hooks": "{boolean, select, false{W toalecie nie znajdują się wieszaki na ubrania.} true{W toalecie znajdują się wieszaki na ubrania.} other{}}",
+  "@adapted_toilet_are_clothes_hooks": {
+    "description": "Information about clothes hooks in toilet",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "adapted_toilet_is_wastebasket": "{boolean, select, false{W toalecie nie znajduje się kosz na śmieci.} true{W toalecie znajduje się kosz na śmieci.} other{}}",
+  "@adapted_toilet_is_wastebasket": {
+    "description": "Information about wastebasket in toilet",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "adapted_toilet_is_towel_dispenser": "{boolean, select, false{W toalecie nie znajduje się dozownik na ręczniki.} true{W toalecie znajduje się dozownik na ręczniki.} other{}}",
+  "@adapted_toilet_is_towel_dispenser": {
+    "description": "Information about towel dispenser in toilet",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "adapted_toilet_is_space_under_washbasin_for_wheelchair": "{boolean, select, false{Pod umywalką nie znajduje się przestrzeń umożliwiająca podjazd wózkiem inwalidzkim.} true{Pod umywalką znajduje się przestrzeń umożliwiająca podjazd wózkiem inwalidzkim.} other{}}",
+  "@adapted_toilet_is_space_under_washbasin_for_wheelchair": {
+    "description": "Information about wheelchair space under washbasin",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "adapted_toilet_is_light_switch": "{boolean, select, false{W toalecie nie znajduje się włącznik światła.} true{W toalecie znajduje się włącznik światła.} other{}}",
+  "@adapted_toilet_is_light_switch": {
+    "description": "Information about light switch in toilet",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "adapted_toilet_is_good_lit": "{boolean, select, false{Oświetlenie w toalecie nie jest odpowiednie.} true{Oświetlenie w toalecie jest odpowiednie.} other{}}",
+  "@adapted_toilet_is_good_lit": {
+    "description": "Information about lighting in toilet",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "adapted_toilet_is_hand_dryer": "{boolean, select, false{W toalecie nie ma suszarki do rąk.} true{W toalecie znajduje się suszarka do rąk.} other{}}",
+  "@adapted_toilet_is_hand_dryer": {
+    "description": "Information about hand dryer in toilet",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "adapted_toilet_seat_height": "Sedes znajduje sie na wysokości {height} cm",
+  "@adapted_toilet_seat_height": {
+    "description": "Information about toilet seat height",
+    "placeholders": {
+      "height": {
+        "type": "String"
+      }
+    }
+  },
   "images": "Zdjęcia",
+  "@images": {
+    "description": "Label for photos section"
+  },
   "door": "Drzwi",
+  "@door": {
+    "description": "Label for door section"
+  },
   "door_visible_from_outside": "{boolean, select, true{Drzwi od strony zewnętrznej wyraźnie odznaczają się od ścian.} false{Drzwi od strony zewnętrznej nie odznaczają się wyraźnie od ścian.} other{}}",
+  "@door_visible_from_outside": {
+    "description": "Information about door visibility from outside",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "door_visible_from_inside": "{boolean, select, true{Drzwi od strony wewnętrznej wyraźnie odznaczają się od ścian.} false{Drzwi od strony wewnętrznej nie odznaczają się wyraźnie od ścian.} other{}}",
+  "@door_visible_from_inside": {
+    "description": "Information about door visibility from inside",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "single_leaf_door": "Są to drzwi jednoskrzydłowe.",
+  "@single_leaf_door": {
+    "description": "Information about single-leaf door type"
+  },
   "single_leaf_door_sliding": "Są to drzwi przesuwne jednoskrzydłowe.",
+  "@single_leaf_door_sliding": {
+    "description": "Information about single-leaf sliding door type"
+  },
   "double_leaf_door": "Są to drzwi dwuskrzydłowe.",
+  "@double_leaf_door": {
+    "description": "Information about double-leaf door type"
+  },
   "double_leaf_door_sliding": "Są to drzwi przesuwne dwuskrzydłowe.",
+  "@double_leaf_door_sliding": {
+    "description": "Information about double-leaf sliding door type"
+  },
   "swing_door": "Są to drzwi wahadłowe.",
+  "@swing_door": {
+    "description": "Information about swing door type"
+  },
   "main_wing_highlighted": "{boolean, select, true{Główne skrzydło drzwi jest wyróżnione.} false{Główne skrzydło drzwi nie jest wyróżnione.} other{}}",
+  "@main_wing_highlighted": {
+    "description": "Information about main door leaf highlighting",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "increased_force_required": "{boolean, select, true{Do otwarcia drzwi wymagane jest użycie wzmożonej siły.} false{Do otwarcia drzwi nie jest wymagane użycie wzmożonej siły.} other{}}",
+  "@increased_force_required": {
+    "description": "Information about force needed to open door",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "door_closer": "{boolean, select, true{W drzwiach zamontowany jest wspomagacz zamykania/samozamykacz.} false{W drzwiach nie jest zamontowany wspomagacz zamykania/samozamykacz.} other{}}",
+  "@door_closer": {
+    "description": "Information about door closer presence",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "accessibility_profile": "Profil dostępności",
+  "@accessibility_profile": {
+    "description": "Label for accessibility profile section"
+  },
   "accessibility_profile_empty": "Brak informacji dotyczących wybranego profilu dostępności",
+  "@accessibility_profile_empty": {
+    "description": "Message when no accessibility profile information is available"
+  },
   "accessibility_card_information": "{message} jest {accessibility_level} dla osób {disability_description}",
   "@accessibility_card_information": {
     "placeholders": {
@@ -266,32 +1049,218 @@
     }
   },
   "accessibility_level_feminine": "{level, select, 0{niedostępna} 1{niedostępna} 2{częściowo dostępna} 3{dostępna} other{niedostępna}}",
+  "@accessibility_level_feminine": {
+    "description": "Feminine form of accessibility levels",
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
   "accessibility_level_masculine": "{level, select, 0{niedostępny} 1{niedostępny} 2{częściowo dostępny} 3{dostępny} other{niedostępny}}",
+  "@accessibility_level_masculine": {
+    "description": "Masculine form of accessibility levels",
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
   "accessibility_level_neuter": "{level, select, 0{niedostępne} 1{niedostępne} 2{częściowo dostępne} 3{dostępne} other{niedostępne}}",
+  "@accessibility_level_neuter": {
+    "description": "Neuter form of accessibility levels",
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
   "people_with_cognitive_difficulties": "posiadających trudności poznawcze",
+  "@people_with_cognitive_difficulties": {
+    "description": "Label for people with cognitive difficulties"
+  },
   "people_with_hard_of_hearing": "posiadających trudności ze słyszeniem",
+  "@people_with_hard_of_hearing": {
+    "description": "Label for people who are hard of hearing"
+  },
   "people_visually_impaired": "słabo widzących",
+  "@people_visually_impaired": {
+    "description": "Label for visually impaired people"
+  },
   "people_blind": "niewidomych",
+  "@people_blind": {
+    "description": "Label for blind people"
+  },
   "people_with_motor_disability": "posiadających dysfunkcje ruchu",
+  "@people_with_motor_disability": {
+    "description": "Label for people with motor disabilities"
+  },
   "people_with_high_sensory_sensitivity": "o wysokiej wrażliwości sensorycznej",
+  "@people_with_high_sensory_sensitivity": {
+    "description": "Label for people with high sensory sensitivity"
+  },
   "see_all_photos": "Zobacz {photos, plural, =0{{photos} zdjęć} =1{{photos} zdjęcie} few{wszystkie {photos} zdjęcia} other{wszystkie {photos} zdjęć}}",
+  "@see_all_photos": {
+    "description": "Label for viewing photos",
+    "placeholders": {
+      "photos": {
+        "type": "int"
+      }
+    }
+  },
   "are_dangerous_elements_comment_prefix": "W otoczeniu budynku znajdują się następujące obiekty, które mogą stanowić zagrożenie: {text}",
+  "@are_dangerous_elements_comment_prefix": {
+    "description": "Information about dangerous elements",
+    "placeholders": {
+      "text": {
+        "type": "String"
+      }
+    }
+  },
   "are_high_curbs_at_parking_space_for_pwd": "Przy miejscach postojowych dla osób z niepełnosprawnościami {boolean, select, false{nie} other{}} znajduje się wysoki krawężnik. ",
+  "@are_high_curbs_at_parking_space_for_pwd": {
+    "description": "Information about curbs at disabled parking spaces",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "is_lit": "Otoczenie budynku {boolean, select, false{nie} other{}} jest oświetlone po zmroku. ",
+  "@is_lit": {
+    "description": "Information about lighting around building",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "is_pavement_rough": "Nawierzchnia przy budynku {boolean, select, false{nie} other{}} jest równa. ",
+  "@is_pavement_rough": {
+    "description": "Information about pavement condition",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "are_lowered_curbs": "Krawężniki w okolicach budynku {boolean, select, false{nie} other{}} są obniżone. ",
+  "@are_lowered_curbs": {
+    "description": "Information about lowered curbs",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "are_no_barriers": "Wokół budynku {boolean, select, true{nie ma barier uniemożliwiających dojścia} false{znajdują się bariery uniemożliwiające dojście} other{}} do budynku. ",
+  "@are_no_barriers": {
+    "description": "Information about access barriers",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "is_path_to_accessible_entrance_marked": "Ścieżka do wejścia dostępnego dla osób z niepełnosprawnościami {boolean, select, false{nie} other{}} jest wyraźnie oznaczona. ",
+  "@is_path_to_accessible_entrance_marked": {
+    "description": "Information about accessible entrance path marking",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "is_noisy_street_near_building": "W okolicy {boolean, select, false{nie ma ruchliwej, hałaśliwej ulicy. } true{znajduje się ruchliwa, hałaśliwa ulica. } other{}}",
+  "@is_noisy_street_near_building": {
+    "description": "Information about nearby noisy streets",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "room_stairs_is_good_lit": "{boolean, select, false{Schody nie są odpowiednio oświetlone.} true{Schody są odpowiednio oświetlone.} other{}}",
+  "@room_stairs_is_good_lit": {
+    "description": "Information about stair lighting",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "room_stairs_is_nonslip_surface": "{boolean, select, false{Powierzchnia schodów nie jest antypoślizgowa.} true{Powierzchnia schodów jest antypoślizgowa} other{}}",
+  "@room_stairs_is_nonslip_surface": {
+    "description": "Information about stair surface grip",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "room_stairs_is_stairs_surface_shiny": "{boolean, select, false{Powierzchnia schodów nie jest błyszcząca i nie wygląda na śliską.} true{Powierzchnia schodów błyszczy się i może wyglądać na śliską.} other{}}",
+  "@room_stairs_is_stairs_surface_shiny": {
+    "description": "Information about stair surface shininess",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "room_stairs_is_good_stairs_wall_contrast": "{boolean, select, false{Kontrast pomiędzy schodami a ścianą nie jest wyraźny.} true{Kontrast pomiędzy schodami a ścianą jest wyraźny.} other{}}",
+  "@room_stairs_is_good_stairs_wall_contrast": {
+    "description": "Information about stair-wall contrast",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "room_stairs_are_all_steps_have_same_dimensions": "{boolean, select, false{Stopnie nie mają takich samych wymiarów.} true{Stopnie mają takie same wymiary.} other{}}",
+  "@room_stairs_are_all_steps_have_same_dimensions": {
+    "description": "Information about step dimensions consistency",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "room_stairs_is_railing": "{boolean, select, false{Przy schodach nie znajduje się poręcz.} true{Przy schodach znajduje się poręcz.} other{}}",
+  "@room_stairs_is_railing": {
+    "description": "Information about stair railing presence",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "room_stairs_is_good_railing_contrast": "{boolean, select, false{Poręcz nie wyróżnia się na tle otoczenia.} true{Poręcz wyróżnia się na tle otoczenia.} other{}}",
+  "@room_stairs_is_good_railing_contrast": {
+    "description": "Information about railing contrast",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "room_stairs_is_round_cross_section_railing": "{boolean, select, false{Poręcz nie jest zaokrąglona i może posiadać ostre krawędzie.} true{Poręcz nie posiada ostrych krawędzi i jest zaokrąglona.} other{}}",
+  "@room_stairs_is_round_cross_section_railing": {
+    "description": "Information about railing shape",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "room_stairs_are_steps_edges_marked_in_contrasted_way": "{boolean, select, false{Stopnie nie są widoczne. Ich krawędzie nie są oznaczone w sposób kontrastowy.} true{Stopnie są widoczne. Ich krawędzie są oznaczone w sposób kontrastowy.} other{}}",
+  "@room_stairs_are_steps_edges_marked_in_contrasted_way": {
+    "description": "Information about step edge marking",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "room_stairs_stairs_width": "Szerokość schodów wynosi {width} centymetrów",
   "@room_stairs_stairs_width": {
     "description": "",
@@ -302,34 +1271,246 @@
     }
   },
   "room_platforms_is_good_floor_platform_contrast": "{boolean, select, false{Brak dobrego kontrastu podłogi względem platformy.} true{Dobry kontrast podłogi względem platformy.} other{}}",
+  "@room_platforms_is_good_floor_platform_contrast": {
+    "description": "Information about floor-platform contrast",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "room_platforms_have_access_for_people_in_wheelchair": "{boolean, select, false{Podest nie ma zapewnionego dostępu dla osób, które poruszają się na wózku.} true{Podest ma zapewniony dostęp dla osób, które poruszają się na wózku.} other{}}",
+  "@room_platforms_have_access_for_people_in_wheelchair": {
+    "description": "Information about wheelchair accessibility to platform",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "room_platforms_is_platform_entrance_marked": "{boolean, select, false{Wejście na podest nie jest oznaczone elementami ostrzegawczymi.} true{Wejście na podest jest oznaczone elementami ostrzegawczymi.} other{}}",
+  "@room_platforms_is_platform_entrance_marked": {
+    "description": "Information about platform entrance marking",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "room_platforms_are_no_objects_narrow_communication_zone": "{boolean, select, false{W strefie komunikacyjnej znajdują się przeszkody.} true{Brak przeszkód w strefie komunikacyjnej.} other{}}",
+  "@room_platforms_are_no_objects_narrow_communication_zone": {
+    "description": "Information about obstacles in communication zone",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "stairs_is_stairs_sign_info": "{boolean, select, false{Brak informacji o oznakowaniu schodów.} true{Oznakowanie schodów jest dostępne.} other{}}",
+  "@stairs_is_stairs_sign_info": {
+    "description": "Information about stair signage availability",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "stairs_is_stairs_sign_info_in_en": "{boolean, select, false{Brak informacji o oznakowaniu schodów w języku angielskim.} true{Oznakowanie schodów w języku angielskim jest dostępne.} other{}}",
+  "@stairs_is_stairs_sign_info_in_en": {
+    "description": "Information about English stair signage availability",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "stairs_is_good_lit": "{boolean, select, false{Schody są słabo oświetlone.} true{Schody są dobrze oświetlone.} other{}}",
+  "@stairs_is_good_lit": {
+    "description": "Information about stair lighting quality",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "stairs_is_stairs_surface_shiny": "{boolean, select, false{Powierzchnia schodów nie jest błyszcząca.} true{Powierzchnia schodów jest błyszcząca.} other{}}",
+  "@stairs_is_stairs_surface_shiny": {
+    "description": "Information about stair surface shininess",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "stairs_is_nonslip_surface": "{boolean, select, false{Schody nie mają powierzchni antypoślizgowej.} true{Schody mają powierzchnię antypoślizgową.} other{}}",
+  "@stairs_is_nonslip_surface": {
+    "description": "Information about stair surface grip",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "stairs_is_good_stairs_wall_contrast": "{boolean, select, false{Brak dobrego kontrastu między schodami a ścianą.} true{Jest dobry kontrast między schodami a ścianą.} other{}}",
+  "@stairs_is_good_stairs_wall_contrast": {
+    "description": "Information about stair-wall contrast",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "stairs_are_emergency_stairs": "{boolean, select, false{Schody nie są ewakuacyjne.} true{Schody są ewakuacyjne.} other{}}",
+  "@stairs_are_emergency_stairs": {
+    "description": "Information about emergency exit stairs",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "stairs_are_first_and_last_steps_marked": "{boolean, select, false{Pierwszy i ostatni stopień nie są oznaczone.} true{Pierwszy i ostatni stopień są oznaczone.} other{}}",
+  "@stairs_are_first_and_last_steps_marked": {
+    "description": "Information about first/last step marking",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "stairs_are_grades_nose_pads": "{boolean, select, false{Schody nie mają nakładek na noski stopni.} true{Schody mają nakładki na noski stopni.} other{}}",
+  "@stairs_are_grades_nose_pads": {
+    "description": "Information about stair nose pads",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "stairs_are_steps_raised_markings": "{boolean, select, false{Brak wypukłych oznaczeń na stopniach.} true{Stopnie mają wypukłe oznaczenia.} other{}}",
+  "@stairs_are_steps_raised_markings": {
+    "description": "Information about raised step markings",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "stairs_step_height": "{value, plural, =0{Brak schodów.} one{Stopień ma {value} cm wysokości.} other{Stopnie mają {value} cm wysokości.}}",
+  "@stairs_step_height": {
+    "description": "Information about stair step height",
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
   "stairs_is_properly_marked_free_space_under_stairs": "{boolean, select, false{Brak odpowiedniego oznaczenia wolnej przestrzeni pod schodami.} true{Wolna przestrzeń pod schodami jest odpowiednio oznaczona.} other{}}",
+  "@stairs_is_properly_marked_free_space_under_stairs": {
+    "description": "Information about marking of space under stairs",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "floor_list": "Liczba pięterL",
+  "@floor_list": {
+    "description": "Label for floor count"
+  },
   "stairs_width": "Szerokość schodów:",
+  "@stairs_width": {
+    "description": "Label for stair width"
+  },
   "number_of_stair_gears": "Liczba biegów schodowych: ",
+  "@number_of_stair_gears": {
+    "description": "Label for stair flight count"
+  },
   "number_of_stair_landings": "Liczba spoczników:",
+  "@number_of_stair_landings": {
+    "description": "Label for stair landing count"
+  },
   "rooms_is_one_level_floor": "{boolean, select, false{Posadzka w pomieszczeniu nie znajduje się na jednym poziomie.} true{Posadzka w pomieszczeniu znajduje się na jednym poziomie.} other{}}",
+  "@rooms_is_one_level_floor": {
+    "description": "Information about room floor levelness",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "rooms_are_places_for_wheelchairs": "{boolean, select, false{W pomieszczeniu nie ma miejsc dedykowanych osobom poruszającym się na wózkach.} true{W pomieszczeniu znajdują się miejsca dedykowanych osobom poruszającym się na wózkach.} other{}}",
+  "@rooms_are_places_for_wheelchairs": {
+    "description": "Information about wheelchair spaces in room",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "rooms_are_any_dangerous_elements": "{boolean, select, false{W pomieszczeniu nie występują żadne niebezpieczne elementy konstrukcyjne.} true{W pomieszczeniu występują niebezpieczne elementy konstrukcyjne.} other{}}",
+  "@rooms_are_any_dangerous_elements": {
+    "description": "Information about dangerous elements in room",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "rooms_is_generally_available_desk": "{boolean, select, false{W pomieszczeniu nie znajduje się ogólnodostępne biurko, stolik lub blat.} true{W pomieszczeniu znajduje się ogólnodostępne biurko, stolik lub blat, którego wysokość wynosi} other{}}",
+  "@rooms_is_generally_available_desk": {
+    "description": "Information about accessible desk availability",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "rooms_has_induction_loop": "{boolean, select, false{Pomieszczenie nie jest wyposażone w pętle indukcyjną, system FM ani tłumacza języka migowego.} true{Pomieszczenie jest wyposażone w} other{}}",
+  "@rooms_has_induction_loop": {
+    "description": "Information about assistive listening systems",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "rooms_is_space_under_counter": "{boolean, select, true{Ogólnodostępny blat, biurko lub stolik jest dostępny dla osób poruszających się na wózkach.} false{Ogólnodostępny blat, biurko lub stolik nie ma zapewnionego miejsca na kolana i wjechanie wózkiem.} other{}}",
+  "@rooms_is_space_under_counter": {
+    "description": "Information about wheelchair access under counters",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "rooms_is_good_floor_room_contrast": "{boolean, select, false{Kontrast kolorów w pomieszczeniu jest niski.} true{Kontrast kolorów w pomieszczeniu jest wyraźny.} other{}}",
+  "@rooms_is_good_floor_room_contrast": {
+    "description": "Information about room color contrast",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "rooms_is_good_lit": "{boolean, select, false{Poziom oświetlenia w pomieszczeniu nie jest odpowiedni.} true{Poziom oświetlenia w pomieszczeniu jest odpowiedni.} other{}}",
+  "@rooms_is_good_lit": {
+    "description": "Information about room lighting quality",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "rooms_is_floor_shiny": "{boolean, select, false{Podłoga w pomieszczeniu nie jest błyszcząca i nie powoduje ona odblasków.} true{W pomieszczeniu znajduje się podłoga, która jest błyszcząca i może powodować odblaski lub wyglądać na śliską.} other{}}",
+  "@rooms_is_floor_shiny": {
+    "description": "Information about room floor shininess",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "rooms_is_blackboard": "{boolean, select, true{W pomieszczeniu znajduje się tablica, w odległości {distance} od miejsca siedzącego} other{}}",
   "@rooms_is_blackboard": {
     "description": "",
@@ -343,82 +1524,438 @@
     }
   },
   "rooms_are_movable_elements": "{boolean, select, false{W pomieszczeniu nie znajdują się inne stałe lub ruchome elementy stanowiące zagrożenie lub też potencjalne problemy w poruszaniu się.} true{W pomieszczeniu znajdują się inne stałe lub ruchome elementy stanowiące zagrożenie lub też potencjalne problemy w poruszaniu się.} other{}}",
+  "@rooms_are_movable_elements": {
+    "description": "Information about presence of hazardous movable elements in room",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "rooms_are_flashing_devices": "{boolean, select, false{W pomieszczeniu nie znajdują się żadne urządzenia migające ani błyszczące mogące wywołać atak epilepsji.} true{W pomieszczeniu znajdują się urządzenia migające lub błyszczące mogące wywołać atak epilepsji.} other{}}",
+  "@rooms_are_flashing_devices": {
+    "description": "Information about presence of flashing devices in room",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "rooms_are_places_accessible_from_main_entrance": "{boolean, select, false{Miejsca dedykowane osobom poruszającym się na wózkach nie są dostępne z głównego wejścia do pomieszczenia.} true{Miejsca dedykowane osobom poruszającym się na wózkach są dostępne z głównego wejścia do pomieszczenia.} other{}}",
+  "@rooms_are_places_accessible_from_main_entrance": {
+    "description": "Information about wheelchair accessibility from main entrance",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "rooms_are_electrical_outlets": "{boolean, select, false{Gniazdka elektryczne i inne włączniki w pomieszczeniu znajdują się na wysokości większej niż 110 centymetrów.} true{Gniazdka elektryczne i inne włączniki w pomieszczeniu są dostępne i znajdują się na wysokości maksymalnie 110 centymetrów.} other{}}",
+  "@rooms_are_electrical_outlets": {
+    "description": "Information about accessibility of electrical outlets and switches",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "are_objects_narrow_communication_zone": "Przedmioty {boolean, select, false{nie zwężają przejścia} true{zwężają przejście} other{}}",
+  "@are_objects_narrow_communication_zone": {
+    "description": "Information about objects narrowing passageways",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "are_information_boards": "Tablice informacyjne{boolean, select, false{ nie} true{} other{}} są dostępne",
+  "@are_information_boards": {
+    "description": "Information about availability of information boards",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "are_information_boards_in_en": "Tablice informacyjne{boolean, select, false{ nie} true{} other{}} są dostępne po angielsku",
+  "@are_information_boards_in_en": {
+    "description": "Information about availability of English information boards",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "are_room_entrances": "{boolean, select, false{Nie z} true{Z} other{Z}}najdują się wejścia do pomieszczeń",
+  "@are_room_entrances": {
+    "description": "Information about presence of room entrances",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "are_floor_markings": "{boolean, select, false{Nie z} true{Z} other{Z}}najdują się oznaczenia podłogowe",
+  "@are_floor_markings": {
+    "description": "Information about presence of floor markings",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "is_typhlomap": "Tyflomapa{boolean, select, false{ nie} true{} other{}} jest dostępna",
+  "@is_typhlomap": {
+    "description": "Information about availability of tactile map",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "strategicBadgeTooltip": "Koło Strategiczne PWr",
+  "@strategicBadgeTooltip": {
+    "description": "Tooltip text for strategic badge"
+  },
   "strategic_club_abbr": "KS",
+  "@strategic_club_abbr": {
+    "description": "Abbreviation for Strategic Science Club"
+  },
   "emptySection": "Brak członków zespołu w tej wersji",
+  "@emptySection": {
+    "description": "Message shown when no team members are available"
+  },
   "digital_guide_offline": "Cyfrowego Przewodnika",
+  "@digital_guide_offline": {
+    "description": "Title for offline digital guide"
+  },
   "communique": "Komunikat",
+  "@communique": {
+    "description": "Label for announcement section"
+  },
   "audio_message": "Komunikat Dźwiękowy",
+  "@audio_message": {
+    "description": "Label for audio message"
+  },
   "audio_message_comment": "Sygnał znacznika może różnić się tempem i brzmieniem",
+  "@audio_message_comment": {
+    "description": "Note about beacon signal variations"
+  },
   "platforms": "Podesty",
+  "@platforms": {
+    "description": "Label for platforms section"
+  },
   "key_information": "Najważniejsze informacje",
+  "@key_information": {
+    "description": "Label for key information section"
+  },
   "entrance_number_of_doors": "{value, plural, =0{Brak drzwi przy wejściu.} other{W obrębie wejścia znajdują się {value} drzwi.}}",
+  "@entrance_number_of_doors": {
+    "description": "Information about number of entrance doors",
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
   "entrance_doors_distance": "Odległość między drzwiami wynosi {value} cm.",
+  "@entrance_doors_distance": {
+    "description": "Information about distance between entrance doors",
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
   "entrance_has_sound_transmitter": "{boolean, select, false{Przy wejściu nie znajduje się znacznik dźwiękowy systemu nawigacyjno-informacyjnego} true{Przy wejściu znajduje się znacznik dźwiękowy systemu nawigacyjno-informacyjnego} other{}}",
+  "@entrance_has_sound_transmitter": {
+    "description": "Information about presence of sound transmitter at entrance",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "entrance_has_tactile_paving": "{boolean, select, false{Przed wejściem nie znajdują się ścieżki naprowadzające} true{Przed wejściem znajdują się ścieżki naprowadzające} other{}}",
+  "@entrance_has_tactile_paving": {
+    "description": "Information about presence of tactile paving at entrance",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "entrance_is_main": "{boolean, select, false{To nie jest wejście główne} true{To jest wejście główne} other{}}",
+  "@entrance_is_main": {
+    "description": "Information about whether entrance is main entrance",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "entrance_is_accessible": "{boolean, select, true{Wejście jest dostępne} false{Wejście nie jest dostępne} other{}}",
+  "@entrance_is_accessible": {
+    "description": "Information about entrance accessibility",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "entrance_is_for_personel": "{boolean, select, false{Wejście nie wymaga specjalnych uprawnień} true{Wejście wymaga specjalnych uprawnień} other{}}",
+  "@entrance_is_for_personel": {
+    "description": "Information about entrance access permissions",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "entrance_is_building_marked_from_entrance": "{boolean, select, false{Budynek nie jest wyraźnie oznaczony od strony wejścia} true{Budynek jest wyraźnie oznaczony od strony wejścia} other{}}",
+  "@entrance_is_building_marked_from_entrance": {
+    "description": "Information about building marking visibility from entrance",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "entrance_is_building_marked_in_en": "{boolean, select, false{Budynek nie jest oznaczony w języku angielskim} true{Budynek jest oznaczony w języku angielskim} other{}}",
+  "@entrance_is_building_marked_in_en": {
+    "description": "Information about English building labeling",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "entrance_is_lit": "{boolean, select, false{Wejście nie jest oświetlone po zmroku} true{Wejście jest oświetlone po zmroku} other{}}",
+  "@entrance_is_lit": {
+    "description": "Information about entrance lighting",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "entrance_is_emergency_exit": "{boolean, select, false{Wejście nie jest ewakuacyjne} true{Wejście jest ewakuacyjne} other{}}",
+  "@entrance_is_emergency_exit": {
+    "description": "Information about emergency exit status",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "entrance_is_protection_from_weather": "{boolean, select, false{Wejście nie jest chronione przed warunkami atmosferycznymi} true{Wejście jest chronione przed warunkami atmosferycznymi} other{}}",
+  "@entrance_is_protection_from_weather": {
+    "description": "Information about weather protection at entrance",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "entrance_is_solid_surface": "{boolean, select, false{Teren przed wejściem nie jest równy} true{Teren przed wejściem jest równy} other{}}",
+  "@entrance_is_solid_surface": {
+    "description": "Information about surface evenness in front of entrance",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "entrance_are_different_types_of_surface": "{boolean, select, false{Przy wejściu nie występują różne typy powierzchni} true{Przy wejściu występują różne typy powierzchni} other{}}",
+  "@entrance_are_different_types_of_surface": {
+    "description": "Information about surface types at entrance",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "entrance_are_benches": "{boolean, select, false{Przed wejściem nie znajdują się ławki} true{Przed wejściem znajdują się ławki} other{}}",
+  "@entrance_are_benches": {
+    "description": "Information about presence of benches at entrance",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "motorImpairment": "Dysfunkcja ruchu",
+  "@motorImpairment": {
+    "description": "Label for motor impairment accessibility profile"
+  },
   "hearingImpairment": "Dysfunkcja słuchu",
+  "@hearingImpairment": {
+    "description": "Label for hearing impairment accessibility profile"
+  },
   "visualImpairment": "Dysfunkcja wzroku",
+  "@visualImpairment": {
+    "description": "Label for visual impairment accessibility profile"
+  },
   "blind": "Niewidomy",
+  "@blind": {
+    "description": "Label for blind accessibility profile"
+  },
   "lowVision": "Słabo widzący",
+  "@lowVision": {
+    "description": "Label for low vision accessibility profile"
+  },
   "sensorySensitivity": "Wrażliwość sensoryczna",
+  "@sensorySensitivity": {
+    "description": "Label for sensory sensitivity accessibility profile"
+  },
   "cognitiveImpairment": "Trudności poznawcze",
+  "@cognitiveImpairment": {
+    "description": "Label for cognitive impairment accessibility profile"
+  },
   "accessibility_profiles": "Profile dostępności",
+  "@accessibility_profiles": {
+    "description": "Title for accessibility profiles section"
+  },
   "additional_information": "Dodatkowe informacje",
+  "@additional_information": {
+    "description": "Label for additional information section"
+  },
   "no_lodge_in_the_building": "W tym budynku nie ma portierni",
+  "@no_lodge_in_the_building": {
+    "description": "Message about absence of reception"
+  },
   "no_dressing_room_in_the_building": "W tym budynku nie ma szatni",
+  "@no_dressing_room_in_the_building": {
+    "description": "Message about absence of cloakroom"
+  },
   "general_offline": "pobierania danych",
+  "@general_offline": {
+    "description": "Label for offline data download"
+  },
   "floors_served_by_lift": "Piętra obsługiwane przez windę",
+  "@floors_served_by_lift": {
+    "description": "Label for floors served by elevator"
+  },
   "dimensions": "Wymiary",
+  "@dimensions": {
+    "description": "Label for dimensions section"
+  },
   "max_capacity": "Maksymalny udźwig",
+  "@max_capacity": {
+    "description": "Label for maximum load capacity"
+  },
   "generic_error_message": "Upsss...Coś poszło nie tak",
+  "@generic_error_message": {
+    "description": "Generic error message"
+  },
   "public_transport": "Publiczny środek komunikacji miejskiej (autobus, tramwaj)",
+  "@public_transport": {
+    "description": "Label for public transportation"
+  },
   "private_transport": "Prywatny środek transportu (samochód, rower)",
+  "@private_transport": {
+    "description": "Label for private transportation"
+  },
   "distance": " W odległości ",
+  "@distance": {
+    "description": "Label for distance measurement"
+  },
   "meters_abbrev": " m. ",
+  "@meters_abbrev": {
+    "description": "Abbreviation for meters"
+  },
   "bicycle_path_leads_to_building": "Do budynku prowadzi ścieżka rowerowa. ",
+  "@bicycle_path_leads_to_building": {
+    "description": "Information about bicycle path access"
+  },
   "transport_lines": "Linie komunikacji miejskiej: ",
+  "@transport_lines": {
+    "description": "Label for public transport lines"
+  },
   "pass_traffic_lights": "Do przystanku prowadzą przejścia z sygnalizacją świetlną. ",
+  "@pass_traffic_lights": {
+    "description": "Information about traffic light crosswalks"
+  },
   "no_pass_traffic_lights": "Do przystanku prowadzą przejścia bez sygnalizacji świetlnej. ",
+  "@no_pass_traffic_lights": {
+    "description": "Information about crosswalks without traffic lights"
+  },
   "nearest_public_transport_stop": "Najbliższy przystanek komunikacji miejskiej to ",
+  "@nearest_public_transport_stop": {
+    "description": "Label for nearest public transport stop"
+  },
   "nearest_public_transport_stop_alt": "Alternatywny przystanek komunikacji miejskiej to ",
+  "@nearest_public_transport_stop_alt": {
+    "description": "Label for alternative public transport stop"
+  },
   "chose_the_path": "Gdzie można dotrzeć obierając drogę ",
+  "@chose_the_path": {
+    "description": "Label for route selection"
+  },
   "you_can_adjust": "Możesz dostosować informacje pod swoje specjalne potrzeby",
+  "@you_can_adjust": {
+    "description": "Message about information customization"
+  },
   "navigate_to_building": "Nawiguj do budynku",
+  "@navigate_to_building": {
+    "description": "Label for building navigation"
+  },
   "working_hours": "Godziny otwarcia",
+  "@working_hours": {
+    "description": "Label for opening hours"
+  },
   "rooms_distribution": "Rozkład pomieszczeń:",
+  "@rooms_distribution": {
+    "description": "Label for room layout"
+  },
   "region_location": "Lokalizacja strefy:",
+  "@region_location": {
+    "description": "Label for zone location"
+  },
   "region_prefix": "Wskazana strefa budynku",
+  "@region_prefix": {
+    "description": "Label for designated building zone"
+  },
   "level": "Piętro",
+  "@level": {
+    "description": "Label for floor level"
+  },
   "region": "Strefa",
+  "@region": {
+    "description": "Label for zone"
+  },
   "stairs": "Schody",
+  "@stairs": {
+    "description": "Label for stairs"
+  },
   "lodge": "Portiernia",
+  "@lodge": {
+    "description": "Label for reception"
+  },
   "dressing_room": "Szatnia",
+  "@dressing_room": {
+    "description": "Label for cloakroom"
+  },
   "men_toilet": "Toaleta męska",
+  "@men_toilet": {
+    "description": "Label for men's restroom"
+  },
   "women_toilet": "Toaleta damska",
+  "@women_toilet": {
+    "description": "Label for women's restroom"
+  },
   "ramp": "Pochylnia",
+  "@ramp": {
+    "description": "Label for ramp"
+  },
   "lift": "Winda",
+  "@lift": {
+    "description": "Label for elevator"
+  },
   "parking": "Parking",
+  "@parking": {
+    "description": "Label for parking"
+  },
   "lift_width_text": "Szerokość drzwi wynosi {width} centymetrów.",
   "@lift_width_text": {
     "placeholders": {
@@ -428,6 +1965,9 @@
     }
   },
   "lift_dimensions_text": "Wymiary windy wynoszą",
+  "@lift_dimensions_text": {
+    "description": "Information about elevator's dimensions"
+  },
   "lift_control_panel_inside": "Panel sterujący w windzie znajduje się na wysokości {height} centymetrów.",
   "@lift_control_panel_inside": {
     "placeholders": {
@@ -445,39 +1985,296 @@
     }
   },
   "lift_is_mirror": "{boolean, select, true{W windzie znajduje się lustro ułatwiające wysiadanie.} false{W windzie nie znajduje się lustro ułatwiające wysiadanie.} other{}}",
+  "@lift_is_mirror": {
+    "description": "Indicates whether the elevator has a mirror for easier exit",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "lift_info_board_text": "{boolean, select, true{Winda jest oznaczona tablicą informacyjną.} false{Winda nie jest oznaczona tablicą informacyjną.} other{}}",
+  "@lift_info_board_text": {
+    "description": "Indicates whether the elevator has an information board",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "lift_is_voice_comunicates": "{boolean, select, false{Winda nie wydaje komunikatów głosowych.} true{Winda wydaje komunikaty głosowe.} other{}}",
+  "@lift_is_voice_comunicates": {
+    "description": "Indicates whether the elevator provides voice announcements",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "lift_with_voice_comunicates": "{boolean, select, false{Winda nie wydaje komunikatów głosowych.} true{Winda wydaje komunikaty głosowe.} other{}}",
+  "@lift_with_voice_comunicates": {
+    "description": "Indicates whether the elevator provides voice announcements",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "lift_with_inside_braile_comunicates": "{boolean, select, false{Przyciski wewnątrz windy nie posiadają oznaczeń w języku Braille'a.} true{Przyciski wewnątrz windy posiadają oznaczenia w języku Braille'a.} other{}}",
+  "@lift_with_inside_braile_comunicates": {
+    "description": "Indicates whether the elevator buttons have Braille markings",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "lift_button_are_convex": "{boolean, select, false{Przyciski na panelu wewnątrz windy nie są wypukłe.} true{Przyciski na panelu wewnątrz windy są wypukłe.} other{}}",
+  "@lift_button_are_convex": {
+    "description": "Indicates whether the elevator buttons are convex",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "lift_is_with_outside_notification": "{boolean, select, false{Podczas oczekiwania na windę nie jest wydawane dźwiękowe powiadomienie o jej przyjechaniu.} true{Podczas oczekiwania na windę jest wydawane dźwiękowe powiadomienie o jej przyjechaniu.} other{}}",
+  "@lift_is_with_outside_notification": {
+    "description": "Indicates whether there is an audible notification when the elevator arrives",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "lift_is_with_inside_notification": "{boolean, select, false{Podczas jazdy windą nie jest wydawane dźwiękowe powiadomienie o dojechaniu na wybrane piętro.} true{Podczas jazdy windą jest wydawane dźwiękowe powiadomienie o dojechaniu na wybrane piętro.} other{}}",
+  "@lift_is_with_inside_notification": {
+    "description": "Indicates whether there is an audible notification when arriving at the selected floor",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "lift_is_door_good_contrast": "{boolean, select, false{Drzwi windy nie kontrastują ze ścianą.} true{Drzwi windy kontrastują ze ścianą.} other{}}",
+  "@lift_is_door_good_contrast": {
+    "description": "Indicates whether the elevator doors have good contrast with the wall",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "lift_is_inside_lit": "{boolean, select, false{Poziom oświetlenia wewnątrz windy nie jest odpowiedni.} true{Poziom oświetlenia wewnątrz windy jest odpowiedni.} other{}}",
+  "@lift_is_inside_lit": {
+    "description": "Indicates whether the elevator has adequate lighting",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "is_lift_floor_info": "{boolean, select, false{Winda nie wyświetla informacji o numerze piętra.} true{Winda wyświetla informacje o numerze piętra, na którym się aktualnie znajduje.} other{}}",
+  "@is_lift_floor_info": {
+    "description": "Indicates whether the elevator displays floor information",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "platform_dimensions": "Wymiary podestu wynoszą ",
+  "@platform_dimensions": {
+    "description": "Information about platform dimensions"
+  },
   "canteen": "Stołówka: ",
+  "@canteen": {
+    "description": "Label for canteen information"
+  },
   "cafe": "Kawiarnia: ",
+  "@cafe": {
+    "description": "Label for cafe information"
+  },
   "toilet_is_need_authorization": "{boolean, select, false{Nie jest wymagana autoryzacja.} true{Wymagana jest autoryzacja.} other{}}",
+  "@toilet_is_need_authorization": {
+    "description": "Indicates whether authorization is required to use the toilet",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "toilet_is_wastebasket": "{boolean, select, false{Nie ma kosza na śmieci.} true{Znajduje się kosz na śmieci.} other{}}",
+  "@toilet_is_wastebasket": {
+    "description": "Indicates whether the toilet has a wastebasket",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "toilet_are_clothes_hooks": "{boolean, select, false{Nie ma wieszaków na ubrania.} true{Znajdują się wieszaki na ubrania.} other{}}",
+  "@toilet_are_clothes_hooks": {
+    "description": "Indicates whether the toilet has clothes hooks",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "toilet_is_hand_dryer": "{boolean, select, false{Nie ma suszarki do rąk.} true{Znajduje się suszarka do rąk.} other{}}",
+  "@toilet_is_hand_dryer": {
+    "description": "Indicates whether the toilet has a hand dryer",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "toilet_is_towel_dispenser": "{boolean, select, false{Nie ma dozownika na ręczniki.} true{Znajduje się dozownik na ręczniki.} other{}}",
+  "@toilet_is_towel_dispenser": {
+    "description": "Indicates whether the toilet has a towel dispenser",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "toilet_is_washbasin": "{boolean, select, false{Nie ma umywalki.} true{Znajduje się umywalka.} other{}}",
+  "@toilet_is_washbasin": {
+    "description": "Indicates whether the toilet has a washbasin",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "toilet_is_space_under_washbasin_for_wheelchair": "{boolean, select, false{Brak przestrzeni pod umywalką na wózek inwalidzki.} true{Jest przestrzeń pod umywalką na wózek inwalidzki.} other{}}",
+  "@toilet_is_space_under_washbasin_for_wheelchair": {
+    "description": "Information about wheelchair space under washbasin",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "toilet_is_light_switch": "{boolean, select, false{Nie ma włącznika światła.} true{Znajduje się włącznik światła.} other{}}",
+  "@toilet_is_light_switch": {
+    "description": "Information about light switch in toilet",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "toilet_is_good_lit": "{boolean, select, false{Oświetlenie jest niewystarczające.} true{Oświetlenie jest dobre.} other{}}",
+  "@toilet_is_good_lit": {
+    "description": "Information about lighting in toilet",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "toilet_is_good_devices_wall_contrast": "{boolean, select, false{Urządzenia nie wyróżniają się na tle ściany.} true{Urządzenia wyróżniają się na tle ściany.} other{}}",
+  "@toilet_is_good_devices_wall_contrast": {
+    "description": "Information about fixtures-wall contrast in toilet",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "transport_are_pass_traffic_lights": "{boolean, select, false{Na drodze z przystanku do wejścia do budynku nie występuje przejście dla pieszych z sygnalizacją świetlną.} true{Na drodze z przystanku do wejścia do budynku występuje przejście dla pieszych z sygnalizacją świetlną.} other{}}",
+  "@transport_are_pass_traffic_lights": {
+    "description": "Information about presence of traffic light crossings from stop to entrance",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "transport_are_not_pass_traffic_lights": "{boolean, select, false{Na drodze z przystanku do wejścia do budynku nie występuje przejście dla pieszych bez sygnalizacji świetlnej.} true{Na drodze z przystanku do wejścia do budynku występuje przejście dla pieszych bez sygnalizacji świetlnej.} other{}}",
+  "@transport_are_not_pass_traffic_lights": {
+    "description": "Information about presence of non-traffic light crossings from stop to entrance",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "transport_wheelchair_obstacles": "{boolean, select, true{Na drodze z przystanku do wejścia do budynku znajdują się przeszkody dla osoby poruszającej się na wózku:} false{Na drodze z przystanku do wejścia do budynku nie znajdują się przeszkody dla osoby poruszającej się na wózku.} other{}}",
+  "@transport_wheelchair_obstacles": {
+    "description": "Information about wheelchair obstacles from stop to entrance",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "transport_alt_are_pass_traffic_lights": "{boolean, select, false{Na drodze z alternatywnego przystanku do wejścia do budynku nie występuje przejście dla pieszych z sygnalizacją świetlną.} true{Na drodze z alternatywnego przystanku do wejścia do budynku występuje przejście dla pieszych z sygnalizacją świetlną.} other{}}",
+  "@transport_alt_are_pass_traffic_lights": {
+    "description": "Information about presence of traffic light crossings from alternative stop to entrance",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "transport_alt_are_not_pass_traffic_lights": "{boolean, select, false{Na drodze z alternatywnego przystanku do wejścia do budynku nie występuje przejście dla pieszych bez sygnalizacji świetlnej.} true{Na drodze z alternatywnego przystanku do wejścia do budynku występuje przejście dla pieszych bez sygnalizacji świetlnej.} other{}}",
+  "@transport_alt_are_not_pass_traffic_lights": {
+    "description": "Information about presence of non-traffic light crossings from alternative stop to entrance",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "transport_alt_wheelchair_obstacles": "{boolean, select, true{Na drodze z przystanku alternatywnego do wejścia do budynku znajdują się przeszkody dla osoby poruszającej się na wózku:} false{Na drodze z przystanku alternatywnego do wejścia do budynku nie znajdują się przeszkody dla osoby poruszającej się na wózku.} other{}}",
+  "@transport_alt_wheelchair_obstacles": {
+    "description": "Information about wheelchair obstacles from alternative stop to entrance",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "transport_obstacles_for_blind": "{boolean, select, true{Na drodze z przystanku do wejścia do budynku znajdują się przeszkody dla osoby niewidomej:} false{Na drodze z przystanku do wejścia do budynku nie znajdują się przeszkody dla osoby niewidomej.} other{}}",
+  "@transport_obstacles_for_blind": {
+    "description": "Information about obstacles for blind people from stop to entrance",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "transport_alt_obstacles_for_blind": "{boolean, select, true{Na drodze z przystanku do wejścia do budynku znajdują się przeszkody dla osoby niewidomej:} false{Na drodze z przystanku do wejścia do budynku nie znajdują się przeszkody dla osoby niewidomej.} other{}}",
+  "@transport_alt_obstacles_for_blind": {
+    "description": "Information about obstacles for blind people from alternative stop to entrance",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "transport_facilities_for_blind": "{boolean, select, true{Na drodze z przystanku do wejścia do budynku znajdują się udogodnienia dla osoby niewidomej:} false{Na drodze z przystanku do wejścia do budynku nie znajdują się udogodnienia dla osoby niewidomej.} other{}}",
+  "@transport_facilities_for_blind": {
+    "description": "Information about facilities for blind people from stop to entrance",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "transport_alt_facilities_for_blind": "{boolean, select, true{Na drodze z przystanku alternatywnego do wejścia do budynku znajdują się udogodnienia dla osoby niewidomej:} false{Na drodze z przystanku alternatywnego do wejścia do budynku nie znajdują się udogodnienia dla osoby niewidomej.} other{}}",
+  "@transport_alt_facilities_for_blind": {
+    "description": "Information about facilities for blind people from alternative stop to entrance",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "transport_closest_parking_for_disabled": "Najbliższe miejsce parkingowe dla osób z niepełnosprawnością znajduje się {comment} metrów od wejścia dostępnego",
   "@transport_closest_parking_for_disabled": {
     "description": "comment",
@@ -488,27 +2285,183 @@
     }
   },
   "railing_is_railing_on_landings": "{boolean, select, false{Brak poręczy na podestach.} true{Poręcze są zamontowane na podestach.} other{}}",
+  "@railing_is_railing_on_landings": {
+    "description": "Information about presence of railings on landings",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "railing_is_two_sided_railing": "{boolean, select, false{Poręcze nie są dwustronne.} true{Poręcze są dwustronne.} other{}}",
+  "@railing_is_two_sided_railing": {
+    "description": "Information about whether railings are double-sided",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "railing_is_braille_convex_marking": "{boolean, select, false{Brak oznaczeń w alfabecie Braille'a lub wypukłych.} true{Obecne są oznaczenia w alfabecie Braille'a lub wypukłe.} other{}}",
+  "@railing_is_braille_convex_marking": {
+    "description": "Information about presence of Braille or convex markings on railings",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "railing_is_good_railing_contrast": "{boolean, select, false{Brak dobrego kontrastu poręczy.} true{Poręcze mają dobry kontrast.} other{}}",
+  "@railing_is_good_railing_contrast": {
+    "description": "Information about contrast of railings",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "railing_is_round_cross_section_railing": "{boolean, select, false{Poręcze nie mają okrągłego przekroju.} true{Poręcze mają okrągły przekrój.} other{}}",
+  "@railing_is_round_cross_section_railing": {
+    "description": "Information about railing cross-section shape",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "railing_is_railing_extended_30cm": "{boolean, select, false{Poręcze nie są przedłużone o 30 cm.} true{Poręcze są przedłużone o 30 cm.} other{}}",
+  "@railing_is_railing_extended_30cm": {
+    "description": "Information about railing extension length",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "railing_is_railing_obstacle": "{boolean, select, false{Poręcze nie stanowią przeszkody.} true{Poręcze stanowią przeszkodę.} unknown{Nie wiadomo, czy poręcze stanowią przeszkodę.} other{}}",
+  "@railing_is_railing_obstacle": {
+    "description": "Information about whether railings pose an obstacle",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "railing_height": "{value, plural, =0{Brak informacji o wysokości poręczy.} one{Poręcz ma {value} cm wysokości.} other{Poręcze mają {value} cm wysokości.}}",
+  "@railing_height": {
+    "description": "Information about railing height",
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
   "railing": "Poręcz",
+  "@railing": {
+    "description": "Label for railing section"
+  },
   "ramps_is_ramp_marked": "{boolean, select, false{Pochylnia nie jest oznakowana.} true{Pochylnia jest oznakowana.} other{}}",
+  "@ramps_is_ramp_marked": {
+    "description": "Information about ramp marking",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "ramps_is_increased_force_needed": "{boolean, select, false{Nie jest potrzebna zwiększona siła do pokonania pochylni} true{Do pokonania pochylni potrzebna jest zwiększona siła.} other{}}",
+  "@ramps_is_increased_force_needed": {
+    "description": "Information about force needed to use ramp",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "ramps_is_permanent_ramp": "{boolean, select, false{Pochylnia nie jest stałym elementem konstrukcyjnym.} true{Pochylnia jest stałym elementem konstrukcyjnym.} other{}}",
+  "@ramps_is_permanent_ramp": {
+    "description": "Information about ramp permanence",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "ramps_is_good_lit": "{boolean, select, false{Oświetlenie jest niewystarczające.} true{Oświetlenie jest dobre.} other{}}",
+  "@ramps_is_good_lit": {
+    "description": "Information about ramp lighting",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "ramps_are_nonslip_elements": "{boolean, select, false{Powierzchnia pochylni nie posiada elementów antypoślizgowych.} true{Powierzchnia pochylni posiada elementy antypoślizgowe.} other{}}",
+  "@ramps_are_nonslip_elements": {
+    "description": "Information about non-slip elements on ramp",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "ramps_width": "Szerokość pochylni wynosi ",
+  "@ramps_width": {
+    "description": "Label for ramp width measurement"
+  },
   "number_of_ramp_landings": "Liczba spoczników: ",
+  "@number_of_ramp_landings": {
+    "description": "Label for number of ramp landings"
+  },
   "dimensions_of_the_landings": "Wymiary spoczników to ",
+  "@dimensions_of_the_landings": {
+    "description": "Label for landing dimensions"
+  },
   "is_marked": "{boolean, select, true{Lokalizacja punktu informacyjnego została wyraźnie oznaczona.} false{Lokalizacja punktu informacyjnego nie została wyraźnie oznaczona.} other{}}",
+  "@is_marked": {
+    "description": "Information about information point marking",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "are_seats_available": "{boolean, select, false{Przy punkcie informacyjnym nie ma miejsc siedzących} true{Przy punkcie informacyjnym znajdują się miejsca siedzące} other{}}",
+  "@are_seats_available": {
+    "description": "Information about seating availability at information point",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "is_space_on_counter": "{boolean, select, true{Na ladzie jest miejsce, aby podpisać dokumenty} false{Na ladzie nie ma miejsca, aby podpisać dokumenty} other{}}",
+  "@is_space_on_counter": {
+    "description": "Information about counter space for signing documents",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "are_access_bariers": "{boolean, select, true{Dostęp do punktu informacyjnego jest dobry. Podłoga jest równa, a w otoczeniu nie ma żadnych przeszkód.} false{Dostęp do punktu informacyjnego może być utrudniony przez nierówną podłogę lub przeszkody w otoczeniu.} other{}}",
+  "@are_access_bariers": {
+    "description": "Information about access barriers to information point",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "is_space_under_counter": "Pod dolną częścią lady {boolean, select, false{nie ma miejsca} true{jest miejsce} other{}} na wjechanie wózkiem.",
+  "@is_space_under_counter": {
+    "description": "Information about wheelchair space under counter",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "counter_heigth_text": "Wysokość lady punktu informacyjnego wynosi {value}",
   "@counter_heigth_text": {
     "placeholders": {
@@ -518,55 +2471,435 @@
     }
   },
   "is_movement_space": "Przy punkcie informacyjnym {boolean, select, false{nie} other{}} jest odpowiednia przestrzeń do poruszania się dla osób z niepełnosprawnościami.",
+  "@is_movement_space": {
+    "description": "Information about movement space at information point",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "is_good_lit_info_point": "Punkt informacyjny {boolean, select, false{nie} other{}} jest odpowiednio oświetlony.",
+  "@is_good_lit_info_point": {
+    "description": "Information about lighting at information point",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "is_visible_from_afar": "Punkt informacyjny {boolean, select, false{nie} other{}} jest widoczny z dużej odległości. Lada {boolean, select, false{nie} other{}} wyróżnia się na tle otoczenia.",
+  "@is_visible_from_afar": {
+    "description": "Information about visibility of information point",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "has_sound_transmitter": "Pomieszczenie {boolean, select, false{nie} other{}} jest wyposażone w pętle indukcyjną, system FM ani tłumacza języka migowego.",
+  "@has_sound_transmitter": {
+    "description": "Information about sound transmission equipment",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "information_point": "Punkt Informacyjny",
+  "@information_point": {
+    "description": "Label for information point section"
+  },
   "dressing_room_is_marked": "{boolean, select, false{Lada nie jest oznaczona.} true{Lada jest oznaczona.} other{}}",
+  "@dressing_room_is_marked": {
+    "description": "Information about dressing room counter marking",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "dressing_room_is_visible_from_afar": "{boolean, select, false{Lada nie jest widoczna z daleka.} true{Lada jest widoczna z daleka.} other{}}",
+  "@dressing_room_is_visible_from_afar": {
+    "description": "Information about visibility of dressing room counter",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "dressing_room_are_access_barriers": "{boolean, select, false{Brak barier w dostępie do lady.} true{Występują bariery w dostępie do lady.} other{}}",
+  "@dressing_room_are_access_barriers": {
+    "description": "Information about access barriers to dressing room counter",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "dressing_room_are_seats_available": "{boolean, select, false{Brak miejsc siedzących przy ladzie.} true{Przy ladzie dostępne są miejsca siedzące.} other{}}",
+  "@dressing_room_are_seats_available": {
+    "description": "Information about seating availability at dressing room counter",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "dressing_room_is_movement_space": "{boolean, select, false{Brak przestrzeni manewrowej przy ladzie.} true{Przy ladzie dostępna jest przestrzeń manewrowa.} other{}}",
+  "@dressing_room_is_movement_space": {
+    "description": "Information about movement space at dressing room counter",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "dressing_room_is_good_lit": "{boolean, select, false{Lada nie jest dobrze oświetlona.} true{Lada jest dobrze oświetlona.} other{}}",
+  "@dressing_room_is_good_lit": {
+    "description": "Information about lighting at dressing room counter",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "dressing_room_counter_height": "{value, plural, =0{Wysokość lady nie została określona.} other{Wysokość lady wynosi {value} cm.}}",
+  "@dressing_room_counter_height": {
+    "description": "Information about dressing room counter height",
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
   "dressing_room_counter_is_space_under": "{boolean, select, false{Pod ladą nie ma wolnej przestrzeni.} true{Pod ladą znajduje się wolna przestrzeń.} other{}}",
+  "@dressing_room_counter_is_space_under": {
+    "description": "Information about space under dressing room counter",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "dressing_room_counter_is_space_on": "{boolean, select, false{Na ladzie nie ma wolnej przestrzeni.} true{Na ladzie znajduje się wolna przestrzeń.} other{}}",
+  "@dressing_room_counter_is_space_on": {
+    "description": "Information about space on dressing room counter",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "corridor": "Korytarz",
+  "@corridor": {
+    "description": "Label for corridor section"
+  },
   "corridor_simple_layout_text": "{boolean, select, false{Układ korytarza nie jest prosty, czytelny ani powtarzalny na każdej kondygnacji.} true{Korytarz ma prosty i przejrzysty układ, który jest powtarzalny na każdej kondygnacji.} other{}}",
+  "@corridor_simple_layout_text": {
+    "description": "Information about corridor layout",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "corridor_floor_marked": "{boolean, select, false{Korytarz nie jest oznakowany. Nie ma widocznego numeru piętra.} true{Korytarz jest oznakowany. Widoczny jest numer piętra.} other{}}",
+  "@corridor_floor_marked": {
+    "description": "Information about corridor floor marking",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "corridor_room_entrances": "{boolean, select, false{Z korytarza nie ma możliwości wejścia do żadnego pomieszczenia.} true{Z korytarza możliwe jest wejście do następujących pomieszczeń:} other{}}",
+  "@corridor_room_entrances": {
+    "description": "Information about room entrances from corridor",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "corridor_information_board": "{boolean, select, false{W korytarzu nie ma tablicy informacyjnej ze spisem pomieszczeń.} true{W korytarzu znajduje się tablica informacyjna ze spisem pomieszczeń.} other{}}",
+  "@corridor_information_board": {
+    "description": "Information about corridor information board",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "corridor_room_purpose_described_in_en": "{boolean, select, false{Funkcje pomieszczeń nie są opisane w języku angielskim.} true{Funkcje pomieszczeń są opisane w języku angielskim.} other{}}",
+  "@corridor_room_purpose_described_in_en": {
+    "description": "Information about English descriptions of room purposes",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "corridor_consistent_level_color_pattern": "{boolean, select, false{Kolor, wzór i krój oznakowania pomieszczeń nie są spójne dla całego piętra.} true{Kolor, wzór i krój oznakowania pomieszczeń są spójne dla całego piętra.} other{}}",
+  "@corridor_consistent_level_color_pattern": {
+    "description": "Information about consistency of room signage",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "corridor_pictorial_directional_signs": "{boolean, select, false{W kluczowych punktach korytarza nie ma wyraźnych i kontrastowych oznakowań kierunkowych.} true{W kluczowych punktach korytarza znajdują się wyraźne i kontrastowe oznakowania kierunkowe.} other{}}",
+  "@corridor_pictorial_directional_signs": {
+    "description": "Information about directional signs in corridor",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "corridor_seats": "{boolean, select, false{W korytarzu nie ma miejsc siedzących.} true{W korytarzu znajdują się miejsca siedzące. Są to:} other{}}",
+  "@corridor_seats": {
+    "description": "Information about seating in corridor",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "corridor_vending_machines": "{boolean, select, false{W korytarzu nie ma automatów sprzedających.} true{W korytarzu znajdują się automaty sprzedające.} other{}}",
+  "@corridor_vending_machines": {
+    "description": "Information about vending machines in corridor",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "corridor_emergency_plan": "{boolean, select, false{W korytarzu nie ma planów ewakuacyjnych.} true{W korytarzu znajdują się plany ewakuacyjne.} other{}}",
+  "@corridor_emergency_plan": {
+    "description": "Information about evacuation plans in corridor",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "corridor_typhlomap": "{boolean, select, false{W korytarzu nie jest dostępna tyflomapa.} true{W korytarzu znajduje się tyflomapa.} other{}}",
+  "@corridor_typhlomap": {
+    "description": "Information about typhlomap availability in corridor",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "corridor_dangerous_elements": "{boolean, select, false{W korytarzu nie ma innych stałych lub ruchomych elementów, które mogą stanowić problemy w poruszaniu się.} true{W korytarzu znajdują się inne stałe lub ruchome obiekty mogące stanowić problemy w poruszaniu się. Są to:} other{}}",
+  "@corridor_dangerous_elements": {
+    "description": "Information about dangerous elements in corridor",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "corridor_info_plates_accessible": "{boolean, select, false{Oznakowanie pomieszczeń nie zawiera dodatkowych informacji.} true{Oznakowanie pomieszczeń zawiera dodatkowo:} other{}}",
+  "@corridor_info_plates_accessible": {
+    "description": "Information about accessibility of room signage",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "corridor_horizontal_markings_for_blind": "{boolean, select, false{W korytarzu nie ma oznaczeń poziomych dla osób niewidomych.} true{W korytarzu są oznaczenia poziome dla osób niewidomych.} other{}}",
+  "@corridor_horizontal_markings_for_blind": {
+    "description": "Information about horizontal markings for blind people",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "corridor_plates_with_rooms_list_have_readable_font": "{boolean, select, false{} true{Tablica informacyjna ze spisem pomieszczeń ma czytelny tekst.} other{}}",
+  "@corridor_plates_with_rooms_list_have_readable_font": {
+    "description": "Information about readability of room list text",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "corridor_rooms_marked": "{boolean, select, false{Oznakowanie pomieszczeń nie zawiera dodatkowych informacji.} true{Pomieszczenia w korytarzu są wyraźnie oznakowane.} other{}}",
+  "@corridor_rooms_marked": {
+    "description": "Information about room marking in corridor",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "corridor_pictogram_used": "{boolean, select, false{Informacja wizualna nie wykorzystuje piktogramów.} true{Informacja wizualna wykorzystuje piktogramy.} other{}}",
+  "@corridor_pictogram_used": {
+    "description": "Information about use of pictograms",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "corridor_is_glare": "{boolean, select, false{Podłoga w korytarzu nie błyszczy się.} true{Podłoga w korytarzu może się intensywnie błyszczeć, powodując oślepienie i wygladając na śliską.} other{}}",
+  "@corridor_is_glare": {
+    "description": "Information about floor glare in corridor",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "corridor_good_walls_contrast": "{boolean, select, false{W korytarzu nie ma wyraźnego kontrastu kolorów między ścianami a podłogą.} true{} other{}}",
+  "@corridor_good_walls_contrast": {
+    "description": "Information about wall-floor contrast in corridor",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "corridor_good_lit": "{boolean, select, false{Korytarz nie jest odpowiednio oświetlony.} true{Korytarz jest odpowiednio oświetlony.} other{}}",
+  "@corridor_good_lit": {
+    "description": "Information about corridor lighting",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "corridor_horizontal_markings_for_visually_impaired": "{boolean, select, false{W korytarzu nie ma oznaczeń poziomych dla osób słabowidzących.} true{W korytarzu są oznaczenia poziome dla osób słabowidzących.} other{}}",
+  "@corridor_horizontal_markings_for_visually_impaired": {
+    "description": "Information about horizontal markings for visually impaired",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "corridor_min_width_length": "{boolean, select, false{Szerokość korytarza nie zapewnia pełnej dostępności i wynosi} true{Szerokość korytarza zapewnia pełną dostępność i wynosi minimum 150 centymetrów.} other{}}",
+  "@corridor_min_width_length": {
+    "description": "Information about corridor width",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "corridor_railings": "{boolean, select, false{W korytarzu nie ma poręczy ściennych.} true{W korytarzu znajdują się poręcze ścienne.} other{}}",
+  "@corridor_railings": {
+    "description": "Information about wall railings in corridor",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "corridor_light_switches_sockets_height": "{boolean, select, false{W korytarzu wszystkie włączniki światła i gniazdka elektryczne znajdują się na wysokości powyżej 110 centymetrów.} true{W korytarzu wszystkie włączniki światła i gniazdka elektryczne znajdują się na wysokości maksymalnie 110 centymetrów.} other{}}",
+  "@corridor_light_switches_sockets_height": {
+    "description": "Information about height of light switches and sockets",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "corridor_echo": "{boolean, select, false{Akustyka korytarza nie powoduje powstawania echa, które może utrudniać komunikację.} true{Akustyka korytarza powoduje powstawanie echa, które może utrudniać komunikację.} other{}}",
+  "@corridor_echo": {
+    "description": "Information about corridor acoustics",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "corridor_flashing_device": "{boolean, select, false{W korytarzu nie ma obiektów migających lub błyszczących, które mogą wywołać atak epilepsji.} true{W korytarzu znajdują się obiekty migające lub błyszczące, które mogą wywołać atak epilepsji.} other{}}",
+  "@corridor_flashing_device": {
+    "description": "Information about flashing devices in corridor",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "no_micro_navigation": "There is no micronavigation for this building",
+  "@no_micro_navigation": {
+    "description": "Message about absence of micronavigation"
+  },
   "lodge_access_barriers": "{boolean, select, false{Na drodze dojścia do portierni} true{Na drodze dojścia do portierni podłoga jest równa, a w otoczeniu nie ma żadnych przeszkód.} other{}}",
+  "@lodge_access_barriers": {
+    "description": "Information about access barriers to lodge",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "lodge_movement_space": "{boolean, select, false{Przy portierni nie ma dostępnej odpowiedniej przestrzeni do poruszania się dla osób z niepełnosprawnościami.} true{Przy portierni jest odpowiednia przestrzeń do poruszania się dla osób z niepełnosprawnościami.} other{}}",
+  "@lodge_movement_space": {
+    "description": "Information about movement space at lodge",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "lodge_counter_height": "Wysokość lady portierni wynosi {comment} centymetrów.",
+  "@lodge_counter_height": {
+    "description": "Information about lodge counter height",
+    "placeholders": {
+      "comment": {
+        "type": "String"
+      }
+    }
+  },
   "lodge_space_under_counter": "{boolean, select, false{Pod dolną częścią lady nie ma miejsca na wjechanie wózkiem.} true{Pod dolną częścią lady jest miejsce na wjechanie wózkiem.} other{}}",
+  "@lodge_space_under_counter": {
+    "description": "Information about wheelchair space under lodge counter",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "lodge_visible_from_afar": "{boolean, select, false{Portiernia nie jest widoczna z dużej odległości. Lada nie wyróżnia się na tle otoczenia.} true{Portiernia jest widoczna z dużej odległości. Lada wyróżnia się na tle otoczenia.} other{}}",
+  "@lodge_visible_from_afar": {
+    "description": "Information about visibility of lodge",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "lodge_good_lit": "{boolean, select, false{Portiernia nie jest odpowiednio oświetlona.} true{Portiernia jest odpowiednio oświetlona.} other{}}",
+  "@lodge_good_lit": {
+    "description": "Information about lodge lighting",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "is_elevated_threshold": "W drzwiach{boolean, select, false{ nie} other{}} znajduje się próg. ",
+  "@is_elevated_threshold": {
+    "description": "Information about door threshold",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "elevated_threshold_text": "Jego wysokość wynosi ",
+  "@elevated_threshold_text": {
+    "description": "Label for threshold height"
+  },
   "handle_heigth_text": "Klamka znajduje się na wysokości {value} cm",
   "@handle_heigth_text": {
     "placeholders": {
@@ -576,2341 +2909,6 @@
     }
   },
   "are_glazed": "Drzwi {boolean, select, false{nie } other{}}są przeszklone.",
-  "are_visible": "Między klamką a drzwiami {boolean, select, false{nie } other{}}jest odpowiedni kontrast.",
-  "is_graphic": "Drzwi {boolean, select, false{nie } other{}}są oznakowane.",
-  "is_closure_from_inside": "Drzwi {boolean, select, false{nie } other{}}otwierają się do wewnątrz.",
-  "is_same_opening_system": "Drzwi po obu stronach {boolean, select, false{nie } other{}}otwierają się w identyczny sposób.",
-  "digital_guide_accessibility": "Profile dostępności w cyfrowym przewodniku",
-  "@@last_modified": "2024-03-21",
-  "@polish_id": {
-    "description": "Language code for Polish"
-  },
-  "@english_id": {
-    "description": "Language code for English"
-  },
-  "@polish_title": {
-    "description": "Display title for Polish language with flag emoji"
-  },
-  "@english_title": {
-    "description": "Display title for English language with flag emoji"
-  },
-  "@home_screen_greeting": {
-    "description": "Welcome message shown on the home screen"
-  },
-  "@even_monday": {
-    "description": "Text shown for even week Monday"
-  },
-  "@even_tuesday": {
-    "description": "Text shown for even week Tuesday"
-  },
-  "@even_wednesday": {
-    "description": "Text shown for even week Wednesday"
-  },
-  "@even_thursday": {
-    "description": "Text shown for even week Thursday"
-  },
-  "@even_friday": {
-    "description": "Text shown for even week Friday"
-  },
-  "@even_saturday": {
-    "description": "Text shown for even week Saturday"
-  },
-  "@even_sunday": {
-    "description": "Text shown for even week Sunday"
-  },
-  "@odd_monday": {
-    "description": "Text shown for odd week Monday"
-  },
-  "@odd_tuesday": {
-    "description": "Text shown for odd week Tuesday"
-  },
-  "@odd_wednesday": {
-    "description": "Text shown for odd week Wednesday"
-  },
-  "@odd_thursday": {
-    "description": "Text shown for odd week Thursday"
-  },
-  "@odd_friday": {
-    "description": "Text shown for odd week Friday"
-  },
-  "@odd_saturday": {
-    "description": "Text shown for odd week Saturday"
-  },
-  "@odd_sunday": {
-    "description": "Text shown for odd week Sunday"
-  },
-  "@holiday_monday": {
-    "description": "Text shown for holiday Monday"
-  },
-  "@holiday_tuesday": {
-    "description": "Text shown for holiday Tuesday"
-  },
-  "@holiday_wednesday": {
-    "description": "Text shown for holiday Wednesday"
-  },
-  "@holiday_thursday": {
-    "description": "Text shown for holiday Thursday"
-  },
-  "@holiday_friday": {
-    "description": "Text shown for holiday Friday"
-  },
-  "@holiday_saturday": {
-    "description": "Text shown for holiday Saturday"
-  },
-  "@holiday_sunday": {
-    "description": "Text shown for holiday Sunday"
-  },
-  "@exam_monday": {
-    "description": "Text shown for exam period Monday"
-  },
-  "@exam_tuesday": {
-    "description": "Text shown for exam period Tuesday"
-  },
-  "@exam_wednesday": {
-    "description": "Text shown for exam period Wednesday"
-  },
-  "@exam_thursday": {
-    "description": "Text shown for exam period Thursday"
-  },
-  "@exam_friday": {
-    "description": "Text shown for exam period Friday"
-  },
-  "@exam_saturday": {
-    "description": "Text shown for exam period Saturday"
-  },
-  "@exam_sunday": {
-    "description": "Text shown for exam period Sunday"
-  },
-  "@follow_solvro": {
-    "description": "Call to action for following social media"
-  },
-  "@unknown_day": {
-    "description": "Fallback text when day type is unknown"
-  },
-  "@read_more": {
-    "description": "Button text to expand content"
-  },
-  "@whats_up": {
-    "description": "Casual greeting text"
-  },
-  "@study_circles": {
-    "description": "Title for student organizations section"
-  },
-  "@days": {
-    "description": "Unit of time measurement"
-  },
-  "@to_start_session": {
-    "description": "Text indicating time until session begins"
-  },
-  "@map_button": {
-    "description": "Label for map navigation button"
-  },
-  "@meet_our_team": {
-    "description": "Title for team introduction section"
-  },
-  "@sections": {
-    "description": "Title for sections/faculties list"
-  },
-  "@list": {
-    "description": "Label for list view"
-  },
-  "@departments": {
-    "description": "Title for departments/faculties section"
-  },
-  "@department": {
-    "description": "Singular form of department/faculty"
-  },
-  "@search": {
-    "description": "Label for search functionality"
-  },
-  "@contact": {
-    "description": "Label for contact information"
-  },
-  "@about_us": {
-    "description": "Label for about section"
-  },
-  "@navigate": {
-    "description": "Label for navigation functionality"
-  },
-  "@building_prefix": {
-    "description": "Prefix used before building names"
-  },
-  "@polinka_prefix": {
-    "description": "Prefix used for Polinka-related items"
-  },
-  "@department_not_found": {
-    "description": "Error message when faculty is not found"
-  },
-  "@sci_circle_not_found": {
-    "description": "Error message when student organizations are not found"
-  },
-  "@all": {
-    "description": "Label for showing all items"
-  },
-  "@parkings_title": {
-    "description": "Title for parkings section"
-  },
-  "@parkings_not_found": {
-    "description": "Error message when parking is not found"
-  },
-  "@building_not_found": {
-    "description": "Error message when building is not found"
-  },
-  "@buildings_title": {
-    "description": "Title for buildings section"
-  },
-  "@freePlaces": {
-    "description": "Label for available parking spaces"
-  },
-  "@noChartData": {
-    "description": "Message shown when chart data is not available"
-  },
-  "@offlineParkings": {
-    "description": "Error message when parking data cannot be fetched due to offline status"
-  },
-  "@refresh": {
-    "description": "Label for refresh action"
-  },
-  "@offline_error_message": {
-    "description": "Generic offline error message prefix"
-  },
-  "@offline_try_again": {
-    "description": "Message prompting user to retry later"
-  },
-  "@offline_news": {
-    "description": "Label for offline news data"
-  },
-  "@offline_sci_clubs": {
-    "description": "Label for offline scientific clubs data"
-  },
-  "@offline_buildings": {
-    "description": "Label for offline buildings data"
-  },
-  "@offline_departments": {
-    "description": "Label for offline departments data"
-  },
-  "@offline_academic_calendar": {
-    "description": "Label for offline academic calendar data"
-  },
-  "@offline_about_us": {
-    "description": "Label for offline about us data"
-  },
-  "@offline_department_details": {
-    "description": "Label for offline department details data"
-  },
-  "@offline_guide_details": {
-    "description": "Label for offline guide details data"
-  },
-  "@offline_guide_posts": {
-    "description": "Label for offline guide posts data"
-  },
-  "@offline_changelog": {
-    "description": "Label for offline changelog data"
-  },
-  "@guide": {
-    "description": "Title for guide section"
-  },
-  "@deans_office": {
-    "description": "Label for Dean's Office section"
-  },
-  "@fields_of_study": {
-    "description": "Title for fields of study section"
-  },
-  "@guide_about_us": {
-    "description": "Title for guide's about us section"
-  },
-  "@guide_meet_creators": {
-    "description": "Title for meeting app creators section"
-  },
-  "@guide_not_found": {
-    "description": "Error message when guide entries are not found"
-  },
-  "@first_degree": {
-    "description": "Label for first degree studies"
-  },
-  "@second_degree": {
-    "description": "Label for second degree studies"
-  },
-  "@long_cycle": {
-    "description": "Label for long-cycle master's studies"
-  },
-  "@no_address": {
-    "description": "Message shown when address is not available"
-  },
-  "@student_medias": {
-    "description": "Title for student media section"
-  },
-  "@cultural_agendas": {
-    "description": "Title for cultural agendas section"
-  },
-  "@scientific_cirlces": {
-    "description": "Title for scientific clubs section"
-  },
-  "@student_organizations": {
-    "description": "Title for student organizations section"
-  },
-  "@org_types": {
-    "description": "Title for organization types section"
-  },
-  "@categories": {
-    "description": "Title for categories section"
-  },
-  "@filters": {
-    "description": "Label for filters section"
-  },
-  "@clear": {
-    "description": "Label for clear action"
-  },
-  "@filters_didnt_found_anything": {
-    "description": "Message shown when no filters are found"
-  },
-  "@street_abbreviation": {
-    "description": "Abbreviation for street"
-  },
-  "@bug_report_title": {
-    "description": "Title for bug report form"
-  },
-  "@bug_report_subtitle": {
-    "description": "Subtitle for bug report form"
-  },
-  "@new_feature": {
-    "description": "Label for new feature report type"
-  },
-  "@bug": {
-    "description": "Label for bug report type"
-  },
-  "@praise": {
-    "description": "Label for praise report type"
-  },
-  "@until_the_end_of_the_semester_break": {
-    "description": "Text indicating time until semester break ends"
-  },
-  "@until_the_session_ends": {
-    "description": "Text indicating time until session ends"
-  },
-  "@app_info": {
-    "description": "Label for app information section"
-  },
-  "@show_license": {
-    "description": "Button text to show license information"
-  },
-  "@close": {
-    "description": "Label for close action"
-  },
-  "@no_version": {
-    "description": "Message shown when version information is not available"
-  },
-  "@places_currently_available": {
-    "description": "Label for currently available places"
-  },
-  "@student_councils": {
-    "description": "Title for student councils section"
-  },
-  "@hi_student": {
-    "description": "Greeting message for students"
-  },
-  "@guide_development_info": {
-    "description": "Development status message for guide section"
-  },
-  "@guide_ideas_info": {
-    "description": "Call to action for sharing ideas"
-  },
-  "@guide_subject_default_content": {
-    "description": "Default subject for guide feedback"
-  },
-  "@last_modified": {
-    "description": "Label for last modification date"
-  },
-  "@created_at": {
-    "description": "Label for creation date"
-  },
-  "@apply": {
-    "description": "Label for apply action"
-  },
-  "@changes": {
-    "description": "Title for changes section"
-  },
-  "@version": {
-    "description": "Label for version information"
-  },
-  "@hey_check_out_the_new_features": {
-    "description": "Title for new features announcement"
-  },
-  "@here_you_will_see_what_we_changed_in_the_latest_version": {
-    "description": "Description for changelog section"
-  },
-  "@data_come_from_website": {
-    "description": "Source attribution for data"
-  },
-  "@sks_menu": {
-    "description": "Title for SKS menu section"
-  },
-  "@sks_menu_salads": {
-    "description": "Label for salads menu section"
-  },
-  "@sks_menu_main_soups": {
-    "description": "Label for soups menu section"
-  },
-  "@sks_menu_vegetarian_dishes": {
-    "description": "Label for vegetarian dishes menu section"
-  },
-  "@sks_menu_meat_dishes": {
-    "description": "Label for meat dishes menu section"
-  },
-  "@sks_menu_side_dishes": {
-    "description": "Label for side dishes menu section"
-  },
-  "@sks_menu_drinks": {
-    "description": "Label for drinks menu section"
-  },
-  "@sks_menu_desserts": {
-    "description": "Label for desserts menu section"
-  },
-  "@sks_full_name": {
-    "description": "Full name of the Student Culture Zone"
-  },
-  "@leave_a_review": {
-    "description": "Button text for app rating"
-  },
-  "@rest_header": {
-    "description": "Header for miscellaneous section"
-  },
-  "@settings": {
-    "description": "Title for settings section"
-  },
-  "@about_the_app": {
-    "description": "Title for app information section"
-  },
-  "@other_view": {
-    "description": "Label for other view option"
-  },
-  "@map": {
-    "description": "Label for map view"
-  },
-  "@report_change_title": {
-    "description": "Title for change report form"
-  },
-  "@report_change_button": {
-    "description": "Button text for reporting changes"
-  },
-  "@report_change_email": {
-    "description": "Email address for reporting changes"
-  },
-  "@report_change_subject": {
-    "description": "Default subject for change reports"
-  },
-  "@report_change_error_toast_message": {
-    "description": "Error message for hyperlink permission issues"
-  },
-  "@localization": {
-    "description": "Label for location information"
-  },
-  "@amenities": {
-    "description": "Title for amenities section"
-  },
-  "@surroundings": {
-    "description": "Title for surroundings section"
-  },
-  "@transport": {
-    "description": "Title for transport section"
-  },
-  "@entrances": {
-    "description": "Title for entrances section"
-  },
-  "@lifts": {
-    "description": "Title for elevators section"
-  },
-  "@adapted_toilets": {
-    "description": "Label for adapted toilets accessibility feature"
-  },
-  "@adapted_toilet_description": {
-    "description": "Description for adapted toilet"
-  },
-  "@adapted_toilet_description_men": {
-    "description": "Description for men's adapted toilet"
-  },
-  "@adapted_toilet_description_women": {
-    "description": "Description for women's adapted toilet"
-  },
-  "@micro_navigation": {
-    "description": "Title for micronavigation section"
-  },
-  "@building_structure": {
-    "description": "Title for building structure section"
-  },
-  "@room_information": {
-    "description": "Title for room information section"
-  },
-  "@evacuation": {
-    "description": "Title for evacuation section"
-  },
-  "@assistance_dog": {
-    "description": "Information about assistance dog accessibility"
-  },
-  "@induction_loop": {
-    "description": "Information about induction loop availability"
-  },
-  "@micronavigation_system": {
-    "description": "Information about micronavigation system availability"
-  },
-  "@orientation_paths": {
-    "description": "Information about tactile path availability"
-  },
-  "@information_boards_with_braille_description": {
-    "description": "Information about Braille information boards availability"
-  },
-  "@information_boards_with_large_font": {
-    "description": "Information about large print information boards availability"
-  },
-  "@sign_language_interpreter": {
-    "description": "Information about sign language interpreter availability"
-  },
-  "@emergency_chairs": {
-    "description": "Information about emergency evacuation chairs availability"
-  },
-  "@parking_location": {
-    "description": "Information about parking space location",
-    "placeholders": {
-      "location": {
-        "type": "String"
-      }
-    }
-  },
-  "@parking_pwd_location": {
-    "description": "Information about disabled parking space location",
-    "placeholders": {
-      "location": {
-        "type": "String"
-      }
-    }
-  },
-  "@closest_facilities": {
-    "description": "Information about nearby facilities",
-    "placeholders": {
-      "places": {
-        "type": "String"
-      }
-    }
-  },
-  "@digital_guide_website": {
-    "description": "URL for the digital guide website"
-  },
-  "@sks_old_menu": {
-    "description": "Button text to view previous menu"
-  },
-  "@sks_menu_closed": {
-    "description": "Message shown when SKS menu is not available"
-  },
-  "@sks_show_last_menu": {
-    "description": "Button text to show last available menu"
-  },
-  "@confirm": {
-    "description": "Label for confirm action"
-  },
-  "@push_notifications_dialog_info": {
-    "description": "Information about push notifications status"
-  },
-  "@sks_menu_technical_info": {
-    "description": "Label for technical notice"
-  },
-  "@sks_note": {
-    "description": "Label for note"
-  },
-  "@sks_menu_you_see_last_menu": {
-    "description": "Message indicating last available menu date",
-    "placeholders": {
-      "date": {
-        "type": "String"
-      }
-    }
-  },
-  "@measured_number_of_users": {
-    "description": "Label for the measured number of users"
-  },
-  "@forecasted_number_of_users": {
-    "description": "Label for the average number of users from the last 21 days"
-  },
-  "@sks_chart_title": {
-    "description": "Title for the SKS occupancy chart"
-  },
-  "@number_of_people": {
-    "description": "Label for the number of people"
-  },
-  "@evacuation_text": {
-    "description": "Title for the evacuation and first aid section"
-  },
-  "@digital_guide": {
-    "description": "Title for the digital guide section"
-  },
-  "@adapted_toilet_authorization": {
-    "description": "Information about toilet access authorization",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@adapted_toilet_graphically_marked": {
-    "description": "Information about toilet entrance marking",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@adapted_toilet_is_marked": {
-    "description": "Information about toilet location marking",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@adapted_toilet_is_access_accessible_for_pwd": {
-    "description": "Information about toilet accessibility",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@adapted_toilet_is_150x150_free_space": {
-    "description": "Information about free space in toilet",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@adapted_toilet_is_good_floor_wall_contrast": {
-    "description": "Information about floor-wall contrast in toilet",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@adapted_toilet_is_side_maneuvering_space": {
-    "description": "Information about maneuvering space in toilet",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@adapted_toilet_is_pulldown_handle": {
-    "description": "Information about fold-down handle in toilet",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@adapted_toilet_is_fixed_handle": {
-    "description": "Information about fixed handle in toilet",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@adapted_toilet_is_good_pulldown_handle_wall_contrast": {
-    "description": "Information about handle-wall contrast in toilet",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@adapted_toilet_is_mirror": {
-    "description": "Information about mirror in toilet",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@adapted_toilet_are_clothes_hooks": {
-    "description": "Information about clothes hooks in toilet",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@adapted_toilet_is_wastebasket": {
-    "description": "Information about wastebasket in toilet",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@adapted_toilet_is_towel_dispenser": {
-    "description": "Information about towel dispenser in toilet",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@adapted_toilet_is_space_under_washbasin_for_wheelchair": {
-    "description": "Information about wheelchair space under washbasin",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@adapted_toilet_is_light_switch": {
-    "description": "Information about light switch in toilet",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@adapted_toilet_is_good_lit": {
-    "description": "Information about lighting in toilet",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@adapted_toilet_is_hand_dryer": {
-    "description": "Information about hand dryer in toilet",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@adapted_toilet_seat_height": {
-    "description": "Information about toilet seat height",
-    "placeholders": {
-      "height": {
-        "type": "String"
-      }
-    }
-  },
-  "@images": {
-    "description": "Label for photos section"
-  },
-  "@door": {
-    "description": "Label for door section"
-  },
-  "@door_visible_from_outside": {
-    "description": "Information about door visibility from outside",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@door_visible_from_inside": {
-    "description": "Information about door visibility from inside",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@single_leaf_door": {
-    "description": "Information about single-leaf door type"
-  },
-  "@single_leaf_door_sliding": {
-    "description": "Information about single-leaf sliding door type"
-  },
-  "@double_leaf_door": {
-    "description": "Information about double-leaf door type"
-  },
-  "@double_leaf_door_sliding": {
-    "description": "Information about double-leaf sliding door type"
-  },
-  "@swing_door": {
-    "description": "Information about swing door type"
-  },
-  "@main_wing_highlighted": {
-    "description": "Information about main door leaf highlighting",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@increased_force_required": {
-    "description": "Information about force needed to open door",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@door_closer": {
-    "description": "Information about door closer presence",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@accessibility_profile": {
-    "description": "Label for accessibility profile section"
-  },
-  "@accessibility_profile_empty": {
-    "description": "Message when no accessibility profile information is available"
-  },
-  "@accessibility_level_feminine": {
-    "description": "Feminine form of accessibility levels",
-    "placeholders": {
-      "level": {
-        "type": "int"
-      }
-    }
-  },
-  "@accessibility_level_masculine": {
-    "description": "Masculine form of accessibility levels",
-    "placeholders": {
-      "level": {
-        "type": "int"
-      }
-    }
-  },
-  "@accessibility_level_neuter": {
-    "description": "Neuter form of accessibility levels",
-    "placeholders": {
-      "level": {
-        "type": "int"
-      }
-    }
-  },
-  "@people_with_cognitive_difficulties": {
-    "description": "Label for people with cognitive difficulties"
-  },
-  "@people_with_hard_of_hearing": {
-    "description": "Label for people who are hard of hearing"
-  },
-  "@people_visually_impaired": {
-    "description": "Label for visually impaired people"
-  },
-  "@people_blind": {
-    "description": "Label for blind people"
-  },
-  "@people_with_motor_disability": {
-    "description": "Label for people with motor disabilities"
-  },
-  "@people_with_high_sensory_sensitivity": {
-    "description": "Label for people with high sensory sensitivity"
-  },
-  "@see_all_photos": {
-    "description": "Label for viewing photos",
-    "placeholders": {
-      "photos": {
-        "type": "int"
-      }
-    }
-  },
-  "@are_dangerous_elements_comment_prefix": {
-    "description": "Information about dangerous elements",
-    "placeholders": {
-      "text": {
-        "type": "String"
-      }
-    }
-  },
-  "@are_high_curbs_at_parking_space_for_pwd": {
-    "description": "Information about curbs at disabled parking spaces",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@is_lit": {
-    "description": "Information about lighting around building",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@is_pavement_rough": {
-    "description": "Information about pavement condition",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@are_lowered_curbs": {
-    "description": "Information about lowered curbs",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@are_no_barriers": {
-    "description": "Information about access barriers",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@is_path_to_accessible_entrance_marked": {
-    "description": "Information about accessible entrance path marking",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@is_noisy_street_near_building": {
-    "description": "Information about nearby noisy streets",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@room_stairs_is_good_lit": {
-    "description": "Information about stair lighting",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@room_stairs_is_nonslip_surface": {
-    "description": "Information about stair surface grip",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@room_stairs_is_stairs_surface_shiny": {
-    "description": "Information about stair surface shininess",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@room_stairs_is_good_stairs_wall_contrast": {
-    "description": "Information about stair-wall contrast",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@room_stairs_are_all_steps_have_same_dimensions": {
-    "description": "Information about step dimensions consistency",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@room_stairs_is_railing": {
-    "description": "Information about stair railing presence",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@room_stairs_is_good_railing_contrast": {
-    "description": "Information about railing contrast",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@room_stairs_is_round_cross_section_railing": {
-    "description": "Information about railing shape",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@room_stairs_are_steps_edges_marked_in_contrasted_way": {
-    "description": "Information about step edge marking",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@room_platforms_is_good_floor_platform_contrast": {
-    "description": "Information about floor-platform contrast",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@room_platforms_have_access_for_people_in_wheelchair": {
-    "description": "Information about wheelchair accessibility to platform",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@room_platforms_is_platform_entrance_marked": {
-    "description": "Information about platform entrance marking",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@room_platforms_are_no_objects_narrow_communication_zone": {
-    "description": "Information about obstacles in communication zone",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@stairs_is_stairs_sign_info": {
-    "description": "Information about stair signage availability",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@stairs_is_stairs_sign_info_in_en": {
-    "description": "Information about English stair signage availability",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@stairs_is_good_lit": {
-    "description": "Information about stair lighting quality",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@stairs_is_stairs_surface_shiny": {
-    "description": "Information about stair surface shininess",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@stairs_is_nonslip_surface": {
-    "description": "Information about stair surface grip",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@stairs_is_good_stairs_wall_contrast": {
-    "description": "Information about stair-wall contrast",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@stairs_are_emergency_stairs": {
-    "description": "Information about emergency exit stairs",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@stairs_are_first_and_last_steps_marked": {
-    "description": "Information about first/last step marking",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@stairs_are_grades_nose_pads": {
-    "description": "Information about stair nose pads",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@stairs_are_steps_raised_markings": {
-    "description": "Information about raised step markings",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@stairs_step_height": {
-    "description": "Information about stair step height",
-    "placeholders": {
-      "value": {
-        "type": "int"
-      }
-    }
-  },
-  "@stairs_is_properly_marked_free_space_under_stairs": {
-    "description": "Information about marking of space under stairs",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@floor_list": {
-    "description": "Label for floor count"
-  },
-  "@stairs_width": {
-    "description": "Label for stair width"
-  },
-  "@number_of_stair_gears": {
-    "description": "Label for stair flight count"
-  },
-  "@number_of_stair_landings": {
-    "description": "Label for stair landing count"
-  },
-  "@rooms_is_one_level_floor": {
-    "description": "Information about room floor levelness",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@rooms_are_places_for_wheelchairs": {
-    "description": "Information about wheelchair spaces in room",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@rooms_are_any_dangerous_elements": {
-    "description": "Information about dangerous elements in room",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@rooms_is_generally_available_desk": {
-    "description": "Information about accessible desk availability",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@rooms_has_induction_loop": {
-    "description": "Information about assistive listening systems",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@rooms_is_space_under_counter": {
-    "description": "Information about wheelchair access under counters",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@rooms_is_good_floor_room_contrast": {
-    "description": "Information about room color contrast",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@rooms_is_good_lit": {
-    "description": "Information about room lighting quality",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@rooms_is_floor_shiny": {
-    "description": "Information about room floor shininess",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@rooms_are_movable_elements": {
-    "description": "Information about presence of hazardous movable elements in room",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@rooms_are_flashing_devices": {
-    "description": "Information about presence of flashing devices in room",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@rooms_are_places_accessible_from_main_entrance": {
-    "description": "Information about wheelchair accessibility from main entrance",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@rooms_are_electrical_outlets": {
-    "description": "Information about accessibility of electrical outlets and switches",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@are_objects_narrow_communication_zone": {
-    "description": "Information about objects narrowing passageways",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@are_information_boards": {
-    "description": "Information about availability of information boards",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@are_information_boards_in_en": {
-    "description": "Information about availability of English information boards",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@are_room_entrances": {
-    "description": "Information about presence of room entrances",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@are_floor_markings": {
-    "description": "Information about presence of floor markings",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@is_typhlomap": {
-    "description": "Information about availability of tactile map",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@strategicBadgeTooltip": {
-    "description": "Tooltip text for strategic badge"
-  },
-  "@strategic_club_abbr": {
-    "description": "Abbreviation for Strategic Science Club"
-  },
-  "@emptySection": {
-    "description": "Message shown when no team members are available"
-  },
-  "@digital_guide_offline": {
-    "description": "Title for offline digital guide"
-  },
-  "@communique": {
-    "description": "Label for announcement section"
-  },
-  "@audio_message": {
-    "description": "Label for audio message"
-  },
-  "@audio_message_comment": {
-    "description": "Note about beacon signal variations"
-  },
-  "@platforms": {
-    "description": "Label for platforms section"
-  },
-  "@key_information": {
-    "description": "Label for key information section"
-  },
-  "@entrance_number_of_doors": {
-    "description": "Information about number of entrance doors",
-    "placeholders": {
-      "value": {
-        "type": "int"
-      }
-    }
-  },
-  "@entrance_doors_distance": {
-    "description": "Information about distance between entrance doors",
-    "placeholders": {
-      "value": {
-        "type": "int"
-      }
-    }
-  },
-  "@entrance_has_sound_transmitter": {
-    "description": "Information about presence of sound transmitter at entrance",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@entrance_has_tactile_paving": {
-    "description": "Information about presence of tactile paving at entrance",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@entrance_is_main": {
-    "description": "Information about whether entrance is main entrance",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@entrance_is_accessible": {
-    "description": "Information about entrance accessibility",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@entrance_is_for_personel": {
-    "description": "Information about entrance access permissions",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@entrance_is_building_marked_from_entrance": {
-    "description": "Information about building marking visibility from entrance",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@entrance_is_building_marked_in_en": {
-    "description": "Information about English building labeling",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@entrance_is_lit": {
-    "description": "Information about entrance lighting",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@entrance_is_emergency_exit": {
-    "description": "Information about emergency exit status",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@entrance_is_protection_from_weather": {
-    "description": "Information about weather protection at entrance",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@entrance_is_solid_surface": {
-    "description": "Information about surface evenness in front of entrance",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@entrance_are_different_types_of_surface": {
-    "description": "Information about surface types at entrance",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@entrance_are_benches": {
-    "description": "Information about presence of benches at entrance",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@motorImpairment": {
-    "description": "Label for motor impairment accessibility profile"
-  },
-  "@hearingImpairment": {
-    "description": "Label for hearing impairment accessibility profile"
-  },
-  "@visualImpairment": {
-    "description": "Label for visual impairment accessibility profile"
-  },
-  "@blind": {
-    "description": "Label for blind accessibility profile"
-  },
-  "@lowVision": {
-    "description": "Label for low vision accessibility profile"
-  },
-  "@sensorySensitivity": {
-    "description": "Label for sensory sensitivity accessibility profile"
-  },
-  "@cognitiveImpairment": {
-    "description": "Label for cognitive impairment accessibility profile"
-  },
-  "@accessibility_profiles": {
-    "description": "Title for accessibility profiles section"
-  },
-  "@additional_information": {
-    "description": "Label for additional information section"
-  },
-  "@no_lodge_in_the_building": {
-    "description": "Message about absence of reception"
-  },
-  "@no_dressing_room_in_the_building": {
-    "description": "Message about absence of cloakroom"
-  },
-  "@general_offline": {
-    "description": "Label for offline data download"
-  },
-  "@floors_served_by_lift": {
-    "description": "Label for floors served by elevator"
-  },
-  "@dimensions": {
-    "description": "Label for dimensions section"
-  },
-  "@max_capacity": {
-    "description": "Label for maximum load capacity"
-  },
-  "@generic_error_message": {
-    "description": "Generic error message"
-  },
-  "@public_transport": {
-    "description": "Label for public transportation"
-  },
-  "@private_transport": {
-    "description": "Label for private transportation"
-  },
-  "@distance": {
-    "description": "Label for distance measurement"
-  },
-  "@meters_abbrev": {
-    "description": "Abbreviation for meters"
-  },
-  "@bicycle_path_leads_to_building": {
-    "description": "Information about bicycle path access"
-  },
-  "@transport_lines": {
-    "description": "Label for public transport lines"
-  },
-  "@pass_traffic_lights": {
-    "description": "Information about traffic light crosswalks"
-  },
-  "@no_pass_traffic_lights": {
-    "description": "Information about crosswalks without traffic lights"
-  },
-  "@nearest_public_transport_stop": {
-    "description": "Label for nearest public transport stop"
-  },
-  "@nearest_public_transport_stop_alt": {
-    "description": "Label for alternative public transport stop"
-  },
-  "@chose_the_path": {
-    "description": "Label for route selection"
-  },
-  "@you_can_adjust": {
-    "description": "Message about information customization"
-  },
-  "@navigate_to_building": {
-    "description": "Label for building navigation"
-  },
-  "@working_hours": {
-    "description": "Label for opening hours"
-  },
-  "@rooms_distribution": {
-    "description": "Label for room layout"
-  },
-  "@region_location": {
-    "description": "Label for zone location"
-  },
-  "@region_prefix": {
-    "description": "Label for designated building zone"
-  },
-  "@level": {
-    "description": "Label for floor level"
-  },
-  "@region": {
-    "description": "Label for zone"
-  },
-  "@stairs": {
-    "description": "Label for stairs"
-  },
-  "@lodge": {
-    "description": "Label for reception"
-  },
-  "@dressing_room": {
-    "description": "Label for cloakroom"
-  },
-  "@men_toilet": {
-    "description": "Label for men's restroom"
-  },
-  "@women_toilet": {
-    "description": "Label for women's restroom"
-  },
-  "@ramp": {
-    "description": "Label for ramp"
-  },
-  "@lift": {
-    "description": "Label for elevator"
-  },
-  "@parking": {
-    "description": "Label for parking"
-  },
-  "@lift_dimensions_text": {
-    "description": "Information about elevator's dimensions"
-  },
-  "@lift_is_mirror": {
-    "description": "Indicates whether the elevator has a mirror for easier exit",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@lift_info_board_text": {
-    "description": "Indicates whether the elevator has an information board",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@lift_is_voice_comunicates": {
-    "description": "Indicates whether the elevator provides voice announcements",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@lift_with_voice_comunicates": {
-    "description": "Indicates whether the elevator provides voice announcements",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@lift_with_inside_braile_comunicates": {
-    "description": "Indicates whether the elevator buttons have Braille markings",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@lift_button_are_convex": {
-    "description": "Indicates whether the elevator buttons are convex",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@lift_is_with_outside_notification": {
-    "description": "Indicates whether there is an audible notification when the elevator arrives",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@lift_is_with_inside_notification": {
-    "description": "Indicates whether there is an audible notification when arriving at the selected floor",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@lift_is_door_good_contrast": {
-    "description": "Indicates whether the elevator doors have good contrast with the wall",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@lift_is_inside_lit": {
-    "description": "Indicates whether the elevator has adequate lighting",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@is_lift_floor_info": {
-    "description": "Indicates whether the elevator displays floor information",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@platform_dimensions": {
-    "description": "Information about platform dimensions"
-  },
-  "@canteen": {
-    "description": "Label for canteen information"
-  },
-  "@cafe": {
-    "description": "Label for cafe information"
-  },
-  "@toilet_is_need_authorization": {
-    "description": "Indicates whether authorization is required to use the toilet",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@toilet_is_wastebasket": {
-    "description": "Indicates whether the toilet has a wastebasket",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@toilet_are_clothes_hooks": {
-    "description": "Indicates whether the toilet has clothes hooks",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@toilet_is_hand_dryer": {
-    "description": "Indicates whether the toilet has a hand dryer",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@toilet_is_towel_dispenser": {
-    "description": "Indicates whether the toilet has a towel dispenser",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@toilet_is_washbasin": {
-    "description": "Indicates whether the toilet has a washbasin",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@toilet_is_space_under_washbasin_for_wheelchair": {
-    "description": "Information about wheelchair space under washbasin",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@toilet_is_light_switch": {
-    "description": "Information about light switch in toilet",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@toilet_is_good_lit": {
-    "description": "Information about lighting in toilet",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@toilet_is_good_devices_wall_contrast": {
-    "description": "Information about fixtures-wall contrast in toilet",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@transport_are_pass_traffic_lights": {
-    "description": "Information about presence of traffic light crossings from stop to entrance",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@transport_are_not_pass_traffic_lights": {
-    "description": "Information about presence of non-traffic light crossings from stop to entrance",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@transport_wheelchair_obstacles": {
-    "description": "Information about wheelchair obstacles from stop to entrance",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@transport_alt_are_pass_traffic_lights": {
-    "description": "Information about presence of traffic light crossings from alternative stop to entrance",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@transport_alt_are_not_pass_traffic_lights": {
-    "description": "Information about presence of non-traffic light crossings from alternative stop to entrance",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@transport_alt_wheelchair_obstacles": {
-    "description": "Information about wheelchair obstacles from alternative stop to entrance",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@transport_obstacles_for_blind": {
-    "description": "Information about obstacles for blind people from stop to entrance",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@transport_alt_obstacles_for_blind": {
-    "description": "Information about obstacles for blind people from alternative stop to entrance",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@transport_facilities_for_blind": {
-    "description": "Information about facilities for blind people from stop to entrance",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@transport_alt_facilities_for_blind": {
-    "description": "Information about facilities for blind people from alternative stop to entrance",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@railing_is_railing_on_landings": {
-    "description": "Information about presence of railings on landings",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@railing_is_two_sided_railing": {
-    "description": "Information about whether railings are double-sided",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@railing_is_braille_convex_marking": {
-    "description": "Information about presence of Braille or convex markings on railings",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@railing_is_good_railing_contrast": {
-    "description": "Information about contrast of railings",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@railing_is_round_cross_section_railing": {
-    "description": "Information about railing cross-section shape",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@railing_is_railing_extended_30cm": {
-    "description": "Information about railing extension length",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@railing_is_railing_obstacle": {
-    "description": "Information about whether railings pose an obstacle",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@railing_height": {
-    "description": "Information about railing height",
-    "placeholders": {
-      "value": {
-        "type": "int"
-      }
-    }
-  },
-  "@railing": {
-    "description": "Label for railing section"
-  },
-  "@ramps_is_ramp_marked": {
-    "description": "Information about ramp marking",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@ramps_is_increased_force_needed": {
-    "description": "Information about force needed to use ramp",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@ramps_is_permanent_ramp": {
-    "description": "Information about ramp permanence",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@ramps_is_good_lit": {
-    "description": "Information about ramp lighting",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@ramps_are_nonslip_elements": {
-    "description": "Information about non-slip elements on ramp",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@ramps_width": {
-    "description": "Label for ramp width measurement"
-  },
-  "@number_of_ramp_landings": {
-    "description": "Label for number of ramp landings"
-  },
-  "@dimensions_of_the_landings": {
-    "description": "Label for landing dimensions"
-  },
-  "@is_marked": {
-    "description": "Information about information point marking",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@are_seats_available": {
-    "description": "Information about seating availability at information point",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@is_space_on_counter": {
-    "description": "Information about counter space for signing documents",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@are_access_bariers": {
-    "description": "Information about access barriers to information point",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@is_space_under_counter": {
-    "description": "Information about wheelchair space under counter",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@is_movement_space": {
-    "description": "Information about movement space at information point",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@is_good_lit_info_point": {
-    "description": "Information about lighting at information point",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@is_visible_from_afar": {
-    "description": "Information about visibility of information point",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@has_sound_transmitter": {
-    "description": "Information about sound transmission equipment",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@information_point": {
-    "description": "Label for information point section"
-  },
-  "@dressing_room_is_marked": {
-    "description": "Information about dressing room counter marking",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@dressing_room_is_visible_from_afar": {
-    "description": "Information about visibility of dressing room counter",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@dressing_room_are_access_barriers": {
-    "description": "Information about access barriers to dressing room counter",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@dressing_room_are_seats_available": {
-    "description": "Information about seating availability at dressing room counter",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@dressing_room_is_movement_space": {
-    "description": "Information about movement space at dressing room counter",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@dressing_room_is_good_lit": {
-    "description": "Information about lighting at dressing room counter",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@dressing_room_counter_height": {
-    "description": "Information about dressing room counter height",
-    "placeholders": {
-      "value": {
-        "type": "int"
-      }
-    }
-  },
-  "@dressing_room_counter_is_space_under": {
-    "description": "Information about space under dressing room counter",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@dressing_room_counter_is_space_on": {
-    "description": "Information about space on dressing room counter",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@corridor": {
-    "description": "Label for corridor section"
-  },
-  "@corridor_simple_layout_text": {
-    "description": "Information about corridor layout",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@corridor_floor_marked": {
-    "description": "Information about corridor floor marking",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@corridor_room_entrances": {
-    "description": "Information about room entrances from corridor",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@corridor_information_board": {
-    "description": "Information about corridor information board",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@corridor_room_purpose_described_in_en": {
-    "description": "Information about English descriptions of room purposes",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@corridor_consistent_level_color_pattern": {
-    "description": "Information about consistency of room signage",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@corridor_pictorial_directional_signs": {
-    "description": "Information about directional signs in corridor",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@corridor_seats": {
-    "description": "Information about seating in corridor",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@corridor_vending_machines": {
-    "description": "Information about vending machines in corridor",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@corridor_emergency_plan": {
-    "description": "Information about evacuation plans in corridor",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@corridor_typhlomap": {
-    "description": "Information about typhlomap availability in corridor",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@corridor_dangerous_elements": {
-    "description": "Information about dangerous elements in corridor",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@corridor_info_plates_accessible": {
-    "description": "Information about accessibility of room signage",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@corridor_horizontal_markings_for_blind": {
-    "description": "Information about horizontal markings for blind people",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@corridor_plates_with_rooms_list_have_readable_font": {
-    "description": "Information about readability of room list text",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@corridor_rooms_marked": {
-    "description": "Information about room marking in corridor",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@corridor_pictogram_used": {
-    "description": "Information about use of pictograms",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@corridor_is_glare": {
-    "description": "Information about floor glare in corridor",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@corridor_good_walls_contrast": {
-    "description": "Information about wall-floor contrast in corridor",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@corridor_good_lit": {
-    "description": "Information about corridor lighting",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@corridor_horizontal_markings_for_visually_impaired": {
-    "description": "Information about horizontal markings for visually impaired",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@corridor_min_width_length": {
-    "description": "Information about corridor width",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@corridor_railings": {
-    "description": "Information about wall railings in corridor",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@corridor_light_switches_sockets_height": {
-    "description": "Information about height of light switches and sockets",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@corridor_echo": {
-    "description": "Information about corridor acoustics",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@corridor_flashing_device": {
-    "description": "Information about flashing devices in corridor",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@no_micro_navigation": {
-    "description": "Message about absence of micronavigation"
-  },
-  "@lodge_access_barriers": {
-    "description": "Information about access barriers to lodge",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@lodge_movement_space": {
-    "description": "Information about movement space at lodge",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@lodge_counter_height": {
-    "description": "Information about lodge counter height",
-    "placeholders": {
-      "comment": {
-        "type": "String"
-      }
-    }
-  },
-  "@lodge_space_under_counter": {
-    "description": "Information about wheelchair space under lodge counter",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@lodge_visible_from_afar": {
-    "description": "Information about visibility of lodge",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@lodge_good_lit": {
-    "description": "Information about lodge lighting",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@is_elevated_threshold": {
-    "description": "Information about door threshold",
-    "placeholders": {
-      "boolean": {
-        "type": "String"
-      }
-    }
-  },
-  "@elevated_threshold_text": {
-    "description": "Label for threshold height"
-  },
   "@are_glazed": {
     "description": "Information about door glazing",
     "placeholders": {
@@ -2919,6 +2917,7 @@
       }
     }
   },
+  "are_visible": "Między klamką a drzwiami {boolean, select, false{nie } other{}}jest odpowiedni kontrast.",
   "@are_visible": {
     "description": "Information about handle-door contrast",
     "placeholders": {
@@ -2927,6 +2926,7 @@
       }
     }
   },
+  "is_graphic": "Drzwi {boolean, select, false{nie } other{}}są oznakowane.",
   "@is_graphic": {
     "description": "Information about door marking",
     "placeholders": {
@@ -2935,6 +2935,7 @@
       }
     }
   },
+  "is_closure_from_inside": "Drzwi {boolean, select, false{nie } other{}}otwierają się do wewnątrz.",
   "@is_closure_from_inside": {
     "description": "Information about door opening direction",
     "placeholders": {
@@ -2943,6 +2944,7 @@
       }
     }
   },
+  "is_same_opening_system": "Drzwi po obu stronach {boolean, select, false{nie } other{}}otwierają się w identyczny sposób.",
   "@is_same_opening_system": {
     "description": "Information about consistency of door opening systems",
     "placeholders": {
@@ -2951,10 +2953,8 @@
       }
     }
   },
+  "digital_guide_accessibility": "Profile dostępności w cyfrowym przewodniku",
   "@digital_guide_accessibility": {
     "description": "Title for digital guide accessibility section"
-  },
-  "@home_screen": {
-    "description": "Label for home screen"
   }
 }
