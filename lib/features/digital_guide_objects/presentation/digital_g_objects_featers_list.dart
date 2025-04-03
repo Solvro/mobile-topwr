@@ -3,10 +3,10 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../config/ui_config.dart";
+import "../../../services/translations_service/widgets/my_html_widget_with_translation.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../widgets/my_expansion_tile.dart";
-import "../../../widgets/my_html_widget.dart";
 import "../../buildings_view/model/building_model.dart";
 import "../../digital_guide/presentation/widgets/digital_guide_photo_row.dart";
 import "../data/models/digital_guide_object_model.dart";
@@ -37,7 +37,7 @@ class DigitalGuideObjectsFeaturesSection extends ConsumerWidget {
               // No `AccessibilityInformationCardsList` here, cause not entry on the API has one
               Padding(
                 padding: const EdgeInsets.all(DigitalGuideConfig.paddingMedium),
-                child: MyHtmlWidget(tile.translations.pl.content, textStyle: context.textTheme.body),
+                child: MyHtmlWidgetWithTranslation(tile.translations.pl.content, textStyle: context.textTheme.body),
               ),
               DigitalGuidePhotoRow(imagesIDs: tile.images.lock),
             ],

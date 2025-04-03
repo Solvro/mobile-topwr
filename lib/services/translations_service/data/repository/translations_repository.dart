@@ -16,7 +16,7 @@ Future<String> translationsRepository(Ref ref, String originalText) async {
   final db = ref.watch(translationsDatabaseSingletonProvider);
   final locale = await ref.watch(translationsProvider.future);
 
-  if (locale == SupportedLocales.pl) {
+  if (locale == SupportedLocales.pl || originalText.trim().isEmpty) {
     return originalText;
   }
 

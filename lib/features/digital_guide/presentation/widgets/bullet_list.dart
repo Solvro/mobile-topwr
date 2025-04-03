@@ -2,6 +2,7 @@ import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 
 import "../../../../../../theme/app_theme.dart";
+import "../../../../services/translations_service/widgets/rich_text_with_translation.dart";
 
 class BulletList extends StatelessWidget {
   final IList<String> items;
@@ -17,7 +18,7 @@ class BulletList extends StatelessWidget {
       itemCount: nonEmptyItems.length,
       itemBuilder: (context, index) {
         final item = nonEmptyItems[index];
-        return RichText(
+        return RichTextWithTranslation(
           text: TextSpan(
             children: [
               TextSpan(text: "\u2022 ", style: context.textTheme.body.copyWith(fontSize: fontSize + 3)),

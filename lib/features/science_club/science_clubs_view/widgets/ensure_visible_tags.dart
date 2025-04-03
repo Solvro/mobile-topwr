@@ -9,7 +9,7 @@ import "../../../../widgets/dual_text_max_lines.dart";
 import "strategic_badge.dart";
 import "verified_badge.dart";
 
-class EnsureVisibleTags extends DualTextMaxLinesWithTranslation {
+class EnsureVisibleTags extends DualTextMaxLines {
   /// DualTextMaxLines with third text row that must have at least one line
   const EnsureVisibleTags({
     required super.title,

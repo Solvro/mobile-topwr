@@ -3,6 +3,7 @@ import "package:flutter/gestures.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
+import "../../services/translations_service/widgets/rich_text_with_translation.dart";
 import "../../services/translations_service/widgets/text_with_translation.dart";
 import "../../theme/app_theme.dart";
 import "../../utils/determine_contact_icon.dart";
@@ -57,7 +58,7 @@ class _ContactIcon extends ConsumerWidget {
         ContactIconWidget(icon: icon),
         const SizedBox(width: 16),
         Expanded(
-          child: RichText(
+          child: RichTextWithTranslation(
             text: TextSpan(
               text: text,
               style: context.textTheme.bodyOrange.copyWith(
