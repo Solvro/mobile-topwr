@@ -12,7 +12,7 @@ import "../../services/translations_service/business/translations_notifier.dart"
 import "../../services/translations_service/data/models/supported_languages.dart";
 import "../digital_guide/tabs/accessibility_dialog/presentation/accessibility_dialog.dart";
 import "../navigation_tab_view/widgets/navigation_tile.dart";
-import "widgets/language_settings_view.dart";
+import "widgets/language_settings_dialog.dart";
 
 @RoutePage()
 class SettingsView extends ConsumerWidget {

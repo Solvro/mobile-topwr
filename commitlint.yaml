@@ -28,4 +28,5 @@ rules:
       - api-base
       - contact-icons
       - sci-clubs
+      - settings
     # YES, you can add new ones if you have a new feature

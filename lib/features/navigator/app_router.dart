@@ -45,7 +45,7 @@ import "../navigation_tab_view/navigation_tab_view.dart";
 import "../parkings/parkings_view/parkings_view.dart";
 import "../science_club/science_club_detail_view/science_club_detail_view.dart";
 import "../science_club/science_clubs_view/science_clubs_view.dart";
-import "../settings/settings.dart";
+import "../settings/settings_view.dart";
 import "../sks/sks_menu/presentation/sks_menu_screen.dart";
 import "root_view.dart";
 
