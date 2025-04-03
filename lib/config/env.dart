@@ -35,5 +35,5 @@ abstract class Env {
   @EnviedField()
   static final String translateApiToken = _Env.translateApiToken;
   @EnviedField()
-  static final String restApiUrl = _Env.restApiUrl;
+  static final String mainRestApiUrl = _Env.mainRestApiUrl;
 }

@@ -10,7 +10,7 @@ extension GetTheLatestDateGuideX on BuildContext {
     return formatter.format(newestDate);
   }
 
-  DateTime getTheLatesUpdatedDateGuide({required IList<GuideQuestion> questions}) {
+  DateTime getTheLatestUpdatedDateGuide({required IList<GuideQuestion> questions}) {
     final newestDate = questions.map((e) => e.updatedAt).reduce((a, b) => (a.isAfter(b)) ? a : b);
     return newestDate;
   }

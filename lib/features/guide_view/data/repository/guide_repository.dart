@@ -12,7 +12,7 @@ part "guide_repository.g.dart";
 
 @riverpod
 Future<IList<GuideData>> guideRepository(Ref ref) async {
-  final apiUrl = Env.restApiUrl;
+  final apiUrl = Env.mainRestApiUrl;
   final guideResponse = await ref.getAndCacheData(
     "$apiUrl/guide_articles",
     TtlStrategy.get(TtlKey.guideRepository).inDays,

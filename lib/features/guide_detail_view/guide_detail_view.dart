@@ -44,7 +44,7 @@ class _GuideDetailDataView extends ConsumerWidget {
       AsyncError(:final error) => MyErrorWidget(error),
       AsyncValue(:final GuideDetails value) => Builder(
         builder: (context) {
-          final lastModifiedDate = context.getTheLatesUpdatedDateGuide(questions: value.guideQuestions);
+          final lastModifiedDate = context.getTheLatestUpdatedDateGuide(questions: value.guideQuestions);
           return CustomScrollView(
             slivers: [
               SliverAppBar(
