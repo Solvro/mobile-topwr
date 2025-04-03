@@ -21,7 +21,6 @@ class SettingsView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final widgets = [
-      Text(context.localize.settings, style: context.textTheme.headline),
       NavigationTile(
         onTap: () async {
           final selectedLang = await LanguageDialog.show(context);
@@ -43,7 +42,7 @@ class SettingsView extends ConsumerWidget {
 
     return Scaffold(
       backgroundColor: context.colorTheme.whiteSoap,
-      appBar: DetailViewAppBar(),
+      appBar: DetailViewAppBar(title: (text: context.localize.settings, context: context)),
       body: Padding(
         padding: const EdgeInsets.all(AboutUsConfig.spacerHeight),
         child: ListView.separated(

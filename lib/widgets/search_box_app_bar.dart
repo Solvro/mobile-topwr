@@ -1,7 +1,6 @@
 import "package:flutter/material.dart";
 
 import "../config/ui_config.dart";
-import "../services/translations_service/widgets/text_with_translation.dart";
 import "../theme/app_theme.dart";
 import "detail_views/pop_button.dart";
 import "search_box.dart";
@@ -21,7 +20,7 @@ class SearchBoxAppBar extends AppBar {
     bool addLeadingPopButton = false,
     super.primary = false,
   }) : super(
-         title: TextWithTranslation(title),
+         title: Text(title),
          titleTextStyle: context.textTheme.headline,
          backgroundColor: context.colorTheme.whiteSoap,
          scrolledUnderElevation: 0,

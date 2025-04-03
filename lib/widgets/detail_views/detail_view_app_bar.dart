@@ -1,12 +1,18 @@
 import "package:flutter/material.dart";
 
+import "../../theme/app_theme.dart";
 import "pop_button.dart";
 
 class DetailViewAppBar extends AppBar {
-  DetailViewAppBar({super.key, super.actions})
+  DetailViewAppBar({super.key, super.actions, ({String text, BuildContext context})? title})
     : super(
-        title: const DetailViewPopButton(),
-        centerTitle: false,
+        title: title != null ? Text(title.text, style: title.context.textTheme.headline) : null,
+        leading: const Align(
+          alignment: Alignment.centerLeft,
+          child: Padding(padding: EdgeInsets.only(left: 4), child: DetailViewPopButton()),
+        ),
+        leadingWidth: 100,
+        centerTitle: true,
         automaticallyImplyLeading: false,
         scrolledUnderElevation: 0,
         titleSpacing: 4,
