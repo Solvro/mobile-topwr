@@ -281,7 +281,7 @@
   "is_pavement_rough": "Nawierzchnia przy budynku {boolean, select, false{nie} other{}} jest równa. ",
   "are_lowered_curbs": "Krawężniki w okolicach budynku {boolean, select, false{nie} other{}} są obniżone. ",
   "are_no_barriers": "Wokół budynku {boolean, select, true{nie ma barier uniemożliwiających dojścia} false{znajdują się bariery uniemożliwiające dojście} other{}} do budynku. ",
-  "is_path_to_accessible_entrance_marked": "Ścieżka do wejścia dostępnego dla osób z niepełnosprawnościami {value, select, false{nie} other{}} jest wyraźnie oznaczona. ",
+  "is_path_to_accessible_entrance_marked": "Ścieżka do wejścia dostępnego dla osób z niepełnosprawnościami {boolean, select, false{nie} other{}} jest wyraźnie oznaczona. ",
   "is_noisy_street_near_building": "W okolicy {boolean, select, false{nie ma ruchliwej, hałaśliwej ulicy. } true{znajduje się ruchliwa, hałaśliwa ulica. } other{}}",
   "room_stairs_is_good_lit": "{boolean, select, false{Schody nie są odpowiednio oświetlone.} true{Schody są odpowiednio oświetlone.} other{}}",
   "room_stairs_is_nonslip_surface": "{boolean, select, false{Powierzchnia schodów nie jest antypoślizgowa.} true{Powierzchnia schodów jest antypoślizgowa} other{}}",
@@ -1460,7 +1460,12 @@
     }
   },
   "@is_path_to_accessible_entrance_marked": {
-    "description": "Information about accessible entrance path marking"
+    "description": "Information about accessible entrance path marking",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
   "@is_noisy_street_near_building": {
     "description": "Information about nearby noisy streets",

@@ -1159,9 +1159,14 @@
       }
     }
   },
-  "is_path_to_accessible_entrance_marked": "The path to the entrance accessible to people with disabilities {value, select, false{is not} other{is}} clearly marked.",
+  "is_path_to_accessible_entrance_marked": "The path to the entrance accessible to people with disabilities {boolean, select, false{is not} other{is}} clearly marked.",
   "@is_path_to_accessible_entrance_marked": {
-    "description": "Information about accessible entrance path marking"
+    "description": "Information about accessible entrance path marking",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
   "is_noisy_street_near_building": "In the vicinity, there {boolean, select, false{is no busy, noisy street.} true{is a busy, noisy street.} other{}}",
   "@is_noisy_street_near_building": {
