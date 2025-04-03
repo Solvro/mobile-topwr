@@ -13,7 +13,7 @@ class AppVersionTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: WideTileCardConfig.basePadding),
+      padding: const EdgeInsets.only(bottom: WideTileCardConfig.basePadding),
       child: FutureBuilder(
         future: Future.microtask(PackageInfo.fromPlatform),
         builder:
