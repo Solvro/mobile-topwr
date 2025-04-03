@@ -1,2 +1,0 @@
-First 170 rows of app_en.arb is translated with GPT.
-The second part of file is in polish(gpt was skiping rows randomly).

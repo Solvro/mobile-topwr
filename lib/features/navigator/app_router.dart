@@ -73,13 +73,13 @@ class AppRouter extends RootStackRouter {
     RedirectRoute(path: "parkings", redirectTo: "parkings/null"),
     _NoTransitionRoute(path: "guide", page: GuideRoute.page),
     _NoTransitionRoute(path: "navigation", page: NavigationTabRoute.page),
-    AutoRoute(path: "guide/:id", page: GuideDetailRoute.page),
   ];
 
   @override
   List<AutoRoute> get routes => [
     AutoRoute(path: "/", page: RootRoute.page, children: routesWithinTabBar),
     AutoRoute(path: "/sks-menu", page: SksMenuRoute.page),
+    AutoRoute(path: "/guide/:id", page: GuideDetailRoute.page),
     AutoRoute(path: "/departments", page: DepartmentsRoute.page),
     AutoRoute(path: "/departments/:id", page: DepartmentDetailRoute.page),
     AutoRoute(path: "/sci-clubs", page: ScienceClubsRoute.page),

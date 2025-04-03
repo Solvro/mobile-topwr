@@ -14,7 +14,9 @@ class RemoveOldTranslations extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     useEffectOnInit(() {
-      unawaited(Future.microtask(ref.flushAllCacheIfNeeded));
+      unawaited(
+        Future.microtask(ref.flushAllCacheIfNeeded),
+      ); // TODO(simon-the-shark): @tomasz-trela flush translations cache instead of graphql cache
       return null;
     });
     return child;
