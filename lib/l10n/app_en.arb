@@ -9,6 +9,10 @@
   "@english_id": {
     "description": "Language code for English"
   },
+  "language": "Language",
+  "@language": {
+    "description": "Language selection label"
+  },
   "polish_title": "🇵🇱 Polish",
   "@polish_title": {
     "description": "Display title for Polish language with flag emoji"
@@ -771,77 +775,167 @@
   "@digital_guide": {
     "description": "Title for the digital guide section"
   },
-  "adapted_toilet_authorization": "{value, select, false{Access to the toilet does not require any special authorization.} true{The toilet is available only to authorized persons.} other{}}",
+  "adapted_toilet_authorization": "{boolean, select, false{Access to the toilet does not require any special authorization.} true{The toilet is available only to authorized persons.} other{}}",
   "@adapted_toilet_authorization": {
-    "description": "Information about toilet access authorization"
+    "description": "Information about toilet access authorization",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "adapted_toilet_graphically_marked": "{value, select, false{The toilet entrance is not graphically marked.} true{The toilet entrance is well graphically marked.} other{}}",
+  "adapted_toilet_graphically_marked": "{boolean, select, false{The toilet entrance is not graphically marked.} true{The toilet entrance is well graphically marked.} other{}}",
   "@adapted_toilet_graphically_marked": {
-    "description": "Information about toilet entrance marking"
+    "description": "Information about toilet entrance marking",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "adapted_toilet_is_marked": "{value, select, false{The location of the toilet is not marked with directional information.} true{The location of the toilet is marked with directional information.} other{}}",
+  "adapted_toilet_is_marked": "{boolean, select, false{The location of the toilet is not marked with directional information.} true{The location of the toilet is marked with directional information.} other{}}",
   "@adapted_toilet_is_marked": {
-    "description": "Information about toilet location marking"
+    "description": "Information about toilet location marking",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "adapted_toilet_is_access_accessible_for_pwd": "{value, select, false{Access to the toilet is not adapted to the needs of people with disabilities.} true{Access to the toilet is adapted to the needs of people with disabilities.} other{}}",
+  "adapted_toilet_is_access_accessible_for_pwd": "{boolean, select, false{Access to the toilet is not adapted to the needs of people with disabilities.} true{Access to the toilet is adapted to the needs of people with disabilities.} other{}}",
   "@adapted_toilet_is_access_accessible_for_pwd": {
-    "description": "Information about toilet accessibility"
+    "description": "Information about toilet accessibility",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "adapted_toilet_is_150x150_free_space": "{value, select, false{There is no free space of at least 150 x 150 centimeters in the toilet.} true{There is free space of at least 150 x 150 cm in the toilet.} other{}}",
+  "adapted_toilet_is_150x150_free_space": "{boolean, select, false{There is no free space of at least 150 x 150 centimeters in the toilet.} true{There is free space of at least 150 x 150 cm in the toilet.} other{}}",
   "@adapted_toilet_is_150x150_free_space": {
-    "description": "Information about free space in toilet"
+    "description": "Information about free space in toilet",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "adapted_toilet_is_good_floor_wall_contrast": "{value, select, false{The contrast between the floor and walls is not clearly visible.} true{The contrast between the floor and walls is clearly visible.} other{}}",
+  "adapted_toilet_is_good_floor_wall_contrast": "{boolean, select, false{The contrast between the floor and walls is not clearly visible.} true{The contrast between the floor and walls is clearly visible.} other{}}",
   "@adapted_toilet_is_good_floor_wall_contrast": {
-    "description": "Information about floor-wall contrast in toilet"
+    "description": "Information about floor-wall contrast in toilet",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "adapted_toilet_is_side_maneuvering_space": "{value, select, false{There is no maneuvering space in the toilet.} true{There is maneuvering space in the toilet.} other{}}",
+  "adapted_toilet_is_side_maneuvering_space": "{boolean, select, false{There is no maneuvering space in the toilet.} true{There is maneuvering space in the toilet.} other{}}",
   "@adapted_toilet_is_side_maneuvering_space": {
-    "description": "Information about maneuvering space in toilet"
+    "description": "Information about maneuvering space in toilet",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "adapted_toilet_is_pulldown_handle": "{value, select, false{There is no fold-down handle in the toilet.} true{There is a fold-down handle in the toilet.} other{}}",
+  "adapted_toilet_is_pulldown_handle": "{boolean, select, false{There is no fold-down handle in the toilet.} true{There is a fold-down handle in the toilet.} other{}}",
   "@adapted_toilet_is_pulldown_handle": {
-    "description": "Information about fold-down handle in toilet"
+    "description": "Information about fold-down handle in toilet",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "adapted_toilet_is_fixed_handle": "{value, select, false{There is no permanently mounted handle in the toilet.} true{There is a permanently mounted handle in the toilet.} other{}}",
+  "adapted_toilet_is_fixed_handle": "{boolean, select, false{There is no permanently mounted handle in the toilet.} true{There is a permanently mounted handle in the toilet.} other{}}",
   "@adapted_toilet_is_fixed_handle": {
-    "description": "Information about fixed handle in toilet"
+    "description": "Information about fixed handle in toilet",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "adapted_toilet_is_good_pulldown_handle_wall_contrast": "{value, select, false{The fold-down handle does not contrast with the color of the wall.} true{The fold-down handle contrasts with the color of the wall.} other{}}",
+  "adapted_toilet_is_good_pulldown_handle_wall_contrast": "{boolean, select, false{The fold-down handle does not contrast with the color of the wall.} true{The fold-down handle contrasts with the color of the wall.} other{}}",
   "@adapted_toilet_is_good_pulldown_handle_wall_contrast": {
-    "description": "Information about handle-wall contrast in toilet"
+    "description": "Information about handle-wall contrast in toilet",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "adapted_toilet_is_mirror": "{value, select, false{There is no mirror in the toilet.} true{There is a mirror in the toilet.} other{}}",
+  "adapted_toilet_is_mirror": "{boolean, select, false{There is no mirror in the toilet.} true{There is a mirror in the toilet.} other{}}",
   "@adapted_toilet_is_mirror": {
-    "description": "Information about mirror in toilet"
+    "description": "Information about mirror in toilet",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "adapted_toilet_are_clothes_hooks": "{value, select, false{There are no clothes hooks in the toilet.} true{There are clothes hooks in the toilet.} other{}}",
+  "adapted_toilet_are_clothes_hooks": "{boolean, select, false{There are no clothes hooks in the toilet.} true{There are clothes hooks in the toilet.} other{}}",
   "@adapted_toilet_are_clothes_hooks": {
-    "description": "Information about clothes hooks in toilet"
+    "description": "Information about clothes hooks in toilet",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "adapted_toilet_is_wastebasket": "{value, select, false{There is no wastebasket in the toilet.} true{There is a wastebasket in the toilet.} other{}}",
+  "adapted_toilet_is_wastebasket": "{boolean, select, false{There is no wastebasket in the toilet.} true{There is a wastebasket in the toilet.} other{}}",
   "@adapted_toilet_is_wastebasket": {
-    "description": "Information about wastebasket in toilet"
+    "description": "Information about wastebasket in toilet",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "adapted_toilet_is_towel_dispenser": "{value, select, false{There is no towel dispenser in the toilet.} true{There is a towel dispenser in the toilet.} other{}}",
+  "adapted_toilet_is_towel_dispenser": "{boolean, select, false{There is no towel dispenser in the toilet.} true{There is a towel dispenser in the toilet.} other{}}",
   "@adapted_toilet_is_towel_dispenser": {
-    "description": "Information about towel dispenser in toilet"
+    "description": "Information about towel dispenser in toilet",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "adapted_toilet_is_space_under_washbasin_for_wheelchair": "{value, select, false{There is no space under the washbasin allowing wheelchair access.} true{There is space under the washbasin allowing wheelchair access.} other{}}",
+  "adapted_toilet_is_space_under_washbasin_for_wheelchair": "{boolean, select, false{There is no space under the washbasin allowing wheelchair access.} true{There is space under the washbasin allowing wheelchair access.} other{}}",
   "@adapted_toilet_is_space_under_washbasin_for_wheelchair": {
-    "description": "Information about wheelchair space under washbasin"
+    "description": "Information about wheelchair space under washbasin",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "adapted_toilet_is_light_switch": "{value, select, false{There is no light switch in the toilet.} true{There is a light switch in the toilet.} other{}}",
+  "adapted_toilet_is_light_switch": "{boolean, select, false{There is no light switch in the toilet.} true{There is a light switch in the toilet.} other{}}",
   "@adapted_toilet_is_light_switch": {
-    "description": "Information about light switch in toilet"
+    "description": "Information about light switch in toilet",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "adapted_toilet_is_good_lit": "{value, select, false{Lighting in the toilet is not adequate.} true{Lighting in the toilet is adequate.} other{}}",
+  "adapted_toilet_is_good_lit": "{boolean, select, false{Lighting in the toilet is not adequate.} true{Lighting in the toilet is adequate.} other{}}",
   "@adapted_toilet_is_good_lit": {
-    "description": "Information about lighting in toilet"
+    "description": "Information about lighting in toilet",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "adapted_toilet_is_hand_dryer": "{value, select, false{There is no hand dryer in the toilet.} true{There is a hand dryer in the toilet.} other{}}",
+  "adapted_toilet_is_hand_dryer": "{boolean, select, false{There is no hand dryer in the toilet.} true{There is a hand dryer in the toilet.} other{}}",
   "@adapted_toilet_is_hand_dryer": {
-    "description": "Information about hand dryer in toilet"
+    "description": "Information about hand dryer in toilet",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
   "adapted_toilet_seat_height": "The toilet seat is at a height of {height} cm",
   "@adapted_toilet_seat_height": {
@@ -860,13 +954,23 @@
   "@door": {
     "description": "Label for door section"
   },
-  "door_visible_from_outside": "{value, select, true{The door stands out clearly from the walls on the outside.} false{The door does not stand out clearly from the walls on the outside.} other{}}",
+  "door_visible_from_outside": "{boolean, select, true{The door stands out clearly from the walls on the outside.} false{The door does not stand out clearly from the walls on the outside.} other{}}",
   "@door_visible_from_outside": {
-    "description": "Information about door visibility from outside"
+    "description": "Information about door visibility from outside",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "door_visible_from_inside": "{value, select, true{The door stands out clearly from the walls on the inside.} false{The door does not stand out clearly from the walls on the inside.} other{}}",
+  "door_visible_from_inside": "{boolean, select, true{The door stands out clearly from the walls on the inside.} false{The door does not stand out clearly from the walls on the inside.} other{}}",
   "@door_visible_from_inside": {
-    "description": "Information about door visibility from inside"
+    "description": "Information about door visibility from inside",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
   "single_leaf_door": "These are single-leaf doors.",
   "@single_leaf_door": {
@@ -888,17 +992,32 @@
   "@swing_door": {
     "description": "Information about swing door type"
   },
-  "main_wing_highlighted": "{value, select, true{The main door leaf is highlighted.} false{The main door leaf is not highlighted.} other{}}",
+  "main_wing_highlighted": "{boolean, select, true{The main door leaf is highlighted.} false{The main door leaf is not highlighted.} other{}}",
   "@main_wing_highlighted": {
-    "description": "Information about main door leaf highlighting"
+    "description": "Information about main door leaf highlighting",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "increased_force_required": "{value, select, true{Increased force is required to open the door.} false{Increased force is not required to open the door.} other{}}",
+  "increased_force_required": "{boolean, select, true{Increased force is required to open the door.} false{Increased force is not required to open the door.} other{}}",
   "@increased_force_required": {
-    "description": "Information about force needed to open door"
+    "description": "Information about force needed to open door",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "door_closer": "{value, select, true{A door closer/self-closing device is installed on the door.} false{No door closer/self-closing device is installed on the door.} other{}}",
+  "door_closer": "{boolean, select, true{A door closer/self-closing device is installed on the door.} false{No door closer/self-closing device is installed on the door.} other{}}",
   "@door_closer": {
-    "description": "Information about door closer presence"
+    "description": "Information about door closer presence",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
   "accessibility_profile": "Accessibility profile",
   "@accessibility_profile": {
@@ -928,15 +1047,30 @@
   },
   "accessibility_level_feminine": "{level, select, 0{inaccessible} 1{inaccessible} 2{partially accessible} 3{accessible} other{inaccessible}}",
   "@accessibility_level_feminine": {
-    "description": "Feminine form of accessibility levels"
+    "description": "Feminine form of accessibility levels",
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
   },
   "accessibility_level_masculine": "{level, select, 0{inaccessible} 1{inaccessible} 2{partially accessible} 3{accessible} other{inaccessible}}",
   "@accessibility_level_masculine": {
-    "description": "Masculine form of accessibility levels"
+    "description": "Masculine form of accessibility levels",
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
   },
   "accessibility_level_neuter": "{level, select, 0{inaccessible} 1{inaccessible} 2{partially accessible} 3{accessible} other{inaccessible}}",
   "@accessibility_level_neuter": {
-    "description": "Neuter form of accessibility levels"
+    "description": "Neuter form of accessibility levels",
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
   },
   "people_with_cognitive_difficulties": "with cognitive difficulties",
   "@people_with_cognitive_difficulties": {
@@ -980,69 +1114,144 @@
       }
     }
   },
-  "are_high_curbs_at_parking_space_for_pwd": "There {value, select, false{is no} other{is a}} high curb at the parking spaces for people with disabilities.",
+  "are_high_curbs_at_parking_space_for_pwd": "There {boolean, select, false{is no} other{is a}} high curb at the parking spaces for people with disabilities.",
   "@are_high_curbs_at_parking_space_for_pwd": {
-    "description": "Information about curbs at disabled parking spaces"
+    "description": "Information about curbs at disabled parking spaces",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "is_lit": "The building's surroundings {value, select, false{are not} other{are}} lit after dusk.",
+  "is_lit": "The building's surroundings {boolean, select, false{are not} other{are}} lit after dusk.",
   "@is_lit": {
-    "description": "Information about lighting around building"
+    "description": "Information about lighting around building",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "is_pavement_rough": "The surface near the building {value, select, false{is not} other{is}} even.",
+  "is_pavement_rough": "The surface near the building {boolean, select, false{is not} other{is}} even.",
   "@is_pavement_rough": {
-    "description": "Information about pavement condition"
+    "description": "Information about pavement condition",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "are_lowered_curbs": "The curbs around the building {value, select, false{are not} other{are}} lowered.",
+  "are_lowered_curbs": "The curbs around the building {boolean, select, false{are not} other{are}} lowered.",
   "@are_lowered_curbs": {
-    "description": "Information about lowered curbs"
+    "description": "Information about lowered curbs",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "are_no_barriers": "There {value, select, true{are no barriers preventing access} false{are barriers preventing access} other{}} to the building.",
+  "are_no_barriers": "There {boolean, select, true{are no barriers preventing access} false{are barriers preventing access} other{}} to the building.",
   "@are_no_barriers": {
-    "description": "Information about access barriers"
+    "description": "Information about access barriers",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
   "is_path_to_accessible_entrance_marked": "The path to the entrance accessible to people with disabilities {value, select, false{is not} other{is}} clearly marked.",
   "@is_path_to_accessible_entrance_marked": {
     "description": "Information about accessible entrance path marking"
   },
-  "is_noisy_street_near_building": "In the vicinity, there {value, select, false{is no busy, noisy street.} true{is a busy, noisy street.} other{}}",
+  "is_noisy_street_near_building": "In the vicinity, there {boolean, select, false{is no busy, noisy street.} true{is a busy, noisy street.} other{}}",
   "@is_noisy_street_near_building": {
-    "description": "Information about nearby noisy streets"
+    "description": "Information about nearby noisy streets",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "room_stairs_is_good_lit": "{value, select, false{The stairs are not adequately lit.} true{The stairs are adequately lit.} other{}}",
+  "room_stairs_is_good_lit": "{boolean, select, false{The stairs are not adequately lit.} true{The stairs are adequately lit.} other{}}",
   "@room_stairs_is_good_lit": {
-    "description": "Information about stair lighting"
+    "description": "Information about stair lighting",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "room_stairs_is_nonslip_surface": "{value, select, false{The stair surface is not non-slip.} true{The stair surface is non-slip.} other{}}",
+  "room_stairs_is_nonslip_surface": "{boolean, select, false{The stair surface is not non-slip.} true{The stair surface is non-slip.} other{}}",
   "@room_stairs_is_nonslip_surface": {
-    "description": "Information about stair surface grip"
+    "description": "Information about stair surface grip",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "room_stairs_is_stairs_surface_shiny": "{value, select, false{The stair surface is not shiny and does not appear slippery.} true{The stair surface is shiny and may appear slippery.} other{}}",
+  "room_stairs_is_stairs_surface_shiny": "{boolean, select, false{The stair surface is not shiny and does not appear slippery.} true{The stair surface is shiny and may appear slippery.} other{}}",
   "@room_stairs_is_stairs_surface_shiny": {
-    "description": "Information about stair surface shininess"
+    "description": "Information about stair surface shininess",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "room_stairs_is_good_stairs_wall_contrast": "{value, select, false{The contrast between the stairs and wall is not clear.} true{The contrast between the stairs and wall is clear.} other{}}",
+  "room_stairs_is_good_stairs_wall_contrast": "{boolean, select, false{The contrast between the stairs and wall is not clear.} true{The contrast between the stairs and wall is clear.} other{}}",
   "@room_stairs_is_good_stairs_wall_contrast": {
-    "description": "Information about stair-wall contrast"
+    "description": "Information about stair-wall contrast",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "room_stairs_are_all_steps_have_same_dimensions": "{value, select, false{Steps do not have the same dimensions.} true{Steps have the same dimensions.} other{}}",
+  "room_stairs_are_all_steps_have_same_dimensions": "{boolean, select, false{Steps do not have the same dimensions.} true{Steps have the same dimensions.} other{}}",
   "@room_stairs_are_all_steps_have_same_dimensions": {
-    "description": "Information about step dimensions consistency"
+    "description": "Information about step dimensions consistency",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "room_stairs_is_railing": "{value, select, false{There is no railing by the stairs.} true{There is a railing by the stairs.} other{}}",
+  "room_stairs_is_railing": "{boolean, select, false{There is no railing by the stairs.} true{There is a railing by the stairs.} other{}}",
   "@room_stairs_is_railing": {
-    "description": "Information about stair railing presence"
+    "description": "Information about stair railing presence",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "room_stairs_is_good_railing_contrast": "{value, select, false{The railing does not stand out from the surroundings.} true{The railing stands out from the surroundings.} other{}}",
+  "room_stairs_is_good_railing_contrast": "{boolean, select, false{The railing does not stand out from the surroundings.} true{The railing stands out from the surroundings.} other{}}",
   "@room_stairs_is_good_railing_contrast": {
-    "description": "Information about railing contrast"
+    "description": "Information about railing contrast",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "room_stairs_is_round_cross_section_railing": "{value, select, false{The railing is not rounded and may have sharp edges.} true{The railing has no sharp edges and is rounded.} other{}}",
+  "room_stairs_is_round_cross_section_railing": "{boolean, select, false{The railing is not rounded and may have sharp edges.} true{The railing has no sharp edges and is rounded.} other{}}",
   "@room_stairs_is_round_cross_section_railing": {
-    "description": "Information about railing shape"
+    "description": "Information about railing shape",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "room_stairs_are_steps_edges_marked_in_contrasted_way": "{value, select, false{Steps are not visible. Their edges are not marked in a contrasting way.} true{Steps are visible. Their edges are marked in a contrasting way.} other{}}",
+  "room_stairs_are_steps_edges_marked_in_contrasted_way": "{boolean, select, false{Steps are not visible. Their edges are not marked in a contrasting way.} true{Steps are visible. Their edges are marked in a contrasting way.} other{}}",
   "@room_stairs_are_steps_edges_marked_in_contrasted_way": {
-    "description": "Information about step edge marking"
+    "description": "Information about step edge marking",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
   "room_stairs_stairs_width": "The width of the stairs is {width} centimeters",
   "@room_stairs_stairs_width": {
@@ -1053,69 +1262,149 @@
       }
     }
   },
-  "room_platforms_is_good_floor_platform_contrast": "{value, select, false{Insufficient floor contrast relative to the platform.} true{Good floor contrast relative to the platform.} other{}}",
+  "room_platforms_is_good_floor_platform_contrast": "{boolean, select, false{Insufficient floor contrast relative to the platform.} true{Good floor contrast relative to the platform.} other{}}",
   "@room_platforms_is_good_floor_platform_contrast": {
-    "description": "Information about floor-platform contrast"
+    "description": "Information about floor-platform contrast",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "room_platforms_have_access_for_people_in_wheelchair": "{value, select, false{The platform does not provide access for people who use wheelchairs.} true{The platform provides access for people who use wheelchairs.} other{}}",
+  "room_platforms_have_access_for_people_in_wheelchair": "{boolean, select, false{The platform does not provide access for people who use wheelchairs.} true{The platform provides access for people who use wheelchairs.} other{}}",
   "@room_platforms_have_access_for_people_in_wheelchair": {
-    "description": "Information about wheelchair accessibility to platform"
+    "description": "Information about wheelchair accessibility to platform",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "room_platforms_is_platform_entrance_marked": "{value, select, false{The entrance to the platform is not marked with warning elements.} true{The entrance to the platform is marked with warning elements.} other{}}",
+  "room_platforms_is_platform_entrance_marked": "{boolean, select, false{The entrance to the platform is not marked with warning elements.} true{The entrance to the platform is marked with warning elements.} other{}}",
   "@room_platforms_is_platform_entrance_marked": {
-    "description": "Information about platform entrance marking"
+    "description": "Information about platform entrance marking",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "room_platforms_are_no_objects_narrow_communication_zone": "{value, select, false{There are obstacles in the communication zone.} true{No obstacles in the communication zone.} other{}}",
+  "room_platforms_are_no_objects_narrow_communication_zone": "{boolean, select, false{There are obstacles in the communication zone.} true{No obstacles in the communication zone.} other{}}",
   "@room_platforms_are_no_objects_narrow_communication_zone": {
-    "description": "Information about obstacles in communication zone"
+    "description": "Information about obstacles in communication zone",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "stairs_is_stairs_sign_info": "{value, select, false{No information about stair signage is available.} true{Stair signage information is available.} other{}}",
+  "stairs_is_stairs_sign_info": "{boolean, select, false{No information about stair signage is available.} true{Stair signage information is available.} other{}}",
   "@stairs_is_stairs_sign_info": {
-    "description": "Information about stair signage availability"
+    "description": "Information about stair signage availability",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "stairs_is_stairs_sign_info_in_en": "{value, select, false{No information about stair signage in English.} true{Stair signage information in English is available.} other{}}",
+  "stairs_is_stairs_sign_info_in_en": "{boolean, select, false{No information about stair signage in English.} true{Stair signage information in English is available.} other{}}",
   "@stairs_is_stairs_sign_info_in_en": {
-    "description": "Information about English stair signage availability"
+    "description": "Information about English stair signage availability",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "stairs_is_good_lit": "{value, select, false{The stairs are poorly lit.} true{The stairs are well lit.} other{}}",
+  "stairs_is_good_lit": "{boolean, select, false{The stairs are poorly lit.} true{The stairs are well lit.} other{}}",
   "@stairs_is_good_lit": {
-    "description": "Information about stair lighting quality"
+    "description": "Information about stair lighting quality",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "stairs_is_stairs_surface_shiny": "{value, select, false{The surface of the stairs is not shiny.} true{The surface of the stairs is shiny.} other{}}",
+  "stairs_is_stairs_surface_shiny": "{boolean, select, false{The surface of the stairs is not shiny.} true{The surface of the stairs is shiny.} other{}}",
   "@stairs_is_stairs_surface_shiny": {
-    "description": "Information about stair surface shininess"
+    "description": "Information about stair surface shininess",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "stairs_is_nonslip_surface": "{value, select, false{The stairs do not have a non-slip surface.} true{The stairs have a non-slip surface.} other{}}",
+  "stairs_is_nonslip_surface": "{boolean, select, false{The stairs do not have a non-slip surface.} true{The stairs have a non-slip surface.} other{}}",
   "@stairs_is_nonslip_surface": {
-    "description": "Information about stair surface grip"
+    "description": "Information about stair surface grip",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "stairs_is_good_stairs_wall_contrast": "{value, select, false{Insufficient contrast between the stairs and the wall.} true{Good contrast between the stairs and the wall.} other{}}",
+  "stairs_is_good_stairs_wall_contrast": "{boolean, select, false{Insufficient contrast between the stairs and the wall.} true{Good contrast between the stairs and the wall.} other{}}",
   "@stairs_is_good_stairs_wall_contrast": {
-    "description": "Information about stair-wall contrast"
+    "description": "Information about stair-wall contrast",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "stairs_are_emergency_stairs": "{value, select, false{The stairs are not emergency exit stairs.} true{The stairs are emergency exit stairs.} other{}}",
+  "stairs_are_emergency_stairs": "{boolean, select, false{The stairs are not emergency exit stairs.} true{The stairs are emergency exit stairs.} other{}}",
   "@stairs_are_emergency_stairs": {
-    "description": "Information about emergency exit stairs"
+    "description": "Information about emergency exit stairs",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "stairs_are_first_and_last_steps_marked": "{value, select, false{The first and last steps are not marked.} true{The first and last steps are marked.} other{}}",
+  "stairs_are_first_and_last_steps_marked": "{boolean, select, false{The first and last steps are not marked.} true{The first and last steps are marked.} other{}}",
   "@stairs_are_first_and_last_steps_marked": {
-    "description": "Information about first/last step marking"
+    "description": "Information about first/last step marking",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "stairs_are_grades_nose_pads": "{value, select, false{The stairs do not have step nose pads.} true{The stairs have step nose pads.} other{}}",
+  "stairs_are_grades_nose_pads": "{boolean, select, false{The stairs do not have step nose pads.} true{The stairs have step nose pads.} other{}}",
   "@stairs_are_grades_nose_pads": {
-    "description": "Information about stair nose pads"
+    "description": "Information about stair nose pads",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "stairs_are_steps_raised_markings": "{value, select, false{No raised markings on the steps.} true{The steps have raised markings.} other{}}",
+  "stairs_are_steps_raised_markings": "{boolean, select, false{No raised markings on the steps.} true{The steps have raised markings.} other{}}",
   "@stairs_are_steps_raised_markings": {
-    "description": "Information about raised step markings"
+    "description": "Information about raised step markings",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
   "stairs_step_height": "{value, plural, =0{No stairs.} one{The step is {value} cm high.} other{The steps are {value} cm high.}}",
   "@stairs_step_height": {
-    "description": "Information about stair step height"
+    "description": "Information about stair step height",
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
   },
-  "stairs_is_properly_marked_free_space_under_stairs": "{value, select, false{The free space under the stairs is not properly marked.} true{The free space under the stairs is properly marked.} other{}}",
+  "stairs_is_properly_marked_free_space_under_stairs": "{boolean, select, false{The free space under the stairs is not properly marked.} true{The free space under the stairs is properly marked.} other{}}",
   "@stairs_is_properly_marked_free_space_under_stairs": {
-    "description": "Information about marking of space under stairs"
+    "description": "Information about marking of space under stairs",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
   "floor_list": "Number of floors:",
   "@floor_list": {
@@ -1133,98 +1422,196 @@
   "@number_of_stair_landings": {
     "description": "Label for stair landing count"
   },
-  "rooms_is_one_level_floor": "{value, select, false{The floor in the room is not on one level.} true{The floor in the room is on one level.} other{}}",
+  "rooms_is_one_level_floor": "{boolean, select, false{The floor in the room is not on one level.} true{The floor in the room is on one level.} other{}}",
   "@rooms_is_one_level_floor": {
-    "description": "Information about room floor levelness"
-  },
-  "rooms_are_places_for_wheelchairs": "{value, select, false{There are no dedicated places for wheelchair users in the room.} true{There are dedicated places for wheelchair users in the room.} other{}}",
-  "@rooms_are_places_for_wheelchairs": {
-    "description": "Information about wheelchair spaces in room"
-  },
-  "rooms_are_any_dangerous_elements": "{value, select, false{There are no dangerous structural elements in the room.} true{There are dangerous structural elements in the room.} other{}}",
-  "@rooms_are_any_dangerous_elements": {
-    "description": "Information about dangerous elements in room"
-  },
-  "rooms_is_generally_available_desk": "{value, select, false{There is no publicly accessible desk, table, or countertop in the room.} true{There is a publicly accessible desk, table, or countertop in the room with a height of} other{}}",
-  "@rooms_is_generally_available_desk": {
-    "description": "Information about accessible desk availability"
-  },
-  "rooms_has_induction_loop": "{value, select, false{The room is not equipped with an induction loop, FM system, or sign language interpreter.} true{The room is equipped with} other{}}",
-  "@rooms_has_induction_loop": {
-    "description": "Information about assistive listening systems"
-  },
-  "rooms_is_space_under_counter": "{value, select, true{The publicly accessible countertop, desk, or table is accessible for wheelchair users.} false{The publicly accessible countertop, desk, or table does not have space for knees or wheelchair access.} other{}}",
-  "@rooms_is_space_under_counter": {
-    "description": "Information about wheelchair access under counters"
-  },
-  "rooms_is_good_floor_room_contrast": "{value, select, false{The color contrast in the room is low.} true{The color contrast in the room is distinct.} other{}}",
-  "@rooms_is_good_floor_room_contrast": {
-    "description": "Information about room color contrast"
-  },
-  "rooms_is_good_lit": "{value, select, false{The lighting level in the room is not adequate.} true{The lighting level in the room is adequate.} other{}}",
-  "@rooms_is_good_lit": {
-    "description": "Information about room lighting quality"
-  },
-  "rooms_is_floor_shiny": "{value, select, false{The floor in the room is not shiny and does not cause glare.} true{The room has a shiny floor that may cause glare or appear slippery.} other{}}",
-  "@rooms_is_floor_shiny": {
-    "description": "Information about room floor shininess"
-  },
-  "rooms_is_blackboard": "{value, select, true{There is a blackboard in the room, located {distance} from the seating area} other{}}",
-  "@rooms_is_blackboard": {
-    "description": "",
+    "description": "Information about room floor levelness",
     "placeholders": {
-      "distance": {
+      "boolean": {
         "type": "String"
       }
     }
   },
-  "rooms_are_movable_elements": "{value, select, false{There are no other fixed or movable elements in the room that pose a hazard or potential mobility issues.} true{There are other fixed or movable elements in the room that pose a hazard or potential mobility issues.} other{}}",
+  "rooms_are_places_for_wheelchairs": "{boolean, select, false{There are no dedicated places for wheelchair users in the room.} true{There are dedicated places for wheelchair users in the room.} other{}}",
+  "@rooms_are_places_for_wheelchairs": {
+    "description": "Information about wheelchair spaces in room",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
+  "rooms_are_any_dangerous_elements": "{boolean, select, false{There are no dangerous structural elements in the room.} true{There are dangerous structural elements in the room.} other{}}",
+  "@rooms_are_any_dangerous_elements": {
+    "description": "Information about dangerous elements in room",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
+  "rooms_is_generally_available_desk": "{boolean, select, false{There is no publicly accessible desk, table, or countertop in the room.} true{There is a publicly accessible desk, table, or countertop in the room with a height of} other{}}",
+  "@rooms_is_generally_available_desk": {
+    "description": "Information about accessible desk availability",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
+  "rooms_has_induction_loop": "{boolean, select, false{The room is not equipped with an induction loop, FM system, or sign language interpreter.} true{The room is equipped with} other{}}",
+  "@rooms_has_induction_loop": {
+    "description": "Information about assistive listening systems",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
+  "rooms_is_space_under_counter": "{boolean, select, true{The publicly accessible countertop, desk, or table is accessible for wheelchair users.} false{The publicly accessible countertop, desk, or table does not have space for knees or wheelchair access.} other{}}",
+  "@rooms_is_space_under_counter": {
+    "description": "Information about wheelchair access under counters",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
+  "rooms_is_good_floor_room_contrast": "{boolean, select, false{The color contrast in the room is low.} true{The color contrast in the room is distinct.} other{}}",
+  "@rooms_is_good_floor_room_contrast": {
+    "description": "Information about room color contrast",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
+  "rooms_is_good_lit": "{boolean, select, false{The lighting level in the room is not adequate.} true{The lighting level in the room is adequate.} other{}}",
+  "@rooms_is_good_lit": {
+    "description": "Information about room lighting quality",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
+  "rooms_is_floor_shiny": "{boolean, select, false{The floor in the room is not shiny and does not cause glare.} true{The room has a shiny floor that may cause glare or appear slippery.} other{}}",
+  "@rooms_is_floor_shiny": {
+    "description": "Information about room floor shininess",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
+  "rooms_is_blackboard": "{boolean, select, true{There is a blackboard in the room, located {distance} from the seating area} other{}}",
+  "@rooms_is_blackboard": {
+    "description": "Information about blackboard presence",
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      },
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
+  "rooms_are_movable_elements": "{boolean, select, false{There are no other fixed or movable elements in the room that pose a hazard or potential mobility issues.} true{There are other fixed or movable elements in the room that pose a hazard or potential mobility issues.} other{}}",
   "@rooms_are_movable_elements": {
-    "description": "Information about presence of hazardous movable elements in room"
+    "description": "Information about presence of hazardous movable elements in room",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "rooms_are_flashing_devices": "{value, select, false{There are no flashing or shimmering devices in the room that may trigger epileptic seizures.} true{There are flashing or shimmering devices in the room that may trigger epileptic seizures.} other{}}",
+  "rooms_are_flashing_devices": "{boolean, select, false{There are no flashing or shimmering devices in the room that may trigger epileptic seizures.} true{There are flashing or shimmering devices in the room that may trigger epileptic seizures.} other{}}",
   "@rooms_are_flashing_devices": {
-    "description": "Information about presence of flashing devices in room"
+    "description": "Information about presence of flashing devices in room",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "rooms_are_places_accessible_from_main_entrance": "{value, select, false{Wheelchair-accessible places are not accessible from the main entrance to the room.} true{Wheelchair-accessible places are accessible from the main entrance to the room.} other{}}",
+  "rooms_are_places_accessible_from_main_entrance": "{boolean, select, false{Wheelchair-accessible places are not accessible from the main entrance to the room.} true{Wheelchair-accessible places are accessible from the main entrance to the room.} other{}}",
   "@rooms_are_places_accessible_from_main_entrance": {
-    "description": "Information about wheelchair accessibility from main entrance"
+    "description": "Information about wheelchair accessibility from main entrance",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "rooms_are_electrical_outlets": "{value, select, false{Electrical outlets and other switches in the room are located higher than 110 centimeters.} true{Electrical outlets and other switches in the room are accessible and located at a maximum height of 110 centimeters.} other{}}",
+  "rooms_are_electrical_outlets": "{boolean, select, false{Electrical outlets and other switches in the room are located higher than 110 centimeters.} true{Electrical outlets and other switches in the room are accessible and located at a maximum height of 110 centimeters.} other{}}",
   "@rooms_are_electrical_outlets": {
-    "description": "Information about accessibility of electrical outlets and switches"
+    "description": "Information about accessibility of electrical outlets and switches",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "are_objects_narrow_communication_zone": "Objects {value, select, false{do not narrow the passage} true{narrow the passage} other{}}",
+  "are_objects_narrow_communication_zone": "Objects {boolean, select, false{do not narrow the passage} true{narrow the passage} other{}}",
   "@are_objects_narrow_communication_zone": {
-    "description": "Information about objects narrowing passageways"
+    "description": "Information about objects narrowing passageways",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "are_information_boards": "Information boards{value, select, false{ are not} true{} other{}} available",
+  "are_information_boards": "Information boards{boolean, select, false{ are not} true{} other{}} available",
   "@are_information_boards": {
-    "description": "Information about availability of information boards"
+    "description": "Information about availability of information boards",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "are_information_boards_in_en": "Information boards{value, select, false{ are not} true{} other{}} available in English",
+  "are_information_boards_in_en": "Information boards{boolean, select, false{ are not} true{} other{}} available in English",
   "@are_information_boards_in_en": {
-    "description": "Information about availability of English information boards"
+    "description": "Information about availability of English information boards",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "are_room_entrances": "{value, select, false{There are no} true{There are} other{}} entrances to rooms",
+  "are_room_entrances": "{boolean, select, false{There are no} true{There are} other{}} entrances to rooms",
   "@are_room_entrances": {
-    "description": "Information about presence of room entrances"
+    "description": "Information about presence of room entrances",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "are_floor_markings": "{value, select, false{There are no} true{There are} other{}} floor markings",
+  "are_floor_markings": "{boolean, select, false{There are no} true{There are} other{}} floor markings",
   "@are_floor_markings": {
-    "description": "Information about presence of floor markings"
+    "description": "Information about presence of floor markings",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "is_typhlomap": "A tactile map{value, select, false{ is not} true{} other{}} available",
+  "is_typhlomap": "A tactile map{boolean, select, false{ is not} true{} other{}} available",
   "@is_typhlomap": {
-    "description": "Information about availability of tactile map"
+    "description": "Information about availability of tactile map",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "strategicBadgeTooltip": "Strategic Circle of Wrocław University of Science and Technology",
+  "strategicBadgeTooltip": "Strategic Science Club of Wrocław University of Science and Technology",
   "@strategicBadgeTooltip": {
     "description": "Tooltip text for strategic badge"
   },
   "strategic_club_abbr": "SC",
   "@strategic_club_abbr": {
-    "description": "Abbreviation for Strategic Circle"
+    "description": "Abbreviation for Strategic Science Club"
   },
   "emptySection": "No team members in this version",
   "@emptySection": {
@@ -1272,57 +1659,122 @@
       }
     }
   },
-  "entrance_has_sound_transmitter": "{value, select, false{No sound transmitter at the entrance.} true{There is a sound transmitter at the entrance.} other{}}",
+  "entrance_has_sound_transmitter": "{boolean, select, false{No sound transmitter at the entrance.} true{There is a sound transmitter at the entrance.} other{}}",
   "@entrance_has_sound_transmitter": {
-    "description": "Information about presence of sound transmitter at entrance"
+    "description": "Information about presence of sound transmitter at entrance",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "entrance_has_tactile_paving": "{value, select, false{No tactile paving at the entrance.} true{There is tactile paving at the entrance.} other{}}",
+  "entrance_has_tactile_paving": "{boolean, select, false{No tactile paving at the entrance.} true{There is tactile paving at the entrance.} other{}}",
   "@entrance_has_tactile_paving": {
-    "description": "Information about presence of tactile paving at entrance"
+    "description": "Information about presence of tactile paving at entrance",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "entrance_is_main": "{value, select, false{This is not the main entrance} true{This is the main entrance} other{}}",
+  "entrance_is_main": "{boolean, select, false{This is not the main entrance} true{This is the main entrance} other{}}",
   "@entrance_is_main": {
-    "description": "Information about whether entrance is main entrance"
+    "description": "Information about whether entrance is main entrance",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "entrance_is_accessible": "{value, select, true{The entrance is accessible} false{The entrance is not accessible} other{}}",
+  "entrance_is_accessible": "{boolean, select, true{The entrance is accessible} false{The entrance is not accessible} other{}}",
   "@entrance_is_accessible": {
-    "description": "Information about entrance accessibility"
+    "description": "Information about entrance accessibility",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "entrance_is_for_personel": "{value, select, false{No special permissions are required to use the entrance} true{Special permissions are required to use the entrance} other{}}",
+  "entrance_is_for_personel": "{boolean, select, false{No special permissions are required to use the entrance} true{Special permissions are required to use the entrance} other{}}",
   "@entrance_is_for_personel": {
-    "description": "Information about entrance access permissions"
+    "description": "Information about entrance access permissions",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "entrance_is_building_marked_from_entrance": "{value, select, false{The building is not clearly marked from the entrance side} true{The building is clearly marked from the entrance side} other{}}",
+  "entrance_is_building_marked_from_entrance": "{boolean, select, false{The building is not clearly marked from the entrance side} true{The building is clearly marked from the entrance side} other{}}",
   "@entrance_is_building_marked_from_entrance": {
-    "description": "Information about building marking visibility from entrance"
+    "description": "Information about building marking visibility from entrance",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "entrance_is_building_marked_in_en": "{value, select, false{The building is not labeled in English} true{The building is labeled in English} other{}}",
+  "entrance_is_building_marked_in_en": "{boolean, select, false{The building is not labeled in English} true{The building is labeled in English} other{}}",
   "@entrance_is_building_marked_in_en": {
-    "description": "Information about English building labeling"
+    "description": "Information about English building labeling",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "entrance_is_lit": "{value, select, false{The entrance is not illuminated after dark} true{The entrance is illuminated after dark} other{}}",
+  "entrance_is_lit": "{boolean, select, false{The entrance is not illuminated after dark} true{The entrance is illuminated after dark} other{}}",
   "@entrance_is_lit": {
-    "description": "Information about entrance lighting"
+    "description": "Information about entrance lighting",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "entrance_is_emergency_exit": "{value, select, false{The entrance is not an emergency exit} true{The entrance is an emergency exit} other{}}",
+  "entrance_is_emergency_exit": "{boolean, select, false{The entrance is not an emergency exit} true{The entrance is an emergency exit} other{}}",
   "@entrance_is_emergency_exit": {
-    "description": "Information about emergency exit status"
+    "description": "Information about emergency exit status",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "entrance_is_protection_from_weather": "{value, select, false{The entrance is not protected from weather conditions} true{The entrance is protected from weather conditions} other{}}",
+  "entrance_is_protection_from_weather": "{boolean, select, false{The entrance is not protected from weather conditions} true{The entrance is protected from weather conditions} other{}}",
   "@entrance_is_protection_from_weather": {
-    "description": "Information about weather protection at entrance"
+    "description": "Information about weather protection at entrance",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "entrance_is_solid_surface": "{value, select, false{The area in front of the entrance is not even} true{The area in front of the entrance is even} other{}}",
+  "entrance_is_solid_surface": "{boolean, select, false{The area in front of the entrance is not even} true{The area in front of the entrance is even} other{}}",
   "@entrance_is_solid_surface": {
-    "description": "Information about surface evenness in front of entrance"
+    "description": "Information about surface evenness in front of entrance",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "entrance_are_different_types_of_surface": "{value, select, false{No different types of surfaces are present at the entrance} true{Different types of surfaces are present at the entrance} other{}}",
+  "entrance_are_different_types_of_surface": "{boolean, select, false{No different types of surfaces are present at the entrance} true{Different types of surfaces are present at the entrance} other{}}",
   "@entrance_are_different_types_of_surface": {
-    "description": "Information about surface types at entrance"
+    "description": "Information about surface types at entrance",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "entrance_are_benches": "{value, select, false{There are no benches in front of the entrance} true{There are benches in front of the entrance} other{}}",
+  "entrance_are_benches": "{boolean, select, false{There are no benches in front of the entrance} true{There are benches in front of the entrance} other{}}",
   "@entrance_are_benches": {
-    "description": "Information about presence of benches at entrance"
+    "description": "Information about presence of benches at entrance",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
   "motorImpairment": "Motor impairment",
   "@motorImpairment": {
@@ -1524,102 +1976,102 @@
       }
     }
   },
-  "lift_is_mirror": "{value, select, true{There is a mirror in the elevator that makes it easier to exit.} false{There is no mirror in the elevator that makes it easier to exit.} other{}}",
+  "lift_is_mirror": "{boolean, select, true{There is a mirror in the elevator that makes it easier to exit.} false{There is no mirror in the elevator that makes it easier to exit.} other{}}",
   "@lift_is_mirror": {
     "description": "Indicates whether the elevator has a mirror for easier exit",
     "placeholders": {
-      "value": {
-        "type": "bool"
+      "boolean": {
+        "type": "String"
       }
     }
   },
-  "lift_info_board_text": "{value, select, true{The elevator is marked with an information board.} false{The elevator is not marked with an information board.} other{}}",
+  "lift_info_board_text": "{boolean, select, true{The elevator is marked with an information board.} false{The elevator is not marked with an information board.} other{}}",
   "@lift_info_board_text": {
     "description": "Indicates whether the elevator has an information board",
     "placeholders": {
-      "value": {
-        "type": "bool"
+      "boolean": {
+        "type": "String"
       }
     }
   },
-  "lift_is_voice_comunicates": "{value, select, false{The elevator does not provide voice announcements.} true{The elevator provides voice announcements.} other{}}",
+  "lift_is_voice_comunicates": "{boolean, select, false{The elevator does not provide voice announcements.} true{The elevator provides voice announcements.} other{}}",
   "@lift_is_voice_comunicates": {
     "description": "Indicates whether the elevator provides voice announcements",
     "placeholders": {
-      "value": {
-        "type": "bool"
+      "boolean": {
+        "type": "String"
       }
     }
   },
-  "lift_with_voice_comunicates": "{value, select, false{The elevator does not provide voice announcements.} true{The elevator provides voice announcements.} other{}}",
+  "lift_with_voice_comunicates": "{boolean, select, false{The elevator does not provide voice announcements.} true{The elevator provides voice announcements.} other{}}",
   "@lift_with_voice_comunicates": {
     "description": "Indicates whether the elevator provides voice announcements",
     "placeholders": {
-      "value": {
-        "type": "bool"
+      "boolean": {
+        "type": "String"
       }
     }
   },
-  "lift_with_inside_braile_comunicates": "{value, select, false{The buttons inside the elevator do not have Braille markings.} true{The buttons inside the elevator have Braille markings.} other{}}",
+  "lift_with_inside_braile_comunicates": "{boolean, select, false{The buttons inside the elevator do not have Braille markings.} true{The buttons inside the elevator have Braille markings.} other{}}",
   "@lift_with_inside_braile_comunicates": {
     "description": "Indicates whether the elevator buttons have Braille markings",
     "placeholders": {
-      "value": {
-        "type": "bool"
+      "boolean": {
+        "type": "String"
       }
     }
   },
-  "lift_button_are_convex": "{value, select, false{The buttons on the control panel inside the elevator are not convex.} true{The buttons on the control panel inside the elevator are convex.} other{}}",
+  "lift_button_are_convex": "{boolean, select, false{The buttons on the control panel inside the elevator are not convex.} true{The buttons on the control panel inside the elevator are convex.} other{}}",
   "@lift_button_are_convex": {
     "description": "Indicates whether the elevator buttons are convex",
     "placeholders": {
-      "value": {
-        "type": "bool"
+      "boolean": {
+        "type": "String"
       }
     }
   },
-  "lift_is_with_outside_notification": "{value, select, false{When waiting for the elevator, there is no audible notification of its arrival.} true{When waiting for the elevator, there is an audible notification of its arrival.} other{}}",
+  "lift_is_with_outside_notification": "{boolean, select, false{When waiting for the elevator, there is no audible notification of its arrival.} true{When waiting for the elevator, there is an audible notification of its arrival.} other{}}",
   "@lift_is_with_outside_notification": {
     "description": "Indicates whether there is an audible notification when the elevator arrives",
     "placeholders": {
-      "value": {
-        "type": "bool"
+      "boolean": {
+        "type": "String"
       }
     }
   },
-  "lift_is_with_inside_notification": "{value, select, false{While riding the elevator, there is no audible notification of arriving at the selected floor.} true{While riding the elevator, there is an audible notification of arriving at the selected floor.} other{}}",
+  "lift_is_with_inside_notification": "{boolean, select, false{While riding the elevator, there is no audible notification of arriving at the selected floor.} true{While riding the elevator, there is an audible notification of arriving at the selected floor.} other{}}",
   "@lift_is_with_inside_notification": {
     "description": "Indicates whether there is an audible notification when arriving at the selected floor",
     "placeholders": {
-      "value": {
-        "type": "bool"
+      "boolean": {
+        "type": "String"
       }
     }
   },
-  "lift_is_door_good_contrast": "{value, select, false{The elevator doors do not contrast with the wall.} true{The elevator doors contrast with the wall.} other{}}",
+  "lift_is_door_good_contrast": "{boolean, select, false{The elevator doors do not contrast with the wall.} true{The elevator doors contrast with the wall.} other{}}",
   "@lift_is_door_good_contrast": {
     "description": "Indicates whether the elevator doors have good contrast with the wall",
     "placeholders": {
-      "value": {
-        "type": "bool"
+      "boolean": {
+        "type": "String"
       }
     }
   },
-  "lift_is_inside_lit": "{value, select, false{The lighting inside the elevator is not adequate.} true{The lighting inside the elevator is adequate.} other{}}",
+  "lift_is_inside_lit": "{boolean, select, false{The lighting inside the elevator is not adequate.} true{The lighting inside the elevator is adequate.} other{}}",
   "@lift_is_inside_lit": {
     "description": "Indicates whether the elevator has adequate lighting",
     "placeholders": {
-      "value": {
-        "type": "bool"
+      "boolean": {
+        "type": "String"
       }
     }
   },
-  "is_lift_floor_info": "{value, select, false{The elevator does not display floor information.} true{The elevator displays the current floor number.} other{}}",
+  "is_lift_floor_info": "{boolean, select, false{The elevator does not display floor information.} true{The elevator displays the current floor number.} other{}}",
   "@is_lift_floor_info": {
     "description": "Indicates whether the elevator displays floor information",
     "placeholders": {
-      "value": {
-        "type": "bool"
+      "boolean": {
+        "type": "String"
       }
     }
   },
@@ -1635,163 +2087,183 @@
   "@cafe": {
     "description": "Label for cafe information"
   },
-  "toilet_is_need_authorization": "{value, select, false{No authorization is required.} true{Authorization is required.} other{}}",
+  "toilet_is_need_authorization": "{boolean, select, false{No authorization is required.} true{Authorization is required.} other{}}",
   "@toilet_is_need_authorization": {
     "description": "Indicates whether authorization is required to use the toilet",
     "placeholders": {
-      "value": {
-        "type": "bool"
+      "boolean": {
+        "type": "String"
       }
     }
   },
-  "toilet_is_wastebasket": "{value, select, false{There is no wastebasket.} true{There is a wastebasket.} other{}}",
+  "toilet_is_wastebasket": "{boolean, select, false{There is no wastebasket.} true{There is a wastebasket.} other{}}",
   "@toilet_is_wastebasket": {
     "description": "Indicates whether the toilet has a wastebasket",
     "placeholders": {
-      "value": {
-        "type": "bool"
+      "boolean": {
+        "type": "String"
       }
     }
   },
-  "toilet_are_clothes_hooks": "{value, select, false{There are no clothes hooks.} true{There are clothes hooks.} other{}}",
+  "toilet_are_clothes_hooks": "{boolean, select, false{There are no clothes hooks.} true{There are clothes hooks.} other{}}",
   "@toilet_are_clothes_hooks": {
     "description": "Indicates whether the toilet has clothes hooks",
     "placeholders": {
-      "value": {
-        "type": "bool"
+      "boolean": {
+        "type": "String"
       }
     }
   },
-  "toilet_is_hand_dryer": "{value, select, false{There is no hand dryer.} true{There is a hand dryer.} other{}}",
+  "toilet_is_hand_dryer": "{boolean, select, false{There is no hand dryer.} true{There is a hand dryer.} other{}}",
   "@toilet_is_hand_dryer": {
     "description": "Indicates whether the toilet has a hand dryer",
     "placeholders": {
-      "value": {
-        "type": "bool"
+      "boolean": {
+        "type": "String"
       }
     }
   },
-  "toilet_is_towel_dispenser": "{value, select, false{There is no towel dispenser.} true{There is a towel dispenser.} other{}}",
+  "toilet_is_towel_dispenser": "{boolean, select, false{There is no towel dispenser.} true{There is a towel dispenser.} other{}}",
   "@toilet_is_towel_dispenser": {
     "description": "Indicates whether the toilet has a towel dispenser",
     "placeholders": {
-      "value": {
-        "type": "bool"
+      "boolean": {
+        "type": "String"
       }
     }
   },
-  "toilet_is_washbasin": "{value, select, false{There is no washbasin.} true{There is a washbasin.} other{}}",
+  "toilet_is_washbasin": "{boolean, select, false{There is no washbasin.} true{There is a washbasin.} other{}}",
   "@toilet_is_washbasin": {
     "description": "Indicates whether the toilet has a washbasin",
     "placeholders": {
-      "value": {
-        "type": "bool"
+      "boolean": {
+        "type": "String"
       }
     }
   },
-  "toilet_is_space_under_washbasin_for_wheelchair": "{value, select, false{There is no space under the washbasin for a wheelchair.} true{There is space under the washbasin for a wheelchair.} other{}}",
+  "toilet_is_space_under_washbasin_for_wheelchair": "{boolean, select, false{There is no space under the washbasin for a wheelchair.} true{There is space under the washbasin for a wheelchair.} other{}}",
   "@toilet_is_space_under_washbasin_for_wheelchair": {
-    "description": "Information about wheelchair space under washbasin"
+    "description": "Information about wheelchair space under washbasin",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "toilet_is_light_switch": "{value, select, false{There is no light switch.} true{There is a light switch.} other{}}",
+  "toilet_is_light_switch": "{boolean, select, false{There is no light switch.} true{There is a light switch.} other{}}",
   "@toilet_is_light_switch": {
-    "description": "Information about light switch in toilet"
+    "description": "Information about light switch in toilet",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "toilet_is_good_lit": "{value, select, false{The lighting is insufficient.} true{The lighting is good.} other{}}",
+  "toilet_is_good_lit": "{boolean, select, false{The lighting is insufficient.} true{The lighting is good.} other{}}",
   "@toilet_is_good_lit": {
-    "description": "Information about lighting in toilet"
+    "description": "Information about lighting in toilet",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "toilet_is_good_devices_wall_contrast": "{value, select, false{The fixtures do not stand out from the wall.} true{The fixtures stand out from the wall.} other{}}",
+  "toilet_is_good_devices_wall_contrast": "{boolean, select, false{The fixtures do not stand out from the wall.} true{The fixtures stand out from the wall.} other{}}",
   "@toilet_is_good_devices_wall_contrast": {
-    "description": "Information about fixtures-wall contrast in toilet"
+    "description": "Information about fixtures-wall contrast in toilet",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "transport_are_pass_traffic_lights": "{value, select, false{On the route from the stop to the building entrance, there is no pedestrian crossing with traffic lights.} true{On the route from the stop to the building entrance, there is a pedestrian crossing with traffic lights.} other{}}",
+  "transport_are_pass_traffic_lights": "{boolean, select, false{On the route from the stop to the building entrance, there is no pedestrian crossing with traffic lights.} true{On the route from the stop to the building entrance, there is a pedestrian crossing with traffic lights.} other{}}",
   "@transport_are_pass_traffic_lights": {
     "description": "Information about presence of traffic light crossings from stop to entrance",
     "placeholders": {
-      "value": {
-        "type": "bool"
+      "boolean": {
+        "type": "String"
       }
     }
   },
-  "transport_are_not_pass_traffic_lights": "{value, select, false{On the route from the stop to the building entrance, there is no pedestrian crossing without traffic lights.} true{On the route from the stop to the building entrance, there is a pedestrian crossing without traffic lights.} other{}}",
+  "transport_are_not_pass_traffic_lights": "{boolean, select, false{On the route from the stop to the building entrance, there is no pedestrian crossing without traffic lights.} true{On the route from the stop to the building entrance, there is a pedestrian crossing without traffic lights.} other{}}",
   "@transport_are_not_pass_traffic_lights": {
     "description": "Information about presence of non-traffic light crossings from stop to entrance",
     "placeholders": {
-      "value": {
-        "type": "bool"
+      "boolean": {
+        "type": "String"
       }
     }
   },
-  "transport_wheelchair_obstacles": "{value, select, true{On the route from the stop to the building entrance, there are obstacles for a wheelchair user:} false{On the route from the stop to the building entrance, there are no obstacles for a wheelchair user.} other{}}",
+  "transport_wheelchair_obstacles": "{boolean, select, true{On the route from the stop to the building entrance, there are obstacles for a wheelchair user:} false{On the route from the stop to the building entrance, there are no obstacles for a wheelchair user.} other{}}",
   "@transport_wheelchair_obstacles": {
     "description": "Information about wheelchair obstacles from stop to entrance",
     "placeholders": {
-      "value": {
-        "type": "bool"
+      "boolean": {
+        "type": "String"
       }
     }
   },
-  "transport_alt_are_pass_traffic_lights": "{value, select, false{On the route from the alternative stop to the building entrance, there is no pedestrian crossing with traffic lights.} true{On the route from the alternative stop to the building entrance, there is a pedestrian crossing with traffic lights.} other{}}",
+  "transport_alt_are_pass_traffic_lights": "{boolean, select, false{On the route from the alternative stop to the building entrance, there is no pedestrian crossing with traffic lights.} true{On the route from the alternative stop to the building entrance, there is a pedestrian crossing with traffic lights.} other{}}",
   "@transport_alt_are_pass_traffic_lights": {
     "description": "Information about presence of traffic light crossings from alternative stop to entrance",
     "placeholders": {
-      "value": {
-        "type": "bool"
+      "boolean": {
+        "type": "String"
       }
     }
   },
-  "transport_alt_are_not_pass_traffic_lights": "{value, select, false{On the route from the alternative stop to the building entrance, there is no pedestrian crossing without traffic lights.} true{On the route from the alternative stop to the building entrance, there is a pedestrian crossing without traffic lights.} other{}}",
+  "transport_alt_are_not_pass_traffic_lights": "{boolean, select, false{On the route from the alternative stop to the building entrance, there is no pedestrian crossing without traffic lights.} true{On the route from the alternative stop to the building entrance, there is a pedestrian crossing without traffic lights.} other{}}",
   "@transport_alt_are_not_pass_traffic_lights": {
     "description": "Information about presence of non-traffic light crossings from alternative stop to entrance",
     "placeholders": {
-      "value": {
-        "type": "bool"
+      "boolean": {
+        "type": "String"
       }
     }
   },
-  "transport_alt_wheelchair_obstacles": "{value, select, true{On the route from the alternative stop to the building entrance, there are obstacles for a wheelchair user:} false{On the route from the alternative stop to the building entrance, there are no obstacles for a wheelchair user.} other{}}",
+  "transport_alt_wheelchair_obstacles": "{boolean, select, true{On the route from the alternative stop to the building entrance, there are obstacles for a wheelchair user:} false{On the route from the alternative stop to the building entrance, there are no obstacles for a wheelchair user.} other{}}",
   "@transport_alt_wheelchair_obstacles": {
     "description": "Information about wheelchair obstacles from alternative stop to entrance",
     "placeholders": {
-      "value": {
-        "type": "bool"
+      "boolean": {
+        "type": "String"
       }
     }
   },
-  "transport_obstacles_for_blind": "{value, select, true{On the route from the stop to the building entrance, there are obstacles for a blind person:} false{On the route from the stop to the building entrance, there are no obstacles for a blind person.} other{}}",
+  "transport_obstacles_for_blind": "{boolean, select, true{On the route from the stop to the building entrance, there are obstacles for a blind person:} false{On the route from the stop to the building entrance, there are no obstacles for a blind person.} other{}}",
   "@transport_obstacles_for_blind": {
     "description": "Information about obstacles for blind people from stop to entrance",
     "placeholders": {
-      "value": {
-        "type": "bool"
+      "boolean": {
+        "type": "String"
       }
     }
   },
-  "transport_alt_obstacles_for_blind": "{value, select, true{On the route from the alternative stop to the building entrance, there are obstacles for a blind person:} false{On the route from the alternative stop to the building entrance, there are no obstacles for a blind person.} other{}}",
+  "transport_alt_obstacles_for_blind": "{boolean, select, true{On the route from the alternative stop to the building entrance, there are obstacles for a blind person:} false{On the route from the alternative stop to the building entrance, there are no obstacles for a blind person.} other{}}",
   "@transport_alt_obstacles_for_blind": {
     "description": "Information about obstacles for blind people from alternative stop to entrance",
     "placeholders": {
-      "value": {
-        "type": "bool"
+      "boolean": {
+        "type": "String"
       }
     }
   },
-  "transport_facilities_for_blind": "{value, select, true{On the route from the stop to the building entrance, there are facilities for a blind person:} false{On the route from the stop to the building entrance, there are no facilities for a blind person.} other{}}",
+  "transport_facilities_for_blind": "{boolean, select, true{On the route from the stop to the building entrance, there are facilities for a blind person:} false{On the route from the stop to the building entrance, there are no facilities for a blind person.} other{}}",
   "@transport_facilities_for_blind": {
     "description": "Information about facilities for blind people from stop to entrance",
     "placeholders": {
-      "value": {
-        "type": "bool"
+      "boolean": {
+        "type": "String"
       }
     }
   },
-  "transport_alt_facilities_for_blind": "{value, select, true{On the route from the alternative stop to the building entrance, there are facilities for a blind person:} false{On the route from the alternative stop to the building entrance, there are no facilities for a blind person.} other{}}",
+  "transport_alt_facilities_for_blind": "{boolean, select, true{On the route from the alternative stop to the building entrance, there are facilities for a blind person:} false{On the route from the alternative stop to the building entrance, there are no facilities for a blind person.} other{}}",
   "@transport_alt_facilities_for_blind": {
     "description": "Information about facilities for blind people from alternative stop to entrance",
     "placeholders": {
-      "value": {
-        "type": "bool"
+      "boolean": {
+        "type": "String"
       }
     }
   },
@@ -1804,33 +2276,68 @@
       }
     }
   },
-  "railing_is_railing_on_landings": "{value, select, false{No railings on landings.} true{Railings are installed on landings.} other{}}",
+  "railing_is_railing_on_landings": "{boolean, select, false{No railings on landings.} true{Railings are installed on landings.} other{}}",
   "@railing_is_railing_on_landings": {
-    "description": "Information about presence of railings on landings"
+    "description": "Information about presence of railings on landings",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "railing_is_two_sided_railing": "{value, select, false{Railings are not double-sided.} true{Railings are double-sided.} other{}}",
+  "railing_is_two_sided_railing": "{boolean, select, false{Railings are not double-sided.} true{Railings are double-sided.} other{}}",
   "@railing_is_two_sided_railing": {
-    "description": "Information about whether railings are double-sided"
+    "description": "Information about whether railings are double-sided",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "railing_is_braille_convex_marking": "{value, select, false{No Braille or convex markings present.} true{Braille or convex markings are present.} other{}}",
+  "railing_is_braille_convex_marking": "{boolean, select, false{No Braille or convex markings present.} true{Braille or convex markings are present.} other{}}",
   "@railing_is_braille_convex_marking": {
-    "description": "Information about presence of Braille or convex markings on railings"
+    "description": "Information about presence of Braille or convex markings on railings",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "railing_is_good_railing_contrast": "{value, select, false{No good railing contrast.} true{Railings have good contrast.} other{}}",
+  "railing_is_good_railing_contrast": "{boolean, select, false{No good railing contrast.} true{Railings have good contrast.} other{}}",
   "@railing_is_good_railing_contrast": {
-    "description": "Information about contrast of railings"
+    "description": "Information about contrast of railings",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "railing_is_round_cross_section_railing": "{value, select, false{Railings do not have a round cross-section.} true{Railings have a round cross-section.} other{}}",
+  "railing_is_round_cross_section_railing": "{boolean, select, false{Railings do not have a round cross-section.} true{Railings have a round cross-section.} other{}}",
   "@railing_is_round_cross_section_railing": {
-    "description": "Information about railing cross-section shape"
+    "description": "Information about railing cross-section shape",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "railing_is_railing_extended_30cm": "{value, select, false{Railings are not extended by 30 cm.} true{Railings are extended by 30 cm.} other{}}",
+  "railing_is_railing_extended_30cm": "{boolean, select, false{Railings are not extended by 30 cm.} true{Railings are extended by 30 cm.} other{}}",
   "@railing_is_railing_extended_30cm": {
-    "description": "Information about railing extension length"
+    "description": "Information about railing extension length",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "railing_is_railing_obstacle": "{value, select, false{Railings do not pose an obstacle.} true{Railings pose an obstacle.} unknown{It is unknown if the railings pose an obstacle.} other{}}",
+  "railing_is_railing_obstacle": "{boolean, select, false{Railings do not pose an obstacle.} true{Railings pose an obstacle.} unknown{It is unknown if the railings pose an obstacle.} other{}}",
   "@railing_is_railing_obstacle": {
-    "description": "Information about whether railings pose an obstacle"
+    "description": "Information about whether railings pose an obstacle",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
   "railing_height": "{value, plural, =0{No information on railing height.} one{The railing is {value} cm high.} other{The railings are {value} cm high.}}",
   "@railing_height": {
@@ -1845,25 +2352,50 @@
   "@railing": {
     "description": "Label for railing section"
   },
-  "ramps_is_ramp_marked": "{value, select, false{The ramp is not marked.} true{The ramp is marked.} other{}}",
+  "ramps_is_ramp_marked": "{boolean, select, false{The ramp is not marked.} true{The ramp is marked.} other{}}",
   "@ramps_is_ramp_marked": {
-    "description": "Information about ramp marking"
+    "description": "Information about ramp marking",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "ramps_is_increased_force_needed": "{value, select, false{Increased force is not needed to overcome the ramp.} true{Increased force is needed to overcome the ramp.} other{}}",
+  "ramps_is_increased_force_needed": "{boolean, select, false{Increased force is not needed to overcome the ramp.} true{Increased force is needed to overcome the ramp.} other{}}",
   "@ramps_is_increased_force_needed": {
-    "description": "Information about force needed to use ramp"
+    "description": "Information about force needed to use ramp",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "ramps_is_permanent_ramp": "{value, select, false{The ramp is not a permanent structural element.} true{The ramp is a permanent structural element.} other{}}",
+  "ramps_is_permanent_ramp": "{boolean, select, false{The ramp is not a permanent structural element.} true{The ramp is a permanent structural element.} other{}}",
   "@ramps_is_permanent_ramp": {
-    "description": "Information about ramp permanence"
+    "description": "Information about ramp permanence",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "ramps_is_good_lit": "{value, select, false{Lighting is insufficient.} true{Lighting is good.} other{}}",
+  "ramps_is_good_lit": "{boolean, select, false{Lighting is insufficient.} true{Lighting is good.} other{}}",
   "@ramps_is_good_lit": {
-    "description": "Information about ramp lighting"
+    "description": "Information about ramp lighting",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "ramps_are_nonslip_elements": "{value, select, false{The surface of the ramp does not have non-slip elements.} true{The surface of the ramp has non-slip elements.} other{}}",
+  "ramps_are_nonslip_elements": "{boolean, select, false{The surface of the ramp does not have non-slip elements.} true{The surface of the ramp has non-slip elements.} other{}}",
   "@ramps_are_nonslip_elements": {
-    "description": "Information about non-slip elements on ramp"
+    "description": "Information about non-slip elements on ramp",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
   "ramps_width": "The ramp width is ",
   "@ramps_width": {
@@ -1877,25 +2409,50 @@
   "@dimensions_of_the_landings": {
     "description": "Label for landing dimensions"
   },
-  "is_marked": "{value, select, true{The location of the information point is clearly marked.} false{The location of the information point is not clearly marked.} other{}}",
+  "is_marked": "{boolean, select, true{The location of the information point is clearly marked.} false{The location of the information point is not clearly marked.} other{}}",
   "@is_marked": {
-    "description": "Information about information point marking"
+    "description": "Information about information point marking",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "are_seats_available": "{value, select, false{There are no seating places at the information point.} true{There are seating places at the information point.} other{}}",
+  "are_seats_available": "{boolean, select, false{There are no seating places at the information point.} true{There are seating places at the information point.} other{}}",
   "@are_seats_available": {
-    "description": "Information about seating availability at information point"
+    "description": "Information about seating availability at information point",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "is_space_on_counter": "{value, select, true{There is space on the counter to sign documents.} false{There is no space on the counter to sign documents.} other{}}",
+  "is_space_on_counter": "{boolean, select, true{There is space on the counter to sign documents.} false{There is no space on the counter to sign documents.} other{}}",
   "@is_space_on_counter": {
-    "description": "Information about counter space for signing documents"
+    "description": "Information about counter space for signing documents",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "are_access_bariers": "{value, select, true{Access to the information point is good. The floor is level, and there are no obstacles.} false{Access to the information point may be hindered by an uneven floor or obstacles.} other{}}",
+  "are_access_bariers": "{boolean, select, true{Access to the information point is good. The floor is level, and there are no obstacles.} false{Access to the information point may be hindered by an uneven floor or obstacles.} other{}}",
   "@are_access_bariers": {
-    "description": "Information about access barriers to information point"
+    "description": "Information about access barriers to information point",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "is_space_under_counter": "Under the lower part of the counter there is {value, select, false{no} true{space} other{}} for a wheelchair.",
+  "is_space_under_counter": "Under the lower part of the counter there is {boolean, select, false{no} true{space} other{}} for a wheelchair.",
   "@is_space_under_counter": {
-    "description": "Information about wheelchair space under counter"
+    "description": "Information about wheelchair space under counter",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
   "counter_heigth_text": "The height of the information point counter is {value}",
   "@counter_heigth_text": {
@@ -1906,49 +2463,99 @@
       }
     }
   },
-  "is_movement_space": "At the information point there is {value, select, false{no} other{}} adequate space to move for people with disabilities.",
+  "is_movement_space": "At the information point there is {boolean, select, false{no} true{space} other{}} adequate space to move for people with disabilities.",
   "@is_movement_space": {
-    "description": "Information about movement space at information point"
+    "description": "Information about movement space at information point",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "is_good_lit_info_point": "The information point is {value, select, false{not} other{}} properly lit.",
+  "is_good_lit_info_point": "The information point is {boolean, select, false{not} other{}} properly lit.",
   "@is_good_lit_info_point": {
-    "description": "Information about lighting at information point"
+    "description": "Information about lighting at information point",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "is_visible_from_afar": "The information point is {value, select, false{not} other{}} visible from a large distance. The counter is {value, select, false{not} other{}} distinguished from the surroundings.",
+  "is_visible_from_afar": "The information point is {boolean, select, false{not} other{}} visible from a large distance. The counter is {boolean, select, false{not} other{}} distinguished from the surroundings.",
   "@is_visible_from_afar": {
-    "description": "Information about visibility of information point"
+    "description": "Information about visibility of information point",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "has_sound_transmitter": "The room is {value, select, false{not} other{}} equipped with an induction loop, FM system, nor sign language interpreter.",
+  "has_sound_transmitter": "The room is {boolean, select, false{not} other{}} equipped with an induction loop, FM system, nor sign language interpreter.",
   "@has_sound_transmitter": {
-    "description": "Information about sound transmission equipment"
+    "description": "Information about sound transmission equipment",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
   "information_point": "Information Point",
   "@information_point": {
     "description": "Label for information point section"
   },
-  "dressing_room_is_marked": "{value, select, false{The counter is not marked.} true{The counter is marked.} other{}}",
+  "dressing_room_is_marked": "{boolean, select, false{The counter is not marked.} true{The counter is marked.} other{}}",
   "@dressing_room_is_marked": {
-    "description": "Information about dressing room counter marking"
+    "description": "Information about dressing room counter marking",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "dressing_room_is_visible_from_afar": "{value, select, false{The counter is not visible from afar.} true{The counter is visible from afar.} other{}}",
+  "dressing_room_is_visible_from_afar": "{boolean, select, false{The counter is not visible from afar.} true{The counter is visible from afar.} other{}}",
   "@dressing_room_is_visible_from_afar": {
-    "description": "Information about visibility of dressing room counter"
+    "description": "Information about visibility of dressing room counter",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "dressing_room_are_access_barriers": "{value, select, false{There are no access barriers to the counter.} true{There are access barriers to the counter.} other{}}",
+  "dressing_room_are_access_barriers": "{boolean, select, false{There are no access barriers to the counter.} true{There are access barriers to the counter.} other{}}",
   "@dressing_room_are_access_barriers": {
-    "description": "Information about access barriers to dressing room counter"
+    "description": "Information about access barriers to dressing room counter",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "dressing_room_are_seats_available": "{value, select, false{There are no seating places by the counter.} true{Seating places are available by the counter.} other{}}",
+  "dressing_room_are_seats_available": "{boolean, select, false{There are no seating places by the counter.} true{Seating places are available by the counter.} other{}}",
   "@dressing_room_are_seats_available": {
-    "description": "Information about seating availability at dressing room counter"
+    "description": "Information about seating availability at dressing room counter",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "dressing_room_is_movement_space": "{value, select, false{There is no maneuvering space by the counter.} true{There is maneuvering space by the counter.} other{}}",
+  "dressing_room_is_movement_space": "{boolean, select, false{There is no maneuvering space by the counter.} true{There is maneuvering space by the counter.} other{}}",
   "@dressing_room_is_movement_space": {
-    "description": "Information about movement space at dressing room counter"
+    "description": "Information about movement space at dressing room counter",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "dressing_room_is_good_lit": "{value, select, false{The counter is not well-lit.} true{The counter is well-lit.} other{}}",
+  "dressing_room_is_good_lit": "{boolean, select, false{The counter is not well-lit.} true{The counter is well-lit.} other{}}",
   "@dressing_room_is_good_lit": {
-    "description": "Information about lighting at dressing room counter"
+    "description": "Information about lighting at dressing room counter",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
   "dressing_room_counter_height": "{value, plural, =0{The height of the counter has not been specified.} other{The counter height is {value} cm.}}",
   "@dressing_room_counter_height": {
@@ -1959,133 +2566,283 @@
       }
     }
   },
-  "dressing_room_counter_is_space_under": "{value, select, false{There is no free space under the counter.} true{There is free space under the counter.} other{}}",
+  "dressing_room_counter_is_space_under": "{boolean, select, false{There is no free space under the counter.} true{There is free space under the counter.} other{}}",
   "@dressing_room_counter_is_space_under": {
-    "description": "Information about space under dressing room counter"
+    "description": "Information about space under dressing room counter",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "dressing_room_counter_is_space_on": "{value, select, false{There is no free space on the counter.} true{There is free space on the counter.} other{}}",
+  "dressing_room_counter_is_space_on": "{boolean, select, false{There is no free space on the counter.} true{There is free space on the counter.} other{}}",
   "@dressing_room_counter_is_space_on": {
-    "description": "Information about space on dressing room counter"
+    "description": "Information about space on dressing room counter",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
   "corridor": "Corridor",
   "@corridor": {
     "description": "Label for corridor section"
   },
-  "corridor_simple_layout_text": "{value, select, false{The corridor layout is not simple, legible, or consistent on each floor.} true{The corridor has a simple and clear layout that is consistent on each floor.} other{}}",
+  "corridor_simple_layout_text": "{boolean, select, false{The corridor layout is not simple, legible, or consistent on each floor.} true{The corridor has a simple and clear layout that is consistent on each floor.} other{}}",
   "@corridor_simple_layout_text": {
-    "description": "Information about corridor layout"
+    "description": "Information about corridor layout",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "corridor_floor_marked": "{value, select, false{The corridor is not marked. There is no visible floor number.} true{The corridor is marked. The floor number is visible.} other{}}",
+  "corridor_floor_marked": "{boolean, select, false{The corridor is not marked. There is no visible floor number.} true{The corridor is marked. The floor number is visible.} other{}}",
   "@corridor_floor_marked": {
-    "description": "Information about corridor floor marking"
+    "description": "Information about corridor floor marking",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "corridor_room_entrances": "{value, select, false{There is no entry from the corridor to any room.} true{From the corridor, entries to the following rooms are possible:} other{}}",
+  "corridor_room_entrances": "{boolean, select, false{There is no entry from the corridor to any room.} true{From the corridor, entries to the following rooms are possible:} other{}}",
   "@corridor_room_entrances": {
-    "description": "Information about room entrances from corridor"
+    "description": "Information about room entrances from corridor",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "corridor_information_board": "{value, select, false{There is no information board with a list of rooms in the corridor.} true{There is an information board in the corridor with a list of rooms.} other{}}",
+  "corridor_information_board": "{boolean, select, false{There is no information board with a list of rooms in the corridor.} true{There is an information board in the corridor with a list of rooms.} other{}}",
   "@corridor_information_board": {
-    "description": "Information about corridor information board"
+    "description": "Information about corridor information board",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "corridor_room_purpose_described_in_en": "{value, select, false{Room functions are not described in English.} true{Room functions are described in English.} other{}}",
+  "corridor_room_purpose_described_in_en": "{boolean, select, false{Room functions are not described in English.} true{Room functions are described in English.} other{}}",
   "@corridor_room_purpose_described_in_en": {
-    "description": "Information about English descriptions of room purposes"
+    "description": "Information about English descriptions of room purposes",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "corridor_consistent_level_color_pattern": "{value, select, false{The color, pattern, and style of room signage are not consistent for the entire floor.} true{The color, pattern, and style of room signage are consistent for the entire floor.} other{}}",
+  "corridor_consistent_level_color_pattern": "{boolean, select, false{The color, pattern, and style of room signage are not consistent for the entire floor.} true{The color, pattern, and style of room signage are consistent for the entire floor.} other{}}",
   "@corridor_consistent_level_color_pattern": {
-    "description": "Information about consistency of room signage"
+    "description": "Information about consistency of room signage",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "corridor_pictorial_directional_signs": "{value, select, false{There are no clear and contrasting directional signs at key points in the corridor.} true{There are clear and contrasting directional signs at key points in the corridor.} other{}}",
+  "corridor_pictorial_directional_signs": "{boolean, select, false{There are no clear and contrasting directional signs at key points in the corridor.} true{There are clear and contrasting directional signs at key points in the corridor.} other{}}",
   "@corridor_pictorial_directional_signs": {
-    "description": "Information about directional signs in corridor"
+    "description": "Information about directional signs in corridor",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "corridor_seats": "{value, select, false{There are no seating places in the corridor.} true{There are seating places in the corridor. These are:} other{}}",
+  "corridor_seats": "{boolean, select, false{There are no seating places in the corridor.} true{There are seating places in the corridor. These are:} other{}}",
   "@corridor_seats": {
-    "description": "Information about seating in corridor"
+    "description": "Information about seating in corridor",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "corridor_vending_machines": "{value, select, false{There are no vending machines in the corridor.} true{There are vending machines in the corridor.} other{}}",
+  "corridor_vending_machines": "{boolean, select, false{There are no vending machines in the corridor.} true{There are vending machines in the corridor.} other{}}",
   "@corridor_vending_machines": {
-    "description": "Information about vending machines in corridor"
+    "description": "Information about vending machines in corridor",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "corridor_emergency_plan": "{value, select, false{There are no evacuation plans in the corridor.} true{There are evacuation plans in the corridor.} other{}}",
+  "corridor_emergency_plan": "{boolean, select, false{There are no evacuation plans in the corridor.} true{There are evacuation plans in the corridor.} other{}}",
   "@corridor_emergency_plan": {
-    "description": "Information about evacuation plans in corridor"
+    "description": "Information about evacuation plans in corridor",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "corridor_typhlomap": "{value, select, false{There is no typhlopmap available in the corridor.} true{There is a typhlopmap in the corridor.} other{}}",
+  "corridor_typhlomap": "{boolean, select, false{There is no typhlopmap available in the corridor.} true{There is a typhlopmap in the corridor.} other{}}",
   "@corridor_typhlomap": {
-    "description": "Information about typhlomap availability in corridor"
+    "description": "Information about typhlomap availability in corridor",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "corridor_dangerous_elements": "{value, select, false{There are no other permanent or movable elements in the corridor that may pose problems for movement.} true{There are other permanent or movable objects in the corridor that may pose problems for movement. These are:} other{}}",
+  "corridor_dangerous_elements": "{boolean, select, false{There are no other permanent or movable elements in the corridor that may pose problems for movement.} true{There are other permanent or movable objects in the corridor that may pose problems for movement. These are:} other{}}",
   "@corridor_dangerous_elements": {
-    "description": "Information about dangerous elements in corridor"
+    "description": "Information about dangerous elements in corridor",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "corridor_info_plates_accessible": "{value, select, false{Room signage does not contain additional information.} true{Room signage additionally contains:} other{}}",
+  "corridor_info_plates_accessible": "{boolean, select, false{Room signage does not contain additional information.} true{Room signage additionally contains:} other{}}",
   "@corridor_info_plates_accessible": {
-    "description": "Information about accessibility of room signage"
+    "description": "Information about accessibility of room signage",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "corridor_horizontal_markings_for_blind": "{value, select, false{There are no horizontal markings for blind people in the corridor.} true{There are horizontal markings for blind people in the corridor.} other{}}",
+  "corridor_horizontal_markings_for_blind": "{boolean, select, false{There are no horizontal markings for blind people in the corridor.} true{There are horizontal markings for blind people in the corridor.} other{}}",
   "@corridor_horizontal_markings_for_blind": {
-    "description": "Information about horizontal markings for blind people"
+    "description": "Information about horizontal markings for blind people",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "corridor_plates_with_rooms_list_have_readable_font": "{value, select, false{} true{The information board with the list of rooms has a readable text.} other{}}",
+  "corridor_plates_with_rooms_list_have_readable_font": "{boolean, select, false{The information board with the list of rooms does not have a readable text.} true{The information board with the list of rooms has a readable text.} other{}}",
   "@corridor_plates_with_rooms_list_have_readable_font": {
-    "description": "Information about readability of room list text"
+    "description": "Information about readability of room list text",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "corridor_rooms_marked": "{value, select, false{Room signage does not contain additional information.} true{Rooms in the corridor are clearly marked.} other{}}",
+  "corridor_rooms_marked": "{boolean, select, false{Room signage does not contain additional information.} true{Rooms in the corridor are clearly marked.} other{}}",
   "@corridor_rooms_marked": {
-    "description": "Information about room marking in corridor"
+    "description": "Information about room marking in corridor",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "corridor_pictogram_used": "{value, select, false{Visual information does not use pictograms.} true{Visual information uses pictograms.} other{}}",
+  "corridor_pictogram_used": "{boolean, select, false{Visual information does not use pictograms.} true{Visual information uses pictograms.} other{}}",
   "@corridor_pictogram_used": {
-    "description": "Information about use of pictograms"
+    "description": "Information about use of pictograms",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "corridor_is_glare": "{value, select, false{The floor in the corridor does not shine.} true{The floor in the corridor may shine intensely, causing glare and appearing slippery.} other{}}",
+  "corridor_is_glare": "{boolean, select, false{The floor in the corridor does not shine.} true{The floor in the corridor may shine intensely, causing glare and appearing slippery.} other{}}",
   "@corridor_is_glare": {
-    "description": "Information about floor glare in corridor"
+    "description": "Information about floor glare in corridor",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "corridor_good_walls_contrast": "{value, select, false{There is no clear color contrast between the walls and the floor in the corridor.} true{} other{}}",
+  "corridor_good_walls_contrast": "{boolean, select, false{There is no clear color contrast between the walls and the floor in the corridor.} true{} other{}}",
   "@corridor_good_walls_contrast": {
-    "description": "Information about wall-floor contrast in corridor"
+    "description": "Information about wall-floor contrast in corridor",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "corridor_good_lit": "{value, select, false{The corridor is not properly lit.} true{The corridor is properly lit.} other{}}",
+  "corridor_good_lit": "{boolean, select, false{The corridor is not properly lit.} true{The corridor is properly lit.} other{}}",
   "@corridor_good_lit": {
-    "description": "Information about corridor lighting"
+    "description": "Information about corridor lighting",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "corridor_horizontal_markings_for_visually_impaired": "{value, select, false{There are no horizontal markings for visually impaired people in the corridor.} true{There are horizontal markings for visually impaired people in the corridor.} other{}}",
+  "corridor_horizontal_markings_for_visually_impaired": "{boolean, select, false{There are no horizontal markings for visually impaired people in the corridor.} true{There are horizontal markings for visually impaired people in the corridor.} other{}}",
   "@corridor_horizontal_markings_for_visually_impaired": {
-    "description": "Information about horizontal markings for visually impaired"
+    "description": "Information about horizontal markings for visually impaired",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "corridor_min_width_length": "{value, select, false{The width of the corridor does not provide full accessibility and is} true{The width of the corridor provides full accessibility and is a minimum of 150 centimeters.} other{}}",
+  "corridor_min_width_length": "{boolean, select, false{The width of the corridor does not provide full accessibility and is} true{The width of the corridor provides full accessibility and is a minimum of 150 centimeters.} other{}}",
   "@corridor_min_width_length": {
-    "description": "Information about corridor width"
+    "description": "Information about corridor width",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "corridor_railings": "{value, select, false{There are no wall railings in the corridor.} true{There are wall railings in the corridor.} other{}}",
+  "corridor_railings": "{boolean, select, false{There are no wall railings in the corridor.} true{There are wall railings in the corridor.} other{}}",
   "@corridor_railings": {
-    "description": "Information about wall railings in corridor"
+    "description": "Information about wall railings in corridor",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "corridor_light_switches_sockets_height": "{value, select, false{In the corridor all light switches and sockets are at a height above 110 centimeters.} true{In the corridor, all light switches and sockets are at a height of a maximum of 110 centimeters.} other{}}",
+  "corridor_light_switches_sockets_height": "{boolean, select, false{In the corridor all light switches and sockets are at a height above 110 centimeters.} true{In the corridor, all light switches and sockets are at a height of a maximum of 110 centimeters.} other{}}",
   "@corridor_light_switches_sockets_height": {
-    "description": "Information about height of light switches and sockets"
+    "description": "Information about height of light switches and sockets",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "corridor_echo": "{value, select, false{The acoustics of the corridor do not cause echoes that may hinder communication.} true{The acoustics of the corridor cause echoes that may hinder communication.} other{}}",
+  "corridor_echo": "{boolean, select, false{The acoustics of the corridor do not cause echoes that may hinder communication.} true{The acoustics of the corridor cause echoes that may hinder communication.} other{}}",
   "@corridor_echo": {
-    "description": "Information about corridor acoustics"
+    "description": "Information about corridor acoustics",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "corridor_flashing_device": "{value, select, false{There are no flashing or shiny objects in the corridor that may trigger an epileptic seizure.} true{There are flashing or shiny objects in the corridor that may trigger an epileptic seizure.} other{}}",
+  "corridor_flashing_device": "{boolean, select, false{There are no flashing or shiny objects in the corridor that may trigger an epileptic seizure.} true{There are flashing or shiny objects in the corridor that may trigger an epileptic seizure.} other{}}",
   "@corridor_flashing_device": {
-    "description": "Information about flashing devices in corridor"
+    "description": "Information about flashing devices in corridor",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
   "no_micro_navigation": "There is no micronavigation for this building.",
   "@no_micro_navigation": {
     "description": "Message about absence of micronavigation"
   },
-  "lodge_access_barriers": "{value, select, false{On the way to the lodge} true{On the way to the lodge, the floor is level, and there are no obstacles.} other{}}",
+  "lodge_access_barriers": "{boolean, select, false{On the way to the lodge} true{On the way to the lodge, the floor is level, and there are no obstacles.} other{}}",
   "@lodge_access_barriers": {
-    "description": "Information about access barriers to lodge"
+    "description": "Information about access barriers to lodge",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "lodge_movement_space": "{value, select, false{At the lodge, there is no appropriate space for movement for people with disabilities.} true{At the lodge, there is appropriate space for movement for people with disabilities.} other{}}",
+  "lodge_movement_space": "{boolean, select, false{At the lodge, there is no appropriate space for movement for people with disabilities.} true{At the lodge, there is appropriate space for movement for people with disabilities.} other{}}",
   "@lodge_movement_space": {
-    "description": "Information about movement space at lodge"
+    "description": "Information about movement space at lodge",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
   "lodge_counter_height": "The height of the lodge counter is {comment} centimeters.",
   "@lodge_counter_height": {
@@ -2096,21 +2853,41 @@
       }
     }
   },
-  "lodge_space_under_counter": "{value, select, false{There is no space under the lower part of the counter for a wheelchair.} true{There is space under the lower part of the counter for a wheelchair.} other{}}",
+  "lodge_space_under_counter": "{boolean, select, false{There is no space under the lower part of the counter for a wheelchair.} true{There is space under the lower part of the counter for a wheelchair.} other{}}",
   "@lodge_space_under_counter": {
-    "description": "Information about wheelchair space under lodge counter"
+    "description": "Information about wheelchair space under lodge counter",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "lodge_visible_from_afar": "{value, select, false{The lodge is not visible from a great distance. The counter is not distinguished from the surroundings.} true{The lodge is visible from a great distance. The counter is distinguished from the surroundings.} other{}}",
+  "lodge_visible_from_afar": "{boolean, select, false{The lodge is not visible from a great distance. The counter is not distinguished from the surroundings.} true{The lodge is visible from a great distance. The counter is distinguished from the surroundings.} other{}}",
   "@lodge_visible_from_afar": {
-    "description": "Information about visibility of lodge"
+    "description": "Information about visibility of lodge",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "lodge_good_lit": "{value, select, false{The lodge is not properly lit.} true{The lodge is properly lit.} other{}}",
+  "lodge_good_lit": "{boolean, select, false{The lodge is not properly lit.} true{The lodge is properly lit.} other{}}",
   "@lodge_good_lit": {
-    "description": "Information about lodge lighting"
+    "description": "Information about lodge lighting",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "is_elevated_threshold": "In the door, there is {value, select, false{no} other{}} threshold.",
+  "is_elevated_threshold": "In the door, there is {boolean, select, false{no} other{}} threshold.",
   "@is_elevated_threshold": {
-    "description": "Information about door threshold"
+    "description": "Information about door threshold",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
   "elevated_threshold_text": "Its height is ",
   "@elevated_threshold_text": {
@@ -2125,25 +2902,50 @@
       }
     }
   },
-  "are_glazed": "The doors are {value, select, false{not } other{}}galzed.",
+  "are_glazed": "The doors are {boolean, select, false{not } other{}}galzed.",
   "@are_glazed": {
-    "description": "Information about door glazing"
+    "description": "Information about door glazing",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "are_visible": "There is {value, select, false{no } other{}}proper contrast between the handle and the door.",
+  "are_visible": "There is {boolean, select, false{no } other{}}proper contrast between the handle and the door.",
   "@are_visible": {
-    "description": "Information about handle-door contrast"
+    "description": "Information about handle-door contrast",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "is_graphic": "The doors are {value, select, false{not } other{}}marked.",
+  "is_graphic": "The doors are {boolean, select, false{not } other{}}marked.",
   "@is_graphic": {
-    "description": "Information about door marking"
+    "description": "Information about door marking",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "is_closure_from_inside": "The doors open {value, select, false{not } other{}}inwards.",
+  "is_closure_from_inside": "The doors open {boolean, select, false{not } other{}}inwards.",
   "@is_closure_from_inside": {
-    "description": "Information about door opening direction"
+    "description": "Information about door opening direction",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
-  "is_same_opening_system": "The doors on both sides open {value, select, false{not } other{}}in the same way.",
+  "is_same_opening_system": "The doors on both sides open {boolean, select, false{not } other{}}in the same way.",
   "@is_same_opening_system": {
-    "description": "Information about consistency of door opening systems"
+    "description": "Information about consistency of door opening systems",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
   },
   "digital_guide_accessibility": "Digital guide accessibility profiles",
   "@digital_guide_accessibility": {
