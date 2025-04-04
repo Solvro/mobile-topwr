@@ -4,6 +4,7 @@ import "package:drift_flutter/drift_flutter.dart";
 import "../../../models/supported_languages.dart";
 import "../../../models/translation.dart";
 import "../translations_data_source.dart";
+
 part "translations_database.g.dart";
 
 @DriftDatabase(tables: [Translations])

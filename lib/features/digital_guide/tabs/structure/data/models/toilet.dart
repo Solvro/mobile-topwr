@@ -1,8 +1,8 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 
-part "toilet.g.dart";
 part "toilet.freezed.dart";
+part "toilet.g.dart";
 
 @freezed
 abstract class Toilet with _$Toilet {

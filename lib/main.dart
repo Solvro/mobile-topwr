@@ -1,4 +1,3 @@
-import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:wiredash/wiredash.dart";
@@ -9,7 +8,7 @@ import "config/ui_config.dart";
 import "config/wiredash.dart";
 import "features/in_app_review/presentation/in_app_review.dart";
 import "features/navigator/app_router.dart";
-import "features/navigator/navigation_controller.dart";
+import "features/navigator/navigation_stack.dart";
 import "features/splash_screen/splash_screen.dart";
 import "features/splash_screen/splash_screen_controller.dart";
 import "features/update_dialog/presentation/update_dialog_wrapper.dart";
@@ -54,17 +53,7 @@ class MyApp extends ConsumerWidget {
               ),
             ),
             debugShowCheckedModeBanner: false,
-            routerConfig: ref
-                .watch(appRouterProvider)
-                .config(
-                  deepLinkTransformer: (uri) {
-                    Future.delayed(
-                      const Duration(milliseconds: 500),
-                      ref.read(navigationControllerProvider.notifier).refreshState,
-                    ); // TODO(simon-the-shark): remove this nasty workaround for active tab refresh
-                    return SynchronousFuture(uri);
-                  },
-                ),
+            routerConfig: ref.watch(appRouterProvider).config(navigatorObservers: () => [NavigationObserver(ref)]),
           ),
         ),
       ),

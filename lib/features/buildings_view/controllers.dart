@@ -8,9 +8,9 @@ import "../map_view/controllers/bottom_sheet_controller.dart";
 import "../map_view/controllers/controllers_set.dart";
 import "../map_view/controllers/map_controller.dart";
 import "../map_view/controllers/map_data_controller.dart";
-import "./utils/building_codes_utils.dart";
 import "model/building_model.dart";
 import "repository/buildings_repository.dart";
+import "utils/building_codes_utils.dart";
 import "utils/utils.dart";
 
 part "controllers.g.dart";
