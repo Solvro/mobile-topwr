@@ -1,4 +1,4 @@
-import "package:dio_cache_interceptor_hive_store/dio_cache_interceptor_hive_store.dart";
+import "package:dio_cache_interceptor_db_store/dio_cache_interceptor_db_store.dart";
 import "package:flutter/material.dart";
 import "package:flutter_map/flutter_map.dart";
 import "package:flutter_map_cache/flutter_map_cache.dart";
@@ -9,6 +9,7 @@ import "../../../theme/app_theme.dart";
 import "../../my_location_button/presentation/is_following_controller.dart";
 import "../../my_location_button/presentation/my_loc_layer.dart";
 import "../controllers/controllers_set.dart";
+import "../data/cache.dart";
 import "load_animated_controller.dart";
 import "map_atrribution.dart";
 import "map_config.dart";
@@ -40,14 +41,7 @@ class MapWidget<T extends GoogleNavigable> extends HookConsumerWidget {
           ),
           mapController: controller.mapController,
           children: [
-            TileLayer(
-              urlTemplate: OpenStreetMapConfig.tileUrl,
-              userAgentPackageName: OpenStreetMapConfig.userAgent,
-              tileProvider: CachedTileProvider(
-                maxStale: const Duration(days: MapCacheConfig.cacheDuration),
-                store: HiveCacheStore(null, hiveBoxName: MapCacheConfig.cacheBoxName),
-              ),
-            ),
+            const MapTileLayer(),
             MarkersConsumerLayer<T>(),
             const MyLocationLayer(),
             const Toolbar(),
@@ -56,5 +50,23 @@ class MapWidget<T extends GoogleNavigable> extends HookConsumerWidget {
         );
       },
     );
+  }
+}
+
+class MapTileLayer extends ConsumerWidget {
+  const MapTileLayer();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final cacheStore = ref.watch(mapCacheStoreProvider);
+    return switch (cacheStore) {
+      AsyncData(:final DbCacheStore value) => TileLayer(
+        urlTemplate: OpenStreetMapConfig.tileUrl,
+        userAgentPackageName: OpenStreetMapConfig.userAgent,
+        tileProvider: CachedTileProvider(maxStale: const Duration(days: MapCacheConfig.cacheDuration), store: value),
+      ),
+      _ =>
+        const SizedBox.shrink(), // no need for fancy laoding, cause it should be instant if prefetch is done in the splash screen
+    };
   }
 }

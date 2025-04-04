@@ -51,7 +51,7 @@ abstract class OpenStreetMapConfig {
 abstract class MapCacheConfig {
   // in days
   static const cacheDuration = 30;
-  static const cacheBoxName = "HiveMapCacheStore";
+  static const cacheDatabaseName = "map_cache_drift";
 }
 
 abstract class BuildingSearchConfig {
