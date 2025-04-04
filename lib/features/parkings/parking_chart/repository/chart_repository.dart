@@ -6,9 +6,9 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 import "../../../../api_base/gql_client_provider.dart";
 import "../../../../api_base_rest/client/dio_client.dart";
 import "../../../../config/env.dart";
-import "../../../../services/pick_parking_api_service/getUseParkingApiWrapper.graphql.dart";
 import "../../parkings_view/api_client/iparking_commands.dart";
 import "../../parkings_view/models/parking.dart";
+import "../../parkings_view/repository/getUseParkingApiWrapper.graphql.dart";
 import "../models/chart_point.dart";
 import "../models/raw_chart_data.dart";
 
