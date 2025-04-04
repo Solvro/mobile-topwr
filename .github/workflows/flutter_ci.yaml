@@ -13,6 +13,14 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: Install SVGO
+        run: npm install -g svgo
+        
       - uses: subosito/flutter-action@v2
         with:
           channel: "stable"
@@ -46,4 +54,4 @@ jobs:
 
       - name: Flutter tests
         run: flutter test
-  
+          

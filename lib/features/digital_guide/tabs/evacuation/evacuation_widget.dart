@@ -1,9 +1,9 @@
 import "package:flutter/material.dart";
 
 import "../../../../config/ui_config.dart";
+import "../../../../services/translations_service/widgets/my_html_widget_with_translation.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
-import "../../../../widgets/my_html_widget.dart";
 import "../../data/models/digital_guide_response.dart";
 import "../../presentation/widgets/digital_guide_image.dart";
 import "entrances_list.dart";
@@ -17,7 +17,7 @@ class EvacuationWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final widgets = [
       const SizedBox(height: DigitalGuideConfig.heightSmall),
-      MyHtmlWidget(
+      MyHtmlWidgetWithTranslation(
         digitalGuideData.translations.plTranslation.evacuationDescription,
         textStyle: context.textTheme.boldBody,
       ),

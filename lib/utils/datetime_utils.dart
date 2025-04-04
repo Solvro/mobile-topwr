@@ -1,4 +1,7 @@
+import "package:flutter/material.dart";
 import "package:intl/intl.dart";
+
+import "context_extensions.dart";
 
 DateTime get now => DateTime.now();
 
@@ -8,17 +11,17 @@ extension DateTimeUtilsX on DateTime {
     return subtract(Duration(days: difference));
   }
 
-  String toDayDateString() {
-    final DateFormat dayFormat = DateFormat("EEEE", "pl_PL");
-    final DateFormat dateFormat = DateFormat("dd.MM.yyyy");
-    final String day = dayFormat.format(this);
-    final String capitalizedDay = day[0].toUpperCase() + day.substring(1).toLowerCase();
-    final String date = dateFormat.format(this);
+  String toDayDateString(BuildContext context) {
+    final dayFormat = DateFormat("EEEE", context.locale.countryCode);
+    final dateFormat = DateFormat("dd.MM.yyyy", context.locale.countryCode);
+    final day = dayFormat.format(this);
+    final capitalizedDay = day[0].toUpperCase() + day.substring(1).toLowerCase();
+    final date = dateFormat.format(this);
     return "$capitalizedDay, $date";
   }
 
-  String toHourMinuteString() {
-    final DateFormat hourFormat = DateFormat("HH:mm");
+  String toHourMinuteString(BuildContext context) {
+    final hourFormat = DateFormat("HH:mm", context.locale.countryCode);
     return hourFormat.format(this);
   }
 

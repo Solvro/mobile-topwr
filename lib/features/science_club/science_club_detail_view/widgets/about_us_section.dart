@@ -1,9 +1,10 @@
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
+import "../../../../services/translations_service/widgets/my_html_widget_with_translation.dart";
+import "../../../../services/translations_service/widgets/text_with_translation.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
-import "../../../../widgets/my_html_widget.dart";
 
 class AboutUsSection extends ConsumerWidget {
   const AboutUsSection({super.key, required this.text});
@@ -19,9 +20,9 @@ class AboutUsSection extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(context.localize.about_us, style: context.textTheme.headline),
+              TextWithTranslation(context.localize.about_us, style: context.textTheme.headline),
               const SizedBox(height: 16),
-              MyHtmlWidget(text),
+              MyHtmlWidgetWithTranslation(text),
             ],
           ),
         );

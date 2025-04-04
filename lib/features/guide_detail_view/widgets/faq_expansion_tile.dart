@@ -1,9 +1,9 @@
 import "package:flutter/material.dart";
 
 import "../../../config/ui_config.dart";
+import "../../../services/translations_service/widgets/my_html_widget_with_translation.dart";
 import "../../../theme/app_theme.dart";
 import "../../../widgets/my_expansion_tile.dart";
-import "../../../widgets/my_html_widget.dart";
 
 class FaqExpansionTile extends StatelessWidget {
   const FaqExpansionTile({super.key, required this.title, required this.description});
@@ -20,7 +20,9 @@ class FaqExpansionTile extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(vertical: GuideDetailViewConfig.paddingSmall),
-            child: ListTile(title: MyHtmlWidget(description, textStyle: context.textTheme.body.copyWith(fontSize: 14))),
+            child: ListTile(
+              title: MyHtmlWidgetWithTranslation(description, textStyle: context.textTheme.body.copyWith(fontSize: 14)),
+            ),
           ),
         ],
       ),

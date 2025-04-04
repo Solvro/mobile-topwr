@@ -22,6 +22,7 @@ class LanguageDialog extends ConsumerWidget {
     return AlertDialog(
       backgroundColor: context.colorTheme.whiteSoap,
       contentPadding: const EdgeInsets.all(AboutUsConfig.spacerHeight),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(NavigationTabViewConfig.radius)),
       content: SizedBox(
         width: double.maxFinite,
         child: Column(

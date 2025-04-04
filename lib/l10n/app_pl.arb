@@ -393,7 +393,7 @@
   "@bug_report_subtitle": {
     "description": "Subtitle for bug report form"
   },
-  "new_feature": "Nowa funckcjonalność",
+  "new_feature": "Nowa funkcjonalność",
   "@new_feature": {
     "description": "Label for new feature report type"
   },

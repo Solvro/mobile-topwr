@@ -467,11 +467,11 @@
   "is_elevated_threshold": "In the door, there is {boolean, select, false{no} other{}} threshold.",
   "elevated_threshold_text": "Its height is ",
   "handle_heigth_text": "The handle is at a height of {value} cm",
-  "are_glazed": "The doors are {boolean, select, false{not } other{}}galzed.",
+  "are_glazed": "The doors are {boolean, select, false{not } other{}}glazed.",
   "are_visible": "There is {boolean, select, false{no } other{}}proper contrast between the handle and the door.",
   "is_graphic": "The doors are {boolean, select, false{not } other{}}marked.",
   "is_closure_from_inside": "The doors open {boolean, select, false{not } other{}}inwards.",
   "is_same_opening_system": "The doors on both sides open {boolean, select, false{not } other{}}in the same way.",
   "digital_guide_accessibility": "Digital guide accessibility profiles",
-  "home_screen": "Home screen"
+  "home_screen": "Home"
 }

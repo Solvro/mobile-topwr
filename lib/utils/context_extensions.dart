@@ -8,6 +8,8 @@ extension BuildContextX on BuildContext {
     return AppLocalizations.of(this) ?? AppLocalizationsPl();
   }
 
+  Locale get locale => Localizations.localeOf(this);
+
   void unfocus() {
     FocusScope.of(this).unfocus();
   }

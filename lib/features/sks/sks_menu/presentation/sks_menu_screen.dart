@@ -88,7 +88,7 @@ class _SksMenuView extends ConsumerWidget {
                 alertType: AlertType.info,
                 title: context.localize.sks_note,
                 message: context.localize.sks_menu_you_see_last_menu(
-                  DateFormat("dd.MM.yyyy").format(sksMenuData.lastUpdate),
+                  DateFormat("dd.MM.yyyy", context.locale.countryCode).format(sksMenuData.lastUpdate),
                 ),
               ),
             for (final technicalInfo in sksMenuData.technicalInfos) TechnicalMessage(message: technicalInfo),
@@ -98,7 +98,7 @@ class _SksMenuView extends ConsumerWidget {
               openingHours: sksMenuData.openingHours,
             ),
             Padding(
-              padding: const EdgeInsets.all(HomeViewConfig.paddingMedium),
+              padding: const EdgeInsets.all(HomeViewConfig.paddingMedium).copyWith(top: 0),
               child: SksMenuSection(sksMenuData.meals),
             ),
             TextAndUrl(SksMenuConfig.sksDataSource, "${context.localize.data_come_from_website}: "),
