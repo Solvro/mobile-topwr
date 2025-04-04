@@ -146,6 +146,11 @@ dart run custom_lint
 ## Github workflow
 Don't worry if you've forgotten about the steps, automatic gh action will run the checks for you and notify if somthing's wrong.
 
+## Husky 
+We have husky hooks, but you have to install them once:
+```
+dart run husky install
+```
 
 ## Working with git
 
