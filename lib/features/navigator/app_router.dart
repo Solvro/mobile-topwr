@@ -54,7 +54,7 @@ part "app_router.gr.dart";
 
 class _NoTransitionRoute extends CustomRoute<void> {
   _NoTransitionRoute({required super.path, required super.page})
-    : super(reverseDuration: Duration.zero, duration: Duration.zero);
+    : super(reverseDuration: Duration.zero, duration: Duration.zero, allowSnapshotting: false);
 }
 
 @AutoRouterConfig(replaceInRouteName: "View,Route")
