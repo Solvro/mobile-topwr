@@ -14,9 +14,7 @@ class RemoveOldTranslations extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     useEffectOnInit(() {
-      unawaited(
-        Future.microtask(ref.flushOldData),
-      );
+      unawaited(Future.microtask(ref.flushOldData));
       return null;
     });
     return child;
