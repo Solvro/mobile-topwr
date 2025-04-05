@@ -2956,5 +2956,13 @@
   "digital_guide_accessibility": "Profile dostępności w cyfrowym przewodniku",
   "@digital_guide_accessibility": {
     "description": "Title for digital guide accessibility section"
+  },
+  "library_title": "Biblioteki",
+  "@library_title": {
+    "description": "Title for library section"
+  },
+  "showers_title": "Prysznice",
+  "@showers_title": {
+    "description": "Title for showers section"
   }
 }
