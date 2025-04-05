@@ -40,4 +40,6 @@ abstract class Env {
   static final String umamiUrl = _Env.umamiUrl;
   @EnviedField()
   static final String umamiId = _Env.umamiId;
+  @EnviedField()
+  static final String mainRestApiUrl = _Env.mainRestApiUrl;
 }

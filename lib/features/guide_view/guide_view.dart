@@ -15,14 +15,19 @@ import "../../widgets/wide_tile_card.dart";
 import "../analytics/data/umami.dart";
 import "../analytics/data/umami_events.dart";
 import "../departments/departments_view/widgets/departments_view_loading.dart";
+import "data/models/guide_data.dart";
+import "data/repository/guide_repository.dart";
 import "guide_view_controller.dart";
-import "repository/guide_repository.dart";
 import "widgets/guide_grid.dart";
 import "widgets/guide_tile.dart";
 
 @RoutePage()
 class GuideView extends StatelessWidget {
   const GuideView({super.key});
+
+  static String localizedOfflineMessage(BuildContext context) {
+    return context.localize.my_offline_error_message(context.localize.guide);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,11 +62,11 @@ class _GuideViewContent extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final guideList = ref.watch(guideListControllerProvider);
+    final guideList = ref.watch(guideRepositoryProvider);
 
     return switch (guideList) {
       AsyncError(:final error, :final stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
-      AsyncValue(:final IList<GuidePost> value) => GuideGrid(
+      AsyncValue(:final IList<GuideData> value) => GuideGrid(
         children:
             [
               for (final item in value) GuideTile(item),
