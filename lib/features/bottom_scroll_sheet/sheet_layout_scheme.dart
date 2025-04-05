@@ -1,6 +1,7 @@
 import "package:flutter/cupertino.dart";
 import "package:flutter/material.dart";
-import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:flutter_hooks/flutter_hooks.dart";
+import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../../theme/app_theme.dart";
 import "../../utils/context_extensions.dart";
@@ -12,15 +13,15 @@ import "data_list.dart";
 import "drag_handle.dart";
 import "navigate_button.dart";
 
-final selectedCategoryProvider = StateProvider<String>((ref) => "");
-
-class SheetLayoutScheme<T extends GoogleNavigable> extends ConsumerWidget {
+class SheetLayoutScheme<T extends GoogleNavigable> extends HookConsumerWidget {
   const SheetLayoutScheme({this.scrollController, super.key});
 
   final ScrollController? scrollController;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final selectedCategory = useState<String>(context.localize.buildings_title);
+
     final appBar = SearchBoxAppBar(
       context,
       title: context.mapViewTexts<T>().title,
@@ -41,11 +42,10 @@ class SheetLayoutScheme<T extends GoogleNavigable> extends ConsumerWidget {
       ),
     );
 
-    final selectedCategory = ref.watch(selectedCategoryProvider);
     final validSelectedCategory =
-        categoryData.buildings.title == selectedCategory
+        categoryData.buildings.title == selectedCategory.value
             ? categoryData.buildings
-            : categoryData.library.title == selectedCategory
+            : categoryData.library.title == selectedCategory.value
             ? categoryData.library
             : categoryData.showers;
 
@@ -66,24 +66,24 @@ class SheetLayoutScheme<T extends GoogleNavigable> extends ConsumerWidget {
             child: CupertinoSlidingSegmentedControl<String>(
               backgroundColor: context.colorTheme.greyLight,
               thumbColor: context.colorTheme.orangePomegranadeLighter,
-              groupValue: validSelectedCategory.title,
+              groupValue: selectedCategory.value,
               onValueChanged: (value) {
                 if (value != null) {
-                  ref.read(selectedCategoryProvider.notifier).state = value;
+                  selectedCategory.value = value;
                 }
               },
               children: {
                 categoryData.buildings.title: _SegmentTab(
                   title: categoryData.buildings.title,
-                  isSelected: validSelectedCategory.title == categoryData.buildings.title,
+                  isSelected: selectedCategory.value == categoryData.buildings.title,
                 ),
                 categoryData.library.title: _SegmentTab(
                   title: categoryData.library.title,
-                  isSelected: validSelectedCategory.title == categoryData.library.title,
+                  isSelected: selectedCategory.value == categoryData.library.title,
                 ),
                 categoryData.showers.title: _SegmentTab(
                   title: categoryData.showers.title,
-                  isSelected: validSelectedCategory.title == categoryData.showers.title,
+                  isSelected: selectedCategory.value == categoryData.showers.title,
                 ),
               },
             ),
