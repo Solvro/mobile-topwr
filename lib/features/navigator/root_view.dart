@@ -22,10 +22,8 @@ class RootView extends ConsumerWidget {
         child: UpdateChangelogWrapper(
           child: HorizontalSymmetricSafeAreaScaffold(
             bottomNavigationBar: const BottomNavBar(),
-            body: AutoRouter(
-              // this widget acts as nested [Navigator] for the app
-              key: ref.watch(navigatorKeyProvider),
-            ),
+            // this widget acts as nested [Navigator] for the app
+            body: AutoRouter(key: ref.watch(navigationControllerProvider)),
           ),
         ),
       ),

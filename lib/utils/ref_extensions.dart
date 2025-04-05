@@ -1,4 +1,5 @@
 import "dart:async";
+
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 extension RefIntervalRefreshX on Ref {

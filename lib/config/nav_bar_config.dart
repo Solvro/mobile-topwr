@@ -1,5 +1,4 @@
 import "package:auto_route/auto_route.dart";
-import "package:collection/collection.dart";
 import "package:flutter/material.dart";
 
 import "../features/bottom_nav_bar/bottom_nav_bar_icon_icons.icons.dart";
@@ -29,26 +28,15 @@ abstract class NavBarConfig {
     NavBarEnum.guide: const GuideRoute(),
     NavBarEnum.navigation: const NavigationTabRoute(),
   };
+
+  // same but reversed key-value pairs
+  static Map<String, NavBarEnum> get reversedTabViews =>
+      Map.fromEntries(tabViews.entries.map((e) => MapEntry(e.value.routeName, e.key)));
 }
 
-extension IsRouteATabViewOnStringX on String {
-  NavBarEnum? get tabBarEnum =>
-      NavBarConfig.tabViews.entries.firstWhereOrNull((entry) => entry.value.routeName == this)?.key;
-
-  bool get isTabView => NavBarConfig.tabViews.values.map((i) => i.routeName).contains(this);
-
-  bool get isRouteGlobalRoute => this == RootRoute.name;
-}
-
-extension IsRouteATabViewX on PageRouteInfo<dynamic> {
-  NavBarEnum? get tabBarEnum => routeName.tabBarEnum;
-
-  bool get isTabView => routeName.isTabView;
-
-  bool get isRouteGlobalRoute => routeName.isRouteGlobalRoute;
-
-  String? getFormatedRouteName(BuildContext context) {
-    return switch (routeName) {
+extension GetFormattedRouteNameX on Route<dynamic> {
+  String? getFormattedRouteName(BuildContext context) {
+    return switch (settings.name) {
       HomeRoute.name => context.localize.home_screen,
       NavigationTabRoute.name => context.localize.other_view,
       DepartmentsRoute.name => context.localize.departments,

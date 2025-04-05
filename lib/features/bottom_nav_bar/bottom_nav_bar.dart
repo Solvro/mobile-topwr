@@ -5,12 +5,13 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "../../config/nav_bar_config.dart";
 import "../../theme/app_theme.dart";
 import "../navigator/navigation_controller.dart";
+import "bottom_nav_bar_controller.dart";
 
 class BottomNavBar extends ConsumerWidget {
   const BottomNavBar({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final activeTab = ref.watch(navigationControllerProvider).activeTab;
+    final activeTab = ref.watch(bottomNavBarControllerProvider);
     return Theme(
       data: Theme.of(context).copyWith(splashColor: Colors.transparent, highlightColor: Colors.transparent),
       child: DecoratedBox(
