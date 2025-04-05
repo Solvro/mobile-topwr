@@ -2964,5 +2964,13 @@
   "navigate_to_digital_guide": "Otwórz cyfrowy przewodnik",
   "@navigate_to_digital_guide": {
     "description": "Button text for opening digital guide"
+  },
+  "library_title": "Biblioteki",
+  "@library_title": {
+    "description": "Title for library section"
+  },
+  "showers_title": "Prysznice",
+  "@showers_title": {
+    "description": "Title for showers section"
   }
 }
