@@ -1,6 +1,9 @@
 import "dart:math";
 
 import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
+
+import "../features/navigator/navigation_stack.dart";
 
 extension MediaQueryPaddingExtensionX on BuildContext {
   EdgeInsets get maxOfHorizontalViewPaddings {
@@ -10,15 +13,17 @@ extension MediaQueryPaddingExtensionX on BuildContext {
   }
 }
 
-class HorizontalSymmetricSafeArea extends StatelessWidget {
+class HorizontalSymmetricSafeArea extends ConsumerWidget {
   const HorizontalSymmetricSafeArea({super.key, required this.child});
   final Widget child;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final currentRoute = ref.watch(currentRouteProvider)?.settings.name;
+    final isMapView = currentRoute == "BuildingsRoute" || currentRoute == "ParkingsRoute";
     return Padding(
       padding: context.maxOfHorizontalViewPaddings,
-      child: SafeArea(left: false, right: false, child: child),
+      child: SafeArea(left: false, right: false, top: !isMapView, child: child),
     );
   }
 }
