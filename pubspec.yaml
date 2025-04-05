@@ -55,10 +55,10 @@ dependencies:
   hive: ^2.2.3
   shared_preferences: ^2.5.2
   cached_network_image: ^3.4.1
-  dio_cache_interceptor_hive_store: ^4.0.0
   flutter_cache_manager: ^3.4.1
   drift: ^2.26.0
   drift_flutter: ^0.2.4
+  dio_cache_interceptor_db_store: ^6.0.0
 
   #Network
   url_launcher: ^6.3.1

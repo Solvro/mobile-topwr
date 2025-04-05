@@ -9,6 +9,7 @@ import "../../api_base/hive_init.dart";
 import "../../config/ui_config.dart";
 import "../../firebase_init.dart";
 import "../home_view/widgets/logo_app_bar.dart";
+import "../map_view/data/cache.dart";
 
 part "splash_screen_controller.g.dart";
 
@@ -23,6 +24,7 @@ class SplashScreenController extends _$SplashScreenController {
     await firebaseInit();
     await initHiveForGraphqlCache();
     await AppBarLogo.precacheImageIfAbsent();
+    await ref.read(mapCacheStoreProvider.future); // prefetch map cache directory
   }
 
   @override
