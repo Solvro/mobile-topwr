@@ -3444,5 +3444,13 @@
   "filters_fab_tooltip": "Filtry",
   "@filters_fab_tooltip": {
     "description": "Tooltip text for filters fab"
+  },
+  "library_title": "Biblioteki",
+  "@library_title": {
+    "description": "Title for library section"
+  },
+  "showers_title": "Prysznice",
+  "@showers_title": {
+    "description": "Title for showers section"
   }
 }
