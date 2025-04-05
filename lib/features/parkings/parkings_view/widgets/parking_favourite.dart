@@ -11,7 +11,7 @@ class FavouriteParkingWidget extends ConsumerWidget {
   final Parking parking;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final favController = ref.watch(localFavParkingsRepositoryProvider(parking.id).notifier);
+    final favController = ref.read(localFavParkingsRepositoryProvider(parking.id).notifier);
     final isFavorite = ref.watch(localFavParkingsRepositoryProvider(parking.id));
     return IconButton(
       visualDensity: VisualDensity.compact,
