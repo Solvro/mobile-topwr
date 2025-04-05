@@ -95,8 +95,8 @@ extension NavigationX on WidgetRef {
     await _router.push(const AboutUsRoute());
   }
 
-  Future<void> navigateGuideDetail(String id) async {
-    await trackEvent(UmamiEvents.openGuideArticleDetail, value: id);
+  Future<void> navigateGuideDetail(int id) async {
+    await trackEvent(UmamiEvents.openGuideArticleDetail, value: id.toString());
     await _router.push(GuideDetailRoute(id: id));
   }
 
