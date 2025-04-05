@@ -2,10 +2,10 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../../config/shared_prefs.dart";
+import "../../../../config/translations_config.dart";
 import "../../business/translations_notifier.dart";
-import "../../config/translations_config.dart";
-import "../data_source/client/translation_client.dart";
 import "../data_source/local/database/translation_db_singleton.dart";
+import "../data_source/remote/translation_client.dart";
 import "../models/supported_languages.dart";
 import "../models/translation.dart";
 
