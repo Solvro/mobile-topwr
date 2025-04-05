@@ -571,5 +571,7 @@
   "verifiedBySolvro": "Verified by Solvro",
   "studyClub_howToAddYourOrganization": "How to add your organization?",
   "filters_sheet_semantics_label": "Filters sheet. Scroll up to expand it.",
-  "filters_fab_tooltip": "Filters"
+  "filters_fab_tooltip": "Filters",
+  "library_title": "Library",
+  "showers_title": "Showers"
 }
