@@ -9,7 +9,8 @@ import "../../../utils/context_extensions.dart";
 import "../../../widgets/big_preview_card.dart";
 import "../../../widgets/my_error_widget.dart";
 import "../../../widgets/subsection_header.dart";
-import "../../guide_view/repository/guide_repository.dart";
+import "../../guide_view/data/models/guide_data.dart";
+import "../../guide_view/data/repository/guide_repository.dart";
 import "../../navigator/utils/navigation_commands.dart";
 import "loading_widgets/big_scrollable_section_loading.dart";
 import "paddings.dart";
@@ -36,7 +37,7 @@ class _NewsList extends ConsumerWidget {
     final state = ref.watch(guideRepositoryProvider);
     return switch (state) {
       AsyncError(:final error) => MyErrorWidget(error),
-      AsyncValue(:final IList<GuidePost> value) => SmallHorizontalPadding(
+      AsyncValue(:final IList<GuideData> value) => SmallHorizontalPadding(
         child: SizedBox(height: BigPreviewCardConfig.cardHeight, child: _NewsDataList(value)),
       ),
       _ => const Padding(
@@ -56,7 +57,7 @@ class _NewsList extends ConsumerWidget {
 class _NewsDataList extends ConsumerWidget {
   const _NewsDataList(this.posts);
 
-  final IList<GuidePost> posts;
+  final IList<GuideData> posts;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -82,15 +83,15 @@ class _NewsDataList extends ConsumerWidget {
 class _BuildNewsCard extends StatelessWidget {
   const _BuildNewsCard({required this.post, required this.ref});
 
-  final GuidePost post;
+  final GuideData post;
   final WidgetRef ref;
 
   @override
   Widget build(BuildContext context) {
     return BigPreviewCard(
-      title: post.name ?? "",
-      shortDescription: post.short_description ?? "",
-      directusUrl: post.cover?.filename_disk,
+      title: post.title,
+      shortDescription: post.shortDesc,
+      directusUrl: post.image.url,
       onClick: () {
         unawaited(ref.navigateGuideDetail(post.id));
       },
