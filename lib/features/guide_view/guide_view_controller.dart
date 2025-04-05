@@ -3,7 +3,8 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../utils/contains_lower_case.dart";
-import "repository/guide_repository.dart";
+import "data/models/guide_data.dart";
+import "data/repository/guide_repository.dart";
 
 part "guide_view_controller.g.dart";
 
@@ -18,8 +19,8 @@ class SearchGuideController extends _$SearchGuideController {
 }
 
 @Riverpod(dependencies: [SearchGuideController])
-Future<IList<GuidePost>> guideListController(Ref ref) async {
+Future<IList<GuideData>> guideListController(Ref ref) async {
   final originalList = await ref.watch(guideRepositoryProvider.future);
   final query = ref.watch(searchGuideControllerProvider);
-  return originalList.where((element) => element.name.containsLowerCase(query)).toIList();
+  return originalList.where((element) => element.title.containsLowerCase(query)).toIList();
 }
