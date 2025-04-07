@@ -7,10 +7,17 @@ import "../../../../../utils/context_extensions.dart";
 // pure UI, no logic, just a nice dialog with a title, subtitle and a child
 class RedDialog extends StatelessWidget {
   final String title;
-  final String subtitle;
+  final String? subtitle;
   final Widget child;
+  final bool showApplyButton;
 
-  const RedDialog({super.key, required this.title, required this.child, required this.subtitle});
+  const RedDialog({
+    super.key,
+    required this.title,
+    required this.child,
+    required this.subtitle,
+    this.showApplyButton = true,
+  });
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -31,7 +38,11 @@ class RedDialog extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               _DialogHeader(title: title),
-              Flexible(child: SingleChildScrollView(child: _DialogContent(subtitle: subtitle, child: child))),
+              Flexible(
+                child: SingleChildScrollView(
+                  child: _DialogContent(subtitle: subtitle, showApplyButton: showApplyButton, child: child),
+                ),
+              ),
             ],
           ),
         ),
@@ -41,26 +52,28 @@ class RedDialog extends StatelessWidget {
 }
 
 class _DialogContent extends StatelessWidget {
-  const _DialogContent({required this.subtitle, required this.child});
+  const _DialogContent({required this.subtitle, required this.child, required this.showApplyButton});
 
-  final String subtitle;
+  final String? subtitle;
   final Widget child;
+  final bool showApplyButton;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Text(
-            subtitle,
-            style: context.aboutUsTheme.body.copyWith(height: 1.4, color: context.colorTheme.greyPigeon),
+        if (subtitle != null)
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Text(
+              subtitle!,
+              style: context.aboutUsTheme.body.copyWith(height: 1.4, color: context.colorTheme.greyPigeon),
+            ),
           ),
-        ),
-        const SizedBox(height: 6),
+        if (subtitle != null) const SizedBox(height: 6),
         child,
-        const _DialogFooter(),
+        if (showApplyButton) const _DialogFooter(),
       ],
     );
   }
