@@ -474,5 +474,6 @@
   "is_closure_from_inside": "The doors open {boolean, select, false{not } other{}}inwards.",
   "is_same_opening_system": "The doors on both sides open {boolean, select, false{not } other{}}in the same way.",
   "digital_guide_accessibility": "Digital guide accessibility profiles",
-  "home_screen": "Home"
+  "home_screen": "Home",
+  "navigate_to_digital_guide": "Open digital guide"
 }
