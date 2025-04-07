@@ -19,7 +19,7 @@ class DateChip extends StatelessWidget {
         margin: const EdgeInsets.all(8),
         decoration: BoxDecoration(color: context.colorTheme.blackMirage, borderRadius: BorderRadius.circular(20)),
         child: Text(
-          DateFormat(DateChipConfig.dateTimeFormat, context.locale.countryCode).format(date),
+          DateFormat(DateChipConfig.dateTimeFormat, context.locale.languageCode).format(date),
           style: context.textTheme.bodyWhite.copyWith(fontWeight: FontWeight.w500),
         ),
       ),

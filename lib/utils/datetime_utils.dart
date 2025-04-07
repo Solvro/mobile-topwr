@@ -12,8 +12,8 @@ extension DateTimeUtilsX on DateTime {
   }
 
   String toDayDateString(BuildContext context) {
-    final dayFormat = DateFormat("EEEE", context.locale.countryCode);
-    final dateFormat = DateFormat("dd.MM.yyyy", context.locale.countryCode);
+    final dayFormat = DateFormat("EEEE", context.locale.languageCode);
+    final dateFormat = DateFormat("dd.MM.yyyy", context.locale.languageCode);
     final day = dayFormat.format(this);
     final capitalizedDay = day[0].toUpperCase() + day.substring(1).toLowerCase();
     final date = dateFormat.format(this);
@@ -21,7 +21,7 @@ extension DateTimeUtilsX on DateTime {
   }
 
   String toHourMinuteString(BuildContext context) {
-    final hourFormat = DateFormat("HH:mm", context.locale.countryCode);
+    final hourFormat = DateFormat("HH:mm", context.locale.languageCode);
     return hourFormat.format(this);
   }
 

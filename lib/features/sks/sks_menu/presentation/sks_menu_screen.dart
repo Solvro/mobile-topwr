@@ -88,7 +88,7 @@ class _SksMenuView extends ConsumerWidget {
                 alertType: AlertType.info,
                 title: context.localize.sks_note,
                 message: context.localize.sks_menu_you_see_last_menu(
-                  DateFormat("dd.MM.yyyy", context.locale.countryCode).format(sksMenuData.lastUpdate),
+                  DateFormat("dd.MM.yyyy", context.locale.languageCode).format(sksMenuData.lastUpdate),
                 ),
               ),
             for (final technicalInfo in sksMenuData.technicalInfos) TechnicalMessage(message: technicalInfo),

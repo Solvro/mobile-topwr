@@ -10,7 +10,7 @@ extension GetTheLatestDateGuideX on BuildContext {
     final newestDate = questions?.whereNonNull
         .map((e) => e.FAQ_id?.date_created)
         .reduce((a, b) => (b == null || a != null && a.isAfter(b)) ? a : b);
-    final formatter = DateFormat("dd.MM.yyyy", locale.countryCode);
+    final formatter = DateFormat("dd.MM.yyyy", locale.languageCode);
     return newestDate != null ? formatter.format(newestDate) : null;
   }
 
