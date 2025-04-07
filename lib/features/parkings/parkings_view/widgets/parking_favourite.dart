@@ -15,7 +15,9 @@ class FavouriteParkingWidget extends ConsumerWidget {
 
     return IconButton(
       visualDensity: VisualDensity.compact,
-      onPressed: ref.read(localFavParkingsRepositoryProvider(parking.id).notifier).toggle,
+      onPressed: () async {
+        await ref.read(localFavParkingsRepositoryProvider(parking.id).notifier).toggle();
+      },
       icon:
           isFavorite == null
               ? FavouriteIcon(icon: Icons.error, color: context.colorTheme.whiteSoap)
