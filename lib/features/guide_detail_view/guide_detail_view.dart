@@ -104,7 +104,7 @@ class _GuideDetailDataView extends ConsumerWidget {
                       ),
                       if (lastModifiedDate != null)
                         Text(
-                          "${context.localize.last_modified} ${DateFormat("dd.MM.yyyy", context.locale.countryCode).format(lastModifiedDate)}",
+                          "${context.localize.last_modified} ${DateFormat("dd.MM.yyyy", context.locale.languageCode).format(lastModifiedDate)}",
                           style: context.textTheme.bodyGrey,
                           textAlign: TextAlign.end,
                         ),
