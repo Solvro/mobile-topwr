@@ -55,11 +55,9 @@ class NavigationTabView extends ConsumerWidget {
         padding: const EdgeInsets.only(top: 16),
         child: Text(context.localize.rest_header, style: context.textTheme.headline),
       ),
-      const Padding(padding: EdgeInsets.only(bottom: NavigationTabViewConfig.universalPadding), child: SettingsTitle()),
-      const Padding(
-        padding: EdgeInsets.only(bottom: NavigationTabViewConfig.universalPadding),
-        child: AboutTheAppTile(),
-      ),
+      const SettingsTitle(),
+      const AboutTheAppTile(),
+      const SizedBox(height: NavigationTabViewConfig.universalPadding),
     ];
     return Scaffold(
       appBar: LogoAppBar(context, logoSize: 40, toolbarHeight: 90, actions: const [NotificationButton()]),
