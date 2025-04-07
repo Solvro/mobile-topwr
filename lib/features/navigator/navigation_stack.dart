@@ -36,6 +36,19 @@ Route<dynamic>? previousRoute(Ref ref) {
 }
 
 @riverpod
+Route<dynamic>? previousRouteThan(Ref ref, RouteSettings currentRouteSettings) {
+  final stack = ref.watch(navigationStackProvider);
+  if (stack.length <= 1) {
+    return null;
+  }
+  final index = stack.indexWhere((r) => r.settings.name == currentRouteSettings.name);
+  if (index <= 0) {
+    return null;
+  }
+  return stack[index - 1];
+}
+
+@riverpod
 bool isStackPoppable(Ref ref) {
   return ref.watch(navigationStackProvider).length > 1;
 }
