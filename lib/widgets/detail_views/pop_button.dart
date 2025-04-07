@@ -10,7 +10,8 @@ class DetailViewPopButton extends ConsumerWidget {
   const DetailViewPopButton({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final title = ref.watch(previousRouteProvider)?.getFormattedRouteName(context);
+    final route = ModalRoute.of(context)?.settings;
+    final title = route != null ? ref.watch(previousRouteThanProvider(route))?.getFormattedRouteName(context) : null;
 
     return TextButton(
       onPressed: () {
