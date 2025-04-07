@@ -2960,5 +2960,9 @@
   "digital_guide_accessibility": "Profile dostępności w cyfrowym przewodniku",
   "@digital_guide_accessibility": {
     "description": "Title for digital guide accessibility section"
+  },
+  "navigate_to_digital_guide": "Otwórz cyfrowy przewodnik",
+  "@navigate_to_digital_guide": {
+    "description": "Button text for opening digital guide"
   }
 }
