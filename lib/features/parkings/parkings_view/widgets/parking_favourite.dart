@@ -12,7 +12,7 @@ class FavouriteParkingWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isFavorite = ref.watch(localFavParkingsRepositoryProvider(parking.id));
-    
+
     return IconButton(
       visualDensity: VisualDensity.compact,
       onPressed: ref.read(localFavParkingsRepositoryProvider(parking.id).notifier).toggle,
