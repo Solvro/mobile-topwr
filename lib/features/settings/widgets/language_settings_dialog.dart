@@ -4,6 +4,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
+import "../../digital_guide/tabs/accessibility_dialog/presentation/red_dialog.dart";
 
 class LanguageDialog extends ConsumerWidget {
   const LanguageDialog();
@@ -19,45 +20,35 @@ class LanguageDialog extends ConsumerWidget {
       (context.localize.polish_id, context.localize.polish_title),
       (context.localize.english_id, context.localize.english_title),
     ];
-    return AlertDialog(
-      backgroundColor: context.colorTheme.whiteSoap,
-      contentPadding: const EdgeInsets.all(AboutUsConfig.spacerHeight),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(NavigationTabViewConfig.radius)),
-      content: SizedBox(
-        width: double.maxFinite,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              context.localize.language,
-              style: context.textTheme.headline.copyWith(fontSize: AboutUsConfig.dialogTitleFontSize),
+    return RedDialog(
+      title: context.localize.language,
+      subtitle: null,
+      showApplyButton: false,
+      child: ListView.builder(
+        padding: const EdgeInsets.symmetric(vertical: 16),
+        physics: const NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        itemCount: languages.length,
+        itemBuilder: (context, index) {
+          final (code, name) = languages[index];
+          final selected = selectedLanguage == code;
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(NavigationTabViewConfig.radius),
+                color: context.colorTheme.greyLight,
+              ),
+              child: ListTile(
+                title: Text(name),
+                trailing: selected ? Icon(Icons.check, color: context.colorTheme.orangePomegranade) : null,
+                onTap: () {
+                  Navigator.pop(context, code);
+                },
+              ),
             ),
-            const SizedBox(height: AboutUsConfig.spacerHeight),
-            ListView.separated(
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: languages.length,
-              itemBuilder: (context, index) {
-                final (code, name) = languages[index];
-                final selected = selectedLanguage == code;
-                return DecoratedBox(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(NavigationTabViewConfig.radius),
-                    color: context.colorTheme.greyLight,
-                  ),
-                  child: ListTile(
-                    title: Text(name),
-                    trailing: selected ? Icon(Icons.check, color: context.colorTheme.orangePomegranade) : null,
-                    onTap: () {
-                      Navigator.pop(context, code);
-                    },
-                  ),
-                );
-              },
-              separatorBuilder: (context, index) => const SizedBox(height: AboutUsConfig.spacerHeight),
-            ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }
