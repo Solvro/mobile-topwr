@@ -4,6 +4,7 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../config/ui_config.dart";
+import "../../config/url_config.dart";
 import "../../theme/app_theme.dart";
 import "../../utils/context_extensions.dart";
 import "../../widgets/wide_tile_card.dart";
@@ -34,11 +35,30 @@ class BuildingTile extends ConsumerWidget {
         if (building.externalDigitalGuideMode != null && building.externalDigitalGuideIdOrURL != null)
           Positioned(
             top: 2,
-            right: WideTileCardConfig.imageSize,
+            right: WideTileCardConfig.imageSize + 2,
             child: IconButton(
-              iconSize: 18,
+              iconSize: 22,
               visualDensity: VisualDensity.compact,
-              icon: Icon(Icons.info, color: isActive ? context.colorTheme.whiteSoap : context.colorTheme.greyPigeon),
+              color: switch (building.externalDigitalGuideMode) {
+                "digital_guide_building" || "other_digital_guide_place" => context.colorTheme.orangePomegranade,
+                _ => null,
+              },
+              icon: Icon(
+                switch (building.externalDigitalGuideMode) {
+                  "web_url" =>
+                    building.externalDigitalGuideIdOrURL!.startsWith(UrlConfig.topwrUrl) ? Icons.info : Icons.language,
+                  "digital_guide_building" || "other_digital_guide_place" => Icons.accessibility_new_rounded,
+                  _ => Icons.info,
+                },
+                color:
+                    isActive
+                        ? context.colorTheme.whiteSoap
+                        : switch (building.externalDigitalGuideMode) {
+                          "digital_guide_building" ||
+                          "other_digital_guide_place" => context.colorTheme.orangePomegranade,
+                          _ => context.colorTheme.blackMirage,
+                        },
+              ),
               onPressed: () {
                 unawaited(ref.navigateBuildingDetailAction(building));
               },
