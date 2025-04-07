@@ -28,7 +28,7 @@ class NavigationController extends _$NavigationController {
     final isDestinationWithinTabView = routesWithinTabBar.any(
       (route) => route.path.split("/").first == uri.split("/").first,
     );
-    final properlyWorkingURI = !isDestinationWithinTabView ? "/$uri" : uri;
+    final properlyWorkingURI = !isDestinationWithinTabView || isCurrentlyWithinTabView ? "/$uri" : uri;
     final shouldPopBeforeNavigating = !isCurrentlyWithinTabView && isDestinationWithinTabView;
     if (shouldPopBeforeNavigating) {
       _router?.root.popUntil((element) => element.settings.name == RootRoute.name); // pop to root (tab bar view)
