@@ -357,6 +357,10 @@
   "@scientific_cirlces": {
     "description": "Title for scientific clubs section"
   },
+  "scientific_cirlces_short": "Koła",
+  "@scientific_cirlces_short": {
+    "description": "Title for scientific clubs section, but in short form"
+  },
   "student_organizations": "Organizacje studenckie",
   "@student_organizations": {
     "description": "Title for student organizations section"
