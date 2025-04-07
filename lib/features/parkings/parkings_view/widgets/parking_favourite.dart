@@ -11,11 +11,13 @@ class FavouriteParkingWidget extends ConsumerWidget {
   final Parking parking;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final favController = ref.watch(localFavParkingsRepositoryProvider(parking.id).notifier);
     final isFavorite = ref.watch(localFavParkingsRepositoryProvider(parking.id));
+
     return IconButton(
       visualDensity: VisualDensity.compact,
-      onPressed: favController.toggle,
+      onPressed: () async {
+        await ref.read(localFavParkingsRepositoryProvider(parking.id).notifier).toggle();
+      },
       icon:
           isFavorite == null
               ? FavouriteIcon(icon: Icons.error, color: context.colorTheme.whiteSoap)
