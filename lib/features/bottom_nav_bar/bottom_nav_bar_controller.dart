@@ -9,5 +9,10 @@ part "bottom_nav_bar_controller.g.dart";
 @riverpod
 NavBarEnum bottomNavBarController(Ref ref) {
   final lastRoute = ref.watch(currentRouteProvider);
-  return NavBarConfig.reversedTabViews[lastRoute?.settings.name] ?? NavBarEnum.home;
+  final currentTab = NavBarConfig.reversedTabViews[lastRoute?.settings.name];
+  if (currentTab == null) {
+    final previousRoute = ref.watch(previousRouteProvider);
+    return NavBarConfig.reversedTabViews[previousRoute?.settings.name] ?? NavBarEnum.home;
+  }
+  return currentTab;
 }
