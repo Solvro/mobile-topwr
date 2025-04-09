@@ -3,8 +3,9 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../utils/contains_lower_case.dart";
+import "data/models/department.dart";
 import "data/reposiotory/departments_repository.dart";
-import "repository/departments_repository.dart";
+// import "repository/departments_repository.dart";
 
 part "departments_view_controllers.g.dart";
 
@@ -20,8 +21,8 @@ class SearchDepartmentsController extends _$SearchDepartmentsController {
 
 @Riverpod(dependencies: [SearchDepartmentsController])
 Future<IList<Department>> departmentsList(Ref ref) async {
-  final originalList = await ref.watch(departmentsRepositoryProvider.future);
-  final fds = ref.watch(departmentsRepository2Provider.future);
+  // final originalList = await ref.watch(departmentsRepositoryProvider.future);
+  final originalList = await ref.watch(departmentsRepository2Provider.future);
   final query = ref.watch(searchDepartmentsControllerProvider);
   return originalList
       .where((element) => element.name.containsLowerCase(query) || element.code.containsLowerCase(query))

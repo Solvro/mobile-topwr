@@ -4,7 +4,8 @@ import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "../../departments/departments_view/repository/departments_repository.dart";
+import "../../departments/departments_view/data/models/department.dart";
+import "../../departments/departments_view/data/reposiotory/departments_repository.dart";
 import "filters_search_controller.dart";
 import "model/sci_club_type.dart";
 import "repository/tags_repository.dart";
@@ -33,7 +34,9 @@ class SelectedDepartmentController extends _$SelectedDepartmentController with F
   ISet<Department> build() => const ISet.empty();
 
   Future<void> selectDepartmentById(String id) async {
-    final department = (await ref.read(departmentsRepositoryProvider.future)).firstWhere((element) => element.id == id);
+    final department = (await ref.read(
+      departmentsRepository2Provider.future,
+    )).firstWhere((element) => element.id == id);
     state = state.clear().add(department);
   }
 }
