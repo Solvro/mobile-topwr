@@ -19,6 +19,10 @@ import "widgets/departments_view_loading.dart";
 class DepartmentsView extends StatelessWidget {
   const DepartmentsView({super.key});
 
+  static String localizedOfflineMessage(BuildContext context) {
+    return context.localize.my_offline_error_message(context.localize.departments);
+  }
+
   @override
   Widget build(BuildContext context) {
     return ProviderScope(overrides: [searchDepartmentsControllerProvider], child: const _DepartmentsView());

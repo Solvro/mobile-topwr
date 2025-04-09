@@ -5,7 +5,6 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../widgets/my_error_widget.dart";
 import "../../../../widgets/subsection_header.dart";
-import "../../../departments/departments_view/data/reposiotory/departments_repository.dart";
 import "../../../departments/departments_view/repository/departments_repository.dart";
 import "../../../navigator/utils/navigation_commands.dart";
 import "../loading_widgets/scrollable_section_loading.dart";
@@ -19,7 +18,6 @@ class DepartmentsSection extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     debugPrint("Departments sections");
     final state = ref.watch(departmentsRepositoryProvider);
-    final state2 = ref.watch(departmentsRepository2Provider);
     return Column(
       children: [
         SubsectionHeader(
