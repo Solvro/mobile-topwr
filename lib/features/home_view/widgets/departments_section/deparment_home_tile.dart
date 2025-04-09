@@ -6,7 +6,8 @@ import "../../../../theme/app_theme.dart";
 import "../../../../widgets/my_cached_image.dart";
 import "../../../../widgets/optimized_directus_image.dart";
 import "../../../../widgets/tile_splash.dart";
-import "../../../departments/departments_view/repository/departments_repository.dart";
+import "../../../departments/departments_view/data/models/department.dart";
+import "../../../departments/departments_view/data/reposiotory/departments_extensions.dart";
 
 class DepartmentHomeTile extends StatelessWidget {
   final Department department;
@@ -32,7 +33,7 @@ class DepartmentHomeTile extends StatelessWidget {
               child: SizedBox.square(
                 dimension: 100,
                 child: OptimizedDirectusImage(
-                  department.logo?.filename_disk,
+                  department.imageUrl,
                   loadingType: LoadingType.noLoading,
                   boxFit: BoxFit.scaleDown,
                 ),

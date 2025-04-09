@@ -1,6 +1,5 @@
 import "package:flutter/material.dart";
 
-import "../../../../config/env.dart";
 import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../theme/utils.dart";
@@ -17,8 +16,6 @@ class DepartmentCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint("${Env.mainRestApiUrl.substring(0, Env.mainRestApiUrl.length - 7)}/uploads/${department.logoKey}.png");
-
     return Theme(
       data: context.defaultThemeWithOverrideTextStyles(
         titleWhite: context.textTheme.titleWhite.copyWith(shadows: HomeViewConfig.squareCardTextShadow),
@@ -40,7 +37,7 @@ class DepartmentCard extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(DepartmentsConfig.logoMicroPadding),
                 child: OptimizedDirectusImage(
-                  "${Env.mainRestApiUrl.substring(0, Env.mainRestApiUrl.length - 7)}/uploads/${department.logoKey}.png",
+                  department.imageUrl,
                   boxFit: BoxFit.scaleDown,
                   loadingType: LoadingType.noLoading,
                 ),
