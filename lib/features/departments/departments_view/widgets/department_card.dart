@@ -1,13 +1,14 @@
 import "package:flutter/material.dart";
 
+import "../../../../config/env.dart";
 import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../theme/utils.dart";
 import "../../../../widgets/my_cached_image.dart";
 import "../../../../widgets/optimized_directus_image.dart";
 import "../../../../widgets/wide_tile_card.dart";
-import "../repository/departments_extensions.dart";
-import "../repository/departments_repository.dart";
+import "../data/models/department.dart";
+import "../data/reposiotory/departments_extensions.dart";
 
 class DepartmentCard extends StatelessWidget {
   final Department department;
@@ -16,6 +17,8 @@ class DepartmentCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint("${Env.mainRestApiUrl.substring(0, Env.mainRestApiUrl.length - 7)}/uploads/${department.logoKey}.png");
+
     return Theme(
       data: context.defaultThemeWithOverrideTextStyles(
         titleWhite: context.textTheme.titleWhite.copyWith(shadows: HomeViewConfig.squareCardTextShadow),
@@ -37,7 +40,7 @@ class DepartmentCard extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(DepartmentsConfig.logoMicroPadding),
                 child: OptimizedDirectusImage(
-                  department.logo?.filename_disk,
+                  "${Env.mainRestApiUrl.substring(0, Env.mainRestApiUrl.length - 7)}/uploads/${department.logoKey}.png",
                   boxFit: BoxFit.scaleDown,
                   loadingType: LoadingType.noLoading,
                 ),

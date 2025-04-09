@@ -9,9 +9,9 @@ import "../../../widgets/horizontal_symmetric_safe_area.dart";
 import "../../../widgets/my_error_widget.dart";
 import "../../../widgets/search_box_app_bar.dart";
 import "../../../widgets/search_not_found.dart";
-import "../../navigator/utils/navigation_commands.dart";
+import "data/models/department.dart";
 import "departments_view_controllers.dart";
-import "repository/departments_repository.dart";
+// import "repository/departments_repository.dart";
 import "widgets/department_card.dart";
 import "widgets/departments_view_loading.dart";
 
@@ -81,7 +81,8 @@ class _DepartmentsDataView extends ConsumerWidget {
       itemBuilder:
           (context, index) => DepartmentCard(
             departments[index],
-            onClick: () async => ref.navigateDepartmentDetail(departments[index].id),
+            // onClick: () async => ref.navigateDepartmentDetail(departments[index].id),
+            onClick: () {},
           ),
     );
   }

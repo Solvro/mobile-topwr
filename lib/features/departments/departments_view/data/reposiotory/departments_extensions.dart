@@ -1,17 +1,12 @@
 import "package:flutter/material.dart";
 
-import "../../../../config/ui_config.dart";
-import "../../../../theme/hex_color.dart";
-import "../../../../utils/colors_sort.dart";
-import "departments_repository.dart";
+import "../../../../../theme/hex_color.dart";
+import "../../../../../utils/colors_sort.dart";
+import "../models/department.dart";
 
 extension DepartmentsX on Department {
-  LinearGradient get gradient => LinearGradient(
-    colors: [
-      HexColor(gradient_start ?? DepartmentsConfig.defaultColorFirst),
-      HexColor(gradient_end ?? DepartmentsConfig.defaultColorSecond),
-    ]..sortByLightness(),
-  );
+  LinearGradient get gradient =>
+      LinearGradient(colors: [HexColor(gradientStart), HexColor(gradientStop)]..sortByLightness());
 }
 
 extension _GetDepartmentsCodeX on Department? {
