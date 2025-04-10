@@ -1,4 +1,3 @@
-import "dart:async";
 
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
@@ -13,11 +12,11 @@ import "../../../home_view/widgets/loading_widgets/big_scrollable_section_loadin
 import "../../../home_view/widgets/paddings.dart";
 import "../../../navigator/utils/navigation_commands.dart";
 import "../../../science_club/science_clubs_view/repository/science_clubs_repository.dart";
-import "../repository/department_details_repository.dart";
+import "../data/models/detailed_department.dart";
 
 class DepartmentScienceClubsSection extends ConsumerWidget {
   const DepartmentScienceClubsSection(this.department, {super.key});
-  final DepartmentDetails? department;
+  final DetailedDepartment department;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -26,15 +25,15 @@ class DepartmentScienceClubsSection extends ConsumerWidget {
       AsyncError(:final error) => MyErrorWidget(error),
       AsyncValue(:final IList<ScienceClub> value) => Builder(
         builder: (context) {
-          final filtered =
-              value.where((sciClubs) => sciClubs.department?.id == department?.Departments_by_id?.id).toIList();
+          final filtered = value.where((sciClubs) => sciClubs.department?.id == department.id.toString()).toIList();
           return Column(
             children: [
               SubsectionHeader(
                 title: context.localize.study_circles,
                 actionTitle: context.localize.list,
                 onClick: () async {
-                  unawaited(ref.navigateScienceClub(department?.Departments_by_id?.id));
+                  // TODO
+                  // unawaited(ref.navigateScienceClub(department?.Departments_by_id?.id));
                 },
               ),
               SizedBox(height: BigPreviewCardConfig.cardHeight, child: _ScienceClubsList(scienceClubs: filtered)),
