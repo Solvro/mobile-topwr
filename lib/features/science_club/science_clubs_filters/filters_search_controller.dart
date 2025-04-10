@@ -3,7 +3,8 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../utils/contains_lower_case.dart";
-import "../../departments/departments_view/repository/departments_repository.dart";
+import "../../departments/departments_view/data/models/department.dart";
+import "../../departments/departments_view/data/reposiotory/departments_repository.dart";
 import "model/sci_club_type.dart";
 import "repository/tags_repository.dart";
 import "utils.dart";
@@ -39,7 +40,7 @@ IList<ScienceClubType> typeFiltersFiltered(Ref ref) {
 @Riverpod(dependencies: [SearchFiltersController])
 Future<IList<Department>> departmentFiltersFiltered(Ref ref) async {
   final query = ref.watch(searchFiltersControllerProvider);
-  final depts = await ref.watch(departmentsRepositoryProvider.future);
+  final depts = await ref.watch(departmentsRepository2Provider.future);
   return depts
       .where(
         (x) =>
