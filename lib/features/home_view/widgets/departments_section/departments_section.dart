@@ -72,7 +72,7 @@ class _BuildDepartmentCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return DepartmentHomeTile(
       department,
-      // TODO
+      // TODO(24bartixx): migrate detail view
       // onClick: () async => ref.navigateDepartmentDetail(department.id)
       onClick: () {},
     );

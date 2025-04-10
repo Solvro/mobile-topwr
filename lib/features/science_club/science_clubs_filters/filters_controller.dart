@@ -33,7 +33,7 @@ class SelectedDepartmentController extends _$SelectedDepartmentController with F
   @override
   ISet<Department> build() => const ISet.empty();
 
-  Future<void> selectDepartmentById(String id) async {
+  Future<void> selectDepartmentById(int id) async {
     final department = (await ref.read(
       departmentsRepository2Provider.future,
     )).firstWhere((element) => element.id == id);
