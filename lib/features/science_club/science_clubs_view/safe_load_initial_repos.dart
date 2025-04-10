@@ -14,7 +14,7 @@ class SafeLoadInitialRepos extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return switch ((ref.read(tagsRepositoryProvider), ref.read(departmentsRepository2Provider))) {
+    return switch ((ref.read(tagsRepositoryProvider), ref.read(departmentsRepositoryProvider))) {
       (AsyncError(:final error), _) => SciClubsScaffold(showFab: false, child: MyErrorWidget(error)),
       (_, AsyncError(:final error)) => SciClubsScaffold(showFab: false, child: MyErrorWidget(error)),
       _ => builder(context, safeLoadedTags: true, safeLoadedDepartments: true),

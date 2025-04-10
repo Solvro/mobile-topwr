@@ -11,7 +11,7 @@ import "../models/department.dart";
 part "departments_repository.g.dart";
 
 @riverpod
-Future<IList<Department>> departmentsRepository2(Ref ref) async {
+Future<IList<Department>> departmentsRepository(Ref ref) async {
   final url = "${Env.mainRestApiUrl}/departments";
 
   final response = await ref.getAndCacheData(

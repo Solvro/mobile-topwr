@@ -34,9 +34,7 @@ class SelectedDepartmentController extends _$SelectedDepartmentController with F
   ISet<Department> build() => const ISet.empty();
 
   Future<void> selectDepartmentById(int id) async {
-    final department = (await ref.read(
-      departmentsRepository2Provider.future,
-    )).firstWhere((element) => element.id == id);
+    final department = (await ref.read(departmentsRepositoryProvider.future)).firstWhere((element) => element.id == id);
     state = state.clear().add(department);
   }
 }

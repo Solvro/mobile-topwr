@@ -21,7 +21,7 @@ class SearchDepartmentsController extends _$SearchDepartmentsController {
 
 @Riverpod(dependencies: [SearchDepartmentsController])
 Future<IList<Department>> departmentsList(Ref ref) async {
-  final originalList = await ref.watch(departmentsRepository2Provider.future);
+  final originalList = await ref.watch(departmentsRepositoryProvider.future);
   final query = ref.watch(searchDepartmentsControllerProvider);
   return originalList
       .where((element) => element.name.containsLowerCase(query) || element.code.containsLowerCase(query))
