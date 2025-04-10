@@ -9,6 +9,7 @@ import "../../../widgets/horizontal_symmetric_safe_area.dart";
 import "../../../widgets/my_error_widget.dart";
 import "../../../widgets/search_box_app_bar.dart";
 import "../../../widgets/search_not_found.dart";
+import "../../navigator/utils/navigation_commands.dart";
 import "data/models/department.dart";
 import "departments_view_controllers.dart";
 import "widgets/department_card.dart";
@@ -80,9 +81,7 @@ class _DepartmentsDataView extends ConsumerWidget {
       itemBuilder:
           (context, index) => DepartmentCard(
             departments[index],
-            // TODO(24bartixx): migrate detail view
-            // onClick: () async => ref.navigateDepartmentDetail(departments[index].id),
-            onClick: () {},
+            onClick: () async => ref.navigateDepartmentDetail(departments[index].id),
           ),
     );
   }

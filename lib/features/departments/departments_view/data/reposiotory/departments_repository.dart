@@ -16,7 +16,7 @@ Future<IList<Department>> departmentsRepository(Ref ref) async {
 
   final response = await ref.getAndCacheData(
     url,
-    TtlStrategy.get(TtlKey.guideDetailsRepository).inDays,
+    TtlStrategy.get(TtlKey.departmentsRepository).inDays,
     Department.fromJsonList,
     extraValidityCheck: (_) => true,
     localizedOfflineMessage: DepartmentsView.localizedOfflineMessage,
