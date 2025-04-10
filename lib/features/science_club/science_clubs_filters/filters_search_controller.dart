@@ -40,7 +40,7 @@ IList<ScienceClubType> typeFiltersFiltered(Ref ref) {
 @Riverpod(dependencies: [SearchFiltersController])
 Future<IList<Department>> departmentFiltersFiltered(Ref ref) async {
   final query = ref.watch(searchFiltersControllerProvider);
-  final depts = await ref.watch(departmentsRepository2Provider.future);
+  final depts = await ref.watch(departmentsRepositoryProvider.future);
   return depts
       .where(
         (x) =>

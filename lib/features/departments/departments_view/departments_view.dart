@@ -11,7 +11,6 @@ import "../../../widgets/search_box_app_bar.dart";
 import "../../../widgets/search_not_found.dart";
 import "data/models/department.dart";
 import "departments_view_controllers.dart";
-// import "repository/departments_repository.dart";
 import "widgets/department_card.dart";
 import "widgets/departments_view_loading.dart";
 
@@ -81,6 +80,7 @@ class _DepartmentsDataView extends ConsumerWidget {
       itemBuilder:
           (context, index) => DepartmentCard(
             departments[index],
+            // TODO(24bartixx): migrate detail view
             // onClick: () async => ref.navigateDepartmentDetail(departments[index].id),
             onClick: () {},
           ),

@@ -30,7 +30,7 @@ void keepAliveHomeViewProviders(Ref ref) {
   ref.watch(parkingsRepositoryProvider);
   ref.watch(scienceClubsRepositoryProvider);
   ref.watch(buildingsRepositoryProvider);
-  ref.watch(departmentsRepository2Provider);
+  ref.watch(departmentsRepositoryProvider);
   ref.watch(guideRepositoryProvider);
   ref.watch(getUsageDaysUseCaseProvider);
   return;

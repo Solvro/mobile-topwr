@@ -17,7 +17,7 @@ class DepartmentsSection extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(departmentsRepository2Provider);
+    final state = ref.watch(departmentsRepositoryProvider);
     return Column(
       children: [
         SubsectionHeader(
