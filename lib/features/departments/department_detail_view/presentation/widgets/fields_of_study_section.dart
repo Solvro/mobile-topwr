@@ -7,8 +7,6 @@ import "../../data/models/field_of_study.dart";
 import "../../data/utils/field_of_studies_extension.dart";
 import "field_of_study_expansion_tile.dart";
 
-// typedef FieldOfStudy = Query$GetDepartmentDetails$Departments_by_id$fieldsOfStudies;
-
 class FieldsOfStudySection extends StatelessWidget {
   const FieldsOfStudySection({super.key, required this.fieldsOfStudy});
 
