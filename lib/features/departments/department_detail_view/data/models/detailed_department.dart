@@ -2,6 +2,7 @@ import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/foundation.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 
+import "../../../../../api_base_rest/utils/json_parse.dart";
 import "department_link.dart";
 import "field_of_study.dart";
 
@@ -24,14 +25,7 @@ abstract class DetailedDepartment with _$DetailedDepartment {
     @JsonKey(fromJson: departmentLinksFromJson) required IList<DepartmentLink> departmentLink,
   }) = _DetailedDepartment;
 
-  factory DetailedDepartment.fromJson(Map<String, dynamic> json) =>
-      _$DetailedDepartmentFromJson(_jsonBulletProof(json));
-
-  static Map<String, dynamic> _jsonBulletProof(Map<String, dynamic> json) {
-    return (json.containsKey("data") && json["data"] is Map<String, dynamic>)
-        ? json["data"] as Map<String, dynamic>
-        : json;
-  }
+  factory DetailedDepartment.fromJson(Map<String, dynamic> json) => _$DetailedDepartmentFromJson(json.parseJson());
 }
 
 IList<FieldOfStudy> fieldOfStudyFromJson(List<dynamic> json) {
@@ -43,5 +37,3 @@ IList<DepartmentLink> departmentLinksFromJson(List<dynamic> json) {
     json.map((element) => DepartmentLink.fromJson(element as Map<String, dynamic>)).toList(),
   );
 }
-
-extension AddressFormatterX on DetailedDepartment {}
