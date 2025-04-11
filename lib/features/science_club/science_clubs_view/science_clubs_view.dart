@@ -66,7 +66,7 @@ class _ScienceClubsView extends StatelessWidget {
                 deptsIds,
                 () async => ref.read(departmentsRepositoryProvider.future),
                 ref.watch(selectedDepartmentControllerProvider.notifier),
-                (ids, dept) => ids.contains(dept.id),
+                (ids, dept) => ids.contains(dept.id.toString()),
               );
 
               useInitialFilterIds(

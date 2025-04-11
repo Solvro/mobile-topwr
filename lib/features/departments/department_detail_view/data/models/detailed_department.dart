@@ -1,4 +1,5 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
+import "package:flutter/foundation.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 
 import "department_link.dart";
@@ -19,14 +20,55 @@ abstract class DetailedDepartment with _$DetailedDepartment {
     required String gradientStop,
     required String addressLine1,
     required String addressLine2,
-    required IList<FieldOfStudy> fieldOfStudy,
-    required IList<DepartmentLink> departmentLink,
+    @JsonKey(fromJson: fieldOfStudyFromJson) required IList<FieldOfStudy> fieldOfStudy,
+    @JsonKey(fromJson: departmentLinksFromJson) required IList<DepartmentLink> departmentLink,
   }) = _DetailedDepartment;
 
-  factory DetailedDepartment.fromJson(Map<String, dynamic> json) => _$DetailedDepartmentFromJson(json);
+  factory DetailedDepartment.fromJson(Map<String, dynamic> json) =>
+      _$DetailedDepartmentFromJson(json["data"] as Map<String, dynamic>);
+}
 
-  String get3LinesAddress() {
+IList<FieldOfStudy> fieldOfStudyFromJson(List<dynamic> json) {
+  return IList<FieldOfStudy>(json.map((element) => FieldOfStudy.fromJson(element as Map<String, dynamic>)).toList());
+}
+
+IList<DepartmentLink> departmentLinksFromJson(List<dynamic> json) {
+  return IList<DepartmentLink>(
+    json.map((element) => DepartmentLink.fromJson(element as Map<String, dynamic>)).toList(),
+  );
+}
+
+extension AddressFormatterX on DetailedDepartment {
+  String get address3lines {
     final match = RegExp(r"^(.*)\s((ul\.|wyb\.|pl\.).*)").firstMatch(addressLine1);
     return match != null ? "${match.group(1)}\n${match.group(2)}\n$addressLine2" : "$addressLine1\n$addressLine2";
   }
 }
+
+// class IListFieldOfStudyConverter implements JsonConverter<IList<FieldOfStudy>, List<dynamic>> {
+//   const IListFieldOfStudyConverter();
+
+//   @override
+//   IList<FieldOfStudy> fromJson(List<dynamic> json) {
+//     return IList<FieldOfStudy>(json.map((e) => FieldOfStudy.fromJson(e as Map<String, dynamic>)).toList());
+//   }
+
+//   @override
+//   List<dynamic> toJson(IList<FieldOfStudy> object) {
+//     return object.map((e) => e.toJson()).toList();
+//   }
+// }
+
+// class IListDepartmentLinkConverter implements JsonConverter<IList<DepartmentLink>, List<dynamic>> {
+//   const IListDepartmentLinkConverter();
+
+//   @override
+//   IList<DepartmentLink> fromJson(List<dynamic> json) {
+//     return IList<DepartmentLink>(json.map((e) => DepartmentLink.fromJson(e as Map<String, dynamic>)).toList());
+//   }
+
+//   @override
+//   List<dynamic> toJson(IList<DepartmentLink> object) {
+//     return object.map((e) => e.toJson()).toList();
+//   }
+// }

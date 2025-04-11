@@ -1,10 +1,11 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 
-import "../widgets/fields_of_study_section.dart";
+import "../data/models/field_of_study.dart";
 
 extension _FixNullGettersX on FieldOfStudy {
-  bool get is2ndDegreeF => is2ndDegree ?? false;
-  bool get isLongCycleStudiesF => isLongCycleStudies ?? false;
+  bool get is2ndDegreeF => is2ndDegree;
+  // bool get isLongCycleStudiesF => isLongCycleStudies ?? false;
+  bool get isLongCycleStudiesF => false;
 }
 
 extension WhereTypesX on IList<FieldOfStudy> {

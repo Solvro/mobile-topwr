@@ -58,7 +58,7 @@ class DepartmentDetailView extends ConsumerWidget {
                 ),
                 const SizedBox(height: 12),
                 TextWithTranslation(
-                  department.get3LinesAddress(),
+                  department.address3lines,
                   style: context.textTheme.body.copyWith(height: 1.2),
                   textAlign: TextAlign.center,
                 ),
@@ -67,7 +67,8 @@ class DepartmentDetailView extends ConsumerWidget {
                   title: context.localize.deans_office,
                   list:
                       department.departmentLink
-                          .map((link) => ContactIconsModel(text: link.name, url: link.url))
+                          // TODO(24bartixx): put link.name as a text once backend includes it in json (task is on board)
+                          .map((link) => ContactIconsModel(text: link.link, url: link.link))
                           .toIList(),
                 ),
                 FieldsOfStudySection(fieldsOfStudy: department.fieldOfStudy),

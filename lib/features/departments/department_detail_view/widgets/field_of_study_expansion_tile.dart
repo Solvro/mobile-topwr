@@ -3,8 +3,8 @@ import "package:separate/separate.dart";
 
 import "../../../../theme/app_theme.dart";
 import "../../../../widgets/my_expansion_tile.dart";
+import "../data/models/field_of_study.dart";
 import "field_of_study_tile.dart";
-import "fields_of_study_section.dart";
 
 class FieldOfStudyExpansionTile extends StatelessWidget {
   const FieldOfStudyExpansionTile({
