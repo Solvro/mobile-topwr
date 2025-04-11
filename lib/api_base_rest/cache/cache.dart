@@ -40,7 +40,6 @@ extension DataCachingX on Ref {
       onRetry: onRetry,
       authHeader: authHeader,
     );
-    // TODO(24bartixx): Change to response.data["data"] once we use REST API entirely
     final data = fromJson(response.data as JSON);
     if (extraValidityCheck(data)) {
       await cacheManager.putFile(
