@@ -10,7 +10,7 @@ abstract class FieldOfStudy with _$FieldOfStudy {
     required String url,
     required bool isEnglish,
     required bool is2ndDegree,
-    required bool hasWeekendOptions,
+    required bool hasWeekendOption,
   }) = _FieldOfStudy;
 
   factory FieldOfStudy.fromJson(Map<String, dynamic> json) => _$FieldOfStudyFromJson(json);

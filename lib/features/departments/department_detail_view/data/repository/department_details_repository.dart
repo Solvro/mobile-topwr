@@ -11,7 +11,7 @@ part "department_details_repository.g.dart";
 
 @riverpod
 Future<DetailedDepartment> departmentDetailsRepository2(Ref ref, int id) async {
-  final url = "${Env.mainRestApiUrl}/departments/$id?fieldOfStudy=true&departmentlink=true";
+  final url = "${Env.mainRestApiUrl}/departments/$id?fieldOfStudy=true&departmentLink=true";
 
   final response = await ref.getAndCacheData(
     url,

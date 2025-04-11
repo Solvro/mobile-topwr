@@ -1,3 +1,4 @@
+import "dart:async";
 
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
@@ -32,8 +33,7 @@ class DepartmentScienceClubsSection extends ConsumerWidget {
                 title: context.localize.study_circles,
                 actionTitle: context.localize.list,
                 onClick: () async {
-                  // TODO
-                  // unawaited(ref.navigateScienceClub(department?.Departments_by_id?.id));
+                  unawaited(ref.navigateScienceClub(department.id.toString()));
                 },
               ),
               SizedBox(height: BigPreviewCardConfig.cardHeight, child: _ScienceClubsList(scienceClubs: filtered)),
