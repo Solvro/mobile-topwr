@@ -1,11 +1,10 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/cupertino.dart";
 
-import "../../../../theme/app_theme.dart";
-import "../../../../utils/context_extensions.dart";
-import "../data/models/field_of_study.dart";
-// import "../utils/fields_of_studies.dart";
-import "../utils/fields_of_studies.dart";
+import "../../../../../theme/app_theme.dart";
+import "../../../../../utils/context_extensions.dart";
+import "../../data/models/field_of_study.dart";
+import "../../data/utils/field_of_studies_extension.dart";
 import "field_of_study_expansion_tile.dart";
 
 // typedef FieldOfStudy = Query$GetDepartmentDetails$Departments_by_id$fieldsOfStudies;

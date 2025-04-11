@@ -2,11 +2,11 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:separate/separate.dart";
 
-import "../../../../theme/app_theme.dart";
-import "../../../../theme/utils.dart";
-import "../../../../utils/launch_url_util.dart";
-import "../../../../widgets/wide_tile_card.dart";
-import "../data/models/field_of_study.dart";
+import "../../../../../theme/app_theme.dart";
+import "../../../../../theme/utils.dart";
+import "../../../../../utils/launch_url_util.dart";
+import "../../../../../widgets/wide_tile_card.dart";
+import "../../data/models/field_of_study.dart";
 
 class FieldOfStudyTile extends ConsumerWidget {
   const FieldOfStudyTile(this.item, {super.key});
@@ -18,7 +18,7 @@ class FieldOfStudyTile extends ConsumerWidget {
     return Theme(
       data: context.defaultThemeWithOverrideTextStyles(title: context.textTheme.lightTitle),
       child: WideTileCard(
-        onTap: () async => ref.launch(item.url ?? ""),
+        onTap: () async => ref.launch(item.url),
         crossAxisAlignment: CrossAxisAlignment.center,
         title: item.name,
         trailing: Row(

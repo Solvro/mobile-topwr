@@ -18,9 +18,3 @@ abstract class FieldOfStudy with _$FieldOfStudy {
 
   factory FieldOfStudy.fromJson(Map<String, dynamic> json) => _$FieldOfStudyFromJson(json);
 }
-
-extension CycleStudiesFormatterX on FieldOfStudy {
-  bool get isLongCycleStudies {
-    return semesterCount == longCycleStudiesSemesterCount;
-  }
-}

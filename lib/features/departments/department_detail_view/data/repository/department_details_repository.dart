@@ -4,7 +4,7 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 import "../../../../../api_base_rest/cache/cache.dart";
 import "../../../../../config/env.dart";
 import "../../../../../config/ttl_config.dart";
-import "../../department_detail_view.dart";
+import "../../presentation/department_detail_view.dart";
 import "../models/detailed_department.dart";
 
 part "department_details_repository.g.dart";
