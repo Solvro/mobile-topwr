@@ -17,12 +17,12 @@ abstract class Department with _$Department {
     required String gradientStop,
   }) = _Department;
 
-  factory Department.fromJson(Map<String, dynamic> json) => _$DepartmentFromJson(json);
-
   static IList<Department> fromJsonList(Map<String, dynamic> json) {
     return (json["data"] as List<dynamic>)
         .map((departmentJson) => Department.fromJson(departmentJson as Map<String, dynamic>))
         .toList()
         .lock;
   }
+
+  factory Department.fromJson(Map<String, dynamic> json) => _$DepartmentFromJson(json);
 }

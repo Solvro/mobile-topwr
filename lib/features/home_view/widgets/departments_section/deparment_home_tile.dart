@@ -7,7 +7,7 @@ import "../../../../widgets/my_cached_image.dart";
 import "../../../../widgets/optimized_directus_image.dart";
 import "../../../../widgets/tile_splash.dart";
 import "../../../departments/departments_view/data/models/department.dart";
-import "../../../departments/departments_view/data/reposiotory/departments_extensions.dart";
+import "../../../departments/departments_view/data/utils/departments_extensions.dart";
 
 class DepartmentHomeTile extends StatelessWidget {
   final Department department;

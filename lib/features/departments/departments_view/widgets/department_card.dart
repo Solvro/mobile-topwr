@@ -7,7 +7,7 @@ import "../../../../widgets/my_cached_image.dart";
 import "../../../../widgets/optimized_directus_image.dart";
 import "../../../../widgets/wide_tile_card.dart";
 import "../data/models/department.dart";
-import "../data/reposiotory/departments_extensions.dart";
+import "../data/utils/departments_extensions.dart";
 
 class DepartmentCard extends StatelessWidget {
   final Department department;
