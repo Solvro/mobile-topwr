@@ -6,8 +6,8 @@ import "../../../../theme/utils.dart";
 import "../../../../widgets/my_cached_image.dart";
 import "../../../../widgets/optimized_directus_image.dart";
 import "../../../../widgets/wide_tile_card.dart";
-import "../repository/departments_extensions.dart";
-import "../repository/departments_repository.dart";
+import "../data/models/department.dart";
+import "../data/utils/departments_extensions.dart";
 
 class DepartmentCard extends StatelessWidget {
   final Department department;
@@ -37,7 +37,7 @@ class DepartmentCard extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(DepartmentsConfig.logoMicroPadding),
                 child: OptimizedDirectusImage(
-                  department.logo?.filename_disk,
+                  department.imageUrl,
                   boxFit: BoxFit.scaleDown,
                   loadingType: LoadingType.noLoading,
                 ),
