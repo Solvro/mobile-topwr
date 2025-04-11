@@ -1,8 +1,8 @@
 import "package:flutter/material.dart";
 
-import "../../../../widgets/detail_views/sliver_header_section.dart";
-import "../../../../widgets/detail_views/sliver_logo.dart";
-import "../../../../widgets/my_cached_image.dart";
+import "../../../../../widgets/detail_views/sliver_header_section.dart";
+import "../../../../../widgets/detail_views/sliver_logo.dart";
+import "../../../../../widgets/my_cached_image.dart";
 
 class DepartmentSliverHeaderSection extends SliverHeaderSection {
   DepartmentSliverHeaderSection({super.activeGradient, super.logoDirectusImageUrl}) : super(backgroundImageUrl: null);

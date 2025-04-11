@@ -4,16 +4,16 @@ import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../../../../config/ui_config.dart";
-import "../../../../utils/context_extensions.dart";
-import "../../../../widgets/big_preview_card.dart";
-import "../../../../widgets/my_error_widget.dart";
-import "../../../../widgets/subsection_header.dart";
-import "../../../home_view/widgets/loading_widgets/big_scrollable_section_loading.dart";
-import "../../../home_view/widgets/paddings.dart";
-import "../../../navigator/utils/navigation_commands.dart";
-import "../../../science_club/science_clubs_view/repository/science_clubs_repository.dart";
-import "../data/models/detailed_department.dart";
+import "../../../../../config/ui_config.dart";
+import "../../../../../utils/context_extensions.dart";
+import "../../../../../widgets/big_preview_card.dart";
+import "../../../../../widgets/my_error_widget.dart";
+import "../../../../../widgets/subsection_header.dart";
+import "../../../../home_view/widgets/loading_widgets/big_scrollable_section_loading.dart";
+import "../../../../home_view/widgets/paddings.dart";
+import "../../../../navigator/utils/navigation_commands.dart";
+import "../../../../science_club/science_clubs_view/repository/science_clubs_repository.dart";
+import "../../data/models/detailed_department.dart";
 
 class DepartmentScienceClubsSection extends ConsumerWidget {
   const DepartmentScienceClubsSection(this.department, {super.key});

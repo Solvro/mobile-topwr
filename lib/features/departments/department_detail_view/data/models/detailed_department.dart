@@ -44,9 +44,4 @@ IList<DepartmentLink> departmentLinksFromJson(List<dynamic> json) {
   );
 }
 
-extension AddressFormatterX on DetailedDepartment {
-  String get address3lines {
-    final match = RegExp(r"^(.*)\s((ul\.|wyb\.|pl\.).*)").firstMatch(addressLine1);
-    return match != null ? "${match.group(1)}\n${match.group(2)}\n$addressLine2" : "$addressLine1\n$addressLine2";
-  }
-}
+extension AddressFormatterX on DetailedDepartment {}

@@ -6,7 +6,7 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 import "../../../../features/buildings_view/model/building_model.dart";
 import "../about_us_view/about_us_view.dart";
 import "../buildings_view/buildings_view.dart";
-import "../departments/department_detail_view/department_detail_view.dart";
+import "../departments/department_detail_view/presentation/department_detail_view.dart";
 import "../departments/departments_view/departments_view.dart";
 import "../digital_guide/data/models/level.dart";
 import "../digital_guide/data/models/level_with_regions.dart";
