@@ -5,7 +5,6 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 import "../../../utils/contains_lower_case.dart";
 import "data/models/department.dart";
 import "data/reposiotory/departments_repository.dart";
-// import "repository/departments_repository.dart";
 
 part "departments_view_controllers.g.dart";
 

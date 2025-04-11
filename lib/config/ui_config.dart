@@ -25,10 +25,6 @@ abstract class CountdownConfig {
 }
 
 abstract class DepartmentsConfig {
-  // not used
-  // static const defaultColorFirst = "#BFBEBE";
-  // static const defaultColorSecond = "#999898";
-
   static const listSeparatorSize = 16.0;
   static const logoMicroPadding = 10.0;
 
