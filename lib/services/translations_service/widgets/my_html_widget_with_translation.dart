@@ -2,7 +2,7 @@ import "package:flutter/widgets.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../widgets/my_html_widget.dart";
-import "../data/repository/translations_repository.dart";
+import "../data/repositories/translations_repository.dart";
 
 class MyHtmlWidgetWithTranslation extends ConsumerWidget {
   final String html;

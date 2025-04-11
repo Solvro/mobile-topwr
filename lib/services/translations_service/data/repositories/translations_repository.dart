@@ -1,8 +1,6 @@
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "../../../../config/shared_prefs.dart";
-import "../../../../config/translations_config.dart";
 import "../../business/translations_notifier.dart";
 import "../data_source/local/database/translation_db_singleton.dart";
 import "../data_source/remote/translation_client.dart";
@@ -37,20 +35,4 @@ Future<String> translationsRepository(Ref ref, String originalText) async {
   await db.addTranslation(translationModel);
 
   return translationModel.translatedText;
-}
-
-@riverpod
-Future<void> setPrefferedLanguage(Ref ref, SupportedLocales localeCode) async {
-  final sharedPreferences = await ref.watch(sharedPreferencesSingletonProvider.future);
-
-  await sharedPreferences.setString(TranslationsConfig.localesKey, localeCode.name);
-}
-
-@riverpod
-Future<SupportedLocales> fetchPrefferedLanguage(Ref ref) async {
-  final sharedPreferences = await ref.watch(sharedPreferencesSingletonProvider.future);
-
-  final languageCode = sharedPreferences.getString(TranslationsConfig.localesKey) ?? SupportedLocales.pl.name;
-
-  return SupportedLocales.fromString(languageCode);
 }

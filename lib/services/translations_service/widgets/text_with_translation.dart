@@ -1,7 +1,7 @@
 import "package:flutter/widgets.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../data/repository/translations_repository.dart";
+import "../data/repositories/translations_repository.dart";
 
 class TextWithTranslation extends ConsumerWidget {
   final String text;

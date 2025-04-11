@@ -29,4 +29,5 @@ rules:
       - contact-icons
       - sci-clubs
       - settings
+      - translation
     # YES, you can add new ones if you have a new feature
