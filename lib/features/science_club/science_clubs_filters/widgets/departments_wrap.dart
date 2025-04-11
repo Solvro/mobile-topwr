@@ -4,7 +4,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../utils/context_extensions.dart";
 import "../../../departments/departments_view/data/models/department.dart";
-import "../../../departments/departments_view/data/reposiotory/departments_extensions.dart";
+import "../../../departments/departments_view/data/utils/departments_extensions.dart";
 import "../filters_controller.dart";
 import "../filters_search_controller.dart";
 import "../filters_sheet.dart";
