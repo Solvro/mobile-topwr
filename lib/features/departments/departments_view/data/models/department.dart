@@ -2,6 +2,8 @@ import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/foundation.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 
+import "../../../../../api_base_rest/utils/json_parse.dart";
+
 part "department.freezed.dart";
 part "department.g.dart";
 
@@ -18,7 +20,8 @@ abstract class Department with _$Department {
   }) = _Department;
 
   static IList<Department> fromJsonList(Map<String, dynamic> json) {
-    return (json["data"] as List<dynamic>)
+    return json
+        .parseJsonToList()
         .map((departmentJson) => Department.fromJson(departmentJson as Map<String, dynamic>))
         .toList()
         .lock;
