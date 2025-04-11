@@ -25,7 +25,13 @@ abstract class DetailedDepartment with _$DetailedDepartment {
   }) = _DetailedDepartment;
 
   factory DetailedDepartment.fromJson(Map<String, dynamic> json) =>
-      _$DetailedDepartmentFromJson(json["data"] as Map<String, dynamic>);
+      _$DetailedDepartmentFromJson(_jsonBulletProof(json));
+
+  static Map<String, dynamic> _jsonBulletProof(Map<String, dynamic> json) {
+    return (json.containsKey("data") && json["data"] is Map<String, dynamic>)
+        ? json["data"] as Map<String, dynamic>
+        : json;
+  }
 }
 
 IList<FieldOfStudy> fieldOfStudyFromJson(List<dynamic> json) {
@@ -44,31 +50,3 @@ extension AddressFormatterX on DetailedDepartment {
     return match != null ? "${match.group(1)}\n${match.group(2)}\n$addressLine2" : "$addressLine1\n$addressLine2";
   }
 }
-
-// class IListFieldOfStudyConverter implements JsonConverter<IList<FieldOfStudy>, List<dynamic>> {
-//   const IListFieldOfStudyConverter();
-
-//   @override
-//   IList<FieldOfStudy> fromJson(List<dynamic> json) {
-//     return IList<FieldOfStudy>(json.map((e) => FieldOfStudy.fromJson(e as Map<String, dynamic>)).toList());
-//   }
-
-//   @override
-//   List<dynamic> toJson(IList<FieldOfStudy> object) {
-//     return object.map((e) => e.toJson()).toList();
-//   }
-// }
-
-// class IListDepartmentLinkConverter implements JsonConverter<IList<DepartmentLink>, List<dynamic>> {
-//   const IListDepartmentLinkConverter();
-
-//   @override
-//   IList<DepartmentLink> fromJson(List<dynamic> json) {
-//     return IList<DepartmentLink>(json.map((e) => DepartmentLink.fromJson(e as Map<String, dynamic>)).toList());
-//   }
-
-//   @override
-//   List<dynamic> toJson(IList<DepartmentLink> object) {
-//     return object.map((e) => e.toJson()).toList();
-//   }
-// }
