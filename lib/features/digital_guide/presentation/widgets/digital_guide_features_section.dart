@@ -41,6 +41,7 @@ class DigitalGuideFeaturesSection extends ConsumerWidget {
 
     final optionalTilesData =
         ref.watch(optionalTilesDataRepositoryProvider(digitalGuideData.id)).value ?? const OptionalTilesData();
+
     final l10n = context.localize;
 
     final items = <TileContent>[

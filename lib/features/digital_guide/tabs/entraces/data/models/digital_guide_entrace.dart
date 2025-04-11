@@ -24,7 +24,7 @@ abstract class DigitalGuideEntrace with _$DigitalGuideEntrace {
     required String areBenches,
     required int numberOfDoors,
     required String doorsDistance,
-    required String hasSoundTransmitter,
+    required String? hasSoundTransmitter,
     required String hasTactilePaving,
     required int? building,
     @JsonKey(name: "stairs") required IList<int> stairsIndices,
@@ -63,7 +63,7 @@ abstract class DigitalGuideTranslationEntrace with _$DigitalGuideTranslationEntr
     required String areDifferentTypesOfSurfaceComment,
     required String areBenchesComment,
     required String entranceThreats,
-    required String hasSoundTransmitterComment,
+    required String? hasSoundTransmitterComment,
     required String hasTactilePavingComment,
     required String comment,
   }) = _DigitalGuideTranslationEntrace;

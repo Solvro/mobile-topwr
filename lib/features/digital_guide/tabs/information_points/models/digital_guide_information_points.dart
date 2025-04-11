@@ -23,7 +23,7 @@ abstract class DigitalGuideInformationPoint with _$DigitalGuideInformationPoint 
     required String isSpaceUnderCounter,
     required String isSpaceOnCounter,
     required String hasInductionLoop,
-    required String hasSoundTransmitter,
+    required String? hasSoundTransmitter,
     required int building,
     required List<dynamic> rings,
     required List<dynamic> images,

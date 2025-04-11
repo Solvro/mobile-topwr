@@ -18,7 +18,7 @@ class EntrancesAccessibilityCommentsManager extends AccessibilityCommentsManager
       "${l10n.entrance_is_building_marked_from_entrance(digitalGuideEntrance.isBuildingMarkedFromEntrance.toLowerCase())} ${pl.isBuildingMarkedFromEntranceComment}",
       "${l10n.entrance_is_building_marked_in_en(digitalGuideEntrance.isBuildingMarkedInEn.toLowerCase())} ${pl.isBuildingMarkedInEnComment}",
       "${l10n.entrance_has_tactile_paving(digitalGuideEntrance.hasTactilePaving.toLowerCase())} ${pl.hasTactilePavingComment}",
-      "${l10n.entrance_has_sound_transmitter(digitalGuideEntrance.hasSoundTransmitter.toLowerCase())} ${pl.hasSoundTransmitterComment}",
+      "${l10n.entrance_has_sound_transmitter(digitalGuideEntrance.hasSoundTransmitter?.toLowerCase() ?? "false")} ${pl.hasSoundTransmitterComment}",
     ]).toIList();
   }
 
