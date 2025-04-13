@@ -14,7 +14,7 @@ abstract class SksMenuResponse with _$SksMenuResponse, _$SksMenuResponseTranslat
   const factory SksMenuResponse({
     required bool isMenuOnline,
     required DateTime lastUpdate,
-    required List<SksMenuDish> meals,
+    @translatableField required IList<SksMenuDish> meals,
   }) = _SksMenuResponse;
 
   const SksMenuResponse._();

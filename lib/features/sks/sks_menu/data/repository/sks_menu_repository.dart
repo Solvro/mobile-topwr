@@ -1,4 +1,3 @@
-import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../../../api_base_rest/cache/cache.dart";
@@ -6,6 +5,7 @@ import "../../../../../api_base_rest/client/json.dart";
 import "../../../../../api_base_rest/translations/translate.dart";
 import "../../../../../config/env.dart";
 import "../../../../../utils/datetime_utils.dart";
+import "../../../../../utils/ilist_nonempty.dart";
 import "../../presentation/sks_menu_screen.dart";
 import "../models/dish_category_enum.dart";
 import "../models/sks_menu_response.dart";

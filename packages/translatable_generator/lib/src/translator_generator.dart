@@ -172,11 +172,11 @@ class TranslatableGenerator extends GeneratorForAnnotation<Translatable> {
   }
 
   bool _isListType(DartType type) {
-    return type.isDartCoreList;
+    return type.isDartCoreList || type.toString().contains("IList");
   }
 
   DartType? _getListGenericType(DartType type) {
-    if (type is InterfaceType && type.isDartCoreList) {
+    if (type is InterfaceType && _isListType(type)) {
       if (type.typeArguments.isNotEmpty) {
         return type.typeArguments.first;
       }

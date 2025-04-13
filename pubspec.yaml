@@ -212,7 +212,7 @@ flutter:
     - assets/animations/offline.json
     - assets/animations/bug.json
     - assets/animations/sks_closed.json
-
+    - assets/svg/settings.svg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see
