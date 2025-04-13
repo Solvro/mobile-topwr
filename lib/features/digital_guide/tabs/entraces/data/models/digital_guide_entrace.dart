@@ -12,7 +12,7 @@ abstract class DigitalGuideEntrace with _$DigitalGuideEntrace, _$DigitalGuideEnt
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideEntrace({
     required int id,
-    required DigitalGuideTranslationsEntrace translations,
+    @translatableField required DigitalGuideTranslationsEntrace translations,
     required int orderNumber,
     required String isMain,
     required String isAccessible,
@@ -26,7 +26,7 @@ abstract class DigitalGuideEntrace with _$DigitalGuideEntrace, _$DigitalGuideEnt
     required String areDifferentTypesOfSurface,
     required String areBenches,
     required int numberOfDoors,
-    required String doorsDistance,
+    @translatableField required String doorsDistance,
     required String? hasSoundTransmitter,
     required String hasTactilePaving,
     required int? building,
@@ -44,8 +44,9 @@ abstract class DigitalGuideEntrace with _$DigitalGuideEntrace, _$DigitalGuideEnt
 
 @freezed
 abstract class DigitalGuideTranslationsEntrace with _$DigitalGuideTranslationsEntrace {
-  const factory DigitalGuideTranslationsEntrace({@JsonKey(name: "pl") required DigitalGuideTranslationEntrace pl}) =
-      _DigitalGuideTranslationsEntrace;
+  const factory DigitalGuideTranslationsEntrace({
+    @translatableField @JsonKey(name: "pl") required DigitalGuideTranslationEntrace pl,
+  }) = _DigitalGuideTranslationsEntrace;
 
   factory DigitalGuideTranslationsEntrace.fromJson(Map<String, dynamic> json) =>
       _$DigitalGuideTranslationsEntraceFromJson(json);
@@ -55,8 +56,8 @@ abstract class DigitalGuideTranslationsEntrace with _$DigitalGuideTranslationsEn
 abstract class DigitalGuideTranslationEntrace with _$DigitalGuideTranslationEntrace {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideTranslationEntrace({
-    required String name,
-    required String location,
+    @translatableField required String name,
+    @translatableField required String location,
     required String isMainComment,
     required String isForPersonelComment,
     required String isBuildingMarkedFromEntranceComment,
@@ -67,10 +68,10 @@ abstract class DigitalGuideTranslationEntrace with _$DigitalGuideTranslationEntr
     required String isSolidSurfaceComment,
     required String areDifferentTypesOfSurfaceComment,
     required String areBenchesComment,
-    required String entranceThreats,
+    @translatableField required String entranceThreats,
     required String? hasSoundTransmitterComment,
     required String hasTactilePavingComment,
-    required String comment,
+    @translatableField required String comment,
   }) = _DigitalGuideTranslationEntrace;
 
   factory DigitalGuideTranslationEntrace.fromJson(Map<String, dynamic> json) =>

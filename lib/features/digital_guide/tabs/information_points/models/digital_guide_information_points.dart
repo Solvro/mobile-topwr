@@ -15,7 +15,7 @@ abstract class DigitalGuideInformationPoint
   @JsonSerializable(fieldRename: FieldRename.snake)
   factory DigitalGuideInformationPoint({
     required int id,
-    required DigitalGuideInformationPointTranslations translations,
+    @translatableField required DigitalGuideInformationPointTranslations translations,
     required int orderNumber,
     required String isMarked,
     required String isVisibleFromAfar,
@@ -52,8 +52,9 @@ abstract class DigitalGuideInformationPoint
 
 @freezed
 abstract class DigitalGuideInformationPointTranslations with _$DigitalGuideInformationPointTranslations {
-  factory DigitalGuideInformationPointTranslations({required DigitalGuideInformationPointTranslationDetails pl}) =
-      _DigitalGuideInformationPointTranslations;
+  factory DigitalGuideInformationPointTranslations({
+    @translatableField required DigitalGuideInformationPointTranslationDetails pl,
+  }) = _DigitalGuideInformationPointTranslations;
 
   factory DigitalGuideInformationPointTranslations.fromJson(Map<String, dynamic> json) =>
       _$DigitalGuideInformationPointTranslationsFromJson(json);
@@ -63,7 +64,7 @@ abstract class DigitalGuideInformationPointTranslations with _$DigitalGuideInfor
 abstract class DigitalGuideInformationPointTranslationDetails with _$DigitalGuideInformationPointTranslationDetails {
   @JsonSerializable(fieldRename: FieldRename.snake)
   factory DigitalGuideInformationPointTranslationDetails({
-    required String location,
+    @translatableField required String location,
     required String isMarkedComment,
     required String isVisibleFromAfarComment,
     required String areAccessBarriersComment,
@@ -73,8 +74,8 @@ abstract class DigitalGuideInformationPointTranslationDetails with _$DigitalGuid
     required String isSpaceUnderCounterComment,
     required String isSpaceOnCounterComment,
     required String hasInductionLoopComment,
-    required String workingDaysAndHours,
-    required String comment,
+    @translatableField required String workingDaysAndHours,
+    @translatableField required String comment,
   }) = _DigitalGuideInformationPointTranslationDetails;
 
   factory DigitalGuideInformationPointTranslationDetails.fromJson(Map<String, dynamic> json) =>

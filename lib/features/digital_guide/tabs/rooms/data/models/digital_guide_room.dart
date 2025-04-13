@@ -11,7 +11,7 @@ abstract class DigitalGuideRoom with _$DigitalGuideRoom, _$DigitalGuideRoomTrans
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideRoom({
     required int id,
-    required DigitalGuideTranslationsRoom translations,
+    @translatableField required DigitalGuideTranslationsRoom translations,
     required List<int> roomStairs,
     required List<int> platforms,
     @JsonKey(name: "images") required List<int>? imagesIds,
@@ -47,7 +47,8 @@ abstract class DigitalGuideRoom with _$DigitalGuideRoom, _$DigitalGuideRoomTrans
 
 @freezed
 abstract class DigitalGuideTranslationsRoom with _$DigitalGuideTranslationsRoom {
-  const factory DigitalGuideTranslationsRoom({required DigitalGuideTranslationRoom pl}) = _DigitalGuideTranslationsRoom;
+  const factory DigitalGuideTranslationsRoom({@translatableField required DigitalGuideTranslationRoom pl}) =
+      _DigitalGuideTranslationsRoom;
 
   factory DigitalGuideTranslationsRoom.fromJson(Map<String, dynamic> json) =>
       _$DigitalGuideTranslationsRoomFromJson(json);
@@ -57,10 +58,10 @@ abstract class DigitalGuideTranslationsRoom with _$DigitalGuideTranslationsRoom 
 abstract class DigitalGuideTranslationRoom with _$DigitalGuideTranslationRoom {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideTranslationRoom({
-    required String name,
-    required String roomPurpose,
-    required String location,
-    required String workingDaysAndHours,
+    @translatableField required String name,
+    @translatableField required String roomPurpose,
+    @translatableField required String location,
+    @translatableField required String workingDaysAndHours,
     required String areEntrancesComment,
     required String isUseRestrictedComment,
     required String isOneLevelFloorComment,
@@ -81,7 +82,7 @@ abstract class DigitalGuideTranslationRoom with _$DigitalGuideTranslationRoom {
     required String isNoisyComment,
     required String areFlashingDevicesComment,
     required String hasInductionLoopComment,
-    required String comment,
+    @translatableField required String comment,
   }) = _DigitalGuideTranslationRoom;
 
   factory DigitalGuideTranslationRoom.fromJson(Map<String, dynamic> json) =>

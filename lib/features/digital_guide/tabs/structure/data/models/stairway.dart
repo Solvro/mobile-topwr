@@ -11,7 +11,7 @@ part "stairway.translatable.g.dart";
 abstract class Stairway with _$Stairway, _$StairwayTranslatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory Stairway({
-    required StairwayTranslations translations,
+    @translatableField required StairwayTranslations translations,
     required String areObjectsNarrowCommunicationZone,
     required String areInformationBoards,
     required String areInformationBoardsInEn,
@@ -31,9 +31,9 @@ abstract class Stairway with _$Stairway, _$StairwayTranslatable {
 
 @freezed
 abstract class StairwayTranslations with _$StairwayTranslations {
-  @JsonSerializable(fieldRename: FieldRename.snake)
-  const factory StairwayTranslations({@JsonKey(name: "pl") required StairwayTranslation plTranslation}) =
-      _StairwayTranslations;
+  const factory StairwayTranslations({
+    @translatableField @JsonKey(name: "pl") required StairwayTranslation plTranslation,
+  }) = _StairwayTranslations;
 
   factory StairwayTranslations.fromJson(Map<String, dynamic> json) => _$StairwayTranslationsFromJson(json);
 }
@@ -42,15 +42,15 @@ abstract class StairwayTranslations with _$StairwayTranslations {
 abstract class StairwayTranslation with _$StairwayTranslation {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory StairwayTranslation({
-    required String name,
-    required String location,
+    @translatableField required String name,
+    @translatableField required String location,
     required String areObjectsNarrowCommunicationZoneComment,
     required String areInformationBoardsComment,
     required String areInformationBoardsInEnComment,
     required String areRoomEntrancesComment,
     required String areFloorMarkingsComment,
     required String isTyphlomapComment,
-    required String comment,
+    @translatableField required String comment,
   }) = _StairwayTranslation;
 
   factory StairwayTranslation.fromJson(Map<String, dynamic> json) => _$StairwayTranslationFromJson(json);

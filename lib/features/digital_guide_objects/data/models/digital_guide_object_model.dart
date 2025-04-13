@@ -13,7 +13,7 @@ abstract class DigitalGuideObjectModel with _$DigitalGuideObjectModel, _$Digital
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideObjectModel({
     required int id,
-    required DigitalGuideObjectTranslations translations,
+    @translatableField required DigitalGuideObjectTranslations translations,
     String? linkToObjectLocation,
     @JsonKey(fromJson: stringToBool, toJson: boolToString) required bool isPossibilityToEnterWithAssistanceDog,
     @JsonKey(fromJson: stringToBool, toJson: boolToString) required bool isMicronavigationSystem,
@@ -37,8 +37,7 @@ abstract class DigitalGuideObjectModel with _$DigitalGuideObjectModel, _$Digital
 
 @freezed
 abstract class DigitalGuideObjectTranslations with _$DigitalGuideObjectTranslations {
-  @JsonSerializable(fieldRename: FieldRename.snake)
-  const factory DigitalGuideObjectTranslations({required DigitalGuideObjectTranslation pl}) =
+  const factory DigitalGuideObjectTranslations({@translatableField required DigitalGuideObjectTranslation pl}) =
       _DigitalGuideObjectTranslations;
 
   factory DigitalGuideObjectTranslations.fromJson(Map<String, dynamic> json) =>
@@ -49,14 +48,24 @@ abstract class DigitalGuideObjectTranslations with _$DigitalGuideObjectTranslati
 abstract class DigitalGuideObjectTranslation with _$DigitalGuideObjectTranslation {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideObjectTranslation({
-    required String name,
+    @translatableField required String name,
     required String address,
-    @JsonKey(fromJson: _emptyStringToNull) required String? accessibilityLevelForMotorDisabilityComment,
-    @JsonKey(fromJson: _emptyStringToNull) required String? accessibilityLevelForBlindComment,
-    @JsonKey(fromJson: _emptyStringToNull) required String? accessibilityLevelForVisuallyImpairedComment,
-    @JsonKey(fromJson: _emptyStringToNull) required String? accessibilityLevelForHardOfHearingComment,
-    @JsonKey(fromJson: _emptyStringToNull) required String? accessibilityLevelForHighSensorySensitivityComment,
-    @JsonKey(fromJson: _emptyStringToNull) required String? accessibilityLevelForCognitiveDifficultiesComment,
+    @translatableField
+    @JsonKey(fromJson: _emptyStringToNull)
+    required String? accessibilityLevelForMotorDisabilityComment,
+    @translatableField @JsonKey(fromJson: _emptyStringToNull) required String? accessibilityLevelForBlindComment,
+    @translatableField
+    @JsonKey(fromJson: _emptyStringToNull)
+    required String? accessibilityLevelForVisuallyImpairedComment,
+    @translatableField
+    @JsonKey(fromJson: _emptyStringToNull)
+    required String? accessibilityLevelForHardOfHearingComment,
+    @translatableField
+    @JsonKey(fromJson: _emptyStringToNull)
+    required String? accessibilityLevelForHighSensorySensitivityComment,
+    @translatableField
+    @JsonKey(fromJson: _emptyStringToNull)
+    required String? accessibilityLevelForCognitiveDifficultiesComment,
   }) = _DigitalGuideObjectTranslation;
 
   factory DigitalGuideObjectTranslation.fromJson(Map<String, dynamic> json) =>

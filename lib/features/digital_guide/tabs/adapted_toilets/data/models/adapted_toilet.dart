@@ -15,7 +15,7 @@ part "adapted_toilet.translatable.g.dart";
 abstract class AdaptedToilet with _$AdaptedToilet, _$AdaptedToiletTranslatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory AdaptedToilet({
-    required AdaptedToiletTranslations translations,
+    @translatableField required AdaptedToiletTranslations translations,
     required String isAccessAccessibleForPwd,
     @JsonKey(fromJson: stringToInt, toJson: intToString) required int hasAdditionalPurpose,
     required String isNeedAuthorization,
@@ -47,8 +47,9 @@ abstract class AdaptedToilet with _$AdaptedToilet, _$AdaptedToiletTranslatable {
 
 @freezed
 abstract class AdaptedToiletTranslations with _$AdaptedToiletTranslations {
-  const factory AdaptedToiletTranslations({@JsonKey(name: "pl") required AdaptedToiletTranslation plTranslation}) =
-      _AdaptedToiletTranslations;
+  const factory AdaptedToiletTranslations({
+    @JsonKey(name: "pl") @translatableField required AdaptedToiletTranslation plTranslation,
+  }) = _AdaptedToiletTranslations;
 
   factory AdaptedToiletTranslations.fromJson(Map<String, dynamic> json) => _$AdaptedToiletTranslationsFromJson(json);
 }
@@ -57,8 +58,8 @@ abstract class AdaptedToiletTranslations with _$AdaptedToiletTranslations {
 abstract class AdaptedToiletTranslation with _$AdaptedToiletTranslation {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory AdaptedToiletTranslation({
-    required String location,
-    required String toiletDescription,
+    @translatableField required String location,
+    @translatableField required String toiletDescription,
     required String numberOfCabins,
     required String isAccessAccessibleForPwdComment,
     required String isNeedAuthorizationComment,
@@ -81,7 +82,7 @@ abstract class AdaptedToiletTranslation with _$AdaptedToiletTranslation {
     required String isSpaceUnderWashbasinForWheelchairComment,
     required String isLightSwitchComment,
     required String isGoodLitComment,
-    required String comment,
+    @translatableField required String comment,
   }) = _AdaptedToiletTranslation;
 
   factory AdaptedToiletTranslation.fromJson(Map<String, dynamic> json) => _$AdaptedToiletTranslationFromJson(json);

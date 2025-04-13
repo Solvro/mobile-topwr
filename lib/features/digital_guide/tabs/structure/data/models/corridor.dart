@@ -11,7 +11,7 @@ part "corridor.translatable.g.dart";
 abstract class Corridor with _$Corridor, _$CorridorTranslatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory Corridor({
-    required CorridorTranslations translations,
+    @translatableField required CorridorTranslations translations,
     required String isSimpleCorridorLayout,
     required String isFloorMarked,
     required String areRoomsEntrances,
@@ -49,8 +49,9 @@ abstract class Corridor with _$Corridor, _$CorridorTranslatable {
 
 @freezed
 abstract class CorridorTranslations with _$CorridorTranslations {
-  const factory CorridorTranslations({@JsonKey(name: "pl") required CorridorTranslation plTranslation}) =
-      _CorridorTranslations;
+  const factory CorridorTranslations({
+    @translatableField @JsonKey(name: "pl") required CorridorTranslation plTranslation,
+  }) = _CorridorTranslations;
 
   factory CorridorTranslations.fromJson(Map<String, dynamic> json) => _$CorridorTranslationsFromJson(json);
 }
@@ -59,7 +60,7 @@ abstract class CorridorTranslations with _$CorridorTranslations {
 abstract class CorridorTranslation with _$CorridorTranslation {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory CorridorTranslation({
-    required String name,
+    @translatableField required String name,
     required String isSimpleCorridorLayoutComment,
     required String isFloorMarkedComment,
     required String areRoomsEntrancesComment,
@@ -69,7 +70,7 @@ abstract class CorridorTranslation with _$CorridorTranslation {
     required String arePictorialDirectionalSignsComment,
     required String areSeatsComment,
     required String areVendingMachinesComment,
-    required String vendingMachinesProducts,
+    @translatableField required String vendingMachinesProducts,
     required String isEmergencyPlanComment,
     required String isTyphlomapComment,
     required String areDangerousElementsComment,
@@ -87,7 +88,7 @@ abstract class CorridorTranslation with _$CorridorTranslation {
     required String isCorrectLightSwitchesSocketsHeightComment,
     required String isCorridorCausesEchoComment,
     required String areAnyFlashingDevicesComment,
-    required String comment,
+    @translatableField required String comment,
   }) = _CorridorTranslation;
 
   factory CorridorTranslation.fromJson(Map<String, dynamic> json) => _$CorridorTranslationFromJson(json);

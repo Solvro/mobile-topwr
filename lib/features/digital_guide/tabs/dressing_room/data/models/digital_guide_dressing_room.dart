@@ -20,7 +20,7 @@ abstract class DigitalGuideDressingRoom with _$DigitalGuideDressingRoom, _$Digit
     required double counterHeight,
     required String isSpaceUnderCounter,
     required String isSpaceOnCounter,
-    required DigitalGuideTranslationsDressingRoom translations,
+    @translatableField required DigitalGuideTranslationsDressingRoom translations,
     @JsonKey(name: "images") required List<int>? imagesIds,
   }) = _DigitalGuideDressingRoom;
 
@@ -31,8 +31,9 @@ abstract class DigitalGuideDressingRoom with _$DigitalGuideDressingRoom, _$Digit
 
 @freezed
 abstract class DigitalGuideTranslationsDressingRoom with _$DigitalGuideTranslationsDressingRoom {
-  const factory DigitalGuideTranslationsDressingRoom({required DigitalGuideTranslationDressingRoom pl}) =
-      _DigitalGuideTranslationsDressingRoom;
+  const factory DigitalGuideTranslationsDressingRoom({
+    @translatableField required DigitalGuideTranslationDressingRoom pl,
+  }) = _DigitalGuideTranslationsDressingRoom;
 
   factory DigitalGuideTranslationsDressingRoom.fromJson(Map<String, dynamic> json) =>
       _$DigitalGuideTranslationsDressingRoomFromJson(json);
@@ -42,9 +43,9 @@ abstract class DigitalGuideTranslationsDressingRoom with _$DigitalGuideTranslati
 abstract class DigitalGuideTranslationDressingRoom with _$DigitalGuideTranslationDressingRoom {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideTranslationDressingRoom({
-    required String location,
-    required String workingDaysAndHours,
-    required String comment,
+    @translatableField required String location,
+    @translatableField required String workingDaysAndHours,
+    @translatableField required String comment,
     required String isMarkedComment,
     required String isVisibleFromAfarComment,
     required String areAccessBarriersComment,

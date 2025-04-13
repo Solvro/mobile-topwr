@@ -11,7 +11,7 @@ abstract class DigitalGuideLodge with _$DigitalGuideLodge, _$DigitalGuideLodgeTr
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideLodge({
     required int id,
-    required DigitalGuideTranslationsLodge translations,
+    @translatableField required DigitalGuideTranslationsLodge translations,
     required String areAccessBarriers,
     required String isMovementSpace,
     required double counterHeight,
@@ -28,7 +28,7 @@ abstract class DigitalGuideLodge with _$DigitalGuideLodge, _$DigitalGuideLodgeTr
 
 @freezed
 abstract class DigitalGuideTranslationsLodge with _$DigitalGuideTranslationsLodge {
-  const factory DigitalGuideTranslationsLodge({required DigitalGuideTranslationLodge pl}) =
+  const factory DigitalGuideTranslationsLodge({@translatableField required DigitalGuideTranslationLodge pl}) =
       _DigitalGuideTranslationsLodge;
 
   factory DigitalGuideTranslationsLodge.fromJson(Map<String, dynamic> json) =>
@@ -39,9 +39,9 @@ abstract class DigitalGuideTranslationsLodge with _$DigitalGuideTranslationsLodg
 abstract class DigitalGuideTranslationLodge with _$DigitalGuideTranslationLodge {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideTranslationLodge({
-    required String location,
-    required String workingDaysAndHours,
-    required String comment,
+    @translatableField required String location,
+    @translatableField required String workingDaysAndHours,
+    @translatableField required String comment,
     required String areAccessBarriersComment,
     required String isMovementSpaceComment,
     required String isSpaceUnderCounterComment,

@@ -10,7 +10,7 @@ part "door.translatable.g.dart";
 abstract class Door with _$Door, _$DoorTranslatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory Door({
-    required DoorTranslations translations,
+    @translatableField required DoorTranslations translations,
     required String isMainWingHighlighted,
     required String isGoodDoorVisibleFromOutside,
     required String isGoodDoorVisibleFromInside,
@@ -38,7 +38,7 @@ abstract class Door with _$Door, _$DoorTranslatable {
 
 @freezed
 abstract class DoorTranslations with _$DoorTranslations {
-  const factory DoorTranslations({required DoorTranslation pl}) = _DoorTranslations;
+  const factory DoorTranslations({@translatableField required DoorTranslation pl}) = _DoorTranslations;
 
   factory DoorTranslations.fromJson(Map<String, dynamic> json) => _$DoorTranslationsFromJson(json);
 }
@@ -47,14 +47,14 @@ abstract class DoorTranslations with _$DoorTranslations {
 abstract class DoorTranslation with _$DoorTranslation {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DoorTranslation({
-    required String comment,
-    required String fromTo,
+    @translatableField required String comment,
+    @translatableField required String fromTo,
     required String isMainWingHighlightedComment,
     required String isGoodDoorVisibleFromOutsideComment,
     required String isGoodDoorVisibleFromInsideComment,
     required String isIncreasedForceRequiredComment,
     required String isDoorCloserComment,
-    required String handleHeight,
+    @translatableField required String handleHeight,
     required String isElevatedThresholdComment,
   }) = _DoorTranslation;
 

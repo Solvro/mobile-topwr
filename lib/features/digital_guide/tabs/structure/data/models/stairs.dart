@@ -12,7 +12,7 @@ abstract class Stairs with _$Stairs, _$StairsTranslatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory Stairs({
     required int id,
-    required StairsTranslations translations,
+    @translatableField required StairsTranslations translations,
     required String isStairsSignInfo,
     required String isStairsSignInfoInEn,
     required String isGoodLit,
@@ -36,7 +36,7 @@ abstract class Stairs with _$Stairs, _$StairsTranslatable {
 @freezed
 abstract class StairsTranslations with _$StairsTranslations {
   @JsonSerializable(fieldRename: FieldRename.snake)
-  const factory StairsTranslations({@JsonKey(name: "pl") required StairsTranslation plTranslation}) =
+  const factory StairsTranslations({@translatableField @JsonKey(name: "pl") required StairsTranslation plTranslation}) =
       _StairsTranslations;
 
   factory StairsTranslations.fromJson(Map<String, dynamic> json) => _$StairsTranslationsFromJson(json);
@@ -46,8 +46,8 @@ abstract class StairsTranslations with _$StairsTranslations {
 abstract class StairsTranslation with _$StairsTranslation {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory StairsTranslation({
-    required String location,
-    required String floorList,
+    @translatableField required String location,
+    @translatableField required String floorList,
     required String isStairsSignInfoComment,
     required String isStairsSignInfoInEnComment,
     required String stairsWidth,
@@ -63,7 +63,7 @@ abstract class StairsTranslation with _$StairsTranslation {
     required String areGradesNosePadsComment,
     required String areStepsRaisedMarkingsComment,
     required String isProperlyMarkedFreeSpaceUnderStairsComment,
-    required String comment,
+    @translatableField required String comment,
   }) = _StairsTranslation;
 
   factory StairsTranslation.fromJson(Map<String, dynamic> json) => _$StairsTranslationFromJson(json);

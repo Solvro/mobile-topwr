@@ -10,7 +10,7 @@ part "railing.translatable.g.dart";
 abstract class Railing with _$Railing, _$RailingTranslatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory Railing({
-    required RailingTranslations translations,
+    @translatableField required RailingTranslations translations,
     required String isRailingOnLandings,
     double? railingHeight,
     required String isTwoSidedRailing,
@@ -28,9 +28,9 @@ abstract class Railing with _$Railing, _$RailingTranslatable {
 
 @freezed
 abstract class RailingTranslations with _$RailingTranslations {
-  @JsonSerializable(fieldRename: FieldRename.snake)
-  const factory RailingTranslations({@JsonKey(name: "pl") required RailingTranslation plTranslation}) =
-      _RailingTranslations;
+  const factory RailingTranslations({
+    @translatableField @JsonKey(name: "pl") required RailingTranslation plTranslation,
+  }) = _RailingTranslations;
 
   factory RailingTranslations.fromJson(Map<String, dynamic> json) => _$RailingTranslationsFromJson(json);
 }
@@ -46,7 +46,7 @@ abstract class RailingTranslation with _$RailingTranslation {
     required String isRoundCrossSectionRailingComment,
     @JsonKey(name: "is_railing_extended_30cm_comment") required String isRailingExtended30cmComment,
     required String isRailingObstacleComment,
-    required String comment,
+    @translatableField required String comment,
   }) = _RailingTranslation;
 
   factory RailingTranslation.fromJson(Map<String, dynamic> json) => _$RailingTranslationFromJson(json);

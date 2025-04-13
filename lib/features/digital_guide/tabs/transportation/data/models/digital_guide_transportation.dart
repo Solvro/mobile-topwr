@@ -12,7 +12,7 @@ abstract class DigitalGuideTransportation with _$DigitalGuideTransportation, _$D
   const factory DigitalGuideTransportation({
     required int id,
     required int building,
-    required DigitalGuideTranslationsTransportation translations,
+    @translatableField required DigitalGuideTranslationsTransportation translations,
     required double nearestPublicTransportStopDistance,
     required String arePassTrafficLightsFromStopToEntry,
     required String areNotPassTrafficLightsFromStopToEntry,
@@ -47,7 +47,7 @@ abstract class DigitalGuideTransportation with _$DigitalGuideTransportation, _$D
 @freezed
 abstract class DigitalGuideTranslationsTransportation with _$DigitalGuideTranslationsTransportation {
   const factory DigitalGuideTranslationsTransportation({
-    @JsonKey(name: "pl") required DigitalGuideTranslationTransportation pl,
+    @translatableField @JsonKey(name: "pl") required DigitalGuideTranslationTransportation pl,
   }) = _DigitalGuideTranslationsTransportation;
 
   factory DigitalGuideTranslationsTransportation.fromJson(Map<String, dynamic> json) =>
@@ -59,17 +59,17 @@ abstract class DigitalGuideTranslationTransportation with _$DigitalGuideTranslat
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideTranslationTransportation({
     required String nearestPublicTransportStop,
-    required String nearestPublicTransportStopDistanceComment,
-    required String arePassTrafficLightsFromStopToEntryComment,
-    required String areNotPassTrafficLightsFromStopToEntryComment,
+    @translatableField required String nearestPublicTransportStopDistanceComment,
+    @translatableField required String arePassTrafficLightsFromStopToEntryComment,
+    @translatableField required String areNotPassTrafficLightsFromStopToEntryComment,
     required String alternativePublicTransportStop,
-    required String alternativePublicTransportStopDistanceComment,
-    required String arePassTrafficLightsFromStopToEntryAltRoadComment,
-    required String areNotPassTrafficLightsFromStopToEntryAltRoadComment,
-    required String nearestPublicParkingLocation,
+    @translatableField required String alternativePublicTransportStopDistanceComment,
+    @translatableField required String arePassTrafficLightsFromStopToEntryAltRoadComment,
+    @translatableField required String areNotPassTrafficLightsFromStopToEntryAltRoadComment,
+    @translatableField required String nearestPublicParkingLocation,
     required String isPaidParkingComment,
-    required String nearestUniversityParkingLocation,
-    required String nearestDisabledParkingSpaces,
+    @translatableField required String nearestUniversityParkingLocation,
+    @translatableField required String nearestDisabledParkingSpaces,
     required String areBicycleStandsComment,
     required String isCityBikeStationComment,
     required String isBicyclePathLeadToBuildingComment,

@@ -12,7 +12,7 @@ abstract class DigitalGuideObjectTabResponse
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideObjectTabResponse({
     required int id,
-    required DigitalGuideObjectTabTranslations translations,
+    @translatableField required DigitalGuideObjectTabTranslations translations,
     required String icon,
     required String activeIcon,
     required int object,
@@ -27,7 +27,7 @@ abstract class DigitalGuideObjectTabResponse
 
 @freezed
 abstract class DigitalGuideObjectTabTranslations with _$DigitalGuideObjectTabTranslations {
-  const factory DigitalGuideObjectTabTranslations({required DigitalGuideObjectTabTranslation pl}) =
+  const factory DigitalGuideObjectTabTranslations({@translatableField required DigitalGuideObjectTabTranslation pl}) =
       _DigitalGuideObjectTabTranslations;
 
   factory DigitalGuideObjectTabTranslations.fromJson(Map<String, dynamic> json) =>
@@ -38,14 +38,14 @@ abstract class DigitalGuideObjectTabTranslations with _$DigitalGuideObjectTabTra
 abstract class DigitalGuideObjectTabTranslation with _$DigitalGuideObjectTabTranslation {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideObjectTabTranslation({
-    required String name,
-    required String content,
-    required String accessibilityContentForMotorDisabilityComment,
-    required String accessibilityContentForBlindComment,
-    required String accessibilityContentForVisuallyImpairedComment,
-    required String accessibilityContentForHardOfHearingComment,
-    required String accessibilityContentForHighSensorySensitivityComment,
-    required String accessibilityContentForCognitiveDifficultiesComment,
+    @translatableField required String name,
+    @translatableField required String content,
+    @translatableField required String accessibilityContentForMotorDisabilityComment,
+    @translatableField required String accessibilityContentForBlindComment,
+    @translatableField required String accessibilityContentForVisuallyImpairedComment,
+    @translatableField required String accessibilityContentForHardOfHearingComment,
+    @translatableField required String accessibilityContentForHighSensorySensitivityComment,
+    @translatableField required String accessibilityContentForCognitiveDifficultiesComment,
   }) = _DigitalGuideObjectTabTranslation;
 
   factory DigitalGuideObjectTabTranslation.fromJson(Map<String, dynamic> json) =>

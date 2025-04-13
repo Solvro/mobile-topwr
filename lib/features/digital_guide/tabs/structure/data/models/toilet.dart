@@ -11,8 +11,9 @@ part "toilet.translatable.g.dart";
 abstract class Toilet with _$Toilet, _$ToiletTranslatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory Toilet({
-    required ToiletTranslations translations,
-    @JsonKey(name: "is_available_for", fromJson: getToiletType) required ToiletType toiletType,
+    @translatableField required ToiletTranslations translations,
+    @JsonKey(name: "is_available_for", fromJson: getToiletType, toJson: fromToiletTypeToString)
+    required ToiletType toiletType,
     required String isNeedAuthorization,
     required String isWastebasket,
     required String areClothesHooks,
@@ -33,7 +34,7 @@ abstract class Toilet with _$Toilet, _$ToiletTranslatable {
 
 @freezed
 abstract class ToiletTranslations with _$ToiletTranslations {
-  const factory ToiletTranslations({@JsonKey(name: "pl") required ToiletTranslation plTranslation}) =
+  const factory ToiletTranslations({@translatableField @JsonKey(name: "pl") required ToiletTranslation plTranslation}) =
       _ToiletTranslations;
 
   factory ToiletTranslations.fromJson(Map<String, dynamic> json) => _$ToiletTranslationsFromJson(json);
@@ -43,7 +44,7 @@ abstract class ToiletTranslations with _$ToiletTranslations {
 abstract class ToiletTranslation with _$ToiletTranslation {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory ToiletTranslation({
-    required String location,
+    @translatableField required String location,
     required String numberOfCabins,
     required String toiletDescription,
     required String isNeedAuthorizationComment,
@@ -56,7 +57,7 @@ abstract class ToiletTranslation with _$ToiletTranslation {
     required String isLightSwitchComment,
     required String isGoodLitComment,
     required String isGoodDevicesWallContrastComment,
-    required String comment,
+    @translatableField required String comment,
   }) = _ToiletTranslation;
 
   factory ToiletTranslation.fromJson(Map<String, dynamic> json) => _$ToiletTranslationFromJson(json);
@@ -66,4 +67,8 @@ enum ToiletType { men, women }
 
 ToiletType getToiletType(String option) {
   return option == "1" ? ToiletType.men : ToiletType.women;
+}
+
+String fromToiletTypeToString(ToiletType toiletType) {
+  return toiletType == ToiletType.men ? "1" : "2";
 }

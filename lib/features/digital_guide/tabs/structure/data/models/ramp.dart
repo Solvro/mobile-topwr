@@ -11,7 +11,7 @@ part "ramp.translatable.g.dart";
 abstract class Ramp with _$Ramp, _$RampTranslatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory Ramp({
-    required RampTranslations translations,
+    @translatableField required RampTranslations translations,
     required String isRampMarked,
     required String isIncreasedForceNeeded,
     required String isPermanentRamp,
@@ -28,8 +28,8 @@ abstract class Ramp with _$Ramp, _$RampTranslatable {
 
 @freezed
 abstract class RampTranslations with _$RampTranslations {
-  @JsonSerializable(fieldRename: FieldRename.snake)
-  const factory RampTranslations({@JsonKey(name: "pl") required RampTranslation plTranslation}) = _RampTranslations;
+  const factory RampTranslations({@translatableField @JsonKey(name: "pl") required RampTranslation plTranslation}) =
+      _RampTranslations;
 
   factory RampTranslations.fromJson(Map<String, dynamic> json) => _$RampTranslationsFromJson(json);
 }
@@ -38,7 +38,7 @@ abstract class RampTranslations with _$RampTranslations {
 abstract class RampTranslation with _$RampTranslation {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory RampTranslation({
-    required String location,
+    @translatableField required String location,
     required String isRampMarkedComment,
     required String isIncreasedForceNeededComment,
     required String isPermanentRampComment,
@@ -46,7 +46,7 @@ abstract class RampTranslation with _$RampTranslation {
     required String dimensionsOfTheLandings,
     required String isGoodLitComment,
     required String areNonslipElementsComment,
-    required String comment,
+    @translatableField required String comment,
   }) = _RampTranslation;
 
   factory RampTranslation.fromJson(Map<String, dynamic> json) => _$RampTranslationFromJson(json);

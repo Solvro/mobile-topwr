@@ -13,7 +13,7 @@ abstract class DigitalGuideLift with _$DigitalGuideLift, _$DigitalGuideLiftTrans
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideLift({
     required int id,
-    required DigitalGuideTranslationsLift translations,
+    @translatableField required DigitalGuideTranslationsLift translations,
     @JsonKey(name: "images") required List<int>? imagesIds,
     required String displayInLiftsCategory,
     required String isMarkedFromEntrance,
@@ -57,7 +57,8 @@ abstract class DigitalGuideLift with _$DigitalGuideLift, _$DigitalGuideLiftTrans
 
 @freezed
 abstract class DigitalGuideTranslationsLift with _$DigitalGuideTranslationsLift {
-  const factory DigitalGuideTranslationsLift({required DigitalGuideTranslationLift pl}) = _DigitalGuideTranslationsLift;
+  const factory DigitalGuideTranslationsLift({@translatableField required DigitalGuideTranslationLift pl}) =
+      _DigitalGuideTranslationsLift;
 
   factory DigitalGuideTranslationsLift.fromJson(Map<String, dynamic> json) =>
       _$DigitalGuideTranslationsLiftFromJson(json);
@@ -67,10 +68,10 @@ abstract class DigitalGuideTranslationsLift with _$DigitalGuideTranslationsLift 
 abstract class DigitalGuideTranslationLift with _$DigitalGuideTranslationLift {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideTranslationLift({
-    required String location,
-    required String floorsList,
-    required String maximumLiftCapacity,
-    required String liftDimensions,
+    @translatableField required String location,
+    @translatableField required String floorsList,
+    @translatableField required String maximumLiftCapacity,
+    @translatableField required String liftDimensions,
     required String isRailingComment,
   }) = _DigitalGuideTranslationLift;
 

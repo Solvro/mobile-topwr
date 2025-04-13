@@ -48,7 +48,10 @@ abstract class RegionTranslations with _$RegionTranslations {
 
 @freezed
 abstract class RegionTranslation with _$RegionTranslation {
-  const factory RegionTranslation({required String name, required String location}) = _RegionTranslation;
+  const factory RegionTranslation({
+    @translatableField required String name,
+    @translatableField required String location,
+  }) = _RegionTranslation;
 
   factory RegionTranslation.fromJson(Map<String, dynamic> json) => _$RegionTranslationFromJson(json);
 }

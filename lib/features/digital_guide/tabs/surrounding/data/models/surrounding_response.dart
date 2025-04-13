@@ -13,7 +13,7 @@ abstract class SurroundingResponse with _$SurroundingResponse, _$SurroundingResp
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory SurroundingResponse({
     required int id,
-    required SurroundingResponseTranslations translations,
+    @translatableField required SurroundingResponseTranslations translations,
     required String areNoBarriers,
     required String areLoweredCurbs,
     required String isPavementRough,
@@ -43,7 +43,7 @@ abstract class SurroundingResponse with _$SurroundingResponse, _$SurroundingResp
 @freezed
 abstract class SurroundingResponseTranslations with _$SurroundingResponseTranslations {
   const factory SurroundingResponseTranslations({
-    @JsonKey(name: "pl") required SurroundingResponseTranslationsDetails plTranslation,
+    @translatableField @JsonKey(name: "pl") required SurroundingResponseTranslationsDetails plTranslation,
   }) = _SurroundingResponseTranslations;
 
   factory SurroundingResponseTranslations.fromJson(Map<String, dynamic> json) =>
@@ -72,7 +72,7 @@ abstract class SurroundingResponseTranslationsDetails with _$SurroundingResponse
     required String accessibilityLevelForHardOfHearingComment,
     required String accessibilityLevelForHighSensorySensitivityComment,
     required String accessibilityLevelForCognitiveDifficultiesComment,
-    required String comment,
+    @translatableField required String comment,
   }) = _SurroundingResponseTranslationsDetails;
 
   factory SurroundingResponseTranslationsDetails.fromJson(Map<String, dynamic> json) =>

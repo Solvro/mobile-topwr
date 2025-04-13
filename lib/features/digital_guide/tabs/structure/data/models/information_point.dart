@@ -6,7 +6,7 @@ part "information_point.freezed.dart";
 part "information_point.translatable.g.dart";
 
 @freezed
-@Translatable(makeFieldsTranslatableByDefault: false)
+@translatable
 abstract class InformationPoint with _$InformationPoint, _$InformationPointTranslatable {
   const factory InformationPoint({required InformationPointTranslations translations}) = _InformationPoint;
 

@@ -6,7 +6,7 @@ part "parking.g.dart";
 part "parking.translatable.g.dart";
 
 @freezed
-@Translatable(makeFieldsTranslatableByDefault: false)
+@translatable
 abstract class Parking with _$Parking, _$ParkingTranslatable {
   const factory Parking({required ParkingTranslations translations}) = _Parking;
 
