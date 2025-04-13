@@ -1,38 +1,69 @@
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
+import "package:translatable_generator/index.dart";
 
-import "../../business/translations_notifier.dart";
 import "../data_source/local/database/translation_db_singleton.dart";
 import "../data_source/remote/translation_client.dart";
-import "../models/supported_languages.dart";
 import "../models/translation.dart";
+import "preferred_lang_repository.dart";
 
 part "translations_repository.g.dart";
 
-@riverpod
-Future<String> translationsRepository(Ref ref, String originalText) async {
-  final db = ref.watch(translationsDatabaseSingletonProvider);
-  final locale = await ref.watch(currentLocaleProvider.future);
+class RemoteTranslationsRepository extends RemoteTranslatableManager<TranslationResponse> {
+  final Ref ref;
 
-  if (locale == SupportedLocales.pl || originalText.trim().isEmpty || !RegExp("[a-zA-Z0-9]").hasMatch(originalText)) {
-    return originalText;
+  const RemoteTranslationsRepository(this.ref);
+
+  @override
+  Future<TranslationResponse> translate(String originalText, SolvroLocale from, SolvroLocale to) async {
+    if (from != SolvroLocale.pl) {
+      throw ArgumentError("Only PL is supported as source language");
+    }
+    final request = TranslationRequest(
+      originalText: originalText,
+      originalLanguageCode: SolvroLocale.pl.name,
+      translatedLanguageCode: to.name,
+    );
+    final dio = ref.read(translationsClientProvider);
+    final response = await dio.post<Map<String, dynamic>>("/translations/openAI", data: request.toJson());
+
+    return TranslationResponse.fromJson(response.data!);
+  }
+}
+
+class LocalTranslationsRepository extends LocalTranslatableManager<TranslationWithInterface, TranslationResponse> {
+  final Ref ref;
+
+  const LocalTranslationsRepository(this.ref);
+
+  @override
+  Future<TranslationWithInterface?> getTranslation(int hash, SolvroLocale locale) async {
+    final db = ref.read(translationsDatabaseSingletonProvider);
+    final translation = await db.getTranslation(hash, locale);
+    if (translation == null) return null;
+    return TranslationWithInterface.fromTranslation(translation);
   }
 
-  final translation = await db.getTranslation(originalText.hashCode, locale);
-  if (translation != null) return translation.translatedText;
+  @override
+  Future<void> saveTranslation(TranslationResponse translation) async {
+    final db = ref.read(translationsDatabaseSingletonProvider);
+    await db.addTranslation(translation.getTranslation());
+  }
+}
 
-  final dio = ref.watch(translationsClientProvider);
-
-  final request = TranslationRequest(
-    originalText: originalText,
-    originalLanguageCode: SupportedLocales.pl.name,
-    translatedLanguageCode: locale.name,
+@riverpod
+SolvroTranslator<TranslationWithInterface, TranslationResponse> solvroTranslator(Ref ref) {
+  return SolvroTranslator.init(
+    localTranslatableManager: LocalTranslationsRepository(ref),
+    remoteTranslatableManager: RemoteTranslationsRepository(ref),
+    validityCheck: (translation) => translation.translatedText.isNotEmpty,
+    sourceLocale: SolvroLocale.pl,
   );
+}
 
-  final response = await dio.post<Map<String, dynamic>>("/translations/openAI", data: request.toJson());
-
-  final translationModel = TranslationResponse.fromJson(response.data!).getTranslation();
-  await db.addTranslation(translationModel);
-
-  return translationModel.translatedText;
+@riverpod
+Future<T> translatable<T extends TranslatableInterface>(Ref ref, T model) async {
+  final locale = await ref.watch(preferredLanguageRepositoryProvider.future);
+  final translator = ref.watch(solvroTranslatorProvider);
+  return model.translate(translator, locale);
 }

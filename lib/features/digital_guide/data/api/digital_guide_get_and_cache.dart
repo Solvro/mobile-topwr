@@ -1,16 +1,16 @@
 import "package:flutter/widgets.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:translatable_generator/index.dart";
 
 import "../../../../api_base_rest/client/json.dart";
 import "../../../../api_base_rest/translations/translate.dart";
 import "../../../../config/env.dart";
-import "../../../../services/translations_service/data/models/translatable.dart";
 import "../../presentation/digital_guide_view.dart";
 
 extension DigitalGuideClient on Ref {
   static const digitalGuideTTLDays = 7; // TODO(simon-the-shark): adjust it
 
-  Future<JSON<T>> getAndCacheDataFromDigitalGuide<T extends Translatable>(
+  Future<JSON<T>> getAndCacheDataFromDigitalGuide<T extends TranslatableInterface>(
     String subUrl,
     T Function(Map<String, dynamic> json) fromJson, {
     VoidCallback? onRetry,

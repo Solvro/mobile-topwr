@@ -5,7 +5,7 @@ import "../../../../utils/type_converter.dart";
 
 part "digital_guide_response.freezed.dart";
 part "digital_guide_response.g.dart";
-part "digital_guide_response.translatable.dart";
+part "digital_guide_response.translatable.g.dart";
 
 @freezed
 @translatable

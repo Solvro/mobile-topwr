@@ -5,14 +5,14 @@ import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:flutter_svg/svg.dart";
+import "package:translatable_generator/index.dart";
 
 import "../../../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../gen/assets.gen.dart";
-import "../../services/translations_service/business/translations_notifier.dart";
-import "../../services/translations_service/data/models/supported_languages.dart";
+import "../../services/translations_service/data/repositories/preferred_lang_repository.dart";
 import "../digital_guide/tabs/accessibility_dialog/presentation/accessibility_dialog.dart";
 import "../navigation_tab_view/widgets/navigation_tile.dart";
 import "widgets/language_settings_dialog.dart";
@@ -28,8 +28,8 @@ class SettingsView extends ConsumerWidget {
         onTap: () async {
           final selectedLang = await LanguageDialog.show(context);
           if (selectedLang != null) {
-            final supportedLocale = SupportedLocales.fromString(selectedLang);
-            await ref.read(currentLocaleProvider.notifier).setLocale(supportedLocale);
+            final supportedLocale = SolvroLocale.values.byName(selectedLang);
+            await ref.read(preferredLanguageRepositoryProvider.notifier).setPreferredLanguage(supportedLocale);
           }
         },
         title: context.localize.language,

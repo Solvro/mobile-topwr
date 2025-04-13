@@ -3,7 +3,7 @@ import "package:translatable_generator/index.dart";
 
 part "region.freezed.dart";
 part "region.g.dart";
-part "region.translatable.dart";
+part "region.translatable.g.dart";
 
 @freezed
 @translatable

@@ -5,10 +5,14 @@ abstract interface class TranslationResults {
 }
 
 abstract class RemoteTranslatableManager<T extends TranslationResults> {
+  const RemoteTranslatableManager();
+
   Future<T> translate(String text, SolvroLocale from, SolvroLocale to);
 }
 
 abstract class LocalTranslatableManager<Local extends TranslationResults, Remote extends TranslationResults> {
+  const LocalTranslatableManager();
+
   Future<Local?> getTranslation(int hash, SolvroLocale locale);
 
   Future<void> saveTranslation(Remote translation);

@@ -3,7 +3,7 @@ import "package:translatable_generator/index.dart";
 
 part "level.freezed.dart";
 part "level.g.dart";
-part "level.translatable.dart";
+part "level.translatable.g.dart";
 
 @freezed
 @translatable
