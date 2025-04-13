@@ -1,12 +1,13 @@
 import "package:freezed_annotation/freezed_annotation.dart";
-
-import "../../../../../../services/translations_service/data/models/translatable.dart";
+import "package:translatable_generator/index.dart";
 
 part "digital_guide_dressing_room.freezed.dart";
 part "digital_guide_dressing_room.g.dart";
+part "digital_guide_dressing_room.translatable.g.dart";
 
 @freezed
-abstract class DigitalGuideDressingRoom with _$DigitalGuideDressingRoom implements Translatable {
+@translatable
+abstract class DigitalGuideDressingRoom with _$DigitalGuideDressingRoom, _$DigitalGuideDressingRoomTranslatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideDressingRoom({
     required int id,
@@ -22,6 +23,8 @@ abstract class DigitalGuideDressingRoom with _$DigitalGuideDressingRoom implemen
     required DigitalGuideTranslationsDressingRoom translations,
     @JsonKey(name: "images") required List<int>? imagesIds,
   }) = _DigitalGuideDressingRoom;
+
+  const DigitalGuideDressingRoom._();
 
   factory DigitalGuideDressingRoom.fromJson(Map<String, dynamic> json) => _$DigitalGuideDressingRoomFromJson(json);
 }

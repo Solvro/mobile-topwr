@@ -1,16 +1,17 @@
 import "package:freezed_annotation/freezed_annotation.dart";
-
-import "../../../../../../services/translations_service/data/models/translatable.dart";
+import "package:translatable_generator/index.dart";
 
 part "digital_guide_object_model.freezed.dart";
 part "digital_guide_object_model.g.dart";
+part "digital_guide_object_model.translatable.g.dart";
 
 bool _stringToBool(String? str) {
   return str?.toLowerCase() == "true";
 }
 
 @freezed
-abstract class DigitalGuideObjectModel with _$DigitalGuideObjectModel implements Translatable {
+@translatable
+abstract class DigitalGuideObjectModel with _$DigitalGuideObjectModel, _$DigitalGuideObjectModelTranslatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideObjectModel({
     required int id,
@@ -30,6 +31,8 @@ abstract class DigitalGuideObjectModel with _$DigitalGuideObjectModel implements
     String? locationMap,
     required List<int> images,
   }) = _DigitalGuideObjectModel;
+
+  const DigitalGuideObjectModel._();
 
   factory DigitalGuideObjectModel.fromJson(Map<String, dynamic> json) => _$DigitalGuideObjectModelFromJson(json);
 }

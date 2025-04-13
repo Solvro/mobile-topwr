@@ -1,13 +1,15 @@
 import "package:freezed_annotation/freezed_annotation.dart";
+import "package:translatable_generator/index.dart";
 
-import "../../../../../../services/translations_service/data/models/translatable.dart";
 import "../../../../../../utils/type_converter.dart";
 
 part "surrounding_response.freezed.dart";
 part "surrounding_response.g.dart";
+part "surrounding_response.translatable.g.dart";
 
 @freezed
-abstract class SurroundingResponse with _$SurroundingResponse implements Translatable {
+@translatable
+abstract class SurroundingResponse with _$SurroundingResponse, _$SurroundingResponseTranslatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory SurroundingResponse({
     required int id,
@@ -32,6 +34,8 @@ abstract class SurroundingResponse with _$SurroundingResponse implements Transla
     required int building,
     required List<int> images,
   }) = _SurroundingResponse;
+
+  const SurroundingResponse._();
 
   factory SurroundingResponse.fromJson(Map<String, dynamic> json) => _$SurroundingResponseFromJson(json);
 }

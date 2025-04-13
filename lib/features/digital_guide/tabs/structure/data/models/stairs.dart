@@ -1,13 +1,14 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
-
-import "../../../../../../services/translations_service/data/models/translatable.dart";
+import "package:translatable_generator/index.dart";
 
 part "stairs.g.dart";
 part "stairs.freezed.dart";
+part "stairs.translatable.g.dart";
 
 @freezed
-abstract class Stairs with _$Stairs implements Translatable {
+@translatable
+abstract class Stairs with _$Stairs, _$StairsTranslatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory Stairs({
     required int id,
@@ -26,6 +27,8 @@ abstract class Stairs with _$Stairs implements Translatable {
     required String isProperlyMarkedFreeSpaceUnderStairs,
     @JsonKey(name: "railings") required IList<int> railingsIDs,
   }) = _Stairs;
+
+  const Stairs._();
 
   factory Stairs.fromJson(Map<String, dynamic> json) => _$StairsFromJson(json);
 }

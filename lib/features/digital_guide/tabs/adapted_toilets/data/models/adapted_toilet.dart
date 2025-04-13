@@ -8,7 +8,7 @@ import "../../../../../../utils/type_converter.dart";
 
 part "adapted_toilet.freezed.dart";
 part "adapted_toilet.g.dart";
-part "adapted_toilet.translatable.dart";
+part "adapted_toilet.translatable.g.dart";
 
 @freezed
 @translatable

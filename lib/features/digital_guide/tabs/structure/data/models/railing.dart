@@ -1,12 +1,13 @@
 import "package:freezed_annotation/freezed_annotation.dart";
-
-import "../../../../../../services/translations_service/data/models/translatable.dart";
+import "package:translatable_generator/index.dart";
 
 part "railing.g.dart";
 part "railing.freezed.dart";
+part "railing.translatable.g.dart";
 
 @freezed
-abstract class Railing with _$Railing implements Translatable {
+@translatable
+abstract class Railing with _$Railing, _$RailingTranslatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory Railing({
     required RailingTranslations translations,
@@ -19,6 +20,8 @@ abstract class Railing with _$Railing implements Translatable {
     @JsonKey(name: "is_railing_extended_30cm") required String isRailingExtended30cm,
     required String isRailingObstacle,
   }) = _Railing;
+
+  const Railing._();
 
   factory Railing.fromJson(Map<String, dynamic> json) => _$RailingFromJson(json);
 }

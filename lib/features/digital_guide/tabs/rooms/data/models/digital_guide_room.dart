@@ -1,13 +1,13 @@
 import "package:freezed_annotation/freezed_annotation.dart";
-
-import "../../../../../../services/translations_service/data/models/translatable.dart";
+import "package:translatable_generator/index.dart";
 
 part "digital_guide_room.freezed.dart";
-
 part "digital_guide_room.g.dart";
+part "digital_guide_room.translatable.g.dart";
 
 @freezed
-abstract class DigitalGuideRoom with _$DigitalGuideRoom implements Translatable {
+@translatable
+abstract class DigitalGuideRoom with _$DigitalGuideRoom, _$DigitalGuideRoomTranslatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideRoom({
     required int id,
@@ -39,6 +39,8 @@ abstract class DigitalGuideRoom with _$DigitalGuideRoom implements Translatable 
     required int building,
     required List<int> doors,
   }) = _DigitalGuideRoom;
+
+  const DigitalGuideRoom._();
 
   factory DigitalGuideRoom.fromJson(Map<String, dynamic> json) => _$DigitalGuideRoomFromJson(json);
 }

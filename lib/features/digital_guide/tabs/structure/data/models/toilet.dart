@@ -1,13 +1,14 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
-
-import "../../../../../../services/translations_service/data/models/translatable.dart";
+import "package:translatable_generator/index.dart";
 
 part "toilet.freezed.dart";
 part "toilet.g.dart";
+part "toilet.translatable.g.dart";
 
 @freezed
-abstract class Toilet with _$Toilet implements Translatable {
+@translatable
+abstract class Toilet with _$Toilet, _$ToiletTranslatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory Toilet({
     required ToiletTranslations translations,
@@ -24,6 +25,8 @@ abstract class Toilet with _$Toilet implements Translatable {
     required String isGoodDevicesWallContrast,
     @JsonKey(name: "doors") required IList<int> doorsIds,
   }) = _Toilet;
+
+  const Toilet._();
 
   factory Toilet.fromJson(Map<String, dynamic> json) => _$ToiletFromJson(json);
 }

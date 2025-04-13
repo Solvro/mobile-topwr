@@ -1,12 +1,13 @@
 import "package:freezed_annotation/freezed_annotation.dart";
-
-import "../../../../../../services/translations_service/data/models/translatable.dart";
+import "package:translatable_generator/index.dart";
 
 part "room_stairs_response.freezed.dart";
 part "room_stairs_response.g.dart";
+part "room_stairs_response.translatable.g.dart";
 
 @freezed
-abstract class RoomStairsResponse with _$RoomStairsResponse implements Translatable {
+@translatable
+abstract class RoomStairsResponse with _$RoomStairsResponse, _$RoomStairsResponseTranslatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory RoomStairsResponse({
     required int id,
@@ -25,6 +26,8 @@ abstract class RoomStairsResponse with _$RoomStairsResponse implements Translata
     required String isRailingOnRamp,
     required String isEdgeBetweenRampRowEntranceMarked,
   }) = _RoomStairsResponse;
+
+  const RoomStairsResponse._();
 
   factory RoomStairsResponse.fromJson(Map<String, dynamic> json) => _$RoomStairsResponseFromJson(json);
 }

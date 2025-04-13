@@ -1,13 +1,14 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
-
-import "../../../../../../services/translations_service/data/models/translatable.dart";
+import "package:translatable_generator/index.dart";
 
 part "ramp.freezed.dart";
 part "ramp.g.dart";
+part "ramp.translatable.g.dart";
 
 @freezed
-abstract class Ramp with _$Ramp implements Translatable {
+@translatable
+abstract class Ramp with _$Ramp, _$RampTranslatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory Ramp({
     required RampTranslations translations,
@@ -19,6 +20,8 @@ abstract class Ramp with _$Ramp implements Translatable {
     required String areNonslipElements,
     @JsonKey(name: "railings") required IList<int> railingsIDs,
   }) = _Ramp;
+
+  const Ramp._();
 
   factory Ramp.fromJson(Map<String, dynamic> json) => _$RampFromJson(json);
 }

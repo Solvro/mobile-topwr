@@ -1,14 +1,15 @@
 // ignore_for_file: invalid_annotation_target
 
 import "package:freezed_annotation/freezed_annotation.dart";
-
-import "../../../../../../services/translations_service/data/models/translatable.dart";
+import "package:translatable_generator/index.dart";
 
 part "micronavigation_response.freezed.dart";
 part "micronavigation_response.g.dart";
+part "micronavigation_response.translatable.g.dart";
 
 @freezed
-abstract class MicronavigationResponse with _$MicronavigationResponse implements Translatable {
+@translatable
+abstract class MicronavigationResponse with _$MicronavigationResponse, _$MicronavigationResponseTranslatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory MicronavigationResponse({
     required int id,
@@ -17,6 +18,8 @@ abstract class MicronavigationResponse with _$MicronavigationResponse implements
     required MicronavigationTranslations webContent,
     required List<MicronavigationLanguage> languages,
   }) = _MicronavigationResponse;
+
+  const MicronavigationResponse._();
 
   factory MicronavigationResponse.fromJson(Map<String, dynamic> json) => _$MicronavigationResponseFromJson(json);
 }

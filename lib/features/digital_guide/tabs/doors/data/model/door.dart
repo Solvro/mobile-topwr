@@ -1,12 +1,13 @@
 import "package:freezed_annotation/freezed_annotation.dart";
-
-import "../../../../../../services/translations_service/data/models/translatable.dart";
+import "package:translatable_generator/index.dart";
 
 part "door.freezed.dart";
 part "door.g.dart";
+part "door.translatable.g.dart";
 
 @freezed
-abstract class Door with _$Door implements Translatable {
+@translatable
+abstract class Door with _$Door, _$DoorTranslatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory Door({
     required DoorTranslations translations,
@@ -29,6 +30,8 @@ abstract class Door with _$Door implements Translatable {
     required String isElevatedThreshold,
     required int doorWidth,
   }) = _Door;
+
+  const Door._();
 
   factory Door.fromJson(Map<String, dynamic> json) => _$DoorFromJson(json);
 }

@@ -1,13 +1,14 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
-
-import "../../../../../../services/translations_service/data/models/translatable.dart";
+import "package:translatable_generator/index.dart";
 
 part "digital_guide_entrace.freezed.dart";
 part "digital_guide_entrace.g.dart";
+part "digital_guide_entrace.translatable.g.dart";
 
 @freezed
-abstract class DigitalGuideEntrace with _$DigitalGuideEntrace implements Translatable {
+@translatable
+abstract class DigitalGuideEntrace with _$DigitalGuideEntrace, _$DigitalGuideEntraceTranslatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideEntrace({
     required int id,
@@ -35,6 +36,8 @@ abstract class DigitalGuideEntrace with _$DigitalGuideEntrace implements Transla
     @JsonKey(name: "ramps") required IList<int> rampsIndices,
     @JsonKey(name: "images") required IList<int> imagesIndices,
   }) = _DigitalGuideEntrace;
+
+  const DigitalGuideEntrace._();
 
   factory DigitalGuideEntrace.fromJson(Map<String, dynamic> json) => _$DigitalGuideEntraceFromJson(json);
 }
