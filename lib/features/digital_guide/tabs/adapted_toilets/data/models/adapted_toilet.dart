@@ -17,7 +17,7 @@ abstract class AdaptedToilet with _$AdaptedToilet, _$AdaptedToiletTranslatable {
   const factory AdaptedToilet({
     required AdaptedToiletTranslations translations,
     required String isAccessAccessibleForPwd,
-    @JsonKey(fromJson: stringToInt) required int hasAdditionalPurpose,
+    @JsonKey(fromJson: stringToInt, toJson: intToString) required int hasAdditionalPurpose,
     required String isNeedAuthorization,
     required String isEntranceGraphicallyMarked,
     required String isMarked,

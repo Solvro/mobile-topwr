@@ -17,7 +17,7 @@ abstract class Door with _$Door, _$DoorTranslatable {
     required String areOpenAutomatically,
     required String isIncreasedForceRequired,
     required String isDoorCloser,
-    @JsonKey(fromJson: stringToDoorType) required DoorType doorType,
+    @JsonKey(fromJson: stringToDoorType, toJson: doorTypeToString) required DoorType doorType,
     required String isGraphic,
     required String areVisible,
     required String areGlazed,
@@ -78,4 +78,14 @@ DoorType stringToDoorType(String string) {
     default:
       return DoorType.singleLeafDoor;
   }
+}
+
+String doorTypeToString(DoorType doorType) {
+  return switch (doorType) {
+    DoorType.singleLeafDoor => "1",
+    DoorType.doubleLeafDoor => "2",
+    DoorType.singleLeafDoorSliding => "3",
+    DoorType.doubleLeafDoorSliding => "4",
+    DoorType.swingDoor => "5",
+  };
 }

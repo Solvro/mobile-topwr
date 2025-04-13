@@ -14,31 +14,34 @@ abstract class DigitalGuideResponse with _$DigitalGuideResponse, _$DigitalGuideR
   const factory DigitalGuideResponse({
     required int id,
     required int? externalId,
-    required DigitalGuideTranslations translations,
+    @translatableField required DigitalGuideTranslations translations,
     required int numberOfStoreys,
-    @JsonKey(name: "is_possibility_to_enter_with_assistance_dog", fromJson: stringToBool)
+    @JsonKey(name: "is_possibility_to_enter_with_assistance_dog", fromJson: stringToBool, toJson: boolToString)
     required bool canAssistanceDog,
-    @JsonKey(fromJson: stringToBool) required bool isInductionLoop,
-    @JsonKey(name: "is_micronavigation_system", fromJson: stringToBool) required bool isMicroNavigationSystem,
-    @JsonKey(fromJson: stringToBool) required bool areGuidancePaths,
-    @JsonKey(name: "are_information_boards_with_braille_description", fromJson: stringToBool)
+    @JsonKey(fromJson: stringToBool, toJson: boolToString) required bool isInductionLoop,
+    @JsonKey(name: "is_micronavigation_system", fromJson: stringToBool, toJson: boolToString)
+    required bool isMicroNavigationSystem,
+    @JsonKey(fromJson: stringToBool, toJson: boolToString) required bool areGuidancePaths,
+    @JsonKey(name: "are_information_boards_with_braille_description", fromJson: stringToBool, toJson: boolToString)
     required bool areBrailleBoards,
-    @JsonKey(name: "are_information_boards_with_large_font", fromJson: stringToBool) required bool areLargeFontBoards,
-    @JsonKey(fromJson: stringToBool) required bool isSignLanguageInterpreter,
-    @JsonKey(fromJson: stringToBool) required bool areEmergencyChairs,
-    @JsonKey(name: "telephone_number", fromJson: _formatPhoneNumbers) required List<String> phoneNumbers,
+    @JsonKey(name: "are_information_boards_with_large_font", fromJson: stringToBool, toJson: boolToString)
+    required bool areLargeFontBoards,
+    @JsonKey(fromJson: stringToBool, toJson: boolToString) required bool isSignLanguageInterpreter,
+    @JsonKey(fromJson: stringToBool, toJson: boolToString) required bool areEmergencyChairs,
+    @JsonKey(name: "telephone_number", fromJson: _formatPhoneNumbers, toJson: _formatPhoneNumbersToJson)
+    required List<String> phoneNumbers,
     @JsonKey(name: "surrounding") required int surroundingId,
     required List<int> images,
     @JsonKey(name: "evacuation_map") required int evacuationMapId,
     @JsonKey(name: "location_map") required int locationMapId,
     @JsonKey(name: "levels") required List<int> levelsIndices,
     @JsonKey(name: "access") required int accessId,
-    @JsonKey(fromJson: stringToInt) required int accessibilityLevelForMotorDisability,
-    @JsonKey(fromJson: stringToInt) required int accessibilityLevelForBlind,
-    @JsonKey(fromJson: stringToInt) required int accessibilityLevelForVisuallyImpaired,
-    @JsonKey(fromJson: stringToInt) required int accessibilityLevelForHardOfHearing,
-    @JsonKey(fromJson: stringToInt) required int accessibilityLevelForHighSensorySensitivity,
-    @JsonKey(fromJson: stringToInt) required int accessibilityLevelForCognitiveDifficulties,
+    @JsonKey(fromJson: stringToInt, toJson: intToString) required int accessibilityLevelForMotorDisability,
+    @JsonKey(fromJson: stringToInt, toJson: intToString) required int accessibilityLevelForBlind,
+    @JsonKey(fromJson: stringToInt, toJson: intToString) required int accessibilityLevelForVisuallyImpaired,
+    @JsonKey(fromJson: stringToInt, toJson: intToString) required int accessibilityLevelForHardOfHearing,
+    @JsonKey(fromJson: stringToInt, toJson: intToString) required int accessibilityLevelForHighSensorySensitivity,
+    @JsonKey(fromJson: stringToInt, toJson: intToString) required int accessibilityLevelForCognitiveDifficulties,
   }) = _DigitalGuideResponse;
 
   const DigitalGuideResponse._();
@@ -48,8 +51,9 @@ abstract class DigitalGuideResponse with _$DigitalGuideResponse, _$DigitalGuideR
 
 @freezed
 abstract class DigitalGuideTranslations with _$DigitalGuideTranslations {
-  const factory DigitalGuideTranslations({@JsonKey(name: "pl") required DigitalGuideTranslation plTranslation}) =
-      _DigitalGuideTranslations;
+  const factory DigitalGuideTranslations({
+    @JsonKey(name: "pl") @translatableField required DigitalGuideTranslation plTranslation,
+  }) = _DigitalGuideTranslations;
 
   factory DigitalGuideTranslations.fromJson(Map<String, dynamic> json) => _$DigitalGuideTranslationsFromJson(json);
 }
@@ -58,10 +62,10 @@ abstract class DigitalGuideTranslations with _$DigitalGuideTranslations {
 abstract class DigitalGuideTranslation with _$DigitalGuideTranslation {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideTranslation({
-    required String name,
-    required String extendedName,
+    @translatableField required String name,
+    @translatableField required String extendedName,
     required String address,
-    required String evacuationDescription,
+    @translatableField required String evacuationDescription,
   }) = _DigitalGuideTranslation;
 
   factory DigitalGuideTranslation.fromJson(Map<String, dynamic> json) => _$DigitalGuideTranslationFromJson(json);
@@ -70,4 +74,8 @@ abstract class DigitalGuideTranslation with _$DigitalGuideTranslation {
 List<String> _formatPhoneNumbers(String phoneNumber) {
   final matches = RegExp(r"\d{9}").allMatches(phoneNumber.replaceAll("+48", "").replaceAll(RegExp(r"\D"), ""));
   return matches.map((match) => match.group(0)!).toList();
+}
+
+String _formatPhoneNumbersToJson(List<String> phoneNumbers) {
+  return phoneNumbers.join(" ");
 }

@@ -1,13 +1,11 @@
 import "package:freezed_annotation/freezed_annotation.dart";
 import "package:translatable_generator/index.dart";
 
+import "../../../../utils/type_converter.dart";
+
 part "digital_guide_object_model.freezed.dart";
 part "digital_guide_object_model.g.dart";
 part "digital_guide_object_model.translatable.g.dart";
-
-bool _stringToBool(String? str) {
-  return str?.toLowerCase() == "true";
-}
 
 @freezed
 @Translatable(makeFieldsTranslatableByDefault: false)
@@ -17,17 +15,17 @@ abstract class DigitalGuideObjectModel with _$DigitalGuideObjectModel, _$Digital
     required int id,
     required DigitalGuideObjectTranslations translations,
     String? linkToObjectLocation,
-    @JsonKey(fromJson: _stringToBool) required bool isPossibilityToEnterWithAssistanceDog,
-    @JsonKey(fromJson: _stringToBool) required bool isMicronavigationSystem,
-    @JsonKey(fromJson: _stringToBool) required bool areGuidancePaths,
-    @JsonKey(fromJson: _stringToBool) required bool areInformationBoardsWithBrailleDescription,
-    @JsonKey(fromJson: _stringToBool) required bool areInformationBoardsWithLargeFont,
-    @JsonKey(fromJson: _stringToInt) required int accessibilityLevelForMotorDisability,
-    @JsonKey(fromJson: _stringToInt) required int accessibilityLevelForBlind,
-    @JsonKey(fromJson: _stringToInt) required int accessibilityLevelForVisuallyImpaired,
-    @JsonKey(fromJson: _stringToInt) required int accessibilityLevelForHardOfHearing,
-    @JsonKey(fromJson: _stringToInt) required int accessibilityLevelForHighSensorySensitivity,
-    @JsonKey(fromJson: _stringToInt) required int accessibilityLevelForCognitiveDifficulties,
+    @JsonKey(fromJson: stringToBool, toJson: boolToString) required bool isPossibilityToEnterWithAssistanceDog,
+    @JsonKey(fromJson: stringToBool, toJson: boolToString) required bool isMicronavigationSystem,
+    @JsonKey(fromJson: stringToBool, toJson: boolToString) required bool areGuidancePaths,
+    @JsonKey(fromJson: stringToBool, toJson: boolToString) required bool areInformationBoardsWithBrailleDescription,
+    @JsonKey(fromJson: stringToBool, toJson: boolToString) required bool areInformationBoardsWithLargeFont,
+    @JsonKey(fromJson: _stringToInt, toJson: intToString) required int accessibilityLevelForMotorDisability,
+    @JsonKey(fromJson: _stringToInt, toJson: intToString) required int accessibilityLevelForBlind,
+    @JsonKey(fromJson: _stringToInt, toJson: intToString) required int accessibilityLevelForVisuallyImpaired,
+    @JsonKey(fromJson: _stringToInt, toJson: intToString) required int accessibilityLevelForHardOfHearing,
+    @JsonKey(fromJson: _stringToInt, toJson: intToString) required int accessibilityLevelForHighSensorySensitivity,
+    @JsonKey(fromJson: _stringToInt, toJson: intToString) required int accessibilityLevelForCognitiveDifficulties,
     String? locationMap,
     required List<int> images,
   }) = _DigitalGuideObjectModel;

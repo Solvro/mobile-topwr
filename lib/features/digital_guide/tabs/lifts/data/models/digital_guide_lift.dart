@@ -1,6 +1,8 @@
 import "package:freezed_annotation/freezed_annotation.dart";
 import "package:translatable_generator/index.dart";
 
+import "../../../../../../utils/type_converter.dart";
+
 part "digital_guide_lift.freezed.dart";
 part "digital_guide_lift.g.dart";
 part "digital_guide_lift.translatable.g.dart";
@@ -16,14 +18,14 @@ abstract class DigitalGuideLift with _$DigitalGuideLift, _$DigitalGuideLiftTrans
     required String displayInLiftsCategory,
     required String isMarkedFromEntrance,
     required String isMarkedFromEntranceInEn,
-    @JsonKey(fromJson: int.tryParse) required int? isUsedBy,
+    @JsonKey(fromJson: int.tryParse, toJson: maybeIntToString) required int? isUsedBy,
     required String isSigned,
     required String isSignedInEn,
     required String isFloorMarked,
     required String isGlazed,
     required int doorWidth,
     required String isOpenAutomatically,
-    @JsonKey(fromJson: int.tryParse) required int? doorType,
+    @JsonKey(fromJson: int.tryParse, toJson: maybeIntToString) required int? doorType,
     required String isIncreasedForceRequired,
     required String isTwoSided,
     required String isMirror,

@@ -1,6 +1,7 @@
 import "package:analyzer/dart/element/element.dart";
 import "package:analyzer/dart/element/type.dart";
 import "package:build/build.dart";
+import "package:json_annotation/json_annotation.dart" show FieldRename, JsonKey, JsonSerializable;
 import "package:source_gen/source_gen.dart";
 
 import "annotations.dart";
@@ -33,9 +34,11 @@ class TranslatableGenerator extends GeneratorForAnnotation<Translatable> {
       );
     }
 
+    final fieldRename = _getFieldRenameFromAnnotation(factoryConstructor);
+
     for (final parameter in factoryConstructor.parameters) {
       if (_shouldGenerateForParameter(parameter, makeFieldsTranslatableByDefault)) {
-        _generatePropertyForParameter(buffer, parameter, "    ", makeFieldsTranslatableByDefault);
+        _generatePropertyForParameter(buffer, parameter, "    ", makeFieldsTranslatableByDefault, fieldRename);
       }
     }
 
@@ -74,13 +77,37 @@ class TranslatableGenerator extends GeneratorForAnnotation<Translatable> {
     return defaultTranslatable;
   }
 
+  FieldRename? _getFieldRenameFromAnnotation(ConstructorElement factoryConstructor) {
+    // Check for JsonSerializable annotation and its fieldRename parameter
+    final jsonSerializable = const TypeChecker.fromRuntime(JsonSerializable).firstAnnotationOf(factoryConstructor);
+    FieldRename? fieldRename;
+    if (jsonSerializable != null) {
+      final fieldRenameObj = jsonSerializable.getField("fieldRename");
+      if (fieldRenameObj != null) {
+        fieldRename = FieldRename.values[fieldRenameObj.getField("index")!.toIntValue()!];
+      }
+    }
+
+    return fieldRename;
+  }
+
   void _generatePropertyForParameter(
     StringBuffer buffer,
     ParameterElement parameter,
     String indent,
     bool makeFieldsTranslatableByDefault,
+    FieldRename? fieldRename,
   ) {
-    final fieldName = parameter.name;
+    if (fieldRename != null && fieldRename != FieldRename.snake) {
+      throw InvalidGenerationSourceError("FieldRename other than snake is not supported yet", element: parameter);
+    }
+
+    final isSnakeRenamed = fieldRename == FieldRename.snake;
+
+    final fieldName =
+        const TypeChecker.fromRuntime(JsonKey).firstAnnotationOf(parameter)?.getField("name")?.toStringValue() ??
+        (!isSnakeRenamed ? parameter.name : _snakeCase(parameter.name));
+
     final fieldType = parameter.type;
 
     if (_isStringType(fieldType)) {
@@ -157,9 +184,11 @@ class TranslatableGenerator extends GeneratorForAnnotation<Translatable> {
       );
     }
 
+    final fieldRename = _getFieldRenameFromAnnotation(factoryConstructor);
+
     for (final parameter in factoryConstructor.parameters) {
       if (_shouldGenerateForParameter(parameter, makeFieldsTranslatableByDefault)) {
-        _generatePropertyForParameter(buffer, parameter, indent, makeFieldsTranslatableByDefault);
+        _generatePropertyForParameter(buffer, parameter, indent, makeFieldsTranslatableByDefault, fieldRename);
       }
     }
 
@@ -201,4 +230,8 @@ class TranslatableGenerator extends GeneratorForAnnotation<Translatable> {
 
     return hasFromJsonFactory;
   }
+}
+
+String _snakeCase(String name) {
+  return name.replaceAllMapped(RegExp("(?<=[a-z])[A-Z]"), (Match match) => "_${match.group(0)}").toLowerCase();
 }
