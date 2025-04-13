@@ -47,10 +47,16 @@ class ChartWidget extends StatelessWidget {
                   getTooltipItems: (touchedSpots) {
                     return touchedSpots.map((touchedSpot) {
                       final hour = HourLabel(touchedSpot.x).toStringRepr();
-                      final value = touchedSpot.y.toInt(); // Convert double to int
+                      final value = touchedSpot.y.toInt().toString();
                       return LineTooltipItem(
-                        "$value\n$hour",
+                        "$value\n",
                         TextStyle(color: context.colorTheme.whiteSoap, fontWeight: FontWeight.bold),
+                        children: [
+                          TextSpan(
+                            text: hour,
+                            style: TextStyle(color: context.colorTheme.greyLight, fontWeight: FontWeight.normal),
+                          ),
+                        ],
                       );
                     }).toList();
                   },
