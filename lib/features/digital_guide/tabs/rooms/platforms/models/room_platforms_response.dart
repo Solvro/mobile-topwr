@@ -6,7 +6,7 @@ part "room_platforms_response.g.dart";
 part "room_platforms_response.translatable.g.dart";
 
 @freezed
-@translatable
+@Translatable(makeFieldsTranslatableByDefault: false)
 abstract class RoomPlatformsResponse with _$RoomPlatformsResponse, _$RoomPlatformsResponseTranslatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory RoomPlatformsResponse({

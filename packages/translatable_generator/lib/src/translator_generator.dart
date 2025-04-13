@@ -42,7 +42,7 @@ class TranslatableGenerator extends GeneratorForAnnotation<Translatable> {
     buffer.writeln("  ];");
     buffer.writeln();
     buffer.writeln("  @override");
-    buffer.writeln("  $className fromJson(Map<String, dynamic> json) => _${className}FromJson(json);");
+    buffer.writeln("  $className fromJson(Map<String, dynamic> json) => $className.fromJson(json);");
     buffer.writeln();
     buffer.writeln("}");
     return buffer.toString();

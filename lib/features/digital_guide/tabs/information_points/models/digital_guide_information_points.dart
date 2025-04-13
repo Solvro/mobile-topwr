@@ -9,7 +9,7 @@ part "digital_guide_information_points.g.dart";
 part "digital_guide_information_points.translatable.g.dart";
 
 @freezed
-@translatable
+@Translatable(makeFieldsTranslatableByDefault: false)
 abstract class DigitalGuideInformationPoint
     with _$DigitalGuideInformationPoint, _$DigitalGuideInformationPointTranslatable {
   @JsonSerializable(fieldRename: FieldRename.snake)

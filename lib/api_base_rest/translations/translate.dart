@@ -2,6 +2,7 @@ import "package:flutter/widgets.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:translatable_generator/index.dart";
 
+import "../../services/translations_service/data/repositories/preferred_lang_repository.dart";
 import "../../services/translations_service/data/repositories/translations_repository.dart";
 import "../../utils/ilist_nonempty.dart";
 import "../cache/cache.dart";
@@ -29,10 +30,13 @@ extension TranslateX on Ref {
       authHeader: authHeader,
     );
 
+    final translator = watch(solvroTranslatorProvider);
+    final locale = await watch(preferredLanguageRepositoryProvider.future);
+
     return switch (data) {
-      ObjectJSON<T>(:final value) => ObjectJSON(await watch(translatableProvider(value).future)),
+      ObjectJSON<T>(:final value) => ObjectJSON(await value.translate(translator, locale)),
       ListJSON<T>(:final value) => ListJSON(
-        (await Future.wait(value.map((e) => watch(translatableProvider(e).future)))).toIList(),
+        (await Future.wait(value.map((e) => e.translate(translator, locale)))).toIList(),
       ),
     };
   }

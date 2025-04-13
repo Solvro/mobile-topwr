@@ -8,7 +8,7 @@ part "micronavigation_response.g.dart";
 part "micronavigation_response.translatable.g.dart";
 
 @freezed
-@translatable
+@Translatable(makeFieldsTranslatableByDefault: false)
 abstract class MicronavigationResponse with _$MicronavigationResponse, _$MicronavigationResponseTranslatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory MicronavigationResponse({

@@ -5,7 +5,6 @@ import "package:translatable_generator/index.dart";
 import "../data_source/local/database/translation_db_singleton.dart";
 import "../data_source/remote/translation_client.dart";
 import "../models/translation.dart";
-import "preferred_lang_repository.dart";
 
 part "translations_repository.g.dart";
 
@@ -59,11 +58,4 @@ SolvroTranslator<TranslationWithInterface, TranslationResponse> solvroTranslator
     validityCheck: (translation) => translation.translatedText.isNotEmpty,
     sourceLocale: SolvroLocale.pl,
   );
-}
-
-@riverpod
-Future<T> translatable<T extends TranslatableInterface>(Ref ref, T model) async {
-  final locale = await ref.watch(preferredLanguageRepositoryProvider.future);
-  final translator = ref.watch(solvroTranslatorProvider);
-  return model.translate(translator, locale);
 }

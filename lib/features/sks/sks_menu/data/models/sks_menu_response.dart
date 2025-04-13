@@ -9,7 +9,7 @@ part "sks_menu_response.g.dart";
 part "sks_menu_response.translatable.g.dart";
 
 @freezed
-@translatable
+@Translatable(makeFieldsTranslatableByDefault: false)
 abstract class SksMenuResponse with _$SksMenuResponse, _$SksMenuResponseTranslatable {
   const factory SksMenuResponse({
     required bool isMenuOnline,

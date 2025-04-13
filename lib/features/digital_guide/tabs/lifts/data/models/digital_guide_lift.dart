@@ -6,7 +6,7 @@ part "digital_guide_lift.g.dart";
 part "digital_guide_lift.translatable.g.dart";
 
 @freezed
-@translatable
+@Translatable(makeFieldsTranslatableByDefault: false)
 abstract class DigitalGuideLift with _$DigitalGuideLift, _$DigitalGuideLiftTranslatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideLift({

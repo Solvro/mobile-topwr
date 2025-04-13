@@ -8,7 +8,7 @@ part "digital_guide_response.g.dart";
 part "digital_guide_response.translatable.g.dart";
 
 @freezed
-@translatable
+@Translatable(makeFieldsTranslatableByDefault: false)
 abstract class DigitalGuideResponse with _$DigitalGuideResponse, _$DigitalGuideResponseTranslatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideResponse({

@@ -1,5 +1,3 @@
-import "package:json_annotation/json_annotation.dart";
-
 sealed class TranslatableJSONProperty {
   final String fieldName;
   const TranslatableJSONProperty({required this.fieldName});
@@ -23,8 +21,10 @@ class TranslatableNestedObjectList extends TranslatableJSONProperty {
   const TranslatableNestedObjectList({required super.fieldName, required this.properties});
 }
 
-abstract interface class TranslatableInterface extends JsonSerializable {
+abstract interface class TranslatableInterface {
   List<TranslatableJSONProperty> get translatableJSONProperties;
 
-  T fromJson<T extends TranslatableInterface>(Map<String, dynamic> json);
+  Map<String, dynamic> toJson();
+
+  TranslatableInterface fromJson(Map<String, dynamic> json);
 }

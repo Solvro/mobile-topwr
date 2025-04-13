@@ -6,7 +6,7 @@ part "digital_guide_object_tab_model.g.dart";
 part "digital_guide_object_tab_model.translatable.g.dart";
 
 @freezed
-@translatable
+@Translatable(makeFieldsTranslatableByDefault: false)
 abstract class DigitalGuideObjectTabResponse
     with _$DigitalGuideObjectTabResponse, _$DigitalGuideObjectTabResponseTranslatable {
   @JsonSerializable(fieldRename: FieldRename.snake)

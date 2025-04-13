@@ -6,7 +6,7 @@ part "door.g.dart";
 part "door.translatable.g.dart";
 
 @freezed
-@translatable
+@Translatable(makeFieldsTranslatableByDefault: false)
 abstract class Door with _$Door, _$DoorTranslatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory Door({

@@ -7,7 +7,7 @@ part "ramp.g.dart";
 part "ramp.translatable.g.dart";
 
 @freezed
-@translatable
+@Translatable(makeFieldsTranslatableByDefault: false)
 abstract class Ramp with _$Ramp, _$RampTranslatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory Ramp({

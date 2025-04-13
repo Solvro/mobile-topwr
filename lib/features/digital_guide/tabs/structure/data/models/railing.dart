@@ -6,7 +6,7 @@ part "railing.freezed.dart";
 part "railing.translatable.g.dart";
 
 @freezed
-@translatable
+@Translatable(makeFieldsTranslatableByDefault: false)
 abstract class Railing with _$Railing, _$RailingTranslatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory Railing({

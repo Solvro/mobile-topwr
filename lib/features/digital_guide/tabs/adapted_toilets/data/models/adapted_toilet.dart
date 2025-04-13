@@ -11,7 +11,7 @@ part "adapted_toilet.g.dart";
 part "adapted_toilet.translatable.g.dart";
 
 @freezed
-@translatable
+@Translatable(makeFieldsTranslatableByDefault: false)
 abstract class AdaptedToilet with _$AdaptedToilet, _$AdaptedToiletTranslatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory AdaptedToilet({

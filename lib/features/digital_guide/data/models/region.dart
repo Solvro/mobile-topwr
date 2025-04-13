@@ -6,7 +6,7 @@ part "region.g.dart";
 part "region.translatable.g.dart";
 
 @freezed
-@translatable
+@Translatable(makeFieldsTranslatableByDefault: false)
 abstract class Region with _$Region, _$RegionTranslatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory Region({

@@ -44,6 +44,6 @@ extension TranslateX<T extends TranslatableInterface, Translator extends SolvroT
 
     final json = toJson();
     await _translateMultProperties(json, translatableJSONProperties, translator, locale);
-    return fromJson(json);
+    return fromJson(json) as T;
   }
 }

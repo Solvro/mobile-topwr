@@ -6,7 +6,7 @@ part "level.g.dart";
 part "level.translatable.g.dart";
 
 @freezed
-@translatable
+@Translatable(makeFieldsTranslatableByDefault: false)
 abstract class Level with _$Level, _$LevelTranslatable {
   const factory Level({
     required int id,

@@ -8,7 +8,7 @@ part "surrounding_response.g.dart";
 part "surrounding_response.translatable.g.dart";
 
 @freezed
-@translatable
+@Translatable(makeFieldsTranslatableByDefault: false)
 abstract class SurroundingResponse with _$SurroundingResponse, _$SurroundingResponseTranslatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory SurroundingResponse({

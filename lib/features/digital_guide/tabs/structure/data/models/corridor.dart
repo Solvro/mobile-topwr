@@ -7,7 +7,7 @@ part "corridor.g.dart";
 part "corridor.translatable.g.dart";
 
 @freezed
-@translatable
+@Translatable(makeFieldsTranslatableByDefault: false)
 abstract class Corridor with _$Corridor, _$CorridorTranslatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory Corridor({

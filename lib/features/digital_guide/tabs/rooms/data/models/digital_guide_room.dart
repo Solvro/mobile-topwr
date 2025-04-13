@@ -6,7 +6,7 @@ part "digital_guide_room.g.dart";
 part "digital_guide_room.translatable.g.dart";
 
 @freezed
-@translatable
+@Translatable(makeFieldsTranslatableByDefault: false)
 abstract class DigitalGuideRoom with _$DigitalGuideRoom, _$DigitalGuideRoomTranslatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideRoom({

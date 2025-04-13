@@ -10,7 +10,7 @@ bool _stringToBool(String? str) {
 }
 
 @freezed
-@translatable
+@Translatable(makeFieldsTranslatableByDefault: false)
 abstract class DigitalGuideObjectModel with _$DigitalGuideObjectModel, _$DigitalGuideObjectModelTranslatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideObjectModel({
