@@ -22,8 +22,10 @@ Future<void> _translateProperty<T extends TranslatableInterface, Translator exte
     case TranslatableNestedJSONObject(:final properties, :final fieldName):
       await _translateMultProperties(json[fieldName] as Map<String, dynamic>, properties, translator, locale);
     case TranslatableNestedObjectList(:final properties, :final fieldName):
-      final list = json[fieldName] as List<Map<String, dynamic>>;
-      await Future.wait(list.map((item) => _translateMultProperties(item, properties, translator, locale)));
+      final list = json[fieldName] as List<dynamic>;
+      await Future.wait(
+        list.map((item) => _translateMultProperties(item as Map<String, dynamic>, properties, translator, locale)),
+      );
   }
 }
 
