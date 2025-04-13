@@ -1,11 +1,13 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 
+import "../../../../../../services/translations_service/data/models/translatable.dart";
+
 part "stairway.g.dart";
 part "stairway.freezed.dart";
 
 @freezed
-abstract class Stairway with _$Stairway {
+abstract class Stairway with _$Stairway implements Translatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory Stairway({
     required StairwayTranslations translations,

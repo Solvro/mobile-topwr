@@ -1,12 +1,13 @@
 import "package:freezed_annotation/freezed_annotation.dart";
 
+import "../../../../../../services/translations_service/data/models/translatable.dart";
 import "../../../../../../utils/type_converter.dart";
 
 part "surrounding_response.freezed.dart";
 part "surrounding_response.g.dart";
 
 @freezed
-abstract class SurroundingResponse with _$SurroundingResponse {
+abstract class SurroundingResponse with _$SurroundingResponse implements Translatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory SurroundingResponse({
     required int id,

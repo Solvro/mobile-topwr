@@ -1,10 +1,12 @@
 import "package:freezed_annotation/freezed_annotation.dart";
 
+import "../../../../../../services/translations_service/data/models/translatable.dart";
+
 part "parking.freezed.dart";
 part "parking.g.dart";
 
 @freezed
-abstract class Parking with _$Parking {
+abstract class Parking with _$Parking implements Translatable {
   const factory Parking({required ParkingTranslations translations}) = _Parking;
 
   factory Parking.fromJson(Map<String, dynamic> json) => _$ParkingFromJson(json);

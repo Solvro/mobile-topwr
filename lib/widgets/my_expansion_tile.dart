@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 
 import "../config/ui_config.dart";
-import "../services/translations_service/widgets/text_with_translation.dart";
+
 import "../theme/app_theme.dart";
 import "loading_widgets/shimmer_loading.dart";
 
@@ -23,7 +23,7 @@ class MyExpansionTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
-      title: TextWithTranslation(title, style: context.textTheme.title),
+      title: Text(title, style: context.textTheme.title),
       backgroundColor: backgroundColor ?? context.colorTheme.greyLight,
       collapsedBackgroundColor: collapsedBackgroundColor ?? context.colorTheme.greyLight,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(GuideDetailViewConfig.borderRadius)),

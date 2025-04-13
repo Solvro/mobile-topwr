@@ -1,10 +1,12 @@
 import "package:freezed_annotation/freezed_annotation.dart";
 
+import "../../../../../../services/translations_service/data/models/translatable.dart";
+
 part "digital_guide_dressing_room.freezed.dart";
 part "digital_guide_dressing_room.g.dart";
 
 @freezed
-abstract class DigitalGuideDressingRoom with _$DigitalGuideDressingRoom {
+abstract class DigitalGuideDressingRoom with _$DigitalGuideDressingRoom implements Translatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideDressingRoom({
     required int id,

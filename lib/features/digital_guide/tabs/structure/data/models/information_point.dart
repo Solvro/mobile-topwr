@@ -1,10 +1,12 @@
 import "package:freezed_annotation/freezed_annotation.dart";
 
+import "../../../../../../services/translations_service/data/models/translatable.dart";
+
 part "information_point.g.dart";
 part "information_point.freezed.dart";
 
 @freezed
-abstract class InformationPoint with _$InformationPoint {
+abstract class InformationPoint with _$InformationPoint implements Translatable {
   const factory InformationPoint({required InformationPointTranslations translations}) = _InformationPoint;
 
   factory InformationPoint.fromJson(Map<String, dynamic> json) => _$InformationPointFromJson(json);

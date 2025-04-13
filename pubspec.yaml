@@ -132,6 +132,9 @@ dependencies:
   flutter_hooks: ^0.21.2
   audioplayers: ^6.2.0
 
+  translatable_generator:
+    path: packages/translatable_generator
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

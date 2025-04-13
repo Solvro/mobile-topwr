@@ -1,14 +1,14 @@
 import "package:drift/drift.dart" hide JsonKey;
 import "package:freezed_annotation/freezed_annotation.dart";
+import "package:translatable_generator/index.dart";
 
 import "../data_source/local/database/translations_database.dart";
-import "supported_languages.dart";
 
 part "translation.freezed.dart";
 part "translation.g.dart";
 
 @freezed
-abstract class TranslationResponse with _$TranslationResponse {
+abstract class TranslationResponse with _$TranslationResponse implements TranslationResults {
   factory TranslationResponse({
     required String hash,
     required String originalText,
@@ -25,8 +25,8 @@ abstract class TranslationResponse with _$TranslationResponse {
   Translation getTranslation() => Translation(
     originalTextHash: originalText.hashCode,
     translatedText: translatedText,
-    originalLanguageCode: SupportedLocales.fromString(originalLanguageCode),
-    translatedLanguageCode: SupportedLocales.fromString(translatedLanguageCode),
+    originalLanguageCode: SolvroLocale.values.byName(originalLanguageCode),
+    translatedLanguageCode: SolvroLocale.values.byName(translatedLanguageCode),
     isApproved: isApproved,
     createdAt: DateTime.now(),
   );
@@ -48,11 +48,23 @@ abstract class TranslationRequest with _$TranslationRequest {
 class Translations extends Table {
   IntColumn get originalTextHash => integer()();
   TextColumn get translatedText => text()();
-  IntColumn get originalLanguageCode => intEnum<SupportedLocales>().withDefault(Constant(SupportedLocales.pl.index))();
-  IntColumn get translatedLanguageCode => intEnum<SupportedLocales>()();
+  IntColumn get originalLanguageCode => intEnum<SolvroLocale>().withDefault(Constant(SolvroLocale.pl.index))();
+  IntColumn get translatedLanguageCode => intEnum<SolvroLocale>()();
   BoolColumn get isApproved => boolean()();
   DateTimeColumn get createdAt => dateTime().clientDefault(DateTime.now)();
 
   @override
   Set<Column> get primaryKey => {originalTextHash, translatedLanguageCode};
+}
+
+class TranslationWithInterface extends Translation implements TranslationResults {
+  TranslationWithInterface.fromTranslation(Translation translation)
+    : super(
+        originalTextHash: translation.originalTextHash,
+        translatedText: translation.translatedText,
+        originalLanguageCode: translation.originalLanguageCode,
+        translatedLanguageCode: translation.translatedLanguageCode,
+        isApproved: translation.isApproved,
+        createdAt: translation.createdAt,
+      );
 }

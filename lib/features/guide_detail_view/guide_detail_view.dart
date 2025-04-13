@@ -4,7 +4,6 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:intl/intl.dart";
 
 import "../../config/ui_config.dart";
-import "../../services/translations_service/widgets/my_html_widget_with_translation.dart";
 import "../../theme/app_theme.dart";
 import "../../utils/context_extensions.dart";
 import "../../widgets/date_chip.dart";
@@ -13,6 +12,7 @@ import "../../widgets/loading_widgets/shimmer_loading.dart";
 import "../../widgets/loading_widgets/simple_previews/preview_text_prototype.dart";
 import "../../widgets/my_error_widget.dart";
 import "../../widgets/my_expansion_tile.dart";
+import "../../widgets/my_html_widget.dart";
 import "../../widgets/zoomable_images.dart";
 import "repository/guide_detail_view_repository.dart";
 import "utils/get_the_latest_date.dart";
@@ -71,10 +71,7 @@ class _GuideDetailDataView extends ConsumerWidget {
                 automaticallyImplyLeading: false,
               ),
               SliverToBoxAdapter(
-                child: Padding(
-                  padding: const EdgeInsets.all(24),
-                  child: MyHtmlWidgetWithTranslation(value.description ?? ""),
-                ),
+                child: Padding(padding: const EdgeInsets.all(24), child: MyHtmlWidget(value.description ?? "")),
               ),
               SliverPadding(
                 padding: const EdgeInsets.only(bottom: GuideDetailViewConfig.paddingLarge),

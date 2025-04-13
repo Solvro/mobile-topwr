@@ -5,6 +5,7 @@ import "package:flutter/widgets.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../client/dio_client.dart";
+import "../client/json.dart";
 import "../client/offline_error.dart";
 import "cache_manager.dart";
 
@@ -14,12 +15,12 @@ extension DataCachingX on Ref {
     await cacheManager.removeFile(fullUrl);
   }
 
-  Future<T> getAndCacheData<T, JSON>(
+  Future<JSON<T>> getAndCacheData<T>(
     String fullUrl,
     int ttlDays,
-    T Function(JSON json) fromJson, {
+    T Function(Map<String, dynamic> json) fromJson, {
     // returns true if the data is still valid
-    required bool Function(T cachedData) extraValidityCheck,
+    required bool Function(JSON<T> cachedData) extraValidityCheck,
     required String Function(BuildContext context) localizedOfflineMessage,
     VoidCallback? onRetry,
     AuthHeader? authHeader,
@@ -29,7 +30,7 @@ extension DataCachingX on Ref {
     final cachedFile = await cacheManager.getFileFromCache(fullUrl);
     if (cachedFile != null) {
       final cachedData = await cachedFile.file.readAsString();
-      final data = fromJson(jsonDecode(cachedData) as JSON);
+      final data = parseJSON(jsonDecode(cachedData), fromJson);
       if (extraValidityCheck(data)) {
         return data;
       }
@@ -40,14 +41,14 @@ extension DataCachingX on Ref {
       onRetry: onRetry,
       authHeader: authHeader,
     );
-    final data = fromJson(response.data as JSON);
-    if (extraValidityCheck(data)) {
+    final json = parseJSON(response.data, fromJson);
+    if (extraValidityCheck(json)) {
       await cacheManager.putFile(
         fullUrl,
         Uint8List.fromList(utf8.encode(jsonEncode(response.data))),
         fileExtension: CacheManagerConfig.jsonExtesion,
       );
     }
-    return data;
+    return json;
   }
 }

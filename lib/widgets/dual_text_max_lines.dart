@@ -3,7 +3,6 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../features/science_club/science_clubs_view/widgets/strategic_badge.dart";
 import "../features/science_club/science_clubs_view/widgets/verified_badge.dart";
-import "../services/translations_service/widgets/rich_text_with_translation.dart";
 
 class DualTextSpan extends TextSpan {
   DualTextSpan(
@@ -55,7 +54,7 @@ class DualTextMaxLines extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return RichTextWithTranslation(
+    return RichText(
       maxLines: maxTotalLines,
       overflow: TextOverflow.ellipsis,
       text: DualTextSpan(

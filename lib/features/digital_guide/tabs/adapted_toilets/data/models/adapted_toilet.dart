@@ -1,15 +1,18 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
+import "package:translatable_generator/index.dart";
 
 import "../../../../../../utils/context_extensions.dart";
 import "../../../../../../utils/type_converter.dart";
 
 part "adapted_toilet.freezed.dart";
 part "adapted_toilet.g.dart";
+part "adapted_toilet.translatable.dart";
 
 @freezed
-abstract class AdaptedToilet with _$AdaptedToilet {
+@translatable
+abstract class AdaptedToilet with _$AdaptedToilet, _$AdaptedToiletTranslatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory AdaptedToilet({
     required AdaptedToiletTranslations translations,
@@ -36,6 +39,8 @@ abstract class AdaptedToilet with _$AdaptedToilet {
     @JsonKey(name: "images") required IList<int> imagesIndices,
     @JsonKey(name: "doors") required IList<int> doorsIndices,
   }) = _AdaptedToilet;
+
+  const AdaptedToilet._();
 
   factory AdaptedToilet.fromJson(Map<String, dynamic> json) => _$AdaptedToiletFromJson(json);
 }

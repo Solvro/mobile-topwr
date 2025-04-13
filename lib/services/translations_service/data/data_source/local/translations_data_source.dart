@@ -1,10 +1,11 @@
-import "../../models/supported_languages.dart";
+import "package:translatable_generator/index.dart";
+
 import "database/translations_database.dart";
 
 abstract interface class TranslationsDataSource {
   factory TranslationsDataSource() = TranslationsDatabase;
 
-  Future<Translation?> getTranslation(int hash, SupportedLocales translatedLangCode);
+  Future<Translation?> getTranslation(int hash, SolvroLocale translatedLangCode);
 
   Future<int> addTranslation(Translation translation);
 

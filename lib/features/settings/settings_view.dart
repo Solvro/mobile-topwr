@@ -29,7 +29,7 @@ class SettingsView extends ConsumerWidget {
           final selectedLang = await LanguageDialog.show(context);
           if (selectedLang != null) {
             final supportedLocale = SupportedLocales.fromString(selectedLang);
-            await ref.read(translationsProvider.notifier).setLocale(supportedLocale);
+            await ref.read(currentLocaleProvider.notifier).setLocale(supportedLocale);
           }
         },
         title: context.localize.language,

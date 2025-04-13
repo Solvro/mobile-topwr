@@ -1,10 +1,12 @@
 import "package:freezed_annotation/freezed_annotation.dart";
 
+import "../../../../../../services/translations_service/data/models/translatable.dart";
+
 part "door.freezed.dart";
 part "door.g.dart";
 
 @freezed
-abstract class Door with _$Door {
+abstract class Door with _$Door implements Translatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory Door({
     required DoorTranslations translations,

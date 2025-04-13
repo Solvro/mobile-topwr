@@ -2,11 +2,13 @@
 
 import "package:freezed_annotation/freezed_annotation.dart";
 
+import "../../../../../../services/translations_service/data/models/translatable.dart";
+
 part "micronavigation_response.freezed.dart";
 part "micronavigation_response.g.dart";
 
 @freezed
-abstract class MicronavigationResponse with _$MicronavigationResponse {
+abstract class MicronavigationResponse with _$MicronavigationResponse implements Translatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory MicronavigationResponse({
     required int id,

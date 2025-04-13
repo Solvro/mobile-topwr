@@ -1,10 +1,12 @@
 import "package:freezed_annotation/freezed_annotation.dart";
 
+import "../../../../../../services/translations_service/data/models/translatable.dart";
+
 part "room_platforms_response.freezed.dart";
 part "room_platforms_response.g.dart";
 
 @freezed
-abstract class RoomPlatformsResponse with _$RoomPlatformsResponse {
+abstract class RoomPlatformsResponse with _$RoomPlatformsResponse implements Translatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory RoomPlatformsResponse({
     required int id,

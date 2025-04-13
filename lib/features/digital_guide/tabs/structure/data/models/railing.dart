@@ -1,10 +1,12 @@
 import "package:freezed_annotation/freezed_annotation.dart";
 
+import "../../../../../../services/translations_service/data/models/translatable.dart";
+
 part "railing.g.dart";
 part "railing.freezed.dart";
 
 @freezed
-abstract class Railing with _$Railing {
+abstract class Railing with _$Railing implements Translatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory Railing({
     required RailingTranslations translations,

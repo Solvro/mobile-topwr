@@ -1,10 +1,12 @@
 import "package:freezed_annotation/freezed_annotation.dart";
 
+import "../../../../../../services/translations_service/data/models/translatable.dart";
+
 part "digital_guide_transportation.freezed.dart";
 part "digital_guide_transportation.g.dart";
 
 @freezed
-abstract class DigitalGuideTransportation with _$DigitalGuideTransportation {
+abstract class DigitalGuideTransportation with _$DigitalGuideTransportation implements Translatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideTransportation({
     required int id,

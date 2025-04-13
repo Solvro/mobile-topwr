@@ -1,12 +1,15 @@
 import "package:freezed_annotation/freezed_annotation.dart";
+import "package:translatable_generator/index.dart";
 
 import "../../../../utils/type_converter.dart";
 
 part "digital_guide_response.freezed.dart";
 part "digital_guide_response.g.dart";
+part "digital_guide_response.translatable.dart";
 
 @freezed
-abstract class DigitalGuideResponse with _$DigitalGuideResponse {
+@translatable
+abstract class DigitalGuideResponse with _$DigitalGuideResponse, _$DigitalGuideResponseTranslatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideResponse({
     required int id,
@@ -37,6 +40,8 @@ abstract class DigitalGuideResponse with _$DigitalGuideResponse {
     @JsonKey(fromJson: stringToInt) required int accessibilityLevelForHighSensorySensitivity,
     @JsonKey(fromJson: stringToInt) required int accessibilityLevelForCognitiveDifficulties,
   }) = _DigitalGuideResponse;
+
+  const DigitalGuideResponse._();
 
   factory DigitalGuideResponse.fromJson(Map<String, dynamic> json) => _$DigitalGuideResponseFromJson(json);
 }

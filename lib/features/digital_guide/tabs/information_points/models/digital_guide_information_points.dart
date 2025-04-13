@@ -1,13 +1,14 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 
+import "../../../../../../services/translations_service/data/models/translatable.dart";
 import "../../../../../l10n/app_localizations.dart";
 
 part "digital_guide_information_points.freezed.dart";
 part "digital_guide_information_points.g.dart";
 
 @freezed
-abstract class DigitalGuideInformationPoint with _$DigitalGuideInformationPoint {
+abstract class DigitalGuideInformationPoint with _$DigitalGuideInformationPoint implements Translatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   factory DigitalGuideInformationPoint({
     required int id,

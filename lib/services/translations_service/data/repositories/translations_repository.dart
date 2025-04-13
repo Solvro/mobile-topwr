@@ -12,7 +12,7 @@ part "translations_repository.g.dart";
 @riverpod
 Future<String> translationsRepository(Ref ref, String originalText) async {
   final db = ref.watch(translationsDatabaseSingletonProvider);
-  final locale = await ref.watch(translationsProvider.future);
+  final locale = await ref.watch(currentLocaleProvider.future);
 
   if (locale == SupportedLocales.pl || originalText.trim().isEmpty || !RegExp("[a-zA-Z0-9]").hasMatch(originalText)) {
     return originalText;

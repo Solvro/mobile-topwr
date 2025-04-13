@@ -1,11 +1,13 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 
+import "../../../../../../services/translations_service/data/models/translatable.dart";
+
 part "ramp.freezed.dart";
 part "ramp.g.dart";
 
 @freezed
-abstract class Ramp with _$Ramp {
+abstract class Ramp with _$Ramp implements Translatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory Ramp({
     required RampTranslations translations,

@@ -1,7 +1,7 @@
 import "package:drift/drift.dart";
 import "package:drift_flutter/drift_flutter.dart";
+import "package:translatable_generator/index.dart";
 
-import "../../../models/supported_languages.dart";
 import "../../../models/translation.dart";
 import "../translations_data_source.dart";
 
@@ -15,7 +15,7 @@ class TranslationsDatabase extends _$TranslationsDatabase implements Translation
   int get schemaVersion => 1;
 
   @override
-  Future<Translation?> getTranslation(int hash, SupportedLocales translatedLangCode) async {
+  Future<Translation?> getTranslation(int hash, SolvroLocale translatedLangCode) async {
     return (select(translations)..where(
       (t) => t.originalTextHash.equals(hash) & t.translatedLanguageCode.equals(translatedLangCode.index),
     )).getSingleOrNull();

@@ -1,5 +1,7 @@
 import "package:freezed_annotation/freezed_annotation.dart";
 
+import "../../../../../../services/translations_service/data/models/translatable.dart";
+
 part "digital_guide_object_model.freezed.dart";
 part "digital_guide_object_model.g.dart";
 
@@ -8,7 +10,7 @@ bool _stringToBool(String? str) {
 }
 
 @freezed
-abstract class DigitalGuideObjectModel with _$DigitalGuideObjectModel {
+abstract class DigitalGuideObjectModel with _$DigitalGuideObjectModel implements Translatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideObjectModel({
     required int id,

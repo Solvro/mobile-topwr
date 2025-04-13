@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 
 import "../../../../config/ui_config.dart";
-import "../../../../services/translations_service/widgets/text_with_translation.dart";
+
 import "../../../../theme/app_theme.dart";
 import "../../../../theme/iparking_theme.dart";
 import "../../../../utils/context_extensions.dart";
@@ -71,7 +71,7 @@ class _LeftColumn extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        TextWithTranslation(
+        Text(
           parking.symbol,
           style: isActive ? context.iParkingTheme.title.withoutShadows : context.iParkingTheme.title,
         ),
@@ -83,7 +83,7 @@ class _LeftColumn extends StatelessWidget {
                     "${context.localize.street_abbreviation} ${parking.addressFormatted}",
                     style: context.iParkingTheme.subtitleLight.withoutShadows,
                   )
-                  : TextWithTranslation(parking.nameNormalized, style: context.iParkingTheme.subtitle),
+                  : Text(parking.nameNormalized, style: context.iParkingTheme.subtitle),
         ),
         const SizedBox(height: 2),
         if (!isActive)

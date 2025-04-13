@@ -1,10 +1,12 @@
 import "package:freezed_annotation/freezed_annotation.dart";
 
+import "../../../../services/translations_service/data/models/translatable.dart";
+
 part "digital_guide_object_tab_model.freezed.dart";
 part "digital_guide_object_tab_model.g.dart";
 
 @freezed
-abstract class DigitalGuideObjectTabResponse with _$DigitalGuideObjectTabResponse {
+abstract class DigitalGuideObjectTabResponse with _$DigitalGuideObjectTabResponse implements Translatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideObjectTabResponse({
     required int id,

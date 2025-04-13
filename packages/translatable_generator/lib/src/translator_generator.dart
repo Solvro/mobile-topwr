@@ -1,0 +1,204 @@
+import "package:analyzer/dart/element/element.dart";
+import "package:analyzer/dart/element/type.dart";
+import "package:build/build.dart";
+import "package:source_gen/source_gen.dart";
+
+import "annotations.dart";
+
+class TranslatableGenerator extends GeneratorForAnnotation<Translatable> {
+  @override
+  String generateForAnnotatedElement(Element element, ConstantReader annotation, BuildStep buildStep) {
+    if (element is! ClassElement) {
+      throw InvalidGenerationSourceError("Translatable annotation can only be applied to classes.", element: element);
+    }
+
+    final buffer = StringBuffer();
+    final className = element.name;
+    final mixinName = "_\$${className}Translatable";
+
+    buffer.writeln("part of '${element.source.uri.pathSegments.last}';");
+
+    buffer.writeln("mixin $mixinName implements TranslatableInterface {");
+    buffer.writeln("  @override");
+    buffer.writeln("  List<TranslatableJSONProperty> get translatableJSONProperties => [");
+
+    final makeFieldsTranslatableByDefault = annotation.read("makeFieldsTranslatableByDefault").boolValue;
+
+    final factoryConstructor = _findFreezedFactoryConstructor(element);
+
+    if (factoryConstructor == null) {
+      throw InvalidGenerationSourceError(
+        "No freezed `fromJson` factory constructor found for class $className",
+        element: element,
+      );
+    }
+
+    for (final parameter in factoryConstructor.parameters) {
+      if (_shouldGenerateForParameter(parameter, makeFieldsTranslatableByDefault)) {
+        _generatePropertyForParameter(buffer, parameter, "    ", makeFieldsTranslatableByDefault);
+      }
+    }
+
+    buffer.writeln("  ];");
+    buffer.writeln();
+    buffer.writeln("  @override");
+    buffer.writeln("  $className fromJson(Map<String, dynamic> json) => _${className}FromJson(json);");
+    buffer.writeln();
+    buffer.writeln("}");
+    return buffer.toString();
+  }
+
+  ConstructorElement? _findFreezedFactoryConstructor(ClassElement classElement) {
+    // Look for the main factory constructor that Freezed uses
+    for (final constructor in classElement.constructors) {
+      if (constructor.isFactory && !constructor.name.contains("fromJson")) {
+        return constructor;
+      }
+    }
+    return null;
+  }
+
+  bool _shouldGenerateForParameter(ParameterElement parameter, bool defaultTranslatable) {
+    // Skip private fields
+    if (parameter.name.startsWith("_")) return false;
+
+    // Check for explicit annotations
+    final isExplicitlyTranslatable = const TypeChecker.fromRuntime(TranslatableField).hasAnnotationOf(parameter);
+
+    final isExplicitlyNonTranslatable = const TypeChecker.fromRuntime(NonTranslatableField).hasAnnotationOf(parameter);
+
+    if (isExplicitlyTranslatable) return true;
+    if (isExplicitlyNonTranslatable) return false;
+
+    // Use the default
+    return defaultTranslatable;
+  }
+
+  void _generatePropertyForParameter(
+    StringBuffer buffer,
+    ParameterElement parameter,
+    String indent,
+    bool makeFieldsTranslatableByDefault,
+  ) {
+    final fieldName = parameter.name;
+    final fieldType = parameter.type;
+
+    if (_isStringType(fieldType)) {
+      buffer.writeln("${indent}TranslatableJSONPropertyString(fieldName: '$fieldName'),");
+    } else if (_isListType(fieldType)) {
+      final listType = _getListGenericType(fieldType);
+      if (listType != null && listType is InterfaceType) {
+        if (_isStringType(listType)) {
+          buffer.writeln("${indent}TranslatableNestedStringList(fieldName: '$fieldName'),");
+        } else if (_isJsonSerializableOrFreezed(listType)) {
+          buffer.writeln("${indent}TranslatableNestedObjectList(");
+          buffer.writeln("$indent  fieldName: '$fieldName',");
+
+          // Generate the list of translatable properties directly
+          buffer.writeln("$indent  properties: [");
+          _generateNestedTranslatableProperties(
+            buffer,
+            listType,
+            "$indent    ",
+            <String>{},
+            makeFieldsTranslatableByDefault,
+          );
+          buffer.writeln("$indent  ],");
+
+          buffer.writeln("$indent),");
+        }
+      }
+    } else if (_isJsonSerializableOrFreezed(fieldType)) {
+      buffer.writeln("${indent}TranslatableNestedJSONObject(");
+      buffer.writeln("$indent  fieldName: '$fieldName',");
+
+      // Generate the list of translatable properties directly
+      buffer.writeln("$indent  properties: [");
+      _generateNestedTranslatableProperties(
+        buffer,
+        fieldType as InterfaceType,
+        "$indent    ",
+        <String>{},
+        makeFieldsTranslatableByDefault,
+      );
+      buffer.writeln("$indent  ],");
+
+      buffer.writeln("$indent),");
+    }
+  }
+
+  /// Generates all translatable properties for a type at compile time
+  void _generateNestedTranslatableProperties(
+    StringBuffer buffer,
+    InterfaceType type,
+    String indent,
+    Set<String> visitedTypes,
+    bool makeFieldsTranslatableByDefault,
+  ) {
+    final typeName = type.getDisplayString();
+
+    // Prevent infinite recursion for circular references
+    if (visitedTypes.contains(typeName)) {
+      buffer.writeln("$indent// Skipping recursive reference to $typeName");
+      return;
+    }
+
+    // Add current type to visited set
+    visitedTypes.add(typeName);
+
+    // Find the constructor with the parameters we want to process
+    final classElement = type.element as ClassElement;
+    final factoryConstructor = _findFreezedFactoryConstructor(classElement);
+
+    if (factoryConstructor == null) {
+      throw InvalidGenerationSourceError(
+        "No freezed `fromJson` factory constructor found for class $typeName",
+        element: type.element,
+      );
+    }
+
+    for (final parameter in factoryConstructor.parameters) {
+      if (_shouldGenerateForParameter(parameter, makeFieldsTranslatableByDefault)) {
+        _generatePropertyForParameter(buffer, parameter, indent, makeFieldsTranslatableByDefault);
+      }
+    }
+
+    // Remove the type from visited set as we're done processing it
+    visitedTypes.remove(typeName);
+  }
+
+  bool _isStringType(DartType type) {
+    return type.isDartCoreString;
+  }
+
+  bool _isListType(DartType type) {
+    return type.isDartCoreList;
+  }
+
+  DartType? _getListGenericType(DartType type) {
+    if (type is InterfaceType && type.isDartCoreList) {
+      if (type.typeArguments.isNotEmpty) {
+        return type.typeArguments.first;
+      }
+    }
+    return null;
+  }
+
+  bool _isJsonSerializableOrFreezed(DartType type) {
+    if (type is! InterfaceType) {
+      return false;
+    }
+
+    final element = type.element;
+    if (element is! ClassElement) {
+      return false;
+    }
+
+    // Check if the class has a fromJson factory constructor (additional check for json serializable)
+    final hasFromJsonFactory = element.constructors.any(
+      (constructor) => constructor.isFactory && constructor.name == "fromJson",
+    );
+
+    return hasFromJsonFactory;
+  }
+}

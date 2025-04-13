@@ -1,19 +1,23 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
+import "package:translatable_generator/index.dart";
 
 import "sks_menu_data.dart";
 import "sks_opening_hours.dart";
-
 part "sks_menu_response.freezed.dart";
 part "sks_menu_response.g.dart";
+part "sks_menu_response.translatable.g.dart";
 
 @freezed
-abstract class SksMenuResponse with _$SksMenuResponse {
+@translatable
+abstract class SksMenuResponse with _$SksMenuResponse, _$SksMenuResponseTranslatable {
   const factory SksMenuResponse({
     required bool isMenuOnline,
     required DateTime lastUpdate,
     required List<SksMenuDish> meals,
   }) = _SksMenuResponse;
+
+  const SksMenuResponse._();
 
   factory SksMenuResponse.fromJson(Map<String, dynamic> json) => _$SksMenuResponseFromJson(json);
 }

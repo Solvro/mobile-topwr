@@ -1,10 +1,13 @@
 import "package:freezed_annotation/freezed_annotation.dart";
+import "package:translatable_generator/index.dart";
 
 part "region.freezed.dart";
 part "region.g.dart";
+part "region.translatable.dart";
 
 @freezed
-abstract class Region with _$Region {
+@translatable
+abstract class Region with _$Region, _$RegionTranslatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory Region({
     required RegionTranslations translations,
@@ -27,6 +30,8 @@ abstract class Region with _$Region {
     @JsonKey(fromJson: _stringToInt) required int accessibilityLevelForHighSensorySensitivity,
     @JsonKey(fromJson: _stringToInt) required int accessibilityLevelForCognitiveDifficulties,
   }) = _Region;
+
+  const Region._();
 
   factory Region.fromJson(Map<String, dynamic> json) => _$RegionFromJson(json);
 }

@@ -2,8 +2,8 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../config/ui_config.dart";
-import "../../../services/translations_service/widgets/my_html_widget_with_translation.dart";
 import "../../../theme/app_theme.dart";
+import "../../../widgets/my_html_widget.dart";
 
 class DescriptionSection extends ConsumerWidget {
   const DescriptionSection({super.key, required this.text});
@@ -19,10 +19,7 @@ class DescriptionSection extends ConsumerWidget {
           borderRadius: BorderRadius.circular(AboutUsConfig.borderRadius),
           color: context.colorTheme.greyLight,
         ),
-        child: Padding(
-          padding: const EdgeInsets.all(AboutUsConfig.defaultPadding),
-          child: MyHtmlWidgetWithTranslation(text),
-        ),
+        child: Padding(padding: const EdgeInsets.all(AboutUsConfig.defaultPadding), child: MyHtmlWidget(text)),
       ),
     );
   }

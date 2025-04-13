@@ -1,11 +1,13 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 
+import "../../../../../../services/translations_service/data/models/translatable.dart";
+
 part "corridor.freezed.dart";
 part "corridor.g.dart";
 
 @freezed
-abstract class Corridor with _$Corridor {
+abstract class Corridor with _$Corridor implements Translatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory Corridor({
     required CorridorTranslations translations,
