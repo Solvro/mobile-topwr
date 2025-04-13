@@ -41,6 +41,7 @@ abstract class SurroundingResponse with _$SurroundingResponse, _$SurroundingResp
 }
 
 @freezed
+@translatable
 abstract class SurroundingResponseTranslations with _$SurroundingResponseTranslations {
   const factory SurroundingResponseTranslations({
     @translatableField @JsonKey(name: "pl") required SurroundingResponseTranslationsDetails plTranslation,
@@ -72,7 +73,7 @@ abstract class SurroundingResponseTranslationsDetails with _$SurroundingResponse
     required String accessibilityLevelForHardOfHearingComment,
     required String accessibilityLevelForHighSensorySensitivityComment,
     required String accessibilityLevelForCognitiveDifficultiesComment,
-    @translatableField required String comment,
+    required String comment,
   }) = _SurroundingResponseTranslationsDetails;
 
   factory SurroundingResponseTranslationsDetails.fromJson(Map<String, dynamic> json) =>

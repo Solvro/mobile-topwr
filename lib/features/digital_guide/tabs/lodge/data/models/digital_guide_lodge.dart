@@ -27,8 +27,9 @@ abstract class DigitalGuideLodge with _$DigitalGuideLodge, _$DigitalGuideLodgeTr
 }
 
 @freezed
+@translatable
 abstract class DigitalGuideTranslationsLodge with _$DigitalGuideTranslationsLodge {
-  const factory DigitalGuideTranslationsLodge({@translatableField required DigitalGuideTranslationLodge pl}) =
+  const factory DigitalGuideTranslationsLodge({required DigitalGuideTranslationLodge pl}) =
       _DigitalGuideTranslationsLodge;
 
   factory DigitalGuideTranslationsLodge.fromJson(Map<String, dynamic> json) =>
@@ -39,9 +40,9 @@ abstract class DigitalGuideTranslationsLodge with _$DigitalGuideTranslationsLodg
 abstract class DigitalGuideTranslationLodge with _$DigitalGuideTranslationLodge {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideTranslationLodge({
-    @translatableField required String location,
-    @translatableField required String workingDaysAndHours,
-    @translatableField required String comment,
+    required String location,
+    required String workingDaysAndHours,
+    required String comment,
     required String areAccessBarriersComment,
     required String isMovementSpaceComment,
     required String isSpaceUnderCounterComment,

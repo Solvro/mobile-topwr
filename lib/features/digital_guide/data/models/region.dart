@@ -12,7 +12,7 @@ part "region.translatable.g.dart";
 abstract class Region with _$Region, _$RegionTranslatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory Region({
-    required RegionTranslations translations,
+    @translatable required RegionTranslations translations,
     required List<int> dressingRooms,
     required List<int> lodges,
     required List<int> informationPoints,
@@ -39,6 +39,7 @@ abstract class Region with _$Region, _$RegionTranslatable {
 }
 
 @freezed
+@translatable
 abstract class RegionTranslations with _$RegionTranslations {
   const factory RegionTranslations({@JsonKey(name: "pl") required RegionTranslation plTranslation}) =
       _RegionTranslations;
@@ -47,11 +48,9 @@ abstract class RegionTranslations with _$RegionTranslations {
 }
 
 @freezed
+@translatable
 abstract class RegionTranslation with _$RegionTranslation {
-  const factory RegionTranslation({
-    @translatableField required String name,
-    @translatableField required String location,
-  }) = _RegionTranslation;
+  const factory RegionTranslation({required String name, required String location}) = _RegionTranslation;
 
   factory RegionTranslation.fromJson(Map<String, dynamic> json) => _$RegionTranslationFromJson(json);
 }

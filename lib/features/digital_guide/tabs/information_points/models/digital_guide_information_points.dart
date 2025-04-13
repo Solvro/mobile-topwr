@@ -51,6 +51,7 @@ abstract class DigitalGuideInformationPoint
 }
 
 @freezed
+@translatable
 abstract class DigitalGuideInformationPointTranslations with _$DigitalGuideInformationPointTranslations {
   factory DigitalGuideInformationPointTranslations({
     @translatableField required DigitalGuideInformationPointTranslationDetails pl,
@@ -64,7 +65,7 @@ abstract class DigitalGuideInformationPointTranslations with _$DigitalGuideInfor
 abstract class DigitalGuideInformationPointTranslationDetails with _$DigitalGuideInformationPointTranslationDetails {
   @JsonSerializable(fieldRename: FieldRename.snake)
   factory DigitalGuideInformationPointTranslationDetails({
-    @translatableField required String location,
+    required String location,
     required String isMarkedComment,
     required String isVisibleFromAfarComment,
     required String areAccessBarriersComment,
@@ -74,8 +75,8 @@ abstract class DigitalGuideInformationPointTranslationDetails with _$DigitalGuid
     required String isSpaceUnderCounterComment,
     required String isSpaceOnCounterComment,
     required String hasInductionLoopComment,
-    @translatableField required String workingDaysAndHours,
-    @translatableField required String comment,
+    required String workingDaysAndHours,
+    required String comment,
   }) = _DigitalGuideInformationPointTranslationDetails;
 
   factory DigitalGuideInformationPointTranslationDetails.fromJson(Map<String, dynamic> json) =>

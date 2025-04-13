@@ -46,6 +46,7 @@ abstract class DigitalGuideRoom with _$DigitalGuideRoom, _$DigitalGuideRoomTrans
 }
 
 @freezed
+@translatable
 abstract class DigitalGuideTranslationsRoom with _$DigitalGuideTranslationsRoom {
   const factory DigitalGuideTranslationsRoom({@translatableField required DigitalGuideTranslationRoom pl}) =
       _DigitalGuideTranslationsRoom;
@@ -58,10 +59,10 @@ abstract class DigitalGuideTranslationsRoom with _$DigitalGuideTranslationsRoom 
 abstract class DigitalGuideTranslationRoom with _$DigitalGuideTranslationRoom {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideTranslationRoom({
-    @translatableField required String name,
-    @translatableField required String roomPurpose,
-    @translatableField required String location,
-    @translatableField required String workingDaysAndHours,
+    required String name,
+    required String roomPurpose,
+    required String location,
+    required String workingDaysAndHours,
     required String areEntrancesComment,
     required String isUseRestrictedComment,
     required String isOneLevelFloorComment,
@@ -82,7 +83,7 @@ abstract class DigitalGuideTranslationRoom with _$DigitalGuideTranslationRoom {
     required String isNoisyComment,
     required String areFlashingDevicesComment,
     required String hasInductionLoopComment,
-    @translatableField required String comment,
+    required String comment,
   }) = _DigitalGuideTranslationRoom;
 
   factory DigitalGuideTranslationRoom.fromJson(Map<String, dynamic> json) =>

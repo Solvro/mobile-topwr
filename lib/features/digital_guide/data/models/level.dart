@@ -6,12 +6,12 @@ part "level.g.dart";
 part "level.translatable.g.dart";
 
 @freezed
-@Translatable(makeFieldsTranslatableByDefault: false)
+@translatable
 abstract class Level with _$Level, _$LevelTranslatable {
   const factory Level({
     required int id,
     @JsonKey(name: "floor_number") required int floorNumber,
-    @translatableField required LevelTranslations translations,
+    required LevelTranslations translations,
     @JsonKey(name: "regions") required List<int> regionIndices,
   }) = _Level;
 
@@ -22,8 +22,7 @@ abstract class Level with _$Level, _$LevelTranslatable {
 
 @freezed
 abstract class LevelTranslations with _$LevelTranslations {
-  const factory LevelTranslations({@JsonKey(name: "pl") @translatableField required LevelTranslation plTranslation}) =
-      _LevelTranslations;
+  const factory LevelTranslations({@JsonKey(name: "pl") required LevelTranslation plTranslation}) = _LevelTranslations;
 
   factory LevelTranslations.fromJson(Map<String, dynamic> json) => _$LevelTranslationsFromJson(json);
 }
@@ -31,8 +30,8 @@ abstract class LevelTranslations with _$LevelTranslations {
 @freezed
 abstract class LevelTranslation with _$LevelTranslation {
   const factory LevelTranslation({
-    @translatableField required String name,
-    @translatableField @JsonKey(name: "room_numbers_range") required String roomNumbersRange,
+    required String name,
+    @JsonKey(name: "room_numbers_range") required String roomNumbersRange,
   }) = _LevelTranslation;
 
   factory LevelTranslation.fromJson(Map<String, dynamic> json) => _$LevelTranslationFromJson(json);

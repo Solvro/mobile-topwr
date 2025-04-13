@@ -27,6 +27,7 @@ abstract class Railing with _$Railing, _$RailingTranslatable {
 }
 
 @freezed
+@translatable
 abstract class RailingTranslations with _$RailingTranslations {
   const factory RailingTranslations({
     @translatableField @JsonKey(name: "pl") required RailingTranslation plTranslation,
@@ -46,7 +47,7 @@ abstract class RailingTranslation with _$RailingTranslation {
     required String isRoundCrossSectionRailingComment,
     @JsonKey(name: "is_railing_extended_30cm_comment") required String isRailingExtended30cmComment,
     required String isRailingObstacleComment,
-    @translatableField required String comment,
+    required String comment,
   }) = _RailingTranslation;
 
   factory RailingTranslation.fromJson(Map<String, dynamic> json) => _$RailingTranslationFromJson(json);

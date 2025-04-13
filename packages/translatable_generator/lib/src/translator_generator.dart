@@ -7,6 +7,8 @@ import "package:source_gen/source_gen.dart";
 import "annotations.dart";
 
 class TranslatableGenerator extends GeneratorForAnnotation<Translatable> {
+  static final filenamePartOfAlreadyExists = <String>{};
+
   @override
   String generateForAnnotatedElement(Element element, ConstantReader annotation, BuildStep buildStep) {
     if (element is! ClassElement) {
@@ -17,8 +19,11 @@ class TranslatableGenerator extends GeneratorForAnnotation<Translatable> {
     final className = element.name;
     final mixinName = "_\$${className}Translatable";
 
-    buffer.writeln("part of '${element.source.uri.pathSegments.last}';");
-
+    final fullFilePath = element.source.uri.pathSegments.join("/");
+    if (!filenamePartOfAlreadyExists.contains(fullFilePath)) {
+      buffer.writeln("part of '${element.source.uri.pathSegments.last}';");
+      filenamePartOfAlreadyExists.add(fullFilePath);
+    }
     buffer.writeln("mixin $mixinName implements TranslatableInterface {");
     buffer.writeln("  @override");
     buffer.writeln("  List<TranslatableJSONProperty> get translatableJSONProperties => [");
@@ -177,6 +182,13 @@ class TranslatableGenerator extends GeneratorForAnnotation<Translatable> {
     final classElement = type.element as ClassElement;
     final factoryConstructor = _findFreezedFactoryConstructor(classElement);
 
+    // Check if the class has @Translatable annotation and get its makeFieldsTranslatableByDefault value
+    final classAnnotation = const TypeChecker.fromRuntime(Translatable).firstAnnotationOf(classElement);
+    final classDefaultTranslatable = classAnnotation?.getField("makeFieldsTranslatableByDefault")?.toBoolValue();
+
+    // Use class annotation value if present, otherwise use passed parameter
+    final effectiveMakeFieldsTranslatable = classDefaultTranslatable ?? makeFieldsTranslatableByDefault;
+
     if (factoryConstructor == null) {
       throw InvalidGenerationSourceError(
         "No freezed `fromJson` factory constructor found for class $typeName",
@@ -187,8 +199,8 @@ class TranslatableGenerator extends GeneratorForAnnotation<Translatable> {
     final fieldRename = _getFieldRenameFromAnnotation(factoryConstructor);
 
     for (final parameter in factoryConstructor.parameters) {
-      if (_shouldGenerateForParameter(parameter, makeFieldsTranslatableByDefault)) {
-        _generatePropertyForParameter(buffer, parameter, indent, makeFieldsTranslatableByDefault, fieldRename);
+      if (_shouldGenerateForParameter(parameter, effectiveMakeFieldsTranslatable)) {
+        _generatePropertyForParameter(buffer, parameter, indent, effectiveMakeFieldsTranslatable, fieldRename);
       }
     }
 

@@ -46,10 +46,10 @@ abstract class AdaptedToilet with _$AdaptedToilet, _$AdaptedToiletTranslatable {
 }
 
 @freezed
+@translatable
 abstract class AdaptedToiletTranslations with _$AdaptedToiletTranslations {
-  const factory AdaptedToiletTranslations({
-    @JsonKey(name: "pl") @translatableField required AdaptedToiletTranslation plTranslation,
-  }) = _AdaptedToiletTranslations;
+  const factory AdaptedToiletTranslations({@JsonKey(name: "pl") required AdaptedToiletTranslation plTranslation}) =
+      _AdaptedToiletTranslations;
 
   factory AdaptedToiletTranslations.fromJson(Map<String, dynamic> json) => _$AdaptedToiletTranslationsFromJson(json);
 }
@@ -58,8 +58,8 @@ abstract class AdaptedToiletTranslations with _$AdaptedToiletTranslations {
 abstract class AdaptedToiletTranslation with _$AdaptedToiletTranslation {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory AdaptedToiletTranslation({
-    @translatableField required String location,
-    @translatableField required String toiletDescription,
+    required String location,
+    required String toiletDescription,
     required String numberOfCabins,
     required String isAccessAccessibleForPwdComment,
     required String isNeedAuthorizationComment,
@@ -82,7 +82,7 @@ abstract class AdaptedToiletTranslation with _$AdaptedToiletTranslation {
     required String isSpaceUnderWashbasinForWheelchairComment,
     required String isLightSwitchComment,
     required String isGoodLitComment,
-    @translatableField required String comment,
+    required String comment,
   }) = _AdaptedToiletTranslation;
 
   factory AdaptedToiletTranslation.fromJson(Map<String, dynamic> json) => _$AdaptedToiletTranslationFromJson(json);

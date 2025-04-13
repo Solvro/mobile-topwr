@@ -30,10 +30,10 @@ abstract class Stairway with _$Stairway, _$StairwayTranslatable {
 }
 
 @freezed
+@translatable
 abstract class StairwayTranslations with _$StairwayTranslations {
-  const factory StairwayTranslations({
-    @translatableField @JsonKey(name: "pl") required StairwayTranslation plTranslation,
-  }) = _StairwayTranslations;
+  const factory StairwayTranslations({@JsonKey(name: "pl") required StairwayTranslation plTranslation}) =
+      _StairwayTranslations;
 
   factory StairwayTranslations.fromJson(Map<String, dynamic> json) => _$StairwayTranslationsFromJson(json);
 }
@@ -42,15 +42,15 @@ abstract class StairwayTranslations with _$StairwayTranslations {
 abstract class StairwayTranslation with _$StairwayTranslation {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory StairwayTranslation({
-    @translatableField required String name,
-    @translatableField required String location,
+    required String name,
+    required String location,
     required String areObjectsNarrowCommunicationZoneComment,
     required String areInformationBoardsComment,
     required String areInformationBoardsInEnComment,
     required String areRoomEntrancesComment,
     required String areFloorMarkingsComment,
     required String isTyphlomapComment,
-    @translatableField required String comment,
+    required String comment,
   }) = _StairwayTranslation;
 
   factory StairwayTranslation.fromJson(Map<String, dynamic> json) => _$StairwayTranslationFromJson(json);

@@ -37,8 +37,9 @@ abstract class Door with _$Door, _$DoorTranslatable {
 }
 
 @freezed
+@translatable
 abstract class DoorTranslations with _$DoorTranslations {
-  const factory DoorTranslations({@translatableField required DoorTranslation pl}) = _DoorTranslations;
+  const factory DoorTranslations({required DoorTranslation pl}) = _DoorTranslations;
 
   factory DoorTranslations.fromJson(Map<String, dynamic> json) => _$DoorTranslationsFromJson(json);
 }
@@ -47,14 +48,14 @@ abstract class DoorTranslations with _$DoorTranslations {
 abstract class DoorTranslation with _$DoorTranslation {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DoorTranslation({
-    @translatableField required String comment,
-    @translatableField required String fromTo,
+    required String comment,
+    required String fromTo,
     required String isMainWingHighlightedComment,
     required String isGoodDoorVisibleFromOutsideComment,
     required String isGoodDoorVisibleFromInsideComment,
     required String isIncreasedForceRequiredComment,
     required String isDoorCloserComment,
-    @translatableField required String handleHeight,
+    required String handleHeight,
     required String isElevatedThresholdComment,
   }) = _DoorTranslation;
 

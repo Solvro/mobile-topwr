@@ -56,6 +56,7 @@ abstract class DigitalGuideLift with _$DigitalGuideLift, _$DigitalGuideLiftTrans
 }
 
 @freezed
+@translatable
 abstract class DigitalGuideTranslationsLift with _$DigitalGuideTranslationsLift {
   const factory DigitalGuideTranslationsLift({@translatableField required DigitalGuideTranslationLift pl}) =
       _DigitalGuideTranslationsLift;
@@ -68,10 +69,10 @@ abstract class DigitalGuideTranslationsLift with _$DigitalGuideTranslationsLift 
 abstract class DigitalGuideTranslationLift with _$DigitalGuideTranslationLift {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideTranslationLift({
-    @translatableField required String location,
-    @translatableField required String floorsList,
-    @translatableField required String maximumLiftCapacity,
-    @translatableField required String liftDimensions,
+    required String location,
+    required String floorsList,
+    required String maximumLiftCapacity,
+    required String liftDimensions,
     required String isRailingComment,
   }) = _DigitalGuideTranslationLift;
 

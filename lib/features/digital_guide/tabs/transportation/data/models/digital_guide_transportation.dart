@@ -45,6 +45,7 @@ abstract class DigitalGuideTransportation with _$DigitalGuideTransportation, _$D
 }
 
 @freezed
+@translatable
 abstract class DigitalGuideTranslationsTransportation with _$DigitalGuideTranslationsTransportation {
   const factory DigitalGuideTranslationsTransportation({
     @translatableField @JsonKey(name: "pl") required DigitalGuideTranslationTransportation pl,
@@ -58,18 +59,18 @@ abstract class DigitalGuideTranslationsTransportation with _$DigitalGuideTransla
 abstract class DigitalGuideTranslationTransportation with _$DigitalGuideTranslationTransportation {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideTranslationTransportation({
-    required String nearestPublicTransportStop,
-    @translatableField required String nearestPublicTransportStopDistanceComment,
-    @translatableField required String arePassTrafficLightsFromStopToEntryComment,
-    @translatableField required String areNotPassTrafficLightsFromStopToEntryComment,
-    required String alternativePublicTransportStop,
-    @translatableField required String alternativePublicTransportStopDistanceComment,
-    @translatableField required String arePassTrafficLightsFromStopToEntryAltRoadComment,
-    @translatableField required String areNotPassTrafficLightsFromStopToEntryAltRoadComment,
-    @translatableField required String nearestPublicParkingLocation,
+    @nonTranslatableField required String nearestPublicTransportStop,
+    required String nearestPublicTransportStopDistanceComment,
+    required String arePassTrafficLightsFromStopToEntryComment,
+    required String areNotPassTrafficLightsFromStopToEntryComment,
+    @nonTranslatableField required String alternativePublicTransportStop,
+    required String alternativePublicTransportStopDistanceComment,
+    required String arePassTrafficLightsFromStopToEntryAltRoadComment,
+    required String areNotPassTrafficLightsFromStopToEntryAltRoadComment,
+    required String nearestPublicParkingLocation,
     required String isPaidParkingComment,
-    @translatableField required String nearestUniversityParkingLocation,
-    @translatableField required String nearestDisabledParkingSpaces,
+    required String nearestUniversityParkingLocation,
+    required String nearestDisabledParkingSpaces,
     required String areBicycleStandsComment,
     required String isCityBikeStationComment,
     required String isBicyclePathLeadToBuildingComment,

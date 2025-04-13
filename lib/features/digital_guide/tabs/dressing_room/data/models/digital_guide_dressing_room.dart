@@ -30,6 +30,7 @@ abstract class DigitalGuideDressingRoom with _$DigitalGuideDressingRoom, _$Digit
 }
 
 @freezed
+@translatable
 abstract class DigitalGuideTranslationsDressingRoom with _$DigitalGuideTranslationsDressingRoom {
   const factory DigitalGuideTranslationsDressingRoom({
     @translatableField required DigitalGuideTranslationDressingRoom pl,
@@ -43,9 +44,9 @@ abstract class DigitalGuideTranslationsDressingRoom with _$DigitalGuideTranslati
 abstract class DigitalGuideTranslationDressingRoom with _$DigitalGuideTranslationDressingRoom {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideTranslationDressingRoom({
-    @translatableField required String location,
-    @translatableField required String workingDaysAndHours,
-    @translatableField required String comment,
+    required String location,
+    required String workingDaysAndHours,
+    required String comment,
     required String isMarkedComment,
     required String isVisibleFromAfarComment,
     required String areAccessBarriersComment,
