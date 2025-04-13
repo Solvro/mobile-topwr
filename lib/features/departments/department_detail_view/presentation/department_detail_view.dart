@@ -12,7 +12,7 @@ import "../../../../widgets/detail_views/contact_section.dart";
 import "../../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../../../widgets/horizontal_symmetric_safe_area.dart";
 import "../../../../widgets/my_error_widget.dart";
-import "../data/models/detailed_department.dart";
+import "../data/models/department_details.dart";
 import "../data/repository/department_details_repository.dart";
 import "../data/utils/department_details_extension.dart";
 import "widgets/fields_of_study_section.dart";
@@ -31,12 +31,12 @@ class DepartmentDetailView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(departmentDetailsRepository2Provider(id));
+    final state = ref.watch(departmentDetailsRepositoryProvider(id));
     return HorizontalSymmetricSafeAreaScaffold(
       appBar: DetailViewAppBar(),
       body: switch (state) {
         AsyncError(:final error) => MyErrorWidget(error),
-        AsyncValue(value: final DetailedDepartment department) => CustomScrollView(
+        AsyncValue(value: final DepartmentDetails department) => CustomScrollView(
           slivers: [
             SliverPersistentHeader(
               delegate: DepartmentSliverHeaderSection(

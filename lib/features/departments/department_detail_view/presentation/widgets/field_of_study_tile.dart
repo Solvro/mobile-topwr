@@ -6,7 +6,7 @@ import "../../../../../theme/app_theme.dart";
 import "../../../../../theme/utils.dart";
 import "../../../../../utils/launch_url_util.dart";
 import "../../../../../widgets/wide_tile_card.dart";
-import "../../data/models/field_of_study.dart";
+import "../../data/models/department_details.dart";
 
 class FieldOfStudyTile extends ConsumerWidget {
   const FieldOfStudyTile(this.item, {super.key});

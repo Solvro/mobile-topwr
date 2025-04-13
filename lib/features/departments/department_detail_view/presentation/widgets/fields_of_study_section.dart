@@ -3,8 +3,8 @@ import "package:flutter/cupertino.dart";
 
 import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/context_extensions.dart";
-import "../../data/models/field_of_study.dart";
-import "../../data/utils/field_of_studies_extension.dart";
+import "../../data/models/department_details.dart";
+import "../../data/utils/department_details_extension.dart";
 import "field_of_study_expansion_tile.dart";
 
 class FieldsOfStudySection extends StatelessWidget {

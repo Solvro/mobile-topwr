@@ -17,11 +17,11 @@ Future<IList<Department>> departmentsRepository(Ref ref) async {
   final response = await ref.getAndCacheData(
     url,
     TtlStrategy.get(TtlKey.departmentsRepository).inDays,
-    Department.fromJsonList,
+    DepartmentsResponse.fromJson,
     extraValidityCheck: (_) => true,
     localizedOfflineMessage: DepartmentsView.localizedOfflineMessage,
     onRetry: ref.invalidateSelf,
   );
 
-  return response;
+  return response.data;
 }

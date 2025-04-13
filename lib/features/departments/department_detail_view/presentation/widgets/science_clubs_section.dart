@@ -13,11 +13,11 @@ import "../../../../home_view/widgets/loading_widgets/big_scrollable_section_loa
 import "../../../../home_view/widgets/paddings.dart";
 import "../../../../navigator/utils/navigation_commands.dart";
 import "../../../../science_club/science_clubs_view/repository/science_clubs_repository.dart";
-import "../../data/models/detailed_department.dart";
+import "../../data/models/department_details.dart";
 
 class DepartmentScienceClubsSection extends ConsumerWidget {
   const DepartmentScienceClubsSection(this.department, {super.key});
-  final DetailedDepartment department;
+  final DepartmentDetails department;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
