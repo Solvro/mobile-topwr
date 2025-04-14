@@ -16,6 +16,7 @@ class PreferredLanguageRepository extends _$PreferredLanguageRepository {
   }
 
   Future<void> setPreferredLanguage(SolvroLocale localeCode) async {
+    state = AsyncData(localeCode);
     final sharedPreferences = await ref.read(sharedPreferencesSingletonProvider.future);
     await sharedPreferences.setString(TranslationsConfig.localesKey, localeCode.name);
   }
