@@ -13,6 +13,7 @@ import "safe_load_initial_repos.dart";
 import "widgets/sci_clubs_scaffold.dart";
 import "widgets/science_clubs_info_dialog.dart";
 import "widgets/science_clubs_list.dart";
+import "widgets/science_clubs_info_dialog.dart";
 
 @RoutePage()
 class ScienceClubsView extends StatelessWidget {
