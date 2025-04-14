@@ -11,14 +11,13 @@ part "micronavigation_response.translatable.g.dart";
 
 @freezed
 @Translatable(makeFieldsTranslatableByDefault: false)
-// TODO(simon-the-shark): this needs custom translations
 abstract class MicronavigationResponse with _$MicronavigationResponse, _$MicronavigationResponseTranslatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory MicronavigationResponse({
     required int id,
     required int location,
     required MicronavigationTranslations nameOverride,
-    required MicronavigationTranslations webContent,
+    @translatableField required MicronavigationTranslations webContent,
     required List<MicronavigationLanguage> languages,
   }) = _MicronavigationResponse;
 
@@ -30,7 +29,7 @@ abstract class MicronavigationResponse with _$MicronavigationResponse, _$Microna
 @freezed
 abstract class MicronavigationTranslations with _$MicronavigationTranslations {
   const factory MicronavigationTranslations({
-    @JsonKey(fromJson: emptyStringToNull) String? pl,
+    @translatableField @JsonKey(fromJson: emptyStringToNull) String? pl,
     @JsonKey(fromJson: emptyStringToNull) String? en,
     @JsonKey(fromJson: emptyStringToNull) String? nb,
     @JsonKey(fromJson: emptyStringToNull) String? de,

@@ -32,11 +32,7 @@ class MicronavigationDetailView extends StatelessWidget {
       const SizedBox(height: DigitalGuideConfig.heightBig),
       Text(context.localize.communique, style: context.textTheme.title),
       const SizedBox(height: DigitalGuideConfig.heightMedium),
-      MyHtmlWidget(
-        context.solvroLocale == SolvroLocale.pl
-            ? micronavigationResponse.webContent.pl ?? micronavigationResponse.webContent.en ?? ""
-            : micronavigationResponse.webContent.en ?? micronavigationResponse.webContent.pl ?? "",
-      ),
+      MyHtmlWidget(micronavigationResponse.webContent.pl ?? micronavigationResponse.webContent.en ?? ""),
       const SizedBox(height: DigitalGuideConfig.heightMedium),
       Text(context.localize.audio_message, style: context.textTheme.title),
       const SizedBox(height: DigitalGuideConfig.heightMedium),

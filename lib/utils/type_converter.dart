@@ -19,6 +19,6 @@ String maybeIntToString(int? value) {
   return value == null ? "" : value.toString();
 }
 
-String? emptyStringToNull(String str) {
-  return str.isEmpty ? null : str;
+String? emptyStringToNull(String? str) {
+  return (str?.isEmpty ?? false) || str == null ? null : str;
 }
