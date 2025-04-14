@@ -7,8 +7,6 @@ import "package:source_gen/source_gen.dart";
 import "annotations.dart";
 
 class TranslatableGenerator extends GeneratorForAnnotation<Translatable> {
-  static final filenamePartOfAlreadyExists = <String>{};
-
   @override
   String generateForAnnotatedElement(Element element, ConstantReader annotation, BuildStep buildStep) {
     if (element is! ClassElement) {
@@ -19,11 +17,8 @@ class TranslatableGenerator extends GeneratorForAnnotation<Translatable> {
     final className = element.name;
     final mixinName = "_\$${className}Translatable";
 
-    final fullFilePath = element.source.uri.pathSegments.join("/");
-    if (!filenamePartOfAlreadyExists.contains(fullFilePath)) {
-      buffer.writeln("part of '${element.source.uri.pathSegments.last}';");
-      filenamePartOfAlreadyExists.add(fullFilePath);
-    }
+    buffer.writeln("part of '${element.source.uri.pathSegments.last}';");
+
     buffer.writeln("mixin $mixinName implements TranslatableInterface {");
     buffer.writeln("  @override");
     buffer.writeln("  List<TranslatableJSONProperty> get translatableJSONProperties => [");
