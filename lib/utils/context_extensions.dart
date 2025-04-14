@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-import "package:translatable_generator/index.dart";
+import "package:solvro_translator_core/solvro_translator_core.dart";
 
 import "../l10n/app_localizations.dart";
 import "../l10n/app_localizations_pl.dart";

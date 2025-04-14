@@ -1,6 +1,6 @@
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
-import "package:translatable_generator/index.dart";
+import "package:solvro_translator_core/solvro_translator_core.dart";
 
 import "../../../../../config/ui_config.dart";
 

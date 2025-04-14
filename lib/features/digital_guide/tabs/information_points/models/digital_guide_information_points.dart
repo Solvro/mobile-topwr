@@ -1,6 +1,6 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
-import "package:translatable_generator/index.dart";
+import "package:solvro_translator_core/solvro_translator_core.dart";
 
 import "../../../../../l10n/app_localizations.dart";
 

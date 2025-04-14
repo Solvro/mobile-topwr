@@ -1,6 +1,6 @@
 import "package:flutter/widgets.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
-import "package:translatable_generator/index.dart";
+import "package:solvro_translator_core/solvro_translator_core.dart";
 
 import "../../services/translations_service/data/repositories/preferred_lang_repository.dart";
 import "../../services/translations_service/data/repositories/translations_repository.dart";

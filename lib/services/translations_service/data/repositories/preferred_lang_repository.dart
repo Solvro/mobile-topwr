@@ -1,5 +1,5 @@
 import "package:riverpod_annotation/riverpod_annotation.dart";
-import "package:translatable_generator/index.dart";
+import "package:solvro_translator_core/solvro_translator_core.dart";
 
 import "../../../../config/shared_prefs.dart";
 import "../../../../config/translations_config.dart";

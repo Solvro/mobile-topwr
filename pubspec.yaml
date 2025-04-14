@@ -19,8 +19,8 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 version: 1.1.16+76
 
 environment:
-  sdk: ^3.7.0
-  flutter: 3.29.0
+  sdk: ^3.7.2
+  flutter: 3.29.2
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -131,9 +131,7 @@ dependencies:
   wiredash: ^2.4.0
   flutter_hooks: ^0.21.2
   audioplayers: ^6.2.0
-
-  translatable_generator:
-    path: packages/translatable_generator
+  solvro_translator_core: ^0.2.0
 
 dev_dependencies:
   flutter_test:
@@ -154,6 +152,7 @@ dev_dependencies:
   graphql_codegen: ^1.2.1
   flutter_gen_runner: ^5.9.0
   auto_route_generator: ^10.0.1
+  solvro_translator_generator: ^0.2.0
 
   #Other
   flutter_launcher_icons: "^0.14.3"

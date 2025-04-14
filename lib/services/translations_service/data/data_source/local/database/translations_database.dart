@@ -1,6 +1,6 @@
 import "package:drift/drift.dart";
 import "package:drift_flutter/drift_flutter.dart";
-import "package:translatable_generator/index.dart";
+import "package:solvro_translator_core/solvro_translator_core.dart";
 
 import "../../../models/translation.dart";
 import "../translations_data_source.dart";

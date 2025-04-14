@@ -1,6 +1,6 @@
 import "package:drift/drift.dart" hide JsonKey;
 import "package:freezed_annotation/freezed_annotation.dart";
-import "package:translatable_generator/index.dart";
+import "package:solvro_translator_core/solvro_translator_core.dart" show SolvroLocale, TranslationResults;
 
 import "../data_source/local/database/translations_database.dart";
 
