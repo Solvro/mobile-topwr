@@ -2,6 +2,7 @@ import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:fl_chart/fl_chart.dart";
 import "package:flutter/material.dart";
 
+import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../widgets/charts/hide_labels.dart";
 import "../../parkings_view/models/parking.dart";
@@ -50,7 +51,11 @@ class ChartWidget extends StatelessWidget {
                       final value = touchedSpot.y.toInt().toString();
                       return LineTooltipItem(
                         "$value\n",
-                        TextStyle(color: context.colorTheme.whiteSoap, fontWeight: FontWeight.bold),
+                        TextStyle(
+                          color: context.colorTheme.whiteSoap,
+                          fontWeight: FontWeight.bold,
+                          fontSize: ParkingChartConfig.labelFontSize,
+                        ),
                         children: [
                           TextSpan(
                             text: hour,
