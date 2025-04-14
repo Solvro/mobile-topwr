@@ -3,7 +3,6 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../config/ui_config.dart";
-
 import "../../../../../theme/app_theme.dart";
 import "../../../../navigator/utils/navigation_commands.dart";
 import "../../../data/models/level.dart";

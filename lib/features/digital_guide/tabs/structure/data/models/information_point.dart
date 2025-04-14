@@ -1,8 +1,8 @@
 import "package:freezed_annotation/freezed_annotation.dart";
 import "package:solvro_translator_core/solvro_translator_core.dart";
 
-part "information_point.g.dart";
 part "information_point.freezed.dart";
+part "information_point.g.dart";
 part "information_point.translatable.g.dart";
 
 @freezed

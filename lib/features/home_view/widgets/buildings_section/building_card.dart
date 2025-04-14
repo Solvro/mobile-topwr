@@ -1,7 +1,6 @@
 import "package:flutter/material.dart";
 
 import "../../../../config/ui_config.dart";
-
 import "../../../../theme/app_theme.dart";
 import "../../../../widgets/optimized_directus_image.dart";
 import "../../../../widgets/tile_splash.dart";

@@ -4,6 +4,7 @@ import "package:solvro_translator_core/solvro_translator_core.dart";
 
 import "sks_menu_data.dart";
 import "sks_opening_hours.dart";
+
 part "sks_menu_response.freezed.dart";
 part "sks_menu_response.g.dart";
 part "sks_menu_response.translatable.g.dart";
