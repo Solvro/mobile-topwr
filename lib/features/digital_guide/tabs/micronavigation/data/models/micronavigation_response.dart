@@ -3,6 +3,8 @@
 import "package:freezed_annotation/freezed_annotation.dart";
 import "package:translatable_generator/index.dart";
 
+import "../../../../../../utils/type_converter.dart";
+
 part "micronavigation_response.freezed.dart";
 part "micronavigation_response.g.dart";
 part "micronavigation_response.translatable.g.dart";
@@ -27,8 +29,13 @@ abstract class MicronavigationResponse with _$MicronavigationResponse, _$Microna
 
 @freezed
 abstract class MicronavigationTranslations with _$MicronavigationTranslations {
-  const factory MicronavigationTranslations({String? pl, String? en, String? nb, String? de, String? uk}) =
-      _MicronavigationTranslations;
+  const factory MicronavigationTranslations({
+    @JsonKey(fromJson: emptyStringToNull) String? pl,
+    @JsonKey(fromJson: emptyStringToNull) String? en,
+    @JsonKey(fromJson: emptyStringToNull) String? nb,
+    @JsonKey(fromJson: emptyStringToNull) String? de,
+    @JsonKey(fromJson: emptyStringToNull) String? uk,
+  }) = _MicronavigationTranslations;
 
   factory MicronavigationTranslations.fromJson(Map<String, dynamic> json) =>
       _$MicronavigationTranslationsFromJson(json);

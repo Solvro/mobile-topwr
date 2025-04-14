@@ -1,5 +1,6 @@
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
+import "package:translatable_generator/index.dart";
 
 import "../../../../../config/ui_config.dart";
 
@@ -22,11 +23,20 @@ class MicronavigationDetailView extends StatelessWidget {
   Widget build(BuildContext context) {
     final widgets = [
       const SizedBox(height: DigitalGuideConfig.heightMedium),
-      Text(micronavigationResponse.nameOverride.pl ?? "", style: context.textTheme.title.copyWith(fontSize: 24)),
+      Text(
+        context.solvroLocale == SolvroLocale.pl
+            ? micronavigationResponse.nameOverride.pl ?? micronavigationResponse.nameOverride.en ?? ""
+            : micronavigationResponse.nameOverride.en ?? micronavigationResponse.nameOverride.pl ?? "",
+        style: context.textTheme.title.copyWith(fontSize: 24),
+      ),
       const SizedBox(height: DigitalGuideConfig.heightBig),
       Text(context.localize.communique, style: context.textTheme.title),
       const SizedBox(height: DigitalGuideConfig.heightMedium),
-      MyHtmlWidget(micronavigationResponse.webContent.pl ?? ""),
+      MyHtmlWidget(
+        context.solvroLocale == SolvroLocale.pl
+            ? micronavigationResponse.webContent.pl ?? micronavigationResponse.webContent.en ?? ""
+            : micronavigationResponse.webContent.en ?? micronavigationResponse.webContent.pl ?? "",
+      ),
       const SizedBox(height: DigitalGuideConfig.heightMedium),
       Text(context.localize.audio_message, style: context.textTheme.title),
       const SizedBox(height: DigitalGuideConfig.heightMedium),
@@ -34,7 +44,10 @@ class MicronavigationDetailView extends StatelessWidget {
       Padding(
         padding: DigitalGuideConfig.symetricalPaddingBig,
         child: MyAudioPlayer(
-          audioUrl: micronavigationResponse.languages.where((a) => a.langCode == "pl").firstOrNull?.sound ?? "",
+          audioUrl:
+              context.solvroLocale == SolvroLocale.pl
+                  ? micronavigationResponse.languages.where((a) => a.langCode == "pl").firstOrNull?.sound ?? ""
+                  : micronavigationResponse.languages.where((a) => a.langCode == "en").firstOrNull?.sound ?? "",
         ),
       ),
     ];

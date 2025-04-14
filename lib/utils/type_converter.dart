@@ -18,3 +18,7 @@ String intToString(int value) {
 String maybeIntToString(int? value) {
   return value == null ? "" : value.toString();
 }
+
+String? emptyStringToNull(String str) {
+  return str.isEmpty ? null : str;
+}
