@@ -46,10 +46,9 @@ abstract class DigitalGuideRoom with _$DigitalGuideRoom, _$DigitalGuideRoomTrans
 }
 
 @freezed
-@translatable
+@allFieldsTranslatable
 abstract class DigitalGuideTranslationsRoom with _$DigitalGuideTranslationsRoom {
-  const factory DigitalGuideTranslationsRoom({@translatableField required DigitalGuideTranslationRoom pl}) =
-      _DigitalGuideTranslationsRoom;
+  const factory DigitalGuideTranslationsRoom({required DigitalGuideTranslationRoom pl}) = _DigitalGuideTranslationsRoom;
 
   factory DigitalGuideTranslationsRoom.fromJson(Map<String, dynamic> json) =>
       _$DigitalGuideTranslationsRoomFromJson(json);

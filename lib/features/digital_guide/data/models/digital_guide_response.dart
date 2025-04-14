@@ -50,10 +50,10 @@ abstract class DigitalGuideResponse with _$DigitalGuideResponse, _$DigitalGuideR
 }
 
 @freezed
+@allFieldsTranslatable
 abstract class DigitalGuideTranslations with _$DigitalGuideTranslations {
-  const factory DigitalGuideTranslations({
-    @JsonKey(name: "pl") @translatableField required DigitalGuideTranslation plTranslation,
-  }) = _DigitalGuideTranslations;
+  const factory DigitalGuideTranslations({@JsonKey(name: "pl") required DigitalGuideTranslation plTranslation}) =
+      _DigitalGuideTranslations;
 
   factory DigitalGuideTranslations.fromJson(Map<String, dynamic> json) => _$DigitalGuideTranslationsFromJson(json);
 }
@@ -62,10 +62,10 @@ abstract class DigitalGuideTranslations with _$DigitalGuideTranslations {
 abstract class DigitalGuideTranslation with _$DigitalGuideTranslation {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideTranslation({
-    @translatableField required String name,
-    @translatableField required String extendedName,
-    required String address,
-    @translatableField required String evacuationDescription,
+    required String name,
+    required String extendedName,
+    @nonTranslatableField required String address,
+    required String evacuationDescription,
   }) = _DigitalGuideTranslation;
 
   factory DigitalGuideTranslation.fromJson(Map<String, dynamic> json) => _$DigitalGuideTranslationFromJson(json);

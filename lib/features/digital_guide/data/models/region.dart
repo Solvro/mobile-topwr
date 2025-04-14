@@ -39,7 +39,7 @@ abstract class Region with _$Region, _$RegionTranslatable {
 }
 
 @freezed
-@translatable
+@allFieldsTranslatable
 abstract class RegionTranslations with _$RegionTranslations {
   const factory RegionTranslations({@JsonKey(name: "pl") required RegionTranslation plTranslation}) =
       _RegionTranslations;
@@ -48,7 +48,6 @@ abstract class RegionTranslations with _$RegionTranslations {
 }
 
 @freezed
-@translatable
 abstract class RegionTranslation with _$RegionTranslation {
   const factory RegionTranslation({required String name, required String location}) = _RegionTranslation;
 

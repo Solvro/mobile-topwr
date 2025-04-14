@@ -43,11 +43,10 @@ abstract class DigitalGuideEntrace with _$DigitalGuideEntrace, _$DigitalGuideEnt
 }
 
 @freezed
-@translatable
+@allFieldsTranslatable
 abstract class DigitalGuideTranslationsEntrace with _$DigitalGuideTranslationsEntrace {
-  const factory DigitalGuideTranslationsEntrace({
-    @translatableField @JsonKey(name: "pl") required DigitalGuideTranslationEntrace pl,
-  }) = _DigitalGuideTranslationsEntrace;
+  const factory DigitalGuideTranslationsEntrace({@JsonKey(name: "pl") required DigitalGuideTranslationEntrace pl}) =
+      _DigitalGuideTranslationsEntrace;
 
   factory DigitalGuideTranslationsEntrace.fromJson(Map<String, dynamic> json) =>
       _$DigitalGuideTranslationsEntraceFromJson(json);

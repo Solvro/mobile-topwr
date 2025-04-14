@@ -34,10 +34,10 @@ abstract class Stairs with _$Stairs, _$StairsTranslatable {
 }
 
 @freezed
-@translatable
+@allFieldsTranslatable
 abstract class StairsTranslations with _$StairsTranslations {
   @JsonSerializable(fieldRename: FieldRename.snake)
-  const factory StairsTranslations({@translatableField @JsonKey(name: "pl") required StairsTranslation plTranslation}) =
+  const factory StairsTranslations({@JsonKey(name: "pl") required StairsTranslation plTranslation}) =
       _StairsTranslations;
 
   factory StairsTranslations.fromJson(Map<String, dynamic> json) => _$StairsTranslationsFromJson(json);

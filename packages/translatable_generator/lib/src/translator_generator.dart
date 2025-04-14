@@ -182,12 +182,16 @@ class TranslatableGenerator extends GeneratorForAnnotation<Translatable> {
     final classElement = type.element as ClassElement;
     final factoryConstructor = _findFreezedFactoryConstructor(classElement);
 
-    // Check if the class has @Translatable annotation and get its makeFieldsTranslatableByDefault value
-    final classAnnotation = const TypeChecker.fromRuntime(Translatable).firstAnnotationOf(classElement);
-    final classDefaultTranslatable = classAnnotation?.getField("makeFieldsTranslatableByDefault")?.toBoolValue();
+    // Check if the class has @AllFieldsTranslatable annotation
+    final classAnnotation = const TypeChecker.fromRuntime(AllFieldsTranslatable).firstAnnotationOf(classElement);
 
     // Use class annotation value if present, otherwise use passed parameter
-    final effectiveMakeFieldsTranslatable = classDefaultTranslatable ?? makeFieldsTranslatableByDefault;
+    final bool effectiveMakeFieldsTranslatable;
+    if (classAnnotation != null) {
+      effectiveMakeFieldsTranslatable = true;
+    } else {
+      effectiveMakeFieldsTranslatable = makeFieldsTranslatableByDefault;
+    }
 
     if (factoryConstructor == null) {
       throw InvalidGenerationSourceError(

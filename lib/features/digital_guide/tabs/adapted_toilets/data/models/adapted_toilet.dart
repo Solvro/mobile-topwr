@@ -46,7 +46,7 @@ abstract class AdaptedToilet with _$AdaptedToilet, _$AdaptedToiletTranslatable {
 }
 
 @freezed
-@translatable
+@allFieldsTranslatable
 abstract class AdaptedToiletTranslations with _$AdaptedToiletTranslations {
   const factory AdaptedToiletTranslations({@JsonKey(name: "pl") required AdaptedToiletTranslation plTranslation}) =
       _AdaptedToiletTranslations;

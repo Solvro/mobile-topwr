@@ -45,10 +45,10 @@ abstract class DigitalGuideTransportation with _$DigitalGuideTransportation, _$D
 }
 
 @freezed
-@translatable
+@allFieldsTranslatable
 abstract class DigitalGuideTranslationsTransportation with _$DigitalGuideTranslationsTransportation {
   const factory DigitalGuideTranslationsTransportation({
-    @translatableField @JsonKey(name: "pl") required DigitalGuideTranslationTransportation pl,
+    @JsonKey(name: "pl") required DigitalGuideTranslationTransportation pl,
   }) = _DigitalGuideTranslationsTransportation;
 
   factory DigitalGuideTranslationsTransportation.fromJson(Map<String, dynamic> json) =>

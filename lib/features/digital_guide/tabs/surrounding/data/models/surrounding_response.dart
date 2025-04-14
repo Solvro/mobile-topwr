@@ -41,10 +41,10 @@ abstract class SurroundingResponse with _$SurroundingResponse, _$SurroundingResp
 }
 
 @freezed
-@translatable
+@allFieldsTranslatable
 abstract class SurroundingResponseTranslations with _$SurroundingResponseTranslations {
   const factory SurroundingResponseTranslations({
-    @translatableField @JsonKey(name: "pl") required SurroundingResponseTranslationsDetails plTranslation,
+    @JsonKey(name: "pl") required SurroundingResponseTranslationsDetails plTranslation,
   }) = _SurroundingResponseTranslations;
 
   factory SurroundingResponseTranslations.fromJson(Map<String, dynamic> json) =>

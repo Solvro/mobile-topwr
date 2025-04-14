@@ -37,7 +37,7 @@ abstract class Door with _$Door, _$DoorTranslatable {
 }
 
 @freezed
-@translatable
+@allFieldsTranslatable
 abstract class DoorTranslations with _$DoorTranslations {
   const factory DoorTranslations({required DoorTranslation pl}) = _DoorTranslations;
 

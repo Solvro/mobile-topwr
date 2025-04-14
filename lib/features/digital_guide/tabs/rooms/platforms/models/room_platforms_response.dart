@@ -11,7 +11,7 @@ abstract class RoomPlatformsResponse with _$RoomPlatformsResponse, _$RoomPlatfor
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory RoomPlatformsResponse({
     required int id,
-    required RoomPlatformsTranslations translations,
+    @translatableField required RoomPlatformsTranslations translations,
     required String isGoodFloorPlatformContrast,
     required String haveAccessForPeopleInWheelchair,
     required String isPlatformEntranceMarked,
@@ -24,6 +24,7 @@ abstract class RoomPlatformsResponse with _$RoomPlatformsResponse, _$RoomPlatfor
 }
 
 @freezed
+@allFieldsTranslatable
 abstract class RoomPlatformsTranslations with _$RoomPlatformsTranslations {
   const factory RoomPlatformsTranslations({required RoomPlatformsTranslation pl}) = _RoomPlatformsTranslations;
 

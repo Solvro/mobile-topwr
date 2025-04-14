@@ -30,7 +30,7 @@ abstract class Stairway with _$Stairway, _$StairwayTranslatable {
 }
 
 @freezed
-@translatable
+@allFieldsTranslatable
 abstract class StairwayTranslations with _$StairwayTranslations {
   const factory StairwayTranslations({@JsonKey(name: "pl") required StairwayTranslation plTranslation}) =
       _StairwayTranslations;

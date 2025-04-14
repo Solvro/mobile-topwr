@@ -48,7 +48,7 @@ abstract class Corridor with _$Corridor, _$CorridorTranslatable {
 }
 
 @freezed
-@translatable
+@allFieldsTranslatable
 abstract class CorridorTranslations with _$CorridorTranslations {
   const factory CorridorTranslations({@JsonKey(name: "pl") required CorridorTranslation plTranslation}) =
       _CorridorTranslations;

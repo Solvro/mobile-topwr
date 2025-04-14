@@ -9,6 +9,7 @@ part "micronavigation_response.translatable.g.dart";
 
 @freezed
 @Translatable(makeFieldsTranslatableByDefault: false)
+// TODO(simon-the-shark): this needs custom translations
 abstract class MicronavigationResponse with _$MicronavigationResponse, _$MicronavigationResponseTranslatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory MicronavigationResponse({

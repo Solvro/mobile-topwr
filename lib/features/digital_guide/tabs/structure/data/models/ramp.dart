@@ -27,10 +27,9 @@ abstract class Ramp with _$Ramp, _$RampTranslatable {
 }
 
 @freezed
-@translatable
+@allFieldsTranslatable
 abstract class RampTranslations with _$RampTranslations {
-  const factory RampTranslations({@translatableField @JsonKey(name: "pl") required RampTranslation plTranslation}) =
-      _RampTranslations;
+  const factory RampTranslations({@JsonKey(name: "pl") required RampTranslation plTranslation}) = _RampTranslations;
 
   factory RampTranslations.fromJson(Map<String, dynamic> json) => _$RampTranslationsFromJson(json);
 }

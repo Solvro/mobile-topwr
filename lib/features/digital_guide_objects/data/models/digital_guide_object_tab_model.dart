@@ -26,8 +26,9 @@ abstract class DigitalGuideObjectTabResponse
 }
 
 @freezed
+@allFieldsTranslatable
 abstract class DigitalGuideObjectTabTranslations with _$DigitalGuideObjectTabTranslations {
-  const factory DigitalGuideObjectTabTranslations({@translatableField required DigitalGuideObjectTabTranslation pl}) =
+  const factory DigitalGuideObjectTabTranslations({required DigitalGuideObjectTabTranslation pl}) =
       _DigitalGuideObjectTabTranslations;
 
   factory DigitalGuideObjectTabTranslations.fromJson(Map<String, dynamic> json) =>
@@ -38,14 +39,14 @@ abstract class DigitalGuideObjectTabTranslations with _$DigitalGuideObjectTabTra
 abstract class DigitalGuideObjectTabTranslation with _$DigitalGuideObjectTabTranslation {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideObjectTabTranslation({
-    @translatableField required String name,
-    @translatableField required String content,
-    @translatableField required String accessibilityContentForMotorDisabilityComment,
-    @translatableField required String accessibilityContentForBlindComment,
-    @translatableField required String accessibilityContentForVisuallyImpairedComment,
-    @translatableField required String accessibilityContentForHardOfHearingComment,
-    @translatableField required String accessibilityContentForHighSensorySensitivityComment,
-    @translatableField required String accessibilityContentForCognitiveDifficultiesComment,
+    required String name,
+    required String content,
+    required String accessibilityContentForMotorDisabilityComment,
+    required String accessibilityContentForBlindComment,
+    required String accessibilityContentForVisuallyImpairedComment,
+    required String accessibilityContentForHardOfHearingComment,
+    required String accessibilityContentForHighSensorySensitivityComment,
+    required String accessibilityContentForCognitiveDifficultiesComment,
   }) = _DigitalGuideObjectTabTranslation;
 
   factory DigitalGuideObjectTabTranslation.fromJson(Map<String, dynamic> json) =>

@@ -56,10 +56,9 @@ abstract class DigitalGuideLift with _$DigitalGuideLift, _$DigitalGuideLiftTrans
 }
 
 @freezed
-@translatable
+@allFieldsTranslatable
 abstract class DigitalGuideTranslationsLift with _$DigitalGuideTranslationsLift {
-  const factory DigitalGuideTranslationsLift({@translatableField required DigitalGuideTranslationLift pl}) =
-      _DigitalGuideTranslationsLift;
+  const factory DigitalGuideTranslationsLift({required DigitalGuideTranslationLift pl}) = _DigitalGuideTranslationsLift;
 
   factory DigitalGuideTranslationsLift.fromJson(Map<String, dynamic> json) =>
       _$DigitalGuideTranslationsLiftFromJson(json);

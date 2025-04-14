@@ -51,11 +51,10 @@ abstract class DigitalGuideInformationPoint
 }
 
 @freezed
-@translatable
+@allFieldsTranslatable
 abstract class DigitalGuideInformationPointTranslations with _$DigitalGuideInformationPointTranslations {
-  factory DigitalGuideInformationPointTranslations({
-    @translatableField required DigitalGuideInformationPointTranslationDetails pl,
-  }) = _DigitalGuideInformationPointTranslations;
+  factory DigitalGuideInformationPointTranslations({required DigitalGuideInformationPointTranslationDetails pl}) =
+      _DigitalGuideInformationPointTranslations;
 
   factory DigitalGuideInformationPointTranslations.fromJson(Map<String, dynamic> json) =>
       _$DigitalGuideInformationPointTranslationsFromJson(json);

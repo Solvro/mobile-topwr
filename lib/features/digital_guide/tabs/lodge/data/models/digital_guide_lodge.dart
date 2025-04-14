@@ -27,7 +27,7 @@ abstract class DigitalGuideLodge with _$DigitalGuideLodge, _$DigitalGuideLodgeTr
 }
 
 @freezed
-@translatable
+@allFieldsTranslatable
 abstract class DigitalGuideTranslationsLodge with _$DigitalGuideTranslationsLodge {
   const factory DigitalGuideTranslationsLodge({required DigitalGuideTranslationLodge pl}) =
       _DigitalGuideTranslationsLodge;
