@@ -8,9 +8,10 @@ import "../../science_clubs_filters/widgets/filters_fab.dart";
 import "../controllers/science_clubs_view_controller.dart";
 
 class SciClubsScaffold extends ConsumerWidget {
-  const SciClubsScaffold({super.key, required this.child, this.showFab = true});
+  const SciClubsScaffold({super.key, required this.child, this.showFab = true,this.appBarActions});
   final Widget? child;
   final bool showFab;
+  final List<Widget>? appBarActions;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return HorizontalSymmetricSafeAreaScaffold(
@@ -20,6 +21,7 @@ class SciClubsScaffold extends ConsumerWidget {
         context,
         title: context.localize.study_circles,
         onQueryChanged: ref.watch(searchScienceClubsControllerProvider.notifier).onTextChanged,
+        actions: appBarActions
       ),
       body: Stack(
         children: [
