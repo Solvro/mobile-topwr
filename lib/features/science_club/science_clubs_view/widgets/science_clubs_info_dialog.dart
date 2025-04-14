@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 import "../../../../config/ui_config.dart";
 import "../../../../l10n/app_localizations.dart";
 
