@@ -121,6 +121,7 @@ abstract class ParkingsConfig {
 
 abstract class ParkingChartConfig {
   static final showLabels = generateRangeHourPoints(6, 22).toList();
+  static const labelFontSize = 16.0;
 }
 
 abstract class AboutUsConfig {
