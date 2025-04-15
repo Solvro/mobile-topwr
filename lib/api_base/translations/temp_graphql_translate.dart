@@ -5,8 +5,8 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../../services/translations_service/business/translator_provider.dart";
-import "../../services/translations_service/data/repositories/preferred_lang_repository.dart";
+import "../../services/translations_service/business/solvro_translator.dart";
+import "../../services/translations_service/data/preferred_lang_repository.dart";
 
 extension TranslateGraphQL on Ref {
   Future<String> translateGraphQLString(String data) async {

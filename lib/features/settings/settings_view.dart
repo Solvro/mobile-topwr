@@ -12,7 +12,7 @@ import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../gen/assets.gen.dart";
-import "../../services/translations_service/data/repositories/preferred_lang_repository.dart";
+import "../../services/translations_service/data/preferred_lang_repository.dart";
 import "../digital_guide/tabs/accessibility_dialog/presentation/accessibility_dialog.dart";
 import "../navigation_tab_view/widgets/navigation_tile.dart";
 import "widgets/language_settings_dialog.dart";

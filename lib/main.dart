@@ -14,7 +14,7 @@ import "features/splash_screen/splash_screen.dart";
 import "features/splash_screen/splash_screen_controller.dart";
 import "features/update_dialog/presentation/update_dialog_wrapper.dart";
 import "l10n/app_localizations.dart";
-import "services/translations_service/data/repositories/preferred_lang_repository.dart";
+import "services/translations_service/data/preferred_lang_repository.dart";
 import "services/translations_service/widgets/remove_old_translations.dart";
 import "theme/app_theme.dart";
 import "theme/colors.dart";

@@ -2,8 +2,8 @@ import "package:flutter/widgets.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:solvro_translator_core/solvro_translator_core.dart";
 
-import "../../services/translations_service/business/translator_provider.dart";
-import "../../services/translations_service/data/repositories/preferred_lang_repository.dart";
+import "../../services/translations_service/business/solvro_translator.dart";
+import "../../services/translations_service/data/preferred_lang_repository.dart";
 import "../../utils/ilist_nonempty.dart";
 import "../cache/cache.dart";
 import "../client/dio_client.dart";
