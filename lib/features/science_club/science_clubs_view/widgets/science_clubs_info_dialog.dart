@@ -10,23 +10,17 @@ class ScienceClubInfoDialog extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(
-              Icons.mail_outline,
-              size: 48,
-              color: Colors.blue,
-            ),
-            const SizedBox(height: 16),
             Text(
-              "Skontaktuj się z nami",
+              "Nie ma twojego koła?",
               style: Theme.of(context).textTheme.headlineSmall,
             ),
             const SizedBox(height: 8),
             const Text(
-              "Jeżeli twoje koło nie znajduje się na liście, skontaktuj się z nami poprzez maila.",
+              "Jeśli chcesz zmienić informacje o swojej organizacji studenckiej lub Twoja organizacja nie jest obecna i chcesz to zmienić, skontaktuj się z nami za pomocą wiadomości e-mail na adres kn.solvro@pwr.edu.pl",
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 16),
