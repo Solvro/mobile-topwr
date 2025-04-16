@@ -2,7 +2,6 @@ import "package:flutter/material.dart";
 
 import "../config/ui_config.dart";
 import "../features/sks/sks_menu/data/models/dish_category_enum.dart";
-import "../services/translations_service/widgets/text_with_translation.dart";
 import "../theme/app_theme.dart";
 
 enum AlertType { info, error }
@@ -42,16 +41,11 @@ class TechnicalMessage extends StatelessWidget {
           child: ListTile(
             onTap: onTap,
             trailing: icon,
-            title: TextWithTranslation(
+            title: Text(
               title ?? DishCategory.technicalInfo.getLocalizedName(context),
               style: context.textTheme.title.copyWith(color: titleColor ?? context.colorTheme.whiteSoap),
-              translate: translate,
             ),
-            subtitle: TextWithTranslation(
-              message,
-              style: context.textTheme.bodyWhite.copyWith(color: textColor),
-              translate: translate,
-            ),
+            subtitle: Text(message, style: context.textTheme.bodyWhite.copyWith(color: textColor)),
           ),
         ),
       ),

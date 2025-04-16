@@ -2,7 +2,6 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../config/ui_config.dart";
-import "../../../../services/translations_service/widgets/text_with_translation.dart";
 import "../../../../theme/app_theme.dart";
 
 class MyFilterChip extends ConsumerWidget {
@@ -33,7 +32,7 @@ class MyFilterChip extends ConsumerWidget {
         child: ChoiceChip(
           tooltip: tooltip ?? label,
           showCheckmark: false,
-          label: TextWithTranslation(label),
+          label: Text(label),
           selected: selected,
           onSelected: (_) => onTap(),
           selectedColor: selectedColor ?? context.colorTheme.orangePomegranade,

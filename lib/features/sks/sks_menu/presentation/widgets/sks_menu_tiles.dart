@@ -5,8 +5,6 @@ import "package:flutter/material.dart";
 import "package:separate/separate.dart";
 
 import "../../../../../config/ui_config.dart";
-import "../../../../../services/translations_service/widgets/rich_text_with_translation.dart";
-import "../../../../../services/translations_service/widgets/text_with_translation.dart";
 import "../../../../../theme/app_theme.dart";
 import "../../../../../widgets/my_expansion_tile.dart";
 import "../../data/models/sks_menu_data.dart";
@@ -49,8 +47,8 @@ class SksMenuDishDetailsTile extends StatelessWidget {
         border: Border.all(color: context.colorTheme.orangePomegranade.withAlpha(50)),
       ),
       child: ListTile(
-        title: TextWithTranslation(dish.name, style: context.textTheme.lightTitle),
-        trailing: RichTextWithTranslation(
+        title: Text(dish.name, style: context.textTheme.lightTitle),
+        trailing: RichText(
           text: TextSpan(
             children: [
               TextSpan(text: " ${dish.size}", style: context.textTheme.bodyGrey),

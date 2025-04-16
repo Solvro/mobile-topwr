@@ -4,7 +4,7 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../config/ui_config.dart";
-import "../../../../../services/translations_service/widgets/text_with_translation.dart";
+
 import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/context_extensions.dart";
 import "../../../../../utils/ilist_nonempty.dart";
@@ -32,9 +32,9 @@ class DigitalGuideRoomDetailView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final roomInformation = room.translations.pl;
     final widgets = [
-      TextWithTranslation(roomInformation.name, style: context.textTheme.headline.copyWith(fontSize: 18)),
+      Text(roomInformation.name, style: context.textTheme.headline.copyWith(fontSize: 18)),
       const SizedBox(height: DigitalGuideConfig.heightTiny),
-      TextWithTranslation(
+      Text(
         roomInformation.roomPurpose,
         style: context.textTheme.headline.copyWith(fontSize: 12, fontWeight: FontWeight.normal),
       ),
@@ -42,7 +42,7 @@ class DigitalGuideRoomDetailView extends ConsumerWidget {
       if (roomInformation.workingDaysAndHours.isNotEmpty)
         Text("${context.localize.working_hours}:", style: context.textTheme.headline),
       if (roomInformation.workingDaysAndHours.isNotEmpty) const SizedBox(height: DigitalGuideConfig.heightSmall),
-      TextWithTranslation(roomInformation.workingDaysAndHours, style: context.textTheme.body.copyWith(fontSize: 16)),
+      Text(roomInformation.workingDaysAndHours, style: context.textTheme.body.copyWith(fontSize: 16)),
       if (roomInformation.workingDaysAndHours.isNotEmpty) const SizedBox(height: DigitalGuideConfig.heightMedium),
       Text(context.localize.key_information, style: context.textTheme.headline),
       const SizedBox(height: DigitalGuideConfig.heightSmall),

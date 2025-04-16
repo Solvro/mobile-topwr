@@ -1,17 +1,21 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
+import "package:solvro_translator_core/solvro_translator_core.dart";
 
 import "../../../../../l10n/app_localizations.dart";
 
 part "digital_guide_information_points.freezed.dart";
 part "digital_guide_information_points.g.dart";
+part "digital_guide_information_points.translatable.g.dart";
 
 @freezed
-abstract class DigitalGuideInformationPoint with _$DigitalGuideInformationPoint {
+@Translatable(makeFieldsTranslatableByDefault: false)
+abstract class DigitalGuideInformationPoint
+    with _$DigitalGuideInformationPoint, _$DigitalGuideInformationPointTranslatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   factory DigitalGuideInformationPoint({
     required int id,
-    required DigitalGuideInformationPointTranslations translations,
+    @translatableField required DigitalGuideInformationPointTranslations translations,
     required int orderNumber,
     required String isMarked,
     required String isVisibleFromAfar,
@@ -47,6 +51,7 @@ abstract class DigitalGuideInformationPoint with _$DigitalGuideInformationPoint 
 }
 
 @freezed
+@allFieldsTranslatable
 abstract class DigitalGuideInformationPointTranslations with _$DigitalGuideInformationPointTranslations {
   factory DigitalGuideInformationPointTranslations({required DigitalGuideInformationPointTranslationDetails pl}) =
       _DigitalGuideInformationPointTranslations;

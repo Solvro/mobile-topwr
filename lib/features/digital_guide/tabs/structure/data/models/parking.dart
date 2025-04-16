@@ -1,11 +1,16 @@
 import "package:freezed_annotation/freezed_annotation.dart";
+import "package:solvro_translator_core/solvro_translator_core.dart";
 
 part "parking.freezed.dart";
 part "parking.g.dart";
+part "parking.translatable.g.dart";
 
 @freezed
-abstract class Parking with _$Parking {
+@translatable
+abstract class Parking with _$Parking, _$ParkingTranslatable {
   const factory Parking({required ParkingTranslations translations}) = _Parking;
+
+  const Parking._();
 
   factory Parking.fromJson(Map<String, dynamic> json) => _$ParkingFromJson(json);
 }

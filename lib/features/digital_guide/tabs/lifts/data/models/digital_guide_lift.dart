@@ -1,27 +1,31 @@
 import "package:freezed_annotation/freezed_annotation.dart";
+import "package:solvro_translator_core/solvro_translator_core.dart";
+
+import "../../../../../../utils/type_converter.dart";
 
 part "digital_guide_lift.freezed.dart";
-
 part "digital_guide_lift.g.dart";
+part "digital_guide_lift.translatable.g.dart";
 
 @freezed
-abstract class DigitalGuideLift with _$DigitalGuideLift {
+@Translatable(makeFieldsTranslatableByDefault: false)
+abstract class DigitalGuideLift with _$DigitalGuideLift, _$DigitalGuideLiftTranslatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideLift({
     required int id,
-    required DigitalGuideTranslationsLift translations,
+    @translatableField required DigitalGuideTranslationsLift translations,
     @JsonKey(name: "images") required List<int>? imagesIds,
     required String displayInLiftsCategory,
     required String isMarkedFromEntrance,
     required String isMarkedFromEntranceInEn,
-    @JsonKey(fromJson: int.tryParse) required int? isUsedBy,
+    @JsonKey(fromJson: int.tryParse, toJson: maybeIntToString) required int? isUsedBy,
     required String isSigned,
     required String isSignedInEn,
     required String isFloorMarked,
     required String isGlazed,
     required int doorWidth,
     required String isOpenAutomatically,
-    @JsonKey(fromJson: int.tryParse) required int? doorType,
+    @JsonKey(fromJson: int.tryParse, toJson: maybeIntToString) required int? doorType,
     required String isIncreasedForceRequired,
     required String isTwoSided,
     required String isMirror,
@@ -46,10 +50,13 @@ abstract class DigitalGuideLift with _$DigitalGuideLift {
     required String isGoodDoorWallContrast,
   }) = _DigitalGuideLift;
 
+  const DigitalGuideLift._();
+
   factory DigitalGuideLift.fromJson(Map<String, dynamic> json) => _$DigitalGuideLiftFromJson(json);
 }
 
 @freezed
+@allFieldsTranslatable
 abstract class DigitalGuideTranslationsLift with _$DigitalGuideTranslationsLift {
   const factory DigitalGuideTranslationsLift({required DigitalGuideTranslationLift pl}) = _DigitalGuideTranslationsLift;
 

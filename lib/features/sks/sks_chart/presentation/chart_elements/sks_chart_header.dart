@@ -1,7 +1,6 @@
 import "package:flutter/cupertino.dart";
 
 import "../../../../../config/ui_config.dart";
-import "../../../../../services/translations_service/widgets/text_with_translation.dart";
 import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/context_extensions.dart";
 import "../../../sks_people_live/data/models/sks_user_data.dart";
@@ -23,9 +22,9 @@ class SksChartHeader extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            TextWithTranslation(SksChartConfig.buildingCode, style: context.textTheme.headline),
+            Text(SksChartConfig.buildingCode, style: context.textTheme.headline),
             Text("${context.localize.street_abbreviation} ${SksChartConfig.sksAddress}", style: context.textTheme.body),
-            TextWithTranslation(SksChartConfig.sksPostalCode, style: context.textTheme.body),
+            Text(SksChartConfig.sksPostalCode, style: context.textTheme.body),
           ],
         ),
         Row(

@@ -4,7 +4,6 @@ import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../../../services/translations_service/widgets/text_with_translation.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../widgets/my_error_widget.dart";
 import "../../../widgets/subsection_header.dart";
@@ -26,7 +25,7 @@ class ParkingsSection extends ConsumerWidget {
         actionTitle: context.localize.map_button,
         onClick: ref.navigateParkings,
       ),
-      FilledButton(onPressed: ref.navigateToSksMenu, child: const TextWithTranslation("navigate to sks menu")),
+      FilledButton(onPressed: ref.navigateToSksMenu, child: const Text("navigate to sks menu")),
       const _ParkingsList(),
     ],
   );

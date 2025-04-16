@@ -1,6 +1,7 @@
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
+import "../../../../api_base_rest/client/json.dart";
 import "../../../buildings_view/repository/buildings_repository.dart";
 import "../api/digital_guide_get_and_cache.dart";
 import "../models/digital_guide_response.dart";
@@ -21,8 +22,8 @@ Future<({DigitalGuideResponse digitalGuideData, String? photoUrl})> digitalGuide
   final digitalGuideData = await ref.getAndCacheDataFromDigitalGuide(
     "buildings/$digitalGuideId",
     DigitalGuideResponse.fromJson,
-    onRetry: () => ref.invalidateSelf(),
+    onRetry: ref.invalidateSelf,
   );
 
-  return (digitalGuideData: digitalGuideData, photoUrl: building.cover?.filename_disk);
+  return (digitalGuideData: digitalGuideData.castAsObject, photoUrl: building.cover?.filename_disk);
 }

@@ -1,15 +1,18 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
+import "package:solvro_translator_core/solvro_translator_core.dart";
 
 part "stairs.g.dart";
 part "stairs.freezed.dart";
+part "stairs.translatable.g.dart";
 
 @freezed
-abstract class Stairs with _$Stairs {
+@Translatable(makeFieldsTranslatableByDefault: false)
+abstract class Stairs with _$Stairs, _$StairsTranslatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory Stairs({
     required int id,
-    required StairsTranslations translations,
+    @translatableField required StairsTranslations translations,
     required String isStairsSignInfo,
     required String isStairsSignInfoInEn,
     required String isGoodLit,
@@ -25,10 +28,13 @@ abstract class Stairs with _$Stairs {
     @JsonKey(name: "railings") required IList<int> railingsIDs,
   }) = _Stairs;
 
+  const Stairs._();
+
   factory Stairs.fromJson(Map<String, dynamic> json) => _$StairsFromJson(json);
 }
 
 @freezed
+@allFieldsTranslatable
 abstract class StairsTranslations with _$StairsTranslations {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory StairsTranslations({@JsonKey(name: "pl") required StairsTranslation plTranslation}) =

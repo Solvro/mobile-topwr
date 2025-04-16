@@ -19,8 +19,8 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 version: 1.1.16+76
 
 environment:
-  sdk: ^3.7.0
-  flutter: 3.29.0
+  sdk: ^3.7.2
+  flutter: 3.29.2
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -131,6 +131,8 @@ dependencies:
   wiredash: ^2.4.0
   flutter_hooks: ^0.21.2
   audioplayers: ^6.2.0
+  solvro_translator_with_drift_cache_flutter: ^0.4.0
+  solvro_translator_core: ^0.4.0
 
 dev_dependencies:
   flutter_test:
@@ -151,9 +153,9 @@ dev_dependencies:
   graphql_codegen: ^1.2.1
   flutter_gen_runner: ^5.9.0
   auto_route_generator: ^10.0.1
+  solvro_translator_generator: ^0.4.0
 
   #Other
-  svg_optimizer: ^0.0.1
   flutter_launcher_icons: "^0.14.3"
   test: ^1.25.15
 
@@ -171,9 +173,6 @@ flutter:
   generate: true
 
   assets:
-    - path: assets/svg/
-      transformers:
-        - package: svg_optimizer
     - assets/png/splash_screen/splash_logo.png
     - assets/svg/logo_app_bar.svg
     - assets/png/map_markers/map_marker.png
@@ -213,7 +212,7 @@ flutter:
     - assets/animations/offline.json
     - assets/animations/bug.json
     - assets/animations/sks_closed.json
-
+    - assets/svg/settings.svg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see

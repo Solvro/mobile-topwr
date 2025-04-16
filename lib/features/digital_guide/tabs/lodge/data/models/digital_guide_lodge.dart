@@ -1,14 +1,17 @@
 import "package:freezed_annotation/freezed_annotation.dart";
+import "package:solvro_translator_core/solvro_translator_core.dart";
 
 part "digital_guide_lodge.freezed.dart";
 part "digital_guide_lodge.g.dart";
+part "digital_guide_lodge.translatable.g.dart";
 
 @freezed
-abstract class DigitalGuideLodge with _$DigitalGuideLodge {
+@Translatable(makeFieldsTranslatableByDefault: false)
+abstract class DigitalGuideLodge with _$DigitalGuideLodge, _$DigitalGuideLodgeTranslatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideLodge({
     required int id,
-    required DigitalGuideTranslationsLodge translations,
+    @translatableField required DigitalGuideTranslationsLodge translations,
     required String areAccessBarriers,
     required String isMovementSpace,
     required double counterHeight,
@@ -18,10 +21,13 @@ abstract class DigitalGuideLodge with _$DigitalGuideLodge {
     @JsonKey(name: "images") required List<int>? imagesIds,
   }) = _DigitalGuideLodge;
 
+  const DigitalGuideLodge._();
+
   factory DigitalGuideLodge.fromJson(Map<String, dynamic> json) => _$DigitalGuideLodgeFromJson(json);
 }
 
 @freezed
+@allFieldsTranslatable
 abstract class DigitalGuideTranslationsLodge with _$DigitalGuideTranslationsLodge {
   const factory DigitalGuideTranslationsLodge({required DigitalGuideTranslationLodge pl}) =
       _DigitalGuideTranslationsLodge;

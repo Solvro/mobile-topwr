@@ -1,20 +1,23 @@
 import "package:freezed_annotation/freezed_annotation.dart";
+import "package:solvro_translator_core/solvro_translator_core.dart";
 
 part "door.freezed.dart";
 part "door.g.dart";
+part "door.translatable.g.dart";
 
 @freezed
-abstract class Door with _$Door {
+@Translatable(makeFieldsTranslatableByDefault: false)
+abstract class Door with _$Door, _$DoorTranslatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory Door({
-    required DoorTranslations translations,
+    @translatableField required DoorTranslations translations,
     required String isMainWingHighlighted,
     required String isGoodDoorVisibleFromOutside,
     required String isGoodDoorVisibleFromInside,
     required String areOpenAutomatically,
     required String isIncreasedForceRequired,
     required String isDoorCloser,
-    @JsonKey(fromJson: stringToDoorType) required DoorType doorType,
+    @JsonKey(fromJson: stringToDoorType, toJson: doorTypeToString) required DoorType doorType,
     required String isGraphic,
     required String areVisible,
     required String areGlazed,
@@ -28,10 +31,13 @@ abstract class Door with _$Door {
     required int doorWidth,
   }) = _Door;
 
+  const Door._();
+
   factory Door.fromJson(Map<String, dynamic> json) => _$DoorFromJson(json);
 }
 
 @freezed
+@allFieldsTranslatable
 abstract class DoorTranslations with _$DoorTranslations {
   const factory DoorTranslations({required DoorTranslation pl}) = _DoorTranslations;
 
@@ -73,4 +79,14 @@ DoorType stringToDoorType(String string) {
     default:
       return DoorType.singleLeafDoor;
   }
+}
+
+String doorTypeToString(DoorType doorType) {
+  return switch (doorType) {
+    DoorType.singleLeafDoor => "1",
+    DoorType.doubleLeafDoor => "2",
+    DoorType.singleLeafDoorSliding => "3",
+    DoorType.doubleLeafDoorSliding => "4",
+    DoorType.swingDoor => "5",
+  };
 }

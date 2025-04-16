@@ -1,14 +1,17 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
+import "package:solvro_translator_core/solvro_translator_core.dart";
 
 part "corridor.freezed.dart";
 part "corridor.g.dart";
+part "corridor.translatable.g.dart";
 
 @freezed
-abstract class Corridor with _$Corridor {
+@Translatable(makeFieldsTranslatableByDefault: false)
+abstract class Corridor with _$Corridor, _$CorridorTranslatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory Corridor({
-    required CorridorTranslations translations,
+    @translatableField required CorridorTranslations translations,
     required String isSimpleCorridorLayout,
     required String isFloorMarked,
     required String areRoomsEntrances,
@@ -39,10 +42,13 @@ abstract class Corridor with _$Corridor {
     @JsonKey(name: "images") required IList<int> imagesIndices,
   }) = _Corridor;
 
+  const Corridor._();
+
   factory Corridor.fromJson(Map<String, dynamic> json) => _$CorridorFromJson(json);
 }
 
 @freezed
+@allFieldsTranslatable
 abstract class CorridorTranslations with _$CorridorTranslations {
   const factory CorridorTranslations({@JsonKey(name: "pl") required CorridorTranslation plTranslation}) =
       _CorridorTranslations;

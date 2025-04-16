@@ -1,7 +1,6 @@
 import "package:flutter/material.dart";
 
 import "../../../../config/ui_config.dart";
-import "../../../../services/translations_service/widgets/text_with_translation.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../widgets/optimized_directus_image.dart";
 import "../../../../widgets/tile_splash.dart";
@@ -29,7 +28,7 @@ class BuildingCard extends StatelessWidget {
               ),
             Container(
               margin: const EdgeInsets.only(left: 16, top: 84),
-              child: TextWithTranslation(
+              child: Text(
                 buildingName,
                 style: context.textTheme.headlineWhite.copyWith(shadows: HomeViewConfig.squareCardTextShadow),
               ),

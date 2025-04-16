@@ -1,19 +1,21 @@
 import "package:flutter/widgets.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:solvro_translator_core/solvro_translator_core.dart";
 
-import "../../../../api_base_rest/cache/cache.dart";
+import "../../../../api_base_rest/client/json.dart";
+import "../../../../api_base_rest/translations/translate.dart";
 import "../../../../config/env.dart";
 import "../../presentation/digital_guide_view.dart";
 
 extension DigitalGuideClient on Ref {
   static const digitalGuideTTLDays = 7; // TODO(simon-the-shark): adjust it
 
-  Future<T> getAndCacheDataFromDigitalGuide<T, JSON>(
+  Future<JSON<T>> getAndCacheDataFromDigitalGuide<T extends TranslatableInterface>(
     String subUrl,
-    T Function(JSON json) fromJson, {
+    T Function(Map<String, dynamic> json) fromJson, {
     VoidCallback? onRetry,
   }) async {
-    return getAndCacheData(
+    return getAndCacheDataWithTranslation(
       "${Env.digitalGuideUrl}/$subUrl",
       digitalGuideTTLDays,
       fromJson,

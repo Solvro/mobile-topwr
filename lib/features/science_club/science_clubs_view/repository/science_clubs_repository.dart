@@ -5,6 +5,7 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../../../config/ttl_config.dart";
 import "../../../../api_base/query_adapter.dart";
+import "../../../../api_base/translations/temp_graphql_translate.dart";
 import "../../../../utils/ilist_nonempty.dart";
 import "getScienceClubs.graphql.dart";
 
@@ -15,10 +16,26 @@ typedef ScienceClub = Query$GetScienceClubs$Scientific_Circles;
 @riverpod
 Future<IList<ScienceClub>> scienceClubsRepository(Ref ref) async {
   final results = await ref.queryGraphql(Options$Query$GetScienceClubs(), TtlKey.scienceClubsRepository);
-  return (results?.Scientific_Circles
-          .where((club) => club.status.toScienceClubStatus != ScienceClubStatus.archived)
-          .sortBySourceTypes())
-      .toIList();
+  final data =
+      (results?.Scientific_Circles
+              .where((club) => club.status.toScienceClubStatus != ScienceClubStatus.archived)
+              .sortBySourceTypes())
+          .toIList();
+
+  return ref.translateGraphQLModelIList(
+    data,
+    (club) async => club.copyWith(
+      name: await ref.translateGraphQLString(club.name),
+      shortDescription: await ref.translateGraphQLMaybeString(club.shortDescription),
+      department: club.department?.copyWith(name: await ref.translateGraphQLMaybeString(club.department?.name)),
+      tags: await ref.translateGraphQLModelList(
+        club.tags ?? [],
+        (tag) async => tag?.copyWith(
+          Tags_id: tag.Tags_id?.copyWith(name: await ref.translateGraphQLMaybeString(tag.Tags_id?.name)),
+        ),
+      ),
+    ),
+  );
 }
 
 extension IsSolvroX on ScienceClub {

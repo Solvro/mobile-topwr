@@ -1,14 +1,17 @@
 import "package:freezed_annotation/freezed_annotation.dart";
+import "package:solvro_translator_core/solvro_translator_core.dart";
 
 part "room_stairs_response.freezed.dart";
 part "room_stairs_response.g.dart";
+part "room_stairs_response.translatable.g.dart";
 
 @freezed
-abstract class RoomStairsResponse with _$RoomStairsResponse {
+@Translatable(makeFieldsTranslatableByDefault: false)
+abstract class RoomStairsResponse with _$RoomStairsResponse, _$RoomStairsResponseTranslatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory RoomStairsResponse({
     required int id,
-    required RoomStairsTranslations translations,
+    @translatableField required RoomStairsTranslations translations,
     required double stairsWidth,
     required String isGoodLit,
     required String isNonslipSurface,
@@ -24,10 +27,13 @@ abstract class RoomStairsResponse with _$RoomStairsResponse {
     required String isEdgeBetweenRampRowEntranceMarked,
   }) = _RoomStairsResponse;
 
+  const RoomStairsResponse._();
+
   factory RoomStairsResponse.fromJson(Map<String, dynamic> json) => _$RoomStairsResponseFromJson(json);
 }
 
 @freezed
+@allFieldsTranslatable
 abstract class RoomStairsTranslations with _$RoomStairsTranslations {
   const factory RoomStairsTranslations({required RoomStairsTranslation pl}) = _RoomStairsTranslations;
 

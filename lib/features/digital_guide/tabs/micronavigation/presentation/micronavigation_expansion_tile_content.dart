@@ -1,6 +1,7 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:solvro_translator_core/solvro_translator_core.dart";
 
 import "../../../../../config/ui_config.dart";
 import "../../../../../theme/app_theme.dart";
@@ -53,7 +54,10 @@ class _MicronavigationExpansionTileContent extends ConsumerWidget {
               onTap: () async {
                 await ref.navigateMicronavigationDetails(response);
               },
-              text: response.nameOverride.pl ?? "",
+              text:
+                  context.solvroLocale == SolvroLocale.pl
+                      ? response.nameOverride.pl ?? response.nameOverride.en ?? ""
+                      : response.nameOverride.en ?? response.nameOverride.pl ?? "",
             ),
           );
         }).toIList();

@@ -1,15 +1,18 @@
 import "package:freezed_annotation/freezed_annotation.dart";
+import "package:solvro_translator_core/solvro_translator_core.dart";
 
 part "digital_guide_transportation.freezed.dart";
 part "digital_guide_transportation.g.dart";
+part "digital_guide_transportation.translatable.g.dart";
 
 @freezed
-abstract class DigitalGuideTransportation with _$DigitalGuideTransportation {
+@Translatable(makeFieldsTranslatableByDefault: false)
+abstract class DigitalGuideTransportation with _$DigitalGuideTransportation, _$DigitalGuideTransportationTranslatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideTransportation({
     required int id,
     required int building,
-    required DigitalGuideTranslationsTransportation translations,
+    @translatableField required DigitalGuideTranslationsTransportation translations,
     required double nearestPublicTransportStopDistance,
     required String arePassTrafficLightsFromStopToEntry,
     required String areNotPassTrafficLightsFromStopToEntry,
@@ -36,10 +39,13 @@ abstract class DigitalGuideTransportation with _$DigitalGuideTransportation {
     required String alternativeDailyTramBusLinesStop,
   }) = _DigitalGuideTransportation;
 
+  const DigitalGuideTransportation._();
+
   factory DigitalGuideTransportation.fromJson(Map<String, dynamic> json) => _$DigitalGuideTransportationFromJson(json);
 }
 
 @freezed
+@allFieldsTranslatable
 abstract class DigitalGuideTranslationsTransportation with _$DigitalGuideTranslationsTransportation {
   const factory DigitalGuideTranslationsTransportation({
     @JsonKey(name: "pl") required DigitalGuideTranslationTransportation pl,
@@ -53,11 +59,11 @@ abstract class DigitalGuideTranslationsTransportation with _$DigitalGuideTransla
 abstract class DigitalGuideTranslationTransportation with _$DigitalGuideTranslationTransportation {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DigitalGuideTranslationTransportation({
-    required String nearestPublicTransportStop,
+    @nonTranslatableField required String nearestPublicTransportStop,
     required String nearestPublicTransportStopDistanceComment,
     required String arePassTrafficLightsFromStopToEntryComment,
     required String areNotPassTrafficLightsFromStopToEntryComment,
-    required String alternativePublicTransportStop,
+    @nonTranslatableField required String alternativePublicTransportStop,
     required String alternativePublicTransportStopDistanceComment,
     required String arePassTrafficLightsFromStopToEntryAltRoadComment,
     required String areNotPassTrafficLightsFromStopToEntryAltRoadComment,

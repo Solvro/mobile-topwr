@@ -1,7 +1,6 @@
 import "package:flutter/material.dart";
 
 import "../../../config/ui_config.dart";
-import "../../../services/translations_service/widgets/text_with_translation.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../widgets/my_alert_dialog.dart";
@@ -71,7 +70,7 @@ class _DialogContent extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 20),
-        TextWithTranslation(applicationLegalese, style: context.textTheme.body),
+        Text(applicationLegalese, style: context.textTheme.body),
       ],
     );
   }

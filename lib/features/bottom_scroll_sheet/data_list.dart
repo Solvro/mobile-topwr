@@ -5,7 +5,6 @@ import "package:flutter_hooks/flutter_hooks.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../config/map_view_config.dart";
-import "../../services/translations_service/widgets/text_with_translation.dart";
 import "../../theme/app_theme.dart";
 import "../../widgets/my_error_widget.dart";
 import "../map_view/controllers/controllers_set.dart";
@@ -84,7 +83,7 @@ class _EmptyDataList<T extends GoogleNavigable> extends StatelessWidget {
         alignment: Alignment.topCenter,
         child: Padding(
           padding: const EdgeInsets.only(top: 24),
-          child: TextWithTranslation(context.mapViewTexts<T>().emptyList, style: context.textTheme.body),
+          child: Text(context.mapViewTexts<T>().emptyList, style: context.textTheme.body),
         ),
       ),
     );

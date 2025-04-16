@@ -1,13 +1,16 @@
 import "package:freezed_annotation/freezed_annotation.dart";
+import "package:solvro_translator_core/solvro_translator_core.dart";
 
 part "railing.g.dart";
 part "railing.freezed.dart";
+part "railing.translatable.g.dart";
 
 @freezed
-abstract class Railing with _$Railing {
+@Translatable(makeFieldsTranslatableByDefault: false)
+abstract class Railing with _$Railing, _$RailingTranslatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory Railing({
-    required RailingTranslations translations,
+    @translatableField required RailingTranslations translations,
     required String isRailingOnLandings,
     double? railingHeight,
     required String isTwoSidedRailing,
@@ -18,12 +21,14 @@ abstract class Railing with _$Railing {
     required String isRailingObstacle,
   }) = _Railing;
 
+  const Railing._();
+
   factory Railing.fromJson(Map<String, dynamic> json) => _$RailingFromJson(json);
 }
 
 @freezed
+@allFieldsTranslatable
 abstract class RailingTranslations with _$RailingTranslations {
-  @JsonSerializable(fieldRename: FieldRename.snake)
   const factory RailingTranslations({@JsonKey(name: "pl") required RailingTranslation plTranslation}) =
       _RailingTranslations;
 

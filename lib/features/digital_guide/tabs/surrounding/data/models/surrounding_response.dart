@@ -1,16 +1,19 @@
 import "package:freezed_annotation/freezed_annotation.dart";
+import "package:solvro_translator_core/solvro_translator_core.dart";
 
 import "../../../../../../utils/type_converter.dart";
 
 part "surrounding_response.freezed.dart";
 part "surrounding_response.g.dart";
+part "surrounding_response.translatable.g.dart";
 
 @freezed
-abstract class SurroundingResponse with _$SurroundingResponse {
+@Translatable(makeFieldsTranslatableByDefault: false)
+abstract class SurroundingResponse with _$SurroundingResponse, _$SurroundingResponseTranslatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory SurroundingResponse({
     required int id,
-    required SurroundingResponseTranslations translations,
+    @translatableField required SurroundingResponseTranslations translations,
     required String areNoBarriers,
     required String areLoweredCurbs,
     required String isPavementRough,
@@ -22,20 +25,23 @@ abstract class SurroundingResponse with _$SurroundingResponse {
     required String isLit,
     required String isNoisyStreetNearBuilding,
     required String isSidewalkSeparatedFromTheRoad,
-    @JsonKey(fromJson: stringToInt) required int accessibilityLevelForMotorDisability,
-    @JsonKey(fromJson: stringToInt) required int accessibilityLevelForBlind,
-    @JsonKey(fromJson: stringToInt) required int accessibilityLevelForVisuallyImpaired,
-    @JsonKey(fromJson: stringToInt) required int accessibilityLevelForHardOfHearing,
-    @JsonKey(fromJson: stringToInt) required int accessibilityLevelForHighSensorySensitivity,
-    @JsonKey(fromJson: stringToInt) required int accessibilityLevelForCognitiveDifficulties,
+    @JsonKey(fromJson: stringToInt, toJson: intToString) required int accessibilityLevelForMotorDisability,
+    @JsonKey(fromJson: stringToInt, toJson: intToString) required int accessibilityLevelForBlind,
+    @JsonKey(fromJson: stringToInt, toJson: intToString) required int accessibilityLevelForVisuallyImpaired,
+    @JsonKey(fromJson: stringToInt, toJson: intToString) required int accessibilityLevelForHardOfHearing,
+    @JsonKey(fromJson: stringToInt, toJson: intToString) required int accessibilityLevelForHighSensorySensitivity,
+    @JsonKey(fromJson: stringToInt, toJson: intToString) required int accessibilityLevelForCognitiveDifficulties,
     required int building,
     required List<int> images,
   }) = _SurroundingResponse;
+
+  const SurroundingResponse._();
 
   factory SurroundingResponse.fromJson(Map<String, dynamic> json) => _$SurroundingResponseFromJson(json);
 }
 
 @freezed
+@allFieldsTranslatable
 abstract class SurroundingResponseTranslations with _$SurroundingResponseTranslations {
   const factory SurroundingResponseTranslations({
     @JsonKey(name: "pl") required SurroundingResponseTranslationsDetails plTranslation,

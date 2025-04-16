@@ -4,8 +4,6 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../config/ui_config.dart";
-import "../../../services/translations_service/widgets/rich_text_with_translation.dart";
-import "../../../services/translations_service/widgets/text_with_translation.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../utils/determine_contact_icon.dart";
@@ -59,7 +57,7 @@ class _SciClubDetailDataView extends ConsumerWidget {
               const SizedBox(height: 8),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: RichTextWithTranslation(
+                child: RichText(
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.center,
@@ -74,11 +72,7 @@ class _SciClubDetailDataView extends ConsumerWidget {
                 ),
               ),
               const SizedBox(height: 12),
-              TextWithTranslation(
-                value.department?.name ?? "",
-                style: context.textTheme.body,
-                textAlign: TextAlign.center,
-              ),
+              Text(value.department?.name ?? "", style: context.textTheme.body, textAlign: TextAlign.center),
               const SizedBox(height: DetailViewsConfig.spacerHeight),
               ContactSection(
                 title: context.localize.contact,

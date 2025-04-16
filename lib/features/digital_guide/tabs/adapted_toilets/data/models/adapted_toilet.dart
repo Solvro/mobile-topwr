@@ -1,20 +1,23 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
+import "package:solvro_translator_core/solvro_translator_core.dart";
 
 import "../../../../../../utils/context_extensions.dart";
 import "../../../../../../utils/type_converter.dart";
 
 part "adapted_toilet.freezed.dart";
 part "adapted_toilet.g.dart";
+part "adapted_toilet.translatable.g.dart";
 
 @freezed
-abstract class AdaptedToilet with _$AdaptedToilet {
+@Translatable(makeFieldsTranslatableByDefault: false)
+abstract class AdaptedToilet with _$AdaptedToilet, _$AdaptedToiletTranslatable {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory AdaptedToilet({
-    required AdaptedToiletTranslations translations,
+    @translatableField required AdaptedToiletTranslations translations,
     required String isAccessAccessibleForPwd,
-    @JsonKey(fromJson: stringToInt) required int hasAdditionalPurpose,
+    @JsonKey(fromJson: stringToInt, toJson: intToString) required int hasAdditionalPurpose,
     required String isNeedAuthorization,
     required String isEntranceGraphicallyMarked,
     required String isMarked,
@@ -37,10 +40,13 @@ abstract class AdaptedToilet with _$AdaptedToilet {
     @JsonKey(name: "doors") required IList<int> doorsIndices,
   }) = _AdaptedToilet;
 
+  const AdaptedToilet._();
+
   factory AdaptedToilet.fromJson(Map<String, dynamic> json) => _$AdaptedToiletFromJson(json);
 }
 
 @freezed
+@allFieldsTranslatable
 abstract class AdaptedToiletTranslations with _$AdaptedToiletTranslations {
   const factory AdaptedToiletTranslations({@JsonKey(name: "pl") required AdaptedToiletTranslation plTranslation}) =
       _AdaptedToiletTranslations;

@@ -3,8 +3,7 @@ import "package:flutter_svg/svg.dart";
 
 import "../../../../../config/ui_config.dart";
 import "../../../../../theme/app_theme.dart";
-import "../../../../services/translations_service/widgets/my_html_widget_with_translation.dart";
-import "../../../../services/translations_service/widgets/text_with_translation.dart";
+import "../../../../../widgets/my_html_widget.dart";
 
 class AccessibilityInformationCard extends StatelessWidget {
   final Color color;
@@ -55,14 +54,9 @@ class AccessibilityInformationCard extends StatelessWidget {
                   isHTML
                       ? Padding(
                         padding: const EdgeInsets.all(DigitalGuideConfig.heightSmall),
-                        child: MyHtmlWidgetWithTranslation(text, textStyle: context.textTheme.body),
+                        child: MyHtmlWidget(text, textStyle: context.textTheme.body),
                       )
-                      : TextWithTranslation(
-                        text,
-                        style: context.textTheme.body,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
-                      ),
+                      : Text(text, style: context.textTheme.body, overflow: TextOverflow.ellipsis, maxLines: 2),
             ),
           ),
         ],

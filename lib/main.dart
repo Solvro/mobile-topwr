@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:solvro_translator_core/solvro_translator_core.dart";
 import "package:wiredash/wiredash.dart";
 
 import "api_base/cache/remote_flush/presentation/flush_cache_remotely_widget.dart";
@@ -13,8 +14,7 @@ import "features/splash_screen/splash_screen.dart";
 import "features/splash_screen/splash_screen_controller.dart";
 import "features/update_dialog/presentation/update_dialog_wrapper.dart";
 import "l10n/app_localizations.dart";
-import "services/translations_service/business/translations_notifier.dart";
-import "services/translations_service/data/models/supported_languages.dart";
+import "services/translations_service/data/preferred_lang_repository.dart";
 import "services/translations_service/widgets/remove_old_translations.dart";
 import "theme/app_theme.dart";
 import "theme/colors.dart";
@@ -30,7 +30,7 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final translations = ref.watch(translationsProvider);
+    final currentLocale = ref.watch(preferredLanguageRepositoryProvider);
 
     return RemoveOldTranslations(
       child: FlushCacheRemotelyWidget(
@@ -39,7 +39,7 @@ class MyApp extends ConsumerWidget {
           secret: Env.wiredashSecret,
           theme: context.wiredashTheme,
           child: MaterialApp.router(
-            locale: translations.value?.toLocale() ?? SupportedLocales.pl.toLocale(),
+            locale: Locale(currentLocale.value?.name ?? SolvroLocale.pl.name),
             builder: (context, child) => InAppReviewWidget(child: UpdateDialogWrapper(child: child!)),
             title: MyAppConfig.title,
             localizationsDelegates: AppLocalizations.localizationsDelegates,

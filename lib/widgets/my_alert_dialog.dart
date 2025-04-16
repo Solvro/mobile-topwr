@@ -3,7 +3,6 @@ import "package:flutter/material.dart";
 import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
-import "../services/translations_service/widgets/text_with_translation.dart";
 
 Future<void> showCustomDialog({
   required BuildContext context,
@@ -53,7 +52,7 @@ class _MyAlertDialog extends StatelessWidget {
             Flexible(
               child: TextButton(
                 onPressed: onConfirmTapped,
-                child: TextWithTranslation(
+                child: Text(
                   confirmText,
                   style: context.textTheme.bodyOrange.copyWith(fontSize: AlertDialogConfig.buttonFontSize),
                 ),
