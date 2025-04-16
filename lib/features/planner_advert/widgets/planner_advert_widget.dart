@@ -16,11 +16,14 @@ class PlannerAdvertBanner extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(plannerAdvertContentRepositoryProvider);
-    return switch (state) {
-      AsyncError(:final error) => MyErrorWidget(error),
-      AsyncValue(:final PlannerAdvertContent value) => _PlannerAdvertBanner(value),
-      _ => const HorizontalRectangularSectionLoading(),
-    };
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: HomeViewConfig.paddingMedium),
+      child: switch (state) {
+        AsyncError(:final error) => MyErrorWidget(error),
+        AsyncValue(:final PlannerAdvertContent value) => _PlannerAdvertBanner(value),
+        _ => const HorizontalRectangularSectionLoading(),
+      },
+    );
   }
 }
 
