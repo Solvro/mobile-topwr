@@ -12,6 +12,7 @@ import "controllers/science_clubs_view_controller.dart";
 import "safe_load_initial_repos.dart";
 import "widgets/sci_clubs_scaffold.dart";
 import "widgets/science_clubs_list.dart";
+import "widgets/science_clubs_info_dialog.dart";
 
 @RoutePage()
 class ScienceClubsView extends StatelessWidget {
@@ -76,7 +77,21 @@ class _ScienceClubsView extends StatelessWidget {
                 (ids, type) => ids.contains(type.toJson()?.toLowerCase()),
               );
 
-              return SciClubsScaffold(showFab: safeLoadedDepartments && safeLoadedTags, child: child);
+              return SciClubsScaffold(
+                showFab: safeLoadedDepartments && safeLoadedTags,
+                appBarActions: [
+                  IconButton(
+                    icon: const Icon(Icons.info_outline),
+                    onPressed: () {
+                      showDialog<void>(
+                        context: context,
+                        builder: (context) => const ScienceClubInfoDialog(),
+                      ); 
+                    },
+                  ),
+                ],
+                child: child,
+              );
             },
             child: const ScienceClubsList(),
           ),

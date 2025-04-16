@@ -45,7 +45,7 @@ class SettingsView extends ConsumerWidget {
         padding: const EdgeInsets.all(32),
         child: SizedBox.square(
           dimension: min(MediaQuery.sizeOf(context).width, MediaQuery.sizeOf(context).height) * 0.5,
-          child: SvgPicture.asset(Assets.svg.settings),
+          // child: SvgPicture.asset(Assets.svg.settings),
         ),
       ),
     ];

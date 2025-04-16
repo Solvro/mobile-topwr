@@ -153,7 +153,7 @@ dev_dependencies:
   auto_route_generator: ^10.0.1
 
   #Other
-  svg_optimizer: ^0.0.1
+  svg_optimizer: ^0.0.1 
   flutter_launcher_icons: "^0.14.3"
   test: ^1.25.15
 
