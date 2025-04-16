@@ -6,7 +6,7 @@ import "../../../../utils/context_extensions.dart";
 import "../../../../widgets/my_error_widget.dart";
 import "../../../../widgets/subsection_header.dart";
 import "../../../departments/departments_view/data/models/department.dart";
-import "../../../departments/departments_view/data/reposiotory/departments_repository.dart";
+import "../../../departments/departments_view/data/repository/departments_repository.dart";
 import "../../../navigator/utils/navigation_commands.dart";
 import "../loading_widgets/scrollable_section_loading.dart";
 import "../paddings.dart";

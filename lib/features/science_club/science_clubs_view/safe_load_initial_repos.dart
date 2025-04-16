@@ -2,7 +2,7 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../widgets/my_error_widget.dart";
-import "../../departments/departments_view/data/reposiotory/departments_repository.dart";
+import "../../departments/departments_view/data/repository/departments_repository.dart";
 import "../science_clubs_filters/repository/tags_repository.dart";
 import "widgets/sci_clubs_scaffold.dart";
 
