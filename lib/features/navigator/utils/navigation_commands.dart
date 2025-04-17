@@ -51,7 +51,7 @@ extension NavigationX on WidgetRef {
     await _router.push(const DepartmentsRoute());
   }
 
-  Future<void> navigateDepartmentDetail(String id) async {
+  Future<void> navigateDepartmentDetail(int id) async {
     await _router.push(DepartmentDetailRoute(id: id));
   }
 
