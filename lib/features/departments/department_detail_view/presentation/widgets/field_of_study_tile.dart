@@ -4,13 +4,13 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:separate/separate.dart";
 
-import "../../../../theme/app_theme.dart";
-import "../../../../theme/utils.dart";
-import "../../../../utils/launch_url_util.dart";
-import "../../../../widgets/wide_tile_card.dart";
-import "../../../analytics/data/umami.dart";
-import "../../../analytics/data/umami_events.dart";
-import "fields_of_study_section.dart";
+import "../../../../../theme/app_theme.dart";
+import "../../../../../theme/utils.dart";
+import "../../../../../utils/launch_url_util.dart";
+import "../../../../../widgets/wide_tile_card.dart";
+import "../../../../analytics/data/umami.dart";
+import "../../../../analytics/data/umami_events.dart";
+import "../../data/models/department_details.dart";
 
 class FieldOfStudyTile extends ConsumerWidget {
   const FieldOfStudyTile(this.item, {super.key});
@@ -23,17 +23,17 @@ class FieldOfStudyTile extends ConsumerWidget {
       data: context.defaultThemeWithOverrideTextStyles(title: context.textTheme.lightTitle),
       child: WideTileCard(
         onTap: () async {
-          unawaited(ref.trackEvent(UmamiEvents.openFieldOfStudiesLink, value: item.url ?? ""));
-          await ref.launch(item.url ?? "");
+          unawaited(ref.trackEvent(UmamiEvents.openFieldOfStudiesLink, value: item.url));
+          await ref.launch(item.url);
         },
         crossAxisAlignment: CrossAxisAlignment.center,
         title: item.name,
         fixedTrailingHeight: false,
         trailing: Row(
           children: <Widget>[
-            if (item.isEnglish ?? false) Text("🇬🇧", style: emojiStyle) else Text("🇵🇱", style: emojiStyle),
+            if (item.isEnglish) Text("🇬🇧", style: emojiStyle) else Text("🇵🇱", style: emojiStyle),
             Icon(Icons.sunny, color: context.colorTheme.greyPigeon, size: fontSize),
-            if (item.hasWeekendModeOption ?? false)
+            if (item.hasWeekendOption)
               Icon(Icons.remove_red_eye_outlined, color: context.colorTheme.greyPigeon, size: fontSize),
             const SizedBox(width: 4),
           ].separate((i, e0, e1) => const SizedBox(width: 4)),

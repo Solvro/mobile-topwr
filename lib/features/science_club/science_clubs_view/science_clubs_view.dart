@@ -4,7 +4,7 @@ import "package:flutter/material.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../../utils/context_extensions.dart";
-import "../../departments/departments_view/repository/departments_repository.dart";
+import "../../departments/departments_view/data/repository/departments_repository.dart";
 import "../science_clubs_filters/filters_controller.dart";
 import "../science_clubs_filters/hooks/use_initial_filter_ids.dart";
 import "../science_clubs_filters/model/sci_club_type.dart";
@@ -68,7 +68,7 @@ class _ScienceClubsView extends StatelessWidget {
                 deptsIds,
                 () async => ref.read(departmentsRepositoryProvider.future),
                 ref.watch(selectedDepartmentControllerProvider.notifier),
-                (ids, dept) => ids.contains(dept.id),
+                (ids, dept) => ids.contains(dept.id.toString()),
               );
 
               useInitialFilterIds(
