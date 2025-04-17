@@ -1,13 +1,11 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/cupertino.dart";
 
-import "../../../../theme/app_theme.dart";
-import "../../../../utils/context_extensions.dart";
-import "../repository/getDepartmentDetails.graphql.dart";
-import "../utils/fields_of_studies.dart";
+import "../../../../../theme/app_theme.dart";
+import "../../../../../utils/context_extensions.dart";
+import "../../data/models/department_details.dart";
+import "../../data/utils/department_details_extension.dart";
 import "field_of_study_expansion_tile.dart";
-
-typedef FieldOfStudy = Query$GetDepartmentDetails$Departments_by_id$fieldsOfStudies;
 
 class FieldsOfStudySection extends StatelessWidget {
   const FieldsOfStudySection({super.key, required this.fieldsOfStudy});
