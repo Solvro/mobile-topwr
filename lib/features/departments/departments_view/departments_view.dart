@@ -14,14 +14,18 @@ import "../../../widgets/search_not_found.dart";
 import "../../analytics/data/umami.dart";
 import "../../analytics/data/umami_events.dart";
 import "../../navigator/utils/navigation_commands.dart";
+import "data/models/department.dart";
 import "departments_view_controllers.dart";
-import "repository/departments_repository.dart";
 import "widgets/department_card.dart";
 import "widgets/departments_view_loading.dart";
 
 @RoutePage()
 class DepartmentsView extends StatelessWidget {
   const DepartmentsView({super.key});
+
+  static String localizedOfflineMessage(BuildContext context) {
+    return context.localize.my_offline_error_message(context.localize.departments);
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -7,7 +7,8 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../analytics/data/umami.dart";
 import "../../analytics/data/umami_events.dart";
-import "../../departments/departments_view/repository/departments_repository.dart";
+import "../../departments/departments_view/data/models/department.dart";
+import "../../departments/departments_view/data/repository/departments_repository.dart";
 import "filters_search_controller.dart";
 import "model/sci_club_type.dart";
 import "repository/tags_repository.dart";
@@ -35,7 +36,7 @@ class SelectedDepartmentController extends _$SelectedDepartmentController with F
   @override
   ISet<Department> build() => const ISet.empty();
 
-  Future<void> selectDepartmentById(String id) async {
+  Future<void> selectDepartmentById(int id) async {
     final department = (await ref.read(departmentsRepositoryProvider.future)).firstWhere((element) => element.id == id);
     state = state.clear().add(department);
   }

@@ -3,7 +3,8 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../utils/contains_lower_case.dart";
-import "repository/departments_repository.dart";
+import "data/models/department.dart";
+import "data/repository/departments_repository.dart";
 
 part "departments_view_controllers.g.dart";
 
