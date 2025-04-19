@@ -1,4 +1,5 @@
 import "package:dio_cache_interceptor_db_store/dio_cache_interceptor_db_store.dart";
+import "package:flutter/foundation.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:path_provider/path_provider.dart" show getTemporaryDirectory;
 import "package:riverpod_annotation/riverpod_annotation.dart";
@@ -15,6 +16,6 @@ Future<String> mapCacheDir(Ref ref) async {
 
 @Riverpod(keepAlive: true)
 Future<DbCacheStore> mapCacheStore(Ref ref) async {
-  final directory = await ref.watch(mapCacheDirProvider.future);
+  final directory = kIsWeb ? "<ignore>" : await ref.watch(mapCacheDirProvider.future);
   return DbCacheStore(databaseName: MapCacheConfig.cacheDatabaseName, databasePath: directory);
 }
