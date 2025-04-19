@@ -131,7 +131,7 @@ dependencies:
   wiredash: ^2.4.0
   flutter_hooks: ^0.21.2
   audioplayers: ^6.2.0
-  solvro_translator_with_drift_cache_flutter: ^0.4.0
+  solvro_translator_with_drift_cache_flutter: ^0.4.1
   solvro_translator_core: ^0.4.0
 
 dev_dependencies:

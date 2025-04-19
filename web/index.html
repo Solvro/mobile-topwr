@@ -130,6 +130,21 @@
   </script>
 </head>
 <body>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script>
+    var firebaseConfig = {
+      apiKey: "AIzaSyDU1JCqYFVCp0KVVDjAcEOhqBLsHfE2WeM",
+      authDomain: "topwr-a2066.firebaseapp.com",
+      projectId: "topwr-a2066",
+      storageBucket: "topwr-a2066.firebasestorage.app",
+      messagingSenderId: "399902347530",
+      appId: "1:399902347530:web:9c8d0eb4e22dbbb7db2af3",
+      measurementId: "G-0B5HMNSE0C"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  </script>
   <picture id="splash">
       <source srcset="splash/img/light-1x.png 1x, splash/img/light-2x.png 2x, splash/img/light-3x.png 3x, splash/img/light-4x.png 4x" media="(prefers-color-scheme: light)">
       <source srcset="splash/img/dark-1x.png 1x, splash/img/dark-2x.png 2x, splash/img/dark-3x.png 3x, splash/img/dark-4x.png 4x" media="(prefers-color-scheme: dark)">

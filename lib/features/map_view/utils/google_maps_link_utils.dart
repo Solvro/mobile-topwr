@@ -1,5 +1,6 @@
 import "dart:io";
 
+import "package:flutter/foundation.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:latlong2/latlong.dart";
 import "package:logger/logger.dart";
@@ -32,7 +33,7 @@ class _NavigationLaunchLink {
 
   String get _iosLink => "comgooglemaps://?saddr=&daddr=$_locationStr&directionsmode=driving";
 
-  String get adaptiveLink => Platform.isAndroid ? _androidLink : _iosLink;
+  String get adaptiveLink => kIsWeb || Platform.isAndroid ? _androidLink : _iosLink;
 
   String get backupLink => "https://www.google.com/maps/search/?api=1&query=$_locationStr";
 }
