@@ -1,17 +1,19 @@
 import "package:auto_route/auto_route.dart";
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../config/ui_config.dart";
 import "../../utils/context_extensions.dart";
+import "../../utils/determine_contact_icon.dart";
 import "../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../widgets/detail_views/sliver_header_section.dart";
 import "../../widgets/horizontal_symmetric_safe_area.dart";
 import "../../widgets/loading_widgets/scrolable_loader_builder.dart";
 import "../../widgets/loading_widgets/simple_previews/preview_card_loading.dart";
 import "../../widgets/my_error_widget.dart";
-import "models/about_us_details.dart";
-import "repository/about_us_repository.dart";
+import "data/models/about_us.dart";
+import "data/repository/about_us_repository.dart";
 import "widgets/app_version.dart";
 import "widgets/contact_section.dart";
 import "widgets/description_section.dart";
@@ -21,6 +23,10 @@ import "widgets/team_section.dart";
 @RoutePage()
 class AboutUsView extends StatelessWidget {
   const AboutUsView({super.key});
+
+  static String localizedOfflineMessage(BuildContext context) {
+    return context.localize.my_offline_error_message(context.localize.about_us);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,22 +42,22 @@ class _AboutUsView extends ConsumerWidget {
     final state = ref.watch(aboutUsRepositoryProvider);
     return switch (state) {
       AsyncError(:final error) => MyErrorWidget(error),
-      AsyncValue(:final AboutUsDetails value) => CustomScrollView(
+      AsyncValue(:final AboutUs value) => CustomScrollView(
         slivers: [
           SliverPersistentHeader(
             delegate: SliverHeaderSection(
               logoDirectusImageUrl: AboutUsConfig.defaultLogoUrl,
-              backgroundImageUrl: value.aboutUs?.cover?.filename_disk,
+              backgroundImageUrl: value.photoUrl,
             ),
           ),
           SliverList(
             delegate: SliverChildListDelegate([
               SectionHeader(text: context.localize.about_us),
-              DescriptionSection(text: value.aboutUs?.description ?? ""),
+              DescriptionSection(text: value.description),
               SectionHeader(text: context.localize.follow_solvro),
-              ContactSection(links: value.getSocialIcons()),
+              ContactSection(links: value.socialLinks.map((url) => ContactIconsModel(url: url)).toIList()),
               SectionHeader(text: context.localize.meet_our_team),
-              TeamSection(multiversionTeam: value.getMemberData()),
+              TeamSection(multiversionTeam: value.multiversionTeam),
               const AppVersionTile(),
             ]),
           ),

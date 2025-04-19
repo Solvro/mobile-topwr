@@ -14,8 +14,8 @@ import "../../../utils/context_extensions.dart";
 import "../../../utils/determine_contact_icon.dart";
 import "../../../utils/launch_url_util.dart";
 import "../../../widgets/zoomable_images.dart";
-import "../models/about_us_details.dart";
-import "../models/member_data.dart";
+import "../data/models/about_us.dart";
+import "../data/models/team_members_data.dart";
 
 class TeamSection extends HookWidget {
   const TeamSection({super.key, required this.multiversionTeam});
@@ -172,7 +172,7 @@ class _SingleVersionTeamListState extends State<_SingleVersionTeamList> {
 class _TeamMemberCard extends StatelessWidget {
   const _TeamMemberCard({required this.member});
 
-  final MemberData member;
+  final TeamMemberData member;
 
   @override
   Widget build(BuildContext context) {
@@ -192,10 +192,14 @@ class _TeamMemberCard extends StatelessWidget {
             children: [
               SizedBox.square(
                 dimension: AboutUsConfig.photoSize,
-                child: ZoomableOptimizedDirectusImage(member.directusImageUrl),
+                child: ZoomableOptimizedDirectusImage(member.image.url),
               ),
               const SizedBox(width: 14),
-              _Description(name: member.name ?? "", subtitle: member.subtitle ?? "", links: member.links),
+              _Description(
+                name: member.name,
+                subtitle: member.name,
+                links: member.socialLinks.map((socialLinks) => ContactIconsModel(url: socialLinks.url)).toIList(),
+              ),
             ],
           ),
         ),
