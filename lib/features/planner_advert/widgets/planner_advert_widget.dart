@@ -7,10 +7,10 @@ import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
 import "../../../theme/hex_color.dart";
 import "../../../utils/launch_url_util.dart";
+import "../../../widgets/loading_widgets/simple_previews/horizontal_rectangular_section_loading.dart";
 import "../../../widgets/my_error_widget.dart";
 import "../../../widgets/technical_message.dart";
 import "../repository/planner_advert_repository.dart";
-import "planner_advert_loading.dart";
 
 class PlannerAdvertBanner extends ConsumerWidget {
   @override
@@ -19,7 +19,13 @@ class PlannerAdvertBanner extends ConsumerWidget {
     return switch (state) {
       AsyncError(:final error) => MyErrorWidget(error),
       AsyncValue(:final PlannerAdvertContent value) => _PlannerAdvertBanner(value),
-      _ => const PlannerAdvertLoading(),
+      _ => const Padding(
+        padding: EdgeInsets.only(top: HomeViewConfig.paddingMedium),
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: HomeViewConfig.paddingMedium),
+          child: HorizontalRectangularSectionLoading(),
+        ),
+      ),
     };
   }
 }
