@@ -21,7 +21,7 @@ abstract class MapViewBottomSheetConfig {
     minSheetHeight: 90,
   );
 
-  static const lineHandleSectionHeight = 36.0;
+  static const lineHandleSectionHeight = 16.0;
   static const horizontalPadding = 24.0;
 
   static const horizontalPanelModeMinWidth = 700;
