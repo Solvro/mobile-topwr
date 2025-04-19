@@ -19,7 +19,13 @@ class PlannerAdvertBanner extends ConsumerWidget {
     return switch (state) {
       AsyncError(:final error) => MyErrorWidget(error),
       AsyncValue(:final PlannerAdvertContent value) => _PlannerAdvertBanner(value),
-      _ => const HorizontalRectangularSectionLoading(),
+      _ => const Padding(
+        padding: EdgeInsets.only(top: HomeViewConfig.paddingMedium),
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: HomeViewConfig.paddingMedium),
+          child: HorizontalRectangularSectionLoading(),
+        ),
+      ),
     };
   }
 }
