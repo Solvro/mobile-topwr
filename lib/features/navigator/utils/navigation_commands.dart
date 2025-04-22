@@ -83,7 +83,7 @@ extension NavigationX on WidgetRef {
       // solvro science club
       await trackEvent(UmamiEvents.openSolvroScienceClubDetailPage, value: id);
     }
-    await _router.push(ScienceClubDetailRoute(id: id));
+    await _router.push(ScienceClubDetailRoute(id: model.id));
   }
 
   Future<void> navigateGuide() async {

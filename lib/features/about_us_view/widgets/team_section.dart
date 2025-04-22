@@ -17,8 +17,7 @@ import "../../../widgets/loading_widgets/simple_previews/preview_card_loading.da
 import "../../../widgets/zoomable_images.dart";
 import "../../analytics/data/umami.dart";
 import "../../analytics/data/umami_events.dart";
-import "../models/about_us_details.dart";
-import "../models/member_data.dart";
+import "../data/models/about_us.dart";
 
 class TeamSection extends HookWidget {
   const TeamSection({super.key, required this.multiversionTeam});
@@ -144,7 +143,7 @@ class _TeamMembersLoading extends StatelessWidget {
 class _TeamMemberCard extends StatelessWidget {
   const _TeamMemberCard({required this.member});
 
-  final MemberData member;
+  final TeamMember member;
 
   @override
   Widget build(BuildContext context) {
@@ -165,12 +164,16 @@ class _TeamMemberCard extends StatelessWidget {
                 child: SizedBox(
                   height: context.textScaler.scale(AboutUsConfig.photoSize),
                   width: AboutUsConfig.photoSize,
-                  child: ZoomableOptimizedDirectusImage(member.directusImageUrl),
+                  child: ZoomableOptimizedDirectusImage(member.imageUrl),
                 ),
               ),
               const SizedBox(width: 14),
               Flexible(
-                child: _Description(name: member.name ?? "", subtitle: member.subtitle ?? "", links: member.links),
+                child: _Description(
+                  name: member.teamMemberName,
+                  subtitle: member.subtitleForMilestone,
+                  links: member.socialLinks.map((socialLinks) => ContactIconsModel(url: socialLinks)).toIList(),
+                ),
               ),
             ],
           ),
