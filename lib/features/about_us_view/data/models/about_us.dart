@@ -1,8 +1,6 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 
-import "team_members_data.dart";
-
 part "about_us.freezed.dart";
 part "about_us.g.dart";
 
@@ -18,9 +16,20 @@ abstract class AboutUs with _$AboutUs {
 }
 
 @freezed
+abstract class TeamMember with _$TeamMember {
+  const factory TeamMember({
+    required String teamMemberName,
+    required String imageUrl,
+    required String subtitleForMilestone,
+    required IList<String> socialLinks,
+  }) = _TeamMember;
+
+  factory TeamMember.fromJson(Map<String, dynamic> json) => _$TeamMemberFromJson(json);
+}
+
+@freezed
 abstract class MultiversionTeam with _$MultiversionTeam {
-  const factory MultiversionTeam({required String versionName, required IList<TeamMemberData> members}) =
-      _MultiversionTeam;
+  const factory MultiversionTeam({required String versionName, required IList<TeamMember> members}) = _MultiversionTeam;
 
   factory MultiversionTeam.fromJson(Map<String, dynamic> json) => _$MultiversionTeamFromJson(json);
 }

@@ -18,35 +18,39 @@ part "about_us_repository.g.dart";
 Future<AboutUs> aboutUsRepository(Ref ref) async {
   final apiUrl = Env.mainRestApiUrl;
   const aboutUsEndpoint = "/about_us";
-  const teamMembersEndpoint = "/contributors?milestones=true&socialLinks=true&photo=true";
+  const teamMembersEndpoint = "/contributors?milestones=true&socialLinks=true&photo=true&roles=true";
   const versionsEndpoint = "/versions";
 
-  final aboutUsResponse = await ref.getAndCacheData(
-    apiUrl + aboutUsEndpoint,
-    TtlStrategy.get(TtlKey.aboutUsRepository).inDays,
-    AboutUsDataResponse.fromJson,
-    extraValidityCheck: (_) => true,
-    localizedOfflineMessage: AboutUsView.localizedOfflineMessage,
-    onRetry: ref.invalidateSelf,
-  );
+  final responses = await Future.wait([
+    ref.getAndCacheData(
+      apiUrl + aboutUsEndpoint,
+      TtlStrategy.get(TtlKey.aboutUsRepository).inDays,
+      AboutUsDataResponse.fromJson,
+      extraValidityCheck: (_) => true,
+      localizedOfflineMessage: AboutUsView.localizedOfflineMessage,
+      onRetry: ref.invalidateSelf,
+    ),
+    ref.getAndCacheData(
+      apiUrl + teamMembersEndpoint,
+      TtlStrategy.get(TtlKey.aboutUsRepository).inDays,
+      TeamMembersDataResponse.fromJson,
+      extraValidityCheck: (_) => true,
+      localizedOfflineMessage: AboutUsView.localizedOfflineMessage,
+      onRetry: ref.invalidateSelf,
+    ),
+    ref.getAndCacheData(
+      apiUrl + versionsEndpoint,
+      TtlStrategy.get(TtlKey.aboutUsRepository).inDays,
+      VersionsDataResponse.fromJson,
+      extraValidityCheck: (_) => true,
+      localizedOfflineMessage: AboutUsView.localizedOfflineMessage,
+      onRetry: ref.invalidateSelf,
+    ),
+  ]);
 
-  final teamMembersResponse = await ref.getAndCacheData(
-    apiUrl + teamMembersEndpoint,
-    TtlStrategy.get(TtlKey.aboutUsRepository).inDays,
-    TeamMembersDataResponse.fromJson,
-    extraValidityCheck: (_) => true,
-    localizedOfflineMessage: AboutUsView.localizedOfflineMessage,
-    onRetry: ref.invalidateSelf,
-  );
-
-  final versionsResponse = await ref.getAndCacheData(
-    apiUrl + versionsEndpoint,
-    TtlStrategy.get(TtlKey.aboutUsRepository).inDays,
-    VersionsDataResponse.fromJson,
-    extraValidityCheck: (_) => true,
-    localizedOfflineMessage: AboutUsView.localizedOfflineMessage,
-    onRetry: ref.invalidateSelf,
-  );
+  final aboutUsResponse = responses[0] as AboutUsDataResponse;
+  final teamMembersResponse = responses[1] as TeamMembersDataResponse;
+  final versionsResponse = responses[2] as VersionsDataResponse;
 
   return AboutUs(
     description: aboutUsResponse.data.aboutUsDetails.description,
@@ -60,6 +64,15 @@ Future<AboutUs> aboutUsRepository(Ref ref) async {
                 members:
                     teamMembersResponse.data
                         .where((member) => member.milestones.any((milestone) => milestone.id == version.milestoneId))
+                        .map((member) {
+                          return TeamMember(
+                            teamMemberName: member.name,
+                            imageUrl: member.image.url,
+                            subtitleForMilestone:
+                                member.roles.where((role) => role.meta.milestoneId == version.milestoneId).first.name,
+                            socialLinks: member.socialLinks.map((e) => e.url).toIList(),
+                          );
+                        })
                         .toIList(),
               ),
             )
