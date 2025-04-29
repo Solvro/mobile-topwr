@@ -1,16 +1,20 @@
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:solvro_translator_core/solvro_translator_core.dart";
 
 import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
+import "../../../services/translations_service/data/preferred_lang_repository.dart";
 import "../../../utils/context_extensions.dart";
 import "../../digital_guide/tabs/accessibility_dialog/presentation/red_dialog.dart";
 
 class LanguageDialog extends ConsumerWidget {
-  const LanguageDialog();
+  const LanguageDialog({required this.isFirstTimeMode, super.key});
 
-  static Future<String?> show(BuildContext context) async {
-    return showDialog<String>(context: context, builder: (context) => const LanguageDialog());
+  final bool isFirstTimeMode;
+
+  static Future<String?> show(BuildContext context, {bool isFirstTimeMode = false}) async {
+    return showDialog<String>(context: context, builder: (context) => LanguageDialog(isFirstTimeMode: isFirstTimeMode));
   }
 
   @override
@@ -21,9 +25,11 @@ class LanguageDialog extends ConsumerWidget {
       (context.localize.english_id, context.localize.english_title),
     ];
     return RedDialog(
-      title: context.localize.language,
+      centerTitle: isFirstTimeMode,
+      title: isFirstTimeMode ? context.localize.select_language : context.localize.language,
       subtitle: null,
-      showApplyButton: false,
+      showApplyButton: isFirstTimeMode,
+      applyButtonText: context.localize.select,
       child: ListView.builder(
         padding: const EdgeInsets.symmetric(vertical: 16),
         physics: const NeverScrollableScrollPhysics(),
@@ -42,8 +48,14 @@ class LanguageDialog extends ConsumerWidget {
               child: ListTile(
                 title: Text(name),
                 trailing: selected ? Icon(Icons.check, color: context.colorTheme.orangePomegranade) : null,
-                onTap: () {
-                  Navigator.pop(context, code);
+                onTap: () async {
+                  if (!isFirstTimeMode) {
+                    Navigator.pop(context, code);
+                  } else {
+                    await ref
+                        .read(preferredLanguageRepositoryProvider.notifier)
+                        .setPreferredLanguage(SolvroLocale.values.byName(code));
+                  }
                 },
               ),
             ),

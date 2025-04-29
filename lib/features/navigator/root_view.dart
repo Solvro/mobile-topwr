@@ -2,6 +2,7 @@ import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
+import "../../services/translations_service/widgets/show_first_dialog.dart";
 import "../../widgets/horizontal_symmetric_safe_area.dart";
 import "../app_changelog/update_changelog_wrapper.dart";
 import "../bottom_nav_bar/bottom_nav_bar.dart";
@@ -15,15 +16,17 @@ class RootView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final specialPop = ref.androidSpecialPopTreatment;
-    return PopScope(
-      canPop: !specialPop, // android pop bug workaround
-      child: NavigatorPopHandler(
-        onPopWithResult: specialPop ? (result) async => ref.handleAndroidSpecialPop() : null,
-        child: UpdateChangelogWrapper(
-          child: HorizontalSymmetricSafeAreaScaffold(
-            bottomNavigationBar: const BottomNavBar(),
-            // this widget acts as nested [Navigator] for the app
-            body: AutoRouter(key: ref.watch(navigationControllerProvider)),
+    return ShowFirstTranslationDialog(
+      child: PopScope(
+        canPop: !specialPop, // android pop bug workaround
+        child: NavigatorPopHandler(
+          onPopWithResult: specialPop ? (result) async => ref.handleAndroidSpecialPop() : null,
+          child: UpdateChangelogWrapper(
+            child: HorizontalSymmetricSafeAreaScaffold(
+              bottomNavigationBar: const BottomNavBar(),
+              // this widget acts as nested [Navigator] for the app
+              body: AutoRouter(key: ref.watch(navigationControllerProvider)),
+            ),
           ),
         ),
       ),

@@ -31,7 +31,7 @@ extension TranslateX on Ref {
     );
 
     final translator = watch(solvroTranslatorProvider);
-    final locale = await watch(preferredLanguageRepositoryProvider.future);
+    final locale = await watch(preferredLanguageRepositoryProvider.future) ?? SolvroLocale.pl;
 
     return switch (data) {
       ObjectJSON<T>(:final value) => ObjectJSON(await value.translate(translator, locale)),
