@@ -9,9 +9,12 @@ part "preferred_lang_repository.g.dart";
 @riverpod
 class PreferredLanguageRepository extends _$PreferredLanguageRepository {
   @override
-  Future<SolvroLocale> build() async {
+  Future<SolvroLocale?> build() async {
     final sharedPreferences = await ref.watch(sharedPreferencesSingletonProvider.future);
-    final languageCode = sharedPreferences.getString(TranslationsConfig.localesKey) ?? SolvroLocale.pl.name;
+    final languageCode = sharedPreferences.getString(TranslationsConfig.localesKey);
+    if (languageCode == null) {
+      return null;
+    }
     return SolvroLocale.values.byName(languageCode);
   }
 

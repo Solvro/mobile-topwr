@@ -2964,5 +2964,13 @@
   "navigate_to_digital_guide": "Otwórz cyfrowy przewodnik",
   "@navigate_to_digital_guide": {
     "description": "Button text for opening digital guide"
+  },
+  "select_language": "Wybierz język aplikacji!",
+  "@select_language": {
+    "description": "Title for language selection dialog on first launch"
+  },
+  "select": "Wybierz",
+  "@select": {
+    "description": "Button text for language selection on first launch"
   }
 }

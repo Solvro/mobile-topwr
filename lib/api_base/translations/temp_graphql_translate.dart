@@ -4,6 +4,7 @@
 
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:solvro_translator_core/solvro_translator_core.dart" show SolvroLocale;
 
 import "../../services/translations_service/business/solvro_translator.dart";
 import "../../services/translations_service/data/preferred_lang_repository.dart";
@@ -11,7 +12,7 @@ import "../../services/translations_service/data/preferred_lang_repository.dart"
 extension TranslateGraphQL on Ref {
   Future<String> translateGraphQLString(String data) async {
     final translator = watch(solvroTranslatorProvider);
-    final locale = await watch(preferredLanguageRepositoryProvider.future);
+    final locale = await watch(preferredLanguageRepositoryProvider.future) ?? SolvroLocale.pl;
     return translator.translate(data, locale);
   }
 

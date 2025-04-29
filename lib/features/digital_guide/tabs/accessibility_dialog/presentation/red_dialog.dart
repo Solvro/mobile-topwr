@@ -10,13 +10,16 @@ class RedDialog extends StatelessWidget {
   final String? subtitle;
   final Widget child;
   final bool showApplyButton;
-
+  final bool centerTitle;
+  final String? applyButtonText;
   const RedDialog({
     super.key,
     required this.title,
     required this.child,
     required this.subtitle,
     this.showApplyButton = true,
+    this.centerTitle = false,
+    this.applyButtonText,
   });
   @override
   Widget build(BuildContext context) {
@@ -37,10 +40,15 @@ class RedDialog extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              _DialogHeader(title: title),
+              _DialogHeader(title: title, centerTitle: centerTitle),
               Flexible(
                 child: SingleChildScrollView(
-                  child: _DialogContent(subtitle: subtitle, showApplyButton: showApplyButton, child: child),
+                  child: _DialogContent(
+                    subtitle: subtitle,
+                    applyButtonText: applyButtonText,
+                    showApplyButton: showApplyButton,
+                    child: child,
+                  ),
                 ),
               ),
             ],
@@ -52,12 +60,17 @@ class RedDialog extends StatelessWidget {
 }
 
 class _DialogContent extends StatelessWidget {
-  const _DialogContent({required this.subtitle, required this.child, required this.showApplyButton});
+  const _DialogContent({
+    required this.subtitle,
+    required this.child,
+    required this.showApplyButton,
+    this.applyButtonText,
+  });
 
   final String? subtitle;
   final Widget child;
   final bool showApplyButton;
-
+  final String? applyButtonText;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -73,15 +86,16 @@ class _DialogContent extends StatelessWidget {
           ),
         if (subtitle != null) const SizedBox(height: 6),
         child,
-        if (showApplyButton) const _DialogFooter(),
+        if (showApplyButton) _DialogFooter(applyButtonText: applyButtonText),
       ],
     );
   }
 }
 
 class _DialogFooter extends StatelessWidget {
-  const _DialogFooter();
+  const _DialogFooter({required this.applyButtonText});
 
+  final String? applyButtonText;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -97,17 +111,17 @@ class _DialogFooter extends StatelessWidget {
           padding: FilterConfig.buttonPadding,
           shape: RoundedRectangleBorder(borderRadius: FilterConfig.radius),
         ),
-        child: Center(child: Text(context.localize.apply, style: context.textTheme.titleWhite)),
+        child: Center(child: Text(applyButtonText ?? context.localize.apply, style: context.textTheme.titleWhite)),
       ),
     );
   }
 }
 
 class _DialogHeader extends StatelessWidget {
-  const _DialogHeader({required this.title});
+  const _DialogHeader({required this.title, required this.centerTitle});
 
   final String title;
-
+  final bool centerTitle;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -115,12 +129,19 @@ class _DialogHeader extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Expanded(child: Text(title, style: context.textTheme.headline.copyWith(height: 1.4))),
-          IconButton(
-            icon: const Icon(Icons.close),
-            color: context.colorTheme.greyPigeon,
-            onPressed: () => Navigator.of(context).pop(),
+          Expanded(
+            child: Text(
+              title,
+              style: context.textTheme.headline.copyWith(height: 1.4),
+              textAlign: centerTitle ? TextAlign.center : TextAlign.left,
+            ),
           ),
+          if (!centerTitle)
+            IconButton(
+              icon: const Icon(Icons.close),
+              color: context.colorTheme.greyPigeon,
+              onPressed: () => Navigator.of(context).pop(),
+            ),
         ],
       ),
     );
