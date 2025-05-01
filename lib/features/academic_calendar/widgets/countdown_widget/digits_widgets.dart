@@ -11,12 +11,22 @@ class DigitsRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dayLeftString = calendarData?.daysLeftFromNowString;
+    // Safely get the first calendar entry
+    final firstEntry = calendarData?.data.firstOrNull;
+
+    // Get the string like "003" or "015"
+    final dayLeftString = firstEntry?.daysLeftFromNowString;
+
     return Row(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        for (final digit in Digit.values)
-          IntBox(singleInt: dayLeftString?.getDigit(digit) ?? CountdownConfig.defaultDigit.toString()),
+        for (int i = 0; i < Digit.values.length; i++)
+          IntBox(
+            singleInt:
+                dayLeftString != null && i < dayLeftString.length
+                    ? dayLeftString[i]
+                    : CountdownConfig.defaultDigit.toString(),
+          ),
       ],
     );
   }

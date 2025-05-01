@@ -7,17 +7,18 @@ import "../repository/academic_calendar_repo.dart";
 
 enum Digit { first, second, third }
 
-extension DaysLeftStringConverterX on AcademicCalendar {
+extension DaysLeftStringConverterX on AcademicCalendarData {
   String get daysLeftFromNowString {
-    final calendarData = this.AcademicCalendarData;
-    final daysLeft =
-        calendarData != null
-            ? (calendarData.isHolidays()
-                ? data?.semesterStartDate.daysLeftFromNow
-                : calendarData.isExamSession()
-                ? data?.examSessionLastDay.daysLeftFromNow
-                : data?.examSessionStartDate.daysLeftFromNow)
-            : null;
+    final now = DateTime.now();
+    int? daysLeft;
+
+    if (isHolidays()) {
+      daysLeft = semesterStartDate.daysLeftFromNow;
+    } else if (isExamSession()) {
+      daysLeft = examSessionLastDate.daysLeftFromNow;
+    } else if (isSemester()) {
+      daysLeft = examSessionStartDate.daysLeftFromNow;
+    }
 
     return max(_default, daysLeft ?? _default).toString().padLeft(Digit.values.length, _default.toString());
   }

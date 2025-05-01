@@ -6,7 +6,7 @@ import "../repository/academic_calendar_repo.dart";
 
 extension LocalizeCounterMessageX on AcademicCalendar {
   String localizeDaysCounterMessage(BuildContext context) {
-    final calendarData = this.AcademicCalendarData;
+    final calendarData = data.firstOrNull;
     if (calendarData != null) {
       if (calendarData.isHolidays()) {
         return context.localize.until_the_end_of_the_semester_break;
