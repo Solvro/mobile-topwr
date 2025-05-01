@@ -6,11 +6,11 @@ import "weekday_enum.dart";
 
 extension AcademicCalendarDataX on AcademicCalendarData {
   bool isHolidays() {
-    return now.isBefore(semesterStartDate) || now.isAfter(examSessionLastDay);
+    return now.isBefore(semesterStartDate) || now.isAfter(examSessionLastDate);
   }
 
   bool isExamSession() {
-    return now.isAfterOrSameAs(examSessionStartDate) && now.isBeforeOrSameAs(examSessionLastDay);
+    return now.isAfterOrSameAs(examSessionStartDate) && now.isBeforeOrSameAs(examSessionLastDate);
   }
 
   bool isSemester() {
@@ -39,8 +39,8 @@ extension AcademicCalendarDataX on AcademicCalendarData {
 extension AcademicCalendarX on AcademicCalendar {
   AcademicDay? get academicDay {
     if (weeks.isTodayAnException) {
-      return weeks.changedDay ?? data?.standardAcademicDay;
+      return weeks.changedDay ?? data.firstOrNull?.standardAcademicDay;
     }
-    return data?.standardAcademicDay;
+    return data.firstOrNull?.standardAcademicDay;
   }
 }

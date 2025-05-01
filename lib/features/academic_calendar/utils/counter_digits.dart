@@ -9,7 +9,6 @@ enum Digit { first, second, third }
 
 extension DaysLeftStringConverterX on AcademicCalendarData {
   String get daysLeftFromNowString {
-    final now = DateTime.now();
     int? daysLeft;
 
     if (isHolidays()) {

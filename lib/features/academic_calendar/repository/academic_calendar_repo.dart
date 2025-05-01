@@ -5,6 +5,8 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:http/http.dart" as http;
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
+part "academic_calendar_repo.g.dart";
+
 // Model for one calendar entry
 class AcademicCalendarData {
   final int id;
