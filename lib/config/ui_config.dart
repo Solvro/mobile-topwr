@@ -93,6 +93,7 @@ abstract class ScienceClubsViewConfig {
   static const smallPadding = 16.0;
   static const mediumPadding = 24.0;
 
+  static const rectangleBorderRadius = 16.0;
   static const buttonBorderRadius = 100.0;
 
   static const researchGroupTabGridDelegate = SliverGridDelegateWithMaxCrossAxisExtent(

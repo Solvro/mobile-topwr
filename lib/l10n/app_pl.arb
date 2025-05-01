@@ -1621,9 +1621,21 @@
   "@strategicBadgeTooltip": {
     "description": "Tooltip text for strategic badge"
   },
+  "add_club_contact_info_question": "Nie widzisz tutaj swojego koła?",
+  "@add_club_contact_info_question": {
+  "description": "Question shown for contacting about missing student organizations."
+  },
+  "add_club_contact_info": "Czas to zmienić! Zależy nam, aby informacje o organizacjach studenckich były zawsze aktualne i kompletne. Jeśli Twoja organizacja nie została jeszcze uwzględniona lub chcesz wprowadzić zmiany w już opublikowanych danych, prosimy o kontakt na adres: kn.solvro@pwr.edu.pl.",
+  "@add_club_contact_info": {
+  "description": "Message shown for contacting about missing student organizations"
+  },
   "strategic_club_abbr": "KS",
   "@strategic_club_abbr": {
     "description": "Abbreviation for Strategic Science Club"
+  },
+  "ok": "OK",
+  "@ok": {
+    "description": "Label for confirmation button"
   },
   "emptySection": "Brak członków zespołu w tej wersji",
   "@emptySection": {

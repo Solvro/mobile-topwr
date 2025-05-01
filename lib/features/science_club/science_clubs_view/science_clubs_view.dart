@@ -83,10 +83,7 @@ class _ScienceClubsView extends StatelessWidget {
                   IconButton(
                     icon: const Icon(Icons.info_outline),
                     onPressed: () {
-                      showDialog<void>(
-                        context: context,
-                        builder: (context) => const ScienceClubInfoDialog(),
-                      ); 
+                      showDialog<void>(context: context, builder: (context) => const ScienceClubInfoDialog());
                     },
                   ),
                 ],

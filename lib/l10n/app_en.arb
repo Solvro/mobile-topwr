@@ -477,5 +477,8 @@
   "home_screen": "Home",
   "navigate_to_digital_guide": "Open digital guide",
   "select_language": "Select app language!",
-  "select": "Select"
+  "select": "Select",
+  "add_club_contact_info": "It's time to change that! We want the information about student organizations to always be up-to-date and complete. If your organization has not yet been included or you want to make changes to already published data, please contact us at: kn.solvro@pwr.edu.pl.",
+  "add_club_contact_info_question": "Don't see your club here?",
+  "ok": "OK"  
 }

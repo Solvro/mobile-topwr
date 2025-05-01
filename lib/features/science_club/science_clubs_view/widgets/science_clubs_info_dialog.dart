@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import "../../../../config/ui_config.dart";
+import "../../../../l10n/app_localizations.dart";
 
 class ScienceClubInfoDialog extends StatelessWidget {
   const ScienceClubInfoDialog({super.key});
@@ -6,28 +8,21 @@ class ScienceClubInfoDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(ScienceClubsViewConfig.rectangleBorderRadius)),
       child: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(ScienceClubsViewConfig.smallPadding),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              "Nie ma twojego koła?",
+              AppLocalizations.of(context)!.add_club_contact_info_question,
+              textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.headlineSmall,
             ),
-            const SizedBox(height: 8),
-            const Text(
-              "Jeśli chcesz zmienić informacje o swojej organizacji studenckiej lub Twoja organizacja nie jest obecna i chcesz to zmienić, skontaktuj się z nami za pomocą wiadomości e-mail na adres kn.solvro@pwr.edu.pl",
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 16),
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: const Text("OK"),
-            ),
+            const SizedBox(height: ScienceClubsViewConfig.listSeparatorSize),
+            Text(AppLocalizations.of(context)!.add_club_contact_info, textAlign: TextAlign.center),
+            const SizedBox(height: ScienceClubsViewConfig.listSeparatorSize),
+            TextButton(onPressed: () => Navigator.of(context).pop(), child: Text(AppLocalizations.of(context)!.ok)),
           ],
         ),
       ),
