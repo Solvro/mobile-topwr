@@ -4,6 +4,8 @@ import "dart:math";
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:flutter_svg/svg.dart";
+import "package:flutter_svg/svg.dart" as Assets;
 import "package:solvro_translator_core/solvro_translator_core.dart";
 
 import "../../../../../widgets/detail_views/detail_view_app_bar.dart";
@@ -43,7 +45,7 @@ class SettingsView extends ConsumerWidget {
         padding: const EdgeInsets.all(32),
         child: SizedBox.square(
           dimension: min(MediaQuery.sizeOf(context).width, MediaQuery.sizeOf(context).height) * 0.5,
-          // child: SvgPicture.asset(Assets.svg.settings),
+          child: SvgPicture.asset(Assets.svg.settings),
         ),
       ),
     ];
