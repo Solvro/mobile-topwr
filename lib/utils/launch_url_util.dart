@@ -2,6 +2,7 @@ import "dart:async";
 
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:fluttertoast/fluttertoast.dart";
+import "package:logger/logger.dart";
 import "package:url_launcher/url_launcher.dart";
 
 import "../config/url_config.dart";
@@ -28,8 +29,8 @@ extension LaunchUrlUtilX on WidgetRef? {
     }
 
     final String toastMsg = this?.context.localize.report_change_error_toast_message ?? "";
-
     if (toastMsg.isNotEmpty) {
+      Logger().e("launchUrlUtil failed: $toastMsg URI: $uriStr  ");
       await Fluttertoast.showToast(
         msg: toastMsg,
         toastLength: Toast.LENGTH_LONG,
