@@ -7,6 +7,7 @@ import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../utils/launch_url_util.dart";
+import "../../../../widgets/my_text_button.dart";
 
 class ScienceClubInfoDialog extends StatelessWidget {
   const ScienceClubInfoDialog({super.key});
@@ -16,26 +17,30 @@ class ScienceClubInfoDialog extends StatelessWidget {
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(ScienceClubsViewConfig.rectangleBorderRadius)),
       child: Padding(
-        padding: const EdgeInsets.all(ScienceClubsViewConfig.smallPadding),
+        padding: const EdgeInsets.all(
+          ScienceClubsViewConfig.mediumPadding,
+        ).copyWith(bottom: ScienceClubsViewConfig.smallPadding),
         child: Column(
+          spacing: ScienceClubsViewConfig.listSeparatorSize,
           mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
               context.localize.add_club_contact_info_question,
               textAlign: TextAlign.center,
-              style: context.textTheme.body,
+              style: context.textTheme.headline,
             ),
-            const SizedBox(height: ScienceClubsViewConfig.listSeparatorSize),
+
             Consumer(
               builder:
                   (context, ref, child) => RichText(
                     text: TextSpan(
                       text: context.localize.add_club_contact_info,
-                      style: context.textTheme.body,
+                      style: context.textTheme.lightTitle,
                       children: [
                         TextSpan(
                           text: context.localize.report_change_email,
-                          style: context.textTheme.bodyOrange.copyWith(decoration: TextDecoration.underline),
+                          style: context.textTheme.lightTitleOrange.copyWith(decoration: TextDecoration.underline),
                           recognizer:
                               TapGestureRecognizer()
                                 ..onTap = () async {
@@ -48,8 +53,7 @@ class ScienceClubInfoDialog extends StatelessWidget {
                     ),
                   ),
             ),
-            const SizedBox(height: ScienceClubsViewConfig.listSeparatorSize),
-            TextButton(onPressed: () => Navigator.of(context).pop(), child: Text(context.localize.ok)),
+            MyTextButton(onClick: () => Navigator.of(context).pop(), actionTitle: context.localize.ok),
           ],
         ),
       ),
