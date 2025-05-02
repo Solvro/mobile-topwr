@@ -54,7 +54,6 @@ class DigitalGuideRoomDetailView extends ConsumerWidget {
               roomInformation.areEntrancesComment,
               roomInformation.isOneLevelFloorComment,
               roomInformation.arePlacesForWheelchairsComment,
-              roomInformation.isOneLevelFloorComment,
             ].toIList(),
       ),
       AccessibilityProfileCard(
@@ -105,7 +104,7 @@ class DigitalGuideRoomDetailView extends ConsumerWidget {
     return HorizontalSymmetricSafeAreaScaffold(
       appBar: DetailViewAppBar(actions: [AccessibilityButton()]),
       body: Padding(
-        padding: const EdgeInsets.all(DigitalGuideConfig.paddingMedium),
+        padding: const EdgeInsets.all(DigitalGuideConfig.paddingBig),
         child: ListView.builder(
           itemCount: widgets.length,
           shrinkWrap: true,

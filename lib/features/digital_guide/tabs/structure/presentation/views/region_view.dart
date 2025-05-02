@@ -60,11 +60,6 @@ class _RegionView extends ConsumerWidget {
           onTap: (index) async => ref.navigateDigitalGuideStairs(regionData.stairs[index].id),
           itemCount: region.stairs.length,
         ),
-      RegionDataSliverListItem(
-        text: (index) => context.localize.ramp,
-        onTap: (index) async => () {},
-        itemCount: region.corridors.length,
-      ),
       if (regionData.stairways.isNotEmpty)
         RegionDataSliverListItem(
           text: (index) => regionData.stairways[index].translations.plTranslation.name,
@@ -81,21 +76,6 @@ class _RegionView extends ConsumerWidget {
         text: (index) => context.localize.lift,
         onTap: (index) async => ref.navigateLiftDetails(regionData.lifts[index], level.translations.plTranslation.name),
         itemCount: region.lifts.length,
-      ),
-      RegionDataSliverListItem(
-        text: (index) => context.localize.lodge,
-        onTap: (index) async => () {},
-        itemCount: region.lodges.length,
-      ),
-      RegionDataSliverListItem(
-        text: (index) => context.localize.information_point,
-        onTap: (index) async => () {},
-        itemCount: region.informationPoints.length,
-      ),
-      RegionDataSliverListItem(
-        text: (index) => context.localize.dressing_room,
-        onTap: (index) async => () {},
-        itemCount: region.dressingRooms.length,
       ),
       RegionDataSliverListItem(
         text:

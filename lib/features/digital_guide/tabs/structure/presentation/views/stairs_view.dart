@@ -56,6 +56,11 @@ class _StairsView extends ConsumerWidget {
         padding: const EdgeInsets.symmetric(horizontal: DigitalGuideConfig.heightBig),
         child: Column(
           children: [
+            Text(
+              context.localize.stairs,
+              style: context.textTheme.headline.copyWith(fontSize: DigitalGuideConfig.headlineFont),
+            ),
+            const SizedBox(height: DigitalGuideConfig.heightSmall),
             BulletList(
               items:
                   [

@@ -11,21 +11,26 @@ class BulletList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final nonEmptyItems = items.where((item) => item.trim().isNotEmpty).toIList();
-    return ListView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemCount: nonEmptyItems.length,
-      itemBuilder: (context, index) {
-        final item = nonEmptyItems[index];
-        return RichText(
-          text: TextSpan(
-            children: [
-              TextSpan(text: "\u2022 ", style: context.textTheme.body.copyWith(fontSize: fontSize + 3)),
-              TextSpan(text: item, style: context.textTheme.body.copyWith(fontSize: fontSize)),
-            ],
-          ),
-        );
-      },
+
+    return MediaQuery.removePadding(
+      removeBottom: true,
+      context: context,
+      child: ListView.builder(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        itemCount: nonEmptyItems.length,
+        itemBuilder: (context, index) {
+          final item = nonEmptyItems[index];
+          return RichText(
+            text: TextSpan(
+              children: [
+                TextSpan(text: "\u2022 ", style: context.textTheme.body.copyWith(fontSize: fontSize + 3)),
+                TextSpan(text: item, style: context.textTheme.body.copyWith(fontSize: fontSize)),
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 }
