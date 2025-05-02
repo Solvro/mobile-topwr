@@ -4,7 +4,6 @@ import "package:flutter/gestures.dart" show TapGestureRecognizer;
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "../../../../config/ui_config.dart";
-import "../../../../l10n/app_localizations.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../utils/launch_url_util.dart";
@@ -50,7 +49,7 @@ class ScienceClubInfoDialog extends StatelessWidget {
                   ),
             ),
             const SizedBox(height: ScienceClubsViewConfig.listSeparatorSize),
-            TextButton(onPressed: () => Navigator.of(context).pop(), child: Text(AppLocalizations.of(context)!.ok)),
+            TextButton(onPressed: () => Navigator.of(context).pop(), child: Text(context.localize.ok)),
           ],
         ),
       ),
