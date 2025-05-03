@@ -2,7 +2,6 @@ import "dart:math";
 
 import "../../../config/ui_config.dart";
 import "../../../utils/datetime_utils.dart";
-import "../model/academic_calendar_extensions.dart";
 import "../repository/academic_calendar_repo.dart";
 
 enum Digit { first, second, third }

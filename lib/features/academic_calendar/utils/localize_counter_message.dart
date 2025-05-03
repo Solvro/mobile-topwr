@@ -1,7 +1,7 @@
 import "package:flutter/cupertino.dart";
 
 import "../../../utils/context_extensions.dart";
-import "../model/academic_calendar_extensions.dart";
+import "../model/academic_calendar.dart";
 import "../repository/academic_calendar_repo.dart";
 
 extension LocalizeCounterMessageX on AcademicCalendar {
