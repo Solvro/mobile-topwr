@@ -103,7 +103,7 @@ class _RegionView extends ConsumerWidget {
       ),
       RegionDataSliverListItem(
         text: (index) => context.localize.information_point,
-        onTap: (index) async => ref.navigateDigitalGuideLInformationPoint(regionData.informationPoints[index]),
+        onTap: (index) async => ref.navigateDigitalGuideInformationPoint(regionData.informationPoints[index]),
         itemCount: region.informationPoints.length,
       ),
       RegionDataSliverListItem(

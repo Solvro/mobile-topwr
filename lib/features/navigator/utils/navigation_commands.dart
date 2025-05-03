@@ -170,7 +170,7 @@ extension NavigationX on WidgetRef {
     await _router.push(LodgeRoute(lodge: lodge));
   }
 
-  Future<void> navigateDigitalGuideLInformationPoint(DigitalGuideInformationPoint informationPoint) async {
+  Future<void> navigateDigitalGuideInformationPoint(DigitalGuideInformationPoint informationPoint) async {
     await _router.push(InformationPointRoute(informationPoint: informationPoint));
   }
 
