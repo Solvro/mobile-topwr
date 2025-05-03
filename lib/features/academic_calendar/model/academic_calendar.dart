@@ -7,7 +7,6 @@ part "academic_calendar.g.dart";
 @freezed
 abstract class AcademicCalendar with _$AcademicCalendar {
   const factory AcademicCalendar({required IList<AcademicTerm> data}) = _AcademicCalendar;
-
   factory AcademicCalendar.fromJson(Map<String, dynamic> json) => _$AcademicCalendarFromJson(json);
 }
 
