@@ -60,11 +60,6 @@ class _RegionView extends ConsumerWidget {
           onTap: (index) async => ref.navigateDigitalGuideStairs(regionData.stairs[index].id),
           itemCount: region.stairs.length,
         ),
-      RegionDataSliverListItem(
-        text: (index) => context.localize.ramp,
-        onTap: (index) async => () {},
-        itemCount: region.corridors.length,
-      ),
       if (regionData.stairways.isNotEmpty)
         RegionDataSliverListItem(
           text: (index) => regionData.stairways[index].translations.plTranslation.name,
@@ -83,21 +78,6 @@ class _RegionView extends ConsumerWidget {
         itemCount: region.lifts.length,
       ),
       RegionDataSliverListItem(
-        text: (index) => context.localize.lodge,
-        onTap: (index) async => () {},
-        itemCount: region.lodges.length,
-      ),
-      RegionDataSliverListItem(
-        text: (index) => context.localize.information_point,
-        onTap: (index) async => () {},
-        itemCount: region.informationPoints.length,
-      ),
-      RegionDataSliverListItem(
-        text: (index) => context.localize.dressing_room,
-        onTap: (index) async => () {},
-        itemCount: region.dressingRooms.length,
-      ),
-      RegionDataSliverListItem(
         text:
             (index) =>
                 regionData.toilets[index].toiletType == ToiletType.men
@@ -113,8 +93,23 @@ class _RegionView extends ConsumerWidget {
       ),
       RegionDataSliverListItem(
         text: (index) => context.localize.parking,
-        onTap: (index) async => () {},
+        onTap: (index) async => ref.navigateDigitalGuideParking(regionData.parkings[index]),
         itemCount: region.parkings.length,
+      ),
+      RegionDataSliverListItem(
+        text: (index) => context.localize.lodge,
+        onTap: (index) async => ref.navigateDigitalGuideLodge(regionData.lodges[index]),
+        itemCount: region.lodges.length,
+      ),
+      RegionDataSliverListItem(
+        text: (index) => context.localize.information_point,
+        onTap: (index) async => ref.navigateDigitalGuideInformationPoint(regionData.informationPoints[index]),
+        itemCount: region.informationPoints.length,
+      ),
+      RegionDataSliverListItem(
+        text: (index) => context.localize.dressing_room,
+        onTap: (index) async => ref.navigateDigitalGuideDressingRoom(regionData.dressingRooms[index]),
+        itemCount: region.dressingRooms.length,
       ),
     ];
 

@@ -4,6 +4,8 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 import "../../../data/models/region.dart";
 import "../../dressing_room/data/models/digital_guide_dressing_room.dart";
 import "../../dressing_room/data/repository/dressing_rooms_repository.dart";
+import "../../information_points/models/digital_guide_information_points.dart";
+import "../../information_points/repository/information_point_repository.dart";
 import "../../lifts/data/models/digital_guide_lift.dart";
 import "../../lifts/data/repository/lifts_repository.dart";
 import "../../lodge/data/models/digital_guide_lodge.dart";
@@ -11,14 +13,12 @@ import "../../lodge/data/repository/lodges_repository.dart";
 import "../../rooms/data/models/digital_guide_room.dart";
 import "../../rooms/data/repository/rooms_repository.dart";
 import "../data/models/corridor.dart";
-import "../data/models/information_point.dart";
 import "../data/models/parking.dart";
 import "../data/models/ramp.dart";
 import "../data/models/stairs.dart";
 import "../data/models/stairway.dart";
 import "../data/models/toilet.dart";
 import "../data/repository/corridors_repository.dart";
-import "../data/repository/information_points_repository.dart";
 import "../data/repository/ramps_repository.dart";
 import "../data/repository/region_parkings_repository.dart";
 import "../data/repository/stairs_repository.dart";
@@ -35,11 +35,11 @@ typedef RegionData =
       IList<Stairway> stairways,
       IList<DigitalGuideLift> lifts,
       IList<DigitalGuideLodge> lodges,
-      IList<InformationPoint> informationPoints,
+      IList<DigitalGuideInformationPoint> informationPoints,
       IList<DigitalGuideDressingRoom> dressingRooms,
       IList<Toilet> toilets,
       IList<DigitalGuideRoom> rooms,
-      IList<Parking> parkings,
+      IList<DigitalGuideParking> parkings,
     });
 
 @riverpod
@@ -50,7 +50,7 @@ Future<RegionData> digitalGuideRegionUseCases(Ref ref, Region region) async {
   final stairways = await ref.watch(stairwaysRepositoryProvider(region.stairways).future);
   final lifts = await ref.watch(liftsRepositoryProvider(region.lifts).future);
   final lodges = await ref.watch(lodgesFromIDsRepositoryProvider(region.lodges).future);
-  final informationPoints = await ref.watch(informationPointsRepositoryProvider(region.informationPoints).future);
+  final informationPoints = await ref.watch(informationPointsFromIDRepositoryProvider(region.informationPoints).future);
   final dressingRooms = await ref.watch(dressingRoomsFromIDsRepositoryProvider(region.dressingRooms).future);
   final toilets = await ref.watch(toiletsRepositoryProvider(region.toilets).future);
   final rooms = await ref.watch(roomsByIDsRepositoryProvider(region.rooms).future);

@@ -15,20 +15,28 @@ import "../digital_guide/presentation/digital_guide_view.dart";
 import "../digital_guide/tabs/adapted_toilets/data/models/adapted_toilet.dart";
 import "../digital_guide/tabs/adapted_toilets/presentation/adapted_toilet_detail_view.dart";
 import "../digital_guide/tabs/doors/presentation/door_view.dart";
+import "../digital_guide/tabs/dressing_room/data/models/digital_guide_dressing_room.dart";
 import "../digital_guide/tabs/entraces/data/models/digital_guide_entrace.dart";
 import "../digital_guide/tabs/entraces/presentation/entraces_detail_view.dart";
+import "../digital_guide/tabs/information_points/models/digital_guide_information_points.dart";
 import "../digital_guide/tabs/lifts/data/models/digital_guide_lift.dart";
 import "../digital_guide/tabs/lifts/presentation/digital_guide_lift_detail_view.dart";
+import "../digital_guide/tabs/lodge/data/models/digital_guide_lodge.dart";
 import "../digital_guide/tabs/micronavigation/data/models/micronavigation_response.dart";
 import "../digital_guide/tabs/micronavigation/presentation/micronavigation_detail_view.dart";
 import "../digital_guide/tabs/rooms/data/models/digital_guide_room.dart";
 import "../digital_guide/tabs/rooms/presentation/digital_guide_room_detail_view.dart";
 import "../digital_guide/tabs/structure/data/models/corridor.dart";
+import "../digital_guide/tabs/structure/data/models/parking.dart";
 import "../digital_guide/tabs/structure/data/models/ramp.dart";
 import "../digital_guide/tabs/structure/data/models/stairway.dart";
 import "../digital_guide/tabs/structure/data/models/toilet.dart";
 import "../digital_guide/tabs/structure/presentation/views/corridor_view.dart";
+import "../digital_guide/tabs/structure/presentation/views/dressing_room_view.dart";
+import "../digital_guide/tabs/structure/presentation/views/information_point_view.dart";
 import "../digital_guide/tabs/structure/presentation/views/level_view.dart";
+import "../digital_guide/tabs/structure/presentation/views/lodge_view.dart";
+import "../digital_guide/tabs/structure/presentation/views/parking_view.dart";
 import "../digital_guide/tabs/structure/presentation/views/railings_view.dart";
 import "../digital_guide/tabs/structure/presentation/views/ramps_view.dart";
 import "../digital_guide/tabs/structure/presentation/views/region_view.dart";
@@ -103,6 +111,10 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: RailingsRoute.page),
     AutoRoute(page: RampsRoute.page),
     AutoRoute(page: AdaptedToiletDetailRoute.page),
+    AutoRoute(page: LodgeRoute.page),
+    AutoRoute(page: InformationPointRoute.page),
+    AutoRoute(page: DressingRoomRoute.page),
+    AutoRoute(page: ParkingRoute.page),
   ];
 }
 

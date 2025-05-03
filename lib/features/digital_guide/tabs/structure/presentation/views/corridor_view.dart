@@ -47,7 +47,6 @@ class CorridorView extends ConsumerWidget {
       Text(comments.name, style: context.textTheme.headline.copyWith(fontSize: DigitalGuideConfig.headlineFont)),
       const SizedBox(height: DigitalGuideConfig.heightMedium),
       BulletList(items: textStrings),
-      if (corridor.doorsIndices.isNotEmpty) const SizedBox(height: DigitalGuideConfig.heightMedium),
       AccessibilityProfileCard(
         accessibilityCommentsManager: CorridorsAccessibilityCommentsManager(l10n: context.localize, corridor: corridor),
         backgroundColor: context.colorTheme.whiteSoap,
@@ -57,6 +56,7 @@ class CorridorView extends ConsumerWidget {
           padding: const EdgeInsets.symmetric(vertical: DigitalGuideConfig.paddingMedium),
           child: DigitalGuidePhotoRow(imagesIDs: corridor.imagesIndices),
         ),
+      if (corridor.doorsIndices.isNotEmpty) const SizedBox(height: DigitalGuideConfig.heightMedium),
       if (corridor.doorsIndices.isNotEmpty)
         ListView.separated(
           physics: const NeverScrollableScrollPhysics(),
