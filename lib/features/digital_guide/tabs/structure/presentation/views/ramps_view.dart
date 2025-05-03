@@ -30,6 +30,7 @@ class RampsView extends ConsumerWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: DigitalGuideConfig.heightBig),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               context.localize.ramp,

@@ -480,5 +480,13 @@
   "select": "Select",
   "add_club_contact_info": "It's time to change that! We want the information about student organizations to always be up-to-date and complete. If your organization has not yet been included or you want to make changes to already published data, please contact us at: kn.solvro@pwr.edu.pl.",
   "add_club_contact_info_question": "Don't see your club here?",
-  "ok": "OK"  
+  "ok": "OK",
+  "parking_entry_location": "The entrance to the parking lot is located ",
+  "is_parking_entry_from_ground_level": "The parking lot is {boolean, select, false{not } other{}}at ground level.",
+  "is_parking_set_maximum_vehicle_height": "{boolean, select, true{The maximum height of vehicles entering the parking lot is } false{There is no specified maximum vehicle height for entering the parking lot.} other{}}",
+  "parking_permissions_types": "Access to the parking lot requires the following permissions: {numeric, select, 2{student or employee (university parking)} other{employee}}",
+  "parking_are_spaces_for_pwd": "{boolean, select, true{There are designated parking spaces for people with disabilities. Number of available spaces: } false{There are no designated parking spaces for people with disabilities. } other{}}",
+  "parking_are_spaces_for_pwd_vertical_marked": "{boolean, select, true{Parking spaces for people with disabilities are marked with vertical signs.} false{Parking spaces for people with disabilities are not marked with vertical signs.} other{}}",  "is_multistorey_parking": "The parking lot is {boolean, select, true{multistorey. } other{single-storey. }}",
+  "parking_is_road_accessible_for_people_in_wheelchairs": "{boolean, select, true{The road from the parking space for people with disabilities to the building or elevator is accessible. } false{The road from the parking space for people with disabilities to the elevator is not accessible. } other{}}",
+  "parking_shortest_length_to_nearest_spaces_for_pwd": "The entrance to the building or elevator in the underground parking lot is located {value} meters from the parking space for people with disabilities."
 }

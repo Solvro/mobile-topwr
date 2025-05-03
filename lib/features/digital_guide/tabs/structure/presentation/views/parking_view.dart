@@ -1,50 +1,28 @@
 import "package:auto_route/auto_route.dart";
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../../config/ui_config.dart";
 import "../../../../../../theme/app_theme.dart";
 import "../../../../../../utils/context_extensions.dart";
-import "../../../../../../utils/ilist_nonempty.dart";
 import "../../../../../../widgets/detail_views/detail_view_app_bar.dart";
-import "../../../../../../widgets/horizontal_symmetric_safe_area.dart";
-import "../../../../../../widgets/my_error_widget.dart";
 import "../../../../presentation/widgets/accessibility_button.dart";
 import "../../../../presentation/widgets/accessibility_profile_card.dart";
 import "../../../../presentation/widgets/bullet_list.dart";
-import "../../../../presentation/widgets/digital_guide_loading_view.dart";
-import "../../business/railings_accessibility_comments_manager.dart";
-import "../../data/models/railing.dart";
-import "../../data/repository/railings_repository.dart";
+import "../../business/parking_accessibility_comments_manager.dart";
+import "../../data/models/parking.dart";
 
 @RoutePage()
-class RailingsView extends ConsumerWidget {
-  const RailingsView({required this.railingId});
+class ParkingView extends ConsumerWidget {
+  const ParkingView({required this.parking});
 
-  final int railingId;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final asyncRailing = ref.watch(railingsRepositoryProvider(railingId));
-
-    return asyncRailing.when(
-      data: (data) => _RailingsView(railing: data),
-      error: (error, stackTrace) {
-        return HorizontalSymmetricSafeAreaScaffold(appBar: DetailViewAppBar(), body: MyErrorWidget(error));
-      },
-      loading: () {
-        return const DigitalGuideLoadingView();
-      },
-    );
-  }
-}
-
-class _RailingsView extends ConsumerWidget {
-  const _RailingsView({required this.railing});
-  final Railing railing;
+  final DigitalGuideParking parking;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final DigitalGuideParkingTranslation parkingsInformation = parking.translations.plTranslation;
+
     return Scaffold(
       appBar: DetailViewAppBar(actions: [AccessibilityButton()]),
       body: Padding(
@@ -53,23 +31,29 @@ class _RailingsView extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              context.localize.railing,
+              context.localize.parking,
               style: context.textTheme.headline.copyWith(fontSize: DigitalGuideConfig.headlineFont),
             ),
             const SizedBox(height: DigitalGuideConfig.heightSmall),
             BulletList(
               items:
                   [
-                    if (railing.translations.plTranslation.comment.isNotEmpty)
-                      railing.translations.plTranslation.comment,
-                    if (railing.railingHeight != null) context.localize.railing_height(railing.railingHeight!),
+                    context.localize.parking_entry_location + parkingsInformation.entryLocation,
+                    context.localize.is_parking_entry_from_ground_level(parking.isEntryFromGroundLevel.toLowerCase()) +
+                        parkingsInformation.isEntryFromGroundLevelComment,
+                    parkingsInformation.comment,
+                    context.localize.is_parking_set_maximum_vehicle_height(
+                          parking.isSetMaximumVehicleHeight.toLowerCase(),
+                        ) +
+                        parkingsInformation.isSetMaximumVehicleHeightComment,
+                    context.localize.parking_permissions_types(parking.permissionsTypes),
                   ].toIList(),
             ),
             const SizedBox(height: DigitalGuideConfig.heightBig),
             AccessibilityProfileCard(
-              accessibilityCommentsManager: RailingsAccessibilityCommentsManager(
-                railing: railing,
+              accessibilityCommentsManager: ParkingsAccessibilityCommentsManager(
                 l10n: context.localize,
+                parking: parking,
               ),
               backgroundColor: context.colorTheme.whiteSoap,
             ),

@@ -9,10 +9,14 @@ import "../models/parking.dart";
 part "region_parkings_repository.g.dart";
 
 @riverpod
-Future<IList<Parking>> regionParkingsRepository(Ref ref, List<int> parkingsIDs) async {
-  Future<Parking> getParking(int parkingID) async {
+Future<IList<DigitalGuideParking>> regionParkingsRepository(Ref ref, List<int> parkingsIDs) async {
+  Future<DigitalGuideParking> getParking(int parkingID) async {
     return ref
-        .getAndCacheDataFromDigitalGuide("parkings/$parkingID", Parking.fromJson, onRetry: ref.invalidateSelf)
+        .getAndCacheDataFromDigitalGuide(
+          "parkings/$parkingID",
+          DigitalGuideParking.fromJson,
+          onRetry: ref.invalidateSelf,
+        )
         .castAsObject;
   }
 

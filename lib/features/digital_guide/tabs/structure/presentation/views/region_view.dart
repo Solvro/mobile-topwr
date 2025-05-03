@@ -93,8 +93,23 @@ class _RegionView extends ConsumerWidget {
       ),
       RegionDataSliverListItem(
         text: (index) => context.localize.parking,
-        onTap: (index) async => () {},
+        onTap: (index) async => ref.navigateDigitalGuideParking(regionData.parkings[index]),
         itemCount: region.parkings.length,
+      ),
+      RegionDataSliverListItem(
+        text: (index) => context.localize.lodge,
+        onTap: (index) async => ref.navigateDigitalGuideLodge(regionData.lodges[index]),
+        itemCount: region.lodges.length,
+      ),
+      RegionDataSliverListItem(
+        text: (index) => context.localize.information_point,
+        onTap: (index) async => ref.navigateDigitalGuideLInformationPoint(regionData.informationPoints[index]),
+        itemCount: region.informationPoints.length,
+      ),
+      RegionDataSliverListItem(
+        text: (index) => context.localize.dressing_room,
+        onTap: (index) async => ref.navigateDigitalGuideDressingRoom(regionData.dressingRooms[index]),
+        itemCount: region.dressingRooms.length,
       ),
     ];
 

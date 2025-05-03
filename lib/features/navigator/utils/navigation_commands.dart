@@ -9,11 +9,15 @@ import "../../digital_guide/data/models/level.dart" as digital_guide;
 import "../../digital_guide/data/models/level_with_regions.dart";
 import "../../digital_guide/data/models/region.dart";
 import "../../digital_guide/tabs/adapted_toilets/data/models/adapted_toilet.dart";
+import "../../digital_guide/tabs/dressing_room/data/models/digital_guide_dressing_room.dart";
 import "../../digital_guide/tabs/entraces/data/models/digital_guide_entrace.dart";
+import "../../digital_guide/tabs/information_points/models/digital_guide_information_points.dart";
 import "../../digital_guide/tabs/lifts/data/models/digital_guide_lift.dart";
+import "../../digital_guide/tabs/lodge/data/models/digital_guide_lodge.dart";
 import "../../digital_guide/tabs/micronavigation/data/models/micronavigation_response.dart";
 import "../../digital_guide/tabs/rooms/data/models/digital_guide_room.dart";
 import "../../digital_guide/tabs/structure/data/models/corridor.dart";
+import "../../digital_guide/tabs/structure/data/models/parking.dart";
 import "../../digital_guide/tabs/structure/data/models/ramp.dart";
 import "../../digital_guide/tabs/structure/data/models/stairway.dart";
 import "../../digital_guide/tabs/structure/data/models/toilet.dart";
@@ -160,6 +164,22 @@ extension NavigationX on WidgetRef {
 
   Future<void> navigateDigitalGuideRailing(int railingId) async {
     await _router.push(RailingsRoute(railingId: railingId));
+  }
+
+  Future<void> navigateDigitalGuideLodge(DigitalGuideLodge lodge) async {
+    await _router.push(LodgeRoute(lodge: lodge));
+  }
+
+  Future<void> navigateDigitalGuideLInformationPoint(DigitalGuideInformationPoint informationPoint) async {
+    await _router.push(InformationPointRoute(informationPoint: informationPoint));
+  }
+
+  Future<void> navigateDigitalGuideDressingRoom(DigitalGuideDressingRoom dressingRoom) async {
+    await _router.push(DressingRoomRoute(dressingRoom: dressingRoom));
+  }
+
+  Future<void> navigateDigitalGuideParking(DigitalGuideParking parking) async {
+    await _router.push(ParkingRoute(parking: parking));
   }
 
   Future<void> navigateBuildingDetailAction(BuildingModel building) async {
