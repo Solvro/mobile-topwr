@@ -3069,6 +3069,11 @@
         "type": "num"
       }
     }
+  },
+
+  "button_leading_to": "Przycisk prowadzący do",
+  "@button_leading_to":{
+    "description": "information about url the button is redirecting to"
   }
   
 }

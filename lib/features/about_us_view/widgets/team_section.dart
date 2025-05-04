@@ -60,12 +60,17 @@ class _SelectTab extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 7),
       child: Center(
-        child: Text(
-          version.versionName,
-          style:
-              isSelected
-                  ? context.textTheme.boldBody.copyWith(color: context.colorTheme.whiteSoap)
-                  : context.textTheme.boldBody,
+        child: Semantics(
+          label: "${context.localize.version}: ${version.versionName.replaceAll(".", " ")}",
+          child: ExcludeSemantics(
+            child: Text(
+              version.versionName,
+              style:
+                  isSelected
+                      ? context.textTheme.boldBody.copyWith(color: context.colorTheme.whiteSoap)
+                      : context.textTheme.boldBody,
+            ),
+          ),
         ),
       ),
     );
@@ -189,9 +194,11 @@ class _TeamMemberCard extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              SizedBox.square(
-                dimension: AboutUsConfig.photoSize,
-                child: ZoomableOptimizedDirectusImage(member.directusImageUrl),
+              ExcludeSemantics(
+                child: SizedBox.square(
+                  dimension: AboutUsConfig.photoSize,
+                  child: ZoomableOptimizedDirectusImage(member.directusImageUrl),
+                ),
               ),
               const SizedBox(width: 14),
               _Description(name: member.name ?? "", subtitle: member.subtitle ?? "", links: member.links),
@@ -240,7 +247,15 @@ class _Description extends StatelessWidget {
         const SizedBox(height: 4),
         Text(subtitle, style: context.aboutUsTheme.bodySmaller),
         const SizedBox(height: 8),
-        Row(children: [for (final icon in links) _Icon(launchUrl: icon.url ?? "", icon: icon.icon)]),
+        Row(
+          children: [
+            for (final icon in links)
+              Semantics(
+                label: "${context.localize.button_leading_to}: ${icon.url?.substring(7)}",
+                child: _Icon(launchUrl: icon.url ?? "", icon: icon.icon),
+              ),
+          ],
+        ),
       ],
     );
   }

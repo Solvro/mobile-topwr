@@ -488,5 +488,6 @@
   "parking_are_spaces_for_pwd": "{boolean, select, true{There are designated parking spaces for people with disabilities. Number of available spaces: } false{There are no designated parking spaces for people with disabilities. } other{}}",
   "parking_are_spaces_for_pwd_vertical_marked": "{boolean, select, true{Parking spaces for people with disabilities are marked with vertical signs.} false{Parking spaces for people with disabilities are not marked with vertical signs.} other{}}",  "is_multistorey_parking": "The parking lot is {boolean, select, true{multistorey. } other{single-storey. }}",
   "parking_is_road_accessible_for_people_in_wheelchairs": "{boolean, select, true{The road from the parking space for people with disabilities to the building or elevator is accessible. } false{The road from the parking space for people with disabilities to the elevator is not accessible. } other{}}",
-  "parking_shortest_length_to_nearest_spaces_for_pwd": "The entrance to the building or elevator in the underground parking lot is located {value} meters from the parking space for people with disabilities."
+  "parking_shortest_length_to_nearest_spaces_for_pwd": "The entrance to the building or elevator in the underground parking lot is located {value} meters from the parking space for people with disabilities.",
+  "button_leading_to": "Button leading to"
 }

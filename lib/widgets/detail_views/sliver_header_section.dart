@@ -38,25 +38,27 @@ class SliverHeaderSection extends SliverPersistentHeaderDelegate {
     final logoSize = calcLogoSize(shrinkOffset);
     final logoOpacity = calcLogoOpacity(shrinkOffset, logoSize);
     final scaleFactor = activeGradient != null ? 0.5 : 1.0;
-    return Stack(
-      children: [
-        Opacity(
-          opacity: 1 - progress,
-          child: SizedBox(
-            height: maxTopBarHeight * (1 - progress),
-            width: double.infinity,
-            child: ZoomableOptimizedDirectusImage(backgroundImageUrl),
+    return ExcludeSemantics(
+      child: Stack(
+        children: [
+          Opacity(
+            opacity: 1 - progress,
+            child: SizedBox(
+              height: maxTopBarHeight * (1 - progress),
+              width: double.infinity,
+              child: ZoomableOptimizedDirectusImage(backgroundImageUrl),
+            ),
           ),
-        ),
-        SliverLogo(
-          scaleFactor: scaleFactor,
-          activeGradient: activeGradient,
-          logoDirectusUrl: logoDirectusImageUrl,
-          logoOpacity: logoOpacity,
-          logoSize: logoSize,
-          boxfit: BoxFit.scaleDown,
-        ),
-      ],
+          SliverLogo(
+            scaleFactor: scaleFactor,
+            activeGradient: activeGradient,
+            logoDirectusUrl: logoDirectusImageUrl,
+            logoOpacity: logoOpacity,
+            logoSize: logoSize,
+            boxfit: BoxFit.scaleDown,
+          ),
+        ],
+      ),
     );
   }
 
