@@ -5,6 +5,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../theme/app_theme.dart";
 import "../../../theme/hex_color.dart";
+import "../../../utils/context_extensions.dart";
 import "../../../utils/launch_url_util.dart";
 import "../../../widgets/my_alert_dialog.dart";
 import "../../../widgets/my_error_widget.dart";
@@ -44,7 +45,7 @@ class _BadgeContent extends ConsumerWidget {
               unawaited(ref.launch(data.url!));
               Navigator.pop(context);
             },
-            confirmText: "Czytaj więcej",
+            confirmText: context.localize.read_more,
             dialogContent: PlanerBadgeDialogContent(data: data),
           );
         },

@@ -42,9 +42,9 @@ extension AcademicCalendarDataX on AcademicCalendarData {
 }
 
 extension AcademicCalendarX on AcademicCalendar {
-  AcademicDay? get academicDay {
-    if (weeks.isTodayAnException) {
-      return weeks.changedDayToday ?? data?.standardAcademicDay();
+  AcademicDay? get academicDayToday {
+    if (weeks.isTodayAnException && data != null) {
+      return weeks.changedDayToday(data!) ?? data!.standardAcademicDay();
     }
     return data?.standardAcademicDay();
   }

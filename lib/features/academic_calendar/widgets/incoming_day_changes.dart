@@ -4,6 +4,7 @@ import "../../../utils/context_extensions.dart";
 import "../../../widgets/my_splash_tile.dart";
 import "../model/academic_calendar_extensions.dart";
 import "../repository/academic_calendar_repo.dart";
+import "day_changes_dialog.dart";
 
 class IncomingDayChanges extends StatelessWidget {
   const IncomingDayChanges({super.key, required this.calendar});
@@ -19,7 +20,9 @@ class IncomingDayChanges extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: MySplashTile(
         backgroundColor: Colors.transparent,
-        onTap: () {},
+        onTap: () async {
+          await DayChangesDialog.show(context, calendar, const Duration(days: 30));
+        },
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 8),
           child: Row(

@@ -145,7 +145,7 @@
   "@unknown_day": {
     "description": "Fallback text when day type is unknown"
   },
-  "read_more": "Czytaj dalej",
+  "read_more": "Czytaj więcej",
   "@read_more": {
     "description": "Button text to expand content"
   },
@@ -3071,7 +3071,7 @@
   },
   "incoming_days_changes_days": "{days, plural, =1{1 dzień}  other{{days} dni}}",
   "@incoming_days_changes_days": {
-    "description": "Liczba dni do pierwszej zmiany w kalendarzu akademickim",
+    "description": "Number of days until first change in academic calendar",
     "placeholders": {
       "days": {
         "type": "int",
@@ -3081,12 +3081,38 @@
   },
   "incoming_days_changes_title": "{count, plural, =1{Nadchodząca} other{Nadchodzące}} {count, plural, =1{zamiana dnia} other{{count} zamiany dni}}!",
   "@incoming_days_changes_title": {
-    "description": "Tytuł pokazujący liczbę nadchodzących zmian dnia w kalendarzu akademickim",
+    "description": "Title showing number of incoming day changes in academic calendar",
     "placeholders": {
       "count": {
         "type": "int",
         "example": "3"
       }
     }
+  },
+  "dayChangesDialogTitle": "Nadchodzące zamiany dni",
+  "@dayChangesDialogTitle": {
+    "description": "Title of the dialog showing upcoming academic calendar day changes"
+  },
+  "dayChangesDialogSubtitle": "Wynikające z wyjątków w kalendarzu akademickim w ciągu następnych {days} dni:",
+  "@dayChangesDialogSubtitle": {
+    "description": "Subtitle of the dialog showing the time window for academic calendar changes",
+    "placeholders": {
+      "days": {
+        "type": "int",
+        "example": "7"
+      }
+    }
+  },
+  "dayChangesDialogOk": "OK",
+  "@dayChangesDialogOk": {
+    "description": "Button text to close the day changes dialog"
+  },
+  "day_changes_dialog_will_be": "Będzie",
+  "@day_changes_dialog_will_be": {
+    "description": "Text indicating the day that will be changed"
+  },
+  "day_changes_dialog_instead_of": "zamiast",
+  "@day_changes_dialog_instead_of": {
+    "description": "Text indicating the day that will be changed to"
   }
 }
