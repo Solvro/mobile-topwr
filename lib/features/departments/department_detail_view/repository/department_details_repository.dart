@@ -23,7 +23,10 @@ Future<DepartmentDetails?> departmentDetailsRepository(Ref ref, String id) async
       name: await ref.translateGraphQLMaybeString(detail.Departments_by_id?.name),
       links: await ref.translateGraphQLModelList(
         detail.Departments_by_id?.links ?? [],
-        (link) async => link?.copyWith(name: await ref.translateGraphQLMaybeString(link.name)),
+        (link) async => link?.copyWith(
+          name: await ref.translateGraphQLMaybeString(link.name),
+          link: await ref.translateGraphQLMaybeString(link.link),
+        ),
       ),
     ),
   );

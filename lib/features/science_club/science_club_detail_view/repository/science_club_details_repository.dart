@@ -25,7 +25,10 @@ Future<ScienceClubDetails?> scienceClubDetailsRepository(Ref ref, String id) asy
     description: await ref.translateGraphQLMaybeString(club.description),
     links: await ref.translateGraphQLModelList(
       club.links ?? [],
-      (link) async => link?.copyWith(name: await ref.translateGraphQLMaybeString(link.name)),
+      (link) async => link?.copyWith(
+        name: await ref.translateGraphQLMaybeString(link.name),
+        link: await ref.translateGraphQLMaybeString(link.link),
+      ),
     ),
   );
 }
