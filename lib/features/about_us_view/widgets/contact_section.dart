@@ -35,7 +35,7 @@ class _ContactIcon extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Semantics(
-      label: "${context.localize.button_leading_to}: ${url.substring(7)}",
+      label: "${context.localize.button_leading_to}: ${Uri.parse(url).host}}",
       child: GestureDetector(
         onTap: () async => ref.launch(url),
         child: DecoratedBox(
