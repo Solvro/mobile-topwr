@@ -61,6 +61,7 @@ class _SelectTab extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 7),
       child: Center(
         child: Text(
+          semanticsLabel: "${context.localize.version}: ${version.versionName.replaceAll(".", " ")}",
           version.versionName,
           style:
               isSelected
@@ -175,26 +176,29 @@ class _TeamMemberCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: WideTileCardConfig.imageSize,
-      child: Padding(
-        padding: const EdgeInsets.only(bottom: 8),
-        child: Container(
-          width: double.infinity,
-          clipBehavior: Clip.antiAlias,
-          decoration: BoxDecoration(
-            color: context.colorTheme.greyLight,
-            borderRadius: BorderRadius.circular(AboutUsConfig.borderRadius),
-          ),
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8),
+      child: Container(
+        width: double.infinity,
+        clipBehavior: Clip.antiAlias,
+        decoration: BoxDecoration(
+          color: context.colorTheme.greyLight,
+          borderRadius: BorderRadius.circular(AboutUsConfig.borderRadius),
+        ),
+        child: IntrinsicHeight(
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              SizedBox.square(
-                dimension: AboutUsConfig.photoSize,
-                child: ZoomableOptimizedDirectusImage(member.directusImageUrl),
+              ExcludeSemantics(
+                child: SizedBox.square(
+                  dimension: AboutUsConfig.photoSize,
+                  child: ZoomableOptimizedDirectusImage(member.directusImageUrl),
+                ),
               ),
               const SizedBox(width: 14),
-              _Description(name: member.name ?? "", subtitle: member.subtitle ?? "", links: member.links),
+              Flexible(
+                child: _Description(name: member.name ?? "", subtitle: member.subtitle ?? "", links: member.links),
+              ),
             ],
           ),
         ),
@@ -232,16 +236,28 @@ class _Description extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(name, style: context.aboutUsTheme.headlineSmaller),
-        const SizedBox(height: 4),
-        Text(subtitle, style: context.aboutUsTheme.bodySmaller),
-        const SizedBox(height: 8),
-        Row(children: [for (final icon in links) _Icon(launchUrl: icon.url ?? "", icon: icon.icon)]),
-      ],
+    return Expanded(
+      child: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(vertical: 8),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(name, style: context.aboutUsTheme.headlineSmaller, softWrap: true),
+            const SizedBox(height: 4),
+            Text(subtitle, style: context.aboutUsTheme.bodySmaller, softWrap: true),
+            const SizedBox(height: 8),
+            Row(
+              children: [
+                for (final icon in links)
+                  Semantics(
+                    label: "${context.localize.button_leading_to}: ${Uri.parse(icon.url ?? "").host}",
+                    child: _Icon(launchUrl: icon.url ?? "", icon: icon.icon),
+                  ),
+              ],
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

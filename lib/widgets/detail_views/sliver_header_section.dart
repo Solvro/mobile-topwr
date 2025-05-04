@@ -3,6 +3,7 @@ import "dart:math";
 import "package:flutter/material.dart";
 
 import "../../config/ui_config.dart";
+import "../../utils/context_extensions.dart";
 import "../zoomable_images.dart";
 import "sliver_logo.dart";
 
@@ -38,23 +39,33 @@ class SliverHeaderSection extends SliverPersistentHeaderDelegate {
     final logoSize = calcLogoSize(shrinkOffset);
     final logoOpacity = calcLogoOpacity(shrinkOffset, logoSize);
     final scaleFactor = activeGradient != null ? 0.5 : 1.0;
+
     return Stack(
       children: [
-        Opacity(
-          opacity: 1 - progress,
-          child: SizedBox(
-            height: maxTopBarHeight * (1 - progress),
-            width: double.infinity,
-            child: ZoomableOptimizedDirectusImage(backgroundImageUrl),
+        ExcludeSemantics(
+          child: Opacity(
+            opacity: 1 - progress,
+            child: SizedBox(
+              height: maxTopBarHeight * (1 - progress),
+              width: double.infinity,
+              child: ZoomableOptimizedDirectusImage(backgroundImageUrl),
+            ),
           ),
         ),
-        SliverLogo(
-          scaleFactor: scaleFactor,
-          activeGradient: activeGradient,
-          logoDirectusUrl: logoDirectusImageUrl,
-          logoOpacity: logoOpacity,
-          logoSize: logoSize,
-          boxfit: BoxFit.scaleDown,
+        Semantics(
+          label: context.localize.logotype,
+          image: true,
+          button: false,
+          child: ExcludeSemantics(
+            child: SliverLogo(
+              scaleFactor: scaleFactor,
+              activeGradient: activeGradient,
+              logoDirectusUrl: logoDirectusImageUrl,
+              logoOpacity: logoOpacity,
+              logoSize: logoSize,
+              boxfit: BoxFit.scaleDown,
+            ),
+          ),
         ),
       ],
     );

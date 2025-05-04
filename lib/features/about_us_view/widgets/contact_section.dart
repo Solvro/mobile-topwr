@@ -5,6 +5,7 @@ import "package:flutter_svg/svg.dart";
 
 import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
+import "../../../utils/context_extensions.dart";
 import "../../../utils/determine_contact_icon.dart";
 import "../../../utils/launch_url_util.dart";
 
@@ -33,16 +34,21 @@ class _ContactIcon extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return GestureDetector(
-      onTap: () async => ref.launch(url),
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: context.colorTheme.greyLight,
-          borderRadius: BorderRadius.circular(AboutUsConfig.borderRadius),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(AboutUsConfig.iconPadding),
-          child: Center(child: SvgPicture.asset(icon)),
+    return Semantics(
+      label: "${context.localize.button_leading_to}: ${Uri.parse(url).host}",
+      child: GestureDetector(
+        onTap: () async => ref.launch(url),
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            color: context.colorTheme.greyLight,
+            borderRadius: BorderRadius.circular(AboutUsConfig.borderRadius),
+          ),
+          child: ExcludeSemantics(
+            child: Padding(
+              padding: const EdgeInsets.all(AboutUsConfig.iconPadding),
+              child: Center(child: SvgPicture.asset(icon)),
+            ),
+          ),
         ),
       ),
     );

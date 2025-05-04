@@ -17,18 +17,26 @@ class AppVersionTile extends StatelessWidget {
       child: FutureBuilder(
         future: Future.microtask(PackageInfo.fromPlatform),
         builder:
-            (context, snapshot) => ListTile(
-              title: Text(
-                "${MyAppConfig.title} ${snapshot.data?.version} ${context.localize.app_info}",
-                style: context.textTheme.bodyGrey,
+            (context, snapshot) => Semantics(
+              label:
+                  "${context.localize.version} ${snapshot.data?.version.replaceAll(".", " ")} ${context.localize.app_info}",
+              child: ListTile(
+                title: ExcludeSemantics(
+                  child: Text(
+                    "${MyAppConfig.title} ${snapshot.data?.version} ${context.localize.app_info}",
+                    style: context.textTheme.bodyGrey,
+                  ),
+                ),
+                leading: ExcludeSemantics(
+                  child: Icon(Icons.info, color: context.colorTheme.orangePomegranade, size: 22),
+                ),
+                contentPadding: const EdgeInsets.symmetric(horizontal: WideTileCardConfig.basePadding),
+                horizontalTitleGap: 8,
+                onTap: () async {
+                  // TODO(simon-the-shark): customize [LicensePage] theme
+                  await showMyLicenceDialog(context, snapshot.data?.version);
+                },
               ),
-              leading: Icon(Icons.info, color: context.colorTheme.orangePomegranade, size: 22),
-              contentPadding: const EdgeInsets.symmetric(horizontal: WideTileCardConfig.basePadding),
-              horizontalTitleGap: 8,
-              onTap: () async {
-                // TODO(simon-the-shark): customize [LicensePage] theme
-                await showMyLicenceDialog(context, snapshot.data?.version);
-              },
             ),
       ),
     );
