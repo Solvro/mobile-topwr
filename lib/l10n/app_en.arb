@@ -498,5 +498,19 @@
   "dayChangesDialogSubtitle": "Resulting from the academic calendar day swaps within the next {days} days:",
   "dayChangesDialogOk": "OK",
   "day_changes_dialog_will_be": "Will be an",
-  "day_changes_dialog_instead_of": "instead of an"
+  "day_changes_dialog_instead_of": "instead of an",
+  "even_monday_declined": "Even Monday",
+  "even_tuesday_declined": "Even Tuesday",
+  "even_wednesday_declined": "Even Wednesday",
+  "even_thursday_declined": "Even Thursday",
+  "even_friday_declined": "Even Friday",
+  "even_saturday_declined": "Even Saturday",
+  "even_sunday_declined": "Even Sunday",
+  "odd_monday_declined": "Odd Monday",
+  "odd_tuesday_declined": "Odd Tuesday",
+  "odd_wednesday_declined": "Odd Wednesday",
+  "odd_thursday_declined": "Odd Thursday",
+  "odd_friday_declined": "Odd Friday",
+  "odd_saturday_declined": "Odd Saturday",
+  "odd_sunday_declined": "Odd Sunday"
 }

@@ -65,7 +65,7 @@ class DayChangesDialog extends ConsumerWidget {
                           ),
                           TextSpan(
                             text:
-                                " (${l10n.day_changes_dialog_instead_of} ${standardAcademicDay.localize(context, includePrefix: false)})",
+                                " (${l10n.day_changes_dialog_instead_of} ${standardAcademicDay.localize(context, includePrefix: false, getDeclinedNoun: true)})",
                           ),
                         ],
                       ),

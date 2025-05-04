@@ -3114,5 +3114,61 @@
   "day_changes_dialog_instead_of": "zamiast",
   "@day_changes_dialog_instead_of": {
     "description": "Text indicating the day that will be changed to"
+  },
+  "even_monday_declined": "Parzystego Poniedziałku",
+  "@even_monday_declined": {
+    "description": "Text shown for even week Monday"
+  },
+  "even_tuesday_declined": "Parzystego Wtorku",
+  "@even_tuesday_declined": {
+    "description": "Text shown for even week Tuesday"
+  },
+  "even_wednesday_declined": "Parzystej Środy",
+  "@even_wednesday_declined": {
+    "description": "Text shown for even week Wednesday"
+  },
+  "even_thursday_declined": "Parzystego Czwartku",
+  "@even_thursday_declined": {
+    "description": "Text shown for even week Thursday"
+  },
+  "even_friday_declined": "Parzystego Piątku",
+  "@even_friday_declined": {
+    "description": "Text shown for even week Friday"
+  },
+  "even_saturday_declined": "Parzystej Soboty",
+  "@even_saturday_declined": {
+    "description": "Text shown for even week Saturday"
+  },
+  "even_sunday_declined": "Parzystej Niedzieli",
+  "@even_sunday_declined": {
+    "description": "Text shown for even week Sunday"
+  },
+  "odd_monday_declined": "Nieparzystego Poniedziałku",
+  "@odd_monday_declined": {
+    "description": "Text shown for odd week Monday"
+  },
+  "odd_tuesday_declined": "Nieparzystego Wtorku",
+  "@odd_tuesday_declined": {
+    "description": "Text shown for odd week Tuesday"
+  },
+  "odd_wednesday_declined": "Nieparzystej Środy",
+  "@odd_wednesday_declined": {
+    "description": "Text shown for odd week Wednesday"
+  },
+  "odd_thursday_declined": "Nieparzystego Czwartku",
+  "@odd_thursday_declined": {
+    "description": "Text shown for odd week Thursday"
+  },
+  "odd_friday_declined": "Nieparzystego Piątku",
+  "@odd_friday_declined": {
+    "description": "Text shown for odd week Friday"
+  },
+  "odd_saturday_declined": "Nieparzystej Soboty",
+  "@odd_saturday_declined": {
+    "description": "Text shown for odd week Saturday"
+  },
+  "odd_sunday_declined": "Nieparzystej Niedzieli",
+  "@odd_sunday_declined": {
+    "description": "Text shown for odd week Sunday"
   }
 }
