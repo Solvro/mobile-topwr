@@ -486,9 +486,15 @@
   "is_parking_set_maximum_vehicle_height": "{boolean, select, true{The maximum height of vehicles entering the parking lot is } false{There is no specified maximum vehicle height for entering the parking lot.} other{}}",
   "parking_permissions_types": "Access to the parking lot requires the following permissions: {numeric, select, 2{student or employee (university parking)} other{employee}}",
   "parking_are_spaces_for_pwd": "{boolean, select, true{There are designated parking spaces for people with disabilities. Number of available spaces: } false{There are no designated parking spaces for people with disabilities. } other{}}",
-  "parking_are_spaces_for_pwd_vertical_marked": "{boolean, select, true{Parking spaces for people with disabilities are marked with vertical signs.} false{Parking spaces for people with disabilities are not marked with vertical signs.} other{}}",  "is_multistorey_parking": "The parking lot is {boolean, select, true{multistorey. } other{single-storey. }}",
+  "parking_are_spaces_for_pwd_vertical_marked": "{boolean, select, true{Parking spaces for people with disabilities are marked with vertical signs.} false{Parking spaces for people with disabilities are not marked with vertical signs.} other{}}",
+  "is_multistorey_parking": "The parking lot is {boolean, select, true{multistorey. } other{single-storey. }}",
   "parking_is_road_accessible_for_people_in_wheelchairs": "{boolean, select, true{The road from the parking space for people with disabilities to the building or elevator is accessible. } false{The road from the parking space for people with disabilities to the elevator is not accessible. } other{}}",
   "parking_shortest_length_to_nearest_spaces_for_pwd": "The entrance to the building or elevator in the underground parking lot is located {value} meters from the parking space for people with disabilities.",
   "button_leading_to": "Button leading to",
-  "logotype": "Logotype"
+  "logotype": "Logotype",
+  "next_changed_day_prefix": "Next day change in ",
+  "next_changed_day_days": " days (",
+  "next_changed_day_date_suffix": ") ",
+  "next_changed_day_from": " from ",
+  "next_changed_day_to": " to "
 }

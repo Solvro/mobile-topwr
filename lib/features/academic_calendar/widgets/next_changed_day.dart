@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
-
+import "../../../l10n/app_localizations.dart";
 import "../../../theme/app_theme.dart";
+import "../../../utils/context_extensions.dart";
 import "../../../utils/datetime_utils.dart";
 import "../model/academic_calendar_extensions.dart";
 import "../repository/academic_calendar_repo.dart";
@@ -25,20 +26,21 @@ class NextChangedDay extends StatelessWidget {
         text: TextSpan(
           style: context.greetingTheme.textStyle.copyWith(fontSize: 16),
           children: [
-            const TextSpan(text: "Następna zamiana dnia już za "),
+            TextSpan(text: AppLocalizations.of(context)!.next_changed_day_prefix),
             TextSpan(text: nextChangedDay.dateTime.daysLeftFromNow.toString(), style: boldStyle),
             TextSpan(
               text:
-                  " dni (${nextChangedDay.dateTime.toDayDateString(context, includeWeekday: false, includeYear: false)}) ",
+                  context.localize.next_changed_day_days +
+                  nextChangedDay.dateTime.toDayDateString(context, includeWeekday: false, includeYear: false) +
+                  context.localize.next_changed_day_date_suffix,
               style: boldStyle,
             ),
-
-            const TextSpan(text: " z "),
+            TextSpan(text: context.localize.next_changed_day_from),
             TextSpan(
               text: nextChangedDay.standardAcademicDay.localize(context, includePrefix: false),
               style: boldStyle,
             ),
-            const TextSpan(text: " na "),
+            TextSpan(text: context.localize.next_changed_day_to),
             TextSpan(text: nextChangedDay.changedAcademicDay.localize(context, includePrefix: false), style: boldStyle),
           ],
         ),

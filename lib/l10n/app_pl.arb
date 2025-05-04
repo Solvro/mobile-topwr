@@ -2985,12 +2985,10 @@
   "@select": {
     "description": "Button text for language selection on first launch"
   },
-
-  "parking_entry_location" : "Wjazd na parking znajduje się ", 
+  "parking_entry_location": "Wjazd na parking znajduje się ",
   "@parking_entry_location": {
     "description": "Label for parking entry location"
   },
-
   "is_parking_entry_from_ground_level": "Parking {boolean, select, false{nie } other{}}znajduje się na poziomie jezdni.",
   "@is_parking_entry_from_ground_level": {
     "description": "Information about level of parking",
@@ -3000,7 +2998,6 @@
       }
     }
   },
-
   "is_parking_set_maximum_vehicle_height": "{boolean, select, true{Maksymalna wysokość pojazdu wjeżdżającego na parking wynosi } false{Nie ma określonej maksymalnej wysokości pojazdu wjeżdżającego na parking.} other{}}",
   "@is_parking_set_maximum_vehicle_height": {
     "description": "Information about maximum allowed height of vehicle",
@@ -3010,7 +3007,6 @@
       }
     }
   },
-
   "parking_permissions_types": "Korzystanie z parkingu wymaga następujących uprawnień: {numeric, select, 2{student lub pracownik (parking uczelniany)} other{pracownik}}",
   "@parking_permissions_types": {
     "description": "Information about who can access the parking",
@@ -3020,7 +3016,6 @@
       }
     }
   },
-
   "parking_are_spaces_for_pwd": "{boolean, select, true{Na parkingu wydzielone są miejsca dla osób z niepełnosprawnościami. Liczba dostępnych miejsc: } false{Na parkingu nie ma wydzielonych miejsc dla osób z niepełnosprawnościami. } other{}}",
   "@parking_are_spaces_for_pwd": {
     "description": "Information about spaces for people with disabilities",
@@ -3030,7 +3025,6 @@
       }
     }
   },
-
   "parking_are_spaces_for_pwd_vertical_marked": "{boolean, select, true{Miejsca parkingowe dla osób z niepełnosprawnościami są oznaczone znakami pionowymi.} false{Miejsca parkingowe dla osób z niepełnosprawnościami nie są oznaczone znakami pionowymi.} other{}}",
   "@parking_are_spaces_for_pwd_vertical_marked": {
     "description": "Information if parking spaces for people with disabilities are marked with vertical signs",
@@ -3040,7 +3034,6 @@
       }
     }
   },
-
   "is_multistorey_parking": "Parking jest {boolean, select, true{wielopoziomowy. } other{jednopoziomowy. }}",
   "@is_multistorey_parking": {
     "description": "Information if parking is multistorey",
@@ -3050,7 +3043,6 @@
       }
     }
   },
-
   "parking_is_road_accessible_for_people_in_wheelchairs": "{boolean, select, true{Droga od miejsca parkingowego dla osób z niepełnosprawnościami do budynku lub windy jest dostępna. } false{Droga od miejsca parkingowego dla osób z niepełnosprawnościami do windy nie jest dostępna. } other{}}",
   "@parking_is_road_accessible_for_people_in_wheelchairs": {
     "description": "Information if road from parking to building is accessible for people on wheelchairs",
@@ -3060,7 +3052,6 @@
       }
     }
   },
-
   "parking_shortest_length_to_nearest_spaces_for_pwd": "Wejście do budynku lub windy w parkingu podziemnym znajduje się w odległości {value} metrów od miejsca parkingowego dla osób z niepełnosprawnościami. ",
   "@parking_shortest_length_to_nearest_spaces_for_pwd": {
     "description": "information on how far the disabled parking lot is from the building",
@@ -3070,14 +3061,32 @@
       }
     }
   },
-
   "button_leading_to": "Przycisk prowadzący do",
-  "@button_leading_to":{
+  "@button_leading_to": {
     "description": "information about url the button is redirecting to"
   },
   "logotype": "Logotyp",
-  "@logotype":{
+  "@logotype": {
     "description": "information about some logotype"
+  },
+  "next_changed_day_prefix": "Następna zamiana dnia już za ",
+  "@next_changed_day_prefix": {
+    "description": "Prefix for the next day change countdown, showing how many days are left"
+  },
+  "next_changed_day_days": " dni (",
+  "@next_changed_day_days": {
+    "description": "Text for days unit in the countdown"
+  },
+  "next_changed_day_date_suffix": ") ",
+  "@next_changed_day_date_suffix": {
+    "description": "Suffix after the date in parentheses"
+  },
+  "next_changed_day_from": " z ",
+  "@next_changed_day_from": {
+    "description": "Text indicating the change from one day to another"
+  },
+  "next_changed_day_to": " na ",
+  "@next_changed_day_to": {
+    "description": "Text indicating the change to a new day"
   }
-  
 }
