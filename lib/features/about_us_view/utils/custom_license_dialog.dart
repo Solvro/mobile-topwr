@@ -63,9 +63,10 @@ class _DialogContent extends StatelessWidget {
                   applicationName,
                   style: const TextStyle(fontWeight: FontWeight.w500, fontSize: AboutUsConfig.dialogTitleFontSize),
                 ),
-                Semantics(
-                  label: "${context.localize.version} ${applicationVersion.replaceAll(".", " ")}",
-                  child: Text(applicationVersion, style: context.textTheme.lightTitle),
+                Text(
+                  applicationVersion,
+                  style: context.textTheme.lightTitle,
+                  semanticsLabel: "${context.localize.version} ${applicationVersion.replaceAll(".", " ")}",
                 ),
               ],
             ),

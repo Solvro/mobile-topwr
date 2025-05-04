@@ -60,17 +60,13 @@ class _SelectTab extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 7),
       child: Center(
-        child: Semantics(
-          label: "${context.localize.version}: ${version.versionName.replaceAll(".", " ")}",
-          child: ExcludeSemantics(
-            child: Text(
-              version.versionName,
-              style:
-                  isSelected
-                      ? context.textTheme.boldBody.copyWith(color: context.colorTheme.whiteSoap)
-                      : context.textTheme.boldBody,
-            ),
-          ),
+        child: Text(
+          semanticsLabel: "${context.localize.version}: ${version.versionName.replaceAll(".", " ")}",
+          version.versionName,
+          style:
+              isSelected
+                  ? context.textTheme.boldBody.copyWith(color: context.colorTheme.whiteSoap)
+                  : context.textTheme.boldBody,
         ),
       ),
     );

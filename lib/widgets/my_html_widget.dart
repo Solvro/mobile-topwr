@@ -7,6 +7,8 @@ import "../theme/app_theme.dart";
 import "../utils/html_to_plain_text.dart";
 import "../utils/launch_url_util.dart";
 
+/// Widget that renders HTML. Supports semantics for screen readers and custom ToPWR styling.
+
 class MyHtmlWidget extends ConsumerWidget {
   const MyHtmlWidget(this.html, {super.key, this.textStyle});
   final String html;
