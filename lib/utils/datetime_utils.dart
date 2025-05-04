@@ -11,13 +11,19 @@ extension DateTimeUtilsX on DateTime {
     return subtract(Duration(days: difference));
   }
 
-  String toDayDateString(BuildContext context) {
+  String toDayDateString(BuildContext context, {bool includeWeekday = true, bool includeYear = true}) {
     final dayFormat = DateFormat("EEEE", context.locale.languageCode);
-    final dateFormat = DateFormat("dd.MM.yyyy", context.locale.languageCode);
+    final dateFormat =
+        includeYear
+            ? DateFormat("dd.MM.yyyy", context.locale.languageCode)
+            : DateFormat("dd.MM", context.locale.languageCode);
     final day = dayFormat.format(this);
     final capitalizedDay = day[0].toUpperCase() + day.substring(1).toLowerCase();
     final date = dateFormat.format(this);
-    return "$capitalizedDay, $date";
+    if (includeWeekday) {
+      return "$capitalizedDay, $date";
+    }
+    return date;
   }
 
   String toHourMinuteString(BuildContext context) {

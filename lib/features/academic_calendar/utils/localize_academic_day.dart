@@ -5,10 +5,16 @@ import "../model/academic_day.dart";
 import "../model/weekday_enum.dart";
 
 extension LocalizeAcademicDayX on AcademicDay {
-  String localize(BuildContext context) {
+  String _localizeWithPrefix(BuildContext context) {
     if (isHolidays) return weekday.localizeHoliday(context);
     if (isExamSession) return weekday.localizeExamSession(context);
     return isEven ? weekday.localizeEven(context) : weekday.localizeOdd(context);
+  }
+
+  String localize(BuildContext context, {bool includePrefix = true}) {
+    final withPrefix = _localizeWithPrefix(context);
+    if (!includePrefix) return withPrefix.split(" ").skip(1).join(" ");
+    return withPrefix;
   }
 }
 

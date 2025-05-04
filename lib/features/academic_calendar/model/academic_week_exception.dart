@@ -13,7 +13,7 @@ extension AcademicWeekExceptionX on IList<AcademicWeekException> {
     return any(_checkIfThisIsToday);
   }
 
-  AcademicDay? get changedDay {
+  AcademicDay? get changedDayToday {
     final changedDayData = firstWhereOrNull(_checkIfThisIsToday);
     return changedDayData != null
         ? AcademicDay(
@@ -23,5 +23,11 @@ extension AcademicWeekExceptionX on IList<AcademicWeekException> {
           weekday: WeekdayEnum.fromJson(changedDayData.changedWeekday),
         )
         : null;
+  }
+
+  AcademicWeekException? get nextException {
+    final nextException =
+        where((element) => element.day.isAfter(now)).sorted((a, b) => a.day.compareTo(b.day)).firstOrNull;
+    return nextException;
   }
 }
