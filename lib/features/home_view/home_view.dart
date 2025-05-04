@@ -5,6 +5,7 @@ import "package:flutter/material.dart";
 import "../../config/ui_config.dart";
 import "../../theme/app_theme.dart";
 import "../academic_calendar/widgets/academic_calendar_consumer.dart";
+import "../planner_advert/widgets/planner_advert_widget.dart";
 import "keep_alive_home_view_providers.dart";
 import "widgets/buildings_section/buildings_section.dart";
 import "widgets/logo_app_bar.dart";
@@ -21,7 +22,7 @@ class HomeView extends StatelessWidget {
         [
           const AcademicCalendarConsumer(),
           const NavActionsSection(),
-          // const PlannerAdvertBanner(),
+          const PlannerAdvertBanner(),
           const ScienceClubsSection(),
           const BuildingsSection(),
         ].lock;

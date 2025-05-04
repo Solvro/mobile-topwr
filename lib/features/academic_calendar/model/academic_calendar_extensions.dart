@@ -49,21 +49,12 @@ extension AcademicCalendarX on AcademicCalendar {
     return data?.standardAcademicDay();
   }
 
-  NextChangedDayData? get nextChangedDay {
-    final nextException = weeks.nextException;
+  IncomingDaysChangesData? get incomingDaysChanges {
+    final nextException = weeks.nextExceptionsWithinWindow(const Duration(days: 30));
     final data = this.data;
-    if (nextException == null || data == null) {
+    if (data == null || nextException.isEmpty) {
       return null;
     }
-    return (
-      dateTime: nextException.day,
-      standardAcademicDay: data.standardAcademicDay(nextException.day),
-      changedAcademicDay: AcademicDay(
-        isEven: nextException.changedDayIsEven,
-        isExamSession: data.isExamSession(nextException.day),
-        isHolidays: data.isHolidays(nextException.day),
-        weekday: WeekdayEnum.fromJson(nextException.changedWeekday),
-      ),
-    );
+    return (daysTillFirstChange: nextException.first.day.difference(now).inDays, changesCount: nextException.length);
   }
 }

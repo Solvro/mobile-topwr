@@ -7,7 +7,7 @@ import "../../../widgets/my_error_widget.dart";
 import "../repository/academic_calendar_repo.dart";
 import "countdown_widget/exam_session_countdown.dart";
 import "home_screen_greeting.dart";
-import "next_changed_day.dart" show NextChangedDay;
+import "incoming_day_changes.dart" show IncomingDayChanges;
 
 class AcademicCalendarConsumer extends ConsumerWidget {
   const AcademicCalendarConsumer({super.key});
@@ -29,7 +29,7 @@ class AcademicCalendarConsumer extends ConsumerWidget {
           const SizedBox(height: HomeViewConfig.paddingMedium),
           ExamSessionCountdown(value),
           const SizedBox(height: HomeViewConfig.paddingMedium / 1.5),
-          const NextChangedDay(),
+          IncomingDayChanges(calendar: value),
         ],
       ),
       _ => const Padding(

@@ -25,9 +25,11 @@ extension AcademicWeekExceptionX on IList<AcademicWeekException> {
         : null;
   }
 
-  AcademicWeekException? get nextException {
-    final nextException =
-        where((element) => element.day.isAfter(now)).sorted((a, b) => a.day.compareTo(b.day)).firstOrNull;
-    return nextException;
+  List<AcademicWeekException> nextExceptionsWithinWindow([Duration? windowDuration]) {
+    final duration = windowDuration ?? const Duration(days: 7);
+    final nowPlusWindow = now.add(duration);
+    return where(
+      (element) => element.day.isAfter(now) && element.day.isBefore(nowPlusWindow),
+    ).sorted((a, b) => a.day.compareTo(b.day));
   }
 }
