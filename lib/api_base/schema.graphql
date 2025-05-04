@@ -820,6 +820,7 @@ type AcademicCalendarData {
   isFirstWeekEven: Boolean!
   examSessionLastDay: Date!
   examSessionLastDay_func: date_functions
+  exceptionsLookupFutureWindowInDays: Int
 }
 
 type date_functions {
@@ -839,6 +840,7 @@ type version_AcademicCalendarData {
   examSessionStartDate: Date
   isFirstWeekEven: Boolean
   examSessionLastDay: Date
+  exceptionsLookupFutureWindowInDays: Int
 }
 
 type WeekExceptions {
@@ -2618,6 +2620,7 @@ input update_AcademicCalendarData_input {
   examSessionStartDate: Date
   isFirstWeekEven: Boolean
   examSessionLastDay: Date
+  exceptionsLookupFutureWindowInDays: Int
 }
 
 input update_WeekExceptions_input {

@@ -42,6 +42,8 @@ extension AcademicCalendarDataX on AcademicCalendarData {
 }
 
 extension AcademicCalendarX on AcademicCalendar {
+  Duration get windowDuration => Duration(days: data?.exceptionsLookupFutureWindowInDays ?? 7);
+
   AcademicDay? get academicDayToday {
     if (weeks.isTodayAnException && data != null) {
       return weeks.changedDayToday(data!) ?? data!.standardAcademicDay();
@@ -49,8 +51,8 @@ extension AcademicCalendarX on AcademicCalendar {
     return data?.standardAcademicDay();
   }
 
-  IncomingDaysChangesData? get incomingDaysChanges {
-    final nextException = weeks.nextExceptionsWithinWindow(const Duration(days: 30));
+  ({int daysTillFirstChange, int changesCount})? get incomingDaysChanges {
+    final nextException = weeks.nextExceptionsWithinWindow(windowDuration);
     final data = this.data;
     if (data == null || nextException.isEmpty) {
       return null;

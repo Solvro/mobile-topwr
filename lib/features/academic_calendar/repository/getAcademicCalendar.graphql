@@ -4,6 +4,7 @@ query GetAcademicCalendar {
     examSessionLastDay
     semesterStartDate
     isFirstWeekEven
+    exceptionsLookupFutureWindowInDays
   }
   WeekExceptions {
     day

@@ -11,40 +11,36 @@ import "../repository/academic_calendar_repo.dart";
 import "../utils/localize_academic_day.dart";
 
 class DayChangesDialog extends ConsumerWidget {
-  const DayChangesDialog(this.calendar, {super.key, required this.windowDuration});
+  const DayChangesDialog(this.calendar, {super.key});
 
   final AcademicCalendar calendar;
-  final Duration windowDuration;
 
-  static Future<void> show(BuildContext context, AcademicCalendar calendar, Duration windowDuration) async {
-    return showDialog<void>(
-      context: context,
-      builder: (context) => DayChangesDialog(calendar, windowDuration: windowDuration),
-    );
+  static Future<void> show(BuildContext context, AcademicCalendar calendar) async {
+    return showDialog<void>(context: context, builder: (context) => DayChangesDialog(calendar));
   }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.localize;
-    final exceptions = calendar.weeks.nextExceptionsWithinWindow(windowDuration);
+    final weekExceptions = calendar.weeks.nextExceptionsWithinWindow(calendar.windowDuration);
     final calendarData = calendar.data;
     if (calendarData == null) {
       return const SizedBox.shrink();
     }
     return RedDialog(
       title: l10n.dayChangesDialogTitle,
-      subtitle: l10n.dayChangesDialogSubtitle(windowDuration.inDays),
+      subtitle: l10n.dayChangesDialogSubtitle(calendar.windowDuration.inDays),
       applyButtonText: l10n.dayChangesDialogOk,
       showCloseButton: false,
       child: ListView.separated(
         padding: const EdgeInsets.all(32),
         shrinkWrap: true,
-        itemCount: exceptions.length,
+        itemCount: weekExceptions.length,
         separatorBuilder: (context, index) => const Divider(height: 24),
         itemBuilder: (context, index) {
-          final change = exceptions[index];
-          final changedAcademicDay = change.academicDay(calendarData);
-          final standardAcademicDay = calendarData.standardAcademicDay(change.day);
+          final weekException = weekExceptions[index];
+          final changedAcademicDay = weekException.academicDay(calendarData);
+          final standardAcademicDay = calendarData.standardAcademicDay(weekException.day);
           return Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -55,7 +51,7 @@ class DayChangesDialog extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      change.day.toDayDateString(context, includeWeekday: false, includeYear: false),
+                      weekException.day.toDayDateString(context, includeWeekday: false, includeYear: false),
                       style: context.textTheme.title.copyWith(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 4),

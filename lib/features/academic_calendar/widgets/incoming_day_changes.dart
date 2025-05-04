@@ -21,7 +21,7 @@ class IncomingDayChanges extends StatelessWidget {
       child: MySplashTile(
         backgroundColor: Colors.transparent,
         onTap: () async {
-          await DayChangesDialog.show(context, calendar, const Duration(days: 30));
+          await DayChangesDialog.show(context, calendar);
         },
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 8),
