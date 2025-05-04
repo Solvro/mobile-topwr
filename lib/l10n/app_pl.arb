@@ -3069,24 +3069,24 @@
   "@logotype": {
     "description": "information about some logotype"
   },
-  "next_changed_day_prefix": "Następna zamiana dnia już za ",
-  "@next_changed_day_prefix": {
-    "description": "Prefix for the next day change countdown, showing how many days are left"
+  "incoming_days_changes_days": "{days, plural, =1{1 dzień}  other{{days} dni}}",
+  "@incoming_days_changes_days": {
+    "description": "Liczba dni do pierwszej zmiany w kalendarzu akademickim",
+    "placeholders": {
+      "days": {
+        "type": "int",
+        "example": "5"
+      }
+    }
   },
-  "next_changed_day_days": " dni (",
-  "@next_changed_day_days": {
-    "description": "Text for days unit in the countdown"
-  },
-  "next_changed_day_date_suffix": ") ",
-  "@next_changed_day_date_suffix": {
-    "description": "Suffix after the date in parentheses"
-  },
-  "next_changed_day_from": " z ",
-  "@next_changed_day_from": {
-    "description": "Text indicating the change from one day to another"
-  },
-  "next_changed_day_to": " na ",
-  "@next_changed_day_to": {
-    "description": "Text indicating the change to a new day"
+  "incoming_days_changes_title": "{count, plural, =1{Nadchodząca} other{Nadchodzące}} {count, plural, =1{zamiana dnia} other{{count} zamiany dni}}!",
+  "@incoming_days_changes_title": {
+    "description": "Tytuł pokazujący liczbę nadchodzących zmian dnia w kalendarzu akademickim",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
   }
 }

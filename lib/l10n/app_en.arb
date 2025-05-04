@@ -492,9 +492,24 @@
   "parking_shortest_length_to_nearest_spaces_for_pwd": "The entrance to the building or elevator in the underground parking lot is located {value} meters from the parking space for people with disabilities.",
   "button_leading_to": "Button leading to",
   "logotype": "Logotype",
-  "next_changed_day_prefix": "Next day change in ",
-  "next_changed_day_days": " days (",
-  "next_changed_day_date_suffix": ") ",
-  "next_changed_day_from": " from ",
-  "next_changed_day_to": " to "
+  "incoming_days_changes_days": "{days, plural, =1{1 day} other{{days} days}}",
+  "@incoming_days_changes_days": {
+    "description": "Number of days until first change in academic calendar",
+    "placeholders": {
+      "days": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "incoming_days_changes_title": "Incoming {count, plural, =1{1 day change} other{{count} day changes}}!",
+  "@incoming_days_changes_title": {
+    "description": "Title showing number of incoming day changes in academic calendar",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  }
 }

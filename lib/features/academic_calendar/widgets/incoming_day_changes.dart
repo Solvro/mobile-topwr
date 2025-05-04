@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "../../../theme/app_theme.dart";
+import "../../../utils/context_extensions.dart";
 import "../../../widgets/my_splash_tile.dart";
 import "../model/academic_calendar_extensions.dart";
 import "../repository/academic_calendar_repo.dart";
@@ -13,6 +14,7 @@ class IncomingDayChanges extends StatelessWidget {
     if (data == null) {
       return const SizedBox.shrink();
     }
+    final l10n = context.localize;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: MySplashTile(
@@ -46,7 +48,7 @@ class IncomingDayChanges extends StatelessWidget {
                     Icon(Icons.warning_amber, size: 18, color: context.colorTheme.whiteSoap),
                     const SizedBox(width: 6),
                     Text(
-                      "${data.daysTillFirstChange} dni",
+                      l10n.incoming_days_changes_days(data.daysTillFirstChange),
                       style: context.textTheme.bodyWhite.copyWith(fontWeight: FontWeight.bold, fontSize: 16),
                     ),
                   ],
@@ -54,7 +56,7 @@ class IncomingDayChanges extends StatelessWidget {
               ),
               const SizedBox(width: 12),
               Text(
-                "Nadchodzące ${data.changesCount} zmiany dnia!",
+                l10n.incoming_days_changes_title(data.changesCount),
                 style: context.textTheme.body.copyWith(fontWeight: FontWeight.w500, fontSize: 15),
               ),
               const SizedBox(width: 6),
