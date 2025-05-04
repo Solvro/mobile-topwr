@@ -18,6 +18,7 @@ class TechnicalMessage extends StatelessWidget {
     this.backgoundColor,
     this.textColor,
     this.translate = false,
+    this.padding,
   });
   final String message;
   final String? title;
@@ -28,10 +29,11 @@ class TechnicalMessage extends StatelessWidget {
   final Color? backgoundColor;
   final Color? textColor;
   final bool translate;
+  final EdgeInsets? padding;
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(HomeViewConfig.paddingMedium),
+      padding: padding ?? const EdgeInsets.all(HomeViewConfig.paddingMedium),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(AppWidgetsConfig.borderRadiusMedium),
         child: ColoredBox(

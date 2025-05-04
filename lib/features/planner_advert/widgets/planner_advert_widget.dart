@@ -13,6 +13,8 @@ import "../../../widgets/technical_message.dart";
 import "../repository/planner_advert_repository.dart";
 
 class PlannerAdvertBanner extends ConsumerWidget {
+  const PlannerAdvertBanner({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(plannerAdvertContentRepositoryProvider);
@@ -42,6 +44,7 @@ class _PlannerAdvertBanner extends ConsumerWidget {
         : Padding(
           padding: const EdgeInsets.symmetric(horizontal: HomeViewConfig.paddingSmall),
           child: TechnicalMessage(
+            padding: const EdgeInsets.all(HomeViewConfig.paddingMedium).copyWith(bottom: 0),
             title: data.title,
             titleColor: data.titleColor != null ? HexColor(data.titleColor!) : null,
             message: data.description,

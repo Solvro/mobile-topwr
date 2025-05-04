@@ -4,11 +4,11 @@ import "../config/ui_config.dart";
 import "../theme/app_theme.dart";
 
 class MySplashTile extends StatelessWidget {
-  const MySplashTile({super.key, required this.child, this.onTap});
+  const MySplashTile({super.key, required this.child, this.onTap, this.backgroundColor});
 
   final Widget child;
   final VoidCallback? onTap;
-
+  final Color? backgroundColor;
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -18,7 +18,7 @@ class MySplashTile extends StatelessWidget {
         onTap: onTap,
         child: Ink(
           decoration: BoxDecoration(
-            color: context.colorTheme.greyLight,
+            color: backgroundColor ?? context.colorTheme.greyLight,
             borderRadius: const BorderRadius.all(WideTileCardConfig.radius),
           ),
           child: child,

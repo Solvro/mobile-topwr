@@ -1,48 +1,60 @@
 import "package:flutter/material.dart";
-import "../../../l10n/app_localizations.dart";
 import "../../../theme/app_theme.dart";
-import "../../../utils/context_extensions.dart";
-import "../../../utils/datetime_utils.dart";
-import "../model/academic_calendar_extensions.dart";
-import "../repository/academic_calendar_repo.dart";
-import "../utils/localize_academic_day.dart";
+import "../../../widgets/my_splash_tile.dart";
 
 class NextChangedDay extends StatelessWidget {
-  const NextChangedDay({super.key, required this.academicCalendar});
-
-  final AcademicCalendar academicCalendar;
+  const NextChangedDay({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final nextChangedDay = academicCalendar.nextChangedDay;
-    if (nextChangedDay == null) {
-      return const SizedBox.shrink();
-    }
-    final boldStyle = context.greetingTheme.boldTextStyle.copyWith(fontSize: 16);
-    return Padding(
+    return Container(
       padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: RichText(
-        textAlign: TextAlign.justify,
-        text: TextSpan(
-          style: context.greetingTheme.textStyle.copyWith(fontSize: 16),
-          children: [
-            TextSpan(text: AppLocalizations.of(context)!.next_changed_day_prefix),
-            TextSpan(text: nextChangedDay.dateTime.daysLeftFromNow.toString(), style: boldStyle),
-            TextSpan(
-              text:
-                  context.localize.next_changed_day_days +
-                  nextChangedDay.dateTime.toDayDateString(context, includeWeekday: false, includeYear: false) +
-                  context.localize.next_changed_day_date_suffix,
-              style: boldStyle,
-            ),
-            TextSpan(text: context.localize.next_changed_day_from),
-            TextSpan(
-              text: nextChangedDay.standardAcademicDay.localize(context, includePrefix: false),
-              style: boldStyle,
-            ),
-            TextSpan(text: context.localize.next_changed_day_to),
-            TextSpan(text: nextChangedDay.changedAcademicDay.localize(context, includePrefix: false), style: boldStyle),
-          ],
+      child: MySplashTile(
+        backgroundColor: Colors.transparent,
+        onTap: () {},
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [context.colorTheme.orangePomegranadeLighter, context.colorTheme.orangePomegranade],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: context.colorTheme.orangePomegranade.withValues(alpha: 0.15),
+                      blurRadius: 8,
+                      offset: const Offset(0, 2),
+                    ),
+                  ],
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.warning_amber, size: 18, color: context.colorTheme.whiteSoap),
+                    const SizedBox(width: 6),
+                    Text(
+                      "17 dni",
+                      style: context.textTheme.bodyWhite.copyWith(fontWeight: FontWeight.bold, fontSize: 16),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(width: 12),
+              Text(
+                "Nadchodzące 3 zmiany dnia!",
+                style: context.textTheme.body.copyWith(fontWeight: FontWeight.w500, fontSize: 15),
+              ),
+              const SizedBox(width: 6),
+              Icon(Icons.info_outline, size: 18, color: context.colorTheme.greyPigeon),
+            ],
+          ),
         ),
       ),
     );

@@ -28,8 +28,8 @@ class AcademicCalendarConsumer extends ConsumerWidget {
           Greeting(value),
           const SizedBox(height: HomeViewConfig.paddingMedium),
           ExamSessionCountdown(value),
-          const SizedBox(height: HomeViewConfig.paddingMedium),
-          NextChangedDay(academicCalendar: value),
+          const SizedBox(height: HomeViewConfig.paddingMedium / 1.5),
+          const NextChangedDay(),
         ],
       ),
       _ => const Padding(
