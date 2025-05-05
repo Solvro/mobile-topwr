@@ -60,7 +60,12 @@ class NavigationTabView extends ConsumerWidget {
       const SizedBox(height: NavigationTabViewConfig.universalPadding),
     ];
     return Scaffold(
-      appBar: LogoAppBar(context, logoSize: 40, toolbarHeight: 90, actions: const [NotificationButton()]),
+      appBar: LogoAppBar(
+        context,
+        logoSize: 40,
+        toolbarHeight: 90,
+        actions: [Semantics(button: true, label: context.localize.notifications, child: const NotificationButton())],
+      ),
       body: ListView.separated(
         padding: GuideViewConfig.gridPadding,
         itemBuilder: (context, index) => children[index],

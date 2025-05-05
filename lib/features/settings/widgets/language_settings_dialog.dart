@@ -46,7 +46,8 @@ class LanguageDialog extends ConsumerWidget {
                 color: context.colorTheme.greyLight,
               ),
               child: ListTile(
-                title: Text(name),
+                selected: selected,
+                title: Text(semanticsLabel: name.substring(1), name),
                 trailing: selected ? Icon(Icons.check, color: context.colorTheme.orangePomegranade) : null,
                 onTap: () async {
                   if (!isFirstTimeMode) {

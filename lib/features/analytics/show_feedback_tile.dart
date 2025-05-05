@@ -13,19 +13,25 @@ class ShowFeedbackTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WideTileCard(
-      title: context.localize.bug_report_title,
-      subtitle: context.localize.bug_report_subtitle,
-      onTap: () async {
-        await Wiredash.of(context).show(options: WiredashFeedbackOptions(labels: context.labels));
-      },
-      trailing: Lottie.asset(
-        Assets.animations.bug,
-        width: WideTileCardConfig.imageSize,
-        height: WideTileCardConfig.imageSize,
-        animate: true,
-        repeat: true,
-        renderCache: RenderCache.drawingCommands,
+    return Semantics(
+      label:
+          "${context.localize.bug_report_title}. ${context.localize.feedback_option_not_supported_for_screen_readers}",
+      child: ExcludeSemantics(
+        child: WideTileCard(
+          title: context.localize.bug_report_title,
+          subtitle: context.localize.bug_report_subtitle,
+          onTap: () async {
+            await Wiredash.of(context).show(options: WiredashFeedbackOptions(labels: context.labels));
+          },
+          trailing: Lottie.asset(
+            Assets.animations.bug,
+            width: WideTileCardConfig.imageSize,
+            height: WideTileCardConfig.imageSize,
+            animate: true,
+            repeat: true,
+            renderCache: RenderCache.drawingCommands,
+          ),
+        ),
       ),
     );
   }

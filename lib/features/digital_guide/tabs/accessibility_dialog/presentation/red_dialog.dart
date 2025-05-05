@@ -137,10 +137,12 @@ class _DialogHeader extends StatelessWidget {
             ),
           ),
           if (!centerTitle)
-            IconButton(
-              icon: const Icon(Icons.close),
-              color: context.colorTheme.greyPigeon,
-              onPressed: () => Navigator.of(context).pop(),
+            MergeSemantics(
+              child: IconButton(
+                icon: Semantics(label: context.localize.close, child: const Icon(Icons.close)),
+                color: context.colorTheme.greyPigeon,
+                onPressed: () => Navigator.of(context).pop(),
+              ),
             ),
         ],
       ),

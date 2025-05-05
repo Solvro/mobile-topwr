@@ -3078,6 +3078,14 @@
   "logotype": "Logotyp",
   "@logotype":{
     "description": "information about some logotype"
+  },
+  "notifications": "Powiadomienia",
+  "@notifications":{
+    "description": "information about notifications"
+  },
+  "feedback_option_not_supported_for_screen_readers": "Ta opcja nie jest wspierana dla czytników ekranów. Jeśli chcesz zgłosić błąd lub sugestię napisz do nas wiadomość e-mail.",
+  "@feedback_option_not_supported_for_screen_readers":{
+    "description": "information about feedback option that's not supported for screen readers"
   }
   
 }
