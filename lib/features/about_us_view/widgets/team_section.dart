@@ -111,25 +111,19 @@ class _SingleVersionTeamList extends HookWidget {
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: AboutUsConfig.defaultPadding),
-      child: SizedBox(
-        height: expectedHeight,
-        child: Stack(
-          children: [
-            content,
-            AnimatedOpacity(
-              opacity: showLoader.value ? 1.0 : 0.0,
-              duration: const Duration(milliseconds: 1),
-              child: ColoredBox(
-                color: context.colorTheme.whiteSoap,
-                child: const Align(
-                  alignment: Alignment.topCenter,
-                  child: Padding(padding: EdgeInsets.only(top: 16), child: CircularProgressIndicator()),
+      child:
+          showLoader.value
+              ? SizedBox(
+                height: expectedHeight,
+                child: ColoredBox(
+                  color: context.colorTheme.whiteSoap,
+                  child: const Align(
+                    alignment: Alignment.topCenter,
+                    child: Padding(padding: EdgeInsets.only(top: 16), child: CircularProgressIndicator()),
+                  ),
                 ),
-              ),
-            ),
-          ],
-        ),
-      ),
+              )
+              : content,
     );
   }
 }
@@ -201,27 +195,25 @@ class _Description extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(vertical: 8),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(name, style: context.aboutUsTheme.headlineSmaller, softWrap: true),
-            const SizedBox(height: 4),
-            Text(subtitle, style: context.aboutUsTheme.bodySmaller, softWrap: true),
-            const SizedBox(height: 8),
-            Row(
-              children: [
-                for (final icon in links)
-                  Semantics(
-                    label: "${context.localize.button_leading_to}: ${Uri.parse(icon.url ?? "").host}",
-                    child: _Icon(launchUrl: icon.url ?? "", icon: icon.icon),
-                  ),
-              ],
-            ),
-          ],
-        ),
+    return SingleChildScrollView(
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(name, style: context.aboutUsTheme.headlineSmaller, softWrap: true),
+          const SizedBox(height: 4),
+          Text(subtitle, style: context.aboutUsTheme.bodySmaller, softWrap: true),
+          const SizedBox(height: 8),
+          Row(
+            children: [
+              for (final icon in links)
+                Semantics(
+                  label: "${context.localize.button_leading_to}: ${Uri.parse(icon.url ?? "").host}",
+                  child: _Icon(launchUrl: icon.url ?? "", icon: icon.icon),
+                ),
+            ],
+          ),
+        ],
       ),
     );
   }
