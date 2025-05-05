@@ -6,7 +6,7 @@ import "../../../utils/context_extensions.dart";
 
 Future<void> showCustomDialog({
   required BuildContext context,
-  required void Function(BuildContext context) onConfirmTapped,
+  required void Function(BuildContext context)? onConfirmTapped,
   required String confirmText,
   required Widget dialogContent,
 }) async {
@@ -19,7 +19,7 @@ Future<void> showCustomDialog({
           constraints: BoxConstraints(maxWidth: maxWidth),
           child: _MyAlertDialog(
             dialogContent: dialogContent,
-            onConfirmTapped: () => onConfirmTapped(context),
+            onConfirmTapped: onConfirmTapped != null ? () => onConfirmTapped(context) : null,
             confirmText: confirmText,
           ),
         ),
@@ -30,10 +30,10 @@ Future<void> showCustomDialog({
 
 class _MyAlertDialog extends StatelessWidget {
   final Widget dialogContent;
-  final VoidCallback onConfirmTapped;
+  final VoidCallback? onConfirmTapped;
   final String confirmText;
 
-  const _MyAlertDialog({required this.dialogContent, required this.onConfirmTapped, required this.confirmText});
+  const _MyAlertDialog({required this.dialogContent, this.onConfirmTapped, required this.confirmText});
 
   @override
   Widget build(BuildContext context) {
@@ -49,15 +49,16 @@ class _MyAlertDialog extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Flexible(
-              child: TextButton(
-                onPressed: onConfirmTapped,
-                child: Text(
-                  confirmText,
-                  style: context.textTheme.bodyOrange.copyWith(fontSize: AlertDialogConfig.buttonFontSize),
+            if (onConfirmTapped != null)
+              Flexible(
+                child: TextButton(
+                  onPressed: onConfirmTapped,
+                  child: Text(
+                    confirmText,
+                    style: context.textTheme.bodyOrange.copyWith(fontSize: AlertDialogConfig.buttonFontSize),
+                  ),
                 ),
               ),
-            ),
             Flexible(
               child: TextButton(
                 child: Text(

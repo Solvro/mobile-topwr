@@ -46,7 +46,7 @@ abstract class DateChipConfig {
 abstract class HomeViewConfig {
   static const paddingSmall = 6.0;
   static const paddingMedium = 16.0;
-  static const bottomPadding = 24.0;
+  static const paddingLarge = 24.0;
 
   static const squareCardTextShadow = [
     Shadow(color: HexColor.consts(0x6621334D66), blurRadius: 4, offset: Offset(0, 2)),

@@ -12,6 +12,7 @@ class RedDialog extends StatelessWidget {
   final bool showApplyButton;
   final bool centerTitle;
   final String? applyButtonText;
+  final bool showCloseButton;
   const RedDialog({
     super.key,
     required this.title,
@@ -20,6 +21,7 @@ class RedDialog extends StatelessWidget {
     this.showApplyButton = true,
     this.centerTitle = false,
     this.applyButtonText,
+    this.showCloseButton = true,
   });
   @override
   Widget build(BuildContext context) {
@@ -40,7 +42,7 @@ class RedDialog extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              _DialogHeader(title: title, centerTitle: centerTitle),
+              _DialogHeader(title: title, centerTitle: centerTitle, showCloseButton: showCloseButton),
               Flexible(
                 child: SingleChildScrollView(
                   child: _DialogContent(
@@ -118,10 +120,11 @@ class _DialogFooter extends StatelessWidget {
 }
 
 class _DialogHeader extends StatelessWidget {
-  const _DialogHeader({required this.title, required this.centerTitle});
+  const _DialogHeader({required this.title, required this.centerTitle, required this.showCloseButton});
 
   final String title;
   final bool centerTitle;
+  final bool showCloseButton;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -137,10 +140,17 @@ class _DialogHeader extends StatelessWidget {
             ),
           ),
           if (!centerTitle)
-            IconButton(
-              icon: const Icon(Icons.close),
-              color: context.colorTheme.greyPigeon,
-              onPressed: () => Navigator.of(context).pop(),
+            // a workaround, but the actual button provides some padding too and I don't have a power to play around with paddings anymore
+            Opacity(
+              opacity: showCloseButton ? 1 : 0,
+              child: IgnorePointer(
+                ignoring: !showCloseButton,
+                child: IconButton(
+                  icon: const Icon(Icons.close),
+                  color: context.colorTheme.greyPigeon,
+                  onPressed: () => Navigator.of(context).pop(),
+                ),
+              ),
             ),
         ],
       ),

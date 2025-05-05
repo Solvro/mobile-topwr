@@ -5,6 +5,8 @@ import "package:flutter/material.dart";
 import "../../config/ui_config.dart";
 import "../../theme/app_theme.dart";
 import "../academic_calendar/widgets/academic_calendar_consumer.dart";
+import "../planner_advert/widgets/banner_visibility.dart";
+import "../planner_advert/widgets/planer_ad_badge.dart";
 import "../planner_advert/widgets/planner_advert_widget.dart";
 import "keep_alive_home_view_providers.dart";
 import "widgets/buildings_section/buildings_section.dart";
@@ -21,8 +23,8 @@ class HomeView extends StatelessWidget {
     final sections =
         [
           const AcademicCalendarConsumer(),
-          const Padding(padding: EdgeInsets.only(top: 12, bottom: 4), child: NavActionsSection()),
-          PlannerAdvertBanner(),
+          const NavActionsSection(),
+          const PlannerBannerVisibility(child: PlannerAdvertBanner()),
           const ScienceClubsSection(),
           const BuildingsSection(),
         ].lock;
@@ -30,7 +32,7 @@ class HomeView extends StatelessWidget {
     return Scaffold(
       primary: false,
       backgroundColor: context.colorTheme.whiteSoap,
-      appBar: LogoAppBar(context),
+      appBar: LogoAppBar(context, actions: const [PlannerBannerVisibility(reverseLogic: true, child: PlanerAdBadge())]),
       body: KeepAliveHomeViewProviders(
         child: ListView.separated(
           itemBuilder: (context, index) => sections[index],

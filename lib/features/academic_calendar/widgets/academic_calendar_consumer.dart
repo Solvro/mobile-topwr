@@ -7,6 +7,7 @@ import "../../../widgets/my_error_widget.dart";
 import "../repository/academic_calendar_repo.dart";
 import "countdown_widget/exam_session_countdown.dart";
 import "home_screen_greeting.dart";
+import "incoming_day_changes.dart" show IncomingDayChanges;
 
 class AcademicCalendarConsumer extends ConsumerWidget {
   const AcademicCalendarConsumer({super.key});
@@ -23,7 +24,13 @@ class AcademicCalendarConsumer extends ConsumerWidget {
       AsyncValue(:final AcademicCalendar value) => Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [Greeting(value), const SizedBox(height: HomeViewConfig.paddingMedium), ExamSessionCountdown(value)],
+        children: [
+          Greeting(value),
+          const SizedBox(height: HomeViewConfig.paddingMedium),
+          ExamSessionCountdown(value),
+          const SizedBox(height: HomeViewConfig.paddingMedium / 1.5),
+          IncomingDayChanges(calendar: value),
+        ],
       ),
       _ => const Padding(
         padding: EdgeInsets.symmetric(horizontal: HomeViewConfig.paddingMedium),
