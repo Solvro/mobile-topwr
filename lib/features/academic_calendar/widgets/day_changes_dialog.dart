@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
+import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../utils/datetime_utils.dart";
@@ -36,7 +37,7 @@ class DayChangesDialog extends ConsumerWidget {
         padding: const EdgeInsets.all(32),
         shrinkWrap: true,
         itemCount: swaps.length,
-        separatorBuilder: (context, index) => const Divider(height: 24),
+        separatorBuilder: (context, index) => const Divider(height: HomeViewConfig.paddingLarge),
         itemBuilder: (context, index) {
           final swap = swaps[index];
           final swappedAcademicDay = swap.academicDay(calendarData);

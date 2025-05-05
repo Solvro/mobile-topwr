@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../widgets/my_splash_tile.dart";
@@ -17,7 +18,7 @@ class IncomingDayChanges extends StatelessWidget {
     }
     final l10n = context.localize;
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24),
+      padding: const EdgeInsets.symmetric(horizontal: HomeViewConfig.paddingLarge),
       child: MySplashTile(
         backgroundColor: Colors.transparent,
         onTap: () async {
