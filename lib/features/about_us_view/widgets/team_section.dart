@@ -73,57 +73,22 @@ class _SelectTab extends StatelessWidget {
   }
 }
 
-class _SingleVersionTeamList extends StatefulWidget {
+class _SingleVersionTeamList extends HookWidget {
   const _SingleVersionTeamList({required this.version, required this.shimmerTime});
 
   final MultiversionTeam version;
   final int shimmerTime;
 
   @override
-  _SingleVersionTeamListState createState() => _SingleVersionTeamListState();
-}
-
-class _SingleVersionTeamListState extends State<_SingleVersionTeamList> {
-  bool _showLoader = true;
-  Timer? _timer;
-
-  @override
-  void initState() {
-    super.initState();
-    _startLoaderTimer();
-  }
-
-  @override
-  void didUpdateWidget(covariant _SingleVersionTeamList oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (oldWidget.version != widget.version) {
-      setState(() {
-        _showLoader = true;
-      });
-      _startLoaderTimer();
-    }
-  }
-
-  void _startLoaderTimer() {
-    _timer?.cancel();
-    _timer = Timer(Duration(milliseconds: widget.shimmerTime), () {
-      if (mounted) {
-        setState(() {
-          _showLoader = false;
-        });
-      }
-    });
-  }
-
-  @override
-  void dispose() {
-    _timer?.cancel();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    final version = widget.version;
+    final showLoader = useState(true);
+    useEffect(() {
+      showLoader.value = true;
+      final timer = Timer(Duration(milliseconds: shimmerTime), () {
+        showLoader.value = false;
+      });
+      return timer.cancel;
+    }, [version]);
 
     final double expectedHeight =
         version.members.isEmpty ? 100.0 : version.members.length * WideTileCardConfig.imageSize;
@@ -152,7 +117,7 @@ class _SingleVersionTeamListState extends State<_SingleVersionTeamList> {
           children: [
             content,
             AnimatedOpacity(
-              opacity: _showLoader ? 1.0 : 0.0,
+              opacity: showLoader.value ? 1.0 : 0.0,
               duration: const Duration(milliseconds: 1),
               child: ColoredBox(
                 color: context.colorTheme.whiteSoap,
