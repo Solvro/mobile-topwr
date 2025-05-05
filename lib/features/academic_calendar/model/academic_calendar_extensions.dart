@@ -45,14 +45,14 @@ extension AcademicCalendarX on AcademicCalendar {
   Duration get windowDuration => Duration(days: data?.exceptionsLookupFutureWindowInDays ?? 7);
 
   AcademicDay? get academicDayToday {
-    if (weeks.isTodayAnException && data != null) {
-      return weeks.changedDayToday(data!) ?? data!.standardAcademicDay();
+    if (swaps.isTodayAnException && data != null) {
+      return swaps.changedDayToday(data!) ?? data!.standardAcademicDay();
     }
     return data?.standardAcademicDay();
   }
 
   ({int daysTillFirstChange, int changesCount})? get incomingDaysChanges {
-    final nextException = weeks.nextExceptionsWithinWindow(windowDuration);
+    final nextException = swaps.nextDaySwapsWithinWindow(windowDuration);
     final data = this.data;
     if (data == null || nextException.isEmpty) {
       return null;

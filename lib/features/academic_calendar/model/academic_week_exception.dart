@@ -7,7 +7,7 @@ import "academic_calendar_extensions.dart";
 import "academic_day.dart";
 import "weekday_enum.dart";
 
-extension ExceptionX on AcademicWeekException {
+extension ExceptionDaySwapX on AcademicDaySwap {
   AcademicDay academicDay(AcademicCalendarData calendarData) {
     return AcademicDay(
       isEven: changedDayIsEven,
@@ -18,8 +18,8 @@ extension ExceptionX on AcademicWeekException {
   }
 }
 
-extension AcademicWeekExceptionX on IList<AcademicWeekException> {
-  bool _checkIfThisIsToday(AcademicWeekException element) => element.day.isSameDay(now);
+extension AcademicDaySwapListX on IList<AcademicDaySwap> {
+  bool _checkIfThisIsToday(AcademicDaySwap element) => element.day.isSameDay(now);
 
   bool get isTodayAnException {
     return any(_checkIfThisIsToday);
@@ -30,7 +30,7 @@ extension AcademicWeekExceptionX on IList<AcademicWeekException> {
     return changedDayData?.academicDay(calendarData);
   }
 
-  IList<AcademicWeekException> nextExceptionsWithinWindow([Duration? windowDuration]) {
+  IList<AcademicDaySwap> nextDaySwapsWithinWindow([Duration? windowDuration]) {
     final duration = windowDuration ?? const Duration(days: 7);
     final nowPlusWindow = now.add(duration);
     return where(

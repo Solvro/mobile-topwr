@@ -22,7 +22,7 @@ class DayChangesDialog extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.localize;
-    final weekExceptions = calendar.weeks.nextExceptionsWithinWindow(calendar.windowDuration);
+    final swaps = calendar.swaps.nextDaySwapsWithinWindow(calendar.windowDuration);
     final calendarData = calendar.data;
     if (calendarData == null) {
       return const SizedBox.shrink();
@@ -35,12 +35,12 @@ class DayChangesDialog extends ConsumerWidget {
       child: ListView.separated(
         padding: const EdgeInsets.all(32),
         shrinkWrap: true,
-        itemCount: weekExceptions.length,
+        itemCount: swaps.length,
         separatorBuilder: (context, index) => const Divider(height: 24),
         itemBuilder: (context, index) {
-          final weekException = weekExceptions[index];
-          final changedAcademicDay = weekException.academicDay(calendarData);
-          final standardAcademicDay = calendarData.standardAcademicDay(weekException.day);
+          final swap = swaps[index];
+          final swappedAcademicDay = swap.academicDay(calendarData);
+          final standardAcademicDay = calendarData.standardAcademicDay(swap.day);
           return Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -51,7 +51,7 @@ class DayChangesDialog extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      weekException.day.toDayDateString(context, includeWeekday: false, includeYear: false),
+                      swap.day.toDayDateString(context, includeWeekday: false, includeYear: false),
                       style: context.textTheme.title.copyWith(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 4),
@@ -60,7 +60,7 @@ class DayChangesDialog extends ConsumerWidget {
                         children: [
                           TextSpan(text: "${l10n.day_changes_dialog_will_be} "),
                           TextSpan(
-                            text: changedAcademicDay.localize(context, includePrefix: false),
+                            text: swappedAcademicDay.localize(context, includePrefix: false),
                             style: const TextStyle(fontWeight: FontWeight.bold),
                           ),
                           TextSpan(

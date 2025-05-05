@@ -10,7 +10,7 @@ part "academic_calendar_repo.g.dart";
 
 typedef AcademicCalendar = Query$GetAcademicCalendar;
 typedef AcademicCalendarData = Query$GetAcademicCalendar$AcademicCalendarData;
-typedef AcademicWeekException = Query$GetAcademicCalendar$WeekExceptions;
+typedef AcademicDaySwap = Query$GetAcademicCalendar$WeekExceptions;
 
 @riverpod
 Future<AcademicCalendar?> academicCalendarRepo(Ref ref) {
@@ -19,5 +19,5 @@ Future<AcademicCalendar?> academicCalendarRepo(Ref ref) {
 
 extension FixNestedTypesX on AcademicCalendar {
   AcademicCalendarData? get data => this.AcademicCalendarData;
-  IList<AcademicWeekException> get weeks => WeekExceptions.lock;
+  IList<AcademicDaySwap> get swaps => WeekExceptions.lock;
 }
