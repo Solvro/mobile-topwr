@@ -88,7 +88,7 @@ class _SingleVersionTeamList extends HookWidget {
         showLoader.value = false;
       });
       return timer.cancel;
-    }, [version]);
+    }, [version, shimmerTime]);
 
     final double expectedHeight =
         version.members.isEmpty ? 100.0 : version.members.length * WideTileCardConfig.imageSize;
