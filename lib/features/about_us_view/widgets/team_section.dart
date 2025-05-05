@@ -12,6 +12,8 @@ import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../utils/determine_contact_icon.dart";
 import "../../../utils/launch_url_util.dart";
+import "../../../widgets/loading_widgets/scrolable_loader_builder.dart";
+import "../../../widgets/loading_widgets/simple_previews/preview_card_loading.dart";
 import "../../../widgets/zoomable_images.dart";
 import "../models/about_us_details.dart";
 import "../models/member_data.dart";
@@ -111,19 +113,28 @@ class _SingleVersionTeamList extends HookWidget {
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: AboutUsConfig.defaultPadding),
-      child:
-          showLoader.value
-              ? SizedBox(
-                height: expectedHeight,
-                child: ColoredBox(
-                  color: context.colorTheme.whiteSoap,
-                  child: const Align(
-                    alignment: Alignment.topCenter,
-                    child: Padding(padding: EdgeInsets.only(top: 16), child: CircularProgressIndicator()),
-                  ),
-                ),
-              )
-              : content,
+      child: showLoader.value ? _TeamMembersLoading(expectedHeight: expectedHeight) : content,
+    );
+  }
+}
+
+class _TeamMembersLoading extends StatelessWidget {
+  const _TeamMembersLoading({required this.expectedHeight});
+
+  final double expectedHeight;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: expectedHeight,
+      child: ScrollableLoaderBuilder(
+        itemsSpacing: 16,
+        scrollDirection: Axis.vertical,
+        mainAxisItemSize: 12,
+        itemBuilder: (BuildContext context, int index) {
+          return const PreviewCardLoading(width: double.infinity, height: AboutUsConfig.photoSize);
+        },
+      ),
     );
   }
 }
