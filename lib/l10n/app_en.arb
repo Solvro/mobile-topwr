@@ -97,7 +97,7 @@
   "filters": "Filters",
   "clear": "Clear",
   "filters_didnt_found_anything": "No filters found",
-  "street_abbreviation": "st.",
+  "street_abbreviation": "ul.",
   "bug_report_title": "Report a bug or suggestion",
   "bug_report_subtitle": "Send a report directly to the app's creators.",
   "new_feature": "New functionality",
