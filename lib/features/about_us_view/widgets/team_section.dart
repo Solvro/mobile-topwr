@@ -206,26 +206,25 @@ class _Description extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(vertical: 8),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(name, style: context.aboutUsTheme.headlineSmaller, softWrap: true),
-          const SizedBox(height: 4),
-          Text(subtitle, style: context.aboutUsTheme.bodySmaller, softWrap: true),
-          const SizedBox(height: 8),
-          Row(
-            children: [
-              for (final icon in links)
-                Semantics(
-                  label: "${context.localize.button_leading_to}: ${Uri.parse(icon.url ?? "").host}",
-                  child: _Icon(launchUrl: icon.url ?? "", icon: icon.icon),
-                ),
-            ],
-          ),
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Spacer(flex: 4),
+        Text(name, style: context.aboutUsTheme.headlineSmaller, softWrap: true),
+        const SizedBox(height: 4),
+        Text(subtitle, style: context.aboutUsTheme.bodySmaller, softWrap: true),
+        const Spacer(flex: 5),
+        Row(
+          children: [
+            for (final icon in links)
+              Semantics(
+                label: "${context.localize.button_leading_to}: ${Uri.parse(icon.url ?? "").host}",
+                child: _Icon(launchUrl: icon.url ?? "", icon: icon.icon),
+              ),
+          ],
+        ),
+        const Spacer(flex: 5),
+      ],
     );
   }
 }
