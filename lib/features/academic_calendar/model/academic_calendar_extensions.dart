@@ -1,10 +1,11 @@
 import "../../../utils/datetime_utils.dart";
 import "../repository/academic_calendar_repo.dart";
+import "academic_calendar_rest_model.dart";
 import "academic_day.dart";
 import "academic_week_exception.dart";
 import "weekday_enum.dart";
 
-extension AcademicCalendarDataX on AcademicCalendarData {
+extension AcademicCalendarDataX on AcademicCalendarRestData {
   bool isHolidays() {
     return now.isBefore(semesterStartDate) || now.isAfter(examSessionLastDate);
   }
@@ -36,11 +37,11 @@ extension AcademicCalendarDataX on AcademicCalendarData {
   }
 }
 
-extension AcademicCalendarX on AcademicCalendar {
+extension AcademicCalendarX on AcademicCalendarData {
   AcademicDay? get academicDay {
     if (weeks.isTodayAnException) {
-      return weeks.changedDay ?? data.firstOrNull?.standardAcademicDay;
+      return weeks.changedDay ?? data.standardAcademicDay;
     }
-    return data.firstOrNull?.standardAcademicDay;
+    return data.standardAcademicDay;
   }
 }

@@ -7,26 +7,16 @@ import "../../utils/counter_digits.dart";
 
 class DigitsRow extends StatelessWidget {
   const DigitsRow(this.calendarData, {super.key});
-  final AcademicCalendar? calendarData;
+  final AcademicCalendarData? calendarData;
 
   @override
   Widget build(BuildContext context) {
-    // Safely get the first calendar entry
-    final firstEntry = calendarData?.data.firstOrNull;
-
-    // Get the string like "003" or "015"
-    final dayLeftString = firstEntry?.daysLeftFromNowString;
-
+    final dayLeftString = calendarData?.daysLeftFromNowString;
     return Row(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        for (int i = 0; i < Digit.values.length; i++)
-          IntBox(
-            singleInt:
-                dayLeftString != null && i < dayLeftString.length
-                    ? dayLeftString[i]
-                    : CountdownConfig.defaultDigit.toString(),
-          ),
+        for (final digit in Digit.values)
+          IntBox(singleInt: dayLeftString?.getDigit(digit) ?? CountdownConfig.defaultDigit.toString()),
       ],
     );
   }
