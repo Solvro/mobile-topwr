@@ -3,6 +3,7 @@ import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
+import "../../../utils/context_extensions.dart";
 import "../../departments/departments_view/data/repository/departments_repository.dart";
 import "../science_clubs_filters/filters_controller.dart";
 import "../science_clubs_filters/hooks/use_initial_filter_ids.dart";
@@ -24,6 +25,10 @@ class ScienceClubsView extends StatelessWidget {
   final String? tagsIdsSequence;
   final String? deptsIdsSequence;
   final String? typesSequence;
+
+  static String localizedOfflineMessage(BuildContext context) {
+    return context.localize.my_offline_error_message(context.localize.scientific_cirlces);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +64,7 @@ class _ScienceClubsView extends StatelessWidget {
                 tagsIds.map((it) => it.toLowerCase()).toIList(),
                 () async => ref.read(tagsRepositoryProvider.future),
                 ref.watch(selectedTagControllerProvider.notifier),
-                (ids, tag) => ids.contains(tag.name.toLowerCase()),
+                (ids, tag) => ids.contains(tag.tag.toLowerCase()),
               );
 
               useInitialFilterIds(
