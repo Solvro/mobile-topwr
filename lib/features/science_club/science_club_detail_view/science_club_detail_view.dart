@@ -18,8 +18,9 @@ import "../../../widgets/loading_widgets/contact_section_loading.dart";
 import "../../../widgets/loading_widgets/header_section_loading.dart";
 import "../../../widgets/loading_widgets/shimmer_loading.dart";
 import "../../../widgets/my_error_widget.dart";
-import "../science_clubs_view/widgets/strategic_badge.dart";
+//import "../science_clubs_view/widgets/strategic_badge.dart";
 import "../science_clubs_view/widgets/verified_badge.dart";
+import "model/science_club_details.dart";
 import "repository/science_club_details_repository.dart";
 import "widgets/about_us_section.dart";
 import "widgets/about_us_section_loading.dart";
@@ -29,6 +30,10 @@ class ScienceClubDetailView extends StatelessWidget {
   const ScienceClubDetailView({@PathParam("id") required this.id, super.key});
 
   final String id;
+
+  static String localizedOfflineMessage(BuildContext context) {
+    return context.localize.my_offline_error_message(context.localize.scientific_cirlces);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,8 +55,8 @@ class _SciClubDetailDataView extends ConsumerWidget {
         slivers: [
           SliverPersistentHeader(
             delegate: SliverHeaderSection(
-              logoDirectusImageUrl: value.logo?.filename_disk,
-              backgroundImageUrl: value.cover?.filename_disk,
+              logoDirectusImageUrl: value.logo?.first.url,
+              backgroundImageUrl: value.cover?.first.url,
             ),
           ),
           SliverList(
@@ -68,21 +73,21 @@ class _SciClubDetailDataView extends ConsumerWidget {
                     style: context.textTheme.headline,
                     children: [
                       if (value.source == ScienceClubsViewConfig.source) const VerifiedBadge(),
-                      if (value.isStrategic) const StrategicBadge(),
+                      //if (value.isStrategic) const StrategicBadge(),
                     ],
                   ),
                 ),
               ),
               const SizedBox(height: 12),
               TextWithTranslation(
-                value.department?.name ?? "",
+                value.departmentName ?? "",
                 style: context.textTheme.body,
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: DetailViewsConfig.spacerHeight),
               ContactSection(
                 title: context.localize.contact,
-                list: value.links.whereNonNull.map((a) => ContactIconsModel(text: a.name, url: a.link)).toIList(),
+                list: value.links.whereNonNull.map((a) => ContactIconsModel(url: a.link)).toIList(),
               ),
               const SizedBox(height: DetailViewsConfig.spacerHeight),
               AboutUsSection(text: value.description ?? ""),
