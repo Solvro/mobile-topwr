@@ -11,10 +11,10 @@ abstract class ScienceClubDetails with _$ScienceClubDetails {
     required String source,
     String? description,
     int? departmentId,
-    IList<CoverData>? cover,
+    CoverData? cover,
     IList<LinksData>? links,
-    IList<LogoData>? logo,
-    @JsonKey(includeFromJson: false, includeToJson: false) String? departmentName,
+    LogoData? logo,
+    String? departmentName,
   }) = _ScienceClubDetails;
 
   factory ScienceClubDetails.fromJson(Map<String, dynamic> json) => _$ScienceClubDetailsFromJson(json);

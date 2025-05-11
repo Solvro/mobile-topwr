@@ -10,7 +10,7 @@ import "../science_club_detail_view.dart";
 part "science_club_details_repository.g.dart";
 
 @riverpod
-Future<ScienceClubDetails?> scienceClubDetailsRepository(Ref ref, String id) async {
+Future<ScienceClubDetails?> scienceClubDetailsRepository(Ref ref, int id) async {
   final apiUrl = Env.mainRestApiUrl;
   final clubDetailsEndpoint = "/student_organizations/$id?cover=true&links=true&logo=true&tags=true";
   const departmentsEndpoint = "/departments";

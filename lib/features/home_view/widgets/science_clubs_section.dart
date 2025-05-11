@@ -86,9 +86,9 @@ class _ScienceClubCard extends ConsumerWidget {
     return BigPreviewCard(
       title: sciClub.name,
       shortDescription: sciClub.shortDescription ?? "",
-      directusUrl: (sciClub.coverPreview) ? sciClub.cover?.first.url : sciClub.logo?.first.url,
+      directusUrl: (sciClub.coverPreview) ? sciClub.cover?.url : sciClub.logo?.url,
       showVerifiedBadge: sciClub.source == ScienceClubsViewConfig.source,
-      onClick: () async => ref.navigateSciClubsDetail(sciClub.id as String),
+      onClick: () async => ref.navigateSciClubsDetail(sciClub.id),
       //showStrategicBadge: sciClub.isStrategic,
     );
   }

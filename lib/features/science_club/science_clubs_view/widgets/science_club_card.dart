@@ -18,7 +18,7 @@ class ScienceClubCard extends StatelessWidget {
       title: sciClub.name,
       subtitle: sciClub.departmentName,
       onTap: onTap,
-      secondSubtitle: sciClub.tags?.map((tag) => "tag").toList().join(", "),
+      secondSubtitle: sciClub.tags?.map((tag) => "#${tag.tag}").toList().join(", "),
       showBadge: sciClub.source == ScienceClubsViewConfig.source,
       //showStrategicBadge: sciClub.isStrategic,
       activeShadows: null,
@@ -39,7 +39,7 @@ class ScienceClubCard extends StatelessWidget {
               ),
             ),
             child: OptimizedDirectusImage(
-              sciClub.logo?.first.url,
+              sciClub.logo?.url,
               boxFit: BoxFit.scaleDown,
               loadingType: LoadingType.noLoading,
             ),

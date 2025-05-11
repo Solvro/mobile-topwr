@@ -18,12 +18,18 @@ Future<IList<Tag>> tagsRepository(Ref ref) async {
   final response = await ref.getAndCacheData(
     apiUrl + endpoint,
     TtlStrategy.get(TtlKey.tagsRepository).inDays,
-    StudentClubsResponse.fromJson,
+    ScienceClubsResponse.fromJson,
     localizedOfflineMessage: FiltersSheet.localizedOfflineMessage,
     extraValidityCheck: (_) => true,
     onRetry: ref.invalidateSelf,
   );
 
-  final tags = response.data.tags.toSet().toList().toIList();
+  final tags =
+      response.data
+          .expand<Tag>((club) => club.tags?.cast<Tag>() ?? const Iterable.empty())
+          .cast<Tag>()
+          .toSet()
+          .toList()
+          .toIList();
   return tags;
 }

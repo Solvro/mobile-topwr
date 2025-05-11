@@ -66,8 +66,8 @@ class _ScienceClubsList extends ConsumerWidget {
           child: BigPreviewCard(
             title: sciClub.name,
             shortDescription: sciClub.shortDescription ?? "",
-            directusUrl: (sciClub.coverPreview) ? sciClub.cover?.first.url : sciClub.logo?.first.url,
-            onClick: () async => ref.navigateSciClubsDetail(sciClub.id as String),
+            directusUrl: (sciClub.coverPreview) ? sciClub.cover?.url : sciClub.logo?.url,
+            onClick: () async => ref.navigateSciClubsDetail(sciClub.id),
             showVerifiedBadge: sciClub.source == ScienceClubsViewConfig.source,
             //showStrategicBadge: sciClub.isStrategic,
           ),

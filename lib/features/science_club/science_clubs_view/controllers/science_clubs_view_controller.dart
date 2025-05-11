@@ -4,7 +4,6 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../../utils/contains_lower_case.dart";
 import "../../../../utils/where_non_null_iterable.dart";
-import "../../../departments/departments_view/data/repository/departments_repository.dart";
 import "../../science_clubs_filters/filters_controller.dart";
 import "../model/science_clubs.dart";
 import "../repository/science_clubs_repository.dart";
@@ -45,8 +44,6 @@ Future<Iterable<ScienceClub>> _sciClubsFilteredByTextQuery(Ref ref) async {
 )
 Future<IList<ScienceClub>> scienceClubsListController(Ref ref) async {
   final sciClubs = (await ref.watch(_sciClubsFilteredByTextQueryProvider.future)).whereNonNull;
-  final departments = await ref.watch(departmentsRepositoryProvider.future);
-  final departmentsMap = {for (final d in departments) d.id: d};
 
   if (!ref.watch(areFiltersEnabledProvider)) {
     return sciClubs.toIList();
@@ -65,8 +62,7 @@ Future<IList<ScienceClub>> scienceClubsListController(Ref ref) async {
       selectedDepartments.isEmpty
           ? filteredByTypes
           : filteredByTypes.where((club) {
-            final department = departmentsMap[club.departmentId];
-            return selectedDepartments.contains(department?.name);
+            return selectedDepartments.contains(club.departmentName);
           });
 
   final filteredByTags =

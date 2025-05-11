@@ -46,7 +46,7 @@ class _ScienceClubsListView extends ConsumerWidget {
       itemBuilder:
           (context, index) => ScienceClubCard(
             filteredCircles[index],
-            () async => ref.navigateSciClubsDetail(filteredCircles[index].id as String),
+            () async => ref.navigateSciClubsDetail(filteredCircles[index].id),
           ),
     );
   }

@@ -42,6 +42,7 @@ Future<IList<ScienceClub>> scienceClubsRepository(Ref ref) async {
 
   final clubs =
       scienceClubsResponse.data
+          .whereType<ScienceClub>()
           .map(
             (club) => club.copyWith(
               departmentName: departmentsMap[club.departmentId]?.name,

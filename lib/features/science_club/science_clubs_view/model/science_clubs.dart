@@ -14,13 +14,13 @@ abstract class ScienceClub with _$ScienceClub {
     required String organizationType,
     required bool coverPreview,
     IList<TagsData>? tags,
-    IList<LogoData>? logo,
-    IList<CoverData>? cover,
+    LogoData? logo,
+    CoverData? cover,
     String? shortDescription,
     int? departmentId,
-    @JsonKey(includeFromJson: false, includeToJson: false) String? departmentName,
-    @JsonKey(includeFromJson: false, includeToJson: false) String? code,
-    @JsonKey(includeFromJson: false, includeToJson: false) String? betterCode,
+    String? departmentName,
+    String? code,
+    String? betterCode,
   }) = _ScienceClub;
 
   factory ScienceClub.fromJson(Map<String, dynamic> json) => _$ScienceClubFromJson(json);

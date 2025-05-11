@@ -29,7 +29,7 @@ import "widgets/about_us_section_loading.dart";
 class ScienceClubDetailView extends StatelessWidget {
   const ScienceClubDetailView({@PathParam("id") required this.id, super.key});
 
-  final String id;
+  final int id;
 
   static String localizedOfflineMessage(BuildContext context) {
     return context.localize.my_offline_error_message(context.localize.scientific_cirlces);
@@ -44,7 +44,7 @@ class ScienceClubDetailView extends StatelessWidget {
 class _SciClubDetailDataView extends ConsumerWidget {
   const _SciClubDetailDataView(this.id);
 
-  final String id;
+  final int id;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -54,10 +54,7 @@ class _SciClubDetailDataView extends ConsumerWidget {
       AsyncValue(:final ScienceClubDetails value) => CustomScrollView(
         slivers: [
           SliverPersistentHeader(
-            delegate: SliverHeaderSection(
-              logoDirectusImageUrl: value.logo?.first.url,
-              backgroundImageUrl: value.cover?.first.url,
-            ),
+            delegate: SliverHeaderSection(logoDirectusImageUrl: value.logo?.url, backgroundImageUrl: value.cover?.url),
           ),
           SliverList(
             delegate: SliverChildListDelegate([
