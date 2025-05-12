@@ -27,9 +27,9 @@ Future<Iterable<ScienceClub>> _sciClubsFilteredByTextQuery(Ref ref) async {
 
   return originalList.where((element) {
     return element.name.containsLowerCase(query) ||
-        (element.departmentName ?? "").containsLowerCase(query) ||
-        (element.code ?? "").containsLowerCase(query) ||
-        (element.betterCode ?? "").containsLowerCase(query);
+        (element.department?.name ?? "").containsLowerCase(query) ||
+        (element.department?.code ?? "").containsLowerCase(query) ||
+        (element.department?.betterCode ?? "").containsLowerCase(query);
   });
 }
 
@@ -62,7 +62,7 @@ Future<IList<ScienceClub>> scienceClubsListController(Ref ref) async {
       selectedDepartments.isEmpty
           ? filteredByTypes
           : filteredByTypes.where((club) {
-            return selectedDepartments.contains(club.departmentName);
+            return selectedDepartments.contains(club.department?.name);
           });
 
   final filteredByTags =

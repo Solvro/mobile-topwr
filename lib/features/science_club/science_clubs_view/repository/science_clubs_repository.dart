@@ -14,46 +14,23 @@ part "science_clubs_repository.g.dart";
 @riverpod
 Future<IList<ScienceClub>> scienceClubsRepository(Ref ref) async {
   final apiUrl = Env.mainRestApiUrl;
-  const scienceClubsEndpoint = "/student_organizations?cover=true&links=true&logo=true&tags=true";
-  const departmentsEndpoint = "/departments";
+  const scienceClubsEndpoint = "/student_organizations?cover=true&links=true&logo=true&tags=true&department=true";
 
-  final responses = await Future.wait([
-    ref.getAndCacheData(
-      apiUrl + scienceClubsEndpoint,
-      TtlStrategy.get(TtlKey.scienceClubsRepository).inDays,
-      ScienceClubsResponse.fromJson,
-      extraValidityCheck: (_) => true,
-      localizedOfflineMessage: ScienceClubsView.localizedOfflineMessage,
-      onRetry: ref.invalidateSelf,
-    ),
-    ref.getAndCacheData(
-      apiUrl + departmentsEndpoint,
-      TtlStrategy.get(TtlKey.departmentsRepository).inDays,
-      DepartmentsResponse.fromJson,
-      extraValidityCheck: (_) => true,
-      localizedOfflineMessage: ScienceClubsView.localizedOfflineMessage,
-      onRetry: ref.invalidateSelf,
-    ),
-  ]);
+  final response = await ref.getAndCacheData(
+    apiUrl + scienceClubsEndpoint,
+    TtlStrategy.get(TtlKey.scienceClubsRepository).inDays,
+    ScienceClubsResponse.fromJson,
+    extraValidityCheck: (_) => true,
+    localizedOfflineMessage: ScienceClubsView.localizedOfflineMessage,
+    onRetry: ref.invalidateSelf,
+  );
 
-  final scienceClubsResponse = responses[0] as ScienceClubsResponse;
-  final departmentsResponse = responses[1] as DepartmentsResponse;
-  final departmentsMap = {for (final department in departmentsResponse.data) department.id: department};
-
-  final clubs =
-      scienceClubsResponse.data
-          .whereType<ScienceClub>()
-          .map(
-            (club) => club.copyWith(
-              departmentName: departmentsMap[club.departmentId]?.name,
-              code: departmentsMap[club.departmentId]?.code,
-              betterCode: departmentsMap[club.departmentId]?.betterCode,
-            ),
-          )
-          .where((club) => club.organizationStatus.toScienceClubStatus != ScienceClubStatus.archived)
-          .sortBySourceTypes()
-          .toIList();
-  return clubs;
+  return response.data
+      .whereType<ScienceClub>()
+      .map((club) => club)
+      .where((club) => club.organizationStatus.toScienceClubStatus != ScienceClubStatus.archived)
+      .sortBySourceTypes()
+      .toIList();
 }
 
 extension IsSolvroX on ScienceClub {

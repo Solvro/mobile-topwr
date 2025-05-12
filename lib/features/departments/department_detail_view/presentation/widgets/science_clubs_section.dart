@@ -27,7 +27,7 @@ class DepartmentScienceClubsSection extends ConsumerWidget {
       AsyncError(:final error) => MyErrorWidget(error),
       AsyncValue(:final IList<ScienceClub> value) => Builder(
         builder: (context) {
-          final filtered = value.where((sciClubs) => sciClubs.departmentId == department.id).toIList();
+          final filtered = value.where((sciClubs) => sciClubs.department?.id == department.id).toIList();
           return Column(
             children: [
               SubsectionHeader(

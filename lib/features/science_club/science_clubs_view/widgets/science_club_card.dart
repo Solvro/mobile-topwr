@@ -16,7 +16,7 @@ class ScienceClubCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return WideTileCard(
       title: sciClub.name,
-      subtitle: sciClub.departmentName,
+      subtitle: sciClub.department?.name,
       onTap: onTap,
       secondSubtitle: sciClub.tags?.map((tag) => "#${tag.tag}").toList().join(", "),
       showBadge: sciClub.source == ScienceClubsViewConfig.source,

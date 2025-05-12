@@ -10,11 +10,10 @@ abstract class ScienceClubDetails with _$ScienceClubDetails {
     required String name,
     required String source,
     String? description,
-    int? departmentId,
     CoverData? cover,
     IList<LinksData>? links,
     LogoData? logo,
-    String? departmentName,
+    Department? department,
   }) = _ScienceClubDetails;
 
   factory ScienceClubDetails.fromJson(Map<String, dynamic> json) => _$ScienceClubDetailsFromJson(json);
@@ -25,12 +24,6 @@ abstract class ClubDetailsResponse with _$ClubDetailsResponse {
   const factory ClubDetailsResponse({required ScienceClubDetails data}) = _ClubDetailsResponse;
 
   factory ClubDetailsResponse.fromJson(Map<String, dynamic> json) => _$ClubDetailsResponseFromJson(json);
-}
-
-@freezed
-abstract class DepartmentsResponse with _$DepartmentsResponse {
-  const factory DepartmentsResponse({required IList<Department> data}) = _DepartmentsResponse;
-  factory DepartmentsResponse.fromJson(Map<String, dynamic> json) => _$DepartmentsResponseFromJson(json);
 }
 
 @freezed

@@ -77,7 +77,7 @@ class _SciClubDetailDataView extends ConsumerWidget {
               ),
               const SizedBox(height: 12),
               TextWithTranslation(
-                value.departmentName ?? "",
+                value.department?.name ?? "",
                 style: context.textTheme.body,
                 textAlign: TextAlign.center,
               ),
