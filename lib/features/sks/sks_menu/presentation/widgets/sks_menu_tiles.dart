@@ -40,6 +40,7 @@ class SksMenuDishDetailsTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final hasIncreasedTextSize = MediaQuery.textScalerOf(context).scale(1) > 1;
     return DecoratedBox(
       decoration: BoxDecoration(
         color: context.colorTheme.whiteSoap,
@@ -48,12 +49,14 @@ class SksMenuDishDetailsTile extends StatelessWidget {
       ),
       child: ListTile(
         title: Text(dish.name, style: context.textTheme.lightTitle),
-        trailing: RichText(
-          text: TextSpan(
+        trailing: Text.rich(
+          textAlign: TextAlign.end,
+          TextSpan(
             children: [
-              TextSpan(text: " ${dish.size}", style: context.textTheme.bodyGrey),
-              TextSpan(text: " | ", style: context.textTheme.title),
-              TextSpan(text: "${dish.price} zł", style: context.textTheme.title),
+              TextSpan(text: " ${dish.size}", style: context.textTheme.bodyGrey.copyWith(height: 1)),
+              if (!hasIncreasedTextSize) TextSpan(text: " | ", style: context.textTheme.title.copyWith(height: 1)),
+              if (hasIncreasedTextSize) const TextSpan(text: "\n"),
+              TextSpan(text: "${dish.price} zł", style: context.textTheme.title.copyWith(height: 1)),
             ],
           ),
         ),

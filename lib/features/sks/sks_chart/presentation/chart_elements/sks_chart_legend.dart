@@ -45,7 +45,14 @@ class SksChartLegendItem extends StatelessWidget {
         else
           Container(width: SksChartConfig.legendItemSize, height: 2, color: context.colorTheme.orangePomegranade),
         const SizedBox(width: SksChartConfig.heightMedium),
-        Expanded(child: Text(text, style: context.textTheme.body, softWrap: true)),
+        Expanded(
+          child: Text(
+            text,
+            style: context.textTheme.body,
+            softWrap: true,
+            textScaler: MediaQuery.textScalerOf(context).clamp(maxScaleFactor: 1.5),
+          ),
+        ),
       ],
     );
   }

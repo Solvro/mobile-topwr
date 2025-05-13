@@ -24,11 +24,16 @@ class SksMenuHeader extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const SizedBox(height: SksMenuConfig.paddingLarge),
-          Text(context.localize.sks_menu, style: context.textTheme.headlineOrange.copyWith(fontSize: 28, height: 1)),
+          Text(
+            context.localize.sks_menu,
+            style: context.textTheme.headlineOrange.copyWith(fontSize: 28, height: 1),
+            textAlign: TextAlign.center,
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: SksMenuConfig.paddingSmall),
             child: Text(
               DateTime.now().toDayDateString(context),
+              textAlign: TextAlign.center,
               style: context.textTheme.title.copyWith(fontSize: 20, color: context.colorTheme.blueAzure, height: 1),
             ),
           ),
@@ -53,6 +58,7 @@ class SksMenuHeader extends StatelessWidget {
               child: Text(
                 "${context.localize.last_modified}: ${Protontime.format(stamp, language: context.locale.languageCode)}",
                 style: context.textTheme.bodyGrey,
+                textAlign: TextAlign.center,
               ),
             ),
         ],

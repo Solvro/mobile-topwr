@@ -16,6 +16,7 @@ class SksChartRightTiles extends AxisTitles {
           semanticsLabel: "${context.localize.number_of_people} ${context.localize.axis_vertical_screen_reader}",
           style: context.textTheme.body.copyWith(fontSize: 14, fontWeight: FontWeight.w400),
         ),
+        axisNameSize: MediaQuery.textScalerOf(context).scale(16),
         sideTitles: SideTitles(
           maxIncluded: false,
           reservedSize: 40,
@@ -40,7 +41,7 @@ class SksChartBottomTitles extends AxisTitles {
         sideTitles: SideTitles(
           showTitles: true,
           reservedSize: 35,
-          interval: 5,
+          interval: MediaQuery.textScalerOf(context).scale(1) > 1 ? 40 : 5,
           getTitlesWidget: (double value, TitleMeta meta) {
             final DateTime? hourMinute = chartData.isNotEmpty ? chartData[value.toInt()].externalTimestamp : null;
             final String hourMinuteFormatted =
@@ -51,6 +52,7 @@ class SksChartBottomTitles extends AxisTitles {
                 padding: const EdgeInsets.only(top: SksChartConfig.paddingSmall, left: 50),
                 child: Text(
                   style: context.textTheme.body.copyWith(fontSize: 12, fontWeight: FontWeight.w400),
+                  textScaler: MediaQuery.textScalerOf(context).clamp(maxScaleFactor: 1.5),
                   hourMinuteFormatted,
                 ),
               ),
