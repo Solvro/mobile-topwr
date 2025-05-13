@@ -5,10 +5,44 @@ import "../model/academic_day.dart";
 import "../model/weekday_enum.dart";
 
 extension LocalizeAcademicDayX on AcademicDay {
-  String localize(BuildContext context) {
+  String _localizeWithPrefix(BuildContext context) {
     if (isHolidays) return weekday.localizeHoliday(context);
     if (isExamSession) return weekday.localizeExamSession(context);
     return isEven ? weekday.localizeEven(context) : weekday.localizeOdd(context);
+  }
+
+  String _localizeDeclinedNoun(BuildContext context) {
+    // TODO(simon-the-shark): decline holiday and exam session days (but they shouldn't be used in this context anyway)
+    if (isHolidays) return weekday.localizeHoliday(context);
+    if (isExamSession) return weekday.localizeExamSession(context);
+    return isEven
+        ? switch (weekday) {
+          WeekdayEnum.mon => context.localize.even_monday_declined,
+          WeekdayEnum.tue => context.localize.even_tuesday_declined,
+          WeekdayEnum.wed => context.localize.even_wednesday_declined,
+          WeekdayEnum.thu => context.localize.even_thursday_declined,
+          WeekdayEnum.fri => context.localize.even_friday_declined,
+          WeekdayEnum.sat => context.localize.even_saturday_declined,
+          WeekdayEnum.sun => context.localize.even_sunday_declined,
+        }
+        : switch (weekday) {
+          WeekdayEnum.mon => context.localize.odd_monday_declined,
+          WeekdayEnum.tue => context.localize.odd_tuesday_declined,
+          WeekdayEnum.wed => context.localize.odd_wednesday_declined,
+          WeekdayEnum.thu => context.localize.odd_thursday_declined,
+          WeekdayEnum.fri => context.localize.odd_friday_declined,
+          WeekdayEnum.sat => context.localize.odd_saturday_declined,
+          WeekdayEnum.sun => context.localize.odd_sunday_declined,
+        };
+  }
+
+  String localize(BuildContext context, {bool includePrefix = true, bool getDeclinedNoun = false}) {
+    if (getDeclinedNoun) {
+      return _localizeDeclinedNoun(context);
+    }
+    final withPrefix = _localizeWithPrefix(context);
+    if (!includePrefix) return withPrefix.split(" ").skip(1).join(" ");
+    return withPrefix;
   }
 }
 

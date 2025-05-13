@@ -145,7 +145,7 @@
   "@unknown_day": {
     "description": "Fallback text when day type is unknown"
   },
-  "read_more": "Czytaj dalej",
+  "read_more": "Czytaj więcej",
   "@read_more": {
     "description": "Button text to expand content"
   },
@@ -2985,12 +2985,10 @@
   "@select": {
     "description": "Button text for language selection on first launch"
   },
-
-  "parking_entry_location" : "Wjazd na parking znajduje się ", 
+  "parking_entry_location": "Wjazd na parking znajduje się ",
   "@parking_entry_location": {
     "description": "Label for parking entry location"
   },
-
   "is_parking_entry_from_ground_level": "Parking {boolean, select, false{nie } other{}}znajduje się na poziomie jezdni.",
   "@is_parking_entry_from_ground_level": {
     "description": "Information about level of parking",
@@ -3000,7 +2998,6 @@
       }
     }
   },
-
   "is_parking_set_maximum_vehicle_height": "{boolean, select, true{Maksymalna wysokość pojazdu wjeżdżającego na parking wynosi } false{Nie ma określonej maksymalnej wysokości pojazdu wjeżdżającego na parking.} other{}}",
   "@is_parking_set_maximum_vehicle_height": {
     "description": "Information about maximum allowed height of vehicle",
@@ -3010,7 +3007,6 @@
       }
     }
   },
-
   "parking_permissions_types": "Korzystanie z parkingu wymaga następujących uprawnień: {numeric, select, 2{student lub pracownik (parking uczelniany)} other{pracownik}}",
   "@parking_permissions_types": {
     "description": "Information about who can access the parking",
@@ -3020,7 +3016,6 @@
       }
     }
   },
-
   "parking_are_spaces_for_pwd": "{boolean, select, true{Na parkingu wydzielone są miejsca dla osób z niepełnosprawnościami. Liczba dostępnych miejsc: } false{Na parkingu nie ma wydzielonych miejsc dla osób z niepełnosprawnościami. } other{}}",
   "@parking_are_spaces_for_pwd": {
     "description": "Information about spaces for people with disabilities",
@@ -3030,7 +3025,6 @@
       }
     }
   },
-
   "parking_are_spaces_for_pwd_vertical_marked": "{boolean, select, true{Miejsca parkingowe dla osób z niepełnosprawnościami są oznaczone znakami pionowymi.} false{Miejsca parkingowe dla osób z niepełnosprawnościami nie są oznaczone znakami pionowymi.} other{}}",
   "@parking_are_spaces_for_pwd_vertical_marked": {
     "description": "Information if parking spaces for people with disabilities are marked with vertical signs",
@@ -3040,7 +3034,6 @@
       }
     }
   },
-
   "is_multistorey_parking": "Parking jest {boolean, select, true{wielopoziomowy. } other{jednopoziomowy. }}",
   "@is_multistorey_parking": {
     "description": "Information if parking is multistorey",
@@ -3050,7 +3043,6 @@
       }
     }
   },
-
   "parking_is_road_accessible_for_people_in_wheelchairs": "{boolean, select, true{Droga od miejsca parkingowego dla osób z niepełnosprawnościami do budynku lub windy jest dostępna. } false{Droga od miejsca parkingowego dla osób z niepełnosprawnościami do windy nie jest dostępna. } other{}}",
   "@parking_is_road_accessible_for_people_in_wheelchairs": {
     "description": "Information if road from parking to building is accessible for people on wheelchairs",
@@ -3060,7 +3052,6 @@
       }
     }
   },
-
   "parking_shortest_length_to_nearest_spaces_for_pwd": "Wejście do budynku lub windy w parkingu podziemnym znajduje się w odległości {value} metrów od miejsca parkingowego dla osób z niepełnosprawnościami. ",
   "@parking_shortest_length_to_nearest_spaces_for_pwd": {
     "description": "information on how far the disabled parking lot is from the building",
@@ -3070,13 +3061,12 @@
       }
     }
   },
-
   "button_leading_to": "Przycisk prowadzący do",
-  "@button_leading_to":{
+  "@button_leading_to": {
     "description": "information about url the button is redirecting to"
   },
   "logotype": "Logotyp",
-  "@logotype":{
+  "@logotype": {
     "description": "information about some logotype"
   },
   "notifications": "Powiadomienia",
@@ -3086,6 +3076,106 @@
   "feedback_option_not_supported_for_screen_readers": "Ta opcja nie jest wspierana dla czytników ekranów. Jeśli chcesz zgłosić błąd lub sugestię napisz do nas wiadomość e-mail.",
   "@feedback_option_not_supported_for_screen_readers":{
     "description": "information about feedback option that's not supported for screen readers"
+  "incoming_days_changes_days": "{days, plural, =1{1 dzień}  other{{days} dni}}",
+  "@incoming_days_changes_days": {
+    "description": "Number of days until first change in academic calendar",
+    "placeholders": {
+      "days": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "incoming_days_changes_title": "{count, plural, =1{Nadchodząca} other{Nadchodzące}} {count, plural, =1{zamiana dnia} other{{count} zamiany dni}}!",
+  "@incoming_days_changes_title": {
+    "description": "Title showing number of incoming day changes in academic calendar",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "dayChangesDialogTitle": "Nadchodzące zamiany dni",
+  "@dayChangesDialogTitle": {
+    "description": "Title of the dialog showing upcoming academic calendar day changes"
+  },
+  "dayChangesDialogSubtitle": "Wynikające z wyjątków w kalendarzu akademickim w ciągu następnych {days} dni:",
+  "@dayChangesDialogSubtitle": {
+    "description": "Subtitle of the dialog showing the time window for academic calendar changes",
+    "placeholders": {
+      "days": {
+        "type": "int",
+        "example": "7"
+      }
+    }
+  },
+  "dayChangesDialogOk": "OK",
+  "@dayChangesDialogOk": {
+    "description": "Button text to close the day changes dialog"
+  },
+  "day_changes_dialog_will_be": "Będzie",
+  "@day_changes_dialog_will_be": {
+    "description": "Text indicating the day that will be changed"
+  },
+  "day_changes_dialog_instead_of": "zamiast",
+  "@day_changes_dialog_instead_of": {
+    "description": "Text indicating the day that will be changed to"
+  },
+  "even_monday_declined": "Parzystego Poniedziałku",
+  "@even_monday_declined": {
+    "description": "Text shown for even week Monday"
+  },
+  "even_tuesday_declined": "Parzystego Wtorku",
+  "@even_tuesday_declined": {
+    "description": "Text shown for even week Tuesday"
+  },
+  "even_wednesday_declined": "Parzystej Środy",
+  "@even_wednesday_declined": {
+    "description": "Text shown for even week Wednesday"
+  },
+  "even_thursday_declined": "Parzystego Czwartku",
+  "@even_thursday_declined": {
+    "description": "Text shown for even week Thursday"
+  },
+  "even_friday_declined": "Parzystego Piątku",
+  "@even_friday_declined": {
+    "description": "Text shown for even week Friday"
+  },
+  "even_saturday_declined": "Parzystej Soboty",
+  "@even_saturday_declined": {
+    "description": "Text shown for even week Saturday"
+  },
+  "even_sunday_declined": "Parzystej Niedzieli",
+  "@even_sunday_declined": {
+    "description": "Text shown for even week Sunday"
+  },
+  "odd_monday_declined": "Nieparzystego Poniedziałku",
+  "@odd_monday_declined": {
+    "description": "Text shown for odd week Monday"
+  },
+  "odd_tuesday_declined": "Nieparzystego Wtorku",
+  "@odd_tuesday_declined": {
+    "description": "Text shown for odd week Tuesday"
+  },
+  "odd_wednesday_declined": "Nieparzystej Środy",
+  "@odd_wednesday_declined": {
+    "description": "Text shown for odd week Wednesday"
+  },
+  "odd_thursday_declined": "Nieparzystego Czwartku",
+  "@odd_thursday_declined": {
+    "description": "Text shown for odd week Thursday"
+  },
+  "odd_friday_declined": "Nieparzystego Piątku",
+  "@odd_friday_declined": {
+    "description": "Text shown for odd week Friday"
+  },
+  "odd_saturday_declined": "Nieparzystej Soboty",
+  "@odd_saturday_declined": {
+    "description": "Text shown for odd week Saturday"
+  },
+  "odd_sunday_declined": "Nieparzystej Niedzieli",
+  "@odd_sunday_declined": {
+    "description": "Text shown for odd week Sunday"
   }
-  
 }

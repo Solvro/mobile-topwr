@@ -21,6 +21,10 @@ Future<AboutUsDetails?> aboutUsRepository(Ref ref) async {
   return AboutUsDetails(
     aboutUs: results.AboutUs?.copyWith(
       description: await ref.translateGraphQLMaybeString(results.AboutUs?.description),
+      solvroSocialLinks: await ref.translateGraphQLModelList(
+        results.AboutUs?.solvroSocialLinks ?? [],
+        (link) async => link?.copyWith(url: await ref.translateGraphQLMaybeString(link.url)),
+      ),
     ),
     versions: await ref.translateGraphQLModelIList(
       results.TeamVersions.lock,

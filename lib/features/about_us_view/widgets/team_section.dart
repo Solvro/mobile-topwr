@@ -12,6 +12,8 @@ import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../utils/determine_contact_icon.dart";
 import "../../../utils/launch_url_util.dart";
+import "../../../widgets/loading_widgets/scrolable_loader_builder.dart";
+import "../../../widgets/loading_widgets/simple_previews/preview_card_loading.dart";
 import "../../../widgets/zoomable_images.dart";
 import "../models/about_us_details.dart";
 import "../models/member_data.dart";
@@ -73,57 +75,22 @@ class _SelectTab extends StatelessWidget {
   }
 }
 
-class _SingleVersionTeamList extends StatefulWidget {
+class _SingleVersionTeamList extends HookWidget {
   const _SingleVersionTeamList({required this.version, required this.shimmerTime});
 
   final MultiversionTeam version;
   final int shimmerTime;
 
   @override
-  _SingleVersionTeamListState createState() => _SingleVersionTeamListState();
-}
-
-class _SingleVersionTeamListState extends State<_SingleVersionTeamList> {
-  bool _showLoader = true;
-  Timer? _timer;
-
-  @override
-  void initState() {
-    super.initState();
-    _startLoaderTimer();
-  }
-
-  @override
-  void didUpdateWidget(covariant _SingleVersionTeamList oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (oldWidget.version != widget.version) {
-      setState(() {
-        _showLoader = true;
-      });
-      _startLoaderTimer();
-    }
-  }
-
-  void _startLoaderTimer() {
-    _timer?.cancel();
-    _timer = Timer(Duration(milliseconds: widget.shimmerTime), () {
-      if (mounted) {
-        setState(() {
-          _showLoader = false;
-        });
-      }
-    });
-  }
-
-  @override
-  void dispose() {
-    _timer?.cancel();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    final version = widget.version;
+    final showLoader = useState(true);
+    useEffect(() {
+      showLoader.value = true;
+      final timer = Timer(Duration(milliseconds: shimmerTime), () {
+        showLoader.value = false;
+      });
+      return timer.cancel;
+    }, [version, shimmerTime]);
 
     final double expectedHeight =
         version.members.isEmpty ? 100.0 : version.members.length * WideTileCardConfig.imageSize;
@@ -146,24 +113,27 @@ class _SingleVersionTeamListState extends State<_SingleVersionTeamList> {
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: AboutUsConfig.defaultPadding),
-      child: SizedBox(
-        height: expectedHeight,
-        child: Stack(
-          children: [
-            content,
-            AnimatedOpacity(
-              opacity: _showLoader ? 1.0 : 0.0,
-              duration: const Duration(milliseconds: 1),
-              child: ColoredBox(
-                color: context.colorTheme.whiteSoap,
-                child: const Align(
-                  alignment: Alignment.topCenter,
-                  child: Padding(padding: EdgeInsets.only(top: 16), child: CircularProgressIndicator()),
-                ),
-              ),
-            ),
-          ],
-        ),
+      child: showLoader.value ? _TeamMembersLoading(expectedHeight: expectedHeight) : content,
+    );
+  }
+}
+
+class _TeamMembersLoading extends StatelessWidget {
+  const _TeamMembersLoading({required this.expectedHeight});
+
+  final double expectedHeight;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: expectedHeight,
+      child: ScrollableLoaderBuilder(
+        itemsSpacing: 16,
+        scrollDirection: Axis.vertical,
+        mainAxisItemSize: 12,
+        itemBuilder: (BuildContext context, int index) {
+          return const PreviewCardLoading(width: double.infinity, height: AboutUsConfig.photoSize);
+        },
       ),
     );
   }
@@ -236,28 +206,25 @@ class _Description extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(vertical: 8),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Spacer(flex: 4),
+        Text(name, style: context.aboutUsTheme.headlineSmaller, softWrap: true),
+        const SizedBox(height: 4),
+        Text(subtitle, style: context.aboutUsTheme.bodySmaller, softWrap: true),
+        const Spacer(flex: 5),
+        Row(
           children: [
-            Text(name, style: context.aboutUsTheme.headlineSmaller, softWrap: true),
-            const SizedBox(height: 4),
-            Text(subtitle, style: context.aboutUsTheme.bodySmaller, softWrap: true),
-            const SizedBox(height: 8),
-            Row(
-              children: [
-                for (final icon in links)
-                  Semantics(
-                    label: "${context.localize.button_leading_to}: ${Uri.parse(icon.url ?? "").host}",
-                    child: _Icon(launchUrl: icon.url ?? "", icon: icon.icon),
-                  ),
-              ],
-            ),
+            for (final icon in links)
+              Semantics(
+                label: "${context.localize.button_leading_to}: ${Uri.parse(icon.url ?? "").host}",
+                child: _Icon(launchUrl: icon.url ?? "", icon: icon.icon),
+              ),
           ],
         ),
-      ),
+        const Spacer(flex: 5),
+      ],
     );
   }
 }

@@ -42,7 +42,7 @@ class SksMenuHeader extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: SksMenuConfig.paddingSmall),
             child: Text(
-              "${context.localize.last_modified}: ${Protontime.format(stamp, language: "pl")}",
+              "${context.localize.last_modified}: ${Protontime.format(stamp, language: context.locale.languageCode)}",
               style: context.textTheme.bodyGrey,
             ),
           ),

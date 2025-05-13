@@ -5,42 +5,58 @@ import "academic_week_exception.dart";
 import "weekday_enum.dart";
 
 extension AcademicCalendarDataX on AcademicCalendarData {
-  bool isHolidays() {
-    return now.isBefore(semesterStartDate) || now.isAfter(examSessionLastDay);
+  bool isHolidays([DateTime? datetime]) {
+    final datetimeOrNow = datetime ?? now;
+    return datetimeOrNow.isBefore(semesterStartDate) || datetimeOrNow.isAfter(examSessionLastDay);
   }
 
-  bool isExamSession() {
-    return now.isAfterOrSameAs(examSessionStartDate) && now.isBeforeOrSameAs(examSessionLastDay);
+  bool isExamSession([DateTime? datetime]) {
+    final datetimeOrNow = datetime ?? now;
+    return datetimeOrNow.isAfterOrSameAs(examSessionStartDate) && datetimeOrNow.isBeforeOrSameAs(examSessionLastDay);
   }
 
-  bool isSemester() {
-    return now.isAfterOrSameAs(semesterStartDate) && now.isBefore(examSessionStartDate);
+  bool isSemester([DateTime? datetime]) {
+    final datetimeOrNow = datetime ?? now;
+    return datetimeOrNow.isAfterOrSameAs(semesterStartDate) && datetimeOrNow.isBefore(examSessionStartDate);
   }
 
-  bool shouldBeEvenWeek() {
+  bool shouldBeEvenWeek([DateTime? datetime]) {
+    final datetimeOrNow = datetime ?? now;
     final zeroMonday = semesterStartDate.findMondayOfTheWeek();
-    final numWeeksFromZeroMonday = zeroMonday.calculateWeeksTo(now);
+    final numWeeksFromZeroMonday = zeroMonday.calculateWeeksTo(datetimeOrNow);
     if (numWeeksFromZeroMonday.isEven) {
       return isFirstWeekEven;
     }
     return !isFirstWeekEven;
   }
 
-  AcademicDay get standardAcademicDay {
+  AcademicDay standardAcademicDay([DateTime? datetime]) {
+    final datetimeOrNow = datetime ?? now;
     return AcademicDay(
-      isEven: shouldBeEvenWeek(),
-      weekday: WeekdayEnum.fromDateTime(now),
-      isExamSession: isExamSession(),
-      isHolidays: isHolidays(),
+      isEven: shouldBeEvenWeek(datetimeOrNow),
+      weekday: WeekdayEnum.fromDateTime(datetimeOrNow),
+      isExamSession: isExamSession(datetimeOrNow),
+      isHolidays: isHolidays(datetimeOrNow),
     );
   }
 }
 
 extension AcademicCalendarX on AcademicCalendar {
-  AcademicDay? get academicDay {
-    if (weeks.isTodayAnException) {
-      return weeks.changedDay ?? data?.standardAcademicDay;
+  Duration get windowDuration => Duration(days: data?.exceptionsLookupFutureWindowInDays ?? 7);
+
+  AcademicDay? get academicDayToday {
+    if (swaps.isTodayAnException && data != null) {
+      return swaps.changedDayToday(data!) ?? data!.standardAcademicDay();
     }
-    return data?.standardAcademicDay;
+    return data?.standardAcademicDay();
+  }
+
+  ({int daysTillFirstChange, int changesCount})? get incomingDaysChanges {
+    final nextException = swaps.nextDaySwapsWithinWindow(windowDuration);
+    final data = this.data;
+    if (data == null || nextException.isEmpty) {
+      return null;
+    }
+    return (daysTillFirstChange: nextException.first.day.difference(now).inDays, changesCount: nextException.length);
   }
 }

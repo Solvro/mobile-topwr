@@ -9,6 +9,9 @@
         android:icon="@mipmap/ic_launcher">
         <meta-data android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDKfUDQv4mb4W4I4bx0WE4qYkAl53Vfciw" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_notification" />
         <activity
             android:name=".MainActivity"
             android:enableOnBackInvokedCallback="true"
@@ -29,8 +32,6 @@
             <meta-data
                 android:name="flutter_deeplinking_enabled"
                 android:value="true" />
-
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
