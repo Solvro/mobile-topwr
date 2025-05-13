@@ -42,23 +42,25 @@ class _NavActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Material(
-          color: Colors.transparent,
-          child: Ink(
-            decoration: BoxDecoration(shape: BoxShape.circle, color: context.colorTheme.orangePomegranade),
-            child: InkWell(
-              onTap: onTap,
-              borderRadius: BorderRadius.circular(56),
-              splashColor: context.colorTheme.whiteSoap.withValues(alpha: 0.3),
-              child: SizedBox.square(dimension: 56, child: Center(child: icon)),
+    return MergeSemantics(
+      child: Column(
+        children: [
+          Material(
+            color: Colors.transparent,
+            child: Ink(
+              decoration: BoxDecoration(shape: BoxShape.circle, color: context.colorTheme.orangePomegranade),
+              child: InkWell(
+                onTap: onTap,
+                borderRadius: BorderRadius.circular(56),
+                splashColor: context.colorTheme.whiteSoap.withValues(alpha: 0.3),
+                child: SizedBox.square(dimension: 56, child: Center(child: icon)),
+              ),
             ),
           ),
-        ),
-        const SizedBox(height: 8),
-        Text(title, style: context.textTheme.boldBody),
-      ],
+          const SizedBox(height: 8),
+          Text(title, style: context.textTheme.boldBody),
+        ],
+      ),
     );
   }
 }

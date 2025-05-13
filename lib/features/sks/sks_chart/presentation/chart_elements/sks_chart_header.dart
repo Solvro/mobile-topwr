@@ -19,20 +19,32 @@ class SksChartHeader extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(SksChartConfig.buildingCode, style: context.textTheme.headline),
-            Text("${context.localize.street_abbreviation} ${SksChartConfig.sksAddress}", style: context.textTheme.body),
-            Text(SksChartConfig.sksPostalCode, style: context.textTheme.body),
-          ],
+        Semantics(
+          label: context.localize.sks_chart_address_screen_reader_label,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(SksChartConfig.buildingCode, style: context.textTheme.headline),
+              Text(
+                "${context.localize.street_abbreviation} ${SksChartConfig.sksAddress}",
+                style: context.textTheme.body,
+              ),
+              Text(SksChartConfig.sksPostalCode, style: context.textTheme.body),
+            ],
+          ),
         ),
-        Row(
-          children: [
-            Text(numberOfPeople, style: context.textTheme.body.copyWith(fontSize: 18)),
-            const SizedBox(width: SksChartConfig.heightSmall),
-            trend?.icon ?? const SizedBox.shrink(),
-          ],
+        Semantics(
+          label:
+              "${context.localize.sks_people_live_screen_reader_label} $numberOfPeople. ${context.localize.sks_people_live_screen_reader_label_trend} ${trend?.localizedName(context)}",
+          child: ExcludeSemantics(
+            child: Row(
+              children: [
+                Text(numberOfPeople, style: context.textTheme.body.copyWith(fontSize: 18)),
+                const SizedBox(width: SksChartConfig.heightSmall),
+                trend?.icon ?? const SizedBox.shrink(),
+              ],
+            ),
+          ),
         ),
       ],
     );

@@ -3170,5 +3170,57 @@
   "odd_sunday_declined": "Nieparzystej Niedzieli",
   "@odd_sunday_declined": {
     "description": "Text shown for odd week Sunday"
+  },
+  "get_back_screen_reader_label": "Wróć do",
+  "@get_back_screen_reader_label": {
+    "description": "Text read for back button by screen reader in the detail view app bar"
+  },
+  "sks_people_live_screen_reader_label": "Aktualna liczba osób na stołówce to",
+  "@sks_people_live_screen_reader_label": {
+    "description": "Text read for sks people live button by screen reader"
+  },
+  "sks_people_live_screen_reader_label_trend": "Trend: ",
+  "@sks_people_live_screen_reader_label_trend": {
+    "description": "Text read for sks people live button by screen reader"
+  },
+  "sks_people_live_screen_reader_label_trend_increasing": "wzrastający",
+  "@sks_people_live_screen_reader_label_trend_increasing": {
+    "description": "Text read for sks people live button by screen reader"
+  },
+  "sks_people_live_screen_reader_label_trend_decreasing": "malejący",
+  "@sks_people_live_screen_reader_label_trend_decreasing": {
+    "description": "Text read for sks people live button by screen reader"
+  },
+  "sks_people_live_screen_reader_label_trend_stable": "stały",
+  "@sks_people_live_screen_reader_label_trend_stable": {
+    "description": "Text read for sks people live button by screen reader"
+  },
+  "sks_chart_title_screen_reader_label": "Wykres obłożenia SKS.",
+  "@sks_chart_title_screen_reader_label": {
+    "description": "Text read for sks chart title"
+  },
+  "sks_chart_legend_screen_reader_label": "Legenda wykresu liczby osób na stołówce. Czerwona linia to zmierzona liczba osób, a niebieska linia to przewidywana liczba osób na stołówce na podstawie ostatnich 21 dni.",
+  "@sks_chart_legend_screen_reader_label": {
+    "description": "Text read for sks chart legend measured number of users"
+  },
+  "sks_chart_address_screen_reader_label": "Budynek i adres stołówki to: ",
+  "@sks_chart_address_screen_reader_label": {
+    "description": "Text read for sks chart address"
+  },
+  "axis_vertical_screen_reader": "oś pionowa",
+  "@axis_vertical_screen_reader": {
+    "description": "Text read for sks chart axis vertical"
+  },
+  "sks_chart_average_21_days_screen_reader_label": "Średnia krocząca liczby osób w ciągu ostatnich 21 dni o aktualnej godzinie wynosi",
+  "@sks_chart_average_21_days_screen_reader_label": {
+    "description": "Text read for sks chart average 21 days"
+  },
+  "sks_chart_max_today_screen_reader_label": "Maksymalna liczba osób dzisiejszego dnia wynosi",
+  "@sks_chart_max_today_screen_reader_label": {
+    "description": "Text read for sks chart max today"
+  },
+  "sks_chart_max_21_days_screen_reader_label": "Maksymalna wartość średniej kroczącej liczby osób w ciągu ostatnich 21 dni wynosi",
+  "@sks_chart_max_21_days_screen_reader_label": {
+    "description": "Text read for sks chart max 21 days"
   }
 }

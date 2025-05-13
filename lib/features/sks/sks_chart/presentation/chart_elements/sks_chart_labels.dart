@@ -13,6 +13,7 @@ class SksChartRightTiles extends AxisTitles {
     : super(
         axisNameWidget: Text(
           context.localize.number_of_people,
+          semanticsLabel: "${context.localize.number_of_people} ${context.localize.axis_vertical_screen_reader}",
           style: context.textTheme.body.copyWith(fontSize: 14, fontWeight: FontWeight.w400),
         ),
         sideTitles: SideTitles(
@@ -21,9 +22,11 @@ class SksChartRightTiles extends AxisTitles {
           showTitles: true,
           getTitlesWidget: (double value, TitleMeta meta) {
             return Center(
-              child: Text(
-                "${value.toInt()}",
-                style: context.textTheme.body.copyWith(fontSize: 12, fontWeight: FontWeight.w400),
+              child: ExcludeSemantics(
+                child: Text(
+                  "${value.toInt()}",
+                  style: context.textTheme.body.copyWith(fontSize: 12, fontWeight: FontWeight.w400),
+                ),
               ),
             );
           },
@@ -43,11 +46,13 @@ class SksChartBottomTitles extends AxisTitles {
             final String hourMinuteFormatted =
                 hourMinute != null && hourMinute.minute == 0 ? hourMinute.toHourMinuteString(context) : "";
 
-            return Padding(
-              padding: const EdgeInsets.only(top: SksChartConfig.paddingSmall, left: 50),
-              child: Text(
-                style: context.textTheme.body.copyWith(fontSize: 12, fontWeight: FontWeight.w400),
-                hourMinuteFormatted,
+            return ExcludeSemantics(
+              child: Padding(
+                padding: const EdgeInsets.only(top: SksChartConfig.paddingSmall, left: 50),
+                child: Text(
+                  style: context.textTheme.body.copyWith(fontSize: 12, fontWeight: FontWeight.w400),
+                  hourMinuteFormatted,
+                ),
               ),
             );
           },

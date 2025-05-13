@@ -17,36 +17,46 @@ class SksMenuHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final stamp = DateTime.tryParse(dateTimeOfLastUpdate) ?? DateTime.now();
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const SizedBox(height: SksMenuConfig.paddingLarge),
-        Text(context.localize.sks_menu, style: context.textTheme.headlineOrange.copyWith(fontSize: 28, height: 1)),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: SksMenuConfig.paddingSmall),
-          child: Text(
-            DateTime.now().toDayDateString(context),
-            style: context.textTheme.title.copyWith(fontSize: 20, color: context.colorTheme.blueAzure, height: 1),
-          ),
-        ),
-        Text(context.localize.working_hours, style: context.textTheme.body),
-        Text(
-          "${context.localize.canteen} ${openingHours.canteen.openingTime} - ${openingHours.canteen.closingTime}",
-          style: context.textTheme.body,
-        ),
-        Text(
-          "${context.localize.cafe} ${openingHours.cafe.openingTime} - ${openingHours.cafe.closingTime}",
-          style: context.textTheme.body,
-        ),
-        if (isMenuOnline)
+    return Semantics(
+      container: true,
+      explicitChildNodes: true,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const SizedBox(height: SksMenuConfig.paddingLarge),
+          Text(context.localize.sks_menu, style: context.textTheme.headlineOrange.copyWith(fontSize: 28, height: 1)),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: SksMenuConfig.paddingSmall),
             child: Text(
-              "${context.localize.last_modified}: ${Protontime.format(stamp, language: context.locale.languageCode)}",
-              style: context.textTheme.bodyGrey,
+              DateTime.now().toDayDateString(context),
+              style: context.textTheme.title.copyWith(fontSize: 20, color: context.colorTheme.blueAzure, height: 1),
             ),
           ),
-      ],
+          MergeSemantics(
+            child: Column(
+              children: [
+                Text(context.localize.working_hours, style: context.textTheme.body),
+                Text(
+                  "${context.localize.canteen} ${openingHours.canteen.openingTime} - ${openingHours.canteen.closingTime}",
+                  style: context.textTheme.body,
+                ),
+                Text(
+                  "${context.localize.cafe} ${openingHours.cafe.openingTime} - ${openingHours.cafe.closingTime}",
+                  style: context.textTheme.body,
+                ),
+              ],
+            ),
+          ),
+          if (isMenuOnline)
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: SksMenuConfig.paddingSmall),
+              child: Text(
+                "${context.localize.last_modified}: ${Protontime.format(stamp, language: context.locale.languageCode)}",
+                style: context.textTheme.bodyGrey,
+              ),
+            ),
+        ],
+      ),
     );
   }
 }

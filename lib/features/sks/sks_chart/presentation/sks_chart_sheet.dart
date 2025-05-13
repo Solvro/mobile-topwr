@@ -45,10 +45,15 @@ class SksChartSheet extends ConsumerWidget {
                 child: const _SksSheetHeader(),
               ),
               Expanded(
-                child: SksChartCard(
-                  currentNumberOfUsers: currentNumberOfUsers,
-                  maxNumberOfUsers: maxNumberOfUsers,
-                  chartData: asyncChartData.value ?? const IList.empty(),
+                child: Semantics(
+                  label: context.localize.sks_chart_title_screen_reader_label,
+                  explicitChildNodes: true,
+                  container: true,
+                  child: SksChartCard(
+                    currentNumberOfUsers: currentNumberOfUsers,
+                    maxNumberOfUsers: maxNumberOfUsers,
+                    chartData: asyncChartData.value ?? const IList.empty(),
+                  ),
                 ),
               ),
               Padding(
