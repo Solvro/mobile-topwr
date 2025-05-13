@@ -54,27 +54,36 @@ class _DialogContent extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  applicationName,
-                  style: const TextStyle(fontWeight: FontWeight.w500, fontSize: AboutUsConfig.dialogTitleFontSize),
-                ),
-                Text(
-                  applicationVersion,
-                  style: context.textTheme.lightTitle,
-                  semanticsLabel: "${context.localize.version} ${applicationVersion.replaceAll(".", " ")}",
-                ),
-              ],
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    applicationName,
+                    style: const TextStyle(fontWeight: FontWeight.w500, fontSize: AboutUsConfig.dialogTitleFontSize),
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  Text(
+                    applicationVersion,
+                    style: context.textTheme.lightTitle,
+                    semanticsLabel: "${context.localize.version} ${applicationVersion.replaceAll(".", " ")}",
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
             ),
             applicationIcon,
           ],
         ),
         const SizedBox(height: 20),
-        Text(applicationLegalese, style: context.textTheme.body),
+        Flexible(
+          child: Text(applicationLegalese, style: context.textTheme.body, maxLines: 4, overflow: TextOverflow.ellipsis),
+        ),
       ],
     );
   }
