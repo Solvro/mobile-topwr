@@ -146,10 +146,11 @@ class _DialogHeader extends StatelessWidget {
               child: IgnorePointer(
                 ignoring: !showCloseButton,
                 child: MergeSemantics(
-              child: IconButton(
-                icon: Semantics(label: context.localize.close, child: const Icon(Icons.close)),
-                color: context.colorTheme.greyPigeon,
-                onPressed: () => Navigator.of(context).pop(),
+                  child: IconButton(
+                    icon: Semantics(label: context.localize.close, child: const Icon(Icons.close)),
+                    color: context.colorTheme.greyPigeon,
+                    onPressed: () => Navigator.of(context).pop(),
+                  ),
                 ),
               ),
             ),
