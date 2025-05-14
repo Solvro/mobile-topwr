@@ -13,17 +13,21 @@ class SksChartRightTiles extends AxisTitles {
     : super(
         axisNameWidget: Text(
           context.localize.number_of_people,
+          semanticsLabel: "${context.localize.number_of_people} ${context.localize.axis_vertical_screen_reader}",
           style: context.textTheme.body.copyWith(fontSize: 14, fontWeight: FontWeight.w400),
         ),
+        axisNameSize: MediaQuery.textScalerOf(context).scale(16),
         sideTitles: SideTitles(
           maxIncluded: false,
           reservedSize: 40,
           showTitles: true,
           getTitlesWidget: (double value, TitleMeta meta) {
             return Center(
-              child: Text(
-                "${value.toInt()}",
-                style: context.textTheme.body.copyWith(fontSize: 12, fontWeight: FontWeight.w400),
+              child: ExcludeSemantics(
+                child: Text(
+                  "${value.toInt()}",
+                  style: context.textTheme.body.copyWith(fontSize: 12, fontWeight: FontWeight.w400),
+                ),
               ),
             );
           },
@@ -37,17 +41,20 @@ class SksChartBottomTitles extends AxisTitles {
         sideTitles: SideTitles(
           showTitles: true,
           reservedSize: 35,
-          interval: 5,
+          interval: MediaQuery.textScalerOf(context).scale(1) > 1 ? 40 : 5,
           getTitlesWidget: (double value, TitleMeta meta) {
             final DateTime? hourMinute = chartData.isNotEmpty ? chartData[value.toInt()].externalTimestamp : null;
             final String hourMinuteFormatted =
                 hourMinute != null && hourMinute.minute == 0 ? hourMinute.toHourMinuteString(context) : "";
 
-            return Padding(
-              padding: const EdgeInsets.only(top: SksChartConfig.paddingSmall, left: 50),
-              child: Text(
-                style: context.textTheme.body.copyWith(fontSize: 12, fontWeight: FontWeight.w400),
-                hourMinuteFormatted,
+            return ExcludeSemantics(
+              child: Padding(
+                padding: const EdgeInsets.only(top: SksChartConfig.paddingSmall, left: 50),
+                child: Text(
+                  style: context.textTheme.body.copyWith(fontSize: 12, fontWeight: FontWeight.w400),
+                  textScaler: MediaQuery.textScalerOf(context).clamp(maxScaleFactor: 1.5),
+                  hourMinuteFormatted,
+                ),
               ),
             );
           },

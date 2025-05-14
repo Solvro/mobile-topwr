@@ -512,5 +512,18 @@
   "odd_thursday_declined": "Odd Thursday",
   "odd_friday_declined": "Odd Friday",
   "odd_saturday_declined": "Odd Saturday",
-  "odd_sunday_declined": "Odd Sunday"
+  "odd_sunday_declined": "Odd Sunday",
+  "get_back_screen_reader_label": "Get back to",
+  "sks_people_live_screen_reader_label": "Current number of people:",
+  "sks_people_live_screen_reader_label_trend": "Trend:",
+  "sks_people_live_screen_reader_label_trend_increasing": "increasing",
+  "sks_people_live_screen_reader_label_trend_decreasing": "decreasing",
+  "sks_people_live_screen_reader_label_trend_stable": "stable",
+  "sks_chart_title_screen_reader_label": "SKS occupancy chart.",
+  "sks_chart_legend_screen_reader_label": "Chart legend for number of people in the canteen. The red line shows the measured number of people, and the blue line shows the predicted number of people in the canteen based on the last 21 days.",
+  "sks_chart_address_screen_reader_label": "Building and canteen address is:",
+  "axis_vertical_screen_reader": "vertical axis",
+  "sks_chart_average_21_days_screen_reader_label": "Average number of people over the last 21 days at the current hour:",
+  "sks_chart_max_today_screen_reader_label": "Maximum number of people today:",
+  "sks_chart_max_21_days_screen_reader_label": "Maximum number of people over the last 21 days:"
 }

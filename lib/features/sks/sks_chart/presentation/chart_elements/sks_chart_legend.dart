@@ -10,11 +10,16 @@ class SksChartLegend extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SksChartLegendItem(text: context.localize.measured_number_of_users, isPredicted: false),
-        SksChartLegendItem(text: context.localize.forecasted_number_of_users, isPredicted: true),
-      ],
+    return Semantics(
+      label: context.localize.sks_chart_legend_screen_reader_label,
+      child: ExcludeSemantics(
+        child: Column(
+          children: [
+            SksChartLegendItem(text: context.localize.measured_number_of_users, isPredicted: false),
+            SksChartLegendItem(text: context.localize.forecasted_number_of_users, isPredicted: true),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -40,7 +45,14 @@ class SksChartLegendItem extends StatelessWidget {
         else
           Container(width: SksChartConfig.legendItemSize, height: 2, color: context.colorTheme.orangePomegranade),
         const SizedBox(width: SksChartConfig.heightMedium),
-        Expanded(child: Text(text, style: context.textTheme.body, softWrap: true)),
+        Expanded(
+          child: Text(
+            text,
+            style: context.textTheme.body,
+            softWrap: true,
+            textScaler: MediaQuery.textScalerOf(context).clamp(maxScaleFactor: 1.5),
+          ),
+        ),
       ],
     );
   }

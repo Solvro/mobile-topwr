@@ -6,11 +6,11 @@ import "../theme/app_theme.dart";
 import "../utils/launch_url_util.dart";
 
 class TextAndUrl extends ConsumerWidget {
-  const TextAndUrl(this.url, this.text, {super.key});
+  const TextAndUrl(this.url, this.text, {super.key, this.scaleText = true});
 
   final String url;
   final String text;
-
+  final bool scaleText;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
@@ -33,6 +33,7 @@ class TextAndUrl extends ConsumerWidget {
         ),
         textAlign: TextAlign.center,
         style: context.textTheme.body,
+        textScaler: !scaleText ? MediaQuery.textScalerOf(context).clamp(maxScaleFactor: 1) : null,
       ),
     );
   }

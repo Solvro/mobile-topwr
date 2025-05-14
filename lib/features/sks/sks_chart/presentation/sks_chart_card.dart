@@ -3,7 +3,9 @@ import "package:flutter/cupertino.dart";
 
 import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
+import "../../../../utils/context_extensions.dart";
 import "../../sks_people_live/data/models/sks_user_data.dart";
+import "../../sks_people_live/presentation/widgets/sks_user_data_button.dart";
 import "../data/models/sks_chart_data.dart";
 import "chart_elements/sks_chart.dart";
 import "chart_elements/sks_chart_header.dart";
@@ -23,6 +25,13 @@ class SksChartCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final semanticLabel =
+        "${context.localize.sks_chart_title_screen_reader_label} "
+        "${context.localize.sks_people_live_screen_reader_label} ${currentNumberOfUsers?.activeUsers.toString() ?? ""}. "
+        "${context.localize.sks_people_live_screen_reader_label_trend} ${currentNumberOfUsers?.trend.localizedName(context) ?? ""}. "
+        "${context.localize.sks_chart_average_21_days_screen_reader_label} ${chartData.isNotEmpty ? chartData[0].movingAverage21.toString() : "0"}. "
+        "${context.localize.sks_chart_max_today_screen_reader_label} ${chartData.reduce((a, b) => a.activeUsers > b.activeUsers ? a : b).activeUsers}. "
+        "${context.localize.sks_chart_max_21_days_screen_reader_label} ${chartData.reduce((a, b) => a.movingAverage21 > b.movingAverage21 ? a : b).movingAverage21}";
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: SksChartConfig.paddingMedium),
       width: double.infinity,
@@ -40,7 +49,7 @@ class SksChartCard extends StatelessWidget {
               trend: currentNumberOfUsers?.trend,
             ),
             const SizedBox(height: SksChartConfig.heightLarge),
-            SksChart(maxNumberOfUsers: maxNumberOfUsers, chartData: chartData),
+            SksChart(maxNumberOfUsers: maxNumberOfUsers, chartData: chartData, semanticLabel: semanticLabel),
             const Padding(
               padding: EdgeInsets.only(
                 left: SksChartConfig.paddingLarge,

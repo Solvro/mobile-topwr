@@ -45,15 +45,24 @@ class SksChartSheet extends ConsumerWidget {
                 child: const _SksSheetHeader(),
               ),
               Expanded(
-                child: SksChartCard(
-                  currentNumberOfUsers: currentNumberOfUsers,
-                  maxNumberOfUsers: maxNumberOfUsers,
-                  chartData: asyncChartData.value ?? const IList.empty(),
+                child: Semantics(
+                  label: context.localize.sks_chart_title_screen_reader_label,
+                  explicitChildNodes: true,
+                  container: true,
+                  child: SksChartCard(
+                    currentNumberOfUsers: currentNumberOfUsers,
+                    maxNumberOfUsers: maxNumberOfUsers,
+                    chartData: asyncChartData.value ?? const IList.empty(),
+                  ),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.all(SksChartConfig.paddingSmall),
-                child: TextAndUrl(SksChartConfig.sksChartDataUrl, "${context.localize.data_come_from_website}: "),
+                child: TextAndUrl(
+                  SksChartConfig.sksChartDataUrl,
+                  "${context.localize.data_come_from_website}: ",
+                  scaleText: false,
+                ),
               ),
             ],
           ),
@@ -106,7 +115,12 @@ class _SksSheetHeader extends StatelessWidget {
         const SizedBox(height: SksChartConfig.heightSmall),
         Padding(
           padding: const EdgeInsets.all(8).copyWith(bottom: 0),
-          child: Text(context.localize.sks_chart_title, style: context.textTheme.headline, textAlign: TextAlign.center),
+          child: Text(
+            context.localize.sks_chart_title,
+            style: context.textTheme.headline,
+            textAlign: TextAlign.center,
+            textScaler: MediaQuery.textScalerOf(context).clamp(maxScaleFactor: 1.3),
+          ),
         ),
       ],
     );

@@ -4,6 +4,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "../../config/nav_bar_config.dart";
 import "../../features/navigator/navigation_stack.dart";
 import "../../theme/app_theme.dart";
+import "../../utils/context_extensions.dart";
 
 class DetailViewPopButton extends ConsumerWidget {
   const DetailViewPopButton({super.key});
@@ -17,7 +18,11 @@ class DetailViewPopButton extends ConsumerWidget {
         Navigator.pop(context);
       },
       style: TextButton.styleFrom(padding: const EdgeInsets.all(12)),
-      child: Text(title == null ? "<" : "< $title", style: context.textTheme.boldBodyOrange),
+      child: Text(
+        title == null ? "<" : "< $title",
+        style: context.textTheme.boldBodyOrange,
+        semanticsLabel: "${context.localize.get_back_screen_reader_label} $title",
+      ),
     );
   }
 }
