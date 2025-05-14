@@ -13,6 +13,7 @@ abstract class ScienceClub with _$ScienceClub {
     required String source,
     required String organizationType,
     required bool coverPreview,
+    required bool isStrategic,
     IList<TagsData>? tags,
     LogoData? logo,
     CoverData? cover,

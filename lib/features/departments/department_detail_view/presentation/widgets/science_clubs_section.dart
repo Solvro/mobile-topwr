@@ -69,7 +69,7 @@ class _ScienceClubsList extends ConsumerWidget {
             directusUrl: (sciClub.coverPreview) ? sciClub.cover?.url : sciClub.logo?.url,
             onClick: () async => ref.navigateSciClubsDetail(sciClub.id),
             showVerifiedBadge: sciClub.source == ScienceClubsViewConfig.source,
-            //showStrategicBadge: sciClub.isStrategic,
+            showStrategicBadge: sciClub.isStrategic,
           ),
         );
       },

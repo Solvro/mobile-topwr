@@ -20,7 +20,7 @@ class ScienceClubCard extends StatelessWidget {
       onTap: onTap,
       secondSubtitle: sciClub.tags?.map((tag) => "#${tag.tag}").toList().join(", "),
       showBadge: sciClub.source == ScienceClubsViewConfig.source,
-      //showStrategicBadge: sciClub.isStrategic,
+      showStrategicBadge: sciClub.isStrategic,
       activeShadows: null,
       trailing: Padding(
         padding: const EdgeInsets.only(

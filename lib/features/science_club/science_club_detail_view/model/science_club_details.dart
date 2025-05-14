@@ -9,6 +9,7 @@ abstract class ScienceClubDetails with _$ScienceClubDetails {
   const factory ScienceClubDetails({
     required String name,
     required String source,
+    required bool isStrategic,
     String? description,
     CoverData? cover,
     IList<LinksData>? links,
