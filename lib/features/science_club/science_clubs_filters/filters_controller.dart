@@ -8,7 +8,7 @@ import "../../departments/departments_view/data/models/department.dart";
 import "../../departments/departments_view/data/repository/departments_repository.dart";
 import "filters_search_controller.dart";
 import "model/sci_club_type.dart";
-import "repository/tags_repository.dart";
+import "model/tags.dart";
 import "utils.dart";
 
 part "filters_controller.g.dart";

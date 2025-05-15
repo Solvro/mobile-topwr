@@ -4,7 +4,7 @@ import "../../../../config/ui_config.dart";
 import "../../../../widgets/my_cached_image.dart";
 import "../../../../widgets/optimized_directus_image.dart";
 import "../../../../widgets/wide_tile_card.dart";
-import "../repository/science_clubs_repository.dart";
+import "../model/science_clubs.dart";
 
 class ScienceClubCard extends StatelessWidget {
   final ScienceClub sciClub;
@@ -18,7 +18,7 @@ class ScienceClubCard extends StatelessWidget {
       title: sciClub.name,
       subtitle: sciClub.department?.name,
       onTap: onTap,
-      secondSubtitle: sciClub.tags?.map((tag) => "#${tag?.Tags_id?.name}").toList().join(", "),
+      secondSubtitle: sciClub.tags?.map((tag) => "#${tag.tag}").toList().join(", "),
       showBadge: sciClub.source == ScienceClubsViewConfig.source,
       showStrategicBadge: sciClub.isStrategic,
       activeShadows: null,
@@ -39,7 +39,7 @@ class ScienceClubCard extends StatelessWidget {
               ),
             ),
             child: OptimizedDirectusImage(
-              sciClub.logo?.filename_disk,
+              sciClub.logo?.url,
               boxFit: BoxFit.scaleDown,
               loadingType: LoadingType.noLoading,
             ),

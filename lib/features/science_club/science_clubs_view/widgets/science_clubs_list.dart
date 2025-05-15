@@ -8,7 +8,7 @@ import "../../../../widgets/my_error_widget.dart";
 import "../../../../widgets/search_not_found.dart";
 import "../../../navigator/utils/navigation_commands.dart";
 import "../controllers/science_clubs_view_controller.dart";
-import "../repository/science_clubs_repository.dart";
+import "../model/science_clubs.dart";
 import "science_club_card.dart";
 import "science_clubs_view_loading.dart";
 

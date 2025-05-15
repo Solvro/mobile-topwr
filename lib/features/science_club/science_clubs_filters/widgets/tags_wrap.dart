@@ -7,7 +7,7 @@ import "../../../../utils/where_non_null_iterable.dart";
 import "../filters_controller.dart";
 import "../filters_search_controller.dart";
 import "../filters_sheet.dart";
-import "../repository/tags_repository.dart";
+import "../model/tags.dart";
 import "../utils.dart";
 import "chips_loading.dart";
 import "filter_chip.dart";
@@ -32,7 +32,7 @@ class TagsWrap extends ConsumerWidget {
                     final controller = ref.watch(selectedTagControllerProvider.notifier);
                     final isSelected = ref.watchContains(selectedTagControllerProvider, tag);
                     return MyFilterChip(
-                      label: tag.name,
+                      label: tag.tag,
                       onTap: () => controller.toggleFilter(tag),
                       selected: isSelected,
                     );

@@ -2,17 +2,34 @@ import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "../../../../api_base/query_adapter.dart";
+import "../../../../api_base_rest/cache/cache.dart";
+import "../../../../config/env.dart";
 import "../../../../config/ttl_config.dart";
-import "../../../../utils/ilist_nonempty.dart";
-import "getTags.graphql.dart";
+import "../filters_sheet.dart";
+import "../model/tags.dart";
 
 part "tags_repository.g.dart";
 
-typedef Tag = Query$GetTags$Tags;
-
 @riverpod
 Future<IList<Tag>> tagsRepository(Ref ref) async {
-  final results = await ref.queryGraphql(WatchOptions$Query$GetTags(eagerlyFetchResults: true), TtlKey.tagsRepository);
-  return (results?.Tags).toIList();
+  const endpoint = "/student_organizations?tags=true";
+  final apiUrl = Env.mainRestApiUrl;
+
+  final response = await ref.getAndCacheData(
+    apiUrl + endpoint,
+    TtlStrategy.get(TtlKey.tagsRepository).inDays,
+    ScienceClubsResponse.fromJson,
+    localizedOfflineMessage: FiltersSheet.localizedOfflineMessage,
+    extraValidityCheck: (_) => true,
+    onRetry: ref.invalidateSelf,
+  );
+
+  final tags =
+      response.data
+          .expand<Tag>((club) => club.tags?.cast<Tag>() ?? const Iterable.empty())
+          .cast<Tag>()
+          .toSet()
+          .toList()
+          .toIList();
+  return tags;
 }
