@@ -9,9 +9,12 @@ import "../../../../../utils/context_extensions.dart";
 import "../../../../../widgets/big_preview_card.dart";
 import "../../../../../widgets/my_error_widget.dart";
 import "../../../../../widgets/subsection_header.dart";
+import "../../../../analytics/data/umami.dart";
+import "../../../../analytics/data/umami_events.dart" show UmamiEvents;
 import "../../../../home_view/widgets/loading_widgets/big_scrollable_section_loading.dart";
 import "../../../../home_view/widgets/paddings.dart";
 import "../../../../navigator/utils/navigation_commands.dart";
+import "../../../../science_club/science_clubs_view/model/science_clubs.dart";
 import "../../../../science_club/science_clubs_view/repository/science_clubs_repository.dart";
 import "../../data/models/department_details.dart";
 
@@ -28,7 +31,7 @@ class DepartmentScienceClubsSection extends ConsumerWidget {
       AsyncError(:final error, :final stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
       AsyncValue(:final IList<ScienceClub> value) => Builder(
         builder: (context) {
-          final filtered = value.where((sciClubs) => sciClubs.department?.id == department.id.toString()).toIList();
+          final filtered = value.where((sciClubs) => sciClubs.department?.id == department.id).toIList();
           return Column(
             children: [
               SubsectionHeader(
@@ -67,8 +70,7 @@ class _ScienceClubsList extends ConsumerWidget {
           child: BigPreviewCard(
             title: sciClub.name,
             shortDescription: sciClub.shortDescription ?? "",
-            directusUrl:
-                (sciClub.useCoverAsPreviewPhoto ?? false) ? sciClub.cover?.filename_disk : sciClub.logo?.filename_disk,
+            directusUrl: (sciClub.coverPreview) ? sciClub.cover?.url : sciClub.logo?.url,
             onClick: () async {
               unawaited(ref.trackEvent(UmamiEvents.openSciClubFromDepartmentDetailView, value: sciClub.id.toString()));
               await ref.navigateSciClubsDetail(sciClub);
