@@ -27,6 +27,10 @@ class ScienceClubsView extends StatelessWidget {
   final String? deptsIdsSequence;
   final String? typesSequence;
 
+  static String localizedOfflineMessage(BuildContext context) {
+    return context.localize.my_offline_error_message(context.localize.scientific_cirlces);
+  }
+
   @override
   Widget build(BuildContext context) {
     return ProviderScope(
@@ -61,7 +65,7 @@ class _ScienceClubsView extends StatelessWidget {
                 tagsIds.map((it) => it.toLowerCase()).toIList(),
                 () async => ref.read(tagsRepositoryProvider.future),
                 ref.watch(selectedTagControllerProvider.notifier),
-                (ids, tag) => ids.contains(tag.name.toLowerCase()),
+                (ids, tag) => ids.contains(tag.tag.toLowerCase()),
               );
 
               useInitialFilterIds(

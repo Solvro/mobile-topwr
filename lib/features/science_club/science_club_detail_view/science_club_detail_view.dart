@@ -18,6 +18,7 @@ import "../../../widgets/loading_widgets/shimmer_loading.dart";
 import "../../../widgets/my_error_widget.dart";
 import "../science_clubs_view/widgets/strategic_badge.dart";
 import "../science_clubs_view/widgets/verified_badge.dart";
+import "model/science_club_details.dart";
 import "repository/science_club_details_repository.dart";
 import "widgets/about_us_section.dart";
 import "widgets/about_us_section_loading.dart";
@@ -26,7 +27,11 @@ import "widgets/about_us_section_loading.dart";
 class ScienceClubDetailView extends StatelessWidget {
   const ScienceClubDetailView({@PathParam("id") required this.id, super.key});
 
-  final String id;
+  final int id;
+
+  static String localizedOfflineMessage(BuildContext context) {
+    return context.localize.my_offline_error_message(context.localize.scientific_cirlces);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +42,7 @@ class ScienceClubDetailView extends StatelessWidget {
 class _SciClubDetailDataView extends ConsumerWidget {
   const _SciClubDetailDataView(this.id);
 
-  final String id;
+  final int id;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -47,10 +52,7 @@ class _SciClubDetailDataView extends ConsumerWidget {
       AsyncValue(:final ScienceClubDetails value) => CustomScrollView(
         slivers: [
           SliverPersistentHeader(
-            delegate: SliverHeaderSection(
-              logoDirectusImageUrl: value.logo?.filename_disk,
-              backgroundImageUrl: value.cover?.filename_disk,
-            ),
+            delegate: SliverHeaderSection(logoDirectusImageUrl: value.logo?.url, backgroundImageUrl: value.cover?.url),
           ),
           SliverList(
             delegate: SliverChildListDelegate([
@@ -76,7 +78,7 @@ class _SciClubDetailDataView extends ConsumerWidget {
               const SizedBox(height: DetailViewsConfig.spacerHeight),
               ContactSection(
                 title: context.localize.contact,
-                list: value.links.whereNonNull.map((a) => ContactIconsModel(text: a.name, url: a.link)).toIList(),
+                list: value.links.whereNonNull.map((a) => ContactIconsModel(url: a.link)).toIList(),
               ),
               const SizedBox(height: DetailViewsConfig.spacerHeight),
               AboutUsSection(text: value.description ?? ""),
