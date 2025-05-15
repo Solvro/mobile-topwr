@@ -13,6 +13,7 @@ class RedDialog extends StatelessWidget {
   final bool centerTitle;
   final String? applyButtonText;
   final bool showCloseButton;
+  final VoidCallback? onApplyButtonPressed;
   const RedDialog({
     super.key,
     required this.title,
@@ -22,6 +23,7 @@ class RedDialog extends StatelessWidget {
     this.centerTitle = false,
     this.applyButtonText,
     this.showCloseButton = true,
+    this.onApplyButtonPressed,
   });
   @override
   Widget build(BuildContext context) {
@@ -49,6 +51,7 @@ class RedDialog extends StatelessWidget {
                     subtitle: subtitle,
                     applyButtonText: applyButtonText,
                     showApplyButton: showApplyButton,
+                    onApplyButtonPressed: onApplyButtonPressed,
                     child: child,
                   ),
                 ),
@@ -67,12 +70,14 @@ class _DialogContent extends StatelessWidget {
     required this.child,
     required this.showApplyButton,
     this.applyButtonText,
+    this.onApplyButtonPressed,
   });
 
   final String? subtitle;
   final Widget child;
   final bool showApplyButton;
   final String? applyButtonText;
+  final VoidCallback? onApplyButtonPressed;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -88,16 +93,18 @@ class _DialogContent extends StatelessWidget {
           ),
         if (subtitle != null) const SizedBox(height: 6),
         child,
-        if (showApplyButton) _DialogFooter(applyButtonText: applyButtonText),
+        if (showApplyButton)
+          _DialogFooter(applyButtonText: applyButtonText, onApplyButtonPressed: onApplyButtonPressed),
       ],
     );
   }
 }
 
 class _DialogFooter extends StatelessWidget {
-  const _DialogFooter({required this.applyButtonText});
+  const _DialogFooter({required this.applyButtonText, required this.onApplyButtonPressed});
 
   final String? applyButtonText;
+  final VoidCallback? onApplyButtonPressed;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -105,6 +112,7 @@ class _DialogFooter extends StatelessWidget {
       child: ElevatedButton(
         onPressed: () {
           // we're saving the changes in real time anyway
+          onApplyButtonPressed?.call();
           Navigator.of(context).pop();
         },
         style: ElevatedButton.styleFrom(

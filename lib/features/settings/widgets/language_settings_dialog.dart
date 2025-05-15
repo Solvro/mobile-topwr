@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:logger/logger.dart";
 import "package:solvro_translator_core/solvro_translator_core.dart";
 
 import "../../../../config/ui_config.dart";
@@ -30,6 +31,11 @@ class LanguageDialog extends ConsumerWidget {
       subtitle: null,
       showApplyButton: isFirstTimeMode,
       applyButtonText: context.localize.select,
+      onApplyButtonPressed: () async {
+        await ref
+            .read(preferredLanguageRepositoryProvider.notifier)
+            .setPreferredLanguage(SolvroLocale.values.byName(selectedLanguage));
+      },
       child: ListView.builder(
         padding: const EdgeInsets.symmetric(vertical: 16),
         physics: const NeverScrollableScrollPhysics(),
@@ -52,7 +58,9 @@ class LanguageDialog extends ConsumerWidget {
                 onTap: () async {
                   if (!isFirstTimeMode) {
                     Navigator.pop(context, code);
+                    Logger().d("returning language: $code");
                   } else {
+                    Logger().d("setting preferred language locally: $code");
                     await ref
                         .read(preferredLanguageRepositoryProvider.notifier)
                         .setPreferredLanguage(SolvroLocale.values.byName(code));
