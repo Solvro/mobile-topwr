@@ -11,7 +11,7 @@ import "../../../analytics/data/umami_events.dart";
 import "../filters_controller.dart";
 import "../filters_search_controller.dart";
 import "../filters_sheet.dart";
-import "../repository/tags_repository.dart";
+import "../model/tags.dart";
 import "../utils.dart";
 import "chips_loading.dart";
 import "filter_chip.dart";
@@ -37,9 +37,9 @@ class TagsWrap extends ConsumerWidget {
                     final controller = ref.watch(selectedTagControllerProvider.notifier);
                     final isSelected = ref.watchContains(selectedTagControllerProvider, tag);
                     return MyFilterChip(
-                      label: tag.name,
+                      label: tag.tag,
                       onTap: () {
-                        unawaited(ref.trackEvent(UmamiEvents.selectSciClubFilterTag, value: tag.name));
+                        unawaited(ref.trackEvent(UmamiEvents.selectSciClubFilterTag, value: tag.tag));
                         controller.toggleFilter(tag);
                       },
                       selected: isSelected,
