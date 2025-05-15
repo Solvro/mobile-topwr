@@ -18,6 +18,10 @@ import "widgets/types_wrap.dart";
 class FiltersSheet extends StatelessWidget {
   const FiltersSheet({super.key});
 
+  static String localizedOfflineMessage(BuildContext context) {
+    return context.localize.my_offline_error_message(context.localize.scientific_cirlces);
+  }
+
   @override
   Widget build(BuildContext context) {
     final sheetHeight = useFiltersSheetHeight(context);

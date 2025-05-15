@@ -8,6 +8,7 @@ import "../../../widgets/big_preview_card.dart";
 import "../../../widgets/my_error_widget.dart";
 import "../../../widgets/subsection_header.dart";
 import "../../navigator/utils/navigation_commands.dart";
+import "../../science_club/science_clubs_view/model/science_clubs.dart";
 import "../../science_club/science_clubs_view/repository/science_clubs_repository.dart";
 import "loading_widgets/big_scrollable_section_loading.dart";
 import "paddings.dart";
@@ -84,10 +85,9 @@ class _ScienceClubCard extends ConsumerWidget {
     return BigPreviewCard(
       title: sciClub.name,
       shortDescription: sciClub.shortDescription ?? "",
-      directusUrl:
-          (sciClub.useCoverAsPreviewPhoto ?? false) ? sciClub.cover?.filename_disk : sciClub.logo?.filename_disk,
+      directusUrl: (sciClub.coverPreview) ? sciClub.cover?.url : sciClub.logo?.url,
       showVerifiedBadge: sciClub.source == ScienceClubsViewConfig.source,
-      onClick: () async => ref.navigateSciClubsDetail(sciClub.id),
+      onClick: () async => ref.navigateSciClubsDetail(sciClub),
       showStrategicBadge: sciClub.isStrategic,
     );
   }

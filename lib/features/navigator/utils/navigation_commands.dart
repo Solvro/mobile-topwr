@@ -25,6 +25,8 @@ import "../../digital_guide/tabs/structure/data/models/stairway.dart";
 import "../../digital_guide/tabs/structure/data/models/toilet.dart";
 import "../../digital_guide/tabs/transportation/data/models/digital_guide_transportation.dart";
 import "../../parkings/parkings_view/models/parking.dart";
+import "../../science_club/science_clubs_view/model/science_clubs.dart" show ScienceClub;
+import "../../science_club/science_clubs_view/repository/science_clubs_repository.dart";
 import "../app_router.dart";
 import "../navigation_controller.dart";
 
@@ -77,11 +79,11 @@ extension NavigationX on WidgetRef {
     await _router.push(ScienceClubsRoute(deptsIdsSequence: departmentFilterId));
   }
 
-  Future<void> navigateSciClubsDetail(String id) async {
-    await trackEvent(UmamiEvents.openScienceClubDetail, value: id);
-    if (id == "1511") {
+  Future<void> navigateSciClubsDetail(ScienceClub model) async {
+    await trackEvent(UmamiEvents.openScienceClubDetail, value: model.id.toString());
+    if (model.isSolvro) {
       // solvro science club
-      await trackEvent(UmamiEvents.openSolvroScienceClubDetailPage, value: id);
+      await trackEvent(UmamiEvents.openSolvroScienceClubDetailPage, value: "Solvro: ${model.id}");
     }
     await _router.push(ScienceClubDetailRoute(id: model.id));
   }

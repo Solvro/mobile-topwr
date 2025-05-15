@@ -6,6 +6,7 @@ import "../../../utils/contains_lower_case.dart";
 import "../../departments/departments_view/data/models/department.dart";
 import "../../departments/departments_view/data/repository/departments_repository.dart";
 import "model/sci_club_type.dart";
+import "model/tags.dart";
 import "repository/tags_repository.dart";
 import "utils.dart";
 
@@ -53,7 +54,7 @@ Future<IList<Department>> departmentFiltersFiltered(Ref ref) async {
 Future<IList<Tag>> tagFiltersFiltered(Ref ref) async {
   final query = ref.watch(searchFiltersControllerProvider);
   final tags = await ref.watch(tagsRepositoryProvider.future);
-  return tags.where((x) => x.name.containsLowerCase(query)).toIList();
+  return tags.where((x) => x.tag.containsLowerCase(query)).toIList();
 }
 
 @Riverpod(dependencies: [typeFiltersFiltered, departmentFiltersFiltered, tagFiltersFiltered])

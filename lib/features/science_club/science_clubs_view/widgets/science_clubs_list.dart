@@ -8,7 +8,7 @@ import "../../../../widgets/my_error_widget.dart";
 import "../../../../widgets/search_not_found.dart";
 import "../../../navigator/utils/navigation_commands.dart";
 import "../controllers/science_clubs_view_controller.dart";
-import "../repository/science_clubs_repository.dart";
+import "../model/science_clubs.dart";
 import "science_club_card.dart";
 import "science_clubs_view_loading.dart";
 
@@ -44,10 +44,8 @@ class _ScienceClubsListView extends ConsumerWidget {
       gridDelegate: DepartmentsConfig.departmentsViewGridDelegate(context),
       itemCount: filteredCircles.length,
       itemBuilder:
-          (context, index) => ScienceClubCard(
-            filteredCircles[index],
-            () async => ref.navigateSciClubsDetail(filteredCircles[index].id),
-          ),
+          (context, index) =>
+              ScienceClubCard(filteredCircles[index], () async => ref.navigateSciClubsDetail(filteredCircles[index])),
     );
   }
 }
