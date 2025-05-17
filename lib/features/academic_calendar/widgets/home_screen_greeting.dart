@@ -11,7 +11,7 @@ class Greeting extends StatelessWidget {
   final AcademicCalendarRestData academicCalendar;
 
   static String localizedOfflineMessage(BuildContext context) {
-    return context.localize.my_offline_error_message(context.localize.about_us);
+    return context.localize.my_offline_error_message(context.localize.offline_academic_calendar);
   }
 
   @override
