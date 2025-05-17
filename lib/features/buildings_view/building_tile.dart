@@ -11,7 +11,6 @@ import "../../widgets/wide_tile_card.dart";
 import "../navigator/utils/navigation_commands.dart";
 import "controllers.dart";
 import "model/building_model.dart";
-import "utils/utils.dart";
 
 class BuildingTile extends ConsumerWidget {
   const BuildingTile(this.building, {required this.isActive, super.key});

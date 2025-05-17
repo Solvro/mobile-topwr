@@ -1,6 +1,5 @@
 import "package:latlong2/latlong.dart";
 
-import "../../../config/map_view_config.dart";
 import "../../map_view/controllers/controllers_set.dart";
 import "building_data.dart";
 
