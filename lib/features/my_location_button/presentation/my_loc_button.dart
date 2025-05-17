@@ -11,10 +11,13 @@ class MyLocationButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return FloatingActionButton.small(
-      tooltip: context.localize.my_location_button_tooltip,
       backgroundColor: context.colorTheme.whiteSoap,
       onPressed: ref.watch(isFollowingCurrentLocationControllerProvider.notifier).buttonClicked,
-      child: Icon(Icons.my_location, color: context.colorTheme.orangePomegranade, size: 24),
+      child: Icon(
+        semanticLabel: context.localize.my_location,
+        Icons.my_location,
+        color: context.colorTheme.orangePomegranade,
+      ),
     );
   }
 }

@@ -38,31 +38,33 @@ class SearchBox extends HookWidget {
 
     final color = context.colorTheme.blackMirage.withValues(alpha: 0.48);
 
-    return TextField(
-      controller: controller,
-      focusNode: focusNode,
-      onTap: onTap,
-      onTapOutside: onTapOutside,
-      onChanged: onChanged,
-      decoration: InputDecoration(
-        constraints: BoxConstraints(maxHeight: context.textScaler.scale(SearchBoxConfig.height)),
-        contentPadding: context.isTextScaledUp ? const EdgeInsets.symmetric(vertical: 4) : EdgeInsets.zero,
-        filled: true,
-        fillColor: context.colorTheme.greyLight,
-        hintText: "${searchText ?? context.localize.search}...",
-        hintStyle: context.textTheme.lightTitle.copyWith(color: color),
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: BorderSide.none),
-        prefixIcon: ExcludeSemantics(
-          child: Padding(padding: const EdgeInsets.all(10), child: SvgPicture.asset(Assets.svg.searchBox.vectorsearch)),
+    return ExcludeSemantics(
+      child: TextField(
+        controller: controller,
+        focusNode: focusNode,
+        onTap: onTap,
+        onTapOutside: onTapOutside,
+        onChanged: onChanged,
+        decoration: InputDecoration(
+          constraints: const BoxConstraints(maxHeight: SearchBoxConfig.height),
+          contentPadding: EdgeInsets.zero,
+          filled: true,
+          fillColor: context.colorTheme.greyLight,
+          hintText: "${searchText ?? context.localize.search}...",
+          hintStyle: context.textTheme.lightTitle.copyWith(color: color),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: BorderSide.none),
+          prefixIcon: Padding(
+            padding: const EdgeInsets.all(10),
+            child: SvgPicture.asset(Assets.svg.searchBox.vectorsearch),
+          ),
+          suffixIcon:
+              showCloseIcon.value
+                  ? IconButton(
+                    icon: Icon(Icons.cancel, color: context.colorTheme.blackMirage, size: 19),
+                    onPressed: onSuffixPressed,
+                  )
+                  : null,
         ),
-        suffixIcon:
-            showCloseIcon.value
-                ? IconButton(
-                  tooltip: context.localize.clear_search,
-                  icon: Icon(Icons.cancel, color: context.colorTheme.blackMirage, size: context.textScaler.scale(19)),
-                  onPressed: onSuffixPressed,
-                )
-                : null,
       ),
     );
   }

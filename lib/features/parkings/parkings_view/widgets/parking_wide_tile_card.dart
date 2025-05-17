@@ -49,7 +49,11 @@ class ParkingWideTileCard extends StatelessWidget {
                 child: IconButton(
                   padding: EdgeInsets.zero,
                   onPressed: onTap,
-                  icon: Icon(Icons.close, color: context.colorTheme.whiteSoap, size: 22),
+                  icon: Semantics(
+                    button: true,
+                    label: context.localize.close,
+                    child: Icon(Icons.close, color: context.colorTheme.whiteSoap, size: 22),
+                  ),
                 ),
               ),
           ],

@@ -169,6 +169,14 @@
   "@map_button": {
     "description": "Label for map navigation button"
   },
+  "my_location": "Moja lokalizacja",
+  "@my_location":{
+    "description": "Button to allow user current location"
+  },
+  "favourite_button": "Dodaj do ulubionych",
+  "@favourite_button":{
+    "description": "Button add to favourite"
+  },
   "meet_our_team": "Poznaj nas!",
   "@meet_our_team": {
     "description": "Title for team introduction section"
