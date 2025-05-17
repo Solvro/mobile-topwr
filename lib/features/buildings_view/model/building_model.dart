@@ -29,14 +29,4 @@ class BuildingModel implements GoogleNavigable {
 
   @override
   LatLng get location => LatLng(latitude, longitude);
-
-  String? get parseBuildingCode {
-    final List<String> separatedBuildingName = name.split(BuildingSearchConfig.buildingCodeSeperator);
-
-    if (separatedBuildingName.length < 2) {
-      return null;
-    } else {
-      return separatedBuildingName[0];
-    }
-  }
 }

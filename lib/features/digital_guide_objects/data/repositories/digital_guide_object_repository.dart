@@ -23,5 +23,5 @@ Future<({DigitalGuideObjectModel digitalGuideData, String? photoUrl})> digitalGu
     DigitalGuideObjectModel.fromJson,
     onRetry: () => ref.invalidateSelf(),
   );
-  return (digitalGuideData: digitalGuideData, photoUrl: building.cover?.filename_disk);
+  return (digitalGuideData: digitalGuideData, photoUrl: building.coverUrl);
 }

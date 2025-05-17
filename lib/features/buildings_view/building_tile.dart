@@ -26,15 +26,15 @@ class BuildingTile extends ConsumerWidget {
           children: [
             PhotoTrailingWideTileCard(
               activeGradient: context.colorTheme.toPwrGradient,
-              directusPhotoUrl: building.cover?.filename_disk,
-              title: "${building.disableBuildingPrefix ? "" : "${context.localize.building_prefix} "}${building.name}",
-              subtitle: context.changeNull(building.addressFormatted),
+              directusPhotoUrl: building.coverUrl,
+              title: "${context.localize.building_prefix} ${building.name}",
+              subtitle: building.address,
               isActive: isActive,
               onTap: () {
                 unawaited(ref.read(buildingsMapControllerProvider).onMarkerTap(building));
               },
             ),
-            if (building.externalDigitalGuideMode != null && building.externalDigitalGuideIdOrURL != null)
+            if (building.externalDigitalGuideIdOrURL != null)
               Positioned(
                 top: 2,
                 right: WideTileCardConfig.imageSize + 2,
