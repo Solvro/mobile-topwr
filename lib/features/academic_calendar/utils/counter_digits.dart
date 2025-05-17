@@ -12,9 +12,9 @@ extension DaysLeftStringConverterX on AcademicCalendarData {
     final calendarData = this.calendarData;
     final daysLeft =
         calendarData != null
-            ? (calendarData.isHolidays()
+            ? (data.isHolidays()
                 ? data.semesterStartDate.daysLeftFromNow
-                : calendarData.isExamSession()
+                : data.isExamSession()
                 ? data.examSessionLastDate.daysLeftFromNow
                 : data.examSessionStartDate.daysLeftFromNow)
             : null;
