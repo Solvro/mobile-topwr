@@ -23,13 +23,7 @@ extension ChangeNullAdressX on BuildContext {
 
 extension SortByCodeOrderX on IList<BuildingModel> {
   IList<BuildingModel> sortByCodeOrder() {
-    return sort((a, b) {
-      if (a.disableBuildingPrefix != b.disableBuildingPrefix) {
-        return (a.disableBuildingPrefix ? 1 : -1);
-      } else {
-        return _compareCodes(a, b);
-      }
-    });
+    return sort(_compareCodes);
   }
 
   int _compareCodes(BuildingModel a, BuildingModel b) {

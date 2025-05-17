@@ -17,6 +17,11 @@ import "model/building_model.dart";
 class BuildingsView extends ConsumerWidget {
   const BuildingsView({super.key, @PathParam("initialActiveItemId") this.initialActiveItemId});
   final String? initialActiveItemId;
+
+  static String localizedOfflineMessage(BuildContext context) {
+    return context.localize.my_offline_error_message(context.localize.buildings_title);
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return MapView<BuildingModel>(

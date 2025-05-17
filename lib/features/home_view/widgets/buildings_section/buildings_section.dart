@@ -78,7 +78,7 @@ class _BuildMapItemCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return BuildingCard(
       buildingName: mapItem.name,
-      directusImageUrl: mapItem.cover?.filename_disk,
+      directusImageUrl: mapItem.coverUrl,
       onTap: () async => ref.navigateBuilding(mapItem),
     );
   }

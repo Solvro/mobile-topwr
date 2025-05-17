@@ -24,5 +24,5 @@ Future<({DigitalGuideResponse digitalGuideData, String? photoUrl})> digitalGuide
     onRetry: () => ref.invalidateSelf(),
   );
 
-  return (digitalGuideData: digitalGuideData, photoUrl: building.cover?.filename_disk);
+  return (digitalGuideData: digitalGuideData, photoUrl: building.coverUrl);
 }

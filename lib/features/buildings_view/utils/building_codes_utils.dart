@@ -10,7 +10,7 @@ part "building_codes_utils.g.dart";
 @riverpod
 Future<ISet<String>> allBuildingsCodesLowerCase(Ref ref) async {
   final buildings = await ref.watch(buildingsRepositoryProvider.future);
-  return buildings.map((e) => e.parseBuildingCode?.toLowerCase()).whereType<String>().toISet();
+  return buildings.map((e) => e.name.toLowerCase()).whereType<String>().toISet();
 }
 
 extension IsStringABuildingCodeX on Ref {
