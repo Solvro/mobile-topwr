@@ -11,15 +11,12 @@ extension DaysLeftStringConverterX on AcademicCalendarData {
   String get daysLeftFromNowString {
     final calendarData = this.calendarData;
     final daysLeft =
-        calendarData != null
-            ? (data.isHolidays()
-                ? data.semesterStartDate.daysLeftFromNow
-                : data.isExamSession()
-                ? data.examSessionLastDate.daysLeftFromNow
-                : data.examSessionStartDate.daysLeftFromNow)
-            : null;
-
-    return max(_default, daysLeft ?? _default).toString().padLeft(Digit.values.length, _default.toString());
+        calendarData.isHolidays()
+            ? calendarData.semesterStartDate.daysLeftFromNow
+            : calendarData.isExamSession()
+            ? calendarData.examSessionLastDate.daysLeftFromNow
+            : calendarData.examSessionStartDate.daysLeftFromNow;
+    return max(_default, daysLeft).toString().padLeft(Digit.values.length, _default.toString());
   }
 }
 
