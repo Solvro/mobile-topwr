@@ -12,7 +12,7 @@ import "digits_widgets.dart";
 class ExamSessionCountdown extends ConsumerWidget {
   const ExamSessionCountdown(this.academicCalendar, {super.key});
 
-  final AcademicCalendar academicCalendar;
+  final AcademicCalendarData academicCalendar;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
