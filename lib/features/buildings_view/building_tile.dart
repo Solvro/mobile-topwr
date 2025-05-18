@@ -14,7 +14,6 @@ import "../analytics/data/umami_events.dart";
 import "../navigator/utils/navigation_commands.dart";
 import "controllers.dart";
 import "model/building_model.dart";
-import "utils/utils.dart";
 
 class BuildingTile extends HookConsumerWidget {
   const BuildingTile(this.building, {required this.isActive, super.key});
@@ -45,16 +44,15 @@ class BuildingTile extends HookConsumerWidget {
           children: [
             Semantics(
               label:
-                  "${isActive ? "${context.localize.building_tile_selected} " : ""}${context.localize.building_tile_building} ${building.name.replaceFirst("-", " ")}. ${context.localize.building_tile_address}: ${building.addressFormatted}. ${hasDigitalGuide ? context.localize.building_tile_digital_guide_available : ""}",
+                  "${isActive ? "${context.localize.building_tile_selected} " : ""}${context.localize.building_tile_building} ${building.name.replaceFirst("-", " ")}. ${context.localize.building_tile_address}: ${building.address}. ${hasDigitalGuide ? context.localize.building_tile_digital_guide_available : ""}",
               button: true,
               child: ExcludeSemantics(
                 child: PhotoTrailingWideTileCard(
                   context,
                   activeGradient: context.colorTheme.toPwrGradient,
-                  directusPhotoUrl: building.cover?.filename_disk,
-                  title:
-                      "${building.disableBuildingPrefix ? "" : "${context.localize.building_prefix} "}${building.name}",
-                  subtitle: context.changeNull(building.addressFormatted),
+                  directusPhotoUrl: building.coverUrl,
+                  title: "${context.localize.building_prefix} ${building.name}",
+                  subtitle: building.address,
                   isActive: isActive,
                   onTap: () {
                     unawaited(ref.trackEvent(UmamiEvents.selectBuilding, value: building.name));
@@ -64,7 +62,7 @@ class BuildingTile extends HookConsumerWidget {
                 ),
               ),
             ),
-            if (building.externalDigitalGuideMode != null && building.externalDigitalGuideIdOrURL != null)
+            if (building.externalDigitalGuideIdOrURL != null)
               Positioned(
                 top: context.textScaler.scale(2),
                 right: WideTileCardConfig.imageSize + context.textScaler.scale(2),

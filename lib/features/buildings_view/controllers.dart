@@ -43,11 +43,11 @@ class BuildingsViewController extends _$BuildingsViewController with MapDataCont
         if (ref.isStringABuildingCode(filterStr)) {
           return item.name.containsBuildingCode(filterStr);
         } else {
-          return item.addres.containsLowerCase(filterStr) || item.naturalName.containsLowerCase(filterStr);
+          return item.address.containsLowerCase(filterStr) || item.naturalName.containsLowerCase(filterStr);
         }
       default:
         return item.name.containsBuildingCode(filterStr) ||
-            item.addres.containsLowerCase(filterStr) ||
+            item.address.containsLowerCase(filterStr) ||
             item.naturalName.containsLowerCase(filterStr);
     }
   }

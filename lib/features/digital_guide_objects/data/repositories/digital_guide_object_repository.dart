@@ -24,8 +24,8 @@ Future<({DigitalGuideObjectModel digitalGuideData, String? photoUrl})> digitalGu
           .getAndCacheDataFromDigitalGuide(
             "objects/$digitalGuideId",
             DigitalGuideObjectModel.fromJson,
-            onRetry: ref.invalidateSelf,
+            onRetry: () => ref.invalidateSelf(),
           )
           .castAsObject;
-  return (digitalGuideData: digitalGuideData, photoUrl: building.cover?.filename_disk);
+  return (digitalGuideData: digitalGuideData, photoUrl: building.coverUrl);
 }
