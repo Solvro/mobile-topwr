@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 
 import "../config/ui_config.dart";
 import "../theme/app_theme.dart";
+import "../utils/context_extensions.dart";
 import "detail_views/pop_button.dart";
 import "search_box.dart";
 
@@ -43,7 +44,12 @@ class SearchBoxAppBar extends AppBar {
                left: defaultHorizontalPadding,
                right: defaultHorizontalPadding,
              ),
-             child: SearchBox(onQueryChanged: onQueryChanged, onTap: onSearchBoxTap),
+
+             child: Semantics(
+               button: true,
+               label: context.localize.search,
+               child: SearchBox(onQueryChanged: onQueryChanged, onTap: onSearchBoxTap),
+             ),
            ),
          ),
        );
