@@ -3,18 +3,29 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../../config/ttl_config.dart";
-import "../../../api_base/query_adapter.dart";
-import "../../../utils/ilist_nonempty.dart";
+import "../../../api_base_rest/cache/cache.dart";
+import "../../../api_base_rest/client/json.dart";
+import "../../../config/env.dart";
+import "../buildings_view.dart";
+import "../model/building_data.dart";
 import "../model/building_model.dart";
 import "../utils/utils.dart";
-import "getBuildings.graphql.dart";
 
 part "buildings_repository.g.dart";
 
-typedef Building = Query$GetBuildings$Buildings;
-
 @riverpod
 Future<IList<BuildingModel>> buildingsRepository(Ref ref) async {
-  final results = await ref.queryGraphql(Options$Query$GetBuildings(), TtlKey.buildingsRepository);
-  return (results?.Buildings.map(BuildingModel.from)).toIList().sortByCodeOrder();
+  final apiUrl = Env.mainRestApiUrl;
+  final buildingsResponse =
+      await ref
+          .getAndCacheData(
+            "$apiUrl/buildings?cover=true",
+            TtlStrategy.get(TtlKey.buildingsRepository).inDays,
+            BuildingDataResponse.fromJson,
+            extraValidityCheck: (_) => true,
+            localizedOfflineMessage: BuildingsView.localizedOfflineMessage,
+            onRetry: ref.invalidateSelf,
+          )
+          .castAsObject;
+  return buildingsResponse.data.map(BuildingModel.from).toIList().sortByCodeOrder();
 }
