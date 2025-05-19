@@ -16,4 +16,12 @@ extension BuildContextX on BuildContext {
   void unfocus() {
     FocusScope.of(this).unfocus();
   }
+
+  TextScaler get textScaler => MediaQuery.textScalerOf(this);
+
+  double get textScaleFactor => textScaler.scale(1);
+
+  bool get isTextScaledUp => textScaleFactor > 1;
+
+  bool get isTextScaledDown => textScaleFactor < 1;
 }

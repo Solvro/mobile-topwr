@@ -3,6 +3,7 @@ import "package:flutter/material.dart";
 import "../config/ui_config.dart";
 import "../features/science_club/science_clubs_view/widgets/ensure_visible_tags.dart";
 import "../theme/app_theme.dart";
+import "../utils/context_extensions.dart";
 import "optimized_directus_image.dart";
 
 class PhotoTrailingWideTileCard extends WideTileCard {
@@ -15,6 +16,7 @@ class PhotoTrailingWideTileCard extends WideTileCard {
     super.activeGradient,
     super.activeShadows,
     super.key,
+    super.crossAxisAlignment,
     BoxFit boxFit = BoxFit.cover,
   }) : super(
          trailing: SizedBox.square(
@@ -68,21 +70,25 @@ class WideTileCard extends StatelessWidget {
               borderRadius: const BorderRadius.all(WideTileCardConfig.radius),
               boxShadow: isActive ? activeShadows : null,
             ),
-            child: Row(
-              crossAxisAlignment: crossAxisAlignment,
-              children: [
-                Expanded(
-                  child: _TitlesColumn(
-                    title,
-                    subtitle,
-                    secondSubtitle,
-                    showBadge: showBadge,
-                    showStrategicBadge: showStrategicBadge,
-                    isActive: isActive,
+            child: SizedBox(
+              height: context.textScaler.clamp(maxScaleFactor: 2).scale(WideTileCardConfig.imageSize),
+              child: Row(
+                crossAxisAlignment: crossAxisAlignment,
+                children: [
+                  Expanded(
+                    child: _TitlesColumn(
+                      title,
+                      subtitle,
+                      secondSubtitle,
+                      showBadge: showBadge,
+                      showStrategicBadge: showStrategicBadge,
+                      isActive: isActive,
+                    ),
                   ),
-                ),
-                if (trailing != null) trailing!,
-              ],
+                  const SizedBox(width: 16),
+                  if (trailing != null) trailing!,
+                ],
+              ),
             ),
           ),
         ),
@@ -112,7 +118,6 @@ class _TitlesColumn extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         const basePadding = WideTileCardConfig.basePadding;
-
         return Padding(
           padding: const EdgeInsets.only(left: basePadding, top: basePadding, right: basePadding),
           child: EnsureVisibleTags(
@@ -123,7 +128,7 @@ class _TitlesColumn extends StatelessWidget {
             spacing: secondSubtitle == null ? WideTileCardConfig.titlesSpacing : 2,
             secondSubtitle: secondSubtitle,
             secondSubtitleStyle: isActive ? context.textTheme.bodyWhite : context.textTheme.bodyBlue,
-            maxTotalLines: 4,
+            maxTotalLines: context.textScaleFactor > 1.5 ? 5 : 4,
             showVerifiedBadge: showBadge,
             showStrategicBadge: showStrategicBadge,
           ),

@@ -19,7 +19,11 @@ class NavigateButton<T extends GoogleNavigable> extends ConsumerWidget {
         icon: Icon(ParkingsIcons.map_nav, color: context.colorTheme.orangePomegranade, size: 16),
         onPressed: ref.watch(context.activeMarkerController<T>().notifier).launchLink,
         style: TextButton.styleFrom(padding: const EdgeInsets.all(12)),
-        label: Text(context.localize.navigate, style: context.textTheme.boldBodyOrange),
+        label: Text(
+          context.localize.navigate,
+          style: context.textTheme.boldBodyOrange,
+          textScaler: context.textScaler.clamp(maxScaleFactor: 1.5),
+        ),
       ),
     );
   }

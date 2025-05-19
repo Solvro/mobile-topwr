@@ -20,13 +20,14 @@ class BottomScrollSheet<T extends GoogleNavigable> extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return LayoutBuilder(
       builder: (context, constraints) {
+        final scaler = context.textScaler.clamp(maxScaleFactor: 1.5);
         final screenHeight = constraints.maxHeight;
         final sheetSize = context.mapSheetSize<T>();
 
         final isAnyActive = ref.watch(context.activeMarkerController<T>()) != null;
-        final recommendedSheetHeight =
-            isAnyActive ? sheetSize.recomendedActiveSheetHeight : sheetSize.recomendedSheetHeight;
-
+        final recommendedSheetHeight = scaler.scale(
+          isAnyActive ? sheetSize.recomendedActiveSheetHeight : sheetSize.recomendedSheetHeight,
+        );
         final minSheetHeight = sheetSize.minSheetHeight;
 
         final double recommendedSheetFraction = min(1, recommendedSheetHeight / screenHeight);

@@ -55,7 +55,7 @@ class ScienceClubInfoDialog extends StatelessWidget {
           Consumer(
             builder:
                 (context, ref, child) => RichText(
-                  textScaler: MediaQuery.textScalerOf(context),
+                  textScaler: context.textScaler,
                   text: TextSpan(
                     text: context.localize.add_club_contact_info,
                     style: context.textTheme.lightTitle,

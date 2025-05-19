@@ -27,17 +27,17 @@ class SksChartHeader extends StatelessWidget {
               Text(
                 SksChartConfig.buildingCode,
                 style: context.textTheme.headline,
-                textScaler: MediaQuery.textScalerOf(context).clamp(maxScaleFactor: 1.5),
+                textScaler: context.textScaler.clamp(maxScaleFactor: 1.5),
               ),
               Text(
                 "${context.localize.street_abbreviation} ${SksChartConfig.sksAddress}",
                 style: context.textTheme.body,
-                textScaler: MediaQuery.textScalerOf(context).clamp(maxScaleFactor: 1.5),
+                textScaler: context.textScaler.clamp(maxScaleFactor: 1.5),
               ),
               Text(
                 SksChartConfig.sksPostalCode,
                 style: context.textTheme.body,
-                textScaler: MediaQuery.textScalerOf(context).clamp(maxScaleFactor: 1.5),
+                textScaler: context.textScaler.clamp(maxScaleFactor: 1.5),
               ),
             ],
           ),
@@ -51,7 +51,7 @@ class SksChartHeader extends StatelessWidget {
                 Text(
                   numberOfPeople,
                   style: context.textTheme.body.copyWith(fontSize: 18),
-                  textScaler: MediaQuery.textScalerOf(context).clamp(maxScaleFactor: 1.5),
+                  textScaler: context.textScaler.clamp(maxScaleFactor: 1.5),
                 ),
                 const SizedBox(width: SksChartConfig.heightSmall),
                 trend?.icon ?? const SizedBox.shrink(),

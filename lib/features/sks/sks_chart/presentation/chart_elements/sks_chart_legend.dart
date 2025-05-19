@@ -50,7 +50,7 @@ class SksChartLegendItem extends StatelessWidget {
             text,
             style: context.textTheme.body,
             softWrap: true,
-            textScaler: MediaQuery.textScalerOf(context).clamp(maxScaleFactor: 1.5),
+            textScaler: context.textScaler.clamp(maxScaleFactor: 1.5),
           ),
         ),
       ],

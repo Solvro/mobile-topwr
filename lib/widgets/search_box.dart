@@ -45,8 +45,8 @@ class SearchBox extends HookWidget {
       onTapOutside: onTapOutside,
       onChanged: onChanged,
       decoration: InputDecoration(
-        constraints: const BoxConstraints(maxHeight: SearchBoxConfig.height),
-        contentPadding: EdgeInsets.zero,
+        constraints: BoxConstraints(maxHeight: context.textScaler.scale(SearchBoxConfig.height)),
+        contentPadding: context.isTextScaledUp ? const EdgeInsets.symmetric(vertical: 4) : EdgeInsets.zero,
         filled: true,
         fillColor: context.colorTheme.greyLight,
         hintText: "${searchText ?? context.localize.search}...",
@@ -59,7 +59,7 @@ class SearchBox extends HookWidget {
             showCloseIcon.value
                 ? IconButton(
                   tooltip: context.localize.clear_search,
-                  icon: Icon(Icons.cancel, color: context.colorTheme.blackMirage, size: 19),
+                  icon: Icon(Icons.cancel, color: context.colorTheme.blackMirage, size: context.textScaler.scale(19)),
                   onPressed: onSuffixPressed,
                 )
                 : null,

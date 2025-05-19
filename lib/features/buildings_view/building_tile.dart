@@ -33,8 +33,8 @@ class BuildingTile extends HookConsumerWidget {
       messageBuilder:
           (active) =>
               active
-                  ? "${l10n.building_tile_selected} ${l10n.building_tile_building} ${building.name}"
-                  : "${l10n.building_tile_unselected} ${l10n.building_tile_building} ${building.name}",
+                  ? "${l10n.building_tile_selected} ${l10n.building_tile_building} ${building.name.replaceFirst("-", " ")}"
+                  : "${l10n.building_tile_unselected} ${l10n.building_tile_building} ${building.name.replaceFirst("-", " ")}",
     );
 
     return Column(
@@ -43,7 +43,7 @@ class BuildingTile extends HookConsumerWidget {
           children: [
             Semantics(
               label:
-                  "${isActive ? "${context.localize.building_tile_selected} " : ""}${context.localize.building_tile_building} ${building.name}. ${context.localize.building_tile_address}: ${building.addressFormatted}. ${hasDigitalGuide ? context.localize.building_tile_digital_guide_available : ""}",
+                  "${isActive ? "${context.localize.building_tile_selected} " : ""}${context.localize.building_tile_building} ${building.name.replaceFirst("-", " ")}. ${context.localize.building_tile_address}: ${building.addressFormatted}. ${hasDigitalGuide ? context.localize.building_tile_digital_guide_available : ""}",
               button: true,
               child: ExcludeSemantics(
                 child: PhotoTrailingWideTileCard(
@@ -56,13 +56,14 @@ class BuildingTile extends HookConsumerWidget {
                   onTap: () {
                     unawaited(ref.read(buildingsMapControllerProvider).onMarkerTap(building));
                   },
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                 ),
               ),
             ),
             if (building.externalDigitalGuideMode != null && building.externalDigitalGuideIdOrURL != null)
               Positioned(
-                top: 2,
-                right: WideTileCardConfig.imageSize + 2,
+                top: context.textScaler.scale(2),
+                right: WideTileCardConfig.imageSize + context.textScaler.scale(2),
                 child: IconButton(
                   tooltip: switch (building.externalDigitalGuideMode) {
                     "digital_guide_building" ||
@@ -73,7 +74,7 @@ class BuildingTile extends HookConsumerWidget {
                           : context.localize.external_link(building.externalDigitalGuideIdOrURL!),
                     _ => null,
                   },
-                  iconSize: 22,
+                  iconSize: context.textScaler.clamp(maxScaleFactor: 2).scale(22),
                   visualDensity: VisualDensity.compact,
                   color: switch (building.externalDigitalGuideMode) {
                     "digital_guide_building" || "other_digital_guide_place" => context.colorTheme.orangePomegranade,
@@ -108,12 +109,20 @@ class BuildingTile extends HookConsumerWidget {
             (building.externalDigitalGuideMode == "digital_guide_building" ||
                 building.externalDigitalGuideMode == "other_digital_guide_place"))
           TextButton.icon(
-            icon: Icon(Icons.accessibility_new_rounded, color: context.colorTheme.orangePomegranade, size: 16),
+            icon: Icon(
+              Icons.accessibility_new_rounded,
+              color: context.colorTheme.orangePomegranade,
+              size: context.textScaler.scale(16),
+            ),
             onPressed: () {
               unawaited(ref.navigateBuildingDetailAction(building));
             },
             style: TextButton.styleFrom(padding: const EdgeInsets.all(12)),
-            label: Text(context.localize.navigate_to_digital_guide, style: context.textTheme.boldBodyOrange),
+            label: Text(
+              context.localize.navigate_to_digital_guide,
+              style: context.textTheme.boldBodyOrange,
+              textAlign: TextAlign.center,
+            ),
           ),
       ],
     );
