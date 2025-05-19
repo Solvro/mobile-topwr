@@ -1,10 +1,11 @@
 import "dart:async";
 
 import "package:flutter/material.dart";
-import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../config/ui_config.dart";
 import "../../config/url_config.dart";
+import "../../hooks/use_semantics_service_on_changed_value.dart";
 import "../../theme/app_theme.dart";
 import "../../utils/context_extensions.dart";
 import "../../widgets/wide_tile_card.dart";
@@ -13,32 +14,65 @@ import "controllers.dart";
 import "model/building_model.dart";
 import "utils/utils.dart";
 
-class BuildingTile extends ConsumerWidget {
+class BuildingTile extends HookConsumerWidget {
   const BuildingTile(this.building, {required this.isActive, super.key});
 
   final BuildingModel building;
   final bool isActive;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final hasDigitalGuide =
+        building.externalDigitalGuideMode != null &&
+        building.externalDigitalGuideIdOrURL != null &&
+        (building.externalDigitalGuideMode == "other_digital_guide_place" ||
+            building.externalDigitalGuideMode == "digital_guide_building");
+
+    final l10n = context.localize;
+    useSemanticsServiceOnChangedValue(
+      isActive,
+      messageBuilder:
+          (active) =>
+              active
+                  ? "${l10n.building_tile_selected} ${l10n.building_tile_building} ${building.name}"
+                  : "${l10n.building_tile_unselected} ${l10n.building_tile_building} ${building.name}",
+    );
+
     return Column(
       children: [
         Stack(
           children: [
-            PhotoTrailingWideTileCard(
-              activeGradient: context.colorTheme.toPwrGradient,
-              directusPhotoUrl: building.cover?.filename_disk,
-              title: "${building.disableBuildingPrefix ? "" : "${context.localize.building_prefix} "}${building.name}",
-              subtitle: context.changeNull(building.addressFormatted),
-              isActive: isActive,
-              onTap: () {
-                unawaited(ref.read(buildingsMapControllerProvider).onMarkerTap(building));
-              },
+            Semantics(
+              label:
+                  "${isActive ? "${context.localize.building_tile_selected} " : ""}${context.localize.building_tile_building} ${building.name}. ${context.localize.building_tile_address}: ${building.addressFormatted}. ${hasDigitalGuide ? context.localize.building_tile_digital_guide_available : ""}",
+              button: true,
+              child: ExcludeSemantics(
+                child: PhotoTrailingWideTileCard(
+                  activeGradient: context.colorTheme.toPwrGradient,
+                  directusPhotoUrl: building.cover?.filename_disk,
+                  title:
+                      "${building.disableBuildingPrefix ? "" : "${context.localize.building_prefix} "}${building.name}",
+                  subtitle: context.changeNull(building.addressFormatted),
+                  isActive: isActive,
+                  onTap: () {
+                    unawaited(ref.read(buildingsMapControllerProvider).onMarkerTap(building));
+                  },
+                ),
+              ),
             ),
             if (building.externalDigitalGuideMode != null && building.externalDigitalGuideIdOrURL != null)
               Positioned(
                 top: 2,
                 right: WideTileCardConfig.imageSize + 2,
                 child: IconButton(
+                  tooltip: switch (building.externalDigitalGuideMode) {
+                    "digital_guide_building" ||
+                    "other_digital_guide_place" => context.localize.navigate_to_digital_guide,
+                    "web_url" =>
+                      building.externalDigitalGuideIdOrURL!.startsWith(UrlConfig.topwrUrl)
+                          ? context.localize.internal_link
+                          : context.localize.external_link(building.externalDigitalGuideIdOrURL!),
+                    _ => null,
+                  },
                   iconSize: 22,
                   visualDensity: VisualDensity.compact,
                   color: switch (building.externalDigitalGuideMode) {

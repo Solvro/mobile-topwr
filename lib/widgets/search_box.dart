@@ -52,13 +52,13 @@ class SearchBox extends HookWidget {
         hintText: "${searchText ?? context.localize.search}...",
         hintStyle: context.textTheme.lightTitle.copyWith(color: color),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: BorderSide.none),
-        prefixIcon: Padding(
-          padding: const EdgeInsets.all(10),
-          child: SvgPicture.asset(Assets.svg.searchBox.vectorsearch),
+        prefixIcon: ExcludeSemantics(
+          child: Padding(padding: const EdgeInsets.all(10), child: SvgPicture.asset(Assets.svg.searchBox.vectorsearch)),
         ),
         suffixIcon:
             showCloseIcon.value
                 ? IconButton(
+                  tooltip: context.localize.clear_search,
                   icon: Icon(Icons.cancel, color: context.colorTheme.blackMirage, size: 19),
                   onPressed: onSuffixPressed,
                 )

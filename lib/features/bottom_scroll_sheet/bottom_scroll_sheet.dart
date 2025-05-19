@@ -1,10 +1,12 @@
 import "dart:math";
 
 import "package:flutter/material.dart";
-import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../config/map_view_config.dart";
+import "../../hooks/use_semantics_service_on_changed_value.dart";
 import "../../theme/app_theme.dart";
+import "../../utils/context_extensions.dart";
 import "../map_view/controllers/bottom_sheet_controller.dart";
 import "../map_view/controllers/controllers_set.dart";
 import "../map_view/widgets/map_config.dart";
@@ -39,15 +41,45 @@ class BottomScrollSheet<T extends GoogleNavigable> extends ConsumerWidget {
             snap: true,
             snapSizes: [recommendedSheetFraction],
             builder: (BuildContext context, ScrollController scrollController) {
-              return Container(
-                clipBehavior: Clip.antiAlias,
-                decoration: _RoundedTopDecoration(color: context.colorTheme.whiteSoap),
-                child: SheetLayoutScheme<T>(scrollController: scrollController),
+              return _SheetConsumer<T>(
+                recommendedSheetHeight: recommendedSheetHeight,
+                scrollController: scrollController,
               );
             },
           ),
         );
       },
+    );
+  }
+}
+
+class _SheetConsumer<T extends GoogleNavigable> extends HookConsumerWidget {
+  const _SheetConsumer({required this.recommendedSheetHeight, required this.scrollController});
+
+  final double recommendedSheetHeight;
+  final ScrollController scrollController;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final size = ref.watch(bottomSheetPixelsProvider);
+    final isExpanded = size > recommendedSheetHeight;
+
+    final l10n = context.localize;
+    useSemanticsServiceOnChangedValue(
+      isExpanded,
+      messageBuilder: (expanded) => expanded ? l10n.expanded_screen_reader_label : l10n.collapsed_screen_reader_label,
+    );
+
+    return Semantics(
+      label:
+          isExpanded
+              ? context.localize.bottom_scroll_sheet_description_expanded
+              : context.localize.bottom_scroll_sheet_description_collapsed,
+      child: Container(
+        clipBehavior: Clip.antiAlias,
+        decoration: _RoundedTopDecoration(color: context.colorTheme.whiteSoap),
+        child: SheetLayoutScheme<T>(scrollController: scrollController),
+      ),
     );
   }
 }
