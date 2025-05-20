@@ -119,7 +119,7 @@ class _SksSheetHeader extends StatelessWidget {
             context.localize.sks_chart_title,
             style: context.textTheme.headline,
             textAlign: TextAlign.center,
-            textScaler: MediaQuery.textScalerOf(context).clamp(maxScaleFactor: 1.3),
+            textScaler: context.textScaler.clamp(maxScaleFactor: 1.3),
           ),
         ),
       ],

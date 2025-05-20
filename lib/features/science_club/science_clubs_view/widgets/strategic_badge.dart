@@ -17,11 +17,12 @@ class _StrategicBadgeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scaler = context.textScaler.clamp(maxScaleFactor: 2);
     return Tooltip(
       message: context.localize.strategicBadgeTooltip,
       child: Stack(
         children: [
-          Center(child: Icon(Icons.shield, size: 14, color: context.colorTheme.blueAzure)),
+          Center(child: Icon(Icons.shield, size: scaler.scale(14), color: context.colorTheme.blueAzure)),
           Align(
             alignment: const Alignment(0, -1 / 4),
             child: Text(context.localize.strategic_club_abbr, style: context.textTheme.bodyWhite.copyWith(fontSize: 6)),

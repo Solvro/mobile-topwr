@@ -6,6 +6,7 @@ import "package:separate/separate.dart";
 
 import "../../../../../config/ui_config.dart";
 import "../../../../../theme/app_theme.dart";
+import "../../../../../utils/context_extensions.dart";
 import "../../../../../widgets/my_expansion_tile.dart";
 import "../../data/models/sks_menu_data.dart";
 
@@ -40,7 +41,7 @@ class SksMenuDishDetailsTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final hasIncreasedTextSize = MediaQuery.textScalerOf(context).scale(1) > 1;
+    final hasIncreasedTextSize = context.isTextScaledUp;
     return DecoratedBox(
       decoration: BoxDecoration(
         color: context.colorTheme.whiteSoap,

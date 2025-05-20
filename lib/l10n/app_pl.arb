@@ -3070,11 +3070,11 @@
     "description": "information about some logotype"
   },
   "notifications": "Powiadomienia",
-  "@notifications":{
+  "@notifications": {
     "description": "information about notifications"
   },
   "feedback_option_not_supported_for_screen_readers": "Ta opcja nie jest wspierana dla czytników ekranów. Jeśli chcesz zgłosić błąd lub sugestię napisz do nas wiadomość e-mail.",
-  "@feedback_option_not_supported_for_screen_readers":{
+  "@feedback_option_not_supported_for_screen_readers": {
     "description": "information about feedback option that's not supported for screen readers"
   },
   "incoming_days_changes_days": "{days, plural, =1{1 dzień}  other{{days} dni}}",
@@ -3230,5 +3230,67 @@
   "sks_chart_max_21_days_screen_reader_label": "Maksymalna wartość średniej kroczącej liczby osób w ciągu ostatnich 21 dni wynosi",
   "@sks_chart_max_21_days_screen_reader_label": {
     "description": "Text read for sks chart max 21 days"
+  },
+  "clear_search": "Wyczyść wyszukiwanie",
+  "@clear_search": {
+    "description": "Text read for clear search button"
+  },
+  "my_location_button_tooltip": "Moje położenie",
+  "@my_location_button_tooltip": {
+    "description": "Text read for my location button"
+  },
+  "map_view_description": "Widok mapy ze znacznikami budynków. U dołu znajduje się lista budynków. Przewiń w górę, aby ją rozwinąć.",
+  "@map_view_description": {
+    "description": "Text read for map view description"
+  },
+  "bottom_scroll_sheet_description_collapsed": "Szuflada dolna z listą. Przewiń w górę, aby ją rozwinąć.",
+  "@bottom_scroll_sheet_description_collapsed": {
+    "description": "Text read for bottom scroll sheet description when it's collapsed"
+  },
+  "bottom_scroll_sheet_description_expanded": "Szuflada dolna z listą. Przewiń w dół, aby ją zwinąć.",
+  "@bottom_scroll_sheet_description_expanded": {
+    "description": "Text read for bottom scroll sheet description when it's expanded"
+  },
+  "building_tile_selected": "Wybrano",
+  "@building_tile_selected": {
+    "description": "Text read for building tile selected"
+  },
+  "building_tile_unselected": "Odznaczono",
+  "@building_tile_unselected": {
+    "description": "Text read for building tile unselected"
+  },
+  "building_tile_building": "Budynek",
+  "@building_tile_building": {
+    "description": "Text read for building tile building"
+  },
+  "building_tile_address": "Adres",
+  "@building_tile_address": {
+    "description": "Text read for building tile address"
+  },
+  "building_tile_digital_guide_available": "Dostępny cyfrowy przewodnik",
+  "@building_tile_digital_guide_available": {
+    "description": "Text read for building tile digital guide available"
+  },
+  "internal_link": "Odnośnik wewnętrzny aplikacji",
+  "@internal_link": {
+    "description": "Tooltip text for internal application links"
+  },
+  "external_link": "Odnośnik zewnętrzny prowadzący do {url}",
+  "@external_link": {
+    "description": "Tooltip text for external links",
+    "placeholders": {
+      "url": {
+        "type": "String",
+        "example": "https://example.com"
+      }
+    }
+  },
+  "expanded_screen_reader_label": "Rozwinięto",
+  "@expanded_screen_reader_label": {
+    "description": "Action read for expanded"
+  },
+  "collapsed_screen_reader_label": "Zwinięto",
+  "@collapsed_screen_reader_label": {
+    "description": "Action read for collapsed"
   }
 }

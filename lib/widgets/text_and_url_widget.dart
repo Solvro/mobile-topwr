@@ -3,6 +3,7 @@ import "package:flutter/gestures.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../theme/app_theme.dart";
+import "../utils/context_extensions.dart";
 import "../utils/launch_url_util.dart";
 
 class TextAndUrl extends ConsumerWidget {
@@ -33,7 +34,7 @@ class TextAndUrl extends ConsumerWidget {
         ),
         textAlign: TextAlign.center,
         style: context.textTheme.body,
-        textScaler: !scaleText ? MediaQuery.textScalerOf(context).clamp(maxScaleFactor: 1) : null,
+        textScaler: !scaleText ? context.textScaler.clamp(maxScaleFactor: 1) : null,
       ),
     );
   }

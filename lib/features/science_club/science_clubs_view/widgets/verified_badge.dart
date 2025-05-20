@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 
 import "../../../../theme/app_theme.dart";
+import "../../../../utils/context_extensions.dart";
 
 class VerifiedBadge extends WidgetSpan {
   const VerifiedBadge()
@@ -16,11 +17,12 @@ class _VerifiedBadgeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scaler = context.textScaler.clamp(maxScaleFactor: 2);
     return SizedBox.square(
-      dimension: 16,
+      dimension: scaler.scale(16),
       child: Padding(
         padding: const EdgeInsets.only(left: 4),
-        child: Icon(Icons.verified_sharp, size: 12, color: context.colorTheme.orangePomegranade),
+        child: Icon(Icons.verified_sharp, size: scaler.scale(12), color: context.colorTheme.orangePomegranade),
       ),
     );
   }

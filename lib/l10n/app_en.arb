@@ -527,5 +527,19 @@
   "axis_vertical_screen_reader": "vertical axis",
   "sks_chart_average_21_days_screen_reader_label": "Average number of people over the last 21 days at the current hour:",
   "sks_chart_max_today_screen_reader_label": "Maximum number of people today:",
-  "sks_chart_max_21_days_screen_reader_label": "Maximum number of people over the last 21 days:"
+  "sks_chart_max_21_days_screen_reader_label": "Maximum number of people over the last 21 days:",
+  "clear_search": "Clear search",
+  "my_location_button_tooltip": "My location",
+  "map_view_description": "Map view with buildings markers. You have bottom sheet with a list of buildings. Scroll up to expand it.",
+  "bottom_scroll_sheet_description_collapsed": "Bottom scroll sheet. Scroll down to collapse it.",
+  "bottom_scroll_sheet_description_expanded": "Bottom scroll sheet. Scroll up to collapse it.",
+  "building_tile_selected": "Selected",
+  "building_tile_building": "Building",
+  "building_tile_address": "Address",
+  "building_tile_digital_guide_available": "Digital guide available",
+  "internal_link": "Internal application link",
+  "external_link": "External link leading to {url}",
+  "building_tile_unselected": "Unselected",
+  "expanded_screen_reader_label": "Expanded",
+  "collapsed_screen_reader_label": "Collapsed"
 }

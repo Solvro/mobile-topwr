@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 
 import "../config/ui_config.dart";
 import "../theme/app_theme.dart";
+import "../utils/context_extensions.dart";
 import "detail_views/pop_button.dart";
 import "search_box.dart";
 
@@ -20,7 +21,7 @@ class SearchBoxAppBar extends AppBar {
     bool addLeadingPopButton = false,
     super.primary = false,
   }) : super(
-         title: Text(title),
+         title: Text(title, textScaler: context.textScaler.clamp(maxScaleFactor: 2.5)),
          titleTextStyle: context.textTheme.headline,
          backgroundColor: context.colorTheme.whiteSoap,
          scrolledUnderElevation: 0,
@@ -36,7 +37,9 @@ class SearchBoxAppBar extends AppBar {
                  : null,
          leadingWidth: addLeadingPopButton ? 80 : 0,
          bottom: PreferredSize(
-           preferredSize: Size.fromHeight(SearchBoxConfig.height + bottomPadding),
+           preferredSize: Size.fromHeight(
+             context.textScaler.clamp(maxScaleFactor: 2.5).scale(SearchBoxConfig.height) + bottomPadding,
+           ),
            child: Padding(
              padding: EdgeInsets.only(
                bottom: bottomPadding,

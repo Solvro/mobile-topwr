@@ -6,6 +6,7 @@ import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../../config/map_view_config.dart";
 import "../../../theme/app_theme.dart";
+import "../../../utils/context_extensions.dart";
 import "../../my_location_button/presentation/is_following_controller.dart";
 import "../../my_location_button/presentation/my_loc_layer.dart";
 import "../controllers/controllers_set.dart";
@@ -41,11 +42,11 @@ class MapWidget<T extends GoogleNavigable> extends HookConsumerWidget {
           ),
           mapController: controller.mapController,
           children: [
-            const MapTileLayer(),
-            MarkersConsumerLayer<T>(),
-            const MyLocationLayer(),
+            Semantics(label: context.localize.map_view_description, child: const MapTileLayer()),
+            ExcludeSemantics(child: MarkersConsumerLayer<T>()),
+            const ExcludeSemantics(child: MyLocationLayer()),
             const Toolbar(),
-            const OpenMapAtrribution(),
+            const ExcludeSemantics(child: OpenMapAtrribution()),
           ],
         );
       },
