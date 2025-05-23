@@ -3,11 +3,11 @@ import "package:fast_immutable_collections/fast_immutable_collections.dart";
 
 import "../../../utils/datetime_utils.dart";
 import "academic_day.dart";
-import "day_swap_rest_model.dart";
+import "day_swap_model.dart";
 import "weekday_enum.dart";
 
-extension AcademicWeekExceptionX on IList<DaySwapRestData> {
-  bool _checkIfThisIsToday(DaySwapRestData element) => element.date.isSameDay(now);
+extension AcademicWeekExceptionX on IList<DaySwapData> {
+  bool _checkIfThisIsToday(DaySwapData element) => element.date.isSameDay(now);
 
   bool get isTodayAnException {
     return any(_checkIfThisIsToday);

@@ -4,7 +4,7 @@ import "../../../utils/context_extensions.dart";
 import "../model/academic_calendar_extensions.dart";
 import "../repository/academic_calendar_repo.dart";
 
-extension LocalizeCounterMessageX on AcademicCalendarData {
+extension LocalizeCounterMessageX on AcademicCalendarWithSwaps {
   String localizeDaysCounterMessage(BuildContext context) {
     final calendarData = this.calendarData;
     if (calendarData.isHolidays()) {

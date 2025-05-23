@@ -4,21 +4,21 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 import "../../../api_base_rest/cache/cache.dart";
 import "../../../config/env.dart";
 import "../../../config/ttl_config.dart";
-import "../model/academic_calendar_rest_model.dart";
-import "../model/day_swap_rest_model.dart";
+import "../model/academic_calendar.dart";
+import "../model/day_swap_model.dart";
 import "../widgets/home_screen_greeting.dart";
 
 part "academic_calendar_repo.g.dart";
 
-class AcademicCalendarData {
-  final AcademicCalendarRestData calendarData;
-  final IList<DaySwapRestData> daySwaps;
+class AcademicCalendarWithSwaps {
+  final AcademicCalendar calendarData;
+  final IList<DaySwapData> daySwaps;
 
-  AcademicCalendarData({required this.calendarData, required this.daySwaps});
+  AcademicCalendarWithSwaps({required this.calendarData, required this.daySwaps});
 }
 
 @riverpod
-Future<AcademicCalendarData?> academicCalendarRepo(Ref ref) async {
+Future<AcademicCalendarWithSwaps?> academicCalendarRepo(Ref ref) async {
   final apiUrl = Env.mainRestApiUrl;
   const academicCalendarEndpoint = "/academic_calendars";
   const daySwapsEndpoint = "/day_swaps";
@@ -27,7 +27,7 @@ Future<AcademicCalendarData?> academicCalendarRepo(Ref ref) async {
     ref.getAndCacheData(
       apiUrl + academicCalendarEndpoint,
       TtlStrategy.get(TtlKey.academicCalendarRepository).inDays,
-      AcademicCalendarRestResponse.fromJson,
+      AcademicCalendarResponse.fromJson,
       extraValidityCheck: (_) => true,
       localizedOfflineMessage: Greeting.localizedOfflineMessage,
       onRetry: ref.invalidateSelf,
@@ -35,19 +35,23 @@ Future<AcademicCalendarData?> academicCalendarRepo(Ref ref) async {
     ref.getAndCacheData(
       apiUrl + daySwapsEndpoint,
       TtlStrategy.get(TtlKey.academicCalendarRepository).inDays,
-      DaySwapRestResponse.fromJson,
+      DaySwapResponse.fromJson,
       extraValidityCheck: (_) => true,
       localizedOfflineMessage: Greeting.localizedOfflineMessage,
       onRetry: ref.invalidateSelf,
     ),
   ]);
-  final calendarData = responses[0] as AcademicCalendarRestResponse;
-  final daySwaps = responses[1] as DaySwapRestResponse;
+  final calendarData = AcademicCalendarResponse.fromJson(responses[0] as Map<String, dynamic>);
+  final daySwaps = DaySwapResponse.fromJson(responses[1] as Map<String, dynamic>);
 
-  return AcademicCalendarData(calendarData: calendarData.data.first, daySwaps: daySwaps.data.toIList());
+  if (calendarData.data.isEmpty) {
+    return null;
+  }
+
+  return AcademicCalendarWithSwaps(calendarData: calendarData.data.first, daySwaps: daySwaps.data.toIList());
 }
 
-extension FixNestedTypesX on AcademicCalendarData {
-  AcademicCalendarRestData get data => calendarData;
-  IList<DaySwapRestData> get weeks => daySwaps;
+extension FixNestedTypesX on AcademicCalendarWithSwaps {
+  AcademicCalendar get data => calendarData;
+  IList<DaySwapData> get weeks => daySwaps;
 }

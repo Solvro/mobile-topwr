@@ -7,7 +7,7 @@ import "../repository/academic_calendar_repo.dart";
 
 enum Digit { first, second, third }
 
-extension DaysLeftStringConverterX on AcademicCalendarData {
+extension DaysLeftStringConverterX on AcademicCalendarWithSwaps {
   String get daysLeftFromNowString {
     final calendarData = this.calendarData;
     final daysLeft =
