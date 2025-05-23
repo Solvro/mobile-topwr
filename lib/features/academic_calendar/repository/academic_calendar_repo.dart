@@ -1,23 +1,57 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
-
-import "../../../api_base/query_adapter.dart";
+import "../../../api_base_rest/cache/cache.dart";
+import "../../../config/env.dart";
 import "../../../config/ttl_config.dart";
-import "getAcademicCalendar.graphql.dart";
+import "../model/academic_calendar.dart";
+import "../model/day_swap_model.dart";
+import "../widgets/home_screen_greeting.dart";
 
 part "academic_calendar_repo.g.dart";
 
-typedef AcademicCalendar = Query$GetAcademicCalendar;
-typedef AcademicCalendarData = Query$GetAcademicCalendar$AcademicCalendarData;
-typedef AcademicWeekException = Query$GetAcademicCalendar$WeekExceptions;
+class AcademicCalendarWithSwaps {
+  final AcademicCalendar calendarData;
+  final IList<DaySwapData> daySwaps;
 
-@riverpod
-Future<AcademicCalendar?> academicCalendarRepo(Ref ref) {
-  return ref.queryGraphql(Options$Query$GetAcademicCalendar(), TtlKey.academicCalendarRepository);
+  AcademicCalendarWithSwaps({required this.calendarData, required this.daySwaps});
 }
 
-extension FixNestedTypesX on AcademicCalendar {
-  AcademicCalendarData? get data => this.AcademicCalendarData;
-  IList<AcademicWeekException> get weeks => WeekExceptions.lock;
+@riverpod
+Future<AcademicCalendarWithSwaps?> academicCalendarRepo(Ref ref) async {
+  final apiUrl = Env.mainRestApiUrl;
+  const academicCalendarEndpoint = "/academic_calendars";
+  const daySwapsEndpoint = "/day_swaps";
+
+  final responses = await Future.wait([
+    ref.getAndCacheData(
+      apiUrl + academicCalendarEndpoint,
+      TtlStrategy.get(TtlKey.academicCalendarRepository).inDays,
+      AcademicCalendarResponse.fromJson,
+      extraValidityCheck: (_) => true,
+      localizedOfflineMessage: Greeting.localizedOfflineMessage,
+      onRetry: ref.invalidateSelf,
+    ),
+    ref.getAndCacheData(
+      apiUrl + daySwapsEndpoint,
+      TtlStrategy.get(TtlKey.academicCalendarRepository).inDays,
+      DaySwapResponse.fromJson,
+      extraValidityCheck: (_) => true,
+      localizedOfflineMessage: Greeting.localizedOfflineMessage,
+      onRetry: ref.invalidateSelf,
+    ),
+  ]);
+  final calendarData = responses[0] as AcademicCalendarResponse;
+  final daySwaps = responses[1] as DaySwapResponse;
+
+  if (calendarData.data.isEmpty) {
+    return null;
+  }
+
+  return AcademicCalendarWithSwaps(calendarData: calendarData.data.first, daySwaps: daySwaps.data.toIList());
+}
+
+extension FixNestedTypesX on AcademicCalendarWithSwaps {
+  AcademicCalendar get data => calendarData;
+  IList<DaySwapData> get weeks => daySwaps;
 }

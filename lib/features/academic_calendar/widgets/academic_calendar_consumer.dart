@@ -20,10 +20,14 @@ class AcademicCalendarConsumer extends ConsumerWidget {
         padding: const EdgeInsets.only(top: HomeViewConfig.paddingSmall),
         child: MyErrorWidget(error),
       ),
-      AsyncValue(:final AcademicCalendar value) => Column(
+      AsyncValue(:final AcademicCalendarWithSwaps value) => Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [Greeting(value), const SizedBox(height: HomeViewConfig.paddingMedium), ExamSessionCountdown(value)],
+        children: [
+          Greeting(value.calendarData),
+          const SizedBox(height: HomeViewConfig.paddingMedium),
+          ExamSessionCountdown(value),
+        ],
       ),
       _ => const Padding(
         padding: EdgeInsets.symmetric(horizontal: HomeViewConfig.paddingMedium),
