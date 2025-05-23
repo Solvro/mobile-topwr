@@ -131,7 +131,7 @@ dependencies:
   flutter_hooks: ^0.21.2
   audioplayers: ^6.2.0
 
-  http: any
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
