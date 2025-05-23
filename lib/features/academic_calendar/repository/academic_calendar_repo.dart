@@ -41,8 +41,8 @@ Future<AcademicCalendarWithSwaps?> academicCalendarRepo(Ref ref) async {
       onRetry: ref.invalidateSelf,
     ),
   ]);
-  final calendarData = AcademicCalendarResponse.fromJson(responses[0] as Map<String, dynamic>);
-  final daySwaps = DaySwapResponse.fromJson(responses[1] as Map<String, dynamic>);
+  final calendarData = responses[0] as AcademicCalendarResponse;
+  final daySwaps = responses[1] as DaySwapResponse;
 
   if (calendarData.data.isEmpty) {
     return null;
