@@ -46,7 +46,12 @@ class SearchBoxAppBar extends AppBar {
                left: defaultHorizontalPadding,
                right: defaultHorizontalPadding,
              ),
-             child: SearchBox(onQueryChanged: onQueryChanged, onTap: onSearchBoxTap),
+
+             child: Semantics(
+               button: true,
+               label: context.localize.search,
+               child: SearchBox(onQueryChanged: onQueryChanged, onTap: onSearchBoxTap),
+             ),
            ),
          ),
        );

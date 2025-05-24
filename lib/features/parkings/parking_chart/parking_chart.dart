@@ -20,6 +20,7 @@ class ParkingChart extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final scaler = context.textScaler.clamp(maxScaleFactor: 0.1);
     final chartData = ref.watch(chartRepositoryProvider(parking));
     return switch (chartData) {
       AsyncError(:final error) => Material(
@@ -33,11 +34,16 @@ class ParkingChart extends ConsumerWidget {
               child: Text(context.localize.noChartData, style: context.iParkingTheme.subtitleLight.withoutShadows),
             )
             : Padding(
-              padding: const EdgeInsets.only(top: 14, right: 25, bottom: 9),
+              padding: EdgeInsets.only(top: scaler.scale(14), right: scaler.scale(25), bottom: scaler.scale(9)),
               child: ChartWidget(value, parking),
             ),
       _ => Padding(
-        padding: const EdgeInsets.only(top: 18, left: 8, right: 8, bottom: 10),
+        padding: EdgeInsets.only(
+          top: scaler.scale(18),
+          left: scaler.scale(8),
+          right: scaler.scale(8),
+          bottom: scaler.scale(10),
+        ),
         child: PreviewCardLoading(
           height: double.infinity,
           width: double.infinity,

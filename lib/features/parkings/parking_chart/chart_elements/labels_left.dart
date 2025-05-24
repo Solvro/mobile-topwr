@@ -2,6 +2,7 @@ import "package:fl_chart/fl_chart.dart";
 import "package:flutter/widgets.dart";
 
 import "../../../../theme/app_theme.dart";
+import "../../../../utils/context_extensions.dart";
 
 extension WillMaxLabelOverlapX on TitleMeta {
   bool get isMaxLabelOverlapping {
@@ -21,7 +22,7 @@ class LeftLabels extends AxisTitles {
             }
             return SideTitleWidget(
               meta: meta,
-              space: 10,
+              space: context.isTextScaledDown ? 10 : 1,
               child: Text(meta.formattedValue, style: context.iParkingTheme.chart),
             );
           },

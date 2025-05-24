@@ -39,6 +39,7 @@ class BuildingsView extends ConsumerWidget {
               ),
             ),
           ),
+      semanticsLabel: context.localize.map_view_description,
     );
   }
 }

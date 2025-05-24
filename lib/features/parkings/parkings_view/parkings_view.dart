@@ -29,18 +29,21 @@ class ParkingsView extends ConsumerWidget {
       markerBuilder:
           (item, ref, {required bool isActive}) => Marker(
             alignment: Alignment.topCenter,
-            child: GestureDetector(
-              onTap: () {
-                unawaited(ref.read(parkingsMapControllerProvider).onMarkerTap(item));
-              },
-              child: Image.asset(
-                isActive
-                    ? Assets.png.mapMarkers.activeParkingMapMarker.path
-                    : Assets.png.mapMarkers.parkingMapMarker.path,
+            child: ExcludeSemantics(
+              child: GestureDetector(
+                onTap: () {
+                  unawaited(ref.read(parkingsMapControllerProvider).onMarkerTap(item));
+                },
+                child: Image.asset(
+                  isActive
+                      ? Assets.png.mapMarkers.activeParkingMapMarker.path
+                      : Assets.png.mapMarkers.parkingMapMarker.path,
+                ),
               ),
             ),
             point: item.location,
           ),
+      semanticsLabel: context.localize.parking_map_description,
     );
   }
 }

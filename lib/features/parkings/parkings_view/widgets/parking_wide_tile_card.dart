@@ -18,10 +18,11 @@ class ParkingWideTileCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scaler = context.textScaler.clamp(maxScaleFactor: 2);
     return GestureDetector(
       onTap: isActive ? null : onTap,
       child: Container(
-        height: isActive ? 300 : WideTileCardConfig.imageSize,
+        height: isActive ? scaler.scale(300) : scaler.scale(WideTileCardConfig.imageSize),
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(WideTileCardConfig.radius),
           image: DecorationImage(fit: BoxFit.cover, image: NetworkImage(parking.iParkPhotoUrl)),
@@ -49,7 +50,11 @@ class ParkingWideTileCard extends StatelessWidget {
                 child: IconButton(
                   padding: EdgeInsets.zero,
                   onPressed: onTap,
-                  icon: Icon(Icons.close, color: context.colorTheme.whiteSoap, size: 22),
+                  icon: Semantics(
+                    button: true,
+                    label: context.localize.close,
+                    child: Icon(Icons.close, color: context.colorTheme.whiteSoap, size: scaler.scale(22)),
+                  ),
                 ),
               ),
           ],
@@ -67,31 +72,43 @@ class _LeftColumn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Text(
-          parking.symbol,
-          style: isActive ? context.iParkingTheme.title.withoutShadows : context.iParkingTheme.title,
-        ),
-        Padding(
-          padding: ParkingsConfig.extraIndentPadd,
-          child:
-              isActive
-                  ? Text(
-                    "${context.localize.street_abbreviation} ${parking.addressFormatted}",
-                    style: context.iParkingTheme.subtitleLight.withoutShadows,
-                  )
-                  : Text(parking.nameNormalized, style: context.iParkingTheme.subtitle),
-        ),
-        const SizedBox(height: 2),
-        if (!isActive)
+    return Semantics(
+      label:
+          isActive
+              ? context.localize.parking_chart_title_screen_reader_label +
+                  context.localize.parking_address_screen_reader_label
+              : context.localize.parking_address_screen_reader_label,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Flexible(
+            child: Text(
+              parking.symbol,
+              style: isActive ? context.iParkingTheme.title.withoutShadows : context.iParkingTheme.title,
+            ),
+          ),
           Padding(
             padding: ParkingsConfig.extraIndentPadd,
-            child: Text(parking.openingHours, style: context.iParkingTheme.small),
+            child:
+                isActive
+                    ? Text(
+                      "${context.localize.street_abbreviation} ${parking.addressFormatted}",
+                      style: context.iParkingTheme.subtitleLight.withoutShadows,
+                    )
+                    : Text(parking.nameNormalized, style: context.iParkingTheme.subtitle),
           ),
-        if (isActive) Expanded(child: Center(child: ParkingChart(parking))),
-      ],
+          const SizedBox(height: 2),
+          if (!isActive)
+            Padding(
+              padding: ParkingsConfig.extraIndentPadd,
+              child: Semantics(
+                label: context.localize.parking_opening_hours_reader_label,
+                child: Flexible(child: Text(parking.openingHours, style: context.iParkingTheme.small)),
+              ),
+            ),
+          if (isActive) Expanded(child: Center(child: ParkingChart(parking))),
+        ],
+      ),
     );
   }
 }
@@ -104,29 +121,36 @@ class _RightColumn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scaler = context.textScaler.clamp(maxScaleFactor: 2);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         const Spacer(),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            MyTooltip(
-              message: context.localize.places_currently_available,
-              child: Text(
-                parking.parsedNumberOfPlaces,
-                style: isActive ? context.iParkingTheme.title.withoutShadows : context.iParkingTheme.title,
+        Semantics(
+          label:
+              "${context.localize.parking_people_live_screen_reader_label} ${parking.parsedNumberOfPlaces} ${context.localize.sks_people_live_screen_reader_label_trend}${localizedName(parking.trend, context)}",
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              ExcludeSemantics(
+                child: MyTooltip(
+                  message: context.localize.places_currently_available,
+                  child: Text(
+                    parking.parsedNumberOfPlaces,
+                    style: isActive ? context.iParkingTheme.title.withoutShadows : context.iParkingTheme.title,
+                  ),
+                ),
               ),
-            ),
-            const SizedBox(width: 4),
-            Icon(
-              parking.trend.arrowIcon,
-              color: isActive ? arrowColor(parking.trend, context) : context.colorTheme.whiteSoap,
-              size: 21,
-              shadows: iparkingShadows,
-            ),
-          ],
+              SizedBox(width: scaler.scale(4)),
+              Icon(
+                parking.trend.arrowIcon,
+                color: isActive ? arrowColor(parking.trend, context) : context.colorTheme.whiteSoap,
+                size: scaler.scale(21),
+                shadows: iparkingShadows,
+              ),
+            ],
+          ),
         ),
       ],
     );
@@ -141,5 +165,16 @@ Color arrowColor(String trend, BuildContext context) {
       return const Color(0xFFdc3545); //red arrow
     default:
       return context.colorTheme.whiteSoap;
+  }
+}
+
+String localizedName(String trend, BuildContext context) {
+  switch (trend) {
+    case "1":
+      return context.localize.sks_people_live_screen_reader_label_trend_increasing;
+    case "-1":
+      return context.localize.sks_people_live_screen_reader_label_trend_decreasing;
+    default:
+      return context.localize.sks_people_live_screen_reader_label_trend_stable;
   }
 }
