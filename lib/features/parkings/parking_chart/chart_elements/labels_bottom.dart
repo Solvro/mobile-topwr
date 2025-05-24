@@ -3,6 +3,7 @@ import "package:flutter/widgets.dart";
 
 import "../../../../theme/app_theme.dart";
 import "../../../../utils/angles.dart";
+import "../../../../utils/context_extensions.dart";
 import "../utils/chart_utils.dart";
 
 const double rotationAngle = -45;
@@ -12,7 +13,7 @@ class BottomLabels extends AxisTitles {
     : super(
         sideTitles: SideTitles(
           showTitles: true,
-          interval: 1,
+          interval: context.isTextScaledDown ? 1 : 3,
           reservedSize: 48,
           getTitlesWidget:
               (double val, TitleMeta meta) => Padding(

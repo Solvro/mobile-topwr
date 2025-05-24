@@ -37,10 +37,11 @@ class FavouriteIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scaler = context.textScaler.clamp(maxScaleFactor: 2);
     return Semantics(
       button: true,
       label: context.localize.favourite_button,
-      child: Icon(icon, color: color, size: 22, shadows: iparkingShadows),
+      child: Icon(icon, color: color, size: scaler.scale(22), shadows: iparkingShadows),
     );
   }
 }

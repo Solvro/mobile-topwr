@@ -18,10 +18,11 @@ class ParkingWideTileCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scaler = context.textScaler.clamp(maxScaleFactor: 2);
     return GestureDetector(
       onTap: isActive ? null : onTap,
       child: Container(
-        height: isActive ? 300 : WideTileCardConfig.imageSize,
+        height: isActive ? scaler.scale(300) : scaler.scale(WideTileCardConfig.imageSize),
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(WideTileCardConfig.radius),
           image: DecorationImage(fit: BoxFit.cover, image: NetworkImage(parking.iParkPhotoUrl)),
@@ -52,7 +53,7 @@ class ParkingWideTileCard extends StatelessWidget {
                   icon: Semantics(
                     button: true,
                     label: context.localize.close,
-                    child: Icon(Icons.close, color: context.colorTheme.whiteSoap, size: 22),
+                    child: Icon(Icons.close, color: context.colorTheme.whiteSoap, size: scaler.scale(22)),
                   ),
                 ),
               ),
@@ -80,9 +81,11 @@ class _LeftColumn extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text(
-            parking.symbol,
-            style: isActive ? context.iParkingTheme.title.withoutShadows : context.iParkingTheme.title,
+          Flexible(
+            child: Text(
+              parking.symbol,
+              style: isActive ? context.iParkingTheme.title.withoutShadows : context.iParkingTheme.title,
+            ),
           ),
           Padding(
             padding: ParkingsConfig.extraIndentPadd,
@@ -100,7 +103,7 @@ class _LeftColumn extends StatelessWidget {
               padding: ParkingsConfig.extraIndentPadd,
               child: Semantics(
                 label: context.localize.parking_opening_hours_reader_label,
-                child: Text(parking.openingHours, style: context.iParkingTheme.small),
+                child: Flexible(child: Text(parking.openingHours, style: context.iParkingTheme.small)),
               ),
             ),
           if (isActive) Expanded(child: Center(child: ParkingChart(parking))),
@@ -118,6 +121,7 @@ class _RightColumn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scaler = context.textScaler.clamp(maxScaleFactor: 2);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
       mainAxisAlignment: MainAxisAlignment.end,
@@ -138,11 +142,11 @@ class _RightColumn extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(width: 4),
+              SizedBox(width: scaler.scale(4)),
               Icon(
                 parking.trend.arrowIcon,
                 color: isActive ? arrowColor(parking.trend, context) : context.colorTheme.whiteSoap,
-                size: 21,
+                size: scaler.scale(21),
                 shadows: iparkingShadows,
               ),
             ],

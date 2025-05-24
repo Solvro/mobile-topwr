@@ -8,8 +8,9 @@ class ReversedLabel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scaler = context.textScaler.clamp(maxScaleFactor: 0.1);
     return Padding(
-      padding: const EdgeInsets.only(bottom: 25, right: 2),
+      padding: EdgeInsets.only(bottom: scaler.scale(25), right: scaler.scale(2)),
       child: RotatedBox(
         quarterTurns: -1,
         child: ExcludeSemantics(

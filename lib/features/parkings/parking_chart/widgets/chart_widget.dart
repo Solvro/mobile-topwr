@@ -64,7 +64,11 @@ class ChartWidget extends StatelessWidget {
                             children: [
                               TextSpan(
                                 text: hour,
-                                style: TextStyle(color: context.colorTheme.greyLight, fontWeight: FontWeight.normal),
+                                style: TextStyle(
+                                  color: context.colorTheme.greyLight,
+                                  fontWeight: FontWeight.normal,
+                                  fontSize: ParkingChartConfig.labelFontSize,
+                                ),
                               ),
                             ],
                           );
