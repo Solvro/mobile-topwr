@@ -4,6 +4,7 @@ import "package:flutter/material.dart";
 
 import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
+import "../../../../utils/context_extensions.dart";
 import "../../../../widgets/charts/hide_labels.dart";
 import "../../parkings_view/models/parking.dart";
 import "../chart_elements/chart_border.dart";
@@ -24,53 +25,59 @@ class ChartWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        const ReversedLabel(),
-        Expanded(
-          child: LineChart(
-            LineChartData(
-              borderData: ChartBorder(context),
-              gridData: ChartGrid(context),
-              titlesData: FlTitlesData(
-                rightTitles: const HideLabels(),
-                topTitles: const HideLabels(),
-                bottomTitles: BottomLabels(context),
-                leftTitles: LeftLabels(context),
-              ),
-              lineBarsData: [ChartLine(context, chartData)],
-              minX: chartData.minX,
-              maxX: chartData.maxX,
-              maxY: chartData.maxY(parking),
-              minY: 0,
-              lineTouchData: LineTouchData(
-                touchTooltipData: LineTouchTooltipData(
-                  getTooltipItems: (touchedSpots) {
-                    return touchedSpots.map((touchedSpot) {
-                      final hour = HourLabel(touchedSpot.x).toStringRepr();
-                      final value = touchedSpot.y.toInt().toString();
-                      return LineTooltipItem(
-                        "$value\n",
-                        TextStyle(
-                          color: context.colorTheme.whiteSoap,
-                          fontWeight: FontWeight.bold,
-                          fontSize: ParkingChartConfig.labelFontSize,
-                        ),
-                        children: [
-                          TextSpan(
-                            text: hour,
-                            style: TextStyle(color: context.colorTheme.greyLight, fontWeight: FontWeight.normal),
-                          ),
-                        ],
-                      );
-                    }).toList();
-                  },
+    return Semantics(
+      label:
+          "${context.localize.parking_chart_max_today_screen_reader_label} ${chartData.reduce((a, b) => a.y > b.y ? a : b).y.toInt()}",
+      child: Row(
+        children: [
+          const ReversedLabel(),
+          Expanded(
+            child: ExcludeSemantics(
+              child: LineChart(
+                LineChartData(
+                  borderData: ChartBorder(context),
+                  gridData: ChartGrid(context),
+                  titlesData: FlTitlesData(
+                    rightTitles: const HideLabels(),
+                    topTitles: const HideLabels(),
+                    bottomTitles: BottomLabels(context),
+                    leftTitles: LeftLabels(context),
+                  ),
+                  lineBarsData: [ChartLine(context, chartData)],
+                  minX: chartData.minX,
+                  maxX: chartData.maxX,
+                  maxY: chartData.maxY(parking),
+                  minY: 0,
+                  lineTouchData: LineTouchData(
+                    touchTooltipData: LineTouchTooltipData(
+                      getTooltipItems: (touchedSpots) {
+                        return touchedSpots.map((touchedSpot) {
+                          final hour = HourLabel(touchedSpot.x).toStringRepr();
+                          final value = touchedSpot.y.toInt().toString();
+                          return LineTooltipItem(
+                            "$value\n",
+                            TextStyle(
+                              color: context.colorTheme.whiteSoap,
+                              fontWeight: FontWeight.bold,
+                              fontSize: ParkingChartConfig.labelFontSize,
+                            ),
+                            children: [
+                              TextSpan(
+                                text: hour,
+                                style: TextStyle(color: context.colorTheme.greyLight, fontWeight: FontWeight.normal),
+                              ),
+                            ],
+                          );
+                        }).toList();
+                      },
+                    ),
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

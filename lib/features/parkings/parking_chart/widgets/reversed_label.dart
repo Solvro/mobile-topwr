@@ -12,7 +12,9 @@ class ReversedLabel extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 25, right: 2),
       child: RotatedBox(
         quarterTurns: -1,
-        child: Text(context.localize.freePlaces, style: context.iParkingTheme.chart, textAlign: TextAlign.start),
+        child: ExcludeSemantics(
+          child: Text(context.localize.freePlaces, style: context.iParkingTheme.chart, textAlign: TextAlign.start),
+        ),
       ),
     );
   }
