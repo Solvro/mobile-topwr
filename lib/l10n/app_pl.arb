@@ -3251,6 +3251,10 @@
   "@map_view_description": {
     "description": "Text read for map view description"
   },
+  "parking_map_description": "Widok mapy ze znacznikami parkingów. U dołu znajduje się lista parkingów. Przewiń w górę, aby ją rozwinąć.",
+  "@parking_map_description": {
+    "description": "Text read for parking map view description"
+  },
   "bottom_scroll_sheet_description_collapsed": "Szuflada dolna z listą. Przewiń w górę, aby ją rozwinąć.",
   "@bottom_scroll_sheet_description_collapsed": {
     "description": "Text read for bottom scroll sheet description when it's collapsed"

@@ -533,6 +533,7 @@
   "clear_search": "Clear search",
   "my_location_button_tooltip": "My location",
   "map_view_description": "Map view with buildings markers. You have bottom sheet with a list of buildings. Scroll up to expand it.",
+  "parking_map_description": "Map view with parkings markers. You have bottom sheet with a list of parkings. Scroll up to expand it.",
   "bottom_scroll_sheet_description_collapsed": "Bottom scroll sheet. Scroll down to collapse it.",
   "bottom_scroll_sheet_description_expanded": "Bottom scroll sheet. Scroll up to collapse it.",
   "building_tile_selected": "Selected",

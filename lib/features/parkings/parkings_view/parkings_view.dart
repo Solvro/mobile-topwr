@@ -43,6 +43,7 @@ class ParkingsView extends ConsumerWidget {
             ),
             point: item.location,
           ),
+      semanticsLabel: context.localize.parking_map_description,
     );
   }
 }
