@@ -3097,6 +3097,20 @@
       }
     }
   },
+  "incoming_days_changes_summary": "Za {days, plural, =1{1 dzień} other{{days} dni}} będzie miała miejsce {count, plural, =1{zamiana dnia} other{zamiana {count} dni}}!",
+"@incoming_days_changes_summary": {
+  "description": "Summary message showing how many days remain until the first change and how many day changes are expected in the academic calendar.",
+  "placeholders": {
+    "days": {
+      "type": "int",
+      "example": "5"
+    },
+    "count": {
+      "type": "int",
+      "example": "3"
+    }
+  }
+},
   "dayChangesDialogTitle": "Nadchodzące zamiany dni",
   "@dayChangesDialogTitle": {
     "description": "Title of the dialog showing upcoming academic calendar day changes"

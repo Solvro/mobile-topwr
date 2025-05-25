@@ -496,6 +496,7 @@
   "feedback_option_not_supported_for_screen_readers": "Feedback option is not supported for screen readers. If you want to give us some feedback, please write an e-mail.",
   "incoming_days_changes_days": "{days, plural, =1{1 day} other{{days} days}}",
   "incoming_days_changes_title": "{count, plural, =1{Upcoming day swap} other{{count} upcoming day swaps}}!",
+ "incoming_days_changes_summary": "In {days, plural, =1{1 day} other{{days} days}}, there will be {count, plural, =1{1 day change} other{{count} day changes}}!",
   "dayChangesDialogTitle": "Upcoming day swaps",
   "dayChangesDialogSubtitle": "Resulting from the academic calendar day swaps within the next {days} days:",
   "dayChangesDialogOk": "OK",
