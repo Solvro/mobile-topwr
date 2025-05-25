@@ -53,20 +53,22 @@ class IncomingDayChanges extends StatelessWidget {
                     children: [
                       Icon(Icons.warning_amber, size: 18, color: context.colorTheme.whiteSoap),
                       const SizedBox(width: 6),
-                      Text(
-                        semanticsLabel: "",
-                        l10n.incoming_days_changes_days(data.daysTillFirstChange),
-                        style: context.textTheme.bodyWhite.copyWith(fontWeight: FontWeight.bold, fontSize: 16),
+                      ExcludeSemantics(
+                        child: Text(
+                          l10n.incoming_days_changes_days(data.daysTillFirstChange),
+                          style: context.textTheme.bodyWhite.copyWith(fontWeight: FontWeight.bold, fontSize: 16),
+                        ),
                       ),
                     ],
                   ),
                 ),
               ),
               const SizedBox(width: 12),
-              Text(
-                semanticsLabel: "",
-                l10n.incoming_days_changes_title(data.changesCount),
-                style: context.textTheme.body.copyWith(fontWeight: FontWeight.w500, fontSize: 15),
+              ExcludeSemantics(
+                child: Text(
+                  l10n.incoming_days_changes_title(data.changesCount),
+                  style: context.textTheme.body.copyWith(fontWeight: FontWeight.w500, fontSize: 15),
+                ),
               ),
               const SizedBox(width: 6),
               Icon(Icons.info_outline, size: 18, color: context.colorTheme.greyPigeon),
