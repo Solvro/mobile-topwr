@@ -37,7 +37,7 @@ class _NewsList extends ConsumerWidget {
     final state = ref.watch(guideRepositoryProvider);
     return switch (state) {
       AsyncError(:final error, :final stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
-      AsyncValue(:final IList<GuidePost> value) => SmallHorizontalPadding(
+      AsyncValue(:final IList<GuideData> value) => SmallHorizontalPadding(
         child: SizedBox(height: BigPreviewCardConfig.cardHeight, child: _NewsDataList(value)),
       ),
       _ => const Padding(

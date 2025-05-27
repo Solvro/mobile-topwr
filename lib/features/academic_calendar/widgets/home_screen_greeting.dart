@@ -9,7 +9,12 @@ import "../utils/localize_academic_day.dart";
 
 class Greeting extends StatelessWidget {
   const Greeting(this.academicCalendar, {super.key});
-  final AcademicCalendar academicCalendar;
+  final AcademicCalendarWithSwaps academicCalendar;
+
+  static String localizedOfflineMessage(BuildContext context) {
+    return context.localize.my_offline_error_message(context.localize.offline_academic_calendar);
+  }
+
   @override
   Widget build(BuildContext context) {
     final scaler = context.textScaler.clamp(maxScaleFactor: 1.5);
