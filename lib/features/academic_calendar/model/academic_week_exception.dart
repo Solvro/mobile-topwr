@@ -2,39 +2,40 @@ import "package:collection/collection.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 
 import "../../../utils/datetime_utils.dart";
-import "../repository/academic_calendar_repo.dart";
+import "academic_calendar.dart";
 import "academic_calendar_extensions.dart";
 import "academic_day.dart";
+import "day_swap_model.dart";
 import "weekday_enum.dart";
 
-extension ExceptionDaySwapX on AcademicDaySwap {
-  AcademicDay academicDay(AcademicCalendarData calendarData) {
+extension ExceptionDaySwapX on DaySwapData {
+  AcademicDay academicDay(AcademicCalendar calendarData) {
     return AcademicDay(
       isEven: changedDayIsEven,
       weekday: WeekdayEnum.fromJson(changedWeekday),
-      isExamSession: calendarData.isExamSession(day),
-      isHolidays: calendarData.isHolidays(day),
+      isExamSession: calendarData.isExamSession(date),
+      isHolidays: calendarData.isHolidays(date),
     );
   }
 }
 
-extension AcademicDaySwapListX on IList<AcademicDaySwap> {
-  bool _checkIfThisIsToday(AcademicDaySwap element) => element.day.isSameDay(now);
+extension AcademicDaySwapListX on IList<DaySwapData> {
+  bool _checkIfThisIsToday(DaySwapData element) => element.date.isSameDay(now);
 
   bool get isTodayAnException {
     return any(_checkIfThisIsToday);
   }
 
-  AcademicDay? changedDayToday(AcademicCalendarData calendarData) {
+  AcademicDay? changedDayToday(AcademicCalendar calendarData) {
     final changedDayData = firstWhereOrNull(_checkIfThisIsToday);
     return changedDayData?.academicDay(calendarData);
   }
 
-  IList<AcademicDaySwap> nextDaySwapsWithinWindow([Duration? windowDuration]) {
+  IList<DaySwapData> nextDaySwapsWithinWindow([Duration? windowDuration]) {
     final duration = windowDuration ?? const Duration(days: 7);
     final nowPlusWindow = now.add(duration);
     return where(
-      (element) => (element.day.isAfter(now) && element.day.isBefore(nowPlusWindow)) || element.day.isSameDay(now),
-    ).toIList().sort((a, b) => a.day.compareTo(b.day));
+      (element) => (element.date.isAfter(now) && element.date.isBefore(nowPlusWindow)) || element.date.isSameDay(now),
+    ).toIList().sort((a, b) => a.date.compareTo(b.date));
   }
 }

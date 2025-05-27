@@ -24,8 +24,8 @@ class PlannerBannerVisibility extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final academicCalendar = ref.watch(academicCalendarRepoProvider);
     return switch (academicCalendar) {
-      AsyncData(:final AcademicCalendar? value) =>
-        value == null || value.swaps.nextDaySwapsWithinWindow(value.windowDuration).isEmpty
+      AsyncData(:final AcademicCalendarWithSwaps? value) =>
+        value == null || value.daySwaps.nextDaySwapsWithinWindow(value.windowDuration).isEmpty
             ? (reverseLogic ? const SizedBox.shrink() : child)
             : (reverseLogic ? child : const SizedBox.shrink()),
       _ => const SizedBox.shrink(),

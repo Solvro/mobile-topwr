@@ -10,7 +10,7 @@ import "day_changes_dialog.dart";
 
 class IncomingDayChanges extends StatelessWidget {
   const IncomingDayChanges({super.key, required this.calendar});
-  final AcademicCalendar calendar;
+  final AcademicCalendarWithSwaps calendar;
   @override
   Widget build(BuildContext context) {
     final data = calendar.incomingDaysChanges;

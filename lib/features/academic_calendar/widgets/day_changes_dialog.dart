@@ -18,9 +18,9 @@ import "../utils/localize_academic_day.dart";
 class DayChangesDialog extends ConsumerWidget {
   const DayChangesDialog(this.calendar, {super.key});
 
-  final AcademicCalendar calendar;
+  final AcademicCalendarWithSwaps calendar;
 
-  static Future<void> show(BuildContext context, AcademicCalendar calendar, WidgetRef ref) async {
+  static Future<void> show(BuildContext context, AcademicCalendarWithSwaps calendar, WidgetRef ref) async {
     unawaited(ref.trackEvent(UmamiEvents.openDaySwapAlertDialog));
     return showDialog<void>(context: context, builder: (context) => DayChangesDialog(calendar));
   }
@@ -28,11 +28,8 @@ class DayChangesDialog extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.localize;
-    final swaps = calendar.swaps.nextDaySwapsWithinWindow(calendar.windowDuration);
+    final swaps = calendar.daySwaps.nextDaySwapsWithinWindow(calendar.windowDuration);
     final calendarData = calendar.data;
-    if (calendarData == null) {
-      return const SizedBox.shrink();
-    }
     return RedDialog(
       title: l10n.dayChangesDialogTitle,
       subtitle: l10n.dayChangesDialogSubtitle(calendar.windowDuration.inDays),
@@ -46,7 +43,7 @@ class DayChangesDialog extends ConsumerWidget {
         itemBuilder: (context, index) {
           final swap = swaps[index];
           final swappedAcademicDay = swap.academicDay(calendarData);
-          final standardAcademicDay = calendarData.standardAcademicDay(swap.day);
+          final standardAcademicDay = calendarData.standardAcademicDay(swap.date);
           return Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -57,7 +54,7 @@ class DayChangesDialog extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      swap.day.toDayDateString(context, includeWeekday: false, includeYear: false),
+                      swap.date.toDayDateString(context, includeWeekday: false, includeYear: false),
                       style: context.textTheme.title.copyWith(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 4),

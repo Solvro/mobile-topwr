@@ -21,7 +21,7 @@ class AcademicCalendarConsumer extends ConsumerWidget {
         padding: const EdgeInsets.only(top: HomeViewConfig.paddingSmall),
         child: MyErrorWidget(error, stackTrace: stackTrace),
       ),
-      AsyncValue(:final AcademicCalendar value) => Column(
+      AsyncValue(:final AcademicCalendarWithSwaps value) => Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
