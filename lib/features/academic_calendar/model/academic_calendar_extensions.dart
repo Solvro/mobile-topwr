@@ -1,18 +1,19 @@
 import "../../../utils/datetime_utils.dart";
 import "../repository/academic_calendar_repo.dart";
+import "academic_calendar.dart";
 import "academic_day.dart";
 import "academic_week_exception.dart";
 import "weekday_enum.dart";
 
-extension AcademicCalendarDataX on AcademicCalendarData {
+extension AcademicCalendarDataX on AcademicCalendar {
   bool isHolidays([DateTime? datetime]) {
     final datetimeOrNow = datetime ?? now;
-    return datetimeOrNow.isBefore(semesterStartDate) || datetimeOrNow.isAfter(examSessionLastDay);
+    return datetimeOrNow.isBefore(semesterStartDate) || datetimeOrNow.isAfter(examSessionLastDate);
   }
 
   bool isExamSession([DateTime? datetime]) {
     final datetimeOrNow = datetime ?? now;
-    return datetimeOrNow.isAfterOrSameAs(examSessionStartDate) && datetimeOrNow.isBeforeOrSameAs(examSessionLastDay);
+    return datetimeOrNow.isAfterOrSameAs(examSessionStartDate) && datetimeOrNow.isBeforeOrSameAs(examSessionLastDate);
   }
 
   bool isSemester([DateTime? datetime]) {
@@ -41,22 +42,21 @@ extension AcademicCalendarDataX on AcademicCalendarData {
   }
 }
 
-extension AcademicCalendarX on AcademicCalendar {
-  Duration get windowDuration => Duration(days: data?.exceptionsLookupFutureWindowInDays ?? 7);
+extension AcademicCalendarX on AcademicCalendarWithSwaps {
+  Duration get windowDuration => Duration(days: data.exceptionsLookupFutureWindowInDays ?? 7);
 
   AcademicDay? get academicDayToday {
-    if (swaps.isTodayAnException && data != null) {
-      return swaps.changedDayToday(data!) ?? data!.standardAcademicDay();
+    if (daySwaps.isTodayAnException) {
+      return daySwaps.changedDayToday(data) ?? data.standardAcademicDay();
     }
-    return data?.standardAcademicDay();
+    return data.standardAcademicDay();
   }
 
   ({int daysTillFirstChange, int changesCount})? get incomingDaysChanges {
-    final nextException = swaps.nextDaySwapsWithinWindow(windowDuration);
-    final data = this.data;
-    if (data == null || nextException.isEmpty) {
+    final nextException = daySwaps.nextDaySwapsWithinWindow(windowDuration);
+    if (nextException.isEmpty) {
       return null;
     }
-    return (daysTillFirstChange: nextException.first.day.difference(today).inDays, changesCount: nextException.length);
+    return (daysTillFirstChange: nextException.first.date.difference(today).inDays, changesCount: nextException.length);
   }
 }
