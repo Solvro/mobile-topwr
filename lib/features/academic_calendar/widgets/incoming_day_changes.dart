@@ -29,39 +29,46 @@ class IncomingDayChanges extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [context.colorTheme.orangePomegranadeLighter, context.colorTheme.orangePomegranade],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
+              Semantics(
+                label: l10n.incoming_days_changes_summary(data.daysTillFirstChange, data.changesCount),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [context.colorTheme.orangePomegranadeLighter, context.colorTheme.orangePomegranade],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                    borderRadius: BorderRadius.circular(20),
+                    boxShadow: [
+                      BoxShadow(
+                        color: context.colorTheme.orangePomegranade.withValues(alpha: 0.15),
+                        blurRadius: 8,
+                        offset: const Offset(0, 2),
+                      ),
+                    ],
                   ),
-                  borderRadius: BorderRadius.circular(20),
-                  boxShadow: [
-                    BoxShadow(
-                      color: context.colorTheme.orangePomegranade.withValues(alpha: 0.15),
-                      blurRadius: 8,
-                      offset: const Offset(0, 2),
-                    ),
-                  ],
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(Icons.warning_amber, size: 18, color: context.colorTheme.whiteSoap),
-                    const SizedBox(width: 6),
-                    Text(
-                      l10n.incoming_days_changes_days(data.daysTillFirstChange),
-                      style: context.textTheme.bodyWhite.copyWith(fontWeight: FontWeight.bold, fontSize: 16),
-                    ),
-                  ],
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.warning_amber, size: 18, color: context.colorTheme.whiteSoap),
+                      const SizedBox(width: 6),
+                      ExcludeSemantics(
+                        child: Text(
+                          l10n.incoming_days_changes_days(data.daysTillFirstChange),
+                          style: context.textTheme.bodyWhite.copyWith(fontWeight: FontWeight.bold, fontSize: 16),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               const SizedBox(width: 12),
-              Text(
-                l10n.incoming_days_changes_title(data.changesCount),
-                style: context.textTheme.body.copyWith(fontWeight: FontWeight.w500, fontSize: 15),
+              ExcludeSemantics(
+                child: Text(
+                  l10n.incoming_days_changes_title(data.changesCount),
+                  style: context.textTheme.body.copyWith(fontWeight: FontWeight.w500, fontSize: 15),
+                ),
               ),
               const SizedBox(width: 6),
               Icon(Icons.info_outline, size: 18, color: context.colorTheme.greyPigeon),
