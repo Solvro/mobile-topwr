@@ -7,7 +7,7 @@ import "../../utils/counter_digits.dart";
 
 class DigitsRow extends StatelessWidget {
   const DigitsRow(this.calendarData, {super.key});
-  final AcademicCalendar? calendarData;
+  final AcademicCalendarWithSwaps? calendarData;
 
   @override
   Widget build(BuildContext context) {
