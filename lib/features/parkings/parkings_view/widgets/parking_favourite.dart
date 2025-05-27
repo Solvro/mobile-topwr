@@ -3,6 +3,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../theme/app_theme.dart";
 import "../../../../theme/iparking_theme.dart";
+import "../../../../utils/context_extensions.dart";
 import "../models/parking.dart";
 import "../repository/local_fav_parking_repository.dart";
 
@@ -36,6 +37,11 @@ class FavouriteIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Icon(icon, color: color, size: 22, shadows: iparkingShadows);
+    final scaler = context.textScaler.clamp(maxScaleFactor: 2);
+    return Semantics(
+      button: true,
+      label: context.localize.favourite_button,
+      child: Icon(icon, color: color, size: scaler.scale(22), shadows: iparkingShadows),
+    );
   }
 }

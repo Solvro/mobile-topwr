@@ -21,6 +21,7 @@ class MapView<T extends GoogleNavigable> extends ConsumerWidget {
     required this.markerBuilder,
     required this.mapTileBuilder,
     required this.mapSheetSize,
+    required this.semanticsLabel,
     this.animateListTiles = false,
     this.initialActiveItemId,
     super.key,
@@ -32,6 +33,7 @@ class MapView<T extends GoogleNavigable> extends ConsumerWidget {
   final MapSheetSize mapSheetSize;
   final bool animateListTiles;
   final String? initialActiveItemId;
+  final String semanticsLabel;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -55,8 +57,8 @@ class MapView<T extends GoogleNavigable> extends ConsumerWidget {
           backgroundColor: context.colorTheme.whiteSoap,
           body:
               kIsWeb || isBigScreen
-                  ? _HorizontalWebLayout<T>()
-                  : Stack(children: [MapWidget<T>(), BottomScrollSheet<T>()]),
+                  ? _HorizontalWebLayout<T>(semanticsLabel: semanticsLabel)
+                  : Stack(children: [MapWidget<T>(semanticsLabel), BottomScrollSheet<T>()]),
         ),
       ),
     );
@@ -64,7 +66,8 @@ class MapView<T extends GoogleNavigable> extends ConsumerWidget {
 }
 
 class _HorizontalWebLayout<T extends GoogleNavigable> extends StatelessWidget {
-  const _HorizontalWebLayout({super.key});
+  final String semanticsLabel;
+  const _HorizontalWebLayout({super.key, required this.semanticsLabel});
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +75,10 @@ class _HorizontalWebLayout<T extends GoogleNavigable> extends StatelessWidget {
     return MapViewPopBehaviour<T>(
       screenHeight: MediaQuery.sizeOf(context).height,
       child: Row(
-        children: [SizedBox(width: panelWidth, child: SheetLayoutScheme<T>()), Expanded(child: MapWidget<T>())],
+        children: [
+          SizedBox(width: panelWidth, child: SheetLayoutScheme<T>()),
+          Expanded(child: MapWidget<T>(semanticsLabel)),
+        ],
       ),
     );
   }
