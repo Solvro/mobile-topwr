@@ -16,6 +16,11 @@ class ScienceClubInfoDialog extends StatelessWidget {
     const horizontalPadding = 36.0;
     const bottomPadding = 24.0;
     return AlertDialog(
+      semanticLabel:
+          context.localize.dialog_semantics_label +
+          context.localize.add_club_contact_info_question +
+          context.localize.add_club_contact_info +
+          context.localize.report_change_email,
       titlePadding: const EdgeInsets.only(left: horizontalPadding, top: 32, right: horizontalPadding),
       contentPadding: const EdgeInsets.only(
         left: horizontalPadding,

@@ -13,6 +13,11 @@ Future<void> showCustomLicenseDialog({
   required Widget applicationIcon,
 }) async {
   await showCustomDialog(
+    dialogSemantics:
+        context.localize.version_dialog_semantics_label +
+        applicationVersion +
+        context.localize.legalese_dialog_semantics_label +
+        applicationLegalese,
     context: context,
     onConfirmTapped: (context) {
       Navigator.of(context).pop();

@@ -3338,5 +3338,17 @@
   "collapsed_screen_reader_label": "Zwinięto",
   "@collapsed_screen_reader_label": {
     "description": "Action read for collapsed"
+  },
+  "dialog_semantics_label": "Okno dialogowe wyświetlone na środku ekranu. Aby je zamknąć, kliknij podwójnie poza jego obszarem. Zawartość okna to:",
+  "@dialog_semantics_label": {
+    "description": "Semantics read for dialog"
+  },
+  "version_dialog_semantics_label": "wersja aplikacji:",
+  "@version_dialog_semantics_label": {
+    "description": "Semantics read for version dialog"
+  },
+  "legalese_dialog_semantics_label": "Informacje prawne: ",
+  "@legalese_dialog_semantics_label": {
+    "description": "Semantics read for legalese info in dialog"
   }
 }

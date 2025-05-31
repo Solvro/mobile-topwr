@@ -8,6 +8,7 @@ Future<void> showCustomDialog({
   required BuildContext context,
   required void Function(BuildContext context)? onConfirmTapped,
   required String confirmText,
+  String? dialogSemantics,
   required Widget dialogContent,
 }) async {
   await showDialog<void>(
@@ -18,6 +19,10 @@ Future<void> showCustomDialog({
         child: ConstrainedBox(
           constraints: BoxConstraints(maxWidth: maxWidth),
           child: _MyAlertDialog(
+            dialogSemantics:
+                dialogSemantics != null
+                    ? context.localize.dialog_semantics_label + dialogSemantics
+                    : context.localize.dialog_semantics_label,
             dialogContent: dialogContent,
             onConfirmTapped: onConfirmTapped != null ? () => onConfirmTapped(context) : null,
             confirmText: confirmText,
@@ -32,12 +37,19 @@ class _MyAlertDialog extends StatelessWidget {
   final Widget dialogContent;
   final VoidCallback? onConfirmTapped;
   final String confirmText;
+  final String? dialogSemantics;
 
-  const _MyAlertDialog({required this.dialogContent, this.onConfirmTapped, required this.confirmText});
+  const _MyAlertDialog({
+    required this.dialogContent,
+    this.onConfirmTapped,
+    required this.confirmText,
+    this.dialogSemantics,
+  });
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      semanticLabel: dialogSemantics,
       content: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: AlertDialogConfig.horizontalPadding,

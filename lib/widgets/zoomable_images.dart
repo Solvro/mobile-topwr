@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 
 import "../api_base/directus_assets_url.dart";
 import "../theme/colors.dart";
+import "../utils/context_extensions.dart";
 import "my_cached_image.dart";
 import "optimized_directus_image.dart";
 
@@ -38,12 +39,20 @@ class _ImageWithoutBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(10),
-      child: MyCachedImage(
-        imageUrl?.directusUrlWithoutParams,
-        boxFit: BoxFit.scaleDown,
-        loadingType: LoadingType.circularProgressIndicator,
+    return Semantics(
+      image: true,
+      button: false,
+      label: context.localize.logotype,
+      child: Focus(
+        autofocus: true,
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: MyCachedImage(
+            imageUrl?.directusUrlWithoutParams,
+            boxFit: BoxFit.scaleDown,
+            loadingType: LoadingType.circularProgressIndicator,
+          ),
+        ),
       ),
     );
   }
@@ -56,19 +65,27 @@ class _ImageWithWhiteBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Container(
-          decoration: BoxDecoration(color: ColorsConsts.greyLight, borderRadius: BorderRadius.circular(30)),
-          width: MediaQuery.sizeOf(context).shortestSide,
-          height: MediaQuery.sizeOf(context).shortestSide,
+    return Semantics(
+      image: true,
+      button: false,
+      label: context.localize.logotype,
+      child: Focus(
+        autofocus: true,
+        child: Center(
           child: Padding(
             padding: const EdgeInsets.all(10),
-            child: MyCachedImage(
-              imageUrl?.directusUrlWithoutParams,
-              boxFit: BoxFit.scaleDown,
-              loadingType: LoadingType.circularProgressIndicator,
+            child: Container(
+              decoration: BoxDecoration(color: ColorsConsts.greyLight, borderRadius: BorderRadius.circular(30)),
+              width: MediaQuery.sizeOf(context).shortestSide,
+              height: MediaQuery.sizeOf(context).shortestSide,
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: MyCachedImage(
+                  imageUrl?.directusUrlWithoutParams,
+                  boxFit: BoxFit.scaleDown,
+                  loadingType: LoadingType.circularProgressIndicator,
+                ),
+              ),
             ),
           ),
         ),
