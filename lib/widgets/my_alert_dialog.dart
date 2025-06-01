@@ -67,7 +67,9 @@ class _MyAlertDialog extends StatelessWidget {
                   onPressed: onConfirmTapped,
                   child: Text(
                     confirmText,
-                    style: context.textTheme.bodyOrange.copyWith(fontSize: AlertDialogConfig.buttonFontSize),
+                    style: context.textTheme.bodyOrange.copyWith(
+                      fontSize: context.textScaler.clamp(maxScaleFactor: 0.54).scale(AlertDialogConfig.buttonFontSize),
+                    ),
                   ),
                 ),
               ),
@@ -75,7 +77,9 @@ class _MyAlertDialog extends StatelessWidget {
               child: TextButton(
                 child: Text(
                   context.localize.close,
-                  style: context.textTheme.body.copyWith(fontSize: AlertDialogConfig.buttonFontSize),
+                  style: context.textTheme.body.copyWith(
+                    fontSize: context.textScaler.clamp(maxScaleFactor: 0.54).scale(AlertDialogConfig.buttonFontSize),
+                  ),
                 ),
                 onPressed: () {
                   Navigator.of(context).pop();

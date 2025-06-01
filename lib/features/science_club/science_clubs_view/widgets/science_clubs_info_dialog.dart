@@ -19,8 +19,7 @@ class ScienceClubInfoDialog extends StatelessWidget {
       semanticLabel:
           context.localize.dialog_semantics_label +
           context.localize.add_club_contact_info_question +
-          context.localize.add_club_contact_info +
-          context.localize.report_change_email,
+          context.localize.add_club_contact_info,
       titlePadding: const EdgeInsets.only(left: horizontalPadding, top: 32, right: horizontalPadding),
       contentPadding: const EdgeInsets.only(
         left: horizontalPadding,
@@ -58,27 +57,36 @@ class ScienceClubInfoDialog extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Consumer(
-            builder:
-                (context, ref, child) => RichText(
-                  textScaler: context.textScaler,
-                  text: TextSpan(
-                    text: context.localize.add_club_contact_info,
-                    style: context.textTheme.lightTitle,
-                    children: [
-                      TextSpan(
-                        text: context.localize.report_change_email,
-                        style: context.textTheme.lightTitleOrange.copyWith(decoration: TextDecoration.underline),
-                        recognizer:
-                            TapGestureRecognizer()
-                              ..onTap = () async {
-                                final emailUrl = "mailto:${context.localize.report_change_email}";
-                                unawaited(ref.launch(emailUrl));
-                              },
-                      ),
-                      const TextSpan(text: "."),
-                    ],
-                  ),
+            builder: (context, ref, child) {
+              final scaler = context.textScaler.clamp(maxScaleFactor: 1.2);
+              final baseStyle = context.textTheme.lightTitle.copyWith(
+                fontSize: scaler.scale(context.textTheme.lightTitle.fontSize ?? 16),
+              );
+              final linkStyle = context.textTheme.lightTitleOrange.copyWith(
+                decoration: TextDecoration.underline,
+                fontSize: scaler.scale(context.textTheme.lightTitleOrange.fontSize ?? 16),
+              );
+              return RichText(
+                textScaler: scaler,
+                text: TextSpan(
+                  text: context.localize.add_club_contact_info,
+                  style: baseStyle,
+                  children: [
+                    TextSpan(
+                      text: context.localize.report_change_email,
+                      style: linkStyle,
+                      recognizer:
+                          TapGestureRecognizer()
+                            ..onTap = () async {
+                              final emailUrl = "mailto:${context.localize.report_change_email}";
+                              unawaited(ref.launch(emailUrl));
+                            },
+                    ),
+                    const TextSpan(text: "."),
+                  ],
                 ),
+              );
+            },
           ),
         ],
       ),
