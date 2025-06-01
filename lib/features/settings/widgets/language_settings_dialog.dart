@@ -25,51 +25,58 @@ class LanguageDialog extends ConsumerWidget {
       (context.localize.polish_id, context.localize.polish_title),
       (context.localize.english_id, context.localize.english_title),
     ];
-    return RedDialog(
-      centerTitle: isFirstTimeMode,
-      title: isFirstTimeMode ? context.localize.select_language : context.localize.language,
-      subtitle: null,
-      showApplyButton: isFirstTimeMode,
-      applyButtonText: context.localize.select,
-      onApplyButtonPressed: () async {
-        await ref
-            .read(preferredLanguageRepositoryProvider.notifier)
-            .setPreferredLanguage(SolvroLocale.values.byName(selectedLanguage));
-      },
-      child: ListView.builder(
-        padding: const EdgeInsets.symmetric(vertical: 16),
-        physics: const NeverScrollableScrollPhysics(),
-        shrinkWrap: true,
-        itemCount: languages.length,
-        itemBuilder: (context, index) {
-          final (code, name) = languages[index];
-          final selected = selectedLanguage == code;
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(NavigationTabViewConfig.radius),
-                color: context.colorTheme.greyLight,
-              ),
-              child: ListTile(
-                selected: selected,
-                title: Text(semanticsLabel: name.substring(1), name),
-                trailing: selected ? Icon(Icons.check, color: context.colorTheme.orangePomegranade) : null,
-                onTap: () async {
-                  if (!isFirstTimeMode) {
-                    Navigator.pop(context, code);
-                    Logger().d("returning language: $code");
-                  } else {
-                    Logger().d("setting preferred language locally: $code");
-                    await ref
-                        .read(preferredLanguageRepositoryProvider.notifier)
-                        .setPreferredLanguage(SolvroLocale.values.byName(code));
-                  }
-                },
-              ),
-            ),
-          );
-        },
+    return Semantics(
+      container: true,
+      label: context.localize.dialog_semantics_label,
+      child: Focus(
+        autofocus: true,
+        child: RedDialog(
+          centerTitle: isFirstTimeMode,
+          title: isFirstTimeMode ? context.localize.select_language : context.localize.language,
+          subtitle: null,
+          showApplyButton: isFirstTimeMode,
+          applyButtonText: context.localize.select,
+          onApplyButtonPressed: () async {
+            await ref
+                .read(preferredLanguageRepositoryProvider.notifier)
+                .setPreferredLanguage(SolvroLocale.values.byName(selectedLanguage));
+          },
+          child: ListView.builder(
+            padding: const EdgeInsets.symmetric(vertical: 16),
+            physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemCount: languages.length,
+            itemBuilder: (context, index) {
+              final (code, name) = languages[index];
+              final selected = selectedLanguage == code;
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(NavigationTabViewConfig.radius),
+                    color: context.colorTheme.greyLight,
+                  ),
+                  child: ListTile(
+                    selected: selected,
+                    title: Text(semanticsLabel: name.substring(1), name),
+                    trailing: selected ? Icon(Icons.check, color: context.colorTheme.orangePomegranade) : null,
+                    onTap: () async {
+                      if (!isFirstTimeMode) {
+                        Navigator.pop(context, code);
+                        Logger().d("returning language: $code");
+                      } else {
+                        Logger().d("setting preferred language locally: $code");
+                        await ref
+                            .read(preferredLanguageRepositoryProvider.notifier)
+                            .setPreferredLanguage(SolvroLocale.values.byName(code));
+                      }
+                    },
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
       ),
     );
   }

@@ -9,6 +9,7 @@ Future<void> showNotificationDialog({
   required void Function(BuildContext context) onConfirmTapped,
 }) async {
   await showCustomDialog(
+    dialogSemantics: context.localize.push_notifications_dialog_info,
     context: context,
     onConfirmTapped: onConfirmTapped,
     confirmText: context.localize.confirm,

@@ -9,10 +9,17 @@ class AccessibilityDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RedDialog(
-      title: context.localize.accessibility_profiles,
-      subtitle: context.localize.you_can_adjust,
-      child: const CheckboxesList(),
+    return Semantics(
+      container: true,
+      label: context.localize.dialog_semantics_label,
+      child: Focus(
+        autofocus: true,
+        child: RedDialog(
+          title: context.localize.accessibility_profiles,
+          subtitle: context.localize.you_can_adjust,
+          child: const CheckboxesList(),
+        ),
+      ),
     );
   }
 }
