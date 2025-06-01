@@ -18,13 +18,22 @@ extension ShowFullscreenImageX on BuildContext {
           onTap: () {
             Navigator.of(context).pop();
           },
-          child: InteractiveViewer(
-            minScale: 1,
-            maxScale: 5,
-            child:
-                shouldHaveRectBackground
-                    ? _ImageWithWhiteBackground(imageUrl: imageUrl)
-                    : _ImageWithoutBackground(imageUrl: imageUrl),
+          child: Semantics(
+            container: true,
+            image: true,
+            button: false,
+            label: context.localize.logotype,
+            child: Focus(
+              autofocus: true,
+              child: InteractiveViewer(
+                minScale: 1,
+                maxScale: 5,
+                child:
+                    shouldHaveRectBackground
+                        ? _ImageWithWhiteBackground(imageUrl: imageUrl)
+                        : _ImageWithoutBackground(imageUrl: imageUrl),
+              ),
+            ),
           ),
         );
       },
@@ -39,19 +48,13 @@ class _ImageWithoutBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Semantics(
-      image: true,
-      button: false,
-      label: context.localize.logotype,
-      child: Focus(
-        autofocus: true,
-        child: Padding(
-          padding: const EdgeInsets.all(10),
-          child: MyCachedImage(
-            imageUrl?.directusUrlWithoutParams,
-            boxFit: BoxFit.scaleDown,
-            loadingType: LoadingType.circularProgressIndicator,
-          ),
+    return ExcludeSemantics(
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: MyCachedImage(
+          imageUrl?.directusUrlWithoutParams,
+          boxFit: BoxFit.scaleDown,
+          loadingType: LoadingType.circularProgressIndicator,
         ),
       ),
     );
@@ -65,26 +68,20 @@ class _ImageWithWhiteBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Semantics(
-      image: true,
-      button: false,
-      label: context.localize.logotype,
-      child: Focus(
-        autofocus: true,
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(10),
-            child: Container(
-              decoration: BoxDecoration(color: ColorsConsts.greyLight, borderRadius: BorderRadius.circular(30)),
-              width: MediaQuery.sizeOf(context).shortestSide,
-              height: MediaQuery.sizeOf(context).shortestSide,
-              child: Padding(
-                padding: const EdgeInsets.all(10),
-                child: MyCachedImage(
-                  imageUrl?.directusUrlWithoutParams,
-                  boxFit: BoxFit.scaleDown,
-                  loadingType: LoadingType.circularProgressIndicator,
-                ),
+    return ExcludeSemantics(
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Container(
+            decoration: BoxDecoration(color: ColorsConsts.greyLight, borderRadius: BorderRadius.circular(30)),
+            width: MediaQuery.sizeOf(context).shortestSide,
+            height: MediaQuery.sizeOf(context).shortestSide,
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: MyCachedImage(
+                imageUrl?.directusUrlWithoutParams,
+                boxFit: BoxFit.scaleDown,
+                loadingType: LoadingType.circularProgressIndicator,
               ),
             ),
           ),
