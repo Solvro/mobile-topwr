@@ -135,6 +135,9 @@ class _DialogHeader extends StatelessWidget {
   final bool showCloseButton;
   @override
   Widget build(BuildContext context) {
+    final scaler = context.textScaler.clamp(maxScaleFactor: 0.9);
+    final baseStyle = context.textTheme.headline.copyWith(height: 1.4);
+
     return Padding(
       padding: const EdgeInsets.all(20).copyWith(bottom: 0),
       child: Row(
@@ -143,7 +146,7 @@ class _DialogHeader extends StatelessWidget {
           Expanded(
             child: Text(
               title,
-              style: context.textTheme.headline.copyWith(height: 1.4),
+              style: baseStyle.copyWith(fontSize: scaler.scale(baseStyle.fontSize ?? 20)),
               textAlign: centerTitle ? TextAlign.center : TextAlign.left,
             ),
           ),

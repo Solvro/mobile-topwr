@@ -13,6 +13,11 @@ Future<void> showCustomLicenseDialog({
   required Widget applicationIcon,
 }) async {
   await showCustomDialog(
+    dialogSemantics:
+        context.localize.version_dialog_semantics_label +
+        applicationVersion +
+        context.localize.legalese_dialog_semantics_label +
+        applicationLegalese,
     context: context,
     onConfirmTapped: (context) {
       Navigator.of(context).pop();
@@ -63,7 +68,10 @@ class _DialogContent extends StatelessWidget {
                 children: [
                   Text(
                     applicationName,
-                    style: const TextStyle(fontWeight: FontWeight.w500, fontSize: AboutUsConfig.dialogTitleFontSize),
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: context.textScaler.clamp(maxScaleFactor: 0.8).scale(AboutUsConfig.dialogTitleFontSize),
+                    ),
                     maxLines: 3,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -82,7 +90,14 @@ class _DialogContent extends StatelessWidget {
         ),
         const SizedBox(height: 20),
         Flexible(
-          child: Text(applicationLegalese, style: context.textTheme.body, maxLines: 4, overflow: TextOverflow.ellipsis),
+          child: Flexible(
+            child: Text(
+              applicationLegalese,
+              style: context.textTheme.body,
+              maxLines: 4,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
         ),
       ],
     );
