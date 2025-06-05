@@ -22,7 +22,7 @@ class ParkingWideTileCard extends StatelessWidget {
     return GestureDetector(
       onTap: isActive ? null : onTap,
       child: Container(
-        height: isActive ? scaler.scale(300) : scaler.scale(WideTileCardConfig.imageSize),
+        height: isActive ? scaler.clamp(maxScaleFactor: 1.5).scale(300) : scaler.scale(WideTileCardConfig.imageSize),
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(WideTileCardConfig.radius),
           image: DecorationImage(fit: BoxFit.cover, image: NetworkImage(parking.iParkPhotoUrl)),
@@ -33,7 +33,7 @@ class ParkingWideTileCard extends StatelessWidget {
             Container(color: isActive ? context.colorTheme.blackMirage : const Color.fromRGBO(41, 50, 65, 0.60)),
             Container(
               width: double.infinity,
-              padding: ParkingsConfig.padding,
+              padding: ParkingsConfig.padding.copyWith(bottom: 8 / context.textScaler.scale(1)),
               child: _LeftColumn(parking, isActive: isActive),
             ),
             Container(
@@ -73,19 +73,13 @@ class _LeftColumn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Semantics(
-      label:
-          isActive
-              ? context.localize.parking_chart_title_screen_reader_label +
-                  context.localize.parking_address_screen_reader_label
-              : context.localize.parking_address_screen_reader_label,
+      label: isActive ? context.localize.parking_chart_title_screen_reader_label : null,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Flexible(
-            child: Text(
-              parking.symbol,
-              style: isActive ? context.iParkingTheme.title.withoutShadows : context.iParkingTheme.title,
-            ),
+          Text(
+            parking.symbol,
+            style: isActive ? context.iParkingTheme.title.withoutShadows : context.iParkingTheme.title,
           ),
           Padding(
             padding: ParkingsConfig.extraIndentPadd,
@@ -94,6 +88,7 @@ class _LeftColumn extends StatelessWidget {
                     ? Text(
                       "${context.localize.street_abbreviation} ${parking.addressFormatted}",
                       style: context.iParkingTheme.subtitleLight.withoutShadows,
+                      textScaler: context.textScaler.clamp(maxScaleFactor: 2),
                     )
                     : Text(parking.nameNormalized, style: context.iParkingTheme.subtitle),
           ),

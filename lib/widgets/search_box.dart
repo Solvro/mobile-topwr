@@ -15,6 +15,7 @@ class SearchBox extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scaler = context.textScaler.clamp(maxScaleFactor: 2);
     final focusNode = useFocusNode();
     final controller = useTextEditingController();
     final showCloseIcon = useState(false);
@@ -46,7 +47,7 @@ class SearchBox extends HookWidget {
         onTapOutside: onTapOutside,
         onChanged: onChanged,
         decoration: InputDecoration(
-          constraints: const BoxConstraints(maxHeight: SearchBoxConfig.height),
+          constraints: BoxConstraints(maxHeight: scaler.scale(SearchBoxConfig.height)),
           contentPadding: EdgeInsets.zero,
           filled: true,
           fillColor: context.colorTheme.greyLight,
