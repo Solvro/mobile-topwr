@@ -170,11 +170,11 @@
     "description": "Label for map navigation button"
   },
   "my_location": "Moja lokalizacja",
-  "@my_location":{
+  "@my_location": {
     "description": "Button to allow user current location"
   },
   "favourite_button": "Dodaj do ulubionych",
-  "@favourite_button":{
+  "@favourite_button": {
     "description": "Button add to favourite"
   },
   "meet_our_team": "Poznaj nas!",
@@ -3106,19 +3106,19 @@
     }
   },
   "incoming_days_changes_summary": "Za {days, plural, =1{1 dzień} other{{days} dni}} będzie miała miejsce {count, plural, =1{zamiana dnia} other{zamiana {count} dni}}!",
-"@incoming_days_changes_summary": {
-  "description": "Summary message showing how many days remain until the first change and how many day changes are expected in the academic calendar.",
-  "placeholders": {
-    "days": {
-      "type": "int",
-      "example": "5"
-    },
-    "count": {
-      "type": "int",
-      "example": "3"
+  "@incoming_days_changes_summary": {
+    "description": "Summary message showing how many days remain until the first change and how many day changes are expected in the academic calendar.",
+    "placeholders": {
+      "days": {
+        "type": "int",
+        "example": "5"
+      },
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
     }
-  }
-},
+  },
   "dayChangesDialogTitle": "Nadchodzące zamiany dni",
   "@dayChangesDialogTitle": {
     "description": "Title of the dialog showing upcoming academic calendar day changes"
@@ -3272,10 +3272,6 @@
   "parking_chart_title_screen_reader_label": "Wykres obłożenia parkingów.",
   "@parking_chart_title_screen_reader_label": {
     "description": "Text read for parking chart title"
-  },
-  "parking_address_screen_reader_label": "Nazwa sąsiedniego budynku i lokalizacja parkingu to: ",
-  "@parking_address_screen_reader_label": {
-    "description": "Text read for parking address"
   },
   "parking_people_live_screen_reader_label": "Aktualna liczba wolnych miejsc to",
   "@parking_people_live_screen_reader_label": {

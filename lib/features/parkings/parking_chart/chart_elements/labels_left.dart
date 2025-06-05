@@ -15,14 +15,14 @@ class LeftLabels extends AxisTitles {
     : super(
         sideTitles: SideTitles(
           showTitles: true,
-          reservedSize: 32,
+          reservedSize: context.textScaler.clamp(minScaleFactor: 0.7, maxScaleFactor: 1.5).scale(32),
           getTitlesWidget: (value, meta) {
             if (value == meta.max && meta.isMaxLabelOverlapping) {
               return const SizedBox.shrink();
             }
             return SideTitleWidget(
               meta: meta,
-              space: context.isTextScaledDown ? 10 : 1,
+              space: 10,
               child: Text(meta.formattedValue, style: context.iParkingTheme.chart),
             );
           },
