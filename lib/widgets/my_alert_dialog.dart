@@ -14,19 +14,15 @@ Future<void> showCustomDialog({
   await showDialog<void>(
     context: context,
     builder: (BuildContext context) {
-      final double maxWidth = MediaQuery.sizeOf(context).width * 0.89;
       return Center(
-        child: ConstrainedBox(
-          constraints: BoxConstraints(maxWidth: maxWidth),
-          child: _MyAlertDialog(
-            dialogSemantics:
-                dialogSemantics != null
-                    ? context.localize.dialog_semantics_label + dialogSemantics
-                    : context.localize.dialog_semantics_label,
-            dialogContent: dialogContent,
-            onConfirmTapped: onConfirmTapped != null ? () => onConfirmTapped(context) : null,
-            confirmText: confirmText,
-          ),
+        child: _MyAlertDialog(
+          dialogSemantics:
+              dialogSemantics != null
+                  ? context.localize.dialog_semantics_label + dialogSemantics
+                  : context.localize.dialog_semantics_label,
+          dialogContent: dialogContent,
+          onConfirmTapped: onConfirmTapped != null ? () => onConfirmTapped(context) : null,
+          confirmText: confirmText,
         ),
       );
     },
@@ -67,9 +63,8 @@ class _MyAlertDialog extends StatelessWidget {
                   onPressed: onConfirmTapped,
                   child: Text(
                     confirmText,
-                    style: context.textTheme.bodyOrange.copyWith(
-                      fontSize: context.textScaler.clamp(maxScaleFactor: 0.54).scale(AlertDialogConfig.buttonFontSize),
-                    ),
+                    style: context.textTheme.bodyOrange,
+                    textScaler: context.textScaler.clamp(maxScaleFactor: 2),
                   ),
                 ),
               ),
@@ -77,9 +72,8 @@ class _MyAlertDialog extends StatelessWidget {
               child: TextButton(
                 child: Text(
                   context.localize.close,
-                  style: context.textTheme.body.copyWith(
-                    fontSize: context.textScaler.clamp(maxScaleFactor: 0.54).scale(AlertDialogConfig.buttonFontSize),
-                  ),
+                  style: context.textTheme.body,
+                  textScaler: context.textScaler.clamp(maxScaleFactor: 2),
                 ),
                 onPressed: () {
                   Navigator.of(context).pop();
