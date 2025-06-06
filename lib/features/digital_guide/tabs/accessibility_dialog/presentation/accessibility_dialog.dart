@@ -12,6 +12,7 @@ class AccessibilityDialog extends StatelessWidget {
     return Semantics(
       container: true,
       label: context.localize.dialog_semantics_label,
+
       child: Focus(
         autofocus: true,
         child: RedDialog(

@@ -55,7 +55,9 @@ class AdaptedToiletDetailView extends ConsumerWidget {
       if (adaptedToilet.imagesIndices.isNotEmpty)
         Padding(
           padding: const EdgeInsets.symmetric(vertical: DigitalGuideConfig.paddingMedium),
-          child: DigitalGuidePhotoRow(imagesIDs: adaptedToilet.imagesIndices),
+          child: DigitalGuidePhotoRow(imagesIDs: adaptedToilet.imagesIndices,
+          semanticsLabel: context.localize.toilet,
+          ),
         ),
       if (adaptedToilet.doorsIndices.isNotEmpty) const SizedBox(height: DigitalGuideConfig.heightMedium),
       ListView.separated(

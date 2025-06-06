@@ -7,7 +7,11 @@ import "my_cached_image.dart";
 import "optimized_directus_image.dart";
 
 extension ShowFullscreenImageX on BuildContext {
-  Future<void> showFullScreenImage(String? imageUrl, {bool shouldHaveRectBackground = false}) async {
+  Future<void> showFullScreenImage(
+    String? imageUrl, {
+    bool shouldHaveRectBackground = false,
+    String? semanticsLabel,
+  }) async {
     if (imageUrl == null) {
       return;
     }
@@ -22,7 +26,7 @@ extension ShowFullscreenImageX on BuildContext {
             container: true,
             image: true,
             button: false,
-            label: context.localize.logotype,
+            label: (semanticsLabel ?? "") + context.localize.fullscreen_image,
             child: Focus(
               autofocus: true,
               child: InteractiveViewer(
@@ -98,20 +102,33 @@ class ZoomableOptimizedDirectusImage extends StatelessWidget {
     this.loadingType = LoadingType.shimmerLoading,
     this.boxFit = BoxFit.cover,
     this.shouldHaveRectBackground = false,
+    this.semanticsLabel,
   });
 
   final String? imageUrl;
   final LoadingType loadingType;
   final BoxFit boxFit;
+  final String? semanticsLabel;
   final bool shouldHaveRectBackground;
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () async {
-        await context.showFullScreenImage(imageUrl, shouldHaveRectBackground: shouldHaveRectBackground);
-      },
-      child: OptimizedDirectusImage(imageUrl, boxFit: boxFit, loadingType: loadingType),
+    return Semantics(
+      label: semanticsLabel,
+      image: true,
+      button: false,
+      child: ExcludeSemantics(
+        child: GestureDetector(
+          onTap: () async {
+            await context.showFullScreenImage(
+              imageUrl,
+              shouldHaveRectBackground: shouldHaveRectBackground,
+              semanticsLabel: semanticsLabel,
+            );
+          },
+          child: OptimizedDirectusImage(imageUrl, boxFit: boxFit, loadingType: loadingType),
+        ),
+      ),
     );
   }
 }
@@ -123,20 +140,25 @@ class ZoomableCachedImage extends StatelessWidget {
     this.loadingType = LoadingType.shimmerLoading,
     this.boxFit = BoxFit.cover,
     this.shouldHaveRectBackground = false,
+    this.semanticsLabel,
   });
 
   final String? imageUrl;
   final LoadingType loadingType;
   final BoxFit boxFit;
   final bool shouldHaveRectBackground;
-
+  final String? semanticsLabel;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
-        await context.showFullScreenImage(imageUrl, shouldHaveRectBackground: shouldHaveRectBackground);
+        await context.showFullScreenImage(
+          imageUrl,
+          shouldHaveRectBackground: shouldHaveRectBackground,
+          semanticsLabel: semanticsLabel,
+        );
       },
-      child: MyCachedImage(imageUrl, boxFit: boxFit, loadingType: loadingType),
+      child: MyCachedImage(imageUrl, boxFit: boxFit, loadingType: loadingType, semanticsLabel: semanticsLabel),
     );
   }
 }

@@ -3346,5 +3346,17 @@
   "legalese_dialog_semantics_label": "Informacje prawne: ",
   "@legalese_dialog_semantics_label": {
     "description": "Semantics read for legalese info in dialog"
+  },
+  "fullscreen_image": " - pełny ekran",
+  "@fullscreen_image": {
+    "description": "Semantics read for fullscreen image"
+  },
+  "localization_digital_guide_image_screen_reader_label": "Mapa lokalizacji budynku",
+  "@localization_digital_guide_image_screen_reader_label": {
+    "description": "Text read for localization digital guide image screen reader label"
+  },
+  "toilet": "Toaleta",
+  "@toilet": {
+    "description": "Label for toilet"
   }
 }

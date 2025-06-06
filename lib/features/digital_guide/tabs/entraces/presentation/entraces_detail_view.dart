@@ -66,7 +66,7 @@ class DigitalGuideEntranceDetailsView extends ConsumerWidget {
         shrinkWrap: true,
       ),
       const SizedBox(height: DigitalGuideConfig.heightMedium),
-      DigitalGuidePhotoRow(imagesIDs: entrance.imagesIndices),
+      DigitalGuidePhotoRow(imagesIDs: entrance.imagesIndices, semanticsLabel: context.localize.entrances),
       const SizedBox(height: DigitalGuideConfig.heightMedium),
     ];
 

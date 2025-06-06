@@ -17,24 +17,27 @@ class AdaptedToiletLevel extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(level.translations.plTranslation.name, style: context.textTheme.lightTitle),
-        const SizedBox(height: 10),
-        ListView.separated(
-          physics: const NeverScrollableScrollPhysics(),
-          itemBuilder:
-              (context, index) => DigitalGuideNavLink(
-                onTap: () async => ref.navigateAdaptedToiletDetails(adaptedToilets[index]),
-                text: adaptedToilets[index].getDescription(context),
-              ),
-          separatorBuilder: (context, index) => const SizedBox(height: DigitalGuideConfig.heightMedium),
-          itemCount: adaptedToilets.length,
-          shrinkWrap: true,
-        ),
-        const SizedBox(height: DigitalGuideConfig.heightMedium),
-      ],
+    return Semantics(
+      container: true,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(level.translations.plTranslation.name, style: context.textTheme.lightTitle),
+          const SizedBox(height: 10),
+          ListView.separated(
+            physics: const NeverScrollableScrollPhysics(),
+            itemBuilder:
+                (context, index) => DigitalGuideNavLink(
+                  onTap: () async => ref.navigateAdaptedToiletDetails(adaptedToilets[index]),
+                  text: adaptedToilets[index].getDescription(context),
+                ),
+            separatorBuilder: (context, index) => const SizedBox(height: DigitalGuideConfig.heightMedium),
+            itemCount: adaptedToilets.length,
+            shrinkWrap: true,
+          ),
+          const SizedBox(height: DigitalGuideConfig.heightMedium),
+        ],
+      ),
     );
   }
 }

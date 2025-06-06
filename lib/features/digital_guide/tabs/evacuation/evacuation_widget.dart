@@ -24,7 +24,7 @@ class EvacuationWidget extends StatelessWidget {
       const SizedBox(height: DigitalGuideConfig.heightMedium),
       Text(context.localize.evacuation_text, style: context.textTheme.boldBody),
       const SizedBox(height: DigitalGuideConfig.heightMedium),
-      DigitalGuideImage(id: digitalGuideData.evacuationMapId),
+      DigitalGuideImage(id: digitalGuideData.evacuationMapId, semanticsLabel: context.localize.evacuation),
       const SizedBox(height: DigitalGuideConfig.heightMedium),
       EntrancesList(digitalGuideData),
     ];

@@ -64,7 +64,10 @@ class _DigitalGuideLodgeExpansionTileContent extends StatelessWidget {
             ),
           Text(lodgeInformation.comment),
           if (lodgeInformation.comment.isNotEmpty) const SizedBox(height: DigitalGuideConfig.heightMedium),
-          DigitalGuidePhotoRow(imagesIDs: lodge!.imagesIds?.toIList() ?? const IList.empty()),
+          DigitalGuidePhotoRow(
+            imagesIDs: lodge!.imagesIds?.toIList() ?? const IList.empty(),
+            semanticsLabel: context.localize.lodge,
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: DigitalGuideConfig.paddingBig),
             child: AccessibilityProfileCard(

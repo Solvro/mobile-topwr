@@ -1,6 +1,7 @@
 import "package:auto_route/auto_route.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
+import "package:flutter/semantics.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../../config/ui_config.dart";
@@ -30,31 +31,45 @@ class LodgeView extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              context.localize.lodge,
-              style: context.textTheme.headline.copyWith(fontSize: DigitalGuideConfig.headlineFont),
+            Semantics(
+              container: true,
+              label: context.localize.lodge,
+              excludeSemantics: true,
+              child: Text(
+                context.localize.lodge,
+                style: context.textTheme.headline.copyWith(fontSize: DigitalGuideConfig.headlineFont),
+              ),
             ),
             const SizedBox(height: DigitalGuideConfig.heightSmall),
-            Text(context.localize.localization, style: context.textTheme.title),
+            Semantics(container: true, child: Text(context.localize.localization, style: context.textTheme.title)),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: DigitalGuideConfig.heightSmall),
               child: Text(lodgeInformation.location),
             ),
             if (lodgeInformation.workingDaysAndHours.isNotEmpty)
-              Text(context.localize.working_hours, style: context.textTheme.title),
+              Semantics(container: true, child: Text(context.localize.working_hours, style: context.textTheme.title)),
             if (lodgeInformation.workingDaysAndHours.isNotEmpty)
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: DigitalGuideConfig.heightSmall),
-                child: Text(lodgeInformation.workingDaysAndHours),
+              Semantics(
+                container: true,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: DigitalGuideConfig.heightSmall),
+                  child: Text(lodgeInformation.workingDaysAndHours),
+                ),
               ),
             if (lodgeInformation.comment.isNotEmpty)
-              Padding(
-                padding: const EdgeInsets.only(bottom: DigitalGuideConfig.paddingSmall),
-                child: Text(context.localize.additional_information, style: context.textTheme.title),
+              Semantics(
+                container: true,
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: DigitalGuideConfig.paddingSmall),
+                  child: Text(context.localize.additional_information, style: context.textTheme.title),
+                ),
               ),
-            Text(lodgeInformation.comment),
+            Semantics(container: true, child: Text(lodgeInformation.comment)),
             if (lodgeInformation.comment.isNotEmpty) const SizedBox(height: DigitalGuideConfig.heightMedium),
-            DigitalGuidePhotoRow(imagesIDs: lodge.imagesIds?.toIList() ?? const IList.empty()),
+            DigitalGuidePhotoRow(
+              imagesIDs: lodge.imagesIds?.toIList() ?? const IList.empty(),
+              semanticsLabel: context.localize.lodge,
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: DigitalGuideConfig.paddingBig),
               child: AccessibilityProfileCard(
