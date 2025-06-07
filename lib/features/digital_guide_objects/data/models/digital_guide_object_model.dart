@@ -51,12 +51,12 @@ abstract class DigitalGuideObjectTranslation with _$DigitalGuideObjectTranslatio
   const factory DigitalGuideObjectTranslation({
     required String name,
     @nonTranslatableField required String address,
-    @JsonKey(fromJson: emptyStringToNull) required String? accessibilityLevelForMotorDisabilityComment,
-    @JsonKey(fromJson: emptyStringToNull) required String? accessibilityLevelForBlindComment,
-    @JsonKey(fromJson: emptyStringToNull) required String? accessibilityLevelForVisuallyImpairedComment,
-    @JsonKey(fromJson: emptyStringToNull) required String? accessibilityLevelForHardOfHearingComment,
-    @JsonKey(fromJson: emptyStringToNull) required String? accessibilityLevelForHighSensorySensitivityComment,
-    @JsonKey(fromJson: emptyStringToNull) required String? accessibilityLevelForCognitiveDifficultiesComment,
+    @JsonKey(fromJson: emptyStringToNull) String? accessibilityLevelForMotorDisabilityComment,
+    @JsonKey(fromJson: emptyStringToNull) String? accessibilityLevelForBlindComment,
+    @JsonKey(fromJson: emptyStringToNull) String? accessibilityLevelForVisuallyImpairedComment,
+    @JsonKey(fromJson: emptyStringToNull) String? accessibilityLevelForHardOfHearingComment,
+    @JsonKey(fromJson: emptyStringToNull) String? accessibilityLevelForHighSensorySensitivityComment,
+    @JsonKey(fromJson: emptyStringToNull) String? accessibilityLevelForCognitiveDifficultiesComment,
   }) = _DigitalGuideObjectTranslation;
 
   factory DigitalGuideObjectTranslation.fromJson(Map<String, dynamic> json) =>

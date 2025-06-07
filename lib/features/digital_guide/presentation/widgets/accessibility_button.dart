@@ -28,7 +28,11 @@ class AccessibilityButton extends StatelessWidget {
               backgroundColor: context.colorTheme.greyLight,
               padding: const EdgeInsets.symmetric(horizontal: 16),
             ),
-            child: Icon(Icons.accessibility_new, color: context.colorTheme.blackMirage),
+            child: Icon(
+              Icons.accessibility_new,
+              color: context.colorTheme.blackMirage,
+              size: context.textScaler.clamp(maxScaleFactor: 2.5).scale(16),
+            ),
           ),
         ),
       ),

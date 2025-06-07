@@ -18,6 +18,7 @@ class LocalizationExpansionTileContent extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final scaler = context.textScaler.clamp(maxScaleFactor: 2);
     return Column(
       children: [
         Padding(
@@ -30,16 +31,20 @@ class LocalizationExpansionTileContent extends ConsumerWidget {
             ),
           ),
         ),
-        TextButton.icon(
-          icon: Icon(Icons.navigation, color: context.colorTheme.orangePomegranade, size: 16),
-          onPressed: () async => _navigateToBuilding(ref, building),
-          label: Text.rich(
-            TextSpan(
-              text: context.localize.navigate_to_building,
-              style: context.textTheme.bodyOrange.copyWith(
-                decoration: TextDecoration.underline,
-                decorationColor: context.colorTheme.orangePomegranade,
-                fontWeight: FontWeight.bold,
+        Padding(
+          padding: EdgeInsets.all(context.textScaler.scale(2)),
+          child: TextButton.icon(
+            icon: Icon(Icons.navigation, color: context.colorTheme.orangePomegranade, size: scaler.scale(16)),
+            onPressed: () async => _navigateToBuilding(ref, building),
+            label: Text.rich(
+              textScaler: scaler,
+              TextSpan(
+                text: context.localize.navigate_to_building,
+                style: context.textTheme.bodyOrange.copyWith(
+                  decoration: TextDecoration.underline,
+                  decorationColor: context.colorTheme.orangePomegranade,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),

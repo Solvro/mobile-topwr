@@ -4,6 +4,7 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../theme/app_theme.dart";
+import "../../utils/context_extensions.dart";
 import "../../utils/determine_contact_icon.dart";
 import "../../utils/launch_url_util.dart";
 import "contact_icon_widget.dart";
@@ -59,6 +60,7 @@ class _ContactIcon extends ConsumerWidget {
             const SizedBox(width: 16),
             Expanded(
               child: RichText(
+                textScaler: context.textScaler,
                 text: TextSpan(
                   text: text,
                   style: context.textTheme.bodyOrange.copyWith(

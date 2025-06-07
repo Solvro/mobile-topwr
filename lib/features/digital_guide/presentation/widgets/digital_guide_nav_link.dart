@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 
 import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
+import "../../../../utils/context_extensions.dart";
 
 class DigitalGuideNavLink extends StatelessWidget {
   const DigitalGuideNavLink({super.key, required this.onTap, required this.text});
@@ -11,6 +12,7 @@ class DigitalGuideNavLink extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scaler = context.textScaler.clamp(maxScaleFactor: 2);
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(DigitalGuideConfig.borderRadiusMedium),
@@ -24,7 +26,15 @@ class DigitalGuideNavLink extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Expanded(child: Text(text, style: context.textTheme.title, overflow: TextOverflow.ellipsis, maxLines: 3)),
+            Expanded(
+              child: Text(
+                text,
+                textScaler: scaler,
+                style: context.textTheme.title,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 3,
+              ),
+            ),
             Icon(Icons.chevron_right, color: context.colorTheme.blueAzure),
           ],
         ),
