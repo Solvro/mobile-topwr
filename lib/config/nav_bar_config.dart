@@ -53,9 +53,11 @@ extension GetFormattedRouteNameX on Route<dynamic> {
       RegionRoute.name => context.localize.region,
       CorridorRoute.name => context.localize.corridor,
       AdaptedToiletDetailRoute.name => context.localize.adapted_toilets,
+      ToiletsRoute.name => context.localize.toilet,
       DigitalGuideEntranceDetailsRoute.name => context.localize.entrances,
       DigitalGuideRoomDetailRoute.name => context.localize.room_information,
       SettingsRoute.name => context.localize.settings,
+
       _ => null,
     };
   }

@@ -3358,5 +3358,19 @@
   "toilet": "Toaleta",
   "@toilet": {
     "description": "Label for toilet"
+  },
+  "audio_message_comment_screen_reader": "Aby odtworzyć wiadomość, kliknij przycisk odtwarzania.",
+  "@audio_message_comment_screen_reader": {
+    "description": "Text read for audio message comment screen reader"
+  },
+  "audio_player_slider": "Slajder z odtwarzaniem. {value} procent.",
+  "@audio_player_slider": {
+    "description": "Screen reader text for audio player slider with percentage value",
+    "placeholders": {
+      "value": {
+        "type": "num",
+        "format": "compact"
+      }
+    }
   }
 }

@@ -48,7 +48,10 @@ class AccessibilityInformationCard extends StatelessWidget {
                 child: Builder(
                   builder: (context) {
                     final size = scaler.scale(20);
-                    return SizedBox.square(dimension: size, child: SvgPicture.asset(icon, height: size, width: size));
+                    return SizedBox.square(
+                      dimension: size,
+                      child: ExcludeSemantics(child: SvgPicture.asset(icon, height: size, width: size)),
+                    );
                   },
                 ),
               ),

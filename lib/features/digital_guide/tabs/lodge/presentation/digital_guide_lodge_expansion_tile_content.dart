@@ -45,33 +45,63 @@ class _DigitalGuideLodgeExpansionTileContent extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(context.localize.localization, style: context.textTheme.title),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: DigitalGuideConfig.heightSmall),
-            child: Text(lodgeInformation.location),
+          Semantics(
+            container: true,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(context.localize.localization, style: context.textTheme.title),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: DigitalGuideConfig.heightSmall),
+                  child: Text(lodgeInformation.location),
+                ),
+              ],
+            ),
           ),
           if (lodgeInformation.workingDaysAndHours.isNotEmpty)
-            Text(context.localize.working_hours, style: context.textTheme.title),
-          if (lodgeInformation.workingDaysAndHours.isNotEmpty)
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: DigitalGuideConfig.heightSmall),
-              child: Text(lodgeInformation.workingDaysAndHours),
+            Semantics(
+              container: true,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(context.localize.working_hours, style: context.textTheme.title),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: DigitalGuideConfig.heightSmall),
+                    child: Text(lodgeInformation.workingDaysAndHours),
+                  ),
+                ],
+              ),
             ),
           if (lodgeInformation.comment.isNotEmpty)
-            Padding(
-              padding: const EdgeInsets.only(bottom: DigitalGuideConfig.paddingSmall),
-              child: Text(context.localize.additional_information, style: context.textTheme.title),
+            Semantics(
+              container: true,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: DigitalGuideConfig.paddingSmall),
+                    child: Text(context.localize.additional_information, style: context.textTheme.title),
+                  ),
+                  Text(lodgeInformation.comment),
+                ],
+              ),
             ),
-          Text(lodgeInformation.comment),
           if (lodgeInformation.comment.isNotEmpty) const SizedBox(height: DigitalGuideConfig.heightMedium),
           DigitalGuidePhotoRow(
             imagesIDs: lodge!.imagesIds?.toIList() ?? const IList.empty(),
             semanticsLabel: context.localize.lodge,
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: DigitalGuideConfig.paddingBig),
-            child: AccessibilityProfileCard(
-              accessibilityCommentsManager: LodgeAccessibilityCommentsManager(l10n: context.localize, lodge: lodge!),
+          Semantics(
+            container: true,
+
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: DigitalGuideConfig.paddingBig),
+              child: AccessibilityProfileCard(
+                accessibilityCommentsManager: LodgeAccessibilityCommentsManager(l10n: context.localize, lodge: lodge!),
+              ),
             ),
           ),
         ],

@@ -70,6 +70,7 @@ class AdaptedToiletDetailView extends ConsumerWidget {
         separatorBuilder: (context, index) => const SizedBox(height: DigitalGuideConfig.heightMedium),
         shrinkWrap: true,
       ),
+      const SizedBox(height: DigitalGuideConfig.heightMedium),
     ];
 
     return HorizontalSymmetricSafeAreaScaffold(
