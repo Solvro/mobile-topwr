@@ -8,7 +8,7 @@ import "../../../../config/env.dart";
 import "../../presentation/digital_guide_view.dart";
 
 extension DigitalGuideClient on Ref {
-  static const digitalGuideTTLDays = 7; // TODO(simon-the-shark): adjust it
+  static const digitalGuideTTLDays = 30; // TODO(simon-the-shark): adjust it
 
   Future<JSON<T>> getAndCacheDataFromDigitalGuide<T extends TranslatableInterface>(
     String subUrl,
