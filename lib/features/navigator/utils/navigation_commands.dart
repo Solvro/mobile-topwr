@@ -154,7 +154,7 @@ extension NavigationX on WidgetRef {
     await _router.push(RampsRoute(ramps: ramps));
   }
 
-  Future<void> navigateDigitalGuideToilets(Toilet toilet) async {
+  Future<void> navigateDigitalGuideToilet(Toilet toilet) async {
     await _router.push(ToiletsRoute(toilet: toilet));
   }
 

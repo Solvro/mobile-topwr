@@ -45,31 +45,63 @@ class _DigitalGuideDressingRoomsExpansionTileContent extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(context.localize.localization, style: context.textTheme.title),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: DigitalGuideConfig.heightSmall),
-            child: Text(dressingRoomInformation.location),
+          Semantics(
+            container: true,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(context.localize.localization, style: context.textTheme.title),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: DigitalGuideConfig.heightSmall),
+                  child: Text(dressingRoomInformation.location),
+                ),
+              ],
+            ),
           ),
           if (dressingRoomInformation.workingDaysAndHours.isNotEmpty)
-            Text(context.localize.working_hours, style: context.textTheme.title),
-          if (dressingRoomInformation.workingDaysAndHours.isNotEmpty)
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: DigitalGuideConfig.heightSmall),
-              child: Text(dressingRoomInformation.workingDaysAndHours),
+            Semantics(
+              container: true,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(context.localize.working_hours, style: context.textTheme.title),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: DigitalGuideConfig.heightSmall),
+                    child: Text(dressingRoomInformation.workingDaysAndHours),
+                  ),
+                ],
+              ),
             ),
           if (dressingRoomInformation.comment.isNotEmpty)
-            Padding(
-              padding: const EdgeInsets.only(bottom: DigitalGuideConfig.paddingSmall),
-              child: Text(context.localize.additional_information, style: context.textTheme.title),
+            Semantics(
+              container: true,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: DigitalGuideConfig.paddingSmall),
+                    child: Text(context.localize.additional_information, style: context.textTheme.title),
+                  ),
+                  Text(dressingRoomInformation.comment),
+                ],
+              ),
             ),
-          Text(dressingRoomInformation.comment),
           if (dressingRoomInformation.comment.isNotEmpty) const SizedBox(height: DigitalGuideConfig.heightMedium),
-          DigitalGuidePhotoRow(imagesIDs: dressingRoom!.imagesIds?.toIList() ?? const IList.empty()),
+          DigitalGuidePhotoRow(
+            imagesIDs: dressingRoom!.imagesIds?.toIList() ?? const IList.empty(),
+            semanticsLabel: context.localize.dressing_room,
+          ),
           const SizedBox(height: DigitalGuideConfig.heightSmall),
-          AccessibilityProfileCard(
-            accessibilityCommentsManager: DressingRoomAccessibilityCommentsManager(
-              l10n: context.localize,
-              dressingRoomResponse: dressingRoom!,
+          Semantics(
+            container: true,
+            child: AccessibilityProfileCard(
+              accessibilityCommentsManager: DressingRoomAccessibilityCommentsManager(
+                l10n: context.localize,
+                dressingRoomResponse: dressingRoom!,
+              ),
             ),
           ),
         ],

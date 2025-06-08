@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:flutter_map_compass/flutter_map_compass.dart";
 
+import "../../../utils/context_extensions.dart";
 import "../../my_location_button/presentation/my_loc_button.dart";
 
 class Toolbar extends StatelessWidget {
@@ -8,10 +9,10 @@ class Toolbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Positioned(
+    return Positioned(
       top: 16,
-      right: 8,
-      child: SafeArea(
+      right: context.textScaler.clamp(maxScaleFactor: 1.5).scale(8),
+      child: const SafeArea(
         child: Column(
           children: [
             MyLocationButton(),

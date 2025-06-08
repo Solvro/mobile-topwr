@@ -40,7 +40,10 @@ class AccessibilityProfileCard extends ConsumerWidget {
                   border: Border.all(color: context.colorTheme.blackMirage),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.all(DigitalGuideConfig.paddingMedium),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: DigitalGuideConfig.paddingMedium,
+                    vertical: context.textScaler.scale(DigitalGuideConfig.paddingMedium),
+                  ),
                   child: BulletList(items: itemList),
                 ),
               ),

@@ -4,6 +4,7 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../theme/app_theme.dart";
+import "../../utils/context_extensions.dart";
 import "../../utils/determine_contact_icon.dart";
 import "../../utils/launch_url_util.dart";
 import "contact_icon_widget.dart";
@@ -30,7 +31,7 @@ class ContactSection extends StatelessWidget {
           for (final item in sorted)
             Padding(
               padding: const EdgeInsets.only(bottom: 16),
-              child: _ContactIcon(url: item.url ?? "", text: item.text ?? "", icon: item.icon),
+              child: _ContactIcon(url: item.url, text: item.text ?? "", icon: item.icon),
             ),
           if (bottomSpace != null) ...bottomSpace!,
         ],
@@ -40,31 +41,39 @@ class ContactSection extends StatelessWidget {
 }
 
 class _ContactIcon extends ConsumerWidget {
-  const _ContactIcon({required this.url, required this.icon, required this.text});
+  const _ContactIcon({this.url, required this.icon, required this.text});
 
-  final String url;
+  final String? url;
   final String text;
   final String icon;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Row(
-      children: [
-        ContactIconWidget(icon: icon),
-        const SizedBox(width: 16),
-        Expanded(
-          child: RichText(
-            text: TextSpan(
-              text: text,
-              style: context.textTheme.bodyOrange.copyWith(
-                color: url.isNotEmpty ? null : Colors.black,
-                decoration: url.isNotEmpty ? TextDecoration.underline : TextDecoration.none,
+    return Semantics(
+      label: text,
+      button: url?.isNotEmpty ?? false,
+      container: true,
+      child: ExcludeSemantics(
+        child: Row(
+          children: [
+            ContactIconWidget(icon: icon),
+            const SizedBox(width: 16),
+            Expanded(
+              child: RichText(
+                textScaler: context.textScaler,
+                text: TextSpan(
+                  text: text,
+                  style: context.textTheme.bodyOrange.copyWith(
+                    color: url?.isNotEmpty ?? false ? null : Colors.black,
+                    decoration: url?.isNotEmpty ?? false ? TextDecoration.underline : TextDecoration.none,
+                  ),
+                  recognizer: url != null ? (TapGestureRecognizer()..onTap = () async => ref.launch(url!)) : null,
+                ),
               ),
-              recognizer: TapGestureRecognizer()..onTap = () async => ref.launch(url),
             ),
-          ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }

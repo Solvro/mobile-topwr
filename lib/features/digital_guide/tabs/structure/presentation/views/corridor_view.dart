@@ -54,7 +54,7 @@ class CorridorView extends ConsumerWidget {
       if (corridor.imagesIndices.isNotEmpty)
         Padding(
           padding: const EdgeInsets.symmetric(vertical: DigitalGuideConfig.paddingMedium),
-          child: DigitalGuidePhotoRow(imagesIDs: corridor.imagesIndices),
+          child: DigitalGuidePhotoRow(imagesIDs: corridor.imagesIndices, semanticsLabel: context.localize.corridor),
         ),
       if (corridor.doorsIndices.isNotEmpty) const SizedBox(height: DigitalGuideConfig.heightMedium),
       if (corridor.doorsIndices.isNotEmpty)

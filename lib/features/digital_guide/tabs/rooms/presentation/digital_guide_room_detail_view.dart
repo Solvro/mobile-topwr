@@ -61,8 +61,7 @@ class DigitalGuideRoomDetailView extends ConsumerWidget {
         backgroundColor: context.colorTheme.whiteSoap,
       ),
       if (room.imagesIds != null && room.imagesIds!.isNotEmpty) const SizedBox(height: DigitalGuideConfig.heightMedium),
-
-      DigitalGuidePhotoRow(imagesIDs: room.imagesIds.toIList()),
+      DigitalGuidePhotoRow(imagesIDs: room.imagesIds.toIList(), semanticsLabel: context.localize.room_information),
       const SizedBox(height: DigitalGuideConfig.heightMedium),
       ListView.separated(
         physics: const NeverScrollableScrollPhysics(),

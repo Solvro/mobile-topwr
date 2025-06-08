@@ -18,29 +18,32 @@ class DigitalGuideLiftLevel extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(level.translations.plTranslation.name, style: context.textTheme.lightTitle),
-        const SizedBox(height: 10),
-        ListView.separated(
-          physics: const NeverScrollableScrollPhysics(),
-          itemBuilder:
-              (context, index) => DigitalGuideNavLink(
-                onTap: () async {
-                  await ref.navigateLiftDetails(lifts[index], level.translations.plTranslation.name);
-                },
-                text: context.localize.additional_information,
-              ),
-          separatorBuilder:
-              (context, index) => SizedBox(
-                height: index == lifts.length - 1 ? DigitalGuideConfig.heightSmall : DigitalGuideConfig.heightMedium,
-              ),
-          itemCount: lifts.length,
-          shrinkWrap: true,
-        ),
-        const SizedBox(height: DigitalGuideConfig.heightMedium),
-      ],
+    return Semantics(
+      container: true,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(level.translations.plTranslation.name, style: context.textTheme.lightTitle),
+          const SizedBox(height: 10),
+          ListView.separated(
+            physics: const NeverScrollableScrollPhysics(),
+            itemBuilder:
+                (context, index) => DigitalGuideNavLink(
+                  onTap: () async {
+                    await ref.navigateLiftDetails(lifts[index], level.translations.plTranslation.name);
+                  },
+                  text: context.localize.lift,
+                ),
+            separatorBuilder:
+                (context, index) => SizedBox(
+                  height: index == lifts.length - 1 ? DigitalGuideConfig.heightSmall : DigitalGuideConfig.heightMedium,
+                ),
+            itemCount: lifts.length,
+            shrinkWrap: true,
+          ),
+          const SizedBox(height: DigitalGuideConfig.heightMedium),
+        ],
+      ),
     );
   }
 }

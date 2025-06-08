@@ -3335,7 +3335,7 @@
   "@collapsed_screen_reader_label": {
     "description": "Action read for collapsed"
   },
-  "dialog_semantics_label": "Okno dialogowe wyświetlone na środku ekranu. Aby je zamknąć, kliknij podwójnie poza jego obszarem. Zawartość okna to:",
+  "dialog_semantics_label": "Okno dialogowe jest wyświetlone na środku ekranu. Aby je zamknąć, kliknij podwójnie.",
   "@dialog_semantics_label": {
     "description": "Semantics read for dialog"
   },
@@ -3346,5 +3346,31 @@
   "legalese_dialog_semantics_label": "Informacje prawne: ",
   "@legalese_dialog_semantics_label": {
     "description": "Semantics read for legalese info in dialog"
+  },
+  "fullscreen_image": " - pełny ekran",
+  "@fullscreen_image": {
+    "description": "Semantics read for fullscreen image"
+  },
+  "localization_digital_guide_image_screen_reader_label": "Mapa lokalizacji budynku",
+  "@localization_digital_guide_image_screen_reader_label": {
+    "description": "Text read for localization digital guide image screen reader label"
+  },
+  "toilet": "Toaleta",
+  "@toilet": {
+    "description": "Label for toilet"
+  },
+  "audio_message_comment_screen_reader": "Aby odtworzyć wiadomość, kliknij przycisk odtwarzania.",
+  "@audio_message_comment_screen_reader": {
+    "description": "Text read for audio message comment screen reader"
+  },
+  "audio_player_slider": "Slajder z odtwarzaniem. {value} procent.",
+  "@audio_player_slider": {
+    "description": "Screen reader text for audio player slider with percentage value",
+    "placeholders": {
+      "value": {
+        "type": "num",
+        "format": "compact"
+      }
+    }
   }
 }

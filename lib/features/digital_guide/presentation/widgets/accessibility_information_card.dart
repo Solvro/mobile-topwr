@@ -4,6 +4,7 @@ import "package:flutter_svg/svg.dart";
 import "../../../../../config/ui_config.dart";
 import "../../../../../theme/app_theme.dart";
 import "../../../../../widgets/my_html_widget.dart";
+import "../../../../utils/context_extensions.dart";
 
 class AccessibilityInformationCard extends StatelessWidget {
   final Color color;
@@ -15,6 +16,8 @@ class AccessibilityInformationCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isHTML = text.contains("<span style=");
+    final scaler = context.textScaler.clamp(minScaleFactor: 0.5, maxScaleFactor: 2);
+
     return Container(
       constraints: const BoxConstraints(
         minHeight:
@@ -34,15 +37,23 @@ class AccessibilityInformationCard extends StatelessWidget {
           Padding(
             padding: DigitalGuideConfig.widePaddingMedium,
             child: Container(
-              width: DigitalGuideConfig.difficultiesCardIconSize,
-              height: DigitalGuideConfig.difficultiesCardIconSize,
+              width: scaler.scale(DigitalGuideConfig.difficultiesCardIconSize),
+              height: scaler.scale(DigitalGuideConfig.difficultiesCardIconSize),
               decoration: BoxDecoration(
                 border: Border.all(color: color),
                 borderRadius: BorderRadius.circular(DigitalGuideConfig.borderRadiusSmall),
                 color: context.colorTheme.whiteSoap,
               ),
               child: Center(
-                child: SizedBox.square(dimension: 20, child: SvgPicture.asset(icon, height: 20, width: 20)),
+                child: Builder(
+                  builder: (context) {
+                    final size = scaler.scale(20);
+                    return SizedBox.square(
+                      dimension: size,
+                      child: ExcludeSemantics(child: SvgPicture.asset(icon, height: size, width: size)),
+                    );
+                  },
+                ),
               ),
             ),
           ),
@@ -56,7 +67,12 @@ class AccessibilityInformationCard extends StatelessWidget {
                         padding: const EdgeInsets.all(DigitalGuideConfig.heightSmall),
                         child: MyHtmlWidget(text, textStyle: context.textTheme.body),
                       )
-                      : Text(text, style: context.textTheme.body, overflow: TextOverflow.ellipsis, maxLines: 2),
+                      : Text(
+                        text,
+                        style: context.textTheme.body,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: context.textScaler.clamp(minScaleFactor: 1).scale(2).toInt(),
+                      ),
             ),
           ),
         ],

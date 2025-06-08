@@ -12,8 +12,8 @@ import "digital_guide_nav_link.dart";
 class DigitalGuidePhotoRow extends StatelessWidget {
   final IList<int> imagesIDs;
 
-  const DigitalGuidePhotoRow({super.key, required this.imagesIDs});
-
+  const DigitalGuidePhotoRow({super.key, required this.imagesIDs, required this.semanticsLabel});
+  final String semanticsLabel;
   @override
   Widget build(BuildContext context) {
     if (imagesIDs.isEmpty) {
@@ -35,13 +35,21 @@ class DigitalGuidePhotoRow extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(horizontal: DigitalGuideConfig.paddingSmall),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(DigitalGuideConfig.borderRadiusMedium),
-                            child: GestureDetector(
-                              onTap: () async {
-                                if (imagesIDs.length > 1) {
-                                  await showGallery(context, initId: id);
-                                }
-                              },
-                              child: DigitalGuideImage(id: id, zoomable: imagesIDs.length == 1),
+                            child: Semantics(
+                              label: semanticsLabel,
+                              image: true,
+                              container: true,
+                              button: true,
+                              child: ExcludeSemantics(
+                                child: GestureDetector(
+                                  onTap: () async {
+                                    if (imagesIDs.length > 1) {
+                                      await showGallery(context, initId: id, semanticsLabel: semanticsLabel);
+                                    }
+                                  },
+                                  child: DigitalGuideImage(id: id, zoomable: imagesIDs.length == 1),
+                                ),
+                              ),
                             ),
                           ),
                         ),
@@ -51,21 +59,28 @@ class DigitalGuidePhotoRow extends StatelessWidget {
           ),
         ),
         if (imagesIDs.length > 3)
-          Padding(
-            padding: const EdgeInsets.only(top: DigitalGuideConfig.heightSmall),
-            child: DigitalGuideNavLink(
-              onTap: () async => showGallery(context),
-              text: context.localize.see_all_photos(imagesIDs.length),
+          Semantics(
+            image: true,
+            button: true,
+            container: true,
+            child: Padding(
+              padding: const EdgeInsets.only(top: DigitalGuideConfig.heightSmall),
+              child: DigitalGuideNavLink(
+                onTap: () async => showGallery(context, semanticsLabel: semanticsLabel),
+                text: context.localize.see_all_photos(imagesIDs.length),
+              ),
             ),
           ),
       ],
     );
   }
 
-  Future<void> showGallery(BuildContext context, {int? initId}) async {
+  Future<void> showGallery(BuildContext context, {int? initId, required String semanticsLabel}) async {
     await showDialog<void>(
       context: context,
-      builder: (context) => DigitalGuideCarouselWithIndicator(imgListId: imagesIDs, initId: initId),
+      builder:
+          (context) =>
+              DigitalGuideCarouselWithIndicator(imgListId: imagesIDs, initId: initId, semanticsLabel: semanticsLabel),
     );
   }
 }

@@ -37,7 +37,7 @@ class SettingsView extends ConsumerWidget {
       ),
 
       NavigationTile(
-        onTap: () => unawaited(showDialog(context: context, builder: (_) => const AccessibilityDialog())),
+        onTap: () => unawaited(AccessibilityDialog.show(context)),
         title: context.localize.digital_guide_accessibility,
         icon: Icons.accessibility_new,
       ),

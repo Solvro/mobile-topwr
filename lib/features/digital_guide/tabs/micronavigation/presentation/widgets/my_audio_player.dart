@@ -6,6 +6,7 @@ import "package:flutter_hooks/flutter_hooks.dart";
 
 import "../../../../../../config/ui_config.dart";
 import "../../../../../../theme/app_theme.dart";
+import "../../../../../../utils/context_extensions.dart";
 import "../../../../../../utils/duration_utils.dart";
 
 class MyAudioPlayer extends HookWidget {
@@ -54,34 +55,41 @@ class MyAudioPlayer extends HookWidget {
       await audioPlayer.seek(position);
     }, []);
 
-    return Container(
-      padding: const EdgeInsets.all(DigitalGuideConfig.paddingSmall),
-      decoration: BoxDecoration(
-        color: Colors.grey[200],
-        borderRadius: BorderRadius.circular(DigitalGuideConfig.borderRadiusHuge),
-      ),
-      child: Row(
-        children: [
-          IconButton(
-            icon: Icon(isPlaying.value ? Icons.pause : Icons.play_arrow),
-            color: context.colorTheme.blackMirage,
-            onPressed: togglePlayPause,
-          ),
-          Text(
-            "${formatDurationToMinutesString(currentTime.value)} / ${formatDurationToMinutesString(totalTime.value)}",
-            style: TextStyle(fontSize: 14, color: context.colorTheme.blackMirage),
-          ),
-          const SizedBox(width: DigitalGuideConfig.heightTiny),
-          Expanded(
-            child: Slider(
-              value: currentTime.value.inSeconds.toDouble(),
-              max: totalTime.value.inSeconds.toDouble(),
-              onChanged: seekAudio,
-              activeColor: context.colorTheme.blackMirage,
-              inactiveColor: Colors.grey[400],
+    return Semantics(
+      container: true,
+      label: "${context.localize.audio_message} ${context.localize.audio_message_comment_screen_reader}",
+      child: Container(
+        padding: const EdgeInsets.all(DigitalGuideConfig.paddingSmall),
+        decoration: BoxDecoration(
+          color: Colors.grey[200],
+          borderRadius: BorderRadius.circular(DigitalGuideConfig.borderRadiusHuge),
+        ),
+        child: Row(
+          children: [
+            IconButton(
+              icon: Icon(isPlaying.value ? Icons.pause : Icons.play_arrow),
+              color: context.colorTheme.blackMirage,
+              onPressed: togglePlayPause,
             ),
-          ),
-        ],
+            ExcludeSemantics(
+              child: Text(
+                "${formatDurationToMinutesString(currentTime.value)} / ${formatDurationToMinutesString(totalTime.value)}",
+                style: TextStyle(fontSize: 14, color: context.colorTheme.blackMirage),
+              ),
+            ),
+            const SizedBox(width: DigitalGuideConfig.heightTiny),
+            Expanded(
+              child: Slider(
+                semanticFormatterCallback: (value) => context.localize.audio_player_slider(value),
+                value: currentTime.value.inSeconds.toDouble(),
+                max: totalTime.value.inSeconds.toDouble(),
+                onChanged: seekAudio,
+                activeColor: context.colorTheme.blackMirage,
+                inactiveColor: Colors.grey[400],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -131,8 +131,8 @@ dependencies:
   wiredash: ^2.4.0
   flutter_hooks: ^0.21.2
   audioplayers: ^6.2.0
-  solvro_translator_with_drift_cache_flutter: ^0.4.0
-  solvro_translator_core: ^0.4.0
+  solvro_translator_with_drift_cache_flutter: ^0.4.2
+  solvro_translator_core: ^0.4.2
 
 dev_dependencies:
   flutter_test:
@@ -153,7 +153,7 @@ dev_dependencies:
   graphql_codegen: ^1.2.1
   flutter_gen_runner: ^5.9.0
   auto_route_generator: ^10.0.1
-  solvro_translator_generator: ^0.4.0
+  solvro_translator_generator: ^0.4.2
 
   #Other
   flutter_launcher_icons: "^0.14.3"
