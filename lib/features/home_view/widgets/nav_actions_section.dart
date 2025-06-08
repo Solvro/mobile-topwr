@@ -11,23 +11,36 @@ class NavActionsSection extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) => Center(
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        _NavActionButton(
-          context.localize.sks_menu,
-          Icon(Icons.restaurant_menu, color: context.colorTheme.whiteSoap, size: 32),
-          ref.navigateToSksMenu,
-        ),
-        _NavActionButton(
-          context.localize.parkings_title,
-          Icon(Icons.directions_car, color: context.colorTheme.whiteSoap, size: 32),
-          ref.navigateParkings,
-        ),
-        _NavActionButton(
-          context.localize.about_us,
-          Image.asset(Assets.png.splashScreen.splashLogo.path, fit: BoxFit.fill),
-          ref.navigateAboutUs,
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          child: Wrap(
+            alignment: WrapAlignment.spaceEvenly,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            runAlignment: WrapAlignment.spaceEvenly,
+            runSpacing: 12,
+            spacing: 12,
+
+            children: [
+              _NavActionButton(
+                context.localize.sks_menu,
+                Icon(Icons.restaurant_menu, color: context.colorTheme.whiteSoap, size: 32),
+                ref.navigateToSksMenu,
+              ),
+              _NavActionButton(
+                context.localize.parkings_title,
+                Icon(Icons.directions_car, color: context.colorTheme.whiteSoap, size: 32),
+                ref.navigateParkings,
+              ),
+              _NavActionButton(
+                context.localize.about_us,
+                Image.asset(Assets.png.splashScreen.splashLogo.path, fit: BoxFit.fill),
+                ref.navigateAboutUs,
+              ),
+            ],
+          ),
         ),
       ],
     ),

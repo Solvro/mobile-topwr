@@ -34,17 +34,16 @@ class _ScienceClubsList extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(scienceClubsRepositoryProvider);
+    const textHeight = 260.0;
+    final cardHeight = BigPreviewCardConfig.cardHeight - textHeight + context.textScaler.scale(textHeight);
     return switch (state) {
       AsyncError(:final error) => MyErrorWidget(error),
       AsyncValue(:final IList<ScienceClub> value) => SmallHorizontalPadding(
-        child: SizedBox(height: BigPreviewCardConfig.cardHeight, child: _ScienceClubsDataList(value)),
+        child: SizedBox(height: cardHeight, child: _ScienceClubsDataList(value)),
       ),
-      _ => const Padding(
-        padding: EdgeInsets.only(left: HomeViewConfig.paddingMedium, top: HomeViewConfig.paddingMedium * 2),
-        child: SizedBox(
-          height: BigPreviewCardConfig.cardHeight - HomeViewConfig.paddingMedium,
-          child: BigScrollableSectionLoading(),
-        ),
+      _ => Padding(
+        padding: const EdgeInsets.only(left: HomeViewConfig.paddingMedium, top: HomeViewConfig.paddingMedium * 2),
+        child: SizedBox(height: cardHeight - HomeViewConfig.paddingMedium, child: const BigScrollableSectionLoading()),
       ),
     };
   }

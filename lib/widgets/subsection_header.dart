@@ -26,8 +26,11 @@ class SubsectionHeader extends StatelessWidget {
       padding: EdgeInsets.only(left: leftPadding, top: 16, right: rightPadding),
       child: SizedBox(
         width: double.infinity,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: Wrap(
+          alignment: WrapAlignment.spaceBetween,
+          crossAxisAlignment: WrapCrossAlignment.center,
+          runAlignment: WrapAlignment.center,
+          runSpacing: 12,
           children: [
             Text(title, style: context.textTheme.headline),
             if (actionTitle != null)
