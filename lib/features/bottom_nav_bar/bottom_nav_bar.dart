@@ -49,7 +49,7 @@ class _NavigationBarItemsList extends DelegatingList<BottomNavigationBarItem> {
                           : context.colorTheme.blackMirage.withValues(alpha: .16),
                   size: e.size,
                 ),
-                label: e.label,
+                label: e.getLabel(context),
               ),
             )
             .toList(),

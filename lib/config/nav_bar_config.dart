@@ -7,17 +7,26 @@ import "../features/parkings/parkings_view/widgets/parkings_icons.icons.dart";
 import "../utils/context_extensions.dart";
 
 enum NavBarEnum {
-  home(BottomNavBarIcons.home_icon, 26, "Home"),
-  buildings(BottomNavBarIcons.map_icon, 20, "Map"),
-  parkings(ParkingsIcons.directions_car, 19, "Parkings"),
-  guide(BottomNavBarIcons.info_icon, 22, "Guide"),
-  navigation(BottomNavBarIcons.view_grid, 26, "Navigation Tab");
+  home(BottomNavBarIcons.home_icon, 26),
+  buildings(BottomNavBarIcons.map_icon, 20),
+  parkings(ParkingsIcons.directions_car, 19),
+  guide(BottomNavBarIcons.info_icon, 22),
+  navigation(BottomNavBarIcons.view_grid, 26);
 
-  const NavBarEnum(this.icon, this.size, this.label);
+  const NavBarEnum(this.icon, this.size);
 
   final IconData icon;
   final double size;
-  final String label;
+
+  String getLabel(BuildContext context) {
+    return switch (this) {
+      NavBarEnum.home => context.localize.nav_home,
+      NavBarEnum.buildings => context.localize.nav_map,
+      NavBarEnum.parkings => context.localize.nav_parkings,
+      NavBarEnum.guide => context.localize.nav_guide,
+      NavBarEnum.navigation => context.localize.nav_others,
+    };
+  }
 }
 
 abstract class NavBarConfig {
