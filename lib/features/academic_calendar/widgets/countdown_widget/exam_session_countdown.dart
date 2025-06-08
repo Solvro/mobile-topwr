@@ -8,6 +8,7 @@ import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../utils/launch_url_util.dart";
 import "../../repository/academic_calendar_repo.dart";
+import "../../utils/counter_digits.dart";
 import "../../utils/localize_counter_message.dart";
 import "digits_widgets.dart";
 
@@ -37,7 +38,13 @@ class ExamSessionCountdown extends ConsumerWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(padding: const EdgeInsets.all(padding), child: DigitsRow(academicCalendar)),
+              Padding(
+                padding: const EdgeInsets.all(padding),
+                child: Semantics(
+                  label: academicCalendar.daysLeftFromNowString(usePadZeros: false),
+                  child: ExcludeSemantics(child: DigitsRow(academicCalendar)),
+                ),
+              ),
               Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,

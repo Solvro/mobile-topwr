@@ -3373,13 +3373,27 @@
   "@audio_message_comment_screen_reader": {
     "description": "Text read for audio message comment screen reader"
   },
-  "audio_player_slider": "Slajder z odtwarzaniem. {value} procent.",
+  "audio_player_slider": "Suwak odtwarzania. {value} procent.",
   "@audio_player_slider": {
     "description": "Screen reader text for audio player slider with percentage value",
     "placeholders": {
       "value": {
         "type": "num",
         "format": "compact"
+      }
+    }
+  },
+  "go_to_section": "Przejdź do {action} z {title}",
+  "@go_to_section": {
+    "description": "Text read for go to section",
+    "placeholders": {
+      "action": {
+        "type": "String",
+        "example": "Lista"
+      },
+      "title": {
+        "type": "String",
+        "example": "Budynki"
       }
     }
   }

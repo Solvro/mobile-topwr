@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 
 import "../theme/app_theme.dart";
+import "../utils/context_extensions.dart";
 import "my_text_button.dart";
 
 class SubsectionHeader extends StatelessWidget {
@@ -34,7 +35,14 @@ class SubsectionHeader extends StatelessWidget {
           children: [
             Text(title, style: context.textTheme.headline),
             if (actionTitle != null)
-              MyTextButton(onClick: onClick, actionTitle: addArrow ? "$actionTitle >" : actionTitle ?? ""),
+              Semantics(
+                label: context.localize.go_to_section(actionTitle ?? "", title),
+                button: true,
+                container: true,
+                child: ExcludeSemantics(
+                  child: MyTextButton(onClick: onClick, actionTitle: addArrow ? "$actionTitle >" : actionTitle ?? ""),
+                ),
+              ),
           ],
         ),
       ),
