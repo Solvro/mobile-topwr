@@ -57,6 +57,6 @@ extension AcademicCalendarX on AcademicCalendar {
     if (data == null || nextException.isEmpty) {
       return null;
     }
-    return (daysTillFirstChange: nextException.first.day.difference(now).inDays, changesCount: nextException.length);
+    return (daysTillFirstChange: nextException.first.day.difference(today).inDays, changesCount: nextException.length);
   }
 }
