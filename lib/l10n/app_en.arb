@@ -559,5 +559,10 @@
   "toilet": "Toilet",
   "audio_message_comment_screen_reader": "To play the message, click the play button.",
   "audio_player_slider": "Playback slider. {value} percent.",
-  "go_to_section": "Go to {action} of {title}"
+  "go_to_section": "Go to {action} of {title}",
+  "nav_home": "Home",
+  "nav_map": "Map",
+  "nav_parkings": "Parkings",
+  "nav_guide": "Guide",
+  "nav_others": "Others"
 }
