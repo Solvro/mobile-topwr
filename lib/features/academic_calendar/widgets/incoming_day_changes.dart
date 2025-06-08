@@ -66,7 +66,9 @@ class IncomingDayChanges extends StatelessWidget {
               const SizedBox(width: 12),
               ExcludeSemantics(
                 child: Text(
-                  l10n.incoming_days_changes_title(data.changesCount),
+                  data.daysTillFirstChange == 0
+                      ? l10n.incoming_days_changes_title_today(data.changesCount)
+                      : l10n.incoming_days_changes_title(data.changesCount),
                   style: context.textTheme.body.copyWith(fontWeight: FontWeight.w500, fontSize: 15),
                 ),
               ),

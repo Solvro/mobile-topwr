@@ -3105,6 +3105,16 @@
       }
     }
   },
+  "incoming_days_changes_title_today": "{count, plural, =1{Zamiana dnia} other{{count} zamiany dni}}!",
+  "@incoming_days_changes_title_today": {
+    "description": "Title showing number of incoming day changes in academic calendar when it's today",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
   "incoming_days_changes_summary": "Za {days, plural, =1{1 dzień} other{{days} dni}} będzie miała miejsce {count, plural, =1{zamiana dnia} other{zamiana {count} dni}}!",
   "@incoming_days_changes_summary": {
     "description": "Summary message showing how many days remain until the first change and how many day changes are expected in the academic calendar.",
