@@ -11,7 +11,7 @@ class DigitsRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dayLeftString = calendarData?.daysLeftFromNowString;
+    final dayLeftString = calendarData?.daysLeftFromNowString();
     return Row(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [

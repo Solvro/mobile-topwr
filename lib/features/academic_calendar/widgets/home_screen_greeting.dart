@@ -12,15 +12,23 @@ class Greeting extends StatelessWidget {
   final AcademicCalendar academicCalendar;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: HomeViewConfig.paddingLarge),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(context.localize.home_screen_greeting, style: context.greetingTheme.textStyle),
-          Text(academicCalendar.academicDayToday?.localize(context) ?? "", style: context.greetingTheme.boldTextStyle),
-        ],
+    final scaler = context.textScaler.clamp(maxScaleFactor: 1.5);
+    return Semantics(
+      container: true,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: HomeViewConfig.paddingLarge),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(context.localize.home_screen_greeting, style: context.greetingTheme.textStyle, textScaler: scaler),
+            Text(
+              academicCalendar.academicDayToday?.localize(context) ?? "",
+              style: context.greetingTheme.boldTextStyle,
+              textScaler: scaler,
+            ),
+          ],
+        ),
       ),
     );
   }

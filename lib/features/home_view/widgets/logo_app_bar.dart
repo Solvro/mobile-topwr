@@ -3,6 +3,7 @@ import "package:flutter_svg/svg.dart";
 
 import "../../../gen/assets.gen.dart";
 import "../../../theme/app_theme.dart";
+import "../../../utils/context_extensions.dart";
 
 class LogoAppBar extends AppBar {
   /// AppBar with ToPWR colorful logo
@@ -31,9 +32,11 @@ class AppBarLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scaler = context.textScaler.clamp(maxScaleFactor: 1.5);
+    final size = logoSize == null ? null : scaler.scale(logoSize!);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 48),
-      child: SvgPicture.asset(Assets.svg.logoAppBar, width: logoSize, height: logoSize),
+      child: SvgPicture.asset(Assets.svg.logoAppBar, width: size, height: size),
     );
   }
 }

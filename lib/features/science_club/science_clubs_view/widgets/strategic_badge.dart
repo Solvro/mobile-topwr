@@ -1,14 +1,16 @@
 import "package:flutter/material.dart";
+import "package:solvro_translator_core/solvro_translator_core.dart";
 
 import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
+import "strategic_club_badges.icons.dart";
 
 class StrategicBadge extends WidgetSpan {
   const StrategicBadge()
     : super(
         baseline: TextBaseline.ideographic,
         alignment: PlaceholderAlignment.middle,
-        child: const SizedBox.square(dimension: 16, child: _StrategicBadgeWidget()),
+        child: const _StrategicBadgeWidget(),
       );
 }
 
@@ -17,17 +19,14 @@ class _StrategicBadgeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final scaler = context.textScaler.clamp(maxScaleFactor: 2);
+    final isPolish = context.solvroLocale == SolvroLocale.pl;
+    final scaler = context.textScaler;
     return Tooltip(
       message: context.localize.strategicBadgeTooltip,
-      child: Stack(
-        children: [
-          Center(child: Icon(Icons.shield, size: scaler.scale(14), color: context.colorTheme.blueAzure)),
-          Align(
-            alignment: const Alignment(0, -1 / 4),
-            child: Text(context.localize.strategic_club_abbr, style: context.textTheme.bodyWhite.copyWith(fontSize: 6)),
-          ),
-        ],
+      child: Icon(
+        isPolish ? StrategicClubBadges.polish_badge : StrategicClubBadges.english_badge,
+        size: scaler.scale(14),
+        color: context.colorTheme.blueAzure,
       ),
     );
   }

@@ -1,3 +1,4 @@
+import "package:auto_size_text/auto_size_text.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
@@ -7,6 +8,7 @@ import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../utils/launch_url_util.dart";
 import "../../repository/academic_calendar_repo.dart";
+import "../../utils/counter_digits.dart";
 import "../../utils/localize_counter_message.dart";
 import "digits_widgets.dart";
 
@@ -17,13 +19,17 @@ class ExamSessionCountdown extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final scaler = context.textScaler.clamp(maxScaleFactor: 2.5);
+    const padding = 16.0;
+    const initialHeight = 69.0;
+    final height = scaler.scale(initialHeight - 2 * padding) + 2 * padding;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: HomeViewConfig.paddingLarge),
       child: GestureDetector(
         onTap: () async => ref.launch(UrlConfig.academicCalendarUrl),
         child: Container(
+          height: height,
           width: double.infinity,
-          height: 69,
           decoration: BoxDecoration(
             gradient: context.colorTheme.toPwrGradient,
             borderRadius: BorderRadius.circular(8),
@@ -32,13 +38,19 @@ class ExamSessionCountdown extends ConsumerWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(padding: const EdgeInsets.all(16), child: DigitsRow(academicCalendar)),
+              Padding(
+                padding: const EdgeInsets.all(padding),
+                child: Semantics(
+                  label: academicCalendar.daysLeftFromNowString(usePadZeros: false),
+                  child: ExcludeSemantics(child: DigitsRow(academicCalendar)),
+                ),
+              ),
               Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(context.localize.days, style: context.textTheme.headlineWhite),
+                    AutoSizeText(context.localize.days, style: context.textTheme.headlineWhite, maxLines: 1),
                     Padding(
                       padding: const EdgeInsets.only(right: 8),
                       child: Text(

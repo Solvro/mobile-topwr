@@ -224,6 +224,9 @@ flutter:
     - family: IParkingIcons
       fonts:
         - asset: fonts/IParkingIcons.ttf
+    - family: StrategicClubBadges
+      fonts:
+        - asset: fonts/StrategicClubBadges.ttf
     - family: Rubik
       fonts:
         - asset: fonts/rubik/Rubik-Light.ttf
