@@ -5,6 +5,9 @@ import "context_extensions.dart";
 
 DateTime get now => DateTime.now();
 
+/// like [now] but without time
+DateTime get today => DateTime(now.year, now.month, now.day);
+
 extension DateTimeUtilsX on DateTime {
   DateTime findMondayOfTheWeek() {
     final difference = weekday - DateTime.monday;

@@ -34,7 +34,7 @@ extension AcademicDaySwapListX on IList<AcademicDaySwap> {
     final duration = windowDuration ?? const Duration(days: 7);
     final nowPlusWindow = now.add(duration);
     return where(
-      (element) => element.day.isAfter(now) && element.day.isBefore(nowPlusWindow),
+      (element) => (element.day.isAfter(now) && element.day.isBefore(nowPlusWindow)) || element.day.isSameDay(now),
     ).toIList().sort((a, b) => a.day.compareTo(b.day));
   }
 }

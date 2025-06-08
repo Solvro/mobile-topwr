@@ -3085,7 +3085,7 @@
   "@feedback_option_not_supported_for_screen_readers": {
     "description": "information about feedback option that's not supported for screen readers"
   },
-  "incoming_days_changes_days": "{days, plural, =1{1 dzień}  other{{days} dni}}",
+  "incoming_days_changes_days": "{days, plural, =0{Dziś!} =1{1 dzień}  other{{days} dni}}",
   "@incoming_days_changes_days": {
     "description": "Number of days until first change in academic calendar",
     "placeholders": {
