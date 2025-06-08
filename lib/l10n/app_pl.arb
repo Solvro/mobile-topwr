@@ -3335,7 +3335,7 @@
   "@collapsed_screen_reader_label": {
     "description": "Action read for collapsed"
   },
-  "dialog_semantics_label": "Okno dialogowe wyświetlone na środku ekranu. Aby je zamknąć, kliknij podwójnie poza jego obszarem. Zawartość okna to:",
+  "dialog_semantics_label": "Okno dialogowe jest wyświetlone na środku ekranu. Aby je zamknąć, kliknij podwójnie.",
   "@dialog_semantics_label": {
     "description": "Semantics read for dialog"
   },

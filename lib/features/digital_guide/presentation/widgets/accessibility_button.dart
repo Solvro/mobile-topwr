@@ -19,7 +19,7 @@ class AccessibilityButton extends StatelessWidget {
         child: ExcludeSemantics(
           child: OutlinedButton(
             onPressed: () {
-              unawaited(showDialog(context: context, builder: (_) => const AccessibilityDialog()));
+              unawaited(AccessibilityDialog.show(context));
             },
 
             style: OutlinedButton.styleFrom(

@@ -550,7 +550,7 @@
   "building_tile_unselected": "Unselected",
   "expanded_screen_reader_label": "Expanded",
   "collapsed_screen_reader_label": "Collapsed",
-  "dialog_semantics_label": "A dialog window displayed in the center of the screen. Double click outside the dialog to close it. The contents of the window are: ",
+  "dialog_semantics_label": "A dialog window is displayed in the center of the screen. Double click to close it.",
   "version_dialog_semantics_label": "app version: ",
   "legalese_dialog_semantics_label": "legalese info:",
   "fullscreen_image": " - fullscreen",
