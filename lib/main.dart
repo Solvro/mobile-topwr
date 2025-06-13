@@ -8,6 +8,7 @@ import "api_base/cache/remote_flush/presentation/flush_cache_remotely_widget.dar
 import "config/env.dart";
 import "config/ui_config.dart";
 import "config/wiredash.dart";
+import "features/analytics/presentation/umami_navigation_observer.dart";
 import "features/in_app_review/presentation/in_app_review.dart";
 import "features/navigator/app_router.dart";
 import "features/navigator/navigation_stack.dart";
@@ -58,7 +59,9 @@ class MyApp extends ConsumerWidget {
               ),
             ),
             debugShowCheckedModeBanner: false,
-            routerConfig: ref.watch(appRouterProvider).config(navigatorObservers: () => [NavigationObserver(ref)]),
+            routerConfig: ref
+                .watch(appRouterProvider)
+                .config(navigatorObservers: () => [NavigationObserver(ref), UmamiNavigationObserver(ref)]),
           ),
         ),
       ),

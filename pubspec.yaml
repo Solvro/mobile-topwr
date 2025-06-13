@@ -133,6 +133,7 @@ dependencies:
   solvro_translator_with_drift_cache_flutter: ^0.4.2
   solvro_translator_core: ^0.4.2
   sentry_flutter: ^8.14.2
+  umami_tracker: ^0.2.0
 
 dev_dependencies:
   flutter_test:
@@ -162,6 +163,7 @@ dev_dependencies:
 dependency_overrides:
   source_gen: ^2.0.0
   intl: ^0.20.2
+  dio: ^5.8.0+1
   theme_tailor_annotation: # remove this when idiots push a release
     git:
       url: https://github.com/Iteo/theme_tailor.git
