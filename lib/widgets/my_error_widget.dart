@@ -1,4 +1,3 @@
-import "package:firebase_crashlytics/firebase_crashlytics.dart";
 import "package:flutter/material.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
 import "package:logger/logger.dart";
@@ -23,10 +22,6 @@ class MyErrorWidget extends HookWidget {
   @override
   Widget build(BuildContext context) {
     Logger().e(error.toString());
-    useEffect(() {
-      Future.microtask(() async => FirebaseCrashlytics.instance.recordError(error, StackTrace.current));
-      return null;
-    }, [error]);
     return switch (error) {
       ParkingsOfflineException() => const OfflineParkingsView(),
       GqlOfflineException(:final ttlKey) => OfflineGraphQLMessage(ttlKey),
