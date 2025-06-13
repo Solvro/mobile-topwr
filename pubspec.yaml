@@ -107,7 +107,6 @@ dependencies:
   flutter_compass: ^0.8.1
 
   #Firebase
-  firebase_crashlytics: ^4.3.4
   firebase_analytics: ^11.4.4
   firebase_core: ^3.12.1
   firebase_performance: ^0.10.1
@@ -133,6 +132,7 @@ dependencies:
   audioplayers: ^6.2.0
   solvro_translator_with_drift_cache_flutter: ^0.4.2
   solvro_translator_core: ^0.4.2
+  sentry_flutter: ^8.14.2
 
 dev_dependencies:
   flutter_test:
