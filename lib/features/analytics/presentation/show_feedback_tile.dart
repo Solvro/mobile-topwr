@@ -2,11 +2,11 @@ import "package:flutter/material.dart";
 import "package:lottie/lottie.dart";
 import "package:wiredash/wiredash.dart";
 
-import "../../config/ui_config.dart";
-import "../../config/wiredash.dart";
-import "../../gen/assets.gen.dart";
-import "../../utils/context_extensions.dart";
-import "../../widgets/wide_tile_card.dart";
+import "../../../config/ui_config.dart";
+import "../../../config/wiredash.dart";
+import "../../../gen/assets.gen.dart";
+import "../../../utils/context_extensions.dart";
+import "../../../widgets/wide_tile_card.dart";
 
 class ShowFeedbackTile extends StatelessWidget {
   const ShowFeedbackTile({super.key});

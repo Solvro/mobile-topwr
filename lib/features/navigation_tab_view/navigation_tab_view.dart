@@ -5,7 +5,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "../../config/ui_config.dart";
 import "../../theme/app_theme.dart";
 import "../../utils/context_extensions.dart";
-import "../analytics/show_feedback_tile.dart";
+import "../analytics/presentation/show_feedback_tile.dart";
 import "../bottom_nav_bar/bottom_nav_bar_icon_icons.icons.dart";
 import "../home_view/widgets/logo_app_bar.dart";
 import "../in_app_review/business/in_app_rating_service.dart";
