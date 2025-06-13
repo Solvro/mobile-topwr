@@ -3,6 +3,7 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 import "package:umami_tracker/umami_tracker.dart";
 
 import "../../../config/env.dart";
+import "../../navigator/navigation_stack.dart";
 import "umami_events.dart";
 
 part "umami.g.dart";
@@ -14,9 +15,10 @@ Future<UmamiTracker> umami(Ref ref) async {
 
 /// utils extensions
 extension UmamiTrackEventX on WidgetRef {
-  Future<void> trackEvent(UmamiEvents event, {String? value, String? screenName}) async {
+  Future<void> trackEvent(UmamiEvents event, {String? value}) async {
     final umami = await read(umamiProvider.future);
-    await umami.trackEvent(eventType: event.name, eventValue: value, screenName: screenName);
+    final currentRoute = read(currentRouteProvider);
+    await umami.trackEvent(eventType: event.toJson(), eventValue: value, screenName: currentRoute?.settings.name);
   }
 
   Future<void> trackScreen(String screenName, {String? referrer}) async {
