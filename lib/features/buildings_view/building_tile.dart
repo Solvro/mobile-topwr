@@ -9,6 +9,8 @@ import "../../hooks/use_semantics_service_on_changed_value.dart";
 import "../../theme/app_theme.dart";
 import "../../utils/context_extensions.dart";
 import "../../widgets/wide_tile_card.dart";
+import "../analytics/data/umami.dart";
+import "../analytics/data/umami_events.dart";
 import "../navigator/utils/navigation_commands.dart";
 import "controllers.dart";
 import "model/building_model.dart";
@@ -54,6 +56,7 @@ class BuildingTile extends HookConsumerWidget {
                   subtitle: context.changeNull(building.addressFormatted),
                   isActive: isActive,
                   onTap: () {
+                    unawaited(ref.trackEvent(UmamiEvents.selectBuilding, value: building.name));
                     unawaited(ref.read(buildingsMapControllerProvider).onMarkerTap(building));
                   },
                   crossAxisAlignment: CrossAxisAlignment.stretch,

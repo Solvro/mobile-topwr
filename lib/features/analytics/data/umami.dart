@@ -14,7 +14,7 @@ Future<UmamiTracker> umami(Ref ref) async {
 }
 
 /// utils extensions
-extension UmamiTrackEventX on WidgetRef {
+extension UmamiTrackEventWidgetRefX on WidgetRef {
   Future<void> trackEvent(UmamiEvents event, {String? value}) async {
     final umami = await read(umamiProvider.future);
     final currentRoute = read(currentRouteProvider);
@@ -24,5 +24,13 @@ extension UmamiTrackEventX on WidgetRef {
   Future<void> trackScreen(String screenName, {String? referrer}) async {
     final umami = await read(umamiProvider.future);
     await umami.trackScreenView(screenName, referrer: referrer);
+  }
+}
+
+extension UmamiTrackEventRefX on Ref {
+  Future<void> trackEvent(UmamiEvents event, {String? value}) async {
+    final umami = await read(umamiProvider.future);
+    final currentRoute = read(currentRouteProvider);
+    await umami.trackEvent(eventType: event.toJson(), eventValue: value, screenName: currentRoute?.settings.name);
   }
 }

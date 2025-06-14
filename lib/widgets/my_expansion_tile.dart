@@ -10,6 +10,7 @@ class MyExpansionTile extends StatelessWidget {
   final List<Widget> children;
   final Color? backgroundColor;
   final Color? collapsedBackgroundColor;
+  final void Function({bool expanded})? onExpansionChanged;
 
   const MyExpansionTile({
     required this.title,
@@ -17,6 +18,7 @@ class MyExpansionTile extends StatelessWidget {
     this.initiallyExpanded = false,
     this.backgroundColor,
     this.collapsedBackgroundColor,
+    this.onExpansionChanged,
   });
 
   @override
@@ -30,6 +32,7 @@ class MyExpansionTile extends StatelessWidget {
       iconColor: context.colorTheme.orangePomegranade,
       collapsedIconColor: context.colorTheme.orangePomegranade,
       initiallyExpanded: initiallyExpanded,
+      onExpansionChanged: (expanded) => onExpansionChanged?.call(expanded: expanded),
       children: children,
     );
   }

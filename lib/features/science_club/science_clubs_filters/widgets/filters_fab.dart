@@ -1,7 +1,11 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../../theme/app_theme.dart";
+import "../../../analytics/data/umami.dart";
+import "../../../analytics/data/umami_events.dart";
 import "../filters_controller.dart";
 import "../filters_sheet.dart";
 
@@ -14,13 +18,15 @@ class FiltersFAB extends ConsumerWidget {
 
     final parentProvider = ProviderScope.containerOf(context);
     return FloatingActionButton(
-      onPressed:
-          () async => showModalBottomSheet(
-            context: context,
-            constraints: const BoxConstraints(),
-            isScrollControlled: true,
-            builder: (context) => UncontrolledProviderScope(container: parentProvider, child: const FiltersSheet()),
-          ),
+      onPressed: () async {
+        unawaited(ref.trackEvent(UmamiEvents.openSciClubsFilterSheet));
+        await showModalBottomSheet<void>(
+          context: context,
+          constraints: const BoxConstraints(),
+          isScrollControlled: true,
+          builder: (context) => UncontrolledProviderScope(container: parentProvider, child: const FiltersSheet()),
+        );
+      },
       backgroundColor: isActive ? context.colorTheme.orangePomegranade : context.colorTheme.whiteSoap,
       child: Stack(
         children: [

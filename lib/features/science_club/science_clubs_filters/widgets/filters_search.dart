@@ -1,3 +1,5 @@
+import "dart:async";
+
 import "package:anim_search_bar/anim_search_bar.dart";
 import "package:flutter/material.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
@@ -6,6 +8,8 @@ import "package:hooks_riverpod/hooks_riverpod.dart";
 import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
+import "../../../analytics/data/umami.dart";
+import "../../../analytics/data/umami_events.dart";
 import "../filters_search_controller.dart";
 
 class FiltersSearch extends HookConsumerWidget {
@@ -45,6 +49,7 @@ class FiltersSearch extends HookConsumerWidget {
           if (!isExpanded.value) {
             ref.read(searchFiltersControllerProvider.notifier).onTextChanged("");
           }
+          unawaited(ref.trackEvent(UmamiEvents.searchSciClubFilters));
         },
         height: 48,
         clearOnClose: true,

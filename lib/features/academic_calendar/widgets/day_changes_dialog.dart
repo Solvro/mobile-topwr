@@ -1,3 +1,5 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
@@ -5,6 +7,8 @@ import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../utils/datetime_utils.dart";
+import "../../analytics/data/umami.dart";
+import "../../analytics/data/umami_events.dart";
 import "../../digital_guide/tabs/accessibility_dialog/presentation/red_dialog.dart";
 import "../model/academic_calendar_extensions.dart";
 import "../model/academic_week_exception.dart";
@@ -16,7 +20,8 @@ class DayChangesDialog extends ConsumerWidget {
 
   final AcademicCalendar calendar;
 
-  static Future<void> show(BuildContext context, AcademicCalendar calendar) async {
+  static Future<void> show(BuildContext context, AcademicCalendar calendar, WidgetRef ref) async {
+    unawaited(ref.trackEvent(UmamiEvents.openDaySwapAlertDialog));
     return showDialog<void>(context: context, builder: (context) => DayChangesDialog(calendar));
   }
 
