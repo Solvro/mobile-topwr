@@ -52,7 +52,7 @@ class NavigationTabView extends ConsumerWidget {
         ),
         child2: SmallTileCard(
           onTap: () async {
-            await ref.navigateScienceClubs(null);
+            await ref.navigateScienceClubs();
           },
           title: context.localize.student_organizations,
           icon: const Icon(BottomNavBarIcons.sci_clubs_icon, size: 24),
