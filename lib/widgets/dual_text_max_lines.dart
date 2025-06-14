@@ -56,7 +56,7 @@ class DualTextMaxLines extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Text.rich(
-      textScaler: context.textScaler.clamp(maxScaleFactor: 2),
+      textScaler: context.textScaler.clamp(maxScaleFactor: 1.7),
       maxLines: maxTotalLines,
       overflow: TextOverflow.ellipsis,
       DualTextSpan(

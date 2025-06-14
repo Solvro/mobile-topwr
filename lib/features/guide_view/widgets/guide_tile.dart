@@ -15,6 +15,7 @@ class GuideTile extends ConsumerWidget {
       subtitle: item.short_description,
       directusPhotoUrl: item.cover?.filename_disk,
       onTap: () async => ref.navigateGuideDetail(item.id),
+      crossAxisAlignment: CrossAxisAlignment.stretch,
     );
   }
 }

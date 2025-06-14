@@ -37,6 +37,12 @@ abstract class DepartmentsConfig {
     crossAxisSpacing: 16,
     mainAxisSpacing: 16,
   );
+  static const departmentsViewGridDelegateIfScaled = SliverGridDelegateWithMaxCrossAxisExtent(
+    maxCrossAxisExtent: 1200,
+    mainAxisExtent: 184,
+    crossAxisSpacing: 32,
+    mainAxisSpacing: 32,
+  );
 }
 
 abstract class DateChipConfig {

@@ -17,7 +17,10 @@ class GuideGrid extends StatelessWidget {
     }
     return GridView.builder(
       padding: GuideViewConfig.gridPadding,
-      gridDelegate: DepartmentsConfig.departmentsViewGridDelegate,
+      gridDelegate:
+          context.isTextScaledUp
+              ? DepartmentsConfig.departmentsViewGridDelegateIfScaled
+              : DepartmentsConfig.departmentsViewGridDelegate,
       itemCount: children.length,
       itemBuilder: (context, index) => children[index],
     );
