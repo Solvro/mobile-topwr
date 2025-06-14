@@ -15,6 +15,8 @@ import "../../../utils/launch_url_util.dart";
 import "../../../widgets/loading_widgets/scrolable_loader_builder.dart";
 import "../../../widgets/loading_widgets/simple_previews/preview_card_loading.dart";
 import "../../../widgets/zoomable_images.dart";
+import "../../analytics/data/umami.dart";
+import "../../analytics/data/umami_events.dart";
 import "../models/about_us_details.dart";
 import "../models/member_data.dart";
 
@@ -189,6 +191,7 @@ class _Icon extends ConsumerWidget {
       padding: const EdgeInsets.only(right: 11),
       child: GestureDetector(
         onTap: () async {
+          unawaited(ref.trackEvent(UmamiEvents.openTeamMemberLink, value: launchUrl));
           await ref.launch(launchUrl);
         },
         child: SizedBox.square(dimension: 22, child: SvgPicture.asset(icon)),

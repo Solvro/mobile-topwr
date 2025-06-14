@@ -9,6 +9,8 @@ import "../../../../utils/context_extensions.dart";
 import "../../../../widgets/big_preview_card.dart";
 import "../../../../widgets/my_error_widget.dart";
 import "../../../../widgets/subsection_header.dart";
+import "../../../analytics/data/umami.dart";
+import "../../../analytics/data/umami_events.dart";
 import "../../../home_view/widgets/loading_widgets/big_scrollable_section_loading.dart";
 import "../../../home_view/widgets/paddings.dart";
 import "../../../navigator/utils/navigation_commands.dart";
@@ -34,7 +36,7 @@ class DepartmentScienceClubsSection extends ConsumerWidget {
                 title: context.localize.study_circles,
                 actionTitle: context.localize.list,
                 onClick: () async {
-                  unawaited(ref.navigateScienceClub(department?.Departments_by_id?.id));
+                  unawaited(ref.navigateScienceClubs(department?.Departments_by_id?.id));
                 },
               ),
               SizedBox(height: BigPreviewCardConfig.cardHeight, child: _ScienceClubsList(scienceClubs: filtered)),
@@ -68,7 +70,10 @@ class _ScienceClubsList extends ConsumerWidget {
             shortDescription: sciClub.shortDescription ?? "",
             directusUrl:
                 (sciClub.useCoverAsPreviewPhoto ?? false) ? sciClub.cover?.filename_disk : sciClub.logo?.filename_disk,
-            onClick: () async => ref.navigateSciClubsDetail(sciClub.id),
+            onClick: () async {
+              unawaited(ref.trackEvent(UmamiEvents.openSciClubFromDepartmentDetailView, value: sciClub.id));
+              await ref.navigateSciClubsDetail(sciClub.id);
+            },
             showVerifiedBadge: sciClub.source == ScienceClubsViewConfig.source,
             showStrategicBadge: sciClub.isStrategic,
           ),

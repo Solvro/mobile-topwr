@@ -1,3 +1,4 @@
+import "dart:async";
 import "dart:core";
 import "dart:math";
 
@@ -18,6 +19,8 @@ import "../../../../widgets/my_error_widget.dart";
 import "../../../../widgets/my_text_button.dart";
 import "../../../../widgets/technical_message.dart";
 import "../../../../widgets/text_and_url_widget.dart";
+import "../../../analytics/data/umami.dart";
+import "../../../analytics/data/umami_events.dart";
 import "../../sks_people_live/data/repository/latest_sks_user_data_repo.dart";
 import "../../sks_people_live/presentation/widgets/sks_user_data_button.dart";
 import "../data/models/sks_menu_response.dart";
@@ -44,6 +47,7 @@ class SksMenuView extends HookConsumerWidget {
         if (!sksMenuData.isMenuOnline && !isLastMenuButtonClicked.value) {
           return _SKSMenuUnavailableAnimation(
             onShowLastMenuTap: () {
+              unawaited(ref.trackEvent(UmamiEvents.seeOldSksMenu));
               isLastMenuButtonClicked.value = true;
             },
           );

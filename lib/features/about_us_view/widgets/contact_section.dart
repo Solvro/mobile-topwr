@@ -1,3 +1,5 @@
+import "dart:async";
+
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
@@ -8,6 +10,8 @@ import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../utils/determine_contact_icon.dart";
 import "../../../utils/launch_url_util.dart";
+import "../../analytics/data/umami.dart";
+import "../../analytics/data/umami_events.dart";
 
 class ContactSection extends StatelessWidget {
   const ContactSection({super.key, required this.links});
@@ -37,7 +41,10 @@ class _ContactIcon extends ConsumerWidget {
     return Semantics(
       label: "${context.localize.button_leading_to}: ${Uri.parse(url).host}",
       child: GestureDetector(
-        onTap: () async => ref.launch(url),
+        onTap: () async {
+          unawaited(ref.trackEvent(UmamiEvents.openSolvroAboutUsLink, value: url));
+          await ref.launch(url);
+        },
         child: DecoratedBox(
           decoration: BoxDecoration(
             color: context.colorTheme.greyLight,

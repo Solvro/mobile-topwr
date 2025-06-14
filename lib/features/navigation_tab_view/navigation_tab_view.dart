@@ -5,6 +5,8 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "../../config/ui_config.dart";
 import "../../theme/app_theme.dart";
 import "../../utils/context_extensions.dart";
+import "../analytics/data/umami.dart";
+import "../analytics/data/umami_events.dart";
 import "../analytics/presentation/show_feedback_tile.dart";
 import "../bottom_nav_bar/bottom_nav_bar_icon_icons.icons.dart";
 import "../home_view/widgets/logo_app_bar.dart";
@@ -34,7 +36,10 @@ class NavigationTabView extends ConsumerWidget {
           icon: const Icon(BottomNavBarIcons.departments_icon, size: NavigationTabViewConfig.navIconSize),
         ),
         child2: SmallTileCard(
-          onTap: InAppRatingService.requestStoreListingReview,
+          onTap: () async {
+            await ref.trackEvent(UmamiEvents.openLeaveReview);
+            await InAppRatingService.requestStoreListingReview();
+          },
           title: context.localize.leave_a_review,
           icon: Icon(Icons.star, color: context.colorTheme.gold, size: NavigationTabViewConfig.navIconSize),
         ),
@@ -46,7 +51,9 @@ class NavigationTabView extends ConsumerWidget {
           icon: const Icon(Icons.restaurant_menu, size: NavigationTabViewConfig.navIconSize),
         ),
         child2: SmallTileCard(
-          onTap: ref.navigateScienceClubs,
+          onTap: () async {
+            await ref.navigateScienceClubs(null);
+          },
           title: context.localize.student_organizations,
           icon: const Icon(BottomNavBarIcons.sci_clubs_icon, size: 24),
         ),

@@ -9,6 +9,8 @@ import "../../../utils/context_extensions.dart";
 import "../../../utils/launch_url_util.dart";
 import "../../../widgets/my_alert_dialog.dart";
 import "../../../widgets/my_error_widget.dart";
+import "../../analytics/data/umami.dart";
+import "../../analytics/data/umami_events.dart";
 import "../repository/planner_advert_repository.dart";
 import "planer_badge_dialog.dart";
 
@@ -39,9 +41,11 @@ class _BadgeContent extends ConsumerWidget {
       padding: const EdgeInsets.only(right: 12),
       child: OutlinedButton(
         onPressed: () async {
+          unawaited(ref.trackEvent(UmamiEvents.openBannerDialog));
           await showCustomDialog(
             context: context,
             onConfirmTapped: (context) {
+              unawaited(ref.trackEvent(UmamiEvents.goToBannerExternalLink));
               unawaited(ref.launch(data.url!));
               Navigator.pop(context);
             },

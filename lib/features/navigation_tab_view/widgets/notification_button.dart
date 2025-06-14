@@ -1,22 +1,26 @@
 import "dart:async";
 
 import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../config/ui_config.dart";
 import "../../../firebase_init.dart";
 import "../../../theme/app_theme.dart";
 import "../../../widgets/my_splash_tile.dart";
+import "../../analytics/data/umami.dart";
+import "../../analytics/data/umami_events.dart";
 import "notification_dialog.dart";
 
-class NotificationButton extends StatelessWidget {
+class NotificationButton extends ConsumerWidget {
   const NotificationButton({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
       padding: SksConfig.outerPaddingLarge,
       child: MySplashTile(
         onTap: () async {
+          unawaited(ref.trackEvent(UmamiEvents.openNotificationInfoBellDialog));
           await showNotificationDialog(
             context: context,
             onConfirmTapped: (context) {

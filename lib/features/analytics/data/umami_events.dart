@@ -22,6 +22,7 @@ enum UmamiEvents {
   changeLanguage,
   setAccessibilityMode,
   saveAccessibilityModeDialog,
+  closeAccessibilityModeDialog,
   openAccessibilityModeDialog,
   openDaySwapAlertDialog,
   openBannerDialog,
@@ -43,12 +44,13 @@ enum UmamiEvents {
   closeFAQQuestion,
   openNotificationInfoBellDialog,
   searchDepartments,
-  openDirectionOfStudiesLink,
+  openFieldOfStudiesLink,
   openSciClubsFilterSheet,
   clearSciClubFilters,
   seeOldSksMenu,
   openAcademicCalendarExternalLink,
-  openSolvroScienceClubDetailPage;
+  openSolvroScienceClubDetailPage,
+  openDigitalGuideSubscreen;
 
   String toJson() => _$UmamiEventsEnumMap[this]!;
 }

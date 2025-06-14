@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
@@ -83,11 +84,7 @@ class IncomingDayChanges extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          MySplashTile(
-            backgroundColor: Colors.transparent,
-            onTap: () async {
-              await DayChangesDialog.show(context, calendar);
-            },
+          Consumer(
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 8),
               child:
@@ -102,6 +99,14 @@ class IncomingDayChanges extends StatelessWidget {
                       )
                       : Row(spacing: 12, mainAxisAlignment: MainAxisAlignment.center, children: children),
             ),
+            builder:
+                (context, ref, child) => MySplashTile(
+                  backgroundColor: Colors.transparent,
+                  onTap: () async {
+                    await DayChangesDialog.show(context, calendar, ref);
+                  },
+                  child: child ?? const SizedBox.shrink(),
+                ),
           ),
         ],
       ),

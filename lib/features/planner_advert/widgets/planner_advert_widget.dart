@@ -10,6 +10,8 @@ import "../../../utils/launch_url_util.dart";
 import "../../../widgets/loading_widgets/simple_previews/horizontal_rectangular_section_loading.dart";
 import "../../../widgets/my_error_widget.dart";
 import "../../../widgets/technical_message.dart";
+import "../../analytics/data/umami.dart";
+import "../../analytics/data/umami_events.dart";
 import "../repository/planner_advert_repository.dart";
 
 class PlannerAdvertBanner extends ConsumerWidget {
@@ -50,7 +52,13 @@ class _PlannerAdvertBanner extends ConsumerWidget {
             message: data.description,
             alertType: AlertType.info,
             icon: data.url != null ? Icon(Icons.open_in_new_rounded, color: context.colorTheme.whiteSoap) : null,
-            onTap: data.url != null ? () async => unawaited(ref.launch(data.url!)) : null,
+            onTap:
+                data.url != null
+                    ? () async {
+                      unawaited(ref.trackEvent(UmamiEvents.goToBannerExternalLink));
+                      unawaited(ref.launch(data.url!));
+                    }
+                    : null,
             backgoundColor: data.backgroundColor != null ? HexColor(data.backgroundColor!) : null,
             textColor: data.textColor != null ? HexColor(data.textColor!) : null,
             translate: true,
