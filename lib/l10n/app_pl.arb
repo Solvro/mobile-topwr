@@ -3279,6 +3279,18 @@
   "@parking_map_description": {
     "description": "Text read for parking map view description"
   },
+  "guide_view_description": "Widok przewodnika z najważniejszymi artykułami dla studentów Politechniki Wrocławskiej. Na ekranie znajduje się lista artykułów, przewiń w górę, aby wyświetlić więcej.",
+  "@guide_view_description": {
+    "description": "Text read for guide view description"
+  },
+  "guide_detail_view_description": "Widok artykułu ze zdjęciem oraz listą pytań dotyczących tematu.",
+  "@guide_detail_view_description": {
+    "description": "Text read for guide detail view description"
+  },
+  "article_image_semantics_label": "Zdjęcie powiązane z artykułem",
+  "@article_image_semantics_label": {
+    "description": "Text read for article image"
+  },
   "parking_chart_title_screen_reader_label": "Wykres obłożenia parkingów.",
   "@parking_chart_title_screen_reader_label": {
     "description": "Text read for parking chart title"

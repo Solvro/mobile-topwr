@@ -31,13 +31,16 @@ class _GuideView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Scaffold(
-      appBar: SearchBoxAppBar(
-        context,
-        title: context.localize.guide,
-        onQueryChanged: ref.watch(searchGuideControllerProvider.notifier).onTextChanged,
+    return Semantics(
+      label: context.localize.guide_view_description,
+      child: Scaffold(
+        appBar: SearchBoxAppBar(
+          context,
+          title: context.localize.guide,
+          onQueryChanged: ref.watch(searchGuideControllerProvider.notifier).onTextChanged,
+        ),
+        body: const _GuideViewContent(),
       ),
-      body: const _GuideViewContent(),
     );
   }
 }

@@ -27,7 +27,10 @@ class GuideDetailView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: DetailViewAppBar(), body: _GuideDetailDataView(id: id));
+    return Semantics(
+      label: context.localize.guide_detail_view_description,
+      child: Scaffold(appBar: DetailViewAppBar(), body: _GuideDetailDataView(id: id)),
+    );
   }
 }
 
@@ -47,12 +50,16 @@ class _GuideDetailDataView extends ConsumerWidget {
           return CustomScrollView(
             slivers: [
               SliverAppBar(
+                excludeHeaderSemantics: true,
                 expandedHeight: 254,
                 flexibleSpace: Stack(
                   children: [
-                    SizedBox(
-                      height: DetailViewsConfig.imageHeight,
-                      child: ZoomableOptimizedDirectusImage(value.cover?.filename_disk),
+                    Semantics(
+                      label: context.localize.article_image_semantics_label,
+                      child: SizedBox(
+                        height: DetailViewsConfig.imageHeight,
+                        child: ZoomableOptimizedDirectusImage(value.cover?.filename_disk),
+                      ),
                     ),
                     if (lastModifiedDate != null)
                       Positioned(
