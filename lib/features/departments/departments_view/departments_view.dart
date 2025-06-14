@@ -38,7 +38,7 @@ class _DepartmentsView extends ConsumerWidget {
         title: context.localize.departments,
         onQueryChanged: ref.watch(searchDepartmentsControllerProvider.notifier).onTextChanged,
       ),
-      body: const _DepartmentsViewListBody(),
+      body: Semantics(label: context.localize.departments, child: const _DepartmentsViewListBody()),
     );
   }
 }
@@ -68,17 +68,26 @@ class _DepartmentsDataView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     if (departments.isEmpty) {
-      return SearchNotFound(message: context.localize.department_not_found);
+      return Semantics(
+        label: context.localize.department_not_found,
+        child: SearchNotFound(message: context.localize.department_not_found),
+      );
     }
     return GridView.builder(
       padding: const EdgeInsets.only(bottom: 24),
-      gridDelegate: DepartmentsConfig.departmentsViewGridDelegate,
+      gridDelegate:
+          context.isTextScaledUp
+              ? DepartmentsConfig.departmentsViewGridDelegateIfScaled
+              : DepartmentsConfig.departmentsViewGridDelegate,
       itemCount: departments.length,
-      itemBuilder:
-          (context, index) => DepartmentCard(
-            departments[index],
-            onClick: () async => ref.navigateDepartmentDetail(departments[index].id),
-          ),
+      itemBuilder: (context, index) {
+        final department = departments[index];
+        return Semantics(
+          label: department.name,
+          button: true,
+          child: DepartmentCard(department, onClick: () async => ref.navigateDepartmentDetail(department.id)),
+        );
+      },
     );
   }
 }
