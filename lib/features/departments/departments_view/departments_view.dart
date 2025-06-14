@@ -45,7 +45,7 @@ class _DepartmentsView extends ConsumerWidget {
           unawaited(ref.trackEvent(UmamiEvents.searchDepartments));
         },
       ),
-      body: const _DepartmentsViewListBody(),
+      body: Semantics(label: context.localize.departments, child: const _DepartmentsViewListBody()),
     );
   }
 }
@@ -75,17 +75,23 @@ class _DepartmentsDataView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     if (departments.isEmpty) {
-      return SearchNotFound(message: context.localize.department_not_found);
+      return Semantics(
+        label: context.localize.department_not_found,
+        child: SearchNotFound(message: context.localize.department_not_found),
+      );
     }
     return GridView.builder(
       padding: const EdgeInsets.only(bottom: 24),
       gridDelegate: DepartmentsConfig.departmentsViewGridDelegate(context),
       itemCount: departments.length,
-      itemBuilder:
-          (context, index) => DepartmentCard(
-            departments[index],
-            onClick: () async => ref.navigateDepartmentDetail(departments[index].id),
-          ),
+      itemBuilder: (context, index) {
+        final department = departments[index];
+        return Semantics(
+          label: department.name,
+          button: true,
+          child: DepartmentCard(department, onClick: () async => ref.navigateDepartmentDetail(department.id)),
+        );
+      },
     );
   }
 }
