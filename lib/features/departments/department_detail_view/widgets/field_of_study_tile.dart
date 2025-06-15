@@ -28,6 +28,7 @@ class FieldOfStudyTile extends ConsumerWidget {
         },
         crossAxisAlignment: CrossAxisAlignment.center,
         title: item.name,
+        fixedTrailingHeight: false,
         trailing: Row(
           children: <Widget>[
             if (item.isEnglish ?? false) Text("🇬🇧", style: emojiStyle) else Text("🇵🇱", style: emojiStyle),

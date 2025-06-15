@@ -24,6 +24,8 @@ class DepartmentScienceClubsSection extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(scienceClubsRepositoryProvider);
+    const textHeight = 260.0;
+    final cardHeight = BigPreviewCardConfig.cardHeight - textHeight + context.textScaler.scale(textHeight);
     return switch (state) {
       AsyncError(:final error, :final stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
       AsyncValue(:final IList<ScienceClub> value) => Builder(
@@ -39,7 +41,7 @@ class DepartmentScienceClubsSection extends ConsumerWidget {
                   unawaited(ref.navigateScienceClubs(department?.Departments_by_id?.id));
                 },
               ),
-              SizedBox(height: BigPreviewCardConfig.cardHeight, child: _ScienceClubsList(scienceClubs: filtered)),
+              SizedBox(height: cardHeight, child: _ScienceClubsList(scienceClubs: filtered)),
             ],
           );
         },

@@ -42,6 +42,7 @@ class WideTileCard extends StatelessWidget {
     super.key,
     this.showBadge = false,
     this.showStrategicBadge = false,
+    this.fixedTrailingHeight = true,
   });
 
   final String title;
@@ -58,6 +59,7 @@ class WideTileCard extends StatelessWidget {
   final CrossAxisAlignment crossAxisAlignment;
   final bool showBadge;
   final bool showStrategicBadge;
+  final bool fixedTrailingHeight;
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -73,7 +75,10 @@ class WideTileCard extends StatelessWidget {
               boxShadow: isActive ? activeShadows : null,
             ),
             child: SizedBox(
-              height: context.textScaler.clamp(maxScaleFactor: 2).scale(WideTileCardConfig.imageSize),
+              height:
+                  fixedTrailingHeight
+                      ? context.textScaler.clamp(maxScaleFactor: 2).scale(WideTileCardConfig.imageSize)
+                      : null,
               child: Row(
                 crossAxisAlignment: crossAxisAlignment,
                 children: [

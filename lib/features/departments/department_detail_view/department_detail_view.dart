@@ -43,31 +43,50 @@ class DepartmentDetailView extends ConsumerWidget {
             SliverList(
               delegate: SliverChildListDelegate([
                 const SizedBox(height: 8),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
-                  child: Text(
-                    value.Departments_by_id?.name ?? "",
-                    style: context.textTheme.headline,
-                    textAlign: TextAlign.center,
-                    maxLines: 2,
+                Semantics(
+                  header: true,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    child: Text(
+                      value.Departments_by_id?.name ?? "",
+                      style: context.textTheme.headline.copyWith(
+                        fontSize: context.textScaler.scale(context.textTheme.headline.fontSize ?? 24),
+                      ),
+                      textAlign: TextAlign.center,
+                      maxLines: 2,
+                    ),
                   ),
                 ),
                 const SizedBox(height: 12),
-                Text(
-                  value.Departments_by_id?.address?.divideAddressInto3Lines ?? "",
-                  style: context.textTheme.body.copyWith(height: 1.2),
-                  textAlign: TextAlign.center,
+                Semantics(
+                  label: context.localize.no_address,
+                  child: Text(
+                    value.Departments_by_id?.address?.divideAddressInto3Lines ?? "",
+                    style: context.textTheme.body.copyWith(
+                      height: 1.2,
+                      fontSize: context.textScaler.scale(context.textTheme.body.fontSize ?? 16),
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
                 ),
                 const SizedBox(height: DetailViewsConfig.spacerHeight),
-                ContactSection(
-                  title: context.localize.deans_office,
-                  list:
-                      (value.Departments_by_id?.links).whereNonNull
-                          .map((link) => ContactIconsModel(text: link.name, url: link.link))
-                          .toIList(),
+                Semantics(
+                  label: context.localize.deans_office,
+                  child: ContactSection(
+                    title: context.localize.deans_office,
+                    list:
+                        (value.Departments_by_id?.links).whereNonNull
+                            .map((link) => ContactIconsModel(text: link.name, url: link.link))
+                            .toIList(),
+                  ),
                 ),
-                FieldsOfStudySection(fieldsOfStudy: (value.Departments_by_id?.fieldsOfStudies).whereNonNull.toIList()),
-                DepartmentScienceClubsSection(value),
+                Semantics(
+                  label: context.localize.fields_of_study,
+                  child: FieldsOfStudySection(
+                    fieldsOfStudy: (value.Departments_by_id?.fieldsOfStudies).whereNonNull.toIList(),
+                  ),
+                ),
+                Semantics(label: context.localize.scientific_cirlces, child: DepartmentScienceClubsSection(value)),
                 const SizedBox(height: DetailViewsConfig.spacerHeight * 2),
               ]),
             ),

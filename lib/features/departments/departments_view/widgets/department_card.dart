@@ -3,6 +3,7 @@ import "package:flutter/material.dart";
 import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../theme/utils.dart";
+import "../../../../utils/context_extensions.dart";
 import "../../../../widgets/my_cached_image.dart";
 import "../../../../widgets/optimized_directus_image.dart";
 import "../../../../widgets/wide_tile_card.dart";
@@ -30,8 +31,9 @@ class DepartmentCard extends StatelessWidget {
         activeGradient: department.gradient,
         trailing: Padding(
           padding: const EdgeInsets.only(right: 10),
-          child: SizedBox.square(
-            dimension: WideTileCardConfig.imageSize,
+          child: SizedBox(
+            width: WideTileCardConfig.imageSize,
+            height: context.textScaler.scale(WideTileCardConfig.imageSize),
             child: Opacity(
               opacity: .5,
               child: Padding(
