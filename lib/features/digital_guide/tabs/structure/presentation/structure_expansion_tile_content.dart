@@ -23,7 +23,7 @@ class StructureExpansionTileContent extends ConsumerWidget {
     return levelDataAsync.when(
       data: (data) => _StructureExpansionTileContent(digitalGuideResponse: digitalGuideData, levels: data),
       loading: () => const Center(child: CircularProgressIndicator()),
-      error: (error, _) => MyErrorWidget(error),
+      error: (error, stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
     );
   }
 }

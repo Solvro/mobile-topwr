@@ -1,7 +1,11 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../utils/context_extensions.dart";
+import "../../../analytics/data/umami.dart";
+import "../../../analytics/data/umami_events.dart";
 import "../filters_controller.dart";
 import "../filters_search_controller.dart";
 import "../filters_sheet.dart";
@@ -28,7 +32,10 @@ class TypesWrap extends ConsumerWidget {
                   final isSelected = ref.watchContains(selectedTypeControllerProvider, type);
                   return MyFilterChip(
                     label: context.sciClubTypeDisplayName(type),
-                    onTap: () => controller.toggleFilter(type),
+                    onTap: () {
+                      unawaited(ref.trackEvent(UmamiEvents.selectSciClubFilterOrgType, value: type.name));
+                      controller.toggleFilter(type);
+                    },
                     selected: isSelected,
                   );
                 },

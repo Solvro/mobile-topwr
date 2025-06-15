@@ -20,7 +20,7 @@ class AdaptedToiletsExpansionTileContent extends ConsumerWidget {
     return levelsWithToilets.when(
       data: _AdaptedToiletsExpansionTileContent.new,
       loading: () => const Center(child: CircularProgressIndicator()),
-      error: (error, _) => MyErrorWidget(error),
+      error: (error, stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
     );
   }
 }

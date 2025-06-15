@@ -38,7 +38,7 @@ class _ParkingsList extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(parkingsRepositoryProvider);
     return switch (state) {
-      AsyncError(:final error) => MyErrorWidget(error),
+      AsyncError(:final error, :final stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
       AsyncValue(:final IList<Parking> value) => SmallHorizontalPadding(
         child: SizedBox(height: 120, child: _DataListParkingsTiles(value)),
       ),

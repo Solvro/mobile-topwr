@@ -22,7 +22,7 @@ class RoomStairsContent extends ConsumerWidget {
 
     return asyncRoomStairs.when(
       data: (roomStairsData) => _RoomStairsContent(roomStairsResponse: roomStairsData),
-      error: (error, stackTrace) => MyErrorWidget(error),
+      error: (error, stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
       loading: () => const Center(child: CircularProgressIndicator()),
     );
   }

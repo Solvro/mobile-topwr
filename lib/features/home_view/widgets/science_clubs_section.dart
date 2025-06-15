@@ -37,7 +37,7 @@ class _ScienceClubsList extends ConsumerWidget {
     const textHeight = 260.0;
     final cardHeight = BigPreviewCardConfig.cardHeight - textHeight + context.textScaler.scale(textHeight);
     return switch (state) {
-      AsyncError(:final error) => MyErrorWidget(error),
+      AsyncError(:final error, :final stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
       AsyncValue(:final IList<ScienceClub> value) => SmallHorizontalPadding(
         child: SizedBox(height: cardHeight, child: _ScienceClubsDataList(value)),
       ),

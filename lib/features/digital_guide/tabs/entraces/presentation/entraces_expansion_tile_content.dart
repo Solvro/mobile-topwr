@@ -21,7 +21,7 @@ class EntrancesExpansionTileContent extends ConsumerWidget {
     return entrances.when(
       data: _EntrancesExpansionTileContent.new,
       loading: () => const Center(child: CircularProgressIndicator()),
-      error: (error, _) => MyErrorWidget(error),
+      error: (error, stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
     );
   }
 }

@@ -30,7 +30,10 @@ class DoorView extends ConsumerWidget {
     return asyncDoors.when(
       data: (data) => _DoorsView(door: data),
       error: (error, stackTrace) {
-        return HorizontalSymmetricSafeAreaScaffold(appBar: DetailViewAppBar(), body: MyErrorWidget(error));
+        return HorizontalSymmetricSafeAreaScaffold(
+          appBar: DetailViewAppBar(),
+          body: MyErrorWidget(error, stackTrace: stackTrace),
+        );
       },
       loading: () {
         return const DigitalGuideLoadingView();

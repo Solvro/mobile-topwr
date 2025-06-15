@@ -1,3 +1,5 @@
+import "dart:async";
+
 import "package:auto_route/auto_route.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
@@ -10,6 +12,8 @@ import "../../utils/context_extensions.dart";
 import "../../utils/launch_url_util.dart";
 import "../../widgets/search_box_app_bar.dart";
 import "../../widgets/wide_tile_card.dart";
+import "../analytics/data/umami.dart";
+import "../analytics/data/umami_events.dart";
 import "../departments/departments_view/widgets/departments_view_loading.dart";
 import "guide_view_controller.dart";
 import "repository/guide_repository.dart";
@@ -38,6 +42,9 @@ class _GuideView extends ConsumerWidget {
           context,
           title: context.localize.guide,
           onQueryChanged: ref.watch(searchGuideControllerProvider.notifier).onTextChanged,
+          onSearchBoxTap: () {
+            unawaited(ref.trackEvent(UmamiEvents.searchGuideArticles));
+          },
         ),
         body: const _GuideViewContent(),
       ),
@@ -53,7 +60,7 @@ class _GuideViewContent extends ConsumerWidget {
     final guideList = ref.watch(guideListControllerProvider);
 
     return switch (guideList) {
-      AsyncError(:final error) => MyErrorWidget(error),
+      AsyncError(:final error, :final stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
       AsyncValue(:final IList<GuidePost> value) => GuideGrid(
         children:
             [

@@ -1,8 +1,8 @@
-import "package:firebase_crashlytics/firebase_crashlytics.dart";
 import "package:flutter/material.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
 import "package:logger/logger.dart";
 import "package:lottie/lottie.dart";
+import "package:sentry_flutter/sentry_flutter.dart";
 
 import "../api_base/query_adapter.dart";
 import "../api_base_rest/client/offline_error.dart";
@@ -16,17 +16,21 @@ import "../theme/app_theme.dart";
 import "../utils/context_extensions.dart";
 
 class MyErrorWidget extends HookWidget {
-  const MyErrorWidget(this.error, {super.key});
+  const MyErrorWidget(this.error, {required this.stackTrace, super.key});
 
   final Object? error;
+  final StackTrace? stackTrace;
 
   @override
   Widget build(BuildContext context) {
-    Logger().e(error.toString());
     useEffect(() {
-      Future.microtask(() async => FirebaseCrashlytics.instance.recordError(error, StackTrace.current));
+      if (error != null) {
+        Logger().e(error.toString(), stackTrace: stackTrace);
+        Future.microtask(() async => Sentry.captureException(error, stackTrace: stackTrace));
+      }
       return null;
-    }, [error]);
+    }, [error, stackTrace]);
+
     return switch (error) {
       ParkingsOfflineException() => const OfflineParkingsView(),
       GqlOfflineException(:final ttlKey) => OfflineGraphQLMessage(ttlKey),

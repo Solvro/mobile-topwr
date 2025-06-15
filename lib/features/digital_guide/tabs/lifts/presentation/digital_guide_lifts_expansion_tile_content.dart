@@ -19,7 +19,7 @@ class DigitalGuideLiftExpansionTileContent extends ConsumerWidget {
     final levelsWithLifts = ref.watch(getLevelWithLiftsUseCaseProvider(digitalGuideResponse));
     return levelsWithLifts.when(
       data: (data) => _DigitalGuideLiftExpansionTileContent(levelsWithLifts: data),
-      error: (error, _) => MyErrorWidget(error),
+      error: (error, stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
       loading: () => const Center(child: CircularProgressIndicator()),
     );
   }

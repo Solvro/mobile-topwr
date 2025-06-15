@@ -22,10 +22,10 @@ class ParkingChart extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final chartData = ref.watch(chartRepositoryProvider(parking));
     return switch (chartData) {
-      AsyncError(:final error) => Material(
+      AsyncError(:final error, :final stackTrace) => Material(
         borderRadius: const BorderRadius.all(WideTileCardConfig.radius),
         color: context.colorTheme.greyLight.withValues(alpha: 0.8),
-        child: MyErrorWidget(error),
+        child: MyErrorWidget(error, stackTrace: stackTrace),
       ),
       AsyncValue(:final IList<ChartPoint> value) =>
         value.isEmpty

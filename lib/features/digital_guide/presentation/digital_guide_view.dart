@@ -43,7 +43,10 @@ class DigitalGuideView extends ConsumerWidget {
         return _DigitalGuideView(data.digitalGuideData, data.photoUrl, building);
       },
       error: (error, stackTrace) {
-        return HorizontalSymmetricSafeAreaScaffold(appBar: DetailViewAppBar(), body: MyErrorWidget(error));
+        return HorizontalSymmetricSafeAreaScaffold(
+          appBar: DetailViewAppBar(),
+          body: MyErrorWidget(error, stackTrace: stackTrace),
+        );
       },
       loading: () {
         return const DigitalGuideLoadingView();

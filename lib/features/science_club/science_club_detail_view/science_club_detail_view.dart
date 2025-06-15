@@ -43,7 +43,7 @@ class _SciClubDetailDataView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(scienceClubDetailsRepositoryProvider(id));
     return switch (state) {
-      AsyncError(:final error) => MyErrorWidget(error),
+      AsyncError(:final error, :final stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
       AsyncValue(:final ScienceClubDetails value) => CustomScrollView(
         slivers: [
           SliverPersistentHeader(

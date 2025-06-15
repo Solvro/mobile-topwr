@@ -20,7 +20,9 @@ class MicronavigationExpansionTileContent extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    if (digitalGuideData.externalId == null) return MyErrorWidget(context.localize.no_micro_navigation);
+    if (digitalGuideData.externalId == null) {
+      return MyErrorWidget(context.localize.no_micro_navigation, stackTrace: StackTrace.current);
+    }
 
     final asyncMicronavigationData = ref.watch(getMicronavigationDataProvider(digitalGuideData.externalId!));
 
@@ -28,7 +30,7 @@ class MicronavigationExpansionTileContent extends ConsumerWidget {
       data:
           (micronavigationDataList) =>
               _MicronavigationExpansionTileContent(micronavigationResponses: micronavigationDataList),
-      error: (error, stackTrace) => MyErrorWidget(error),
+      error: (error, stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
       loading: () => const Center(child: CircularProgressIndicator()),
     );
   }

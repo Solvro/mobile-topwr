@@ -1,3 +1,5 @@
+import "dart:async";
+
 import "package:auto_route/auto_route.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
@@ -9,6 +11,8 @@ import "../../../widgets/horizontal_symmetric_safe_area.dart";
 import "../../../widgets/my_error_widget.dart";
 import "../../../widgets/search_box_app_bar.dart";
 import "../../../widgets/search_not_found.dart";
+import "../../analytics/data/umami.dart";
+import "../../analytics/data/umami_events.dart";
 import "../../navigator/utils/navigation_commands.dart";
 import "departments_view_controllers.dart";
 import "repository/departments_repository.dart";
@@ -37,6 +41,9 @@ class _DepartmentsView extends ConsumerWidget {
         context,
         title: context.localize.departments,
         onQueryChanged: ref.watch(searchDepartmentsControllerProvider.notifier).onTextChanged,
+        onSearchBoxTap: () {
+          unawaited(ref.trackEvent(UmamiEvents.searchDepartments));
+        },
       ),
       body: const _DepartmentsViewListBody(),
     );
@@ -52,7 +59,7 @@ class _DepartmentsViewListBody extends ConsumerWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: switch (state) {
-        AsyncError(:final error) => MyErrorWidget(error),
+        AsyncError(:final error, :final stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
         AsyncValue(:final IList<Department> value) => _DepartmentsDataView(value),
         _ => const DepartmentsViewLoading(),
       },

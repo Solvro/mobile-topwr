@@ -32,8 +32,10 @@ class RegionView extends ConsumerWidget {
     return regionDataAsync.when(
       data: (regionData) => _RegionView(level: level, region: region, regionData: regionData),
       error:
-          (error, stackTrace) =>
-              Scaffold(appBar: DetailViewAppBar(actions: [AccessibilityButton()]), body: MyErrorWidget(error)),
+          (error, stackTrace) => Scaffold(
+            appBar: DetailViewAppBar(actions: [AccessibilityButton()]),
+            body: MyErrorWidget(error, stackTrace: stackTrace),
+          ),
       loading: () => const Center(child: ShimmeringEffect(child: ColoredBox(color: Colors.white))),
     );
   }

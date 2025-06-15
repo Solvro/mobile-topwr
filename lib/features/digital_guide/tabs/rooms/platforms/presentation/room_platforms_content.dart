@@ -22,7 +22,7 @@ class RoomPlatformsContent extends ConsumerWidget {
 
     return asyncRoomPlatforms.when(
       data: (roomPlatformsData) => _RoomPlatformsContent(roomPlatformsResponse: roomPlatformsData),
-      error: (error, stackTrace) => MyErrorWidget(error),
+      error: (error, stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
       loading: () => const Center(child: CircularProgressIndicator()),
     );
   }

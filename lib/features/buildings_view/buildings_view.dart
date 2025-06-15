@@ -8,6 +8,8 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "../../config/map_view_config.dart";
 import "../../gen/assets.gen.dart";
 import "../../utils/context_extensions.dart";
+import "../analytics/data/umami.dart";
+import "../analytics/data/umami_events.dart";
 import "../map_view/map_view.dart";
 import "building_tile.dart";
 import "controllers.dart";
@@ -32,6 +34,7 @@ class BuildingsView extends ConsumerWidget {
             point: item.location,
             child: GestureDetector(
               onTap: () {
+                unawaited(ref.trackEvent(UmamiEvents.selectBuilding, value: item.name));
                 unawaited(ref.read(buildingsMapControllerProvider).onMarkerTap(item));
               },
               child: Image.asset(

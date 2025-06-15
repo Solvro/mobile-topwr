@@ -35,7 +35,7 @@ class _BuildingsList extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(buildingsRepositoryProvider);
     return switch (state) {
-      AsyncError(:final error) => MyErrorWidget(error),
+      AsyncError(:final error, :final stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
       AsyncValue(:final IList<BuildingModel> value) => SmallHorizontalPadding(
         child: MediumBottomPadding(child: SizedBox(height: 120, child: _DataListBuildingsTiles(value))),
       ),

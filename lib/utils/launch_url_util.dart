@@ -6,6 +6,8 @@ import "package:logger/logger.dart";
 import "package:url_launcher/url_launcher.dart";
 
 import "../config/url_config.dart";
+import "../features/analytics/data/umami.dart";
+import "../features/analytics/data/umami_events.dart";
 import "../features/navigator/utils/navigation_commands.dart";
 import "../theme/colors.dart";
 import "context_extensions.dart";
@@ -25,6 +27,10 @@ extension LaunchUrlUtilX on WidgetRef? {
     }
     final uri = Uri.parse(uriStr);
     if (await canLaunchUrl(uri)) {
+      unawaited(this?.trackEvent(UmamiEvents.goToExternalLink, value: uriStr));
+      if (uri.host.contains("dostepnosc.pwr.edu.pl")) {
+        unawaited(this?.trackEvent(UmamiEvents.openExternalAccessibilityDeclarationWebsite, value: uriStr));
+      }
       return launchUrl(uri);
     }
 

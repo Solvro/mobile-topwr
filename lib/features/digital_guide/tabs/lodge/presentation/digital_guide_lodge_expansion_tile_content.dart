@@ -23,7 +23,7 @@ class DigitalGuideLodgeExpansionTileContent extends ConsumerWidget {
     final lodgeResponse = ref.watch(lodgesRepositoryProvider(digitalGuideResponse));
     return lodgeResponse.when(
       data: (data) => _DigitalGuideLodgeExpansionTileContent(lodge: data.firstOrNull),
-      error: (error, _) => MyErrorWidget(error),
+      error: (error, stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
       loading: () => const Center(child: CircularProgressIndicator()),
     );
   }

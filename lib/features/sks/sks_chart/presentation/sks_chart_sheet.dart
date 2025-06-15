@@ -32,7 +32,7 @@ class SksChartSheet extends ConsumerWidget {
     final sheetHeight = useFiltersSheetHeight(context, prefferedHeightFactor: screenWidth > 400 ? .72 : .84);
 
     return switch (asyncChartData) {
-      AsyncError(:final error) => MyErrorWidget(error),
+      AsyncError(:final error, :final stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
       AsyncLoading() => _SksChartLoading(sheetHeight: sheetHeight),
       AsyncValue() => HorizontalSymmetricSafeArea(
         child: SizedBox(

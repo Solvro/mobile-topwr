@@ -34,4 +34,10 @@ abstract class Env {
   static final String translateApiUrl = _Env.translateApiUrl;
   @EnviedField()
   static final String translateApiToken = _Env.translateApiToken;
+  @EnviedField()
+  static final String bugsinkDsn = _Env.bugsinkDsn;
+  @EnviedField()
+  static final String umamiUrl = _Env.umamiUrl;
+  @EnviedField()
+  static final String umamiId = _Env.umamiId;
 }
