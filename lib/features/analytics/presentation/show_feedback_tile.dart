@@ -32,7 +32,7 @@ class ShowFeedbackTile extends ConsumerWidget {
           trailing: Lottie.asset(
             Assets.animations.bug,
             width: WideTileCardConfig.imageSize,
-            height: WideTileCardConfig.imageSize,
+            height: context.textScaler.scale(WideTileCardConfig.imageSize),
             animate: true,
             repeat: true,
             renderCache: RenderCache.drawingCommands,

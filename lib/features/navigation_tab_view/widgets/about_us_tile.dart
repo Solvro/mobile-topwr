@@ -15,6 +15,7 @@ class AboutUsTile extends ConsumerWidget {
     return Theme(
       data: context.defaultThemeWithOverrideTextStyles(title: context.textTheme.titleOrange),
       child: PhotoTrailingWideTileCard(
+        context,
         title: context.localize.guide_about_us,
         subtitle: context.localize.guide_meet_creators,
         directusPhotoUrl: "",

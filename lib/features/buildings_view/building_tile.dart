@@ -49,6 +49,7 @@ class BuildingTile extends HookConsumerWidget {
               button: true,
               child: ExcludeSemantics(
                 child: PhotoTrailingWideTileCard(
+                  context,
                   activeGradient: context.colorTheme.toPwrGradient,
                   directusPhotoUrl: building.cover?.filename_disk,
                   title:

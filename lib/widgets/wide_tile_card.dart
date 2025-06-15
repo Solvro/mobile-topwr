@@ -7,7 +7,8 @@ import "../utils/context_extensions.dart";
 import "optimized_directus_image.dart";
 
 class PhotoTrailingWideTileCard extends WideTileCard {
-  PhotoTrailingWideTileCard({
+  PhotoTrailingWideTileCard(
+    BuildContext context, {
     String? directusPhotoUrl,
     required super.title,
     super.subtitle,
@@ -19,8 +20,9 @@ class PhotoTrailingWideTileCard extends WideTileCard {
     super.crossAxisAlignment,
     BoxFit boxFit = BoxFit.cover,
   }) : super(
-         trailing: SizedBox.square(
-           dimension: WideTileCardConfig.imageSize,
+         trailing: SizedBox(
+           height: context.textScaler.scale(WideTileCardConfig.imageSize),
+           width: WideTileCardConfig.imageSize,
            child: OptimizedDirectusImage(directusPhotoUrl, boxFit: boxFit),
          ),
        );

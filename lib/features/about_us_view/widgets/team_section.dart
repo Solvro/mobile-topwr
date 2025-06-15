@@ -162,8 +162,9 @@ class _TeamMemberCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               ExcludeSemantics(
-                child: SizedBox.square(
-                  dimension: AboutUsConfig.photoSize,
+                child: SizedBox(
+                  height: context.textScaler.scale(AboutUsConfig.photoSize),
+                  width: AboutUsConfig.photoSize,
                   child: ZoomableOptimizedDirectusImage(member.directusImageUrl),
                 ),
               ),
@@ -194,7 +195,10 @@ class _Icon extends ConsumerWidget {
           unawaited(ref.trackEvent(UmamiEvents.openTeamMemberLink, value: launchUrl));
           await ref.launch(launchUrl);
         },
-        child: SizedBox.square(dimension: 22, child: SvgPicture.asset(icon)),
+        child: SizedBox.square(
+          dimension: context.textScaler.clamp(maxScaleFactor: 2).scale(22),
+          child: SvgPicture.asset(icon),
+        ),
       ),
     );
   }
@@ -215,7 +219,13 @@ class _Description extends StatelessWidget {
         const Spacer(flex: 4),
         Text(name, style: context.aboutUsTheme.headlineSmaller, softWrap: true),
         const SizedBox(height: 4),
-        Text(subtitle, style: context.aboutUsTheme.bodySmaller, softWrap: true),
+        Text(
+          subtitle,
+          style: context.aboutUsTheme.bodySmaller,
+          softWrap: true,
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+        ),
         const Spacer(flex: 5),
         Row(
           children: [

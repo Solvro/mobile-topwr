@@ -11,6 +11,7 @@ class GuideTile extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return PhotoTrailingWideTileCard(
+      context,
       title: item.name ?? "",
       subtitle: item.short_description,
       directusPhotoUrl: item.cover?.filename_disk,
