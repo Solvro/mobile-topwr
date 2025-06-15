@@ -1,3 +1,4 @@
+import "package:flutter/foundation.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:flutter_umami/flutter_umami.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
@@ -13,7 +14,13 @@ part "umami.g.dart";
 @Riverpod(keepAlive: true)
 Future<UmamiCollector> umami(Ref ref) async {
   final locale = await ref.watch(preferredLanguageRepositoryProvider.future) ?? SolvroLocale.pl;
-  return FlutterUmami.create(url: Env.umamiUrl, id: Env.umamiId, hostname: "com.solvro.topwr", locale: locale.name);
+  return FlutterUmami.create(
+    url: Env.umamiUrl,
+    id: Env.umamiId,
+    hostname: "com.solvro.topwr",
+    locale: locale.name,
+    isEnabled: !kDebugMode,
+  );
 }
 
 /// utils extensions

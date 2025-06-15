@@ -1,3 +1,4 @@
+import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:flutter_umami/flutter_umami.dart";
@@ -25,11 +26,19 @@ import "theme/colors.dart";
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SplashScreenController.preserveNativeSplashScreen();
-  await SentryFlutter.init((options) {
-    options.dsn = Env.bugsinkDsn;
-    options.sendDefaultPii = true;
-    options.tracesSampleRate = 0;
-  }, appRunner: () => runApp(const ProviderScope(child: SplashScreen(child: MyApp()))));
+  if (kDebugMode) {
+    runToPWR();
+  } else {
+    await SentryFlutter.init((options) {
+      options.dsn = Env.bugsinkDsn;
+      options.sendDefaultPii = true;
+      options.tracesSampleRate = 0;
+    }, appRunner: runToPWR);
+  }
+}
+
+void runToPWR() {
+  return runApp(const ProviderScope(child: SplashScreen(child: MyApp())));
 }
 
 class MyApp extends ConsumerWidget {
