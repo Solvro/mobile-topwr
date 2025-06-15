@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 
 import "../features/parkings/parking_chart/utils/range_hour_points.dart";
 import "../theme/hex_color.dart";
+import "../utils/context_extensions.dart";
 
 abstract class MyAppConfig {
   static const title = "ToPWR";
@@ -31,18 +32,13 @@ abstract class DepartmentsConfig {
   static const listSeparatorSize = 16.0;
   static const logoMicroPadding = 10.0;
 
-  static const departmentsViewGridDelegate = SliverGridDelegateWithMaxCrossAxisExtent(
-    maxCrossAxisExtent: 600,
-    mainAxisExtent: 92,
-    crossAxisSpacing: 16,
-    mainAxisSpacing: 16,
-  );
-  static const departmentsViewGridDelegateIfScaled = SliverGridDelegateWithMaxCrossAxisExtent(
-    maxCrossAxisExtent: 1200,
-    mainAxisExtent: 184,
-    crossAxisSpacing: 32,
-    mainAxisSpacing: 32,
-  );
+  static SliverGridDelegateWithMaxCrossAxisExtent departmentsViewGridDelegate(BuildContext context) =>
+      SliverGridDelegateWithMaxCrossAxisExtent(
+        maxCrossAxisExtent: context.textScaler.scale(600),
+        mainAxisExtent: context.textScaler.scale(92),
+        crossAxisSpacing: context.textScaler.scale(16),
+        mainAxisSpacing: context.textScaler.scale(16),
+      );
 }
 
 abstract class DateChipConfig {

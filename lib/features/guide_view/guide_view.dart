@@ -87,9 +87,10 @@ class _GuideInfo extends ConsumerWidget {
     return WideTileCard(
       title: context.localize.hi_student,
       subtitle: context.localize.guide_ideas_info,
-      trailing: SizedBox.square(
-        dimension: WideTileCardConfig.imageSize,
-        child: Icon(Icons.lightbulb_outline, size: 55, color: context.colorTheme.greyPigeon),
+      trailing: SizedBox(
+        height: context.textScaler.scale(WideTileCardConfig.imageSize),
+        width: WideTileCardConfig.imageSize,
+        child: Icon(Icons.lightbulb_outline, size: context.textScaler.scale(55), color: context.colorTheme.greyPigeon),
       ),
       onTap: () async {
         await ref.launch(emailLaunchUri.toString());

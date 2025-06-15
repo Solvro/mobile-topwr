@@ -79,7 +79,7 @@ class _DepartmentsDataView extends ConsumerWidget {
     }
     return GridView.builder(
       padding: const EdgeInsets.only(bottom: 24),
-      gridDelegate: DepartmentsConfig.departmentsViewGridDelegate,
+      gridDelegate: DepartmentsConfig.departmentsViewGridDelegate(context),
       itemCount: departments.length,
       itemBuilder:
           (context, index) => DepartmentCard(
