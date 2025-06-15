@@ -21,7 +21,7 @@ class PlannerAdvertBanner extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(plannerAdvertContentRepositoryProvider);
     return switch (state) {
-      AsyncError(:final error) => MyErrorWidget(error),
+      AsyncError(:final error, :final stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
       AsyncValue(:final PlannerAdvertContent value) => _PlannerAdvertBanner(value),
       _ => const Padding(
         padding: EdgeInsets.only(top: HomeViewConfig.paddingMedium),

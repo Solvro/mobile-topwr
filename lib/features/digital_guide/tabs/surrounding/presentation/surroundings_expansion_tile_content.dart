@@ -25,7 +25,7 @@ class SurroundingsExpansionTileContent extends ConsumerWidget {
 
     return asyncSurroundingData.when(
       data: (surroundingData) => _SurroundingExpansionTileContent(surroundingResponse: surroundingData),
-      error: (error, stackTrace) => MyErrorWidget(error),
+      error: (error, stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
       loading: () => const Center(child: CircularProgressIndicator()),
     );
   }

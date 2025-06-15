@@ -22,7 +22,7 @@ class ScienceClubsList extends ConsumerWidget {
       padding: const EdgeInsets.symmetric(horizontal: ScienceClubsViewConfig.mediumPadding),
       child: switch (state) {
         AsyncValue(:final IList<ScienceClub> value) => _ScienceClubsListView(value),
-        AsyncError(:final error) => MyErrorWidget(error),
+        AsyncError(:final error, :final stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
         _ => const ScienceClubsViewLoading(),
       },
     );

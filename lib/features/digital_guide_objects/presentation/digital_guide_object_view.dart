@@ -43,7 +43,10 @@ class DigitalGuideObjectView extends ConsumerWidget {
         return _DigitalGObjectView(data.digitalGuideData, data.photoUrl, building);
       },
       error: (error, stackTrace) {
-        return HorizontalSymmetricSafeAreaScaffold(appBar: DetailViewAppBar(), body: MyErrorWidget(error));
+        return HorizontalSymmetricSafeAreaScaffold(
+          appBar: DetailViewAppBar(),
+          body: MyErrorWidget(error, stackTrace: stackTrace),
+        );
       },
       loading: () => const DigitalGuideLoadingView(),
     );

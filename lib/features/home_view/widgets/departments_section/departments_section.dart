@@ -26,7 +26,7 @@ class DepartmentsSection extends ConsumerWidget {
         ),
         SmallHorizontalPadding(
           child: switch (state) {
-            AsyncError(:final error) => MyErrorWidget(error),
+            AsyncError(:final error, :final stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
             AsyncValue(:final IList<Department> value) => SizedBox(height: 120, child: _DepartmentsDataList(value)),
             _ => const MediumLeftPadding(child: ScrollableSectionLoading()),
           },

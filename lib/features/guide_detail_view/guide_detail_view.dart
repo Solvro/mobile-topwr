@@ -43,7 +43,7 @@ class _GuideDetailDataView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(guideDetailsRepositoryProvider(id));
     return switch (state) {
-      AsyncError(:final error) => MyErrorWidget(error),
+      AsyncError(:final error, :final stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
       AsyncValue(:final GuideDetails value) => Builder(
         builder: (context) {
           final lastModifiedDate = context.getTheLatesUpdatedDateGuide(questions: value.questions);

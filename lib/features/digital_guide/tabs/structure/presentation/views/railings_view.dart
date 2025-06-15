@@ -30,7 +30,10 @@ class RailingsView extends ConsumerWidget {
     return asyncRailing.when(
       data: (data) => _RailingsView(railing: data),
       error: (error, stackTrace) {
-        return HorizontalSymmetricSafeAreaScaffold(appBar: DetailViewAppBar(), body: MyErrorWidget(error));
+        return HorizontalSymmetricSafeAreaScaffold(
+          appBar: DetailViewAppBar(),
+          body: MyErrorWidget(error, stackTrace: stackTrace),
+        );
       },
       loading: () {
         return const DigitalGuideLoadingView();

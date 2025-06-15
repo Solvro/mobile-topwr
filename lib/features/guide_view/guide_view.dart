@@ -60,7 +60,7 @@ class _GuideViewContent extends ConsumerWidget {
     final guideList = ref.watch(guideListControllerProvider);
 
     return switch (guideList) {
-      AsyncError(:final error) => MyErrorWidget(error),
+      AsyncError(:final error, :final stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
       AsyncValue(:final IList<GuidePost> value) => GuideGrid(
         children:
             [

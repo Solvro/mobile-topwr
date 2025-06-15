@@ -23,7 +23,7 @@ class DigitalGuideDressingRoomsExpansionTileContent extends ConsumerWidget {
     final dressingRoomsResponse = ref.watch(dressingRoomsRepositoryProvider(digitalGuideResponse));
     return dressingRoomsResponse.when(
       data: (data) => _DigitalGuideDressingRoomsExpansionTileContent(dressingRoom: data.firstOrNull),
-      error: (error, _) => MyErrorWidget(error),
+      error: (error, stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
       loading: () => const Center(child: CircularProgressIndicator()),
     );
   }

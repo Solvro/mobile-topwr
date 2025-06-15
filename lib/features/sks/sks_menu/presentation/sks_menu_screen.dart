@@ -57,7 +57,7 @@ class SksMenuView extends HookConsumerWidget {
       error:
           (error, stackTrace) => HorizontalSymmetricSafeAreaScaffold(
             appBar: DetailViewAppBar(actions: const [SksUserDataButton()]),
-            body: MyErrorWidget(error),
+            body: MyErrorWidget(error, stackTrace: stackTrace),
           ),
       loading: () => HorizontalSymmetricSafeAreaScaffold(body: const Center(child: SksMenuViewLoading())),
     );

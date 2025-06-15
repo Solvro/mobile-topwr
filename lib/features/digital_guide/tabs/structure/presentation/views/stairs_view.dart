@@ -36,7 +36,7 @@ class StairsView extends ConsumerWidget {
       error: (error, stackTrace) {
         return HorizontalSymmetricSafeAreaScaffold(
           appBar: DetailViewAppBar(actions: [AccessibilityButton()]),
-          body: MyErrorWidget(error),
+          body: MyErrorWidget(error, stackTrace: stackTrace),
         );
       },
       data: (data) => _StairsView(stairs: data),

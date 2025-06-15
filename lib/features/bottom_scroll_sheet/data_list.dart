@@ -19,7 +19,9 @@ class DataSliverList<T extends GoogleNavigable> extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final itemsState = ref.watch(context.mapDataController<T>());
     return switch (itemsState) {
-      AsyncError(:final error) => SliverToBoxAdapter(child: MyErrorWidget(error)),
+      AsyncError(:final error, :final stackTrace) => SliverToBoxAdapter(
+        child: MyErrorWidget(error, stackTrace: stackTrace),
+      ),
       AsyncValue(:final IList<T> value) => _DataSliverList<T>(value),
       _ => const DataListLoading(),
     };

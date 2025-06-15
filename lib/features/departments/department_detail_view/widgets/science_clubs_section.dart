@@ -25,7 +25,7 @@ class DepartmentScienceClubsSection extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(scienceClubsRepositoryProvider);
     return switch (state) {
-      AsyncError(:final error) => MyErrorWidget(error),
+      AsyncError(:final error, :final stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
       AsyncValue(:final IList<ScienceClub> value) => Builder(
         builder: (context) {
           final filtered =

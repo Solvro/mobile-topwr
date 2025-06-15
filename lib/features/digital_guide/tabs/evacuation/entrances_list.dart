@@ -27,7 +27,7 @@ class EntrancesList extends ConsumerWidget {
             itemCount: entrancesData.length,
             shrinkWrap: true,
           ),
-      error: (error, stackTrace) => MyErrorWidget(error),
+      error: (error, stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
       loading: () => const Center(child: CircularProgressIndicator()),
     );
   }

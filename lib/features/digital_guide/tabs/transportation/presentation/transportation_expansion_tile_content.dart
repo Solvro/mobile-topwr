@@ -20,7 +20,7 @@ class TransportationExpansionTileContent extends ConsumerWidget {
 
     return asyncTransportationData.when(
       data: (data) => _TransportationExpansionTileContent(transportation: data, building: digitalGuideData.id),
-      error: (error, stackTrace) => MyErrorWidget(error),
+      error: (error, stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
       loading: () => const Center(child: CircularProgressIndicator()),
     );
   }

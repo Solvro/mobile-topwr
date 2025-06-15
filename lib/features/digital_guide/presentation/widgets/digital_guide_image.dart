@@ -22,7 +22,7 @@ class DigitalGuideImage extends ConsumerWidget {
               zoomable
                   ? ZoomableCachedImage(url, semanticsLabel: semanticsLabel)
                   : MyCachedImage(url, semanticsLabel: semanticsLabel),
-      error: (error, stackTrace) => MyErrorWidget(error),
+      error: (error, stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
       loading: () => Center(child: ShimmeringEffect(child: Container(color: Colors.white))),
     );
   }

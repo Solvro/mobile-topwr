@@ -59,7 +59,7 @@ class _DepartmentsViewListBody extends ConsumerWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: switch (state) {
-        AsyncError(:final error) => MyErrorWidget(error),
+        AsyncError(:final error, :final stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
         AsyncValue(:final IList<Department> value) => _DepartmentsDataView(value),
         _ => const DepartmentsViewLoading(),
       },

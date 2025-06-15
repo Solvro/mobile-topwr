@@ -19,7 +19,7 @@ class DigitalGuideRoomExpansionTileContent extends ConsumerWidget {
     final levelsWithRooms = ref.watch(getLevelsWithRoomsUseCaseProvider(digitalGuideResponse));
     return levelsWithRooms.when(
       data: (data) => _DigitalGuideRoomExpansionTileContent(levelsWithRooms: data),
-      error: (error, _) => MyErrorWidget(error),
+      error: (error, stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
       loading: () => const Center(child: CircularProgressIndicator()),
     );
   }

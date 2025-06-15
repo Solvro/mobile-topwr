@@ -17,9 +17,9 @@ class AcademicCalendarConsumer extends ConsumerWidget {
     final state = ref.watch(academicCalendarRepoProvider);
 
     return switch (state) {
-      AsyncError(:final error) => Padding(
+      AsyncError(:final error, :final stackTrace) => Padding(
         padding: const EdgeInsets.only(top: HomeViewConfig.paddingSmall),
-        child: MyErrorWidget(error),
+        child: MyErrorWidget(error, stackTrace: stackTrace),
       ),
       AsyncValue(:final AcademicCalendar value) => Column(
         mainAxisSize: MainAxisSize.min,
