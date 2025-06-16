@@ -13,7 +13,7 @@ part "tags_repository.g.dart";
 
 @riverpod
 Future<IList<Tag>> tagsRepository(Ref ref) async {
-  const endpoint = "/student_organizations?tags=true";
+  const endpoint = "/student_organization_tags";
   final apiUrl = Env.mainRestApiUrl;
 
   final response =
@@ -28,12 +28,5 @@ Future<IList<Tag>> tagsRepository(Ref ref) async {
           )
           .castAsObject;
 
-  final tags =
-      response.data
-          .expand<Tag>((club) => club.tags?.cast<Tag>() ?? const Iterable.empty())
-          .cast<Tag>()
-          .toSet()
-          .toList()
-          .toIList();
-  return tags;
+  return response.data;
 }
