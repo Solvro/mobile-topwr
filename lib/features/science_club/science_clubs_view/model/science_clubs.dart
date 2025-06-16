@@ -12,9 +12,16 @@ part "science_clubs.g.dart";
 part "science_clubs.translatable.g.dart";
 
 @JsonEnum(fieldRename: FieldRename.snake)
-enum ScienceClubStatus { active, archived }
+enum ScienceClubStatus { active, archived, unknown }
 
-enum ScienceClubSource { manualEntry, activeWebSource, studentDepartmentSource }
+@JsonEnum(fieldRename: FieldRename.snake)
+enum ScienceClubSource {
+  @JsonValue("manual")
+  manualEntry,
+  @JsonValue("pwr_active")
+  pwrActiveWebsite,
+  studentDepartment,
+}
 
 @freezed
 @Translatable(makeFieldsTranslatableByDefault: false)

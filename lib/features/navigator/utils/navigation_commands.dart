@@ -1,6 +1,7 @@
 import "dart:async";
 
 import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:logger/logger.dart";
 
 import "../../../utils/launch_url_util.dart";
 import "../../analytics/data/umami.dart";
@@ -243,6 +244,7 @@ extension NavigationX on WidgetRef {
       ExternalDigitalGuideMode.webUrl => launch(building.externalDigitalGuideIdOrUrl!),
       ExternalDigitalGuideMode.digitalGuideBuilding => navigateDigitalGuide(building.id, building),
       ExternalDigitalGuideMode.otherDigitalGuidePlace => navigateDigitalGuideObject(building.id, building),
+      null => Logger().w("ExternalDigitalGuideMode is null, but used navigateBuildingDetailAction"),
     };
   }
 }

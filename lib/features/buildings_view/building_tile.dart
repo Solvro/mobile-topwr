@@ -61,12 +61,12 @@ class BuildingTile extends HookConsumerWidget {
                 ),
               ),
             ),
-            if (building.externalDigitalGuideIdOrUrl != null)
+            if (building.externalDigitalGuideIdOrUrl != null && building.externalDigitalGuideMode != null)
               Positioned(
                 top: context.textScaler.scale(2),
                 right: WideTileCardConfig.imageSize + context.textScaler.scale(2),
                 child: IconButton(
-                  tooltip: switch (building.externalDigitalGuideMode) {
+                  tooltip: switch (building.externalDigitalGuideMode!) {
                     ExternalDigitalGuideMode.digitalGuideBuilding ||
                     ExternalDigitalGuideMode.otherDigitalGuidePlace => context.localize.navigate_to_digital_guide,
                     ExternalDigitalGuideMode.webUrl =>
@@ -82,7 +82,7 @@ class BuildingTile extends HookConsumerWidget {
                     _ => null,
                   },
                   icon: Icon(
-                    switch (building.externalDigitalGuideMode) {
+                    switch (building.externalDigitalGuideMode!) {
                       ExternalDigitalGuideMode.webUrl =>
                         building.externalDigitalGuideIdOrUrl!.startsWith(UrlConfig.topwrUrl)
                             ? Icons.info

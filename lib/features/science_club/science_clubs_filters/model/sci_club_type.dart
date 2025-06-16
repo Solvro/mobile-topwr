@@ -9,31 +9,31 @@ part "sci_club_type.g.dart";
 
 @JsonEnum(fieldRename: FieldRename.snake, alwaysCreate: true)
 enum ScienceClubType {
-  scientificCirlce,
-  culturalAgenda,
+  scientificClub,
+  cultureAgenda,
   studentOrganization,
   studentCouncil,
-  studentMedia;
+  studentMedium;
 
   String? toJson() => _$ScienceClubTypeEnumMap[this];
 }
 
 extension GetDisplayNameX on BuildContext {
   String sciClubTypeDisplayName(ScienceClubType it) => switch (it) {
-    ScienceClubType.scientificCirlce => localize.scientific_cirlces,
-    ScienceClubType.culturalAgenda => localize.cultural_agendas,
+    ScienceClubType.scientificClub => localize.scientific_cirlces,
+    ScienceClubType.cultureAgenda => localize.cultural_agendas,
     ScienceClubType.studentOrganization => localize.student_organizations,
-    ScienceClubType.studentMedia => localize.student_medias,
+    ScienceClubType.studentMedium => localize.student_medias,
     ScienceClubType.studentCouncil => localize.student_councils,
   };
 }
 
 extension GetDisplayNameRefX on Ref {
   String sciClubTypeDisplayName(ScienceClubType it) => switch (it) {
-    ScienceClubType.scientificCirlce => read(watchLocaleProvider).scientific_cirlces,
-    ScienceClubType.culturalAgenda => read(watchLocaleProvider).cultural_agendas,
+    ScienceClubType.scientificClub => read(watchLocaleProvider).scientific_cirlces,
+    ScienceClubType.cultureAgenda => read(watchLocaleProvider).cultural_agendas,
     ScienceClubType.studentOrganization => read(watchLocaleProvider).student_organizations,
-    ScienceClubType.studentMedia => read(watchLocaleProvider).student_medias,
+    ScienceClubType.studentMedium => read(watchLocaleProvider).student_medias,
     ScienceClubType.studentCouncil => read(watchLocaleProvider).student_councils,
   };
 }

@@ -17,22 +17,22 @@ extension LocalizeAcademicDayX on AcademicDay {
     if (isExamSession) return weekday.localizeExamSession(context);
     return isEven
         ? switch (weekday) {
-          WeekdayEnum.mon => context.localize.even_monday_declined,
-          WeekdayEnum.tue => context.localize.even_tuesday_declined,
-          WeekdayEnum.wed => context.localize.even_wednesday_declined,
-          WeekdayEnum.thu => context.localize.even_thursday_declined,
-          WeekdayEnum.fri => context.localize.even_friday_declined,
-          WeekdayEnum.sat => context.localize.even_saturday_declined,
-          WeekdayEnum.sun => context.localize.even_sunday_declined,
+          WeekdayEnum.monday => context.localize.even_monday_declined,
+          WeekdayEnum.tuesday => context.localize.even_tuesday_declined,
+          WeekdayEnum.wednesday => context.localize.even_wednesday_declined,
+          WeekdayEnum.thursday => context.localize.even_thursday_declined,
+          WeekdayEnum.friday => context.localize.even_friday_declined,
+          WeekdayEnum.saturday => context.localize.even_saturday_declined,
+          WeekdayEnum.sunday => context.localize.even_sunday_declined,
         }
         : switch (weekday) {
-          WeekdayEnum.mon => context.localize.odd_monday_declined,
-          WeekdayEnum.tue => context.localize.odd_tuesday_declined,
-          WeekdayEnum.wed => context.localize.odd_wednesday_declined,
-          WeekdayEnum.thu => context.localize.odd_thursday_declined,
-          WeekdayEnum.fri => context.localize.odd_friday_declined,
-          WeekdayEnum.sat => context.localize.odd_saturday_declined,
-          WeekdayEnum.sun => context.localize.odd_sunday_declined,
+          WeekdayEnum.monday => context.localize.odd_monday_declined,
+          WeekdayEnum.tuesday => context.localize.odd_tuesday_declined,
+          WeekdayEnum.wednesday => context.localize.odd_wednesday_declined,
+          WeekdayEnum.thursday => context.localize.odd_thursday_declined,
+          WeekdayEnum.friday => context.localize.odd_friday_declined,
+          WeekdayEnum.saturday => context.localize.odd_saturday_declined,
+          WeekdayEnum.sunday => context.localize.odd_sunday_declined,
         };
   }
 
@@ -49,49 +49,49 @@ extension LocalizeAcademicDayX on AcademicDay {
 extension LocalizeWeekDayX on WeekdayEnum {
   String localizeEven(BuildContext context) {
     return switch (this) {
-      WeekdayEnum.mon => context.localize.even_monday,
-      WeekdayEnum.tue => context.localize.even_tuesday,
-      WeekdayEnum.wed => context.localize.even_wednesday,
-      WeekdayEnum.thu => context.localize.even_thursday,
-      WeekdayEnum.fri => context.localize.even_friday,
-      WeekdayEnum.sat => context.localize.even_saturday,
-      WeekdayEnum.sun => context.localize.even_sunday,
+      WeekdayEnum.monday => context.localize.even_monday,
+      WeekdayEnum.tuesday => context.localize.even_tuesday,
+      WeekdayEnum.wednesday => context.localize.even_wednesday,
+      WeekdayEnum.thursday => context.localize.even_thursday,
+      WeekdayEnum.friday => context.localize.even_friday,
+      WeekdayEnum.saturday => context.localize.even_saturday,
+      WeekdayEnum.sunday => context.localize.even_sunday,
     };
   }
 
   String localizeOdd(BuildContext context) {
     return switch (this) {
-      WeekdayEnum.mon => context.localize.odd_monday,
-      WeekdayEnum.tue => context.localize.odd_tuesday,
-      WeekdayEnum.wed => context.localize.odd_wednesday,
-      WeekdayEnum.thu => context.localize.odd_thursday,
-      WeekdayEnum.fri => context.localize.odd_friday,
-      WeekdayEnum.sat => context.localize.odd_saturday,
-      WeekdayEnum.sun => context.localize.odd_sunday,
+      WeekdayEnum.monday => context.localize.odd_monday,
+      WeekdayEnum.tuesday => context.localize.odd_tuesday,
+      WeekdayEnum.wednesday => context.localize.odd_wednesday,
+      WeekdayEnum.thursday => context.localize.odd_thursday,
+      WeekdayEnum.friday => context.localize.odd_friday,
+      WeekdayEnum.saturday => context.localize.odd_saturday,
+      WeekdayEnum.sunday => context.localize.odd_sunday,
     };
   }
 
   String localizeHoliday(BuildContext context) {
     return switch (this) {
-      WeekdayEnum.mon => context.localize.holiday_monday,
-      WeekdayEnum.tue => context.localize.holiday_tuesday,
-      WeekdayEnum.wed => context.localize.holiday_wednesday,
-      WeekdayEnum.thu => context.localize.holiday_thursday,
-      WeekdayEnum.fri => context.localize.holiday_friday,
-      WeekdayEnum.sat => context.localize.holiday_saturday,
-      WeekdayEnum.sun => context.localize.holiday_sunday,
+      WeekdayEnum.monday => context.localize.holiday_monday,
+      WeekdayEnum.tuesday => context.localize.holiday_tuesday,
+      WeekdayEnum.wednesday => context.localize.holiday_wednesday,
+      WeekdayEnum.thursday => context.localize.holiday_thursday,
+      WeekdayEnum.friday => context.localize.holiday_friday,
+      WeekdayEnum.saturday => context.localize.holiday_saturday,
+      WeekdayEnum.sunday => context.localize.holiday_sunday,
     };
   }
 
   String localizeExamSession(BuildContext context) {
     return switch (this) {
-      WeekdayEnum.mon => context.localize.exam_monday,
-      WeekdayEnum.tue => context.localize.exam_tuesday,
-      WeekdayEnum.wed => context.localize.exam_wednesday,
-      WeekdayEnum.thu => context.localize.exam_thursday,
-      WeekdayEnum.fri => context.localize.exam_friday,
-      WeekdayEnum.sat => context.localize.exam_saturday,
-      WeekdayEnum.sun => context.localize.exam_sunday,
+      WeekdayEnum.monday => context.localize.exam_monday,
+      WeekdayEnum.tuesday => context.localize.exam_tuesday,
+      WeekdayEnum.wednesday => context.localize.exam_wednesday,
+      WeekdayEnum.thursday => context.localize.exam_thursday,
+      WeekdayEnum.friday => context.localize.exam_friday,
+      WeekdayEnum.saturday => context.localize.exam_saturday,
+      WeekdayEnum.sunday => context.localize.exam_sunday,
     };
   }
 }
