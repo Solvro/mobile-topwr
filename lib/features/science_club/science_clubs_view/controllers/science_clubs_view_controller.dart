@@ -53,7 +53,7 @@ Future<IList<ScienceClub>> scienceClubsListController(Ref ref) async {
 
   final selectedDepartments = ref.watch(selectedDepartmentControllerProvider).map((it) => it.name);
 
-  final selectedTypes = ref.watch(selectedTypeControllerProvider).map((it) => it.toJson());
+  final selectedTypes = ref.watch(selectedTypeControllerProvider);
 
   final filteredByTypes =
       selectedTypes.isEmpty ? sciClubs : sciClubs.where((club) => selectedTypes.contains(club.organizationType));

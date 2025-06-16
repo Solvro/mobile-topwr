@@ -3,7 +3,7 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "../../../../features/buildings_view/model/building_model.dart";
+import "../../../../features/buildings_view/model/building.dart";
 import "../about_us_view/about_us_view.dart";
 import "../buildings_view/buildings_view.dart";
 import "../departments/department_detail_view/presentation/department_detail_view.dart";

@@ -21,7 +21,6 @@ abstract class AcademicCalendar with _$AcademicCalendar {
     required bool isFirstWeekEven,
     required DateTime createdAt,
     required DateTime updatedAt,
-    int? exceptionsLookupFutureWindowInDays,
   }) = _AcademicCalendar;
 
   factory AcademicCalendar.fromJson(Map<String, dynamic> json) => _$AcademicCalendarFromJson(json);

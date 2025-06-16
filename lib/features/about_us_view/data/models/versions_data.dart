@@ -1,6 +1,5 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
-
 part "versions_data.freezed.dart";
 part "versions_data.g.dart";
 

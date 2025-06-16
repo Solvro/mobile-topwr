@@ -5,7 +5,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "../../../../config/ui_config.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../widgets/my_expansion_tile.dart";
-import "../../../buildings_view/model/building_model.dart";
+import "../../../buildings_view/model/building.dart";
 import "../../data/models/digital_guide_response.dart";
 import "../../data/models/level_with_regions.dart";
 import "../../data/models/optional_tiles_data.dart";
@@ -32,7 +32,7 @@ class DigitalGuideFeaturesSection extends ConsumerWidget {
   const DigitalGuideFeaturesSection({required this.digitalGuideData, required this.building});
 
   final DigitalGuideResponse digitalGuideData;
-  final BuildingModel building;
+  final Building building;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
