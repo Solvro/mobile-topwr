@@ -32,7 +32,7 @@ abstract class Building with _$Building implements GoogleNavigable {
     required String addressLine2,
     required double latitude,
     required double longitude,
-    required ExternalDigitalGuideMode externalDigitalGuideMode,
+    required ExternalDigitalGuideMode? externalDigitalGuideMode,
     required String? externalDigitalGuideIdOrUrl,
     required ImageData? cover,
   }) = _Building;
