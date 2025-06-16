@@ -58,13 +58,13 @@ extension SortBySourceTypeX on Iterable<ScienceClub> {
     final solvro = firstWhereOrNull((element) => element.isSolvro);
     final manualSourceWithPhotos = _filterByType(ScienceClubSource.manualEntry).withLogo().toList()..shuffle();
     final manualSourceWithoutPhotos = _filterByType(ScienceClubSource.manualEntry).withoutLogo().toList()..shuffle();
-    final activeWebSourceWithPhotos = _filterByType(ScienceClubSource.activeWebSource).withLogo().toList()..shuffle();
+    final activeWebSourceWithPhotos = _filterByType(ScienceClubSource.pwrActiveWebsite).withLogo().toList()..shuffle();
     final activeWebSourceWithoutPhotos =
-        _filterByType(ScienceClubSource.activeWebSource).withoutLogo().toList()..shuffle();
+        _filterByType(ScienceClubSource.pwrActiveWebsite).withoutLogo().toList()..shuffle();
     final studentDepartmentSourceWithPhotos =
-        _filterByType(ScienceClubSource.studentDepartmentSource).withLogo().toList()..shuffle();
+        _filterByType(ScienceClubSource.studentDepartment).withLogo().toList()..shuffle();
     final studentDepartmentSourceWithoutPhotos =
-        _filterByType(ScienceClubSource.studentDepartmentSource).withoutLogo().toList()..shuffle();
+        _filterByType(ScienceClubSource.studentDepartment).withoutLogo().toList()..shuffle();
 
     return [
       if (solvro != null) solvro,
