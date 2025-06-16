@@ -13,7 +13,7 @@ import "../analytics/data/umami_events.dart";
 import "../map_view/map_view.dart";
 import "building_tile.dart";
 import "controllers.dart";
-import "model/building_model.dart";
+import "model/building.dart";
 
 @RoutePage()
 class BuildingsView extends ConsumerWidget {
@@ -26,7 +26,7 @@ class BuildingsView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return MapView<BuildingModel>(
+    return MapView<Building>(
       mapViewTexts: (emptyList: context.localize.building_not_found, title: context.localize.buildings_title),
       initialActiveItemId: initialActiveItemId,
       animateListTiles: true,

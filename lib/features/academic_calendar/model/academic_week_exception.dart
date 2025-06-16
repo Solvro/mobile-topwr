@@ -6,13 +6,12 @@ import "academic_calendar.dart";
 import "academic_calendar_extensions.dart";
 import "academic_day.dart";
 import "day_swap_model.dart";
-import "weekday_enum.dart";
 
 extension ExceptionDaySwapX on DaySwapData {
   AcademicDay academicDay(AcademicCalendar calendarData) {
     return AcademicDay(
       isEven: changedDayIsEven,
-      weekday: WeekdayEnum.fromJson(changedWeekday),
+      weekday: changedWeekday,
       isExamSession: calendarData.isExamSession(date),
       isHolidays: calendarData.isHolidays(date),
     );

@@ -13,7 +13,7 @@ import "../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../../widgets/horizontal_symmetric_safe_area.dart";
 import "../../../widgets/my_error_widget.dart";
 import "../../../widgets/zoomable_images.dart";
-import "../../buildings_view/model/building_model.dart";
+import "../../buildings_view/model/building.dart";
 import "../data/models/digital_guide_response.dart";
 import "../data/repository/digital_guide_repository.dart";
 import "widgets/accessibility_button.dart";
@@ -29,7 +29,7 @@ class DigitalGuideView extends ConsumerWidget {
   const DigitalGuideView({@PathParam("id") required this.ourId, required this.building});
 
   final String ourId;
-  final BuildingModel building;
+  final Building building;
 
   static String localizedOfflineMessage(BuildContext context) {
     return context.localize.my_offline_error_message(context.localize.digital_guide_offline);
@@ -60,7 +60,7 @@ class _DigitalGuideView extends ConsumerWidget {
 
   final DigitalGuideResponse digitalGuideData;
   final String? photoUrl;
-  final BuildingModel building;
+  final Building building;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

@@ -5,7 +5,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../widgets/my_error_widget.dart";
 import "../../../../widgets/subsection_header.dart";
-import "../../../buildings_view/model/building_model.dart";
+import "../../../buildings_view/model/building.dart";
 import "../../../buildings_view/repository/buildings_repository.dart";
 import "../../../navigator/utils/navigation_commands.dart";
 import "../loading_widgets/scrollable_section_loading.dart";
@@ -36,7 +36,7 @@ class _BuildingsList extends ConsumerWidget {
     final state = ref.watch(buildingsRepositoryProvider);
     return switch (state) {
       AsyncError(:final error, :final stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
-      AsyncValue(:final IList<BuildingModel> value) => SmallHorizontalPadding(
+      AsyncValue(:final IList<Building> value) => SmallHorizontalPadding(
         child: MediumBottomPadding(child: SizedBox(height: 120, child: _DataListBuildingsTiles(value))),
       ),
       _ => const MediumLeftPadding(child: ScrollableSectionLoading()),
@@ -47,7 +47,7 @@ class _BuildingsList extends ConsumerWidget {
 class _DataListBuildingsTiles extends ConsumerWidget {
   const _DataListBuildingsTiles(this.buildings);
 
-  final IList<BuildingModel> buildings;
+  final IList<Building> buildings;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -71,14 +71,14 @@ class _DataListBuildingsTiles extends ConsumerWidget {
 class _BuildMapItemCard extends StatelessWidget {
   const _BuildMapItemCard({required this.mapItem, required this.ref});
 
-  final BuildingModel mapItem;
+  final Building mapItem;
   final WidgetRef ref;
 
   @override
   Widget build(BuildContext context) {
     return BuildingCard(
       buildingName: mapItem.name,
-      directusImageUrl: mapItem.coverUrl,
+      directusImageUrl: mapItem.cover?.url,
       onTap: () async => ref.navigateBuilding(mapItem),
     );
   }

@@ -5,10 +5,11 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../../api_base_rest/cache/cache.dart";
 import "../../../../api_base_rest/client/json.dart";
+import "../../../../api_base_rest/translations/translate.dart";
 import "../../../../config/env.dart";
 import "../../../../config/ttl_config.dart";
 import "../../about_us_view.dart";
-import "../models/about_us.dart";
+import "../../bussiness/models.dart";
 import "../models/about_us_data.dart";
 import "../models/team_members_data.dart";
 import "../models/versions_data.dart";
@@ -24,7 +25,7 @@ Future<AboutUs> aboutUsRepository(Ref ref) async {
 
   final responses = await Future.wait([
     ref
-        .getAndCacheData(
+        .getAndCacheDataWithTranslation(
           apiUrl + aboutUsEndpoint,
           TtlStrategy.get(TtlKey.aboutUsRepository).inDays,
           AboutUsDataResponse.fromJson,
@@ -34,7 +35,7 @@ Future<AboutUs> aboutUsRepository(Ref ref) async {
         )
         .castAsObject,
     ref
-        .getAndCacheData(
+        .getAndCacheDataWithTranslation(
           apiUrl + teamMembersEndpoint,
           TtlStrategy.get(TtlKey.aboutUsRepository).inDays,
           TeamMembersDataResponse.fromJson,
@@ -59,20 +60,20 @@ Future<AboutUs> aboutUsRepository(Ref ref) async {
   final teamMembersResponse = responses[1] as TeamMembersDataResponse;
   final versionsResponse = responses[2] as VersionsDataResponse;
 
-  return AboutUs(
+  return (
     description: aboutUsResponse.data.aboutUsDetails.description,
     photoUrl: aboutUsResponse.data.aboutUsDetails.coverPhoto.url,
     socialLinks: aboutUsResponse.data.socialLinks.map((socialLink) => socialLink.url).toIList(),
     multiversionTeam:
         versionsResponse.data
             .map(
-              (version) => MultiversionTeam(
+              (version) => (
                 versionName: version.name,
                 members:
                     teamMembersResponse.data
                         .where((member) => member.milestones.any((milestone) => milestone.id == version.milestoneId))
                         .map((member) {
-                          return TeamMember(
+                          return (
                             teamMemberName: member.name,
                             imageUrl: member.image.url,
                             subtitleForMilestone:

@@ -43,7 +43,7 @@ extension AcademicCalendarDataX on AcademicCalendar {
 }
 
 extension AcademicCalendarX on AcademicCalendarWithSwaps {
-  Duration get windowDuration => Duration(days: data.exceptionsLookupFutureWindowInDays ?? 7);
+  Duration get windowDuration => const Duration(days: 7); // TODO(simon-the-shark): kick Konrad in the ass
 
   AcademicDay? get academicDayToday {
     if (daySwaps.isTodayAnException) {

@@ -75,7 +75,7 @@ class _ScienceClubsList extends ConsumerWidget {
               unawaited(ref.trackEvent(UmamiEvents.openSciClubFromDepartmentDetailView, value: sciClub.id.toString()));
               await ref.navigateSciClubsDetail(sciClub);
             },
-            showVerifiedBadge: sciClub.source == ScienceClubsViewConfig.source,
+            showVerifiedBadge: sciClub.source == ScienceClubSource.manualEntry,
             showStrategicBadge: sciClub.isStrategic,
           ),
         );

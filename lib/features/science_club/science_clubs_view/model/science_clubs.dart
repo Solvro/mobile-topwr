@@ -1,61 +1,47 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
+import "package:solvro_translator_core/solvro_translator_core.dart";
+
+import "../../../../api_base_rest/shared_models/simple_url.dart";
+import "../../../departments/departments_view/data/models/department.dart";
+import "../../science_clubs_filters/model/sci_club_type.dart";
+import "../../science_clubs_filters/model/tags.dart";
 
 part "science_clubs.freezed.dart";
 part "science_clubs.g.dart";
+part "science_clubs.translatable.g.dart";
+
+@JsonEnum(fieldRename: FieldRename.snake)
+enum ScienceClubStatus { active, archived }
+
+enum ScienceClubSource { manualEntry, activeWebSource, studentDepartmentSource }
 
 @freezed
-abstract class ScienceClub with _$ScienceClub {
-  const factory ScienceClub({
-    required int id,
-    required String name,
-    required String organizationStatus,
-    required String source,
-    required String organizationType,
-    required bool coverPreview,
-    required bool isStrategic,
-    IList<TagsData>? tags,
-    LogoData? logo,
-    CoverData? cover,
-    String? shortDescription,
-    Department? department,
-  }) = _ScienceClub;
+@Translatable(makeFieldsTranslatableByDefault: false)
+abstract class ScienceClubsResponse with _$ScienceClubsResponse, _$ScienceClubsResponseTranslatable {
+  const factory ScienceClubsResponse({@translatableField required IList<ScienceClub> data}) = _ScienceClubsResponse;
 
-  factory ScienceClub.fromJson(Map<String, dynamic> json) => _$ScienceClubFromJson(json);
-}
-
-@freezed
-abstract class ScienceClubsResponse with _$ScienceClubsResponse {
-  const factory ScienceClubsResponse({required IList<ScienceClub> data}) = _ScienceClubsResponse;
+  const ScienceClubsResponse._();
 
   factory ScienceClubsResponse.fromJson(Map<String, dynamic> json) => _$ScienceClubsResponseFromJson(json);
 }
 
 @freezed
-abstract class Department with _$Department {
-  const factory Department({required int id, required String name, required String code, required String betterCode}) =
-      _Department;
+abstract class ScienceClub with _$ScienceClub {
+  const factory ScienceClub({
+    required int id,
+    @translatableField required String name,
+    required ScienceClubStatus organizationStatus,
+    required ScienceClubSource source,
+    required ScienceClubType organizationType,
+    required bool coverPreview,
+    required bool isStrategic,
+    @translatableField IList<Tag>? tags,
+    SimpleUrl? logo,
+    SimpleUrl? cover,
+    @translatableField String? shortDescription,
+    @translatableField Department? department,
+  }) = _ScienceClub;
 
-  factory Department.fromJson(Map<String, dynamic> json) => _$DepartmentFromJson(json);
-}
-
-@freezed
-abstract class TagsData with _$TagsData {
-  const factory TagsData({required String tag}) = _TagsData;
-
-  factory TagsData.fromJson(Map<String, dynamic> json) => _$TagsDataFromJson(json);
-}
-
-@freezed
-abstract class LogoData with _$LogoData {
-  const factory LogoData({required String id, required String url}) = _LogoData;
-
-  factory LogoData.fromJson(Map<String, dynamic> json) => _$LogoDataFromJson(json);
-}
-
-@freezed
-abstract class CoverData with _$CoverData {
-  const factory CoverData({required String id, required String url}) = _CoverData;
-
-  factory CoverData.fromJson(Map<String, dynamic> json) => _$CoverDataFromJson(json);
+  factory ScienceClub.fromJson(Map<String, dynamic> json) => _$ScienceClubFromJson(json);
 }

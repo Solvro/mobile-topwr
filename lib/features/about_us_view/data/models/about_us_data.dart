@@ -1,15 +1,19 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
+import "package:solvro_translator_core/solvro_translator_core.dart";
 
 import "../../../../api_base_rest/shared_models/image_data.dart";
 import "../../../../api_base_rest/shared_models/social_links_data.dart";
 
 part "about_us_data.freezed.dart";
 part "about_us_data.g.dart";
+part "about_us_data.translatable.g.dart";
 
 @freezed
-abstract class AboutUsDataResponse with _$AboutUsDataResponse {
+@translatable
+abstract class AboutUsDataResponse with _$AboutUsDataResponse, _$AboutUsDataResponseTranslatable {
   const factory AboutUsDataResponse({required AboutUsData data}) = _AboutUsDataResponse;
+  const AboutUsDataResponse._();
   factory AboutUsDataResponse.fromJson(Map<String, dynamic> json) => _$AboutUsDataResponseFromJson(json);
 }
 

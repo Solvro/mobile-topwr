@@ -17,7 +17,7 @@ import "../../../widgets/loading_widgets/simple_previews/preview_card_loading.da
 import "../../../widgets/zoomable_images.dart";
 import "../../analytics/data/umami.dart";
 import "../../analytics/data/umami_events.dart";
-import "../data/models/about_us.dart";
+import "../bussiness/models.dart";
 
 class TeamSection extends HookWidget {
   const TeamSection({super.key, required this.multiversionTeam});

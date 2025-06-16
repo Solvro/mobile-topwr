@@ -3,8 +3,8 @@ import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "../../../../api_base_rest/cache/cache.dart";
 import "../../../../api_base_rest/client/json.dart";
+import "../../../../api_base_rest/translations/translate.dart";
 import "../../../../config/env.dart";
 import "../../../../config/ttl_config.dart";
 import "../model/science_clubs.dart";
@@ -19,7 +19,7 @@ Future<IList<ScienceClub>> scienceClubsRepository(Ref ref) async {
 
   final response =
       await ref
-          .getAndCacheData(
+          .getAndCacheDataWithTranslation(
             apiUrl + scienceClubsEndpoint,
             TtlStrategy.get(TtlKey.scienceClubsRepository).inDays,
             ScienceClubsResponse.fromJson,
@@ -32,7 +32,7 @@ Future<IList<ScienceClub>> scienceClubsRepository(Ref ref) async {
   return response.data
       .whereType<ScienceClub>()
       .map((club) => club)
-      .where((club) => club.organizationStatus.toScienceClubStatus != ScienceClubStatus.archived)
+      .where((club) => club.organizationStatus != ScienceClubStatus.archived)
       .sortBySourceTypes()
       .toIList();
 }
@@ -42,7 +42,7 @@ extension IsSolvroX on ScienceClub {
 }
 
 extension SortBySourceTypeX on Iterable<ScienceClub> {
-  Iterable<ScienceClub> _filterByType(String source, {bool includeSolvro = false}) {
+  Iterable<ScienceClub> _filterByType(ScienceClubSource source, {bool includeSolvro = false}) {
     return where((element) => element.source == source && (includeSolvro || !element.isSolvro));
   }
 
@@ -56,12 +56,15 @@ extension SortBySourceTypeX on Iterable<ScienceClub> {
 
   List<ScienceClub> sortBySourceTypes() {
     final solvro = firstWhereOrNull((element) => element.isSolvro);
-    final manualSourceWithPhotos = _filterByType("manual_entry").withLogo().toList()..shuffle();
-    final manualSourceWithoutPhotos = _filterByType("manual_entry").withoutLogo().toList()..shuffle();
-    final activeWebSourceWithPhotos = _filterByType("aktywni_website").withLogo().toList()..shuffle();
-    final activeWebSourceWithoutPhotos = _filterByType("aktywni_website").withoutLogo().toList()..shuffle();
-    final studentDepartmentSourceWithPhotos = _filterByType("student_department").withLogo().toList()..shuffle();
-    final studentDepartmentSourceWithoutPhotos = _filterByType("student_department").withoutLogo().toList()..shuffle();
+    final manualSourceWithPhotos = _filterByType(ScienceClubSource.manualEntry).withLogo().toList()..shuffle();
+    final manualSourceWithoutPhotos = _filterByType(ScienceClubSource.manualEntry).withoutLogo().toList()..shuffle();
+    final activeWebSourceWithPhotos = _filterByType(ScienceClubSource.activeWebSource).withLogo().toList()..shuffle();
+    final activeWebSourceWithoutPhotos =
+        _filterByType(ScienceClubSource.activeWebSource).withoutLogo().toList()..shuffle();
+    final studentDepartmentSourceWithPhotos =
+        _filterByType(ScienceClubSource.studentDepartmentSource).withLogo().toList()..shuffle();
+    final studentDepartmentSourceWithoutPhotos =
+        _filterByType(ScienceClubSource.studentDepartmentSource).withoutLogo().toList()..shuffle();
 
     return [
       if (solvro != null) solvro,
@@ -73,11 +76,4 @@ extension SortBySourceTypeX on Iterable<ScienceClub> {
       ...studentDepartmentSourceWithoutPhotos,
     ];
   }
-}
-
-enum ScienceClubStatus { active, archived }
-
-extension ScienceClubStatusX on String? {
-  ScienceClubStatus get toScienceClubStatus =>
-      this == "archived" ? ScienceClubStatus.archived : ScienceClubStatus.active;
 }

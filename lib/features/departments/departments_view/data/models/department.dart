@@ -1,14 +1,17 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/foundation.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
+import "package:solvro_translator_core/solvro_translator_core.dart";
 
 part "department.freezed.dart";
 part "department.g.dart";
+part "department.translatable.g.dart";
 
 @freezed
-abstract class DepartmentsResponse with _$DepartmentsResponse {
-  const factory DepartmentsResponse({required IList<Department> data}) = _DepartmentsResponse;
-
+@Translatable(makeFieldsTranslatableByDefault: false)
+abstract class DepartmentsResponse with _$DepartmentsResponse, _$DepartmentsResponseTranslatable {
+  const factory DepartmentsResponse({@translatableField required IList<Department> data}) = _DepartmentsResponse;
+  const DepartmentsResponse._();
   factory DepartmentsResponse.fromJson(Map<String, dynamic> json) => _$DepartmentsResponseFromJson(json);
 }
 
@@ -16,7 +19,7 @@ abstract class DepartmentsResponse with _$DepartmentsResponse {
 abstract class Department with _$Department {
   const factory Department({
     required int id,
-    required String name,
+    @translatableField required String name,
     required String code,
     required String betterCode,
     required String logoKey,

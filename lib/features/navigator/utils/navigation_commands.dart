@@ -1,12 +1,11 @@
 import "dart:async";
 
 import "package:flutter_riverpod/flutter_riverpod.dart";
-import "package:logger/logger.dart";
 
 import "../../../utils/launch_url_util.dart";
 import "../../analytics/data/umami.dart";
 import "../../analytics/data/umami_events.dart";
-import "../../buildings_view/model/building_model.dart";
+import "../../buildings_view/model/building.dart";
 import "../../digital_guide/data/models/level.dart" as digital_guide;
 import "../../digital_guide/data/models/level_with_regions.dart";
 import "../../digital_guide/data/models/region.dart";
@@ -39,14 +38,14 @@ extension NavigationX on WidgetRef {
     await _router.push(const HomeRoute());
   }
 
-  Future<void> navigateBuildings(BuildingModel? initialActiveModel) async {
+  Future<void> navigateBuildings(Building? initialActiveModel) async {
     if (initialActiveModel != null) {
       await trackEvent(UmamiEvents.selectBuilding, value: initialActiveModel.name);
     }
     await _router.push(BuildingsRoute());
   }
 
-  Future<void> navigateBuilding(BuildingModel model) async {
+  Future<void> navigateBuilding(Building model) async {
     await trackEvent(UmamiEvents.selectBuilding, value: model.name);
     await _router.push(BuildingsRoute(initialActiveItemId: model.id));
   }
@@ -116,12 +115,12 @@ extension NavigationX on WidgetRef {
     await _router.push(const SettingsRoute());
   }
 
-  Future<void> navigateDigitalGuide(String ourId, BuildingModel building) async {
+  Future<void> navigateDigitalGuide(String ourId, Building building) async {
     await trackEvent(UmamiEvents.openDigitalGuideDetail, value: "ourId: $ourId, building: ${building.name}");
     await _router.push(DigitalGuideRoute(ourId: ourId, building: building));
   }
 
-  Future<void> navigateDigitalGuideObject(String ourId, BuildingModel building) async {
+  Future<void> navigateDigitalGuideObject(String ourId, Building building) async {
     await trackEvent(UmamiEvents.openDigitalGuideDetail, value: "ourId: $ourId, building: ${building.name}. Obj.");
     await _router.push(DigitalGuideObjectRoute(ourId: ourId, building: building));
   }
@@ -239,12 +238,11 @@ extension NavigationX on WidgetRef {
     await _router.push(ParkingRoute(parking: parking));
   }
 
-  Future<void> navigateBuildingDetailAction(BuildingModel building) async {
+  Future<void> navigateBuildingDetailAction(Building building) async {
     return switch (building.externalDigitalGuideMode) {
-      "web_url" => launch(building.externalDigitalGuideIdOrURL!),
-      "digital_guide_building" => navigateDigitalGuide(building.id, building),
-      "other_digital_guide_place" => navigateDigitalGuideObject(building.id, building),
-      _ => Logger().w("Unknown externalDigitalGuideMode: ${building.externalDigitalGuideMode}"),
+      ExternalDigitalGuideMode.webUrl => launch(building.externalDigitalGuideIdOrUrl!),
+      ExternalDigitalGuideMode.digitalGuideBuilding => navigateDigitalGuide(building.id, building),
+      ExternalDigitalGuideMode.otherDigitalGuidePlace => navigateDigitalGuideObject(building.id, building),
     };
   }
 }

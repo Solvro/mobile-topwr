@@ -1,14 +1,20 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/foundation.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
+import "package:solvro_translator_core/solvro_translator_core.dart";
+
+import "../../../../../api_base_rest/shared_models/social_links_data.dart";
 
 part "department_details.freezed.dart";
 part "department_details.g.dart";
+part "department_details.translatable.g.dart";
 
 @freezed
-abstract class DepartmentDetailsResponse with _$DepartmentDetailsResponse {
-  const factory DepartmentDetailsResponse({required DepartmentDetails data}) = _DepartmentDetailsResponse;
-
+@Translatable(makeFieldsTranslatableByDefault: false)
+abstract class DepartmentDetailsResponse with _$DepartmentDetailsResponse, _$DepartmentDetailsResponseTranslatable {
+  const factory DepartmentDetailsResponse({@translatableField required DepartmentDetails data}) =
+      _DepartmentDetailsResponse;
+  const DepartmentDetailsResponse._();
   factory DepartmentDetailsResponse.fromJson(Map<String, dynamic> json) => _$DepartmentDetailsResponseFromJson(json);
 }
 
@@ -16,7 +22,7 @@ abstract class DepartmentDetailsResponse with _$DepartmentDetailsResponse {
 abstract class DepartmentDetails with _$DepartmentDetails {
   const factory DepartmentDetails({
     required int id,
-    required String name,
+    @translatableField required String name,
     required String code,
     required String betterCode,
     required String logoKey,
@@ -24,8 +30,8 @@ abstract class DepartmentDetails with _$DepartmentDetails {
     required String gradientStop,
     required String addressLine1,
     required String addressLine2,
-    required IList<FieldOfStudy> fieldOfStudy,
-    required IList<DepartmentLink> departmentLinks,
+    required IList<FieldOfStudy> fieldsOfStudy,
+    required IList<SocialLinksData> departmentLinks,
   }) = _DepartmentDetails;
 
   factory DepartmentDetails.fromJson(Map<String, dynamic> json) => _$DepartmentDetailsFromJson(json);
@@ -36,18 +42,11 @@ abstract class FieldOfStudy with _$FieldOfStudy {
   const factory FieldOfStudy({
     required String name,
     required String url,
-    required int semesterCount,
+    required int semesterCount, // TODO(simon-the-shark): fix to new schema, #759
     required bool isEnglish,
     required bool is2ndDegree,
     required bool hasWeekendOption,
   }) = _FieldOfStudy;
 
   factory FieldOfStudy.fromJson(Map<String, dynamic> json) => _$FieldOfStudyFromJson(json);
-}
-
-@freezed
-abstract class DepartmentLink with _$DepartmentLink {
-  const factory DepartmentLink({required String link, required String name}) = _DepartmentLink;
-
-  factory DepartmentLink.fromJson(Map<String, dynamic> json) => _$DepartmentLinkFromJson(json);
 }

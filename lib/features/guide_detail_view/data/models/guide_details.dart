@@ -1,14 +1,18 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
+import "package:solvro_translator_core/solvro_translator_core.dart";
 
 import "../../../../api_base_rest/shared_models/image_data.dart";
 
 part "guide_details.freezed.dart";
 part "guide_details.g.dart";
+part "guide_details.translatable.g.dart";
 
 @freezed
-abstract class GuideDetailsResponse with _$GuideDetailsResponse {
+@translatable
+abstract class GuideDetailsResponse with _$GuideDetailsResponse, _$GuideDetailsResponseTranslatable {
   const factory GuideDetailsResponse({required GuideDetails data}) = _GuideDetailsResponse;
+  const GuideDetailsResponse._();
   factory GuideDetailsResponse.fromJson(Map<String, dynamic> json) => _$GuideDetailsResponseFromJson(json);
 }
 

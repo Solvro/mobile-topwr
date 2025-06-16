@@ -16,6 +16,7 @@ import "../../../widgets/loading_widgets/contact_section_loading.dart";
 import "../../../widgets/loading_widgets/header_section_loading.dart";
 import "../../../widgets/loading_widgets/shimmer_loading.dart";
 import "../../../widgets/my_error_widget.dart";
+import "../science_clubs_view/model/science_clubs.dart";
 import "../science_clubs_view/widgets/strategic_badge.dart";
 import "../science_clubs_view/widgets/verified_badge.dart";
 import "model/science_club_details.dart";
@@ -67,7 +68,7 @@ class _SciClubDetailDataView extends ConsumerWidget {
                     text: value.name,
                     style: context.textTheme.headline,
                     children: [
-                      if (value.source == ScienceClubsViewConfig.source) const VerifiedBadge(),
+                      if (value.source == ScienceClubSource.manualEntry) const VerifiedBadge(),
                       if (value.isStrategic) const StrategicBadge(),
                     ],
                   ),
@@ -78,7 +79,7 @@ class _SciClubDetailDataView extends ConsumerWidget {
               const SizedBox(height: DetailViewsConfig.spacerHeight),
               ContactSection(
                 title: context.localize.contact,
-                list: value.links.whereNonNull.map((a) => ContactIconsModel(url: a.link)).toIList(),
+                list: value.links.whereNonNull.map((a) => ContactIconsModel(url: a.url)).toIList(),
               ),
               const SizedBox(height: DetailViewsConfig.spacerHeight),
               AboutUsSection(text: value.description ?? ""),

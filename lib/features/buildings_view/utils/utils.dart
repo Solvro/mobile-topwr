@@ -4,7 +4,7 @@ import "package:flutter/widgets.dart";
 import "../../../config/map_view_config.dart";
 import "../../../utils/contains_lower_case.dart";
 import "../../../utils/context_extensions.dart";
-import "../model/building_model.dart";
+import "../model/building.dart";
 
 extension ContainsCaseUnsensitiveX on String? {
   bool containsBuildingCode(String buildingCode) {
@@ -21,12 +21,12 @@ extension ChangeNullAdressX on BuildContext {
   }
 }
 
-extension SortByCodeOrderX on IList<BuildingModel> {
-  IList<BuildingModel> sortByCodeOrder() {
+extension SortByCodeOrderX on IList<Building> {
+  IList<Building> sortByCodeOrder() {
     return sort(_compareCodes);
   }
 
-  int _compareCodes(BuildingModel a, BuildingModel b) {
+  int _compareCodes(Building a, Building b) {
     final codeA = a.name.split(BuildingSearchConfig.buildingCodeSeperator);
     final codeB = b.name.split(BuildingSearchConfig.buildingCodeSeperator);
     if (codeA[0] == codeB[0]) {

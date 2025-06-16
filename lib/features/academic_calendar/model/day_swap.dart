@@ -1,5 +1,7 @@
 import "package:freezed_annotation/freezed_annotation.dart";
 
+import "weekday_enum.dart";
+
 part "day_swap.freezed.dart";
 part "day_swap.g.dart";
 
@@ -9,7 +11,7 @@ abstract class DaySwap with _$DaySwap {
     required int id,
     required int academicCalendarId,
     required DateTime date,
-    required String changedWeekday,
+    required WeekdayEnum changedWeekday,
     required bool changedDayIsEven,
     required DateTime createdAt,
     required DateTime updatedAt,
