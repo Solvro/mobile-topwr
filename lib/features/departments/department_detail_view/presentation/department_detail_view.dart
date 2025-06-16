@@ -79,7 +79,7 @@ class DepartmentDetailView extends ConsumerWidget {
                     title: context.localize.deans_office,
                     list:
                         department.departmentLinks
-                            .map((link) => ContactIconsModel(text: link.name, url: link.link))
+                            .map((link) => ContactIconsModel(text: link.name, url: link.url))
                             .toIList(),
                   ),
                 ),
