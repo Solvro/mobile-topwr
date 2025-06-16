@@ -7,7 +7,7 @@ import "../../../../config/env.dart";
 part "iparking_client.g.dart";
 
 abstract class ParkingsConfig {
-  static const parkingsRefreshInterval = Duration(seconds: 30);
+  static const parkingsRefreshInterval = Duration(seconds: 15);
   static final rootUrl = Env.iparkingUrl;
   static const soapEndpoint = "/modules/iparking/scripts/ipk_operations.php";
   static String get soapFullUrl => rootUrl + soapEndpoint;
