@@ -18,7 +18,7 @@ Future<({DigitalGuideResponse digitalGuideData, String? photoUrl})> digitalGuide
     (building) => building.id == ourId,
     orElse: () => throw Exception("No such building: $ourId"),
   );
-  final digitalGuideId = building.externalDigitalGuideIdOrURL;
+  final digitalGuideId = building.externalDigitalGuideIdOrUrl;
   final digitalGuideData =
       await ref
           .getAndCacheDataFromDigitalGuide(
@@ -28,5 +28,5 @@ Future<({DigitalGuideResponse digitalGuideData, String? photoUrl})> digitalGuide
           )
           .castAsObject;
 
-  return (digitalGuideData: digitalGuideData, photoUrl: building.coverUrl);
+  return (digitalGuideData: digitalGuideData, photoUrl: building.cover?.url);
 }

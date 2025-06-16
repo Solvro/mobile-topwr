@@ -10,7 +10,7 @@ import "../../utils/context_extensions.dart";
 import "../../widgets/search_box_app_bar.dart";
 import "../analytics/data/umami.dart";
 import "../analytics/data/umami_events.dart";
-import "../buildings_view/model/building_model.dart";
+import "../buildings_view/model/building.dart";
 import "../map_view/controllers/bottom_sheet_controller.dart";
 import "../map_view/controllers/controllers_set.dart";
 import "../map_view/widgets/map_config.dart";
@@ -36,7 +36,7 @@ class SheetLayoutScheme<T extends GoogleNavigable> extends HookConsumerWidget {
       title: context.mapViewTexts<T>().title,
       onQueryChanged: ref.watch(context.mapDataController<T>().notifier).onSearchQueryChanged,
       onSearchBoxTap: () async {
-        if (T == BuildingModel) {
+        if (T == Building) {
           unawaited(ref.trackEvent(UmamiEvents.searchBuilding));
         } else if (T == Parking) {
           unawaited(ref.trackEvent(UmamiEvents.searchParkings));
