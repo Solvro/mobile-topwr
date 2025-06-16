@@ -1,27 +1,27 @@
 import "package:freezed_annotation/freezed_annotation.dart";
 
-@JsonEnum()
+@JsonEnum(fieldRename: FieldRename.pascal)
 enum WeekdayEnum {
-  mon,
-  tue,
-  wed,
-  thu,
-  fri,
-  sat,
-  sun;
+  monday,
+  tuesday,
+  wednesday,
+  thursday,
+  friday,
+  saturday,
+  sunday;
 
   static WeekdayEnum fromJson(String json) => values.byName(json.toLowerCase());
 
   static WeekdayEnum fromDateTime(DateTime dateTime) {
     return switch (dateTime.weekday) {
-      DateTime.monday => WeekdayEnum.mon,
-      DateTime.tuesday => WeekdayEnum.tue,
-      DateTime.wednesday => WeekdayEnum.wed,
-      DateTime.thursday => WeekdayEnum.thu,
-      DateTime.friday => WeekdayEnum.fri,
-      DateTime.saturday => WeekdayEnum.sat,
-      DateTime.sunday => WeekdayEnum.sun,
-      _ => WeekdayEnum.mon,
+      DateTime.monday => WeekdayEnum.monday,
+      DateTime.tuesday => WeekdayEnum.tuesday,
+      DateTime.wednesday => WeekdayEnum.wednesday,
+      DateTime.thursday => WeekdayEnum.thursday,
+      DateTime.friday => WeekdayEnum.friday,
+      DateTime.saturday => WeekdayEnum.saturday,
+      DateTime.sunday => WeekdayEnum.sunday,
+      _ => WeekdayEnum.monday,
     };
   }
 }
