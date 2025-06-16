@@ -12,7 +12,7 @@ import "../../widgets/horizontal_symmetric_safe_area.dart";
 import "../../widgets/loading_widgets/scrolable_loader_builder.dart";
 import "../../widgets/loading_widgets/simple_previews/preview_card_loading.dart";
 import "../../widgets/my_error_widget.dart";
-import "data/models/about_us.dart";
+import "bussiness/models.dart";
 import "data/repository/about_us_repository.dart";
 import "widgets/app_version.dart";
 import "widgets/contact_section.dart";

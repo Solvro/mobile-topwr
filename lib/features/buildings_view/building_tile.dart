@@ -13,20 +13,19 @@ import "../analytics/data/umami.dart";
 import "../analytics/data/umami_events.dart";
 import "../navigator/utils/navigation_commands.dart";
 import "controllers.dart";
-import "model/building_model.dart";
+import "model/building.dart";
 
 class BuildingTile extends HookConsumerWidget {
   const BuildingTile(this.building, {required this.isActive, super.key});
 
-  final BuildingModel building;
+  final Building building;
   final bool isActive;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final hasDigitalGuide =
-        building.externalDigitalGuideMode != null &&
-        building.externalDigitalGuideIdOrURL != null &&
-        (building.externalDigitalGuideMode == "other_digital_guide_place" ||
-            building.externalDigitalGuideMode == "digital_guide_building");
+        building.externalDigitalGuideIdOrUrl != null &&
+        (building.externalDigitalGuideMode == ExternalDigitalGuideMode.otherDigitalGuidePlace ||
+            building.externalDigitalGuideMode == ExternalDigitalGuideMode.digitalGuideBuilding);
 
     final l10n = context.localize;
     useSemanticsServiceOnChangedValue(
@@ -50,7 +49,7 @@ class BuildingTile extends HookConsumerWidget {
                 child: PhotoTrailingWideTileCard(
                   context,
                   activeGradient: context.colorTheme.toPwrGradient,
-                  directusPhotoUrl: building.coverUrl,
+                  directusPhotoUrl: building.cover?.url,
                   title: "${context.localize.building_prefix} ${building.name}",
                   subtitle: building.address,
                   isActive: isActive,
@@ -62,41 +61,41 @@ class BuildingTile extends HookConsumerWidget {
                 ),
               ),
             ),
-            if (building.externalDigitalGuideIdOrURL != null)
+            if (building.externalDigitalGuideIdOrUrl != null)
               Positioned(
                 top: context.textScaler.scale(2),
                 right: WideTileCardConfig.imageSize + context.textScaler.scale(2),
                 child: IconButton(
                   tooltip: switch (building.externalDigitalGuideMode) {
-                    "digital_guide_building" ||
-                    "other_digital_guide_place" => context.localize.navigate_to_digital_guide,
-                    "web_url" =>
-                      building.externalDigitalGuideIdOrURL!.startsWith(UrlConfig.topwrUrl)
+                    ExternalDigitalGuideMode.digitalGuideBuilding ||
+                    ExternalDigitalGuideMode.otherDigitalGuidePlace => context.localize.navigate_to_digital_guide,
+                    ExternalDigitalGuideMode.webUrl =>
+                      building.externalDigitalGuideIdOrUrl!.startsWith(UrlConfig.topwrUrl)
                           ? context.localize.internal_link
-                          : context.localize.external_link(building.externalDigitalGuideIdOrURL!),
-                    _ => null,
+                          : context.localize.external_link(building.externalDigitalGuideIdOrUrl!),
                   },
                   iconSize: context.textScaler.clamp(maxScaleFactor: 2).scale(22),
                   visualDensity: VisualDensity.compact,
                   color: switch (building.externalDigitalGuideMode) {
-                    "digital_guide_building" || "other_digital_guide_place" => context.colorTheme.orangePomegranade,
+                    ExternalDigitalGuideMode.digitalGuideBuilding ||
+                    ExternalDigitalGuideMode.otherDigitalGuidePlace => context.colorTheme.orangePomegranade,
                     _ => null,
                   },
                   icon: Icon(
                     switch (building.externalDigitalGuideMode) {
-                      "web_url" =>
-                        building.externalDigitalGuideIdOrURL!.startsWith(UrlConfig.topwrUrl)
+                      ExternalDigitalGuideMode.webUrl =>
+                        building.externalDigitalGuideIdOrUrl!.startsWith(UrlConfig.topwrUrl)
                             ? Icons.info
                             : Icons.language,
-                      "digital_guide_building" || "other_digital_guide_place" => Icons.accessibility_new_rounded,
-                      _ => Icons.info,
+                      ExternalDigitalGuideMode.digitalGuideBuilding ||
+                      ExternalDigitalGuideMode.otherDigitalGuidePlace => Icons.accessibility_new_rounded,
                     },
                     color:
                         isActive
                             ? context.colorTheme.whiteSoap
                             : switch (building.externalDigitalGuideMode) {
-                              "digital_guide_building" ||
-                              "other_digital_guide_place" => context.colorTheme.orangePomegranade,
+                              ExternalDigitalGuideMode.digitalGuideBuilding ||
+                              ExternalDigitalGuideMode.otherDigitalGuidePlace => context.colorTheme.orangePomegranade,
                               _ => context.colorTheme.greyPigeon,
                             },
                   ),
@@ -108,8 +107,8 @@ class BuildingTile extends HookConsumerWidget {
           ],
         ),
         if (isActive &&
-            (building.externalDigitalGuideMode == "digital_guide_building" ||
-                building.externalDigitalGuideMode == "other_digital_guide_place"))
+            (building.externalDigitalGuideMode == ExternalDigitalGuideMode.digitalGuideBuilding ||
+                building.externalDigitalGuideMode == ExternalDigitalGuideMode.otherDigitalGuidePlace))
           TextButton.icon(
             icon: Icon(
               Icons.accessibility_new_rounded,

@@ -5,7 +5,7 @@ import "package:latlong2/latlong.dart";
 import "../../../../../config/ui_config.dart";
 import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/context_extensions.dart";
-import "../../../../buildings_view/model/building_model.dart";
+import "../../../../buildings_view/model/building.dart";
 import "../../../../map_view/utils/google_maps_link_utils.dart";
 import "../../../data/models/digital_guide_response.dart";
 import "../../../presentation/widgets/digital_guide_image.dart";
@@ -14,7 +14,7 @@ class LocalizationExpansionTileContent extends ConsumerWidget {
   const LocalizationExpansionTileContent({super.key, required this.digitalGuideData, required this.building});
 
   final DigitalGuideResponse digitalGuideData;
-  final BuildingModel building;
+  final Building building;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -53,7 +53,7 @@ class LocalizationExpansionTileContent extends ConsumerWidget {
     );
   }
 
-  Future<void> _navigateToBuilding(WidgetRef ref, BuildingModel building) async {
+  Future<void> _navigateToBuilding(WidgetRef ref, Building building) async {
     final LatLng buildingCoordinates = LatLng(building.latitude, building.longitude);
     await GoogleMapsLinkUtils.navigateTo(buildingCoordinates, ref);
   }

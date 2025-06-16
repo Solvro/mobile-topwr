@@ -7,7 +7,7 @@ import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../widgets/my_expansion_tile.dart";
 import "../../../widgets/my_html_widget.dart";
-import "../../buildings_view/model/building_model.dart";
+import "../../buildings_view/model/building.dart";
 import "../../digital_guide/presentation/widgets/digital_guide_photo_row.dart";
 import "../data/models/digital_guide_object_model.dart";
 import "../data/repositories/digital_guide_tabs_repository.dart";
@@ -19,7 +19,7 @@ class DigitalGuideObjectsFeaturesSection extends ConsumerWidget {
   const DigitalGuideObjectsFeaturesSection({required this.digitalGuideData, required this.building});
 
   final DigitalGuideObjectModel digitalGuideData;
-  final BuildingModel building;
+  final Building building;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
