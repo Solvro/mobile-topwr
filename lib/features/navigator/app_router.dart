@@ -3,7 +3,7 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "../../../../features/buildings_view/model/building_model.dart";
+import "../../../../features/buildings_view/model/building.dart";
 import "../../config/nav_bar_config.dart";
 import "../about_us_view/about_us_view.dart";
 import "../buildings_view/buildings_view.dart";
@@ -105,10 +105,9 @@ class AppRouter extends RootStackRouter {
       ),
       "guide" => const GuideRoute(),
       "navigation" => const NavigationTabRoute(),
-      _ =>
-        throw Exception(
-          "This path: $path is not inside a tabview. This `pathToRoute` function should only be used for routes within the tabbar.",
-        ),
+      _ => throw Exception(
+        "This path: $path is not inside a tabview. This `pathToRoute` function should only be used for routes within the tabbar.",
+      ),
     };
   }
 

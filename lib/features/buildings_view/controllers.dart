@@ -8,7 +8,7 @@ import "../map_view/controllers/bottom_sheet_controller.dart";
 import "../map_view/controllers/controllers_set.dart";
 import "../map_view/controllers/map_controller.dart";
 import "../map_view/controllers/map_data_controller.dart";
-import "model/building_model.dart";
+import "model/building.dart";
 import "repository/buildings_repository.dart";
 import "utils/building_codes_utils.dart";
 import "utils/utils.dart";
@@ -16,26 +16,26 @@ import "utils/utils.dart";
 part "controllers.g.dart";
 
 @Riverpod(dependencies: [])
-class ActiveBuildingController extends _$ActiveBuildingController with ActiveMarkerController<BuildingModel> {
+class ActiveBuildingController extends _$ActiveBuildingController with ActiveMarkerController<Building> {
   @override
-  BuildingModel? build() {
+  Building? build() {
     return null;
   }
 }
 
 @Riverpod(dependencies: [bottomSheetController, ActiveBuildingController])
-class BuildingsViewController extends _$BuildingsViewController with MapDataController<BuildingModel> {
+class BuildingsViewController extends _$BuildingsViewController with MapDataController<Building> {
   BuildingsViewController() {
     mapControllers = mapControllersBuildings;
   }
   @override
   // ignore: unnecessary_overrides
-  FutureOr<IList<BuildingModel>> build() async {
+  FutureOr<IList<Building>> build() async {
     return super.build();
   }
 
   @override
-  bool filterMethod(BuildingModel item, String filterStr) {
+  bool filterMethod(Building item, String filterStr) {
     switch (filterStr.length) {
       case 0:
         return true;
@@ -54,11 +54,11 @@ class BuildingsViewController extends _$BuildingsViewController with MapDataCont
 }
 
 @Riverpod(dependencies: [bottomSheetController, ActiveBuildingController])
-MyMapController<BuildingModel> buildingsMapController(Ref ref) {
+MyMapController<Building> buildingsMapController(Ref ref) {
   return MyMapController(ref, mapControllersBuildings);
 }
 
-final MapControllers<BuildingModel> mapControllersBuildings = (
+final MapControllers<Building> mapControllersBuildings = (
   activeMarker: activeBuildingControllerProvider,
   sourceRepo: buildingsRepositoryProvider,
   map: buildingsMapControllerProvider,
