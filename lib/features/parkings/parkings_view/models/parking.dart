@@ -35,37 +35,6 @@ abstract class Parking with _$Parking implements GoogleNavigable {
 
   factory Parking.fromJson(Map<String, dynamic> json) => _$ParkingFromJson(json);
 
-  factory Parking.fromJsonWithOverridenPhotoPrefix(Map<String, dynamic> json, String url) {
-    final parking = Parking.fromJson(json);
-    return parking.copyWith(photo: url + parking.photo);
-  }
-
-  factory Parking.fromJsonApiWrapper(Map<String, dynamic> json) {
-    final address = Map<String, dynamic>.from(json["address"] as Map);
-
-    return Parking(
-      id: json["parkingId"].toString(),
-      parkingId: json["parkingId"].toString(),
-      numberOfPlaces: json["freeSpots"].toString(),
-      symbol: json["symbol"].toString(),
-      type: null,
-      name: json["name"].toString(),
-      openHour: json["openingHours"]?.toString(),
-      closeHour: json["closingHours"]?.toString(),
-      places: json["totalSpots"].toString(),
-      geoLan: address["geoLongitude"].toString(),
-      geoLat: address["geoLatitude"].toString(),
-      photo:
-          json["photo"]?.toString() ??
-          "https://www.viasigni.pl/wp-content/uploads/2022/10/parking-definicja-i-przepisy-okladka-wpisu.jpg",
-      active: "1",
-      showPark: "1",
-      lp: "1",
-      address: address["streetAddress"].toString(),
-      trend: json["trend"].toString(),
-    );
-  }
-
   String get iParkPhotoUrl {
     if (photo.trim().startsWith("http")) {
       return photo.trim();
