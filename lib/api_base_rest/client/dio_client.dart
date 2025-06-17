@@ -7,15 +7,7 @@ part "dio_client.g.dart";
 @Riverpod(keepAlive: true)
 Dio restClient(Ref ref) {
   //Pass as argument FULL URL
-  final dio = Dio();
-  // if (kDebugMode) {
-  //   // weird shit
-  //   // https://stackoverflow.com/questions/54285172/how-to-solve-flutter-certificate-verify-failed-error-while-performing-a-post-req
-  //   // https://github.com/cfug/dio/issues/956
-  //   (dio.httpClientAdapter as IOHttpClientAdapter).createHttpClient =
-  //       () => HttpClient()..badCertificateCallback = (cert, host, port) => true;
-  // }
-  return dio;
+  return Dio();
 }
 
 typedef AuthHeader = ({String authotization});

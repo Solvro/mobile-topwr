@@ -1,5 +1,8 @@
+import "dart:io";
+
 import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:flutter_umami/flutter_umami.dart";
 import "package:sentry_flutter/sentry_flutter.dart";
@@ -17,6 +20,7 @@ import "features/navigator/navigation_stack.dart";
 import "features/splash_screen/splash_screen.dart";
 import "features/splash_screen/splash_screen_controller.dart";
 import "features/update_dialog/presentation/update_dialog_wrapper.dart";
+import "gen/assets.gen.dart";
 import "l10n/app_localizations.dart";
 import "services/translations_service/data/preferred_lang_repository.dart";
 import "services/translations_service/widgets/remove_old_translations.dart";
@@ -27,7 +31,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SplashScreenController.preserveNativeSplashScreen();
   if (kDebugMode) {
-    runToPWR();
+    return runToPWR();
   } else {
     await SentryFlutter.init((options) {
       options.dsn = Env.bugsinkDsn;
@@ -37,7 +41,9 @@ Future<void> main() async {
   }
 }
 
-void runToPWR() {
+Future<void> runToPWR() async {
+  final data = await PlatformAssetBundle().load(Assets.certs.przewodnikPwrEduPl);
+  SecurityContext.defaultContext.setTrustedCertificatesBytes(data.buffer.asUint8List());
   return runApp(const ProviderScope(child: SplashScreen(child: MyApp())));
 }
 
