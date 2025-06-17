@@ -24,31 +24,34 @@ class FiltersSheet extends StatelessWidget {
     return ProviderScope(
       overrides: [searchFiltersControllerProvider, areFiltersEnabledProvider],
       child: HorizontalSymmetricSafeArea(
-        child: SizedBox(
-          height: sheetHeight,
-          child: Padding(
-            padding: const EdgeInsets.only(top: 16),
-            child: Column(
-              children: [
-                FiltersHeader(),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: ListView(
-                      shrinkWrap: true,
-                      children: [
-                        const TypesWrap(),
-                        const DepartmentsWrap(),
-                        const TagsWrap(),
-                        const _NoFiltersFound(),
-                        const SizedBox(height: FilterConfig.spacingBetweenWidgets),
-                        ApplyFiltersButton(onPressed: context.maybePop),
-                        const SizedBox(height: FilterConfig.spacingBetweenWidgets),
-                      ],
+        child: Semantics(
+          label: context.localize.filters_sheet_semantics_label,
+          child: SizedBox(
+            height: sheetHeight,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 16),
+              child: Column(
+                children: [
+                  FiltersHeader(),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: ListView(
+                        shrinkWrap: true,
+                        children: [
+                          const TypesWrap(),
+                          const DepartmentsWrap(),
+                          const TagsWrap(),
+                          const _NoFiltersFound(),
+                          const SizedBox(height: FilterConfig.spacingBetweenWidgets),
+                          ApplyFiltersButton(onPressed: context.maybePop),
+                          const SizedBox(height: FilterConfig.spacingBetweenWidgets),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

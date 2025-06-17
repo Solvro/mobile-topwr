@@ -567,5 +567,9 @@
   "nav_map": "Map",
   "nav_parkings": "Parkings",
   "nav_guide": "Guide",
-  "nav_others": "Others"
+  "nav_others": "Others",
+  "verifiedBySolvro": "Verified by Solvro",
+  "studyClub_howToAddYourOrganization": "How to add your organization?",
+  "filters_sheet_semantics_label": "Filters sheet. Scroll up to expand it.",
+  "filters_fab_tooltip": "Filters"
 }

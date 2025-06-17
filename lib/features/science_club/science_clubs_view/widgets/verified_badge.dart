@@ -22,7 +22,12 @@ class _VerifiedBadgeWidget extends StatelessWidget {
       dimension: scaler.scale(16),
       child: Padding(
         padding: const EdgeInsets.only(left: 4),
-        child: Icon(Icons.verified_sharp, size: scaler.scale(12), color: context.colorTheme.orangePomegranade),
+        child: Icon(
+          Icons.verified_sharp,
+          size: scaler.scale(12),
+          color: context.colorTheme.orangePomegranade,
+          semanticLabel: context.localize.verifiedBySolvro,
+        ),
       ),
     );
   }

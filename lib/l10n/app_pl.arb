@@ -3428,5 +3428,21 @@
   "nav_others": "Inne",
   "@nav_others": {
     "description": "Label for others navigation item"
+  },
+  "verifiedBySolvro": "Zweryfikowane przez Solvro",
+  "@verifiedBySolvro": {
+    "description": "Text read for verified by solvro"
+  },
+  "studyClub_howToAddYourOrganization": "Jak dodać swoją organizację?",
+  "@studyClub_howToAddYourOrganization": {
+    "description": "Tooltip text for how to add your organization"
+  },
+  "filters_sheet_semantics_label": "Szuflada z filtrami. Przewiń w górę, aby ją rozwinąć.",
+  "@filters_sheet_semantics_label": {
+    "description": "Semantics read for filters sheet"
+  },
+  "filters_fab_tooltip": "Filtry",
+  "@filters_fab_tooltip": {
+    "description": "Tooltip text for filters fab"
   }
 }
