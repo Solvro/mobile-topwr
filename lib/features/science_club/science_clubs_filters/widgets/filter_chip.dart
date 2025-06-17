@@ -4,6 +4,7 @@ import "package:hooks_riverpod/hooks_riverpod.dart";
 import "../../../../config/ui_config.dart";
 import "../../../../hooks/use_semantics_service_on_changed_value.dart";
 import "../../../../theme/app_theme.dart";
+import "../../../../utils/context_extensions.dart";
 
 class MyFilterChip extends HookConsumerWidget {
   const MyFilterChip({
@@ -24,7 +25,10 @@ class MyFilterChip extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    useSemanticsServiceOnChangedValue(selected, messageBuilder: (value) => value ? null : "Unselected $label");
+    useSemanticsServiceOnChangedValue(
+      selected,
+      messageBuilder: (value) => value ? null : "${context.localize.building_tile_unselected} $label",
+    );
     return Theme(
       data: Theme.of(
         context,

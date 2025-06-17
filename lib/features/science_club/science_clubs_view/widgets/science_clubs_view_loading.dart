@@ -9,7 +9,7 @@ class ScienceClubsViewLoading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      gridDelegate: ScienceClubsViewConfig.researchGroupTabGridDelegate,
+      gridDelegate: DepartmentsConfig.departmentsViewGridDelegate(context),
       itemBuilder: (context, index) => const WideTileLoading(),
       physics: const NeverScrollableScrollPhysics(),
     );

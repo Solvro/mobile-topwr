@@ -27,7 +27,7 @@ class FiltersSearch extends HookConsumerWidget {
     // loads of fixed values, but the search box library is a very fixed
     return AnimatedPositioned(
       duration: const Duration(milliseconds: 300),
-      left: isExpanded.value ? FilterConfig.searchFilterPadding : 67,
+      left: isExpanded.value ? FilterConfig.searchFilterPadding : context.textScaler.scale(67),
       top: 16,
       child: Semantics(
         label: context.localize.search,

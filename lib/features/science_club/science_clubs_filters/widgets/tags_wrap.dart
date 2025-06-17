@@ -29,6 +29,7 @@ class TagsWrap extends ConsumerWidget {
         children: [
           if (value.whereNonNull.isNotEmpty) FiltersSectionHeader(context.localize.categories),
           Wrap(
+            runSpacing: context.isTextScaledDown ? 0 : 8,
             children: [
               for (final tag in value.whereNonNull)
                 Consumer(
