@@ -57,11 +57,11 @@ class _SciClubDetailDataView extends ConsumerWidget {
               const SizedBox(height: 8),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: RichText(
+                child: Text.rich(
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.center,
-                  text: TextSpan(
+                  TextSpan(
                     text: value.name,
                     style: context.textTheme.headline,
                     children: [

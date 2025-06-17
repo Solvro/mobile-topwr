@@ -29,6 +29,7 @@ class DepartmentsWrap extends ConsumerWidget {
         children: [
           if (value.isNotEmpty) FiltersSectionHeader(context.localize.departments),
           Wrap(
+            runSpacing: context.isTextScaledDown ? 0 : 8,
             children: [
               for (final department in value)
                 Consumer(

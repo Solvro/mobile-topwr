@@ -27,34 +27,41 @@ class FiltersSearch extends HookConsumerWidget {
     // loads of fixed values, but the search box library is a very fixed
     return AnimatedPositioned(
       duration: const Duration(milliseconds: 300),
-      left: isExpanded.value ? FilterConfig.searchFilterPadding : 67,
+      left: isExpanded.value ? FilterConfig.searchFilterPadding : context.textScaler.scale(67),
       top: 16,
-      child: AnimSearchBar(
-        width: expandedWidth,
-        textController: textController,
-        onSuffixTap: () {},
-        onChanged:
-            ref
-                .watch(searchFiltersControllerProvider.notifier)
-                .onTextChanged, // I had to fork the lib and add this callback myself 😭
-        textFieldColor: context.colorTheme.greyLight,
-        textFieldIconColor: context.colorTheme.blackMirage,
-        color: context.colorTheme.whiteSoap,
-        autoFocus: true,
-        searchIconColor: context.colorTheme.blackMirage,
-        helpText: context.localize.search,
-        boxShadow: false,
-        searchBarOpen: (int x) {
-          isExpanded.value = x == 1; // this lib is stupid as f...
-          if (!isExpanded.value) {
-            ref.read(searchFiltersControllerProvider.notifier).onTextChanged("");
-          }
-          unawaited(ref.trackEvent(UmamiEvents.searchSciClubFilters));
-        },
-        height: 48,
-        clearOnClose: true,
-        clearOnSuffixTap: true,
-        closeOnSubmit: false,
+      child: Semantics(
+        label: context.localize.search,
+        button: true,
+        container: true,
+        child: ExcludeSemantics(
+          child: AnimSearchBar(
+            width: expandedWidth,
+            textController: textController,
+            onSuffixTap: () {},
+            onChanged:
+                ref
+                    .watch(searchFiltersControllerProvider.notifier)
+                    .onTextChanged, // I had to fork the lib and add this callback myself 😭
+            textFieldColor: context.colorTheme.greyLight,
+            textFieldIconColor: context.colorTheme.blackMirage,
+            color: context.colorTheme.whiteSoap,
+            autoFocus: true,
+            searchIconColor: context.colorTheme.blackMirage,
+            helpText: context.localize.search,
+            boxShadow: false,
+            searchBarOpen: (int x) {
+              isExpanded.value = x == 1; // this lib is stupid as f...
+              if (!isExpanded.value) {
+                ref.read(searchFiltersControllerProvider.notifier).onTextChanged("");
+              }
+              unawaited(ref.trackEvent(UmamiEvents.searchSciClubFilters));
+            },
+            height: 48,
+            clearOnClose: true,
+            clearOnSuffixTap: true,
+            closeOnSubmit: false,
+          ),
+        ),
       ),
     );
   }

@@ -24,6 +24,7 @@ class TypesWrap extends ConsumerWidget {
       children: [
         if (types.isNotEmpty) FiltersSectionHeader(context.localize.org_types),
         Wrap(
+          runSpacing: context.isTextScaledDown ? 0 : 8,
           children: [
             for (final type in types)
               Consumer(

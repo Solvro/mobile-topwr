@@ -98,13 +98,6 @@ abstract class ScienceClubsViewConfig {
   static const rectangleBorderRadius = 16.0;
   static const buttonBorderRadius = 100.0;
 
-  static const researchGroupTabGridDelegate = SliverGridDelegateWithMaxCrossAxisExtent(
-    maxCrossAxisExtent: 600,
-    mainAxisExtent: 92,
-    crossAxisSpacing: 16,
-    mainAxisSpacing: 16,
-  );
-
   static const tagsGridDelegate = SliverGridDelegateWithMaxCrossAxisExtent(
     maxCrossAxisExtent: 85,
     mainAxisExtent: 40,

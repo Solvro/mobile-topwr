@@ -4,6 +4,7 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../../theme/app_theme.dart";
+import "../../../../utils/context_extensions.dart";
 import "../../../analytics/data/umami.dart";
 import "../../../analytics/data/umami_events.dart";
 import "../filters_controller.dart";
@@ -18,6 +19,7 @@ class FiltersFAB extends ConsumerWidget {
 
     final parentProvider = ProviderScope.containerOf(context);
     return FloatingActionButton(
+      tooltip: context.localize.filters_fab_tooltip,
       onPressed: () async {
         unawaited(ref.trackEvent(UmamiEvents.openSciClubsFilterSheet));
         await showModalBottomSheet<void>(
@@ -28,18 +30,21 @@ class FiltersFAB extends ConsumerWidget {
         );
       },
       backgroundColor: isActive ? context.colorTheme.orangePomegranade : context.colorTheme.whiteSoap,
-      child: Stack(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8),
-            child: Icon(
-              Icons.tune,
-              color: !isActive ? context.colorTheme.orangePomegranade : context.colorTheme.whiteSoap,
+      child: Semantics(
+        label: context.localize.filters_fab_tooltip,
+        child: Stack(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8),
+              child: Icon(
+                Icons.tune,
+                color: !isActive ? context.colorTheme.orangePomegranade : context.colorTheme.whiteSoap,
+              ),
             ),
-          ),
-          if (isActive)
-            Positioned(top: 4, right: 4, child: Icon(Icons.circle, size: 8, color: context.colorTheme.whiteSoap)),
-        ],
+            if (isActive)
+              Positioned(top: 4, right: 4, child: Icon(Icons.circle, size: 8, color: context.colorTheme.whiteSoap)),
+          ],
+        ),
       ),
     );
   }
