@@ -94,11 +94,13 @@ class _LeftColumn extends StatelessWidget {
           ),
           const SizedBox(height: 2),
           if (!isActive)
-            Padding(
-              padding: ParkingsConfig.extraIndentPadd,
-              child: Semantics(
-                label: context.localize.parking_opening_hours_reader_label,
-                child: Flexible(child: Text(parking.openingHours, style: context.iParkingTheme.small)),
+            Flexible(
+              child: Padding(
+                padding: ParkingsConfig.extraIndentPadd,
+                child: Semantics(
+                  label: context.localize.parking_opening_hours_reader_label,
+                  child: Text(parking.openingHours, style: context.iParkingTheme.small),
+                ),
               ),
             ),
           if (isActive) Expanded(child: Center(child: ParkingChart(parking))),
