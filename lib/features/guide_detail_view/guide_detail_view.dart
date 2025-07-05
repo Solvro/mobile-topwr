@@ -104,6 +104,18 @@ class _GuideDetailDataView extends ConsumerWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      RichText(
+                        text: TextSpan(
+                          style: context.textTheme.bodyGrey,
+                          children: [
+                            TextSpan(text: "${context.localize.authors(value.guideAuthors.length)}: "),
+                            TextSpan(
+                              text: value.guideAuthors.map((a) => a.name).join(", "),
+                              style: context.textTheme.boldBody,
+                            ),
+                          ],
+                        ),
+                      ),
                       Text(
                         "${context.localize.created_at} ${context.getTheLatesCreatedDateGuide(questions: value.guideQuestions, locale: context.locale)}",
                         style: context.textTheme.bodyGrey,
