@@ -3452,5 +3452,15 @@
   "showers_title": "Prysznice",
   "@showers_title": {
     "description": "Title for showers section"
-  }
+  },
+  "authors": "{count, plural, =1{Autor} other{Autorzy}}",
+   "@authors": {
+    "description": "Title for authors of the article",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+}
 }
