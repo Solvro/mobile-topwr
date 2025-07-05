@@ -13,7 +13,7 @@ part "guide_details_repository.g.dart";
 @riverpod
 Future<GuideDetails> guideDetailsRepository(Ref ref, int id) async {
   final apiUrl = Env.mainRestApiUrl;
-  final endpoint = "/guide_articles/$id?description=true&guideQuestions=true&image=true";
+  final endpoint = "/guide_articles/$id?description=true&guideQuestions=true&image=true&guideAuthors=true";
 
   final response =
       await ref

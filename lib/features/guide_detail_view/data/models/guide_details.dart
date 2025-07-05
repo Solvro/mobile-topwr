@@ -25,6 +25,7 @@ abstract class GuideDetails with _$GuideDetails {
     required ImageData image,
     required DateTime createdAt,
     required DateTime updatedAt,
+    required IList<GuideAuthor> guideAuthors,
     required IList<GuideQuestion> guideQuestions,
   }) = _GuideDetails;
 
@@ -41,4 +42,26 @@ abstract class GuideQuestion with _$GuideQuestion {
   }) = _GuideQuestion;
 
   factory GuideQuestion.fromJson(Map<String, dynamic> json) => _$GuideQuestionFromJson(json);
+}
+
+@freezed
+abstract class GuideAuthor with _$GuideAuthor {
+  const factory GuideAuthor({required String name, @JsonKey(name: "meta") required GuideAuthorRole role}) =
+      _GuideAuthor;
+
+  factory GuideAuthor.fromJson(Map<String, dynamic> json) => _$GuideAuthorFromJson(json);
+}
+
+@freezed
+abstract class GuideAuthorRole with _$GuideAuthorRole {
+  const factory GuideAuthorRole({@JsonKey(name: "pivot_role") required GuideAuthorRoleType role}) = _GuideAuthorRole;
+
+  factory GuideAuthorRole.fromJson(Map<String, dynamic> json) => _$GuideAuthorRoleFromJson(json);
+}
+
+enum GuideAuthorRoleType {
+  @JsonValue("AUTHOR")
+  author,
+  @JsonValue("REDACTOR")
+  redactor,
 }

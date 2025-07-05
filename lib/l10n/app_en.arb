@@ -573,5 +573,7 @@
   "filters_sheet_semantics_label": "Filters sheet. Scroll up to expand it.",
   "filters_fab_tooltip": "Filters",
   "library_title": "Library",
-  "showers_title": "Showers"
+  "showers_title": "Showers",
+  "authors": "{count, plural, =1{Author} other{Authors}}",
+  "redactors": "{count, plural, =1{Redactor} other{Redactors}}"
 }
