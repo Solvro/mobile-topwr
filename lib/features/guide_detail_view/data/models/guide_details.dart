@@ -25,6 +25,7 @@ abstract class GuideDetails with _$GuideDetails {
     required ImageData image,
     required DateTime createdAt,
     required DateTime updatedAt,
+    required IList<GuideAuthor> guideAuthors,
     required IList<GuideQuestion> guideQuestions,
   }) = _GuideDetails;
 
@@ -41,4 +42,11 @@ abstract class GuideQuestion with _$GuideQuestion {
   }) = _GuideQuestion;
 
   factory GuideQuestion.fromJson(Map<String, dynamic> json) => _$GuideQuestionFromJson(json);
+}
+
+@freezed
+abstract class GuideAuthor with _$GuideAuthor {
+  const factory GuideAuthor({required String name}) = _GuideAuthor;
+
+  factory GuideAuthor.fromJson(Map<String, dynamic> json) => _$GuideAuthorFromJson(json);
 }
