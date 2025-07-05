@@ -3462,5 +3462,15 @@
         "example": "3"
       }
     }
+},
+  "redactors": "{count, plural, =1{Redaktor} other{Redaktorzy}}",
+   "@redactors": {
+    "description": "Title for redactors of the article",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
 }
 }

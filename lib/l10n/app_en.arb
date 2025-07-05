@@ -574,5 +574,6 @@
   "filters_fab_tooltip": "Filters",
   "library_title": "Library",
   "showers_title": "Showers",
-  "authors": "{count, plural, =1{Author} other{Authors}}"
+  "authors": "{count, plural, =1{Author} other{Authors}}",
+  "redactors": "{count, plural, =1{Redactor} other{Redactors}}"
 }

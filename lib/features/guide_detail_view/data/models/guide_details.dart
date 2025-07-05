@@ -46,7 +46,22 @@ abstract class GuideQuestion with _$GuideQuestion {
 
 @freezed
 abstract class GuideAuthor with _$GuideAuthor {
-  const factory GuideAuthor({required String name}) = _GuideAuthor;
+  const factory GuideAuthor({required String name, @JsonKey(name: "meta") required GuideAuthorRole role}) =
+      _GuideAuthor;
 
   factory GuideAuthor.fromJson(Map<String, dynamic> json) => _$GuideAuthorFromJson(json);
+}
+
+@freezed
+abstract class GuideAuthorRole with _$GuideAuthorRole {
+  const factory GuideAuthorRole({@JsonKey(name: "pivot_role") required GuideAuthorRoleType role}) = _GuideAuthorRole;
+
+  factory GuideAuthorRole.fromJson(Map<String, dynamic> json) => _$GuideAuthorRoleFromJson(json);
+}
+
+enum GuideAuthorRoleType {
+  @JsonValue("AUTHOR")
+  author,
+  @JsonValue("REDACTOR")
+  redactor,
 }
