@@ -1,4 +1,5 @@
 import "package:auto_route/auto_route.dart";
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:intl/intl.dart";
@@ -43,11 +44,17 @@ class _GuideDetailDataView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(guideDetailsRepositoryProvider(id));
+
     return switch (state) {
       AsyncError(:final error, :final stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
       AsyncValue(:final GuideDetails value) => Builder(
         builder: (context) {
           final lastModifiedDate = context.getTheLatestUpdatedDateGuide(questions: value.guideQuestions);
+          final IList<String> authorsNames =
+              value.guideAuthors.where((e) => e.role.role == GuideAuthorRoleType.author).map((a) => a.name).toIList();
+          final IList<String> redactorsNames =
+              value.guideAuthors.where((e) => e.role.role == GuideAuthorRoleType.redactor).map((r) => r.name).toIList();
+
           return CustomScrollView(
             slivers: [
               SliverAppBar(
@@ -94,6 +101,7 @@ class _GuideDetailDataView extends ConsumerWidget {
                   separatorBuilder: (context, index) => const SizedBox(height: 8),
                 ),
               ),
+
               SliverPadding(
                 padding: const EdgeInsets.only(
                   bottom: GuideDetailViewConfig.bottomPadding,
@@ -104,6 +112,28 @@ class _GuideDetailDataView extends ConsumerWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      if (authorsNames.isNotEmpty)
+                        RichText(
+                          textScaler: MediaQuery.textScalerOf(context),
+                          text: TextSpan(
+                            style: context.textTheme.bodyGrey,
+                            children: [
+                              TextSpan(text: "${context.localize.authors(authorsNames.length)}: "),
+                              TextSpan(text: authorsNames.join(", "), style: context.textTheme.boldBody),
+                            ],
+                          ),
+                        ),
+                      if (redactorsNames.isNotEmpty)
+                        RichText(
+                          textScaler: MediaQuery.textScalerOf(context),
+                          text: TextSpan(
+                            style: context.textTheme.bodyGrey,
+                            children: [
+                              TextSpan(text: "${context.localize.redactors(redactorsNames.length)}: "),
+                              TextSpan(text: redactorsNames.join(", "), style: context.textTheme.boldBody),
+                            ],
+                          ),
+                        ),
                       Text(
                         "${context.localize.created_at} ${context.getTheLatesCreatedDateGuide(questions: value.guideQuestions, locale: context.locale)}",
                         style: context.textTheme.bodyGrey,
