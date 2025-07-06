@@ -54,6 +54,7 @@ class _GuideDetailDataView extends ConsumerWidget {
               value.guideAuthors.where((e) => e.role.role == GuideAuthorRoleType.author).map((a) => a.name).toIList();
           final IList<String> redactorsNames =
               value.guideAuthors.where((e) => e.role.role == GuideAuthorRoleType.redactor).map((r) => r.name).toIList();
+
           return CustomScrollView(
             slivers: [
               SliverAppBar(

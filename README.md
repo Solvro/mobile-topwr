@@ -41,7 +41,6 @@ Read more at: https://solvro.pwr.edu.pl/portfolio/to-pwr/.
 - Freezed
 - graphql_codegen
 - Dio
-- google_maps_flutter
 - fl_chart
 - wiredash
 - lottie
