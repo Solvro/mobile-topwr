@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 
 import "../../../theme/app_theme.dart";
-import "../repository/changelog_repository.dart";
+import "../data/models/changelog.dart";
 
 class AppChangelogList extends StatelessWidget {
   const AppChangelogList({super.key, required this.changelog});
@@ -15,10 +15,10 @@ class AppChangelogList extends StatelessWidget {
         shrinkWrap: true,
         itemBuilder:
             (BuildContext context, int index) => _ListItem(
-              tag: changelog.changes![index]!.changeType,
-              description: changelog.changes![index]!.changeDescription,
+              tag: changelog.changes[index].changeType.name.toUpperCase(),
+              description: changelog.changes[index].name,
             ),
-        itemCount: changelog.changes!.length,
+        itemCount: changelog.changes.length,
         separatorBuilder: (BuildContext context, int index) => const SizedBox(height: 14),
       ),
     );
