@@ -16,10 +16,9 @@ extension DateTimeUtilsX on DateTime {
 
   String toDayDateString(BuildContext context, {bool includeWeekday = true, bool includeYear = true}) {
     final dayFormat = DateFormat("EEEE", context.locale.languageCode);
-    final dateFormat =
-        includeYear
-            ? DateFormat("dd.MM.yyyy", context.locale.languageCode)
-            : DateFormat("dd.MM", context.locale.languageCode);
+    final dateFormat = includeYear
+        ? DateFormat("dd.MM.yyyy", context.locale.languageCode)
+        : DateFormat("dd.MM", context.locale.languageCode);
     final day = dayFormat.format(this);
     final capitalizedDay = day[0].toUpperCase() + day.substring(1).toLowerCase();
     final date = dateFormat.format(this);

@@ -47,10 +47,9 @@ class MyFilterChip extends HookConsumerWidget {
             backgroundColor: Colors.transparent,
             labelStyle: TextStyle(color: selected ? Colors.white : context.colorTheme.greyPigeon),
             side: BorderSide(
-              color:
-                  selected
-                      ? selectedBorderColor ?? context.colorTheme.orangePomegranade
-                      : context.colorTheme.greyPigeon,
+              color: selected
+                  ? selectedBorderColor ?? context.colorTheme.orangePomegranade
+                  : context.colorTheme.greyPigeon,
             ),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(ScienceClubsViewConfig.buttonBorderRadius),

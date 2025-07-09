@@ -14,13 +14,14 @@ class SksMenuSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children:
-          data.map((dish) => dish.category).toISet().sorted((e1, e2) => e1.index.compareTo(e2.index)).map((category) {
-            return SksMenuTile(
-              title: category.getLocalizedName(context),
-              dishes: data.where((e) => e.category == category).toList(),
-            );
-          }).toList(),
+      children: data.map((dish) => dish.category).toISet().sorted((e1, e2) => e1.index.compareTo(e2.index)).map((
+        category,
+      ) {
+        return SksMenuTile(
+          title: category.getLocalizedName(context),
+          dishes: data.where((e) => e.category == category).toList(),
+        );
+      }).toList(),
     );
   }
 }

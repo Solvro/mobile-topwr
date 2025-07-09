@@ -31,7 +31,10 @@ class GuideDetailView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Semantics(
       label: context.localize.guide_detail_view_description,
-      child: Scaffold(appBar: DetailViewAppBar(), body: _GuideDetailDataView(id: id)),
+      child: Scaffold(
+        appBar: DetailViewAppBar(),
+        body: _GuideDetailDataView(id: id),
+      ),
     );
   }
 }
@@ -50,10 +53,14 @@ class _GuideDetailDataView extends ConsumerWidget {
       AsyncValue(:final GuideDetails value) => Builder(
         builder: (context) {
           final lastModifiedDate = context.getTheLatestUpdatedDateGuide(questions: value.guideQuestions);
-          final IList<String> authorsNames =
-              value.guideAuthors.where((e) => e.role.role == GuideAuthorRoleType.author).map((a) => a.name).toIList();
-          final IList<String> redactorsNames =
-              value.guideAuthors.where((e) => e.role.role == GuideAuthorRoleType.redactor).map((r) => r.name).toIList();
+          final IList<String> authorsNames = value.guideAuthors
+              .where((e) => e.role.role == GuideAuthorRoleType.author)
+              .map((a) => a.name)
+              .toIList();
+          final IList<String> redactorsNames = value.guideAuthors
+              .where((e) => e.role.role == GuideAuthorRoleType.redactor)
+              .map((r) => r.name)
+              .toIList();
 
           return CustomScrollView(
             slivers: [
@@ -167,7 +174,9 @@ class _GuideDetailLoading extends StatelessWidget {
       child: ListView(
         physics: const NeverScrollableScrollPhysics(),
         children: [
-          ShimmerLoadingItem(child: Container(color: Colors.white, width: double.infinity, height: 300)),
+          ShimmerLoadingItem(
+            child: Container(color: Colors.white, width: double.infinity, height: 300),
+          ),
           Padding(
             padding: const EdgeInsets.all(GuideDetailViewConfig.paddingMedium),
             child: ListView.separated(

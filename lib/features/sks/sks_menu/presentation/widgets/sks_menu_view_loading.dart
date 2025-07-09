@@ -11,7 +11,12 @@ class SksMenuViewLoading extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Shimmer(
       linearGradient: shimmerGradient,
-      child: Column(children: [_SksMenuHeaderLoading(), Expanded(child: _SksMenuTilesLoading())]),
+      child: Column(
+        children: [
+          _SksMenuHeaderLoading(),
+          Expanded(child: _SksMenuTilesLoading()),
+        ],
+      ),
     );
   }
 }

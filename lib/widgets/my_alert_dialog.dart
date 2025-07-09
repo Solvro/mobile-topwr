@@ -16,10 +16,9 @@ Future<void> showCustomDialog({
     builder: (BuildContext context) {
       return Center(
         child: _MyAlertDialog(
-          dialogSemantics:
-              dialogSemantics != null
-                  ? context.localize.dialog_semantics_label + dialogSemantics
-                  : context.localize.dialog_semantics_label,
+          dialogSemantics: dialogSemantics != null
+              ? context.localize.dialog_semantics_label + dialogSemantics
+              : context.localize.dialog_semantics_label,
           dialogContent: dialogContent,
           onConfirmTapped: onConfirmTapped != null ? () => onConfirmTapped(context) : null,
           confirmText: confirmText,

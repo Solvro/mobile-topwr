@@ -66,10 +66,9 @@ class _SelectTab extends StatelessWidget {
         child: Text(
           semanticsLabel: "${context.localize.version}: ${version.versionName.replaceAll(".", " ")}",
           version.versionName,
-          style:
-              isSelected
-                  ? context.textTheme.boldBody.copyWith(color: context.colorTheme.whiteSoap)
-                  : context.textTheme.boldBody,
+          style: isSelected
+              ? context.textTheme.boldBody.copyWith(color: context.colorTheme.whiteSoap)
+              : context.textTheme.boldBody,
         ),
       ),
     );
@@ -93,24 +92,24 @@ class _SingleVersionTeamList extends HookWidget {
       return timer.cancel;
     }, [version, shimmerTime]);
 
-    final double expectedHeight =
-        version.members.isEmpty ? 100.0 : version.members.length * WideTileCardConfig.imageSize;
+    final double expectedHeight = version.members.isEmpty
+        ? 100.0
+        : version.members.length * WideTileCardConfig.imageSize;
 
-    final content =
-        version.members.isEmpty
-            ? Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [const Icon(Icons.escalator_warning), Text(context.localize.emptySection)],
-            )
-            : ListView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: version.members.length,
-              prototypeItem: _TeamMemberCard(member: version.members.first),
-              itemBuilder: (BuildContext ctx, int index) {
-                return _TeamMemberCard(member: version.members[index]);
-              },
-            );
+    final content = version.members.isEmpty
+        ? Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [const Icon(Icons.escalator_warning), Text(context.localize.emptySection)],
+          )
+        : ListView.builder(
+            physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemCount: version.members.length,
+            prototypeItem: _TeamMemberCard(member: version.members.first),
+            itemBuilder: (BuildContext ctx, int index) {
+              return _TeamMemberCard(member: version.members[index]);
+            },
+          );
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: AboutUsConfig.defaultPadding),

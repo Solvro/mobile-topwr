@@ -54,11 +54,10 @@ class SksMenuView extends HookConsumerWidget {
         }
         return _SksMenuView(sksMenuData: sksMenuData, isLastMenuButtonClicked: isLastMenuButtonClicked.value);
       },
-      error:
-          (error, stackTrace) => HorizontalSymmetricSafeAreaScaffold(
-            appBar: DetailViewAppBar(actions: const [SksUserDataButton()]),
-            body: MyErrorWidget(error, stackTrace: stackTrace),
-          ),
+      error: (error, stackTrace) => HorizontalSymmetricSafeAreaScaffold(
+        appBar: DetailViewAppBar(actions: const [SksUserDataButton()]),
+        body: MyErrorWidget(error, stackTrace: stackTrace),
+      ),
       loading: () => HorizontalSymmetricSafeAreaScaffold(body: const Center(child: SksMenuViewLoading())),
     );
   }

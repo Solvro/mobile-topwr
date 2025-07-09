@@ -13,6 +13,9 @@ Future<void> showChangelog(BuildContext context, WidgetRef ref) async {
   final changelogSeen = await ref.read(localChangelogRepositoryProvider(changelog.name).future) ?? true;
 
   if (!changelogSeen && context.mounted && changelog.changes.isNotEmpty) {
-    await showDialog<void>(context: context, builder: (context) => AppChangelog(changelog: changelog));
+    await showDialog<void>(
+      context: context,
+      builder: (context) => AppChangelog(changelog: changelog),
+    );
   }
 }

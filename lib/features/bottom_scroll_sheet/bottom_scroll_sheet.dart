@@ -72,10 +72,9 @@ class _SheetConsumer<T extends GoogleNavigable> extends HookConsumerWidget {
     );
 
     return Semantics(
-      label:
-          isExpanded
-              ? context.localize.bottom_scroll_sheet_description_expanded
-              : context.localize.bottom_scroll_sheet_description_collapsed,
+      label: isExpanded
+          ? context.localize.bottom_scroll_sheet_description_expanded
+          : context.localize.bottom_scroll_sheet_description_collapsed,
       child: Container(
         clipBehavior: Clip.antiAlias,
         decoration: _RoundedTopDecoration(color: context.colorTheme.whiteSoap),

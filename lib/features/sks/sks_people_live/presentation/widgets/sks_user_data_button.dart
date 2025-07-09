@@ -20,21 +20,19 @@ class SksUserDataButton extends ConsumerWidget {
     final asyncSksUserData = ref.watch(getLatestSksUserDataProvider);
 
     return asyncSksUserData.when(
-      data:
-          (sksUsersData) => _SksButton(
-            sksUsersData,
-            onTap: () async {
-              unawaited(ref.trackEvent(UmamiEvents.openSksChart));
-              await showModalBottomSheet<void>(
-                context: context,
-                isScrollControlled: true,
-                constraints: const BoxConstraints(),
-                builder:
-                    (BuildContext context) =>
-                        Semantics(explicitChildNodes: true, container: true, child: const SksChartSheet()),
-              );
-            },
-          ),
+      data: (sksUsersData) => _SksButton(
+        sksUsersData,
+        onTap: () async {
+          unawaited(ref.trackEvent(UmamiEvents.openSksChart));
+          await showModalBottomSheet<void>(
+            context: context,
+            isScrollControlled: true,
+            constraints: const BoxConstraints(),
+            builder: (BuildContext context) =>
+                Semantics(explicitChildNodes: true, container: true, child: const SksChartSheet()),
+          );
+        },
+      ),
       error: (error, stackTrace) => const SizedBox.shrink(),
       loading: () => const SizedBox.shrink(),
     );

@@ -53,3 +53,4 @@ class _NavigationBarItemsList extends DelegatingList<BottomNavigationBarItem> {
             .toList(),
       );
 }
+ 

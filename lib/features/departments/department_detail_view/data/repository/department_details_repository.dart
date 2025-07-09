@@ -15,17 +15,16 @@ Future<DepartmentDetails> departmentDetailsRepository(Ref ref, int id) async {
   final endpoint = "/departments/$id?fieldsOfStudy=true&departmentLinks=true";
   final url = "${Env.mainRestApiUrl}$endpoint";
 
-  final response =
-      await ref
-          .getAndCacheDataWithTranslation(
-            url,
-            TtlStrategy.get(TtlKey.departmentDetailsRepository).inDays,
-            DepartmentDetailsResponse.fromJson,
-            extraValidityCheck: (_) => true,
-            localizedOfflineMessage: DepartmentDetailView.localizedOfflineMessage,
-            onRetry: ref.invalidateSelf,
-          )
-          .castAsObject;
+  final response = await ref
+      .getAndCacheDataWithTranslation(
+        url,
+        TtlStrategy.get(TtlKey.departmentDetailsRepository).inDays,
+        DepartmentDetailsResponse.fromJson,
+        extraValidityCheck: (_) => true,
+        localizedOfflineMessage: DepartmentDetailView.localizedOfflineMessage,
+        onRetry: ref.invalidateSelf,
+      )
+      .castAsObject;
 
   return response.data;
 }

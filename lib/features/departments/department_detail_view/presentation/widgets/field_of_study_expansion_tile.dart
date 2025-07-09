@@ -24,11 +24,10 @@ class FieldOfStudyExpansionTile extends StatelessWidget {
         backgroundColor: context.colorTheme.whiteSoap,
         initiallyExpanded: initiallyExpanded,
         title: title,
-        children:
-            fieldsOfStudy
-                .map<Widget>(FieldOfStudyTile.new)
-                .separate((i, e0, e1) => const SizedBox(height: 12))
-                .toList(),
+        children: fieldsOfStudy
+            .map<Widget>(FieldOfStudyTile.new)
+            .separate((i, e0, e1) => const SizedBox(height: 12))
+            .toList(),
       ),
     );
   }

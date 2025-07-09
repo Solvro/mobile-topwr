@@ -18,13 +18,12 @@ class OptimizedDirectusImage extends MyCachedImage {
         final pixelsDensity = MediaQuery.devicePixelRatioOf(context);
         return _LoadSizeOnce(
           initialSize: Size(constraints.maxWidth * pixelsDensity, constraints.maxHeight * pixelsDensity),
-          builder:
-              (BuildContext context, Size size) => MyCachedImage(
-                imageUrl?.directusUrlWithSize(size, boxFit),
-                loadingType: loadingType,
-                boxFit: boxFit,
-                size: size,
-              ),
+          builder: (BuildContext context, Size size) => MyCachedImage(
+            imageUrl?.directusUrlWithSize(size, boxFit),
+            loadingType: loadingType,
+            boxFit: boxFit,
+            size: size,
+          ),
         );
       },
     );

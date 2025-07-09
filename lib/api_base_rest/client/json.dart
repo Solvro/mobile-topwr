@@ -19,15 +19,13 @@ class ListJSON<T> extends JSON<T> {
 // casting extensions
 
 extension JsonCasterX<T> on JSON<T> {
-  IList<T> get castAsList =>
-      this is ListJSON<T>
-          ? (this as ListJSON<T>).value
-          : throw ArgumentError("Wrong JSON casting type: $this. Expected ListJSON<T>");
+  IList<T> get castAsList => this is ListJSON<T>
+      ? (this as ListJSON<T>).value
+      : throw ArgumentError("Wrong JSON casting type: $this. Expected ListJSON<T>");
 
-  T get castAsObject =>
-      this is ObjectJSON<T>
-          ? (this as ObjectJSON<T>).value
-          : throw ArgumentError("Wrong JSON casting type: $this. Expected ObjectJSON<T>");
+  T get castAsObject => this is ObjectJSON<T>
+      ? (this as ObjectJSON<T>).value
+      : throw ArgumentError("Wrong JSON casting type: $this. Expected ObjectJSON<T>");
 }
 
 extension JsonCasterOnFutureX<T> on Future<JSON<T>> {

@@ -19,13 +19,12 @@ class FavouriteParkingWidget extends ConsumerWidget {
       onPressed: () async {
         await ref.read(localFavParkingsRepositoryProvider(parking.id).notifier).toggle();
       },
-      icon:
-          isFavorite == null
-              ? FavouriteIcon(icon: Icons.error, color: context.colorTheme.whiteSoap)
-              : FavouriteIcon(
-                icon: isFavorite ? Icons.favorite_rounded : Icons.favorite_border_outlined,
-                color: isFavorite ? context.colorTheme.orangePomegranade : context.colorTheme.whiteSoap,
-              ),
+      icon: isFavorite == null
+          ? FavouriteIcon(icon: Icons.error, color: context.colorTheme.whiteSoap)
+          : FavouriteIcon(
+              icon: isFavorite ? Icons.favorite_rounded : Icons.favorite_border_outlined,
+              color: isFavorite ? context.colorTheme.orangePomegranade : context.colorTheme.whiteSoap,
+            ),
     );
   }
 }

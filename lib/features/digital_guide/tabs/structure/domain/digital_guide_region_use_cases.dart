@@ -27,20 +27,19 @@ import "../data/repository/toilets_repository.dart";
 
 part "digital_guide_region_use_cases.g.dart";
 
-typedef RegionData =
-    ({
-      IList<Corridor> corridors,
-      IList<Stairs> stairs,
-      IList<Ramp> ramps,
-      IList<Stairway> stairways,
-      IList<DigitalGuideLift> lifts,
-      IList<DigitalGuideLodge> lodges,
-      IList<DigitalGuideInformationPoint> informationPoints,
-      IList<DigitalGuideDressingRoom> dressingRooms,
-      IList<Toilet> toilets,
-      IList<DigitalGuideRoom> rooms,
-      IList<DigitalGuideParking> parkings,
-    });
+typedef RegionData = ({
+  IList<Corridor> corridors,
+  IList<Stairs> stairs,
+  IList<Ramp> ramps,
+  IList<Stairway> stairways,
+  IList<DigitalGuideLift> lifts,
+  IList<DigitalGuideLodge> lodges,
+  IList<DigitalGuideInformationPoint> informationPoints,
+  IList<DigitalGuideDressingRoom> dressingRooms,
+  IList<Toilet> toilets,
+  IList<DigitalGuideRoom> rooms,
+  IList<DigitalGuideParking> parkings,
+});
 
 @riverpod
 Future<RegionData> digitalGuideRegionUseCases(Ref ref, Region region) async {
