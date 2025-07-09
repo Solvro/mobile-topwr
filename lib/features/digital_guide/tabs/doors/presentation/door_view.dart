@@ -51,26 +51,25 @@ class _DoorsView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.localize;
 
-    final IList<String> textStrings =
-        [
-          if (door.translations.pl.comment.isNotEmpty) door.translations.pl.comment,
-          door.translations.pl.fromTo,
-          "${l10n.door_visible_from_outside(door.isGoodDoorVisibleFromOutside.toLowerCase())} ${door.translations.pl.isGoodDoorVisibleFromOutsideComment}",
-          "${l10n.door_visible_from_inside(door.isGoodDoorVisibleFromInside.toLowerCase())} ${door.translations.pl.isGoodDoorVisibleFromInsideComment}",
-          if (door.doorType == DoorType.singleLeafDoor)
-            l10n.single_leaf_door
-          else if (door.doorType == DoorType.doubleLeafDoor)
-            l10n.double_leaf_door
-          else if (door.doorType == DoorType.singleLeafDoorSliding)
-            l10n.single_leaf_door_sliding
-          else if (door.doorType == DoorType.doubleLeafDoorSliding)
-            l10n.double_leaf_door_sliding
-          else if (door.doorType == DoorType.swingDoor)
-            l10n.swing_door,
-          "${l10n.main_wing_highlighted(door.isMainWingHighlighted.toLowerCase())} ${door.translations.pl.isMainWingHighlightedComment}",
-          "${l10n.increased_force_required(door.isIncreasedForceRequired.toLowerCase())} ${door.translations.pl.isIncreasedForceRequiredComment}",
-          "${l10n.door_closer(door.isDoorCloser.toLowerCase())} ${door.translations.pl.isDoorCloserComment}",
-        ].map((string) => string.trim()).where((string) => string.isNotEmpty).toIList();
+    final IList<String> textStrings = [
+      if (door.translations.pl.comment.isNotEmpty) door.translations.pl.comment,
+      door.translations.pl.fromTo,
+      "${l10n.door_visible_from_outside(door.isGoodDoorVisibleFromOutside.toLowerCase())} ${door.translations.pl.isGoodDoorVisibleFromOutsideComment}",
+      "${l10n.door_visible_from_inside(door.isGoodDoorVisibleFromInside.toLowerCase())} ${door.translations.pl.isGoodDoorVisibleFromInsideComment}",
+      if (door.doorType == DoorType.singleLeafDoor)
+        l10n.single_leaf_door
+      else if (door.doorType == DoorType.doubleLeafDoor)
+        l10n.double_leaf_door
+      else if (door.doorType == DoorType.singleLeafDoorSliding)
+        l10n.single_leaf_door_sliding
+      else if (door.doorType == DoorType.doubleLeafDoorSliding)
+        l10n.double_leaf_door_sliding
+      else if (door.doorType == DoorType.swingDoor)
+        l10n.swing_door,
+      "${l10n.main_wing_highlighted(door.isMainWingHighlighted.toLowerCase())} ${door.translations.pl.isMainWingHighlightedComment}",
+      "${l10n.increased_force_required(door.isIncreasedForceRequired.toLowerCase())} ${door.translations.pl.isIncreasedForceRequiredComment}",
+      "${l10n.door_closer(door.isDoorCloser.toLowerCase())} ${door.translations.pl.isDoorCloserComment}",
+    ].map((string) => string.trim()).where((string) => string.isNotEmpty).toIList();
 
     final widgets = [
       Text(l10n.door, style: context.textTheme.headline.copyWith(fontSize: DigitalGuideConfig.headlineFont)),

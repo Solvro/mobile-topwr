@@ -63,14 +63,13 @@ class _StairsView extends ConsumerWidget {
             ),
             const SizedBox(height: DigitalGuideConfig.heightSmall),
             BulletList(
-              items:
-                  [
-                    stairsInformation.location,
-                    if (stairsInformation.stairsWidth.isNotEmpty)
-                      "${context.localize.stairs_width} ${stairsInformation.stairsWidth}",
-                    "${context.localize.stairs_are_emergency_stairs(stairsInformation.areEmergencyStairsComment.toLowerCase())} ${stairsInformation.areEmergencyStairsComment}",
-                    if (stairsInformation.comment.isNotEmpty) stairsInformation.comment,
-                  ].toIList(),
+              items: [
+                stairsInformation.location,
+                if (stairsInformation.stairsWidth.isNotEmpty)
+                  "${context.localize.stairs_width} ${stairsInformation.stairsWidth}",
+                "${context.localize.stairs_are_emergency_stairs(stairsInformation.areEmergencyStairsComment.toLowerCase())} ${stairsInformation.areEmergencyStairsComment}",
+                if (stairsInformation.comment.isNotEmpty) stairsInformation.comment,
+              ].toIList(),
             ),
             const SizedBox(height: DigitalGuideConfig.heightBig),
             ListView.separated(

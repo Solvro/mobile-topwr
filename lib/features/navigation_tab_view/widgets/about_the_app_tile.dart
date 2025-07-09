@@ -17,15 +17,14 @@ class AboutTheAppTile extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return FutureBuilder(
       future: Future.microtask(PackageInfo.fromPlatform),
-      builder:
-          (context, snapshot) => NavigationTile(
-            onTap: () async {
-              unawaited(ref.trackEvent(UmamiEvents.openAboutTheApp));
-              await showMyLicenceDialog(context, snapshot.data?.version);
-            },
-            title: context.localize.about_the_app,
-            icon: Icons.info,
-          ),
+      builder: (context, snapshot) => NavigationTile(
+        onTap: () async {
+          unawaited(ref.trackEvent(UmamiEvents.openAboutTheApp));
+          await showMyLicenceDialog(context, snapshot.data?.version);
+        },
+        title: context.localize.about_the_app,
+        icon: Icons.info,
+      ),
     );
   }
 }

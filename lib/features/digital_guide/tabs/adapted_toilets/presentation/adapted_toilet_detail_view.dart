@@ -29,18 +29,17 @@ class AdaptedToiletDetailView extends ConsumerWidget {
       Text(adaptedToilet.getDescription(context), style: context.textTheme.title.copyWith(fontSize: 24)),
       const SizedBox(height: DigitalGuideConfig.heightMedium),
       BulletList(
-        items:
-            [
-              adaptedToilet.translations.plTranslation.comment,
-              adaptedToilet.translations.plTranslation.location,
-              adaptedToilet.translations.plTranslation.numberOfCabins,
-              adaptedToilet.translations.plTranslation.toiletDescription,
-              adaptedToilet.translations.plTranslation.isAccessAccessibleForPwdComment,
-              "${context.localize.adapted_toilet_authorization(adaptedToilet.isNeedAuthorization.toLowerCase())} ${adaptedToilet.translations.plTranslation.isNeedAuthorizationComment}",
-              adaptedToilet.translations.plTranslation.isAreaAllowingMovementInFrontEntranceComment,
-              "${context.localize.adapted_toilet_graphically_marked(adaptedToilet.isEntranceGraphicallyMarked.toLowerCase())} ${adaptedToilet.translations.plTranslation.isEntranceGraphicallyMarkedComment}",
-              "${context.localize.adapted_toilet_is_marked(adaptedToilet.isMarked.toLowerCase())} ${adaptedToilet.translations.plTranslation.isMarkedComment}",
-            ].lock,
+        items: [
+          adaptedToilet.translations.plTranslation.comment,
+          adaptedToilet.translations.plTranslation.location,
+          adaptedToilet.translations.plTranslation.numberOfCabins,
+          adaptedToilet.translations.plTranslation.toiletDescription,
+          adaptedToilet.translations.plTranslation.isAccessAccessibleForPwdComment,
+          "${context.localize.adapted_toilet_authorization(adaptedToilet.isNeedAuthorization.toLowerCase())} ${adaptedToilet.translations.plTranslation.isNeedAuthorizationComment}",
+          adaptedToilet.translations.plTranslation.isAreaAllowingMovementInFrontEntranceComment,
+          "${context.localize.adapted_toilet_graphically_marked(adaptedToilet.isEntranceGraphicallyMarked.toLowerCase())} ${adaptedToilet.translations.plTranslation.isEntranceGraphicallyMarkedComment}",
+          "${context.localize.adapted_toilet_is_marked(adaptedToilet.isMarked.toLowerCase())} ${adaptedToilet.translations.plTranslation.isMarkedComment}",
+        ].lock,
       ),
 
       const SizedBox(height: DigitalGuideConfig.heightSmall),

@@ -9,26 +9,24 @@ import "../../tabs/accessibility_dialog/data/modes.dart";
 import "accessibility_information_card.dart";
 
 // these are levels; they are always obligatory
-typedef AccessibilityInformationLevelsInput =
-    ({
-      int accessibilityLevelForBlind,
-      int accessibilityLevelForVisuallyImpaired,
-      int accessibilityLevelForMotorDisability,
-      int accessibilityLevelForCognitiveDifficulties,
-      int accessibilityLevelForHardOfHearing,
-      int accessibilityLevelForHighSensorySensitivity,
-    });
+typedef AccessibilityInformationLevelsInput = ({
+  int accessibilityLevelForBlind,
+  int accessibilityLevelForVisuallyImpaired,
+  int accessibilityLevelForMotorDisability,
+  int accessibilityLevelForCognitiveDifficulties,
+  int accessibilityLevelForHardOfHearing,
+  int accessibilityLevelForHighSensorySensitivity,
+});
 
 // Sometimes we might have comments for each level; they are optional; if they are present, we show them, and if not, we construct the text from the levels
-typedef AccessibilityInformationOptionalCommentsInput =
-    ({
-      String? commentForBlind,
-      String? commentForVisuallyImpaired,
-      String? commentForMotorDisability,
-      String? commentForCognitiveDifficulties,
-      String? commentForHardOfHearing,
-      String? commentForHighSensorySensitivity,
-    });
+typedef AccessibilityInformationOptionalCommentsInput = ({
+  String? commentForBlind,
+  String? commentForVisuallyImpaired,
+  String? commentForMotorDisability,
+  String? commentForCognitiveDifficulties,
+  String? commentForHardOfHearing,
+  String? commentForHighSensorySensitivity,
+});
 
 class AccessibilityInformationCardsList extends ConsumerWidget {
   const AccessibilityInformationCardsList({

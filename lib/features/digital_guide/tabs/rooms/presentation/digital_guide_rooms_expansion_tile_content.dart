@@ -41,10 +41,9 @@ class _DigitalGuideRoomExpansionTileContent extends ConsumerWidget {
         color: context.colorTheme.greyLight,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:
-              levelsWithRooms.map((level) {
-                return DigitalGuideRoomLevel(level: level.level, rooms: level.rooms);
-              }).toList(),
+          children: levelsWithRooms.map((level) {
+            return DigitalGuideRoomLevel(level: level.level, rooms: level.rooms);
+          }).toList(),
         ),
       ),
     );

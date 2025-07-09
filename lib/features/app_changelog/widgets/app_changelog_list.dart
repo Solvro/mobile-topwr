@@ -13,11 +13,10 @@ class AppChangelogList extends StatelessWidget {
     return Flexible(
       child: ListView.separated(
         shrinkWrap: true,
-        itemBuilder:
-            (BuildContext context, int index) => _ListItem(
-              tag: changelog.changes[index].changeType.name.toUpperCase(),
-              description: changelog.changes[index].name,
-            ),
+        itemBuilder: (BuildContext context, int index) => _ListItem(
+          tag: changelog.changes[index].changeType.name.toUpperCase(),
+          description: changelog.changes[index].name,
+        ),
         itemCount: changelog.changes.length,
         separatorBuilder: (BuildContext context, int index) => const SizedBox(height: 14),
       ),
@@ -47,7 +46,9 @@ class _ListItem extends StatelessWidget {
           child: Text(tag, style: context.textTheme.smallOrange),
         ),
         const SizedBox(width: 15),
-        Expanded(child: Text(description, style: context.textTheme.body, overflow: TextOverflow.clip)),
+        Expanded(
+          child: Text(description, style: context.textTheme.body, overflow: TextOverflow.clip),
+        ),
       ],
     );
   }

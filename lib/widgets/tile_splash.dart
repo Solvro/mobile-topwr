@@ -9,7 +9,10 @@ class TileSplash extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       color: Colors.transparent,
-      child: InkWell(onTap: onTap, child: Container(color: Colors.transparent)),
+      child: InkWell(
+        onTap: onTap,
+        child: Container(color: Colors.transparent),
+      ),
     );
   }
 }

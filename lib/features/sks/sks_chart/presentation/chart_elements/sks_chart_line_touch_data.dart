@@ -20,13 +20,9 @@ class SksChartLineTouchData extends LineTouchData {
                   .sorted((a, b) => a.barIndex.compareTo(b.barIndex))
                   .map((LineBarSpot touchedSpot) {
                     final value = touchedSpot.y.toStringAsFixed(0);
-                    final textStyle =
-                        (touchedSpot.barIndex == 0)
-                            ? context.textTheme.title.copyWith(
-                              color: context.colorTheme.orangePomegranade,
-                              fontSize: 16,
-                            )
-                            : context.textTheme.boldBody.copyWith(color: context.colorTheme.blueAzure);
+                    final textStyle = (touchedSpot.barIndex == 0)
+                        ? context.textTheme.title.copyWith(color: context.colorTheme.orangePomegranade, fontSize: 16)
+                        : context.textTheme.boldBody.copyWith(color: context.colorTheme.blueAzure);
                     return LineTooltipItem(value, textStyle);
                   })
                   .take(touchedSpots.length - 1),

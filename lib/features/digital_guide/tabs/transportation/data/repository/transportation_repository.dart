@@ -12,9 +12,8 @@ part "transportation_repository.g.dart";
 Future<DigitalGuideTransportation> transportationRepository(Ref ref, DigitalGuideResponse building) async {
   const endpoint = "access/";
 
-  final data =
-      await ref
-          .getAndCacheDataFromDigitalGuide(endpoint, DigitalGuideTransportation.fromJson, onRetry: ref.invalidateSelf)
-          .castAsList;
+  final data = await ref
+      .getAndCacheDataFromDigitalGuide(endpoint, DigitalGuideTransportation.fromJson, onRetry: ref.invalidateSelf)
+      .castAsList;
   return data.firstWhere((data) => data.building == building.id);
 }

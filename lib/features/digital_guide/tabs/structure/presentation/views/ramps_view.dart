@@ -38,13 +38,12 @@ class RampsView extends ConsumerWidget {
             ),
             const SizedBox(height: DigitalGuideConfig.heightSmall),
             BulletList(
-              items:
-                  [
-                    rampsInformation.location,
-                    "${context.localize.ramps_width} ${ramps.rampWidth} cm.",
-                    context.localize.ramps_is_permanent_ramp(ramps.isPermanentRamp),
-                    if (rampsInformation.comment.isNotEmpty) rampsInformation.comment,
-                  ].toIList(),
+              items: [
+                rampsInformation.location,
+                "${context.localize.ramps_width} ${ramps.rampWidth} cm.",
+                context.localize.ramps_is_permanent_ramp(ramps.isPermanentRamp),
+                if (rampsInformation.comment.isNotEmpty) rampsInformation.comment,
+              ].toIList(),
             ),
             const SizedBox(height: DigitalGuideConfig.heightBig),
             ListView.separated(

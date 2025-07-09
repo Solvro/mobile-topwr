@@ -22,8 +22,8 @@ class BottomNavBar extends ConsumerWidget {
         ),
         child: BottomNavigationBar(
           currentIndex: activeTab.index,
-          onTap:
-              (index) async => ref.read(navigationControllerProvider.notifier).onTabBarChange(NavBarEnum.values[index]),
+          onTap: (index) async =>
+              ref.read(navigationControllerProvider.notifier).onTabBarChange(NavBarEnum.values[index]),
           backgroundColor: context.colorTheme.greyLight,
           showSelectedLabels: false,
           showUnselectedLabels: false,
@@ -43,10 +43,9 @@ class _NavigationBarItemsList extends DelegatingList<BottomNavigationBarItem> {
               (e) => BottomNavigationBarItem(
                 icon: Icon(
                   e.icon,
-                  color:
-                      e == selectedTab
-                          ? context.colorTheme.orangePomegranade
-                          : context.colorTheme.blackMirage.withValues(alpha: .16),
+                  color: e == selectedTab
+                      ? context.colorTheme.orangePomegranade
+                      : context.colorTheme.blackMirage.withValues(alpha: .16),
                   size: e.size,
                 ),
                 label: e.getLabel(context),

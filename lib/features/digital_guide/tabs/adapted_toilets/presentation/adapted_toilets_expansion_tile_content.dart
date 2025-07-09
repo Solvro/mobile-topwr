@@ -42,10 +42,9 @@ class _AdaptedToiletsExpansionTileContent extends ConsumerWidget {
         color: context.colorTheme.greyLight,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:
-              levelsWithToilets.map((level) {
-                return AdaptedToiletLevel(level: level.level, adaptedToilets: level.adaptedToilets);
-              }).toList(),
+          children: levelsWithToilets.map((level) {
+            return AdaptedToiletLevel(level: level.level, adaptedToilets: level.adaptedToilets);
+          }).toList(),
         ),
       ),
     );

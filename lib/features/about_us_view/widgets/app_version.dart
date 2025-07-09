@@ -16,28 +16,25 @@ class AppVersionTile extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: WideTileCardConfig.basePadding),
       child: FutureBuilder(
         future: Future.microtask(PackageInfo.fromPlatform),
-        builder:
-            (context, snapshot) => Semantics(
-              label:
-                  "${context.localize.version} ${snapshot.data?.version.replaceAll(".", " ")} ${context.localize.app_info}",
-              child: ListTile(
-                title: ExcludeSemantics(
-                  child: Text(
-                    "${MyAppConfig.title} ${snapshot.data?.version} ${context.localize.app_info}",
-                    style: context.textTheme.bodyGrey,
-                  ),
-                ),
-                leading: ExcludeSemantics(
-                  child: Icon(Icons.info, color: context.colorTheme.orangePomegranade, size: 22),
-                ),
-                contentPadding: const EdgeInsets.symmetric(horizontal: WideTileCardConfig.basePadding),
-                horizontalTitleGap: 8,
-                onTap: () async {
-                  // TODO(simon-the-shark): customize [LicensePage] theme
-                  await showMyLicenceDialog(context, snapshot.data?.version);
-                },
+        builder: (context, snapshot) => Semantics(
+          label:
+              "${context.localize.version} ${snapshot.data?.version.replaceAll(".", " ")} ${context.localize.app_info}",
+          child: ListTile(
+            title: ExcludeSemantics(
+              child: Text(
+                "${MyAppConfig.title} ${snapshot.data?.version} ${context.localize.app_info}",
+                style: context.textTheme.bodyGrey,
               ),
             ),
+            leading: ExcludeSemantics(child: Icon(Icons.info, color: context.colorTheme.orangePomegranade, size: 22)),
+            contentPadding: const EdgeInsets.symmetric(horizontal: WideTileCardConfig.basePadding),
+            horizontalTitleGap: 8,
+            onTap: () async {
+              // TODO(simon-the-shark): customize [LicensePage] theme
+              await showMyLicenceDialog(context, snapshot.data?.version);
+            },
+          ),
+        ),
       ),
     );
   }

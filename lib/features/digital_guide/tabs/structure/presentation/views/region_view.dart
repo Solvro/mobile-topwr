@@ -31,12 +31,13 @@ class RegionView extends ConsumerWidget {
 
     return regionDataAsync.when(
       data: (regionData) => _RegionView(level: level, region: region, regionData: regionData),
-      error:
-          (error, stackTrace) => Scaffold(
-            appBar: DetailViewAppBar(actions: [AccessibilityButton()]),
-            body: MyErrorWidget(error, stackTrace: stackTrace),
-          ),
-      loading: () => const Center(child: ShimmeringEffect(child: ColoredBox(color: Colors.white))),
+      error: (error, stackTrace) => Scaffold(
+        appBar: DetailViewAppBar(actions: [AccessibilityButton()]),
+        body: MyErrorWidget(error, stackTrace: stackTrace),
+      ),
+      loading: () => const Center(
+        child: ShimmeringEffect(child: ColoredBox(color: Colors.white)),
+      ),
     );
   }
 }
@@ -80,11 +81,9 @@ class _RegionView extends ConsumerWidget {
         itemCount: region.lifts.length,
       ),
       RegionDataSliverListItem(
-        text:
-            (index) =>
-                regionData.toilets[index].toiletType == ToiletType.men
-                    ? context.localize.men_toilet
-                    : context.localize.women_toilet,
+        text: (index) => regionData.toilets[index].toiletType == ToiletType.men
+            ? context.localize.men_toilet
+            : context.localize.women_toilet,
         onTap: (index) async => ref.navigateDigitalGuideToilet(regionData.toilets[index]),
         itemCount: region.toilets.length,
       ),

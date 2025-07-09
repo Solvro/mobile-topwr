@@ -27,21 +27,20 @@ class CorridorView extends ConsumerWidget {
     final l10n = context.localize;
     final comments = corridor.translations.plTranslation;
 
-    final textStrings =
-        [
-          comments.comment,
-          "${l10n.corridor_simple_layout_text(corridor.isSimpleCorridorLayout.toLowerCase())} ${comments.isSimpleCorridorLayoutComment}",
-          "${l10n.corridor_floor_marked(corridor.isFloorMarked.toLowerCase())} ${comments.isFloorMarkedComment}",
-          "${l10n.corridor_room_entrances(corridor.areRoomsEntrances.toLowerCase())} ${comments.areRoomsEntrancesComment}",
-          "${l10n.corridor_information_board(corridor.isInformationBoard.toLowerCase())} ${comments.isInformationBoardComment}",
-          "${l10n.corridor_room_purpose_described_in_en(corridor.areRoomPurposeDescribedInEn.toLowerCase())} ${comments.areRoomPurposeDescribedInEnComment}",
-          "${l10n.corridor_consistent_level_color_pattern(corridor.isConsistentLevelColorPattern.toLowerCase())} ${comments.isConsistentLevelColorPatternComment}",
-          "${l10n.corridor_pictorial_directional_signs(corridor.arePictorialDirectionalSigns.toLowerCase())} ${comments.arePictorialDirectionalSignsComment}",
-          "${l10n.corridor_seats(corridor.areSeats.toLowerCase())} ${comments.areSeatsComment}",
-          "${l10n.corridor_vending_machines(corridor.areVendingMachines.toLowerCase())} ${comments.areVendingMachinesComment}",
-          if (corridor.areVendingMachines.toLowerCase() == "true") comments.vendingMachinesProducts,
-          "${l10n.corridor_emergency_plan(corridor.isEmergencyPlan.toLowerCase())} ${comments.isEmergencyPlanComment}",
-        ].map((e) => e.trim()).where((e) => e.isNotEmpty).toIList();
+    final textStrings = [
+      comments.comment,
+      "${l10n.corridor_simple_layout_text(corridor.isSimpleCorridorLayout.toLowerCase())} ${comments.isSimpleCorridorLayoutComment}",
+      "${l10n.corridor_floor_marked(corridor.isFloorMarked.toLowerCase())} ${comments.isFloorMarkedComment}",
+      "${l10n.corridor_room_entrances(corridor.areRoomsEntrances.toLowerCase())} ${comments.areRoomsEntrancesComment}",
+      "${l10n.corridor_information_board(corridor.isInformationBoard.toLowerCase())} ${comments.isInformationBoardComment}",
+      "${l10n.corridor_room_purpose_described_in_en(corridor.areRoomPurposeDescribedInEn.toLowerCase())} ${comments.areRoomPurposeDescribedInEnComment}",
+      "${l10n.corridor_consistent_level_color_pattern(corridor.isConsistentLevelColorPattern.toLowerCase())} ${comments.isConsistentLevelColorPatternComment}",
+      "${l10n.corridor_pictorial_directional_signs(corridor.arePictorialDirectionalSigns.toLowerCase())} ${comments.arePictorialDirectionalSignsComment}",
+      "${l10n.corridor_seats(corridor.areSeats.toLowerCase())} ${comments.areSeatsComment}",
+      "${l10n.corridor_vending_machines(corridor.areVendingMachines.toLowerCase())} ${comments.areVendingMachinesComment}",
+      if (corridor.areVendingMachines.toLowerCase() == "true") comments.vendingMachinesProducts,
+      "${l10n.corridor_emergency_plan(corridor.isEmergencyPlan.toLowerCase())} ${comments.isEmergencyPlanComment}",
+    ].map((e) => e.trim()).where((e) => e.isNotEmpty).toIList();
 
     final widgets = [
       Text(comments.name, style: context.textTheme.headline.copyWith(fontSize: DigitalGuideConfig.headlineFont)),
@@ -63,11 +62,10 @@ class CorridorView extends ConsumerWidget {
           shrinkWrap: true,
           itemCount: corridor.doorsIndices.length,
           separatorBuilder: (context, index) => const SizedBox(height: DigitalGuideConfig.heightMedium),
-          itemBuilder:
-              (context, index) => DigitalGuideNavLink(
-                onTap: () async => ref.navigateDigitalGuideDoor(corridor.doorsIndices[index]),
-                text: context.localize.door,
-              ),
+          itemBuilder: (context, index) => DigitalGuideNavLink(
+            onTap: () async => ref.navigateDigitalGuideDoor(corridor.doorsIndices[index]),
+            text: context.localize.door,
+          ),
         ),
     ];
 

@@ -69,7 +69,10 @@ class FiltersSectionHeader extends StatelessWidget {
   final String text;
   @override
   Widget build(BuildContext context) {
-    return Padding(padding: const EdgeInsets.all(8), child: Text(text, style: context.textTheme.title));
+    return Padding(
+      padding: const EdgeInsets.all(8),
+      child: Text(text, style: context.textTheme.title),
+    );
   }
 }
 

@@ -37,19 +37,18 @@ class ToiletsView extends ConsumerWidget {
             ),
             const SizedBox(height: DigitalGuideConfig.heightSmall),
             BulletList(
-              items:
-                  [
-                    toiletsInformation.location,
-                    toiletsInformation.toiletDescription,
-                    toiletsInformation.numberOfCabins,
-                    "${context.localize.toilet_is_need_authorization(toilet.isNeedAuthorization.toLowerCase())} ${toiletsInformation.isNeedAuthorizationComment}",
-                    "${context.localize.toilet_are_clothes_hooks(toilet.areClothesHooks.toLowerCase())} ${toiletsInformation.areClothesHooksComment}",
-                    "${context.localize.toilet_is_wastebasket(toilet.isWastebasket.toLowerCase())} ${toiletsInformation.isWastebasketComment}",
-                    "${context.localize.toilet_is_hand_dryer(toilet.isHandDryer.toLowerCase())} ${toiletsInformation.isHandDryerComment}",
-                    "${context.localize.toilet_is_towel_dispenser(toilet.isTowelDispenser.toLowerCase())} ${toiletsInformation.isTowelDispenserComment}",
-                    "${context.localize.toilet_is_washbasin(toilet.isWashbasin.toLowerCase())} ${toiletsInformation.isWashbasinComment}",
-                    toiletsInformation.comment,
-                  ].toIList(),
+              items: [
+                toiletsInformation.location,
+                toiletsInformation.toiletDescription,
+                toiletsInformation.numberOfCabins,
+                "${context.localize.toilet_is_need_authorization(toilet.isNeedAuthorization.toLowerCase())} ${toiletsInformation.isNeedAuthorizationComment}",
+                "${context.localize.toilet_are_clothes_hooks(toilet.areClothesHooks.toLowerCase())} ${toiletsInformation.areClothesHooksComment}",
+                "${context.localize.toilet_is_wastebasket(toilet.isWastebasket.toLowerCase())} ${toiletsInformation.isWastebasketComment}",
+                "${context.localize.toilet_is_hand_dryer(toilet.isHandDryer.toLowerCase())} ${toiletsInformation.isHandDryerComment}",
+                "${context.localize.toilet_is_towel_dispenser(toilet.isTowelDispenser.toLowerCase())} ${toiletsInformation.isTowelDispenserComment}",
+                "${context.localize.toilet_is_washbasin(toilet.isWashbasin.toLowerCase())} ${toiletsInformation.isWashbasinComment}",
+                toiletsInformation.comment,
+              ].toIList(),
             ),
             AccessibilityProfileCard(
               accessibilityCommentsManager: ToiletsAccessibilityCommentsManager(toilet: toilet, l10n: context.localize),

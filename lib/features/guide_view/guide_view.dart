@@ -67,11 +67,10 @@ class _GuideViewContent extends ConsumerWidget {
     return switch (guideList) {
       AsyncError(:final error, :final stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
       AsyncValue(:final IList<GuideData> value) => GuideGrid(
-        children:
-            [
-              for (final item in value) GuideTile(item),
-              _GuideInfo(emailAddress: "kn.solvro@pwr.edu.pl", subject: context.localize.guide_subject_default_content),
-            ].lock,
+        children: [
+          for (final item in value) GuideTile(item),
+          _GuideInfo(emailAddress: "kn.solvro@pwr.edu.pl", subject: context.localize.guide_subject_default_content),
+        ].lock,
       ),
       _ => const Padding(padding: GuideViewConfig.gridPadding, child: DepartmentsViewLoading()),
     };

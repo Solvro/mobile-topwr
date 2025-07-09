@@ -17,23 +17,23 @@ extension LocalizeAcademicDayX on AcademicDay {
     if (isExamSession) return weekday.localizeExamSession(context);
     return isEven
         ? switch (weekday) {
-          WeekdayEnum.monday => context.localize.even_monday_declined,
-          WeekdayEnum.tuesday => context.localize.even_tuesday_declined,
-          WeekdayEnum.wednesday => context.localize.even_wednesday_declined,
-          WeekdayEnum.thursday => context.localize.even_thursday_declined,
-          WeekdayEnum.friday => context.localize.even_friday_declined,
-          WeekdayEnum.saturday => context.localize.even_saturday_declined,
-          WeekdayEnum.sunday => context.localize.even_sunday_declined,
-        }
+            WeekdayEnum.monday => context.localize.even_monday_declined,
+            WeekdayEnum.tuesday => context.localize.even_tuesday_declined,
+            WeekdayEnum.wednesday => context.localize.even_wednesday_declined,
+            WeekdayEnum.thursday => context.localize.even_thursday_declined,
+            WeekdayEnum.friday => context.localize.even_friday_declined,
+            WeekdayEnum.saturday => context.localize.even_saturday_declined,
+            WeekdayEnum.sunday => context.localize.even_sunday_declined,
+          }
         : switch (weekday) {
-          WeekdayEnum.monday => context.localize.odd_monday_declined,
-          WeekdayEnum.tuesday => context.localize.odd_tuesday_declined,
-          WeekdayEnum.wednesday => context.localize.odd_wednesday_declined,
-          WeekdayEnum.thursday => context.localize.odd_thursday_declined,
-          WeekdayEnum.friday => context.localize.odd_friday_declined,
-          WeekdayEnum.saturday => context.localize.odd_saturday_declined,
-          WeekdayEnum.sunday => context.localize.odd_sunday_declined,
-        };
+            WeekdayEnum.monday => context.localize.odd_monday_declined,
+            WeekdayEnum.tuesday => context.localize.odd_tuesday_declined,
+            WeekdayEnum.wednesday => context.localize.odd_wednesday_declined,
+            WeekdayEnum.thursday => context.localize.odd_thursday_declined,
+            WeekdayEnum.friday => context.localize.odd_friday_declined,
+            WeekdayEnum.saturday => context.localize.odd_saturday_declined,
+            WeekdayEnum.sunday => context.localize.odd_sunday_declined,
+          };
   }
 
   String localize(BuildContext context, {bool includePrefix = true, bool getDeclinedNoun = false}) {

@@ -34,7 +34,9 @@ class _DigitalGuideTitleSectionLoading extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ShimmerLoadingItem(child: Container(color: Colors.white, width: 100, height: DigitalGuideConfig.paddingBig)),
+          ShimmerLoadingItem(
+            child: Container(color: Colors.white, width: 100, height: DigitalGuideConfig.paddingBig),
+          ),
           const SizedBox(height: DigitalGuideConfig.paddingSmall),
           ShimmerLoadingItem(
             child: Container(
@@ -75,7 +77,9 @@ class _DigitalGuideInfoSectionLoading extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: DigitalGuideConfig.borderRadiusBig),
-      child: ShimmerLoadingItem(child: Container(color: Colors.white, width: double.infinity, height: 180)),
+      child: ShimmerLoadingItem(
+        child: Container(color: Colors.white, width: double.infinity, height: 180),
+      ),
     );
   }
 }

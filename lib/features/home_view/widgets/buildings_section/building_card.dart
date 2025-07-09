@@ -33,8 +33,9 @@ class BuildingCard extends StatelessWidget {
                     child: Container(decoration: BoxDecoration(gradient: context.colorTheme.buildingsGradient)),
                   ),
                 Positioned(
-                  bottom:
-                      context.isTextScaledDown ? initialBottomPadding / context.textScaleFactor : initialBottomPadding,
+                  bottom: context.isTextScaledDown
+                      ? initialBottomPadding / context.textScaleFactor
+                      : initialBottomPadding,
                   left: 16,
                   child: Text(
                     buildingName,

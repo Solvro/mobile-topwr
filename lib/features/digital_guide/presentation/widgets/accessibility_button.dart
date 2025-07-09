@@ -19,26 +19,25 @@ class AccessibilityButton extends StatelessWidget {
         enabled: true,
         child: ExcludeSemantics(
           child: Consumer(
-            builder:
-                (context, ref, child) => OutlinedButton(
-                  onPressed: () {
-                    unawaited(AccessibilityDialog.show(context, ref));
-                  },
+            builder: (context, ref, child) => OutlinedButton(
+              onPressed: () {
+                unawaited(AccessibilityDialog.show(context, ref));
+              },
 
-                  style: OutlinedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(DigitalGuideConfig.borderRadiusMedium),
-                    ),
-                    side: BorderSide(color: context.colorTheme.greyPigeon),
-                    backgroundColor: context.colorTheme.greyLight,
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                  ),
-                  child: Icon(
-                    Icons.accessibility_new,
-                    color: context.colorTheme.blackMirage,
-                    size: context.textScaler.clamp(maxScaleFactor: 2.5).scale(16),
-                  ),
+              style: OutlinedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(DigitalGuideConfig.borderRadiusMedium),
                 ),
+                side: BorderSide(color: context.colorTheme.greyPigeon),
+                backgroundColor: context.colorTheme.greyLight,
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+              ),
+              child: Icon(
+                Icons.accessibility_new,
+                color: context.colorTheme.blackMirage,
+                size: context.textScaler.clamp(maxScaleFactor: 2.5).scale(16),
+              ),
+            ),
           ),
         ),
       ),

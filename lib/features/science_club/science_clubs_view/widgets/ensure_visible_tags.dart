@@ -57,14 +57,13 @@ class EnsureVisibleTags extends DualTextMaxLines {
             titleSpan(fontSize: 12).calculateLines(constraints.maxWidth, placeholderDimensions: placeholderDimensions) >
             titleLines;
         final finalTitleLines = shouldItOverrideEvenDept ? titleLines + 1 : titleLines;
-        final int subtitleLines =
-            subtitle == null
-                ? 0
-                : secondSubtitle == "" || secondSubtitle == null
-                ? maxTotalLines - finalTitleLines
-                : shouldItOverrideEvenDept
-                ? 0
-                : 1;
+        final int subtitleLines = subtitle == null
+            ? 0
+            : secondSubtitle == "" || secondSubtitle == null
+            ? maxTotalLines - finalTitleLines
+            : shouldItOverrideEvenDept
+            ? 0
+            : 1;
         final thirdLines = maxTotalLines - finalTitleLines - subtitleLines;
 
         return Column(

@@ -55,20 +55,19 @@ Future<IList<ScienceClub>> scienceClubsListController(Ref ref) async {
 
   final selectedTypes = ref.watch(selectedTypeControllerProvider);
 
-  final filteredByTypes =
-      selectedTypes.isEmpty ? sciClubs : sciClubs.where((club) => selectedTypes.contains(club.organizationType));
+  final filteredByTypes = selectedTypes.isEmpty
+      ? sciClubs
+      : sciClubs.where((club) => selectedTypes.contains(club.organizationType));
 
-  final filteredByDepartments =
-      selectedDepartments.isEmpty
-          ? filteredByTypes
-          : filteredByTypes.where((club) {
-            return selectedDepartments.contains(club.department?.name);
-          });
+  final filteredByDepartments = selectedDepartments.isEmpty
+      ? filteredByTypes
+      : filteredByTypes.where((club) {
+          return selectedDepartments.contains(club.department?.name);
+        });
 
-  final filteredByTags =
-      selectedTags.isEmpty
-          ? filteredByDepartments
-          : filteredByDepartments.where((club) => club.tags.whereNonNull.any(selectedTags.contains));
+  final filteredByTags = selectedTags.isEmpty
+      ? filteredByDepartments
+      : filteredByDepartments.where((club) => club.tags.whereNonNull.any(selectedTags.contains));
 
   return filteredByTags.toIList();
 }

@@ -28,21 +28,20 @@ class DigitalGuideEntranceDetailsView extends ConsumerWidget {
       Text(entrance.translations.pl.name, style: context.textTheme.title.copyWith(fontSize: 24)),
       const SizedBox(height: DigitalGuideConfig.heightMedium),
       BulletList(
-        items:
-            [
-              entrance.translations.pl.location,
-              context.localize.entrance_is_main(entrance.isMain.toLowerCase()),
-              //(thesun901): You might wonder what the hell is this? trust me, they are doing it this way on site this is so crazy tbh
-              context.localize.entrance_is_accessible(
-                entrance.isAccessible.isNotEmpty ? entrance.isAccessible.toLowerCase() : entrance.isMain.toLowerCase(),
-              ),
-              context.localize.entrance_is_for_personel(entrance.isForPersonel.toLowerCase()),
-              context.localize.entrance_is_protection_from_weather(entrance.isProtectionFromWeather.toLowerCase()),
-              context.localize.entrance_is_emergency_exit(entrance.isEmergencyExit.toLowerCase()),
-              context.localize.entrance_is_building_marked_in_en(entrance.isBuildingMarkedInEn.toLowerCase()),
-              context.localize.entrance_are_benches(entrance.areBenches.toLowerCase()),
-              context.localize.entrance_number_of_doors(entrance.numberOfDoors),
-            ].lock,
+        items: [
+          entrance.translations.pl.location,
+          context.localize.entrance_is_main(entrance.isMain.toLowerCase()),
+          //(thesun901): You might wonder what the hell is this? trust me, they are doing it this way on site this is so crazy tbh
+          context.localize.entrance_is_accessible(
+            entrance.isAccessible.isNotEmpty ? entrance.isAccessible.toLowerCase() : entrance.isMain.toLowerCase(),
+          ),
+          context.localize.entrance_is_for_personel(entrance.isForPersonel.toLowerCase()),
+          context.localize.entrance_is_protection_from_weather(entrance.isProtectionFromWeather.toLowerCase()),
+          context.localize.entrance_is_emergency_exit(entrance.isEmergencyExit.toLowerCase()),
+          context.localize.entrance_is_building_marked_in_en(entrance.isBuildingMarkedInEn.toLowerCase()),
+          context.localize.entrance_are_benches(entrance.areBenches.toLowerCase()),
+          context.localize.entrance_number_of_doors(entrance.numberOfDoors),
+        ].lock,
       ),
       const SizedBox(height: DigitalGuideConfig.heightSmall),
       AccessibilityProfileCard(

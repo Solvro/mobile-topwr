@@ -42,10 +42,9 @@ class _EntrancesExpansionTileContent extends ConsumerWidget {
         color: context.colorTheme.greyLight,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:
-              entrances.map((entrance) {
-                return DigitalGuideEntranceWidget(entrance: entrance);
-              }).toList(),
+          children: entrances.map((entrance) {
+            return DigitalGuideEntranceWidget(entrance: entrance);
+          }).toList(),
         ),
       ),
     );

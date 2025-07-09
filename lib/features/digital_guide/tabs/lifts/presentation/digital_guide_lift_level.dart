@@ -27,17 +27,15 @@ class DigitalGuideLiftLevel extends ConsumerWidget {
           const SizedBox(height: 10),
           ListView.separated(
             physics: const NeverScrollableScrollPhysics(),
-            itemBuilder:
-                (context, index) => DigitalGuideNavLink(
-                  onTap: () async {
-                    await ref.navigateLiftDetails(lifts[index], level.translations.plTranslation.name);
-                  },
-                  text: context.localize.lift,
-                ),
-            separatorBuilder:
-                (context, index) => SizedBox(
-                  height: index == lifts.length - 1 ? DigitalGuideConfig.heightSmall : DigitalGuideConfig.heightMedium,
-                ),
+            itemBuilder: (context, index) => DigitalGuideNavLink(
+              onTap: () async {
+                await ref.navigateLiftDetails(lifts[index], level.translations.plTranslation.name);
+              },
+              text: context.localize.lift,
+            ),
+            separatorBuilder: (context, index) => SizedBox(
+              height: index == lifts.length - 1 ? DigitalGuideConfig.heightSmall : DigitalGuideConfig.heightMedium,
+            ),
             itemCount: lifts.length,
             shrinkWrap: true,
           ),

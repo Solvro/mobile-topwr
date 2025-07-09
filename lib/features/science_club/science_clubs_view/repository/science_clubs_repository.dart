@@ -17,17 +17,16 @@ Future<IList<ScienceClub>> scienceClubsRepository(Ref ref) async {
   final apiUrl = Env.mainRestApiUrl;
   const scienceClubsEndpoint = "/student_organizations?cover=true&links=true&logo=true&tags=true&department=true";
 
-  final response =
-      await ref
-          .getAndCacheDataWithTranslation(
-            apiUrl + scienceClubsEndpoint,
-            TtlStrategy.get(TtlKey.scienceClubsRepository).inDays,
-            ScienceClubsResponse.fromJson,
-            extraValidityCheck: (_) => true,
-            localizedOfflineMessage: ScienceClubsView.localizedOfflineMessage,
-            onRetry: ref.invalidateSelf,
-          )
-          .castAsObject;
+  final response = await ref
+      .getAndCacheDataWithTranslation(
+        apiUrl + scienceClubsEndpoint,
+        TtlStrategy.get(TtlKey.scienceClubsRepository).inDays,
+        ScienceClubsResponse.fromJson,
+        extraValidityCheck: (_) => true,
+        localizedOfflineMessage: ScienceClubsView.localizedOfflineMessage,
+        onRetry: ref.invalidateSelf,
+      )
+      .castAsObject;
 
   return response.data
       .whereType<ScienceClub>()
@@ -59,12 +58,13 @@ extension SortBySourceTypeX on Iterable<ScienceClub> {
     final manualSourceWithPhotos = _filterByType(ScienceClubSource.manualEntry).withLogo().toList()..shuffle();
     final manualSourceWithoutPhotos = _filterByType(ScienceClubSource.manualEntry).withoutLogo().toList()..shuffle();
     final activeWebSourceWithPhotos = _filterByType(ScienceClubSource.pwrActiveWebsite).withLogo().toList()..shuffle();
-    final activeWebSourceWithoutPhotos =
-        _filterByType(ScienceClubSource.pwrActiveWebsite).withoutLogo().toList()..shuffle();
-    final studentDepartmentSourceWithPhotos =
-        _filterByType(ScienceClubSource.studentDepartment).withLogo().toList()..shuffle();
-    final studentDepartmentSourceWithoutPhotos =
-        _filterByType(ScienceClubSource.studentDepartment).withoutLogo().toList()..shuffle();
+    final activeWebSourceWithoutPhotos = _filterByType(ScienceClubSource.pwrActiveWebsite).withoutLogo().toList()
+      ..shuffle();
+    final studentDepartmentSourceWithPhotos = _filterByType(ScienceClubSource.studentDepartment).withLogo().toList()
+      ..shuffle();
+    final studentDepartmentSourceWithoutPhotos = _filterByType(
+      ScienceClubSource.studentDepartment,
+    ).withoutLogo().toList()..shuffle();
 
     return [
       if (solvro != null) solvro,

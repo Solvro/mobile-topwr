@@ -35,8 +35,10 @@ class _RoomPlatformsContent extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final roomPlatformsComment =
-        [roomPlatformsResponse.translations.pl.location, roomPlatformsResponse.translations.pl.comment].toIList();
+    final roomPlatformsComment = [
+      roomPlatformsResponse.translations.pl.location,
+      roomPlatformsResponse.translations.pl.comment,
+    ].toIList();
 
     return Padding(
       padding: DigitalGuideConfig.symetricalPaddingBig.copyWith(top: 0),

@@ -46,29 +46,27 @@ class SheetLayoutScheme<T extends GoogleNavigable> extends HookConsumerWidget {
       actions: [if (ref.watch(context.activeMarkerController<T>()) != null) NavigateButton<T>()],
     );
 
-    final categoryData =
-        isBuildingMap
-            ? (
-              buildings: (title: context.localize.buildings_title, builder: DataSliverList<T>.new),
-              library: (
-                title: context.localize.library_title,
-                builder: () => const SliverToBoxAdapter(child: Center(child: Text("Lorem ipsum"))),
-              ),
-              showers: (
-                title: context.localize.showers_title,
-                builder: () => const SliverToBoxAdapter(child: Center(child: Text("Lorem ipsum"))),
-              ),
-            )
-            : null;
+    final categoryData = isBuildingMap
+        ? (
+            buildings: (title: context.localize.buildings_title, builder: DataSliverList<T>.new),
+            library: (
+              title: context.localize.library_title,
+              builder: () => const SliverToBoxAdapter(child: Center(child: Text("Lorem ipsum"))),
+            ),
+            showers: (
+              title: context.localize.showers_title,
+              builder: () => const SliverToBoxAdapter(child: Center(child: Text("Lorem ipsum"))),
+            ),
+          )
+        : null;
 
-    final validSelectedCategory =
-        isBuildingMap
-            ? (categoryData!.buildings.title == selectedCategory.value
-                ? categoryData.buildings
-                : categoryData.library.title == selectedCategory.value
-                ? categoryData.library
-                : categoryData.showers)
-            : null;
+    final validSelectedCategory = isBuildingMap
+        ? (categoryData!.buildings.title == selectedCategory.value
+              ? categoryData.buildings
+              : categoryData.library.title == selectedCategory.value
+              ? categoryData.library
+              : categoryData.showers)
+        : null;
 
     return CustomScrollView(
       controller: scrollController,

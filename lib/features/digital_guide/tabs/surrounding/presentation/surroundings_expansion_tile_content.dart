@@ -54,11 +54,10 @@ class _SurroundingExpansionTileContent extends ConsumerWidget {
         ),
       ),
       BulletList(
-        items:
-            [
-              context.localize.parking_location(surroundingResponse.translations.plTranslation.areParkingSpacesComment),
-              context.localize.closest_facilities(surroundingResponse.translations.plTranslation.closestBuildings),
-            ].toIList(),
+        items: [
+          context.localize.parking_location(surroundingResponse.translations.plTranslation.areParkingSpacesComment),
+          context.localize.closest_facilities(surroundingResponse.translations.plTranslation.closestBuildings),
+        ].toIList(),
       ),
       AccessibilityProfileCard(
         accessibilityCommentsManager: SurroundingsAccessibilityCommentsManager(
