@@ -37,7 +37,9 @@ class TooltipOnTap extends HookWidget {
   }
 
   OverlayEntry _createOverlayEntry(BuildContext context, Offset globalPosition) {
-    return OverlayEntry(builder: (context) => CustomDateTooltip(position: globalPosition, message: message));
+    return OverlayEntry(
+      builder: (context) => CustomDateTooltip(position: globalPosition, message: message),
+    );
   }
 }
 

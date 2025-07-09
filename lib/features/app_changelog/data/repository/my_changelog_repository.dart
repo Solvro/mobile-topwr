@@ -14,17 +14,16 @@ part "my_changelog_repository.g.dart";
 Future<Changelog?> changelogRepository(Ref ref) async {
   final url = "${Env.mainRestApiUrl}/versions?changes=true&sort=-updatedAt&limit=1";
 
-  final changelogResponse =
-      await ref
-          .getAndCacheDataWithTranslation(
-            url,
-            TtlStrategy.get(TtlKey.changelogRepository).inDays,
-            ChangelogDataResponse.fromJson,
-            extraValidityCheck: (_) => true,
-            localizedOfflineMessage: AppChangelog.localizedOfflineMessage,
-            onRetry: ref.invalidateSelf,
-          )
-          .castAsObject;
+  final changelogResponse = await ref
+      .getAndCacheDataWithTranslation(
+        url,
+        TtlStrategy.get(TtlKey.changelogRepository).inDays,
+        ChangelogDataResponse.fromJson,
+        extraValidityCheck: (_) => true,
+        localizedOfflineMessage: AppChangelog.localizedOfflineMessage,
+        onRetry: ref.invalidateSelf,
+      )
+      .castAsObject;
 
   return changelogResponse.data.firstOrNull;
 }

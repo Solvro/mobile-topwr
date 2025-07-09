@@ -27,35 +27,34 @@ class DigitalGuidePhotoRow extends StatelessWidget {
         SizedBox(
           height: DigitalGuideConfig.photoRowHeight,
           child: Row(
-            children:
-                displayImages
-                    .map(
-                      (id) => Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: DigitalGuideConfig.paddingSmall),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(DigitalGuideConfig.borderRadiusMedium),
-                            child: Semantics(
-                              label: semanticsLabel,
-                              image: true,
-                              container: true,
-                              button: true,
-                              child: ExcludeSemantics(
-                                child: GestureDetector(
-                                  onTap: () async {
-                                    if (imagesIDs.length > 1) {
-                                      await showGallery(context, initId: id, semanticsLabel: semanticsLabel);
-                                    }
-                                  },
-                                  child: DigitalGuideImage(id: id, zoomable: imagesIDs.length == 1),
-                                ),
-                              ),
+            children: displayImages
+                .map(
+                  (id) => Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: DigitalGuideConfig.paddingSmall),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(DigitalGuideConfig.borderRadiusMedium),
+                        child: Semantics(
+                          label: semanticsLabel,
+                          image: true,
+                          container: true,
+                          button: true,
+                          child: ExcludeSemantics(
+                            child: GestureDetector(
+                              onTap: () async {
+                                if (imagesIDs.length > 1) {
+                                  await showGallery(context, initId: id, semanticsLabel: semanticsLabel);
+                                }
+                              },
+                              child: DigitalGuideImage(id: id, zoomable: imagesIDs.length == 1),
                             ),
                           ),
                         ),
                       ),
-                    )
-                    .toList(),
+                    ),
+                  ),
+                )
+                .toList(),
           ),
         ),
         if (imagesIDs.length > 3)
@@ -78,9 +77,8 @@ class DigitalGuidePhotoRow extends StatelessWidget {
   Future<void> showGallery(BuildContext context, {int? initId, required String semanticsLabel}) async {
     await showDialog<void>(
       context: context,
-      builder:
-          (context) =>
-              DigitalGuideCarouselWithIndicator(imgListId: imagesIDs, initId: initId, semanticsLabel: semanticsLabel),
+      builder: (context) =>
+          DigitalGuideCarouselWithIndicator(imgListId: imagesIDs, initId: initId, semanticsLabel: semanticsLabel),
     );
   }
 }

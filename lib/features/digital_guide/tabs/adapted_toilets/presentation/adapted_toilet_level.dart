@@ -26,11 +26,10 @@ class AdaptedToiletLevel extends ConsumerWidget {
           const SizedBox(height: 10),
           ListView.separated(
             physics: const NeverScrollableScrollPhysics(),
-            itemBuilder:
-                (context, index) => DigitalGuideNavLink(
-                  onTap: () async => ref.navigateAdaptedToiletDetails(adaptedToilets[index]),
-                  text: adaptedToilets[index].getDescription(context),
-                ),
+            itemBuilder: (context, index) => DigitalGuideNavLink(
+              onTap: () async => ref.navigateAdaptedToiletDetails(adaptedToilets[index]),
+              text: adaptedToilets[index].getDescription(context),
+            ),
             separatorBuilder: (context, index) => const SizedBox(height: DigitalGuideConfig.heightMedium),
             itemCount: adaptedToilets.length,
             shrinkWrap: true,

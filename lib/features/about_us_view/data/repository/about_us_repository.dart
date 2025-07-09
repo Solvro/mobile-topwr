@@ -64,27 +64,27 @@ Future<AboutUs> aboutUsRepository(Ref ref) async {
     description: aboutUsResponse.data.aboutUsDetails.description,
     photoUrl: aboutUsResponse.data.aboutUsDetails.coverPhoto.url,
     socialLinks: aboutUsResponse.data.socialLinks.map((socialLink) => socialLink.url).toIList(),
-    multiversionTeam:
-        versionsResponse.data
-            .map(
-              (version) => (
-                versionName: version.name,
-                members:
-                    teamMembersResponse.data
-                        .where((member) => member.milestones.any((milestone) => milestone.id == version.milestoneId))
-                        .map((member) {
-                          return (
-                            teamMemberName: member.name,
-                            imageUrl: member.image.url,
-                            subtitleForMilestone:
-                                member.roles.where((role) => role.meta.milestoneId == version.milestoneId).first.name,
-                            socialLinks: member.socialLinks.map((e) => e.url).toIList(),
-                          );
-                        })
-                        .toIList(),
-              ),
-            )
-            .sortedBy((team) => team.versionName)
-            .toIList(),
+    multiversionTeam: versionsResponse.data
+        .map(
+          (version) => (
+            versionName: version.name,
+            members: teamMembersResponse.data
+                .where((member) => member.milestones.any((milestone) => milestone.id == version.milestoneId))
+                .map((member) {
+                  return (
+                    teamMemberName: member.name,
+                    imageUrl: member.image.url,
+                    subtitleForMilestone: member.roles
+                        .where((role) => role.meta.milestoneId == version.milestoneId)
+                        .first
+                        .name,
+                    socialLinks: member.socialLinks.map((e) => e.url).toIList(),
+                  );
+                })
+                .toIList(),
+          ),
+        )
+        .sortedBy((team) => team.versionName)
+        .toIList(),
   );
 }

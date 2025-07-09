@@ -7,7 +7,10 @@ class ShimmeringEffect extends StatelessWidget {
   final Widget child;
   @override
   Widget build(BuildContext context) {
-    return Shimmer(linearGradient: shimmerGradient, child: ShimmerLoadingItem(child: child));
+    return Shimmer(
+      linearGradient: shimmerGradient,
+      child: ShimmerLoadingItem(child: child),
+    );
   }
 }
 

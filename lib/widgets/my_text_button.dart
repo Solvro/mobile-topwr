@@ -19,10 +19,9 @@ class MyTextButton extends StatelessWidget {
       ),
       child: Text(
         actionTitle,
-        style:
-            onClick == null
-                ? context.textTheme.boldBodyOrange.copyWith(color: color ?? context.colorTheme.greyPigeon)
-                : context.textTheme.boldBodyOrange.copyWith(color: color ?? context.colorTheme.orangePomegranade),
+        style: onClick == null
+            ? context.textTheme.boldBodyOrange.copyWith(color: color ?? context.colorTheme.greyPigeon)
+            : context.textTheme.boldBodyOrange.copyWith(color: color ?? context.colorTheme.orangePomegranade),
       ),
     );
   }

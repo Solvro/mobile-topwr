@@ -44,8 +44,9 @@ class SksChartBottomTitles extends AxisTitles {
           interval: context.isTextScaledDown ? 5 : 40,
           getTitlesWidget: (double value, TitleMeta meta) {
             final DateTime? hourMinute = chartData.isNotEmpty ? chartData[value.toInt()].externalTimestamp : null;
-            final String hourMinuteFormatted =
-                hourMinute != null && hourMinute.minute == 0 ? hourMinute.toHourMinuteString(context) : "";
+            final String hourMinuteFormatted = hourMinute != null && hourMinute.minute == 0
+                ? hourMinute.toHourMinuteString(context)
+                : "";
 
             return ExcludeSemantics(
               child: Padding(

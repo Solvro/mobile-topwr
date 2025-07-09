@@ -15,16 +15,15 @@ Future<GuideDetails> guideDetailsRepository(Ref ref, int id) async {
   final apiUrl = Env.mainRestApiUrl;
   final endpoint = "/guide_articles/$id?description=true&guideQuestions=true&image=true&guideAuthors=true";
 
-  final response =
-      await ref
-          .getAndCacheDataWithTranslation(
-            apiUrl + endpoint,
-            TtlStrategy.get(TtlKey.guideDetailsRepository).inDays,
-            GuideDetailsResponse.fromJson,
-            extraValidityCheck: (_) => true,
-            localizedOfflineMessage: GuideView.localizedOfflineMessage,
-            onRetry: ref.invalidateSelf,
-          )
-          .castAsObject;
+  final response = await ref
+      .getAndCacheDataWithTranslation(
+        apiUrl + endpoint,
+        TtlStrategy.get(TtlKey.guideDetailsRepository).inDays,
+        GuideDetailsResponse.fromJson,
+        extraValidityCheck: (_) => true,
+        localizedOfflineMessage: GuideView.localizedOfflineMessage,
+        onRetry: ref.invalidateSelf,
+      )
+      .castAsObject;
   return response.data;
 }

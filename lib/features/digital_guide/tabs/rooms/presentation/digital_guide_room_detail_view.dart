@@ -47,14 +47,13 @@ class DigitalGuideRoomDetailView extends ConsumerWidget {
       Text(context.localize.key_information, style: context.textTheme.headline),
       const SizedBox(height: DigitalGuideConfig.heightSmall),
       BulletList(
-        items:
-            [
-              roomInformation.location,
-              roomInformation.comment,
-              roomInformation.areEntrancesComment,
-              roomInformation.isOneLevelFloorComment,
-              roomInformation.arePlacesForWheelchairsComment,
-            ].toIList(),
+        items: [
+          roomInformation.location,
+          roomInformation.comment,
+          roomInformation.areEntrancesComment,
+          roomInformation.isOneLevelFloorComment,
+          roomInformation.arePlacesForWheelchairsComment,
+        ].toIList(),
       ),
       AccessibilityProfileCard(
         accessibilityCommentsManager: RoomsAccessibilityCommentsManager(digitalGuideRoom: room, l10n: context.localize),

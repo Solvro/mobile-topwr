@@ -17,21 +17,17 @@ class DigitalGuideObjectAmenietesTabTileContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return ContactSection(
       topPadding: DigitalGuideConfig.heightTiny,
-      list:
-          [
-            if (digitalGuideData.areGuidancePaths)
-              ContactIconsModel(
-                text: context.localize.orientation_paths,
-                icon: Assets.svg.digitalGuide.orientationPaths,
-              ),
-            if (digitalGuideData.isMicronavigationSystem)
-              ContactIconsModel(
-                text: context.localize.micronavigation_system,
-                icon: Assets.svg.digitalGuide.micronavigation,
-              ),
-            if (digitalGuideData.isPossibilityToEnterWithAssistanceDog)
-              ContactIconsModel(text: context.localize.assistance_dog, icon: Assets.svg.digitalGuide.assistanceDog),
-          ].lock,
+      list: [
+        if (digitalGuideData.areGuidancePaths)
+          ContactIconsModel(text: context.localize.orientation_paths, icon: Assets.svg.digitalGuide.orientationPaths),
+        if (digitalGuideData.isMicronavigationSystem)
+          ContactIconsModel(
+            text: context.localize.micronavigation_system,
+            icon: Assets.svg.digitalGuide.micronavigation,
+          ),
+        if (digitalGuideData.isPossibilityToEnterWithAssistanceDog)
+          ContactIconsModel(text: context.localize.assistance_dog, icon: Assets.svg.digitalGuide.assistanceDog),
+      ].lock,
     );
   }
 }

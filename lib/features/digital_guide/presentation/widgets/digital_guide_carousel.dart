@@ -31,19 +31,18 @@ class DigitalGuideCarouselWithIndicator extends HookWidget {
       child: Wrap(
         children: [
           CarouselSlider(
-            items:
-                imgListId
-                    .map(
-                      (item) => InteractiveViewer(
-                        minScale: 1,
-                        maxScale: 5,
-                        child: ClipRRect(
-                          borderRadius: const BorderRadius.all(Radius.circular(DigitalGuideConfig.borderRadiusMedium)),
-                          child: DigitalGuideImage(id: item, zoomable: false, semanticsLabel: semanticsLabel),
-                        ),
-                      ),
-                    )
-                    .toList(),
+            items: imgListId
+                .map(
+                  (item) => InteractiveViewer(
+                    minScale: 1,
+                    maxScale: 5,
+                    child: ClipRRect(
+                      borderRadius: const BorderRadius.all(Radius.circular(DigitalGuideConfig.borderRadiusMedium)),
+                      child: DigitalGuideImage(id: item, zoomable: false, semanticsLabel: semanticsLabel),
+                    ),
+                  ),
+                )
+                .toList(),
             controller: controller,
             options: CarouselOptions(
               initialPage: current.value,
@@ -56,22 +55,21 @@ class DigitalGuideCarouselWithIndicator extends HookWidget {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children:
-                imgListId.asMap().entries.map((entry) {
-                  return GestureDetector(
-                    onTap: () => unawaited(controller.animateToPage(entry.key)),
-                    child: Container(
-                      width: 12,
-                      height: 12,
-                      margin: const EdgeInsets.symmetric(vertical: DigitalGuideConfig.heightMedium, horizontal: 4),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.black.withAlpha(current.value == entry.key ? 230 : 102),
-                        border: Border.all(color: Colors.white),
-                      ),
-                    ),
-                  );
-                }).toList(),
+            children: imgListId.asMap().entries.map((entry) {
+              return GestureDetector(
+                onTap: () => unawaited(controller.animateToPage(entry.key)),
+                child: Container(
+                  width: 12,
+                  height: 12,
+                  margin: const EdgeInsets.symmetric(vertical: DigitalGuideConfig.heightMedium, horizontal: 4),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.black.withAlpha(current.value == entry.key ? 230 : 102),
+                    border: Border.all(color: Colors.white),
+                  ),
+                ),
+              );
+            }).toList(),
           ),
         ],
       ),

@@ -23,14 +23,13 @@ class FiltersHeader extends StatelessWidget {
             child: Stack(
               children: [
                 Consumer(
-                  builder:
-                      (context, ref, child) => SubsectionHeader(
-                        rightPadding: 16,
-                        title: context.localize.filters,
-                        actionTitle: context.localize.clear,
-                        addArrow: false,
-                        onClick: ref.watch(areFiltersEnabledProvider) ? ref.getClearAllFilters(ref) : null,
-                      ),
+                  builder: (context, ref, child) => SubsectionHeader(
+                    rightPadding: 16,
+                    title: context.localize.filters,
+                    actionTitle: context.localize.clear,
+                    addArrow: false,
+                    onClick: ref.watch(areFiltersEnabledProvider) ? ref.getClearAllFilters(ref) : null,
+                  ),
                 ),
                 const FiltersSearch(), // I need Stack cause the this lib is terribly made and it's my last hope to make it anything close to what I need
               ],

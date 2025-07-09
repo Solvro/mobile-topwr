@@ -30,11 +30,9 @@ class BuildingTile extends HookConsumerWidget {
     final l10n = context.localize;
     useSemanticsServiceOnChangedValue(
       isActive,
-      messageBuilder:
-          (active) =>
-              active
-                  ? "${l10n.building_tile_selected} ${l10n.building_tile_building} ${building.name.replaceFirst("-", " ")}"
-                  : "${l10n.building_tile_unselected} ${l10n.building_tile_building} ${building.name.replaceFirst("-", " ")}",
+      messageBuilder: (active) => active
+          ? "${l10n.building_tile_selected} ${l10n.building_tile_building} ${building.name.replaceFirst("-", " ")}"
+          : "${l10n.building_tile_unselected} ${l10n.building_tile_building} ${building.name.replaceFirst("-", " ")}",
     );
 
     return Column(
@@ -90,14 +88,13 @@ class BuildingTile extends HookConsumerWidget {
                       ExternalDigitalGuideMode.digitalGuideBuilding ||
                       ExternalDigitalGuideMode.otherDigitalGuidePlace => Icons.accessibility_new_rounded,
                     },
-                    color:
-                        isActive
-                            ? context.colorTheme.whiteSoap
-                            : switch (building.externalDigitalGuideMode) {
-                              ExternalDigitalGuideMode.digitalGuideBuilding ||
-                              ExternalDigitalGuideMode.otherDigitalGuidePlace => context.colorTheme.orangePomegranade,
-                              _ => context.colorTheme.greyPigeon,
-                            },
+                    color: isActive
+                        ? context.colorTheme.whiteSoap
+                        : switch (building.externalDigitalGuideMode) {
+                            ExternalDigitalGuideMode.digitalGuideBuilding ||
+                            ExternalDigitalGuideMode.otherDigitalGuidePlace => context.colorTheme.orangePomegranade,
+                            _ => context.colorTheme.greyPigeon,
+                          },
                   ),
                   onPressed: () {
                     unawaited(ref.navigateBuildingDetailAction(building));

@@ -40,10 +40,9 @@ class MicronavigationDetailView extends StatelessWidget {
       Padding(
         padding: DigitalGuideConfig.symetricalPaddingBig,
         child: MyAudioPlayer(
-          audioUrl:
-              context.solvroLocale == SolvroLocale.pl
-                  ? micronavigationResponse.languages.where((a) => a.langCode == "pl").firstOrNull?.sound ?? ""
-                  : micronavigationResponse.languages.where((a) => a.langCode == "en").firstOrNull?.sound ?? "",
+          audioUrl: context.solvroLocale == SolvroLocale.pl
+              ? micronavigationResponse.languages.where((a) => a.langCode == "pl").firstOrNull?.sound ?? ""
+              : micronavigationResponse.languages.where((a) => a.langCode == "en").firstOrNull?.sound ?? "",
         ),
       ),
     ];

@@ -26,23 +26,22 @@ class ParkingsView extends ConsumerWidget {
       mapSheetSize: MapViewBottomSheetConfig.parkingsMapSheetSize,
       mapControllers: parkingsMapControllers,
       mapTileBuilder: ParkingTile.new,
-      markerBuilder:
-          (item, ref, {required bool isActive}) => Marker(
-            alignment: Alignment.topCenter,
-            child: ExcludeSemantics(
-              child: GestureDetector(
-                onTap: () {
-                  unawaited(ref.read(parkingsMapControllerProvider).onMarkerTap(item));
-                },
-                child: Image.asset(
-                  isActive
-                      ? Assets.png.mapMarkers.activeParkingMapMarker.path
-                      : Assets.png.mapMarkers.parkingMapMarker.path,
-                ),
-              ),
+      markerBuilder: (item, ref, {required bool isActive}) => Marker(
+        alignment: Alignment.topCenter,
+        child: ExcludeSemantics(
+          child: GestureDetector(
+            onTap: () {
+              unawaited(ref.read(parkingsMapControllerProvider).onMarkerTap(item));
+            },
+            child: Image.asset(
+              isActive
+                  ? Assets.png.mapMarkers.activeParkingMapMarker.path
+                  : Assets.png.mapMarkers.parkingMapMarker.path,
             ),
-            point: item.location,
           ),
+        ),
+        point: item.location,
+      ),
       semanticsLabel: context.localize.parking_map_description,
     );
   }

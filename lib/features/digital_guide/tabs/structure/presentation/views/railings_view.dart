@@ -61,12 +61,10 @@ class _RailingsView extends ConsumerWidget {
             ),
             const SizedBox(height: DigitalGuideConfig.heightSmall),
             BulletList(
-              items:
-                  [
-                    if (railing.translations.plTranslation.comment.isNotEmpty)
-                      railing.translations.plTranslation.comment,
-                    if (railing.railingHeight != null) context.localize.railing_height(railing.railingHeight!),
-                  ].toIList(),
+              items: [
+                if (railing.translations.plTranslation.comment.isNotEmpty) railing.translations.plTranslation.comment,
+                if (railing.railingHeight != null) context.localize.railing_height(railing.railingHeight!),
+              ].toIList(),
             ),
             const SizedBox(height: DigitalGuideConfig.heightBig),
             AccessibilityProfileCard(

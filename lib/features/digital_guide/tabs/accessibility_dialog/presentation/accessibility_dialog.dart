@@ -30,28 +30,26 @@ class AccessibilityDialog extends StatelessWidget {
           label: context.localize.dialog_semantics_label,
           button: false,
           child: Consumer(
-            builder:
-                (context, ref, child) => GestureDetector(
-                  onTap: () {
-                    unawaited(ref.trackEvent(UmamiEvents.closeAccessibilityModeDialog));
-                    Navigator.of(context).pop();
-                  },
-                  child: ModalBarrier(color: Colors.black.withValues(alpha: 0.7), dismissible: false),
-                ),
+            builder: (context, ref, child) => GestureDetector(
+              onTap: () {
+                unawaited(ref.trackEvent(UmamiEvents.closeAccessibilityModeDialog));
+                Navigator.of(context).pop();
+              },
+              child: ModalBarrier(color: Colors.black.withValues(alpha: 0.7), dismissible: false),
+            ),
           ),
         ),
 
         Consumer(
           child: const CheckboxesList(),
-          builder:
-              (context, ref, child) => RedDialog(
-                title: context.localize.accessibility_profiles,
-                subtitle: context.localize.you_can_adjust,
-                child: child ?? const SizedBox.shrink(),
-                onApplyButtonPressed: () async {
-                  unawaited(ref.trackEvent(UmamiEvents.saveAccessibilityModeDialog));
-                },
-              ),
+          builder: (context, ref, child) => RedDialog(
+            title: context.localize.accessibility_profiles,
+            subtitle: context.localize.you_can_adjust,
+            child: child ?? const SizedBox.shrink(),
+            onApplyButtonPressed: () async {
+              unawaited(ref.trackEvent(UmamiEvents.saveAccessibilityModeDialog));
+            },
+          ),
         ),
       ],
     );

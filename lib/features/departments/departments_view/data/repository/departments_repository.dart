@@ -15,17 +15,16 @@ part "departments_repository.g.dart";
 Future<IList<Department>> departmentsRepository(Ref ref) async {
   final url = "${Env.mainRestApiUrl}/departments";
 
-  final response =
-      await ref
-          .getAndCacheDataWithTranslation(
-            url,
-            TtlStrategy.get(TtlKey.departmentsRepository).inDays,
-            DepartmentsResponse.fromJson,
-            extraValidityCheck: (_) => true,
-            localizedOfflineMessage: DepartmentsView.localizedOfflineMessage,
-            onRetry: ref.invalidateSelf,
-          )
-          .castAsObject;
+  final response = await ref
+      .getAndCacheDataWithTranslation(
+        url,
+        TtlStrategy.get(TtlKey.departmentsRepository).inDays,
+        DepartmentsResponse.fromJson,
+        extraValidityCheck: (_) => true,
+        localizedOfflineMessage: DepartmentsView.localizedOfflineMessage,
+        onRetry: ref.invalidateSelf,
+      )
+      .castAsObject;
 
   return response.data;
 }

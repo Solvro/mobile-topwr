@@ -40,12 +40,11 @@ class DigitalGuideLiftDetailView extends ConsumerWidget {
         child: Text(context.localize.key_information, style: context.textTheme.headline),
       ),
       BulletList(
-        items:
-            [
-              "${context.localize.floors_served_by_lift}: ${liftInformation.floorsList}",
-              "${context.localize.dimensions}: ${liftInformation.liftDimensions}",
-              "${context.localize.max_capacity}: ${liftInformation.maximumLiftCapacity}",
-            ].toIList(),
+        items: [
+          "${context.localize.floors_served_by_lift}: ${liftInformation.floorsList}",
+          "${context.localize.dimensions}: ${liftInformation.liftDimensions}",
+          "${context.localize.max_capacity}: ${liftInformation.maximumLiftCapacity}",
+        ].toIList(),
       ),
       AccessibilityProfileCard(
         accessibilityCommentsManager: LiftsAccessibilityCommentsManager(l10n: context.localize, liftResponse: lift),

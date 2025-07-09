@@ -58,46 +58,44 @@ class _ScienceClubsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeLoadInitialRepos(
-      builder:
-          (context, {required safeLoadedDepartments, required safeLoadedTags}) => HookConsumer(
-            builder: (context, ref, child) {
-              useInitialFilterIds(
-                tagsIds.map((it) => it.toLowerCase()).toIList(),
-                () async => ref.read(tagsRepositoryProvider.future),
-                ref.watch(selectedTagControllerProvider.notifier),
-                (ids, tag) => ids.contains(tag.tag.toLowerCase()),
-              );
+      builder: (context, {required safeLoadedDepartments, required safeLoadedTags}) => HookConsumer(
+        builder: (context, ref, child) {
+          useInitialFilterIds(
+            tagsIds.map((it) => it.toLowerCase()).toIList(),
+            () async => ref.read(tagsRepositoryProvider.future),
+            ref.watch(selectedTagControllerProvider.notifier),
+            (ids, tag) => ids.contains(tag.tag.toLowerCase()),
+          );
 
-              useInitialFilterIds(
-                deptsIds,
-                () async => ref.read(departmentsRepositoryProvider.future),
-                ref.watch(selectedDepartmentControllerProvider.notifier),
-                (ids, dept) => ids.contains(dept.id.toString()),
-              );
+          useInitialFilterIds(
+            deptsIds,
+            () async => ref.read(departmentsRepositoryProvider.future),
+            ref.watch(selectedDepartmentControllerProvider.notifier),
+            (ids, dept) => ids.contains(dept.id.toString()),
+          );
 
-              useInitialFilterIds(
-                types.map((it) => it.toLowerCase()).toIList(),
-                () async => ScienceClubType.values.toIList(),
-                ref.watch(selectedTypeControllerProvider.notifier),
-                (ids, type) => ids.contains(type.toJson()?.toLowerCase()),
-              );
+          useInitialFilterIds(
+            types.map((it) => it.toLowerCase()).toIList(),
+            () async => ScienceClubType.values.toIList(),
+            ref.watch(selectedTypeControllerProvider.notifier),
+            (ids, type) => ids.contains(type.toJson()?.toLowerCase()),
+          );
 
-              return SciClubsScaffold(
-                showFab: safeLoadedDepartments && safeLoadedTags,
-                appBarActions: [
-                  IconButton(
-                    icon: Icon(Icons.info_outline, semanticLabel: context.localize.studyClub_howToAddYourOrganization),
-                    tooltip: context.localize.studyClub_howToAddYourOrganization,
-                    onPressed:
-                        () async =>
-                            showDialog<void>(context: context, builder: (context) => const ScienceClubInfoDialog()),
-                  ),
-                ],
-                child: child,
-              );
-            },
-            child: const ScienceClubsList(),
-          ),
+          return SciClubsScaffold(
+            showFab: safeLoadedDepartments && safeLoadedTags,
+            appBarActions: [
+              IconButton(
+                icon: Icon(Icons.info_outline, semanticLabel: context.localize.studyClub_howToAddYourOrganization),
+                tooltip: context.localize.studyClub_howToAddYourOrganization,
+                onPressed: () async =>
+                    showDialog<void>(context: context, builder: (context) => const ScienceClubInfoDialog()),
+              ),
+            ],
+            child: child,
+          );
+        },
+        child: const ScienceClubsList(),
+      ),
     );
   }
 }

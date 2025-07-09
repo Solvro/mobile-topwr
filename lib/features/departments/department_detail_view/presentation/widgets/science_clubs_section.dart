@@ -41,7 +41,10 @@ class DepartmentScienceClubsSection extends ConsumerWidget {
                   unawaited(ref.navigateScienceClubs(department.id.toString()));
                 },
               ),
-              SizedBox(height: cardHeight, child: _ScienceClubsList(scienceClubs: filtered)),
+              SizedBox(
+                height: cardHeight,
+                child: _ScienceClubsList(scienceClubs: filtered),
+              ),
             ],
           );
         },

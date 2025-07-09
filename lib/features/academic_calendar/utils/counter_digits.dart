@@ -10,12 +10,11 @@ enum Digit { first, second, third }
 extension DaysLeftStringConverterX on AcademicCalendarWithSwaps {
   String daysLeftFromNowString({bool usePadZeros = true}) {
     final calendarData = this.calendarData;
-    final daysLeft =
-        (calendarData.isHolidays()
-            ? calendarData.semesterStartDate.daysLeftFromNow
-            : calendarData.isExamSession()
-            ? calendarData.examSessionLastDate.daysLeftFromNow
-            : calendarData.examSessionStartDate.daysLeftFromNow);
+    final daysLeft = (calendarData.isHolidays()
+        ? calendarData.semesterStartDate.daysLeftFromNow
+        : calendarData.isExamSession()
+        ? calendarData.examSessionLastDate.daysLeftFromNow
+        : calendarData.examSessionStartDate.daysLeftFromNow);
 
     return max(_default, daysLeft).toString().padLeft(Digit.values.length, usePadZeros ? _default.toString() : "");
   }

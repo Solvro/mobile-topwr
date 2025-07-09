@@ -8,7 +8,10 @@ class DragHandle extends SliverPersistentHeaderDelegate {
 
   @override
   Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return ColoredBox(color: context.colorTheme.whiteSoap, child: const Center(child: LineHandle()));
+    return ColoredBox(
+      color: context.colorTheme.whiteSoap,
+      child: const Center(child: LineHandle()),
+    );
   }
 
   @override

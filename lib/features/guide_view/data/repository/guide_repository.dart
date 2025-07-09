@@ -14,16 +14,15 @@ part "guide_repository.g.dart";
 @riverpod
 Future<IList<GuideData>> guideRepository(Ref ref) async {
   final apiUrl = Env.mainRestApiUrl;
-  final guideResponse =
-      await ref
-          .getAndCacheDataWithTranslation(
-            "$apiUrl/guide_articles?image=true",
-            TtlStrategy.get(TtlKey.guideRepository).inDays,
-            GuideDataResponse.fromJson,
-            extraValidityCheck: (_) => true,
-            localizedOfflineMessage: GuideView.localizedOfflineMessage,
-            onRetry: ref.invalidateSelf,
-          )
-          .castAsObject;
+  final guideResponse = await ref
+      .getAndCacheDataWithTranslation(
+        "$apiUrl/guide_articles?image=true",
+        TtlStrategy.get(TtlKey.guideRepository).inDays,
+        GuideDataResponse.fromJson,
+        extraValidityCheck: (_) => true,
+        localizedOfflineMessage: GuideView.localizedOfflineMessage,
+        onRetry: ref.invalidateSelf,
+      )
+      .castAsObject;
   return guideResponse.data.map((data) => data).toIList();
 }

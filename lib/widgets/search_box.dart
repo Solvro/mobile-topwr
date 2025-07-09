@@ -58,13 +58,12 @@ class SearchBox extends HookWidget {
             padding: const EdgeInsets.all(10),
             child: SvgPicture.asset(Assets.svg.searchBox.vectorsearch),
           ),
-          suffixIcon:
-              showCloseIcon.value
-                  ? IconButton(
-                    icon: Icon(Icons.cancel, color: context.colorTheme.blackMirage, size: 19),
-                    onPressed: onSuffixPressed,
-                  )
-                  : null,
+          suffixIcon: showCloseIcon.value
+              ? IconButton(
+                  icon: Icon(Icons.cancel, color: context.colorTheme.blackMirage, size: 19),
+                  onPressed: onSuffixPressed,
+                )
+              : null,
         ),
       ),
     );

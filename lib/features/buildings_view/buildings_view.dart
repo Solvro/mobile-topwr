@@ -33,20 +33,19 @@ class BuildingsView extends ConsumerWidget {
       mapSheetSize: MapViewBottomSheetConfig.buildingsMapSheetSize,
       mapControllers: mapControllersBuildings,
       mapTileBuilder: BuildingTile.new,
-      markerBuilder:
-          (item, ref, {required isActive}) => Marker(
-            alignment: Alignment.topCenter,
-            point: item.location,
-            child: GestureDetector(
-              onTap: () {
-                unawaited(ref.trackEvent(UmamiEvents.selectBuilding, value: item.name));
-                unawaited(ref.read(buildingsMapControllerProvider).onMarkerTap(item));
-              },
-              child: Image.asset(
-                isActive ? Assets.png.mapMarkers.activeMapMarker.path : Assets.png.mapMarkers.mapMarker.path,
-              ),
-            ),
+      markerBuilder: (item, ref, {required isActive}) => Marker(
+        alignment: Alignment.topCenter,
+        point: item.location,
+        child: GestureDetector(
+          onTap: () {
+            unawaited(ref.trackEvent(UmamiEvents.selectBuilding, value: item.name));
+            unawaited(ref.read(buildingsMapControllerProvider).onMarkerTap(item));
+          },
+          child: Image.asset(
+            isActive ? Assets.png.mapMarkers.activeMapMarker.path : Assets.png.mapMarkers.mapMarker.path,
           ),
+        ),
+      ),
       semanticsLabel: context.localize.map_view_description,
     );
   }
