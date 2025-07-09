@@ -19,8 +19,8 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 version: 1.1.25+84
 
 environment:
-  sdk: ^3.7.2
-  flutter: 3.29.2
+  sdk: ^3.8.0
+  flutter: 3.32.6
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -131,8 +131,8 @@ dependencies:
   audioplayers: ^6.2.0
 
   #Solvro packages
-  solvro_translator_with_drift_cache_flutter: ^0.4.2
-  solvro_translator_core: ^0.4.2
+  solvro_translator_with_drift_cache_flutter: ^0.5.0
+  solvro_translator_core: ^0.5.0
   sentry_flutter: ^8.14.2
   flutter_umami: ^0.3.0
 
@@ -155,7 +155,7 @@ dev_dependencies:
   graphql_codegen: ^1.2.1
   flutter_gen_runner: ^5.9.0
   auto_route_generator: ^10.0.1
-  solvro_translator_generator: ^0.4.2
+  solvro_translator_generator: ^0.5.0
 
   #Other
   flutter_launcher_icons: "^0.14.3"
