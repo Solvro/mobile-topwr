@@ -43,14 +43,13 @@ class SksChart extends StatelessWidget {
                       return false;
                     },
                   ),
-                  spots:
-                      chartData.asMap().entries.map<FlSpot>((e) {
-                        if (e.value.externalTimestamp.isAfter(DateTime.now())) {
-                          return FlSpot.nullSpot;
-                        } else {
-                          return FlSpot(e.key.toDouble(), e.value.activeUsers.toDouble());
-                        }
-                      }).toList(),
+                  spots: chartData.asMap().entries.map<FlSpot>((e) {
+                    if (e.value.externalTimestamp.isAfter(DateTime.now())) {
+                      return FlSpot.nullSpot;
+                    } else {
+                      return FlSpot(e.key.toDouble(), e.value.activeUsers.toDouble());
+                    }
+                  }).toList(),
                 ),
                 LineChartBarData(
                   isCurved: true,
@@ -62,19 +61,17 @@ class SksChart extends StatelessWidget {
                   ),
                   barWidth: 1.25,
                   color: context.colorTheme.blueAzure,
-                  spots:
-                      chartData.asMap().entries.map<FlSpot>((e) {
-                        return FlSpot(e.key.toDouble(), e.value.movingAverage21.toDouble());
-                      }).toList(),
+                  spots: chartData.asMap().entries.map<FlSpot>((e) {
+                    return FlSpot(e.key.toDouble(), e.value.movingAverage21.toDouble());
+                  }).toList(),
                 ),
                 // this is the biggest hack you'll ever see in your life
                 // this is transparent data const = 0 that allows the chart to have a hour tooltip
                 LineChartBarData(
                   color: Colors.transparent,
-                  spots:
-                      chartData.asMap().entries.map<FlSpot>((e) {
-                        return FlSpot(e.key.toDouble(), 0);
-                      }).toList(),
+                  spots: chartData.asMap().entries.map<FlSpot>((e) {
+                    return FlSpot(e.key.toDouble(), 0);
+                  }).toList(),
                 ),
               ],
               titlesData: FlTitlesData(

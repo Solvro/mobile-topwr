@@ -15,11 +15,10 @@ class NonPublicTransportationAccessibilityCommentsManager extends AccessibilityC
   IList<String> _alwaysAppearingComments() {
     final comments = transportation.translations.pl;
 
-    final IList<String> commentsList =
-        [
-          comments.nearestDisabledParkingSpaces,
-          l10n.transport_closest_parking_for_disabled(transportation.nearestDisabledParkingSpacesDistance.toString()),
-        ].toIList();
+    final IList<String> commentsList = [
+      comments.nearestDisabledParkingSpaces,
+      l10n.transport_closest_parking_for_disabled(transportation.nearestDisabledParkingSpacesDistance.toString()),
+    ].toIList();
 
     return commentsList;
   }

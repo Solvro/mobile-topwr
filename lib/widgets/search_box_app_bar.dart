@@ -28,13 +28,12 @@ class SearchBoxAppBar extends AppBar {
          centerTitle: addLeadingPopButton,
          titleSpacing: addLeadingPopButton ? 0 : defaultHorizontalPadding,
          automaticallyImplyLeading: false,
-         leading:
-             addLeadingPopButton
-                 ? const Align(
-                   alignment: Alignment.centerLeft,
-                   child: Padding(padding: EdgeInsets.only(left: 4), child: DetailViewPopButton()),
-                 )
-                 : null,
+         leading: addLeadingPopButton
+             ? const Align(
+                 alignment: Alignment.centerLeft,
+                 child: Padding(padding: EdgeInsets.only(left: 4), child: DetailViewPopButton()),
+               )
+             : null,
          leadingWidth: addLeadingPopButton ? 80 : 0,
          bottom: PreferredSize(
            preferredSize: Size.fromHeight(

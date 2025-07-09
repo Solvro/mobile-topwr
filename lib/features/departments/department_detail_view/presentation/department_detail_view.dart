@@ -77,10 +77,9 @@ class DepartmentDetailView extends ConsumerWidget {
                   label: context.localize.deans_office,
                   child: ContactSection(
                     title: context.localize.deans_office,
-                    list:
-                        department.departmentLinks
-                            .map((link) => ContactIconsModel(text: link.name, url: link.url))
-                            .toIList(),
+                    list: department.departmentLinks
+                        .map((link) => ContactIconsModel(text: link.name, url: link.url))
+                        .toIList(),
                   ),
                 ),
                 Semantics(

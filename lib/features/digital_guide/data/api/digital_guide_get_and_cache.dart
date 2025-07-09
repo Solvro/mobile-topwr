@@ -20,9 +20,8 @@ extension DigitalGuideClient on Ref {
       digitalGuideTTLDays,
       fromJson,
       extraValidityCheck: (_) => true, // no extra validity checks for digital guide needed at the moment
-      localizedOfflineMessage:
-          DigitalGuideView
-              .localizedOfflineMessage, // one common offline message is imo enough for the whole digital guide
+      localizedOfflineMessage: DigitalGuideView
+          .localizedOfflineMessage, // one common offline message is imo enough for the whole digital guide
       onRetry: onRetry,
       authHeader: (authotization: "Token ${Env.digitalGuideAuthorizationToken}"),
     );

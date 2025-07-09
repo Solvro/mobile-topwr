@@ -27,9 +27,8 @@ class MicronavigationExpansionTileContent extends ConsumerWidget {
     final asyncMicronavigationData = ref.watch(getMicronavigationDataProvider(digitalGuideData.externalId!));
 
     return asyncMicronavigationData.when(
-      data:
-          (micronavigationDataList) =>
-              _MicronavigationExpansionTileContent(micronavigationResponses: micronavigationDataList),
+      data: (micronavigationDataList) =>
+          _MicronavigationExpansionTileContent(micronavigationResponses: micronavigationDataList),
       error: (error, stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
       loading: () => const Center(child: CircularProgressIndicator()),
     );
@@ -43,26 +42,24 @@ class _MicronavigationExpansionTileContent extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final widgets =
-        micronavigationResponses.map((response) {
-          return Padding(
-            padding: const EdgeInsets.fromLTRB(
-              DigitalGuideConfig.paddingMedium,
-              DigitalGuideConfig.paddingMedium,
-              DigitalGuideConfig.paddingMedium,
-              0,
-            ),
-            child: DigitalGuideNavLink(
-              onTap: () async {
-                await ref.navigateMicronavigationDetails(response);
-              },
-              text:
-                  context.solvroLocale == SolvroLocale.pl
-                      ? response.nameOverride.pl ?? response.nameOverride.en ?? ""
-                      : response.nameOverride.en ?? response.nameOverride.pl ?? "",
-            ),
-          );
-        }).toIList();
+    final widgets = micronavigationResponses.map((response) {
+      return Padding(
+        padding: const EdgeInsets.fromLTRB(
+          DigitalGuideConfig.paddingMedium,
+          DigitalGuideConfig.paddingMedium,
+          DigitalGuideConfig.paddingMedium,
+          0,
+        ),
+        child: DigitalGuideNavLink(
+          onTap: () async {
+            await ref.navigateMicronavigationDetails(response);
+          },
+          text: context.solvroLocale == SolvroLocale.pl
+              ? response.nameOverride.pl ?? response.nameOverride.en ?? ""
+              : response.nameOverride.en ?? response.nameOverride.pl ?? "",
+        ),
+      );
+    }).toIList();
 
     return Padding(
       padding: const EdgeInsets.only(bottom: DigitalGuideConfig.paddingMedium),

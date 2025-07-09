@@ -24,11 +24,10 @@ class SksMenuTile extends StatelessWidget {
         backgroundColor: context.colorTheme.whiteSoap,
         initiallyExpanded: true,
         title: title,
-        children:
-            dishes
-                .map<Widget>((dish) => SksMenuDishDetailsTile(dish: dish))
-                .separate((i, e0, e1) => const SizedBox(height: 12))
-                .toList(),
+        children: dishes
+            .map<Widget>((dish) => SksMenuDishDetailsTile(dish: dish))
+            .separate((i, e0, e1) => const SizedBox(height: 12))
+            .toList(),
       ),
     );
   }

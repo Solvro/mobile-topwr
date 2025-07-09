@@ -63,7 +63,10 @@ class MapTileLayer extends ConsumerWidget {
       AsyncData(:final DbCacheStore value) => TileLayer(
         urlTemplate: OpenStreetMapConfig.tileUrl,
         userAgentPackageName: OpenStreetMapConfig.userAgent,
-        tileProvider: CachedTileProvider(maxStale: const Duration(days: MapCacheConfig.cacheDuration), store: value),
+        tileProvider: CachedTileProvider(
+          maxStale: const Duration(days: MapCacheConfig.cacheDuration),
+          store: value,
+        ),
       ),
       _ =>
         const SizedBox.shrink(), // no need for fancy loading, cause it should be instant if prefetch is done in the splash screen

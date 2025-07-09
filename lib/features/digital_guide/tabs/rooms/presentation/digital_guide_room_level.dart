@@ -26,17 +26,15 @@ class DigitalGuideRoomLevel extends ConsumerWidget {
           const SizedBox(height: 10),
           ListView.separated(
             physics: const NeverScrollableScrollPhysics(),
-            itemBuilder:
-                (context, index) => DigitalGuideNavLink(
-                  onTap: () async {
-                    await ref.navigateRoomDetails(rooms[index]);
-                  },
-                  text: rooms[index].translations.pl.name,
-                ),
-            separatorBuilder:
-                (context, index) => SizedBox(
-                  height: index == rooms.length - 1 ? DigitalGuideConfig.heightSmall : DigitalGuideConfig.heightMedium,
-                ),
+            itemBuilder: (context, index) => DigitalGuideNavLink(
+              onTap: () async {
+                await ref.navigateRoomDetails(rooms[index]);
+              },
+              text: rooms[index].translations.pl.name,
+            ),
+            separatorBuilder: (context, index) => SizedBox(
+              height: index == rooms.length - 1 ? DigitalGuideConfig.heightSmall : DigitalGuideConfig.heightMedium,
+            ),
             itemCount: rooms.length,
             shrinkWrap: true,
           ),

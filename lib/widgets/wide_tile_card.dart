@@ -75,10 +75,9 @@ class WideTileCard extends StatelessWidget {
               boxShadow: isActive ? activeShadows : null,
             ),
             child: SizedBox(
-              height:
-                  fixedTrailingHeight
-                      ? context.textScaler.clamp(maxScaleFactor: 2).scale(WideTileCardConfig.imageSize)
-                      : null,
+              height: fixedTrailingHeight
+                  ? context.textScaler.clamp(maxScaleFactor: 2).scale(WideTileCardConfig.imageSize)
+                  : null,
               child: Row(
                 crossAxisAlignment: crossAxisAlignment,
                 children: [

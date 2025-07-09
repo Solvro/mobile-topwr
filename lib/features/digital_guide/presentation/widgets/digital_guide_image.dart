@@ -17,13 +17,13 @@ class DigitalGuideImage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncImageUrl = ref.watch(imageRepositoryProvider(id));
     return asyncImageUrl.when(
-      data:
-          (url) =>
-              zoomable
-                  ? ZoomableCachedImage(url, semanticsLabel: semanticsLabel)
-                  : MyCachedImage(url, semanticsLabel: semanticsLabel),
+      data: (url) => zoomable
+          ? ZoomableCachedImage(url, semanticsLabel: semanticsLabel)
+          : MyCachedImage(url, semanticsLabel: semanticsLabel),
       error: (error, stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
-      loading: () => Center(child: ShimmeringEffect(child: Container(color: Colors.white))),
+      loading: () => Center(
+        child: ShimmeringEffect(child: Container(color: Colors.white)),
+      ),
     );
   }
 }

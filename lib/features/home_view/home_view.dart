@@ -20,14 +20,13 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final sections =
-        [
-          const AcademicCalendarConsumer(),
-          const NavActionsSection(),
-          const PlannerBannerVisibility(child: PlannerAdvertBanner()),
-          const ScienceClubsSection(),
-          const BuildingsSection(),
-        ].lock;
+    final sections = [
+      const AcademicCalendarConsumer(),
+      const NavActionsSection(),
+      const PlannerBannerVisibility(child: PlannerAdvertBanner()),
+      const ScienceClubsSection(),
+      const BuildingsSection(),
+    ].lock;
 
     return Scaffold(
       primary: false,
@@ -36,8 +35,8 @@ class HomeView extends StatelessWidget {
       body: KeepAliveHomeViewProviders(
         child: ListView.separated(
           itemBuilder: (context, index) => sections[index],
-          separatorBuilder:
-              (context, index) => SizedBox(height: index == 1 || index == 2 ? 0 : HomeViewConfig.paddingMedium),
+          separatorBuilder: (context, index) =>
+              SizedBox(height: index == 1 || index == 2 ? 0 : HomeViewConfig.paddingMedium),
           itemCount: sections.length,
         ),
       ),

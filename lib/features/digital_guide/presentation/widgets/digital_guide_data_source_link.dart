@@ -24,11 +24,10 @@ class DigitalGuideDataSourceLink extends ConsumerWidget {
                 decorationColor: context.colorTheme.orangePomegranade,
                 fontWeight: FontWeight.bold,
               ),
-              recognizer:
-                  TapGestureRecognizer()
-                    ..onTap = () async {
-                      await ref.launch(context.localize.digital_guide_website.replaceAll("www.", "https://"));
-                    },
+              recognizer: TapGestureRecognizer()
+                ..onTap = () async {
+                  await ref.launch(context.localize.digital_guide_website.replaceAll("www.", "https://"));
+                },
             ),
           ],
         ),

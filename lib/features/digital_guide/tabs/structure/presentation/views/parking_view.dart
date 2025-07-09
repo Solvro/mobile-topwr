@@ -36,18 +36,17 @@ class ParkingView extends ConsumerWidget {
             ),
             const SizedBox(height: DigitalGuideConfig.heightSmall),
             BulletList(
-              items:
-                  [
-                    context.localize.parking_entry_location + parkingsInformation.entryLocation,
-                    context.localize.is_parking_entry_from_ground_level(parking.isEntryFromGroundLevel.toLowerCase()) +
-                        parkingsInformation.isEntryFromGroundLevelComment,
-                    parkingsInformation.comment,
-                    context.localize.is_parking_set_maximum_vehicle_height(
-                          parking.isSetMaximumVehicleHeight.toLowerCase(),
-                        ) +
-                        parkingsInformation.isSetMaximumVehicleHeightComment,
-                    context.localize.parking_permissions_types(parking.permissionsTypes),
-                  ].toIList(),
+              items: [
+                context.localize.parking_entry_location + parkingsInformation.entryLocation,
+                context.localize.is_parking_entry_from_ground_level(parking.isEntryFromGroundLevel.toLowerCase()) +
+                    parkingsInformation.isEntryFromGroundLevelComment,
+                parkingsInformation.comment,
+                context.localize.is_parking_set_maximum_vehicle_height(
+                      parking.isSetMaximumVehicleHeight.toLowerCase(),
+                    ) +
+                    parkingsInformation.isSetMaximumVehicleHeightComment,
+                context.localize.parking_permissions_types(parking.permissionsTypes),
+              ].toIList(),
             ),
             const SizedBox(height: DigitalGuideConfig.heightBig),
             AccessibilityProfileCard(

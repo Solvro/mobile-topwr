@@ -24,8 +24,14 @@ class BulletList extends StatelessWidget {
           return Text.rich(
             TextSpan(
               children: [
-                TextSpan(text: "\u2022 ", style: context.textTheme.body.copyWith(fontSize: fontSize + 3)),
-                TextSpan(text: item, style: context.textTheme.body.copyWith(fontSize: fontSize)),
+                TextSpan(
+                  text: "\u2022 ",
+                  style: context.textTheme.body.copyWith(fontSize: fontSize + 3),
+                ),
+                TextSpan(
+                  text: item,
+                  style: context.textTheme.body.copyWith(fontSize: fontSize),
+                ),
               ],
             ),
           );

@@ -26,43 +26,42 @@ class SksMenuRepository extends _$SksMenuRepository {
 
   @override
   Future<ExtendedSksMenuResponse> build() async {
-    final sksMenuResponse =
-        await ref
-            .getAndCacheDataWithTranslation(
-              _mealsUrl,
-              _ttlDays,
-              SksMenuResponse.fromJson,
-              extraValidityCheck: (data) {
-                return data.castAsObject.isMenuOnline &&
-                    DateTime.now().date.isSameDay(data.castAsObject.lastUpdate.date);
-              },
-              localizedOfflineMessage: SksMenuView.localizedOfflineMessage,
-              onRetry: ref.invalidateSelf,
-            )
-            .castAsObject;
+    final sksMenuResponse = await ref
+        .getAndCacheDataWithTranslation(
+          _mealsUrl,
+          _ttlDays,
+          SksMenuResponse.fromJson,
+          extraValidityCheck: (data) {
+            return data.castAsObject.isMenuOnline && DateTime.now().date.isSameDay(data.castAsObject.lastUpdate.date);
+          },
+          localizedOfflineMessage: SksMenuView.localizedOfflineMessage,
+          onRetry: ref.invalidateSelf,
+        )
+        .castAsObject;
 
-    final openingHoursResponse =
-        await ref
-            .getAndCacheData(
-              _openingHoursUrl,
-              _ttlDays,
-              SksOpeningHours.fromJson,
-              extraValidityCheck: (data) {
-                final obj = data.castAsObject;
-                return obj.openingHours.canteen.openingTime.isNotEmpty &&
-                    obj.openingHours.canteen.closingTime.isNotEmpty &&
-                    obj.openingHours.cafe.openingTime.isNotEmpty &&
-                    obj.openingHours.cafe.closingTime.isNotEmpty;
-              },
-              localizedOfflineMessage: SksMenuView.localizedOfflineMessage,
-              onRetry: ref.invalidateSelf,
-            )
-            .castAsObject;
+    final openingHoursResponse = await ref
+        .getAndCacheData(
+          _openingHoursUrl,
+          _ttlDays,
+          SksOpeningHours.fromJson,
+          extraValidityCheck: (data) {
+            final obj = data.castAsObject;
+            return obj.openingHours.canteen.openingTime.isNotEmpty &&
+                obj.openingHours.canteen.closingTime.isNotEmpty &&
+                obj.openingHours.cafe.openingTime.isNotEmpty &&
+                obj.openingHours.cafe.closingTime.isNotEmpty;
+          },
+          localizedOfflineMessage: SksMenuView.localizedOfflineMessage,
+          onRetry: ref.invalidateSelf,
+        )
+        .castAsObject;
 
     final trueMeals = sksMenuResponse.meals.where((e) => e.category != DishCategory.technicalInfo).toIList();
 
-    final technicalInfos =
-        sksMenuResponse.meals.where((e) => e.category == DishCategory.technicalInfo).map((e) => e.name).toIList();
+    final technicalInfos = sksMenuResponse.meals
+        .where((e) => e.category == DishCategory.technicalInfo)
+        .map((e) => e.name)
+        .toIList();
 
     return ExtendedSksMenuResponse(
       isMenuOnline: sksMenuResponse.isMenuOnline,

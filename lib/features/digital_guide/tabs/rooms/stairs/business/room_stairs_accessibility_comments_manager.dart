@@ -14,13 +14,12 @@ class RoomStairsAccessibilityCommentsManager extends AccessibilityCommentsManage
   IList<String> getCommentsListForBlind() {
     final comments = roomStairsResponse.translations.pl;
 
-    final IList<String> commentList =
-        [
-          l10n.room_stairs_stairs_width(roomStairsResponse.stairsWidth.toString()),
-          "${l10n.room_stairs_are_all_steps_have_same_dimensions(roomStairsResponse.areAllStepsHaveSameDimensions.toLowerCase())} ${comments.areAllStepsHaveSameDimensionsComment}",
-          "${l10n.room_stairs_is_railing(roomStairsResponse.isRailing.toLowerCase())} ${comments.isRailingComment}",
-          "${l10n.room_stairs_is_round_cross_section_railing(roomStairsResponse.isRoundCrossSectionRailing.toLowerCase())} ${comments.isRailingComment}",
-        ].toIList();
+    final IList<String> commentList = [
+      l10n.room_stairs_stairs_width(roomStairsResponse.stairsWidth.toString()),
+      "${l10n.room_stairs_are_all_steps_have_same_dimensions(roomStairsResponse.areAllStepsHaveSameDimensions.toLowerCase())} ${comments.areAllStepsHaveSameDimensionsComment}",
+      "${l10n.room_stairs_is_railing(roomStairsResponse.isRailing.toLowerCase())} ${comments.isRailingComment}",
+      "${l10n.room_stairs_is_round_cross_section_railing(roomStairsResponse.isRoundCrossSectionRailing.toLowerCase())} ${comments.isRailingComment}",
+    ].toIList();
 
     return commentList;
   }
@@ -29,10 +28,9 @@ class RoomStairsAccessibilityCommentsManager extends AccessibilityCommentsManage
   IList<String> getCommentsListForCognitiveImpairment() {
     final comments = roomStairsResponse.translations.pl;
 
-    final IList<String> commentList =
-        [
-          "${l10n.room_stairs_is_stairs_surface_shiny(roomStairsResponse.isStairsSurfaceShiny.toLowerCase())} ${comments.isStairsSurfaceShinyComment}",
-        ].toIList();
+    final IList<String> commentList = [
+      "${l10n.room_stairs_is_stairs_surface_shiny(roomStairsResponse.isStairsSurfaceShiny.toLowerCase())} ${comments.isStairsSurfaceShinyComment}",
+    ].toIList();
 
     return commentList;
   }
@@ -46,17 +44,16 @@ class RoomStairsAccessibilityCommentsManager extends AccessibilityCommentsManage
   IList<String> getCommentsListForLowVision() {
     final comments = roomStairsResponse.translations.pl;
 
-    final IList<String> commentList =
-        [
-          "${l10n.room_stairs_is_good_lit(roomStairsResponse.isGoodLit.toLowerCase())} ${comments.isGoodLitComment}",
-          "${l10n.room_stairs_is_stairs_surface_shiny(roomStairsResponse.isStairsSurfaceShiny.toLowerCase())} ${comments.isStairsSurfaceShinyComment}",
-          "${l10n.room_stairs_are_all_steps_have_same_dimensions(roomStairsResponse.areAllStepsHaveSameDimensions.toLowerCase())} ${comments.areAllStepsHaveSameDimensionsComment}",
-          "${l10n.room_stairs_is_railing(roomStairsResponse.isRailing.toLowerCase())} ${comments.isRailingComment}",
-          "${l10n.room_stairs_is_round_cross_section_railing(roomStairsResponse.isRoundCrossSectionRailing.toLowerCase())} ${comments.isRailingComment}",
-          "${l10n.room_stairs_is_good_railing_contrast(roomStairsResponse.isGoodRailingContrast.toLowerCase())} ${comments.isRailingComment}",
-          "${l10n.room_stairs_is_good_stairs_wall_contrast(roomStairsResponse.isGoodStairsWallContrast.toLowerCase())} ${comments.isGoodStairsWallContrastComment}",
-          "${l10n.room_stairs_are_steps_edges_marked_in_contrasted_way(roomStairsResponse.areStepsEdgesMarkedInContrastedWay.toLowerCase())} ${comments.areStepsEdgesMarkedInContrastedWayComment}",
-        ].toIList();
+    final IList<String> commentList = [
+      "${l10n.room_stairs_is_good_lit(roomStairsResponse.isGoodLit.toLowerCase())} ${comments.isGoodLitComment}",
+      "${l10n.room_stairs_is_stairs_surface_shiny(roomStairsResponse.isStairsSurfaceShiny.toLowerCase())} ${comments.isStairsSurfaceShinyComment}",
+      "${l10n.room_stairs_are_all_steps_have_same_dimensions(roomStairsResponse.areAllStepsHaveSameDimensions.toLowerCase())} ${comments.areAllStepsHaveSameDimensionsComment}",
+      "${l10n.room_stairs_is_railing(roomStairsResponse.isRailing.toLowerCase())} ${comments.isRailingComment}",
+      "${l10n.room_stairs_is_round_cross_section_railing(roomStairsResponse.isRoundCrossSectionRailing.toLowerCase())} ${comments.isRailingComment}",
+      "${l10n.room_stairs_is_good_railing_contrast(roomStairsResponse.isGoodRailingContrast.toLowerCase())} ${comments.isRailingComment}",
+      "${l10n.room_stairs_is_good_stairs_wall_contrast(roomStairsResponse.isGoodStairsWallContrast.toLowerCase())} ${comments.isGoodStairsWallContrastComment}",
+      "${l10n.room_stairs_are_steps_edges_marked_in_contrasted_way(roomStairsResponse.areStepsEdgesMarkedInContrastedWay.toLowerCase())} ${comments.areStepsEdgesMarkedInContrastedWayComment}",
+    ].toIList();
 
     return commentList;
   }

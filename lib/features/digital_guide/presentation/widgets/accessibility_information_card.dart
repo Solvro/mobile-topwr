@@ -50,7 +50,9 @@ class AccessibilityInformationCard extends StatelessWidget {
                     final size = scaler.scale(20);
                     return SizedBox.square(
                       dimension: size,
-                      child: ExcludeSemantics(child: SvgPicture.asset(icon, height: size, width: size)),
+                      child: ExcludeSemantics(
+                        child: SvgPicture.asset(icon, height: size, width: size),
+                      ),
                     );
                   },
                 ),
@@ -61,18 +63,17 @@ class AccessibilityInformationCard extends StatelessWidget {
           Expanded(
             child: Padding(
               padding: const EdgeInsets.only(right: DigitalGuideConfig.paddingSmall),
-              child:
-                  isHTML
-                      ? Padding(
-                        padding: const EdgeInsets.all(DigitalGuideConfig.heightSmall),
-                        child: MyHtmlWidget(text, textStyle: context.textTheme.body),
-                      )
-                      : Text(
-                        text,
-                        style: context.textTheme.body,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: context.textScaler.clamp(minScaleFactor: 1).scale(2).toInt(),
-                      ),
+              child: isHTML
+                  ? Padding(
+                      padding: const EdgeInsets.all(DigitalGuideConfig.heightSmall),
+                      child: MyHtmlWidget(text, textStyle: context.textTheme.body),
+                    )
+                  : Text(
+                      text,
+                      style: context.textTheme.body,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: context.textScaler.clamp(minScaleFactor: 1).scale(2).toInt(),
+                    ),
             ),
           ),
         ],

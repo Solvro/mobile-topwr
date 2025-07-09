@@ -30,8 +30,9 @@ class InAppRatingService {
 
   Future<bool> _canRequestReview() async {
     final sharedPreferences = await _sharedPrefs;
-    final lastReviewPrompt =
-        sharedPreferences.getTimestamp(InAppReviewConfig.lastReviewPromptDateAsString).daysLeftFromNow;
+    final lastReviewPrompt = sharedPreferences
+        .getTimestamp(InAppReviewConfig.lastReviewPromptDateAsString)
+        .daysLeftFromNow;
     final reviewCount = sharedPreferences.getInt(InAppReviewConfig.reviewCountKey) ?? 0;
     final usageDays = await _getUsageDays();
 

@@ -30,8 +30,8 @@ class ParkingChart extends ConsumerWidget {
       AsyncValue(:final IList<ChartPoint> value) =>
         value.isEmpty
             ? Center(
-              child: Text(context.localize.noChartData, style: context.iParkingTheme.subtitleLight.withoutShadows),
-            )
+                child: Text(context.localize.noChartData, style: context.iParkingTheme.subtitleLight.withoutShadows),
+              )
             : Padding(padding: const EdgeInsets.only(top: 14, right: 25), child: ChartWidget(value, parking)),
       _ => Padding(
         padding: const EdgeInsets.only(top: 18, left: 8, right: 8, bottom: 10),

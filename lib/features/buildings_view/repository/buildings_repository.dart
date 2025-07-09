@@ -15,16 +15,15 @@ part "buildings_repository.g.dart";
 @riverpod
 Future<IList<Building>> buildingsRepository(Ref ref) async {
   final apiUrl = Env.mainRestApiUrl;
-  final buildingsResponse =
-      await ref
-          .getAndCacheDataWithTranslation(
-            "$apiUrl/buildings?cover=true",
-            TtlStrategy.get(TtlKey.buildingsRepository).inDays,
-            BuildingDataResponse.fromJson,
-            extraValidityCheck: (_) => true,
-            localizedOfflineMessage: BuildingsView.localizedOfflineMessage,
-            onRetry: ref.invalidateSelf,
-          )
-          .castAsObject;
+  final buildingsResponse = await ref
+      .getAndCacheDataWithTranslation(
+        "$apiUrl/buildings?cover=true",
+        TtlStrategy.get(TtlKey.buildingsRepository).inDays,
+        BuildingDataResponse.fromJson,
+        extraValidityCheck: (_) => true,
+        localizedOfflineMessage: BuildingsView.localizedOfflineMessage,
+        onRetry: ref.invalidateSelf,
+      )
+      .castAsObject;
   return buildingsResponse.data.toIList().sortByCodeOrder();
 }

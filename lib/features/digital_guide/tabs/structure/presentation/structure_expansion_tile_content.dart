@@ -46,13 +46,12 @@ class _StructureExpansionTileContent extends ConsumerWidget {
         color: context.colorTheme.greyLight,
         child: ListView.separated(
           physics: const NeverScrollableScrollPhysics(),
-          itemBuilder:
-              (context, index) => DigitalGuideNavLink(
-                onTap: () async {
-                  await ref.navigateDigitalGuideLevel(levels[index]);
-                },
-                text: levels[index].level.translations.plTranslation.name,
-              ),
+          itemBuilder: (context, index) => DigitalGuideNavLink(
+            onTap: () async {
+              await ref.navigateDigitalGuideLevel(levels[index]);
+            },
+            text: levels[index].level.translations.plTranslation.name,
+          ),
           separatorBuilder: (context, index) => const SizedBox(height: DigitalGuideConfig.heightMedium),
           itemCount: levels.length,
           shrinkWrap: true,

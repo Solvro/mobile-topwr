@@ -16,17 +16,16 @@ Future<IList<Tag>> tagsRepository(Ref ref) async {
   const endpoint = "/student_organization_tags";
   final apiUrl = Env.mainRestApiUrl;
 
-  final response =
-      await ref
-          .getAndCacheDataWithTranslation(
-            apiUrl + endpoint,
-            TtlStrategy.get(TtlKey.tagsRepository).inDays,
-            TagsData.fromJson,
-            localizedOfflineMessage: FiltersSheet.localizedOfflineMessage,
-            extraValidityCheck: (_) => true,
-            onRetry: ref.invalidateSelf,
-          )
-          .castAsObject;
+  final response = await ref
+      .getAndCacheDataWithTranslation(
+        apiUrl + endpoint,
+        TtlStrategy.get(TtlKey.tagsRepository).inDays,
+        TagsData.fromJson,
+        localizedOfflineMessage: FiltersSheet.localizedOfflineMessage,
+        extraValidityCheck: (_) => true,
+        onRetry: ref.invalidateSelf,
+      )
+      .castAsObject;
 
   return response.data;
 }

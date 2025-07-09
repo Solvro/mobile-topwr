@@ -60,10 +60,9 @@ class IncomingDayChanges extends StatelessWidget {
           TextSpan(
             children: [
               TextSpan(
-                text:
-                    data.daysTillFirstChange == 0
-                        ? l10n.incoming_days_changes_title_today(data.changesCount)
-                        : l10n.incoming_days_changes_title(data.changesCount),
+                text: data.daysTillFirstChange == 0
+                    ? l10n.incoming_days_changes_title_today(data.changesCount)
+                    : l10n.incoming_days_changes_title(data.changesCount),
                 style: context.textTheme.body.copyWith(
                   fontWeight: FontWeight.w500,
                   fontSize: MediaQuery.sizeOf(context).width > 380 ? 15 : 13,
@@ -87,26 +86,24 @@ class IncomingDayChanges extends StatelessWidget {
           Consumer(
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 8),
-              child:
-                  context.isTextScaledUp
-                      ? Wrap(
-                        alignment: WrapAlignment.center,
-                        crossAxisAlignment: WrapCrossAlignment.center,
-                        runAlignment: WrapAlignment.center,
-                        runSpacing: 12,
-                        spacing: 12,
-                        children: children,
-                      )
-                      : Row(spacing: 12, mainAxisAlignment: MainAxisAlignment.center, children: children),
+              child: context.isTextScaledUp
+                  ? Wrap(
+                      alignment: WrapAlignment.center,
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      runAlignment: WrapAlignment.center,
+                      runSpacing: 12,
+                      spacing: 12,
+                      children: children,
+                    )
+                  : Row(spacing: 12, mainAxisAlignment: MainAxisAlignment.center, children: children),
             ),
-            builder:
-                (context, ref, child) => MySplashTile(
-                  backgroundColor: Colors.transparent,
-                  onTap: () async {
-                    await DayChangesDialog.show(context, calendar, ref);
-                  },
-                  child: child ?? const SizedBox.shrink(),
-                ),
+            builder: (context, ref, child) => MySplashTile(
+              backgroundColor: Colors.transparent,
+              onTap: () async {
+                await DayChangesDialog.show(context, calendar, ref);
+              },
+              child: child ?? const SizedBox.shrink(),
+            ),
           ),
         ],
       ),
