@@ -1,6 +1,6 @@
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "../../../config/shared_prefs.dart";
+import "../../../../config/shared_prefs.dart";
 
 part "local_changelog_repository.g.dart";
 
