@@ -16,18 +16,15 @@ abstract class ChangelogDataResponse with _$ChangelogDataResponse, _$ChangelogDa
 
 @freezed
 abstract class Changelog with _$Changelog {
-  const factory Changelog({
-    required String name,
-    required String description,
-    required IList<ChangelogChange> changes,
-  }) = _Changelog;
+  const factory Changelog({required String name, required IList<ChangelogChange> changes}) = _Changelog;
 
   factory Changelog.fromJson(Map<String, dynamic> json) => _$ChangelogFromJson(json);
 }
 
 @freezed
 abstract class ChangelogChange with _$ChangelogChange {
-  const factory ChangelogChange({required TypeOfChange changeType, required String name}) = _ChangelogChange;
+  const factory ChangelogChange({@JsonKey(name: "type") required TypeOfChange changeType, required String name}) =
+      _ChangelogChange;
 
   factory ChangelogChange.fromJson(Map<String, dynamic> json) => _$ChangelogChangeFromJson(json);
 }
