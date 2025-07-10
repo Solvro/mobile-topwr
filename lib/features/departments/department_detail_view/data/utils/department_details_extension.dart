@@ -5,6 +5,7 @@ import "../../../../../config/env.dart";
 import "../../../../../theme/hex_color.dart";
 import "../../../../../utils/colors_sort.dart";
 import "../models/department_details.dart";
+import "../models/studies_type.dart";
 
 extension DetailedDepartmentsX on DepartmentDetails {
   LinearGradient get gradient =>
@@ -19,22 +20,16 @@ extension DetailedDepartmentsX on DepartmentDetails {
   }
 }
 
-extension CycleStudiesFormatterX on FieldOfStudy {
-  bool get isLongCycleStudies {
-    return semesterCount >= 12;
-  }
-}
-
 extension WhereTypesX on IList<FieldOfStudy> {
   Iterable<FieldOfStudy> get whereFirstDegree {
-    return where((item) => !item.is2ndDegree && !item.isLongCycleStudies);
+    return where((item) => !item.studiesType.isSecondDegree && !item.studiesType.isLongCycle);
   }
 
   Iterable<FieldOfStudy> get whereSecondDegree {
-    return where((item) => item.is2ndDegree && !item.isLongCycleStudies);
+    return where((item) => item.studiesType.isSecondDegree && !item.studiesType.isLongCycle);
   }
 
   Iterable<FieldOfStudy> get whereLongCycle {
-    return where((item) => item.isLongCycleStudies);
+    return where((item) => item.studiesType.isLongCycle);
   }
 }
