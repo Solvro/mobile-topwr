@@ -2,8 +2,8 @@ import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/foundation.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 import "package:solvro_translator_core/solvro_translator_core.dart";
-
 import "../../../../../api_base_rest/shared_models/social_links_data.dart";
+import "./studies_type.dart";
 
 part "department_details.freezed.dart";
 part "department_details.g.dart";
@@ -42,9 +42,8 @@ abstract class FieldOfStudy with _$FieldOfStudy {
   const factory FieldOfStudy({
     required String name,
     required String url,
-    required int semesterCount, // TODO(simon-the-shark): fix to new schema, #759
     required bool isEnglish,
-    required bool is2ndDegree,
+    required StudiesType studiesType,
     required bool hasWeekendOption,
   }) = _FieldOfStudy;
 
