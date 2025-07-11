@@ -6,7 +6,6 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 import "../../../../api_base_rest/client/json.dart";
 import "../../../../api_base_rest/translations/translate.dart";
 import "../../../../config/env.dart";
-import "../../../../config/ttl_config.dart";
 import "../model/science_clubs.dart";
 import "../science_clubs_view.dart";
 
@@ -20,7 +19,6 @@ Future<IList<ScienceClub>> scienceClubsRepository(Ref ref) async {
   final response = await ref
       .getAndCacheDataWithTranslation(
         apiUrl + scienceClubsEndpoint,
-        TtlStrategy.get(TtlKey.scienceClubsRepository).inDays,
         ScienceClubsResponse.fromJson,
         extraValidityCheck: (_) => true,
         localizedOfflineMessage: ScienceClubsView.localizedOfflineMessage,

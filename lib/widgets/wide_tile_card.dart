@@ -4,7 +4,7 @@ import "../config/ui_config.dart";
 import "../features/science_club/science_clubs_view/widgets/ensure_visible_tags.dart";
 import "../theme/app_theme.dart";
 import "../utils/context_extensions.dart";
-import "optimized_directus_image.dart";
+import "my_cached_image.dart";
 
 class PhotoTrailingWideTileCard extends WideTileCard {
   PhotoTrailingWideTileCard(
@@ -23,7 +23,7 @@ class PhotoTrailingWideTileCard extends WideTileCard {
          trailing: SizedBox(
            height: context.textScaler.scale(WideTileCardConfig.imageSize),
            width: WideTileCardConfig.imageSize,
-           child: OptimizedDirectusImage(directusPhotoUrl, boxFit: boxFit),
+           child: MyCachedImage(directusPhotoUrl, boxFit: boxFit),
          ),
        );
 }

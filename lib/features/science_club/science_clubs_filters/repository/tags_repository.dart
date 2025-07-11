@@ -5,7 +5,6 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 import "../../../../api_base_rest/client/json.dart";
 import "../../../../api_base_rest/translations/translate.dart";
 import "../../../../config/env.dart";
-import "../../../../config/ttl_config.dart";
 import "../filters_sheet.dart";
 import "../model/tags.dart";
 
@@ -19,7 +18,6 @@ Future<IList<Tag>> tagsRepository(Ref ref) async {
   final response = await ref
       .getAndCacheDataWithTranslation(
         apiUrl + endpoint,
-        TtlStrategy.get(TtlKey.tagsRepository).inDays,
         TagsData.fromJson,
         localizedOfflineMessage: FiltersSheet.localizedOfflineMessage,
         extraValidityCheck: (_) => true,

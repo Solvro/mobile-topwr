@@ -5,7 +5,7 @@ import "../theme/app_theme.dart";
 import "../utils/context_extensions.dart";
 import "date_chip.dart";
 import "dual_text_max_lines.dart";
-import "optimized_directus_image.dart";
+import "my_cached_image.dart";
 
 class BigPreviewCard extends StatelessWidget {
   const BigPreviewCard({
@@ -50,7 +50,7 @@ class BigPreviewCard extends StatelessWidget {
                       children: [
                         SizedBox(
                           width: double.maxFinite,
-                          child: Center(child: OptimizedDirectusImage(directusUrl, boxFit: boxFit)),
+                          child: Center(child: MyCachedImage(directusUrl, boxFit: boxFit)),
                         ),
                         if (date != null) DateChip(date: date!) else const SizedBox.shrink(),
                       ],

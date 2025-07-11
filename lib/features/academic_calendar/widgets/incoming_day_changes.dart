@@ -8,12 +8,12 @@ import "../model/academic_calendar_extensions.dart";
 import "../repository/academic_calendar_repo.dart";
 import "day_changes_dialog.dart";
 
-class IncomingDayChanges extends StatelessWidget {
+class IncomingDayChanges extends ConsumerWidget {
   const IncomingDayChanges({super.key, required this.calendar});
   final AcademicCalendarWithSwaps calendar;
   @override
-  Widget build(BuildContext context) {
-    final data = calendar.incomingDaysChanges;
+  Widget build(BuildContext context, WidgetRef ref) {
+    final data = calendar.incomingDaysChanges(ref);
     if (data == null) {
       return const SizedBox.shrink();
     }

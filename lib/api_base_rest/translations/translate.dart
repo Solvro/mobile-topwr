@@ -2,6 +2,7 @@ import "package:flutter/widgets.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:solvro_translator_core/solvro_translator_core.dart";
 
+import "../../config/ttl_config.dart";
 import "../../services/translations_service/business/solvro_translator.dart";
 import "../../services/translations_service/data/preferred_lang_repository.dart";
 import "../../utils/ilist_nonempty.dart";
@@ -12,8 +13,8 @@ import "../client/json.dart";
 extension TranslateX on Ref {
   Future<JSON<T>> getAndCacheDataWithTranslation<T extends TranslatableInterface>(
     String fullUrl,
-    int ttlDays,
     T Function(Map<String, dynamic> json) fromJson, {
+    TtlDays ttlDays = TtlDays.defaultDefault,
     // returns true if the data is still valid
     required bool Function(JSON<T> cachedData) extraValidityCheck,
     required String Function(BuildContext context) localizedOfflineMessage,
@@ -22,8 +23,8 @@ extension TranslateX on Ref {
   }) async {
     final data = await getAndCacheData(
       fullUrl,
-      ttlDays,
       fromJson,
+      ttlDays: ttlDays,
       extraValidityCheck: extraValidityCheck,
       localizedOfflineMessage: localizedOfflineMessage,
       onRetry: onRetry,

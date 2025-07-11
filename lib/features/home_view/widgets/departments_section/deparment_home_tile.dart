@@ -3,7 +3,6 @@ import "package:flutter/material.dart";
 import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../widgets/my_cached_image.dart";
-import "../../../../widgets/optimized_directus_image.dart";
 import "../../../../widgets/tile_splash.dart";
 import "../../../departments/departments_view/data/models/department.dart";
 import "../../../departments/departments_view/data/utils/departments_extensions.dart";
@@ -31,11 +30,7 @@ class DepartmentHomeTile extends StatelessWidget {
               opacity: logoOpacity,
               child: SizedBox.square(
                 dimension: 100,
-                child: OptimizedDirectusImage(
-                  department.imageUrl,
-                  loadingType: LoadingType.noLoading,
-                  boxFit: BoxFit.scaleDown,
-                ),
+                child: MyCachedImage(department.imageUrl, loadingType: LoadingType.noLoading, boxFit: BoxFit.scaleDown),
               ),
             ),
           ),

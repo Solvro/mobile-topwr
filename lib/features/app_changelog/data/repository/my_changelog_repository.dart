@@ -4,7 +4,6 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 import "../../../../api_base_rest/client/json.dart";
 import "../../../../api_base_rest/translations/translate.dart";
 import "../../../../config/env.dart";
-import "../../../../config/ttl_config.dart";
 import "../../app_changelog.dart";
 import "../models/changelog.dart";
 
@@ -17,7 +16,6 @@ Future<Changelog?> changelogRepository(Ref ref) async {
   final changelogResponse = await ref
       .getAndCacheDataWithTranslation(
         url,
-        TtlStrategy.get(TtlKey.changelogRepository).inDays,
         ChangelogDataResponse.fromJson,
         extraValidityCheck: (_) => true,
         localizedOfflineMessage: AppChangelog.localizedOfflineMessage,

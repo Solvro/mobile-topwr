@@ -4,13 +4,13 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 import "../../../api_base_rest/cache/cache.dart";
 import "../../../api_base_rest/client/json.dart";
 import "../../../config/env.dart";
-import "../../../config/ttl_config.dart";
 import "../model/academic_calendar.dart";
 import "../model/day_swap_model.dart";
 import "../widgets/home_screen_greeting.dart";
 
 part "academic_calendar_repo.g.dart";
 
+// TODO(simon-the-shark): refactor this
 class AcademicCalendarWithSwaps {
   final AcademicCalendar calendarData;
   final IList<DaySwapData> daySwaps;
@@ -27,7 +27,6 @@ Future<AcademicCalendarWithSwaps?> academicCalendarRepo(Ref ref) async {
   final responses = await Future.wait([
     ref.getAndCacheData(
       apiUrl + academicCalendarEndpoint,
-      TtlStrategy.get(TtlKey.academicCalendarRepository).inDays,
       AcademicCalendarResponse.fromJson,
       extraValidityCheck: (_) => true,
       localizedOfflineMessage: Greeting.localizedOfflineMessage,
@@ -35,7 +34,6 @@ Future<AcademicCalendarWithSwaps?> academicCalendarRepo(Ref ref) async {
     ),
     ref.getAndCacheData(
       apiUrl + daySwapsEndpoint,
-      TtlStrategy.get(TtlKey.academicCalendarRepository).inDays,
       DaySwapResponse.fromJson,
       extraValidityCheck: (_) => true,
       localizedOfflineMessage: Greeting.localizedOfflineMessage,

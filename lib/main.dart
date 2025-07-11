@@ -9,7 +9,7 @@ import "package:sentry_flutter/sentry_flutter.dart";
 import "package:solvro_translator_core/solvro_translator_core.dart";
 import "package:wiredash/wiredash.dart";
 
-import "api_base/cache/remote_flush/presentation/flush_cache_remotely_widget.dart";
+import "api_base_rest/cache/remote_flush/presentation/flush_cache_remotely_widget.dart";
 import "config/env.dart";
 import "config/ui_config.dart";
 import "config/wiredash.dart";
