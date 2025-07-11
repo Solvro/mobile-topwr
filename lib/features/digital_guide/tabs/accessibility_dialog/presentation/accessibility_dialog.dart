@@ -14,11 +14,12 @@ class AccessibilityDialog extends StatelessWidget {
 
   static Future<void> show(BuildContext context, WidgetRef ref) async {
     unawaited(ref.trackEvent(UmamiEvents.openAccessibilityModeDialog));
-    return showDialog(
+    await showGeneralDialog(
       context: context,
-      builder: (_) => const AccessibilityDialog(),
-      barrierDismissible: false,
       barrierColor: Colors.transparent,
+      pageBuilder: (context, animation, secondaryAnimation) {
+        return const Material(type: MaterialType.transparency, child: AccessibilityDialog());
+      },
     );
   }
 
