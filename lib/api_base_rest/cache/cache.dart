@@ -4,26 +4,29 @@ import "dart:typed_data";
 import "package:flutter/widgets.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
+import "../../config/ttl_config.dart";
 import "../client/dio_client.dart";
 import "../client/json.dart";
 import "../client/offline_error.dart";
 import "cache_manager.dart";
 
+extension ClearAllCacheX on WidgetRef {
+  Future<void> clearAllCache(TtlDays ttlDays) async {
+    final cacheManager = watch(restCacheManagerProvider(ttlDays));
+    await cacheManager.emptyCache();
+  }
+}
+
 extension DataCachingX on Ref {
-  Future<void> clearCache(String fullUrl, int ttlDays) async {
+  Future<void> clearCache(String fullUrl, TtlDays ttlDays) async {
     final cacheManager = watch(restCacheManagerProvider(ttlDays));
     await cacheManager.removeFile(fullUrl);
   }
 
-  Future<void> clearAllCache(int ttlDays) async {
-    final cacheManager = watch(restCacheManagerProvider(ttlDays));
-    await cacheManager.emptyCache();
-  }
-
   Future<JSON<T>> getAndCacheData<T>(
     String fullUrl,
-    int ttlDays,
     T Function(Map<String, dynamic> json) fromJson, {
+    TtlDays ttlDays = TtlDays.defaultDefault,
     // returns true if the data is still valid
     required bool Function(JSON<T> cachedData) extraValidityCheck,
     required String Function(BuildContext context) localizedOfflineMessage,

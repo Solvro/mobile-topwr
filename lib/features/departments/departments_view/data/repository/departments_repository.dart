@@ -5,7 +5,6 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 import "../../../../../api_base_rest/client/json.dart";
 import "../../../../../api_base_rest/translations/translate.dart";
 import "../../../../../config/env.dart";
-import "../../../../../config/ttl_config.dart";
 import "../../departments_view.dart";
 import "../models/department.dart";
 
@@ -18,7 +17,6 @@ Future<IList<Department>> departmentsRepository(Ref ref) async {
   final response = await ref
       .getAndCacheDataWithTranslation(
         url,
-        TtlStrategy.get(TtlKey.departmentsRepository).inDays,
         DepartmentsResponse.fromJson,
         extraValidityCheck: (_) => true,
         localizedOfflineMessage: DepartmentsView.localizedOfflineMessage,
