@@ -23,10 +23,13 @@ class _StrategicBadgeWidget extends StatelessWidget {
     final scaler = context.textScaler;
     return Tooltip(
       message: context.localize.strategicBadgeTooltip,
-      child: Icon(
-        isPolish ? StrategicClubBadges.polish_badge : StrategicClubBadges.english_badge,
-        size: scaler.scale(14),
-        color: context.colorTheme.blueAzure,
+      child: Padding(
+        padding: const EdgeInsets.only(left: 4),
+        child: Icon(
+          isPolish ? StrategicClubBadges.polish_badge : StrategicClubBadges.english_badge,
+          size: scaler.scale(14),
+          color: context.colorTheme.blueAzure,
+        ),
       ),
     );
   }
