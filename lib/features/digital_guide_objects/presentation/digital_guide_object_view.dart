@@ -3,7 +3,6 @@ import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../../../api_base/directus_assets_url.dart";
 import "../../../config/ui_config.dart";
 import "../../../gen/assets.gen.dart";
 import "../../../utils/context_extensions.dart";
@@ -64,7 +63,7 @@ class _DigitalGObjectView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final widgets1 = [
       const SizedBox(height: DigitalGuideConfig.heightSmall),
-      SizedBox(height: DetailViewsConfig.imageHeight, child: ZoomableOptimizedDirectusImage(photoUrl?.directusUrl)),
+      SizedBox(height: DetailViewsConfig.imageHeight, child: ZoomableCachedImage(photoUrl)),
       HeadlinesSection(name: digitalGuideData.translations.pl.name, description: ""),
       ContactSection(
         list: [

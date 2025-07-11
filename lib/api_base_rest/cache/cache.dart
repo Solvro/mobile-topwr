@@ -15,6 +15,11 @@ extension DataCachingX on Ref {
     await cacheManager.removeFile(fullUrl);
   }
 
+  Future<void> clearAllCache(int ttlDays) async {
+    final cacheManager = watch(restCacheManagerProvider(ttlDays));
+    await cacheManager.emptyCache();
+  }
+
   Future<JSON<T>> getAndCacheData<T>(
     String fullUrl,
     int ttlDays,

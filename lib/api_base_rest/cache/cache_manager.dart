@@ -5,9 +5,9 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 part "cache_manager.g.dart";
 
 @Riverpod(keepAlive: true)
-CacheManager restCacheManager(Ref ref, int ttlDays) {
+CacheManager restCacheManager(Ref ref, [int ttlDays = 7]) {
   return CacheManager(
-    Config("JsonCacheManager${ttlDays}Days", stalePeriod: Duration(days: ttlDays), maxNrOfCacheObjects: 100),
+    Config("JsonCacheManager${ttlDays}Days", stalePeriod: Duration(days: ttlDays), maxNrOfCacheObjects: 1000),
   );
 }
 

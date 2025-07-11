@@ -3,7 +3,7 @@ import "package:flutter/material.dart";
 import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
-import "../../../../widgets/optimized_directus_image.dart";
+import "../../../../widgets/my_cached_image.dart";
 import "../../../../widgets/tile_splash.dart";
 
 class BuildingCard extends StatelessWidget {
@@ -27,7 +27,7 @@ class BuildingCard extends StatelessWidget {
             child: Stack(
               fit: StackFit.expand,
               children: [
-                OptimizedDirectusImage(directusImageUrl),
+                MyCachedImage(directusImageUrl),
                 if (directusImageUrl != null)
                   Positioned.fill(
                     child: Container(decoration: BoxDecoration(gradient: context.colorTheme.buildingsGradient)),

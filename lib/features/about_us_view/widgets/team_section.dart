@@ -163,7 +163,7 @@ class _TeamMemberCard extends StatelessWidget {
                 child: SizedBox(
                   height: context.textScaler.scale(AboutUsConfig.photoSize),
                   width: AboutUsConfig.photoSize,
-                  child: ZoomableOptimizedDirectusImage(member.imageUrl),
+                  child: ZoomableCachedImage(member.imageUrl),
                 ),
               ),
               const SizedBox(width: 14),
