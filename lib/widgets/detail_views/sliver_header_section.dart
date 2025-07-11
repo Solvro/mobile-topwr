@@ -48,7 +48,7 @@ class SliverHeaderSection extends SliverPersistentHeaderDelegate {
             child: SizedBox(
               height: maxTopBarHeight * (1 - progress),
               width: double.infinity,
-              child: ZoomableOptimizedDirectusImage(backgroundImageUrl),
+              child: ZoomableCachedImage(backgroundImageUrl),
             ),
           ),
         ),

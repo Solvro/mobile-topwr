@@ -1,10 +1,8 @@
 import "package:flutter/material.dart";
 
-import "../api_base/directus_assets_url.dart";
 import "../theme/colors.dart";
 import "../utils/context_extensions.dart";
 import "my_cached_image.dart";
-import "optimized_directus_image.dart";
 
 extension ShowFullscreenImageX on BuildContext {
   Future<void> showFullScreenImage(
@@ -54,11 +52,7 @@ class _ImageWithoutBackground extends StatelessWidget {
     return ExcludeSemantics(
       child: Padding(
         padding: const EdgeInsets.all(10),
-        child: MyCachedImage(
-          imageUrl?.directusUrlWithoutParams,
-          boxFit: BoxFit.scaleDown,
-          loadingType: LoadingType.circularProgressIndicator,
-        ),
+        child: MyCachedImage(imageUrl, boxFit: BoxFit.scaleDown, loadingType: LoadingType.circularProgressIndicator),
       ),
     );
   }
@@ -82,50 +76,12 @@ class _ImageWithWhiteBackground extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(10),
               child: MyCachedImage(
-                imageUrl?.directusUrlWithoutParams,
+                imageUrl,
                 boxFit: BoxFit.scaleDown,
                 loadingType: LoadingType.circularProgressIndicator,
               ),
             ),
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class ZoomableOptimizedDirectusImage extends StatelessWidget {
-  const ZoomableOptimizedDirectusImage(
-    this.imageUrl, {
-    super.key,
-    this.loadingType = LoadingType.shimmerLoading,
-    this.boxFit = BoxFit.cover,
-    this.shouldHaveRectBackground = false,
-    this.semanticsLabel,
-  });
-
-  final String? imageUrl;
-  final LoadingType loadingType;
-  final BoxFit boxFit;
-  final String? semanticsLabel;
-  final bool shouldHaveRectBackground;
-
-  @override
-  Widget build(BuildContext context) {
-    return Semantics(
-      label: semanticsLabel,
-      image: true,
-      button: false,
-      child: ExcludeSemantics(
-        child: GestureDetector(
-          onTap: () async {
-            await context.showFullScreenImage(
-              imageUrl,
-              shouldHaveRectBackground: shouldHaveRectBackground,
-              semanticsLabel: semanticsLabel,
-            );
-          },
-          child: OptimizedDirectusImage(imageUrl, boxFit: boxFit, loadingType: loadingType),
         ),
       ),
     );
@@ -149,15 +105,22 @@ class ZoomableCachedImage extends StatelessWidget {
   final String? semanticsLabel;
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () async {
-        await context.showFullScreenImage(
-          imageUrl,
-          shouldHaveRectBackground: shouldHaveRectBackground,
-          semanticsLabel: semanticsLabel,
-        );
-      },
-      child: MyCachedImage(imageUrl, boxFit: boxFit, loadingType: loadingType, semanticsLabel: semanticsLabel),
+    return Semantics(
+      label: semanticsLabel,
+      image: true,
+      button: false,
+      child: ExcludeSemantics(
+        child: GestureDetector(
+          onTap: () async {
+            await context.showFullScreenImage(
+              imageUrl,
+              shouldHaveRectBackground: shouldHaveRectBackground,
+              semanticsLabel: semanticsLabel,
+            );
+          },
+          child: MyCachedImage(imageUrl, boxFit: boxFit, loadingType: loadingType, semanticsLabel: semanticsLabel),
+        ),
+      ),
     );
   }
 }

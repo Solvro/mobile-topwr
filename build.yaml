@@ -13,14 +13,3 @@ targets:
         generate_for:
           include:
             - lib/config/env.dart
-      graphql_codegen:
-        options:
-          clients:
-            - graphql
-          scalars:
-            Date:
-              type: DateTime
-            DateTime:
-              type: DateTime
-            JSON:
-              type: Map<String, dynamic>

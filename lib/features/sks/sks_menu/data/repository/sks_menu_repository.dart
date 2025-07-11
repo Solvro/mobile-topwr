@@ -4,6 +4,7 @@ import "../../../../../api_base_rest/cache/cache.dart";
 import "../../../../../api_base_rest/client/json.dart";
 import "../../../../../api_base_rest/translations/translate.dart";
 import "../../../../../config/env.dart";
+import "../../../../../config/ttl_config.dart";
 import "../../../../../utils/datetime_utils.dart";
 import "../../../../../utils/ilist_nonempty.dart";
 import "../../presentation/sks_menu_screen.dart";
@@ -17,7 +18,7 @@ part "sks_menu_repository.g.dart";
 class SksMenuRepository extends _$SksMenuRepository {
   static final _mealsUrl = "${Env.sksUrl}/meals/current";
   static final _openingHoursUrl = "${Env.sksUrl}/info";
-  static const _ttlDays = 1;
+  static const _ttlDays = TtlDays.defaultSks;
 
   Future<void> clearCache() async {
     await ref.clearCache(_mealsUrl, _ttlDays);
@@ -29,8 +30,8 @@ class SksMenuRepository extends _$SksMenuRepository {
     final sksMenuResponse = await ref
         .getAndCacheDataWithTranslation(
           _mealsUrl,
-          _ttlDays,
           SksMenuResponse.fromJson,
+          ttlDays: _ttlDays,
           extraValidityCheck: (data) {
             return data.castAsObject.isMenuOnline && DateTime.now().date.isSameDay(data.castAsObject.lastUpdate.date);
           },
@@ -42,8 +43,8 @@ class SksMenuRepository extends _$SksMenuRepository {
     final openingHoursResponse = await ref
         .getAndCacheData(
           _openingHoursUrl,
-          _ttlDays,
           SksOpeningHours.fromJson,
+          ttlDays: _ttlDays,
           extraValidityCheck: (data) {
             final obj = data.castAsObject;
             return obj.openingHours.canteen.openingTime.isNotEmpty &&

@@ -5,7 +5,6 @@ import "package:flutter/material.dart";
 import "package:flutter_native_splash/flutter_native_splash.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "../../api_base/hive_init.dart";
 import "../../config/ui_config.dart";
 import "../../firebase_init.dart";
 import "../home_view/widgets/logo_app_bar.dart";
@@ -22,7 +21,6 @@ class SplashScreenController extends _$SplashScreenController {
     */
     WidgetsFlutterBinding.ensureInitialized();
     await firebaseInit();
-    await initHiveForGraphqlCache();
     await AppBarLogo.precacheImageIfAbsent();
     await ref.read(mapCacheStoreProvider.future); // prefetch map cache directory
   }

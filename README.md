@@ -39,7 +39,7 @@ Read more at: https://solvro.pwr.edu.pl/portfolio/to-pwr/.
 - Flutter
 - Riverpod
 - Freezed
-- graphql_codegen
+- graphql_codegen (previously)
 - Dio
 - fl_chart
 - wiredash
