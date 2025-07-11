@@ -28,11 +28,11 @@ class DayChangesDialog extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.localize;
-    final swaps = calendar.daySwaps.nextDaySwapsWithinWindow(calendar.windowDuration);
+    final swaps = calendar.daySwaps.nextDaySwapsWithinWindow(calendar.windowDuration(ref));
     final calendarData = calendar.data;
     return RedDialog(
       title: l10n.dayChangesDialogTitle,
-      subtitle: l10n.dayChangesDialogSubtitle(calendar.windowDuration.inDays),
+      subtitle: l10n.dayChangesDialogSubtitle(calendar.windowDuration(ref)?.inDays ?? 7),
       applyButtonText: l10n.dayChangesDialogOk,
       showCloseButton: false,
       child: ListView.separated(
