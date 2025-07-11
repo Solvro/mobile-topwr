@@ -3,7 +3,6 @@ import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../../../api_base/directus_assets_url.dart";
 import "../../../config/ui_config.dart";
 import "../../../gen/assets.gen.dart";
 import "../../../utils/context_extensions.dart";
@@ -68,7 +67,7 @@ class _DigitalGuideView extends ConsumerWidget {
       const SizedBox(height: DigitalGuideConfig.heightSmall),
       SizedBox(
         height: DetailViewsConfig.imageHeight,
-        child: ZoomableOptimizedDirectusImage(photoUrl?.directusUrl, semanticsLabel: context.localize.building_prefix),
+        child: ZoomableCachedImage(photoUrl, semanticsLabel: context.localize.building_prefix),
       ),
       HeadlinesSection(
         name: digitalGuideData.translations.plTranslation.name,

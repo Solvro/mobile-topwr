@@ -6,7 +6,6 @@ import "../../../../api_base_rest/client/json.dart";
 import "../../../../api_base_rest/translations/translate.dart";
 import "../../../../config/env.dart";
 
-import "../../../../config/ttl_config.dart";
 import "../../guide_view.dart";
 import "../models/guide_data.dart";
 part "guide_repository.g.dart";
@@ -17,7 +16,6 @@ Future<IList<GuideData>> guideRepository(Ref ref) async {
   final guideResponse = await ref
       .getAndCacheDataWithTranslation(
         "$apiUrl/guide_articles?image=true",
-        TtlStrategy.get(TtlKey.guideRepository).inDays,
         GuideDataResponse.fromJson,
         extraValidityCheck: (_) => true,
         localizedOfflineMessage: GuideView.localizedOfflineMessage,

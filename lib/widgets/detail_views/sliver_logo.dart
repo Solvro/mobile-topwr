@@ -45,7 +45,7 @@ class SliverLogo extends StatelessWidget {
                   fit: BoxFit.scaleDown,
                   child: SizedBox.square(
                     dimension: logoSize * scaleFactor,
-                    child: ZoomableOptimizedDirectusImage(
+                    child: ZoomableCachedImage(
                       logoDirectusUrl,
                       boxFit: boxfit,
                       loadingType: loadingType,

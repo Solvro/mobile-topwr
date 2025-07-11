@@ -2,7 +2,6 @@ import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "../../../../config/ttl_config.dart";
 import "../../../api_base_rest/client/json.dart";
 import "../../../api_base_rest/translations/translate.dart";
 import "../../../config/env.dart";
@@ -18,7 +17,6 @@ Future<IList<Building>> buildingsRepository(Ref ref) async {
   final buildingsResponse = await ref
       .getAndCacheDataWithTranslation(
         "$apiUrl/buildings?cover=true",
-        TtlStrategy.get(TtlKey.buildingsRepository).inDays,
         BuildingDataResponse.fromJson,
         extraValidityCheck: (_) => true,
         localizedOfflineMessage: BuildingsView.localizedOfflineMessage,

@@ -1,4 +1,7 @@
+import "package:flutter_riverpod/flutter_riverpod.dart";
+
 import "../../../utils/datetime_utils.dart";
+import "../../remote_config/data/repository/remote_config_repository.dart";
 import "../repository/academic_calendar_repo.dart";
 import "academic_calendar.dart";
 import "academic_day.dart";
@@ -43,7 +46,10 @@ extension AcademicCalendarDataX on AcademicCalendar {
 }
 
 extension AcademicCalendarX on AcademicCalendarWithSwaps {
-  Duration get windowDuration => const Duration(days: 7); // TODO(simon-the-shark): kick Konrad in the ass
+  Duration? windowDuration(WidgetRef ref) {
+    final config = ref.read(remoteConfigRepositoryProvider);
+    return config.valueOrNull?.daySwapLookahead == null ? null : Duration(days: config.requireValue.daySwapLookahead);
+  }
 
   AcademicDay? get academicDayToday {
     if (daySwaps.isTodayAnException) {
@@ -52,8 +58,8 @@ extension AcademicCalendarX on AcademicCalendarWithSwaps {
     return data.standardAcademicDay();
   }
 
-  ({int daysTillFirstChange, int changesCount})? get incomingDaysChanges {
-    final nextException = daySwaps.nextDaySwapsWithinWindow(windowDuration);
+  ({int daysTillFirstChange, int changesCount})? incomingDaysChanges(WidgetRef ref) {
+    final nextException = daySwaps.nextDaySwapsWithinWindow(windowDuration(ref));
     if (nextException.isEmpty) {
       return null;
     }

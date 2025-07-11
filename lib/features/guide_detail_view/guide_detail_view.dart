@@ -73,7 +73,7 @@ class _GuideDetailDataView extends ConsumerWidget {
                       label: context.localize.article_image_semantics_label,
                       child: SizedBox(
                         height: DetailViewsConfig.imageHeight,
-                        child: ZoomableOptimizedDirectusImage(value.image.url),
+                        child: ZoomableCachedImage(value.image.url),
                       ),
                     ),
                     Positioned(

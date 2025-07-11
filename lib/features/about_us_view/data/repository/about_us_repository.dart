@@ -7,7 +7,6 @@ import "../../../../api_base_rest/cache/cache.dart";
 import "../../../../api_base_rest/client/json.dart";
 import "../../../../api_base_rest/translations/translate.dart";
 import "../../../../config/env.dart";
-import "../../../../config/ttl_config.dart";
 import "../../about_us_view.dart";
 import "../../bussiness/models.dart";
 import "../models/about_us_data.dart";
@@ -27,7 +26,6 @@ Future<AboutUs> aboutUsRepository(Ref ref) async {
     ref
         .getAndCacheDataWithTranslation(
           apiUrl + aboutUsEndpoint,
-          TtlStrategy.get(TtlKey.aboutUsRepository).inDays,
           AboutUsDataResponse.fromJson,
           extraValidityCheck: (_) => true,
           localizedOfflineMessage: AboutUsView.localizedOfflineMessage,
@@ -37,7 +35,6 @@ Future<AboutUs> aboutUsRepository(Ref ref) async {
     ref
         .getAndCacheDataWithTranslation(
           apiUrl + teamMembersEndpoint,
-          TtlStrategy.get(TtlKey.aboutUsRepository).inDays,
           TeamMembersDataResponse.fromJson,
           extraValidityCheck: (_) => true,
           localizedOfflineMessage: AboutUsView.localizedOfflineMessage,
@@ -47,7 +44,6 @@ Future<AboutUs> aboutUsRepository(Ref ref) async {
     ref
         .getAndCacheData(
           apiUrl + versionsEndpoint,
-          TtlStrategy.get(TtlKey.aboutUsRepository).inDays,
           VersionsDataResponse.fromJson,
           extraValidityCheck: (_) => true,
           localizedOfflineMessage: AboutUsView.localizedOfflineMessage,

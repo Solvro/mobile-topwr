@@ -4,7 +4,6 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 import "../../../../api_base_rest/client/json.dart";
 import "../../../../api_base_rest/translations/translate.dart";
 import "../../../../config/env.dart";
-import "../../../../config/ttl_config.dart";
 import "../../../guide_view/guide_view.dart";
 import "../models/guide_details.dart";
 
@@ -18,7 +17,6 @@ Future<GuideDetails> guideDetailsRepository(Ref ref, int id) async {
   final response = await ref
       .getAndCacheDataWithTranslation(
         apiUrl + endpoint,
-        TtlStrategy.get(TtlKey.guideDetailsRepository).inDays,
         GuideDetailsResponse.fromJson,
         extraValidityCheck: (_) => true,
         localizedOfflineMessage: GuideView.localizedOfflineMessage,

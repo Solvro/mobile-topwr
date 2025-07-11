@@ -30,4 +30,5 @@ rules:
       - sci-clubs
       - settings
       - translation
+      - remote-config
     # YES, you can add new ones if you have a new feature
