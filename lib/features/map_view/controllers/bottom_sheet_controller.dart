@@ -2,6 +2,8 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
+import "../../../utils/unwaited_microtask.dart";
+
 part "bottom_sheet_controller.g.dart";
 
 @Riverpod(dependencies: [])
@@ -28,7 +30,7 @@ class BottomSheetPixels extends _$BottomSheetPixels {
   }
 
   void _update() {
-    Future.microtask(() => state = ref.read(bottomSheetControllerProvider).pixelsSafe);
+    unwaitedMicrotask(() async => state = ref.read(bottomSheetControllerProvider).pixelsSafe);
   }
 
   Future<void> onSearchBoxTap() async {
