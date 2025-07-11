@@ -14,6 +14,7 @@ import "../features/parkings/parkings_view/widgets/offline_parkings_view.dart";
 import "../gen/assets.gen.dart";
 import "../theme/app_theme.dart";
 import "../utils/context_extensions.dart";
+import "../utils/unwaited_microtask.dart";
 
 class MyErrorWidget extends HookWidget {
   const MyErrorWidget(this.error, {required this.stackTrace, super.key});
@@ -26,7 +27,7 @@ class MyErrorWidget extends HookWidget {
     useEffect(() {
       if (error != null) {
         Logger().e(error.toString(), stackTrace: stackTrace);
-        Future.microtask(() async => Sentry.captureException(error, stackTrace: stackTrace));
+        unwaitedMicrotask(() async => Sentry.captureException(error, stackTrace: stackTrace));
       }
       return null;
     }, [error, stackTrace]);

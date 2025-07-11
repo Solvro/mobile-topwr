@@ -3,6 +3,8 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
+import "../../utils/unwaited_microtask.dart";
+
 part "navigation_stack.g.dart";
 
 @Riverpod(keepAlive: true)
@@ -66,7 +68,7 @@ class NavigationObserver extends NavigatorObserver {
   This 2 methods sync observer with the riverpod state
   */
   void setStack(IList<Route<dynamic>> value) {
-    Future.microtask(() => ref.read(navigationStackProvider.notifier).setStack(value));
+    unwaitedMicrotask(() async => ref.read(navigationStackProvider.notifier).setStack(value));
   }
 
   IList<Route<dynamic>> get stack => ref.read(navigationStackProvider);
