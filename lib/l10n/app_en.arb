@@ -70,6 +70,7 @@
   "offline_error_message": "An error occurred while fetching data about ",
   "offline_try_again": "Please try again later.",
   "offline_news": "news",
+  "news": "News",
   "offline_sci_clubs": "scientific clubs",
   "offline_buildings": "buildings",
   "offline_departments": "faculties",

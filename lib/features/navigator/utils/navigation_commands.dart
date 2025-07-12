@@ -247,4 +247,8 @@ extension NavigationX on WidgetRef {
       null => Logger().w("ExternalDigitalGuideMode is null, but used navigateBuildingDetailAction"),
     };
   }
+
+  Future<void> navigateNewsfeed() async {
+    await _router.push(const NewsfeedRoute());
+  }
 }

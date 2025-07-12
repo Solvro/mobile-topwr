@@ -11,6 +11,7 @@ import "../../../widgets/my_error_widget.dart";
 import "../../../widgets/subsection_header.dart";
 import "../../home_view/widgets/loading_widgets/big_scrollable_section_loading.dart";
 import "../../home_view/widgets/paddings.dart";
+import "../../navigator/utils/navigation_commands.dart";
 import "../data/models/newsfeed_models.dart";
 import "../data/repository/newsfeed_repository.dart";
 
@@ -20,7 +21,11 @@ class NewsSection extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) => Column(
     children: [
-      SubsectionHeader(title: "Aktualności", actionTitle: context.localize.list, onClick: () {}),
+      SubsectionHeader(
+        title: context.localize.news,
+        actionTitle: context.localize.list,
+        onClick: () => ref.navigateNewsfeed(),
+      ),
       const _NewsList(),
     ],
   );
