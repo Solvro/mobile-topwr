@@ -73,7 +73,7 @@ class _ScienceClubsList extends ConsumerWidget {
           child: BigPreviewCard(
             title: sciClub.name,
             shortDescription: sciClub.shortDescription ?? "",
-            directusUrl: (sciClub.coverPreview) ? sciClub.cover?.url : sciClub.logo?.url,
+            imageUrl: (sciClub.coverPreview) ? sciClub.cover?.url : sciClub.logo?.url,
             onClick: () async {
               unawaited(ref.trackEvent(UmamiEvents.openSciClubFromDepartmentDetailView, value: sciClub.id.toString()));
               await ref.navigateSciClubsDetail(sciClub);
