@@ -12,7 +12,7 @@ class BigPreviewCard extends StatelessWidget {
     super.key,
     required this.title,
     required this.shortDescription,
-    required this.directusUrl,
+    required this.imageUrl,
     this.date,
     required this.onClick,
     this.boxFit = BoxFit.scaleDown,
@@ -22,7 +22,7 @@ class BigPreviewCard extends StatelessWidget {
 
   final String title;
   final String shortDescription;
-  final String? directusUrl;
+  final String? imageUrl;
   final DateTime? date;
   final VoidCallback? onClick;
   final BoxFit boxFit;
@@ -50,7 +50,7 @@ class BigPreviewCard extends StatelessWidget {
                       children: [
                         SizedBox(
                           width: double.maxFinite,
-                          child: Center(child: MyCachedImage(directusUrl, boxFit: boxFit)),
+                          child: Center(child: MyCachedImage(imageUrl, boxFit: boxFit)),
                         ),
                         if (date != null) DateChip(date: date!) else const SizedBox.shrink(),
                       ],
