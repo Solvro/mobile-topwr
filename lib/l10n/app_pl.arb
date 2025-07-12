@@ -277,6 +277,10 @@
   "@offline_news": {
     "description": "Label for offline news data"
   },
+  "news": "Aktualności",
+  "@news": {
+    "description": "Title for news section"
+  },
   "offline_sci_clubs": "kół naukowych",
   "@offline_sci_clubs": {
     "description": "Label for offline scientific clubs data"
@@ -3454,7 +3458,7 @@
     "description": "Title for showers section"
   },
   "authors": "{count, plural, =1{Autor} other{Autorzy}}",
-   "@authors": {
+  "@authors": {
     "description": "Title for authors of the article",
     "placeholders": {
       "count": {
@@ -3462,9 +3466,9 @@
         "example": "3"
       }
     }
-},
+  },
   "redactors": "{count, plural, =1{Redaktor} other{Redaktorzy}}",
-   "@redactors": {
+  "@redactors": {
     "description": "Title for redactors of the article",
     "placeholders": {
       "count": {
@@ -3472,5 +3476,5 @@
         "example": "3"
       }
     }
-}
+  }
 }

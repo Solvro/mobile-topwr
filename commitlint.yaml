@@ -31,4 +31,5 @@ rules:
       - settings
       - translation
       - remote-config
+      - news
     # YES, you can add new ones if you have a new feature

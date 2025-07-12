@@ -50,6 +50,7 @@ import "../guide_detail_view/guide_detail_view.dart";
 import "../guide_view/guide_view.dart";
 import "../home_view/home_view.dart";
 import "../navigation_tab_view/navigation_tab_view.dart";
+import "../newsfeed/presentation/news_list_view.dart";
 import "../parkings/parkings_view/parkings_view.dart";
 import "../science_club/science_club_detail_view/science_club_detail_view.dart";
 import "../science_club/science_clubs_view/science_clubs_view.dart";
@@ -115,6 +116,7 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: InformationPointRoute.page),
     AutoRoute(page: DressingRoomRoute.page),
     AutoRoute(page: ParkingRoute.page),
+    AutoRoute(page: NewsfeedRoute.page),
   ];
 }
 

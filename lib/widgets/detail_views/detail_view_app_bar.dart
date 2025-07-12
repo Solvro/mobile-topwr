@@ -11,7 +11,7 @@ class DetailViewAppBar extends AppBar {
           alignment: Alignment.centerLeft,
           child: Padding(padding: EdgeInsets.only(left: 4), child: DetailViewPopButton()),
         ),
-        leadingWidth: 500,
+        leadingWidth: 140,
         centerTitle: true,
         automaticallyImplyLeading: false,
         scrolledUnderElevation: 0,

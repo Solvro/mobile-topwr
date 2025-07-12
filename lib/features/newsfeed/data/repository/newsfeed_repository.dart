@@ -1,0 +1,31 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:riverpod_annotation/riverpod_annotation.dart";
+
+import "../../../../api_base_rest/cache/cache.dart";
+import "../../../../api_base_rest/client/json.dart";
+import "../../../../config/env.dart";
+import "../../presentation/news_list_view.dart";
+import "../models/newsfeed_models.dart";
+
+part "newsfeed_repository.g.dart";
+
+@riverpod
+Future<IList<Article>> newsfeedRepository(Ref ref) async {
+  const endpoint = "/newsfeed/latest?completeOnly=false";
+  final url = "${Env.mainRestApiUrl}$endpoint";
+
+  final response = await ref
+      .getAndCacheData(
+        url,
+        NewsfeedResponse.fromJson,
+        extraValidityCheck: (newsfeed) =>
+            newsfeed.castAsObject.articles.isNotEmpty &&
+            newsfeed.castAsObject.updateTime.isAfter(DateTime.now().subtract(const Duration(minutes: 30))),
+        localizedOfflineMessage: NewsfeedView.localizedOfflineMessage,
+        onRetry: ref.invalidateSelf,
+      )
+      .castAsObject;
+
+  return response.articles;
+}
