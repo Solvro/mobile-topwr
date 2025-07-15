@@ -35,17 +35,8 @@ dependencies:
     sdk: flutter
 
   #Theme
-  theme_tailor_annotation: # remove this when idiots push a release
-    git:
-      url: https://github.com/Iteo/theme_tailor.git
-      ref: a8b469c
-      path: packages/theme_tailor_annotation
-
-  theme_tailor: # remove this when idiots push a release
-    git:
-      url: https://github.com/Iteo/theme_tailor.git
-      ref: a8b469c
-      path: packages/theme_tailor
+  theme_tailor_annotation: ^3.0.2
+  theme_tailor: ^3.0.3
 
   #State managements
   flutter_riverpod: ^2.6.1
@@ -53,24 +44,23 @@ dependencies:
   hooks_riverpod: ^2.6.1
 
   #Storage
-  hive: ^2.2.3
-  shared_preferences: ^2.5.2
+  shared_preferences: ^2.5.3
   cached_network_image: ^3.4.1
   flutter_cache_manager: ^3.4.1
-  drift: ^2.26.0
+  drift: ^2.28.0
   drift_flutter: ^0.2.4
   dio_cache_interceptor_db_store: ^6.0.0
 
   #Network
-  url_launcher: ^6.3.1
-  html: ^0.15.5
+  url_launcher: ^6.3.2
+  html: ^0.15.6
   dio: ^5.8.0+1
 
   #Widgets
   cupertino_icons: ^1.0.8
-  flutter_native_splash: ^2.4.5
-  flutter_svg: ^2.0.10
-  flutter_widget_from_html_core: ^0.16.0
+  flutter_native_splash: ^2.4.6
+  flutter_svg: ^2.2.0
+  flutter_widget_from_html_core: ^0.17.0
   anim_search_bar:
     git:
       url: https://github.com/simon-the-shark/anim_search_bar.git
@@ -80,25 +70,25 @@ dependencies:
       url: https://github.com/ChrisElliotUK/auto_size_text.git
       ref: patch-1
   lottie: ^3.3.1
-  fl_chart: ^0.70.2
+  fl_chart: ^1.0.0
   animated_list_plus: ^0.5.2
-  dotted_border: ^2.1.0
+  dotted_border: ^3.1.0
   fluttertoast: ^8.2.12
-  carousel_slider_plus: ^7.1.0
+  carousel_slider_plus: ^7.1.1
 
   #Data
-  freezed_annotation: ^3.0.0
+  freezed_annotation: ^3.1.0
   json_annotation: ^4.9.0
   collection: ^1.19.1
-  fast_immutable_collections: ^11.0.3
+  fast_immutable_collections: ^11.0.4
 
   #Navigation
-  auto_route: 10.0.1
+  auto_route: ^10.1.0
 
   #Maps
-  flutter_map: ^8.1.0
-  flutter_map_cancellable_tile_provider: ^3.1.0
-  flutter_map_location_marker: ^10.0.0
+  flutter_map: ^8.2.1
+  flutter_map_cancellable_tile_provider: ^3.1.1
+  flutter_map_location_marker: ^10.1.0
 
   flutter_map_compass: ^1.1.1
   flutter_map_cache: ^1.5.2
@@ -106,33 +96,33 @@ dependencies:
   flutter_compass: ^0.8.1
 
   #Firebase
-  firebase_core: ^3.12.1
+  firebase_core: ^3.15.1
   firebase_performance: ^0.10.1
-  firebase_messaging: ^15.2.4
+  firebase_messaging: ^15.2.9
 
   #Utility
   intl: ^0.20.2
   latlong2: ^0.9.1
-  permission_handler: ^11.4.0
+  permission_handler: ^12.0.1
   package_info_plus: ^8.3.0
   envied: ^1.1.1
   path_provider: ^2.1.5
 
   #Other
   in_app_update: ^4.2.3
-  upgrader: ^11.3.1
-  in_app_review: ^2.0.9
+  upgrader: ^11.4.0
+  in_app_review: ^2.0.10
   protontime: ^2.0.0
-  logger: ^2.5.0
+  logger: ^2.6.0
   separate: ^1.0.3
-  wiredash: ^2.4.0
+  wiredash: ^2.5.0
   flutter_hooks: ^0.21.2
-  audioplayers: ^6.2.0
+  audioplayers: ^6.5.0
+  sentry_flutter: ^9.4.1
 
   #Solvro packages
   solvro_translator_with_drift_cache_flutter: ^0.5.0
   solvro_translator_core: ^0.5.0
-  sentry_flutter: ^8.14.2
   flutter_umami: ^0.3.0
 
 dev_dependencies:
@@ -140,33 +130,24 @@ dev_dependencies:
     sdk: flutter
 
   #Storage
-  drift_dev: ^2.26.0
+  drift_dev: ^2.28.0
 
   #Lints
   solvro_config: ^1.0.1
 
   #CodeGen
-  build_runner: ^2.4.15
-  freezed: ^3.0.2
-  json_serializable: ^6.9.4
+  build_runner: ^2.5.4
+  freezed: ^3.1.0
+  json_serializable: ^6.9.5
   riverpod_generator: ^2.6.5
   envied_generator: ^1.1.1
-  flutter_gen_runner: ^5.9.0
-  auto_route_generator: ^10.0.1
+  flutter_gen_runner: ^5.10.0
+  auto_route_generator: ^10.2.3
   solvro_translator_generator: ^0.5.0
 
   #Other
-  flutter_launcher_icons: "^0.14.3"
+  flutter_launcher_icons: ^0.14.4
   test: ^1.25.15
-
-dependency_overrides:
-  source_gen: ^2.0.0
-  intl: ^0.20.2
-  theme_tailor_annotation: # remove this when idiots push a release
-    git:
-      url: https://github.com/Iteo/theme_tailor.git
-      ref: a8b469c
-      path: packages/theme_tailor_annotation
 
 flutter:
   uses-material-design: true
