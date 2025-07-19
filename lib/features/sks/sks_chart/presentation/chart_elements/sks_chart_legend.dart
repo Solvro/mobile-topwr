@@ -36,10 +36,11 @@ class SksChartLegendItem extends StatelessWidget {
       children: [
         if (isPredicted)
           DottedBorder(
-            borderType: BorderType.RRect,
-            dashPattern: const [SksChartConfig.borderDashArray],
-            color: context.colorTheme.blueAzure,
-            padding: EdgeInsets.zero,
+            options: RectDottedBorderOptions(
+              dashPattern: const [SksChartConfig.borderDashArray],
+              color: context.colorTheme.blueAzure,
+              padding: EdgeInsets.zero,
+            ),
             child: Container(width: SksChartConfig.legendItemSize),
           )
         else
