@@ -13,8 +13,9 @@ void useInitialActiveId<T extends GoogleNavigable>(
   void Function(T item) zoomOnMarker,
   IList<T> items,
 ) {
-  if (initialActiveId == null) return;
   useEffect(() {
+    if (initialActiveId == null) return null;
+
     final activeItem = items.firstWhereOrNull((item) => item.id == initialActiveId);
     if (activeItem != null) {
       Future.microtask(() => activeMarkerController.selectItem(activeItem));
