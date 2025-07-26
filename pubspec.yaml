@@ -75,6 +75,7 @@ dependencies:
   dotted_border: ^3.1.0
   fluttertoast: ^8.2.12
   carousel_slider_plus: ^7.1.1
+  home_widget: ^0.8.0
 
   #Data
   freezed_annotation: ^3.1.0

@@ -2,6 +2,7 @@ plugins {
     id "com.android.application"
     id "kotlin-android"
     id "dev.flutter.flutter-gradle-plugin"
+    id "org.jetbrains.kotlin.plugin.compose"
 }
 
 def localProperties = new Properties()
@@ -27,7 +28,6 @@ def keystorePropertiesFile = rootProject.file('key.properties')
 if (keystorePropertiesFile.exists()) {
     keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 }
-
 
 android {
     namespace "com.solvro.topwr"
@@ -73,10 +73,16 @@ android {
             signingConfig signingConfigs.release
         }
     }
-}
 
+    buildFeatures {
+        compose true
+    }
+
+}
 flutter {
     source '../..'
 }
 
-dependencies {}
+dependencies {
+    implementation 'androidx.glance:glance-appwidget:1.1.1'
+}
