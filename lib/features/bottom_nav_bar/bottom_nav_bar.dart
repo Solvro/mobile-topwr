@@ -8,7 +8,7 @@ import "../../theme/app_theme.dart";
 class BottomNavBar extends ConsumerWidget {
   const BottomNavBar({super.key, required this.activeIndex, required this.onTap});
   final int activeIndex;
-  final void Function(int)? onTap;
+  final void Function(int) onTap;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Theme(
