@@ -12,9 +12,9 @@ part "navigation_controller.g.dart";
 
 typedef TRoute = PageRouteInfo<dynamic>;
 
-@riverpod
+@Riverpod(keepAlive: true)
 class NavigationController extends _$NavigationController {
-  StackRouter? get _router => state.currentState?.controller;
+  StackRouter? get _router => ref.watch(appRouterProvider);
 
   Future<void> push(TRoute route) async {
     await _router?.push(route);
@@ -28,21 +28,16 @@ class NavigationController extends _$NavigationController {
     final isDestinationWithinTabView = routesWithinTabBar.any(
       (route) => route.path == uri || uri.startsWith("buildings") || uri.startsWith("parkings"),
     );
+    final shouldPushNewRootView = !isCurrentlyWithinTabView && isDestinationWithinTabView;
+    if (shouldPushNewRootView) {
+      final tabRoute = ref.read(appRouterProvider).pathToRoute(uri);
+      await _router?.push(
+        RootRoute(initialTabToGetBackTo: NavBarConfig.reversedTabViews[tabRoute.routeName]!, children: [tabRoute]),
+      );
+      return;
+    }
     final properlyWorkingURI = !isDestinationWithinTabView ? "/$uri" : uri;
-    final shouldPopBeforeNavigating = !isCurrentlyWithinTabView && isDestinationWithinTabView;
-    if (shouldPopBeforeNavigating) {
-      _router?.root.popUntil((element) => element.settings.name == RootRoute.name); // pop to root (tab bar view)
-    }
     await _router?.pushPath(properlyWorkingURI);
-  }
-
-  /// this is called only when you actually **click** in the nav tab bar
-  /// so we don't call this on other navigation actions (like `Lista >` buttons)
-  Future<void> onTabBarChange(NavBarEnum item) async {
-    final route = NavBarConfig.tabViews[item]!;
-    if (_router?.stackData.last.route.name != route.routeName) {
-      await push(route);
-    }
   }
 
   @override

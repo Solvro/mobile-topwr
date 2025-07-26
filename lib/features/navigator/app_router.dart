@@ -4,6 +4,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../../features/buildings_view/model/building_model.dart";
+import "../../config/nav_bar_config.dart";
 import "../about_us_view/about_us_view.dart";
 import "../buildings_view/buildings_view.dart";
 import "../departments/department_detail_view/department_detail_view.dart";
@@ -82,6 +83,34 @@ class AppRouter extends RootStackRouter {
     _NoTransitionRoute(path: "guide", page: GuideRoute.page),
     _NoTransitionRoute(path: "navigation", page: NavigationTabRoute.page),
   ];
+
+  /// Converts a path string to a PageRouteInfo object for routes within the tab bar
+  /// Returns null if the path doesn't match any tab bar routes
+  PageRouteInfo pathToRoute(String path) {
+    // Remove leading slash if present
+    final cleanPath = path.startsWith("/") ? path.substring(1) : path;
+
+    // Split path into segments
+    final segments = cleanPath.split("/");
+
+    if (segments.isEmpty) return const HomeRoute();
+
+    return switch (segments[0]) {
+      "" => const HomeRoute(),
+      "buildings" => BuildingsRoute(
+        initialActiveItemId: segments.length > 1 && segments[1] != "null" ? segments[1] : null,
+      ),
+      "parkings" => ParkingsRoute(
+        initialActiveItemId: segments.length > 1 && segments[1] != "null" ? segments[1] : null,
+      ),
+      "guide" => const GuideRoute(),
+      "navigation" => const NavigationTabRoute(),
+      _ =>
+        throw Exception(
+          "This path: $path is not inside a tabview. This `pathToRoute` function should only be used for routes within the tabbar.",
+        ),
+    };
+  }
 
   @override
   List<AutoRoute> get routes => [
