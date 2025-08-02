@@ -94,6 +94,7 @@ class GlanceParkingWidget(
     }
 
 }
+//TODO: add trend handling & error handling, extract function
 @SuppressLint("RestrictedApi")
 @Composable
 fun ParkingWidgetContent(
