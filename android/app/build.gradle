@@ -3,6 +3,7 @@ plugins {
     id "kotlin-android"
     id "dev.flutter.flutter-gradle-plugin"
     id "org.jetbrains.kotlin.plugin.compose"
+    id 'org.jetbrains.kotlin.plugin.serialization' version '2.2.0'
 }
 
 def localProperties = new Properties()
@@ -84,5 +85,9 @@ flutter {
 }
 
 dependencies {
+    implementation 'io.coil-kt.coil3:coil-network-okhttp:3.3.0'
+    implementation 'io.coil-kt.coil3:coil-compose:3.3.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0'
     implementation 'androidx.glance:glance-appwidget:1.1.1'
+    implementation 'androidx.glance:glance-preview:1.1.1'
 }
