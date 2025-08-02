@@ -120,6 +120,8 @@ dependencies:
   flutter_hooks: ^0.21.2
   audioplayers: ^6.5.0
   sentry_flutter: ^9.4.1
+  workmanager: ^0.8.0
+
 
   #Solvro packages
   solvro_translator_with_drift_cache_flutter: ^0.5.0
