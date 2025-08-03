@@ -1,5 +1,8 @@
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
     android:initialLayout="@layout/parking_widget_loading"
+    android:minWidth="125dp"
+    android:minHeight="125dp"
     android:resizeMode="none"
-    android:updatePeriodMillis="10000">
-</appwidget-provider>
+    android:targetCellWidth="2"
+    android:targetCellHeight="2"
+    android:updatePeriodMillis="60000" />

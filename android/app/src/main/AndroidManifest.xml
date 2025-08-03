@@ -9,7 +9,7 @@
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
 
-        <receiver android:name=".widgets.GeoParkingWidgetReceiver"
+        <receiver android:name=".widget.parking.receiver.GeoParkingWidgetReceiver"
             android:label="Parking GEO LO1 Geocentrum"
             android:exported="true">
             <intent-filter>
@@ -20,7 +20,7 @@
                 android:resource="@xml/app_widget_provider_info" />
         </receiver>
 
-        <receiver android:name=".widgets.D20ParkingWidgetReceiver"
+        <receiver android:name=".widget.parking.receiver.D20ParkingWidgetReceiver"
             android:label="Parking D20-D21"
             android:exported="true">
             <intent-filter>
@@ -31,7 +31,7 @@
                 android:resource="@xml/app_widget_provider_info" />
         </receiver>
 
-        <receiver android:name=".widgets.WroParkingWidgetReceiver"
+        <receiver android:name=".widget.parking.receiver.WroParkingWidgetReceiver"
             android:label="Parking Wrońskiego"
             android:exported="true">
             <intent-filter>
@@ -42,7 +42,7 @@
                 android:resource="@xml/app_widget_provider_info" />
         </receiver>
 
-        <receiver android:name=".widgets.C13ParkingWidgetReceiver"
+        <receiver android:name=".widget.parking.receiver.C13ParkingWidgetReceiver"
             android:label="Parking Polinka"
             android:exported="true">
             <intent-filter>
@@ -53,7 +53,7 @@
                 android:resource="@xml/app_widget_provider_info" />
         </receiver>
 
-        <receiver android:name=".widgets.EO1ParkingWidgetReceiver"
+        <receiver android:name=".widget.parking.receiver.EO1ParkingWidgetReceiver"
             android:label="Parking Architektura"
             android:exported="true">
             <intent-filter>

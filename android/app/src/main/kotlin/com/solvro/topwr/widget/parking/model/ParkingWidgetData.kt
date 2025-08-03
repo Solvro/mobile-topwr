@@ -1,9 +1,9 @@
-package com.solvro.topwr.widgets
+package com.solvro.topwr.widget.parking.model
 
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ParkingWidget(
+data class ParkingWidgetData(
     val symbol: String,
     val freePlaces: String,
     val imageUrl: String,
