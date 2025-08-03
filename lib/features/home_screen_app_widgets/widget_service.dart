@@ -1,38 +1,28 @@
 import "dart:convert";
 
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:home_widget/home_widget.dart";
 import "../parkings/parkings_view/models/parking.dart";
 import "parking_widget_data.dart";
 
 class WidgetService {
-  static const androidPackagePrefix = "com.solvro.topwr";
+  static const androidPackagePrefix = "com.solvro.topwr.widget.parking.receiver";
 
-  static const _parkingWidgetAndroidNameGEO = "$androidPackagePrefix.widgets.GeoParkingWidgetReceiver";
-  static const _parkingWidgetAndroidNameD20 = "$androidPackagePrefix.widgets.D20ParkingWidgetReceiver";
-  static const _parkingWidgetAndroidNameWRO = "$androidPackagePrefix.widgets.WroParkingWidgetReceiver";
-  static const _parkingWidgetAndroidNameC13 = "$androidPackagePrefix.widgets.C13ParkingWidgetReceiver";
-  static const _parkingWidgetAndroidNameEO1 = "$androidPackagePrefix.widgets.EO1ParkingWidgetReceiver";
+  static const List<String> _parkingWidgetAndroidNames = [
+    "$androidPackagePrefix.GeoParkingWidgetReceiver",
+    "$androidPackagePrefix.D20ParkingWidgetReceiver",
+    "$androidPackagePrefix.WroParkingWidgetReceiver",
+    "$androidPackagePrefix.C13ParkingWidgetReceiver",
+    "$androidPackagePrefix.EO1ParkingWidgetReceiver",
+  ];
 
-  static Future<void> updateParkingSlots(Parking parking) async {
-    final parkingWidgetData = parking.toParkingWidgetData();
-    await HomeWidget.saveWidgetData<String>(parkingWidgetData.symbol, jsonEncode(parkingWidgetData));
-    await _updateWidget(qualifiedAndroidName: _getParkingWidgetAndroidName(parking.symbol));
-  }
+  static const _parkingWidgetDataKey = "parking_home_screen_widget_data";
 
-  static String _getParkingWidgetAndroidName(String key) {
-    switch (key.toLowerCase()) {
-      case "geo-l":
-        return _parkingWidgetAndroidNameGEO;
-      case "d20":
-        return _parkingWidgetAndroidNameD20;
-      case "wro":
-        return _parkingWidgetAndroidNameWRO;
-      case "c13":
-        return _parkingWidgetAndroidNameC13;
-      case "e01":
-        return _parkingWidgetAndroidNameEO1;
-      default:
-        throw ArgumentError("Unknown parking widget key: $key");
+  static Future<void> updateParkingSlots(IList<Parking> parking) async {
+    final parkingWidgetDataJson = jsonEncode(parking.map((e) => e.toParkingWidgetData()).toList());
+    await HomeWidget.saveWidgetData<String>(_parkingWidgetDataKey, parkingWidgetDataJson);
+    for (final androidWidget in _parkingWidgetAndroidNames) {
+      await _updateWidget(qualifiedAndroidName: androidWidget);
     }
   }
 

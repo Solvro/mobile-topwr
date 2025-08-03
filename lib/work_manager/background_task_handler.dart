@@ -1,5 +1,4 @@
 import "dart:async";
-import "dart:math";
 
 import "package:dio/dio.dart";
 import "package:workmanager/workmanager.dart";
@@ -8,14 +7,14 @@ import "../config/env.dart";
 import "../features/home_screen_app_widgets/widget_service.dart";
 import "../features/parkings/parkings_view/api_client/iparking_client.dart";
 import "../features/parkings/parkings_view/models/parking.dart";
+import "../utils/ilist_nonempty.dart";
 
 @pragma("vm:entry-point")
 void callbackDispatcher() {
   Workmanager().executeTask((task, inputData) async {
     final parkings = await _fetchParkings();
-    for (final parking in parkings) {
-      await WidgetService.updateParkingSlots(parking.copyWith(numberOfPlaces: Random().nextInt(1300).toString()));
-    }
+    await WidgetService.updateParkingSlots(parkings.toIList());
+
     return Future.value(true);
   });
 }
