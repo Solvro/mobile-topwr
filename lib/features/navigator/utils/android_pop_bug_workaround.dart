@@ -11,7 +11,7 @@ extension AndroidPopBugWorkaroundX on WidgetRef {
   static const platform = MethodChannel("topwr.app.android.channel");
 
   bool get androidSpecialPopTreatment {
-    return !kIsWeb && Platform.isAndroid && !read(isStackPoppableProvider);
+    return !kIsWeb && Platform.isAndroid && !watch(isStackPoppableProvider);
   }
 
   Future<void> handleAndroidSpecialPop() async {

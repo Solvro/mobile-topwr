@@ -4,14 +4,13 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../config/nav_bar_config.dart";
 import "../../theme/app_theme.dart";
-import "../navigator/navigation_controller.dart";
-import "bottom_nav_bar_controller.dart";
 
 class BottomNavBar extends ConsumerWidget {
-  const BottomNavBar({super.key});
+  const BottomNavBar({super.key, required this.activeIndex, required this.onTap});
+  final int activeIndex;
+  final void Function(int) onTap;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final activeTab = ref.watch(bottomNavBarControllerProvider);
     return Theme(
       data: Theme.of(context).copyWith(splashColor: Colors.transparent, highlightColor: Colors.transparent),
       child: DecoratedBox(
@@ -21,14 +20,13 @@ class BottomNavBar extends ConsumerWidget {
           ],
         ),
         child: BottomNavigationBar(
-          currentIndex: activeTab.index,
-          onTap: (index) async =>
-              ref.read(navigationControllerProvider.notifier).onTabBarChange(NavBarEnum.values[index]),
+          currentIndex: activeIndex,
+          onTap: onTap,
           backgroundColor: context.colorTheme.greyLight,
           showSelectedLabels: false,
           showUnselectedLabels: false,
           type: BottomNavigationBarType.fixed,
-          items: _NavigationBarItemsList(activeTab, context),
+          items: _NavigationBarItemsList(activeIndex, context),
         ),
       ),
     );
@@ -36,16 +34,17 @@ class BottomNavBar extends ConsumerWidget {
 }
 
 class _NavigationBarItemsList extends DelegatingList<BottomNavigationBarItem> {
-  _NavigationBarItemsList(NavBarEnum selectedTab, BuildContext context)
+  _NavigationBarItemsList(int activeIndex, BuildContext context)
     : super(
         NavBarEnum.values
-            .map(
-              (e) => BottomNavigationBarItem(
+            .mapIndexed(
+              (i, e) => BottomNavigationBarItem(
                 icon: Icon(
                   e.icon,
-                  color: e == selectedTab
-                      ? context.colorTheme.orangePomegranade
-                      : context.colorTheme.blackMirage.withValues(alpha: .16),
+                  color:
+                      i == activeIndex
+                          ? context.colorTheme.orangePomegranade
+                          : context.colorTheme.blackMirage.withValues(alpha: .16),
                   size: e.size,
                 ),
                 label: e.getLabel(context),
@@ -54,3 +53,4 @@ class _NavigationBarItemsList extends DelegatingList<BottomNavigationBarItem> {
             .toList(),
       );
 }
+ 
