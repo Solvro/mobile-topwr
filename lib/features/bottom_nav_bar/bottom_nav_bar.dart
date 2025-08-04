@@ -41,10 +41,9 @@ class _NavigationBarItemsList extends DelegatingList<BottomNavigationBarItem> {
               (i, e) => BottomNavigationBarItem(
                 icon: Icon(
                   e.icon,
-                  color:
-                      i == activeIndex
-                          ? context.colorTheme.orangePomegranade
-                          : context.colorTheme.blackMirage.withValues(alpha: .16),
+                  color: i == activeIndex
+                      ? context.colorTheme.orangePomegranade
+                      : context.colorTheme.blackMirage.withValues(alpha: .16),
                   size: e.size,
                 ),
                 label: e.getLabel(context),
@@ -53,4 +52,3 @@ class _NavigationBarItemsList extends DelegatingList<BottomNavigationBarItem> {
             .toList(),
       );
 }
- 

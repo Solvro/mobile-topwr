@@ -2,19 +2,21 @@ import "dart:async";
 
 import "package:flutter/material.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
-import "package:scrollable_list_tab_scroller/scrollable_list_tab_scroller.dart";
 
 import "../../../theme/app_theme.dart";
+import "../../config/ui_config.dart";
 import "../../utils/context_extensions.dart";
 import "../../widgets/my_error_widget.dart";
 import "../../widgets/search_box_app_bar.dart";
 import "../analytics/data/umami.dart";
 import "../analytics/data/umami_events.dart";
+import "../bottom_scroll_sheet/scrollable_list_tab_scroller/scrollable_list_tab_scroller.dart";
 import "../buildings_view/model/building.dart";
 import "../map_view/controllers/bottom_sheet_controller.dart";
 import "../map_view/controllers/controllers_set.dart";
 import "../map_view/widgets/map_config.dart";
 import "../parkings/parkings_view/models/parking.dart";
+import "data_list.dart";
 import "drag_handle.dart";
 import "navigate_button.dart";
 
@@ -25,6 +27,7 @@ class SheetLayoutScheme<T extends GoogleNavigable> extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isBuildingMap = T == Building;
     final appBar = SearchBoxAppBar(
       context,
       title: context.mapViewTexts<T>().title,
@@ -40,40 +43,67 @@ class SheetLayoutScheme<T extends GoogleNavigable> extends HookConsumerWidget {
       actions: [if (ref.watch(context.activeMarkerController<T>()) != null) NavigateButton<T>()],
     );
 
-    final categoryData = (
-      buildings: (title: context.localize.buildings_title, builder: () => _buildDataList<T>(ref, context)),
-      library: (
-        title: context.localize.library_title,
-        builder: () => const Column(
-          children: [
-            ListTile(title: Text("Biblioteka 1")),
-            ListTile(title: Text("Biblioteka 2")),
-            ListTile(title: Text("Biblioteka 3")),
-            ListTile(title: Text("Biblioteka 4")),
-            ListTile(title: Text("Biblioteka 5")),
-            ListTile(title: Text("Biblioteka 6")),
-            ListTile(title: Text("Biblioteka 7")),
-            ListTile(title: Text("Biblioteka 8")),
-            ListTile(title: Text("Biblioteka 9")),
-          ],
-        ),
-      ),
-      showers: (
-        title: context.localize.showers_title,
-        builder: () => const Column(
-          children: [
-            ListTile(title: Text("Prysznic 1 ")),
-            ListTile(title: Text("Prysznic 2")),
-          ],
-        ),
-      ),
-    );
+    final categoryData = isBuildingMap
+        ? (
+            buildings: (title: context.localize.buildings_title, builder: () => _buildDataList<T>(ref, context)),
+            library: (
+              title: context.localize.library_title,
+              builder: () => const Column(
+                children: [
+                  ListTile(title: Text("lorem ipsum")),
+                  ListTile(title: Text("lorem ipsum")),
+                  ListTile(title: Text("lorem ipsum")),
+                  ListTile(title: Text("lorem ipsum")),
+                  ListTile(title: Text("lorem ipsum")),
+                ],
+              ),
+            ),
+            showers: (
+              title: context.localize.showers_title,
+              builder: () => const Column(
+                children: [
+                  ListTile(title: Text("lorem ipsum")),
+                  ListTile(title: Text("lorem ipsum")),
+                  ListTile(title: Text("lorem ipsum")),
+                  ListTile(title: Text("lorem ipsum")),
+                  ListTile(title: Text("lorem ipsum")),
+                ],
+              ),
+            ),
+            pinkBoxes: (
+              title: context.localize.pink_boxes_title,
+              builder: () => const Column(
+                children: [
+                  ListTile(title: Text("lorem ipsum")),
+                  ListTile(title: Text("lorem ipsum")),
+                  ListTile(title: Text("lorem ipsum")),
+                  ListTile(title: Text("lorem ipsum")),
+                  ListTile(title: Text("lorem ipsum")),
+                ],
+              ),
+            ),
+            aed: (
+              title: context.localize.aed_title,
+              builder: () => const Column(
+                children: [
+                  ListTile(title: Text("lorem ipsum")),
+                  ListTile(title: Text("lorem ipsum")),
+                  ListTile(title: Text("lorem ipsum")),
+                  ListTile(title: Text("lorem ipsum")),
+                  ListTile(title: Text("lorem ipsum")),
+                ],
+              ),
+            ),
+          )
+        : null;
 
-    final List<({String title, Widget Function() builder})> tabs = [
-      categoryData.buildings,
-      categoryData.library,
-      categoryData.showers,
-    ];
+    final tabs = [
+      categoryData?.buildings,
+      categoryData?.library,
+      categoryData?.showers,
+      categoryData?.pinkBoxes,
+      categoryData?.aed,
+    ].where((tab) => tab != null).cast<({String title, Widget Function() builder})>().toList();
 
     return CustomScrollView(
       controller: scrollController,
@@ -86,15 +116,19 @@ class SheetLayoutScheme<T extends GoogleNavigable> extends HookConsumerWidget {
           flexibleSpace: appBar,
           automaticallyImplyLeading: false,
         ),
-        if (tabs.isNotEmpty)
+        if (categoryData != null)
           SliverFillRemaining(
             child: ScrollableListTabScroller(
               itemCount: tabs.length,
               tabBuilder: (BuildContext context, int index, bool active) => Container(
-                padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 4),
+                margin: const EdgeInsets.only(right: NavigationTabViewConfig.smallerPadding),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: NavigationTabViewConfig.universalPadding,
+                  vertical: NavigationTabViewConfig.smallerPadding,
+                ),
                 decoration: BoxDecoration(
                   color: active ? context.colorTheme.orangePomegranadeLighter : context.colorTheme.greyLight,
-                  borderRadius: BorderRadius.circular(5),
+                  borderRadius: BorderRadius.circular(NavigationTabViewConfig.radius),
                 ),
                 child: Text(
                   tabs[index].title,
@@ -107,10 +141,13 @@ class SheetLayoutScheme<T extends GoogleNavigable> extends HookConsumerWidget {
               ),
 
               itemBuilder: (BuildContext context, int index) => Padding(
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.all(NavigationTabViewConfig.universalPadding),
                 child: Column(
                   children: [
-                    Text(tabs[index].title, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                    Padding(
+                      padding: const EdgeInsets.all(NavigationTabViewConfig.smallerPadding),
+                      child: Text(tabs[index].title, style: context.textTheme.headline),
+                    ),
                     tabs[index].builder(),
                   ],
                 ),
@@ -118,6 +155,7 @@ class SheetLayoutScheme<T extends GoogleNavigable> extends HookConsumerWidget {
             ),
           ),
         const SliverToBoxAdapter(child: SizedBox(height: SearchBoxAppBar.defaultBottomPadding)),
+        if (categoryData == null) DataSliverList<T>(),
       ],
     );
   }
@@ -132,7 +170,7 @@ Widget _buildDataList<T extends GoogleNavigable>(WidgetRef ref, BuildContext con
       children: value
           .map(
             (item) => Padding(
-              padding: const EdgeInsets.only(bottom: 16),
+              padding: const EdgeInsets.only(bottom: NavigationTabViewConfig.universalPadding),
               child: context.mapTileBuilder<T>()(item, isActive: false),
             ),
           )

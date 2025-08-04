@@ -535,7 +535,7 @@
   "sks_chart_max_21_days_screen_reader_label": "Maximum number of people over the last 21 days:",
   "clear_search": "Clear search",
   "my_location_button_tooltip": "My location",
-  "map_view_description": "Map view with buildings markers. You have bottom sheet with a list of buildings. Scroll up to expand it.",
+  "map_view_description": "Map view with buildings markers. A bottom sheet displays a categorized list including buildings, libraries, showers, pink emergency boxes, and AEDs.  Scroll up to expand it.",
   "parking_map_description": "Map view with parkings markers. You have bottom sheet with a list of parkings. Scroll up to expand it.",
   "guide_view_description": "Guide view with the most important articles for students of Wrocław University of Science and Technology. The screen displays a list of articles, scroll up to see more.",
   "guide_detail_view_description": "View of an article with a photo and a list of questions related to the topic.",
@@ -575,6 +575,8 @@
   "filters_fab_tooltip": "Filters",
   "library_title": "Library",
   "showers_title": "Showers",
+  "pink_boxes_title": "Pink boxes",
+  "aed_title": "AED",
   "authors": "{count, plural, =1{Author} other{Authors}}",
   "redactors": "{count, plural, =1{Redactor} other{Redactors}}"
 }
