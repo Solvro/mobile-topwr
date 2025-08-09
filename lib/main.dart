@@ -27,7 +27,7 @@ import "services/translations_service/data/preferred_lang_repository.dart";
 import "services/translations_service/widgets/remove_old_translations.dart";
 import "theme/app_theme.dart";
 import "theme/colors.dart";
-import "work_manager/parking_widget_work_manger.dart";
+import "work_manager/parking_widget_work_manager.dart";
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

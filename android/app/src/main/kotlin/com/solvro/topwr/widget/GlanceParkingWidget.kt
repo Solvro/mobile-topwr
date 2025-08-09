@@ -52,7 +52,7 @@ class GlanceParkingWidget(
     private fun GlanceContent(context: Context, currentState: HomeWidgetGlanceState) {
         val prefs = currentState.preferences
 
-        val parkingJson = prefs.getString(PARKING_WIDGET_DATA_KEY, "")!!
+        val parkingJson = prefs.getString(PARKING_WIDGET_DATA_KEY, "") ?: ""
         val parkingWidget = decodeParkingWidgetFromJsonString(parkingJson, parkingSymbol)
 
         var parkingImage by remember(parkingWidget.imageUrl) {
@@ -98,7 +98,7 @@ class GlanceParkingWidget(
             .build()
 
         return when (val result = imageLoader.execute(request)) {
-            is ErrorResult -> throw result.throwable
+            is ErrorResult -> return null
             is SuccessResult -> result.image.asDrawable(resources).toBitmap()
         }
     }
