@@ -1,21 +1,19 @@
+import "package:freezed_annotation/freezed_annotation.dart";
 import "../parkings/parkings_view/models/parking.dart";
 
-class ParkingWidgetData {
-  final String symbol;
-  final String freePlaces;
-  final String imageUrl;
-  final String trend;
+part "parking_widget_data.freezed.dart";
+part "parking_widget_data.g.dart";
 
-  const ParkingWidgetData({
-    required this.symbol,
-    required this.freePlaces,
-    required this.imageUrl,
-    required this.trend,
-  });
+@freezed
+abstract class ParkingWidgetData with _$ParkingWidgetData {
+  const factory ParkingWidgetData({
+    required String symbol,
+    required String freePlaces,
+    required String imageUrl,
+    required String trend,
+  }) = _ParkingWidgetData;
 
-  Map<String, dynamic> toJson() {
-    return {"symbol": symbol, "freePlaces": freePlaces, "imageUrl": imageUrl, "trend": trend};
-  }
+  factory ParkingWidgetData.fromJson(Map<String, dynamic> json) => _$ParkingWidgetDataFromJson(json);
 }
 
 extension ToParkingWidgetDataX on Parking {
