@@ -1,6 +1,7 @@
 import "dart:async";
 import "dart:collection";
 
+import "package:dio/dio.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
@@ -19,11 +20,8 @@ part "parkings_repository.g.dart";
 Future<IList<Parking>> parkingsRepository(Ref ref) async {
   final restClient = ref.watch(restClientProvider);
   ref.setRefresh(ParkingsConfig.parkingsRefreshInterval);
-  final classicUrl = Env.parkingApiUrl;
-  final response = await restClient.get<Map<String, dynamic>>(classicUrl);
-  final parkings = response.data?["places"] as List<dynamic>;
-  final list = parkings.whereType<Map<String, dynamic>>().map(Parking.fromJson).toList();
-  return _sortParkingsByFav(list, ref).toIList();
+  final parkingList = await restClient.fetchParkings();
+  return _sortParkingsByFav(parkingList, ref).toIList();
 }
 
 DoubleLinkedQueue<Parking> _sortParkingsByFav(Iterable<Parking> list, Ref ref) {
@@ -37,4 +35,17 @@ DoubleLinkedQueue<Parking> _sortParkingsByFav(Iterable<Parking> list, Ref ref) {
     }
   }
   return finalParkings;
+}
+
+extension DioFetchParkingsX on Dio {
+  Future<List<Parking>> fetchParkings() async {
+    final url = Env.parkingApiUrl;
+    final response = await get<Map<String, dynamic>>(url);
+    return _mapResponseToParkings(response.data);
+  }
+
+  List<Parking> _mapResponseToParkings(Map<String, dynamic>? data) {
+    final places = data?["places"] as List<dynamic>? ?? [];
+    return places.whereType<Map<String, dynamic>>().map(Parking.fromJson).toList();
+  }
 }
