@@ -2,6 +2,8 @@ plugins {
     id "com.android.application"
     id "kotlin-android"
     id "dev.flutter.flutter-gradle-plugin"
+    id "org.jetbrains.kotlin.plugin.compose"
+    id 'org.jetbrains.kotlin.plugin.serialization' version '2.2.0'
 }
 
 def localProperties = new Properties()
@@ -27,7 +29,6 @@ def keystorePropertiesFile = rootProject.file('key.properties')
 if (keystorePropertiesFile.exists()) {
     keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 }
-
 
 android {
     namespace "com.solvro.topwr"
@@ -59,13 +60,13 @@ android {
     }
 
     signingConfigs {
-       release {
-           keyAlias keystoreProperties['keyAlias']
-           keyPassword keystoreProperties['keyPassword']
-           storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
-           storePassword keystoreProperties['storePassword']
-       }
-   }
+        release {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
+            storePassword keystoreProperties['storePassword']
+        }
+    }
 
 
     buildTypes {
@@ -73,10 +74,19 @@ android {
             signingConfig signingConfigs.release
         }
     }
-}
 
+    buildFeatures {
+        compose true
+    }
+
+}
 flutter {
     source '../..'
 }
 
-dependencies {}
+dependencies {
+    implementation 'io.coil-kt.coil3:coil-network-okhttp:3.3.0'
+    implementation 'io.coil-kt.coil3:coil-compose:3.3.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0'
+    implementation 'androidx.glance:glance-appwidget:1.1.1'
+}

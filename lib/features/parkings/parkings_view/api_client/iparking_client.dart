@@ -25,5 +25,9 @@ abstract class ParkingsConfig {
 
 @riverpod
 Dio iParkingClient(Ref ref) {
+  return getIParkingClient();
+}
+
+Dio getIParkingClient() {
   return Dio(BaseOptions(baseUrl: ParkingsConfig.soapFullUrl, headers: ParkingsConfig.headers));
 }

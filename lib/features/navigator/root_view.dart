@@ -24,14 +24,13 @@ class RootView extends HookConsumerWidget {
     return PopScope(
       canPop: !specialPop, // android pop bug workaround
       child: NavigatorPopHandler(
-        onPopWithResult:
-            specialPop
-                ? (result) async {
-                  if (!shouldNavigateBackToHome) {
-                    await ref.handleAndroidSpecialPop();
-                  }
+        onPopWithResult: specialPop
+            ? (result) async {
+                if (!shouldNavigateBackToHome) {
+                  await ref.handleAndroidSpecialPop();
                 }
-                : null,
+              }
+            : null,
         child: UpdateChangelogWrapper(
           child: AutoTabsRouter.pageView(
             routes: NavBarConfig.tabViews.values.toList(),
@@ -41,20 +40,19 @@ class RootView extends HookConsumerWidget {
               return PopScope(
                 canPop: !shouldNavigateBackToHome,
                 child: NavigatorPopHandler(
-                  onPopWithResult:
-                      shouldNavigateBackToHome
-                          ? (result) async {
-                            final enforceHomeRoute = timesPushedToTabBar.value > 1;
-                            timesPushedToTabBar.value = 0;
-                            if (enforceHomeRoute) {
-                              await ref.read(appRouterProvider).replaceAll([
-                                RootRoute(children: const [HomeRoute()]),
-                              ], updateExistingRoutes: false);
-                            } else {
-                              await ref.read(appRouterProvider).navigate(NavBarConfig.tabViews[initialTabToGetBackTo]!);
-                            }
+                  onPopWithResult: shouldNavigateBackToHome
+                      ? (result) async {
+                          final enforceHomeRoute = timesPushedToTabBar.value > 1;
+                          timesPushedToTabBar.value = 0;
+                          if (enforceHomeRoute) {
+                            await ref.read(appRouterProvider).replaceAll([
+                              RootRoute(children: const [HomeRoute()]),
+                            ], updateExistingRoutes: false);
+                          } else {
+                            await ref.read(appRouterProvider).navigate(NavBarConfig.tabViews[initialTabToGetBackTo]!);
                           }
-                          : null,
+                        }
+                      : null,
                   child: HorizontalSymmetricSafeAreaScaffold(
                     bottomNavigationBar: BottomNavBar(
                       activeIndex: tabsRouter.activeIndex,
