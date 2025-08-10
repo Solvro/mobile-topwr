@@ -3,10 +3,67 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="com.google.android.gms.permission.AD_ID"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:label="ToPWR"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+
+        <receiver android:name=".widget.parking.receiver.GeoParkingWidgetReceiver"
+            android:label="Parking GEO LO1 Geocentrum"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/app_widget_provider_info" />
+        </receiver>
+
+        <receiver android:name=".widget.parking.receiver.D20ParkingWidgetReceiver"
+            android:label="Parking D20-D21"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/app_widget_provider_info" />
+        </receiver>
+
+        <receiver android:name=".widget.parking.receiver.WroParkingWidgetReceiver"
+            android:label="Parking Wrońskiego"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/app_widget_provider_info" />
+        </receiver>
+
+        <receiver android:name=".widget.parking.receiver.C13ParkingWidgetReceiver"
+            android:label="Parking Polinka"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/app_widget_provider_info" />
+        </receiver>
+
+        <receiver android:name=".widget.parking.receiver.EO1ParkingWidgetReceiver"
+            android:label="Parking Architektura"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/app_widget_provider_info" />
+        </receiver>
+
         <meta-data android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDKfUDQv4mb4W4I4bx0WE4qYkAl53Vfciw" />
         <meta-data
