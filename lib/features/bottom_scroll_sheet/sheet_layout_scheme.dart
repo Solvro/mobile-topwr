@@ -1,20 +1,20 @@
 import "dart:async";
 
-import "package:flutter/cupertino.dart";
 import "package:flutter/material.dart";
-import "package:flutter_hooks/flutter_hooks.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../../theme/app_theme.dart";
+import "../../config/ui_config.dart";
 import "../../utils/context_extensions.dart";
+import "../../widgets/my_error_widget.dart";
 import "../../widgets/search_box_app_bar.dart";
 import "../analytics/data/umami.dart";
 import "../analytics/data/umami_events.dart";
+import "../bottom_scroll_sheet/scrollable_list_tab_scroller/scrollable_list_tab_scroller.dart";
 import "../buildings_view/model/building.dart";
 import "../map_view/controllers/bottom_sheet_controller.dart";
 import "../map_view/controllers/controllers_set.dart";
 import "../map_view/widgets/map_config.dart";
-import "../navigator/navigation_stack.dart";
 import "../parkings/parkings_view/models/parking.dart";
 import "data_list.dart";
 import "drag_handle.dart";
@@ -27,10 +27,7 @@ class SheetLayoutScheme<T extends GoogleNavigable> extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final selectedCategory = useState<String>(context.localize.buildings_title);
-
-    final isBuildingMap = ref.watch(currentRouteProvider)?.settings.name == "BuildingsRoute";
-
+    final isBuildingMap = T == Building;
     final appBar = SearchBoxAppBar(
       context,
       title: context.mapViewTexts<T>().title,
@@ -48,25 +45,65 @@ class SheetLayoutScheme<T extends GoogleNavigable> extends HookConsumerWidget {
 
     final categoryData = isBuildingMap
         ? (
-            buildings: (title: context.localize.buildings_title, builder: DataSliverList<T>.new),
+            buildings: (title: context.localize.buildings_title, builder: () => _buildDataList<T>(ref, context)),
             library: (
               title: context.localize.library_title,
-              builder: () => const SliverToBoxAdapter(child: Center(child: Text("Lorem ipsum"))),
+              builder: () => const Column(
+                children: [
+                  ListTile(title: Text("lorem ipsum")),
+                  ListTile(title: Text("lorem ipsum")),
+                  ListTile(title: Text("lorem ipsum")),
+                  ListTile(title: Text("lorem ipsum")),
+                  ListTile(title: Text("lorem ipsum")),
+                ],
+              ),
             ),
             showers: (
               title: context.localize.showers_title,
-              builder: () => const SliverToBoxAdapter(child: Center(child: Text("Lorem ipsum"))),
+              builder: () => const Column(
+                children: [
+                  ListTile(title: Text("lorem ipsum")),
+                  ListTile(title: Text("lorem ipsum")),
+                  ListTile(title: Text("lorem ipsum")),
+                  ListTile(title: Text("lorem ipsum")),
+                  ListTile(title: Text("lorem ipsum")),
+                ],
+              ),
+            ),
+            pinkBoxes: (
+              title: context.localize.pink_boxes_title,
+              builder: () => const Column(
+                children: [
+                  ListTile(title: Text("lorem ipsum")),
+                  ListTile(title: Text("lorem ipsum")),
+                  ListTile(title: Text("lorem ipsum")),
+                  ListTile(title: Text("lorem ipsum")),
+                  ListTile(title: Text("lorem ipsum")),
+                ],
+              ),
+            ),
+            aed: (
+              title: context.localize.aed_title,
+              builder: () => const Column(
+                children: [
+                  ListTile(title: Text("lorem ipsum")),
+                  ListTile(title: Text("lorem ipsum")),
+                  ListTile(title: Text("lorem ipsum")),
+                  ListTile(title: Text("lorem ipsum")),
+                  ListTile(title: Text("lorem ipsum")),
+                ],
+              ),
             ),
           )
         : null;
 
-    final validSelectedCategory = isBuildingMap
-        ? (categoryData!.buildings.title == selectedCategory.value
-              ? categoryData.buildings
-              : categoryData.library.title == selectedCategory.value
-              ? categoryData.library
-              : categoryData.showers)
-        : null;
+    final tabs = [
+      categoryData?.buildings,
+      categoryData?.library,
+      categoryData?.showers,
+      categoryData?.pinkBoxes,
+      categoryData?.aed,
+    ].where((tab) => tab != null).cast<({String title, Widget Function() builder})>().toList();
 
     return CustomScrollView(
       controller: scrollController,
@@ -80,56 +117,65 @@ class SheetLayoutScheme<T extends GoogleNavigable> extends HookConsumerWidget {
           automaticallyImplyLeading: false,
         ),
         if (categoryData != null)
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: SearchBoxAppBar.defaultBottomPadding),
-              child: CupertinoSlidingSegmentedControl<String>(
-                backgroundColor: context.colorTheme.greyLight,
-                thumbColor: context.colorTheme.orangePomegranadeLighter,
-                groupValue: selectedCategory.value,
-                onValueChanged: (value) {
-                  if (value != null) {
-                    selectedCategory.value = value;
-                  }
-                },
-                children: {
-                  categoryData.buildings.title: _SegmentTab(
-                    title: categoryData.buildings.title,
-                    isSelected: selectedCategory.value == categoryData.buildings.title,
+          SliverFillRemaining(
+            child: ScrollableListTabScroller(
+              itemCount: tabs.length,
+              tabBuilder: (BuildContext context, int index, bool active) => Container(
+                margin: const EdgeInsets.only(right: NavigationTabViewConfig.smallerPadding),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: NavigationTabViewConfig.universalPadding,
+                  vertical: NavigationTabViewConfig.smallerPadding,
+                ),
+                decoration: BoxDecoration(
+                  color: active ? context.colorTheme.orangePomegranadeLighter : context.colorTheme.greyLight,
+                  borderRadius: BorderRadius.circular(NavigationTabViewConfig.radius),
+                ),
+                child: Text(
+                  tabs[index].title,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontWeight: active ? FontWeight.bold : FontWeight.normal,
+                    color: active ? Colors.white : Colors.black,
                   ),
-                  categoryData.library.title: _SegmentTab(
-                    title: categoryData.library.title,
-                    isSelected: selectedCategory.value == categoryData.library.title,
-                  ),
-                  categoryData.showers.title: _SegmentTab(
-                    title: categoryData.showers.title,
-                    isSelected: selectedCategory.value == categoryData.showers.title,
-                  ),
-                },
+                ),
+              ),
+
+              itemBuilder: (BuildContext context, int index) => Padding(
+                padding: const EdgeInsets.all(NavigationTabViewConfig.universalPadding),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(NavigationTabViewConfig.smallerPadding),
+                      child: Text(tabs[index].title, style: context.textTheme.headline),
+                    ),
+                    tabs[index].builder(),
+                  ],
+                ),
               ),
             ),
           ),
         const SliverToBoxAdapter(child: SizedBox(height: SearchBoxAppBar.defaultBottomPadding)),
-        if (validSelectedCategory != null) validSelectedCategory.builder() else DataSliverList<T>(),
+        if (categoryData == null) DataSliverList<T>(),
       ],
     );
   }
 }
 
-class _SegmentTab extends StatelessWidget {
-  const _SegmentTab({required this.title, required this.isSelected});
+Widget _buildDataList<T extends GoogleNavigable>(WidgetRef ref, BuildContext context) {
+  final itemsState = ref.watch(context.mapDataController<T>());
 
-  final String title;
-  final bool isSelected;
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      title,
-      style: TextStyle(
-        color: isSelected ? context.colorTheme.whiteSoap : context.colorTheme.blackMirage,
-        fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-      ),
-    );
-  }
+  return switch (itemsState) {
+    AsyncError(:final error, :final stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
+    AsyncValue(:final value) when value != null => Column(
+      children: value
+          .map(
+            (item) => Padding(
+              padding: const EdgeInsets.only(bottom: NavigationTabViewConfig.universalPadding),
+              child: context.mapTileBuilder<T>()(item, isActive: false),
+            ),
+          )
+          .toList(),
+    ),
+    _ => const CircularProgressIndicator(),
+  };
 }

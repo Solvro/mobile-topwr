@@ -3275,7 +3275,7 @@
   "@my_location_button_tooltip": {
     "description": "Text read for my location button"
   },
-  "map_view_description": "Widok mapy ze znacznikami budynków. U dołu znajduje się lista budynków. Przewiń w górę, aby ją rozwinąć.",
+  "map_view_description": "Widok mapy ze znacznikami budynków. U dołu znajduje się lista z kategoriami: budynki, biblioteki, prysznice, różowe skrzyneczki oraz AED. Przewiń w górę, aby ją rozwinąć.",
   "@map_view_description": {
     "description": "Text read for map view description"
   },
@@ -3456,6 +3456,14 @@
   "showers_title": "Prysznice",
   "@showers_title": {
     "description": "Title for showers section"
+  },
+  "pink_boxes_title": "Różowe skrzyneczki",
+  "@pink_boxes_title": {
+    "description": "Title for pink boxes in toilets"
+  },
+  "aed_title": "AED",
+  "@aed_title": {
+    "description": "Title for AED"
   },
   "authors": "{count, plural, =1{Autor} other{Autorzy}}",
   "@authors": {
