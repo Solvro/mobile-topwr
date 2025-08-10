@@ -126,8 +126,8 @@ dependencies:
 
 
   #Solvro packages
-  solvro_translator_with_drift_cache_flutter: ^0.5.0
-  solvro_translator_core: ^0.5.0
+  solvro_translator_with_drift_cache_flutter: ^0.6.0
+  solvro_translator_core: ^0.6.0
   flutter_umami: ^0.3.0
 
 dev_dependencies:
@@ -148,7 +148,7 @@ dev_dependencies:
   envied_generator: ^1.1.1
   flutter_gen_runner: ^5.10.0
   auto_route_generator: ^10.2.3
-  solvro_translator_generator: ^0.5.0
+  solvro_translator_generator: ^0.6.0
 
   #Other
   flutter_launcher_icons: ^0.14.4
