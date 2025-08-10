@@ -6,7 +6,7 @@ import "../../../../features/remote_config/data/repository/remote_config_reposit
 part "remote_cache_ref_number_repo.g.dart";
 
 @riverpod
-Future<int?> remoteCacheRefNumberRepo(Ref ref) async {
+Future<int?> remoteTranslatorRefNumberRepo(Ref ref) async {
   final remoteConfig = await ref.watch(remoteConfigRepositoryProvider.future);
-  return remoteConfig.referenceNumber;
+  return remoteConfig.translatorReferenceNumber;
 }

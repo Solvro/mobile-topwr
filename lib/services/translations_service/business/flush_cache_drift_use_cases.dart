@@ -8,4 +8,9 @@ extension FlushCacheDriftUseCases on WidgetRef {
     final translator = watch(solvroTranslatorProvider);
     await translator.flushOldData(TranslationsConfig.ttl);
   }
+
+  Future<void> clearTranslationsCache() async {
+    final translator = watch(solvroTranslatorProvider);
+    await translator.localTranslatableManager.clearTranslations();
+  }
 }
