@@ -14,18 +14,16 @@ import "parking_widget_work_manager.dart";
 void callbackDispatcher() {
   Workmanager().executeTask((task, inputData) async {
     final Dio parkingClient = getIParkingClient();
-    final taskEnum = ParkingWorkManagerTask.fromUniqueTaskName(task);
-    switch (taskEnum) {
-      case ParkingWorkManagerTask.immediate:
-        while (true) {
-          await _fetchDataAndUpdateParkingWidget(parkingClient);
-          await Future<void>.delayed(const Duration(seconds: 60));
-        }
-      case ParkingWorkManagerTask.periodic:
+    if (ParkingWorkManagerTask.immediate.name == task) {
+      while (true) {
         await _fetchDataAndUpdateParkingWidget(parkingClient);
-        return Future.value(true);
-      case null:
-        return Future.value(true);
+        await Future<void>.delayed(const Duration(seconds: 60));
+      }
+    } else if (ParkingWorkManagerTask.periodic.name == task) {
+      await _fetchDataAndUpdateParkingWidget(parkingClient);
+      return Future.value(true);
+    } else {
+      return Future.value(true);
     }
   });
 }
