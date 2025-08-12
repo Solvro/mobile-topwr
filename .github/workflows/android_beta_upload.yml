@@ -9,7 +9,7 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         
       - name: Copy ENV_FILE to .env
         run: printf "%s" "${{ secrets.ENV_FILE }}" > .env
