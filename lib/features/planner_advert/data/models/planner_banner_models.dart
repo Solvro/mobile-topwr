@@ -1,12 +1,15 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
+import "package:solvro_translator_core/solvro_translator_core.dart";
 
 part "planner_banner_models.freezed.dart";
 part "planner_banner_models.g.dart";
+part "planner_banner_models.translatable.g.dart";
 
 @freezed
-abstract class PlannerBannerResponse with _$PlannerBannerResponse {
-  const factory PlannerBannerResponse({required IList<PlannerBanner> data}) = _PlannerBannerResponse;
+@Translatable(makeFieldsTranslatableByDefault: false)
+abstract class PlannerBannerResponse with _$PlannerBannerResponse, _$PlannerBannerResponseTranslatable {
+  const factory PlannerBannerResponse({@translatableField required IList<PlannerBanner> data}) = _PlannerBannerResponse;
 
   const PlannerBannerResponse._();
 
@@ -17,8 +20,8 @@ abstract class PlannerBannerResponse with _$PlannerBannerResponse {
 abstract class PlannerBanner with _$PlannerBanner {
   const factory PlannerBanner({
     required int id,
-    String? title,
-    @Default("") String description,
+    @translatableField String? title,
+    @translatableField @Default("") String description,
     String? url,
     @Default(false) bool draft,
     String? textColor,

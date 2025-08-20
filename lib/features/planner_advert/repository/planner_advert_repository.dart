@@ -1,8 +1,8 @@
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "../../../api_base_rest/cache/cache.dart";
 import "../../../api_base_rest/client/json.dart";
+import "../../../api_base_rest/translations/translate.dart";
 import "../../../config/env.dart";
 import "../../academic_calendar/widgets/home_screen_greeting.dart";
 import "../data/models/planner_banner_models.dart";
@@ -14,7 +14,7 @@ Future<PlannerBanner?> plannerAdvertContentRepository(Ref ref) async {
   final url = "${Env.mainRestApiUrl}/banners";
 
   final response = await ref
-      .getAndCacheData(
+      .getAndCacheDataWithTranslation(
         url,
         PlannerBannerResponse.fromJson,
         extraValidityCheck: (_) => true,
