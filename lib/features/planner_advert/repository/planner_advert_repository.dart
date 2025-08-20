@@ -1,27 +1,32 @@
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
+import "../../../api_base_rest/cache/cache.dart";
+import "../../../api_base_rest/client/json.dart";
+import "../../../config/env.dart";
+import "../../academic_calendar/widgets/home_screen_greeting.dart";
+import "../data/models/planner_banner_models.dart";
+
 part "planner_advert_repository.g.dart";
 
-typedef PlannerAdvertContent = ({
-  String? title,
-  String description,
-  String? url,
-  String? backgroundColor,
-  String? textColor,
-  String? titleColor,
-  bool isEnabled,
-});
-
 @riverpod
-Future<PlannerAdvertContent?> plannerAdvertContentRepository(Ref ref) async {
-  return null;
-  // TODO(simon-the-shark): implement new banner from REST API
-  // final results = await ref.queryGraphql(Options$Query$GetPlannerAdvertContent(), TtlKey.plannerAdvertRepository);
+Future<PlannerBanner?> plannerAdvertContentRepository(Ref ref) async {
+  final url = "${Env.mainRestApiUrl}/banners";
 
-  // return results?.PlannerAdvert?.copyWith(
-  //   title: await ref.translateGraphQLMaybeString(results.PlannerAdvert?.title),
-  //   description: await ref.translateGraphQLMaybeString(results.PlannerAdvert?.description),
-  //   url: await ref.translateGraphQLMaybeString(results.PlannerAdvert?.url),
-  // );
+  final response = await ref
+      .getAndCacheData(
+        url,
+        PlannerBannerResponse.fromJson,
+        extraValidityCheck: (_) => true,
+        localizedOfflineMessage: Greeting.localizedOfflineMessage,
+        onRetry: ref.invalidateSelf,
+      )
+      .castAsObject;
+
+  final active = response.data.where((b) => b.shouldRender && !b.draft).toList()
+    ..sort((a, b) => b.updatedAt.compareTo(a.updatedAt));
+
+  final banner = active.isNotEmpty ? active.first : null;
+
+  return banner;
 }

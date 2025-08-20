@@ -12,6 +12,7 @@ import "../../../widgets/my_error_widget.dart";
 import "../../../widgets/technical_message.dart";
 import "../../analytics/data/umami.dart";
 import "../../analytics/data/umami_events.dart";
+import "../data/models/planner_banner_models.dart";
 import "../repository/planner_advert_repository.dart";
 
 class PlannerAdvertBanner extends ConsumerWidget {
@@ -22,7 +23,7 @@ class PlannerAdvertBanner extends ConsumerWidget {
     final state = ref.watch(plannerAdvertContentRepositoryProvider);
     return switch (state) {
       AsyncError(:final error, :final stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
-      AsyncValue(:final PlannerAdvertContent value) => _PlannerAdvertBanner(value),
+      AsyncValue(:final PlannerBanner value) => _PlannerAdvertBanner(value),
       _ => const Padding(
         padding: EdgeInsets.only(top: HomeViewConfig.paddingMedium),
         child: Padding(
@@ -37,11 +38,11 @@ class PlannerAdvertBanner extends ConsumerWidget {
 class _PlannerAdvertBanner extends ConsumerWidget {
   const _PlannerAdvertBanner(this.data);
 
-  final PlannerAdvertContent data;
+  final PlannerBanner data;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return !data.isEnabled
+    return !data.shouldRender
         ? const SizedBox.shrink()
         : Padding(
             padding: const EdgeInsets.symmetric(horizontal: HomeViewConfig.paddingSmall),
