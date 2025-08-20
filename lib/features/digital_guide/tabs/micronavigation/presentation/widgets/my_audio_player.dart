@@ -34,7 +34,7 @@ class MyAudioPlayer extends HookWidget {
         currentTime.value = position;
       });
 
-      return () async {
+      return () {
         unawaited(stateSubscription.cancel());
         unawaited(durationSubscription.cancel());
         unawaited(positionSubscription.cancel());

@@ -11,7 +11,7 @@ class SettingsTitle extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return NavigationTile(
-      onTap: () async => ref.navigateSettings(),
+      onTap: () => ref.navigateSettings(),
       title: context.localize.settings,
       icon: Icons.settings,
     ); // NavigationTitle

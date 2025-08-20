@@ -13,7 +13,7 @@ part "adapted_toilets_repository.g.dart";
 
 @riverpod
 Future<IList<AdaptedToilet>> adaptedToiletsRepository(Ref ref, LevelWithRegions level) async {
-  Future<AdaptedToilet> getAdaptedToilet(int adaptedToiletID) async {
+  Future<AdaptedToilet> getAdaptedToilet(int adaptedToiletID) {
     return ref
         .getAndCacheDataFromDigitalGuide(
           "adapted_toilets/$adaptedToiletID",

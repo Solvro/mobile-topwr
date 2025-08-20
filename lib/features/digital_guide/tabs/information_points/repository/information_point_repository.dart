@@ -28,7 +28,7 @@ Future<IList<DigitalGuideInformationPoint>> informationPointsFromIDRepository(
   Ref ref,
   List<int> informationPointsIDs,
 ) async {
-  Future<DigitalGuideInformationPoint> getInformationPoint(int informationPointID) async {
+  Future<DigitalGuideInformationPoint> getInformationPoint(int informationPointID) {
     return ref
         .getAndCacheDataFromDigitalGuide(
           "information_points/$informationPointID",

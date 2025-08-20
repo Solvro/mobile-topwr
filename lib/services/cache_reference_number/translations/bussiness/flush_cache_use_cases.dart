@@ -8,7 +8,7 @@ import "../data/local_cache_ref_number_repo.dart";
 import "../data/remote_cache_ref_number_repo.dart";
 
 extension FlushTranslatorCacheUseCaseX on WidgetRef {
-  Future<void> flushTranslationsCacheIfNeededFromRemote() async {
+  Future<void> flushTranslationsCacheIfNeededFromRemote() {
     return flushAllCacheIfNeededByReferenceNumber(
       localTranslatorRefNumberRepoProvider,
       remoteTranslatorRefNumberRepoProvider,

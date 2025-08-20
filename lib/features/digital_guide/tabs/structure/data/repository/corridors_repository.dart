@@ -10,7 +10,7 @@ part "corridors_repository.g.dart";
 
 @riverpod
 Future<IList<Corridor>> corridorsRepository(Ref ref, List<int> corridorsIDs) async {
-  Future<Corridor> getCorridor(int corridorID) async {
+  Future<Corridor> getCorridor(int corridorID) {
     return ref
         .getAndCacheDataFromDigitalGuide("corridors/$corridorID", Corridor.fromJson, onRetry: ref.invalidateSelf)
         .castAsObject;

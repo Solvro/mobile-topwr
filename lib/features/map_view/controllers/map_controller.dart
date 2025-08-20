@@ -40,7 +40,7 @@ class MyMapController<T extends GoogleNavigable> {
     }
   }
 
-  void onMapBackgroundTap(_, __) {
+  void onMapBackgroundTap(_, _) {
     ref.read(mapControllers.activeMarker.notifier).unselect();
     ref.read(bottomSheetControllerProvider).resetSafe();
   }

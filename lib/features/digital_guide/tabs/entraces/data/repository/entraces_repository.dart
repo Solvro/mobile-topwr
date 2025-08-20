@@ -10,7 +10,7 @@ import "../models/digital_guide_entrace.dart";
 part "entraces_repository.g.dart";
 
 @riverpod
-Future<IList<DigitalGuideEntrace>> entrancesRepository(Ref ref, DigitalGuideResponse building) async {
+Future<IList<DigitalGuideEntrace>> entrancesRepository(Ref ref, DigitalGuideResponse building) {
   return ref
       .getAndCacheDataFromDigitalGuide(
         "entrances/?building=${building.id}",

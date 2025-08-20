@@ -35,7 +35,7 @@ class LocalizationExpansionTileContent extends ConsumerWidget {
           padding: EdgeInsets.all(context.textScaler.scale(2)),
           child: TextButton.icon(
             icon: Icon(Icons.navigation, color: context.colorTheme.orangePomegranade, size: scaler.scale(16)),
-            onPressed: () async => _navigateToBuilding(ref, building),
+            onPressed: () => _navigateToBuilding(ref, building),
             label: Text.rich(
               textScaler: scaler,
               TextSpan(
@@ -54,7 +54,7 @@ class LocalizationExpansionTileContent extends ConsumerWidget {
   }
 
   Future<void> _navigateToBuilding(WidgetRef ref, Building building) async {
-    final LatLng buildingCoordinates = LatLng(building.latitude, building.longitude);
+    final buildingCoordinates = LatLng(building.latitude, building.longitude);
     await GoogleMapsLinkUtils.navigateTo(buildingCoordinates, ref);
   }
 }

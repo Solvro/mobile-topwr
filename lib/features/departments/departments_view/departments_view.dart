@@ -93,7 +93,7 @@ class _DepartmentsDataView extends ConsumerWidget {
         return Semantics(
           label: department.name,
           button: true,
-          child: DepartmentCard(department, onClick: () async => ref.navigateDepartmentDetail(department.id)),
+          child: DepartmentCard(department, onClick: () => ref.navigateDepartmentDetail(department.id)),
         );
       },
     );

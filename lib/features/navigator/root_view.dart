@@ -19,7 +19,7 @@ class RootView extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final specialPop = ref.androidSpecialPopTreatment;
-    bool shouldNavigateBackToHome = false;
+    var shouldNavigateBackToHome = false;
     final timesPushedToTabBar = useState(0);
     return PopScope(
       canPop: !specialPop, // android pop bug workaround

@@ -8,7 +8,7 @@ import "parking_widget_data.dart";
 class WidgetService {
   static const androidPackagePrefix = "com.solvro.topwr.widget.parking.receiver";
 
-  static const List<String> _parkingWidgetAndroidNames = [
+  static const _parkingWidgetAndroidNames = <String>[
     "$androidPackagePrefix.GeoParkingWidgetReceiver",
     "$androidPackagePrefix.D20ParkingWidgetReceiver",
     "$androidPackagePrefix.WroParkingWidgetReceiver",

@@ -10,7 +10,7 @@ import "../../presentation/digital_guide_view.dart";
 part "image_repository.g.dart";
 
 @riverpod
-Future<String?> imageRepository(Ref ref, int imageID) async {
+Future<String?> imageRepository(Ref ref, int imageID) {
   return ref
       .getAndCacheData(
         "${Env.digitalGuideUrl}/images/$imageID",
