@@ -30,7 +30,7 @@ class BuildingsViewController extends _$BuildingsViewController with MapDataCont
   }
   @override
   // ignore: unnecessary_overrides
-  FutureOr<IList<Building>> build() async {
+  FutureOr<IList<Building>> build() {
     return super.build();
   }
 

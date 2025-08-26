@@ -10,7 +10,7 @@ part "stairways_repository.g.dart";
 
 @riverpod
 Future<IList<Stairway>> stairwaysRepository(Ref ref, List<int> stairwaysIDs) async {
-  Future<Stairway> getStairway(int stairwayID) async {
+  Future<Stairway> getStairway(int stairwayID) {
     return ref
         .getAndCacheDataFromDigitalGuide("stairways/$stairwayID", Stairway.fromJson, onRetry: ref.invalidateSelf)
         .castAsObject;

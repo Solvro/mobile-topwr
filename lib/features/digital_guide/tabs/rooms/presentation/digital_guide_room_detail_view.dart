@@ -66,7 +66,7 @@ class DigitalGuideRoomDetailView extends ConsumerWidget {
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
           return DigitalGuideNavLink(
-            onTap: () async => ref.navigateDigitalGuideDoor(room.doors[index]),
+            onTap: () => ref.navigateDigitalGuideDoor(room.doors[index]),
             text: context.localize.door,
           );
         },
@@ -77,7 +77,7 @@ class DigitalGuideRoomDetailView extends ConsumerWidget {
       const SizedBox(height: 2 * DigitalGuideConfig.heightMedium),
       if (room.roomStairs.isNotEmpty)
         ...room.roomStairs.asMap().entries.map((entry) {
-          final String index = entry.key == 0 ? "" : (entry.key + 1).toString();
+          final index = entry.key == 0 ? "" : (entry.key + 1).toString();
           return Padding(
             padding: const EdgeInsets.only(bottom: DigitalGuideConfig.paddingMedium),
             child: MyExpansionTile(
@@ -88,7 +88,7 @@ class DigitalGuideRoomDetailView extends ConsumerWidget {
         }),
       if (room.platforms.isNotEmpty)
         ...room.platforms.asMap().entries.map((entry) {
-          final String index = entry.key == 0 ? "" : (entry.key + 1).toString();
+          final index = entry.key == 0 ? "" : (entry.key + 1).toString();
           return Padding(
             padding: const EdgeInsets.only(bottom: DigitalGuideConfig.paddingMedium),
             child: MyExpansionTile(

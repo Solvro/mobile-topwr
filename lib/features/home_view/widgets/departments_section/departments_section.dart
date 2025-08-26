@@ -69,6 +69,6 @@ class _BuildDepartmentCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DepartmentHomeTile(department, onClick: () async => ref.navigateDepartmentDetail(department.id));
+    return DepartmentHomeTile(department, onClick: () => ref.navigateDepartmentDetail(department.id));
   }
 }

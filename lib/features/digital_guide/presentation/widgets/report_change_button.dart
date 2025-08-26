@@ -18,7 +18,7 @@ class ReportChangeButton extends ConsumerWidget {
           Text(context.localize.report_change_title),
           const SizedBox(height: 8),
           ElevatedButton(
-            onPressed: () async {
+            onPressed: () {
               final emailUrl =
                   "mailto:${context.localize.report_change_email}?subject=${Uri.encodeComponent(context.localize.report_change_subject)}";
               unawaited(ref.launch(emailUrl));

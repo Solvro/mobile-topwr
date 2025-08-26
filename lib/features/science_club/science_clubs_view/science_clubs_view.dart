@@ -62,14 +62,14 @@ class _ScienceClubsView extends StatelessWidget {
         builder: (context, ref, child) {
           useInitialFilterIds(
             tagsIds.map((it) => it.toLowerCase()).toIList(),
-            () async => ref.read(tagsRepositoryProvider.future),
+            () => ref.read(tagsRepositoryProvider.future),
             ref.watch(selectedTagControllerProvider.notifier),
             (ids, tag) => ids.contains(tag.tag.toLowerCase()),
           );
 
           useInitialFilterIds(
             deptsIds,
-            () async => ref.read(departmentsRepositoryProvider.future),
+            () => ref.read(departmentsRepositoryProvider.future),
             ref.watch(selectedDepartmentControllerProvider.notifier),
             (ids, dept) => ids.contains(dept.id.toString()),
           );
@@ -87,7 +87,7 @@ class _ScienceClubsView extends StatelessWidget {
               IconButton(
                 icon: Icon(Icons.info_outline, semanticLabel: context.localize.studyClub_howToAddYourOrganization),
                 tooltip: context.localize.studyClub_howToAddYourOrganization,
-                onPressed: () async =>
+                onPressed: () =>
                     showDialog<void>(context: context, builder: (context) => const ScienceClubInfoDialog()),
               ),
             ],

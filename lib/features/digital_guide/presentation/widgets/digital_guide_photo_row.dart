@@ -65,7 +65,7 @@ class DigitalGuidePhotoRow extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(top: DigitalGuideConfig.heightSmall),
               child: DigitalGuideNavLink(
-                onTap: () async => showGallery(context, semanticsLabel: semanticsLabel),
+                onTap: () => showGallery(context, semanticsLabel: semanticsLabel),
                 text: context.localize.see_all_photos(imagesIDs.length),
               ),
             ),

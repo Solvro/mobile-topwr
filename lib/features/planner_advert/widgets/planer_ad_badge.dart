@@ -11,6 +11,7 @@ import "../../../widgets/my_alert_dialog.dart";
 import "../../../widgets/my_error_widget.dart";
 import "../../analytics/data/umami.dart";
 import "../../analytics/data/umami_events.dart";
+import "../data/models/planner_banner_models.dart";
 import "../repository/planner_advert_repository.dart";
 import "planer_badge_dialog.dart";
 
@@ -21,7 +22,7 @@ class PlanerAdBadge extends ConsumerWidget {
     final state = ref.watch(plannerAdvertContentRepositoryProvider);
     return switch (state) {
       AsyncError(:final error, :final stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
-      AsyncValue(:final PlannerAdvertContent value) => _BadgeContent(value),
+      AsyncValue(:final PlannerBanner value) => _BadgeContent(value),
       _ => const SizedBox.shrink(),
     };
   }
@@ -30,11 +31,11 @@ class PlanerAdBadge extends ConsumerWidget {
 class _BadgeContent extends ConsumerWidget {
   const _BadgeContent(this.data);
 
-  final PlannerAdvertContent data;
+  final PlannerBanner data;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    if (!data.isEnabled) return const SizedBox.shrink();
+    if (!data.shouldRender) return const SizedBox.shrink();
     final textColor = data.textColor != null ? HexColor(data.textColor!) : context.colorTheme.blackMirage;
     final backgroundColor = data.backgroundColor != null ? HexColor(data.backgroundColor!) : null;
     return Padding(

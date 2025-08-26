@@ -28,7 +28,7 @@ class TextAndUrl extends ConsumerWidget {
                 decorationColor: context.colorTheme.orangePomegranade,
                 fontWeight: FontWeight.bold,
               ),
-              recognizer: TapGestureRecognizer()..onTap = () async => ref.launch(url),
+              recognizer: TapGestureRecognizer()..onTap = () => ref.launch(url),
             ),
           ],
         ),

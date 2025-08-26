@@ -8,7 +8,7 @@ import "../models/railing.dart";
 part "railings_repository.g.dart";
 
 @riverpod
-Future<Railing> railingsRepository(Ref ref, int railingID) async {
+Future<Railing> railingsRepository(Ref ref, int railingID) {
   return ref
       .getAndCacheDataFromDigitalGuide("railings/$railingID", Railing.fromJson, onRetry: ref.invalidateSelf)
       .castAsObject;

@@ -9,7 +9,7 @@ import "../model/door.dart";
 part "doors_repository.g.dart";
 
 @riverpod
-Future<Door> doorsRepository(Ref ref, int doorsID) async {
+Future<Door> doorsRepository(Ref ref, int doorsID) {
   return ref.getAndCacheDataFromDigitalGuide("doors/$doorsID", Door.fromJson, onRetry: ref.invalidateSelf).castAsObject;
 }
 

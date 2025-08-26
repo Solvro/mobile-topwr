@@ -1,1 +1,5 @@
 include: package:solvro_config/app.yaml
+
+analyzer:
+  errors:
+    unsafe_variance: ignore

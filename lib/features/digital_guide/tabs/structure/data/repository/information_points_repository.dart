@@ -9,7 +9,7 @@ part "information_points_repository.g.dart";
 
 @riverpod
 Future<IList<InformationPoint>> informationPointsRepository(Ref ref, List<int> informationPointsIDs) async {
-  Future<InformationPoint> getInformationPoint(int informationPointID) async {
+  Future<InformationPoint> getInformationPoint(int informationPointID) {
     return ref
         .getAndCacheDataFromDigitalGuide(
           "information_points/$informationPointID",

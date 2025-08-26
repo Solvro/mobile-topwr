@@ -85,7 +85,7 @@ class MyApp extends ConsumerWidget {
                   .config(
                     navigatorObservers: () => [
                       NavigationObserver(ref),
-                      UmamiNavigationObserver(Future.microtask(() async => ref.watch(umamiProvider.future))),
+                      UmamiNavigationObserver(Future.microtask(() => ref.watch(umamiProvider.future))),
                     ],
                   ),
             ),

@@ -87,7 +87,7 @@ class _DigitalGuideInfoSectionLoading extends StatelessWidget {
 class _DigitalGuideTilesLoading extends StatelessWidget {
   const _DigitalGuideTilesLoading();
 
-  static const int itemCount = 5;
+  static const itemCount = 5;
 
   @override
   Widget build(BuildContext context) {

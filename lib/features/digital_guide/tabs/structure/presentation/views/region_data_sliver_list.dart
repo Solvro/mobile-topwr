@@ -17,7 +17,7 @@ class RegionDataSliverList extends ConsumerWidget {
         (context, index) => Column(
           children: [
             DigitalGuideNavLink(
-              onTap: () async => regionDataSliverListItem.onTap?.call(index),
+              onTap: () => regionDataSliverListItem.onTap?.call(index),
               text: regionDataSliverListItem.text(index),
             ),
             const SizedBox(height: DigitalGuideConfig.heightMedium),

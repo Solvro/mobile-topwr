@@ -82,7 +82,7 @@ class _BuildParkingCard extends StatelessWidget {
     return BuildingCard(
       buildingName: parking.symbol,
       directusImageUrl: parking.iParkPhotoUrl,
-      onTap: () async {
+      onTap: () {
         unawaited(ref.navigateParking(parking));
       },
     );

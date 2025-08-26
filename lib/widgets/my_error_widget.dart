@@ -25,7 +25,7 @@ class MyErrorWidget extends HookWidget {
     useEffect(() {
       if (error != null) {
         Logger().e(error.toString(), stackTrace: stackTrace);
-        unwaitedMicrotask(() async => Sentry.captureException(error, stackTrace: stackTrace));
+        unwaitedMicrotask(() => Sentry.captureException(error, stackTrace: stackTrace));
       }
       return null;
     }, [error, stackTrace]);

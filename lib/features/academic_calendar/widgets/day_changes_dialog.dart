@@ -20,7 +20,7 @@ class DayChangesDialog extends ConsumerWidget {
 
   final AcademicCalendarWithSwaps calendar;
 
-  static Future<void> show(BuildContext context, AcademicCalendarWithSwaps calendar, WidgetRef ref) async {
+  static Future<void> show(BuildContext context, AcademicCalendarWithSwaps calendar, WidgetRef ref) {
     unawaited(ref.trackEvent(UmamiEvents.openDaySwapAlertDialog));
     return showDialog<void>(context: context, builder: (context) => DayChangesDialog(calendar));
   }

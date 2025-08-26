@@ -37,7 +37,7 @@ class DepartmentScienceClubsSection extends ConsumerWidget {
               SubsectionHeader(
                 title: context.localize.study_circles,
                 actionTitle: context.localize.list,
-                onClick: () async {
+                onClick: () {
                   unawaited(ref.navigateScienceClubs(department.id.toString()));
                 },
               ),

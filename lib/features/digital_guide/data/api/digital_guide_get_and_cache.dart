@@ -13,7 +13,7 @@ extension DigitalGuideClient on Ref {
     String subUrl,
     T Function(Map<String, dynamic> json) fromJson, {
     VoidCallback? onRetry,
-  }) async {
+  }) {
     return getAndCacheDataWithTranslation(
       "${Env.digitalGuideUrl}/$subUrl",
       fromJson,

@@ -10,7 +10,7 @@ class LocalCacheRefNumberRepo extends _$LocalCacheRefNumberRepo with LocalCacheR
 
   @override
   // ignore: unnecessary_overrides, needed for riverpod builder
-  FutureOr<int?> build() async {
+  FutureOr<int?> build() {
     return super.build();
   }
 }

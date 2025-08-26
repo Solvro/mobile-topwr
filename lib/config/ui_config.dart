@@ -6,7 +6,7 @@ import "../utils/context_extensions.dart";
 
 abstract class MyAppConfig {
   static const title = "ToPWR";
-  static String legalese = "\u{a9} 2024-${DateTime.now().year} Koło Naukowe Solvro, Politechnika Wrocławska";
+  static final legalese = "\u{a9} 2024-${DateTime.now().year} Koło Naukowe Solvro, Politechnika Wrocławska";
 }
 
 abstract class AppWidgetsConfig {

@@ -16,7 +16,7 @@ class StreakStartRepository extends _$StreakStartRepository with TimestampReposi
   final storeKey = StreakRepositoriesConfig.streakStartKey;
 
   @override
-  Future<Timestamp> build() async {
+  Future<Timestamp> build() {
     return getStamp();
   }
 }

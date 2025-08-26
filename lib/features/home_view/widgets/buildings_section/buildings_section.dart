@@ -21,7 +21,7 @@ class BuildingsSection extends ConsumerWidget {
       SubsectionHeader(
         title: context.localize.buildings_title,
         actionTitle: context.localize.map_button,
-        onClick: () async => ref.navigateBuildings(null),
+        onClick: () => ref.navigateBuildings(null),
       ),
       const _BuildingsList(),
     ],
@@ -79,7 +79,7 @@ class _BuildMapItemCard extends StatelessWidget {
     return BuildingCard(
       buildingName: mapItem.name,
       directusImageUrl: mapItem.cover?.url,
-      onTap: () async => ref.navigateBuilding(mapItem),
+      onTap: () => ref.navigateBuilding(mapItem),
     );
   }
 }
