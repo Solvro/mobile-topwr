@@ -20,7 +20,7 @@ Future<IList<DigitalGuideRoom>> roomsByLevelRepository(Ref ref, LevelWithRegions
 
 @riverpod
 Future<IList<DigitalGuideRoom>> roomsByIDsRepository(Ref ref, List<int> roomsIDs) async {
-  Future<DigitalGuideRoom> getRoom(int roomID) async {
+  Future<DigitalGuideRoom> getRoom(int roomID) {
     return ref
         .getAndCacheDataFromDigitalGuide("rooms/$roomID", DigitalGuideRoom.fromJson, onRetry: ref.invalidateSelf)
         .castAsObject;

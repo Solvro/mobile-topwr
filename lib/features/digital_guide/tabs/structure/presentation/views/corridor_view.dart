@@ -63,7 +63,7 @@ class CorridorView extends ConsumerWidget {
           itemCount: corridor.doorsIndices.length,
           separatorBuilder: (context, index) => const SizedBox(height: DigitalGuideConfig.heightMedium),
           itemBuilder: (context, index) => DigitalGuideNavLink(
-            onTap: () async => ref.navigateDigitalGuideDoor(corridor.doorsIndices[index]),
+            onTap: () => ref.navigateDigitalGuideDoor(corridor.doorsIndices[index]),
             text: context.localize.door,
           ),
         ),

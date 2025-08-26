@@ -76,7 +76,7 @@ class ScienceClubInfoDialog extends StatelessWidget {
                       text: context.localize.report_change_email,
                       style: linkStyle,
                       recognizer: TapGestureRecognizer()
-                        ..onTap = () async {
+                        ..onTap = () {
                           final emailUrl = "mailto:${context.localize.report_change_email}";
                           unawaited(ref.launch(emailUrl));
                         },

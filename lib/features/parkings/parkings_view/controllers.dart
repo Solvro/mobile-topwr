@@ -28,7 +28,7 @@ class ParkingsViewController extends _$ParkingsViewController with MapDataContro
   }
   @override
   // ignore: unnecessary_overrides
-  FutureOr<IList<Parking>> build() async {
+  FutureOr<IList<Parking>> build() {
     return super.build();
   }
 

@@ -39,7 +39,7 @@ extension DioSafeRequestsX on Ref {
     required String Function(BuildContext context) localizedMessage,
     VoidCallback? onRetry,
     AuthHeader? authHeader,
-  }) async {
+  }) {
     final dio = watch(authRestClientProvider(authHeader));
     return safeRequest(() => dio.get<T>(url), localizedMessage: localizedMessage, onRetry: onRetry);
   }

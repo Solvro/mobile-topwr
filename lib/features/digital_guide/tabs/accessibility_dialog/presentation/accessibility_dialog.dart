@@ -47,7 +47,7 @@ class AccessibilityDialog extends StatelessWidget {
             title: context.localize.accessibility_profiles,
             subtitle: context.localize.you_can_adjust,
             child: child ?? const SizedBox.shrink(),
-            onApplyButtonPressed: () async {
+            onApplyButtonPressed: () {
               unawaited(ref.trackEvent(UmamiEvents.saveAccessibilityModeDialog));
             },
           ),

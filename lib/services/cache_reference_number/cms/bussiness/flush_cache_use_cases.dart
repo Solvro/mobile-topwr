@@ -10,7 +10,7 @@ import "../data/local_cache_ref_number_repo.dart";
 import "../data/remote_cache_ref_number_repo.dart";
 
 extension FlushCacheUseCaseX on WidgetRef {
-  Future<void> flushAllCacheIfNeededFromCms() async {
+  Future<void> flushAllCacheIfNeededFromCms() {
     return flushAllCacheIfNeededByReferenceNumber(
       localCacheRefNumberRepoProvider,
       remoteCacheRefNumberRepoProvider,

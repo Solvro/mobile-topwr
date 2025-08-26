@@ -6,7 +6,7 @@ import "../data/models/guide_details.dart";
 extension GetTheLatestDateGuideX on BuildContext {
   String getTheLatesCreatedDateGuide({required IList<GuideQuestion> questions, required Locale locale}) {
     final newestDate = questions.map((e) => e.createdAt).reduce((a, b) => (a.isAfter(b)) ? a : b);
-    final DateFormat formatter = DateFormat("dd.MM.yyyy", locale.countryCode);
+    final formatter = DateFormat("dd.MM.yyyy", locale.countryCode);
     return formatter.format(newestDate);
   }
 

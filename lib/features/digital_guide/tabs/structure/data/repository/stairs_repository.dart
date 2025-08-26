@@ -15,7 +15,7 @@ Future<IList<Stairs>> stairsListRepository(Ref ref, List<int> stairsIDs) async {
 }
 
 @riverpod
-Future<Stairs> stairsRepository(Ref ref, int stairsID) async {
+Future<Stairs> stairsRepository(Ref ref, int stairsID) {
   return ref
       .getAndCacheDataFromDigitalGuide("stairs/$stairsID", Stairs.fromJson, onRetry: ref.invalidateSelf)
       .castAsObject;

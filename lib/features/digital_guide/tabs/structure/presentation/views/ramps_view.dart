@@ -50,7 +50,7 @@ class RampsView extends ConsumerWidget {
               physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
                 return DigitalGuideNavLink(
-                  onTap: () async => ref.navigateDigitalGuideRailing(ramps.railingsIDs[index]),
+                  onTap: () => ref.navigateDigitalGuideRailing(ramps.railingsIDs[index]),
                   text: context.localize.railing,
                 );
               },

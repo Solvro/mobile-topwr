@@ -11,7 +11,7 @@ class LocalTranslatorRefNumberRepo extends _$LocalTranslatorRefNumberRepo with L
 
   @override
   // ignore: unnecessary_overrides, needed for riverpod builder
-  FutureOr<int?> build() async {
+  FutureOr<int?> build() {
     return super.build();
   }
 }

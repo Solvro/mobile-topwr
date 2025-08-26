@@ -10,7 +10,7 @@ part "region_parkings_repository.g.dart";
 
 @riverpod
 Future<IList<DigitalGuideParking>> regionParkingsRepository(Ref ref, List<int> parkingsIDs) async {
-  Future<DigitalGuideParking> getParking(int parkingID) async {
+  Future<DigitalGuideParking> getParking(int parkingID) {
     return ref
         .getAndCacheDataFromDigitalGuide(
           "parkings/$parkingID",

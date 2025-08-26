@@ -87,7 +87,7 @@ class _ScienceClubCard extends ConsumerWidget {
       shortDescription: sciClub.shortDescription ?? "",
       imageUrl: (sciClub.coverPreview) ? sciClub.cover?.url : sciClub.logo?.url,
       showVerifiedBadge: sciClub.source == ScienceClubSource.manualEntry,
-      onClick: () async => ref.navigateSciClubsDetail(sciClub),
+      onClick: () => ref.navigateSciClubsDetail(sciClub),
       showStrategicBadge: sciClub.isStrategic,
     );
   }

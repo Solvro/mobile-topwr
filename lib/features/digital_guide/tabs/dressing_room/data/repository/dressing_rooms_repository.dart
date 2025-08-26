@@ -10,7 +10,7 @@ import "../models/digital_guide_dressing_room.dart";
 part "dressing_rooms_repository.g.dart";
 
 @riverpod
-Future<IList<DigitalGuideDressingRoom>> dressingRoomsRepository(Ref ref, DigitalGuideResponse building) async {
+Future<IList<DigitalGuideDressingRoom>> dressingRoomsRepository(Ref ref, DigitalGuideResponse building) {
   final endpoint = "dressing_rooms/?building=${building.id}";
   return ref
       .getAndCacheDataFromDigitalGuide(endpoint, DigitalGuideDressingRoom.fromJson, onRetry: ref.invalidateSelf)
@@ -19,7 +19,7 @@ Future<IList<DigitalGuideDressingRoom>> dressingRoomsRepository(Ref ref, Digital
 
 @riverpod
 Future<IList<DigitalGuideDressingRoom>> dressingRoomsFromIDsRepository(Ref ref, List<int> dressingRoomsIDs) async {
-  Future<DigitalGuideDressingRoom> getDressingRoomById(int dressingRoomID) async {
+  Future<DigitalGuideDressingRoom> getDressingRoomById(int dressingRoomID) {
     return ref
         .getAndCacheDataFromDigitalGuide(
           "dressing_rooms/$dressingRoomID",

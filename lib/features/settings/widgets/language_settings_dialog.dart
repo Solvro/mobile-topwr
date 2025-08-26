@@ -14,7 +14,7 @@ class LanguageDialog extends ConsumerWidget {
 
   final bool isFirstTimeMode;
 
-  static Future<String?> show(BuildContext context, {bool isFirstTimeMode = false}) async {
+  static Future<String?> show(BuildContext context, {bool isFirstTimeMode = false}) {
     return showDialog<String>(
       context: context,
       builder: (context) => LanguageDialog(isFirstTimeMode: isFirstTimeMode),

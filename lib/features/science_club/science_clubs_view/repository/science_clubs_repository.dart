@@ -65,7 +65,7 @@ extension SortBySourceTypeX on Iterable<ScienceClub> {
     ).withoutLogo().toList()..shuffle();
 
     return [
-      if (solvro != null) solvro,
+      ?solvro,
       ...manualSourceWithPhotos,
       ...manualSourceWithoutPhotos,
       ...activeWebSourceWithPhotos,

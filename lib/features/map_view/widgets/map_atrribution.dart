@@ -13,10 +13,7 @@ class OpenMapAtrribution extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return RichAttributionWidget(
       attributions: [
-        TextSourceAttribution(
-          OpenStreetMapConfig.attribution,
-          onTap: () async => ref.launch(OpenStreetMapConfig.copyright),
-        ),
+        TextSourceAttribution(OpenStreetMapConfig.attribution, onTap: () => ref.launch(OpenStreetMapConfig.copyright)),
       ],
     );
   }

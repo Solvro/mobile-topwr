@@ -16,7 +16,7 @@ class LastEntryRepository extends _$LastEntryRepository with TimestampRepository
   final storeKey = StreakRepositoriesConfig.lastEntryKey;
 
   @override
-  Future<Timestamp> build() async {
+  Future<Timestamp> build() {
     return getStamp();
   }
 }

@@ -9,7 +9,7 @@ import "../models/surrounding_response.dart";
 part "surrounding_repository.g.dart";
 
 @riverpod
-Future<SurroundingResponse> surroundingRepository(Ref ref, DigitalGuideResponse digitalGuideData) async {
+Future<SurroundingResponse> surroundingRepository(Ref ref, DigitalGuideResponse digitalGuideData) {
   return ref
       .getAndCacheDataFromDigitalGuide(
         "surroundings/${digitalGuideData.surroundingId}",

@@ -67,7 +67,7 @@ class _ContactIcon extends ConsumerWidget {
                     color: url?.isNotEmpty ?? false ? null : Colors.black,
                     decoration: url?.isNotEmpty ?? false ? TextDecoration.underline : TextDecoration.none,
                   ),
-                  recognizer: url != null ? (TapGestureRecognizer()..onTap = () async => ref.launch(url!)) : null,
+                  recognizer: url != null ? (TapGestureRecognizer()..onTap = () => ref.launch(url!)) : null,
                 ),
               ),
             ),

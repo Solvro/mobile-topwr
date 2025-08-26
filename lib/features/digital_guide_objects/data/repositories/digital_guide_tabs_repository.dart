@@ -10,10 +10,7 @@ import "../models/digital_guide_object_tab_model.dart";
 part "digital_guide_tabs_repository.g.dart";
 
 @riverpod
-Future<IList<DigitalGuideObjectTabResponse>> digitalGuideObjectTabsRepository(
-  Ref ref,
-  DigitalGuideObjectModel object,
-) async {
+Future<IList<DigitalGuideObjectTabResponse>> digitalGuideObjectTabsRepository(Ref ref, DigitalGuideObjectModel object) {
   final url = "objects_category?object=${object.id}";
   return ref
       .getAndCacheDataFromDigitalGuide(url, DigitalGuideObjectTabResponse.fromJson, onRetry: ref.invalidateSelf)
