@@ -1,4 +1,3 @@
-import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
@@ -31,7 +30,7 @@ class MultilayerMapViewController extends _$MultilayerMapViewController with Map
   }
   @override
   // ignore: unnecessary_overrides
-  FutureOr<IList<MultilayerItem>> build() {
+  FutureOr<MapDataControllerState<MultilayerItem>> build() {
     return super.build();
   }
 

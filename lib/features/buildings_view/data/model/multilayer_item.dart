@@ -1,3 +1,4 @@
+import "package:freezed_annotation/freezed_annotation.dart";
 import "package:latlong2/latlong.dart";
 
 import "../../../map_view/controllers/controllers_set.dart";
@@ -5,11 +6,16 @@ import "aed.dart";
 import "building.dart";
 import "library.dart";
 
+part "multilayer_item.freezed.dart";
+
 sealed class MultilayerItem extends GoogleNavigable {}
 
-final class LibraryItem extends MultilayerItem {
-  final Library library;
-  LibraryItem({required this.library});
+@freezed
+abstract class LibraryItem with _$LibraryItem implements MultilayerItem {
+  @Implements<MultilayerItem>()
+  const factory LibraryItem({required Library library}) = _LibraryItem;
+  const LibraryItem._();
+
   static const idPrefix = "library-";
 
   @override
@@ -19,10 +25,14 @@ final class LibraryItem extends MultilayerItem {
   LatLng get location => library.location;
 }
 
-final class AedItem extends MultilayerItem {
-  final Aed aed;
-  AedItem({required this.aed});
+@freezed
+abstract class AedItem with _$AedItem implements MultilayerItem {
+  @Implements<MultilayerItem>()
+  const factory AedItem({required Aed aed}) = _AedItem;
+  const AedItem._();
+
   static const idPrefix = "aed-";
+
   @override
   String get id => "$idPrefix${aed.id}";
 
@@ -30,13 +40,17 @@ final class AedItem extends MultilayerItem {
   LatLng get location => aed.location;
 }
 
-final class BuildingItem extends MultilayerItem {
-  final Building building;
-  BuildingItem({required this.building});
+@freezed
+abstract class BuildingItem with _$BuildingItem implements MultilayerItem {
+  @Implements<MultilayerItem>()
+  const factory BuildingItem({required Building building}) = _BuildingItem;
+  const BuildingItem._();
 
   static const idPrefix = "building-";
+
   @override
   String get id => "$idPrefix${building.id}";
+
   @override
   LatLng get location => building.location;
 }

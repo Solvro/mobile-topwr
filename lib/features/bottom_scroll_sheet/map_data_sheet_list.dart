@@ -6,19 +6,19 @@ import "package:hooks_riverpod/hooks_riverpod.dart";
 import "../../../theme/app_theme.dart";
 import "../../config/ui_config.dart";
 import "../../utils/context_extensions.dart";
+import "../../utils/where_non_null_iterable.dart";
 import "../../widgets/search_box_app_bar.dart";
 import "../analytics/data/umami.dart";
 import "../analytics/data/umami_events.dart";
 import "../bottom_scroll_sheet/scrollable_list_tab_scroller/scrollable_list_tab_scroller.dart";
-import "../buildings_view/data/model/building.dart";
 import "../buildings_view/data/model/multilayer_item.dart";
 import "../map_view/controllers/bottom_sheet_controller.dart";
 import "../map_view/controllers/controllers_set.dart";
 import "../map_view/widgets/map_config.dart";
 import "../parkings/parkings_view/models/parking.dart";
 import "data_list.dart";
-import "data_list_widget.dart";
 import "drag_handle.dart";
+import "multilayer_map_single_entity_list.dart";
 import "navigate_button.dart";
 
 class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
@@ -28,14 +28,26 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isMultilayerMap = T == MultilayerItem;
+    final isLoading = ref.watch(context.mapDataController<T>().select((a) => a.valueOrNull == null));
+    final isMultilayerMap =
+        T == MultilayerItem &&
+        ref.watch(
+          context.activeMarkerController<T>().select((a) => a == null),
+        ) // when active marker is not null, we do not show multitabs
+        &&
+        ref.watch(
+          context.mapDataController<T>().select((a) => a.valueOrNull?.isFilterStrEmpty ?? true),
+        ) // when we search in the search box, we do not show multitabs
+        &&
+        !isLoading // when we are loading, we do not show multitabs
+        ;
     final appBar = SearchBoxAppBar(
       context,
       title: context.mapViewTexts<T>().title,
       onQueryChanged: ref.watch(context.mapDataController<T>().notifier).onSearchQueryChanged,
       onSearchBoxTap: () async {
-        if (T == Building) {
-          unawaited(ref.trackEvent(UmamiEvents.searchBuilding));
+        if (T == MultilayerItem) {
+          unawaited(ref.trackEvent(UmamiEvents.searchMultilayerMap));
         } else if (T == Parking) {
           unawaited(ref.trackEvent(UmamiEvents.searchParkings));
         }
@@ -46,9 +58,12 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
 
     final categoryData = isMultilayerMap
         ? (
-            buildings: (title: context.localize.buildings_title, builder: DataListWidget<BuildingItem>.new),
-            library: (title: context.localize.library_title, builder: DataListWidget<LibraryItem>.new),
-            aed: (title: context.localize.aed_title, builder: DataListWidget<AedItem>.new),
+            buildings: (
+              title: context.localize.buildings_title,
+              builder: MultilayerMapSingleEntityList<BuildingItem>.new,
+            ),
+            library: (title: context.localize.library_title, builder: MultilayerMapSingleEntityList<LibraryItem>.new),
+            aed: (title: context.localize.aed_title, builder: MultilayerMapSingleEntityList<AedItem>.new),
             showers: (
               title: context.localize.showers_title,
               builder: () => const Column(
@@ -82,7 +97,7 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
       categoryData?.showers,
       categoryData?.pinkBoxes,
       categoryData?.aed,
-    ].where((tab) => tab != null).cast<({String title, Widget Function() builder})>().toList();
+    ].whereNonNull.toList();
 
     return CustomScrollView(
       controller: scrollController,

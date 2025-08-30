@@ -29,7 +29,7 @@ enum UmamiEvents {
   goToBannerExternalLink,
   goToExternalLink,
   selectBuilding,
-  searchBuilding,
+  searchMultilayerMap,
   selectSciClubFilterTag,
   selectSciClubFilterDepartment,
   selectSciClubFilterOrgType,
