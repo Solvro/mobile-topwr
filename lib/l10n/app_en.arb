@@ -578,5 +578,7 @@
   "pink_boxes_title": "Pink boxes",
   "aed_title": "AED",
   "authors": "{count, plural, =1{Author} other{Authors}}",
-  "redactors": "{count, plural, =1{Redactor} other{Redactors}}"
+  "redactors": "{count, plural, =1{Redactor} other{Redactors}}",
+  "room": "Room",
+  "building_nav_link_tooltip": "Navigate to the building"
 }

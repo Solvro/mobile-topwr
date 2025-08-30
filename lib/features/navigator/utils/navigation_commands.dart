@@ -6,7 +6,7 @@ import "package:logger/logger.dart";
 import "../../../utils/launch_url_util.dart";
 import "../../analytics/data/umami.dart";
 import "../../analytics/data/umami_events.dart";
-import "../../buildings_view/model/building.dart";
+import "../../buildings_view/data/model/building.dart";
 import "../../digital_guide/data/models/level.dart" as digital_guide;
 import "../../digital_guide/data/models/level_with_regions.dart";
 import "../../digital_guide/data/models/region.dart";

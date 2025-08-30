@@ -2,12 +2,12 @@ import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "../../../api_base_rest/client/json.dart";
-import "../../../api_base_rest/translations/translate.dart";
-import "../../../config/env.dart";
-import "../buildings_view.dart";
+import "../../../../api_base_rest/client/json.dart";
+import "../../../../api_base_rest/translations/translate.dart";
+import "../../../../config/env.dart";
+import "../../presentation/multilayer_map_view.dart";
 import "../model/building.dart";
-import "../utils/utils.dart";
+import "../../utils/utils.dart";
 
 part "buildings_repository.g.dart";
 
@@ -19,7 +19,7 @@ Future<IList<Building>> buildingsRepository(Ref ref) async {
         "$apiUrl/buildings?cover=true",
         BuildingDataResponse.fromJson,
         extraValidityCheck: (_) => true,
-        localizedOfflineMessage: BuildingsView.localizedOfflineMessage,
+        localizedOfflineMessage: MultilayerMapView.localizedOfflineMessage,
         onRetry: ref.invalidateSelf,
       )
       .castAsObject;

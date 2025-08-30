@@ -4,7 +4,7 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../academic_calendar/repository/academic_calendar_repo.dart";
 import "../app_streak/business/get_days_use_case.dart";
-import "../buildings_view/repository/buildings_repository.dart";
+import "../buildings_view/data/repositories/buildings_repository.dart";
 import "../departments/departments_view/data/repository/departments_repository.dart";
 import "../guide_view/data/repository/guide_repository.dart";
 import "../parkings/parkings_view/repository/parkings_repository.dart";

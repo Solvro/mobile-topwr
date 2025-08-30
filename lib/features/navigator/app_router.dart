@@ -3,10 +3,11 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "../../../../features/buildings_view/model/building.dart";
 import "../../config/nav_bar_config.dart";
 import "../about_us_view/about_us_view.dart";
-import "../buildings_view/buildings_view.dart";
+import "../buildings_view/data/model/building.dart";
+import "../buildings_view/presentation/multilayer_map_view.dart";
+import "../buildings_view/presentation/other_views.dart";
 import "../departments/department_detail_view/presentation/department_detail_view.dart";
 import "../departments/departments_view/departments_view.dart";
 import "../digital_guide/data/models/level.dart";
@@ -78,7 +79,11 @@ class AppRouter extends RootStackRouter {
   List<AutoRoute> get routesWithinTabBar => [
     _NoTransitionRoute(path: "", page: HomeRoute.page),
     _NoTransitionRoute(path: "buildings/:initialActiveItemId", page: BuildingsRoute.page),
+    _NoTransitionRoute(path: "libraries/:initialActiveItemId", page: LibrariesRoute.page),
+    _NoTransitionRoute(path: "aeds/:initialActiveItemId", page: AedsRoute.page),
+    _NoTransitionRoute(path: "multilayer-map/:initialActiveItemId", page: MultilayerMapRoute.page),
     RedirectRoute(path: "buildings", redirectTo: "buildings/null"),
+    RedirectRoute(path: "multilayer-map", redirectTo: "multilayermap/null"),
     _NoTransitionRoute(path: "parkings/:initialActiveItemId", page: ParkingsRoute.page),
     RedirectRoute(path: "parkings", redirectTo: "parkings/null"),
     _NoTransitionRoute(path: "guide", page: GuideRoute.page),

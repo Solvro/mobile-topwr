@@ -5,7 +5,7 @@ import "package:latlong2/latlong.dart";
 import "../../../../../config/ui_config.dart";
 import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/context_extensions.dart";
-import "../../../../buildings_view/model/building.dart";
+import "../../../../buildings_view/data/model/building.dart";
 import "../../../../map_view/utils/google_maps_link_utils.dart";
 import "../../../data/models/digital_guide_response.dart";
 import "../../../presentation/widgets/digital_guide_image.dart";

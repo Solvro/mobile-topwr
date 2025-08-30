@@ -8,7 +8,7 @@ import "../../config/map_view_config.dart";
 import "../../theme/app_theme.dart";
 import "../bottom_scroll_sheet/bottom_scroll_sheet.dart";
 import "../bottom_scroll_sheet/map_view_pop_behaviour.dart";
-import "../bottom_scroll_sheet/sheet_layout_scheme.dart";
+import "../bottom_scroll_sheet/map_data_sheet_list.dart";
 import "controllers/bottom_sheet_controller.dart";
 import "controllers/controllers_set.dart";
 import "widgets/map_config.dart";
@@ -75,7 +75,7 @@ class _HorizontalWebLayout<T extends GoogleNavigable> extends StatelessWidget {
       screenHeight: MediaQuery.sizeOf(context).height,
       child: Row(
         children: [
-          SizedBox(width: panelWidth, child: SheetLayoutScheme<T>()),
+          SizedBox(width: panelWidth, child: MapDataSheetList<T>()),
           Expanded(child: MapWidget<T>(semanticsLabel)),
         ],
       ),

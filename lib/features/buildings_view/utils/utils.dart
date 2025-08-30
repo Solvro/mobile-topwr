@@ -4,7 +4,7 @@ import "package:flutter/widgets.dart";
 import "../../../config/map_view_config.dart";
 import "../../../utils/contains_lower_case.dart";
 import "../../../utils/context_extensions.dart";
-import "../model/building.dart";
+import "../data/model/building.dart";
 
 extension ContainsCaseUnsensitiveX on String? {
   bool containsBuildingCode(String buildingCode) {

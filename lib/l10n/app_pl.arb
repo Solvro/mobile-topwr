@@ -3484,5 +3484,13 @@
         "example": "3"
       }
     }
+  },
+  "room": "Pokój",
+  "@room": {
+    "description": "Title for room"
+  },
+  "building_nav_link_tooltip": "Przejdź do budynku",
+  "@building_nav_link_tooltip": {
+    "description": "Tooltip text for building nav link"
   }
 }

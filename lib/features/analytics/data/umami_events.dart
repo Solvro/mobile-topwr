@@ -50,7 +50,9 @@ enum UmamiEvents {
   seeOldSksMenu,
   openAcademicCalendarExternalLink,
   openSolvroScienceClubDetailPage,
-  openDigitalGuideSubscreen;
+  openDigitalGuideSubscreen,
+  selectLibrary,
+  selectAed;
 
   String toJson() => _$UmamiEventsEnumMap[this]!;
 }

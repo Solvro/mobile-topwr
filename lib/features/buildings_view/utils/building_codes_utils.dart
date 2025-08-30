@@ -3,7 +3,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../utils/contains_number.dart";
-import "../repository/buildings_repository.dart";
+import "../data/repositories/buildings_repository.dart";
 
 part "building_codes_utils.g.dart";
 

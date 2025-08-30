@@ -10,7 +10,8 @@ import "../../widgets/search_box_app_bar.dart";
 import "../analytics/data/umami.dart";
 import "../analytics/data/umami_events.dart";
 import "../bottom_scroll_sheet/scrollable_list_tab_scroller/scrollable_list_tab_scroller.dart";
-import "../buildings_view/model/building.dart";
+import "../buildings_view/data/model/building.dart";
+import "../buildings_view/data/model/multilayer_item.dart";
 import "../map_view/controllers/bottom_sheet_controller.dart";
 import "../map_view/controllers/controllers_set.dart";
 import "../map_view/widgets/map_config.dart";
@@ -20,14 +21,14 @@ import "data_list_widget.dart";
 import "drag_handle.dart";
 import "navigate_button.dart";
 
-class SheetLayoutScheme<T extends GoogleNavigable> extends HookConsumerWidget {
-  const SheetLayoutScheme({this.scrollController, super.key});
+class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
+  const MapDataSheetList({this.scrollController, super.key});
 
   final ScrollController? scrollController;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isBuildingMap = T == Building;
+    final isMultilayerMap = T == MultilayerItem;
     final appBar = SearchBoxAppBar(
       context,
       title: context.mapViewTexts<T>().title,
@@ -43,21 +44,11 @@ class SheetLayoutScheme<T extends GoogleNavigable> extends HookConsumerWidget {
       actions: [if (ref.watch(context.activeMarkerController<T>()) != null) NavigateButton<T>()],
     );
 
-    final categoryData = isBuildingMap
+    final categoryData = isMultilayerMap
         ? (
-            buildings: (title: context.localize.buildings_title, builder: DataListWidget<T>.new),
-            library: (
-              title: context.localize.library_title,
-              builder: () => const Column(
-                children: [
-                  ListTile(title: Text("lorem ipsum")),
-                  ListTile(title: Text("lorem ipsum")),
-                  ListTile(title: Text("lorem ipsum")),
-                  ListTile(title: Text("lorem ipsum")),
-                  ListTile(title: Text("lorem ipsum")),
-                ],
-              ),
-            ),
+            buildings: (title: context.localize.buildings_title, builder: DataListWidget<BuildingItem>.new),
+            library: (title: context.localize.library_title, builder: DataListWidget<LibraryItem>.new),
+            aed: (title: context.localize.aed_title, builder: DataListWidget<AedItem>.new),
             showers: (
               title: context.localize.showers_title,
               builder: () => const Column(
@@ -72,18 +63,6 @@ class SheetLayoutScheme<T extends GoogleNavigable> extends HookConsumerWidget {
             ),
             pinkBoxes: (
               title: context.localize.pink_boxes_title,
-              builder: () => const Column(
-                children: [
-                  ListTile(title: Text("lorem ipsum")),
-                  ListTile(title: Text("lorem ipsum")),
-                  ListTile(title: Text("lorem ipsum")),
-                  ListTile(title: Text("lorem ipsum")),
-                  ListTile(title: Text("lorem ipsum")),
-                ],
-              ),
-            ),
-            aed: (
-              title: context.localize.aed_title,
               builder: () => const Column(
                 children: [
                   ListTile(title: Text("lorem ipsum")),

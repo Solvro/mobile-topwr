@@ -12,7 +12,7 @@ import "../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../../widgets/horizontal_symmetric_safe_area.dart";
 import "../../../widgets/my_error_widget.dart";
 import "../../../widgets/zoomable_images.dart";
-import "../../buildings_view/model/building.dart";
+import "../../buildings_view/data/model/building.dart";
 import "../../digital_guide/presentation/widgets/accessibility_button.dart";
 import "../../digital_guide/presentation/widgets/accessibility_information_cards_list.dart";
 import "../../digital_guide/presentation/widgets/digital_guide_data_source_link.dart";
