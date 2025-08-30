@@ -6,7 +6,6 @@ import "package:hooks_riverpod/hooks_riverpod.dart";
 import "../../../theme/app_theme.dart";
 import "../../config/ui_config.dart";
 import "../../utils/context_extensions.dart";
-import "../../widgets/my_error_widget.dart";
 import "../../widgets/search_box_app_bar.dart";
 import "../analytics/data/umami.dart";
 import "../analytics/data/umami_events.dart";
@@ -17,6 +16,7 @@ import "../map_view/controllers/controllers_set.dart";
 import "../map_view/widgets/map_config.dart";
 import "../parkings/parkings_view/models/parking.dart";
 import "data_list.dart";
+import "data_list_widget.dart";
 import "drag_handle.dart";
 import "navigate_button.dart";
 
@@ -45,7 +45,7 @@ class SheetLayoutScheme<T extends GoogleNavigable> extends HookConsumerWidget {
 
     final categoryData = isBuildingMap
         ? (
-            buildings: (title: context.localize.buildings_title, builder: () => _buildDataList<T>(ref, context)),
+            buildings: (title: context.localize.buildings_title, builder: DataListWidget<T>.new),
             library: (
               title: context.localize.library_title,
               builder: () => const Column(
@@ -159,23 +159,4 @@ class SheetLayoutScheme<T extends GoogleNavigable> extends HookConsumerWidget {
       ],
     );
   }
-}
-
-Widget _buildDataList<T extends GoogleNavigable>(WidgetRef ref, BuildContext context) {
-  final itemsState = ref.watch(context.mapDataController<T>());
-
-  return switch (itemsState) {
-    AsyncError(:final error, :final stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
-    AsyncValue(:final value) when value != null => Column(
-      children: value
-          .map(
-            (item) => Padding(
-              padding: const EdgeInsets.only(bottom: NavigationTabViewConfig.universalPadding),
-              child: context.mapTileBuilder<T>()(item, isActive: false),
-            ),
-          )
-          .toList(),
-    ),
-    _ => const CircularProgressIndicator(),
-  };
 }
