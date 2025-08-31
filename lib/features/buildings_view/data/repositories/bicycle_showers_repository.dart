@@ -6,21 +6,21 @@ import "../../../../api_base_rest/cache/cache.dart";
 import "../../../../api_base_rest/client/json.dart";
 import "../../../../config/env.dart";
 import "../../presentation/views/redirect_views.dart";
-import "../model/library.dart";
+import "../model/bicycle_shower.dart";
 
-part "library_repository.g.dart";
+part "bicycle_showers_repository.g.dart";
 
 @riverpod
-Future<IList<Library>> librariesRepository(Ref ref) async {
+Future<IList<BicycleShower>> bicycleShowersRepository(Ref ref) async {
   final apiUrl = Env.mainRestApiUrl;
-  final librariesResponse = await ref
+  final bicycleShowersResponse = await ref
       .getAndCacheData(
-        "$apiUrl/libraries?photo=true&building=true",
-        LibraryDataResponse.fromJson,
+        "$apiUrl/bicycle_showers?photo=true&building=true",
+        BicycleShowerDataResponse.fromJson,
         extraValidityCheck: (_) => true,
-        localizedOfflineMessage: LibrariesView.localizedOfflineMessage,
+        localizedOfflineMessage: ShowersView.localizedOfflineMessage,
         onRetry: ref.invalidateSelf,
       )
       .castAsObject;
-  return librariesResponse.data.toIList();
+  return bicycleShowersResponse.data.toIList();
 }

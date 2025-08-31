@@ -1,9 +1,11 @@
 import "package:flutter/material.dart";
 
-import "../data/model/multilayer_item.dart";
+import "../../data/model/multilayer_item.dart";
 import "aed_tile.dart";
+import "bicycle_shower_tile.dart";
 import "building_tile.dart";
 import "library_tile.dart";
+import "pink_box_tile.dart";
 
 class MultilayerItemTile extends StatelessWidget {
   const MultilayerItemTile(this.item, {required this.isActive, super.key});
@@ -18,6 +20,8 @@ class MultilayerItemTile extends StatelessWidget {
       BuildingItem() => BuildingTile(localItem.building, isActive: isActive),
       LibraryItem() => LibraryTile(localItem.library, isActive: isActive),
       AedItem() => AedTile(localItem.aed, isActive: isActive),
+      BicycleShowerItem() => BicycleShowerTile(localItem.shower, isActive: isActive),
+      PinkBoxItem() => PinkBoxTile(localItem.pinkBox, isActive: isActive),
     };
   }
 }

@@ -136,15 +136,7 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
 
               itemBuilder: (BuildContext context, int index) => Padding(
                 padding: const EdgeInsets.all(NavigationTabViewConfig.universalPadding),
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(NavigationTabViewConfig.smallerPadding),
-                      child: Text(tabs[index].title, style: context.textTheme.headline),
-                    ),
-                    tabs[index].builder(),
-                  ],
-                ),
+                child: tabs[index].builder(),
               ),
             ),
           ),

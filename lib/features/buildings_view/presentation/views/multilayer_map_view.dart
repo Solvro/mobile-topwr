@@ -5,24 +5,20 @@ import "package:flutter/material.dart";
 import "package:flutter_map/flutter_map.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../../../config/map_view_config.dart";
-import "../../../gen/assets.gen.dart";
-import "../../../utils/context_extensions.dart";
-import "../../analytics/data/umami.dart";
-import "../../analytics/data/umami_events.dart";
-import "../../map_view/map_view.dart";
+import "../../../../config/map_view_config.dart";
+import "../../../../gen/assets.gen.dart";
+import "../../../../utils/context_extensions.dart";
+import "../../../analytics/data/umami.dart";
+import "../../../analytics/data/umami_events.dart";
+import "../../../map_view/map_view.dart";
+import "../../data/model/multilayer_item.dart";
 import "../controllers.dart";
-import "../data/model/multilayer_item.dart";
-import "multilater_tile.dart";
+import "../widgets/multilater_tile.dart";
 
 @RoutePage()
 class MultilayerMapView extends ConsumerWidget {
   const MultilayerMapView({super.key, @PathParam("initialActiveItemId") this.initialActiveItemId});
   final String? initialActiveItemId;
-
-  static String localizedOfflineMessage(BuildContext context) {
-    return context.localize.my_offline_error_message(context.localize.buildings_title);
-  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

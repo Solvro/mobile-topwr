@@ -6,21 +6,21 @@ import "../../../../api_base_rest/cache/cache.dart";
 import "../../../../api_base_rest/client/json.dart";
 import "../../../../config/env.dart";
 import "../../presentation/views/redirect_views.dart";
-import "../model/library.dart";
+import "../model/pink_box.dart";
 
-part "library_repository.g.dart";
+part "pink_box_repository.g.dart";
 
 @riverpod
-Future<IList<Library>> librariesRepository(Ref ref) async {
+Future<IList<PinkBox>> pinkBoxesRepository(Ref ref) async {
   final apiUrl = Env.mainRestApiUrl;
-  final librariesResponse = await ref
+  final pinkBoxesResponse = await ref
       .getAndCacheData(
-        "$apiUrl/libraries?photo=true&building=true",
-        LibraryDataResponse.fromJson,
+        "$apiUrl/pink_boxes?photo=true&building=true",
+        PinkBoxDataResponse.fromJson,
         extraValidityCheck: (_) => true,
-        localizedOfflineMessage: LibrariesView.localizedOfflineMessage,
+        localizedOfflineMessage: PinkBoxesView.localizedOfflineMessage,
         onRetry: ref.invalidateSelf,
       )
       .castAsObject;
-  return librariesResponse.data.toIList();
+  return pinkBoxesResponse.data.toIList();
 }

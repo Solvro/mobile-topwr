@@ -5,9 +5,9 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 import "../../../../api_base_rest/client/json.dart";
 import "../../../../api_base_rest/translations/translate.dart";
 import "../../../../config/env.dart";
-import "../../presentation/multilayer_map_view.dart";
+import "../../presentation/views/redirect_views.dart";
 import "../model/building.dart";
-import "../../utils/utils.dart";
+import "../utils/utils.dart";
 
 part "buildings_repository.g.dart";
 
@@ -19,7 +19,7 @@ Future<IList<Building>> buildingsRepository(Ref ref) async {
         "$apiUrl/buildings?cover=true",
         BuildingDataResponse.fromJson,
         extraValidityCheck: (_) => true,
-        localizedOfflineMessage: MultilayerMapView.localizedOfflineMessage,
+        localizedOfflineMessage: BuildingsView.localizedOfflineMessage,
         onRetry: ref.invalidateSelf,
       )
       .castAsObject;

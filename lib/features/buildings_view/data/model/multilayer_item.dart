@@ -3,8 +3,10 @@ import "package:latlong2/latlong.dart";
 
 import "../../../map_view/controllers/controllers_set.dart";
 import "aed.dart";
+import "bicycle_shower.dart";
 import "building.dart";
 import "library.dart";
+import "pink_box.dart";
 
 part "multilayer_item.freezed.dart";
 
@@ -53,4 +55,22 @@ abstract class BuildingItem with _$BuildingItem implements MultilayerItem {
 
   @override
   LatLng get location => building.location;
+}
+
+@freezed
+abstract class BicycleShowerItem with _$BicycleShowerItem implements MultilayerItem {
+  @Implements<MultilayerItem>()
+  const factory BicycleShowerItem({required BicycleShower shower}) = _BicycleShowerItem;
+  const BicycleShowerItem._();
+
+  static const idPrefix = "bicycle-shower-";
+}
+
+@freezed
+abstract class PinkBoxItem with _$PinkBoxItem implements MultilayerItem {
+  @Implements<MultilayerItem>()
+  const factory PinkBoxItem({required PinkBox pinkBox}) = _PinkBoxItem;
+  const PinkBoxItem._();
+
+  static const idPrefix = "pink-box-";
 }
