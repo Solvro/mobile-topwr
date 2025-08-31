@@ -64,6 +64,12 @@ abstract class BicycleShowerItem with _$BicycleShowerItem implements MultilayerI
   const BicycleShowerItem._();
 
   static const idPrefix = "bicycle-shower-";
+
+  @override
+  String get id => "$idPrefix${shower.id}";
+
+  @override
+  LatLng get location => shower.location;
 }
 
 @freezed
@@ -73,4 +79,10 @@ abstract class PinkBoxItem with _$PinkBoxItem implements MultilayerItem {
   const PinkBoxItem._();
 
   static const idPrefix = "pink-box-";
+
+  @override
+  String get id => "$idPrefix${pinkBox.id}";
+
+  @override
+  LatLng get location => pinkBox.location;
 }

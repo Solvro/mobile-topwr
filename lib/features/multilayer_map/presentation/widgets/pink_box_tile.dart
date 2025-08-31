@@ -21,7 +21,7 @@ class PinkBoxTile extends HookConsumerWidget {
   final bool isActive;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final title = "${context.localize.pink_box_single} — ${pinkBox.building?.name}";
+    final title = pinkBox.title(context.localize);
     final l10n = context.localize;
     useSemanticsServiceOnChangedValue(
       isActive,

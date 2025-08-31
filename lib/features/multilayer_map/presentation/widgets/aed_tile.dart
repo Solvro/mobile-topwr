@@ -21,7 +21,7 @@ class AedTile extends HookConsumerWidget {
   final bool isActive;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final title = "AED — ${aed.building?.name}";
+    final title = aed.title;
     final l10n = context.localize;
     useSemanticsServiceOnChangedValue(
       isActive,

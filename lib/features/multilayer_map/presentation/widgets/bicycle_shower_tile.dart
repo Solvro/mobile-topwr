@@ -21,7 +21,7 @@ class BicycleShowerTile extends HookConsumerWidget {
   final bool isActive;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final title = "${context.localize.bicycle_shower_single} — ${shower.building?.name}";
+    final title = shower.title(context.localize);
     final l10n = context.localize;
     useSemanticsServiceOnChangedValue(
       isActive,

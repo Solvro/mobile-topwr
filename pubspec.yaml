@@ -124,7 +124,6 @@ dependencies:
   sentry_flutter: ^9.4.1
   workmanager: ^0.8.0
 
-
   #Solvro packages
   solvro_translator_with_drift_cache_flutter: ^0.6.0
   solvro_translator_core: ^0.6.0
@@ -166,6 +165,16 @@ flutter:
     - assets/png/map_markers/active_map_marker.png
     - assets/png/map_markers/active_parking_map_marker.png
     - assets/png/map_markers/parking_map_marker.png
+    - assets/png/map_markers/active_library_marker.png
+    - assets/png/map_markers/library_marker.png
+    - assets/png/map_markers/active_polinka_marker.png
+    - assets/png/map_markers/polinka_marker.png
+    - assets/png/map_markers/active_aed_marker.png
+    - assets/png/map_markers/aed_marker.png
+    - assets/png/map_markers/active_shower_marker.png
+    - assets/png/map_markers/shower_marker.png
+    - assets/png/map_markers/active_pink_box_marker.png
+    - assets/png/map_markers/pink_box_marker.png
     - assets/svg/search_box/vectorsearch.svg
     - assets/svg/contact_icons/compass.svg
     - assets/svg/contact_icons/fb.svg

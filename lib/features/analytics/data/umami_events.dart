@@ -52,7 +52,9 @@ enum UmamiEvents {
   openSolvroScienceClubDetailPage,
   openDigitalGuideSubscreen,
   selectLibrary,
-  selectAed;
+  selectAed,
+  selectShower,
+  selectPinkBox;
 
   String toJson() => _$UmamiEventsEnumMap[this]!;
 }

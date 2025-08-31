@@ -3,6 +3,7 @@ import "package:freezed_annotation/freezed_annotation.dart";
 import "package:latlong2/latlong.dart";
 
 import "../../../../api_base_rest/shared_models/image_data.dart";
+import "../../../../l10n/app_localizations.dart";
 import "../../../map_view/controllers/controllers_set.dart";
 import "building.dart";
 
@@ -37,4 +38,6 @@ abstract class PinkBox with _$PinkBox implements GoogleNavigable {
 
   @override
   LatLng get location => LatLng(latitude, longitude);
+
+  String title(AppLocalizations l10n) => "${l10n.pink_box_single} — ${building?.name}";
 }

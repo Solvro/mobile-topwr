@@ -38,4 +38,6 @@ abstract class Aed with _$Aed implements GoogleNavigable {
 
   @override
   LatLng get location => LatLng(latitude, longitude);
+
+  String get title => "AED — ${building?.name}";
 }
