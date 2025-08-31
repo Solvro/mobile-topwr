@@ -85,7 +85,7 @@ class AppRouter extends RootStackRouter {
     _NoTransitionRoute(path: "pink-boxes/:initialActiveItemId", page: PinkBoxesRoute.page),
     _NoTransitionRoute(path: "multilayer-map/:initialActiveItemId", page: MultilayerMapRoute.page),
     RedirectRoute(path: "buildings", redirectTo: "buildings/null"),
-    RedirectRoute(path: "multilayer-map", redirectTo: "multilayermap/null"),
+    RedirectRoute(path: "multilayer-map", redirectTo: "multilayer-map/null"),
     _NoTransitionRoute(path: "parkings/:initialActiveItemId", page: ParkingsRoute.page),
     RedirectRoute(path: "parkings", redirectTo: "parkings/null"),
     _NoTransitionRoute(path: "guide", page: GuideRoute.page),

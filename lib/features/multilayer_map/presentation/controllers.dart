@@ -8,6 +8,7 @@ import "../../map_view/controllers/controllers_set.dart";
 import "../../map_view/controllers/map_controller.dart";
 import "../../map_view/controllers/map_data_controller.dart";
 import "../business/multilayer_source_service.dart";
+import "../data/model/building.dart";
 import "../data/model/multilayer_item.dart";
 import "../data/utils/building_codes_utils.dart";
 import "../data/utils/utils.dart";
@@ -34,48 +35,38 @@ class MultilayerMapViewController extends _$MultilayerMapViewController with Map
     return super.build();
   }
 
-  @override
-  bool filterMethod(MultilayerItem item, String filterStr) {
-    // TODO(simon-the-shark): refactor this
+  bool _filterBuilding(Building building, String filterStr) {
     switch (filterStr.length) {
       case 0:
         return true;
       case 1:
-        if (item is BuildingItem) {
-          if (ref.isStringABuildingCode(filterStr)) {
-            return item.building.name.containsBuildingCode(filterStr);
-          } else {
-            return item.building.address.containsLowerCase(filterStr) ||
-                item.building.naturalName.containsLowerCase(filterStr);
-          }
+        if (ref.isStringABuildingCode(filterStr)) {
+          return building.name.containsBuildingCode(filterStr);
+        } else {
+          return building.address.containsLowerCase(filterStr) || building.naturalName.containsLowerCase(filterStr);
         }
-        if (item is LibraryItem) {
-          return item.library.title.containsLowerCase(filterStr);
-        }
-        if (item is AedItem) {
-          return item.aed.building?.name.containsLowerCase(filterStr) ??
-              false ||
-                  item.aed.addressLine1.containsLowerCase(filterStr) ||
-                  item.aed.addressLine2.containsLowerCase(filterStr);
-        }
-        return true;
       default:
-        if (item is BuildingItem) {
-          return item.building.name.containsBuildingCode(filterStr) ||
-              item.building.address.containsLowerCase(filterStr) ||
-              item.building.naturalName.containsLowerCase(filterStr);
-        }
-        if (item is LibraryItem) {
-          return item.library.title.containsLowerCase(filterStr);
-        }
-        if (item is AedItem) {
-          return item.aed.building?.name.containsLowerCase(filterStr) ??
-              false ||
-                  item.aed.addressLine1.containsLowerCase(filterStr) ||
-                  item.aed.addressLine2.containsLowerCase(filterStr);
-        }
-        return true;
+        return building.name.containsBuildingCode(filterStr) ||
+            building.address.containsLowerCase(filterStr) ||
+            building.naturalName.containsLowerCase(filterStr);
     }
+  }
+
+  @override
+  bool filterMethod(MultilayerItem item, String filterStr) {
+    if (filterStr.isEmpty) {
+      return true;
+    }
+    return switch (item) {
+      BuildingItem() => _filterBuilding(item.building, filterStr),
+      LibraryItem() when item.library.building == null => item.library.title.containsLowerCase(filterStr),
+      LibraryItem() when item.library.building != null =>
+        item.library.title.containsLowerCase(filterStr) || _filterBuilding(item.library.building!, filterStr),
+      AedItem() when item.aed.building != null => _filterBuilding(item.aed.building!, filterStr),
+      BicycleShowerItem() when item.shower.building != null => _filterBuilding(item.shower.building!, filterStr),
+      PinkBoxItem() when item.pinkBox.building != null => _filterBuilding(item.pinkBox.building!, filterStr),
+      _ => false,
+    };
   }
 }
 
