@@ -29,7 +29,7 @@ enum UmamiEvents {
   goToBannerExternalLink,
   goToExternalLink,
   selectBuilding,
-  searchBuilding,
+  searchMultilayerMap,
   selectSciClubFilterTag,
   selectSciClubFilterDepartment,
   selectSciClubFilterOrgType,
@@ -50,7 +50,11 @@ enum UmamiEvents {
   seeOldSksMenu,
   openAcademicCalendarExternalLink,
   openSolvroScienceClubDetailPage,
-  openDigitalGuideSubscreen;
+  openDigitalGuideSubscreen,
+  selectLibrary,
+  selectAed,
+  selectShower,
+  selectPinkBox;
 
   String toJson() => _$UmamiEventsEnumMap[this]!;
 }

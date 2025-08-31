@@ -10,12 +10,12 @@ rules:
       - changelog
       - app-streak
       - navigation
-      - buildings
+      - multilayer-map
       - departments
       - guide
       - home
       - in-app-review
-      - map
+      - map-view
       - navigation-tab # last screen in tab view
       - parkings
       - advert

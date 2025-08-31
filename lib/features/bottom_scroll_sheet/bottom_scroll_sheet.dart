@@ -10,8 +10,8 @@ import "../../utils/context_extensions.dart";
 import "../map_view/controllers/bottom_sheet_controller.dart";
 import "../map_view/controllers/controllers_set.dart";
 import "../map_view/widgets/map_config.dart";
+import "map_data_sheet_list.dart";
 import "map_view_pop_behaviour.dart";
-import "sheet_layout_scheme.dart";
 
 class BottomScrollSheet<T extends GoogleNavigable> extends ConsumerWidget {
   const BottomScrollSheet({super.key});
@@ -78,7 +78,7 @@ class _SheetConsumer<T extends GoogleNavigable> extends HookConsumerWidget {
       child: Container(
         clipBehavior: Clip.antiAlias,
         decoration: _RoundedTopDecoration(color: context.colorTheme.whiteSoap),
-        child: SheetLayoutScheme<T>(scrollController: scrollController),
+        child: MapDataSheetList<T>(scrollController: scrollController),
       ),
     );
   }

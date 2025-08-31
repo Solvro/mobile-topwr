@@ -10,8 +10,8 @@ abstract class MapViewBottomSheetConfig {
   static const bottomSheetRadius = Radius.circular(24);
 
   static const MapSheetSize buildingsMapSheetSize = (
-    recomendedSheetHeight: 357,
-    recomendedActiveSheetHeight: 357,
+    recomendedSheetHeight: 400,
+    recomendedActiveSheetHeight: 310,
     minSheetHeight: 90,
   );
 

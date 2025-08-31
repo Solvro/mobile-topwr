@@ -3,17 +3,18 @@ import "dart:async";
 import "package:flutter/material.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
-import "../../config/ui_config.dart";
-import "../../config/url_config.dart";
-import "../../hooks/use_semantics_service_on_changed_value.dart";
-import "../../theme/app_theme.dart";
-import "../../utils/context_extensions.dart";
-import "../../widgets/wide_tile_card.dart";
-import "../analytics/data/umami.dart";
-import "../analytics/data/umami_events.dart";
-import "../navigator/utils/navigation_commands.dart";
-import "controllers.dart";
-import "model/building.dart";
+import "../../../../config/ui_config.dart";
+import "../../../../config/url_config.dart";
+import "../../../../hooks/use_semantics_service_on_changed_value.dart";
+import "../../../../theme/app_theme.dart";
+import "../../../../utils/context_extensions.dart";
+import "../../../../widgets/wide_tile_card.dart";
+import "../../../analytics/data/umami.dart";
+import "../../../analytics/data/umami_events.dart";
+import "../../../navigator/utils/navigation_commands.dart";
+import "../../data/model/building.dart";
+import "../../data/model/multilayer_item.dart";
+import "../controllers.dart";
 
 class BuildingTile extends HookConsumerWidget {
   const BuildingTile(this.building, {required this.isActive, super.key});
@@ -53,7 +54,7 @@ class BuildingTile extends HookConsumerWidget {
                   isActive: isActive,
                   onTap: () {
                     unawaited(ref.trackEvent(UmamiEvents.selectBuilding, value: building.name));
-                    unawaited(ref.read(buildingsMapControllerProvider).onMarkerTap(building));
+                    unawaited(ref.read(multilayerMapControllerProvider).onMarkerTap(BuildingItem(building: building)));
                   },
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                 ),

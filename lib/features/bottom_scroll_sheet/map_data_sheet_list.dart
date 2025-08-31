@@ -6,35 +6,48 @@ import "package:hooks_riverpod/hooks_riverpod.dart";
 import "../../../theme/app_theme.dart";
 import "../../config/ui_config.dart";
 import "../../utils/context_extensions.dart";
-import "../../widgets/my_error_widget.dart";
+import "../../utils/where_non_null_iterable.dart";
 import "../../widgets/search_box_app_bar.dart";
 import "../analytics/data/umami.dart";
 import "../analytics/data/umami_events.dart";
 import "../bottom_scroll_sheet/scrollable_list_tab_scroller/scrollable_list_tab_scroller.dart";
-import "../buildings_view/model/building.dart";
 import "../map_view/controllers/bottom_sheet_controller.dart";
 import "../map_view/controllers/controllers_set.dart";
 import "../map_view/widgets/map_config.dart";
+import "../multilayer_map/data/model/multilayer_item.dart";
 import "../parkings/parkings_view/models/parking.dart";
 import "data_list.dart";
 import "drag_handle.dart";
+import "multilayer_map_single_entity_list.dart";
 import "navigate_button.dart";
 
-class SheetLayoutScheme<T extends GoogleNavigable> extends HookConsumerWidget {
-  const SheetLayoutScheme({this.scrollController, super.key});
+class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
+  const MapDataSheetList({this.scrollController, super.key});
 
   final ScrollController? scrollController;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isBuildingMap = T == Building;
+    final isLoading = ref.watch(context.mapDataController<T>().select((a) => a.valueOrNull == null));
+    final isMultilayerMap =
+        T == MultilayerItem &&
+        ref.watch(
+          context.activeMarkerController<T>().select((a) => a == null),
+        ) // when active marker is not null, we do not show multitabs
+        &&
+        ref.watch(
+          context.mapDataController<T>().select((a) => a.valueOrNull?.isFilterStrEmpty ?? true),
+        ) // when we search in the search box, we do not show multitabs
+        &&
+        !isLoading // when we are loading, we do not show multitabs
+        ;
     final appBar = SearchBoxAppBar(
       context,
       title: context.mapViewTexts<T>().title,
       onQueryChanged: ref.watch(context.mapDataController<T>().notifier).onSearchQueryChanged,
       onSearchBoxTap: () async {
-        if (T == Building) {
-          unawaited(ref.trackEvent(UmamiEvents.searchBuilding));
+        if (T == MultilayerItem) {
+          unawaited(ref.trackEvent(UmamiEvents.searchMultilayerMap));
         } else if (T == Parking) {
           unawaited(ref.trackEvent(UmamiEvents.searchParkings));
         }
@@ -43,67 +56,33 @@ class SheetLayoutScheme<T extends GoogleNavigable> extends HookConsumerWidget {
       actions: [if (ref.watch(context.activeMarkerController<T>()) != null) NavigateButton<T>()],
     );
 
-    final categoryData = isBuildingMap
+    final categoryData = isMultilayerMap
         ? (
-            buildings: (title: context.localize.buildings_title, builder: () => _buildDataList<T>(ref, context)),
-            library: (
-              title: context.localize.library_title,
-              builder: () => const Column(
-                children: [
-                  ListTile(title: Text("lorem ipsum")),
-                  ListTile(title: Text("lorem ipsum")),
-                  ListTile(title: Text("lorem ipsum")),
-                  ListTile(title: Text("lorem ipsum")),
-                  ListTile(title: Text("lorem ipsum")),
-                ],
-              ),
+            buildings: (
+              title: context.localize.buildings_title,
+              builder: MultilayerMapSingleEntityList<BuildingItem>.new,
             ),
+            library: (title: context.localize.library_title, builder: MultilayerMapSingleEntityList<LibraryItem>.new),
+            aed: (title: context.localize.aed_title, builder: MultilayerMapSingleEntityList<AedItem>.new),
             showers: (
               title: context.localize.showers_title,
-              builder: () => const Column(
-                children: [
-                  ListTile(title: Text("lorem ipsum")),
-                  ListTile(title: Text("lorem ipsum")),
-                  ListTile(title: Text("lorem ipsum")),
-                  ListTile(title: Text("lorem ipsum")),
-                  ListTile(title: Text("lorem ipsum")),
-                ],
-              ),
+              builder: MultilayerMapSingleEntityList<BicycleShowerItem>.new,
             ),
             pinkBoxes: (
               title: context.localize.pink_boxes_title,
-              builder: () => const Column(
-                children: [
-                  ListTile(title: Text("lorem ipsum")),
-                  ListTile(title: Text("lorem ipsum")),
-                  ListTile(title: Text("lorem ipsum")),
-                  ListTile(title: Text("lorem ipsum")),
-                  ListTile(title: Text("lorem ipsum")),
-                ],
-              ),
-            ),
-            aed: (
-              title: context.localize.aed_title,
-              builder: () => const Column(
-                children: [
-                  ListTile(title: Text("lorem ipsum")),
-                  ListTile(title: Text("lorem ipsum")),
-                  ListTile(title: Text("lorem ipsum")),
-                  ListTile(title: Text("lorem ipsum")),
-                  ListTile(title: Text("lorem ipsum")),
-                ],
-              ),
+              builder: MultilayerMapSingleEntityList<PinkBoxItem>.new,
             ),
           )
         : null;
 
     final tabs = [
+      // this dictates the order of the tabs
       categoryData?.buildings,
       categoryData?.library,
-      categoryData?.showers,
-      categoryData?.pinkBoxes,
       categoryData?.aed,
-    ].where((tab) => tab != null).cast<({String title, Widget Function() builder})>().toList();
+      categoryData?.pinkBoxes,
+      categoryData?.showers,
+    ].whereNonNull.toList();
 
     return CustomScrollView(
       controller: scrollController,
@@ -121,7 +100,10 @@ class SheetLayoutScheme<T extends GoogleNavigable> extends HookConsumerWidget {
             child: ScrollableListTabScroller(
               itemCount: tabs.length,
               tabBuilder: (BuildContext context, int index, bool active) => Container(
-                margin: const EdgeInsets.only(right: NavigationTabViewConfig.smallerPadding),
+                margin: const EdgeInsets.only(
+                  right: NavigationTabViewConfig.smallerPadding,
+                  bottom: NavigationTabViewConfig.smallerPadding * 1.5,
+                ),
                 padding: const EdgeInsets.symmetric(
                   horizontal: NavigationTabViewConfig.universalPadding,
                   vertical: NavigationTabViewConfig.smallerPadding,
@@ -142,15 +124,7 @@ class SheetLayoutScheme<T extends GoogleNavigable> extends HookConsumerWidget {
 
               itemBuilder: (BuildContext context, int index) => Padding(
                 padding: const EdgeInsets.all(NavigationTabViewConfig.universalPadding),
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(NavigationTabViewConfig.smallerPadding),
-                      child: Text(tabs[index].title, style: context.textTheme.headline),
-                    ),
-                    tabs[index].builder(),
-                  ],
-                ),
+                child: tabs[index].builder(),
               ),
             ),
           ),
@@ -159,23 +133,4 @@ class SheetLayoutScheme<T extends GoogleNavigable> extends HookConsumerWidget {
       ],
     );
   }
-}
-
-Widget _buildDataList<T extends GoogleNavigable>(WidgetRef ref, BuildContext context) {
-  final itemsState = ref.watch(context.mapDataController<T>());
-
-  return switch (itemsState) {
-    AsyncError(:final error, :final stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
-    AsyncValue(:final value) when value != null => Column(
-      children: value
-          .map(
-            (item) => Padding(
-              padding: const EdgeInsets.only(bottom: NavigationTabViewConfig.universalPadding),
-              child: context.mapTileBuilder<T>()(item, isActive: false),
-            ),
-          )
-          .toList(),
-    ),
-    _ => const CircularProgressIndicator(),
-  };
 }
