@@ -43,7 +43,7 @@ class LibraryTile extends HookConsumerWidget {
                   directusPhotoUrl: library.photo?.url,
                   title: library.title,
                   subtitle:
-                      "${context.localize.building_tile_building} ${library.building?.name}\n${context.localize.room} ${library.room}",
+                      "${context.localize.room} ${library.room}\n${context.localize.building_tile_building} ${library.building?.name}",
                   isActive: isActive,
                   onTap: () {
                     unawaited(ref.trackEvent(UmamiEvents.selectLibrary, value: library.title));

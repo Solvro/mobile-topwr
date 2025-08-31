@@ -43,7 +43,7 @@ class PinkBoxTile extends HookConsumerWidget {
                   directusPhotoUrl: pinkBox.photo?.url,
                   title: title,
                   subtitle:
-                      "${context.localize.building_tile_building} ${pinkBox.building?.name}\n${pinkBox.roomOrNearby}",
+                      "${pinkBox.roomOrNearby}\n${context.localize.building_tile_building} ${pinkBox.building?.name}",
                   isActive: isActive,
                   onTap: () {
                     unawaited(ref.trackEvent(UmamiEvents.selectLibrary, value: title));

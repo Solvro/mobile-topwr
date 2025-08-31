@@ -125,7 +125,7 @@ class _TitlesColumn extends StatelessWidget {
       builder: (context, constraints) {
         const basePadding = WideTileCardConfig.basePadding;
         return Padding(
-          padding: const EdgeInsets.only(left: basePadding, top: basePadding, right: basePadding),
+          padding: const EdgeInsets.only(left: basePadding, top: basePadding, right: basePadding * 1.04),
           child: EnsureVisibleTags(
             title: title,
             titleStyle: isActive ? context.textTheme.titleWhite : context.textTheme.title,
