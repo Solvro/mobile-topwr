@@ -10,8 +10,8 @@ import "../../utils/context_extensions.dart";
 import "../map_view/controllers/bottom_sheet_controller.dart";
 import "../map_view/controllers/controllers_set.dart";
 import "../map_view/widgets/map_config.dart";
-import "map_view_pop_behaviour.dart";
 import "map_data_sheet_list.dart";
+import "map_view_pop_behaviour.dart";
 
 class BottomScrollSheet<T extends GoogleNavigable> extends ConsumerWidget {
   const BottomScrollSheet({super.key});

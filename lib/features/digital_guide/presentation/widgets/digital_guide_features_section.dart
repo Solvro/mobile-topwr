@@ -5,7 +5,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "../../../../config/ui_config.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../widgets/my_expansion_tile.dart";
-import "../../../buildings_view/data/model/building.dart";
+import "../../../multilayer_map/data/model/building.dart";
 import "../../data/models/digital_guide_response.dart";
 import "../../data/models/level_with_regions.dart";
 import "../../data/models/optional_tiles_data.dart";

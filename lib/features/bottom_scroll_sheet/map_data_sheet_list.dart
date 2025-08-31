@@ -11,10 +11,10 @@ import "../../widgets/search_box_app_bar.dart";
 import "../analytics/data/umami.dart";
 import "../analytics/data/umami_events.dart";
 import "../bottom_scroll_sheet/scrollable_list_tab_scroller/scrollable_list_tab_scroller.dart";
-import "../buildings_view/data/model/multilayer_item.dart";
 import "../map_view/controllers/bottom_sheet_controller.dart";
 import "../map_view/controllers/controllers_set.dart";
 import "../map_view/widgets/map_config.dart";
+import "../multilayer_map/data/model/multilayer_item.dart";
 import "../parkings/parkings_view/models/parking.dart";
 import "data_list.dart";
 import "drag_handle.dart";
@@ -66,37 +66,22 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
             aed: (title: context.localize.aed_title, builder: MultilayerMapSingleEntityList<AedItem>.new),
             showers: (
               title: context.localize.showers_title,
-              builder: () => const Column(
-                children: [
-                  ListTile(title: Text("lorem ipsum")),
-                  ListTile(title: Text("lorem ipsum")),
-                  ListTile(title: Text("lorem ipsum")),
-                  ListTile(title: Text("lorem ipsum")),
-                  ListTile(title: Text("lorem ipsum")),
-                ],
-              ),
+              builder: MultilayerMapSingleEntityList<BicycleShowerItem>.new,
             ),
             pinkBoxes: (
               title: context.localize.pink_boxes_title,
-              builder: () => const Column(
-                children: [
-                  ListTile(title: Text("lorem ipsum")),
-                  ListTile(title: Text("lorem ipsum")),
-                  ListTile(title: Text("lorem ipsum")),
-                  ListTile(title: Text("lorem ipsum")),
-                  ListTile(title: Text("lorem ipsum")),
-                ],
-              ),
+              builder: MultilayerMapSingleEntityList<PinkBoxItem>.new,
             ),
           )
         : null;
 
     final tabs = [
+      // this dictates the order of the tabs
       categoryData?.buildings,
       categoryData?.library,
-      categoryData?.showers,
-      categoryData?.pinkBoxes,
       categoryData?.aed,
+      categoryData?.pinkBoxes,
+      categoryData?.showers,
     ].whereNonNull.toList();
 
     return CustomScrollView(

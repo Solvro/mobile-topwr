@@ -1,19 +1,15 @@
-import "dart:async";
-
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_map/flutter_map.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../config/map_view_config.dart";
-import "../../../../gen/assets.gen.dart";
 import "../../../../utils/context_extensions.dart";
-import "../../../analytics/data/umami.dart";
-import "../../../analytics/data/umami_events.dart";
 import "../../../map_view/map_view.dart";
 import "../../data/model/multilayer_item.dart";
 import "../controllers.dart";
 import "../widgets/multilater_tile.dart";
+import "../widgets/multilayer_marker.dart";
 
 @RoutePage()
 class MultilayerMapView extends ConsumerWidget {
@@ -30,18 +26,9 @@ class MultilayerMapView extends ConsumerWidget {
       mapControllers: multilayerMapControllers,
       mapTileBuilder: MultilayerItemTile.new,
       markerBuilder: (item, ref, {required isActive}) => Marker(
-        // TODO(simon-the-shark): different builders for different items
         alignment: Alignment.topCenter,
         point: item.location,
-        child: GestureDetector(
-          onTap: () {
-            unawaited(ref.trackEvent(UmamiEvents.selectBuilding, value: item.toString()));
-            unawaited(ref.read(multilayerMapControllerProvider).onMarkerTap(item));
-          },
-          child: Image.asset(
-            isActive ? Assets.png.mapMarkers.activeMapMarker.path : Assets.png.mapMarkers.mapMarker.path,
-          ),
-        ),
+        child: MultilayerMarker(item: item, isActive: isActive),
       ),
       semanticsLabel: context.localize.map_view_description,
     );

@@ -3,8 +3,8 @@ import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../config/ui_config.dart";
 import "../../widgets/my_error_widget.dart";
-import "../buildings_view/data/model/multilayer_item.dart";
 import "../map_view/widgets/map_config.dart";
+import "../multilayer_map/data/model/multilayer_item.dart";
 
 class MultilayerMapSingleEntityList<T extends MultilayerItem> extends ConsumerWidget {
   const MultilayerMapSingleEntityList({super.key});
