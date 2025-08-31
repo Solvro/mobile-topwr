@@ -582,5 +582,6 @@
   "room": "Room",
   "building_nav_link_tooltip": "Navigate to the building",
   "bicycle_shower_single": "Shower for cyclists",
-  "pink_box_single": "Pink box"
+  "pink_box_single": "Pink box",
+  "multilayer_map_title": "Campus map"
 }

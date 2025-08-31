@@ -100,7 +100,10 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
             child: ScrollableListTabScroller(
               itemCount: tabs.length,
               tabBuilder: (BuildContext context, int index, bool active) => Container(
-                margin: const EdgeInsets.only(right: NavigationTabViewConfig.smallerPadding),
+                margin: const EdgeInsets.only(
+                  right: NavigationTabViewConfig.smallerPadding,
+                  bottom: NavigationTabViewConfig.smallerPadding * 1.5,
+                ),
                 padding: const EdgeInsets.symmetric(
                   horizontal: NavigationTabViewConfig.universalPadding,
                   vertical: NavigationTabViewConfig.smallerPadding,

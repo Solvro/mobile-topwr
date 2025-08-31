@@ -19,7 +19,7 @@ class MultilayerMapView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return MapView<MultilayerItem>(
-      mapViewTexts: (emptyList: context.localize.building_not_found, title: context.localize.buildings_title),
+      mapViewTexts: (emptyList: context.localize.building_not_found, title: context.localize.multilayer_map_title),
       initialActiveItemId: initialActiveItemId,
       animateListTiles: true,
       mapSheetSize: MapViewBottomSheetConfig.buildingsMapSheetSize,

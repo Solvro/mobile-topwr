@@ -3500,5 +3500,9 @@
   "pink_box_single": "Różowa skrzyneczka",
   "@pink_box_single": {
     "description": "Title for pink box single"
+  },
+  "multilayer_map_title": "Mapa kampusu",
+  "@multilayer_map_title": {
+    "description": "Title for multilayer map title"
   }
 }
