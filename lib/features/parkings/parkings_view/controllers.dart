@@ -1,4 +1,3 @@
-import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
@@ -28,7 +27,7 @@ class ParkingsViewController extends _$ParkingsViewController with MapDataContro
   }
   @override
   // ignore: unnecessary_overrides
-  FutureOr<IList<Parking>> build() {
+  FutureOr<MapDataControllerState<Parking>> build() {
     return super.build();
   }
 

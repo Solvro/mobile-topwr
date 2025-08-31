@@ -3,19 +3,24 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "controllers_set.dart";
 
-mixin MapDataController<T extends GoogleNavigable> on AutoDisposeAsyncNotifier<IList<T>> {
+typedef MapDataControllerState<T extends GoogleNavigable> = ({IList<T> data, bool isFilterStrEmpty});
+
+mixin MapDataController<T extends GoogleNavigable> on AutoDisposeAsyncNotifier<MapDataControllerState<T>> {
   var _textFieldFilterText = "";
   late final MapControllers<T> mapControllers;
 
   @override
-  FutureOr<IList<T>> build() async {
+  FutureOr<MapDataControllerState<T>> build() async {
     final itemSelected = ref.watch(mapControllers.activeMarker);
     if (itemSelected != null) {
-      return [itemSelected].lock; // shows only selected building
+      return (
+        data: [itemSelected].lock,
+        isFilterStrEmpty: _textFieldFilterText.isEmpty,
+      ); // shows only selected building
     }
 
     final itemsData = await ref.watch(mapControllers.sourceRepo.future);
-    return itemsData.where(_filterMethod).toIList();
+    return (data: itemsData.where(_filterMethod).toIList(), isFilterStrEmpty: _textFieldFilterText.isEmpty);
   }
 
   bool filterMethod(T item, String filterStr);

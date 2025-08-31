@@ -2,10 +2,10 @@ import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "../../../api_base_rest/client/json.dart";
-import "../../../api_base_rest/translations/translate.dart";
-import "../../../config/env.dart";
-import "../buildings_view.dart";
+import "../../../../api_base_rest/client/json.dart";
+import "../../../../api_base_rest/translations/translate.dart";
+import "../../../../config/env.dart";
+import "../../presentation/views/redirect_views.dart";
 import "../model/building.dart";
 import "../utils/utils.dart";
 

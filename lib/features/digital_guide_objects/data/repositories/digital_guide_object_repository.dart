@@ -2,8 +2,8 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../../api_base_rest/client/json.dart";
-import "../../../buildings_view/repository/buildings_repository.dart";
 import "../../../digital_guide/data/api/digital_guide_get_and_cache.dart";
+import "../../../multilayer_map/data/repositories/buildings_repository.dart";
 import "../models/digital_guide_object_model.dart";
 
 part "digital_guide_object_repository.g.dart";

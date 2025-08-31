@@ -3,8 +3,8 @@ import "package:freezed_annotation/freezed_annotation.dart";
 import "package:latlong2/latlong.dart";
 import "package:solvro_translator_core/solvro_translator_core.dart";
 
-import "../../../api_base_rest/shared_models/image_data.dart";
-import "../../map_view/controllers/controllers_set.dart";
+import "../../../../api_base_rest/shared_models/image_data.dart";
+import "../../../map_view/controllers/controllers_set.dart";
 
 part "building.freezed.dart";
 part "building.g.dart";

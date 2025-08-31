@@ -3484,5 +3484,25 @@
         "example": "3"
       }
     }
+  },
+  "room": "Pokój",
+  "@room": {
+    "description": "Title for room"
+  },
+  "building_nav_link_tooltip": "Przejdź do budynku",
+  "@building_nav_link_tooltip": {
+    "description": "Tooltip text for building nav link"
+  },
+  "bicycle_shower_single": "Prysznic dla rowerzystów",
+  "@bicycle_shower_single": {
+    "description": "Title for bicycle shower single"
+  },
+  "pink_box_single": "Różowa skrzyneczka",
+  "@pink_box_single": {
+    "description": "Title for pink box single"
+  },
+  "multilayer_map_title": "Mapa kampusu",
+  "@multilayer_map_title": {
+    "description": "Title for multilayer map title"
   }
 }

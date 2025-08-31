@@ -3,10 +3,8 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "../../../../features/buildings_view/model/building.dart";
 import "../../config/nav_bar_config.dart";
 import "../about_us_view/about_us_view.dart";
-import "../buildings_view/buildings_view.dart";
 import "../departments/department_detail_view/presentation/department_detail_view.dart";
 import "../departments/departments_view/departments_view.dart";
 import "../digital_guide/data/models/level.dart";
@@ -50,6 +48,9 @@ import "../digital_guide_objects/presentation/digital_guide_object_view.dart";
 import "../guide_detail_view/guide_detail_view.dart";
 import "../guide_view/guide_view.dart";
 import "../home_view/home_view.dart";
+import "../multilayer_map/data/model/building.dart";
+import "../multilayer_map/presentation/views/multilayer_map_view.dart";
+import "../multilayer_map/presentation/views/redirect_views.dart";
 import "../navigation_tab_view/navigation_tab_view.dart";
 import "../newsfeed/presentation/news_list_view.dart";
 import "../parkings/parkings_view/parkings_view.dart";
@@ -78,7 +79,13 @@ class AppRouter extends RootStackRouter {
   List<AutoRoute> get routesWithinTabBar => [
     _NoTransitionRoute(path: "", page: HomeRoute.page),
     _NoTransitionRoute(path: "buildings/:initialActiveItemId", page: BuildingsRoute.page),
+    _NoTransitionRoute(path: "libraries/:initialActiveItemId", page: LibrariesRoute.page),
+    _NoTransitionRoute(path: "aeds/:initialActiveItemId", page: AedsRoute.page),
+    _NoTransitionRoute(path: "bicycle-showers/:initialActiveItemId", page: ShowersRoute.page),
+    _NoTransitionRoute(path: "pink-boxes/:initialActiveItemId", page: PinkBoxesRoute.page),
+    _NoTransitionRoute(path: "multilayer-map/:initialActiveItemId", page: MultilayerMapRoute.page),
     RedirectRoute(path: "buildings", redirectTo: "buildings/null"),
+    RedirectRoute(path: "multilayer-map", redirectTo: "multilayer-map/null"),
     _NoTransitionRoute(path: "parkings/:initialActiveItemId", page: ParkingsRoute.page),
     RedirectRoute(path: "parkings", redirectTo: "parkings/null"),
     _NoTransitionRoute(path: "guide", page: GuideRoute.page),

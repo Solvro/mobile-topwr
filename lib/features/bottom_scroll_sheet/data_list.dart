@@ -22,7 +22,7 @@ class DataSliverList<T extends GoogleNavigable> extends ConsumerWidget {
       AsyncError(:final error, :final stackTrace) => SliverToBoxAdapter(
         child: MyErrorWidget(error, stackTrace: stackTrace),
       ),
-      AsyncValue(:final IList<T> value) => _DataSliverList<T>(value),
+      AsyncValue(:final value) when value != null => _DataSliverList<T>(value.data),
       _ => const DataListLoading(),
     };
   }
