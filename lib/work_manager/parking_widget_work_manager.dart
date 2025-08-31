@@ -2,11 +2,15 @@ import "dart:io";
 
 import "package:workmanager/workmanager.dart";
 
+import "../features/home_screen_app_widgets/widget_service.dart";
 import "background_task_handler.dart";
 
 enum ParkingWorkManagerTask { immediate, periodic }
 
 Future<void> setupParkingWidgetsWorkManager() async {
+  if (Platform.isIOS) {
+    await WidgetService.initialize();
+  }
   await Workmanager().initialize(callbackDispatcher);
 
   // On Android minimum interval is 15 minutes (as of 10/08/2025).
