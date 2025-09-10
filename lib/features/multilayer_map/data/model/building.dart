@@ -48,4 +48,6 @@ abstract class Building with _$Building implements GoogleNavigable {
   LatLng get location => LatLng(latitude, longitude);
 
   String get address => "$addressLine1\n$addressLine2".replaceFirst(",", "\n").replaceAll("\n ", "\n");
+
+  bool get isPolinka => name.toLowerCase().contains("polinka");
 }
