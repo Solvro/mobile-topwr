@@ -58,7 +58,12 @@ class BuildingTile extends HookConsumerWidget {
                     unawaited(ref.trackEvent(UmamiEvents.selectBuilding, value: building.name));
                     unawaited(ref.read(multilayerMapControllerProvider).onMarkerTap(BuildingItem(building: building)));
                   },
-                  customPlaceholder: SvgPicture.asset(Assets.svg.mapPlaceholders.buildingIcon),
+                  customPlaceholder: Center(
+                    child: SvgPicture.asset(
+                      Assets.svg.mapPlaceholders.buildingIcon,
+                      height: WideTileCardConfig.imageSize / 2,
+                    ),
+                  ),
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                 ),
               ),

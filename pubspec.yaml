@@ -70,7 +70,7 @@ dependencies:
       url: https://github.com/ChrisElliotUK/auto_size_text.git
       ref: patch-1
   lottie: ^3.3.1
-  fl_chart: ^1.0.0
+  fl_chart: ^0.70.0
   animated_list_plus: ^0.5.2
   dotted_border: ^3.1.0
   fluttertoast: ^8.2.12
@@ -210,7 +210,11 @@ flutter:
     - assets/animations/sks_closed.json
     - assets/svg/settings.svg
     - assets/certs/przewodnik.pwr.edu.pl.pem
-    - assets/svg/map_placeholders/
+    - assets/svg/map_placeholders/pink_box_icon.svg
+    - assets/svg/map_placeholders/aed_icon.svg
+    - assets/svg/map_placeholders/library_icon.svg
+    - assets/svg/map_placeholders/shower_icon.svg
+    - assets/svg/map_placeholders/building_icon.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -4,6 +4,7 @@ import "package:flutter/material.dart";
 import "package:flutter_svg/svg.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
+import "../../../../config/ui_config.dart";
 import "../../../../gen/assets.gen.dart";
 import "../../../../hooks/use_semantics_service_on_changed_value.dart";
 import "../../../../theme/app_theme.dart";
@@ -50,7 +51,12 @@ class AedTile extends HookConsumerWidget {
                     unawaited(ref.trackEvent(UmamiEvents.selectAed, value: title));
                     unawaited(ref.read(multilayerMapControllerProvider).onMarkerTap(AedItem(aed: aed)));
                   },
-                  customPlaceholder: SvgPicture.asset(Assets.svg.mapPlaceholders.aedIcon),
+                  customPlaceholder: Center(
+                    child: SvgPicture.asset(
+                      Assets.svg.mapPlaceholders.aedIcon,
+                      height: WideTileCardConfig.imageSize / 2,
+                    ),
+                  ),
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                 ),
               ),
