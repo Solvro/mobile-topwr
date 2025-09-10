@@ -53,9 +53,12 @@ class PinkBoxTile extends HookConsumerWidget {
                     unawaited(ref.read(multilayerMapControllerProvider).onMarkerTap(PinkBoxItem(pinkBox: pinkBox)));
                   },
                   customPlaceholder: Center(
-                    child: SvgPicture.asset(
-                      Assets.svg.mapPlaceholders.pinkBoxIcon,
-                      height: WideTileCardConfig.imageSize / 2,
+                    child: Transform.translate(
+                      offset: const Offset(-3, -7),
+                      child: SvgPicture.asset(
+                        Assets.svg.mapPlaceholders.pinkBoxIcon,
+                        height: WideTileCardConfig.imageSize,
+                      ),
                     ),
                   ),
                   crossAxisAlignment: CrossAxisAlignment.stretch,
