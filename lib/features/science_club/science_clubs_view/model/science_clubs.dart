@@ -12,7 +12,7 @@ part "science_clubs.g.dart";
 part "science_clubs.translatable.g.dart";
 
 @JsonEnum(fieldRename: FieldRename.snake)
-enum ScienceClubStatus { active, archived, unknown }
+enum ScienceClubStatus { active, archived, unknown, dissolved }
 
 @JsonEnum(fieldRename: FieldRename.snake)
 enum ScienceClubSource {
@@ -50,5 +50,6 @@ abstract class ScienceClub with _$ScienceClub {
     @translatableField Department? department,
   }) = _ScienceClub;
 
+  const ScienceClub._();
   factory ScienceClub.fromJson(Map<String, dynamic> json) => _$ScienceClubFromJson(json);
 }

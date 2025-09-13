@@ -15,8 +15,11 @@ enum ExternalDigitalGuideMode { webUrl, digitalGuideBuilding, otherDigitalGuideP
 
 @freezed
 @Translatable(makeFieldsTranslatableByDefault: false)
-abstract class BuildingDataResponse with _$BuildingDataResponse, _$BuildingDataResponseTranslatable {
-  const factory BuildingDataResponse({@translatableField required IList<Building> data}) = _BuildingDataResponse;
+abstract class BuildingDataResponse
+    with _$BuildingDataResponse, _$BuildingDataResponseTranslatable
+    implements TranslatableInterface {
+  const factory BuildingDataResponse({required IList<Building> data}) = _BuildingDataResponse;
+
   const BuildingDataResponse._();
   factory BuildingDataResponse.fromJson(Map<String, dynamic> json) => _$BuildingDataResponseFromJson(json);
 }

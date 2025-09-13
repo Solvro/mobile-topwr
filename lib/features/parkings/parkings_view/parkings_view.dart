@@ -17,6 +17,10 @@ import "widgets/parking_tile.dart";
 class ParkingsView extends ConsumerWidget {
   const ParkingsView({super.key, @PathParam("initialActiveItemId") this.initialActiveItemId});
   final String? initialActiveItemId;
+  static String localizedOfflineMessage(BuildContext context) {
+    return context.localize.my_offline_error_message(context.localize.parkings_title);
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return MapView<Parking>(

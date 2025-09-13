@@ -2,6 +2,7 @@ import "package:flutter/widgets.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:solvro_translator_core/solvro_translator_core.dart";
 
+import "../../api_base_rest/client/offline_error.dart";
 import "../../config/ttl_config.dart";
 import "../../services/translations_service/business/solvro_translator.dart";
 import "../../services/translations_service/data/preferred_lang_repository.dart";
@@ -34,11 +35,17 @@ extension TranslateX on Ref {
     final translator = watch(solvroTranslatorProvider);
     final locale = await watch(preferredLanguageRepositoryProvider.future) ?? SolvroLocale.pl;
 
-    return switch (data) {
-      ObjectJSON<T>(:final value) => ObjectJSON(await value.translate(translator, locale)),
-      ListJSON<T>(:final value) => ListJSON(
-        (await Future.wait(value.map((e) => e.translate(translator, locale)))).toIList(),
-      ),
-    };
+    try {
+      return switch (data) {
+        ObjectJSON<T>(:final value) => ObjectJSON(await value.translate(translator, locale)),
+        ListJSON<T>(:final value) => ListJSON(
+          (await Future.wait(value.map((e) => e.translate(translator, locale)))).toIList(),
+        ),
+      };
+    } on RestFrameworkOfflineException {
+      return data;
+    } catch (_) {
+      return data;
+    }
   }
 }

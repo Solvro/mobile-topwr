@@ -1,12 +1,27 @@
 import "package:flutter/material.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 import "package:latlong2/latlong.dart";
+import "package:solvro_translator_core/solvro_translator_core.dart";
 
 import "../../../map_view/controllers/controllers_set.dart";
 import "../api_client/iparking_client.dart";
 
 part "parking.freezed.dart";
 part "parking.g.dart";
+part "parking.translatable.g.dart";
+
+@freezed
+@Translatable(makeFieldsTranslatableByDefault: false)
+abstract class ParkingDataResponse
+    with _$ParkingDataResponse, _$ParkingDataResponseTranslatable
+    implements TranslatableInterface {
+  const factory ParkingDataResponse({@JsonKey(name: "places") @translatableField required List<Parking> data}) =
+      _ParkingDataResponse;
+
+  const ParkingDataResponse._();
+
+  factory ParkingDataResponse.fromJson(Map<String, dynamic> json) => _$ParkingDataResponseFromJson(json);
+}
 
 @freezed
 abstract class Parking with _$Parking implements GoogleNavigable {

@@ -6,22 +6,30 @@ import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "../../../../api_base_rest/client/dio_client.dart";
+import "../../../../api_base_rest/client/json.dart";
+import "../../../../api_base_rest/translations/translate.dart";
 import "../../../../config/env.dart";
-import "../../../../utils/ref_extensions.dart";
-import "../api_client/iparking_client.dart";
 import "../models/parking.dart";
-
+import "../parkings_view.dart";
 import "local_fav_parking_repository.dart";
 
 part "parkings_repository.g.dart";
 
 @riverpod
 Future<IList<Parking>> parkingsRepository(Ref ref) async {
-  final restClient = ref.watch(restClientProvider);
-  ref.setRefresh(ParkingsConfig.parkingsRefreshInterval);
-  final parkingList = await restClient.fetchParkings();
-  return _sortParkingsByFav(parkingList, ref).toIList();
+  final apiUrl = Env.parkingApiUrl;
+
+  final parkingResponse = await ref
+      .getAndCacheDataWithTranslation(
+        apiUrl,
+        ParkingDataResponse.fromJson,
+        localizedOfflineMessage: ParkingsView.localizedOfflineMessage,
+        onRetry: ref.invalidateSelf,
+        extraValidityCheck: (_) => true,
+      )
+      .castAsObject;
+
+  return _sortParkingsByFav(parkingResponse.data, ref).toIList();
 }
 
 DoubleLinkedQueue<Parking> _sortParkingsByFav(Iterable<Parking> list, Ref ref) {
