@@ -24,6 +24,6 @@ Future<void> setupParkingWidgetsWorkManager() async {
     ParkingWorkManagerTask.periodic.name,
     ParkingWorkManagerTask.periodic.name,
     frequency: Duration(minutes: Platform.isAndroid ? 15 : 1),
-    existingWorkPolicy: ExistingPeriodicWorkPolicy.keep,
+    existingWorkPolicy: ExistingWorkPolicy.keep,
   );
 }
