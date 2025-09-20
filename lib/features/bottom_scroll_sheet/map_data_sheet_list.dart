@@ -4,6 +4,7 @@ import "package:flutter/material.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../../theme/app_theme.dart";
+import "../../config/map_view_config.dart";
 import "../../config/ui_config.dart";
 import "../../utils/context_extensions.dart";
 import "../../utils/where_non_null_iterable.dart";
@@ -119,9 +120,9 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
                 itemCount: tabs.length,
                 tabBuilder: (BuildContext context, int index, bool active) => Container(
                   margin: EdgeInsets.only(
-                    left: index == 0 ? NavigationTabViewConfig.universalPadding * 2 : 0,
+                    left: index == 0 ? MapViewBottomSheetConfig.horizontalPadding : 0,
                     right: index == tabs.length - 1
-                        ? NavigationTabViewConfig.universalPadding * 2
+                        ? MapViewBottomSheetConfig.horizontalPadding
                         : NavigationTabViewConfig.smallerPadding,
                     bottom: NavigationTabViewConfig.smallerPadding * 1.5,
                   ),
@@ -144,7 +145,10 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
                 ),
 
                 itemBuilder: (BuildContext context, int index) => Padding(
-                  padding: const EdgeInsets.all(NavigationTabViewConfig.universalPadding),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: MapViewBottomSheetConfig.horizontalPadding,
+                    vertical: NavigationTabViewConfig.universalPadding,
+                  ),
                   child: tabs[index].builder(),
                 ),
               ),
