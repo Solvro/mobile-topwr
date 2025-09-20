@@ -10,7 +10,6 @@ import "../../widgets/my_error_widget.dart";
 import "../map_view/controllers/controllers_set.dart";
 import "../map_view/widgets/map_config.dart";
 import "data_list_loading.dart";
-import "hooks/use_initial_active_id.dart";
 
 class DataSliverList<T extends GoogleNavigable> extends ConsumerWidget {
   const DataSliverList({super.key});
@@ -28,20 +27,13 @@ class DataSliverList<T extends GoogleNavigable> extends ConsumerWidget {
   }
 }
 
-class _DataSliverList<T extends GoogleNavigable> extends HookConsumerWidget {
+class _DataSliverList<T extends GoogleNavigable> extends ConsumerWidget {
   const _DataSliverList(this.items);
 
   final IList<T> items;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    useInitialActiveId(
-      context.initialActiveItemId<T>(),
-      ref.watch(context.activeMarkerController<T>().notifier),
-      ref.watch(context.mapController<T>()).zoomOnMarker,
-      items,
-    );
-
     if (items.isEmpty) return _EmptyDataList<T>();
     final previousLength = usePrevious(items.length);
     final skipAnimationAnyway = previousLength != items.length; // do not animate on active item change
