@@ -91,7 +91,7 @@ class _DialogContent extends StatelessWidget {
               style: context.aboutUsTheme.body.copyWith(height: 1.4, color: context.colorTheme.greyPigeon),
             ),
           ),
-        if (subtitle != null) const SizedBox(height: 6),
+        const SizedBox(height: 6),
         child,
         if (showApplyButton)
           _DialogFooter(applyButtonText: applyButtonText, onApplyButtonPressed: onApplyButtonPressed),
@@ -139,7 +139,7 @@ class _DialogHeader extends StatelessWidget {
     final baseStyle = context.textTheme.headline.copyWith(height: 1.4);
 
     return Padding(
-      padding: const EdgeInsets.all(20).copyWith(bottom: 0),
+      padding: const EdgeInsets.only(left: 20, right: 20, top: 12),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -152,15 +152,18 @@ class _DialogHeader extends StatelessWidget {
           ),
           if (!centerTitle)
             // a workaround, but the actual button provides some padding too and I don't have a power to play around with paddings anymore
-            Opacity(
-              opacity: showCloseButton ? 1 : 0,
-              child: IgnorePointer(
-                ignoring: !showCloseButton,
-                child: MergeSemantics(
-                  child: IconButton(
-                    icon: Semantics(label: context.localize.close, child: const Icon(Icons.close)),
-                    color: context.colorTheme.greyPigeon,
-                    onPressed: () => Navigator.of(context).pop(),
+            Transform.translate(
+              offset: const Offset(10, 0),
+              child: Opacity(
+                opacity: showCloseButton ? 1 : 0,
+                child: IgnorePointer(
+                  ignoring: !showCloseButton,
+                  child: MergeSemantics(
+                    child: IconButton(
+                      icon: Semantics(label: context.localize.close, child: const Icon(Icons.close)),
+                      color: context.colorTheme.greyPigeon,
+                      onPressed: () => Navigator.of(context).pop(),
+                    ),
                   ),
                 ),
               ),

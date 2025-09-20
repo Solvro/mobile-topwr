@@ -575,6 +575,7 @@
   "filters_fab_tooltip": "Filters",
   "library_title": "Library",
   "showers_title": "Showers",
+  "showers_title_long": "Showers for cyclists",
   "pink_boxes_title": "Pink boxes",
   "aed_title": "AED",
   "authors": "{count, plural, =1{Author} other{Authors}}",
@@ -583,5 +584,7 @@
   "building_nav_link_tooltip": "Navigate to the building",
   "bicycle_shower_single": "Shower for cyclists",
   "pink_box_single": "Pink box",
-  "multilayer_map_title": "Campus map"
+  "multilayer_map_title": "Campus map",
+  "map_details_title": "Map details",
+  "map_layer_minimum_required": "At least one layer must be selected"
 }
