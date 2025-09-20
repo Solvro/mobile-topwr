@@ -49,7 +49,7 @@ class LayerOptionsDialog extends StatelessWidget {
             subtitle: null,
             child: child ?? const SizedBox.shrink(),
             onApplyButtonPressed: () {
-              unawaited(ref.trackEvent(UmamiEvents.saveAccessibilityModeDialog));
+              unawaited(ref.trackEvent(UmamiEvents.setLayerOptions));
             },
           ),
         ),
