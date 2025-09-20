@@ -51,10 +51,13 @@ class AedTile extends HookConsumerWidget {
                     unawaited(ref.trackEvent(UmamiEvents.selectAed, value: title));
                     unawaited(ref.read(multilayerMapControllerProvider).onMarkerTap(AedItem(aed: aed)));
                   },
-                  customPlaceholder: Center(
-                    child: SvgPicture.asset(
-                      Assets.svg.mapPlaceholders.aedIcon,
-                      height: WideTileCardConfig.imageSize / 2,
+                  customPlaceholder: ColoredBox(
+                    color: context.colorTheme.greyLight,
+                    child: Center(
+                      child: SvgPicture.asset(
+                        Assets.svg.mapPlaceholders.aedIcon,
+                        height: WideTileCardConfig.imageSize / 2,
+                      ),
                     ),
                   ),
                   crossAxisAlignment: CrossAxisAlignment.stretch,

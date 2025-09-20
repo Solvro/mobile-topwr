@@ -51,10 +51,13 @@ class BicycleShowerTile extends HookConsumerWidget {
                     unawaited(ref.trackEvent(UmamiEvents.selectLibrary, value: title));
                     unawaited(ref.read(multilayerMapControllerProvider).onMarkerTap(BicycleShowerItem(shower: shower)));
                   },
-                  customPlaceholder: Center(
-                    child: SvgPicture.asset(
-                      Assets.svg.mapPlaceholders.showerIcon,
-                      height: WideTileCardConfig.imageSize / 2,
+                  customPlaceholder: ColoredBox(
+                    color: context.colorTheme.greyLight,
+                    child: Center(
+                      child: SvgPicture.asset(
+                        Assets.svg.mapPlaceholders.showerIcon,
+                        height: WideTileCardConfig.imageSize / 2,
+                      ),
                     ),
                   ),
                   crossAxisAlignment: CrossAxisAlignment.stretch,
