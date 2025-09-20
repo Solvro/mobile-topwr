@@ -13,6 +13,7 @@ import "../business/layers_enabled_service.dart";
 import "../data/layer_options.dart";
 import "../data/local_layers_repository.dart";
 import "labels.dart";
+import "layer_marker_icon.dart";
 
 class MapLayerCheckbox extends ConsumerWidget {
   const MapLayerCheckbox(this.option, {super.key});
@@ -46,7 +47,13 @@ class MapLayerCheckbox extends ConsumerWidget {
       child: CheckboxListTile(
         dense: true,
         controlAffinity: ListTileControlAffinity.leading,
-        title: Text(option.localizedLabel(context), style: context.aboutUsTheme.body),
+        title: Row(
+          children: [
+            Text(option.localizedLabel(context), style: context.aboutUsTheme.body),
+            const Spacer(),
+            LayerMarkerIcon(option: option, isEnabled: value),
+          ],
+        ),
         value: value,
         onChanged: onChanged,
         enabled: !checkboxDisabled,
