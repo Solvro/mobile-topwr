@@ -45,8 +45,8 @@ class LayerOptionsDialog extends StatelessWidget {
         Consumer(
           child: Column(children: [for (final option in topLevelLayerOptions) MapLayerCheckbox(option)]),
           builder: (context, ref, child) => RedDialog(
-            title: context.localize.accessibility_profiles,
-            subtitle: context.localize.you_can_adjust,
+            title: context.localize.map_details_title,
+            subtitle: null,
             child: child ?? const SizedBox.shrink(),
             onApplyButtonPressed: () {
               unawaited(ref.trackEvent(UmamiEvents.saveAccessibilityModeDialog));

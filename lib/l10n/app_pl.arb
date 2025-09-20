@@ -3504,5 +3504,9 @@
   "multilayer_map_title": "Mapa kampusu",
   "@multilayer_map_title": {
     "description": "Title for multilayer map title"
+  },
+  "map_details_title": "Szczegóły mapy",
+  "@map_details_title": {
+    "description": "Map layer dialog title picker"
   }
 }

@@ -13,7 +13,7 @@ class LayersButton extends ConsumerWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       backgroundColor: context.colorTheme.whiteSoap,
       child: Icon(Icons.map, color: context.colorTheme.blackMirage),
-      onPressed: () => {LayerOptionsDialog.show(context, ref)},
+      onPressed: () => LayerOptionsDialog.show(context, ref),
     );
   }
 }
