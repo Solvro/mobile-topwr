@@ -19,11 +19,12 @@ class PhotoTrailingWideTileCard extends WideTileCard {
     super.key,
     super.crossAxisAlignment,
     BoxFit boxFit = BoxFit.cover,
+    Widget? customPlaceholder,
   }) : super(
          trailing: SizedBox(
            height: context.textScaler.scale(WideTileCardConfig.imageSize),
            width: WideTileCardConfig.imageSize,
-           child: MyCachedImage(directusPhotoUrl, boxFit: boxFit),
+           child: directusPhotoUrl != null ? MyCachedImage(directusPhotoUrl, boxFit: boxFit) : customPlaceholder,
          ),
        );
 }
