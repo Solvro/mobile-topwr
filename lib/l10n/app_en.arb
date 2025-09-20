@@ -584,5 +584,6 @@
   "bicycle_shower_single": "Shower for cyclists",
   "pink_box_single": "Pink box",
   "multilayer_map_title": "Campus map",
-  "map_details_title": "Map details"
+  "map_details_title": "Map details",
+  "map_layer_minimum_required": "At least one layer must be selected"
 }

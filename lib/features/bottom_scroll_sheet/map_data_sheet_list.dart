@@ -11,6 +11,7 @@ import "../../widgets/search_box_app_bar.dart";
 import "../analytics/data/umami.dart";
 import "../analytics/data/umami_events.dart";
 import "../bottom_scroll_sheet/scrollable_list_tab_scroller/scrollable_list_tab_scroller.dart";
+import "../map_layer_picker/business/layers_enabled_service.dart";
 import "../map_view/controllers/bottom_sheet_controller.dart";
 import "../map_view/controllers/controllers_set.dart";
 import "../map_view/widgets/map_config.dart";
@@ -74,15 +75,26 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
             ),
           )
         : null;
+    final layersEnabled =
+        ref.watch(layersEnabledServiceProvider).valueOrNull ??
+        (
+          buildingsEnabled: false,
+          librariesEnabled: false,
+          aedsEnabled: false,
+          bicycleShowersEnabled: false,
+          pinkBoxesEnabled: false,
+        );
 
     final tabs = [
       // this dictates the order of the tabs
-      categoryData?.buildings,
-      categoryData?.library,
-      categoryData?.aed,
-      categoryData?.pinkBoxes,
-      categoryData?.showers,
+      if (layersEnabled.buildingsEnabled) categoryData?.buildings,
+      if (layersEnabled.librariesEnabled) categoryData?.library,
+      if (layersEnabled.aedsEnabled) categoryData?.aed,
+      if (layersEnabled.pinkBoxesEnabled) categoryData?.pinkBoxes,
+      if (layersEnabled.bicycleShowersEnabled) categoryData?.showers,
     ].whereNonNull.toList();
+
+    final areOnlyOneLayerEnabled = ref.watch(areOnlyOneLayerEnabledProvider).value ?? true;
 
     return CustomScrollView(
       controller: scrollController,
@@ -95,7 +107,7 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
           flexibleSpace: appBar,
           automaticallyImplyLeading: false,
         ),
-        if (categoryData != null)
+        if (categoryData != null && !areOnlyOneLayerEnabled)
           SliverFillRemaining(
             child: ScrollableListTabScroller(
               itemCount: tabs.length,
@@ -129,7 +141,7 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
             ),
           ),
         const SliverToBoxAdapter(child: SizedBox(height: SearchBoxAppBar.defaultBottomPadding)),
-        if (categoryData == null) DataSliverList<T>(),
+        if (categoryData == null || areOnlyOneLayerEnabled) DataSliverList<T>(),
       ],
     );
   }

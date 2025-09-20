@@ -3508,5 +3508,9 @@
   "map_details_title": "Szczegóły mapy",
   "@map_details_title": {
     "description": "Map layer dialog title picker"
+  },
+  "map_layer_minimum_required": "Musi być wybrana conajmniej jedna warstwa",
+  "@map_layer_minimum_required": {
+    "description": "Error message when trying to disable the last map layer"
   }
 }
