@@ -20,6 +20,7 @@ import "../multilayer_map/data/model/multilayer_item.dart";
 import "../parkings/parkings_view/models/parking.dart";
 import "data_list.dart";
 import "drag_handle.dart";
+import "hooks/use_initial_active_id.dart";
 import "multilayer_map_single_entity_list.dart";
 import "navigate_button.dart";
 
@@ -96,6 +97,13 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
     ].whereNonNull.toList();
 
     final areOnlyOneLayerEnabled = ref.watch(areOnlyOneLayerEnabledProvider).value ?? true;
+
+    useInitialActiveId(
+      context.initialActiveItemId<MultilayerItem>(),
+      ref.watch(context.activeMarkerController<MultilayerItem>().notifier),
+      ref.watch(context.mapController<MultilayerItem>()).zoomOnMarker,
+      ref.watch(context.mapDataController<MultilayerItem>()).valueOrNull?.data,
+    );
 
     return CustomScrollView(
       controller: scrollController,

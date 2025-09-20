@@ -10,6 +10,7 @@ class LayersButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return FloatingActionButton.small(
+      heroTag: "layers_button",
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       backgroundColor: context.colorTheme.whiteSoap,
       child: Icon(Icons.map, color: context.colorTheme.blackMirage),
