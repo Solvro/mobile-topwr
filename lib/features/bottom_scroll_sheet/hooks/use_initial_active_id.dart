@@ -12,16 +12,14 @@ void useInitialActiveId<T extends GoogleNavigable>(
   String? initialActiveId,
   ActiveMarkerController<T> activeMarkerController,
   void Function(T item) zoomOnMarker,
-  IList<T> items,
+  IList<T>? items,
 ) {
+  final activeItem = items?.firstWhereOrNull((item) => item.id == initialActiveId);
   useEffect(() {
-    if (initialActiveId == null) return null;
-
-    final activeItem = items.firstWhereOrNull((item) => item.id == initialActiveId);
     if (activeItem != null) {
       unwaitedMicrotask(() async => activeMarkerController.selectItem(activeItem));
       Future.delayed(Durations.short1, () => zoomOnMarker(activeItem));
     }
     return null;
-  }, [initialActiveId]);
+  }, [activeItem]);
 }

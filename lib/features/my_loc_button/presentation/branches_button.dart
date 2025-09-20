@@ -9,6 +9,7 @@ class BranchesButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton.small(
+      heroTag: "branches_button",
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       backgroundColor: context.colorTheme.whiteSoap,
       child: Icon(BottomNavBarIcons.departments_icon, color: context.colorTheme.blackMirage),

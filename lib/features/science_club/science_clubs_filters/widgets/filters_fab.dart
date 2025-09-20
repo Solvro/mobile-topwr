@@ -19,6 +19,7 @@ class FiltersFAB extends ConsumerWidget {
 
     final parentProvider = ProviderScope.containerOf(context);
     return FloatingActionButton(
+      heroTag: "filters_fab",
       tooltip: context.localize.filters_fab_tooltip,
       onPressed: () async {
         unawaited(ref.trackEvent(UmamiEvents.openSciClubsFilterSheet));
