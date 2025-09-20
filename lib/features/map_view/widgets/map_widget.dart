@@ -6,8 +6,8 @@ import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../../config/map_view_config.dart";
 import "../../../theme/app_theme.dart";
-import "../../map_toolbar/presentation/is_following_controller.dart";
-import "../../map_toolbar/presentation/my_loc_layer.dart";
+import "../../my_loc_button/presentation/is_following_controller.dart";
+import "../../my_loc_button/presentation/my_loc_layer.dart";
 import "../controllers/controllers_set.dart";
 import "../data/cache.dart";
 import "load_animated_controller.dart";

@@ -2,9 +2,9 @@ import "package:flutter/material.dart";
 import "package:flutter_map_compass/flutter_map_compass.dart";
 
 import "../../../utils/context_extensions.dart";
-import "../../map_toolbar/presentation/branches_button.dart";
-import "../../map_toolbar/presentation/layers_button.dart";
-import "../../map_toolbar/presentation/my_loc_button.dart";
+import "../../map_layer_picker/presentation/layers_toolbar_button.dart";
+import "../../my_loc_button/presentation/branches_button.dart";
+import "../../my_loc_button/presentation/my_loc_button.dart";
 
 class Toolbar extends StatelessWidget {
   const Toolbar({super.key});
