@@ -15,16 +15,16 @@ class MultilayerMapSingleEntityList<T extends MultilayerItem> extends ConsumerWi
 
     return switch (itemsState) {
       AsyncError(:final error, :final stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
-      AsyncValue(:final value) when value != null => Column(
-        children: value.data
-            .whereType<T>()
-            .map(
-              (item) => Padding(
-                padding: const EdgeInsets.only(bottom: NavigationTabViewConfig.universalPadding),
-                child: context.mapTileBuilder<MultilayerItem>()(item, isActive: false),
-              ),
-            )
-            .toList(),
+      AsyncValue(:final value) when value != null => ListView.separated(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        itemCount: value.data.whereType<T>().length,
+        separatorBuilder: (context, index) => const SizedBox(height: NavigationTabViewConfig.universalPadding),
+        itemBuilder: (context, index) {
+          final items = value.data.whereType<T>().toList();
+          final item = items[index];
+          return context.mapTileBuilder<MultilayerItem>()(item, isActive: false);
+        },
       ),
       _ => const CircularProgressIndicator(),
     };
