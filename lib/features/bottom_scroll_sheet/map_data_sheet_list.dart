@@ -109,34 +109,44 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
         ),
         if (categoryData != null && !areOnlyOneLayerEnabled)
           SliverFillRemaining(
-            child: ScrollableListTabScroller(
-              itemCount: tabs.length,
-              tabBuilder: (BuildContext context, int index, bool active) => Container(
-                margin: const EdgeInsets.only(
-                  right: NavigationTabViewConfig.smallerPadding,
-                  bottom: NavigationTabViewConfig.smallerPadding * 1.5,
+            child: SizedBox(
+              width: double.infinity,
+              child: ScrollableListTabScroller(
+                headerContainerBuilder: (context, child) => Align(
+                  alignment: Alignment.centerLeft,
+                  child: SizedBox(height: context.textScaler.clamp(maxScaleFactor: 2).scale(40), child: child),
                 ),
-                padding: const EdgeInsets.symmetric(
-                  horizontal: NavigationTabViewConfig.universalPadding,
-                  vertical: NavigationTabViewConfig.smallerPadding,
-                ),
-                decoration: BoxDecoration(
-                  color: active ? context.colorTheme.orangePomegranadeLighter : context.colorTheme.greyLight,
-                  borderRadius: BorderRadius.circular(NavigationTabViewConfig.radius),
-                ),
-                child: Text(
-                  tabs[index].title,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontWeight: active ? FontWeight.bold : FontWeight.normal,
-                    color: active ? Colors.white : Colors.black,
+                itemCount: tabs.length,
+                tabBuilder: (BuildContext context, int index, bool active) => Container(
+                  margin: EdgeInsets.only(
+                    left: index == 0 ? NavigationTabViewConfig.universalPadding * 2 : 0,
+                    right: index == tabs.length - 1
+                        ? NavigationTabViewConfig.universalPadding * 2
+                        : NavigationTabViewConfig.smallerPadding,
+                    bottom: NavigationTabViewConfig.smallerPadding * 1.5,
+                  ),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: NavigationTabViewConfig.universalPadding,
+                    vertical: NavigationTabViewConfig.smallerPadding,
+                  ),
+                  decoration: BoxDecoration(
+                    color: active ? context.colorTheme.orangePomegranadeLighter : context.colorTheme.greyLight,
+                    borderRadius: BorderRadius.circular(NavigationTabViewConfig.radius),
+                  ),
+                  child: Text(
+                    tabs[index].title,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontWeight: active ? FontWeight.bold : FontWeight.normal,
+                      color: active ? Colors.white : Colors.black,
+                    ),
                   ),
                 ),
-              ),
 
-              itemBuilder: (BuildContext context, int index) => Padding(
-                padding: const EdgeInsets.all(NavigationTabViewConfig.universalPadding),
-                child: tabs[index].builder(),
+                itemBuilder: (BuildContext context, int index) => Padding(
+                  padding: const EdgeInsets.all(NavigationTabViewConfig.universalPadding),
+                  child: tabs[index].builder(),
+                ),
               ),
             ),
           ),
