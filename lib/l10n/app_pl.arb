@@ -3457,6 +3457,10 @@
   "@showers_title": {
     "description": "Title for showers section"
   },
+  "showers_title_long": "Prysznice dla rowerzystów",
+  "@showers_title_long": {
+    "description": "Title for showers section in long (for dialog)"
+  },
   "pink_boxes_title": "Różowe skrzyneczki",
   "@pink_boxes_title": {
     "description": "Title for pink boxes in toilets"

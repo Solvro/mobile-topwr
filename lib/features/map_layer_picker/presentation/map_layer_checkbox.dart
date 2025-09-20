@@ -4,14 +4,14 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:fluttertoast/fluttertoast.dart";
 
-import "../../../../theme/app_theme.dart";
-import "../../../../theme/colors.dart";
-import "../../../../utils/context_extensions.dart";
-import "../../../analytics/data/umami.dart";
-import "../../../analytics/data/umami_events.dart";
-import "../../business/layers_enabled_service.dart";
-import "../../data/layer_options.dart";
-import "../../data/local_layers_repository.dart";
+import "../../../theme/app_theme.dart";
+import "../../../theme/colors.dart";
+import "../../../utils/context_extensions.dart";
+import "../../analytics/data/umami.dart";
+import "../../analytics/data/umami_events.dart";
+import "../business/layers_enabled_service.dart";
+import "../data/layer_options.dart";
+import "../data/local_layers_repository.dart";
 import "labels.dart";
 
 class MapLayerCheckbox extends ConsumerWidget {

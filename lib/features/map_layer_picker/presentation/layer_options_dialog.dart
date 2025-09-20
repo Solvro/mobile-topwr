@@ -3,11 +3,11 @@ import "dart:async";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../../../../utils/context_extensions.dart";
-import "../../../analytics/data/umami.dart";
-import "../../../analytics/data/umami_events.dart";
-import "../../../digital_guide/tabs/accessibility_dialog/presentation/red_dialog.dart";
-import "../../data/layer_options.dart";
+import "../../../utils/context_extensions.dart";
+import "../../analytics/data/umami.dart";
+import "../../analytics/data/umami_events.dart";
+import "../../digital_guide/tabs/accessibility_dialog/presentation/red_dialog.dart";
+import "../data/layer_options.dart";
 import "map_layer_checkbox.dart";
 
 class LayerOptionsDialog extends StatelessWidget {

@@ -575,6 +575,7 @@
   "filters_fab_tooltip": "Filters",
   "library_title": "Library",
   "showers_title": "Showers",
+  "showers_title_long": "Showers for cyclists",
   "pink_boxes_title": "Pink boxes",
   "aed_title": "AED",
   "authors": "{count, plural, =1{Author} other{Authors}}",

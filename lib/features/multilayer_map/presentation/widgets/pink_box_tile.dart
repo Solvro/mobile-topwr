@@ -52,12 +52,15 @@ class PinkBoxTile extends HookConsumerWidget {
                     unawaited(ref.trackEvent(UmamiEvents.selectLibrary, value: title));
                     unawaited(ref.read(multilayerMapControllerProvider).onMarkerTap(PinkBoxItem(pinkBox: pinkBox)));
                   },
-                  customPlaceholder: Center(
-                    child: Transform.translate(
-                      offset: const Offset(-3, -7),
-                      child: SvgPicture.asset(
-                        Assets.svg.mapPlaceholders.pinkBoxIcon,
-                        height: WideTileCardConfig.imageSize,
+                  customPlaceholder: ColoredBox(
+                    color: context.colorTheme.greyLight,
+                    child: Center(
+                      child: Transform.translate(
+                        offset: const Offset(-3, -7),
+                        child: SvgPicture.asset(
+                          Assets.svg.mapPlaceholders.pinkBoxIcon,
+                          height: WideTileCardConfig.imageSize,
+                        ),
                       ),
                     ),
                   ),

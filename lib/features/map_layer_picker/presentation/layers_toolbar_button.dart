@@ -2,7 +2,7 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../theme/app_theme.dart";
-import "picker/layer_options_dialog.dart";
+import "layer_options_dialog.dart";
 
 class LayersButton extends ConsumerWidget {
   const LayersButton({super.key});
