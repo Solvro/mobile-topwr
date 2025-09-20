@@ -2,7 +2,9 @@ import "package:flutter/material.dart";
 import "package:flutter_map_compass/flutter_map_compass.dart";
 
 import "../../../utils/context_extensions.dart";
-import "../../my_location_button/presentation/my_loc_button.dart";
+import "../../map_toolbar/presentation/branches_button.dart";
+import "../../map_toolbar/presentation/layers_button.dart";
+import "../../map_toolbar/presentation/my_loc_button.dart";
 
 class Toolbar extends StatelessWidget {
   const Toolbar({super.key});
@@ -14,9 +16,11 @@ class Toolbar extends StatelessWidget {
       right: context.textScaler.clamp(maxScaleFactor: 1.5).scale(8),
       child: const SafeArea(
         child: Column(
+          spacing: 4,
           children: [
             MyLocationButton(),
-            SizedBox(height: 4),
+            LayersButton(),
+            BranchesButton(),
             MapCompass.cupertino(hideIfRotatedNorth: true, padding: EdgeInsets.zero),
           ],
         ),
