@@ -44,9 +44,6 @@ extension TranslateX on Ref {
       };
     } on RestFrameworkOfflineException {
       return data;
-      // ignore: avoid_catches_without_on_clauses
-    } catch (_) {
-      return data;
     }
   }
 }
