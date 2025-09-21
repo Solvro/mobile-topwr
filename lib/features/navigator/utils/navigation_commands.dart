@@ -251,4 +251,8 @@ extension NavigationX on WidgetRef {
   Future<void> navigateNewsfeed() async {
     await _router.push(const NewsfeedRoute());
   }
+
+  Future<void> navigateCalendar() async {
+    await _router.push(const CalendarRoute());
+  }
 }

@@ -43,6 +43,7 @@ enum UmamiEvents {
   openExternalAccessibilityDeclarationWebsite,
   searchParkings,
   searchGuideArticles,
+  searchCalendar,
   openFAQQuestion,
   closeFAQQuestion,
   openNotificationInfoBellDialog,
