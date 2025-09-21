@@ -583,5 +583,11 @@
   "building_nav_link_tooltip": "Navigate to the building",
   "bicycle_shower_single": "Shower for cyclists",
   "pink_box_single": "Pink box",
-  "multilayer_map_title": "Campus map"
+  "multilayer_map_title": "Campus map",
+  "main_branch": "Wrocław University of Science and Technology",
+  "jelenia_gora_branch": "Jelenia Góra Branch",
+  "walbrzych_branch": "Wałbrzych Branch",
+  "legnica_branch": "Legnica Branch",
+  "branch": "Branch",
+  "pick_branch": "Pick branch"
 }

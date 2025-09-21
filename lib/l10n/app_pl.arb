@@ -3504,5 +3504,11 @@
   "multilayer_map_title": "Mapa kampusu",
   "@multilayer_map_title": {
     "description": "Title for multilayer map title"
-  }
+  },
+  "main_branch": "Politechnika Wrocławska",
+  "jelenia_gora_branch": "Filia w Jeleniej Górze",
+  "walbrzych_branch": "Filia w Wałbrzychu",
+  "legnica_branch": "Filia w Legnicy",
+  "branch": "Filia",
+  "pick_branch": "Wybierz filię"
 }
