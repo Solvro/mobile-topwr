@@ -23,14 +23,14 @@ class PlannerAdvertBanner extends ConsumerWidget {
     final state = ref.watch(plannerAdvertContentRepositoryProvider);
     return switch (state) {
       AsyncError(:final error, :final stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
-      AsyncValue(:final PlannerBanner value) => _PlannerAdvertBanner(value),
-      _ => const Padding(
+      AsyncLoading() => const Padding(
         padding: EdgeInsets.only(top: HomeViewConfig.paddingMedium),
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: HomeViewConfig.paddingMedium),
           child: HorizontalRectangularSectionLoading(),
         ),
       ),
+      AsyncValue(:final PlannerBanner? value) => value != null ? _PlannerAdvertBanner(value) : const SizedBox.shrink(),
     };
   }
 }
