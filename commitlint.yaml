@@ -33,4 +33,5 @@ rules:
       - translation
       - remote-config
       - news
+      - deps
     # YES, you can add new ones if you have a new feature
