@@ -5,7 +5,8 @@ rules:
     - always
     - - digital-guide
       - about-us
-      - academic-calendar
+      - academic-calendar # these are settings for the academic calendar like day swaps, start/end dates etc.
+      - calendar # this is the new calendar screen
       - analytics
       - changelog
       - app-streak
