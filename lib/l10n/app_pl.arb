@@ -3457,6 +3457,10 @@
   "@showers_title": {
     "description": "Title for showers section"
   },
+  "showers_title_long": "Prysznice dla rowerzystów",
+  "@showers_title_long": {
+    "description": "Title for showers section in long (for dialog)"
+  },
   "pink_boxes_title": "Różowe skrzyneczki",
   "@pink_boxes_title": {
     "description": "Title for pink boxes in toilets"
@@ -3510,5 +3514,13 @@
   "walbrzych_branch": "Filia w Wałbrzychu",
   "legnica_branch": "Filia w Legnicy",
   "branch": "Filia",
-  "pick_branch": "Wybierz filię"
+  "pick_branch": "Wybierz filię",
+  "map_details_title": "Szczegóły mapy",
+  "@map_details_title": {
+    "description": "Map layer dialog title picker"
+  },
+  "map_layer_minimum_required": "Musi być wybrana co najmniej jedna warstwa",
+  "@map_layer_minimum_required": {
+    "description": "Error message when trying to disable the last map layer"
+  }
 }

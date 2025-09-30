@@ -52,10 +52,13 @@ class LibraryTile extends HookConsumerWidget {
                     unawaited(ref.trackEvent(UmamiEvents.selectLibrary, value: library.title));
                     unawaited(ref.read(multilayerMapControllerProvider).onMarkerTap(LibraryItem(library: library)));
                   },
-                  customPlaceholder: Center(
-                    child: SvgPicture.asset(
-                      Assets.svg.mapPlaceholders.libraryIcon,
-                      height: WideTileCardConfig.imageSize / 2,
+                  customPlaceholder: ColoredBox(
+                    color: context.colorTheme.greyLight,
+                    child: Center(
+                      child: SvgPicture.asset(
+                        Assets.svg.mapPlaceholders.libraryIcon,
+                        height: WideTileCardConfig.imageSize / 2,
+                      ),
                     ),
                   ),
                   crossAxisAlignment: CrossAxisAlignment.stretch,

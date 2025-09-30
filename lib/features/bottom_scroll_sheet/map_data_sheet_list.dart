@@ -4,6 +4,7 @@ import "package:flutter/material.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../../theme/app_theme.dart";
+import "../../config/map_view_config.dart";
 import "../../config/ui_config.dart";
 import "../../utils/context_extensions.dart";
 import "../../utils/where_non_null_iterable.dart";
@@ -11,6 +12,7 @@ import "../../widgets/search_box_app_bar.dart";
 import "../analytics/data/umami.dart";
 import "../analytics/data/umami_events.dart";
 import "../bottom_scroll_sheet/scrollable_list_tab_scroller/scrollable_list_tab_scroller.dart";
+import "../map_layer_picker/business/layers_enabled_service.dart";
 import "../map_view/controllers/bottom_sheet_controller.dart";
 import "../map_view/controllers/controllers_set.dart";
 import "../map_view/widgets/map_config.dart";
@@ -18,6 +20,7 @@ import "../multilayer_map/data/model/multilayer_item.dart";
 import "../parkings/parkings_view/models/parking.dart";
 import "data_list.dart";
 import "drag_handle.dart";
+import "hooks/use_initial_active_id.dart";
 import "multilayer_map_single_entity_list.dart";
 import "navigate_button.dart";
 
@@ -74,15 +77,33 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
             ),
           )
         : null;
+    final layersEnabled =
+        ref.watch(layersEnabledServiceProvider).valueOrNull ??
+        (
+          buildingsEnabled: false,
+          librariesEnabled: false,
+          aedsEnabled: false,
+          bicycleShowersEnabled: false,
+          pinkBoxesEnabled: false,
+        );
 
     final tabs = [
       // this dictates the order of the tabs
-      categoryData?.buildings,
-      categoryData?.library,
-      categoryData?.aed,
-      categoryData?.pinkBoxes,
-      categoryData?.showers,
+      if (layersEnabled.buildingsEnabled) categoryData?.buildings,
+      if (layersEnabled.librariesEnabled) categoryData?.library,
+      if (layersEnabled.aedsEnabled) categoryData?.aed,
+      if (layersEnabled.pinkBoxesEnabled) categoryData?.pinkBoxes,
+      if (layersEnabled.bicycleShowersEnabled) categoryData?.showers,
     ].whereNonNull.toList();
+
+    final areOnlyOneLayerEnabled = ref.watch(areOnlyOneLayerEnabledProvider).value ?? true;
+
+    useInitialActiveId(
+      context.initialActiveItemId<MultilayerItem>(),
+      ref.watch(context.activeMarkerController<MultilayerItem>().notifier),
+      ref.watch(context.mapController<MultilayerItem>()).zoomOnMarker,
+      ref.watch(context.mapDataController<MultilayerItem>()).valueOrNull?.data,
+    );
 
     return CustomScrollView(
       controller: scrollController,
@@ -95,41 +116,54 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
           flexibleSpace: appBar,
           automaticallyImplyLeading: false,
         ),
-        if (categoryData != null)
+        if (categoryData != null && !areOnlyOneLayerEnabled)
           SliverFillRemaining(
-            child: ScrollableListTabScroller(
-              itemCount: tabs.length,
-              tabBuilder: (BuildContext context, int index, bool active) => Container(
-                margin: const EdgeInsets.only(
-                  right: NavigationTabViewConfig.smallerPadding,
-                  bottom: NavigationTabViewConfig.smallerPadding * 1.5,
+            child: SizedBox(
+              width: double.infinity,
+              child: ScrollableListTabScroller(
+                headerContainerBuilder: (context, child) => Align(
+                  alignment: Alignment.centerLeft,
+                  child: SizedBox(height: context.textScaler.clamp(maxScaleFactor: 2).scale(40), child: child),
                 ),
-                padding: const EdgeInsets.symmetric(
-                  horizontal: NavigationTabViewConfig.universalPadding,
-                  vertical: NavigationTabViewConfig.smallerPadding,
-                ),
-                decoration: BoxDecoration(
-                  color: active ? context.colorTheme.orangePomegranadeLighter : context.colorTheme.greyLight,
-                  borderRadius: BorderRadius.circular(NavigationTabViewConfig.radius),
-                ),
-                child: Text(
-                  tabs[index].title,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontWeight: active ? FontWeight.bold : FontWeight.normal,
-                    color: active ? Colors.white : Colors.black,
+                itemCount: tabs.length,
+                tabBuilder: (BuildContext context, int index, bool active) => Container(
+                  margin: EdgeInsets.only(
+                    left: index == 0 ? MapViewBottomSheetConfig.horizontalPadding : 0,
+                    right: index == tabs.length - 1
+                        ? MapViewBottomSheetConfig.horizontalPadding
+                        : NavigationTabViewConfig.smallerPadding,
+                    bottom: NavigationTabViewConfig.smallerPadding * 1.5,
+                  ),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: NavigationTabViewConfig.universalPadding,
+                    vertical: NavigationTabViewConfig.smallerPadding,
+                  ),
+                  decoration: BoxDecoration(
+                    color: active ? context.colorTheme.orangePomegranadeLighter : context.colorTheme.greyLight,
+                    borderRadius: BorderRadius.circular(NavigationTabViewConfig.radius),
+                  ),
+                  child: Text(
+                    tabs[index].title,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontWeight: active ? FontWeight.bold : FontWeight.normal,
+                      color: active ? Colors.white : Colors.black,
+                    ),
                   ),
                 ),
-              ),
 
-              itemBuilder: (BuildContext context, int index) => Padding(
-                padding: const EdgeInsets.all(NavigationTabViewConfig.universalPadding),
-                child: tabs[index].builder(),
+                itemBuilder: (BuildContext context, int index) => Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: MapViewBottomSheetConfig.horizontalPadding,
+                    vertical: NavigationTabViewConfig.universalPadding,
+                  ),
+                  child: tabs[index].builder(),
+                ),
               ),
             ),
           ),
         const SliverToBoxAdapter(child: SizedBox(height: SearchBoxAppBar.defaultBottomPadding)),
-        if (categoryData == null) DataSliverList<T>(),
+        if (categoryData == null || areOnlyOneLayerEnabled) DataSliverList<T>(),
       ],
     );
   }

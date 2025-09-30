@@ -13,12 +13,14 @@ class MyLocationButton extends ConsumerWidget {
     return Transform.scale(
       scale: context.textScaler.clamp(minScaleFactor: 0.9, maxScaleFactor: 1.5).scale(1),
       child: FloatingActionButton.small(
-        backgroundColor: context.colorTheme.whiteSoap,
+        heroTag: "my_location_button",
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        backgroundColor: context.colorTheme.orangePomegranade,
         onPressed: ref.watch(isFollowingCurrentLocationControllerProvider.notifier).buttonClicked,
         child: Icon(
           semanticLabel: context.localize.my_location,
           Icons.my_location,
-          color: context.colorTheme.orangePomegranade,
+          color: context.colorTheme.whiteSoap,
         ),
       ),
     );
