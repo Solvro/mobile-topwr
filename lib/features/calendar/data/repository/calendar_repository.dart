@@ -1,3 +1,4 @@
+import "package:collection/collection.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
@@ -22,5 +23,5 @@ Future<IList<CalendarData>> calendarRepository(Ref ref) async {
         onRetry: ref.invalidateSelf,
       )
       .castAsObject;
-  return calendarResponse.data.map((data) => data).toIList();
+  return calendarResponse.data.sortedBy((data) => DateTime.parse(data.startTime)).toIList();
 }

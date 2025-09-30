@@ -68,21 +68,19 @@ class _CalendarViewContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final currentYear = DateTime.now().year;
     final groupedByYear = groupBy<CalendarData, int>(calendarData, (e) => e.year);
     final children = groupedByYear.entries.map((year) {
       final groupedByMonth = groupBy<CalendarData, int>(year.value, (e) => e.month);
-      return [
-        _YearHeader(year: year.key),
-        ...groupedByMonth.entries.map((month) {
-          final groupedByDay = groupBy<CalendarData, int>(month.value, (e) => e.day);
-          return [
-            _MonthHeader(monthNumber: month.key),
-            ...groupedByDay.entries.map((day) {
-              return CalendarDaySection(day: day.key, events: day.value.toIList());
-            }),
-          ];
-        }).flattened,
-      ];
+      return groupedByMonth.entries.map((month) {
+        final groupedByDay = groupBy<CalendarData, int>(month.value, (e) => e.day);
+        return [
+          _MonthHeader(monthNumber: month.key, year: year.key != currentYear ? year.key : null),
+          ...groupedByDay.entries.map((day) {
+            return CalendarDaySection(day: day.key, events: day.value.toIList());
+          }),
+        ];
+      }).flattened;
     }).flattenedToList;
     return ListView.builder(
       padding: const EdgeInsets.symmetric(horizontal: HomeViewConfig.paddingLarge),
@@ -92,27 +90,18 @@ class _CalendarViewContent extends StatelessWidget {
   }
 }
 
-class _YearHeader extends StatelessWidget {
-  const _YearHeader({required this.year});
-  final int year;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: HomeViewConfig.paddingLarge),
-      child: Text(year.toString(), style: context.textTheme.headline),
-    );
-  }
-}
-
 class _MonthHeader extends StatelessWidget {
-  const _MonthHeader({required this.monthNumber});
+  const _MonthHeader({required this.monthNumber, this.year});
   final int monthNumber;
+  final int? year;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: HomeViewConfig.paddingMedium, bottom: HomeViewConfig.paddingMedium),
-      child: Text(monthNumber.monthToString(context), style: context.textTheme.megaBigHeadline),
+      child: Text(
+        monthNumber.monthToString(context) + (year != null ? " $year" : ""),
+        style: context.textTheme.megaBigHeadline,
+      ),
     );
   }
 }
