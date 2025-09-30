@@ -64,7 +64,6 @@ Future<IList<CalendarYearEvents>> getEventsPerDaysUseCase(Ref ref) async {
         final day = dayEntry.key;
         final events = dayEntry.value.toIList();
         final dayDateTime = DateTime(year, month, day);
-
         days.add((day: day, events: events, weekday: dayDateTime.weekday));
       }
 

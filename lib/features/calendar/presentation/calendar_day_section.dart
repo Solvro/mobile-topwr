@@ -26,6 +26,7 @@ class CalendarDaySection extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const SizedBox(height: 12),
                 Text(day.toString(), style: context.textTheme.megaBigHeadline),
                 Text(weekday.weekdayToShort(context), style: context.textTheme.boldBody),
               ],
