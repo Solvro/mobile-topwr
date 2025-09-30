@@ -47,11 +47,3 @@ extension WeekdayFormatter on int {
     return weekdayShorts[this - 1];
   }
 }
-
-class TimeRangeFormatter {
-  static String getTimeRange(String startTime, String endTime) {
-    final String startHour = startTime.getHour();
-    final String endHour = endTime.getHour();
-    return "$startHour-$endHour";
-  }
-}

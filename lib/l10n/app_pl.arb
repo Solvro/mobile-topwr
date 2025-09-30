@@ -157,6 +157,10 @@
   "@study_circles": {
     "description": "Title for student organizations section"
   },
+  "day": "dzień",
+  "@day": {
+    "description": "Unit of time measurement (singular)"
+  },
   "days": "dni",
   "@days": {
     "description": "Unit of time measurement"
@@ -3522,41 +3526,79 @@
     "description": "Description of calendar section"
   },
   "january": "Styczeń",
-  "@january": {"description": "January"},
+  "@january": {
+    "description": "January"
+  },
   "february": "Luty",
-  "@february": {"description": "February"},
+  "@february": {
+    "description": "February"
+  },
   "march": "Marzec",
-  "@march": {"description": "March"},
+  "@march": {
+    "description": "March"
+  },
   "april": "Kwiecień",
-  "@april": {"description": "April"},
+  "@april": {
+    "description": "April"
+  },
   "may": "Maj",
-  "@may": {"description": "May"},
+  "@may": {
+    "description": "May"
+  },
   "june": "Czerwiec",
-  "@june": {"description": "June"},
+  "@june": {
+    "description": "June"
+  },
   "july": "Lipiec",
-  "@july": {"description": "July"},
+  "@july": {
+    "description": "July"
+  },
   "august": "Sierpień",
-  "@august": {"description": "August"},
+  "@august": {
+    "description": "August"
+  },
   "september": "Wrzesień",
-  "@september": {"description": "September"},
+  "@september": {
+    "description": "September"
+  },
   "october": "Październik",
-  "@october": {"description": "October"},
+  "@october": {
+    "description": "October"
+  },
   "november": "Listopad",
-  "@november": {"description": "November"},
+  "@november": {
+    "description": "November"
+  },
   "december": "Grudzień",
-  "@december": {"description": "December"},
+  "@december": {
+    "description": "December"
+  },
   "monday": "Pn.",
-  "@monday": {"description": "Short form of Monday"},
+  "@monday": {
+    "description": "Short form of Monday"
+  },
   "tuesday": "Wt.",
-  "@tuesday": {"description": "Short form of Tuesday"},
+  "@tuesday": {
+    "description": "Short form of Tuesday"
+  },
   "wednesday": "Śr.",
-  "@wednesday": {"description": "Short form of Wednesday"},
+  "@wednesday": {
+    "description": "Short form of Wednesday"
+  },
   "thursday": "Cz.",
-  "@thursday": {"description": "Short form of Thursday"},
+  "@thursday": {
+    "description": "Short form of Thursday"
+  },
   "friday": "Pt.",
-  "@friday": {"description": "Short form of Friday"},
+  "@friday": {
+    "description": "Short form of Friday"
+  },
   "saturday": "Sb.",
-  "@saturday": {"description": "Short form of Saturday"},
+  "@saturday": {
+    "description": "Short form of Saturday"
+  },
   "sunday": "Nd.",
-  "@sunday": {"description": "Short form of Sunday"}
+  "@sunday": {
+    "description": "Short form of Sunday"
+  }
 }
