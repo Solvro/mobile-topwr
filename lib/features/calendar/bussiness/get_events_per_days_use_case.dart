@@ -1,7 +1,9 @@
+import "package:collection/collection.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
+import "../data/model/calendar_data.dart";
 import "../data/repository/calendar_repository.dart";
 import "models.dart";
 
@@ -11,78 +13,87 @@ part "get_events_per_days_use_case.g.dart";
 Future<IList<CalendarYearEvents>> getEventsPerDaysUseCase(Ref ref) async {
   final events = await ref.watch(calendarRepositoryProvider.future);
 
-  // Group events by year, month, and day
-  final Map<int, Map<int, Map<int, List<SingleCalendarItem>>>> groupedEvents = {};
+  // Generate all event-day combinations
+  final eventDays = events.expand(_generateEventDays).toList();
 
-  for (final event in events) {
-    final startDate = DateTime.parse(event.startTime);
-    final endDate = DateTime.parse(event.endTime);
+  // Group by year, then month, then day using collection utilities
+  final groupedByYear = groupBy(eventDays, (eventDay) => eventDay.date.year);
 
-    // Create a list of all days this event spans
-    final days = <DateTime>[];
-    var currentDate = DateTime(startDate.year, startDate.month, startDate.day);
-    final endDay = DateTime(endDate.year, endDate.month, endDate.day);
+  return groupedByYear.entries
+      .map((yearEntry) => _buildYearEvents(yearEntry.key, yearEntry.value))
+      .sorted((a, b) => a.year.compareTo(b.year))
+      .toIList();
+}
 
-    while (!currentDate.isAfter(endDay)) {
-      days.add(currentDate);
-      currentDate = currentDate.add(const Duration(days: 1));
-    }
-
-    // Add the event to each day it spans
-    for (var i = 0; i < days.length; i++) {
-      final day = days[i];
-      final year = day.year;
-      final month = day.month;
-      final dayOfMonth = day.day;
-
-      // Create the calendar item with appropriate time format
-      final calendarItem = (
-        name: event.name,
-        location: event.location ?? "",
-        hoursString: days.length == 1 ? _formatTimeRange(startDate, endDate) : "dzień ${i + 1}/${days.length}",
-      );
-
-      groupedEvents[year] ??= {};
-      groupedEvents[year]![month] ??= {};
-      groupedEvents[year]![month]![dayOfMonth] ??= [];
-      groupedEvents[year]![month]![dayOfMonth]!.add(calendarItem);
-    }
+/// Generates a range of dates from start to end (inclusive)
+Iterable<DateTime> _generateDateRange(DateTime start, DateTime end) sync* {
+  var current = start;
+  while (!current.isAfter(end)) {
+    yield current;
+    current = current.add(const Duration(days: 1));
   }
+}
 
-  // Convert to the nested structure
-  final result = <CalendarYearEvents>[];
+/// Generates all days an event spans with appropriate calendar items
+List<({DateTime date, SingleCalendarItem item})> _generateEventDays(CalendarData event) {
+  final startDate = DateTime.parse(event.startTime);
+  final endDate = DateTime.parse(event.endTime);
 
-  for (final yearEntry in groupedEvents.entries) {
-    final year = yearEntry.key;
-    final months = <CalendarMonthEvents>[];
+  final startDay = DateTime(startDate.year, startDate.month, startDate.day);
+  final endDay = DateTime(endDate.year, endDate.month, endDate.day);
 
-    for (final monthEntry in yearEntry.value.entries) {
-      final month = monthEntry.key;
-      final days = <CalendarDayEvents>[];
+  return _generateDateRange(
+    startDay,
+    endDay,
+  ).map((date) => (date: date, item: _createCalendarItem(event, startDate, endDate, date))).toList();
+}
 
-      for (final dayEntry in monthEntry.value.entries) {
-        final day = dayEntry.key;
-        final events = dayEntry.value.toIList();
-        final dayDateTime = DateTime(year, month, day);
-        days.add((day: day, events: events, weekday: dayDateTime.weekday));
-      }
+/// Creates a calendar item for a specific day
+SingleCalendarItem _createCalendarItem(CalendarData event, DateTime startDate, DateTime endDate, DateTime dayDate) {
+  final isSingleDay =
+      startDate.year == endDate.year && startDate.month == endDate.month && startDate.day == endDate.day;
 
-      // Sort days within the month
-      days.sort((a, b) => a.day.compareTo(b.day));
+  final totalDays = _generateDateRange(
+    DateTime(startDate.year, startDate.month, startDate.day),
+    DateTime(endDate.year, endDate.month, endDate.day),
+  ).length;
 
-      months.add((month: month, events: days.toIList()));
-    }
+  final dayNumber = _generateDateRange(DateTime(startDate.year, startDate.month, startDate.day), dayDate).length;
 
-    // Sort months within the year
-    months.sort((a, b) => a.month.compareTo(b.month));
+  final hoursString = isSingleDay ? _formatTimeRange(startDate, endDate) : "dzień $dayNumber/$totalDays";
 
-    result.add((year: year, events: months.toIList()));
-  }
+  return (name: event.name, location: event.location ?? "", hoursString: hoursString);
+}
 
-  // Sort years
-  result.sort((a, b) => a.year.compareTo(b.year));
+/// Builds year events from grouped event days
+CalendarYearEvents _buildYearEvents(int year, List<({DateTime date, SingleCalendarItem item})> eventDays) {
+  final groupedByMonth = groupBy(eventDays, (eventDay) => eventDay.date.month);
 
-  return result.toIList();
+  final months = groupedByMonth.entries
+      .map((monthEntry) => _buildMonthEvents(monthEntry.key, monthEntry.value))
+      .sorted((a, b) => a.month.compareTo(b.month))
+      .toIList();
+
+  return (year: year, events: months);
+}
+
+/// Builds month events from grouped event days
+CalendarMonthEvents _buildMonthEvents(int month, List<({DateTime date, SingleCalendarItem item})> eventDays) {
+  final groupedByDay = groupBy(eventDays, (eventDay) => eventDay.date.day);
+
+  final days = groupedByDay.entries
+      .map((dayEntry) => _buildDayEvents(dayEntry.key, dayEntry.value))
+      .sorted((a, b) => a.day.compareTo(b.day))
+      .toIList();
+
+  return (month: month, events: days);
+}
+
+/// Builds day events from grouped event days
+CalendarDayEvents _buildDayEvents(int day, List<({DateTime date, SingleCalendarItem item})> eventDays) {
+  final events = eventDays.map((eventDay) => eventDay.item).toIList();
+  final firstEvent = eventDays.first;
+  return (day: day, events: events, weekday: firstEvent.date.weekday);
 }
 
 String _formatTimeRange(DateTime start, DateTime end) {
