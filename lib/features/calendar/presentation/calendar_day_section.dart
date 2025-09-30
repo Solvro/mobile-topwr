@@ -3,20 +3,19 @@ import "package:flutter/material.dart";
 
 import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
-import "../data/model/calendar_data.dart";
+import "../bussiness/models.dart";
 import "../utils/calendar_view_extension.dart";
 import "calendar_tile.dart";
 
 class CalendarDaySection extends StatelessWidget {
-  const CalendarDaySection({super.key, required this.day, required this.events});
+  const CalendarDaySection({super.key, required this.day, required this.events, required this.weekday});
 
   final int day;
-  final IList<CalendarData> events;
+  final int weekday;
+  final IList<SingleCalendarItem> events;
 
   @override
   Widget build(BuildContext context) {
-    final weekday = DateTime.parse(events.first.startTime).weekday;
-
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: HomeViewConfig.paddingSmall),
       child: Row(

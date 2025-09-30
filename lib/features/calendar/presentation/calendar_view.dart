@@ -15,7 +15,8 @@ import "../../../widgets/search_box_app_bar.dart";
 import "../../analytics/data/umami.dart";
 import "../../analytics/data/umami_events.dart";
 import "../../departments/departments_view/widgets/departments_view_loading.dart";
-import "../data/model/calendar_data.dart";
+import "../bussiness/get_events_per_days_use_case.dart";
+import "../bussiness/models.dart";
 import "../presentation/calendar_view_controller.dart";
 import "../utils/calendar_view_extension.dart";
 import "calendar_day_section.dart";
@@ -51,7 +52,7 @@ class _CalendarViewConsumer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final calendarList = ref.watch(calendarListControllerProvider);
+    final calendarList = ref.watch(getEventsPerDaysUseCaseProvider);
 
     return switch (calendarList) {
       AsyncError(:final error, :final stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
@@ -64,20 +65,17 @@ class _CalendarViewConsumer extends ConsumerWidget {
 class _CalendarViewContent extends StatelessWidget {
   const _CalendarViewContent({required this.calendarData});
 
-  final IList<CalendarData> calendarData;
+  final IList<CalendarYearEvents> calendarData;
 
   @override
   Widget build(BuildContext context) {
     final currentYear = DateTime.now().year;
-    final groupedByYear = groupBy<CalendarData, int>(calendarData, (e) => e.year);
-    final children = groupedByYear.entries.map((year) {
-      final groupedByMonth = groupBy<CalendarData, int>(year.value, (e) => e.month);
-      return groupedByMonth.entries.map((month) {
-        final groupedByDay = groupBy<CalendarData, int>(month.value, (e) => e.day);
+    final children = calendarData.map((year) {
+      return year.events.map((month) {
         return [
-          _MonthHeader(monthNumber: month.key, year: year.key != currentYear ? year.key : null),
-          ...groupedByDay.entries.map((day) {
-            return CalendarDaySection(day: day.key, events: day.value.toIList());
+          _MonthHeader(monthNumber: month.month, year: year.year != currentYear ? year.year : null),
+          ...month.events.map((day) {
+            return CalendarDaySection(day: day.day, events: day.events.toIList(), weekday: day.weekday);
           }),
         ];
       }).flattened;
