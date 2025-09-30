@@ -14,7 +14,6 @@ class BranchRepository extends _$BranchRepository {
     final sharedPrefs = await ref.watch(sharedPreferencesSingletonProvider.future);
 
     final branchName = sharedPrefs.getString(_key);
-
     return Branch.fromNameOrNull(branchName);
   }
 
