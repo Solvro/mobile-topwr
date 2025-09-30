@@ -157,6 +157,10 @@
   "@study_circles": {
     "description": "Title for student organizations section"
   },
+  "day": "dzień",
+  "@day": {
+    "description": "Unit of time measurement (singular)"
+  },
   "days": "dni",
   "@days": {
     "description": "Unit of time measurement"
@@ -3516,5 +3520,85 @@
   "map_layer_minimum_required": "Musi być wybrana co najmniej jedna warstwa",
   "@map_layer_minimum_required": {
     "description": "Error message when trying to disable the last map layer"
+  },
+  "calendar": "Kalendarz",
+  "@calendar": {
+    "description": "Description of calendar section"
+  },
+  "january": "Styczeń",
+  "@january": {
+    "description": "January"
+  },
+  "february": "Luty",
+  "@february": {
+    "description": "February"
+  },
+  "march": "Marzec",
+  "@march": {
+    "description": "March"
+  },
+  "april": "Kwiecień",
+  "@april": {
+    "description": "April"
+  },
+  "may": "Maj",
+  "@may": {
+    "description": "May"
+  },
+  "june": "Czerwiec",
+  "@june": {
+    "description": "June"
+  },
+  "july": "Lipiec",
+  "@july": {
+    "description": "July"
+  },
+  "august": "Sierpień",
+  "@august": {
+    "description": "August"
+  },
+  "september": "Wrzesień",
+  "@september": {
+    "description": "September"
+  },
+  "october": "Październik",
+  "@october": {
+    "description": "October"
+  },
+  "november": "Listopad",
+  "@november": {
+    "description": "November"
+  },
+  "december": "Grudzień",
+  "@december": {
+    "description": "December"
+  },
+  "monday": "Pn.",
+  "@monday": {
+    "description": "Short form of Monday"
+  },
+  "tuesday": "Wt.",
+  "@tuesday": {
+    "description": "Short form of Tuesday"
+  },
+  "wednesday": "Śr.",
+  "@wednesday": {
+    "description": "Short form of Wednesday"
+  },
+  "thursday": "Cz.",
+  "@thursday": {
+    "description": "Short form of Thursday"
+  },
+  "friday": "Pt.",
+  "@friday": {
+    "description": "Short form of Friday"
+  },
+  "saturday": "Sb.",
+  "@saturday": {
+    "description": "Short form of Saturday"
+  },
+  "sunday": "Nd.",
+  "@sunday": {
+    "description": "Short form of Sunday"
   }
 }

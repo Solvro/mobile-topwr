@@ -9,6 +9,9 @@ part "app_text_theme.tailor.dart";
 @tailorMixinComponent
 class AppTextTheme extends ThemeExtension<AppTextTheme> with _$AppTextThemeTailorMixin {
   const AppTextTheme({
+    // MegaBigHeadline 24px, w500
+    this.megaBigHeadline = const MegaBigHeadlineTextStyle(),
+
     // Headline 17px, w500
     this.headline = const HeadlineTextStyle(),
     this.headlineWhite = const HeadlineTextStyle(color: ColorsConsts.whiteSoap),
@@ -39,6 +42,8 @@ class AppTextTheme extends ThemeExtension<AppTextTheme> with _$AppTextThemeTailo
     this.smallOrange = const SmallTextStyle(color: ColorsConsts.orangePomegranade),
   });
 
+  @override
+  final TextStyle megaBigHeadline;
   @override
   final TextStyle headline;
   @override

@@ -1,7 +1,6 @@
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../../../gen/assets.gen.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../navigator/utils/navigation_commands.dart";
@@ -35,9 +34,9 @@ class NavActionsSection extends ConsumerWidget {
                 ref.navigateParkings,
               ),
               _NavActionButton(
-                context.localize.about_us,
-                Image.asset(Assets.png.splashScreen.splashLogo.path, fit: BoxFit.fill),
-                ref.navigateAboutUs,
+                context.localize.calendar,
+                Icon(Icons.calendar_today_outlined, color: context.colorTheme.whiteSoap, size: 30),
+                ref.navigateCalendar,
               ),
             ],
           ),
