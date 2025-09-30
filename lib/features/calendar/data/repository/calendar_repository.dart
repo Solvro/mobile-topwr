@@ -7,12 +7,13 @@ import "../../../../../api_base_rest/client/json.dart";
 import "../../../../../api_base_rest/translations/translate.dart";
 import "../../../../../config/env.dart";
 
+import "../../../../utils/contains_lower_case.dart";
 import "../../presentation/calendar_view.dart";
 import "../model/calendar_data.dart";
 part "calendar_repository.g.dart";
 
 @riverpod
-Future<IList<CalendarData>> calendarRepository(Ref ref) async {
+Future<IList<CalendarData>> calendarRepository(Ref ref, String? query) async {
   final apiUrl = Env.mainRestApiUrl;
   final calendarResponse = await ref
       .getAndCacheDataWithTranslation(
@@ -23,5 +24,9 @@ Future<IList<CalendarData>> calendarRepository(Ref ref) async {
         onRetry: ref.invalidateSelf,
       )
       .castAsObject;
-  return calendarResponse.data.sortedBy((data) => DateTime.parse(data.startTime)).toIList();
+
+  return calendarResponse.data
+      .where((data) => query == null || data.name.containsLowerCase(query))
+      .sortedBy((data) => DateTime.parse(data.startTime))
+      .toIList();
 }

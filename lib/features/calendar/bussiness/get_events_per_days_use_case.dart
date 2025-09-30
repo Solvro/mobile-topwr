@@ -5,13 +5,15 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../data/model/calendar_data.dart";
 import "../data/repository/calendar_repository.dart";
+import "../presentation/calendar_search_controller.dart";
 import "models.dart";
 
 part "get_events_per_days_use_case.g.dart";
 
 @riverpod
 Future<IList<CalendarYearEvents>> getEventsPerDaysUseCase(Ref ref) async {
-  final events = await ref.watch(calendarRepositoryProvider.future);
+  final query = ref.watch(searchCalendarControllerProvider);
+  final events = await ref.watch(calendarRepositoryProvider(query).future);
 
   // Generate all event-day combinations
   final eventDays = events.expand(_generateEventDays).toList();

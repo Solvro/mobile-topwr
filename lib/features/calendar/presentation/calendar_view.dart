@@ -17,9 +17,9 @@ import "../../analytics/data/umami_events.dart";
 import "../../departments/departments_view/widgets/departments_view_loading.dart";
 import "../bussiness/get_events_per_days_use_case.dart";
 import "../bussiness/models.dart";
-import "../presentation/calendar_view_controller.dart";
 import "../utils/calendar_view_extension.dart";
 import "calendar_day_section.dart";
+import "calendar_search_controller.dart";
 
 @RoutePage()
 class CalendarView extends ConsumerWidget {
