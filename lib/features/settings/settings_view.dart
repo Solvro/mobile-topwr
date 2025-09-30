@@ -13,7 +13,7 @@ import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../gen/assets.gen.dart";
 import "../../services/translations_service/data/preferred_lang_repository.dart";
-import "../branches/buisiness/branch_provider.dart";
+import "../branches/business/branch_provider.dart";
 import "../branches/model/branch.dart";
 import "../branches/presentation/branch_dialog.dart";
 import "../digital_guide/tabs/accessibility_dialog/presentation/accessibility_dialog.dart";

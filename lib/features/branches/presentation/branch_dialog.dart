@@ -5,7 +5,7 @@ import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../digital_guide/tabs/accessibility_dialog/presentation/red_dialog.dart";
-import "../buisiness/branch_provider.dart";
+import "../business/branch_provider.dart";
 import "../model/branch.dart";
 
 class BranchDialog extends ConsumerWidget {

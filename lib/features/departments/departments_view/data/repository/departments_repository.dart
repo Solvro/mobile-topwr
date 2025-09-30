@@ -5,7 +5,7 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 import "../../../../../api_base_rest/client/json.dart";
 import "../../../../../api_base_rest/translations/translate.dart";
 import "../../../../../config/env.dart";
-import "../../../../branches/buisiness/branch_provider.dart";
+import "../../../../branches/business/branch_provider.dart";
 import "../../../../branches/model/branch.dart";
 import "../../departments_view.dart";
 import "../models/department.dart";
