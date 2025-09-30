@@ -3510,12 +3510,29 @@
     "description": "Title for multilayer map title"
   },
   "main_branch": "Politechnika Wrocławska",
+  "@main_branch": {
+    "description": "Main branch option in the branch selection dialog"
+  },
   "jelenia_gora_branch": "Filia w Jeleniej Górze",
+  "@jelenia_gora_branch": {
+    "description": "Branch option for Jelenia Góra in the branch selection dialog"
+  },
   "walbrzych_branch": "Filia w Wałbrzychu",
+  "@walbrzych_branch": {
+    "description": "Branch option for Wałbrzych in the branch selection dialog"
+  },
   "legnica_branch": "Filia w Legnicy",
+  "@legnica_branch": {
+    "description": "Branch option for Legnica in the branch selection dialog"
+  },
   "branch": "Filia",
+  "@branch": {
+    "description": "Generic branch label used in the branch selection dialog"
+  },
   "pick_branch": "Wybierz filię",
-  "map_details_title": "Szczegóły mapy",
+  "@pick_branch": {
+    "description": "Prompt text for choosing a branch in the selection dialog"
+  },
   "@map_details_title": {
     "description": "Map layer dialog title picker"
   },

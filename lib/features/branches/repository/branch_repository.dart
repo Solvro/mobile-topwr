@@ -3,7 +3,7 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 import "../../../config/shared_prefs.dart";
 import "../model/branch.dart";
 
-part "branch_provider.g.dart";
+part "branch_repository.g.dart";
 
 const _key = "selected_branch";
 
