@@ -1,6 +1,6 @@
 import "package:flutter/widgets.dart";
 import "../../../utils/context_extensions.dart";
-import "../model/calendar_data.dart";
+import "../data/model/calendar_data.dart";
 
 extension CalendarDataDateTime on CalendarData {
   DateTime get startDateTime => DateTime.parse(startTime);
@@ -21,20 +21,20 @@ extension TimeToHour on String {
 
 extension MonthFormatter on int {
   String monthToString(BuildContext context) {
-    final m = context.localize;
+    final l10n = context.localize;
     final months = [
-      m.january,
-      m.february,
-      m.march,
-      m.april,
-      m.may,
-      m.june,
-      m.july,
-      m.august,
-      m.september,
-      m.october,
-      m.november,
-      m.december,
+      l10n.january,
+      l10n.february,
+      l10n.march,
+      l10n.april,
+      l10n.may,
+      l10n.june,
+      l10n.july,
+      l10n.august,
+      l10n.september,
+      l10n.october,
+      l10n.november,
+      l10n.december,
     ];
     return months[this - 1];
   }

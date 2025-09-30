@@ -2,21 +2,20 @@ import "dart:async";
 
 import "package:auto_route/auto_route.dart";
 import "package:collection/collection.dart";
-import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../../config/ui_config.dart";
-import "../../utils/context_extensions.dart";
-import "../../widgets/my_error_widget.dart";
-import "../../widgets/search_box_app_bar.dart";
-import "../../widgets/wide_tile_card.dart";
-import "../analytics/data/umami.dart";
-import "../analytics/data/umami_events.dart";
-import "../calendar/utils/calendar_view_extension.dart";
-import "../departments/departments_view/widgets/departments_view_loading.dart";
-import "calendar_view_controller.dart";
-import "model/calendar_data.dart";
+import "../../../config/ui_config.dart";
+import "../../../utils/context_extensions.dart";
+import "../../../widgets/my_error_widget.dart";
+import "../../../widgets/search_box_app_bar.dart";
+import "../../../widgets/wide_tile_card.dart";
+import "../../analytics/data/umami.dart";
+import "../../analytics/data/umami_events.dart";
+import "../../departments/departments_view/widgets/departments_view_loading.dart";
+import "../data/model/calendar_data.dart";
+import "../presentation/calendar_view_controller.dart";
+import "../utils/calendar_view_extension.dart";
 
 @RoutePage()
 class CalendarView extends StatelessWidget {
@@ -63,7 +62,7 @@ class _CalendarViewContent extends ConsumerWidget {
 
     return switch (calendarList) {
       AsyncError(:final error, :final stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
-      AsyncValue(:final IList<CalendarData> value) => Builder(
+      AsyncValue(:final value) when value != null => Builder(
         builder: (context) {
           final groupedByYear = groupBy<CalendarData, int>(value, (e) => e.year);
           return ListView(
@@ -88,7 +87,7 @@ class _CalendarViewContent extends ConsumerWidget {
                         Padding(
                           padding: const EdgeInsets.only(top: HomeViewConfig.paddingMedium),
                           child: Text(
-                            MonthFormatter(month.key).monthToString(context),
+                            month.key.monthToString(context),
                             style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
                           ),
                         ),

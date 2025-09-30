@@ -2,9 +2,9 @@ import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "../../utils/contains_lower_case.dart";
-import "model/calendar_data.dart";
-import "repository/calendar_repository.dart";
+import "../../../utils/contains_lower_case.dart";
+import "../data/model/calendar_data.dart";
+import "../data/repository/calendar_repository.dart";
 
 part "calendar_view_controller.g.dart";
 

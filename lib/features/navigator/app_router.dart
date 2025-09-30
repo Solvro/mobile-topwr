@@ -5,7 +5,7 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../config/nav_bar_config.dart";
 import "../about_us_view/about_us_view.dart";
-import "../calendar/calendar_view.dart";
+import "../calendar/presentation/calendar_view.dart";
 import "../departments/department_detail_view/presentation/department_detail_view.dart";
 import "../departments/departments_view/departments_view.dart";
 import "../digital_guide/data/models/level.dart";
