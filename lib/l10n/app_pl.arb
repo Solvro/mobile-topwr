@@ -3533,6 +3533,7 @@
   "@pick_branch": {
     "description": "Prompt text for choosing a branch in the selection dialog"
   },
+  "map_details_title": "Szczegóły mapy",
   "@map_details_title": {
     "description": "Map layer dialog title picker"
   },
