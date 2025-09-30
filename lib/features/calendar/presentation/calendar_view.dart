@@ -7,6 +7,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../config/ui_config.dart";
 import "../../../utils/context_extensions.dart";
+import "../../../widgets/horizontal_symmetric_safe_area.dart";
 import "../../../widgets/my_error_widget.dart";
 import "../../../widgets/search_box_app_bar.dart";
 import "../../../widgets/wide_tile_card.dart";
@@ -18,7 +19,7 @@ import "../presentation/calendar_view_controller.dart";
 import "../utils/calendar_view_extension.dart";
 
 @RoutePage()
-class CalendarView extends StatelessWidget {
+class CalendarView extends ConsumerWidget {
   const CalendarView({super.key});
 
   static String localizedOfflineMessage(BuildContext context) {
@@ -26,29 +27,19 @@ class CalendarView extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return ProviderScope(overrides: [searchCalendarControllerProvider], child: const _CalendarView());
-  }
-}
-
-class _CalendarView extends ConsumerWidget {
-  const _CalendarView();
-
-  @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Semantics(
-      label: context.localize.calendar,
-      child: Scaffold(
-        appBar: SearchBoxAppBar(
-          context,
-          title: context.localize.calendar,
-          onQueryChanged: ref.watch(searchCalendarControllerProvider.notifier).onTextChanged,
-          onSearchBoxTap: () {
-            unawaited(ref.trackEvent(UmamiEvents.searchCalendar));
-          },
-        ),
-        body: const _CalendarViewContent(),
+    return HorizontalSymmetricSafeAreaScaffold(
+      appBar: SearchBoxAppBar(
+        primary: true,
+        addLeadingPopButton: true,
+        context,
+        title: context.localize.calendar,
+        onQueryChanged: ref.watch(searchCalendarControllerProvider.notifier).onTextChanged,
+        onSearchBoxTap: () {
+          unawaited(ref.trackEvent(UmamiEvents.searchCalendar));
+        },
       ),
+      body: const _CalendarViewContent(),
     );
   }
 }
