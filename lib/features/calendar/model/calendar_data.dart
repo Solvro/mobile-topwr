@@ -7,10 +7,12 @@ part "calendar_data.g.dart";
 part "calendar_data.translatable.g.dart";
 
 @freezed
-@translatable
+@Translatable(makeFieldsTranslatableByDefault: false)
 abstract class CalendarDataResponse with _$CalendarDataResponse, _$CalendarDataResponseTranslatable {
-  const factory CalendarDataResponse({required IList<CalendarData> data}) = _CalendarDataResponse;
+  const factory CalendarDataResponse(@translatableField IList<CalendarData> data) = _CalendarDataResponse;
+
   const CalendarDataResponse._();
+
   factory CalendarDataResponse.fromJson(Map<String, dynamic> json) => _$CalendarDataResponseFromJson(json);
 }
 
@@ -18,11 +20,11 @@ abstract class CalendarDataResponse with _$CalendarDataResponse, _$CalendarDataR
 abstract class CalendarData with _$CalendarData {
   const factory CalendarData({
     required int id,
-    required String name,
+    @translatableField required String name,
     required String startTime,
     required String endTime,
-    required String? location,
-    required String? description,
+    @translatableField required String? location,
+    @translatableField required String? description,
   }) = _CalendarData;
 
   factory CalendarData.fromJson(Map<String, dynamic> json) => _$CalendarDataFromJson(json);
