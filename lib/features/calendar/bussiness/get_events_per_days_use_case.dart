@@ -62,7 +62,7 @@ SingleCalendarItem _createCalendarItem(CalendarData event, DateTime startDate, D
 
   final hoursString = isSingleDay ? _formatTimeRange(startDate, endDate) : "dzień $dayNumber/$totalDays";
 
-  return (name: event.name, location: event.location ?? "", hoursString: hoursString);
+  return (name: event.name, location: event.location ?? "", hoursString: hoursString, description: event.description);
 }
 
 /// Builds year events from grouped event days
