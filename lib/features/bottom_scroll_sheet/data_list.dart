@@ -27,7 +27,7 @@ class DataSliverList<T extends GoogleNavigable> extends ConsumerWidget {
   }
 }
 
-class _DataSliverList<T extends GoogleNavigable> extends ConsumerWidget {
+class _DataSliverList<T extends GoogleNavigable> extends HookConsumerWidget {
   const _DataSliverList(this.items);
 
   final IList<T> items;

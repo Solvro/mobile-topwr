@@ -99,10 +99,10 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
     final areOnlyOneLayerEnabled = ref.watch(areOnlyOneLayerEnabledProvider).value ?? true;
 
     useInitialActiveId(
-      context.initialActiveItemId<MultilayerItem>(),
-      ref.watch(context.activeMarkerController<MultilayerItem>().notifier),
-      ref.watch(context.mapController<MultilayerItem>()).zoomOnMarker,
-      ref.watch(context.mapDataController<MultilayerItem>()).valueOrNull?.data,
+      context.initialActiveItemId<T>(),
+      ref.watch(context.activeMarkerController<T>().notifier),
+      ref.watch(context.mapController<T>()).zoomOnMarker,
+      ref.watch(context.mapDataController<T>()).valueOrNull?.data,
     );
 
     return CustomScrollView(
