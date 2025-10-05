@@ -70,7 +70,7 @@ dependencies:
       url: https://github.com/ChrisElliotUK/auto_size_text.git
       ref: patch-1
   lottie: ^3.3.1
-  fl_chart: ^1.1.0
+  fl_chart: 1.0.0
   animated_list_plus: ^0.5.2
   dotted_border: ^3.1.0
   fluttertoast: ^9.0.0
