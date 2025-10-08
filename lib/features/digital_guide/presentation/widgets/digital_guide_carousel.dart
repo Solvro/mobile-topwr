@@ -86,7 +86,7 @@ class DigitalGuideCarouselWithIndicator extends HookWidget {
               Switch(
                 value: shouldAutoplay.value,
                 trackColor: WidgetStateProperty.all(
-                  shouldAutoplay.value ? ColorsConsts.orangePomegranadeLighter : ColorsConsts.whiteSoap,
+                  shouldAutoplay.value ? context.colorTheme.orangePomegranadeLighter : context.colorTheme.whiteSoap,
                 ),
                 onChanged: (newShouldAutoplay) {
                   shouldAutoplay.value = newShouldAutoplay;
