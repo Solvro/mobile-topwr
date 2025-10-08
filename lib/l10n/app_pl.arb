@@ -3625,6 +3625,6 @@
   "@sunday": {
     "description": "Short form of Sunday"
   },
-  "autoplay_enabled": "Odtwarzanie odblokowane",
+  "autoplay_enabled": "Autoprzewijanie właczone",
   "autoplay_disabled": "Odtwarzanie zablokowane"
 }
