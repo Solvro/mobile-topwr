@@ -7,7 +7,6 @@ import "package:flutter_hooks/flutter_hooks.dart";
 
 import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
-import "../../../../theme/colors.dart";
 import "../../../../utils/context_extensions.dart";
 import "digital_guide_image.dart";
 
