@@ -3626,5 +3626,5 @@
     "description": "Short form of Sunday"
   },
   "autoplay_enabled": "Autoprzewijanie właczone",
-  "autoplay_disabled": "Odtwarzanie zablokowane"
+  "autoplay_disabled": "Autoprzewijanie wyłączone"
 }
