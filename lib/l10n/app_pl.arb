@@ -149,6 +149,10 @@
   "@read_more": {
     "description": "Button text to expand content"
   },
+  "read_more_arrows": "Czytaj więcej >>",
+  "@read_more_arrows": {
+    "description": "Button text to expand content with arrows"
+  },
   "whats_up": "Co słychać?",
   "@whats_up": {
     "description": "Casual greeting text"
