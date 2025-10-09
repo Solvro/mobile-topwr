@@ -4,9 +4,11 @@ import "package:flutter_map_compass/flutter_map_compass.dart";
 import "../../../utils/context_extensions.dart";
 import "../../branches/presentation/branches_map_button.dart";
 import "../../map_layer_picker/presentation/layers_toolbar_button.dart";
+import "../../multilayer_map/data/model/multilayer_item.dart";
 import "../../my_loc_button/presentation/my_loc_button.dart";
+import "../controllers/controllers_set.dart";
 
-class Toolbar extends StatelessWidget {
+class Toolbar<T extends GoogleNavigable> extends StatelessWidget {
   const Toolbar({super.key});
 
   @override
@@ -14,14 +16,14 @@ class Toolbar extends StatelessWidget {
     return Positioned(
       top: 16,
       right: context.textScaler.clamp(maxScaleFactor: 1.5).scale(8),
-      child: const SafeArea(
+      child: SafeArea(
         child: Column(
           spacing: 4,
           children: [
-            MyLocationButton(),
-            LayersButton(),
-            BranchesButton(),
-            MapCompass.cupertino(hideIfRotatedNorth: true, padding: EdgeInsets.zero),
+            const MyLocationButton(),
+            if (T == MultilayerItem) const LayersButton(),
+            if (T == MultilayerItem) const BranchesButton(),
+            const MapCompass.cupertino(hideIfRotatedNorth: true, padding: EdgeInsets.zero),
           ],
         ),
       ),

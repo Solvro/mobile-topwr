@@ -44,7 +44,7 @@ class MapWidget<T extends GoogleNavigable> extends HookConsumerWidget {
             Semantics(label: semanticsLabel, child: const MapTileLayer()),
             ExcludeSemantics(child: MarkersConsumerLayer<T>()),
             const ExcludeSemantics(child: MyLocationLayer()),
-            const Toolbar(),
+            Toolbar<T>(),
             const ExcludeSemantics(child: OpenMapAtrribution()),
           ],
         );

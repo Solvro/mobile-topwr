@@ -170,7 +170,8 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
             ),
           ),
         if (categoryData == null || areOnlyOneLayerEnabled) DataSliverList<T>(),
-        if (isNoTabs) SliverFillRemaining(child: Center(child: Text(context.localize.no_layers_available))),
+        if (isNoTabs && categoryData != null)
+          SliverFillRemaining(child: Center(child: Text(context.localize.no_layers_available))),
         const SliverToBoxAdapter(child: SizedBox(height: SearchBoxAppBar.defaultBottomPadding)),
       ],
     );
