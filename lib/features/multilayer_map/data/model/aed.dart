@@ -3,6 +3,7 @@ import "package:freezed_annotation/freezed_annotation.dart";
 import "package:latlong2/latlong.dart";
 
 import "../../../../api_base_rest/shared_models/image_data.dart";
+import "../../../branches/data/model/branch.dart";
 import "../../../map_view/controllers/controllers_set.dart";
 import "building.dart";
 
@@ -27,6 +28,7 @@ abstract class Aed with _$Aed implements GoogleNavigable {
     required String? addressLine1,
     required String? addressLine2,
     Building? building,
+    required Branch branch,
   }) = _Aed;
 
   const Aed._();

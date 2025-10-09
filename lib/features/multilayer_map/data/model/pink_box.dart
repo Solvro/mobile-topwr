@@ -4,6 +4,7 @@ import "package:latlong2/latlong.dart";
 
 import "../../../../api_base_rest/shared_models/image_data.dart";
 import "../../../../l10n/app_localizations.dart";
+import "../../../branches/data/model/branch.dart";
 import "../../../map_view/controllers/controllers_set.dart";
 import "building.dart";
 
@@ -27,6 +28,7 @@ abstract class PinkBox with _$PinkBox implements GoogleNavigable {
     required double longitude,
     ImageData? photo,
     Building? building,
+    required Branch branch,
   }) = _PinkBox;
 
   const PinkBox._();

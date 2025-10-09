@@ -28,6 +28,7 @@ class BranchMapDialog extends ConsumerWidget {
         child: RedDialog(
           title: context.localize.pick_branch,
           subtitle: null,
+          showApplyButton: false,
           child: ListView.builder(
             padding: const EdgeInsets.symmetric(vertical: 16),
             physics: const NeverScrollableScrollPhysics(),
@@ -49,6 +50,7 @@ class BranchMapDialog extends ConsumerWidget {
                     trailing: selected ? Icon(Icons.check, color: context.colorTheme.orangePomegranade) : null,
                     onTap: () {
                       ref.read(selectedBranchOnMapProvider.notifier).setBranch(branches[index]);
+                      Navigator.pop(context);
                     },
                   ),
                 ),
