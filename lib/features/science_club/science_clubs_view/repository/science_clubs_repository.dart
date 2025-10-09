@@ -33,7 +33,7 @@ Future<IList<ScienceClub>> scienceClubsRepository(Ref ref) async {
   return response.data
       .whereType<ScienceClub>()
       .map((club) => club)
-      .where((club) => club.organizationStatus != ScienceClubStatus.archived)
+      .where((club) => club.organizationStatus == ScienceClubStatus.active)
       .sortBySourceTypes()
       .sortByBranch(branch)
       .toIList();
