@@ -1107,7 +1107,7 @@
   "@people_with_hard_of_hearing": {
     "description": "Label for people who are hard of hearing"
   },
-  "people_visually_impaired": "słabo widzących",
+  "people_visually_impaired": "słabowidzących",
   "@people_visually_impaired": {
     "description": "Label for visually impaired people"
   },
@@ -1836,7 +1836,7 @@
   "@blind": {
     "description": "Label for blind accessibility profile"
   },
-  "lowVision": "Słabo widzący",
+  "lowVision": "Słabowidzący",
   "@lowVision": {
     "description": "Label for low vision accessibility profile"
   },
