@@ -64,8 +64,7 @@ Read more at: https://solvro.pwr.edu.pl/portfolio/to-pwr/.
 
 
 # Development
-
-Recommended flutter version: `Channel stable, 3.29.0`
+Check in pubspec.yaml
 
 ### For secrets storing, we're using [git-crypt](https://github.com/AGWA/git-crypt). You need to:
 1. pull the repo
