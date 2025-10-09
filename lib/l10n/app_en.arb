@@ -613,5 +613,7 @@
   "thursday": "Th.",
   "friday": "Fr.",
   "saturday": "Sa.",
-  "sunday": "Su."
+  "sunday": "Su.",
+  "autoplay_enabled": "Autoplay enabled",
+  "autoplay_disabled": "Autoplay disabled"
 }

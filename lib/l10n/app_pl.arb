@@ -3624,5 +3624,7 @@
   "sunday": "Nd.",
   "@sunday": {
     "description": "Short form of Sunday"
-  }
+  },
+  "autoplay_enabled": "Autoprzewijanie włączone",
+  "autoplay_disabled": "Autoprzewijanie wyłączone"
 }
