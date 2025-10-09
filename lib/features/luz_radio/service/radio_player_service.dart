@@ -1,6 +1,7 @@
 import "dart:async";
 
 import "package:just_audio/just_audio.dart";
+import "package:just_audio_background/just_audio_background.dart";
 
 class RadioPlayerService {
   static final _instance = RadioPlayerService._internal();
@@ -19,7 +20,12 @@ class RadioPlayerService {
   Stream<bool> get isPlayingStream => _player.playingStream;
 
   Future<void> init() async {
-    await _player.setUrl("https://stream.radioluz.pl:8443/luz_hifi.mp3");
+    final audioSource = AudioSource.uri(
+      Uri.parse("https://stream.radioluz.pl:8443/luz_hifi.mp3"),
+      tag: const MediaItem(id: "1", title: "Radio LUZ"),
+    );
+
+    await _player.setAudioSource(audioSource);
     await _player.setVolume(_volume);
   }
 
