@@ -3640,5 +3640,6 @@
   "no_layers_available": "Brak dostępnych warstw",
   "@no_layers_available": {
     "description": "Text read for no items on multilayer map available"
-  }
+  },
+  "radio_luz": "Radio LUZ"
 }
