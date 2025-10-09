@@ -5,25 +5,20 @@ import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../digital_guide/tabs/accessibility_dialog/presentation/red_dialog.dart";
+import "../business/selected_branch_on_map.dart";
 import "../data/model/branch.dart";
-import "../data/repository/branch_repository.dart";
 
-class BranchDialog extends ConsumerWidget {
-  const BranchDialog({required this.isFirstTimeMode, super.key});
+class BranchMapDialog extends ConsumerWidget {
+  const BranchMapDialog({super.key});
 
-  final bool isFirstTimeMode;
-
-  static Future<String?> show(BuildContext context, {bool isFirstTimeMode = false}) {
-    return showDialog<String>(
-      context: context,
-      builder: (context) => BranchDialog(isFirstTimeMode: isFirstTimeMode),
-    );
+  static Future<String?> show(BuildContext context) {
+    return showDialog<String>(context: context, builder: (context) => const BranchMapDialog());
   }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final selectedBranch = ref.watch(selectedBranchOnMapProvider);
     const branches = Branch.values;
-    final selectedBranch = ref.watch(branchRepositoryProvider).value ?? (isFirstTimeMode ? Branch.main : null);
 
     return Semantics(
       container: true,
@@ -31,14 +26,9 @@ class BranchDialog extends ConsumerWidget {
       child: Focus(
         autofocus: true,
         child: RedDialog(
-          centerTitle: isFirstTimeMode,
-          title: isFirstTimeMode ? context.localize.pick_branch : context.localize.branch,
+          title: context.localize.pick_branch,
           subtitle: null,
-          showApplyButton: isFirstTimeMode,
-          applyButtonText: context.localize.select,
-          onApplyButtonPressed: () async {
-            await ref.read(branchRepositoryProvider.notifier).setBranch(selectedBranch ?? Branch.main);
-          },
+          showApplyButton: false,
           child: ListView.builder(
             padding: const EdgeInsets.symmetric(vertical: 16),
             physics: const NeverScrollableScrollPhysics(),
@@ -58,12 +48,9 @@ class BranchDialog extends ConsumerWidget {
                     selected: selected,
                     title: Text(semanticsLabel: name.substring(1), name),
                     trailing: selected ? Icon(Icons.check, color: context.colorTheme.orangePomegranade) : null,
-                    onTap: () async {
-                      if (!isFirstTimeMode) {
-                        Navigator.pop(context, branches[index].name);
-                      } else {
-                        await ref.read(branchRepositoryProvider.notifier).setBranch(branches[index]);
-                      }
+                    onTap: () {
+                      ref.read(selectedBranchOnMapProvider.notifier).setBranch(branches[index]);
+                      Navigator.pop(context);
                     },
                   ),
                 ),

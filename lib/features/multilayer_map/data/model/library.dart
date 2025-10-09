@@ -3,6 +3,7 @@ import "package:freezed_annotation/freezed_annotation.dart";
 import "package:latlong2/latlong.dart";
 
 import "../../../../api_base_rest/shared_models/image_data.dart";
+import "../../../branches/data/model/branch.dart";
 import "../../../map_view/controllers/controllers_set.dart";
 import "building.dart";
 
@@ -27,6 +28,7 @@ abstract class Library with _$Library implements GoogleNavigable {
     required double longitude,
     ImageData? photo,
     Building? building,
+    required Branch branch,
   }) = _Library;
 
   const Library._();

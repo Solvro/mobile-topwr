@@ -616,5 +616,6 @@
   "saturday": "Sa.",
   "sunday": "Su.",
   "autoplay_enabled": "Autoplay enabled",
-  "autoplay_disabled": "Autoplay disabled"
+  "autoplay_disabled": "Autoplay disabled",
+  "no_layers_available": "No layers available"
 }

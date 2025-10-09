@@ -34,4 +34,5 @@ rules:
       - remote-config
       - news
       - deps
+      - branches
     # YES, you can add new ones if you have a new feature

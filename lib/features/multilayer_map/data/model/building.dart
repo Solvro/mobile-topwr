@@ -4,6 +4,7 @@ import "package:latlong2/latlong.dart";
 import "package:solvro_translator_core/solvro_translator_core.dart";
 
 import "../../../../api_base_rest/shared_models/image_data.dart";
+import "../../../branches/data/model/branch.dart";
 import "../../../map_view/controllers/controllers_set.dart";
 
 part "building.freezed.dart";
@@ -35,6 +36,7 @@ abstract class Building with _$Building implements GoogleNavigable {
     required ExternalDigitalGuideMode? externalDigitalGuideMode,
     required String? externalDigitalGuideIdOrUrl,
     required ImageData? cover,
+    required Branch branch,
   }) = _Building;
 
   const Building._();

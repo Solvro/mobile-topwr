@@ -3630,5 +3630,15 @@
     "description": "Short form of Sunday"
   },
   "autoplay_enabled": "Autoprzewijanie włączone",
-  "autoplay_disabled": "Autoprzewijanie wyłączone"
+  "@autoplay_enabled": {
+    "description": "Text read for autoplay enabled"
+  },
+  "autoplay_disabled": "Autoprzewijanie wyłączone",
+  "@autoplay_disabled": {
+    "description": "Text read for autoplay disabled"
+  },
+  "no_layers_available": "Brak dostępnych warstw",
+  "@no_layers_available": {
+    "description": "Text read for no items on multilayer map available"
+  }
 }

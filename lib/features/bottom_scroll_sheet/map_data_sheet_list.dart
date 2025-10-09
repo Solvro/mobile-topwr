@@ -16,6 +16,7 @@ import "../map_layer_picker/business/layers_enabled_service.dart";
 import "../map_view/controllers/bottom_sheet_controller.dart";
 import "../map_view/controllers/controllers_set.dart";
 import "../map_view/widgets/map_config.dart";
+import "../multilayer_map/business/multilayer_source_service.dart";
 import "../multilayer_map/data/model/multilayer_item.dart";
 import "../parkings/parkings_view/models/parking.dart";
 import "data_list.dart";
@@ -89,14 +90,19 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
 
     final tabs = [
       // this dictates the order of the tabs
-      if (layersEnabled.buildingsEnabled) categoryData?.buildings,
-      if (layersEnabled.librariesEnabled) categoryData?.library,
-      if (layersEnabled.aedsEnabled) categoryData?.aed,
-      if (layersEnabled.pinkBoxesEnabled) categoryData?.pinkBoxes,
-      if (layersEnabled.bicycleShowersEnabled) categoryData?.showers,
+      if (layersEnabled.buildingsEnabled && (ref.watch(hasAnyBuildingItemsProvider).value ?? false))
+        categoryData?.buildings,
+      if (layersEnabled.librariesEnabled && (ref.watch(hasAnyLibraryItemsProvider).value ?? false))
+        categoryData?.library,
+      if (layersEnabled.aedsEnabled && (ref.watch(hasAnyAedItemsProvider).value ?? false)) categoryData?.aed,
+      if (layersEnabled.pinkBoxesEnabled && (ref.watch(hasAnyPinkBoxItemsProvider).value ?? false))
+        categoryData?.pinkBoxes,
+      if (layersEnabled.bicycleShowersEnabled && (ref.watch(hasAnyBicycleShowerItemsProvider).value ?? false))
+        categoryData?.showers,
     ].whereNonNull.toList();
 
-    final areOnlyOneLayerEnabled = ref.watch(areOnlyOneLayerEnabledProvider).value ?? true;
+    final areOnlyOneLayerEnabled = tabs.length == 1;
+    final isNoTabs = tabs.isEmpty;
 
     useInitialActiveId(
       context.initialActiveItemId<T>(),
@@ -116,7 +122,8 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
           flexibleSpace: appBar,
           automaticallyImplyLeading: false,
         ),
-        if (categoryData != null && !areOnlyOneLayerEnabled)
+
+        if (categoryData != null && !areOnlyOneLayerEnabled && !isNoTabs)
           SliverFillRemaining(
             child: SizedBox(
               width: double.infinity,
@@ -162,8 +169,10 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
               ),
             ),
           ),
-        const SliverToBoxAdapter(child: SizedBox(height: SearchBoxAppBar.defaultBottomPadding)),
         if (categoryData == null || areOnlyOneLayerEnabled) DataSliverList<T>(),
+        if (isNoTabs && categoryData != null)
+          SliverFillRemaining(child: Center(child: Text(context.localize.no_layers_available))),
+        const SliverToBoxAdapter(child: SizedBox(height: SearchBoxAppBar.defaultBottomPadding)),
       ],
     );
   }
