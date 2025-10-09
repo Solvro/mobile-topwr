@@ -3,7 +3,7 @@ import "package:flutter/foundation.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 import "package:solvro_translator_core/solvro_translator_core.dart";
 
-import "../../../../branches/model/branch.dart";
+import "../../../../branches/data/model/branch.dart";
 
 part "department.freezed.dart";
 part "department.g.dart";

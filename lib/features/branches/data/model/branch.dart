@@ -1,7 +1,7 @@
 import "package:collection/collection.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 
-import "../../../l10n/app_localizations.dart";
+import "../../../../l10n/app_localizations.dart";
 
 @JsonEnum(fieldRename: FieldRename.snake)
 enum Branch {

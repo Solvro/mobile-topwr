@@ -4,8 +4,8 @@ import "package:hooks_riverpod/hooks_riverpod.dart";
 import "../../hooks/use_effect_on_init.dart";
 import "../../services/translations_service/data/preferred_lang_repository.dart";
 import "../../utils/unwaited_microtask.dart";
+import "../branches/data/repository/branch_repository.dart";
 import "../branches/presentation/branch_dialog.dart";
-import "../branches/repository/branch_repository.dart";
 import "../settings/widgets/language_settings_dialog.dart";
 import "show_changelog.dart";
 

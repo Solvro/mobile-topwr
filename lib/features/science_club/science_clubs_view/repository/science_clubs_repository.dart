@@ -6,8 +6,8 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 import "../../../../api_base_rest/client/json.dart";
 import "../../../../api_base_rest/translations/translate.dart";
 import "../../../../config/env.dart";
-import "../../../branches/model/branch.dart";
-import "../../../branches/repository/branch_repository.dart";
+import "../../../branches/data/model/branch.dart";
+import "../../../branches/data/repository/branch_repository.dart";
 import "../model/science_clubs.dart";
 import "../science_clubs_view.dart";
 
