@@ -13,7 +13,7 @@ part "science_clubs.g.dart";
 part "science_clubs.translatable.g.dart";
 
 @JsonEnum(fieldRename: FieldRename.snake)
-enum ScienceClubStatus { active, archived, unknown }
+enum ScienceClubStatus { active, inactive, dissolved, unknown }
 
 @JsonEnum(fieldRename: FieldRename.snake)
 enum ScienceClubSource {
