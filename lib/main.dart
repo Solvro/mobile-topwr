@@ -6,6 +6,7 @@ import "package:flutter/material.dart";
 import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:flutter_umami/flutter_umami.dart";
+import "package:just_audio_background/just_audio_background.dart";
 import "package:sentry_flutter/sentry_flutter.dart";
 import "package:solvro_translator_core/solvro_translator_core.dart";
 import "package:wiredash/wiredash.dart";
@@ -47,6 +48,11 @@ Future<void> runToPWR() async {
   final data = await PlatformAssetBundle().load(Assets.certs.przewodnikPwrEduPl);
   SecurityContext.defaultContext.setTrustedCertificatesBytes(data.buffer.asUint8List());
   // await setupParkingWidgetsWorkManager();
+  await JustAudioBackground.init(
+    androidNotificationChannelId: "com.solvro.topwr.audio",
+    androidNotificationChannelName: "Audio playback",
+    androidNotificationOngoing: true,
+  );
   return runApp(const ProviderScope(child: SplashScreen(child: MyApp())));
 }
 
