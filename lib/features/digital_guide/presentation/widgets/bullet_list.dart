@@ -30,7 +30,7 @@ class BulletList extends StatelessWidget {
                 ),
                 TextSpan(
                   text: item,
-                  style: context.textTheme.body.copyWith(fontSize: fontSize),
+                  style: context.textTheme.body.copyWith(fontSize: fontSize, height: 1.5),
                 ),
               ],
             ),
