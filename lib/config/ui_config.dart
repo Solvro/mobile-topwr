@@ -233,6 +233,7 @@ abstract class DigitalGuideConfig {
   static const photoRowHeight = 75.0;
   static const bodyFont = 16.0;
   static const headlineFont = 22.0;
+  static const accessibleLineHeight = 1.5;
 
   // Basically there are 4 levels of accessability, but 0 and 1 are shown as the same on digital guide site
   static const accessibilityLevelColors = [
