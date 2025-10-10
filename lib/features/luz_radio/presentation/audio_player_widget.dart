@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "package:flutter_svg/svg.dart";
+import "package:just_audio/just_audio.dart";
 
 import "../../../gen/assets.gen.dart";
 import "../../../theme/app_theme.dart";
@@ -14,8 +15,7 @@ class AudioPlayerWidget extends StatefulWidget {
 }
 
 class _AudioPlayerWidgetState extends State<AudioPlayerWidget> {
-  final _player = RadioPlayerService();
-  var _isWaiting = false;
+  final _playerService = RadioPlayerService();
 
   @override
   Widget build(BuildContext context) {
@@ -26,33 +26,32 @@ class _AudioPlayerWidgetState extends State<AudioPlayerWidget> {
       child: Row(
         children: [
           const SizedBox(width: 18),
-          StreamBuilder<bool>(
-            stream: _player.isPlayingStream,
-            initialData: _player.isPlaying,
+          StreamBuilder<PlayerState>(
+            stream: _playerService.player.playerStateStream,
+            initialData: _playerService.player.playerState,
             builder: (_, snapshot) {
-              final isPlaying = snapshot.data ?? false;
+              final playerState = snapshot.data;
+              final isPlaying = playerState?.playing ?? false;
+              final processingState = playerState?.processingState;
+
+              final isLoading =
+                  processingState == ProcessingState.loading || processingState == ProcessingState.buffering;
+
+              final iconButton = isLoading
+                  ? const CircularProgressIndicator(color: Colors.black, strokeWidth: 2)
+                  : (isPlaying
+                        ? SvgPicture.asset(Assets.svg.radioLuz.pauseIcon)
+                        : SvgPicture.asset(Assets.svg.radioLuz.playIcon));
+
               return GestureDetector(
                 onTap: () async {
                   if (isPlaying) {
-                    setState(() {
-                      _isWaiting = false;
-                    });
-                    await _player.pause();
+                    await _playerService.pause();
                   } else {
-                    setState(() {
-                      _isWaiting = true;
-                    });
-                    await _player.play();
+                    await _playerService.play(context);
                   }
                 },
-                child: SizedBox(
-                  width: 40,
-                  child: isPlaying
-                      ? SvgPicture.asset(Assets.svg.radioLuz.pauseIcon)
-                      : (_isWaiting
-                            ? const CircularProgressIndicator(color: Colors.black, strokeWidth: 2)
-                            : SvgPicture.asset(Assets.svg.radioLuz.playIcon)),
-                ),
+                child: SizedBox(width: 40, child: iconButton),
               );
             },
           ),
@@ -61,8 +60,8 @@ class _AudioPlayerWidgetState extends State<AudioPlayerWidget> {
           const SizedBox(width: 24),
           SvgPicture.asset(Assets.svg.radioLuz.speakerIcon, width: 20),
           StreamBuilder<double>(
-            stream: _player.volumeStream,
-            initialData: _player.volume,
+            stream: _playerService.volumeStream,
+            initialData: _playerService.volume,
             builder: (_, snapshot) {
               final currentVolume = snapshot.data ?? 1.0;
               return SizedBox(
@@ -73,7 +72,7 @@ class _AudioPlayerWidgetState extends State<AudioPlayerWidget> {
                   thumbColor: Colors.black,
                   activeColor: Colors.black,
                   onChanged: (newVolume) async {
-                    await _player.setVolume(newVolume);
+                    await _playerService.setVolume(newVolume);
                   },
                 ),
               );

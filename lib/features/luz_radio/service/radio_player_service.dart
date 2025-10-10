@@ -1,7 +1,10 @@
 import "dart:async";
 
+import "package:flutter/material.dart";
 import "package:just_audio/just_audio.dart";
 import "package:just_audio_background/just_audio_background.dart";
+
+import "../../../utils/context_extensions.dart";
 
 class RadioPlayerService {
   static final _instance = RadioPlayerService._internal();
@@ -14,24 +17,23 @@ class RadioPlayerService {
   final _volumeController = StreamController<double>.broadcast();
 
   AudioPlayer get player => _player;
+  bool get isPlaying => _player.playing;
   double get volume => _volume;
   Stream<double> get volumeStream => _volumeController.stream;
-  bool get isPlaying => _player.playing;
-  Stream<bool> get isPlayingStream => _player.playingStream;
 
-  Future<void> init() async {
+  Future<void> init(BuildContext context) async {
     final audioSource = AudioSource.uri(
       Uri.parse("https://stream.radioluz.pl:8443/luz_hifi.mp3"),
-      tag: const MediaItem(id: "1", title: "Radio LUZ"),
+      tag: MediaItem(id: "1", title: context.localize.radio_luz),
     );
 
     await _player.setAudioSource(audioSource);
     await _player.setVolume(_volume);
   }
 
-  Future<void> play() async {
+  Future<void> play(BuildContext context) async {
     if (!_player.playing) {
-      await init();
+      await init(context);
     }
     await _player.play();
   }
