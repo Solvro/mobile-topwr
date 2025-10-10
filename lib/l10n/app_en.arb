@@ -617,5 +617,6 @@
   "sunday": "Su.",
   "autoplay_enabled": "Autoplay enabled",
   "autoplay_disabled": "Autoplay disabled",
-  "no_layers_available": "No layers available"
+  "no_layers_available": "No layers available",
+  "radio_luz": "LUZ Radio"
 }
