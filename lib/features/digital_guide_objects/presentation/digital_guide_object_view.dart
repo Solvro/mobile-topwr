@@ -66,6 +66,7 @@ class _DigitalGObjectView extends ConsumerWidget {
       SizedBox(height: DetailViewsConfig.imageHeight, child: ZoomableCachedImage(photoUrl)),
       HeadlinesSection(name: digitalGuideData.translations.pl.name, description: ""),
       ContactSection(
+        shouldBeAccessible: true,
         list: [
           ContactIconsModel(
             text: digitalGuideData.translations.pl.address.replaceAll("ulica", "ul."),

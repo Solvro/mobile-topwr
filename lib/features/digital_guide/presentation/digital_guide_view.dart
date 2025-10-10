@@ -88,6 +88,7 @@ class _DigitalGuideView extends ConsumerWidget {
         ),
       ),
       ContactSection(
+        shouldBeAccessible: true,
         list: IList<ContactIconsModel>([
           ContactIconsModel(
             text: digitalGuideData.translations.plTranslation.address.replaceAll("ulica", "ul."),
