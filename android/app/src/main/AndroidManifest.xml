@@ -5,8 +5,8 @@
     <uses-permission android:name="com.google.android.gms.permission.AD_ID"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <!-- playing radio in background permissions -->
-  <uses-permission android:name="android.permission.WAKE_LOCK"/>
-  <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
     <application
         android:label="ToPWR"
         android:name="${applicationName}"
@@ -89,8 +89,9 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_notification" />
+        <!-- name attribute has to be change to play radio in foreground -->
         <activity
-            android:name=".MainActivity"
+            android:name="com.ryanheise.audioservice.AudioServiceActivity"
             android:enableOnBackInvokedCallback="true"
             android:exported="true"
             android:launchMode="singleTask"
