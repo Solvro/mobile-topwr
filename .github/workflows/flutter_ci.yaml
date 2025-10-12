@@ -44,7 +44,7 @@ jobs:
       - name: Load RADIO_LUZ_API_URL and append to .env
         run: |
           if [ -n "$RADIO_LUZ_API_URL" ]; then
-            echo "RADIO_LUZ_API_URL=$RADIO_LUZ_API_URL" >> .env
+            echo "RADIO_LUZ_API_URL=\"$RADIO_LUZ_API_URL\"" >> .env
           fi
         env:
           RADIO_LUZ_API_URL: ${{ secrets.RADIO_LUZ_API_URL }}
