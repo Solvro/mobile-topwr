@@ -1,16 +1,17 @@
 import "dart:convert";
 
 import "package:dio/dio.dart";
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../client/radio_luz_client.dart";
 import "../models/history_entry.dart";
 
-part 'history_entry_repository.g.dart';
+part "history_entry_repository.g.dart";
 
 @riverpod
-Future<List<HistoryEntry>?> historyEntryRepository(Ref ref) async {
+Future<IList<HistoryEntry>?> historyEntryRepository(Ref ref) async {
   final dio = ref.read(radioLuzClientProvider);
 
   final formData = FormData.fromMap({"action": "histoprylog"});
@@ -24,5 +25,5 @@ Future<List<HistoryEntry>?> historyEntryRepository(Ref ref) async {
   }
   final data = jsonDecode(rawData) as List<dynamic>;
 
-  return data.map((e) => HistoryEntry.fromList(e as List<dynamic>)).toList();
+  return data.map((e) => HistoryEntry.fromList(e as List<dynamic>)).toIList();
 }
