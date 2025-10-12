@@ -12,7 +12,7 @@ class RadioLuzView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: DetailViewAppBar(),
-      body: Center(child: AudioPlayerWidget()),
+      body: const Center(child: AudioPlayerWidget()),
     );
   }
 }

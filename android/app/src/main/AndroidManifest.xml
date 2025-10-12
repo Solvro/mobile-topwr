@@ -13,9 +13,13 @@
         android:icon="@mipmap/ic_launcher">
 
         <!-- playing radio in background permissions -->
-        <service android:name="com.ryanheise.audioservice.AudioService"
+        <service 
+                android:name="com.ryanheise.audioservice.AudioService"
                 android:foregroundServiceType="mediaPlayback"
-                android:exported="true" tools:ignore="Instantiatable">
+                android:enabled="true"
+                android:exported="true" 
+                tools:ignore="Instantiatable" 
+                android:stopWithTask="true" >
             <intent-filter>
                 <action android:name="android.media.browse.MediaBrowserService" />
             </intent-filter>
