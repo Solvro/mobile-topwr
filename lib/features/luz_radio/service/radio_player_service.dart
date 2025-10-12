@@ -4,6 +4,7 @@ import "package:flutter/material.dart";
 import "package:just_audio/just_audio.dart";
 import "package:just_audio_background/just_audio_background.dart";
 
+import "../../../config/url_config.dart";
 import "../../../utils/context_extensions.dart";
 
 class RadioPlayerService {
@@ -23,7 +24,7 @@ class RadioPlayerService {
 
   Future<void> init(BuildContext context) async {
     final audioSource = AudioSource.uri(
-      Uri.parse("https://stream.radioluz.pl:8443/luz_hifi.mp3"),
+      Uri.parse(UrlConfig.luzRadioStreamUrl),
       tag: MediaItem(id: "1", title: context.localize.radio_luz),
     );
 
