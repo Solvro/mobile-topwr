@@ -1,3 +1,4 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:flutter_test/flutter_test.dart";
@@ -14,7 +15,7 @@ void main() {
 
       final entries = await scheduleFuture;
 
-      expect(entries, isA<List<HistoryEntry>?>());
+      expect(entries, isA<IList<HistoryEntry>?>());
       expect(entries, isNotEmpty);
 
       final first = entries!.first;
