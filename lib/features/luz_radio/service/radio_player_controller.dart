@@ -9,56 +9,40 @@ import "package:path/path.dart" as p;
 import "package:path_provider/path_provider.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "../../../config/url_config.dart";
+import "../../../config/env.dart";
 import "../../../gen/assets.gen.dart";
 import "../../../utils/context_extensions.dart";
+import "audio_player_streams.dart";
 import "radio_player_provider.dart";
 import "radio_state.dart";
 
 part "radio_player_controller.g.dart";
 
-@riverpod
+@Riverpod(keepAlive: true)
 class RadioController extends _$RadioController {
   late final AudioPlayer _player = ref.watch(radioPlayerProvider);
-
-  StreamSubscription<bool>? _playingStream;
-  StreamSubscription<double>? _volumeStream;
-  StreamSubscription<ProcessingState>? _loadingStream;
 
   _AppLifecycleStopper? _stopper;
 
   @override
   RadioState build() {
-    state = const RadioState();
+    _stopper ??= _AppLifecycleStopper(_player);
+    ref.onDispose(() => _stopper?.dispose());
 
-    _stopper = _AppLifecycleStopper(_player);
+    final isPlayingProvider = ref.watch(audioPlayerIsPlayingProvider);
+    final volumeProvider = ref.watch(audioPlayerVolumeProvider);
+    final processingStateProvider = ref.watch(audioPlayerProcessingStateProvider);
 
-    _playingStream = _player.playingStream.listen((playing) {
-      state = state.copyWith(isPlaying: playing);
-    });
+    final isPlaying = isPlayingProvider.value ?? false;
+    final volume = volumeProvider.value ?? 1.0;
+    final processingState = processingStateProvider.valueOrNull;
+    final isLoading = processingState == ProcessingState.loading || processingState == ProcessingState.buffering;
 
-    _volumeStream = _player.volumeStream.listen((v) {
-      state = state.copyWith(volume: v);
-    });
-
-    _loadingStream = _player.processingStateStream.listen((processingState) {
-      final loading = processingState == ProcessingState.loading || processingState == ProcessingState.buffering;
-      state = state.copyWith(isLoading: loading);
-
-      if (processingState == ProcessingState.completed) {
-        state = state.copyWith(isPlaying: false);
-      }
-    });
-
-    ref.onDispose(() async {
+    ref.onDispose(() {
       _stopper?.dispose();
-
-      await _playingStream?.cancel();
-      await _volumeStream?.cancel();
-      await _loadingStream?.cancel();
     });
 
-    return state;
+    return state.copyWith(isPlaying: isPlaying, isLoading: isLoading, volume: volume);
   }
 
   Future<void> _ensureInitialized(BuildContext context) async {
@@ -71,7 +55,7 @@ class RadioController extends _$RadioController {
     final artUri = await assetToFileUri(assetPath);
 
     final audioSource = AudioSource.uri(
-      Uri.parse(UrlConfig.luzRadioStreamUrl),
+      Uri.parse(Env.radioLuzStreamUrl),
       tag: MediaItem(id: "1", title: title, album: album, artUri: artUri),
     );
 
