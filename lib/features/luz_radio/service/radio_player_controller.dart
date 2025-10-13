@@ -29,6 +29,8 @@ class RadioController extends _$RadioController {
     _stopper ??= _AppLifecycleStopper(_player);
     ref.onDispose(() => _stopper?.dispose());
 
+    state = const RadioState();
+
     final isPlayingProvider = ref.watch(audioPlayerIsPlayingProvider);
     final volumeProvider = ref.watch(audioPlayerVolumeProvider);
     final processingStateProvider = ref.watch(audioPlayerProcessingStateProvider);
