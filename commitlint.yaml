@@ -35,4 +35,5 @@ rules:
       - news
       - deps
       - branches
+      - radio-luz
     # YES, you can add new ones if you have a new feature

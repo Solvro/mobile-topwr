@@ -3,6 +3,24 @@ import "package:freezed_annotation/freezed_annotation.dart";
 part "schedule.freezed.dart";
 part "schedule.g.dart";
 
+class ThumbnailConverter implements JsonConverter<String?, dynamic> {
+  const ThumbnailConverter();
+
+  @override
+  String? fromJson(dynamic json) {
+    if (json == null || json == false) {
+      return null;
+    }
+    if (json is String) {
+      return json;
+    }
+    return null;
+  }
+
+  @override
+  dynamic toJson(String? object) => object;
+}
+
 @freezed
 abstract class Schedule with _$Schedule {
   const factory Schedule({required List<BroadcastBlock> broadcasts, required int week}) = _Schedule;
@@ -23,7 +41,7 @@ abstract class Broadcast with _$Broadcast {
   const factory Broadcast({
     required int id,
     required String time,
-    required String thumbnail,
+    @ThumbnailConverter() String? thumbnail,
     required String title,
     required String content,
     required String authors,
