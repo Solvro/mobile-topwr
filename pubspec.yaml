@@ -110,6 +110,7 @@ dependencies:
   package_info_plus: ^8.3.0
   envied: ^1.1.1
   path_provider: ^2.1.5
+  path: ^1.9.1
 
   #Audio
   just_audio: ^0.10.5
@@ -179,6 +180,7 @@ flutter:
     - assets/png/map_markers/shower_marker.png
     - assets/png/map_markers/active_pink_box_marker.png
     - assets/png/map_markers/pink_box_marker.png
+    - assets/png/radio_luz/radio_luz_logo.png
     - assets/svg/search_box/vectorsearch.svg
     - assets/svg/contact_icons/compass.svg
     - assets/svg/contact_icons/fb.svg

@@ -48,7 +48,7 @@ class AudioPlayerWidget extends ConsumerWidget {
           const SizedBox(width: 24),
           SvgPicture.asset(Assets.svg.radioLuz.speakerIcon, width: 20),
           SizedBox(
-            width: MediaQuery.of(context).size.width * 0.25,
+            width: MediaQuery.of(context).size.width * 0.3,
             child: Slider(
               value: radioState.volume,
               thumbColor: Colors.black,

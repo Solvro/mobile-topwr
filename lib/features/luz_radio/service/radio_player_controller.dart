@@ -1,11 +1,16 @@
 import "dart:async";
+import "dart:io";
 
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:just_audio/just_audio.dart";
 import "package:just_audio_background/just_audio_background.dart";
+import "package:path/path.dart" as p;
+import "package:path_provider/path_provider.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../config/url_config.dart";
+import "../../../gen/assets.gen.dart";
 import "../../../utils/context_extensions.dart";
 import "radio_player_provider.dart";
 import "radio_state.dart";
@@ -59,15 +64,33 @@ class RadioController extends _$RadioController {
   Future<void> _ensureInitialized(BuildContext context) async {
     if (state.isInitialized) return;
 
+    final title = context.localize.radio_luz;
+    final album = context.localize.pwr;
+
+    final assetPath = Assets.png.radioLuz.radioLuzLogo.path;
+    final artUri = await assetToFileUri(assetPath);
+
     final audioSource = AudioSource.uri(
       Uri.parse(UrlConfig.luzRadioStreamUrl),
-      tag: MediaItem(id: "1", title: context.localize.radio_luz),
+      tag: MediaItem(id: "1", title: title, album: album, artUri: artUri),
     );
 
     await _player.setAudioSource(audioSource);
     await _player.setVolume(state.volume);
 
     state = state.copyWith(isInitialized: true);
+  }
+
+  Future<Uri> assetToFileUri(String assetPath) async {
+    final data = await rootBundle.load(assetPath);
+    final bytes = data.buffer.asUint8List();
+
+    final tempDir = await getTemporaryDirectory();
+    final fileName = p.basename(assetPath);
+    final file = File(p.join(tempDir.path, fileName));
+
+    await file.writeAsBytes(bytes, flush: true);
+    return file.uri;
   }
 
   Future<void> play(BuildContext context) async {
@@ -90,6 +113,10 @@ class RadioController extends _$RadioController {
   }
 }
 
+// responsible for stoping the player when the user swipes away the app (force kill) on Android
+// however, the app is still running altough its not visible to the user
+// when the user opens the app again it will have the same state as when it was closed
+// if the user does not use the app for some time, the android will kill the process
 class _AppLifecycleStopper with WidgetsBindingObserver {
   final AudioPlayer player;
 
