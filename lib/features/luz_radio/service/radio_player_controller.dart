@@ -11,7 +11,7 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../config/env.dart";
 import "../../../gen/assets.gen.dart";
-import "../../../utils/context_extensions.dart";
+import "../../../l10n/app_localizations.dart";
 import "audio_player_streams.dart";
 import "radio_player_provider.dart";
 import "radio_state.dart";
@@ -23,13 +23,12 @@ class RadioController extends _$RadioController {
   late final AudioPlayer _player = ref.watch(radioPlayerProvider);
 
   _AppLifecycleStopper? _stopper;
+  var _isInitialized = false;
 
   @override
   RadioState build() {
     _stopper ??= _AppLifecycleStopper(_player);
     ref.onDispose(() => _stopper?.dispose());
-
-    state = const RadioState();
 
     final isPlayingProvider = ref.watch(audioPlayerIsPlayingProvider);
     final volumeProvider = ref.watch(audioPlayerVolumeProvider);
@@ -40,18 +39,14 @@ class RadioController extends _$RadioController {
     final processingState = processingStateProvider.valueOrNull;
     final isLoading = processingState == ProcessingState.loading || processingState == ProcessingState.buffering;
 
-    ref.onDispose(() {
-      _stopper?.dispose();
-    });
-
-    return state.copyWith(isPlaying: isPlaying, isLoading: isLoading, volume: volume);
+    return RadioState(isPlaying: isPlaying, volume: volume, isLoading: isLoading);
   }
 
-  Future<void> _ensureInitialized(BuildContext context) async {
-    if (state.isInitialized) return;
+  Future<void> _ensureInitialized(AppLocalizations l10n) async {
+    if (_isInitialized) return;
 
-    final title = context.localize.radio_luz;
-    final album = context.localize.pwr;
+    final title = l10n.radio_luz;
+    final album = l10n.pwr;
 
     final assetPath = Assets.png.radioLuz.radioLuzLogo.path;
     final artUri = await assetToFileUri(assetPath);
@@ -64,8 +59,10 @@ class RadioController extends _$RadioController {
     await _player.setAudioSource(audioSource);
     await _player.setVolume(state.volume);
 
-    state = state.copyWith(isInitialized: true);
+    _isInitialized = true;
   }
+
+  Future<void> init(AppLocalizations l10n) => _ensureInitialized(l10n);
 
   Future<Uri> assetToFileUri(String assetPath) async {
     final data = await rootBundle.load(assetPath);
@@ -79,18 +76,18 @@ class RadioController extends _$RadioController {
     return file.uri;
   }
 
-  Future<void> play(BuildContext context) async {
-    await _ensureInitialized(context);
+  Future<void> play(AppLocalizations l10n) async {
+    await _ensureInitialized(l10n);
     await _player.play();
   }
 
-  Future<void> pause(BuildContext context) async {
-    await _ensureInitialized(context);
+  Future<void> pause(AppLocalizations l10n) async {
+    await _ensureInitialized(l10n);
     await _player.pause();
   }
 
-  Future<void> stop(BuildContext context) async {
-    await _ensureInitialized(context);
+  Future<void> stop(AppLocalizations l10n) async {
+    await _ensureInitialized(l10n);
     await _player.stop();
   }
 

@@ -1,3 +1,5 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:flutter_svg/svg.dart";
@@ -7,11 +9,22 @@ import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../service/radio_player_controller.dart";
 
-class AudioPlayerWidget extends ConsumerWidget {
+class AudioPlayerWidget extends ConsumerStatefulWidget {
   const AudioPlayerWidget({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<AudioPlayerWidget> createState() => _AudioPlayerWidgetState();
+}
+
+class _AudioPlayerWidgetState extends ConsumerState<AudioPlayerWidget> {
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    unawaited(ref.read(radioControllerProvider.notifier).init(context.localize));
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final radioState = ref.watch(radioControllerProvider);
     final radioController = ref.watch(radioControllerProvider.notifier);
 
@@ -22,9 +35,8 @@ class AudioPlayerWidget extends ConsumerWidget {
       child: Row(
         children: [
           const SizedBox(width: 18),
-          SizedBox(
-            width: 40,
-            height: 40,
+          SizedBox.square(
+            dimension: 40,
             child: radioState.isLoading
                 ? const Padding(
                     padding: EdgeInsets.all(5),
@@ -33,9 +45,9 @@ class AudioPlayerWidget extends ConsumerWidget {
                 : GestureDetector(
                     onTap: () async {
                       if (radioState.isPlaying) {
-                        await radioController.pause(context);
+                        await radioController.pause(context.localize);
                       } else {
-                        await radioController.play(context);
+                        await radioController.play(context.localize);
                       }
                     },
                     child: radioState.isPlaying
@@ -44,11 +56,11 @@ class AudioPlayerWidget extends ConsumerWidget {
                   ),
           ),
           const SizedBox(width: 12),
-          Expanded(child: Text(context.localize.radio_luz, maxLines: 1, overflow: TextOverflow.ellipsis)),
+          Expanded(child: Text(context.localize.radio_luz_player_title, maxLines: 1, overflow: TextOverflow.ellipsis)),
           const SizedBox(width: 24),
           SvgPicture.asset(Assets.svg.radioLuz.speakerIcon, width: 20),
           SizedBox(
-            width: MediaQuery.of(context).size.width * 0.3,
+            width: MediaQuery.sizeOf(context).width * 0.3,
             child: Slider(
               value: radioState.volume,
               thumbColor: Colors.black,

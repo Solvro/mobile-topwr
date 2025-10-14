@@ -3641,6 +3641,16 @@
   "@no_layers_available": {
     "description": "Text read for no items on multilayer map available"
   },
+  "radio_luz_player_title": "Radio LUZ",
+  "@radio_luz_player_title": {
+    "description": "Title for radio luz player"
+  },
   "radio_luz": "Radio LUZ",
-  "pwr": "Politechnika Wrocławska"
+  "@radio_luz": {
+    "description": "Title for radio luz section"
+  },
+  "pwr": "Politechnika Wrocławska",
+  "@pwr": {
+    "description": "Subtitle for radio"
+  }
 }

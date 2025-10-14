@@ -48,11 +48,16 @@ Future<void> runToPWR() async {
   final data = await PlatformAssetBundle().load(Assets.certs.przewodnikPwrEduPl);
   SecurityContext.defaultContext.setTrustedCertificatesBytes(data.buffer.asUint8List());
   // await setupParkingWidgetsWorkManager();
-  await JustAudioBackground.init(
-    androidNotificationChannelId: "com.solvro.topwr.audio",
-    androidNotificationChannelName: "Audio playback",
-    androidNotificationOngoing: true,
-  );
+  try {
+    await JustAudioBackground.init(
+      androidNotificationChannelId: "com.solvro.topwr.audio",
+      androidNotificationChannelName: "Audio playback",
+      androidNotificationOngoing: true,
+    );
+  } on PlatformException catch (e) {
+    debugPrint("JustAudioBackground init error: $e");
+  }
+
   return runApp(const ProviderScope(child: SplashScreen(child: MyApp())));
 }
 
