@@ -8,6 +8,7 @@ enum UmamiEvents {
   openScienceClubDetail,
   openDepartmentDetail,
   openSksMenu,
+  openSksMenuSubscriptions,
   openSksChart,
   openSettings,
   openAboutUs,
