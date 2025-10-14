@@ -111,6 +111,11 @@ extension NavigationX on WidgetRef {
     await _router.push(const SksMenuRoute());
   }
 
+  Future<void> navigateToSksMenuSubscriptions() async {
+    await trackEvent(UmamiEvents.openSksMenuSubscriptions);
+    await _router.push(const SksMenuSubscriptionsRoute());
+  }
+
   Future<void> navigateSettings() async {
     await trackEvent(UmamiEvents.openSettings);
     await _router.push(const SettingsRoute());
