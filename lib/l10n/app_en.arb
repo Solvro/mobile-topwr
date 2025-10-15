@@ -633,5 +633,8 @@
   "loading": "Loading",
   "now_playing": "Now playing",
   "broadcast": "Broadcasts",
-  "radio_luz_info": "Info"
+  "radio_luz_info": "Info",
+  "radio_luz_player_title": "LUZ Radio",
+  "radio_luz": "LUZ Radio",
+  "pwr": "Wroclaw University of Science and Technology"
 }

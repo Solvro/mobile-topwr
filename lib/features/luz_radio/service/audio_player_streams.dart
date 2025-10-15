@@ -17,3 +17,9 @@ Stream<double> audioPlayerVolume(Ref ref) {
   final player = ref.watch(radioPlayerProvider);
   return player.volumeStream;
 }
+
+@riverpod
+Stream<ProcessingState> audioPlayerProcessingState(Ref ref) {
+  final player = ref.watch(radioPlayerProvider);
+  return player.processingStateStream;
+}
