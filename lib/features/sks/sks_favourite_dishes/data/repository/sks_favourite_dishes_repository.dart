@@ -6,12 +6,12 @@ import "../../../../../api_base_rest/client/dio_client.dart";
 import "../../../../../config/env.dart";
 
 import "../../../sks_menu/data/models/sks_menu_data.dart";
-import "../../../sks_menu/utils/meal_list_extension.dart";
+import "../../utils/dish_list_extension.dart";
 
-part "sks_menu_subscription_repository.g.dart";
+part "sks_favourite_dishes_repository.g.dart";
 
 @riverpod
-class SksMenuSubscriptionRepository extends _$SksMenuSubscriptionRepository {
+class SksFavouriteDishesRepository extends _$SksFavouriteDishesRepository {
   @override
   Future<(IList<SksMenuDishMinimal>, IList<SksMenuDishMinimal>)> build() async {
     final restClient = ref.watch(restClientProvider);
@@ -23,7 +23,7 @@ class SksMenuSubscriptionRepository extends _$SksMenuSubscriptionRepository {
     return (subscribedDishes, unsubscribedDishes);
   }
 
-  Future<void> toggleMealSubscription(String dishId, {required bool subscribe}) async {
+  Future<void> toggleDishSubscription(String dishId, {required bool subscribe}) async {
     print("toggling $dishId to $subscribe");
     final currentState = state.valueOrNull;
     if (currentState == null) return;
@@ -55,7 +55,7 @@ class SksMenuSubscriptionRepository extends _$SksMenuSubscriptionRepository {
   }
 }
 
-extension DioFetchSksMenuSubscriptions on Dio {
+extension DioFetchSksFavouriteDishes on Dio {
   Future<IList<SksMenuDishMinimal>> fetchRecent() async {
     final url = "${Env.sksUrl}/meals/recent";
     final response = await get<List<dynamic>>(url);
