@@ -3652,5 +3652,17 @@
   "radio_luz_info": "Info",
   "@radio_luz_info": {
     "description": "Title for info section in radio luz view"
+  },
+  "radio_luz_player_title": "Radio LUZ",
+  "@radio_luz_player_title": {
+    "description": "Title for radio luz player"
+  },
+  "radio_luz": "Radio LUZ",
+  "@radio_luz": {
+    "description": "Title for radio luz section"
+  },
+  "pwr": "Politechnika Wrocławska",
+  "@pwr": {
+    "description": "Subtitle for radio"
   }
 }

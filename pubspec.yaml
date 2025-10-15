@@ -110,6 +110,11 @@ dependencies:
   package_info_plus: ^8.3.0
   envied: ^1.1.1
   path_provider: ^2.1.5
+  path: ^1.9.1
+
+  #Audio
+  just_audio: ^0.10.5
+  just_audio_background: ^0.0.1-beta.17
 
   #Other
   in_app_update: ^4.2.3
@@ -175,6 +180,7 @@ flutter:
     - assets/png/map_markers/shower_marker.png
     - assets/png/map_markers/active_pink_box_marker.png
     - assets/png/map_markers/pink_box_marker.png
+    - assets/png/radio_luz/radio_luz_logo.png
     - assets/svg/search_box/vectorsearch.svg
     - assets/svg/contact_icons/compass.svg
     - assets/svg/contact_icons/fb.svg
@@ -215,6 +221,9 @@ flutter:
     - assets/svg/map_placeholders/library_icon.svg
     - assets/svg/map_placeholders/shower_icon.svg
     - assets/svg/map_placeholders/building_icon.svg
+    - assets/svg/radio_luz/play_icon.svg
+    - assets/svg/radio_luz/pause_icon.svg
+    - assets/svg/radio_luz/speaker_icon.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
