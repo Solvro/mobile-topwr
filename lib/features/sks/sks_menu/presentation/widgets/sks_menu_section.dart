@@ -7,9 +7,10 @@ import "../../data/models/sks_menu_data.dart";
 import "sks_menu_tiles.dart";
 
 class SksMenuSection extends StatelessWidget {
-  const SksMenuSection(this.data, {super.key});
+  const SksMenuSection(this.data, {super.key, this.onDishTap});
 
-  final IList<SksMenuDish> data;
+  final IList<SksMenuDishBase> data;
+  final void Function(String dishId)? onDishTap;
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +21,7 @@ class SksMenuSection extends StatelessWidget {
         return SksMenuTile(
           title: category.getLocalizedName(context),
           dishes: data.where((e) => e.category == category).toList(),
+          onDishTap: onDishTap,
         );
       }).toList(),
     );

@@ -9,6 +9,7 @@ enum UmamiEvents {
   openDepartmentDetail,
   openSksMenu,
   openSksMenuSubscriptions,
+  searchSksMenu,
   openSksChart,
   openSettings,
   openAboutUs,

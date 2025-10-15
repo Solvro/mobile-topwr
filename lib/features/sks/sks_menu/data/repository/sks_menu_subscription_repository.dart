@@ -1,55 +1,87 @@
+import "package:dio/dio.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
+import "../../../../../api_base_rest/client/dio_client.dart";
 import "../../../../../config/env.dart";
-import "../../../../../config/ttl_config.dart";
 
-import "../../../sks_menu/data/models/dish_category_enum.dart";
 import "../../../sks_menu/data/models/sks_menu_data.dart";
+import "../../../sks_menu/utils/meal_list_extension.dart";
 
 part "sks_menu_subscription_repository.g.dart";
 
 @riverpod
 class SksMenuSubscriptionRepository extends _$SksMenuSubscriptionRepository {
-  static final _subscribedMealsUrl = "${Env.sksUrl}/subscriptions/listForDevice";
-  static final _toggleSubscriptionUrl = "${Env.sksUrl}/subscriptions/toggle";
-  static const _ttlDays = TtlDays.defaultSks;
-
   @override
-  Future<(IList<SksMenuDish>, IList<SksMenuDish>)> build() async {
-    // final sksMenuResponse = await ref
-    //     .getAndCacheDataWithTranslation(
-    //       _subscribedMealsUrl,
-    //       SksMenuResponse.fromJson,
-    //       extraValidityCheck: (data) {
-    //         return DateTime.now().date.isSameDay(data.castAsObject.lastUpdate.date);
-    //       },
-    //       ttlDays: _ttlDays,
-    //       localizedOfflineMessage: SksMenuView.localizedOfflineMessage,
-    //       onRetry: ref.invalidateSelf,
-    //     )
-    //     .castAsObject;
+  Future<(IList<SksMenuDishMinimal>, IList<SksMenuDishMinimal>)> build() async {
+    final restClient = ref.watch(restClientProvider);
+    final recentDishes = await restClient.fetchRecent();
 
-    return (
-      [
-        const SksMenuDish(id: "1", name: "aaaa", category: DishCategory.meatDish, size: "a", price: "1.00"),
-        const SksMenuDish(id: "2", name: "bbbbb", category: DishCategory.salad, size: "b", price: "2.00"),
-        const SksMenuDish(id: "3", name: "ccccc", category: DishCategory.drink, size: "c", price: "3.00"),
-      ].toIList(),
-      [
-        const SksMenuDish(id: "4", name: "ddddd", category: DishCategory.meatDish, size: "d", price: "4.00"),
-        const SksMenuDish(id: "5", name: "eeeee", category: DishCategory.salad, size: "e", price: "5.00"),
-        const SksMenuDish(id: "55", name: "eeeee", category: DishCategory.salad, size: "e", price: "5.00"),
-        const SksMenuDish(id: "534", name: "eeeee", category: DishCategory.salad, size: "e", price: "5.00"),
-        const SksMenuDish(id: "52", name: "eeeee", category: DishCategory.salad, size: "e", price: "5.00"),
-        const SksMenuDish(id: "52234", name: "eeeee", category: DishCategory.salad, size: "e", price: "5.00"),
-        const SksMenuDish(id: "53", name: "eeeee", category: DishCategory.salad, size: "e", price: "5.00"),
-        const SksMenuDish(id: "6", name: "fffff", category: DishCategory.drink, size: "f", price: "6.00"),
-      ].toIList(),
-    );
+    final subscribedDishes = await restClient.fetchSubscribed();
+
+    final unsubscribedDishes = recentDishes.getUnsubscribedFromSubscribed(subscribedDishes);
+    return (subscribedDishes, unsubscribedDishes);
   }
 
-  Future<void> toggleMealSubscription(SksMenuDish dish, {required bool subscribe}) async {
-    print("Toggling subscription for dish: ${dish.name}");
+  Future<void> toggleMealSubscription(String dishId, {required bool subscribe}) async {
+    print("toggling $dishId to $subscribe");
+    final currentState = state.valueOrNull;
+    if (currentState == null) return;
+    var (subscribed, unsubscribed) = currentState;
+    print("toggling $dishId to $subscribe");
+
+    if (subscribe) {
+      print(unsubscribed);
+      final dish = unsubscribed.firstWhere((d) => d.id == dishId);
+      subscribed = subscribed.add(dish).toIList();
+      unsubscribed = unsubscribed.remove(dish).toIList();
+      print("hejjjo");
+    } else {
+      final dish = subscribed.firstWhere((d) => d.id == dishId);
+      unsubscribed = unsubscribed.add(dish).toIList();
+      subscribed = subscribed.remove(dish).toIList();
+    }
+
+    state = AsyncData((subscribed, unsubscribed));
+
+    final restClient = ref.read(restClientProvider);
+    try {
+      await restClient.toggleSubscription(dishId, subscribe: subscribe);
+    } catch (e) {
+      // Revert if backend fails
+      print("Error toggling: $e");
+      ref.invalidateSelf();
+    }
+  }
+}
+
+extension DioFetchSksMenuSubscriptions on Dio {
+  Future<IList<SksMenuDishMinimal>> fetchRecent() async {
+    final url = "${Env.sksUrl}/meals/recent";
+    final response = await get<List<dynamic>>(url);
+    print("response: ${response.data}");
+    return _mapResponseToDishes(response.data);
+  }
+
+  Future<IList<SksMenuDishMinimal>> fetchSubscribed() async {
+    // final key = await FirebaseMessaging.instance.getToken();
+    // print("fetching $key");
+    // final url = "${Env.sksUrl}/subscriptions/$key";
+    // final response = await get<List<dynamic>>(url);
+    // print("response: ${response.data}");
+    // return _mapResponseToDishes(response.data);
+
+    return IList<SksMenuDishMinimal>();
+  }
+
+  Future<void> toggleSubscription(String dishId, {required bool subscribe}) async {
+    // final url = "${Env.sksUrl}/subscriptions/toggle";
+    // final key = await FirebaseMessaging.instance.getToken();
+    // await post<Map<String, String>>(url, data: {"device_key": key, "meal_id": dishId, "subscribe": subscribe});
+  }
+
+  IList<SksMenuDishMinimal> _mapResponseToDishes(List<dynamic>? data) {
+    return data?.whereType<Map<String, dynamic>>().map(SksMenuDishMinimal.fromJson).toIList() ??
+        IList<SksMenuDishMinimal>();
   }
 }

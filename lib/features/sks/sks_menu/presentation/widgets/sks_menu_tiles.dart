@@ -14,7 +14,7 @@ class SksMenuTile extends StatelessWidget {
   const SksMenuTile({super.key, required this.title, required this.dishes, this.onDishTap});
 
   final String title;
-  final List<SksMenuDish> dishes;
+  final List<SksMenuDishBase> dishes;
   final void Function(String dishId)? onDishTap;
 
   @override
@@ -37,7 +37,7 @@ class SksMenuTile extends StatelessWidget {
 class SksMenuDishDetailsTile extends StatelessWidget {
   const SksMenuDishDetailsTile({super.key, required this.dish, this.onTap});
 
-  final SksMenuDish dish;
+  final SksMenuDishBase dish;
   final void Function(String dishId)? onTap;
 
   @override
@@ -51,20 +51,23 @@ class SksMenuDishDetailsTile extends StatelessWidget {
           borderRadius: BorderRadius.circular(SksMenuConfig.borderRadius),
           border: Border.all(color: context.colorTheme.orangePomegranade.withAlpha(50)),
         ),
-        child: ListTile(
-          title: Text(dish.name, style: context.textTheme.lightTitle),
-          trailing: Text.rich(
-            textAlign: TextAlign.end,
-            TextSpan(
-              children: [
-                TextSpan(text: " ${dish.size}", style: context.textTheme.bodyGrey.copyWith(height: 1)),
-                if (!hasIncreasedTextSize) TextSpan(text: " | ", style: context.textTheme.title.copyWith(height: 1)),
-                if (hasIncreasedTextSize) const TextSpan(text: "\n"),
-                TextSpan(text: "${dish.price} zł", style: context.textTheme.title.copyWith(height: 1)),
-              ],
+        child: switch (dish) {
+          SksMenuDish(:final name, :final size, :final price) => ListTile(
+            title: Text(name, style: context.textTheme.lightTitle),
+            trailing: Text.rich(
+              textAlign: TextAlign.end,
+              TextSpan(
+                children: [
+                  TextSpan(text: " $size", style: context.textTheme.bodyGrey.copyWith(height: 1)),
+                  if (!hasIncreasedTextSize) TextSpan(text: " | ", style: context.textTheme.title.copyWith(height: 1)),
+                  if (hasIncreasedTextSize) const TextSpan(text: "\n"),
+                  TextSpan(text: "$price zł", style: context.textTheme.title.copyWith(height: 1)),
+                ],
+              ),
             ),
           ),
-        ),
+          SksMenuDishMinimal(:final name) => ListTile(title: Text(name, style: context.textTheme.lightTitle)),
+        },
       ),
     );
   }
