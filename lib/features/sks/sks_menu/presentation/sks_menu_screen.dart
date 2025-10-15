@@ -103,9 +103,8 @@ class _SksMenuView extends ConsumerWidget {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: HomeViewConfig.paddingMedium),
-              // child: SksMenuSubscriptionsButton(),
               child: MyTextButton(
-                actionTitle: "see subscribed dishes",
+                actionTitle: context.localize.sks_menu_see_subscriptions,
                 showBorder: true,
                 onClick: ref.navigateToSksMenuSubscriptions,
               ),

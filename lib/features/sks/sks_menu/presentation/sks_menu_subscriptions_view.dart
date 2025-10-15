@@ -4,14 +4,14 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../config/ui_config.dart";
+import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../widgets/horizontal_symmetric_safe_area.dart";
-import "../../../../widgets/my_text_button.dart";
 import "../../../../widgets/search_box_app_bar.dart";
 import "../data/models/sks_menu_data.dart";
 import "../data/repository/sks_menu_subscription_repository.dart";
 import "widgets/sks_menu_section.dart";
-import "widgets/sks_menu_subscriptions_dishes_sections.dart";
+import "widgets/sks_menu_subscriptions_subscribed_dishes.dart";
 
 @RoutePage()
 class SksMenuSubscriptionsView extends ConsumerWidget {
@@ -24,9 +24,10 @@ class SksMenuSubscriptionsView extends ConsumerWidget {
       appBar: SearchBoxAppBar(
         context,
         addLeadingPopButton: true,
-        title: context.localize.guide,
+        title: context.localize.sks_menu_subscriptions,
         onQueryChanged: (searchQuery) {},
         onSearchBoxTap: () {},
+        primary: true,
       ),
       body: switch (asyncData) {
         AsyncLoading() => const Center(child: CircularProgressIndicator()),
@@ -49,20 +50,23 @@ class _SksMenuSubscriptionsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(SksMenuConfig.paddingMedium),
+      padding: const EdgeInsets.symmetric(horizontal: SksMenuConfig.paddingMedium),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const Text(
-            "Choose the meals you want to receive notifications for when they appear on the menu. To select a meal from the unsubscribed section, tap on it. Seselecting works the same way.",
+          Padding(
+            padding: const EdgeInsetsGeometry.only(bottom: SksMenuConfig.paddingMedium),
+            child: Text(context.localize.sks_menu_subscribed_dishes, style: context.textTheme.titleOrange),
           ),
-          const Divider(indent: SksMenuConfig.paddingSmall, endIndent: SksMenuConfig.paddingLarge),
-          const Text("Subscribed meals"),
-          Expanded(child: SubscribedMealsSection(meals: subscribedMeals)),
-          const Divider(indent: SksMenuConfig.paddingSmall, endIndent: SksMenuConfig.paddingLarge),
-          const Text("Not subscribed meals"),
+          Expanded(child: SksMenuSubscriptionSubscribedDishes(meals: subscribedMeals)),
+          Padding(
+            padding: const EdgeInsetsGeometry.symmetric(vertical: SksMenuConfig.paddingMedium),
+            child: Text(
+              context.localize.sks_menu_dishes_available_for_subscription,
+              style: context.textTheme.titleOrange,
+            ),
+          ),
           Expanded(flex: 2, child: SingleChildScrollView(child: SksMenuSection(unsubscribedMeals))),
-          MyTextButton(actionTitle: context.localize.sks_menu_vegetarian_dishes, showBorder: true, onClick: () {}),
         ],
       ),
     );
