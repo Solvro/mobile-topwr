@@ -106,7 +106,7 @@ class _SksMenuView extends ConsumerWidget {
               child: MyTextButton(
                 actionTitle: context.localize.sks_menu_see_subscriptions,
                 showBorder: true,
-                onClick: ref.navigateToSksMenuSubscriptions,
+                onClick: ref.navigateToSksFavouriteDishes,
               ),
             ),
             Padding(

@@ -9,6 +9,8 @@ part "sks_menu_data.g.dart";
 sealed class SksMenuDishBase {
   String get id;
   DishCategory get category;
+
+  const SksMenuDishBase();
 }
 
 @freezed
@@ -21,6 +23,8 @@ abstract class SksMenuDish extends SksMenuDishBase with _$SksMenuDish {
     required String price,
   }) = _SksMenuDish;
 
+  const SksMenuDish._();
+
   factory SksMenuDish.fromJson(Map<String, dynamic> json) => _$SksMenuDishFromJson(json);
 }
 
@@ -31,6 +35,8 @@ abstract class SksMenuDishMinimal extends SksMenuDishBase with _$SksMenuDishMini
     @translatableField required String name,
     required DishCategory category,
   }) = _SksMenuDishMinimal;
+
+  const SksMenuDishMinimal._();
 
   factory SksMenuDishMinimal.fromJson(Map<String, dynamic> json) => _$SksMenuDishMinimalFromJson(json);
 }

@@ -59,8 +59,8 @@ import "../parkings/parkings_view/parkings_view.dart";
 import "../science_club/science_club_detail_view/science_club_detail_view.dart";
 import "../science_club/science_clubs_view/science_clubs_view.dart";
 import "../settings/settings_view.dart";
+import "../sks/sks_favourite_dishes/presentation/sks_favourite_dishes_view.dart";
 import "../sks/sks_menu/presentation/sks_menu_screen.dart";
-import "../sks/sks_menu/presentation/sks_menu_subscriptions_view.dart";
 import "root_view.dart";
 
 part "app_router.g.dart";
@@ -126,7 +126,7 @@ class AppRouter extends RootStackRouter {
   List<AutoRoute> get routes => [
     AutoRoute(path: "/", page: RootRoute.page, children: routesWithinTabBar),
     AutoRoute(path: "/sks-menu", page: SksMenuRoute.page),
-    AutoRoute(path: "/sks-menu-subscriptions", page: SksMenuSubscriptionsRoute.page),
+    AutoRoute(path: "/sks-favourite-dishes", page: SksFavouriteDishesRoute.page),
     AutoRoute(path: "/guide/:id", page: GuideDetailRoute.page),
     AutoRoute(path: "/departments", page: DepartmentsRoute.page),
     AutoRoute(path: "/departments/:id", page: DepartmentDetailRoute.page),
