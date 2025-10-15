@@ -13,27 +13,27 @@ import "../../../../widgets/my_error_widget.dart";
 import "../../../../widgets/search_box_app_bar.dart";
 import "../../../analytics/data/umami.dart";
 import "../../../analytics/data/umami_events.dart";
-import "../data/models/sks_menu_data.dart";
-import "../data/repository/sks_menu_subscription_repository.dart";
-import "sks_menu_subscriptions_controller.dart";
-import "widgets/sks_menu_section.dart";
-import "widgets/sks_menu_subscriptions_subscribed_dishes.dart";
+import "../../sks_menu/data/models/sks_menu_data.dart";
+import "../../sks_menu/presentation/widgets/sks_menu_section.dart";
+import "../data/repository/sks_favourite_dishes_repository.dart";
+import "sks_favourite_dishes_controller.dart";
+import "widgets/sks_favourite_dishes_watched_section.dart";
 
 @RoutePage()
-class SksMenuSubscriptionsView extends ConsumerWidget {
-  const SksMenuSubscriptionsView({super.key});
+class SksFavouriteDishesView extends ConsumerWidget {
+  const SksFavouriteDishesView({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     print("in view");
-    final asyncData = ref.watch(sksMenuSubscriptionsProvider);
+    final asyncData = ref.watch(sksFavouriteDishesProvider);
     print("in view after");
     return HorizontalSymmetricSafeAreaScaffold(
       appBar: SearchBoxAppBar(
         context,
         addLeadingPopButton: true,
         title: context.localize.sks_menu_subscriptions,
-        onQueryChanged: ref.watch(sksMenuSubscriptionsControllerProvider.notifier).onTextChanged,
+        onQueryChanged: ref.watch(sksFavouriteDishesControllerProvider.notifier).onTextChanged,
         onSearchBoxTap: () {
           unawaited(ref.trackEvent(UmamiEvents.searchSksMenu));
         },
@@ -41,9 +41,9 @@ class SksMenuSubscriptionsView extends ConsumerWidget {
       ),
       body: switch (asyncData) {
         AsyncError(:final error, :final stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
-        AsyncData(value: (final subscribedMeals, final unsubscribedMeals)) => _SksMenuSubscriptionsView(
-          subscribedMeals: subscribedMeals,
-          unsubscribedMeals: unsubscribedMeals,
+        AsyncData(value: (final subscribedDishes, final unsubscribedDishes)) => _SksFavouriteDishesView(
+          subscribedDishes: subscribedDishes,
+          unsubscribedDishes: unsubscribedDishes,
         ),
         _ => const Text("loading: "),
       },
@@ -51,11 +51,11 @@ class SksMenuSubscriptionsView extends ConsumerWidget {
   }
 }
 
-class _SksMenuSubscriptionsView extends ConsumerWidget {
-  const _SksMenuSubscriptionsView({required this.subscribedMeals, required this.unsubscribedMeals});
+class _SksFavouriteDishesView extends ConsumerWidget {
+  const _SksFavouriteDishesView({required this.subscribedDishes, required this.unsubscribedDishes});
 
-  final IList<SksMenuDishMinimal> subscribedMeals;
-  final IList<SksMenuDishMinimal> unsubscribedMeals;
+  final IList<SksMenuDishMinimal> subscribedDishes;
+  final IList<SksMenuDishMinimal> unsubscribedDishes;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -69,11 +69,11 @@ class _SksMenuSubscriptionsView extends ConsumerWidget {
             child: Text(context.localize.sks_menu_subscribed_dishes, style: context.textTheme.titleOrange),
           ),
           Expanded(
-            child: SksMenuSubscriptionSubscribedDishes(
-              meals: subscribedMeals,
+            child: SksFavouriteDishesWatchedSection(
+              dishes: subscribedDishes,
               onDishTap: (dishId) => ref
-                  .read(sksMenuSubscriptionRepositoryProvider.notifier)
-                  .toggleMealSubscription(dishId, subscribe: false),
+                  .read(sksFavouriteDishesRepositoryProvider.notifier)
+                  .toggleDishSubscription(dishId, subscribe: false),
             ),
           ),
           Padding(
@@ -87,10 +87,10 @@ class _SksMenuSubscriptionsView extends ConsumerWidget {
             flex: 2,
             child: SingleChildScrollView(
               child: SksMenuSection(
-                unsubscribedMeals,
+                unsubscribedDishes,
                 onDishTap: (dishId) => ref
-                    .read(sksMenuSubscriptionRepositoryProvider.notifier)
-                    .toggleMealSubscription(dishId, subscribe: true),
+                    .read(sksFavouriteDishesRepositoryProvider.notifier)
+                    .toggleDishSubscription(dishId, subscribe: true),
               ),
             ),
           ),
