@@ -1,30 +1,31 @@
 import "dart:async";
 
 import "package:flutter/material.dart";
-import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:flutter_hooks/flutter_hooks.dart";
 import "package:flutter_svg/svg.dart";
+import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../../gen/assets.gen.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../service/radio_player_controller.dart";
 
-class AudioPlayerWidget extends ConsumerStatefulWidget {
+class AudioPlayerWidget extends HookConsumerWidget {
   const AudioPlayerWidget({super.key});
 
   @override
-  ConsumerState<AudioPlayerWidget> createState() => _AudioPlayerWidgetState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = context.localize;
+    final didInit = useRef<String?>(null);
 
-class _AudioPlayerWidgetState extends ConsumerState<AudioPlayerWidget> {
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    unawaited(ref.read(radioControllerProvider.notifier).init(context.localize));
-  }
+    useEffect(() {
+      if (didInit.value != l10n.localeName) {
+        didInit.value = l10n.localeName;
+        unawaited(ref.read(radioControllerProvider.notifier).init(l10n));
+      }
+      return null;
+    }, [l10n.localeName]);
 
-  @override
-  Widget build(BuildContext context) {
     final radioState = ref.watch(radioControllerProvider);
     final radioController = ref.watch(radioControllerProvider.notifier);
 

@@ -54,8 +54,8 @@ Future<void> runToPWR() async {
       androidNotificationChannelName: "Audio playback",
       androidNotificationOngoing: true,
     );
-  } on PlatformException catch (e) {
-    debugPrint("JustAudioBackground init error: $e");
+  } on PlatformException catch (e, st) {
+    await Sentry.captureException(e, stackTrace: st);
   }
 
   return runApp(const ProviderScope(child: SplashScreen(child: MyApp())));
