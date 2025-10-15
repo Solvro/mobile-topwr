@@ -3740,5 +3740,17 @@
   "radio_luz_description2": "Jesteś twórczą osobą? Masz ucho do muzyki, głos do mikrofonu albo serce do reportażu? Rekrutujemy dwa razy do roku. Bądź z nami na bieżąco",
   "@radio_luz_description2": {
     "description": "Longer call-to-action inviting creative people to join Radio LUZ and informing about biannual recruitment"
+  },
+  "radio_luz_player_title": "Radio LUZ",
+  "@radio_luz_player_title": {
+    "description": "Title for radio luz player"
+  },
+  "radio_luz": "Radio LUZ",
+  "@radio_luz": {
+    "description": "Title for radio luz section"
+  },
+  "pwr": "Politechnika Wrocławska",
+  "@pwr": {
+    "description": "Subtitle for radio"
   }
 }
