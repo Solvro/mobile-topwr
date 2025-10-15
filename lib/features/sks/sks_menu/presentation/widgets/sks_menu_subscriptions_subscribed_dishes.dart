@@ -9,7 +9,7 @@ import "sks_menu_tiles.dart";
 class SksMenuSubscriptionSubscribedDishes extends StatelessWidget {
   const SksMenuSubscriptionSubscribedDishes({super.key, required this.meals, this.onDishTap});
 
-  final IList<SksMenuDish> meals;
+  final IList<SksMenuDishBase> meals;
   final void Function(String dishId)? onDishTap;
 
   @override
