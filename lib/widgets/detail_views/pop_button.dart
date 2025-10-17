@@ -19,6 +19,8 @@ class DetailViewPopButton extends ConsumerWidget {
       },
       style: TextButton.styleFrom(padding: const EdgeInsets.all(12)),
       child: Text(
+        softWrap: false,
+        overflow: TextOverflow.ellipsis,
         title == null ? "<" : "< $title",
         style: context.textTheme.boldBodyOrange,
         semanticsLabel: "${context.localize.get_back_screen_reader_label} $title",
