@@ -25,7 +25,7 @@ class SksFavouriteDishesView extends ConsumerWidget {
   const SksFavouriteDishesView({super.key});
 
   static String localizedOfflineMessage(BuildContext context) {
-    return context.localize.my_offline_error_message(context.localize.sks_menu_subscriptions);
+    return context.localize.my_offline_error_message(context.localize.offline_sks_favourite_dishes);
   }
 
   @override
@@ -37,7 +37,7 @@ class SksFavouriteDishesView extends ConsumerWidget {
       appBar: SearchBoxAppBar(
         context,
         addLeadingPopButton: true,
-        title: context.localize.sks_menu_subscriptions,
+        title: context.localize.sks_favourite_dishes,
         onQueryChanged: ref.watch(sksFavouriteDishesControllerProvider.notifier).onTextChanged,
         onSearchBoxTap: () {
           unawaited(ref.trackEvent(UmamiEvents.searchSksMenu));
@@ -71,7 +71,7 @@ class _SksFavouriteDishesView extends ConsumerWidget {
         children: [
           Padding(
             padding: const EdgeInsetsGeometry.only(bottom: SksMenuConfig.paddingMedium),
-            child: Text(context.localize.sks_menu_subscribed_dishes, style: context.textTheme.titleOrange),
+            child: Text(context.localize.sks_favourite_dishes_subscribed, style: context.textTheme.titleOrange),
           ),
           Expanded(
             child: SksFavouriteDishesWatchedSection(
@@ -83,10 +83,7 @@ class _SksFavouriteDishesView extends ConsumerWidget {
           ),
           Padding(
             padding: const EdgeInsetsGeometry.symmetric(vertical: SksMenuConfig.paddingMedium),
-            child: Text(
-              context.localize.sks_menu_dishes_available_for_subscription,
-              style: context.textTheme.titleOrange,
-            ),
+            child: Text(context.localize.sks_favourite_dishes_remaining, style: context.textTheme.titleOrange),
           ),
           Expanded(
             flex: 2,
