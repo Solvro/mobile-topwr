@@ -7,6 +7,7 @@ import "../../../../../api_base_rest/client/json.dart";
 import "../../../../../api_base_rest/translations/translate.dart";
 import "../../../../../config/env.dart";
 import "../../../../../config/ttl_config.dart";
+import "../../../../../utils/get_device_id.dart";
 import "../../../sks_menu/data/models/sks_menu_data.dart";
 import "../../presentation/sks_favourite_dishes_view.dart";
 import "../../utils/dish_list_extension.dart";
@@ -23,7 +24,7 @@ class SksFavouriteDishesRepository extends _$SksFavouriteDishesRepository {
 
   @override
   Future<(IList<SksMenuDishMinimal>, IList<SksMenuDishMinimal>)> build() async {
-    const deviceKey = "aa";
+    final deviceKey = await getDeviceId();
     final responses = await Future.wait([
       ref
           .getAndCacheDataWithTranslation(
@@ -35,13 +36,17 @@ class SksFavouriteDishesRepository extends _$SksFavouriteDishesRepository {
             onRetry: ref.invalidateSelf,
           )
           .castAsObject,
-      ref
-          .read(restClientProvider)
-          .get<Map<String, dynamic>>(_api + _subscriptionsEndpoint + deviceKey)
-          .then((val) => SksFavouriteDishesResponse.fromJson(val.data!)),
+      if (deviceKey != null)
+        ref
+            .read(restClientProvider)
+            .get<Map<String, dynamic>>(_api + _subscriptionsEndpoint + deviceKey)
+            .then((val) => SksFavouriteDishesResponse.fromJson(val.data!)),
     ]);
 
     final recentDishes = responses[0];
+    if (deviceKey == null) {
+      return (IList<SksMenuDishMinimal>(), recentDishes.meals);
+    }
     final subscribedDishes = responses[1];
     final unsubscribedDishes = recentDishes.meals.getUnsubscribedFromSubscribed(subscribedDishes.meals);
     return (subscribedDishes.meals, unsubscribedDishes);
