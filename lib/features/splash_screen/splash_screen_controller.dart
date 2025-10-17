@@ -7,7 +7,7 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../config/ui_config.dart";
 import "../../firebase_init.dart";
-import "../../register_for_notifications.dart";
+import "../../utils/register_for_notifications.dart";
 import "../home_view/widgets/logo_app_bar.dart";
 import "../map_view/data/cache.dart";
 
