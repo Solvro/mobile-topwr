@@ -15,7 +15,7 @@ import "../../../analytics/data/umami.dart";
 import "../../../analytics/data/umami_events.dart";
 import "../../sks_menu/data/models/sks_menu_data.dart";
 import "../../sks_menu/presentation/widgets/sks_menu_section.dart";
-import "../data/repository/sks_favourite_dishes_repository.dart";
+import "../utils/toast_on_dish_tap.dart";
 import "sks_favourite_dishes_controller.dart";
 import "widgets/sks_favourite_dishes_loading.dart";
 import "widgets/sks_favourite_dishes_watched_section.dart";
@@ -30,9 +30,7 @@ class SksFavouriteDishesView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    print("in view");
     final asyncData = ref.watch(sksFavouriteDishesProvider);
-    print("in view after");
     return HorizontalSymmetricSafeAreaScaffold(
       appBar: SearchBoxAppBar(
         context,
@@ -76,9 +74,7 @@ class _SksFavouriteDishesView extends ConsumerWidget {
           Expanded(
             child: SksFavouriteDishesWatchedSection(
               dishes: subscribedDishes,
-              onDishTap: (dishId) => ref
-                  .read(sksFavouriteDishesRepositoryProvider.notifier)
-                  .toggleDishSubscription(dishId, subscribe: false),
+              onDishTap: (dishId) => toastOnDishTap(dishId: dishId, ref: ref, context: context, subscribe: false),
             ),
           ),
           Padding(
@@ -90,9 +86,7 @@ class _SksFavouriteDishesView extends ConsumerWidget {
             child: SingleChildScrollView(
               child: SksMenuSection(
                 unsubscribedDishes,
-                onDishTap: (dishId) => ref
-                    .read(sksFavouriteDishesRepositoryProvider.notifier)
-                    .toggleDishSubscription(dishId, subscribe: true),
+                onDishTap: (dishId) => toastOnDishTap(dishId: dishId, ref: ref, context: context, subscribe: true),
               ),
             ),
           ),
