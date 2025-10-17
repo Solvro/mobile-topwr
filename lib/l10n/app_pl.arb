@@ -325,6 +325,10 @@
   "@offline_changelog": {
     "description": "Label for offline changelog data"
   },
+  "offline_sks_favourite_dishes": "ustawień ulubionych posiłków",
+  "@offline_sks_favourite_dishes": {
+    "description": "Label for offline favourite dishes"
+  },
   "guide": "Przewodnik",
   "@guide": {
     "description": "Title for guide section"
@@ -555,21 +559,21 @@
   "@sks_menu_desserts": {
     "description": "Label for desserts menu section"
   },
-  "sks_menu_subscriptions": "Subskrybowane dania",
-  "@sks_menu_subscriptions": {
-    "description": "Title for SKS Menu subscriptions section"
+  "sks_favourite_dishes": "Ulubione dania",
+  "@sks_favourite_dishes": {
+    "description": "Title for SKS Menu Favourite Dishes section"
   },
-  "sks_menu_see_subscriptions": "Ustaw subskrybowane dania",
-  "@sks_menu_see_subscriptions": {
-    "description": "Button to show subscribed dishes"
+  "sks_favourite_dishes_see_dishes": "Ustaw ulubione dania",
+  "@sks_favourite_dishes_see_dishes": {
+    "description": "Button to show favourite dishes settings"
   },
-  "sks_menu_subscribed_dishes": "Subskrybowane dania",
-  "@sks_menu_subscribed_dishes": {
+  "sks_favourite_dishes_subscribed": "Dania, o których cię powiadomimy",
+  "@sks_favourite_dishes_subscribed": {
     "description": "Label for subscribed dishes section"
   },
-  "sks_menu_dishes_available_for_subscription": "Dania możliwe do zasubskrybowania",
-  "@sks_menu_dishes_available_for_subscriprion": {
-    "description": "Label for dishes available for subscription section"
+  "sks_favourite_dishes_remaining": "Pozostałe dania ostatnio w menu",
+  "@sks_favourite_dishes_remaining": {
+    "description": "Label for remainig recent dishes section"
   },
   "sks_full_name": "Strefa Kultury Studenckiej",
   "@sks_full_name": {

@@ -6,6 +6,7 @@ import "../../../../../api_base_rest/client/dio_client.dart";
 import "../../../../../api_base_rest/client/json.dart";
 import "../../../../../api_base_rest/translations/translate.dart";
 import "../../../../../config/env.dart";
+import "../../../../../config/ttl_config.dart";
 import "../../../sks_menu/data/models/sks_menu_data.dart";
 import "../../presentation/sks_favourite_dishes_view.dart";
 import "../../utils/dish_list_extension.dart";
@@ -28,19 +29,15 @@ class SksFavouriteDishesRepository extends _$SksFavouriteDishesRepository {
             _api + _recentEndpoint,
             SksFavouriteDishesResponse.fromJson,
             extraValidityCheck: (_) => true,
+            ttlDays: TtlDays.defaultSks,
             localizedOfflineMessage: SksFavouriteDishesView.localizedOfflineMessage,
             onRetry: ref.invalidateSelf,
           )
           .castAsObject,
       ref
-          .getAndCacheDataWithTranslation(
-            _api + _subscriptionsEndpoint + deviceKey,
-            SksFavouriteDishesResponse.fromJson,
-            extraValidityCheck: (_) => true,
-            localizedOfflineMessage: SksFavouriteDishesView.localizedOfflineMessage,
-            onRetry: ref.invalidateSelf,
-          )
-          .castAsObject,
+          .read(restClientProvider)
+          .get<Map<String, dynamic>>(_api + _subscriptionsEndpoint + deviceKey)
+          .then((val) => SksFavouriteDishesResponse.fromJson(val.data!)),
     ]);
 
     final recentDishes = responses[0];
