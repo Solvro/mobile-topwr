@@ -10,6 +10,7 @@ import "../../../../../config/ttl_config.dart";
 import "../../../sks_menu/data/models/sks_menu_data.dart";
 import "../../presentation/sks_favourite_dishes_view.dart";
 import "../../utils/dish_list_extension.dart";
+import "../../utils/sks_favourite_dishes_extension.dart";
 import "../models/sks_favourite_dishes_response.dart";
 
 part "sks_favourite_dishes_repository.g.dart";
@@ -46,41 +47,14 @@ class SksFavouriteDishesRepository extends _$SksFavouriteDishesRepository {
     return (subscribedDishes.meals, unsubscribedDishes);
   }
 
-  Future<void> toggleDishSubscription(String dishId, {required bool subscribe}) async {
-    final currentState = state.valueOrNull;
-    if (currentState == null) return;
-    var (subscribed, unsubscribed) = currentState;
-
-    if (subscribe) {
-      final dish = unsubscribed.firstWhere((d) => d.id == dishId);
-      subscribed = subscribed.add(dish).toIList();
-      unsubscribed = unsubscribed.remove(dish).toIList();
-    } else {
-      final dish = subscribed.firstWhere((d) => d.id == dishId);
-      unsubscribed = unsubscribed.add(dish).toIList();
-      subscribed = subscribed.remove(dish).toIList();
-    }
-
-    state = AsyncData((subscribed, unsubscribed));
-
+  Future<bool> toggleDishSubscription(String dishId, {required bool subscribe}) async {
     final restClient = ref.read(restClientProvider);
     try {
       await restClient.toggleSubscription(dishId, subscribe: subscribe);
-    } on DioException catch (e) {
-      print("Error toggling: $e");
-      ref.invalidateSelf();
+    } on DioException catch (_) {
+      return false;
     }
-  }
-}
-
-extension DioFetchSksFavouriteDishes on Dio {
-  Future<void> toggleSubscription(String dishId, {required bool subscribe}) async {
-    final url = "${Env.sksUrl}/subscriptions/toggle";
-    const key = "aa";
-    final dishIdNum = int.tryParse(dishId);
-    await post<Map<String, dynamic>>(
-      url,
-      data: {"deviceKey": key, "mealId": dishIdNum ?? dishId, "subscribe": subscribe},
-    );
+    ref.invalidateSelf();
+    return true;
   }
 }

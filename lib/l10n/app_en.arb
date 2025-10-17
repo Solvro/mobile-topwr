@@ -143,6 +143,7 @@
   "sks_favourite_dishes_see_dishes": "Set favourite dishes",
   "sks_favourite_dishes_subscribed": "Dishes we will notify you about",
   "sks_favourite_dishes_remaining": "Other dishes recently on the menu",
+  "sks_favourite_dishes_couldnt_update": "Could not update your favourite dishes",
   "leave_a_review": "Rate the app",
   "rest_header": "Others",
   "settings": "Settings",

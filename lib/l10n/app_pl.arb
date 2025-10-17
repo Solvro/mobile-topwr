@@ -575,6 +575,10 @@
   "@sks_favourite_dishes_remaining": {
     "description": "Label for remainig recent dishes section"
   },
+  "sks_favourite_dishes_couldnt_update": "Nie udało się zaktualizować ulubionych dań",
+  "@sks_favourite_dishes_remaining": {
+    "description": "Error message for when favourite dishes update fails"
+  },
   "sks_full_name": "Strefa Kultury Studenckiej",
   "@sks_full_name": {
     "description": "Full name of the Student Culture Zone"
