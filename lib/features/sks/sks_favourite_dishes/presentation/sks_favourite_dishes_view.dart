@@ -23,6 +23,10 @@ import "widgets/sks_favourite_dishes_watched_section.dart";
 class SksFavouriteDishesView extends ConsumerWidget {
   const SksFavouriteDishesView({super.key});
 
+  static String localizedOfflineMessage(BuildContext context) {
+    return context.localize.my_offline_error_message(context.localize.sks_menu_subscriptions);
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     print("in view");
