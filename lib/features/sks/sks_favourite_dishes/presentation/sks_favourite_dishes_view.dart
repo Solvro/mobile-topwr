@@ -17,6 +17,7 @@ import "../../sks_menu/data/models/sks_menu_data.dart";
 import "../../sks_menu/presentation/widgets/sks_menu_section.dart";
 import "../data/repository/sks_favourite_dishes_repository.dart";
 import "sks_favourite_dishes_controller.dart";
+import "widgets/sks_favourite_dishes_loading.dart";
 import "widgets/sks_favourite_dishes_watched_section.dart";
 
 @RoutePage()
@@ -49,7 +50,7 @@ class SksFavouriteDishesView extends ConsumerWidget {
           subscribedDishes: subscribedDishes,
           unsubscribedDishes: unsubscribedDishes,
         ),
-        _ => const Text("loading: "),
+        _ => const SksFavouriteDishesViewLoading(),
       },
     );
   }
