@@ -111,6 +111,9 @@ dependencies:
   envied: ^1.1.1
   path_provider: ^2.1.5
   path: ^1.9.1
+  device_info_plus: ^10.1.2
+  android_id: ^0.4.0
+  crypto: ^3.0.6
 
   #Audio
   just_audio: ^0.10.5
