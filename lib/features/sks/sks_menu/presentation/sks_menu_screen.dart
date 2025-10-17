@@ -102,16 +102,16 @@ class _SksMenuView extends ConsumerWidget {
               openingHours: sksMenuData.openingHours,
             ),
             Padding(
+              padding: const EdgeInsets.all(HomeViewConfig.paddingMedium),
+              child: SksMenuSection(sksMenuData.meals),
+            ),
+            Padding(
               padding: const EdgeInsets.symmetric(horizontal: HomeViewConfig.paddingMedium),
               child: MyTextButton(
-                actionTitle: context.localize.sks_menu_see_subscriptions,
+                actionTitle: context.localize.sks_favourite_dishes_see_dishes,
                 showBorder: true,
                 onClick: ref.navigateToSksFavouriteDishes,
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(HomeViewConfig.paddingMedium),
-              child: SksMenuSection(sksMenuData.meals),
             ),
             TextAndUrl(SksMenuConfig.sksDataSource, "${context.localize.data_come_from_website}: "),
             const SizedBox(height: ScienceClubsViewConfig.mediumPadding),
