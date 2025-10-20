@@ -5,7 +5,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../sks_menu/data/models/dish_category_enum.dart";
 import "../../../sks_menu/presentation/widgets/sks_menu_tiles.dart";
-import "../../data/repository/sks_favourite_dishes_repository.dart";
+import "../../utils/toast_on_dish_tap.dart";
 import "../sks_favourite_dishes_controller.dart";
 
 class SksFavouriteDishesUnwatchedSection extends ConsumerStatefulWidget {
@@ -28,7 +28,7 @@ class _SksFavouriteDishesUnwatchedSectionState extends ConsumerState<SksFavourit
     final dishes = ref.watch(unsubscribedDishesProvider);
     return SingleChildScrollView(
       controller: _scrollController,
-      key: const PageStorageKey("sks_unwatched_section_scroll"),
+      key: const PageStorageKey("SksUnwatchedSectionScroll"),
       child: Column(
         children: dishes.map((dish) => dish.category).toISet().sorted((e1, e2) => e1.index.compareTo(e2.index)).map((
           category,
@@ -36,8 +36,7 @@ class _SksFavouriteDishesUnwatchedSectionState extends ConsumerState<SksFavourit
           return SksMenuTile(
             title: category.getLocalizedName(context),
             dishes: dishes.where((e) => e.category == category).toList(),
-            onDishTap: (dishId) =>
-                ref.read(sksFavouriteDishesRepositoryProvider.notifier).toggleDishSubscription(dishId, subscribe: true),
+            onDishTap: (dishId) => toastOnDishTap(dishId: dishId, ref: ref, context: context, subscribe: true),
           );
         }).toList(),
       ),

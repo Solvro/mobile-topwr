@@ -4,7 +4,7 @@ import "package:separate/separate.dart";
 import "../../../../../config/ui_config.dart";
 
 import "../../../sks_menu/presentation/widgets/sks_menu_tiles.dart";
-import "../../data/repository/sks_favourite_dishes_repository.dart";
+import "../../utils/toast_on_dish_tap.dart";
 import "../sks_favourite_dishes_controller.dart";
 
 class SksFavouriteDishesWatchedSection extends ConsumerStatefulWidget {
@@ -29,16 +29,14 @@ class _SksFavouriteDishesWatchedSectionState extends ConsumerState<SksFavouriteD
 
     return SingleChildScrollView(
       controller: _scrollController,
-      key: const PageStorageKey("sks_watched_section_scroll"),
+      key: const PageStorageKey("SksWatchedSectionScroll"),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: dishes
             .map<Widget>(
               (dish) => SksMenuDishDetailsTile(
                 dish: dish,
-                onTap: (dishId) => ref
-                    .read(sksFavouriteDishesRepositoryProvider.notifier)
-                    .toggleDishSubscription(dishId, subscribe: false),
+                onTap: (dishId) => toastOnDishTap(dishId: dishId, ref: ref, context: context, subscribe: false),
               ),
             )
             .separate((i, e0, e1) => const SizedBox(height: SksMenuConfig.paddingMedium))

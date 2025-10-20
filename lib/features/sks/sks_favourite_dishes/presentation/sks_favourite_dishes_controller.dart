@@ -30,7 +30,6 @@ IList<SksMenuDishMinimal> subscribedDishes(Ref ref) {
 IList<SksMenuDishMinimal> unsubscribedDishes(Ref ref) {
   final originalLists = ref.watch(sksFavouriteDishesRepositoryProvider);
   final query = ref.watch(sksFavouriteDishesControllerProvider);
-  print(query);
   return originalLists.asData?.value.$2.where((element) => element.name.containsLowerCase(query)).toIList() ??
       const IList.empty();
 }
