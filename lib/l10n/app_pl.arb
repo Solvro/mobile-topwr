@@ -573,7 +573,7 @@
   },
   "sks_favourite_dishes_remaining": "Pozostałe dania ostatnio w menu",
   "@sks_favourite_dishes_remaining": {
-    "description": "Label for remainig recent dishes section"
+    "description": "Label for remaining recent dishes section"
   },
   "sks_favourite_dishes_couldnt_update": "Nie udało się zaktualizować ulubionych dań",
   "@sks_favourite_dishes_remaining": {
