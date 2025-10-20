@@ -102,7 +102,7 @@ class _SksMenuView extends ConsumerWidget {
               openingHours: sksMenuData.openingHours,
             ),
             Padding(
-              padding: const EdgeInsets.all(HomeViewConfig.paddingMedium),
+              padding: const EdgeInsets.all(HomeViewConfig.paddingMedium).copyWith(top: 0),
               child: SksMenuSection(sksMenuData.meals),
             ),
             Padding(
