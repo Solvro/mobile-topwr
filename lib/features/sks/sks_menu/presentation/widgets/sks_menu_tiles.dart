@@ -17,17 +17,25 @@ class SksMenuTile extends StatelessWidget {
   final List<SksMenuDishBase> dishes;
   final void Function(String dishId)? onDishTap;
 
+  static const _keyPrefix = "MenuExpansionTile";
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: SksMenuConfig.paddingLarge),
       child: MyExpansionTile(
+        key: PageStorageKey<String>("$_keyPrefix-$title"),
         backgroundColor: context.colorTheme.whiteSoap,
         initiallyExpanded: true,
         title: title,
         children: dishes
             .map<Widget>((dish) => SksMenuDishDetailsTile(dish: dish, onTap: onDishTap))
-            .separate((i, e0, e1) => const SizedBox(height: SksMenuConfig.paddingMedium))
+            .separate(
+              (i, e0, e1) => SizedBox(
+                key: PageStorageKey<String>("$_keyPrefix-ContentPadding-$i"),
+                height: SksMenuConfig.paddingMedium,
+              ),
+            )
             .toList(),
       ),
     );
@@ -39,6 +47,8 @@ class SksMenuDishDetailsTile extends StatelessWidget {
 
   final SksMenuDishBase dish;
   final void Function(String dishId)? onTap;
+
+  static const _keyPrefix = "MenuDishDetailsTile";
 
   @override
   Widget build(BuildContext context) {
@@ -53,6 +63,7 @@ class SksMenuDishDetailsTile extends StatelessWidget {
         ),
         child: switch (dish) {
           SksMenuDish(:final name, :final size, :final price) => ListTile(
+            key: PageStorageKey<String>("$_keyPrefix-RichTile-${dish.id}"),
             title: Text(name, style: context.textTheme.lightTitle),
             trailing: Text.rich(
               textAlign: TextAlign.end,
@@ -66,7 +77,10 @@ class SksMenuDishDetailsTile extends StatelessWidget {
               ),
             ),
           ),
-          SksMenuDishMinimal(:final name) => ListTile(title: Text(name, style: context.textTheme.lightTitle)),
+          SksMenuDishMinimal(:final name) => ListTile(
+            key: PageStorageKey<String>("$_keyPrefix-SimpleTile-${dish.id}"),
+            title: Text(name, style: context.textTheme.lightTitle),
+          ),
         },
       ),
     );
