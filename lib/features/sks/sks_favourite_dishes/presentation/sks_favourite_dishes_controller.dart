@@ -19,10 +19,18 @@ class SksFavouriteDishesController extends _$SksFavouriteDishesController {
 }
 
 @Riverpod(dependencies: [SksFavouriteDishesController])
-Future<(IList<SksMenuDishMinimal>, IList<SksMenuDishMinimal>)> sksFavouriteDishes(Ref ref) async {
-  final originalLists = await ref.watch(sksFavouriteDishesRepositoryProvider.future);
+IList<SksMenuDishMinimal> subscribedDishes(Ref ref) {
+  final originalLists = ref.watch(sksFavouriteDishesRepositoryProvider);
   final query = ref.watch(sksFavouriteDishesControllerProvider);
-  final list1 = originalLists.$1.where((element) => element.name.containsLowerCase(query)).toIList();
-  final list2 = originalLists.$2.where((element) => element.name.containsLowerCase(query)).toIList();
-  return (list1, list2);
+  return originalLists.asData?.value.$1.where((element) => element.name.containsLowerCase(query)).toIList() ??
+      const IList.empty();
+}
+
+@Riverpod(dependencies: [SksFavouriteDishesController])
+IList<SksMenuDishMinimal> unsubscribedDishes(Ref ref) {
+  final originalLists = ref.watch(sksFavouriteDishesRepositoryProvider);
+  final query = ref.watch(sksFavouriteDishesControllerProvider);
+  print(query);
+  return originalLists.asData?.value.$2.where((element) => element.name.containsLowerCase(query)).toIList() ??
+      const IList.empty();
 }
