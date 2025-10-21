@@ -1,3 +1,5 @@
+import "dart:async";
+
 import "package:auto_route/auto_route.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
@@ -23,9 +25,10 @@ import "widgets/tooltip_on_click.dart";
 
 @RoutePage()
 class GuideDetailView extends StatelessWidget {
-  const GuideDetailView({@PathParam("id") required this.id, super.key});
+  const GuideDetailView({@PathParam("id") required this.id, @QueryParam("sec") this.sectionIndex, super.key});
 
   final int id;
+  final int? sectionIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -33,25 +36,65 @@ class GuideDetailView extends StatelessWidget {
       label: context.localize.guide_detail_view_description,
       child: Scaffold(
         appBar: DetailViewAppBar(),
-        body: _GuideDetailDataView(id: id),
+        body: _GuideDetailDataView(id: id, sectionIndex: sectionIndex),
       ),
     );
   }
 }
 
-class _GuideDetailDataView extends ConsumerWidget {
+class _GuideDetailDataView extends ConsumerStatefulWidget {
   final int id;
+  final int? sectionIndex;
 
-  const _GuideDetailDataView({required this.id});
+  const _GuideDetailDataView({required this.id, this.sectionIndex});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(guideDetailsRepositoryProvider(id));
+  ConsumerState<_GuideDetailDataView> createState() => _GuideDetailDataViewState();
+}
+
+class _GuideDetailDataViewState extends ConsumerState<_GuideDetailDataView> {
+  final _scrollController = ScrollController();
+  final Map<int, GlobalKey> _sectionKeys = {};
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _scrollToSection(int index) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final key = _sectionKeys[index];
+      if (key?.currentContext != null) {
+        unawaited(
+          Scrollable.ensureVisible(
+            key!.currentContext!,
+            curve: Curves.easeInOut,
+            duration: const Duration(milliseconds: 500),
+          ),
+        );
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final state = ref.watch(guideDetailsRepositoryProvider(widget.id));
 
     return switch (state) {
       AsyncError(:final error, :final stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
       AsyncValue(:final GuideDetails value) => Builder(
         builder: (context) {
+          for (var i = 0; i < value.guideQuestions.length; i++) {
+            _sectionKeys.putIfAbsent(i, GlobalKey.new);
+          }
+
+          if (widget.sectionIndex != null &&
+              widget.sectionIndex! >= 0 &&
+              widget.sectionIndex! < value.guideQuestions.length) {
+            _scrollToSection(widget.sectionIndex!);
+          }
+
           final lastModifiedDate = context.getTheLatestUpdatedDateGuide(questions: value.guideQuestions);
           final IList<String> authorsNames = value.guideAuthors
               .where((e) => e.role.role == GuideAuthorRoleType.author)
@@ -63,6 +106,7 @@ class _GuideDetailDataView extends ConsumerWidget {
               .toIList();
 
           return CustomScrollView(
+            controller: _scrollController,
             slivers: [
               SliverAppBar(
                 excludeHeaderSemantics: true,
@@ -103,7 +147,12 @@ class _GuideDetailDataView extends ConsumerWidget {
                   itemCount: value.guideQuestions.length,
                   itemBuilder: (context, index) {
                     final question = value.guideQuestions[index];
-                    return FaqExpansionTile(title: question.title, description: question.answer);
+                    return FaqExpansionTile(
+                      key: _sectionKeys[index],
+                      title: question.title,
+                      description: question.answer,
+                      initiallyExpanded: widget.sectionIndex == index,
+                    );
                   },
                   separatorBuilder: (context, index) => const SizedBox(height: 8),
                 ),
