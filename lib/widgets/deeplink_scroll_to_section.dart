@@ -61,7 +61,6 @@ class _DeeplinkScrollToSectionWrapperState extends State<DeeplinkScrollToSection
   Widget build(BuildContext context) {
     final w = widget.builder(context, helper);
     if (helper.shouldScroll) {
-      print("ADDING SCROLL");
       WidgetsBinding.instance.addPostFrameCallback((_) => helper.scrollToSection());
     }
     return w;
