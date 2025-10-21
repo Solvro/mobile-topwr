@@ -62,7 +62,7 @@ extension NavigationX on WidgetRef {
 
   Future<void> navigateDepartments() async {
     await trackEvent(UmamiEvents.openDepartmentsList);
-    await _router.push(const DepartmentsRoute());
+    await _router.push(DepartmentsRoute());
   }
 
   Future<void> navigateDepartmentDetail(int id) async {
