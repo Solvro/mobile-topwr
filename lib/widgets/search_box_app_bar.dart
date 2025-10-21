@@ -19,6 +19,7 @@ class SearchBoxAppBar extends AppBar {
     VoidCallback? onSearchBoxTap,
     double bottomPadding = defaultBottomPadding,
     bool addLeadingPopButton = false,
+    String? initialQuery,
     super.primary = false,
   }) : super(
          title: Text(title, textScaler: context.textScaler.clamp(maxScaleFactor: 2.5)),
@@ -49,7 +50,7 @@ class SearchBoxAppBar extends AppBar {
              child: Semantics(
                button: true,
                label: context.localize.search,
-               child: SearchBox(onQueryChanged: onQueryChanged, onTap: onSearchBoxTap),
+               child: SearchBox(onQueryChanged: onQueryChanged, onTap: onSearchBoxTap, initialQuery: initialQuery),
              ),
            ),
          ),
