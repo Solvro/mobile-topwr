@@ -12,9 +12,10 @@ import "utils/android_pop_bug_workaround.dart";
 
 @RoutePage()
 class RootView extends HookConsumerWidget {
-  const RootView({super.key, this.initialTabToGetBackTo = NavBarEnum.home});
+  const RootView({super.key, this.initialTabToGetBackTo = NavBarEnum.home, this.isFirstRootBottomView = true});
 
   final NavBarEnum initialTabToGetBackTo;
+  final bool isFirstRootBottomView;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -42,7 +43,7 @@ class RootView extends HookConsumerWidget {
                 child: NavigatorPopHandler(
                   onPopWithResult: shouldNavigateBackToHome
                       ? (result) async {
-                          final enforceHomeRoute = timesPushedToTabBar.value > 1;
+                          final enforceHomeRoute = timesPushedToTabBar.value > 1 && !isFirstRootBottomView;
                           timesPushedToTabBar.value = 0;
                           if (enforceHomeRoute) {
                             await ref.read(appRouterProvider).replaceAll([
