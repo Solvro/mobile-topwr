@@ -4,12 +4,11 @@ import "package:flutter_hooks/flutter_hooks.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../config/nav_bar_config.dart";
-import "../../utils/unwaited_microtask.dart";
+import "../../services/pop_scope/centralized_pop_scope.dart";
 import "../../widgets/horizontal_symmetric_safe_area.dart";
 import "../app_changelog/update_changelog_wrapper.dart";
 import "../bottom_nav_bar/bottom_nav_bar.dart";
-import "../bottom_scroll_sheet/map_view_pop_behaviour.dart";
-import "app_router.dart";
+import "nested_nav_pop_scope.dart";
 
 @RoutePage()
 class RootView extends HookConsumerWidget {
@@ -20,65 +19,31 @@ class RootView extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var shouldNavigateBackToHome = false;
     final timesPushedToTabBar = useState(0);
     return ShowEntryDialogWrapper(
       child: AutoTabsRouter(
         routes: NavBarConfig.tabViews.values.toList(),
         builder: (context, child) {
           final tabsRouter = AutoTabsRouter.of(context);
-          shouldNavigateBackToHome = ref.shouldNavigateBackToHome(initialTabToGetBackTo, tabsRouter.activeIndex);
-          return PopScope(
-            canPop: !shouldNavigateBackToHome,
-            onPopInvokedWithResult: (didPop, _) async {
-              await Future<void>.delayed(const Duration(milliseconds: 10));
-              final shouldBlockPop = ref.read(
-                mapViewShouldBlockRootPopProvider,
-              ); // ! this is so nasty workaround, but new PopScopes in Flutter are retarded, see https://github.com/flutter/flutter/issues/144074
-              if (shouldBlockPop) {
-                ref.read(mapViewShouldBlockRootPopProvider.notifier).state = false;
-                return;
-              }
-              if (!didPop) {
-                final enforceHomeRoute =
-                    timesPushedToTabBar.value > 1 &&
-                    !isFirstRootBottomView; // if user is deep into the app (second root view) and uses tab bar more than once, we reset the stack back to home entirely once they pop. We assume they've lost interest in the old UX.
-                timesPushedToTabBar.value = 0;
-                if (enforceHomeRoute) {
-                  unwaitedMicrotask(
-                    () => ref.read(appRouterProvider).replaceAll([
-                      RootRoute(children: const [HomeRoute()]),
-                    ], updateExistingRoutes: false),
-                  );
-                } else {
-                  unwaitedMicrotask(
-                    () => ref.read(appRouterProvider).navigate(NavBarConfig.tabViews[initialTabToGetBackTo]!),
-                  );
-                }
-              }
-            },
-            child: HorizontalSymmetricSafeAreaScaffold(
-              bottomNavigationBar: BottomNavBar(
-                activeIndex: tabsRouter.activeIndex,
-                onTap: (index) {
-                  timesPushedToTabBar.value++;
-                  tabsRouter.setActiveIndex(index);
-                },
+          return CentralizedPopScope(
+            child: NestedNavPopScope(
+              initialTabToGetBackTo: initialTabToGetBackTo,
+              isFirstRootBottomView: isFirstRootBottomView,
+              timesPushedToTabBar: timesPushedToTabBar.value,
+              child: HorizontalSymmetricSafeAreaScaffold(
+                bottomNavigationBar: BottomNavBar(
+                  activeIndex: tabsRouter.activeIndex,
+                  onTap: (index) {
+                    timesPushedToTabBar.value++;
+                    tabsRouter.setActiveIndex(index);
+                  },
+                ),
+                body: child,
               ),
-              body: child,
             ),
           );
         },
       ),
     );
-  }
-}
-
-extension on WidgetRef {
-  bool shouldNavigateBackToHome(NavBarEnum initialTab, int activeIndex) {
-    final activeRoute = NavBarConfig.tabViews.values.toList()[activeIndex];
-    final routesWithinTabBar = read(appRouterProvider).routesWithinTabBar;
-    final isLastRouteInTabBar = routesWithinTabBar.any((route) => route.name == activeRoute.routeName);
-    return isLastRouteInTabBar && activeIndex != initialTab.index;
   }
 }
