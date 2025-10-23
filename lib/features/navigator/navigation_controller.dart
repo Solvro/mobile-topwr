@@ -32,7 +32,11 @@ class NavigationController extends _$NavigationController {
     if (shouldPushNewRootView) {
       final tabRoute = ref.read(appRouterProvider).pathToRoute(uri);
       await _router?.push(
-        RootRoute(initialTabToGetBackTo: NavBarConfig.reversedTabViews[tabRoute.routeName]!, children: [tabRoute]),
+        RootRoute(
+          initialTabToGetBackTo: NavBarConfig.reversedTabViews[tabRoute.routeName]!,
+          children: [tabRoute],
+          isFirstRootBottomView: false,
+        ),
       );
       return;
     }
