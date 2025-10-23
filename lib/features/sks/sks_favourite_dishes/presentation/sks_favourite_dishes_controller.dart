@@ -22,7 +22,7 @@ class SksFavouriteDishesController extends _$SksFavouriteDishesController {
 IList<SksMenuDishMinimal> subscribedDishes(Ref ref) {
   final originalLists = ref.watch(sksFavouriteDishesRepositoryProvider);
   final query = ref.watch(sksFavouriteDishesControllerProvider);
-  return originalLists.asData?.value.$1.where((element) => element.name.containsLowerCase(query)).toIList() ??
+  return originalLists.asData?.value.subscribed.where((element) => element.name.containsLowerCase(query)).toIList() ??
       const IList.empty();
 }
 
@@ -30,6 +30,6 @@ IList<SksMenuDishMinimal> subscribedDishes(Ref ref) {
 IList<SksMenuDishMinimal> unsubscribedDishes(Ref ref) {
   final originalLists = ref.watch(sksFavouriteDishesRepositoryProvider);
   final query = ref.watch(sksFavouriteDishesControllerProvider);
-  return originalLists.asData?.value.$2.where((element) => element.name.containsLowerCase(query)).toIList() ??
+  return originalLists.asData?.value.unsubscribed.where((element) => element.name.containsLowerCase(query)).toIList() ??
       const IList.empty();
 }

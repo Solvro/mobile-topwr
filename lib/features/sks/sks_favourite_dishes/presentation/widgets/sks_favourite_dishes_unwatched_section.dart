@@ -1,33 +1,23 @@
 import "package:collection/collection.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/cupertino.dart";
-import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:flutter_hooks/flutter_hooks.dart";
+import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../../sks_menu/data/models/dish_category_enum.dart";
 import "../../../sks_menu/presentation/widgets/sks_menu_tiles.dart";
 import "../../utils/toast_on_dish_tap.dart";
 import "../sks_favourite_dishes_controller.dart";
 
-class SksFavouriteDishesUnwatchedSection extends ConsumerStatefulWidget {
+class SksFavouriteDishesUnwatchedSection extends HookConsumerWidget {
   const SksFavouriteDishesUnwatchedSection({super.key});
-  @override
-  ConsumerState<SksFavouriteDishesUnwatchedSection> createState() => _SksFavouriteDishesUnwatchedSectionState();
-}
-
-class _SksFavouriteDishesUnwatchedSectionState extends ConsumerState<SksFavouriteDishesUnwatchedSection> {
-  final _scrollController = ScrollController();
 
   @override
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final scrollController = useScrollController();
     final dishes = ref.watch(unsubscribedDishesProvider);
     return SingleChildScrollView(
-      controller: _scrollController,
+      controller: scrollController,
       key: const PageStorageKey("SksUnwatchedSectionScroll"),
       child: Column(
         children: dishes.map((dish) => dish.category).toISet().sorted((e1, e2) => e1.index.compareTo(e2.index)).map((
