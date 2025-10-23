@@ -8,6 +8,7 @@ import "../../utils/unwaited_microtask.dart";
 import "../../widgets/horizontal_symmetric_safe_area.dart";
 import "../app_changelog/update_changelog_wrapper.dart";
 import "../bottom_nav_bar/bottom_nav_bar.dart";
+import "../bottom_scroll_sheet/map_view_pop_behaviour.dart";
 import "app_router.dart";
 
 @RoutePage()
@@ -29,7 +30,15 @@ class RootView extends HookConsumerWidget {
           shouldNavigateBackToHome = ref.shouldNavigateBackToHome(initialTabToGetBackTo, tabsRouter.activeIndex);
           return PopScope(
             canPop: !shouldNavigateBackToHome,
-            onPopInvokedWithResult: (didPop, _) {
+            onPopInvokedWithResult: (didPop, _) async {
+              await Future<void>.delayed(const Duration(milliseconds: 10));
+              final shouldBlockPop = ref.read(
+                mapViewShouldBlockRootPopProvider,
+              ); // ! this is so nasty workaround, but new PopScopes in Flutter are retarded, see https://github.com/flutter/flutter/issues/144074
+              if (shouldBlockPop) {
+                ref.read(mapViewShouldBlockRootPopProvider.notifier).state = false;
+                return;
+              }
               if (!didPop) {
                 final enforceHomeRoute =
                     timesPushedToTabBar.value > 1 &&
