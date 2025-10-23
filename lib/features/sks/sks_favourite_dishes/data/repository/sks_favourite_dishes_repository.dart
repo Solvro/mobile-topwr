@@ -23,7 +23,7 @@ class SksFavouriteDishesRepository extends _$SksFavouriteDishesRepository {
   static const _subscriptionsEndpoint = "/subscriptions/";
 
   @override
-  Future<(IList<SksMenuDishMinimal>, IList<SksMenuDishMinimal>)> build() async {
+  Future<({IList<SksMenuDishMinimal> subscribed, IList<SksMenuDishMinimal> unsubscribed})> build() async {
     final deviceKey = await getDeviceId();
     final responses = await Future.wait([
       ref
@@ -45,17 +45,17 @@ class SksFavouriteDishesRepository extends _$SksFavouriteDishesRepository {
 
     final recentDishes = responses[0];
     if (deviceKey == null) {
-      return (IList<SksMenuDishMinimal>(), recentDishes.meals);
+      return (subscribed: IList<SksMenuDishMinimal>(), unsubscribed: recentDishes.meals);
     }
     final subscribedDishes = responses[1];
     final unsubscribedDishes = recentDishes.meals.getUnsubscribedFromSubscribed(subscribedDishes.meals);
-    return (subscribedDishes.meals, unsubscribedDishes);
+    return (subscribed: subscribedDishes.meals, unsubscribed: unsubscribedDishes);
   }
 
-  Future<bool> toggleDishSubscription(String dishId, {required bool subscribe}) async {
+  Future<bool> toggleDishSubscription(String dishId, {required bool isSubscribed}) async {
     final restClient = ref.read(restClientProvider);
     try {
-      await restClient.toggleSubscription(dishId, subscribe: subscribe);
+      await restClient.toggleSubscription(dishId, isSubscribed: isSubscribed);
     } on DioException catch (_) {
       return false;
     }

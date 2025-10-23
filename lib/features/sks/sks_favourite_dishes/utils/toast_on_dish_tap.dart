@@ -14,7 +14,7 @@ Future<void> toastOnDishTap({
 }) async {
   final success = await ref
       .read(sksFavouriteDishesRepositoryProvider.notifier)
-      .toggleDishSubscription(dishId, subscribe: subscribe);
+      .toggleDishSubscription(dishId, isSubscribed: subscribe);
   if (!success && context.mounted) {
     await Fluttertoast.showToast(
       msg: context.localize.sks_favourite_dishes_couldnt_update,
