@@ -33,9 +33,9 @@ class RootView extends HookConsumerWidget {
               }
             : null,
         child: ShowEntryDialogWrapper(
-          child: AutoTabsRouter.pageView(
+          child: AutoTabsRouter(
             routes: NavBarConfig.tabViews.values.toList(),
-            builder: (context, child, controller) {
+            builder: (context, child) {
               final tabsRouter = AutoTabsRouter.of(context);
               shouldNavigateBackToHome = ref.shouldNavigateBackToHome(initialTabToGetBackTo, tabsRouter.activeIndex);
               return PopScope(
