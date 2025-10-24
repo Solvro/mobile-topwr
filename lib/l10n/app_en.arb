@@ -630,5 +630,8 @@
   "radio_luz_subtitle": "Student radio",
   "start_playing": "Listen",
   "stop_playing": "Stop",
-  "loading": "Loading"
+  "loading": "Loading",
+  "now_playing": "Now playing",
+  "broadcast": "Broadcasts",
+  "radio_luz_info": "Info"
 }

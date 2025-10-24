@@ -3692,5 +3692,17 @@
   "loading": "Łączenie",
   "@loading": {
     "description": "Text for radio player button loading state"
+  },
+  "now_playing": "Teraz gramy",
+  "@now_playing": {
+    "description": "Title for now playing section in radio luz view"
+  },
+  "broadcast": "Audycje",
+  "@broadcast": {
+    "description": "Title for broadcast section in radio luz view"
+  },
+  "radio_luz_info": "Info",
+  "@radio_luz_info": {
+    "description": "Title for info section in radio luz view"
   }
 }
