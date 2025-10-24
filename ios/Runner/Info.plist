@@ -65,5 +65,10 @@
 			<string>UIInterfaceOrientationLandscapeLeft</string>
 			<string>UIInterfaceOrientationLandscapeRight</string>
 		</array>
+		<!-- playing radio in background -->
+		<key>UIBackgroundModes</key>
+		<array>
+			<string>audio</string>
+		</array>
 	</dict>
 </plist>

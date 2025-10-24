@@ -5,17 +5,18 @@ rules:
     - always
     - - digital-guide
       - about-us
-      - academic-calendar
+      - academic-calendar # these are settings for the academic calendar like day swaps, start/end dates etc.
+      - calendar # this is the new calendar screen
       - analytics
       - changelog
       - app-streak
       - navigation
-      - buildings
+      - multilayer-map
       - departments
       - guide
       - home
       - in-app-review
-      - map
+      - map-view
       - navigation-tab # last screen in tab view
       - parkings
       - advert
@@ -32,4 +33,7 @@ rules:
       - translation
       - remote-config
       - news
+      - deps
+      - branches
+      - radio-luz
     # YES, you can add new ones if you have a new feature

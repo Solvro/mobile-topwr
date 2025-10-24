@@ -12,7 +12,7 @@ import "../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../../widgets/horizontal_symmetric_safe_area.dart";
 import "../../../widgets/my_error_widget.dart";
 import "../../../widgets/zoomable_images.dart";
-import "../../buildings_view/model/building.dart";
+import "../../multilayer_map/data/model/building.dart";
 import "../data/models/digital_guide_response.dart";
 import "../data/repository/digital_guide_repository.dart";
 import "widgets/accessibility_button.dart";
@@ -88,6 +88,7 @@ class _DigitalGuideView extends ConsumerWidget {
         ),
       ),
       ContactSection(
+        shouldBeAccessible: true,
         list: IList<ContactIconsModel>([
           ContactIconsModel(
             text: digitalGuideData.translations.plTranslation.address.replaceAll("ulica", "ul."),

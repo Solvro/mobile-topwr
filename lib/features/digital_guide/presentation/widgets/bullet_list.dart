@@ -2,6 +2,7 @@ import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 
 import "../../../../../../theme/app_theme.dart";
+import "../../../../config/ui_config.dart";
 
 class BulletList extends StatelessWidget {
   final IList<String> items;
@@ -30,7 +31,10 @@ class BulletList extends StatelessWidget {
                 ),
                 TextSpan(
                   text: item,
-                  style: context.textTheme.body.copyWith(fontSize: fontSize),
+                  style: context.textTheme.body.copyWith(
+                    fontSize: fontSize,
+                    height: DigitalGuideConfig.accessibleLineHeight,
+                  ),
                 ),
               ],
             ),

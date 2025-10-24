@@ -34,4 +34,8 @@ abstract class Env {
   static final String umamiId = _Env.umamiId;
   @EnviedField()
   static final String mainRestApiUrl = _Env.mainRestApiUrl;
+  @EnviedField()
+  static final String radioLuzStreamUrl = _Env.radioLuzStreamUrl;
+  @EnviedField()
+  static final String radioLuzApiUrl = _Env.radioLuzApiUrl;
 }

@@ -16,11 +16,11 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.1.26+85
+version: 1.2.2+89
 
 environment:
-  sdk: ^3.8.0
-  flutter: 3.32.6
+  sdk: ^3.9.2
+  flutter: 3.35.6
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -70,10 +70,10 @@ dependencies:
       url: https://github.com/ChrisElliotUK/auto_size_text.git
       ref: patch-1
   lottie: ^3.3.1
-  fl_chart: ^1.0.0
+  fl_chart: 1.1.1
   animated_list_plus: ^0.5.2
   dotted_border: ^3.1.0
-  fluttertoast: ^8.2.12
+  fluttertoast: ^9.0.0
   carousel_slider_plus: ^7.1.1
   home_widget: ^0.8.0
   scrollable_positioned_list: ^0.3.8
@@ -99,21 +99,26 @@ dependencies:
   flutter_compass: ^0.8.1
 
   #Firebase
-  firebase_core: ^3.15.1
-  firebase_performance: ^0.10.1
-  firebase_messaging: ^15.2.9
+  firebase_core: ^4.1.1
+  firebase_performance: ^0.11.1
+  firebase_messaging: ^16.0.2
 
   #Utility
   intl: ^0.20.2
   latlong2: ^0.9.1
   permission_handler: ^12.0.1
-  package_info_plus: ^8.3.0
+  package_info_plus: ^9.0.0
   envied: ^1.1.1
   path_provider: ^2.1.5
+  path: ^1.9.1
+
+  #Audio
+  just_audio: ^0.10.5
+  just_audio_background: ^0.0.1-beta.17
 
   #Other
   in_app_update: ^4.2.3
-  upgrader: ^11.4.0
+  upgrader: ^12.1.0
   in_app_review: ^2.0.10
   protontime: ^2.0.0
   logger: ^2.6.0
@@ -123,7 +128,6 @@ dependencies:
   audioplayers: ^6.5.0
   sentry_flutter: ^9.4.1
   workmanager: ^0.8.0
-
 
   #Solvro packages
   solvro_translator_with_drift_cache_flutter: ^0.6.0
@@ -166,6 +170,17 @@ flutter:
     - assets/png/map_markers/active_map_marker.png
     - assets/png/map_markers/active_parking_map_marker.png
     - assets/png/map_markers/parking_map_marker.png
+    - assets/png/map_markers/active_library_marker.png
+    - assets/png/map_markers/library_marker.png
+    - assets/png/map_markers/active_polinka_marker.png
+    - assets/png/map_markers/polinka_marker.png
+    - assets/png/map_markers/active_aed_marker.png
+    - assets/png/map_markers/aed_marker.png
+    - assets/png/map_markers/active_shower_marker.png
+    - assets/png/map_markers/shower_marker.png
+    - assets/png/map_markers/active_pink_box_marker.png
+    - assets/png/map_markers/pink_box_marker.png
+    - assets/png/radio_luz/radio_luz_logo.png
     - assets/svg/search_box/vectorsearch.svg
     - assets/svg/contact_icons/compass.svg
     - assets/svg/contact_icons/fb.svg
@@ -201,6 +216,14 @@ flutter:
     - assets/animations/sks_closed.json
     - assets/svg/settings.svg
     - assets/certs/przewodnik.pwr.edu.pl.pem
+    - assets/svg/map_placeholders/pink_box_icon.svg
+    - assets/svg/map_placeholders/aed_icon.svg
+    - assets/svg/map_placeholders/library_icon.svg
+    - assets/svg/map_placeholders/shower_icon.svg
+    - assets/svg/map_placeholders/building_icon.svg
+    - assets/svg/radio_luz/play_icon.svg
+    - assets/svg/radio_luz/pause_icon.svg
+    - assets/svg/radio_luz/speaker_icon.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

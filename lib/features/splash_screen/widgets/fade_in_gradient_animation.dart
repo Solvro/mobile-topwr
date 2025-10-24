@@ -1,3 +1,5 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
 
@@ -24,7 +26,7 @@ class FadeInGradientAnimation extends HookWidget {
     );
 
     useEffectOnInit(() {
-      controller.forward();
+      unawaited(controller.forward());
       return null;
     });
 

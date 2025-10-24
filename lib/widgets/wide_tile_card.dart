@@ -19,11 +19,12 @@ class PhotoTrailingWideTileCard extends WideTileCard {
     super.key,
     super.crossAxisAlignment,
     BoxFit boxFit = BoxFit.cover,
+    Widget? customPlaceholder,
   }) : super(
          trailing: SizedBox(
            height: context.textScaler.scale(WideTileCardConfig.imageSize),
            width: WideTileCardConfig.imageSize,
-           child: MyCachedImage(directusPhotoUrl, boxFit: boxFit),
+           child: directusPhotoUrl != null ? MyCachedImage(directusPhotoUrl, boxFit: boxFit) : customPlaceholder,
          ),
        );
 }
@@ -125,7 +126,7 @@ class _TitlesColumn extends StatelessWidget {
       builder: (context, constraints) {
         const basePadding = WideTileCardConfig.basePadding;
         return Padding(
-          padding: const EdgeInsets.only(left: basePadding, top: basePadding, right: basePadding),
+          padding: const EdgeInsets.only(left: basePadding, top: basePadding, right: basePadding * 1.04),
           child: EnsureVisibleTags(
             title: title,
             titleStyle: isActive ? context.textTheme.titleWhite : context.textTheme.title,

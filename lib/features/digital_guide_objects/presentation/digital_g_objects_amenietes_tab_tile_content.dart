@@ -17,6 +17,7 @@ class DigitalGuideObjectAmenietesTabTileContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return ContactSection(
       topPadding: DigitalGuideConfig.heightTiny,
+      shouldBeAccessible: true,
       list: [
         if (digitalGuideData.areGuidancePaths)
           ContactIconsModel(text: context.localize.orientation_paths, icon: Assets.svg.digitalGuide.orientationPaths),

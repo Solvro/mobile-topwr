@@ -10,6 +10,7 @@ Future<void> showCustomDialog({
   required String confirmText,
   String? dialogSemantics,
   required Widget dialogContent,
+  String? closeText,
 }) async {
   await showDialog<void>(
     context: context,
@@ -22,6 +23,7 @@ Future<void> showCustomDialog({
           dialogContent: dialogContent,
           onConfirmTapped: onConfirmTapped != null ? () => onConfirmTapped(context) : null,
           confirmText: confirmText,
+          closeText: closeText,
         ),
       );
     },
@@ -33,12 +35,14 @@ class _MyAlertDialog extends StatelessWidget {
   final VoidCallback? onConfirmTapped;
   final String confirmText;
   final String? dialogSemantics;
+  final String? closeText;
 
   const _MyAlertDialog({
     required this.dialogContent,
     this.onConfirmTapped,
     required this.confirmText,
     this.dialogSemantics,
+    this.closeText,
   });
 
   @override
@@ -70,7 +74,7 @@ class _MyAlertDialog extends StatelessWidget {
             Flexible(
               child: TextButton(
                 child: Text(
-                  context.localize.close,
+                  closeText ?? context.localize.close,
                   style: context.textTheme.body,
                   textScaler: context.textScaler.clamp(maxScaleFactor: 2),
                 ),

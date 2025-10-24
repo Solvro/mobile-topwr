@@ -16,7 +16,6 @@ import "../analytics/data/umami.dart";
 import "../analytics/data/umami_events.dart";
 import "../departments/departments_view/widgets/departments_view_loading.dart";
 import "data/models/guide_data.dart";
-import "data/repository/guide_repository.dart";
 import "guide_view_controller.dart";
 import "widgets/guide_grid.dart";
 import "widgets/guide_tile.dart";
@@ -62,7 +61,7 @@ class _GuideViewContent extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final guideList = ref.watch(guideRepositoryProvider);
+    final guideList = ref.watch(guideListControllerProvider);
 
     return switch (guideList) {
       AsyncError(:final error, :final stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),

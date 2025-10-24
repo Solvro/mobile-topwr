@@ -31,7 +31,7 @@ class RootView extends HookConsumerWidget {
                 }
               }
             : null,
-        child: UpdateChangelogWrapper(
+        child: ShowEntryDialogWrapper(
           child: AutoTabsRouter.pageView(
             routes: NavBarConfig.tabViews.values.toList(),
             builder: (context, child, controller) {

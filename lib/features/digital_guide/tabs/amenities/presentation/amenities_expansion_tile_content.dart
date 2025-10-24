@@ -17,6 +17,7 @@ class AmenitiesExpansionTileContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return ContactSection(
       topPadding: DigitalGuideConfig.heightTiny,
+      shouldBeAccessible: true,
       list: [
         if (digitalGuideData.canAssistanceDog)
           ContactIconsModel(text: context.localize.assistance_dog, icon: Assets.svg.digitalGuide.assistanceDog),

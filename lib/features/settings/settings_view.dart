@@ -13,6 +13,9 @@ import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../gen/assets.gen.dart";
 import "../../services/translations_service/data/preferred_lang_repository.dart";
+import "../branches/data/model/branch.dart";
+import "../branches/data/repository/branch_repository.dart";
+import "../branches/presentation/branch_dialog.dart";
 import "../digital_guide/tabs/accessibility_dialog/presentation/accessibility_dialog.dart";
 import "../navigation_tab_view/widgets/navigation_tile.dart";
 import "widgets/language_settings_dialog.dart";
@@ -35,7 +38,17 @@ class SettingsView extends ConsumerWidget {
         title: context.localize.language,
         icon: Icons.speaker_notes_rounded,
       ),
-
+      NavigationTile(
+        onTap: () async {
+          final selectedBranch = await BranchDialog.show(context);
+          if (selectedBranch != null) {
+            final branch = Branch.fromName(selectedBranch);
+            await ref.read(branchRepositoryProvider.notifier).setBranch(branch);
+          }
+        },
+        title: context.localize.branch,
+        icon: Icons.house,
+      ),
       NavigationTile(
         onTap: () => unawaited(AccessibilityDialog.show(context, ref)),
         title: context.localize.digital_guide_accessibility,

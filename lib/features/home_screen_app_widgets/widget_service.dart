@@ -9,22 +9,21 @@ class WidgetService {
   static const androidPackagePrefix = "com.solvro.topwr.widget.parking.receiver";
   static const iOSWidgetAppGroupId = "todo";
 
-  static const _parkingWidgetAndroidMap = <String, String>{
-    "GEO-L": "$androidPackagePrefix.GeoParkingWidgetReceiver",
-    "D20": "$androidPackagePrefix.D20ParkingWidgetReceiver",
-    "WRO": "$androidPackagePrefix.WroParkingWidgetReceiver",
-    "C13": "$androidPackagePrefix.C13ParkingWidgetReceiver",
-    "EO1": "$androidPackagePrefix.EO1ParkingWidgetReceiver",
-  };
+  static const _parkingWidgetAndroidNames = <String>[
+    "$androidPackagePrefix.GeoParkingWidgetReceiver",
+    "$androidPackagePrefix.D20ParkingWidgetReceiver",
+    "$androidPackagePrefix.WroParkingWidgetReceiver",
+    "$androidPackagePrefix.C13ParkingWidgetReceiver",
+    "$androidPackagePrefix.EO1ParkingWidgetReceiver",
+  ];
 
   static const _parkingWidgetDataKey = "parking_home_screen_widget_data";
 
   static Future<void> updateParkingSlots(IList<Parking> parking) async {
     final parkingWidgetDataJson = jsonEncode(parking.map((e) => e.toParkingWidgetData()).toList());
     await HomeWidget.saveWidgetData<String>(_parkingWidgetDataKey, parkingWidgetDataJson);
-
-    for (final p in parking) {
-      await _updateWidget(iOSWidgetName: p.symbol, qualifiedAndroidName: _parkingWidgetAndroidMap[p.symbol]);
+    for (final androidWidget in _parkingWidgetAndroidNames) {
+      await _updateWidget(qualifiedAndroidName: androidWidget);
     }
   }
 

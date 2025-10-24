@@ -6,41 +6,49 @@ on:
       - main
       - dev
   pull_request:
-    branches: [ "**" ]
+    branches: ["**"]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
-          node-version: '20'
-      
-        
+          node-version: "20"
+
       - uses: subosito/flutter-action@v2
         with:
           channel: "stable"
           flutter-version-file: pubspec.yaml
-          
+
       - run: flutter --version
 
       - name: Install dependencies
         run: flutter pub get
-        
+
       - name: Remove lib/l10n directory
         run: rm -rf lib/l10n/*.dart
 
       - name: Verify formatting
         run: dart format --output=none --set-exit-if-changed .
-      
+
       - name: Regenerate the localization files
         run: flutter gen-l10n
 
       - name: Example .env
         run: cp example.env .env
+
+      - name: Load RADIO_LUZ_API_URL and append to .env # TODO(simon-the-shark): setup whole envinronent binded with gitcrypt (or many guarded ones)
+        run: |
+          if [ -n "$RADIO_LUZ_API_URL" ]; then
+            echo "" >> .env
+            echo "RADIO_LUZ_API_URL=\"$RADIO_LUZ_API_URL\"" >> .env
+          fi
+        env:
+          RADIO_LUZ_API_URL: ${{ secrets.RADIO_LUZ_API_URL }}
 
       - name: generate files
         run: dart run build_runner build --delete-conflicting-outputs
@@ -53,4 +61,3 @@ jobs:
 
       - name: Flutter tests
         run: flutter test
-          

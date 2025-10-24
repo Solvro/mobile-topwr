@@ -21,15 +21,18 @@ enum UmamiEvents {
   openDigitalGuideDetail,
   changeLanguage,
   setAccessibilityMode,
+  setLayerOptions,
   saveAccessibilityModeDialog,
   closeAccessibilityModeDialog,
   openAccessibilityModeDialog,
+  openLayerOptionsDialog,
+  closeLayerOptionsDialog,
   openDaySwapAlertDialog,
   openBannerDialog,
   goToBannerExternalLink,
   goToExternalLink,
   selectBuilding,
-  searchBuilding,
+  searchMultilayerMap,
   selectSciClubFilterTag,
   selectSciClubFilterDepartment,
   selectSciClubFilterOrgType,
@@ -40,6 +43,7 @@ enum UmamiEvents {
   openExternalAccessibilityDeclarationWebsite,
   searchParkings,
   searchGuideArticles,
+  searchCalendar,
   openFAQQuestion,
   closeFAQQuestion,
   openNotificationInfoBellDialog,
@@ -50,7 +54,11 @@ enum UmamiEvents {
   seeOldSksMenu,
   openAcademicCalendarExternalLink,
   openSolvroScienceClubDetailPage,
-  openDigitalGuideSubscreen;
+  openDigitalGuideSubscreen,
+  selectLibrary,
+  selectAed,
+  selectShower,
+  selectPinkBox;
 
   String toJson() => _$UmamiEventsEnumMap[this]!;
 }

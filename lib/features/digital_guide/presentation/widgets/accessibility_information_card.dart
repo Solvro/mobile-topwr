@@ -66,11 +66,14 @@ class AccessibilityInformationCard extends StatelessWidget {
               child: isHTML
                   ? Padding(
                       padding: const EdgeInsets.all(DigitalGuideConfig.heightSmall),
-                      child: MyHtmlWidget(text, textStyle: context.textTheme.body),
+                      child: MyHtmlWidget(
+                        text,
+                        textStyle: context.textTheme.body.copyWith(height: DigitalGuideConfig.accessibleLineHeight),
+                      ),
                     )
                   : Text(
                       text,
-                      style: context.textTheme.body,
+                      style: context.textTheme.body.copyWith(height: DigitalGuideConfig.accessibleLineHeight),
                       overflow: TextOverflow.ellipsis,
                       maxLines: context.textScaler.clamp(minScaleFactor: 1).scale(2).toInt(),
                     ),

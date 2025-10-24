@@ -6,6 +6,8 @@ import "package:flutter/material.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
 
 import "../../../../config/ui_config.dart";
+import "../../../../theme/app_theme.dart";
+import "../../../../utils/context_extensions.dart";
 import "digital_guide_image.dart";
 
 class DigitalGuideCarouselWithIndicator extends HookWidget {
@@ -23,6 +25,7 @@ class DigitalGuideCarouselWithIndicator extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final current = useState(initId != null ? imgListId.indexOf(initId!) : 0);
+    final shouldAutoplay = useState(true);
     final controller = useMemoized(CarouselSliderController.new);
 
     return Dialog(
@@ -46,7 +49,7 @@ class DigitalGuideCarouselWithIndicator extends HookWidget {
             controller: controller,
             options: CarouselOptions(
               initialPage: current.value,
-              autoPlay: true,
+              autoPlay: shouldAutoplay.value,
               enlargeCenterPage: true,
               onPageChanged: (index, reason) {
                 current.value = index;
@@ -70,6 +73,25 @@ class DigitalGuideCarouselWithIndicator extends HookWidget {
                 ),
               );
             }).toList(),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            spacing: DigitalGuideConfig.paddingBig,
+            children: [
+              Text(
+                shouldAutoplay.value ? context.localize.autoplay_enabled : context.localize.autoplay_disabled,
+                style: context.textTheme.titleWhite,
+              ),
+              Switch(
+                value: shouldAutoplay.value,
+                trackColor: WidgetStateProperty.all(
+                  shouldAutoplay.value ? context.colorTheme.orangePomegranadeLighter : context.colorTheme.whiteSoap,
+                ),
+                onChanged: (newShouldAutoplay) {
+                  shouldAutoplay.value = newShouldAutoplay;
+                },
+              ),
+            ],
           ),
         ],
       ),

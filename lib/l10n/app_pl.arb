@@ -149,6 +149,10 @@
   "@read_more": {
     "description": "Button text to expand content"
   },
+  "read_more_arrows": "Czytaj więcej >>",
+  "@read_more_arrows": {
+    "description": "Button text to expand content with arrows"
+  },
   "whats_up": "Co słychać?",
   "@whats_up": {
     "description": "Casual greeting text"
@@ -156,6 +160,10 @@
   "study_circles": "Organizacje studenckie",
   "@study_circles": {
     "description": "Title for student organizations section"
+  },
+  "day": "dzień",
+  "@day": {
+    "description": "Unit of time measurement (singular)"
   },
   "days": "dni",
   "@days": {
@@ -1099,7 +1107,7 @@
   "@people_with_hard_of_hearing": {
     "description": "Label for people who are hard of hearing"
   },
-  "people_visually_impaired": "słabo widzących",
+  "people_visually_impaired": "słabowidzących",
   "@people_visually_impaired": {
     "description": "Label for visually impaired people"
   },
@@ -1828,7 +1836,7 @@
   "@blind": {
     "description": "Label for blind accessibility profile"
   },
-  "lowVision": "Słabo widzący",
+  "lowVision": "Słabowidzący",
   "@lowVision": {
     "description": "Label for low vision accessibility profile"
   },
@@ -3457,6 +3465,10 @@
   "@showers_title": {
     "description": "Title for showers section"
   },
+  "showers_title_long": "Prysznice dla rowerzystów",
+  "@showers_title_long": {
+    "description": "Title for showers section in long (for dialog)"
+  },
   "pink_boxes_title": "Różowe skrzyneczki",
   "@pink_boxes_title": {
     "description": "Title for pink boxes in toilets"
@@ -3484,5 +3496,161 @@
         "example": "3"
       }
     }
+  },
+  "room": "Pokój",
+  "@room": {
+    "description": "Title for room"
+  },
+  "building_nav_link_tooltip": "Przejdź do budynku",
+  "@building_nav_link_tooltip": {
+    "description": "Tooltip text for building nav link"
+  },
+  "bicycle_shower_single": "Prysznic dla rowerzystów",
+  "@bicycle_shower_single": {
+    "description": "Title for bicycle shower single"
+  },
+  "pink_box_single": "Różowa skrzyneczka",
+  "@pink_box_single": {
+    "description": "Title for pink box single"
+  },
+  "multilayer_map_title": "Mapa kampusu",
+  "@multilayer_map_title": {
+    "description": "Title for multilayer map title"
+  },
+  "main_branch": "Politechnika Wrocławska",
+  "@main_branch": {
+    "description": "Main branch option in the branch selection dialog"
+  },
+  "jelenia_gora_branch": "Filia w Jeleniej Górze",
+  "@jelenia_gora_branch": {
+    "description": "Branch option for Jelenia Góra in the branch selection dialog"
+  },
+  "walbrzych_branch": "Filia w Wałbrzychu",
+  "@walbrzych_branch": {
+    "description": "Branch option for Wałbrzych in the branch selection dialog"
+  },
+  "legnica_branch": "Filia w Legnicy",
+  "@legnica_branch": {
+    "description": "Branch option for Legnica in the branch selection dialog"
+  },
+  "branch": "Filia",
+  "@branch": {
+    "description": "Generic branch label used in the branch selection dialog"
+  },
+  "pick_branch": "Wybierz filię",
+  "@pick_branch": {
+    "description": "Prompt text for choosing a branch in the selection dialog"
+  },
+  "map_details_title": "Szczegóły mapy",
+  "@map_details_title": {
+    "description": "Map layer dialog title picker"
+  },
+  "map_layer_minimum_required": "Musi być wybrana co najmniej jedna warstwa",
+  "@map_layer_minimum_required": {
+    "description": "Error message when trying to disable the last map layer"
+  },
+  "calendar": "Kalendarz",
+  "@calendar": {
+    "description": "Description of calendar section"
+  },
+  "january": "Styczeń",
+  "@january": {
+    "description": "January"
+  },
+  "february": "Luty",
+  "@february": {
+    "description": "February"
+  },
+  "march": "Marzec",
+  "@march": {
+    "description": "March"
+  },
+  "april": "Kwiecień",
+  "@april": {
+    "description": "April"
+  },
+  "may": "Maj",
+  "@may": {
+    "description": "May"
+  },
+  "june": "Czerwiec",
+  "@june": {
+    "description": "June"
+  },
+  "july": "Lipiec",
+  "@july": {
+    "description": "July"
+  },
+  "august": "Sierpień",
+  "@august": {
+    "description": "August"
+  },
+  "september": "Wrzesień",
+  "@september": {
+    "description": "September"
+  },
+  "october": "Październik",
+  "@october": {
+    "description": "October"
+  },
+  "november": "Listopad",
+  "@november": {
+    "description": "November"
+  },
+  "december": "Grudzień",
+  "@december": {
+    "description": "December"
+  },
+  "monday": "Pn.",
+  "@monday": {
+    "description": "Short form of Monday"
+  },
+  "tuesday": "Wt.",
+  "@tuesday": {
+    "description": "Short form of Tuesday"
+  },
+  "wednesday": "Śr.",
+  "@wednesday": {
+    "description": "Short form of Wednesday"
+  },
+  "thursday": "Cz.",
+  "@thursday": {
+    "description": "Short form of Thursday"
+  },
+  "friday": "Pt.",
+  "@friday": {
+    "description": "Short form of Friday"
+  },
+  "saturday": "Sb.",
+  "@saturday": {
+    "description": "Short form of Saturday"
+  },
+  "sunday": "Nd.",
+  "@sunday": {
+    "description": "Short form of Sunday"
+  },
+  "autoplay_enabled": "Autoprzewijanie włączone",
+  "@autoplay_enabled": {
+    "description": "Text read for autoplay enabled"
+  },
+  "autoplay_disabled": "Autoprzewijanie wyłączone",
+  "@autoplay_disabled": {
+    "description": "Text read for autoplay disabled"
+  },
+  "no_layers_available": "Brak dostępnych warstw",
+  "@no_layers_available": {
+    "description": "Text read for no items on multilayer map available"
+  },
+  "radio_luz_player_title": "Radio LUZ",
+  "@radio_luz_player_title": {
+    "description": "Title for radio luz player"
+  },
+  "radio_luz": "Radio LUZ",
+  "@radio_luz": {
+    "description": "Title for radio luz section"
+  },
+  "pwr": "Politechnika Wrocławska",
+  "@pwr": {
+    "description": "Subtitle for radio"
   }
 }
