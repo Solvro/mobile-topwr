@@ -21,6 +21,7 @@ import "../../../../widgets/technical_message.dart";
 import "../../../../widgets/text_and_url_widget.dart";
 import "../../../analytics/data/umami.dart";
 import "../../../analytics/data/umami_events.dart";
+import "../../../navigator/utils/navigation_commands.dart";
 import "../../sks_people_live/data/repository/latest_sks_user_data_repo.dart";
 import "../../sks_people_live/presentation/widgets/sks_user_data_button.dart";
 import "../data/models/sks_menu_response.dart";
@@ -103,6 +104,14 @@ class _SksMenuView extends ConsumerWidget {
             Padding(
               padding: const EdgeInsets.all(HomeViewConfig.paddingMedium).copyWith(top: 0),
               child: SksMenuSection(sksMenuData.meals),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: HomeViewConfig.paddingMedium),
+              child: MyTextButton(
+                actionTitle: context.localize.sks_favourite_dishes_see_dishes,
+                showBorder: true,
+                onClick: ref.navigateToSksFavouriteDishes,
+              ),
             ),
             TextAndUrl(SksMenuConfig.sksDataSource, "${context.localize.data_come_from_website}: "),
             const SizedBox(height: ScienceClubsViewConfig.mediumPadding),
