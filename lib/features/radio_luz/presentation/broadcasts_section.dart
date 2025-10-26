@@ -26,7 +26,7 @@ class BroadcastsSection extends HookConsumerWidget {
             viewportFraction: 0.6,
             enlargeFactor: 0.2,
             autoPlay: true,
-            autoPlayInterval: const Duration(seconds: 5),
+            autoPlayInterval: const Duration(seconds: 10),
             initialPage: value?.indexWhere((broadcast) => broadcast.isNow) ?? 0,
           ),
           items: List.generate(
@@ -105,12 +105,11 @@ class _ShowMoreWidget extends StatelessWidget {
     return Stack(
       children: [
         Row(
+          spacing: 8,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(context.localize.show_more, style: context.textTheme.title.copyWith(color: Colors.white)),
-            const SizedBox(width: 8),
             const Expanded(child: Divider(color: Colors.white, thickness: 1, height: 1)),
-            const SizedBox(width: 8),
           ],
         ),
         const Positioned(bottom: 0, right: 0, child: Icon(Icons.arrow_right, color: Colors.white, size: 18)),
