@@ -2,7 +2,7 @@ import SwiftUI
 import WidgetKit
 
 
-private let widgetGroupId = "todo"
+private let widgetGroupId = "group.topwr.parkingswidget"
 private let parkingWidgetDataKey = "parking_home_screen_widget_data"
 
 struct ParkingWidgetProvider: TimelineProvider {
