@@ -50,11 +50,6 @@ Route<dynamic>? previousRouteThan(Ref ref, RouteSettings currentRouteSettings) {
   return stack[index - 1];
 }
 
-@riverpod
-bool isStackPoppable(Ref ref) {
-  return ref.watch(navigationStackProvider).length > 1;
-}
-
 /*
   This class is used to observe the navigation stack
   Acts as a bridge between navigator and riverpod state notifier

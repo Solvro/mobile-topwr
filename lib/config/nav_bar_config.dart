@@ -46,19 +46,22 @@ abstract class NavBarConfig {
 extension GetFormattedRouteNameX on Route<dynamic> {
   String? getFormattedRouteName(BuildContext context) {
     return switch (settings.name) {
-      HomeRoute.name => context.localize.home_screen,
-      NavigationTabRoute.name => context.localize.other_view,
+      RootRoute.name => switch ((context.router.childControllers.first as TabsRouter).currentChild?.name) {
+        HomeRoute.name => context.localize.home_screen,
+        NavigationTabRoute.name => context.localize.other_view,
+        BuildingsRoute.name => context.localize.multilayer_map_title,
+        ParkingsRoute.name => context.localize.parkings_title,
+        MultilayerMapRoute.name => context.localize.multilayer_map_title,
+        LibrariesRoute.name => context.localize.multilayer_map_title,
+        AedsRoute.name => context.localize.multilayer_map_title,
+        ShowersRoute.name => context.localize.multilayer_map_title,
+        PinkBoxesRoute.name => context.localize.multilayer_map_title,
+        GuideRoute.name => context.localize.guide,
+        _ => null,
+      },
       DepartmentsRoute.name => context.localize.departments,
       SksMenuRoute.name => context.localize.sks_menu,
       ScienceClubsRoute.name => context.localize.scientific_cirlces_short,
-      GuideRoute.name => context.localize.guide,
-      BuildingsRoute.name => context.localize.multilayer_map_title,
-      MultilayerMapRoute.name => context.localize.multilayer_map_title,
-      LibrariesRoute.name => context.localize.multilayer_map_title,
-      AedsRoute.name => context.localize.multilayer_map_title,
-      ShowersRoute.name => context.localize.multilayer_map_title,
-      PinkBoxesRoute.name => context.localize.multilayer_map_title,
-      ParkingsRoute.name => context.localize.parkings_title,
       DepartmentDetailRoute.name => context.localize.department,
       ScienceClubDetailRoute.name => context.localize.scientific_cirlces_short,
       GuideDetailRoute.name => context.localize.guide,
@@ -71,7 +74,6 @@ extension GetFormattedRouteNameX on Route<dynamic> {
       DigitalGuideEntranceDetailsRoute.name => context.localize.entrances,
       DigitalGuideRoomDetailRoute.name => context.localize.room_information,
       SettingsRoute.name => context.localize.settings,
-
       _ => null,
     };
   }
