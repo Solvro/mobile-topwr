@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 
-import "../../../../theme/app_theme.dart";
+import "../../../theme/app_theme.dart";
 
 class RadioLuzTitle extends StatelessWidget {
   const RadioLuzTitle({super.key, required this.title});
