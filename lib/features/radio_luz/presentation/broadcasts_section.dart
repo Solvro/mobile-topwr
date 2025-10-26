@@ -110,6 +110,7 @@ class _ShowMoreWidget extends StatelessWidget {
           children: [
             Text(context.localize.show_more, style: context.textTheme.title.copyWith(color: Colors.white)),
             const Expanded(child: Divider(color: Colors.white, thickness: 1, height: 1)),
+            const SizedBox(width: 8),
           ],
         ),
         const Positioned(bottom: 0, right: 0, child: Icon(Icons.arrow_right, color: Colors.white, size: 18)),
