@@ -2,8 +2,8 @@ import "package:freezed_annotation/freezed_annotation.dart";
 
 import "../models/schedule.dart";
 
-part 'schedule_entity.freezed.dart';
-part 'schedule_entity.g.dart';
+part "schedule_entity.freezed.dart";
+part "schedule_entity.g.dart";
 
 @freezed
 abstract class BroadcastEntity with _$BroadcastEntity {
