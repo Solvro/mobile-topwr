@@ -39,6 +39,7 @@ class BroadcastsSection extends HookConsumerWidget {
           ),
         ),
       ),
+      // TODO(tt): add shimmer effect
       AsyncLoading() => Center(
         child: Padding(
           padding: const EdgeInsets.all(16),

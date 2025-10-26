@@ -28,6 +28,7 @@ class NowPlaygingSection extends ConsumerWidget {
           ),
         ),
       ),
+      // TODO(tt): add shimmer effect
       AsyncLoading() => Center(
         child: Padding(
           padding: const EdgeInsets.all(16),
