@@ -11,7 +11,7 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../config/env.dart";
 import "../../../gen/assets.gen.dart";
-import "../../../l10n/app_localizations.dart";
+import "../data/models/audio_player_strings.dart";
 import "audio_player_streams.dart";
 import "radio_player_provider.dart";
 import "radio_state.dart";
@@ -21,48 +21,56 @@ part "radio_player_controller.g.dart";
 @Riverpod(keepAlive: true)
 class RadioController extends _$RadioController {
   late final AudioPlayer _player = ref.watch(radioPlayerProvider);
-
+  late final AudioPlayerStrings _audioPlayerStrings;
   _AppLifecycleStopper? _stopper;
-  var _isInitialized = false;
+
+  var initialized = false;
 
   @override
   RadioState build() {
     _stopper ??= _AppLifecycleStopper(_player);
     ref.onDispose(() => _stopper?.dispose());
 
-    final isPlayingProvider = ref.watch(audioPlayerIsPlayingProvider);
     final volumeProvider = ref.watch(audioPlayerVolumeProvider);
-    final processingStateProvider = ref.watch(audioPlayerProcessingStateProvider);
-
-    final isPlaying = isPlayingProvider.value ?? false;
     final volume = volumeProvider.value ?? 1.0;
-    final processingState = processingStateProvider.valueOrNull;
-    final isLoading = processingState == ProcessingState.loading || processingState == ProcessingState.buffering;
 
-    return RadioState(isPlaying: isPlaying, volume: volume, isLoading: isLoading);
+    final playerStateProvider = ref.watch(audioPlayerStateProvider);
+
+    final processingState = playerStateProvider.value?.processingState;
+
+    final isPlaying = (playerStateProvider.value?.playing ?? false) && processingState == ProcessingState.ready;
+    final isIdle = processingState == ProcessingState.idle;
+    final isLoading =
+        processingState == ProcessingState.loading || processingState == ProcessingState.buffering || isIdle;
+
+    if (isIdle) {
+      unawaited(_initPlayer());
+    }
+
+    return RadioState(isPlaying: isPlaying, isLoading: isLoading, volume: volume);
   }
 
-  Future<void> _ensureInitialized(AppLocalizations l10n) async {
-    if (_isInitialized) return;
-
-    final title = l10n.radio_luz;
-    final album = l10n.pwr;
-
+  Future<void> _initPlayer() async {
     final assetPath = Assets.png.radioLuz.radioLuzLogo.path;
     final artUri = await assetToFileUri(assetPath);
 
     final audioSource = AudioSource.uri(
       Uri.parse(Env.radioLuzStreamUrl),
-      tag: MediaItem(id: "1", title: title, album: album, artUri: artUri),
+      tag: MediaItem(id: "1", title: _audioPlayerStrings.title, album: _audioPlayerStrings.album, artUri: artUri),
     );
 
     await _player.setAudioSource(audioSource);
-    await _player.setVolume(state.volume);
+    await _player.setCanUseNetworkResourcesForLiveStreamingWhilePaused(true);
 
-    _isInitialized = true;
+    final volume = ref.read(audioPlayerVolumeProvider).value ?? 1.0;
+    await _player.setVolume(volume);
   }
 
-  Future<void> init(AppLocalizations l10n) => _ensureInitialized(l10n);
+  void init(AudioPlayerStrings audioPlayerStrings) {
+    if (initialized) return;
+    _audioPlayerStrings = audioPlayerStrings;
+    initialized = true;
+  }
 
   Future<Uri> assetToFileUri(String assetPath) async {
     final data = await rootBundle.load(assetPath);
@@ -76,18 +84,18 @@ class RadioController extends _$RadioController {
     return file.uri;
   }
 
-  Future<void> play(AppLocalizations l10n) async {
-    await _ensureInitialized(l10n);
+  Future<void> play() async {
+    final duration = _player.bufferedPosition;
+    await _player.seek(duration - const Duration(milliseconds: 300));
+
     await _player.play();
   }
 
-  Future<void> pause(AppLocalizations l10n) async {
-    await _ensureInitialized(l10n);
+  Future<void> pause() async {
     await _player.pause();
   }
 
-  Future<void> stop(AppLocalizations l10n) async {
-    await _ensureInitialized(l10n);
+  Future<void> stop() async {
     await _player.stop();
   }
 
