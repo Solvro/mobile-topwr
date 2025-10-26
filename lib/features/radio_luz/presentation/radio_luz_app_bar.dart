@@ -10,6 +10,7 @@ class RadioLuzAppBar extends AppBar {
   RadioLuzAppBar(BuildContext context, {super.key, double? logoSize, double toolbarHeight = 60, super.actions})
     : super(
         primary: true,
+        leadingWidth: 200,
         title: AppBarLuz(logoSize: logoSize),
         centerTitle: false,
         titleSpacing: 0,
