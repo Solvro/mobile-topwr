@@ -3728,5 +3728,17 @@
   "radio_luz_info": "Info",
   "@radio_luz_info": {
     "description": "Title for info section in radio luz view"
+  },
+  "show_more": "zobacz więcej",
+  "@show_more": {
+    "description": "show more for broadcasts"
+  },
+  "radio_luz_description1": "Nie scrolluj. Słuchaj",
+  "@radio_luz_description1": {
+    "description": "Short tagline prompting the user to stop scrolling and listen to Radio LUZ"
+  },
+  "radio_luz_description2": "Jesteś twórczą osobą? Masz ucho do muzyki, głos do mikrofonu albo serce do reportażu? Rekrutujemy dwa razy do roku. Bądź z nami na bieżąco",
+  "@radio_luz_description2": {
+    "description": "Longer call-to-action inviting creative people to join Radio LUZ and informing about biannual recruitment"
   }
 }
