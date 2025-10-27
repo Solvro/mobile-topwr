@@ -85,10 +85,9 @@ class RadioController extends _$RadioController {
   }
 
   Future<void> play() async {
-    final duration = _player.bufferedPosition;
     const durationGuard = Duration(milliseconds: 200);
+    final duration = _player.bufferedPosition;
     await _player.seek(duration > durationGuard ? duration - durationGuard : Duration.zero);
-    await _player.seek(duration - const Duration(milliseconds: 300));
 
     await _player.play();
   }
