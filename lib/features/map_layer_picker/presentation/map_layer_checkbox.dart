@@ -49,8 +49,16 @@ class MapLayerCheckbox extends ConsumerWidget {
         controlAffinity: ListTileControlAffinity.leading,
         title: Row(
           children: [
-            Text(option.localizedLabel(context), style: context.aboutUsTheme.body),
-            const Spacer(),
+            Expanded(
+              child: Text(
+                option.localizedLabel(context),
+                style: context.aboutUsTheme.body,
+                softWrap: true,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+            const SizedBox(width: 8),
             LayerMarkerIcon(option: option, isEnabled: value),
           ],
         ),
