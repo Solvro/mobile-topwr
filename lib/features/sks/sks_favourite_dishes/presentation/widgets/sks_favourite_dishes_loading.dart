@@ -18,9 +18,11 @@ class SksFavouriteDishesViewLoading extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: SksMenuConfig.paddingMedium),
             child: _LoadingTitle(),
           ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: SksMenuConfig.paddingMedium),
-            child: Expanded(child: _WatchedSectionLoading()),
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: SksMenuConfig.paddingMedium),
+              child: _WatchedSectionLoading(),
+            ),
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: SksMenuConfig.paddingMedium),
