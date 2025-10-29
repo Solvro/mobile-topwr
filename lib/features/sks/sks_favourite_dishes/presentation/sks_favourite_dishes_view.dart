@@ -20,6 +20,7 @@ import "../../sks_menu/presentation/widgets/sks_menu_tiles.dart";
 import "../data/repository/sks_favourite_dishes_repository.dart";
 import "../utils/toast_on_dish_tap.dart";
 import "sks_favourite_dishes_controller.dart";
+import "widgets/empty_subscribed_dishes_placeholder.dart";
 import "widgets/sks_favourite_dishes_loading.dart";
 import "widgets/sks_section_header_delegate.dart";
 
@@ -85,21 +86,29 @@ class _SksFavouriteDishesView extends ConsumerWidget {
                 backgroundColor: context.colorTheme.whiteSoap,
               ),
             ),
-            SliverPadding(
-              padding: const EdgeInsets.symmetric(horizontal: SksMenuConfig.paddingMedium),
-              sliver: SliverList(
-                delegate: SliverChildBuilderDelegate((context, index) {
-                  final dish = subscribedDishes[index];
-                  return Padding(
-                    padding: const EdgeInsets.only(bottom: SksMenuConfig.paddingMedium),
-                    child: SksMenuDishDetailsTile(
-                      dish: dish,
-                      onTap: (dishId) => toastOnDishTap(dishId: dishId, ref: ref, context: context, subscribe: false),
-                    ),
-                  );
-                }, childCount: subscribedDishes.length),
+            if (subscribedDishes.isEmpty)
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.all(SksMenuConfig.paddingMedium),
+                  child: EmptySubscribedDishesPlaceholder(),
+                ),
+              )
+            else
+              SliverPadding(
+                padding: const EdgeInsets.symmetric(horizontal: SksMenuConfig.paddingMedium),
+                sliver: SliverList(
+                  delegate: SliverChildBuilderDelegate((context, index) {
+                    final dish = subscribedDishes[index];
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: SksMenuConfig.paddingMedium),
+                      child: SksMenuDishDetailsTile(
+                        dish: dish,
+                        onTap: (dishId) => toastOnDishTap(dishId: dishId, ref: ref, context: context, subscribe: false),
+                      ),
+                    );
+                  }, childCount: subscribedDishes.length),
+                ),
               ),
-            ),
           ],
         ),
 
