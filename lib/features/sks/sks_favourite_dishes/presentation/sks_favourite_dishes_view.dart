@@ -1,8 +1,11 @@
 import "dart:async";
 
 import "package:auto_route/auto_route.dart";
+import "package:collection/collection.dart";
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:sliver_tools/sliver_tools.dart";
 
 import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
@@ -12,12 +15,13 @@ import "../../../../widgets/my_error_widget.dart";
 import "../../../../widgets/search_box_app_bar.dart";
 import "../../../analytics/data/umami.dart";
 import "../../../analytics/data/umami_events.dart";
+import "../../sks_menu/data/models/dish_category_enum.dart";
+import "../../sks_menu/presentation/widgets/sks_menu_tiles.dart";
 import "../data/repository/sks_favourite_dishes_repository.dart";
+import "../utils/toast_on_dish_tap.dart";
 import "sks_favourite_dishes_controller.dart";
-
 import "widgets/sks_favourite_dishes_loading.dart";
-import "widgets/sks_favourite_dishes_unwatched_section.dart";
-import "widgets/sks_favourite_dishes_watched_section.dart";
+import "widgets/sks_section_header_delegate.dart";
 
 @RoutePage()
 class SksFavouriteDishesView extends ConsumerWidget {
@@ -50,28 +54,82 @@ class SksFavouriteDishesView extends ConsumerWidget {
   }
 }
 
-class _SksFavouriteDishesView extends StatelessWidget {
+class _SksFavouriteDishesView extends ConsumerWidget {
   const _SksFavouriteDishesView();
 
   @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: SksMenuConfig.paddingMedium),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Padding(
-            padding: const EdgeInsetsGeometry.only(bottom: SksMenuConfig.paddingMedium),
-            child: Text(context.localize.sks_favourite_dishes_subscribed, style: context.textTheme.titleOrange),
-          ),
-          const Expanded(child: SksFavouriteDishesWatchedSection()),
-          Padding(
-            padding: const EdgeInsetsGeometry.symmetric(vertical: SksMenuConfig.paddingMedium),
-            child: Text(context.localize.sks_favourite_dishes_remaining, style: context.textTheme.titleOrange),
-          ),
-          const Expanded(flex: 2, child: SksFavouriteDishesUnwatchedSection()),
-        ],
-      ),
+  Widget build(BuildContext context, WidgetRef ref) {
+    final subscribedDishes = ref.watch(subscribedDishesProvider);
+    final unsubscribedDishes = ref.watch(unsubscribedDishesProvider);
+
+    final categoriesWithDishes = unsubscribedDishes
+        .map((dish) => dish.category)
+        .toISet()
+        .sorted((e1, e2) => e1.index.compareTo(e2.index))
+        .map(
+          (category) => (category: category, dishes: unsubscribedDishes.where((e) => e.category == category).toList()),
+        )
+        .toList();
+
+    return CustomScrollView(
+      key: const PageStorageKey("SksFavouriteDishesListView"),
+      slivers: [
+        MultiSliver(
+          pushPinnedChildren: true,
+          children: [
+            SliverPersistentHeader(
+              pinned: true,
+              delegate: SksSectionHeaderDelegate(
+                title: context.localize.sks_favourite_dishes_subscribed,
+                textStyle: context.textTheme.titleOrange,
+                backgroundColor: context.colorTheme.whiteSoap,
+              ),
+            ),
+            SliverPadding(
+              padding: const EdgeInsets.symmetric(horizontal: SksMenuConfig.paddingMedium),
+              sliver: SliverList(
+                delegate: SliverChildBuilderDelegate((context, index) {
+                  final dish = subscribedDishes[index];
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: SksMenuConfig.paddingMedium),
+                    child: SksMenuDishDetailsTile(
+                      dish: dish,
+                      onTap: (dishId) => toastOnDishTap(dishId: dishId, ref: ref, context: context, subscribe: false),
+                    ),
+                  );
+                }, childCount: subscribedDishes.length),
+              ),
+            ),
+          ],
+        ),
+
+        MultiSliver(
+          pushPinnedChildren: true,
+          children: [
+            SliverPersistentHeader(
+              pinned: true,
+              delegate: SksSectionHeaderDelegate(
+                title: context.localize.sks_favourite_dishes_remaining,
+                textStyle: context.textTheme.titleOrange,
+                backgroundColor: context.colorTheme.whiteSoap,
+              ),
+            ),
+            SliverPadding(
+              padding: const EdgeInsets.symmetric(horizontal: SksMenuConfig.paddingMedium),
+              sliver: SliverList(
+                delegate: SliverChildBuilderDelegate((context, index) {
+                  final categoryData = categoriesWithDishes[index];
+                  return SksMenuTile(
+                    title: categoryData.category.getLocalizedName(context),
+                    dishes: categoryData.dishes,
+                    onDishTap: (dishId) => toastOnDishTap(dishId: dishId, ref: ref, context: context, subscribe: true),
+                  );
+                }, childCount: categoriesWithDishes.length),
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }

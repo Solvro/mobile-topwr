@@ -172,6 +172,7 @@ abstract class SksMenuConfig {
   static const paddingMedium = 12.0;
   static const paddingLarge = 16.0;
   static const sksDataSource = "https://sks.pwr.edu.pl/menu";
+  static const headerHeight = 40.0;
 }
 
 abstract class SksConfig {

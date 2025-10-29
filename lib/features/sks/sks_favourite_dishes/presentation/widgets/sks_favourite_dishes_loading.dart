@@ -11,17 +11,23 @@ class SksFavouriteDishesViewLoading extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Shimmer(
       linearGradient: shimmerGradient,
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: SksMenuConfig.paddingMedium),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            _LoadingTitle(),
-            Expanded(child: _WatchedSectionLoading()),
-            _LoadingTitle(),
-            Expanded(flex: 2, child: SksMenuTilesLoading()),
-          ],
-        ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: SksMenuConfig.paddingMedium),
+            child: _LoadingTitle(),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: SksMenuConfig.paddingMedium),
+            child: Expanded(child: _WatchedSectionLoading()),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: SksMenuConfig.paddingMedium),
+            child: _LoadingTitle(),
+          ),
+          Expanded(flex: 2, child: SksMenuTilesLoading()),
+        ],
       ),
     );
   }
