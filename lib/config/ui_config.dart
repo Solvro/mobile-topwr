@@ -167,6 +167,7 @@ abstract class MyTooltipConfig {
 }
 
 abstract class SksMenuConfig {
+  static const bottomPadding = 60.0;
   static const borderRadius = 8.0;
   static const paddingSmall = 8.0;
   static const paddingMedium = 12.0;

@@ -82,7 +82,7 @@ class _SksMenuView extends ConsumerWidget {
         elevation: 3,
         extendedPadding: const EdgeInsetsDirectional.symmetric(horizontal: SksMenuConfig.paddingSmall),
         backgroundColor: context.colorTheme.orangePomegranadeLighter,
-        label: Text(context.localize.sks_favourite_dishes_see_dishes, style: context.textTheme.headlineWhite),
+        label: Text(context.localize.sks_favourite_dishes_see_dishes, style: context.textTheme.titleWhite),
         onPressed: ref.navigateToSksFavouriteDishes,
       ),
       body: RefreshIndicator(
@@ -114,7 +114,7 @@ class _SksMenuView extends ConsumerWidget {
               child: SksMenuSection(sksMenuData.meals),
             ),
             TextAndUrl(SksMenuConfig.sksDataSource, "${context.localize.data_come_from_website}: "),
-            const SizedBox(height: ScienceClubsViewConfig.mediumPadding),
+            const SizedBox(height: SksMenuConfig.bottomPadding),
           ],
         ),
       ),
