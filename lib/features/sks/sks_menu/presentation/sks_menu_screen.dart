@@ -77,6 +77,14 @@ class _SksMenuView extends ConsumerWidget {
     }
     return HorizontalSymmetricSafeAreaScaffold(
       appBar: DetailViewAppBar(actions: const [SksUserDataButton()]),
+      floatingActionButton: FloatingActionButton.extended(
+        heroTag: "favouriteDishesFab",
+        elevation: 3,
+        extendedPadding: const EdgeInsetsDirectional.symmetric(horizontal: SksMenuConfig.paddingSmall),
+        backgroundColor: context.colorTheme.orangePomegranadeLighter,
+        label: Text(context.localize.sks_favourite_dishes_see_dishes, style: context.textTheme.headlineWhite),
+        onPressed: ref.navigateToSksFavouriteDishes,
+      ),
       body: RefreshIndicator(
         onRefresh: () async {
           // ignore: unused_result
@@ -104,14 +112,6 @@ class _SksMenuView extends ConsumerWidget {
             Padding(
               padding: const EdgeInsets.all(HomeViewConfig.paddingMedium).copyWith(top: 0),
               child: SksMenuSection(sksMenuData.meals),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: HomeViewConfig.paddingMedium),
-              child: MyTextButton(
-                actionTitle: context.localize.sks_favourite_dishes_see_dishes,
-                showBorder: true,
-                onClick: ref.navigateToSksFavouriteDishes,
-              ),
             ),
             TextAndUrl(SksMenuConfig.sksDataSource, "${context.localize.data_come_from_website}: "),
             const SizedBox(height: ScienceClubsViewConfig.mediumPadding),
