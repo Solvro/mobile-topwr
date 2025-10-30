@@ -36,3 +36,7 @@ class SmallTextStyle extends BodyTextStyle {
 class MegaBigHeadlineTextStyle extends BoldBodyTextStyle {
   const MegaBigHeadlineTextStyle({super.color}) : super(fontSize: 24);
 }
+
+class TinyTextStyle extends BodyTextStyle {
+  const TinyTextStyle({super.color}) : super(fontSize: 12);
+}
