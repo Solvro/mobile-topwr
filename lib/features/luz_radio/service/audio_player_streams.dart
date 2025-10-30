@@ -7,19 +7,13 @@ import "radio_player_provider.dart";
 part "audio_player_streams.g.dart";
 
 @riverpod
-Stream<bool> audioPlayerIsPlaying(Ref ref) {
+Stream<PlayerState> audioPlayerState(Ref ref) {
   final player = ref.watch(radioPlayerProvider);
-  return player.playingStream;
+  return player.playerStateStream;
 }
 
 @riverpod
 Stream<double> audioPlayerVolume(Ref ref) {
   final player = ref.watch(radioPlayerProvider);
   return player.volumeStream;
-}
-
-@riverpod
-Stream<ProcessingState> audioPlayerProcessingState(Ref ref) {
-  final player = ref.watch(radioPlayerProvider);
-  return player.processingStateStream;
 }

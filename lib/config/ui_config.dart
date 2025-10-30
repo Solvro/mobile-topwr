@@ -246,6 +246,12 @@ abstract class DigitalGuideConfig {
   ];
 }
 
+abstract class RadioLuzConfig {
+  static const spacingSmall = 4.0;
+  static const spacingMedium = 8.0;
+  static const paddingSmall = 8.0;
+}
+
 abstract class AlertDialogConfig {
   static const horizontalPadding = 14.0;
   static const verticalPadding = 20.0;
