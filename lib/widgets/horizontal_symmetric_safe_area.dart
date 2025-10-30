@@ -32,6 +32,7 @@ class HorizontalSymmetricSafeAreaScaffold extends Scaffold {
   HorizontalSymmetricSafeAreaScaffold({
     super.key,
     required Widget body,
+    super.floatingActionButton,
     super.bottomNavigationBar,
     super.appBar,
     super.backgroundColor,

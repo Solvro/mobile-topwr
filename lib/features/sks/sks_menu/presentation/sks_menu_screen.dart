@@ -21,6 +21,7 @@ import "../../../../widgets/technical_message.dart";
 import "../../../../widgets/text_and_url_widget.dart";
 import "../../../analytics/data/umami.dart";
 import "../../../analytics/data/umami_events.dart";
+import "../../../navigator/utils/navigation_commands.dart";
 import "../../sks_people_live/data/repository/latest_sks_user_data_repo.dart";
 import "../../sks_people_live/presentation/widgets/sks_user_data_button.dart";
 import "../data/models/sks_menu_response.dart";
@@ -76,6 +77,14 @@ class _SksMenuView extends ConsumerWidget {
     }
     return HorizontalSymmetricSafeAreaScaffold(
       appBar: DetailViewAppBar(actions: const [SksUserDataButton()]),
+      floatingActionButton: FloatingActionButton.extended(
+        heroTag: "favouriteDishesFab",
+        elevation: 3,
+        extendedPadding: const EdgeInsetsDirectional.symmetric(horizontal: SksMenuConfig.paddingSmall),
+        backgroundColor: context.colorTheme.orangePomegranadeLighter,
+        label: Text(context.localize.sks_favourite_dishes_see_dishes, style: context.textTheme.titleWhite),
+        onPressed: ref.navigateToSksFavouriteDishes,
+      ),
       body: RefreshIndicator(
         onRefresh: () async {
           // ignore: unused_result
@@ -105,7 +114,7 @@ class _SksMenuView extends ConsumerWidget {
               child: SksMenuSection(sksMenuData.meals),
             ),
             TextAndUrl(SksMenuConfig.sksDataSource, "${context.localize.data_come_from_website}: "),
-            const SizedBox(height: ScienceClubsViewConfig.mediumPadding),
+            const SizedBox(height: SksMenuConfig.bottomPadding),
           ],
         ),
       ),

@@ -325,6 +325,10 @@
   "@offline_changelog": {
     "description": "Label for offline changelog data"
   },
+  "offline_sks_favourite_dishes": "ustawień ulubionych posiłków",
+  "@offline_sks_favourite_dishes": {
+    "description": "Label for offline favourite dishes"
+  },
   "guide": "Przewodnik",
   "@guide": {
     "description": "Title for guide section"
@@ -554,6 +558,34 @@
   "sks_menu_desserts": "Desery",
   "@sks_menu_desserts": {
     "description": "Label for desserts menu section"
+  },
+  "sks_favourite_dishes": "Ulubione dania",
+  "@sks_favourite_dishes": {
+    "description": "Title for SKS Menu Favourite Dishes section"
+  },
+  "sks_favourite_dishes_see_dishes": "Ustaw ulubione dania",
+  "@sks_favourite_dishes_see_dishes": {
+    "description": "Button to show favourite dishes settings"
+  },
+  "sks_favourite_dishes_subscribed": "Dania, o których cię powiadomimy",
+  "@sks_favourite_dishes_subscribed": {
+    "description": "Label for subscribed dishes section"
+  },
+  "sks_favourite_dishes_remaining": "Pozostałe dania ostatnio w menu",
+  "@sks_favourite_dishes_remaining": {
+    "description": "Label for remaining recent dishes section"
+  },
+  "sks_favourite_dishes_couldnt_update": "Nie udało się zaktualizować ulubionych dań",
+  "@sks_favourite_dishes_remaining": {
+    "description": "Error message for when favourite dishes update fails"
+  },
+  "sks_favourite_dishes_no_dishes_yet": "Nie masz jeszcze ulubionych dań",
+  "@sks_favourite_dishes_no_dishes_yet": {
+    "description": "Information that there are no subscribed dishes yet"
+  },
+  "sks_favourite_dishes_how_it_works": "Kliknij na danie z sekcji 'Pozostałe dania' poniżej, aby otrzymywać powiadomienia, gdy pojawi się w menu! Dania możesz dodawać także w sekcji Sks Menu, poprzez dwukrotne kliknięcie na wybraną pozycję.",
+  "@sks_favourite_dishes_how_it_works": {
+    "description": "Description on how subscribing to dishes works"
   },
   "sks_full_name": "Strefa Kultury Studenckiej",
   "@sks_full_name": {

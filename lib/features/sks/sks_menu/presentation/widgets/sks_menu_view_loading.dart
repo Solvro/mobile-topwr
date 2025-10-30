@@ -14,15 +14,15 @@ class SksMenuViewLoading extends StatelessWidget {
       child: Column(
         children: [
           _SksMenuHeaderLoading(),
-          Expanded(child: _SksMenuTilesLoading()),
+          Expanded(child: SksMenuTilesLoading()),
         ],
       ),
     );
   }
 }
 
-class _SksMenuTilesLoading extends StatelessWidget {
-  const _SksMenuTilesLoading();
+class SksMenuTilesLoading extends StatelessWidget {
+  const SksMenuTilesLoading();
   static const groupElements = 3;
   @override
   Widget build(BuildContext context) {

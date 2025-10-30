@@ -13,6 +13,7 @@ class MyExpansionTile extends StatelessWidget {
   final void Function({bool expanded})? onExpansionChanged;
 
   const MyExpansionTile({
+    super.key,
     required this.title,
     required this.children,
     this.initiallyExpanded = false,
@@ -24,6 +25,7 @@ class MyExpansionTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
+      key: key,
       title: Text(title, style: context.textTheme.title),
       backgroundColor: backgroundColor ?? context.colorTheme.greyLight,
       collapsedBackgroundColor: collapsedBackgroundColor ?? context.colorTheme.greyLight,

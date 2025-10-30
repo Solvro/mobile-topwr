@@ -18,6 +18,7 @@ import "../branches/data/repository/branch_repository.dart";
 import "../branches/presentation/branch_dialog.dart";
 import "../digital_guide/tabs/accessibility_dialog/presentation/accessibility_dialog.dart";
 import "../navigation_tab_view/widgets/navigation_tile.dart";
+import "../navigator/utils/navigation_commands.dart";
 import "widgets/language_settings_dialog.dart";
 
 @RoutePage()
@@ -54,8 +55,13 @@ class SettingsView extends ConsumerWidget {
         title: context.localize.digital_guide_accessibility,
         icon: Icons.accessibility_new,
       ),
+      NavigationTile(
+        onTap: ref.navigateToSksFavouriteDishes,
+        title: context.localize.sks_favourite_dishes_see_dishes,
+        icon: Icons.food_bank,
+      ),
       Padding(
-        padding: const EdgeInsets.all(32),
+        padding: const EdgeInsets.all(AboutUsConfig.spacerHeight),
         child: SizedBox.square(
           dimension: min(MediaQuery.sizeOf(context).width, MediaQuery.sizeOf(context).height) * 0.5,
           child: SvgPicture.asset(Assets.svg.settings),
