@@ -114,7 +114,11 @@ dependencies:
 
   #Audio
   just_audio: ^0.10.5
-  just_audio_background: ^0.0.1-beta.17
+  just_audio_background:
+    git:
+      url: https://github.com/24bartixx/just_audio.git
+      path: just_audio_background
+      ref: a7cf5a2e2a1bcf5f1c7e37e7047d02e7a88e1453
 
   #Other
   in_app_update: ^4.2.3
