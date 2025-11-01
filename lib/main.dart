@@ -53,6 +53,7 @@ Future<void> runToPWR() async {
       androidNotificationChannelId: "com.solvro.topwr.audio",
       androidNotificationChannelName: "Audio playback",
       androidNotificationOngoing: true,
+      showStopAction: false,
     );
   } on PlatformException catch (e, st) {
     await Sentry.captureException(e, stackTrace: st);
