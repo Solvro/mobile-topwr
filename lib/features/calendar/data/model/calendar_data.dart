@@ -25,6 +25,7 @@ abstract class CalendarData with _$CalendarData {
     required String endTime,
     @translatableField required String? location,
     @translatableField required String? description,
+    required String? accentColor,
   }) = _CalendarData;
 
   factory CalendarData.fromJson(Map<String, dynamic> json) => _$CalendarDataFromJson(json);

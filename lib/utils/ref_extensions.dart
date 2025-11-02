@@ -15,11 +15,19 @@ extension RefIntervalRefreshX on Ref {
 }
 
 extension RefRegisterForNotificationsX on Ref {
+  Future<String?> _getTokenSafe() async {
+    try {
+      return await FirebaseMessaging.instance.getToken();
+    } on Exception {
+      return null;
+    }
+  }
+
   Future<void> registerForNotifications() async {
     final client = read(restClientProvider);
     final url = "${Env.sksUrl}/device/registration-token";
     final deviceKey = await getDeviceId();
-    final registrationToken = await FirebaseMessaging.instance.getToken();
+    final registrationToken = await _getTokenSafe();
     if (deviceKey == null || registrationToken == null) {
       return;
     }
