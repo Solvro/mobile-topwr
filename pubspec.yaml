@@ -229,6 +229,10 @@ flutter:
     - assets/svg/map_placeholders/library_icon.svg
     - assets/svg/map_placeholders/shower_icon.svg
     - assets/svg/map_placeholders/building_icon.svg
+    - assets/svg/radio_luz/play_icon.svg
+    - assets/svg/radio_luz/pause_icon.svg
+    - assets/svg/radio_luz/speaker_icon.svg
+    - assets/svg/radio_luz/radio_luz_logo.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

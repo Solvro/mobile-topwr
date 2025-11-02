@@ -40,6 +40,9 @@ class AppTextTheme extends ThemeExtension<AppTextTheme> with _$AppTextThemeTailo
 
     // small 13px, w400
     this.smallOrange = const SmallTextStyle(color: ColorsConsts.orangePomegranade),
+
+    // tiny 12px, w400
+    this.tiny = const TinyTextStyle(),
   });
 
   @override
@@ -78,4 +81,6 @@ class AppTextTheme extends ThemeExtension<AppTextTheme> with _$AppTextThemeTailo
   final TextStyle bodyBlue;
   @override
   final TextStyle smallOrange;
+  @override
+  final TextStyle tiny;
 }

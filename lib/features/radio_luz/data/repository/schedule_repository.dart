@@ -5,12 +5,13 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../client/radio_luz_client.dart";
+import "../domain/schedule_entity.dart";
 import "../models/schedule.dart";
 
 part "schedule_repository.g.dart";
 
 @riverpod
-Future<Schedule?> scheduleRepository(Ref ref) async {
+Future<List<BroadcastEntity>?> scheduleRepository(Ref ref) async {
   final dio = ref.read(radioLuzClientProvider);
 
   final formData = FormData.fromMap({"action": "schedule"});
@@ -25,5 +26,24 @@ Future<Schedule?> scheduleRepository(Ref ref) async {
 
   final jsonMap = jsonDecode(rawData) as Map<String, dynamic>;
 
-  return Schedule.fromJson(jsonMap);
+  final schedule = Schedule.fromJson(jsonMap);
+
+  return schedule.broadcasts
+      .expand(
+        (block) => block.broadcasts.map((broadcast) {
+          final isNow = block.isNow ?? false;
+          return BroadcastEntity(
+            id: broadcast.id,
+            time: broadcast.time,
+            thumbnail: broadcast.thumbnail ?? "",
+            title: broadcast.title,
+            content: broadcast.content,
+            authors: broadcast.authors,
+            permalink: broadcast.permalink,
+            week: broadcast.week,
+            isNow: isNow,
+          );
+        }),
+      )
+      .toList();
 }

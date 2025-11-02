@@ -3692,5 +3692,65 @@
   "loading": "Łączenie",
   "@loading": {
     "description": "Text for radio player button loading state"
+  },
+  "now_playing": "Teraz gramy",
+  "@now_playing": {
+    "description": "Title for now playing section in radio luz view"
+  },
+  "broadcast": "Audycje",
+  "@broadcast": {
+    "description": "Title for broadcast section in radio luz view"
+  },
+  "radio_luz_info": "Info",
+  "@radio_luz_info": {
+    "description": "Title for info section in radio luz view"
+  },
+  "radio_luz_player_title": "Radio LUZ",
+  "@radio_luz_player_title": {
+    "description": "Title for radio luz player"
+  },
+  "radio_luz": "Radio LUZ",
+  "@radio_luz": {
+    "description": "Title for radio luz section"
+  },
+  "pwr": "Politechnika Wrocławska",
+  "@pwr": {
+    "description": "Subtitle for radio"
+  },
+  "now_playing": "Teraz gramy",
+  "@now_playing": {
+    "description": "Title for now playing section in radio luz view"
+  },
+  "broadcast": "Audycje",
+  "@broadcast": {
+    "description": "Title for broadcast section in radio luz view"
+  },
+  "radio_luz_info": "Info",
+  "@radio_luz_info": {
+    "description": "Title for info section in radio luz view"
+  },
+  "show_more": "zobacz więcej",
+  "@show_more": {
+    "description": "show more for broadcasts"
+  },
+  "radio_luz_description1": "Nie scrolluj. Słuchaj",
+  "@radio_luz_description1": {
+    "description": "Short tagline prompting the user to stop scrolling and listen to Radio LUZ"
+  },
+  "radio_luz_description2": "Jesteś twórczą osobą? Masz ucho do muzyki, głos do mikrofonu albo serce do reportażu? Rekrutujemy dwa razy do roku. Bądź z nami na bieżąco",
+  "@radio_luz_description2": {
+    "description": "Longer call-to-action inviting creative people to join Radio LUZ and informing about biannual recruitment"
+  },
+  "radio_luz_player_title": "Radio LUZ",
+  "@radio_luz_player_title": {
+    "description": "Title for radio luz player"
+  },
+  "radio_luz": "Radio LUZ",
+  "@radio_luz": {
+    "description": "Title for radio luz section"
+  },
+  "pwr": "Politechnika Wrocławska",
+  "@pwr": {
+    "description": "Subtitle for radio"
   }
 }

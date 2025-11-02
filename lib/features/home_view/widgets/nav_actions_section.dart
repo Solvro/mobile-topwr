@@ -39,7 +39,7 @@ class NavActionsSection extends ConsumerWidget {
                 ref.navigateCalendar,
               ),
               _NavActionButton(
-                context.localize.radio_luz_title,
+                context.localize.radio_luz,
                 Icon(Icons.radio, color: context.colorTheme.whiteSoap, size: 30),
                 ref.navigateToRadioLuz,
               ),

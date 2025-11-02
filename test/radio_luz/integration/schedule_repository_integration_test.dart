@@ -1,7 +1,6 @@
-import "package:flutter/foundation.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:flutter_test/flutter_test.dart";
-import "package:topwr/features/radio_luz/data/models/schedule.dart";
+import "package:topwr/features/radio_luz/data/domain/schedule_entity.dart";
 import "package:topwr/features/radio_luz/data/repository/schedule_repository.dart";
 
 void main() {
@@ -14,15 +13,9 @@ void main() {
 
       final schedule = await scheduleFuture;
 
-      expect(schedule, isA<Schedule?>());
+      expect(schedule, isA<List<BroadcastEntity>>());
       expect(schedule, isNotNull);
-      expect(schedule!.broadcasts, isNotEmpty);
-
-      final firstBlock = schedule.broadcasts.first;
-      final firstBroadcast = firstBlock.broadcasts.first;
-
-      debugPrint("✅ Pierwszy blok: timeinmin=${firstBlock.timeinmin}, isNow=${firstBlock.isNow}");
-      debugPrint("✅ Pierwsza audycja: ${firstBroadcast.title} (${firstBroadcast.time})");
+      expect(schedule, isNotEmpty);
     });
   });
 }
