@@ -576,7 +576,7 @@
     "description": "Label for remaining recent dishes section"
   },
   "sks_favourite_dishes_couldnt_update": "Nie udało się zaktualizować ulubionych dań",
-  "@sks_favourite_dishes_remaining": {
+  "@sks_favourite_dishes_couldnt_update": {
     "description": "Error message for when favourite dishes update fails"
   },
   "sks_favourite_dishes_no_dishes_yet": "Nie masz jeszcze ulubionych dań",
@@ -3717,18 +3717,6 @@
   "@pwr": {
     "description": "Subtitle for radio"
   },
-  "now_playing": "Teraz gramy",
-  "@now_playing": {
-    "description": "Title for now playing section in radio luz view"
-  },
-  "broadcast": "Audycje",
-  "@broadcast": {
-    "description": "Title for broadcast section in radio luz view"
-  },
-  "radio_luz_info": "Info",
-  "@radio_luz_info": {
-    "description": "Title for info section in radio luz view"
-  },
   "show_more": "zobacz więcej",
   "@show_more": {
     "description": "show more for broadcasts"
@@ -3740,17 +3728,5 @@
   "radio_luz_description2": "Jesteś twórczą osobą? Masz ucho do muzyki, głos do mikrofonu albo serce do reportażu? Rekrutujemy dwa razy do roku. Bądź z nami na bieżąco",
   "@radio_luz_description2": {
     "description": "Longer call-to-action inviting creative people to join Radio LUZ and informing about biannual recruitment"
-  },
-  "radio_luz_player_title": "Radio LUZ",
-  "@radio_luz_player_title": {
-    "description": "Title for radio luz player"
-  },
-  "radio_luz": "Radio LUZ",
-  "@radio_luz": {
-    "description": "Title for radio luz section"
-  },
-  "pwr": "Politechnika Wrocławska",
-  "@pwr": {
-    "description": "Subtitle for radio"
   }
 }
