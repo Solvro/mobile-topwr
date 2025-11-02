@@ -5,6 +5,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:solvro_translator_core/solvro_translator_core.dart";
 
 import "../../../../widgets/my_error_widget.dart";
+import "../../../api_base_rest/shared_models/image_data.dart";
 import "../../../config/ui_config.dart";
 import "../../../config/url_config.dart";
 import "../../../services/translations_service/data/preferred_lang_repository.dart";
@@ -77,7 +78,7 @@ class NewsTile extends ConsumerWidget {
       context,
       title: item.title,
       subtitle: item.previewText,
-      directusPhotoUrl: item.imageLink,
+      directusPhotoUrl: ImageData(url: item.imageLink),
       onTap: () => ref.launch(item.url),
       crossAxisAlignment: CrossAxisAlignment.stretch,
     );

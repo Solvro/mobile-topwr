@@ -4,6 +4,7 @@ import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
+import "../../../api_base_rest/shared_models/image_data.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../widgets/my_error_widget.dart";
 import "../../../widgets/subsection_header.dart";
@@ -81,7 +82,7 @@ class _BuildParkingCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return BuildingCard(
       buildingName: parking.symbol,
-      directusImageUrl: parking.iParkPhotoUrl,
+      imageData: ImageData(url: parking.iParkPhotoUrl),
       onTap: () {
         unawaited(ref.navigateParking(parking));
       },

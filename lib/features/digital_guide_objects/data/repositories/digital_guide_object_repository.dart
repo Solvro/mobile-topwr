@@ -26,5 +26,5 @@ Future<({DigitalGuideObjectModel digitalGuideData, String? photoUrl})> digitalGu
         onRetry: () => ref.invalidateSelf(),
       )
       .castAsObject;
-  return (digitalGuideData: digitalGuideData, photoUrl: building.cover?.url);
+  return (digitalGuideData: digitalGuideData, photoUrl: building.cover?.effectiveUrl);
 }

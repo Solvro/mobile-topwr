@@ -14,7 +14,7 @@ class GuideTile extends ConsumerWidget {
       context,
       title: item.title,
       subtitle: item.shortDesc,
-      directusPhotoUrl: item.image.url,
+      directusPhotoUrl: item.image,
       onTap: () => ref.navigateGuideDetail(item.id),
       crossAxisAlignment: CrossAxisAlignment.stretch,
     );

@@ -1,15 +1,17 @@
 import "package:flutter/material.dart";
 
+import "../api_base_rest/shared_models/image_data.dart";
 import "../config/ui_config.dart";
 import "../features/science_club/science_clubs_view/widgets/ensure_visible_tags.dart";
 import "../theme/app_theme.dart";
 import "../utils/context_extensions.dart";
-import "my_cached_image.dart";
+
+import "rest_api_image.dart";
 
 class PhotoTrailingWideTileCard extends WideTileCard {
   PhotoTrailingWideTileCard(
     BuildContext context, {
-    String? directusPhotoUrl,
+    ImageData? directusPhotoUrl,
     required super.title,
     super.subtitle,
     super.onTap,
@@ -24,7 +26,7 @@ class PhotoTrailingWideTileCard extends WideTileCard {
          trailing: SizedBox(
            height: context.textScaler.scale(WideTileCardConfig.imageSize),
            width: WideTileCardConfig.imageSize,
-           child: directusPhotoUrl != null ? MyCachedImage(directusPhotoUrl, boxFit: boxFit) : customPlaceholder,
+           child: directusPhotoUrl != null ? RestApiImage(directusPhotoUrl, boxFit: boxFit) : customPlaceholder,
          ),
        );
 }

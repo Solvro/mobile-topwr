@@ -43,7 +43,7 @@ class AedTile extends HookConsumerWidget {
                 child: PhotoTrailingWideTileCard(
                   context,
                   activeGradient: context.colorTheme.toPwrGradient,
-                  directusPhotoUrl: aed.photo?.url,
+                  directusPhotoUrl: aed.photo,
                   title: title,
                   subtitle: "${aed.addressLine1 ?? ''}\n${aed.addressLine2 ?? ''}".trim(),
                   isActive: isActive,

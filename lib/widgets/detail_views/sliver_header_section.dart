@@ -2,15 +2,24 @@ import "dart:math";
 
 import "package:flutter/material.dart";
 
+import "../../api_base_rest/shared_models/image_data.dart";
 import "../../config/ui_config.dart";
 import "../../utils/context_extensions.dart";
 import "../zoomable_images.dart";
 import "sliver_logo.dart";
 
 class SliverHeaderSection extends SliverPersistentHeaderDelegate {
-  SliverHeaderSection({this.activeGradient, required this.logoDirectusImageUrl, required this.backgroundImageUrl});
+  SliverHeaderSection({
+    this.activeGradient,
+    this.logoDirectusImageData,
+    this.logoDirectusImageUrl,
+    this.backgroundImageData,
+    this.backgroundImageUrl,
+  });
 
+  final ImageData? logoDirectusImageData;
   final String? logoDirectusImageUrl;
+  final ImageData? backgroundImageData;
   final String? backgroundImageUrl;
   final LinearGradient? activeGradient;
   static const maxTopBarHeight = 250;
@@ -48,7 +57,11 @@ class SliverHeaderSection extends SliverPersistentHeaderDelegate {
             child: SizedBox(
               height: maxTopBarHeight * (1 - progress),
               width: double.infinity,
-              child: ZoomableCachedImage(backgroundImageUrl),
+              child: backgroundImageData != null
+                  ? ZoomableRestApiImage(backgroundImageData)
+                  : backgroundImageUrl != null
+                  ? ZoomableCachedImage(backgroundImageUrl)
+                  : const ZoomableRestApiImage(null),
             ),
           ),
         ),
@@ -60,7 +73,7 @@ class SliverHeaderSection extends SliverPersistentHeaderDelegate {
             child: SliverLogo(
               scaleFactor: scaleFactor,
               activeGradient: activeGradient,
-              logoDirectusUrl: logoDirectusImageUrl,
+              logoDirectusUrl: logoDirectusImageData?.effectiveUrl ?? logoDirectusImageUrl,
               logoOpacity: logoOpacity,
               logoSize: logoSize,
               boxfit: BoxFit.scaleDown,

@@ -1,18 +1,19 @@
 import "package:flutter/material.dart";
 
+import "../api_base_rest/shared_models/image_data.dart";
 import "../config/ui_config.dart";
 import "../theme/app_theme.dart";
 import "../utils/context_extensions.dart";
 import "date_chip.dart";
 import "dual_text_max_lines.dart";
-import "my_cached_image.dart";
+import "rest_api_image.dart";
 
 class BigPreviewCard extends StatelessWidget {
   const BigPreviewCard({
     super.key,
     required this.title,
     required this.shortDescription,
-    required this.imageUrl,
+    this.imageData,
     this.date,
     required this.onClick,
     this.boxFit = BoxFit.scaleDown,
@@ -22,7 +23,7 @@ class BigPreviewCard extends StatelessWidget {
 
   final String title;
   final String shortDescription;
-  final String? imageUrl;
+  final ImageData? imageData;
   final DateTime? date;
   final VoidCallback? onClick;
   final BoxFit boxFit;
@@ -50,7 +51,11 @@ class BigPreviewCard extends StatelessWidget {
                       children: [
                         SizedBox(
                           width: double.maxFinite,
-                          child: Center(child: MyCachedImage(imageUrl, boxFit: boxFit)),
+                          child: Center(
+                            child: imageData != null
+                                ? RestApiImage(imageData, boxFit: boxFit)
+                                : const RestApiImage(null),
+                          ),
                         ),
                         if (date != null) DateChip(date: date!) else const SizedBox.shrink(),
                       ],

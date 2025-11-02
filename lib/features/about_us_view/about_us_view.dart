@@ -47,7 +47,7 @@ class _AboutUsView extends ConsumerWidget {
           SliverPersistentHeader(
             delegate: SliverHeaderSection(
               logoDirectusImageUrl: AboutUsConfig.defaultLogoUrl,
-              backgroundImageUrl: value.photoUrl,
+              backgroundImageData: value.photo,
             ),
           ),
           SliverList(

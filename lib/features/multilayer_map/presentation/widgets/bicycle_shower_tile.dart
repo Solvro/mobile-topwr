@@ -43,7 +43,7 @@ class BicycleShowerTile extends HookConsumerWidget {
                 child: PhotoTrailingWideTileCard(
                   context,
                   activeGradient: context.colorTheme.toPwrGradient,
-                  directusPhotoUrl: shower.photo?.url,
+                  directusPhotoUrl: shower.photo,
                   title: title,
                   subtitle: "${context.localize.room} ${shower.room}\n${shower.instructions}",
                   isActive: isActive,

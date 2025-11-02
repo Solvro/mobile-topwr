@@ -50,7 +50,7 @@ class BuildingTile extends HookConsumerWidget {
                 child: PhotoTrailingWideTileCard(
                   context,
                   activeGradient: context.colorTheme.toPwrGradient,
-                  directusPhotoUrl: building.cover?.url,
+                  directusPhotoUrl: building.cover,
                   title: "${context.localize.building_prefix} ${building.name}",
                   subtitle: building.address,
                   isActive: isActive,

@@ -43,7 +43,7 @@ class PinkBoxTile extends HookConsumerWidget {
                 child: PhotoTrailingWideTileCard(
                   context,
                   activeGradient: context.colorTheme.toPwrGradient,
-                  directusPhotoUrl: pinkBox.photo?.url,
+                  directusPhotoUrl: pinkBox.photo,
                   title: title,
                   subtitle:
                       "${pinkBox.roomOrNearby}\n${context.localize.building_tile_building} ${pinkBox.building?.name}",

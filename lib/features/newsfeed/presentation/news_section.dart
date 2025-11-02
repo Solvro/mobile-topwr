@@ -2,6 +2,7 @@ import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
+import "../../../api_base_rest/shared_models/image_data.dart";
 import "../../../config/ui_config.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../utils/launch_url_util.dart";
@@ -87,7 +88,7 @@ class _ArticleCard extends ConsumerWidget {
     return BigPreviewCard(
       title: article.title,
       shortDescription: article.previewText,
-      imageUrl: article.imageLink,
+      imageData: ImageData(url: article.imageLink),
       onClick: () {
         unwaitedMicrotask(() => ref.launch(article.url));
       },
