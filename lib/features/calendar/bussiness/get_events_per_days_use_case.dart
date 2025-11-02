@@ -4,6 +4,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../l10n/app_localizations.dart";
+import "../../../theme/hex_color.dart";
 import "../../../utils/watch_locale.dart";
 import "../data/model/calendar_data.dart";
 import "../data/repository/calendar_repository.dart";
@@ -77,7 +78,13 @@ SingleCalendarItem _createCalendarItem(
 
   final hoursString = isSingleDay ? _formatTimeRange(startDate, endDate) : "${l10n.day} $dayNumber/$totalDays";
 
-  return (name: event.name, location: event.location ?? "", hoursString: hoursString, description: event.description);
+  return (
+    name: event.name,
+    location: event.location ?? "",
+    hoursString: hoursString,
+    description: event.description,
+    accentColor: event.accentColor != null ? HexColor(event.accentColor!) : null,
+  );
 }
 
 /// Builds year events from grouped event days

@@ -22,7 +22,7 @@ class CalendarDaySection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
-            width: 50,
+            width: 40,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

@@ -32,29 +32,46 @@ class CalendarTile extends ConsumerWidget {
       color: context.colorTheme.greyLight,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppWidgetsConfig.borderRadiusMedium)),
       elevation: 0,
-      child: ListTile(
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16),
-        title: Text(item.name),
-        titleTextStyle: context.textTheme.title,
-        subtitle: subtitle,
-        subtitleTextStyle: context.textTheme.body,
-        trailing: switch (item.description) {
-          null => null,
-          final description => IconButton(
-            color: context.colorTheme.orangePomegranade,
-            onPressed: () async {
-              await showCustomDialog(
-                dialogSemantics: context.localize.push_notifications_dialog_info,
-                context: context,
-                onConfirmTapped: null,
-                confirmText: context.localize.confirm,
-                dialogContent: Text(description, style: context.textTheme.lightTitle),
-                closeText: context.localize.ok,
-              );
-            },
-            icon: const Icon(Icons.info_outline),
+      child: Row(
+        children: [
+          Container(
+            width: 10,
+            height: 70,
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(AppWidgetsConfig.borderRadiusMedium),
+                bottomLeft: Radius.circular(AppWidgetsConfig.borderRadiusMedium),
+              ),
+              color: item.accentColor,
+            ),
           ),
-        },
+          Expanded(
+            child: ListTile(
+              contentPadding: const EdgeInsets.symmetric(horizontal: 12),
+              title: Text(item.name),
+              titleTextStyle: context.textTheme.title,
+              subtitle: subtitle,
+              subtitleTextStyle: context.textTheme.body,
+              trailing: switch (item.description) {
+                null => null,
+                final description => IconButton(
+                  color: context.colorTheme.orangePomegranade,
+                  onPressed: () async {
+                    await showCustomDialog(
+                      dialogSemantics: context.localize.push_notifications_dialog_info,
+                      context: context,
+                      onConfirmTapped: null,
+                      confirmText: context.localize.confirm,
+                      dialogContent: Text(description, style: context.textTheme.lightTitle),
+                      closeText: context.localize.ok,
+                    );
+                  },
+                  icon: const Icon(Icons.info_outline),
+                ),
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
