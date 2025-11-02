@@ -7,8 +7,8 @@ import "../data/repository/history_entry_repository.dart";
 
 const _maxElementsToShow = 5;
 
-class NowPlaygingSection extends ConsumerWidget {
-  const NowPlaygingSection({super.key});
+class NowPlayingSection extends ConsumerWidget {
+  const NowPlayingSection({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -63,13 +63,19 @@ class _NowPlayingTile extends StatelessWidget {
           time,
           style: textTheme.title.copyWith(color: isActive ? colorTheme.whiteSoap : colorTheme.orangePomegranadeLighter),
         ),
-        title: Text(
-          title,
-          style: textTheme.title.copyWith(color: isActive ? colorTheme.whiteSoap : colorTheme.blackMirage),
-        ),
-        subtitle: Text(
-          subtitle,
-          style: textTheme.tiny.copyWith(color: isActive ? colorTheme.whiteSoap : colorTheme.blackMirage),
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              title,
+              style: textTheme.title.copyWith(color: isActive ? colorTheme.whiteSoap : colorTheme.blackMirage),
+            ),
+            const SizedBox(height: 2),
+            Text(
+              subtitle,
+              style: textTheme.tiny.copyWith(color: isActive ? colorTheme.whiteSoap : colorTheme.blackMirage),
+            ),
+          ],
         ),
         trailing: isActive
             ? Text(

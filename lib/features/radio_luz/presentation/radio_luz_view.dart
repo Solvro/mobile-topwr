@@ -5,7 +5,7 @@ import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "audio_player_widget.dart";
 import "broadcasts_section.dart";
-import "now_playging_section.dart";
+import "now_playing_section.dart";
 import "radio_luz_app_bar.dart";
 import "radio_luz_socials_section.dart";
 import "radio_luz_title.dart";
@@ -27,7 +27,7 @@ class RadioLuzView extends StatelessWidget {
             children: [
               RadioLuzTitle(title: l10n.now_playing.toUpperCase()),
               const SizedBox(height: 12),
-              const NowPlaygingSection(),
+              const NowPlayingSection(),
               const SizedBox(height: 24),
               RadioLuzTitle(title: l10n.broadcast.toUpperCase()),
               const SizedBox(height: 12),
