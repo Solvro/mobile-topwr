@@ -10,7 +10,6 @@ import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/context_extensions.dart";
 import "../../../../../widgets/my_expansion_tile.dart";
 import "../../../sks_favourite_dishes/presentation/sks_favourite_dishes_controller.dart";
-import "../../../sks_favourite_dishes/utils/toast_on_dish_tap.dart";
 import "../../data/models/sks_menu_data.dart";
 import "icon_banner.dart";
 
@@ -20,12 +19,14 @@ class SksMenuTile extends ConsumerWidget {
     required this.title,
     required this.dishes,
     this.onDishTap,
+    this.onDoubleTap,
     this.padding = const EdgeInsets.only(top: SksMenuConfig.paddingLarge),
   });
 
   final String title;
   final List<SksMenuDishBase> dishes;
   final void Function(String dishId)? onDishTap;
+  final void Function(String dishId)? onDoubleTap;
   final EdgeInsets padding;
 
   static const _keyPrefix = "MenuExpansionTile";
@@ -50,14 +51,7 @@ class SksMenuTile extends ConsumerWidget {
                 dish: dish,
                 isSubscribed: subscribedIds.contains(dish.id),
                 onTap: onDishTap,
-                onDoubleTap: onDishTap == null
-                    ? (dishId) => toastOnDishTap(
-                        dishId: dishId,
-                        ref: ref,
-                        context: context,
-                        subscribe: !subscribedIds.contains(dish.id),
-                      )
-                    : null,
+                onDoubleTap: onDoubleTap,
               ),
             )
             .separate(
