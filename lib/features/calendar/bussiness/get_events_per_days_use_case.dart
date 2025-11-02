@@ -17,7 +17,11 @@ Future<IList<CalendarYearEvents>> getEventsPerDaysUseCase(Ref ref) async {
   final query = ref.watch(searchCalendarControllerProvider);
   final events = await ref.watch(calendarRepositoryProvider(query).future);
   final l10n = ref.watch(watchLocaleProvider);
+  return groupEventsByYear(events, l10n);
+}
 
+/// Groups calendar events by year and returns sorted year events
+IList<CalendarYearEvents> groupEventsByYear(IList<CalendarData> events, AppLocalizations l10n) {
   // Generate all event-day combinations
   final eventDays = events.expand((event) => _generateEventDays(event, l10n)).toList();
 
