@@ -15,11 +15,18 @@ import "../../data/models/sks_menu_data.dart";
 import "icon_banner.dart";
 
 class SksMenuTile extends ConsumerWidget {
-  const SksMenuTile({super.key, required this.title, required this.dishes, this.onDishTap});
+  const SksMenuTile({
+    super.key,
+    required this.title,
+    required this.dishes,
+    this.onDishTap,
+    this.padding = const EdgeInsets.only(top: SksMenuConfig.paddingLarge),
+  });
 
   final String title;
   final List<SksMenuDishBase> dishes;
   final void Function(String dishId)? onDishTap;
+  final EdgeInsets padding;
 
   static const _keyPrefix = "MenuExpansionTile";
 
@@ -30,12 +37,13 @@ class SksMenuTile extends ConsumerWidget {
     final subscribedIds = availableDishesIds.intersection(subscribedDishes.map((dish) => dish.id).toSet());
 
     return Padding(
-      padding: const EdgeInsets.only(top: SksMenuConfig.paddingLarge),
+      padding: padding,
       child: MyExpansionTile(
         key: PageStorageKey<String>("$_keyPrefix-$title"),
         backgroundColor: context.colorTheme.whiteSoap,
         initiallyExpanded: true,
         title: title,
+
         children: dishes
             .map<Widget>(
               (dish) => SksMenuDishDetailsTile(

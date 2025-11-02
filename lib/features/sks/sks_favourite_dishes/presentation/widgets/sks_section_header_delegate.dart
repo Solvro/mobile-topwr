@@ -20,8 +20,8 @@ class SksSectionHeaderDelegate extends SliverPersistentHeaderDelegate {
     return Container(
       color: backgroundColor,
       padding: const EdgeInsets.symmetric(
-        horizontal: SksMenuConfig.paddingMedium,
-        vertical: SksMenuConfig.paddingSmall,
+        horizontal: SksMenuConfig.paddingLarge * 1.1,
+        vertical: SksMenuConfig.paddingMedium,
       ),
       alignment: Alignment.centerLeft,
       child: Text(title, style: textStyle),
