@@ -567,7 +567,7 @@
   "@sks_favourite_dishes_see_dishes": {
     "description": "Button to show favourite dishes settings"
   },
-  "sks_favourite_dishes_subscribed": "Dania, o których cię powiadomimy",
+  "sks_favourite_dishes_subscribed": "Dania, o których Cię powiadomimy",
   "@sks_favourite_dishes_subscribed": {
     "description": "Label for subscribed dishes section"
   },
@@ -583,9 +583,17 @@
   "@sks_favourite_dishes_no_dishes_yet": {
     "description": "Information that there are no subscribed dishes yet"
   },
-  "sks_favourite_dishes_how_it_works": "Kliknij na danie z sekcji 'Pozostałe dania' poniżej, aby otrzymywać powiadomienia, gdy pojawi się w menu! Dania możesz dodawać także w sekcji Sks Menu, poprzez dwukrotne kliknięcie na wybraną pozycję.",
+  "sks_favourite_dishes_how_it_works": "Kliknij na danie z sekcji poniżej, aby otrzymywać powiadomienia, gdy pojawi się ponownie w menu! Dania możesz dodawać także z widoku menu, poprzez dwukrotne kliknięcie na wybraną pozycję.",
   "@sks_favourite_dishes_how_it_works": {
     "description": "Description on how subscribing to dishes works"
+  },
+  "sks_favourite_dishes_not_found": "Nie znaleziono dania",
+  "@sks_favourite_dishes_not_found": {
+    "description": "Message shown when no dishes are found in search"
+  },
+  "sks_favourite_dishes_no_dishes_in_menu": "Brak dań w menu z ostatniego tygodnia",
+  "@sks_favourite_dishes_no_dishes_in_menu": {
+    "description": "Message shown when there are no dishes in menu from the last week"
   },
   "sks_full_name": "Strefa Kultury Studenckiej",
   "@sks_full_name": {

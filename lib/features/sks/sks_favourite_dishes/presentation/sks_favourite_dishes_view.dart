@@ -72,6 +72,8 @@ class _SksFavouriteDishesView extends ConsumerWidget {
         )
         .toList();
 
+    final isSearchTextEmpty = ref.watch(sksFavouriteDishesControllerProvider).isEmpty;
+
     return CustomScrollView(
       key: const PageStorageKey("SksFavouriteDishesListView"),
       slivers: [
@@ -90,7 +92,9 @@ class _SksFavouriteDishesView extends ConsumerWidget {
               SliverToBoxAdapter(
                 child: Padding(
                   padding: const EdgeInsets.all(SksMenuConfig.paddingLarge),
-                  child: EmptySubscribedDishesPlaceholder(),
+                  child: isSearchTextEmpty
+                      ? EmptySubscribedDishesPlaceholder()
+                      : Text(context.localize.sks_favourite_dishes_not_found, textAlign: TextAlign.center),
                 ),
               )
             else
@@ -126,22 +130,33 @@ class _SksFavouriteDishesView extends ConsumerWidget {
                 backgroundColor: context.colorTheme.whiteSoap,
               ),
             ),
-            SliverPadding(
-              padding: const EdgeInsets.symmetric(horizontal: SksMenuConfig.paddingLarge),
-              sliver: SliverList(
-                delegate: SliverChildBuilderDelegate((context, index) {
-                  final categoryData = categoriesWithDishes[index];
-                  return SksMenuTile(
-                    padding: index == 0 ? EdgeInsets.zero : const EdgeInsets.only(top: SksMenuConfig.paddingLarge),
-                    title: categoryData.category.getLocalizedName(context),
-                    dishes: categoryData.dishes,
-                    onDishTap: (dishId) => toastOnDishTap(dishId: dishId, ref: ref, context: context, subscribe: true),
-                    onDoubleTap: (dishId) =>
-                        toastOnDishTap(dishId: dishId, ref: ref, context: context, subscribe: true),
-                  );
-                }, childCount: categoriesWithDishes.length),
+            if (unsubscribedDishes.isEmpty)
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.all(SksMenuConfig.paddingLarge),
+                  child: isSearchTextEmpty
+                      ? Text(context.localize.sks_favourite_dishes_no_dishes_in_menu)
+                      : Text(context.localize.sks_favourite_dishes_not_found, textAlign: TextAlign.center),
+                ),
+              )
+            else
+              SliverPadding(
+                padding: const EdgeInsets.symmetric(horizontal: SksMenuConfig.paddingLarge),
+                sliver: SliverList(
+                  delegate: SliverChildBuilderDelegate((context, index) {
+                    final categoryData = categoriesWithDishes[index];
+                    return SksMenuTile(
+                      padding: index == 0 ? EdgeInsets.zero : const EdgeInsets.only(top: SksMenuConfig.paddingLarge),
+                      title: categoryData.category.getLocalizedName(context),
+                      dishes: categoryData.dishes,
+                      onDishTap: (dishId) =>
+                          toastOnDishTap(dishId: dishId, ref: ref, context: context, subscribe: true),
+                      onDoubleTap: (dishId) =>
+                          toastOnDishTap(dishId: dishId, ref: ref, context: context, subscribe: true),
+                    );
+                  }, childCount: categoriesWithDishes.length),
+                ),
               ),
-            ),
           ],
         ),
       ],
