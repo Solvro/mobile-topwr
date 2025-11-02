@@ -30,6 +30,7 @@ void main() {
         endTime: "2024-01-15T12:00:00",
         location: "Test Location",
         description: "Test Description",
+        accentColor: null,
       );
       final events = [event].toIList();
 
@@ -53,6 +54,7 @@ void main() {
         endTime: "2024-01-15T12:00:00",
         location: null,
         description: null,
+        accentColor: null,
       );
       const event2 = CalendarData(
         id: 2,
@@ -61,6 +63,7 @@ void main() {
         endTime: "2024-03-20T16:00:00",
         location: "Location 2",
         description: "Description 2",
+        accentColor: null,
       );
       final events = [event1, event2].toIList();
 
@@ -80,6 +83,7 @@ void main() {
         endTime: "2023-12-31T12:00:00",
         location: null,
         description: null,
+        accentColor: null,
       );
       const event2024 = CalendarData(
         id: 2,
@@ -88,6 +92,7 @@ void main() {
         endTime: "2024-01-01T12:00:00",
         location: null,
         description: null,
+        accentColor: null,
       );
       const event2025 = CalendarData(
         id: 3,
@@ -96,6 +101,7 @@ void main() {
         endTime: "2025-06-15T12:00:00",
         location: null,
         description: null,
+        accentColor: null,
       );
       final events = [event2024, event2025, event2023].toIList(); // Out of order
 
@@ -116,6 +122,7 @@ void main() {
         endTime: "2024-01-17T12:00:00",
         location: "Conference Center",
         description: "A 3-day conference",
+        accentColor: null,
       );
       final events = [multiDayEvent].toIList();
 
@@ -137,6 +144,7 @@ void main() {
         endTime: "2024-02-02T12:00:00",
         location: null,
         description: null,
+        accentColor: null,
       );
       final events = [crossMonthEvent].toIList();
 
@@ -156,6 +164,7 @@ void main() {
         endTime: "2024-01-02T12:00:00",
         location: null,
         description: null,
+        accentColor: null,
       );
       final events = [crossYearEvent].toIList();
 
@@ -181,6 +190,7 @@ void main() {
         endTime: "2025-01-01T12:00:00",
         location: null,
         description: null,
+        accentColor: null,
       );
       const event2 = CalendarData(
         id: 2,
@@ -189,6 +199,7 @@ void main() {
         endTime: "2023-01-01T12:00:00",
         location: null,
         description: null,
+        accentColor: null,
       );
       const event3 = CalendarData(
         id: 3,
@@ -197,6 +208,7 @@ void main() {
         endTime: "2024-01-01T12:00:00",
         location: null,
         description: null,
+        accentColor: null,
       );
       final events = [event1, event2, event3].toIList();
 
@@ -216,6 +228,7 @@ void main() {
         endTime: "2024-06-15T11:45:00",
         location: "Room 101",
         description: "Quarterly review meeting",
+        accentColor: "#E43D32",
       );
       final events = [event].toIList();
 
@@ -226,6 +239,8 @@ void main() {
       expect(calendarItem.location, "Room 101");
       expect(calendarItem.description, "Quarterly review meeting");
       expect(calendarItem.hoursString, "09:30 - 11:45");
+      expect(calendarItem.accentColor, isNotNull);
+      expect(calendarItem.accentColor!.hexString, "#E43D32");
     });
 
     test("should handle multiple events on the same day", () {
@@ -236,6 +251,7 @@ void main() {
         endTime: "2024-05-10T10:00:00",
         location: "Room A",
         description: null,
+        accentColor: null,
       );
       const event2 = CalendarData(
         id: 2,
@@ -244,6 +260,7 @@ void main() {
         endTime: "2024-05-10T17:00:00",
         location: "Room B",
         description: "Technical workshop",
+        accentColor: null,
       );
       const event3 = CalendarData(
         id: 3,
@@ -252,6 +269,7 @@ void main() {
         endTime: "2024-05-10T20:00:00",
         location: null,
         description: null,
+        accentColor: null,
       );
       final events = [event1, event2, event3].toIList();
 
@@ -272,6 +290,7 @@ void main() {
         endTime: "2024-07-20T13:00:00",
         location: null,
         description: null,
+        accentColor: null,
       );
       final events = [event].toIList();
 
@@ -291,6 +310,7 @@ void main() {
         endTime: "2024-08-15T23:59:59",
         location: "Everywhere",
         description: "Full day event",
+        accentColor: null,
       );
       final events = [event].toIList();
 
@@ -315,6 +335,7 @@ void main() {
         endTime: "2024-09-10T18:00:00",
         location: "Convention Center",
         description: "10-day conference",
+        accentColor: null,
       );
       final events = [longEvent].toIList();
 
@@ -338,6 +359,7 @@ void main() {
         endTime: "2024-02-29T12:00:00",
         location: "Leap Location",
         description: "Only happens in leap years",
+        accentColor: null,
       );
       final events = [leapYearEvent].toIList();
 
@@ -358,6 +380,7 @@ void main() {
         endTime: "2024-10-05T12:00:00",
         location: "Location with émojis 🎉",
         description: "Description with \"quotes\" and 'apostrophes'",
+        accentColor: null,
       );
       final events = [event].toIList();
 
@@ -377,6 +400,7 @@ void main() {
         endTime: "2024-01-01T02:00:00",
         location: "Main Square",
         description: "Celebrating the new year",
+        accentColor: null,
       );
       final events = [yearBoundaryEvent].toIList();
 
@@ -402,6 +426,7 @@ void main() {
         endTime: "2024-11-01T11:00:00",
         location: null,
         description: null,
+        accentColor: null,
       );
       const event2 = CalendarData(
         id: 2,
@@ -410,6 +435,7 @@ void main() {
         endTime: "2024-11-15T15:00:00",
         location: null,
         description: null,
+        accentColor: null,
       );
       const event3 = CalendarData(
         id: 3,
@@ -418,6 +444,7 @@ void main() {
         endTime: "2024-11-30T17:00:00",
         location: null,
         description: null,
+        accentColor: null,
       );
       final events = [event1, event2, event3].toIList();
 
@@ -437,6 +464,7 @@ void main() {
         endTime: "2024-12-10T12:00:00",
         location: "",
         description: "Description exists",
+        accentColor: null,
       );
       final events = [event].toIList();
 
@@ -455,6 +483,7 @@ void main() {
         endTime: "2024-03-05T12:00:00",
         location: null,
         description: null,
+        accentColor: null,
       );
       const multiDay = CalendarData(
         id: 2,
@@ -463,6 +492,7 @@ void main() {
         endTime: "2024-03-12T18:00:00",
         location: "Location",
         description: "Multi-day event",
+        accentColor: null,
       );
       const crossMonth = CalendarData(
         id: 3,
@@ -471,6 +501,7 @@ void main() {
         endTime: "2024-04-02T12:00:00",
         location: null,
         description: null,
+        accentColor: null,
       );
       const sameDayMultiple = CalendarData(
         id: 4,
@@ -479,6 +510,7 @@ void main() {
         endTime: "2024-03-15T10:00:00",
         location: null,
         description: null,
+        accentColor: null,
       );
       const sameDayMultiple2 = CalendarData(
         id: 5,
@@ -487,6 +519,7 @@ void main() {
         endTime: "2024-03-15T16:00:00",
         location: null,
         description: null,
+        accentColor: null,
       );
       final events = [singleDay, multiDay, crossMonth, sameDayMultiple, sameDayMultiple2].toIList();
 
@@ -522,6 +555,7 @@ void main() {
         endTime: "2024-04-16T02:00:00",
         location: null,
         description: null,
+        accentColor: null,
       );
       final events = [event].toIList();
 
@@ -543,6 +577,7 @@ void main() {
         endTime: "2024-06-01T12:00:00",
         location: "Location",
         description: longDescription,
+        accentColor: null,
       );
       final events = [event].toIList();
 
@@ -561,6 +596,7 @@ void main() {
         endTime: "2024-11-15T12:00:00",
         location: null,
         description: null,
+        accentColor: null,
       );
       final events = [event].toIList();
 
