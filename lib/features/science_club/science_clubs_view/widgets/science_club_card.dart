@@ -3,6 +3,7 @@ import "package:flutter/material.dart";
 import "../../../../config/ui_config.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../widgets/my_cached_image.dart";
+import "../../../../widgets/rest_api_image.dart";
 import "../../../../widgets/wide_tile_card.dart";
 import "../model/science_clubs.dart";
 
@@ -39,7 +40,7 @@ class ScienceClubCard extends StatelessWidget {
                 bottomRight: WideTileCardConfig.radius,
               ),
             ),
-            child: MyCachedImage(sciClub.logo?.url, boxFit: BoxFit.scaleDown, loadingType: LoadingType.noLoading),
+            child: RestApiImage(sciClub.logo, boxFit: BoxFit.scaleDown, loadingType: LoadingType.noLoading),
           ),
         ),
       ),

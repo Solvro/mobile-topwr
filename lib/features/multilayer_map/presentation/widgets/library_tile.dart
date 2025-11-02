@@ -43,7 +43,7 @@ class LibraryTile extends HookConsumerWidget {
                 child: PhotoTrailingWideTileCard(
                   context,
                   activeGradient: context.colorTheme.toPwrGradient,
-                  directusPhotoUrl: library.photo?.url,
+                  directusPhotoUrl: library.photo,
                   title: library.title,
                   subtitle:
                       "${context.localize.room} ${library.room}\n${context.localize.building_tile_building} ${library.building?.name}",

@@ -53,7 +53,7 @@ class _SciClubDetailDataView extends ConsumerWidget {
       AsyncValue(:final ScienceClubDetails value) => CustomScrollView(
         slivers: [
           SliverPersistentHeader(
-            delegate: SliverHeaderSection(logoDirectusImageUrl: value.logo?.url, backgroundImageUrl: value.cover?.url),
+            delegate: SliverHeaderSection(logoDirectusImageData: value.logo, backgroundImageData: value.cover),
           ),
           SliverList(
             delegate: SliverChildListDelegate([

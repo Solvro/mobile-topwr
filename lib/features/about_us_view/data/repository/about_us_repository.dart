@@ -58,7 +58,7 @@ Future<AboutUs> aboutUsRepository(Ref ref) async {
 
   return (
     description: aboutUsResponse.data.aboutUsDetails.description,
-    photoUrl: aboutUsResponse.data.aboutUsDetails.coverPhoto.url,
+    photo: aboutUsResponse.data.aboutUsDetails.coverPhoto,
     socialLinks: aboutUsResponse.data.socialLinks.map((socialLink) => socialLink.url).toIList(),
     multiversionTeam: versionsResponse.data
         .map(
@@ -69,7 +69,7 @@ Future<AboutUs> aboutUsRepository(Ref ref) async {
                 .map((member) {
                   return (
                     teamMemberName: member.name,
-                    imageUrl: member.image.url,
+                    image: member.image,
                     subtitleForMilestone: member.roles
                         .where((role) => role.meta.milestoneId == version.milestoneId)
                         .first

@@ -18,7 +18,6 @@ class AboutUsTile extends ConsumerWidget {
         context,
         title: context.localize.guide_about_us,
         subtitle: context.localize.guide_meet_creators,
-        directusPhotoUrl: "",
         onTap: ref.navigateAboutUs,
       ),
     );

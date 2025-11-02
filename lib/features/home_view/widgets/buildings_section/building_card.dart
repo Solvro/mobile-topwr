@@ -1,17 +1,18 @@
 import "package:flutter/material.dart";
 
+import "../../../../api_base_rest/shared_models/image_data.dart";
 import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
-import "../../../../widgets/my_cached_image.dart";
+import "../../../../widgets/rest_api_image.dart";
 import "../../../../widgets/tile_splash.dart";
 
 class BuildingCard extends StatelessWidget {
-  const BuildingCard({super.key, required this.onTap, required this.buildingName, this.directusImageUrl});
+  const BuildingCard({super.key, required this.onTap, required this.buildingName, this.imageData});
 
   final VoidCallback onTap;
   final String buildingName;
-  final String? directusImageUrl;
+  final ImageData? imageData;
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +28,8 @@ class BuildingCard extends StatelessWidget {
             child: Stack(
               fit: StackFit.expand,
               children: [
-                MyCachedImage(directusImageUrl),
-                if (directusImageUrl != null)
+                if (imageData != null) RestApiImage(imageData) else const RestApiImage(null),
+                if (imageData != null)
                   Positioned.fill(
                     child: Container(decoration: BoxDecoration(gradient: context.colorTheme.buildingsGradient)),
                   ),

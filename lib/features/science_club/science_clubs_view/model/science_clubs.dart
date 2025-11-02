@@ -2,7 +2,7 @@ import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 import "package:solvro_translator_core/solvro_translator_core.dart";
 
-import "../../../../api_base_rest/shared_models/simple_url.dart";
+import "../../../../api_base_rest/shared_models/image_data.dart";
 import "../../../branches/data/model/branch.dart";
 import "../../../departments/departments_view/data/models/department.dart";
 import "../../science_clubs_filters/model/sci_club_type.dart";
@@ -46,8 +46,8 @@ abstract class ScienceClub with _$ScienceClub {
     required bool isStrategic,
     required Branch branch,
     @translatableField IList<Tag>? tags,
-    SimpleUrl? logo,
-    SimpleUrl? cover,
+    ImageData? logo,
+    ImageData? cover,
     @translatableField String? shortDescription,
     @translatableField Department? department,
   }) = _ScienceClub;

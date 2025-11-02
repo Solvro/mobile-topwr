@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 
+import "../api_base_rest/shared_models/image_data.dart";
 import "../theme/colors.dart";
 import "../utils/context_extensions.dart";
 import "my_cached_image.dart";
@@ -119,6 +120,51 @@ class ZoomableCachedImage extends StatelessWidget {
             );
           },
           child: MyCachedImage(imageUrl, boxFit: boxFit, loadingType: loadingType, semanticsLabel: semanticsLabel),
+        ),
+      ),
+    );
+  }
+}
+
+/// Widget that displays a zoomable image from [ImageData].
+/// Shows the miniature (effectiveUrl) in preview, but full resolution (url) when zoomed.
+class ZoomableRestApiImage extends StatelessWidget {
+  const ZoomableRestApiImage(
+    this.imageData, {
+    super.key,
+    this.loadingType = LoadingType.shimmerLoading,
+    this.boxFit = BoxFit.cover,
+    this.shouldHaveRectBackground = false,
+    this.semanticsLabel,
+  });
+
+  final ImageData? imageData;
+  final LoadingType loadingType;
+  final BoxFit boxFit;
+  final bool shouldHaveRectBackground;
+  final String? semanticsLabel;
+
+  @override
+  Widget build(BuildContext context) {
+    return Semantics(
+      label: semanticsLabel,
+      image: true,
+      button: false,
+      child: ExcludeSemantics(
+        child: GestureDetector(
+          onTap: () async {
+            await context.showFullScreenImage(
+              imageData?.url,
+              shouldHaveRectBackground: shouldHaveRectBackground,
+              semanticsLabel: semanticsLabel,
+            );
+          },
+          child: MyCachedImage(
+            imageData?.effectiveUrl,
+            boxFit: boxFit,
+            loadingType: loadingType,
+            semanticsLabel: semanticsLabel,
+          ),
         ),
       ),
     );

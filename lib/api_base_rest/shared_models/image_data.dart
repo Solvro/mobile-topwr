@@ -6,7 +6,12 @@ part "image_data.g.dart";
 
 @freezed
 abstract class ImageData with _$ImageData {
-  const factory ImageData({@nonTranslatableField required String url}) = _ImageData;
+  const factory ImageData({@nonTranslatableField required String url, @nonTranslatableField String? miniaturesUrl}) =
+      _ImageData;
+
+  const ImageData._();
 
   factory ImageData.fromJson(Map<String, dynamic> json) => _$ImageDataFromJson(json);
+
+  String get effectiveUrl => miniaturesUrl ?? url;
 }
