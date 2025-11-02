@@ -5,11 +5,11 @@ import "package:hooks_riverpod/hooks_riverpod.dart";
 import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
-import "../data/models/audio_player_strings.dart";
+import "../../luz_radio/data/models/audio_player_strings.dart";
+import "../../luz_radio/presentation/player/radio_player_control_button.dart";
+import "../../luz_radio/presentation/player/radio_player_info.dart";
+import "../../luz_radio/presentation/player/radio_player_slider.dart";
 import "../service/radio_player_controller.dart";
-import "player/radio_player_control_button.dart";
-import "player/radio_player_info.dart";
-import "player/radio_player_slider.dart";
 
 class AudioPlayerWidget extends HookConsumerWidget {
   const AudioPlayerWidget({super.key});
