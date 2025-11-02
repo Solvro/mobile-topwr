@@ -12,10 +12,12 @@ import "../bottom_nav_bar/bottom_nav_bar_icon_icons.icons.dart";
 import "../home_view/widgets/logo_app_bar.dart";
 import "../in_app_review/business/in_app_rating_service.dart";
 import "../navigator/utils/navigation_commands.dart";
+import "../radio_luz/presentation/radio_luz_app_bar.dart";
 import "widgets/about_the_app_tile.dart";
 import "widgets/about_us_tile.dart";
 import "widgets/notification_button.dart";
 import "widgets/settings_title.dart";
+import "widgets/sks_tile.dart";
 import "widgets/small_tile.dart";
 
 @RoutePage()
@@ -37,6 +39,26 @@ class NavigationTabView extends ConsumerWidget {
         ),
         child2: SmallTileCard(
           onTap: () async {
+            await ref.navigateScienceClubs();
+          },
+          title: context.localize.student_organizations,
+          icon: const Icon(BottomNavBarIcons.sci_clubs_icon, size: 24),
+        ),
+      ),
+      _NavigationRow(
+        child1: Semantics(
+          button: true,
+          label: context.localize.radio_luz,
+          child: BaseSmallTileCard(
+            onTap: ref.navigateToRadioLuz,
+            child: const SizedBox(
+              height: WideTileCardConfig.imageSize,
+              child: AppBarLuz(logoSize: WideTileCardConfig.imageSize),
+            ),
+          ),
+        ),
+        child2: SmallTileCard(
+          onTap: () async {
             await ref.trackEvent(UmamiEvents.openLeaveReview);
             await InAppRatingService.requestStoreListingReview();
           },
@@ -44,24 +66,11 @@ class NavigationTabView extends ConsumerWidget {
           icon: Icon(Icons.star, color: context.colorTheme.gold, size: NavigationTabViewConfig.navIconSize),
         ),
       ),
-      _NavigationRow(
-        child1: SmallTileCard(
-          onTap: ref.navigateToSksMenu,
-          title: context.localize.sks_full_name,
-          icon: const Icon(Icons.restaurant_menu, size: NavigationTabViewConfig.navIconSize),
-        ),
-        child2: SmallTileCard(
-          onTap: () async {
-            await ref.navigateScienceClubs();
-          },
-          title: context.localize.student_organizations,
-          icon: const Icon(BottomNavBarIcons.sci_clubs_icon, size: 24),
-        ),
-      ),
       Padding(
         padding: const EdgeInsets.only(top: 16),
         child: Text(context.localize.rest_header, style: context.textTheme.headline),
       ),
+      const SksTile(),
       const SettingsTitle(),
       const AboutTheAppTile(),
       const SizedBox(height: NavigationTabViewConfig.universalPadding),
@@ -85,8 +94,8 @@ class NavigationTabView extends ConsumerWidget {
 
 class _NavigationRow extends StatelessWidget {
   const _NavigationRow({required this.child1, required this.child2});
-  final SmallTileCard child1;
-  final SmallTileCard child2;
+  final Widget child1;
+  final Widget child2;
 
   @override
   Widget build(BuildContext context) {

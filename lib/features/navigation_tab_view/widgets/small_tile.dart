@@ -5,6 +5,17 @@ import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
 import "../../../widgets/my_splash_tile.dart";
 
+class BaseSmallTileCard extends StatelessWidget {
+  const BaseSmallTileCard({required this.child, this.onTap, super.key});
+
+  final VoidCallback? onTap;
+  final Widget child;
+  @override
+  Widget build(BuildContext context) {
+    return MySplashTile(onTap: onTap, child: child);
+  }
+}
+
 class SmallTileCard extends StatelessWidget {
   const SmallTileCard({required this.title, required this.icon, this.onTap, super.key});
 
@@ -13,7 +24,7 @@ class SmallTileCard extends StatelessWidget {
   final Icon icon;
   @override
   Widget build(BuildContext context) {
-    return MySplashTile(
+    return BaseSmallTileCard(
       onTap: onTap,
       child: Row(
         children: [
