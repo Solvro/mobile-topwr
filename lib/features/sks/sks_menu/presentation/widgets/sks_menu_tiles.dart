@@ -12,6 +12,7 @@ import "../../../../../widgets/my_expansion_tile.dart";
 import "../../../sks_favourite_dishes/presentation/sks_favourite_dishes_controller.dart";
 import "../../../sks_favourite_dishes/utils/toast_on_dish_tap.dart";
 import "../../data/models/sks_menu_data.dart";
+import "icon_banner.dart";
 
 class SksMenuTile extends ConsumerWidget {
   const SksMenuTile({super.key, required this.title, required this.dishes, this.onDishTap});
@@ -115,17 +116,13 @@ class SksMenuDishDetailsTile extends StatelessWidget {
       ),
     );
 
-    if (!isSubscribed) {
-      return baseTile;
-    }
-
     return ClipRRect(
       borderRadius: BorderRadius.circular(SksMenuConfig.borderRadius),
-      child: Banner(
-        message: "FAV", // you can replace this with "Fav" or leave as heart symbol
-        textStyle: context.textTheme.bodyWhite.copyWith(fontSize: 10),
+      child: IconBanner(
+        icon: Icons.favorite,
         color: context.colorTheme.orangePomegranade,
-        location: BannerLocation.topEnd,
+        iconColor: context.colorTheme.whiteSoap,
+        visible: isSubscribed,
         child: baseTile,
       ),
     );

@@ -77,13 +77,12 @@ class _SksMenuView extends ConsumerWidget {
     }
     return HorizontalSymmetricSafeAreaScaffold(
       appBar: DetailViewAppBar(actions: const [SksUserDataButton()]),
-      floatingActionButton: FloatingActionButton.extended(
+      floatingActionButton: FloatingActionButton(
         heroTag: "favouriteDishesFab",
         elevation: 3,
-        extendedPadding: const EdgeInsetsDirectional.symmetric(horizontal: SksMenuConfig.paddingSmall),
         backgroundColor: context.colorTheme.orangePomegranadeLighter,
-        label: Text(context.localize.sks_favourite_dishes_see_dishes, style: context.textTheme.titleWhite),
         onPressed: ref.navigateToSksFavouriteDishes,
+        child: Icon(Icons.favorite, color: context.colorTheme.whiteSoap),
       ),
       body: RefreshIndicator(
         onRefresh: () async {
