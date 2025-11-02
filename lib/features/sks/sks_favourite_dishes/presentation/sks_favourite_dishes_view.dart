@@ -105,6 +105,8 @@ class _SksFavouriteDishesView extends ConsumerWidget {
                         dish: dish,
                         isSubscribed: true,
                         onTap: (dishId) => toastOnDishTap(dishId: dishId, ref: ref, context: context, subscribe: false),
+                        onDoubleTap: (dishId) =>
+                            toastOnDishTap(dishId: dishId, ref: ref, context: context, subscribe: false),
                       ),
                     );
                   }, childCount: subscribedDishes.length),
@@ -134,6 +136,8 @@ class _SksFavouriteDishesView extends ConsumerWidget {
                     title: categoryData.category.getLocalizedName(context),
                     dishes: categoryData.dishes,
                     onDishTap: (dishId) => toastOnDishTap(dishId: dishId, ref: ref, context: context, subscribe: true),
+                    onDoubleTap: (dishId) =>
+                        toastOnDishTap(dishId: dishId, ref: ref, context: context, subscribe: true),
                   );
                 }, childCount: categoriesWithDishes.length),
               ),
