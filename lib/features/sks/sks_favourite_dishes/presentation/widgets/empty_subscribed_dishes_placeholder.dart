@@ -8,11 +8,7 @@ class EmptySubscribedDishesPlaceholder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(SksMenuConfig.paddingMedium),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(SksMenuConfig.borderRadius),
-        border: Border.all(color: context.colorTheme.orangePomegranade.withAlpha(50)),
-      ),
+      padding: const EdgeInsets.all(SksMenuConfig.paddingLarge),
       child: Column(
         spacing: SksMenuConfig.paddingMedium,
         children: [
