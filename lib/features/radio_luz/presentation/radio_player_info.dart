@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 
-import "../../../../theme/app_theme.dart";
-import "../../../../utils/context_extensions.dart";
+import "../../../theme/app_theme.dart";
+import "../../../utils/context_extensions.dart";
 
 class RadioPlayerInfo extends StatelessWidget {
   const RadioPlayerInfo({super.key});

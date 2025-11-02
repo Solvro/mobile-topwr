@@ -1,9 +1,9 @@
 import "package:flutter/material.dart";
 
-import "../../../../config/ui_config.dart";
-import "../../../../theme/app_theme.dart";
-import "../../../../utils/context_extensions.dart";
-import "../../service/radio_player_controller.dart";
+import "../../../config/ui_config.dart";
+import "../../../theme/app_theme.dart";
+import "../../../utils/context_extensions.dart";
+import "../service/radio_player_controller.dart";
 
 class RadioPlayerControlButton extends StatelessWidget {
   const RadioPlayerControlButton({
