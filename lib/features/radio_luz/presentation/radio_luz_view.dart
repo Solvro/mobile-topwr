@@ -43,10 +43,7 @@ class RadioLuzView extends StatelessWidget {
               const SizedBox(height: 80),
             ],
           ),
-          const Align(
-            alignment: Alignment.bottomCenter,
-            child: AudioPlayerWidget(),
-          ),
+          const Align(alignment: Alignment.bottomCenter, child: AudioPlayerWidget()),
         ],
       ),
     );
