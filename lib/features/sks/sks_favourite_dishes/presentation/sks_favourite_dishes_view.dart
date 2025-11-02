@@ -82,20 +82,20 @@ class _SksFavouriteDishesView extends ConsumerWidget {
               pinned: true,
               delegate: SksSectionHeaderDelegate(
                 title: context.localize.sks_favourite_dishes_subscribed,
-                textStyle: context.textTheme.titleOrange,
+                textStyle: context.textTheme.headline,
                 backgroundColor: context.colorTheme.whiteSoap,
               ),
             ),
             if (subscribedDishes.isEmpty)
               SliverToBoxAdapter(
                 child: Padding(
-                  padding: const EdgeInsets.all(SksMenuConfig.paddingMedium),
+                  padding: const EdgeInsets.all(SksMenuConfig.paddingLarge),
                   child: EmptySubscribedDishesPlaceholder(),
                 ),
               )
             else
               SliverPadding(
-                padding: const EdgeInsets.symmetric(horizontal: SksMenuConfig.paddingMedium),
+                padding: const EdgeInsets.symmetric(horizontal: SksMenuConfig.paddingLarge),
                 sliver: SliverList(
                   delegate: SliverChildBuilderDelegate((context, index) {
                     final dish = subscribedDishes[index];
@@ -103,6 +103,7 @@ class _SksFavouriteDishesView extends ConsumerWidget {
                       padding: const EdgeInsets.only(bottom: SksMenuConfig.paddingMedium),
                       child: SksMenuDishDetailsTile(
                         dish: dish,
+                        isSubscribed: true,
                         onTap: (dishId) => toastOnDishTap(dishId: dishId, ref: ref, context: context, subscribe: false),
                       ),
                     );
@@ -119,16 +120,17 @@ class _SksFavouriteDishesView extends ConsumerWidget {
               pinned: true,
               delegate: SksSectionHeaderDelegate(
                 title: context.localize.sks_favourite_dishes_remaining,
-                textStyle: context.textTheme.titleOrange,
+                textStyle: context.textTheme.headline,
                 backgroundColor: context.colorTheme.whiteSoap,
               ),
             ),
             SliverPadding(
-              padding: const EdgeInsets.symmetric(horizontal: SksMenuConfig.paddingMedium),
+              padding: const EdgeInsets.symmetric(horizontal: SksMenuConfig.paddingLarge),
               sliver: SliverList(
                 delegate: SliverChildBuilderDelegate((context, index) {
                   final categoryData = categoriesWithDishes[index];
                   return SksMenuTile(
+                    padding: index == 0 ? EdgeInsets.zero : const EdgeInsets.only(top: SksMenuConfig.paddingLarge),
                     title: categoryData.category.getLocalizedName(context),
                     dishes: categoryData.dishes,
                     onDishTap: (dishId) => toastOnDishTap(dishId: dishId, ref: ref, context: context, subscribe: true),
