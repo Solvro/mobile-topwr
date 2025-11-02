@@ -27,6 +27,7 @@ class AudioPlayerWidget extends HookConsumerWidget {
     }, []);
 
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
         Container(
           color: context.colorTheme.orangePomegranadeLighter,
