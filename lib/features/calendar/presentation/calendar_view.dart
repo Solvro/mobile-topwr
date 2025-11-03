@@ -1,10 +1,10 @@
 import "dart:async";
 
 import "package:auto_route/auto_route.dart";
-import "package:collection/collection.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:flutter_sticky_header/flutter_sticky_header.dart";
 
 import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
@@ -69,22 +69,31 @@ class _CalendarViewContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final currentYear = DateTime.now().year;
-    final children = calendarData.map((year) {
-      return year.events.map((month) {
-        return [
-          _MonthHeader(monthNumber: month.month, year: year.year != currentYear ? year.year : null),
-          ...month.events.map((day) {
-            return CalendarDaySection(day: day.day, events: day.events.toIList(), weekday: day.weekday);
-          }),
-        ];
-      }).flattened;
-    }).flattenedToList;
-    return ListView.builder(
-      padding: const EdgeInsets.symmetric(horizontal: HomeViewConfig.paddingLarge),
-      itemBuilder: (context, index) => children[index],
-      itemCount: children.length,
-    );
+    final slivers = <Widget>[];
+
+    for (final yearModel in calendarData) {
+      for (final monthModel in yearModel.events) {
+        final eventWidgets = monthModel.events.map(
+          (dayModel) =>
+              CalendarDaySection(day: dayModel.day, events: dayModel.events.toIList(), weekday: dayModel.weekday),
+        );
+
+        final sliverMonthSection = SliverStickyHeader(
+          header: _MonthHeader(monthNumber: monthModel.month, year: yearModel.year),
+          sliver: SliverPadding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: HomeViewConfig.paddingLarge,
+              vertical: HomeViewConfig.paddingSmall,
+            ),
+            sliver: SliverList(delegate: SliverChildListDelegate(eventWidgets.toList())),
+          ),
+        );
+
+        slivers.add(sliverMonthSection);
+      }
+    }
+
+    return CustomScrollView(slivers: slivers);
   }
 }
 
@@ -94,11 +103,18 @@ class _MonthHeader extends StatelessWidget {
   final int? year;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: HomeViewConfig.paddingMedium, bottom: HomeViewConfig.paddingMedium),
-      child: Text(
-        monthNumber.monthToString(context) + (year != null ? " $year" : ""),
-        style: context.textTheme.megaBigHeadline,
+    return ColoredBox(
+      color: context.colorTheme.whiteSoap,
+      child: Padding(
+        padding: const EdgeInsets.only(
+          top: HomeViewConfig.paddingMedium,
+          bottom: HomeViewConfig.paddingMedium,
+          left: HomeViewConfig.paddingLarge,
+        ),
+        child: Text(
+          monthNumber.monthToString(context) + (year != null ? " $year" : ""),
+          style: context.textTheme.megaBigHeadline,
+        ),
       ),
     );
   }
