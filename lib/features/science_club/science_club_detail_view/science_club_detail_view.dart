@@ -23,6 +23,7 @@ import "model/science_club_details.dart";
 import "repository/science_club_details_repository.dart";
 import "widgets/about_us_section.dart";
 import "widgets/about_us_section_loading.dart";
+import "widgets/tags_section.dart";
 
 @RoutePage()
 class ScienceClubDetailView extends StatelessWidget {
@@ -76,6 +77,8 @@ class _SciClubDetailDataView extends ConsumerWidget {
               ),
               const SizedBox(height: 12),
               Text(value.department?.name ?? "", style: context.textTheme.body, textAlign: TextAlign.center),
+              const SizedBox(height: DetailViewsConfig.spacerHeight),
+              TagsSection(tags: value.tags),
               const SizedBox(height: DetailViewsConfig.spacerHeight),
               ContactSection(
                 title: context.localize.contact,
