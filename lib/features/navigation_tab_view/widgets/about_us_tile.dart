@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
+import "../../../api_base_rest/shared_models/image_data.dart";
 import "../../../theme/app_theme.dart";
 import "../../../theme/utils.dart";
 import "../../../utils/context_extensions.dart";
@@ -19,6 +20,8 @@ class AboutUsTile extends ConsumerWidget {
         title: context.localize.guide_about_us,
         subtitle: context.localize.guide_meet_creators,
         onTap: ref.navigateAboutUs,
+        // Empty URL triggers MyCachedImage's fallback to show FlutterSplashScreen
+        directusPhotoUrl: const ImageData(url: ''),
       ),
     );
   }
