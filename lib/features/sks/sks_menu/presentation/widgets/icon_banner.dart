@@ -1,7 +1,8 @@
 import "package:flutter/material.dart";
+import "package:flutter_hooks/flutter_hooks.dart";
 
 /// A widget that displays a heart icon banner in the top-right corner, similar to Banner but with an icon.
-class IconBanner extends StatelessWidget {
+class IconBanner extends HookWidget {
   const IconBanner({
     super.key,
     required this.child,
@@ -32,10 +33,17 @@ class IconBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final previousVisible = usePrevious(visible);
+    final isFirstBuild = previousVisible == null;
+
     // Calculate banner size based on icon size and padding
     const padding = 12.0;
     final bannerSize = size + (padding * 2);
     final targetValue = visible ? 1.0 : 0.0;
+
+    // On first build, always start from 0.0 to avoid flash
+    // On subsequent builds, animate from previous state
+    final beginValue = isFirstBuild ? 0.0 : (previousVisible ? 1.0 : 0.0);
 
     return Stack(
       clipBehavior: Clip.none,
@@ -48,8 +56,10 @@ class IconBanner extends StatelessWidget {
             ignoring: !visible,
             child: TweenAnimationBuilder<double>(
               key: ValueKey(visible),
-              tween: Tween(begin: visible ? 0.0 : 1.0, end: targetValue),
-              duration: const Duration(milliseconds: 150),
+              tween: Tween(begin: beginValue, end: targetValue),
+              duration: (isFirstBuild && !visible) || beginValue == targetValue
+                  ? Duration.zero
+                  : const Duration(milliseconds: 150),
               curve: visible ? Curves.easeInOut : Curves.easeOut,
               builder: (context, opacityValue, child) {
                 return Opacity(
