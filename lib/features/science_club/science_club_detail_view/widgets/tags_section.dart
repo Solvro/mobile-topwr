@@ -4,19 +4,26 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
+import "../../../../theme/hex_color.dart";
+import "../../../../utils/colors_sort.dart";
 import "../../../../utils/context_extensions.dart";
+import "../../../departments/departments_view/data/models/department.dart";
 import "../../science_clubs_filters/model/tags.dart";
 
 class TagsSection extends ConsumerWidget {
-  const TagsSection({super.key, required this.tags});
+  const TagsSection({super.key, required this.tags, this.department});
 
   final IList<Tag>? tags;
+  final Department? department;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     if (tags == null || tags!.isEmpty) {
       return const SizedBox.shrink();
     }
+
+    // Use department gradient colors if available, otherwise default orange
+    final backgroundColor = department != null ? _getGradientColor(department!) : context.colorTheme.orangePomegranade;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -32,11 +39,8 @@ class TagsSection extends ConsumerWidget {
               for (final tag in tags!)
                 Chip(
                   label: Text(tag.tag),
-                  labelStyle: context.textTheme.body.copyWith(
-                    color: Colors.white,
-                    fontSize: 12,
-                  ),
-                  backgroundColor: context.colorTheme.orangePomegranade,
+                  labelStyle: context.textTheme.body.copyWith(color: Colors.white, fontSize: 12),
+                  backgroundColor: backgroundColor,
                   padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   visualDensity: VisualDensity.compact,
@@ -50,5 +54,12 @@ class TagsSection extends ConsumerWidget {
         ],
       ),
     );
+  }
+
+  // Helper method to get a single color from department gradient
+  Color _getGradientColor(Department department) {
+    final gradientColors = [HexColor(department.gradientStart), HexColor(department.gradientStop)]..sortByLightness();
+    // Use the first color (darker one after sorting)
+    return gradientColors.first;
   }
 }
