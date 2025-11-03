@@ -73,10 +73,12 @@ class _CalendarViewContent extends StatelessWidget {
 
     for (final yearModel in calendarData) {
       for (final monthModel in yearModel.events) {
-        final eventWidgets = monthModel.events.map(
-          (dayModel) =>
-              CalendarDaySection(day: dayModel.day, events: dayModel.events.toIList(), weekday: dayModel.weekday),
-        );
+        final eventWidgets = monthModel.events
+            .map(
+              (dayModel) =>
+                  CalendarDaySection(day: dayModel.day, events: dayModel.events.toIList(), weekday: dayModel.weekday),
+            )
+            .toList();
 
         final sliverMonthSection = SliverStickyHeader(
           header: _MonthHeader(monthNumber: monthModel.month, year: yearModel.year),
@@ -85,7 +87,11 @@ class _CalendarViewContent extends StatelessWidget {
               horizontal: HomeViewConfig.paddingLarge,
               vertical: HomeViewConfig.paddingSmall,
             ),
-            sliver: SliverList(delegate: SliverChildListDelegate(eventWidgets.toList())),
+            sliver: SliverList(
+              delegate: SliverChildBuilderDelegate((context, index) {
+                return eventWidgets[index];
+              }, childCount: eventWidgets.length),
+            ),
           ),
         );
 
