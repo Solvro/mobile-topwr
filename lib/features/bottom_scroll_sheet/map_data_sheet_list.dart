@@ -184,13 +184,17 @@ class _MultipleTabScroller extends StatelessWidget {
       // Optimize caching for better performance with multiple tabs
       minCacheExtent: 0, // Reduce cache extent to minimize off-screen tab rendering
       addAutomaticKeepAlives: false, // Allow tabs to be garbage collected when off-screen
-      itemBuilder: (BuildContext context, int index) => Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: MapViewBottomSheetConfig.horizontalPadding,
-          vertical: NavigationTabViewConfig.universalPadding,
-        ),
-        child: tabs[index].builder(),
-      ),
+      itemBuilder: (BuildContext context, int index) {
+        // Use keys to help Flutter identify tab widgets efficiently
+        return Padding(
+          key: ValueKey("tab_content_$index"),
+          padding: const EdgeInsets.symmetric(
+            horizontal: MapViewBottomSheetConfig.horizontalPadding,
+            vertical: NavigationTabViewConfig.universalPadding,
+          ),
+          child: tabs[index].builder(),
+        );
+      },
     );
   }
 }
