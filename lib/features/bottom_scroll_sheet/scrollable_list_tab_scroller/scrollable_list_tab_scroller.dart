@@ -174,7 +174,11 @@ class ScrollableListTabScrollerState extends State<ScrollableListTabScroller> {
   late final ItemPositionsListener itemPositionsListener;
   final _selectedTabIndex = ValueNotifier(0);
   Timer? _debounce;
+  Timer? _throttleTimer;
   Size _currentPositionedListSize = Size.zero;
+  // Cache for sorted positions to avoid recreating on every scroll event
+  List<ItemPosition>? _cachedSortedPositions;
+  var _lastPositionSetHashCode = 0;
 
   @override
   void initState() {
@@ -219,6 +223,16 @@ class ScrollableListTabScrollerState extends State<ScrollableListTabScroller> {
   }
 
   void _itemPositionListener() {
+    // Throttle scroll position updates to reduce processing overhead
+    // Process at most every 50ms (~20fps) which is sufficient for tab switching detection
+    if (_throttleTimer?.isActive ?? false) {
+      return;
+    }
+
+    _throttleTimer = Timer(const Duration(milliseconds: 50), _processItemPosition);
+  }
+
+  void _processItemPosition() {
     // Prevent operation when length == 0 (Component was rendered outside screen)
     if (itemPositionsListener.itemPositions.value.isEmpty) {
       return;
@@ -234,8 +248,23 @@ class ScrollableListTabScrollerState extends State<ScrollableListTabScroller> {
     if (value.isEmpty) {
       return null;
     }
-    final orderedListByPositionIndex = value.toList()..sort((a, b) => a.index.compareTo(b.index));
 
+    // Use cached sorted list if positions haven't changed
+    // This avoids expensive list creation and sorting on every call
+    final currentHashCode = value.length; // Simple hash based on length and first item
+    final needsRecompute =
+        _cachedSortedPositions == null ||
+        _lastPositionSetHashCode != currentHashCode ||
+        (_cachedSortedPositions!.isNotEmpty &&
+            value.isNotEmpty &&
+            _cachedSortedPositions!.first.index != value.first.index);
+
+    if (needsRecompute) {
+      _cachedSortedPositions = value.toList()..sort((a, b) => a.index.compareTo(b.index));
+      _lastPositionSetHashCode = currentHashCode;
+    }
+
+    final orderedListByPositionIndex = _cachedSortedPositions!;
     final renderedMostTopItem = orderedListByPositionIndex.first;
 
     if (orderedListByPositionIndex.length > 1 && orderedListByPositionIndex.last.index == widget.itemCount - 1) {
@@ -303,7 +332,9 @@ class ScrollableListTabScrollerState extends State<ScrollableListTabScroller> {
                 onScrollsToTop: _onScrollsToTop,
                 child: ScrollablePositionedList.builder(
                   itemBuilder: (a, b) {
-                    return widget.itemBuilder(a, b);
+                    // Wrap each tab item in RepaintBoundary for better rendering performance
+                    // This isolates repaints to individual tabs during scrolling
+                    return RepaintBoundary(child: widget.itemBuilder(a, b));
                   },
                   itemCount: widget.itemCount,
                   itemScrollController: itemScrollController,
@@ -317,8 +348,11 @@ class ScrollableListTabScrollerState extends State<ScrollableListTabScroller> {
                   semanticChildCount: widget.semanticChildCount,
                   padding: widget.padding,
                   addSemanticIndexes: widget.addSemanticIndexes,
+                  // Critical for virtualization: disable keep-alives to allow off-screen tabs to be garbage collected
                   addAutomaticKeepAlives: widget.addAutomaticKeepAlives,
                   addRepaintBoundaries: widget.addRepaintBoundaries,
+                  // minCacheExtent controls how much is cached outside viewport
+                  // Lower values = better memory usage but potentially less smooth scrolling
                   minCacheExtent: widget.minCacheExtent,
                   scrollOffsetController: widget.scrollOffsetController,
                   scrollOffsetListener: widget.scrollOffsetListener,
@@ -334,6 +368,7 @@ class ScrollableListTabScrollerState extends State<ScrollableListTabScroller> {
   @override
   void dispose() {
     _debounce?.cancel();
+    _throttleTimer?.cancel();
     itemPositionsListener.itemPositions.removeListener(_itemPositionListener);
     super.dispose();
   }
@@ -403,6 +438,7 @@ class _DefaultHeaderWidgetState extends State<DefaultHeaderWidget> with SingleTi
     final tabList = List.generate(
       widget.itemCount,
       (i) => ValueListenableBuilder(
+        key: ValueKey("tab_$i"), // Use keys to help Flutter efficiently identify and rebuild tabs
         valueListenable: widget.selectedTabIndex,
         builder: (context, selectedIndex, child) => widget.tabBuilder(context, i, i == selectedIndex),
       ),

@@ -127,44 +127,11 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
           SliverFillRemaining(
             child: SizedBox(
               width: double.infinity,
-              child: ScrollableListTabScroller(
+              child: _MultipleTabScroller(
+                tabs: tabs,
                 headerContainerBuilder: (context, child) => Align(
                   alignment: Alignment.centerLeft,
                   child: SizedBox(height: context.textScaler.clamp(maxScaleFactor: 2).scale(40), child: child),
-                ),
-                itemCount: tabs.length,
-                tabBuilder: (BuildContext context, int index, bool active) => Container(
-                  margin: EdgeInsets.only(
-                    left: index == 0 ? MapViewBottomSheetConfig.horizontalPadding : 0,
-                    right: index == tabs.length - 1
-                        ? MapViewBottomSheetConfig.horizontalPadding
-                        : NavigationTabViewConfig.smallerPadding,
-                    bottom: NavigationTabViewConfig.smallerPadding * 1.5,
-                  ),
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: NavigationTabViewConfig.universalPadding,
-                    vertical: NavigationTabViewConfig.smallerPadding,
-                  ),
-                  decoration: BoxDecoration(
-                    color: active ? context.colorTheme.orangePomegranadeLighter : context.colorTheme.greyLight,
-                    borderRadius: BorderRadius.circular(NavigationTabViewConfig.radius),
-                  ),
-                  child: Text(
-                    tabs[index].title,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontWeight: active ? FontWeight.bold : FontWeight.normal,
-                      color: active ? Colors.white : Colors.black,
-                    ),
-                  ),
-                ),
-
-                itemBuilder: (BuildContext context, int index) => Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: MapViewBottomSheetConfig.horizontalPadding,
-                    vertical: NavigationTabViewConfig.universalPadding,
-                  ),
-                  child: tabs[index].builder(),
                 ),
               ),
             ),
@@ -174,6 +141,60 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
           SliverFillRemaining(child: Center(child: Text(context.localize.no_layers_available))),
         const SliverToBoxAdapter(child: SizedBox(height: SearchBoxAppBar.defaultBottomPadding)),
       ],
+    );
+  }
+}
+
+class _MultipleTabScroller extends StatelessWidget {
+  const _MultipleTabScroller({required this.tabs, required this.headerContainerBuilder});
+
+  final List<({String title, Widget Function() builder})> tabs;
+  final Widget Function(BuildContext context, Widget child) headerContainerBuilder;
+
+  @override
+  Widget build(BuildContext context) {
+    return ScrollableListTabScroller(
+      headerContainerBuilder: headerContainerBuilder,
+      itemCount: tabs.length,
+      tabBuilder: (BuildContext context, int index, bool active) => Container(
+        margin: EdgeInsets.only(
+          left: index == 0 ? MapViewBottomSheetConfig.horizontalPadding : 0,
+          right: index == tabs.length - 1
+              ? MapViewBottomSheetConfig.horizontalPadding
+              : NavigationTabViewConfig.smallerPadding,
+          bottom: NavigationTabViewConfig.smallerPadding * 1.5,
+        ),
+        padding: const EdgeInsets.symmetric(
+          horizontal: NavigationTabViewConfig.universalPadding,
+          vertical: NavigationTabViewConfig.smallerPadding,
+        ),
+        decoration: BoxDecoration(
+          color: active ? context.colorTheme.orangePomegranadeLighter : context.colorTheme.greyLight,
+          borderRadius: BorderRadius.circular(NavigationTabViewConfig.radius),
+        ),
+        child: Text(
+          tabs[index].title,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontWeight: active ? FontWeight.bold : FontWeight.normal,
+            color: active ? Colors.white : Colors.black,
+          ),
+        ),
+      ),
+      // Optimize caching for better performance with multiple tabs
+      minCacheExtent: 0, // Reduce cache extent to minimize off-screen tab rendering
+      addAutomaticKeepAlives: false, // Allow tabs to be garbage collected when off-screen
+      itemBuilder: (BuildContext context, int index) {
+        // Use keys to help Flutter identify tab widgets efficiently
+        return Padding(
+          key: ValueKey("tab_content_$index"),
+          padding: const EdgeInsets.symmetric(
+            horizontal: MapViewBottomSheetConfig.horizontalPadding,
+            vertical: NavigationTabViewConfig.universalPadding,
+          ),
+          child: tabs[index].builder(),
+        );
+      },
     );
   }
 }
