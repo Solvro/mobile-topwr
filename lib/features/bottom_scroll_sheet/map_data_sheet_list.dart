@@ -12,7 +12,6 @@ import "../../utils/where_non_null_iterable.dart";
 import "../../widgets/search_box_app_bar.dart";
 import "../analytics/data/umami.dart";
 import "../analytics/data/umami_events.dart";
-import "../bottom_scroll_sheet/scrollable_list_tab_scroller/scrollable_list_tab_scroller.dart";
 import "../map_layer_picker/business/layers_enabled_service.dart";
 import "../map_view/controllers/bottom_sheet_controller.dart";
 import "../map_view/controllers/controllers_set.dart";
@@ -128,9 +127,6 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
       ref.watch(context.mapDataController<T>()).valueOrNull?.data,
     );
 
-    // Create a global key for the tab scroller if needed
-    final tabScrollerKey = useMemoized(GlobalKey<SliverScrollableListTabScrollerState>.new, [tabs.length]);
-
     return CustomScrollView(
       controller: scrollController,
       slivers: [
@@ -144,7 +140,7 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
         ),
 
         if (categoryData != null && !areOnlyOneLayerEnabled && !isNoTabs)
-          ..._buildMultiTabSlivers(context, ref, tabs, tabScrollerKey, scrollController ?? ScrollController()),
+          ..._buildMultiTabSlivers(context, ref, tabs, scrollController ?? ScrollController()),
         if (categoryData == null || areOnlyOneLayerEnabled) DataSliverList<T>(),
         if (isNoTabs && categoryData != null)
           SliverFillRemaining(child: Center(child: Text(context.localize.no_layers_available))),
@@ -158,36 +154,49 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
     WidgetRef ref,
     List<({String title, Widget Function() builder, List<Widget> Function(BuildContext, WidgetRef) sliverBuilder})>
     tabs,
-    GlobalKey<SliverScrollableListTabScrollerState> tabScrollerKey,
     ScrollController scrollController,
   ) {
-    return _SliverTabBuilder(
-      key: tabScrollerKey,
-      tabs: tabs,
-      scrollController: scrollController,
-      ref: ref,
-    ).buildSlivers(context);
+    return [_SliverTabBuilder(tabs: tabs, scrollController: scrollController, ref: ref)];
   }
 }
 
 /// Helper widget to build slivers for multi-tab view
-class _SliverTabBuilder {
-  _SliverTabBuilder({required this.key, required this.tabs, required this.scrollController, required this.ref});
+class _SliverTabBuilder extends StatefulWidget {
+  const _SliverTabBuilder({required this.tabs, required this.scrollController, required this.ref});
 
-  final GlobalKey<SliverScrollableListTabScrollerState> key;
   final List<({String title, Widget Function() builder, List<Widget> Function(BuildContext, WidgetRef) sliverBuilder})>
   tabs;
   final ScrollController scrollController;
   final WidgetRef ref;
 
-  List<Widget> buildSlivers(BuildContext context) {
-    final slivers = <Widget>[];
-    final selectedTabIndex = ValueNotifier(0);
-    final sectionKeys = <GlobalKey>[];
+  @override
+  State<_SliverTabBuilder> createState() => _SliverTabBuilderState();
+}
 
-    for (var i = 0; i < tabs.length; i++) {
-      sectionKeys.add(GlobalKey());
-    }
+class _SliverTabBuilderState extends State<_SliverTabBuilder> {
+  late final List<GlobalKey> sectionKeys;
+  late final ValueNotifier<int> selectedTabIndex;
+
+  @override
+  void initState() {
+    super.initState();
+    sectionKeys = List.generate(widget.tabs.length, (_) => GlobalKey());
+    selectedTabIndex = ValueNotifier(0);
+  }
+
+  @override
+  void dispose() {
+    selectedTabIndex.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverMainAxisGroup(slivers: _buildSlivers(context));
+  }
+
+  List<Widget> _buildSlivers(BuildContext context) {
+    final slivers = <Widget>[];
 
     // Add tab bar header
     slivers.add(
@@ -199,9 +208,9 @@ class _SliverTabBuilder {
             child: SizedBox(
               height: context.textScaler.clamp(maxScaleFactor: 2).scale(40),
               child: _TabBarWidget(
-                tabs: tabs,
+                tabs: widget.tabs,
                 selectedTabIndex: selectedTabIndex,
-                scrollController: scrollController,
+                scrollController: widget.scrollController,
                 sectionKeys: sectionKeys,
               ),
             ),
@@ -212,17 +221,24 @@ class _SliverTabBuilder {
     );
 
     // Add each tab's content
-    for (var i = 0; i < tabs.length; i++) {
+    for (var i = 0; i < widget.tabs.length; i++) {
       slivers.add(
         SliverMainAxisGroup(
-          key: sectionKeys[i],
           slivers: [
+            // Add a trackable marker widget at the start of each section
+            SliverToBoxAdapter(
+              child: Container(
+                key: sectionKeys[i],
+                height: 20, // Larger height to ensure it renders
+                color: Colors.transparent,
+              ),
+            ),
             SliverPadding(
               padding: const EdgeInsets.symmetric(
                 horizontal: MapViewBottomSheetConfig.horizontalPadding,
                 vertical: NavigationTabViewConfig.universalPadding,
               ),
-              sliver: SliverMainAxisGroup(slivers: tabs[i].sliverBuilder(context, ref)),
+              sliver: SliverMainAxisGroup(slivers: widget.tabs[i].sliverBuilder(context, widget.ref)),
             ),
           ],
         ),
@@ -253,39 +269,78 @@ class _TabBarWidget extends HookConsumerWidget {
     final tabController = useTabController(initialLength: tabs.length);
     final isScrollingToTab = useRef(false);
 
+    // Listen to scroll to update active tab
     useEffect(() {
       void onScroll() {
         if (isScrollingToTab.value) return;
 
-        var closestIndex = 0;
-        var minDistance = double.infinity;
-
-        for (var i = 0; i < sectionKeys.length; i++) {
+        // Find the first section that's visible near the top
+        var foundAny = false;
+        for (var i = sectionKeys.length - 1; i >= 0; i--) {
           final ctx = sectionKeys[i].currentContext;
-          if (ctx != null) {
-            final renderBox = ctx.findRenderObject() as RenderBox?;
-            if (renderBox != null && renderBox.hasSize) {
-              final position = renderBox.localToGlobal(Offset.zero);
-              final distance = position.dy.abs();
-              if (distance < minDistance) {
-                minDistance = distance;
-                closestIndex = i;
+          if (ctx == null) {
+            // ignore: avoid_print
+            print("Section $i: context is null");
+            continue;
+          }
+
+          final renderBox = ctx.findRenderObject() as RenderBox?;
+          if (renderBox == null) {
+            // ignore: avoid_print
+            print("Section $i: renderBox is null");
+            continue;
+          }
+          if (!renderBox.attached) {
+            // ignore: avoid_print
+            print("Section $i: not attached");
+            continue;
+          }
+          if (!renderBox.hasSize) {
+            // ignore: avoid_print
+            print("Section $i: no size");
+            continue;
+          }
+
+          final position = renderBox.localToGlobal(Offset.zero);
+          // ignore: avoid_print
+          print("Section $i: position.dy = ${position.dy}");
+          foundAny = true;
+
+          // If this section's marker is at or above 200px from top, it's active
+          if (position.dy <= 200) {
+            if (selectedTabIndex.value != i) {
+              // ignore: avoid_print
+              print("Setting active tab to $i");
+              selectedTabIndex.value = i;
+              if (tabController.index != i) {
+                tabController.animateTo(i);
               }
             }
+            break;
           }
         }
 
-        if (selectedTabIndex.value != closestIndex) {
-          selectedTabIndex.value = closestIndex;
-          if (tabController.index != closestIndex) {
-            tabController.animateTo(closestIndex);
-          }
+        if (!foundAny) {
+          // ignore: avoid_print
+          print("No sections found!");
         }
       }
 
       scrollController.addListener(onScroll);
       return () => scrollController.removeListener(onScroll);
     }, [scrollController]);
+
+    // Sync tab controller with selected index
+    useEffect(() {
+      void listener() {
+        if (tabController.index != selectedTabIndex.value) {
+          tabController.animateTo(selectedTabIndex.value);
+        }
+      }
+
+      selectedTabIndex.addListener(listener);
+      return () => selectedTabIndex.removeListener(listener);
+    }, []);
 
     return Theme(
       data: Theme.of(context).copyWith(splashColor: Colors.transparent, highlightColor: Colors.transparent),
@@ -295,7 +350,9 @@ class _TabBarWidget extends HookConsumerWidget {
           final ctx = sectionKeys[index].currentContext;
           if (ctx != null) {
             isScrollingToTab.value = true;
+            selectedTabIndex.value = index;
             await Scrollable.ensureVisible(ctx, duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
+            await Future<void>.delayed(const Duration(milliseconds: 100));
             isScrollingToTab.value = false;
           }
         },
