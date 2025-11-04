@@ -317,8 +317,11 @@ class ScrollableListTabScrollerState extends State<ScrollableListTabScroller> {
                   semanticChildCount: widget.semanticChildCount,
                   padding: widget.padding,
                   addSemanticIndexes: widget.addSemanticIndexes,
+                  // Critical for virtualization: disable keep-alives to allow off-screen tabs to be garbage collected
                   addAutomaticKeepAlives: widget.addAutomaticKeepAlives,
                   addRepaintBoundaries: widget.addRepaintBoundaries,
+                  // minCacheExtent controls how much is cached outside viewport
+                  // Lower values = better memory usage but potentially less smooth scrolling
                   minCacheExtent: widget.minCacheExtent,
                   scrollOffsetController: widget.scrollOffsetController,
                   scrollOffsetListener: widget.scrollOffsetListener,
