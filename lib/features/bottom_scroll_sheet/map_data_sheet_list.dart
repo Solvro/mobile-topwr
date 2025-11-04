@@ -275,42 +275,18 @@ class _TabBarWidget extends HookConsumerWidget {
         if (isScrollingToTab.value) return;
 
         // Find the first section that's visible near the top
-        var foundAny = false;
         for (var i = sectionKeys.length - 1; i >= 0; i--) {
           final ctx = sectionKeys[i].currentContext;
-          if (ctx == null) {
-            // ignore: avoid_print
-            print("Section $i: context is null");
-            continue;
-          }
+          if (ctx == null) continue;
 
           final renderBox = ctx.findRenderObject() as RenderBox?;
-          if (renderBox == null) {
-            // ignore: avoid_print
-            print("Section $i: renderBox is null");
-            continue;
-          }
-          if (!renderBox.attached) {
-            // ignore: avoid_print
-            print("Section $i: not attached");
-            continue;
-          }
-          if (!renderBox.hasSize) {
-            // ignore: avoid_print
-            print("Section $i: no size");
-            continue;
-          }
+          if (renderBox == null || !renderBox.attached || !renderBox.hasSize) continue;
 
           final position = renderBox.localToGlobal(Offset.zero);
-          // ignore: avoid_print
-          print("Section $i: position.dy = ${position.dy}");
-          foundAny = true;
 
           // If this section's marker is at or above 200px from top, it's active
           if (position.dy <= 200) {
             if (selectedTabIndex.value != i) {
-              // ignore: avoid_print
-              print("Setting active tab to $i");
               selectedTabIndex.value = i;
               if (tabController.index != i) {
                 tabController.animateTo(i);
@@ -318,11 +294,6 @@ class _TabBarWidget extends HookConsumerWidget {
             }
             break;
           }
-        }
-
-        if (!foundAny) {
-          // ignore: avoid_print
-          print("No sections found!");
         }
       }
 
@@ -351,8 +322,11 @@ class _TabBarWidget extends HookConsumerWidget {
           if (ctx != null) {
             isScrollingToTab.value = true;
             selectedTabIndex.value = index;
+
+            // Use ensureVisible with specific alignment to reduce overshooting
             await Scrollable.ensureVisible(ctx, duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
-            await Future<void>.delayed(const Duration(milliseconds: 100));
+
+            await Future<void>.delayed(const Duration(milliseconds: 150));
             isScrollingToTab.value = false;
           }
         },
