@@ -20,6 +20,7 @@ typedef IndexedVoidCallback = void Function(int index);
 
 typedef HeaderContainerBuilder = Widget Function(BuildContext context, Widget child);
 typedef BodyContainerBuilder = Widget Function(BuildContext context, Widget child);
+typedef SliverItemBuilder = List<Widget> Function(BuildContext context, int index);
 
 class ScrollableListTabScroller extends StatefulWidget {
   ScrollableListTabScroller({
@@ -52,7 +53,9 @@ class ScrollableListTabScroller extends StatefulWidget {
     @Deprecated("Use 'ScrollableListTabScroller.defaultComponents(tabBarProps: )' instead. Deprecated since >3.0.1")
     TabAlignment? tabAlignment = TabAlignment.start,
   }) : tabBarProps = TabBarProps(tabAlignment: tabAlignment),
-       headerContainerProps = const HeaderContainerProps();
+       headerContainerProps = const HeaderContainerProps(),
+       sliverItemBuilder = null,
+       useSliversMode = false;
 
   const ScrollableListTabScroller.defaultComponents({
     this.headerContainerProps = const HeaderContainerProps(),
@@ -80,7 +83,44 @@ class ScrollableListTabScroller extends StatefulWidget {
     this.minCacheExtent,
     this.scrollOffsetController,
     this.scrollOffsetListener,
-  }) : headerContainerBuilder = null;
+  }) : headerContainerBuilder = null,
+       sliverItemBuilder = null,
+       useSliversMode = false;
+
+  /// Sliver-based constructor for use within a CustomScrollView
+  const ScrollableListTabScroller.slivers({
+    this.headerContainerProps = const HeaderContainerProps(),
+    this.tabBarProps = const TabBarProps(),
+    required this.itemCount,
+    required this.tabBuilder,
+    required SliverItemBuilder sliverItemBuilder,
+    this.headerContainerBuilder,
+    this.tabChanged,
+    this.animationDuration = const Duration(milliseconds: 500),
+    super.key,
+  }) : itemBuilder = _dummyItemBuilder,
+       sliverItemBuilder = sliverItemBuilder,
+       bodyContainerBuilder = null,
+       itemScrollController = null,
+       itemPositionsListener = null,
+       earlyChangePositionOffset = 0,
+       shrinkWrap = false,
+       initialScrollIndex = 0,
+       initialAlignment = 0,
+       scrollDirection = Axis.vertical,
+       reverse = false,
+       physics = null,
+       semanticChildCount = null,
+       padding = null,
+       addSemanticIndexes = true,
+       addAutomaticKeepAlives = true,
+       addRepaintBoundaries = true,
+       minCacheExtent = null,
+       scrollOffsetController = null,
+       scrollOffsetListener = null,
+       useSliversMode = true;
+
+  static Widget _dummyItemBuilder(BuildContext context, int index) => const SizedBox.shrink();
 
   final int itemCount;
   final IndexedWidgetBuilder itemBuilder;
@@ -99,6 +139,10 @@ class ScrollableListTabScroller extends StatefulWidget {
   final ScrollOffsetController? scrollOffsetController;
 
   final ScrollOffsetListener? scrollOffsetListener;
+
+  // Sliver mode specific fields
+  final SliverItemBuilder? sliverItemBuilder;
+  final bool useSliversMode;
 
   /// Index of an item to initially align within the viewport.
   final int initialScrollIndex;
@@ -483,5 +527,181 @@ class _DefaultHeaderWidgetState extends State<DefaultHeaderWidget> with SingleTi
 extension _ItemPositionUtilsExtension on ItemPosition {
   double getBottomOffset(Size size) {
     return itemTrailingEdge * size.height;
+  }
+}
+
+/// A sliver-based tab scroller that returns slivers for use in a CustomScrollView
+class SliverScrollableListTabScroller extends StatefulWidget {
+  const SliverScrollableListTabScroller({
+    required this.itemCount,
+    required this.sliverItemBuilder,
+    required this.tabBuilder,
+    required this.scrollController,
+    this.headerContainerBuilder,
+    this.tabChanged,
+    this.animationDuration = const Duration(milliseconds: 300),
+    this.tabBarProps = const TabBarProps(),
+    this.headerContainerProps = const HeaderContainerProps(),
+    super.key,
+  });
+
+  final int itemCount;
+  final SliverItemBuilder sliverItemBuilder;
+  final IndexedActiveStatusWidgetBuilder tabBuilder;
+  final ScrollController scrollController;
+  final HeaderContainerBuilder? headerContainerBuilder;
+  final void Function(int tabIndex)? tabChanged;
+  final Duration animationDuration;
+  final TabBarProps tabBarProps;
+  final HeaderContainerProps headerContainerProps;
+
+  @override
+  State<SliverScrollableListTabScroller> createState() => SliverScrollableListTabScrollerState();
+}
+
+class SliverScrollableListTabScrollerState extends State<SliverScrollableListTabScroller> {
+  final _selectedTabIndex = ValueNotifier(0);
+  final List<GlobalKey> _sectionKeys = [];
+  Timer? _debounce;
+  var _isScrollingToTab = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _sectionKeys.clear();
+    for (var i = 0; i < widget.itemCount; i++) {
+      _sectionKeys.add(GlobalKey());
+    }
+    _selectedTabIndex.addListener(_onSelectedTabChange);
+    widget.scrollController.addListener(_onScroll);
+  }
+
+  @override
+  void dispose() {
+    _debounce?.cancel();
+    widget.scrollController.removeListener(_onScroll);
+    _selectedTabIndex.removeListener(_onSelectedTabChange);
+    super.dispose();
+  }
+
+  void _onSelectedTabChange() {
+    final debounce = _debounce;
+    if (debounce != null && debounce.isActive) {
+      debounce.cancel();
+    }
+    _debounce = Timer(widget.animationDuration, () {
+      widget.tabChanged?.call(_selectedTabIndex.value);
+    });
+  }
+
+  void _onScroll() {
+    if (_isScrollingToTab) return;
+
+    // Find which section is currently most visible
+    var closestIndex = 0;
+    var minDistance = double.infinity;
+
+    for (var i = 0; i < _sectionKeys.length; i++) {
+      final context = _sectionKeys[i].currentContext;
+      if (context != null) {
+        final renderBox = context.findRenderObject() as RenderBox?;
+        if (renderBox != null && renderBox.hasSize) {
+          final position = renderBox.localToGlobal(Offset.zero);
+          final distance = position.dy.abs();
+          if (distance < minDistance) {
+            minDistance = distance;
+            closestIndex = i;
+          }
+        }
+      }
+    }
+
+    if (_selectedTabIndex.value != closestIndex) {
+      _selectedTabIndex.value = closestIndex;
+    }
+  }
+
+  Future<void> _scrollToSection(int index) async {
+    final context = _sectionKeys[index].currentContext;
+    if (context != null) {
+      _isScrollingToTab = true;
+      await Scrollable.ensureVisible(context, duration: widget.animationDuration, curve: Curves.easeInOut);
+      _isScrollingToTab = false;
+    }
+  }
+
+  Widget _buildHeaderContainer(BuildContext context, Widget child) {
+    return widget.headerContainerBuilder?.call(context, child) ??
+        Padding(
+          padding: widget.headerContainerProps.padding,
+          child: SizedBox(
+            width: widget.headerContainerProps.width,
+            height: context.textScaler.clamp(maxScaleFactor: 2).scale(widget.headerContainerProps.height),
+            child: child,
+          ),
+        );
+  }
+
+  List<Widget> buildSlivers(BuildContext context) {
+    final slivers = <Widget>[];
+
+    // Add tab bar header
+    slivers.add(
+      SliverPersistentHeader(
+        pinned: true,
+        delegate: _TabBarHeaderDelegate(
+          child: _buildHeaderContainer(
+            context,
+            DefaultHeaderWidget(
+              key: Key(widget.itemCount.toString()),
+              itemCount: widget.itemCount,
+              onTapTab: _scrollToSection,
+              selectedTabIndex: _selectedTabIndex,
+              tabBuilder: widget.tabBuilder,
+              tabBarProps: widget.tabBarProps,
+            ),
+          ),
+          height: context.textScaler.clamp(maxScaleFactor: 2).scale(widget.headerContainerProps.height),
+        ),
+      ),
+    );
+
+    // Add each tab's content
+    for (var i = 0; i < widget.itemCount; i++) {
+      // Wrap in a SliverMainAxisGroup with a key for scroll tracking
+      slivers.add(SliverMainAxisGroup(key: _sectionKeys[i], slivers: widget.sliverItemBuilder(context, i)));
+    }
+
+    return slivers;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // This widget doesn't build anything directly, it provides slivers
+    throw UnsupportedError("SliverScrollableListTabScroller should not be built directly. Use buildSlivers() instead.");
+  }
+}
+
+/// Delegate for the tab bar header
+class _TabBarHeaderDelegate extends SliverPersistentHeaderDelegate {
+  _TabBarHeaderDelegate({required this.child, required this.height});
+
+  final Widget child;
+  final double height;
+
+  @override
+  double get minExtent => height;
+
+  @override
+  double get maxExtent => height;
+
+  @override
+  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return child;
+  }
+
+  @override
+  bool shouldRebuild(_TabBarHeaderDelegate oldDelegate) {
+    return oldDelegate.child != child || oldDelegate.height != height;
   }
 }

@@ -20,6 +20,42 @@ class MultilayerMapSingleEntityList<T extends MultilayerItem> extends HookConsum
       _ => const CircularProgressIndicator(),
     };
   }
+
+  /// Build sliver version of the list
+  static List<Widget> buildSlivers<T extends MultilayerItem>(BuildContext context, WidgetRef ref) {
+    final itemsState = ref.watch(context.mapDataController<MultilayerItem>());
+
+    return switch (itemsState) {
+      AsyncError(:final error, :final stackTrace) => [
+        SliverToBoxAdapter(child: MyErrorWidget(error, stackTrace: stackTrace)),
+      ],
+      AsyncValue(:final value) when value != null => _buildItemSlivers<T>(context, ref, value.data),
+      _ => [const SliverToBoxAdapter(child: CircularProgressIndicator())],
+    };
+  }
+
+  static List<Widget> _buildItemSlivers<T extends MultilayerItem>(
+    BuildContext context,
+    WidgetRef ref,
+    Iterable<MultilayerItem> allItems,
+  ) {
+    final filteredItems = allItems.whereType<T>().toList();
+
+    if (filteredItems.isEmpty) {
+      return [const SliverToBoxAdapter(child: SizedBox.shrink())];
+    }
+
+    return [
+      SliverList.separated(
+        itemCount: filteredItems.length,
+        itemBuilder: (context, index) {
+          final item = filteredItems[index];
+          return context.mapTileBuilder<MultilayerItem>()(item, isActive: false);
+        },
+        separatorBuilder: (context, index) => const SizedBox(height: NavigationTabViewConfig.universalPadding),
+      ),
+    ];
+  }
 }
 
 /// Memoizes filtered items based on the source data to avoid recalculating on every build
