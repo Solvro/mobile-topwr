@@ -136,6 +136,7 @@ class ZoomableRestApiImage extends StatelessWidget {
     this.boxFit = BoxFit.cover,
     this.shouldHaveRectBackground = false,
     this.semanticsLabel,
+    this.useFullImageQuality = false,
   });
 
   final ImageData? imageData;
@@ -143,7 +144,7 @@ class ZoomableRestApiImage extends StatelessWidget {
   final BoxFit boxFit;
   final bool shouldHaveRectBackground;
   final String? semanticsLabel;
-
+  final bool useFullImageQuality;
   @override
   Widget build(BuildContext context) {
     return Semantics(
@@ -160,7 +161,7 @@ class ZoomableRestApiImage extends StatelessWidget {
             );
           },
           child: MyCachedImage(
-            imageData?.effectiveUrl,
+            useFullImageQuality ? imageData?.url : imageData?.effectiveUrl,
             boxFit: boxFit,
             loadingType: loadingType,
             semanticsLabel: semanticsLabel,

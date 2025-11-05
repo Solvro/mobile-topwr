@@ -5,7 +5,7 @@ import "../../../../../widgets/detail_views/sliver_logo.dart";
 import "../../../../../widgets/my_cached_image.dart";
 
 class DepartmentSliverHeaderSection extends SliverHeaderSection {
-  DepartmentSliverHeaderSection({super.activeGradient, super.logoDirectusImageUrl}) : super(backgroundImageUrl: null);
+  DepartmentSliverHeaderSection({super.activeGradient, super.logoDirectusImageData}) : super(backgroundImageData: null);
 
   @override
   double get maxExtent => 140;
@@ -20,7 +20,7 @@ class DepartmentSliverHeaderSection extends SliverHeaderSection {
         SliverLogo(
           scaleFactor: scaleFactor,
           activeGradient: activeGradient,
-          logoDirectusUrl: logoDirectusImageUrl,
+          logoDirectusUrl: logoDirectusImageData?.effectiveUrl,
           logoOpacity: logoOpacity,
           logoSize: logoSize,
           boxfit: BoxFit.scaleDown,

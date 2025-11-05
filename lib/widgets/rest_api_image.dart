@@ -13,6 +13,7 @@ class RestApiImage extends StatelessWidget {
     this.boxFit = BoxFit.cover,
     this.size,
     this.semanticsLabel,
+    this.useFullImageQuality = false,
   });
 
   final ImageData? imageData;
@@ -20,11 +21,12 @@ class RestApiImage extends StatelessWidget {
   final BoxFit boxFit;
   final Size? size;
   final String? semanticsLabel;
+  final bool useFullImageQuality;
 
   @override
   Widget build(BuildContext context) {
     return MyCachedImage(
-      imageData?.effectiveUrl,
+      useFullImageQuality ? imageData?.url : imageData?.effectiveUrl,
       loadingType: loadingType,
       boxFit: boxFit,
       size: size,
