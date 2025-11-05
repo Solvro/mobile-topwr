@@ -290,11 +290,13 @@ class _TabBarWidget extends HookConsumerWidget {
           if (ctx != null) {
             isScrollingToTab.value = true;
             selectedTabIndex.value = index;
-
-            // Use ensureVisible with specific alignment to reduce overshooting
-            await Scrollable.ensureVisible(ctx, duration: const Duration(milliseconds: 900), curve: Curves.linear);
-
-            await Future<void>.delayed(const Duration(milliseconds: 150));
+            await Scrollable.ensureVisible(ctx, duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
+            await Future<void>.delayed(const Duration(milliseconds: 50));
+            if (ctx.mounted) {
+              // ! this is nasty hack due to some bug
+              await Scrollable.ensureVisible(ctx);
+              await Future<void>.delayed(const Duration(milliseconds: 200));
+            }
             isScrollingToTab.value = false;
           }
         },
@@ -356,7 +358,10 @@ class _MultiTabHeaderDelegate extends SliverPersistentHeaderDelegate {
 
   @override
   Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return child;
+    return Container(
+      color: Colors.white,
+      child: child,
+    );
   }
 
   @override
