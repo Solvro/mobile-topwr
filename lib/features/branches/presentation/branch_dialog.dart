@@ -40,7 +40,7 @@ class BranchDialog extends ConsumerWidget {
             await ref.read(branchRepositoryProvider.notifier).setBranch(selectedBranch ?? Branch.main);
           },
           child: ListView.builder(
-            padding: const EdgeInsets.symmetric(vertical: 16),
+            padding: const EdgeInsets.only(bottom: 16),
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             itemCount: branches.length,
