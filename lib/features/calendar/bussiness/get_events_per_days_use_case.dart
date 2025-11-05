@@ -8,7 +8,7 @@ import "../../../theme/hex_color.dart";
 import "../../../utils/watch_locale.dart";
 import "../data/model/calendar_data.dart";
 import "../data/repository/calendar_repository.dart";
-import "../presentation/calendar_search_controller.dart";
+import "calendar_search_controller.dart";
 import "models.dart";
 
 part "get_events_per_days_use_case.g.dart";

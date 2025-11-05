@@ -52,6 +52,10 @@ abstract class HomeViewConfig {
   ];
 }
 
+abstract class CalendarConfig {
+  static const headerHeight = 61.0;
+}
+
 abstract class BigPreviewCardConfig {
   static const cardHeight = 360.0;
   static const cardWidth = 240.0;

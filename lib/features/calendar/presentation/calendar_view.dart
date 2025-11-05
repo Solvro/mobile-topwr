@@ -4,10 +4,9 @@ import "package:auto_route/auto_route.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
-import "package:flutter_sticky_header/flutter_sticky_header.dart";
+import "package:sliver_tools/sliver_tools.dart";
 
 import "../../../config/ui_config.dart";
-import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../widgets/horizontal_symmetric_safe_area.dart";
 import "../../../widgets/my_error_widget.dart";
@@ -15,11 +14,12 @@ import "../../../widgets/search_box_app_bar.dart";
 import "../../analytics/data/umami.dart";
 import "../../analytics/data/umami_events.dart";
 import "../../departments/departments_view/widgets/departments_view_loading.dart";
+import "../bussiness/calendar_search_controller.dart";
 import "../bussiness/get_events_per_days_use_case.dart";
 import "../bussiness/models.dart";
 import "../utils/calendar_view_extension.dart";
-import "calendar_day_section.dart";
-import "calendar_search_controller.dart";
+import "widgets/calendar_day_section.dart";
+import "widgets/calendar_header_delegate.dart";
 
 @RoutePage()
 class CalendarView extends ConsumerWidget {
@@ -69,59 +69,46 @@ class _CalendarViewContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final slivers = <Widget>[];
+    final slivers2 = calendarData
+        .map(
+          (yearModel) => yearModel.events.map((monthModel) {
+            final eventWidgets = monthModel.events
+                .map(
+                  (dayModel) => CalendarDaySection(
+                    day: dayModel.day,
+                    events: dayModel.events.toIList(),
+                    weekday: dayModel.weekday,
+                  ),
+                )
+                .toList();
 
-    for (final yearModel in calendarData) {
-      for (final monthModel in yearModel.events) {
-        final eventWidgets = monthModel.events
-            .map(
-              (dayModel) =>
-                  CalendarDaySection(day: dayModel.day, events: dayModel.events.toIList(), weekday: dayModel.weekday),
-            )
-            .toList();
+            return MultiSliver(
+              pushPinnedChildren: true,
+              children: [
+                SliverPersistentHeader(
+                  pinned: true,
+                  delegate: CalendarHeaderDelegate(
+                    text: "${monthModel.month.monthToString(context)} ${yearModel.year}",
+                  ),
+                ),
+                SliverPadding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: HomeViewConfig.paddingLarge,
+                    vertical: HomeViewConfig.paddingSmall,
+                  ),
+                  sliver: SliverList(
+                    delegate: SliverChildBuilderDelegate((context, index) {
+                      return eventWidgets[index];
+                    }, childCount: eventWidgets.length),
+                  ),
+                ),
+              ],
+            );
+          }),
+        )
+        .expand((e) => e)
+        .toList();
 
-        final sliverMonthSection = SliverStickyHeader(
-          header: _MonthHeader(monthNumber: monthModel.month, year: yearModel.year),
-          sliver: SliverPadding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: HomeViewConfig.paddingLarge,
-              vertical: HomeViewConfig.paddingSmall,
-            ),
-            sliver: SliverList(
-              delegate: SliverChildBuilderDelegate((context, index) {
-                return eventWidgets[index];
-              }, childCount: eventWidgets.length),
-            ),
-          ),
-        );
-
-        slivers.add(sliverMonthSection);
-      }
-    }
-
-    return CustomScrollView(slivers: slivers);
-  }
-}
-
-class _MonthHeader extends StatelessWidget {
-  const _MonthHeader({required this.monthNumber, this.year});
-  final int monthNumber;
-  final int? year;
-  @override
-  Widget build(BuildContext context) {
-    return ColoredBox(
-      color: context.colorTheme.whiteSoap,
-      child: Padding(
-        padding: const EdgeInsets.only(
-          top: HomeViewConfig.paddingMedium,
-          bottom: HomeViewConfig.paddingMedium,
-          left: HomeViewConfig.paddingLarge,
-        ),
-        child: Text(
-          monthNumber.monthToString(context) + (year != null ? " $year" : ""),
-          style: context.textTheme.megaBigHeadline,
-        ),
-      ),
-    );
+    return CustomScrollView(slivers: slivers2);
   }
 }
