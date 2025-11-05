@@ -65,32 +65,16 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
             buildings: (
               title: context.localize.buildings_title,
               builder: MultilayerMapSingleEntityList<BuildingItem>.new,
-              sliverBuilder: (BuildContext ctx, WidgetRef r) =>
-                  MultilayerMapSingleEntityList.buildSlivers<BuildingItem>(ctx, r),
             ),
-            library: (
-              title: context.localize.library_title,
-              builder: MultilayerMapSingleEntityList<LibraryItem>.new,
-              sliverBuilder: (BuildContext ctx, WidgetRef r) =>
-                  MultilayerMapSingleEntityList.buildSlivers<LibraryItem>(ctx, r),
-            ),
-            aed: (
-              title: context.localize.aed_title,
-              builder: MultilayerMapSingleEntityList<AedItem>.new,
-              sliverBuilder: (BuildContext ctx, WidgetRef r) =>
-                  MultilayerMapSingleEntityList.buildSlivers<AedItem>(ctx, r),
-            ),
+            library: (title: context.localize.library_title, builder: MultilayerMapSingleEntityList<LibraryItem>.new),
+            aed: (title: context.localize.aed_title, builder: MultilayerMapSingleEntityList<AedItem>.new),
             showers: (
               title: context.localize.showers_title,
               builder: MultilayerMapSingleEntityList<BicycleShowerItem>.new,
-              sliverBuilder: (BuildContext ctx, WidgetRef r) =>
-                  MultilayerMapSingleEntityList.buildSlivers<BicycleShowerItem>(ctx, r),
             ),
             pinkBoxes: (
               title: context.localize.pink_boxes_title,
               builder: MultilayerMapSingleEntityList<PinkBoxItem>.new,
-              sliverBuilder: (BuildContext ctx, WidgetRef r) =>
-                  MultilayerMapSingleEntityList.buildSlivers<PinkBoxItem>(ctx, r),
             ),
           )
         : null;
@@ -152,8 +136,7 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
   List<Widget> _buildMultiTabSlivers(
     BuildContext context,
     WidgetRef ref,
-    List<({String title, Widget Function() builder, List<Widget> Function(BuildContext, WidgetRef) sliverBuilder})>
-    tabs,
+    List<({String title, MultilayerMapSingleEntityList<MultilayerItem> Function() builder})> tabs,
     ScrollController scrollController,
   ) {
     return [_SliverTabBuilder(tabs: tabs, scrollController: scrollController, ref: ref)];
@@ -164,8 +147,7 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
 class _SliverTabBuilder extends StatefulWidget {
   const _SliverTabBuilder({required this.tabs, required this.scrollController, required this.ref});
 
-  final List<({String title, Widget Function() builder, List<Widget> Function(BuildContext, WidgetRef) sliverBuilder})>
-  tabs;
+  final List<({String title, MultilayerMapSingleEntityList<MultilayerItem> Function() builder})> tabs;
   final ScrollController scrollController;
   final WidgetRef ref;
 
@@ -196,10 +178,7 @@ class _SliverTabBuilderState extends State<_SliverTabBuilder> {
   }
 
   List<Widget> _buildSlivers(BuildContext context) {
-    final slivers = <Widget>[];
-
-    // Add tab bar header
-    slivers.add(
+    return [
       SliverPersistentHeader(
         pinned: true,
         delegate: _MultiTabHeaderDelegate(
@@ -218,34 +197,24 @@ class _SliverTabBuilderState extends State<_SliverTabBuilder> {
           height: context.textScaler.clamp(maxScaleFactor: 2).scale(40),
         ),
       ),
-    );
-
-    // Add each tab's content
-    for (var i = 0; i < widget.tabs.length; i++) {
-      slivers.add(
+      // Add each tab's content
+      for (var i = 0; i < widget.tabs.length; i++)
         SliverMainAxisGroup(
           slivers: [
             // Add a trackable marker widget at the start of each section
             SliverToBoxAdapter(
-              child: Container(
-                key: sectionKeys[i],
-                height: 20, // Larger height to ensure it renders
-                color: Colors.transparent,
-              ),
+              child: Container(key: sectionKeys[i], height: 10, color: Colors.transparent),
             ),
             SliverPadding(
               padding: const EdgeInsets.symmetric(
                 horizontal: MapViewBottomSheetConfig.horizontalPadding,
                 vertical: NavigationTabViewConfig.universalPadding,
               ),
-              sliver: SliverMainAxisGroup(slivers: widget.tabs[i].sliverBuilder(context, widget.ref)),
+              sliver: widget.tabs[i].builder(),
             ),
           ],
         ),
-      );
-    }
-
-    return slivers;
+    ];
   }
 }
 
@@ -258,8 +227,7 @@ class _TabBarWidget extends HookConsumerWidget {
     required this.sectionKeys,
   });
 
-  final List<({String title, Widget Function() builder, List<Widget> Function(BuildContext, WidgetRef) sliverBuilder})>
-  tabs;
+  final List<({String title, MultilayerMapSingleEntityList<MultilayerItem> Function() builder})> tabs;
   final ValueNotifier<int> selectedTabIndex;
   final ScrollController scrollController;
   final List<GlobalKey> sectionKeys;
@@ -324,7 +292,7 @@ class _TabBarWidget extends HookConsumerWidget {
             selectedTabIndex.value = index;
 
             // Use ensureVisible with specific alignment to reduce overshooting
-            await Scrollable.ensureVisible(ctx, duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
+            await Scrollable.ensureVisible(ctx, duration: const Duration(milliseconds: 900), curve: Curves.linear);
 
             await Future<void>.delayed(const Duration(milliseconds: 150));
             isScrollingToTab.value = false;
