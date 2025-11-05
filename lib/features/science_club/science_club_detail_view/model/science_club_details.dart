@@ -5,6 +5,7 @@ import "package:solvro_translator_core/solvro_translator_core.dart";
 import "../../../../api_base_rest/shared_models/image_data.dart";
 import "../../../../api_base_rest/shared_models/social_links_data.dart";
 import "../../../departments/departments_view/data/models/department.dart";
+import "../../science_clubs_filters/model/tags.dart";
 import "../../science_clubs_view/model/science_clubs.dart";
 
 part "science_club_details.freezed.dart";
@@ -30,6 +31,7 @@ abstract class ScienceClubDetails with _$ScienceClubDetails {
     @translatableField IList<SocialLinksData>? links,
     ImageData? logo,
     @translatableField Department? department,
+    @translatableField IList<Tag>? tags,
   }) = _ScienceClubDetails;
 
   factory ScienceClubDetails.fromJson(Map<String, dynamic> json) => _$ScienceClubDetailsFromJson(json);
