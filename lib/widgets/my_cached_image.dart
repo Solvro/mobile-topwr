@@ -45,7 +45,7 @@ class MyCachedImage extends StatelessWidget {
         },
         errorWidget: (context, url, error) => FlutterSplashScreen(size: size?.height),
         height: size?.height,
-        width: size?.width,
+        width: size?.width ?? double.infinity,
       ),
     );
   }

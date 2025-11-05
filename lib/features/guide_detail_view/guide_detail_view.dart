@@ -71,7 +71,7 @@ class _GuideDetailDataView extends ConsumerWidget {
                   children: [
                     Semantics(
                       label: context.localize.article_image_semantics_label,
-                      child: SizedBox(height: DetailViewsConfig.imageHeight, child: ZoomableRestApiImage(value.image, boxFit: BoxFit.fit)),
+                      child: SizedBox(height: DetailViewsConfig.imageHeight, child: ZoomableRestApiImage(value.image)),
                     ),
                     Positioned(
                       top: GuideDetailViewConfig.paddingMedium,
