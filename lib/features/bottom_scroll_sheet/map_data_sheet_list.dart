@@ -1,17 +1,14 @@
 import "dart:async";
 
 import "package:flutter/material.dart";
+
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
-import "../../../theme/app_theme.dart";
-import "../../config/map_view_config.dart";
-import "../../config/ui_config.dart";
 import "../../utils/context_extensions.dart";
 import "../../utils/where_non_null_iterable.dart";
 import "../../widgets/search_box_app_bar.dart";
 import "../analytics/data/umami.dart";
 import "../analytics/data/umami_events.dart";
-import "../bottom_scroll_sheet/scrollable_list_tab_scroller/scrollable_list_tab_scroller.dart";
 import "../map_layer_picker/business/layers_enabled_service.dart";
 import "../map_view/controllers/bottom_sheet_controller.dart";
 import "../map_view/controllers/controllers_set.dart";
@@ -24,11 +21,12 @@ import "drag_handle.dart";
 import "hooks/use_initial_active_id.dart";
 import "multilayer_map_single_entity_list.dart";
 import "navigate_button.dart";
+import "sliver_multi_tabber_builder.dart";
 
 class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
-  const MapDataSheetList({this.scrollController, super.key});
+  const MapDataSheetList({required this.scrollController, super.key});
 
-  final ScrollController? scrollController;
+  final ScrollController scrollController;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -124,77 +122,12 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
         ),
 
         if (categoryData != null && !areOnlyOneLayerEnabled && !isNoTabs)
-          SliverFillRemaining(
-            child: SizedBox(
-              width: double.infinity,
-              child: _MultipleTabScroller(
-                tabs: tabs,
-                headerContainerBuilder: (context, child) => Align(
-                  alignment: Alignment.centerLeft,
-                  child: SizedBox(height: context.textScaler.clamp(maxScaleFactor: 2).scale(40), child: child),
-                ),
-              ),
-            ),
-          ),
+          SliverMultiTabberBuilder(tabs: tabs, scrollController: scrollController),
         if (categoryData == null || areOnlyOneLayerEnabled) DataSliverList<T>(),
         if (isNoTabs && categoryData != null)
           SliverFillRemaining(child: Center(child: Text(context.localize.no_layers_available))),
         const SliverToBoxAdapter(child: SizedBox(height: SearchBoxAppBar.defaultBottomPadding)),
       ],
-    );
-  }
-}
-
-class _MultipleTabScroller extends StatelessWidget {
-  const _MultipleTabScroller({required this.tabs, required this.headerContainerBuilder});
-
-  final List<({String title, Widget Function() builder})> tabs;
-  final Widget Function(BuildContext context, Widget child) headerContainerBuilder;
-
-  @override
-  Widget build(BuildContext context) {
-    return ScrollableListTabScroller(
-      headerContainerBuilder: headerContainerBuilder,
-      itemCount: tabs.length,
-      tabBuilder: (BuildContext context, int index, bool active) => Container(
-        margin: EdgeInsets.only(
-          left: index == 0 ? MapViewBottomSheetConfig.horizontalPadding : 0,
-          right: index == tabs.length - 1
-              ? MapViewBottomSheetConfig.horizontalPadding
-              : NavigationTabViewConfig.smallerPadding,
-          bottom: NavigationTabViewConfig.smallerPadding * 1.5,
-        ),
-        padding: const EdgeInsets.symmetric(
-          horizontal: NavigationTabViewConfig.universalPadding,
-          vertical: NavigationTabViewConfig.smallerPadding,
-        ),
-        decoration: BoxDecoration(
-          color: active ? context.colorTheme.orangePomegranadeLighter : context.colorTheme.greyLight,
-          borderRadius: BorderRadius.circular(NavigationTabViewConfig.radius),
-        ),
-        child: Text(
-          tabs[index].title,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontWeight: active ? FontWeight.bold : FontWeight.normal,
-            color: active ? Colors.white : Colors.black,
-          ),
-        ),
-      ),
-      // Optimize caching for better performance with multiple tabs
-      minCacheExtent: 0, // Reduce cache extent to minimize off-screen tab rendering
-      addAutomaticKeepAlives: false, // Allow tabs to be garbage collected when off-screen
-      itemBuilder: (BuildContext context, int index) {
-        // Use keys to help Flutter identify tab widgets efficiently
-        return Padding(
-          key: ValueKey("tab_content_$index"),
-          padding: const EdgeInsets.symmetric(
-            horizontal: MapViewBottomSheetConfig.horizontalPadding,
-            vertical: NavigationTabViewConfig.universalPadding,
-          ),
-          child: tabs[index].builder(),
-        );
-      },
     );
   }
 }
