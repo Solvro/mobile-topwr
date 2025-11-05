@@ -295,12 +295,17 @@ class _TabBarWidget extends HookConsumerWidget {
           if (ctx != null) {
             isScrollingToTab.value = true;
             selectedTabIndex.value = index;
-            await Scrollable.ensureVisible(ctx, duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
-            await Future<void>.delayed(const Duration(milliseconds: 50));
+
+            // First expand the bottom sheet fully
+            await ref.watch(bottomSheetPixelsProvider.notifier).onSearchBoxTap();
             if (ctx.mounted) {
-              // ! this is nasty hack due to some bug
-              await Scrollable.ensureVisible(ctx, alignment: 0.1);
-              await Future<void>.delayed(const Duration(milliseconds: 200));
+              await Scrollable.ensureVisible(ctx, duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
+              await Future<void>.delayed(const Duration(milliseconds: 50));
+              if (ctx.mounted) {
+                // ! this is nasty hack due to some bug
+                await Scrollable.ensureVisible(ctx, alignment: 0.08);
+                await Future<void>.delayed(const Duration(milliseconds: 200));
+              }
             }
             isScrollingToTab.value = false;
           }
