@@ -9,18 +9,10 @@ import "../zoomable_images.dart";
 import "sliver_logo.dart";
 
 class SliverHeaderSection extends SliverPersistentHeaderDelegate {
-  SliverHeaderSection({
-    this.activeGradient,
-    this.logoDirectusImageData,
-    this.logoDirectusImageUrl,
-    this.backgroundImageData,
-    this.backgroundImageUrl,
-  });
+  SliverHeaderSection({this.activeGradient, this.logoDirectusImageData, this.backgroundImageData});
 
   final ImageData? logoDirectusImageData;
-  final String? logoDirectusImageUrl;
   final ImageData? backgroundImageData;
-  final String? backgroundImageUrl;
   final LinearGradient? activeGradient;
   static const maxTopBarHeight = 250;
 
@@ -58,9 +50,7 @@ class SliverHeaderSection extends SliverPersistentHeaderDelegate {
               height: maxTopBarHeight * (1 - progress),
               width: double.infinity,
               child: backgroundImageData != null
-                  ? ZoomableRestApiImage(backgroundImageData)
-                  : backgroundImageUrl != null
-                  ? ZoomableCachedImage(backgroundImageUrl)
+                  ? ZoomableRestApiImage(backgroundImageData, useFullImageQuality: true)
                   : const ZoomableRestApiImage(null),
             ),
           ),
@@ -73,7 +63,7 @@ class SliverHeaderSection extends SliverPersistentHeaderDelegate {
             child: SliverLogo(
               scaleFactor: scaleFactor,
               activeGradient: activeGradient,
-              logoDirectusUrl: logoDirectusImageData?.effectiveUrl ?? logoDirectusImageUrl,
+              logoDirectusUrl: logoDirectusImageData?.effectiveUrl,
               logoOpacity: logoOpacity,
               logoSize: logoSize,
               boxfit: BoxFit.scaleDown,
