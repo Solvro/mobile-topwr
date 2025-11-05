@@ -2,6 +2,7 @@ import "dart:math";
 
 import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
+import "package:flutter_hooks/flutter_hooks.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../config/map_view_config.dart";
@@ -64,18 +65,22 @@ class MapView<T extends GoogleNavigable> extends ConsumerWidget {
   }
 }
 
-class _HorizontalWebLayout<T extends GoogleNavigable> extends StatelessWidget {
+class _HorizontalWebLayout<T extends GoogleNavigable> extends HookWidget {
   final String semanticsLabel;
   const _HorizontalWebLayout({super.key, required this.semanticsLabel});
 
   @override
   Widget build(BuildContext context) {
+    final scrollController = useScrollController();
     final double panelWidth = min(350, MediaQuery.sizeOf(context).width);
     return MapViewPopBehaviour<T>(
       screenHeight: MediaQuery.sizeOf(context).height,
       child: Row(
         children: [
-          SizedBox(width: panelWidth, child: MapDataSheetList<T>()),
+          SizedBox(
+            width: panelWidth,
+            child: MapDataSheetList<T>(scrollController: scrollController),
+          ),
           Expanded(child: MapWidget<T>(semanticsLabel)),
         ],
       ),
