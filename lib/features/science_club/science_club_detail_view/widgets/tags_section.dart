@@ -4,9 +4,6 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
-import "../../../../theme/hex_color.dart";
-import "../../../../utils/colors_sort.dart";
-import "../../../../utils/context_extensions.dart";
 import "../../../departments/departments_view/data/models/department.dart";
 import "../../science_clubs_filters/model/tags.dart";
 
@@ -22,44 +19,27 @@ class TagsSection extends ConsumerWidget {
       return const SizedBox.shrink();
     }
 
-    // Use department gradient colors if available, otherwise default orange
-    final backgroundColor = department != null ? _getGradientColor(department!) : context.colorTheme.orangePomegranade;
-
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Wrap(
+        spacing: 8,
+        runSpacing: 8,
+        alignment: WrapAlignment.center,
         children: [
-          Text(context.localize.categories, style: context.textTheme.headline),
-          const SizedBox(height: 12),
-          Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            children: [
-              for (final tag in tags!)
-                Chip(
-                  label: Text(tag.tag),
-                  labelStyle: context.textTheme.body.copyWith(color: Colors.white, fontSize: 12),
-                  backgroundColor: backgroundColor,
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  visualDensity: VisualDensity.compact,
-                  side: BorderSide.none,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(ScienceClubsViewConfig.buttonBorderRadius),
-                  ),
-                ),
-            ],
-          ),
+          for (final tag in tags!)
+            Chip(
+              label: Text("#${tag.tag}", style: context.textTheme.bodyBlue),
+              labelStyle: context.textTheme.body,
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              visualDensity: VisualDensity.compact,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(ScienceClubsViewConfig.buttonBorderRadius),
+                side: BorderSide(color: context.colorTheme.greyPigeon),
+              ),
+            ),
         ],
       ),
     );
-  }
-
-  // Helper method to get a single color from department gradient
-  Color _getGradientColor(Department department) {
-    final gradientColors = [HexColor(department.gradientStart), HexColor(department.gradientStop)]..sortByLightness();
-    // Use the first color (darker one after sorting)
-    return gradientColors.first;
   }
 }

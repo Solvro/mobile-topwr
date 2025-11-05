@@ -76,8 +76,9 @@ class _SciClubDetailDataView extends ConsumerWidget {
                 ),
               ),
               const SizedBox(height: 12),
-              Text(value.department?.name ?? "", style: context.textTheme.body, textAlign: TextAlign.center),
-              const SizedBox(height: DetailViewsConfig.spacerHeight),
+              if (value.department != null)
+                Text(value.department?.name ?? "", style: context.textTheme.body, textAlign: TextAlign.center),
+              if (value.department != null) const SizedBox(height: DetailViewsConfig.spacerHeight),
               TagsSection(tags: value.tags, department: value.department),
               const SizedBox(height: DetailViewsConfig.spacerHeight),
               ContactSection(
