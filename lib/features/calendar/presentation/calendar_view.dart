@@ -1,13 +1,12 @@
 import "dart:async";
 
 import "package:auto_route/auto_route.dart";
-import "package:collection/collection.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:sliver_tools/sliver_tools.dart";
 
 import "../../../config/ui_config.dart";
-import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../widgets/horizontal_symmetric_safe_area.dart";
 import "../../../widgets/my_error_widget.dart";
@@ -15,11 +14,12 @@ import "../../../widgets/search_box_app_bar.dart";
 import "../../analytics/data/umami.dart";
 import "../../analytics/data/umami_events.dart";
 import "../../departments/departments_view/widgets/departments_view_loading.dart";
+import "../bussiness/calendar_search_controller.dart";
 import "../bussiness/get_events_per_days_use_case.dart";
 import "../bussiness/models.dart";
 import "../utils/calendar_view_extension.dart";
-import "calendar_day_section.dart";
-import "calendar_search_controller.dart";
+import "widgets/calendar_day_section.dart";
+import "widgets/calendar_header_delegate.dart";
 
 @RoutePage()
 class CalendarView extends ConsumerWidget {
@@ -69,37 +69,46 @@ class _CalendarViewContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final currentYear = DateTime.now().year;
-    final children = calendarData.map((year) {
-      return year.events.map((month) {
-        return [
-          _MonthHeader(monthNumber: month.month, year: year.year != currentYear ? year.year : null),
-          ...month.events.map((day) {
-            return CalendarDaySection(day: day.day, events: day.events.toIList(), weekday: day.weekday);
-          }),
-        ];
-      }).flattened;
-    }).flattenedToList;
-    return ListView.builder(
-      padding: const EdgeInsets.symmetric(horizontal: HomeViewConfig.paddingLarge),
-      itemBuilder: (context, index) => children[index],
-      itemCount: children.length,
-    );
-  }
-}
+    final slivers = calendarData
+        .map(
+          (yearModel) => yearModel.events.map((monthModel) {
+            final eventWidgets = monthModel.events
+                .map(
+                  (dayModel) => CalendarDaySection(
+                    day: dayModel.day,
+                    events: dayModel.events.toIList(),
+                    weekday: dayModel.weekday,
+                  ),
+                )
+                .toList();
 
-class _MonthHeader extends StatelessWidget {
-  const _MonthHeader({required this.monthNumber, this.year});
-  final int monthNumber;
-  final int? year;
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: HomeViewConfig.paddingMedium, bottom: HomeViewConfig.paddingMedium),
-      child: Text(
-        monthNumber.monthToString(context) + (year != null ? " $year" : ""),
-        style: context.textTheme.megaBigHeadline,
-      ),
-    );
+            return MultiSliver(
+              pushPinnedChildren: true,
+              children: [
+                SliverPersistentHeader(
+                  pinned: true,
+                  delegate: CalendarHeaderDelegate(
+                    text: "${monthModel.month.monthToString(context)} ${yearModel.year}",
+                  ),
+                ),
+                SliverPadding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: HomeViewConfig.paddingLarge,
+                    vertical: HomeViewConfig.paddingSmall,
+                  ),
+                  sliver: SliverList(
+                    delegate: SliverChildBuilderDelegate((context, index) {
+                      return eventWidgets[index];
+                    }, childCount: eventWidgets.length),
+                  ),
+                ),
+              ],
+            );
+          }),
+        )
+        .expand((e) => e)
+        .toList();
+
+    return CustomScrollView(slivers: slivers);
   }
 }
