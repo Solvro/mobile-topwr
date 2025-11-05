@@ -45,7 +45,7 @@ class LanguageDialog extends ConsumerWidget {
                 .setPreferredLanguage(SolvroLocale.values.byName(selectedLanguage));
           },
           child: ListView.builder(
-            padding: const EdgeInsets.symmetric(vertical: 16),
+            padding: const EdgeInsets.only(bottom: 16),
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             itemCount: languages.length,

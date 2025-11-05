@@ -83,7 +83,7 @@ class _DialogContent extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        if (subtitle != null)
+        if (subtitle != null) ...[
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Text(
@@ -91,7 +91,8 @@ class _DialogContent extends StatelessWidget {
               style: context.aboutUsTheme.body.copyWith(height: 1.4, color: context.colorTheme.greyPigeon),
             ),
           ),
-        const SizedBox(height: 6),
+          const SizedBox(height: 6),
+        ],
         child,
         if (showApplyButton)
           _DialogFooter(applyButtonText: applyButtonText, onApplyButtonPressed: onApplyButtonPressed),
