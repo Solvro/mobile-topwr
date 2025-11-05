@@ -182,15 +182,18 @@ class _SliverTabBuilderState extends State<_SliverTabBuilder> {
       SliverPersistentHeader(
         pinned: true,
         delegate: _MultiTabHeaderDelegate(
-          child: Align(
-            alignment: Alignment.centerLeft,
-            child: SizedBox(
-              height: context.textScaler.clamp(maxScaleFactor: 2).scale(40),
-              child: _TabBarWidget(
-                tabs: widget.tabs,
-                selectedTabIndex: selectedTabIndex,
-                scrollController: widget.scrollController,
-                sectionKeys: sectionKeys,
+          child: SizedBox(
+            width: double.infinity,
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: SizedBox(
+                height: context.textScaler.clamp(maxScaleFactor: 2).scale(40),
+                child: _TabBarWidget(
+                  tabs: widget.tabs,
+                  selectedTabIndex: selectedTabIndex,
+                  scrollController: widget.scrollController,
+                  sectionKeys: sectionKeys,
+                ),
               ),
             ),
           ),
@@ -203,13 +206,15 @@ class _SliverTabBuilderState extends State<_SliverTabBuilder> {
           slivers: [
             // Add a trackable marker widget at the start of each section
             SliverToBoxAdapter(
-              child: Container(key: sectionKeys[i], height: 10, color: Colors.transparent),
+              child: Container(key: sectionKeys[i], height: 5, color: Colors.transparent),
             ),
             SliverPadding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: MapViewBottomSheetConfig.horizontalPadding,
-                vertical: NavigationTabViewConfig.universalPadding,
-              ),
+              padding: i == 0
+                  ? const EdgeInsets.symmetric(horizontal: MapViewBottomSheetConfig.horizontalPadding)
+                  : const EdgeInsets.symmetric(
+                      horizontal: MapViewBottomSheetConfig.horizontalPadding,
+                      vertical: NavigationTabViewConfig.smallerPadding,
+                    ),
               sliver: widget.tabs[i].builder(),
             ),
           ],
@@ -294,7 +299,7 @@ class _TabBarWidget extends HookConsumerWidget {
             await Future<void>.delayed(const Duration(milliseconds: 50));
             if (ctx.mounted) {
               // ! this is nasty hack due to some bug
-              await Scrollable.ensureVisible(ctx);
+              await Scrollable.ensureVisible(ctx, alignment: 0.1);
               await Future<void>.delayed(const Duration(milliseconds: 200));
             }
             isScrollingToTab.value = false;
@@ -304,19 +309,14 @@ class _TabBarWidget extends HookConsumerWidget {
         padding: EdgeInsets.zero,
         indicatorColor: Colors.transparent,
         dividerHeight: 0,
+        tabAlignment: TabAlignment.start,
         tabs: List.generate(
           tabs.length,
           (index) => ValueListenableBuilder(
             key: ValueKey("tab_$index"),
             valueListenable: selectedTabIndex,
             builder: (context, selectedIndex, child) => Container(
-              margin: EdgeInsets.only(
-                left: index == 0 ? MapViewBottomSheetConfig.horizontalPadding : 0,
-                right: index == tabs.length - 1
-                    ? MapViewBottomSheetConfig.horizontalPadding
-                    : NavigationTabViewConfig.smallerPadding,
-                bottom: NavigationTabViewConfig.smallerPadding * 1.5,
-              ),
+              margin: EdgeInsets.only(bottom: NavigationTabViewConfig.smallerPadding * 1.5, left: index == 0 ? 8 : 0),
               padding: const EdgeInsets.symmetric(
                 horizontal: NavigationTabViewConfig.universalPadding,
                 vertical: NavigationTabViewConfig.smallerPadding,
@@ -358,10 +358,7 @@ class _MultiTabHeaderDelegate extends SliverPersistentHeaderDelegate {
 
   @override
   Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return Container(
-      color: Colors.white,
-      child: child,
-    );
+    return ColoredBox(color: Colors.white, child: child);
   }
 
   @override
