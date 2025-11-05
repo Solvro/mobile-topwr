@@ -69,7 +69,7 @@ class _CalendarViewContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final slivers2 = calendarData
+    final slivers = calendarData
         .map(
           (yearModel) => yearModel.events.map((monthModel) {
             final eventWidgets = monthModel.events
@@ -109,6 +109,6 @@ class _CalendarViewContent extends StatelessWidget {
         .expand((e) => e)
         .toList();
 
-    return CustomScrollView(slivers: slivers2);
+    return CustomScrollView(slivers: slivers);
   }
 }
