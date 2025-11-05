@@ -85,6 +85,7 @@ class _TabBarWidget extends HookConsumerWidget {
       data: Theme.of(context).copyWith(splashColor: Colors.transparent, highlightColor: Colors.transparent),
       child: TabBar(
         controller: tabController,
+        labelPadding: const EdgeInsets.symmetric(horizontal: NavigationTabViewConfig.smallerPadding),
         onTap: onTabTap,
         isScrollable: true,
         padding: EdgeInsets.zero,
@@ -95,7 +96,12 @@ class _TabBarWidget extends HookConsumerWidget {
           tabs.length,
           (index) => Container(
             key: ValueKey("tab_$index"),
-            margin: EdgeInsets.only(bottom: NavigationTabViewConfig.smallerPadding * 1.5, left: index == 0 ? 8 : 0),
+            margin: EdgeInsets.only(
+              bottom: NavigationTabViewConfig.smallerPadding * 1.5,
+              left: index == 0
+                  ? MapViewBottomSheetConfig.horizontalPadding - NavigationTabViewConfig.smallerPadding
+                  : 0,
+            ),
             padding: const EdgeInsets.symmetric(
               horizontal: NavigationTabViewConfig.universalPadding,
               vertical: NavigationTabViewConfig.smallerPadding,
