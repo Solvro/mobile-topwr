@@ -12,7 +12,7 @@ import "../bottom_nav_bar/bottom_nav_bar_icon_icons.icons.dart";
 import "../home_view/widgets/logo_app_bar.dart";
 import "../in_app_review/business/in_app_rating_service.dart";
 import "../navigator/utils/navigation_commands.dart";
-import "../radio_luz/presentation/radio_luz_app_bar.dart";
+import "../radio_luz/presentation/radio_luz_logo.dart";
 import "widgets/about_the_app_tile.dart";
 import "widgets/about_us_tile.dart";
 import "widgets/notification_button.dart";
@@ -53,7 +53,7 @@ class NavigationTabView extends ConsumerWidget {
             onTap: ref.navigateToRadioLuz,
             child: const SizedBox(
               height: WideTileCardConfig.imageSize,
-              child: AppBarLuz(logoSize: WideTileCardConfig.imageSize),
+              child: RadioLuzLogo(logoSize: WideTileCardConfig.imageSize),
             ),
           ),
         ),

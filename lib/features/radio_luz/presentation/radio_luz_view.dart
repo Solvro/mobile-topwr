@@ -3,12 +3,12 @@ import "package:flutter/material.dart";
 
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
-import "audio_player_widget.dart";
 import "broadcasts_section.dart";
 import "now_playing_section.dart";
 import "radio_luz_app_bar.dart";
 import "radio_luz_socials_section.dart";
 import "radio_luz_title.dart";
+import "radio_player_widget.dart";
 
 @RoutePage()
 class RadioLuzView extends StatelessWidget {
@@ -44,7 +44,7 @@ class RadioLuzView extends StatelessWidget {
                 const SizedBox(height: 80),
               ],
             ),
-            const Align(alignment: Alignment.bottomCenter, child: AudioPlayerWidget()),
+            const Align(alignment: Alignment.bottomCenter, child: RadioPlayerWidget()),
           ],
         ),
       ),
