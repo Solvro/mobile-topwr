@@ -1,5 +1,6 @@
 import "dart:async";
 
+import "package:clarity_flutter/clarity_flutter.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 import "package:solvro_translator_core/solvro_translator_core.dart";
 
@@ -19,12 +20,15 @@ class PreferredLanguageRepository extends _$PreferredLanguageRepository {
     if (languageCode == null) {
       return null;
     }
-    return SolvroLocale.values.byName(languageCode);
+    final locale = SolvroLocale.values.byName(languageCode);
+    Clarity.setCustomTags("language", [locale.name]);
+    return locale;
   }
 
   Future<void> setPreferredLanguage(SolvroLocale localeCode) async {
     state = AsyncData(localeCode);
     unawaited(ref.trackEvent(ClarityEvents.changeLanguage, value: localeCode.name));
+    Clarity.setCustomTags("language", [localeCode.name]);
     final sharedPreferences = await ref.read(sharedPreferencesSingletonProvider.future);
     await sharedPreferences.setString(TranslationsConfig.localesKey, localeCode.name);
   }

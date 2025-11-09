@@ -60,7 +60,9 @@ enum ClarityEvents {
   selectLibrary,
   selectAed,
   selectShower,
-  selectPinkBox;
+  selectPinkBox,
+  subscribeSksMeal,
+  unsubscribeSksMeal;
 
   String toJson() => _$ClarityEventsEnumMap[this]!;
 }
