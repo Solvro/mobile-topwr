@@ -140,7 +140,6 @@ dependencies:
   #Solvro packages
   solvro_translator_with_drift_cache_flutter: ^0.6.0
   solvro_translator_core: ^0.6.0
-  flutter_umami: ^0.3.0
   clarity_flutter: ^1.6.0
 
 dev_dependencies:

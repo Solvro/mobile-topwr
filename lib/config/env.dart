@@ -29,10 +29,6 @@ abstract class Env {
   @EnviedField()
   static final String bugsinkDsn = _Env.bugsinkDsn;
   @EnviedField()
-  static final String umamiUrl = _Env.umamiUrl;
-  @EnviedField()
-  static final String umamiId = _Env.umamiId;
-  @EnviedField()
   static final String mainRestApiUrl = _Env.mainRestApiUrl;
   @EnviedField()
   static final String radioLuzStreamUrl = _Env.radioLuzStreamUrl;
