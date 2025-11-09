@@ -18,10 +18,9 @@ class RadioLuzView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.localize;
-    final mediaQuery = MediaQuery.of(context);
-    final cappedTextScale = mediaQuery.textScaler.clamp(maxScaleFactor: 1.7);
+    final cappedTextScale = context.textScaler.clamp(maxScaleFactor: 1.7);
     return MediaQuery(
-      data: mediaQuery.copyWith(textScaler: cappedTextScale),
+      data: MediaQuery.of(context).copyWith(textScaler: cappedTextScale),
       child: Scaffold(
         backgroundColor: context.colorTheme.greyLight,
         appBar: RadioLuzAppBar(context, logoSize: 55),
