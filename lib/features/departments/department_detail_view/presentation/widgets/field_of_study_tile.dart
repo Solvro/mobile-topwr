@@ -8,8 +8,8 @@ import "../../../../../theme/app_theme.dart";
 import "../../../../../theme/utils.dart";
 import "../../../../../utils/launch_url_util.dart";
 import "../../../../../widgets/wide_tile_card.dart";
-import "../../../../analytics/data/umami.dart";
-import "../../../../analytics/data/umami_events.dart";
+import "../../../../analytics/data/clarity.dart";
+import "../../../../analytics/data/clarity_events.dart";
 import "../../data/models/department_details.dart";
 
 class FieldOfStudyTile extends ConsumerWidget {
@@ -23,7 +23,7 @@ class FieldOfStudyTile extends ConsumerWidget {
       data: context.defaultThemeWithOverrideTextStyles(title: context.textTheme.lightTitle),
       child: WideTileCard(
         onTap: () async {
-          unawaited(ref.trackEvent(UmamiEvents.openFieldOfStudiesLink, value: item.url));
+          unawaited(ref.trackEvent(ClarityEvents.openFieldOfStudiesLink, value: item.url));
           await ref.launch(item.url);
         },
         crossAxisAlignment: CrossAxisAlignment.center,

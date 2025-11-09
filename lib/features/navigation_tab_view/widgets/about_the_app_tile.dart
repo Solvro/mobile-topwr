@@ -6,8 +6,8 @@ import "package:package_info_plus/package_info_plus.dart";
 
 import "../../../utils/context_extensions.dart";
 import "../../about_us_view/widgets/app_version.dart";
-import "../../analytics/data/umami.dart";
-import "../../analytics/data/umami_events.dart";
+import "../../analytics/data/clarity.dart";
+import "../../analytics/data/clarity_events.dart";
 import "navigation_tile.dart";
 
 class AboutTheAppTile extends ConsumerWidget {
@@ -19,7 +19,7 @@ class AboutTheAppTile extends ConsumerWidget {
       future: Future.microtask(PackageInfo.fromPlatform),
       builder: (context, snapshot) => NavigationTile(
         onTap: () async {
-          unawaited(ref.trackEvent(UmamiEvents.openAboutTheApp));
+          unawaited(ref.trackEvent(ClarityEvents.openAboutTheApp));
           await showMyLicenceDialog(context, snapshot.data?.version);
         },
         title: context.localize.about_the_app,

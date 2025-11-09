@@ -12,8 +12,8 @@ import "../../utils/context_extensions.dart";
 import "../../utils/launch_url_util.dart";
 import "../../widgets/search_box_app_bar.dart";
 import "../../widgets/wide_tile_card.dart";
-import "../analytics/data/umami.dart";
-import "../analytics/data/umami_events.dart";
+import "../analytics/data/clarity.dart";
+import "../analytics/data/clarity_events.dart";
 import "../departments/departments_view/widgets/departments_view_loading.dart";
 import "data/models/guide_data.dart";
 import "guide_view_controller.dart";
@@ -47,7 +47,7 @@ class _GuideView extends ConsumerWidget {
           title: context.localize.guide,
           onQueryChanged: ref.watch(searchGuideControllerProvider.notifier).onTextChanged,
           onSearchBoxTap: () {
-            unawaited(ref.trackEvent(UmamiEvents.searchGuideArticles));
+            unawaited(ref.trackEvent(ClarityEvents.searchGuideArticles));
           },
         ),
         body: const _GuideViewContent(),

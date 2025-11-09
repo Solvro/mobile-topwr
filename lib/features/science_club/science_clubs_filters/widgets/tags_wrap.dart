@@ -6,8 +6,8 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../utils/context_extensions.dart";
 import "../../../../utils/where_non_null_iterable.dart";
-import "../../../analytics/data/umami.dart";
-import "../../../analytics/data/umami_events.dart";
+import "../../../analytics/data/clarity.dart";
+import "../../../analytics/data/clarity_events.dart";
 import "../filters_controller.dart";
 import "../filters_search_controller.dart";
 import "../filters_sheet.dart";
@@ -39,7 +39,7 @@ class TagsWrap extends ConsumerWidget {
                     return MyFilterChip(
                       label: tag.tag,
                       onTap: () {
-                        unawaited(ref.trackEvent(UmamiEvents.selectSciClubFilterTag, value: tag.tag));
+                        unawaited(ref.trackEvent(ClarityEvents.selectSciClubFilterTag, value: tag.tag));
                         controller.toggleFilter(tag);
                       },
                       selected: isSelected,

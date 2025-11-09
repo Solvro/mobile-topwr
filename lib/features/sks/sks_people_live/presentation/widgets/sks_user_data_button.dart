@@ -6,8 +6,8 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "../../../../../config/ui_config.dart";
 import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/context_extensions.dart";
-import "../../../../analytics/data/umami.dart";
-import "../../../../analytics/data/umami_events.dart";
+import "../../../../analytics/data/clarity.dart";
+import "../../../../analytics/data/clarity_events.dart";
 import "../../../sks_chart/presentation/sks_chart_sheet.dart";
 import "../../data/models/sks_user_data.dart";
 import "../../data/repository/latest_sks_user_data_repo.dart";
@@ -23,7 +23,7 @@ class SksUserDataButton extends ConsumerWidget {
       data: (sksUsersData) => _SksButton(
         sksUsersData,
         onTap: () async {
-          unawaited(ref.trackEvent(UmamiEvents.openSksChart));
+          unawaited(ref.trackEvent(ClarityEvents.openSksChart));
           await showModalBottomSheet<void>(
             context: context,
             isScrollControlled: true,

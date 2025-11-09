@@ -8,8 +8,8 @@ import "package:hooks_riverpod/hooks_riverpod.dart";
 import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
-import "../../../analytics/data/umami.dart";
-import "../../../analytics/data/umami_events.dart";
+import "../../../analytics/data/clarity.dart";
+import "../../../analytics/data/clarity_events.dart";
 import "../filters_search_controller.dart";
 
 class FiltersSearch extends HookConsumerWidget {
@@ -53,7 +53,7 @@ class FiltersSearch extends HookConsumerWidget {
               if (!isExpanded.value) {
                 ref.read(searchFiltersControllerProvider.notifier).onTextChanged("");
               }
-              unawaited(ref.trackEvent(UmamiEvents.searchSciClubFilters));
+              unawaited(ref.trackEvent(ClarityEvents.searchSciClubFilters));
             },
             height: 48,
             clearOnClose: true,

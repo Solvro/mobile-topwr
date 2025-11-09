@@ -7,8 +7,8 @@ import "package:fluttertoast/fluttertoast.dart";
 import "../../../theme/app_theme.dart";
 import "../../../theme/colors.dart";
 import "../../../utils/context_extensions.dart";
-import "../../analytics/data/umami.dart";
-import "../../analytics/data/umami_events.dart";
+import "../../analytics/data/clarity.dart";
+import "../../analytics/data/clarity_events.dart";
 import "../business/layers_enabled_service.dart";
 import "../data/layer_options.dart";
 import "../data/local_layers_repository.dart";
@@ -28,7 +28,7 @@ class MapLayerCheckbox extends ConsumerWidget {
     void onChanged(bool? value) {
       if (value != null) {
         unawaited(ref.read(localLayersRepositoryProvider(option).notifier).setMode(newValue: value));
-        unawaited(ref.trackEvent(UmamiEvents.setLayerOptions, value: option.sharedPrefsKey));
+        unawaited(ref.trackEvent(ClarityEvents.setLayerOptions, value: option.sharedPrefsKey));
       }
     }
 

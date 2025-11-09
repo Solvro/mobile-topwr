@@ -23,14 +23,15 @@ extension RefRegisterForNotificationsX on Ref {
     }
   }
 
-  Future<void> registerForNotifications() async {
+  Future<({String? deviceKey})> registerForNotifications() async {
     final client = read(restClientProvider);
     final url = "${Env.sksUrl}/device/registration-token";
     final deviceKey = await getDeviceId();
     final registrationToken = await _getTokenSafe();
     if (deviceKey == null || registrationToken == null) {
-      return;
+      return (deviceKey: deviceKey);
     }
     await client.put<Map<String, dynamic>>(url, data: {"deviceKey": deviceKey, "registrationToken": registrationToken});
+    return (deviceKey: deviceKey);
   }
 }

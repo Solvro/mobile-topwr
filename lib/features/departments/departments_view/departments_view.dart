@@ -11,8 +11,8 @@ import "../../../widgets/horizontal_symmetric_safe_area.dart";
 import "../../../widgets/my_error_widget.dart";
 import "../../../widgets/search_box_app_bar.dart";
 import "../../../widgets/search_not_found.dart";
-import "../../analytics/data/umami.dart";
-import "../../analytics/data/umami_events.dart";
+import "../../analytics/data/clarity.dart";
+import "../../analytics/data/clarity_events.dart";
 import "../../navigator/utils/navigation_commands.dart";
 import "data/models/department.dart";
 import "departments_view_controllers.dart";
@@ -46,7 +46,7 @@ class _DepartmentsView extends ConsumerWidget {
         title: context.localize.departments,
         onQueryChanged: ref.watch(searchDepartmentsControllerProvider.notifier).onTextChanged,
         onSearchBoxTap: () {
-          unawaited(ref.trackEvent(UmamiEvents.searchDepartments));
+          unawaited(ref.trackEvent(ClarityEvents.searchDepartments));
         },
       ),
       body: Semantics(label: context.localize.departments, child: const _DepartmentsViewListBody()),
