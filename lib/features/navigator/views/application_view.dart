@@ -2,6 +2,7 @@ import "package:auto_route/auto_route.dart";
 import "package:flutter/widgets.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
+import "../../bottom_nav_bar/bottom_nav_height.dart";
 import "../../radio_luz/presentation/radio_luz_global_button.dart";
 import "../../radio_luz/service/radio_player_controller.dart";
 import "../app_router.dart";
@@ -18,15 +19,18 @@ class ApplicationView extends ConsumerWidget {
     final showRadioLuzButton = radioState.isPlaying && currentRoute != RadioLuzRoute.name;
     final isBottomNav = currentRoute == RootRoute.name;
 
+    final bottomNavHeight = ref.watch(bottomNavBarHeightProvider);
+    final double bottomPosition = isBottomNav ? (bottomNavHeight > 0 ? bottomNavHeight + 16 : 80) : 36;
+
     return Stack(
       children: [
         const AutoRouter(),
         if (showRadioLuzButton)
           AnimatedPositioned(
             right: 24,
-            bottom: isBottomNav ? 96 : 56,
-            duration: const Duration(milliseconds: 400),
-            curve: Curves.decelerate,
+            bottom: bottomPosition,
+            duration: const Duration(milliseconds: 500),
+            curve: Curves.easeInOut,
             child: const RadioLuzGlobalButton(),
           ),
       ],
