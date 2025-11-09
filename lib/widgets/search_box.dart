@@ -19,7 +19,15 @@ class SearchBox extends HookWidget {
     final scaler = context.textScaler.clamp(maxScaleFactor: 2);
     final focusNode = useFocusNode();
     final controller = useTextEditingController(text: initialQuery);
-    final showCloseIcon = useState(false);
+    final showCloseIcon = useState(initialQuery?.isNotEmpty ?? false);
+
+    useEffect(() {
+      if (initialQuery != null && initialQuery != "") {
+        controller.text = initialQuery!;
+        showCloseIcon.value = initialQuery!.isNotEmpty;
+      }
+      return null;
+    }, [initialQuery]);
 
     final onTapOutside = useCallback((_) {
       if (focusNode.hasFocus) {
