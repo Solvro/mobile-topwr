@@ -15,13 +15,12 @@ class ApplicationView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final currentRoute = ref.watch(currentRouteProvider)?.settings.name;
     final radioState = ref.watch(radioControllerProvider);
-    final showRadioLuzButton = radioState.isPlaying;
-    final isRadioLuz = currentRoute == RadioLuzRoute.name;
+    final showRadioLuzButton = radioState.isPlaying && currentRoute != RadioLuzRoute.name;
 
     return Stack(
       children: [
         const AutoRouter(),
-        if (!isRadioLuz) const Positioned(right: 36, bottom: 96, child: RadioLuzGlobalButton()),
+        if (showRadioLuzButton) const Positioned(right: 24, bottom: 96, child: RadioLuzGlobalButton()),
       ],
     );
   }
