@@ -38,4 +38,6 @@ abstract class Env {
   static final String radioLuzStreamUrl = _Env.radioLuzStreamUrl;
   @EnviedField()
   static final String radioLuzApiUrl = _Env.radioLuzApiUrl;
+  @EnviedField()
+  static final String clarityConfigId = _Env.clarityConfigId;
 }

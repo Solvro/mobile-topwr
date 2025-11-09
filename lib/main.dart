@@ -1,6 +1,7 @@
 import "dart:async";
 import "dart:io";
 
+import "package:clarity_flutter/clarity_flutter.dart";
 import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:flutter/services.dart";
@@ -59,7 +60,17 @@ Future<void> runToPWR() async {
     await Sentry.captureException(e, stackTrace: st);
   }
 
-  return runApp(const ProviderScope(child: SplashScreen(child: MyApp())));
+  final config = ClarityConfig(
+    projectId: Env.clarityConfigId,
+    logLevel: LogLevel.Verbose, // Note: Use "LogLevel.Verbose" value while testing to debug initialization issues.
+  );
+
+  return runApp(
+    ClarityWidget(
+      clarityConfig: config,
+      app: const ProviderScope(child: SplashScreen(child: MyApp())),
+    ),
+  );
 }
 
 class MyApp extends ConsumerWidget {
