@@ -19,34 +19,36 @@ class RadioLuzView extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.localize;
     final cappedTextScale = context.textScaler.clamp(maxScaleFactor: 1.7);
-    return MediaQuery(
-      data: MediaQuery.of(context).copyWith(textScaler: cappedTextScale),
-      child: Scaffold(
-        backgroundColor: context.colorTheme.greyLight,
-        appBar: RadioLuzAppBar(context, logoSize: 55),
-        body: Stack(
-          children: [
-            ListView(
-              padding: const EdgeInsets.symmetric(vertical: RadioLuzConfig.horizontalBasePadding),
-              children: [
-                RadioLuzTitle(title: l10n.now_playing.toUpperCase()),
-                const SizedBox(height: 12),
-                const NowPlayingSection(),
-                const SizedBox(height: 24),
-                RadioLuzTitle(title: l10n.broadcast.toUpperCase()),
-                const SizedBox(height: 12),
-                const BroadcastsSection(),
-                const SizedBox(height: 20),
-                RadioLuzTitle(title: l10n.radio_luz_info.toUpperCase()),
-                const SizedBox(height: 12),
-                const _TextSection(),
-                const SizedBox(height: 12),
-                const RadioLuzSocialsSection(),
-                const SizedBox(height: 80),
-              ],
-            ),
-            const Align(alignment: Alignment.bottomCenter, child: AudioPlayerWidget()),
-          ],
+    return SafeArea(
+      child: MediaQuery(
+        data: MediaQuery.of(context).copyWith(textScaler: cappedTextScale),
+        child: Scaffold(
+          backgroundColor: context.colorTheme.greyLight,
+          appBar: RadioLuzAppBar(context, logoSize: 55),
+          body: Stack(
+            children: [
+              ListView(
+                padding: const EdgeInsets.symmetric(vertical: RadioLuzConfig.horizontalBasePadding),
+                children: [
+                  RadioLuzTitle(title: l10n.now_playing.toUpperCase()),
+                  const SizedBox(height: 12),
+                  const NowPlayingSection(),
+                  const SizedBox(height: 24),
+                  RadioLuzTitle(title: l10n.broadcast.toUpperCase()),
+                  const SizedBox(height: 12),
+                  const BroadcastsSection(),
+                  const SizedBox(height: 20),
+                  RadioLuzTitle(title: l10n.radio_luz_info.toUpperCase()),
+                  const SizedBox(height: 12),
+                  const _TextSection(),
+                  const SizedBox(height: 12),
+                  const RadioLuzSocialsSection(),
+                  const SizedBox(height: 80),
+                ],
+              ),
+              const Align(alignment: Alignment.bottomCenter, child: AudioPlayerWidget()),
+            ],
+          ),
         ),
       ),
     );
