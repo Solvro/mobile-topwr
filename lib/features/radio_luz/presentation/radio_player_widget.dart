@@ -11,8 +11,8 @@ import "radio_player_control_button.dart";
 import "radio_player_info.dart";
 import "radio_player_slider.dart";
 
-class AudioPlayerWidget extends HookConsumerWidget {
-  const AudioPlayerWidget({super.key});
+class RadioPlayerWidget extends HookConsumerWidget {
+  const RadioPlayerWidget({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
