@@ -10,8 +10,8 @@ import "../../../config/wiredash.dart";
 import "../../../gen/assets.gen.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../widgets/wide_tile_card.dart";
-import "../data/umami.dart";
-import "../data/umami_events.dart";
+import "../data/clarity.dart";
+import "../data/clarity_events.dart";
 
 class ShowFeedbackTile extends ConsumerWidget {
   const ShowFeedbackTile({super.key});
@@ -26,7 +26,7 @@ class ShowFeedbackTile extends ConsumerWidget {
           title: context.localize.bug_report_title,
           subtitle: context.localize.bug_report_subtitle,
           onTap: () async {
-            unawaited(ref.trackEvent(UmamiEvents.openFeedbackForm));
+            unawaited(ref.trackEvent(ClarityEvents.openFeedbackForm));
             await Wiredash.of(context).show(options: WiredashFeedbackOptions(labels: context.labels));
           },
           trailing: Lottie.asset(

@@ -7,8 +7,8 @@ import "package:hooks_riverpod/hooks_riverpod.dart";
 import "../../utils/context_extensions.dart";
 import "../../utils/where_non_null_iterable.dart";
 import "../../widgets/search_box_app_bar.dart";
-import "../analytics/data/umami.dart";
-import "../analytics/data/umami_events.dart";
+import "../analytics/data/clarity.dart";
+import "../analytics/data/clarity_events.dart";
 import "../map_layer_picker/business/layers_enabled_service.dart";
 import "../map_view/controllers/bottom_sheet_controller.dart";
 import "../map_view/controllers/controllers_set.dart";
@@ -49,9 +49,9 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
       onQueryChanged: ref.watch(context.mapDataController<T>().notifier).onSearchQueryChanged,
       onSearchBoxTap: () async {
         if (T == MultilayerItem) {
-          unawaited(ref.trackEvent(UmamiEvents.searchMultilayerMap));
+          unawaited(ref.trackEvent(ClarityEvents.searchMultilayerMap));
         } else if (T == Parking) {
-          unawaited(ref.trackEvent(UmamiEvents.searchParkings));
+          unawaited(ref.trackEvent(ClarityEvents.searchParkings));
         }
         await ref.watch(bottomSheetPixelsProvider.notifier).onSearchBoxTap();
       },

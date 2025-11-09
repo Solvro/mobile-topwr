@@ -6,8 +6,8 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../widgets/horizontal_symmetric_safe_area.dart";
 import "../../../../widgets/search_box_app_bar.dart";
-import "../../../analytics/data/umami.dart";
-import "../../../analytics/data/umami_events.dart";
+import "../../../analytics/data/clarity.dart";
+import "../../../analytics/data/clarity_events.dart";
 import "../../science_clubs_filters/widgets/filters_fab.dart";
 import "../controllers/science_clubs_view_controller.dart";
 
@@ -27,7 +27,7 @@ class SciClubsScaffold extends ConsumerWidget {
         onQueryChanged: ref.watch(searchScienceClubsControllerProvider.notifier).onTextChanged,
         actions: appBarActions,
         onSearchBoxTap: () {
-          unawaited(ref.trackEvent(UmamiEvents.searchSciClub));
+          unawaited(ref.trackEvent(ClarityEvents.searchSciClub));
         },
       ),
       body: Stack(

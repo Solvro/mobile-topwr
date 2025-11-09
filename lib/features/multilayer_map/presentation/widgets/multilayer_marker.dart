@@ -5,8 +5,8 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../gen/assets.gen.dart";
 import "../../../../utils/context_extensions.dart";
-import "../../../analytics/data/umami.dart";
-import "../../../analytics/data/umami_events.dart";
+import "../../../analytics/data/clarity.dart";
+import "../../../analytics/data/clarity_events.dart";
 import "../../data/model/multilayer_item.dart";
 import "../controllers.dart";
 
@@ -40,16 +40,18 @@ class MultilayerMarker extends ConsumerWidget {
         unawaited(ref.read(multilayerMapControllerProvider).onMarkerTap(item));
         return switch (item) {
           BuildingItem(:final building) when building.isPolinka => unawaited(
-            ref.trackEvent(UmamiEvents.selectBuilding, value: building.name),
+            ref.trackEvent(ClarityEvents.selectBuilding, value: building.name),
           ),
-          BuildingItem(:final building) => unawaited(ref.trackEvent(UmamiEvents.selectBuilding, value: building.name)),
-          LibraryItem(:final library) => unawaited(ref.trackEvent(UmamiEvents.selectLibrary, value: library.title)),
-          AedItem(:final aed) => unawaited(ref.trackEvent(UmamiEvents.selectAed, value: aed.title)),
+          BuildingItem(:final building) => unawaited(
+            ref.trackEvent(ClarityEvents.selectBuilding, value: building.name),
+          ),
+          LibraryItem(:final library) => unawaited(ref.trackEvent(ClarityEvents.selectLibrary, value: library.title)),
+          AedItem(:final aed) => unawaited(ref.trackEvent(ClarityEvents.selectAed, value: aed.title)),
           BicycleShowerItem(:final shower) => unawaited(
-            ref.trackEvent(UmamiEvents.selectShower, value: shower.title(context.localize)),
+            ref.trackEvent(ClarityEvents.selectShower, value: shower.title(context.localize)),
           ),
           PinkBoxItem(:final pinkBox) => unawaited(
-            ref.trackEvent(UmamiEvents.selectPinkBox, value: pinkBox.title(context.localize)),
+            ref.trackEvent(ClarityEvents.selectPinkBox, value: pinkBox.title(context.localize)),
           ),
         };
       },

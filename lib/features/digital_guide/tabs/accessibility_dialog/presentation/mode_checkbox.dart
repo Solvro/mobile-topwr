@@ -4,8 +4,8 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../theme/app_theme.dart";
-import "../../../../analytics/data/umami.dart";
-import "../../../../analytics/data/umami_events.dart";
+import "../../../../analytics/data/clarity.dart";
+import "../../../../analytics/data/clarity_events.dart";
 import "../business/accessibility_mode_service.dart";
 import "../data/modes.dart";
 import "labels.dart";
@@ -21,7 +21,7 @@ class ModeCheckbox extends ConsumerWidget {
     void onChanged(bool? value) {
       if (value != null) {
         unawaited(ref.read(accessibilityModeServiceProvider(mode).notifier).setMode(newValue: value));
-        unawaited(ref.trackEvent(UmamiEvents.setAccessibilityMode, value: mode.toString()));
+        unawaited(ref.trackEvent(ClarityEvents.setAccessibilityMode, value: mode.toString()));
       }
     }
 

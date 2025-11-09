@@ -10,8 +10,8 @@ import "../../../../hooks/use_semantics_service_on_changed_value.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../widgets/wide_tile_card.dart";
-import "../../../analytics/data/umami.dart";
-import "../../../analytics/data/umami_events.dart";
+import "../../../analytics/data/clarity.dart";
+import "../../../analytics/data/clarity_events.dart";
 import "../../data/model/multilayer_item.dart";
 import "../../data/model/pink_box.dart";
 import "../controllers.dart";
@@ -49,7 +49,7 @@ class PinkBoxTile extends HookConsumerWidget {
                       "${pinkBox.roomOrNearby}\n${context.localize.building_tile_building} ${pinkBox.building?.name}",
                   isActive: isActive,
                   onTap: () {
-                    unawaited(ref.trackEvent(UmamiEvents.selectLibrary, value: title));
+                    unawaited(ref.trackEvent(ClarityEvents.selectLibrary, value: title));
                     unawaited(ref.read(multilayerMapControllerProvider).onMarkerTap(PinkBoxItem(pinkBox: pinkBox)));
                   },
                   customPlaceholder: ColoredBox(

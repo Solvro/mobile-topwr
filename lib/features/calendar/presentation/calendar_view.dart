@@ -11,8 +11,8 @@ import "../../../utils/context_extensions.dart";
 import "../../../widgets/horizontal_symmetric_safe_area.dart";
 import "../../../widgets/my_error_widget.dart";
 import "../../../widgets/search_box_app_bar.dart";
-import "../../analytics/data/umami.dart";
-import "../../analytics/data/umami_events.dart";
+import "../../analytics/data/clarity.dart";
+import "../../analytics/data/clarity_events.dart";
 import "../../departments/departments_view/widgets/departments_view_loading.dart";
 import "../bussiness/calendar_search_controller.dart";
 import "../bussiness/get_events_per_days_use_case.dart";
@@ -39,7 +39,7 @@ class CalendarView extends ConsumerWidget {
         title: context.localize.calendar,
         onQueryChanged: ref.watch(searchCalendarControllerProvider.notifier).onTextChanged,
         onSearchBoxTap: () {
-          unawaited(ref.trackEvent(UmamiEvents.searchCalendar));
+          unawaited(ref.trackEvent(ClarityEvents.searchCalendar));
         },
       ),
       body: const _CalendarViewConsumer(),

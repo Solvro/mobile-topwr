@@ -7,8 +7,8 @@ import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../utils/datetime_utils.dart";
-import "../../analytics/data/umami.dart";
-import "../../analytics/data/umami_events.dart";
+import "../../analytics/data/clarity.dart";
+import "../../analytics/data/clarity_events.dart";
 import "../../digital_guide/tabs/accessibility_dialog/presentation/red_dialog.dart";
 import "../model/academic_calendar_extensions.dart";
 import "../model/academic_week_exception.dart";
@@ -21,7 +21,7 @@ class DayChangesDialog extends ConsumerWidget {
   final AcademicCalendarWithSwaps calendar;
 
   static Future<void> show(BuildContext context, AcademicCalendarWithSwaps calendar, WidgetRef ref) {
-    unawaited(ref.trackEvent(UmamiEvents.openDaySwapAlertDialog));
+    unawaited(ref.trackEvent(ClarityEvents.openDaySwapAlertDialog));
     return showDialog<void>(context: context, builder: (context) => DayChangesDialog(calendar));
   }
 

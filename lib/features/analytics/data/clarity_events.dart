@@ -1,9 +1,9 @@
 import "package:json_annotation/json_annotation.dart";
 
-part "umami_events.g.dart";
+part "clarity_events.g.dart";
 
 @JsonEnum(alwaysCreate: true, fieldRename: FieldRename.snake)
-enum UmamiEvents {
+enum ClarityEvents {
   openGuideArticleDetail,
   openScienceClubDetail,
   openDepartmentDetail,
@@ -62,5 +62,5 @@ enum UmamiEvents {
   selectShower,
   selectPinkBox;
 
-  String toJson() => _$UmamiEventsEnumMap[this]!;
+  String toJson() => _$ClarityEventsEnumMap[this]!;
 }

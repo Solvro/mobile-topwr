@@ -5,8 +5,8 @@ import "package:solvro_translator_core/solvro_translator_core.dart";
 
 import "../../../../config/shared_prefs.dart";
 import "../../../../config/translations_config.dart";
-import "../../../features/analytics/data/umami.dart";
-import "../../../features/analytics/data/umami_events.dart";
+import "../../../features/analytics/data/clarity.dart";
+import "../../../features/analytics/data/clarity_events.dart";
 
 part "preferred_lang_repository.g.dart";
 
@@ -24,7 +24,7 @@ class PreferredLanguageRepository extends _$PreferredLanguageRepository {
 
   Future<void> setPreferredLanguage(SolvroLocale localeCode) async {
     state = AsyncData(localeCode);
-    unawaited(ref.trackEvent(UmamiEvents.changeLanguage, value: localeCode.name));
+    unawaited(ref.trackEvent(ClarityEvents.changeLanguage, value: localeCode.name));
     final sharedPreferences = await ref.read(sharedPreferencesSingletonProvider.future);
     await sharedPreferences.setString(TranslationsConfig.localesKey, localeCode.name);
   }

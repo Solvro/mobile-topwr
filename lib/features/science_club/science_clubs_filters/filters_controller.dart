@@ -5,8 +5,8 @@ import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "../../analytics/data/umami.dart";
-import "../../analytics/data/umami_events.dart";
+import "../../analytics/data/clarity.dart";
+import "../../analytics/data/clarity_events.dart";
 import "../../departments/departments_view/data/models/department.dart";
 import "../../departments/departments_view/data/repository/departments_repository.dart";
 import "filters_search_controller.dart";
@@ -65,7 +65,7 @@ bool areFiltersEnabled(Ref ref) {
 extension ClearAllFiltersX on WidgetRef {
   VoidCallback getClearAllFilters(WidgetRef ref) {
     return () {
-      unawaited(ref.trackEvent(UmamiEvents.clearSciClubFilters));
+      unawaited(ref.trackEvent(ClarityEvents.clearSciClubFilters));
       ref.read(selectedTagControllerProvider.notifier).clearFilter();
       ref.read(selectedDepartmentControllerProvider.notifier).clearFilter();
       ref.read(selectedTypeControllerProvider.notifier).clearFilter();

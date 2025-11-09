@@ -13,8 +13,8 @@ import "../../../../utils/context_extensions.dart";
 import "../../../../widgets/horizontal_symmetric_safe_area.dart";
 import "../../../../widgets/my_error_widget.dart";
 import "../../../../widgets/search_box_app_bar.dart";
-import "../../../analytics/data/umami.dart";
-import "../../../analytics/data/umami_events.dart";
+import "../../../analytics/data/clarity.dart";
+import "../../../analytics/data/clarity_events.dart";
 import "../../sks_menu/data/models/dish_category_enum.dart";
 import "../../sks_menu/presentation/widgets/sks_menu_tiles.dart";
 import "../data/repository/sks_favourite_dishes_repository.dart";
@@ -42,7 +42,7 @@ class SksFavouriteDishesView extends ConsumerWidget {
         title: context.localize.sks_favourite_dishes,
         onQueryChanged: ref.watch(sksFavouriteDishesControllerProvider.notifier).onTextChanged,
         onSearchBoxTap: () {
-          unawaited(ref.trackEvent(UmamiEvents.searchSksMenu));
+          unawaited(ref.trackEvent(ClarityEvents.searchSksMenu));
         },
         primary: true,
       ),

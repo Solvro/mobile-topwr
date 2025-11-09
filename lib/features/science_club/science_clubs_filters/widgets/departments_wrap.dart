@@ -5,8 +5,8 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../utils/context_extensions.dart";
-import "../../../analytics/data/umami.dart";
-import "../../../analytics/data/umami_events.dart";
+import "../../../analytics/data/clarity.dart";
+import "../../../analytics/data/clarity_events.dart";
 import "../../../departments/departments_view/data/models/department.dart";
 import "../../../departments/departments_view/data/utils/departments_extensions.dart";
 import "../filters_controller.dart";
@@ -39,7 +39,7 @@ class DepartmentsWrap extends ConsumerWidget {
                     return MyFilterChip(
                       label: department.code,
                       onTap: () {
-                        unawaited(ref.trackEvent(UmamiEvents.selectSciClubFilterDepartment, value: department.code));
+                        unawaited(ref.trackEvent(ClarityEvents.selectSciClubFilterDepartment, value: department.code));
                         controller.toggleFilter(department);
                       },
                       selected: isSelected,

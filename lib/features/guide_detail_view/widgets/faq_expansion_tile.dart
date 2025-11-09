@@ -7,8 +7,8 @@ import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
 import "../../../widgets/my_expansion_tile.dart";
 import "../../../widgets/my_html_widget.dart";
-import "../../analytics/data/umami.dart";
-import "../../analytics/data/umami_events.dart";
+import "../../analytics/data/clarity.dart";
+import "../../analytics/data/clarity_events.dart";
 
 class FaqExpansionTile extends ConsumerWidget {
   const FaqExpansionTile({super.key, required this.title, required this.description});
@@ -25,9 +25,9 @@ class FaqExpansionTile extends ConsumerWidget {
         onExpansionChanged: ({bool? expanded}) {
           if (expanded != null) {
             if (expanded) {
-              unawaited(ref.trackEvent(UmamiEvents.openFAQQuestion, value: title));
+              unawaited(ref.trackEvent(ClarityEvents.openFAQQuestion, value: title));
             } else {
-              unawaited(ref.trackEvent(UmamiEvents.closeFAQQuestion, value: title));
+              unawaited(ref.trackEvent(ClarityEvents.closeFAQQuestion, value: title));
             }
           }
         },
