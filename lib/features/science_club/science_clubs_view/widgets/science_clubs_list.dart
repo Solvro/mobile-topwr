@@ -41,7 +41,7 @@ class _ScienceClubsListView extends ConsumerWidget {
     }
     return GridView.builder(
       padding: const EdgeInsets.only(bottom: ScienceClubsViewConfig.mediumPadding),
-      gridDelegate: DepartmentsConfig.departmentsViewGridDelegate(context),
+      gridDelegate: ScienceClubsViewConfig.scienceClubsViewGridDelegate(context),
       itemCount: filteredCircles.length,
       itemBuilder: (context, index) =>
           ScienceClubCard(filteredCircles[index], () => ref.navigateSciClubsDetail(filteredCircles[index])),

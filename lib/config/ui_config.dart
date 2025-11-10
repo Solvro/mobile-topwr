@@ -105,6 +105,14 @@ abstract class ScienceClubsViewConfig {
     crossAxisSpacing: 4,
     mainAxisSpacing: 4,
   );
+
+  static SliverGridDelegateWithMaxCrossAxisExtent scienceClubsViewGridDelegate(BuildContext context) =>
+      SliverGridDelegateWithMaxCrossAxisExtent(
+        maxCrossAxisExtent: context.textScaler.scale(600),
+        mainAxisExtent: context.textScaler.scale(120),
+        crossAxisSpacing: context.textScaler.scale(16),
+        mainAxisSpacing: context.textScaler.scale(16),
+      );
 }
 
 abstract class ScienceClubCardConfig {
