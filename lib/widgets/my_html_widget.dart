@@ -17,13 +17,13 @@ class MyHtmlWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Semantics(
       label: html.parseHtmlString(),
-      child: ExcludeSemantics(
-        child: HtmlWidget(
-          html,
-          textStyle: textStyle ?? context.aboutUsTheme.body,
-          customStylesBuilder: context.customStylesBuilder,
-          onTapUrl: ref.launch,
-        ),
+      child: HtmlWidget(
+        html,
+        textStyle: textStyle ?? context.aboutUsTheme.body,
+        customStylesBuilder: context.customStylesBuilder,
+        customWidgetBuilder: (element) =>
+            context.customWidgetBuilder(element, ref, textStyle ?? context.aboutUsTheme.body),
+        onTapUrl: ref.launch,
       ),
     );
   }
