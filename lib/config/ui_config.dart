@@ -254,6 +254,7 @@ abstract class RadioLuzConfig {
   static const spacingSmall = 4.0;
   static const spacingMedium = 8.0;
   static const paddingSmall = 8.0;
+  static const horizontalBasePadding = 16.0;
 }
 
 abstract class AlertDialogConfig {
