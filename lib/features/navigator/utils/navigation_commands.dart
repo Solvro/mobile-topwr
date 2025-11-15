@@ -261,7 +261,7 @@ extension NavigationX on WidgetRef {
   }
 
   Future<void> navigateCalendar() async {
-    await _router.push(const CalendarRoute());
+    await _router.push(CalendarRoute());
   }
 
   Future<void> navigateToRadioLuz() async {

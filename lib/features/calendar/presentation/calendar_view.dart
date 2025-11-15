@@ -23,7 +23,9 @@ import "widgets/calendar_header_delegate.dart";
 
 @RoutePage()
 class CalendarView extends ConsumerWidget {
-  const CalendarView({super.key});
+  const CalendarView({super.key, @QueryParam("q") this.query});
+
+  final String? query;
 
   static String localizedOfflineMessage(BuildContext context) {
     return context.localize.my_offline_error_message(context.localize.calendar);
@@ -31,11 +33,18 @@ class CalendarView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    if (query != null && query!.isNotEmpty) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        ref.read(searchCalendarControllerProvider.notifier).onTextChanged(query!);
+      });
+    }
+
     return HorizontalSymmetricSafeAreaScaffold(
       appBar: SearchBoxAppBar(
         primary: true,
         addLeadingPopButton: true,
         context,
+        initialQuery: query,
         title: context.localize.calendar,
         onQueryChanged: ref.watch(searchCalendarControllerProvider.notifier).onTextChanged,
         onSearchBoxTap: () {
