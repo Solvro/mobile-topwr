@@ -33,8 +33,6 @@ class FaqExpansionTile extends ConsumerWidget {
         },
         children: [
           Focus(
-            descendantsAreTraversable: true,
-            skipTraversal: false,
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: GuideDetailViewConfig.paddingSmall),
               child: ListTile(

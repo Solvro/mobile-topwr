@@ -48,8 +48,6 @@ class SksMenuTile extends ConsumerWidget {
         children: dishes
             .map<Widget>(
               (dish) => Focus(
-                skipTraversal: false,
-                canRequestFocus: true,
                 child: SksMenuDishDetailsTile(
                   dish: dish,
                   isSubscribed: subscribedIds.contains(dish.id),
