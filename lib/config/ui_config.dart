@@ -105,10 +105,21 @@ abstract class ScienceClubsViewConfig {
     crossAxisSpacing: 4,
     mainAxisSpacing: 4,
   );
+
+  static SliverGridDelegateWithMaxCrossAxisExtent scienceClubsViewGridDelegate(BuildContext context) =>
+      SliverGridDelegateWithMaxCrossAxisExtent(
+        maxCrossAxisExtent: context.textScaler.scale(600),
+        mainAxisExtent: context.textScaler.scale(122),
+        crossAxisSpacing: context.textScaler.scale(16),
+        mainAxisSpacing: context.textScaler.scale(16),
+      );
 }
 
 abstract class ScienceClubCardConfig {
   static const trailingPadding = 2.0;
+  static const imageHeight = 122.0;
+  static const imageWidth = 100.0;
+  static const contentImageSpacing = 8.0;
 }
 
 abstract class ParkingsConfig {
