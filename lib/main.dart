@@ -1,11 +1,11 @@
 import "dart:async";
 import "dart:io";
 
+import "package:clarity_flutter/clarity_flutter.dart";
 import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
-import "package:flutter_umami/flutter_umami.dart";
 import "package:just_audio_background/just_audio_background.dart";
 import "package:sentry_flutter/sentry_flutter.dart";
 import "package:solvro_translator_core/solvro_translator_core.dart";
@@ -14,7 +14,6 @@ import "package:wiredash/wiredash.dart";
 import "config/env.dart";
 import "config/ui_config.dart";
 import "config/wiredash.dart";
-import "features/analytics/data/umami.dart";
 import "features/in_app_review/presentation/in_app_review.dart";
 import "features/navigator/app_router.dart";
 import "features/navigator/navigation_stack.dart";
@@ -59,7 +58,17 @@ Future<void> runToPWR() async {
     await Sentry.captureException(e, stackTrace: st);
   }
 
-  return runApp(const ProviderScope(child: SplashScreen(child: MyApp())));
+  final config = ClarityConfig(
+    projectId: Env.clarityConfigId,
+    logLevel: LogLevel.None, // Note: Use "LogLevel.Verbose" value while testing to debug initialization issues.
+  );
+
+  return runApp(
+    ClarityWidget(
+      clarityConfig: config,
+      app: const ProviderScope(child: SplashScreen(child: MyApp())),
+    ),
+  );
 }
 
 class MyApp extends ConsumerWidget {
@@ -91,14 +100,7 @@ class MyApp extends ConsumerWidget {
                 ),
               ),
               debugShowCheckedModeBanner: false,
-              routerConfig: ref
-                  .watch(appRouterProvider)
-                  .config(
-                    navigatorObservers: () => [
-                      NavigationObserver(ref),
-                      UmamiNavigationObserver(Future.microtask(() => ref.watch(umamiProvider.future))),
-                    ],
-                  ),
+              routerConfig: ref.watch(appRouterProvider).config(navigatorObservers: () => [NavigationObserver(ref)]),
             ),
           ),
         ),

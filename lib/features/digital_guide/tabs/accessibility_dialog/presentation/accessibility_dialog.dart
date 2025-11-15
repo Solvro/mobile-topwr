@@ -4,8 +4,8 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../utils/context_extensions.dart";
-import "../../../../analytics/data/umami.dart";
-import "../../../../analytics/data/umami_events.dart";
+import "../../../../analytics/data/clarity.dart";
+import "../../../../analytics/data/clarity_events.dart";
 import "checkboxes_list.dart";
 import "red_dialog.dart";
 
@@ -13,7 +13,7 @@ class AccessibilityDialog extends StatelessWidget {
   const AccessibilityDialog({super.key});
 
   static Future<void> show(BuildContext context, WidgetRef ref) async {
-    unawaited(ref.trackEvent(UmamiEvents.openAccessibilityModeDialog));
+    unawaited(ref.trackEvent(ClarityEvents.openAccessibilityModeDialog));
     await showGeneralDialog(
       context: context,
       barrierColor: Colors.transparent,
@@ -33,7 +33,7 @@ class AccessibilityDialog extends StatelessWidget {
           child: Consumer(
             builder: (context, ref, child) => GestureDetector(
               onTap: () {
-                unawaited(ref.trackEvent(UmamiEvents.closeAccessibilityModeDialog));
+                unawaited(ref.trackEvent(ClarityEvents.closeAccessibilityModeDialog));
                 Navigator.of(context).pop();
               },
               child: ModalBarrier(color: Colors.black.withValues(alpha: 0.7), dismissible: false),
@@ -48,7 +48,7 @@ class AccessibilityDialog extends StatelessWidget {
             subtitle: context.localize.you_can_adjust,
             child: child ?? const SizedBox.shrink(),
             onApplyButtonPressed: () {
-              unawaited(ref.trackEvent(UmamiEvents.saveAccessibilityModeDialog));
+              unawaited(ref.trackEvent(ClarityEvents.saveAccessibilityModeDialog));
             },
           ),
         ),

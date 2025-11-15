@@ -11,8 +11,8 @@ import "../../../../hooks/use_semantics_service_on_changed_value.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../widgets/wide_tile_card.dart";
-import "../../../analytics/data/umami.dart";
-import "../../../analytics/data/umami_events.dart";
+import "../../../analytics/data/clarity.dart";
+import "../../../analytics/data/clarity_events.dart";
 import "../../../navigator/utils/navigation_commands.dart";
 import "../../data/model/building.dart";
 import "../../data/model/multilayer_item.dart";
@@ -55,7 +55,7 @@ class BuildingTile extends HookConsumerWidget {
                   subtitle: building.address,
                   isActive: isActive,
                   onTap: () {
-                    unawaited(ref.trackEvent(UmamiEvents.selectBuilding, value: building.name));
+                    unawaited(ref.trackEvent(ClarityEvents.selectBuilding, value: building.name));
                     unawaited(ref.read(multilayerMapControllerProvider).onMarkerTap(BuildingItem(building: building)));
                   },
                   customPlaceholder: ColoredBox(

@@ -1,5 +1,6 @@
 import "dart:io";
 
+import "package:clarity_flutter/clarity_flutter.dart";
 import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:flutter_native_splash/flutter_native_splash.dart";
@@ -23,7 +24,10 @@ class SplashScreenController extends _$SplashScreenController {
     WidgetsFlutterBinding.ensureInitialized();
     await firebaseInit();
     await AppBarLogo.precacheImageIfAbsent();
-    await ref.registerForNotifications();
+    final (:deviceKey) = await ref.registerForNotifications();
+    if (deviceKey != null) {
+      Clarity.setCustomUserId(deviceKey);
+    }
     await ref.read(mapCacheStoreProvider.future); // prefetch map cache directory
   }
 

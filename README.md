@@ -45,7 +45,7 @@ Read more at: https://solvro.pwr.edu.pl/portfolio/to-pwr/.
 - wiredash
 - lottie
 - Drift (sqlite)
-- umami
+- Microsoft Clarity
 - bugsink
 
 ## Links

@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
+import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../data/repository/history_entry_repository.dart";
@@ -14,17 +15,20 @@ class NowPlayingSection extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final historyEntries = ref.watch(historyEntryRepositoryProvider);
     return switch (historyEntries) {
-      AsyncData(:final value) => Column(
-        mainAxisSize: MainAxisSize.min,
-        spacing: 8,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: List.generate(
-          value == null ? 0 : (value.length < _maxElementsToShow ? value.length : _maxElementsToShow),
-          (index) => _NowPlayingTile(
-            isActive: _maxElementsToShow - 1 == index,
-            time: value![index].time.format(context),
-            title: value[index].title,
-            subtitle: value[index].artist,
+      AsyncData(:final value) => Padding(
+        padding: const EdgeInsetsGeometry.symmetric(horizontal: RadioLuzConfig.horizontalBasePadding),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          spacing: 8,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: List.generate(
+            value == null ? 0 : (value.length < _maxElementsToShow ? value.length : _maxElementsToShow),
+            (index) => _NowPlayingTile(
+              isActive: _maxElementsToShow - 1 == index,
+              time: value![index].time.format(context),
+              title: value[index].title,
+              subtitle: value[index].artist,
+            ),
           ),
         ),
       ),

@@ -3,8 +3,8 @@ import "dart:async";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../../../analytics/data/umami.dart";
-import "../../../analytics/data/umami_events.dart";
+import "../../../analytics/data/clarity.dart";
+import "../../../analytics/data/clarity_events.dart";
 import "../controllers.dart";
 import "../models/parking.dart";
 import "parking_wide_tile_card.dart";
@@ -21,7 +21,7 @@ class ParkingTile extends ConsumerWidget {
       isActive: isActive,
       onTap: () {
         if (!isActive) {
-          unawaited(ref.trackEvent(UmamiEvents.openParkingChart, value: parking.nameNormalized));
+          unawaited(ref.trackEvent(ClarityEvents.openParkingChart, value: parking.nameNormalized));
         }
         unawaited(ref.read(parkingsMapControllerProvider).onMarkerTap(parking));
       },

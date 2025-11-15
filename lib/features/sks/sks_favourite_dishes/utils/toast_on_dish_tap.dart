@@ -1,9 +1,13 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:fluttertoast/fluttertoast.dart";
 
 import "../../../../theme/colors.dart";
 import "../../../../utils/context_extensions.dart";
+import "../../../analytics/data/clarity.dart";
+import "../../../analytics/data/clarity_events.dart";
 import "../data/repository/sks_favourite_dishes_repository.dart";
 
 Future<void> toastOnDishTap({
@@ -15,6 +19,10 @@ Future<void> toastOnDishTap({
   final success = await ref
       .read(sksFavouriteDishesRepositoryProvider.notifier)
       .toggleDishSubscription(dishId, isSubscribed: subscribe);
+
+  if (success) {
+    unawaited(ref.trackEvent(subscribe ? ClarityEvents.subscribeSksMeal : ClarityEvents.unsubscribeSksMeal));
+  }
 
   if (!success && context.mounted) {
     await Fluttertoast.showToast(

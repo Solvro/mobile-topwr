@@ -5,8 +5,8 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "../../config/ui_config.dart";
 import "../../theme/app_theme.dart";
 import "../../utils/context_extensions.dart";
-import "../analytics/data/umami.dart";
-import "../analytics/data/umami_events.dart";
+import "../analytics/data/clarity.dart";
+import "../analytics/data/clarity_events.dart";
 import "../analytics/presentation/show_feedback_tile.dart";
 import "../bottom_nav_bar/bottom_nav_bar_icon_icons.icons.dart";
 import "../home_view/widgets/logo_app_bar.dart";
@@ -59,7 +59,7 @@ class NavigationTabView extends ConsumerWidget {
         ),
         child2: SmallTileCard(
           onTap: () async {
-            await ref.trackEvent(UmamiEvents.openLeaveReview);
+            await ref.trackEvent(ClarityEvents.openLeaveReview);
             await InAppRatingService.requestStoreListingReview();
           },
           title: context.localize.leave_a_review,

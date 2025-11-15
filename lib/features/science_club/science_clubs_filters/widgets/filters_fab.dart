@@ -5,8 +5,8 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
-import "../../../analytics/data/umami.dart";
-import "../../../analytics/data/umami_events.dart";
+import "../../../analytics/data/clarity.dart";
+import "../../../analytics/data/clarity_events.dart";
 import "../filters_controller.dart";
 import "../filters_sheet.dart";
 
@@ -22,7 +22,7 @@ class FiltersFAB extends ConsumerWidget {
       heroTag: "filters_fab",
       tooltip: context.localize.filters_fab_tooltip,
       onPressed: () async {
-        unawaited(ref.trackEvent(UmamiEvents.openSciClubsFilterSheet));
+        unawaited(ref.trackEvent(ClarityEvents.openSciClubsFilterSheet));
         await showModalBottomSheet<void>(
           context: context,
           constraints: const BoxConstraints(),

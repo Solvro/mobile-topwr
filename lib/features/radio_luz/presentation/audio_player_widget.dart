@@ -38,13 +38,13 @@ class AudioPlayerWidget extends HookConsumerWidget {
             child: Row(
               spacing: RadioLuzConfig.spacingMedium,
               children: [
+                RadioPlayerSlider(radioController: radioController, volume: radioState.volume),
+                const RadioPlayerInfo(),
                 RadioPlayerControlButton(
                   radioController: radioController,
                   isLoading: radioState.isLoading,
                   isPlaying: radioState.isPlaying,
                 ),
-                RadioPlayerSlider(radioController: radioController, volume: radioState.volume),
-                const RadioPlayerInfo(),
               ],
             ),
           ),

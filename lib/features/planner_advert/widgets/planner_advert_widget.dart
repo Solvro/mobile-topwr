@@ -10,8 +10,8 @@ import "../../../utils/launch_url_util.dart";
 import "../../../widgets/loading_widgets/simple_previews/horizontal_rectangular_section_loading.dart";
 import "../../../widgets/my_error_widget.dart";
 import "../../../widgets/technical_message.dart";
-import "../../analytics/data/umami.dart";
-import "../../analytics/data/umami_events.dart";
+import "../../analytics/data/clarity.dart";
+import "../../analytics/data/clarity_events.dart";
 import "../data/models/planner_banner_models.dart";
 import "../repository/planner_advert_repository.dart";
 
@@ -55,7 +55,7 @@ class _PlannerAdvertBanner extends ConsumerWidget {
               icon: data.url != null ? Icon(Icons.open_in_new_rounded, color: context.colorTheme.whiteSoap) : null,
               onTap: data.url != null
                   ? () {
-                      unawaited(ref.trackEvent(UmamiEvents.goToBannerExternalLink));
+                      unawaited(ref.trackEvent(ClarityEvents.goToBannerExternalLink));
                       unawaited(ref.launch(data.url!));
                     }
                   : null,

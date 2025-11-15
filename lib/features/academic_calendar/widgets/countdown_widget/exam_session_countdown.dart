@@ -9,8 +9,8 @@ import "../../../../config/url_config.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../utils/launch_url_util.dart";
-import "../../../analytics/data/umami.dart";
-import "../../../analytics/data/umami_events.dart";
+import "../../../analytics/data/clarity.dart";
+import "../../../analytics/data/clarity_events.dart";
 import "../../repository/academic_calendar_repo.dart";
 import "../../utils/counter_digits.dart";
 import "../../utils/localize_counter_message.dart";
@@ -31,7 +31,7 @@ class ExamSessionCountdown extends ConsumerWidget {
       padding: const EdgeInsets.symmetric(horizontal: HomeViewConfig.paddingLarge),
       child: GestureDetector(
         onTap: () async {
-          unawaited(ref.trackEvent(UmamiEvents.openAcademicCalendarExternalLink));
+          unawaited(ref.trackEvent(ClarityEvents.openAcademicCalendarExternalLink));
           await ref.launch(UrlConfig.academicCalendarUrl);
         },
         child: Container(

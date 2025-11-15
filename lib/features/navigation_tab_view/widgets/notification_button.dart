@@ -7,8 +7,8 @@ import "../../../config/ui_config.dart";
 import "../../../firebase_init.dart";
 import "../../../theme/app_theme.dart";
 import "../../../widgets/my_splash_tile.dart";
-import "../../analytics/data/umami.dart";
-import "../../analytics/data/umami_events.dart";
+import "../../analytics/data/clarity.dart";
+import "../../analytics/data/clarity_events.dart";
 import "notification_dialog.dart";
 
 class NotificationButton extends ConsumerWidget {
@@ -20,7 +20,7 @@ class NotificationButton extends ConsumerWidget {
       padding: SksConfig.outerPaddingLarge,
       child: MySplashTile(
         onTap: () async {
-          unawaited(ref.trackEvent(UmamiEvents.openNotificationInfoBellDialog));
+          unawaited(ref.trackEvent(ClarityEvents.openNotificationInfoBellDialog));
           await showNotificationDialog(
             context: context,
             onConfirmTapped: (context) {

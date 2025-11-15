@@ -9,8 +9,8 @@ import "../../../../../utils/context_extensions.dart";
 import "../../../../../widgets/big_preview_card.dart";
 import "../../../../../widgets/my_error_widget.dart";
 import "../../../../../widgets/subsection_header.dart";
-import "../../../../analytics/data/umami.dart";
-import "../../../../analytics/data/umami_events.dart" show UmamiEvents;
+import "../../../../analytics/data/clarity.dart";
+import "../../../../analytics/data/clarity_events.dart" show ClarityEvents;
 import "../../../../home_view/widgets/loading_widgets/big_scrollable_section_loading.dart";
 import "../../../../home_view/widgets/paddings.dart";
 import "../../../../navigator/utils/navigation_commands.dart";
@@ -75,7 +75,9 @@ class _ScienceClubsList extends ConsumerWidget {
             shortDescription: sciClub.shortDescription ?? "",
             imageData: (sciClub.coverPreview) ? sciClub.cover : sciClub.logo,
             onClick: () async {
-              unawaited(ref.trackEvent(UmamiEvents.openSciClubFromDepartmentDetailView, value: sciClub.id.toString()));
+              unawaited(
+                ref.trackEvent(ClarityEvents.openSciClubFromDepartmentDetailView, value: sciClub.id.toString()),
+              );
               await ref.navigateSciClubsDetail(sciClub);
             },
             showVerifiedBadge: sciClub.source == ScienceClubSource.manualEntry,
