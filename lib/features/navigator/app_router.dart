@@ -61,8 +61,8 @@ import "../science_club/science_clubs_view/science_clubs_view.dart";
 import "../settings/settings_view.dart";
 import "../sks/sks_favourite_dishes/presentation/sks_favourite_dishes_view.dart";
 import "../sks/sks_menu/presentation/sks_menu_screen.dart";
-import "root_view.dart";
 import "views/application_view.dart";
+import "views/root_view.dart";
 
 part "app_router.g.dart";
 part "app_router.gr.dart";

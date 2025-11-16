@@ -4,6 +4,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../utils/unwaited_microtask.dart";
+import "app_router.dart";
 
 part "navigation_stack.g.dart";
 
@@ -35,6 +36,12 @@ Route<dynamic>? previousRoute(Ref ref) {
     return null;
   }
   return stack.removeLast().last; // second top most route
+}
+
+@riverpod
+bool isBottomNav(Ref ref) {
+  final currentRoute = ref.watch(currentRouteProvider)?.settings.name;
+  return currentRoute == RootRoute.name;
 }
 
 @riverpod
