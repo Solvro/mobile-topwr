@@ -20,7 +20,7 @@ class AboutTheAppTile extends ConsumerWidget {
       builder: (context, snapshot) => NavigationTile(
         onTap: () async {
           unawaited(ref.trackEvent(ClarityEvents.openAboutTheApp));
-          await showMyLicenceDialog(context, snapshot.data?.version);
+          await showMyLicenceDialog(context, ref, snapshot.data?.version);
         },
         title: context.localize.about_the_app,
         icon: Icons.info,

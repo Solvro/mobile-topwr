@@ -29,8 +29,7 @@ class MyFloatingActionButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isRadioPlaying = ref.watch(radioControllerProvider).isPlaying;
-    final radioFabPos = ref.watch(radioLuzGlobalButtonPosProvider);
-    debugPrint("bottomInset: $bottomInset");
+    final radioFabPos = ref.watch(radioLuzGlobalCurrentButtonPosProvider);
 
     final fabBottom = isRadioPlaying ? radioFabPos.topEdge - bottomInset + FabConfig.spacing : FabConfig.defaultBottom;
     final fabRight = isRadioPlaying ? radioFabPos.rightEdge : FabConfig.right;

@@ -15,7 +15,9 @@ class RadioLuzGlobalButton extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return PositionDetector(
       onChange: (size, _, right, bottom, _) {
-        ref.read(radioLuzGlobalButtonPosProvider.notifier).setPosition(topEdge: bottom + size.height, rightEdge: right);
+        ref
+            .read(radioLuzGlobalCurrentButtonPosProvider.notifier)
+            .setPosition(topEdge: bottom + size.height, rightEdge: right);
       },
       child: FloatingActionButton(
         heroTag: "radioLuzFab",

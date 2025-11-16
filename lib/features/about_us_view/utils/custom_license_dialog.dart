@@ -1,17 +1,22 @@
 import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../widgets/my_alert_dialog.dart";
+import "../../navigator/is_overlay_open.dart";
 
 Future<void> showCustomLicenseDialog({
   required BuildContext context,
+  required WidgetRef ref,
   required String applicationName,
   required String applicationVersion,
   required String applicationLegalese,
   required Widget applicationIcon,
 }) async {
+  ref.read(isOverlayOpenProvider.notifier).setState(newState: true);
+
   await showCustomDialog(
     dialogSemantics:
         context.localize.version_dialog_semantics_label +
@@ -37,6 +42,8 @@ Future<void> showCustomLicenseDialog({
       applicationLegalese: applicationLegalese,
     ),
   );
+
+  ref.read(isOverlayOpenProvider.notifier).setState(newState: false);
 }
 
 class _DialogContent extends StatelessWidget {
