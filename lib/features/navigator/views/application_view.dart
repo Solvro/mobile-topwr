@@ -9,7 +9,6 @@ import "../../radio_luz/presentation/global_fab/radio_luz_global_button_position
 import "../../radio_luz/service/radio_player_controller.dart";
 import "../app_router.dart";
 import "../navigation_stack.dart";
-import "../providers/is_bottom_sheet_open.dart";
 import "../providers/is_overlay_open.dart";
 
 @RoutePage()
@@ -19,10 +18,7 @@ class ApplicationView extends ConsumerWidget {
   @override
   Widget build(BuildContext conteRxt, WidgetRef ref) {
     final currentRoute = ref.watch(currentRouteProvider)?.settings.name;
-    final showRadioLuzButton =
-        ref.watch(radioControllerProvider).isPlaying &&
-        !ref.watch(isBottomSheetOpenProvider) &&
-        currentRoute != RadioLuzRoute.name;
+    final showRadioLuzButton = ref.watch(radioControllerProvider).isPlaying && currentRoute != RadioLuzRoute.name;
 
     final isOverlayOpen = ref.watch(isOverlayOpenProvider);
     double fabBottomPosition = ref.watch(radioLuzGlobalLastButtonBottomProvider);

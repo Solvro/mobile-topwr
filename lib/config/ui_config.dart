@@ -267,4 +267,6 @@ abstract class FabConfig {
   static const right = 18.0;
   static const defaultBottom = 44.0;
   static const spacing = 12.0;
+  static const bottomSheetOpeningDuration = 600;
+  static const bottomSheetHidingDuration = 200;
 }

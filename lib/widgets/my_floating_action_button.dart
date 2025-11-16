@@ -35,14 +35,17 @@ class MyFloatingActionButton extends ConsumerWidget {
     final fabBottom = isRadioPlaying ? radioFabPos.topEdge - bottomInset + FabConfig.spacing : FabConfig.defaultBottom;
     final fabRight = isRadioPlaying ? radioFabPos.rightEdge : FabConfig.right;
 
-    final targetOpacity = ref.watch(isBottomSheetOpenProvider) ? 0.3 : 1.0;
+    final isBottomSheetOpen = ref.watch(isBottomSheetOpenProvider);
+    final startingOpacity = isBottomSheetOpen ? 1.0 : 0.0;
+    final targetOpacity = isBottomSheetOpen ? 0.0 : 1.0;
+    final duration = isBottomSheetOpen ? FabConfig.bottomSheetHidingDuration : FabConfig.bottomSheetOpeningDuration;
 
     return Positioned(
       bottom: fabBottom,
       right: fabRight,
       child: TweenAnimationBuilder<double>(
-        tween: Tween(begin: 0.3, end: targetOpacity),
-        duration: const Duration(milliseconds: 1000),
+        tween: Tween(begin: startingOpacity, end: targetOpacity),
+        duration: Duration(milliseconds: duration),
         curve: Curves.easeOut,
         builder: (_, opacity, child) {
           return Opacity(opacity: opacity, child: child);
