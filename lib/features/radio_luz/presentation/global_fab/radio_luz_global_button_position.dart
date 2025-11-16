@@ -4,7 +4,7 @@ part "radio_luz_global_button_position.g.dart";
 
 typedef RadioLuzGlobalCurrentButtonPosState = ({double topEdge, double rightEdge});
 
-@riverpod
+@Riverpod(keepAlive: true)
 class RadioLuzGlobalCurrentButtonPos extends _$RadioLuzGlobalCurrentButtonPos {
   @override
   RadioLuzGlobalCurrentButtonPosState build() => (topEdge: 0, rightEdge: 0);
@@ -13,7 +13,7 @@ class RadioLuzGlobalCurrentButtonPos extends _$RadioLuzGlobalCurrentButtonPos {
       state = (topEdge: topEdge, rightEdge: rightEdge);
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 class RadioLuzGlobalLastButtonBottom extends _$RadioLuzGlobalLastButtonBottom {
   @override
   double build() => 0;
