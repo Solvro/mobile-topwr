@@ -45,6 +45,7 @@ class _BadgeContent extends ConsumerWidget {
           unawaited(ref.trackEvent(ClarityEvents.openBannerDialog));
           await showCustomDialog(
             context: context,
+            ref: ref,
             onConfirmTapped: (context) {
               unawaited(ref.trackEvent(ClarityEvents.goToBannerExternalLink));
               unawaited(ref.launch(data.url!));

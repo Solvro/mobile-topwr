@@ -23,6 +23,7 @@ class NotificationButton extends ConsumerWidget {
           unawaited(ref.trackEvent(ClarityEvents.openNotificationInfoBellDialog));
           await showNotificationDialog(
             context: context,
+            ref: ref,
             onConfirmTapped: (context) {
               unawaited(requestFCMPermission());
               Navigator.of(context).pop();

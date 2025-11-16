@@ -1,17 +1,22 @@
 import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
+import "../features/navigator/is_overlay_open.dart";
 
 Future<void> showCustomDialog({
   required BuildContext context,
+  required WidgetRef ref,
   required void Function(BuildContext context)? onConfirmTapped,
   required String confirmText,
   String? dialogSemantics,
   required Widget dialogContent,
   String? closeText,
 }) async {
+  ref.read(isOverlayOpenProvider.notifier).setState(newState: true);
+
   await showDialog<void>(
     context: context,
     builder: (BuildContext context) {
@@ -28,6 +33,8 @@ Future<void> showCustomDialog({
       );
     },
   );
+
+  ref.read(isOverlayOpenProvider.notifier).setState(newState: false);
 }
 
 class _MyAlertDialog extends StatelessWidget {
