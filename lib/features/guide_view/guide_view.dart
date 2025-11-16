@@ -15,7 +15,6 @@ import "../../widgets/wide_tile_card.dart";
 import "../analytics/data/clarity.dart";
 import "../analytics/data/clarity_events.dart";
 import "../departments/departments_view/widgets/departments_view_loading.dart";
-import "../navigator/utils/route_params_controller.dart";
 import "data/models/guide_data.dart";
 import "guide_view_controller.dart";
 import "widgets/guide_grid.dart";
@@ -40,22 +39,11 @@ class _GuideView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // final query = Uri.parse(context.router.currentUrl).queryParameters["q"];
-    final query = ref.watch(routeParamsControllerProvider);
-
-    print("GUIDE VIEW: query=$query");
-    if (query != null) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        ref.read(searchGuideControllerProvider.notifier).onTextChanged(query);
-        ref.read(routeParamsControllerProvider.notifier).onParamsChanged(null);
-      });
-    }
     return Semantics(
       label: context.localize.guide_view_description,
       child: Scaffold(
         appBar: SearchBoxAppBar(
           context,
-          initialQuery: query,
           title: context.localize.guide,
           onQueryChanged: ref.watch(searchGuideControllerProvider.notifier).onTextChanged,
           onSearchBoxTap: () {
