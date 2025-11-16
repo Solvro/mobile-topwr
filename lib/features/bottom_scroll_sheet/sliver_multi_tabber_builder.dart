@@ -104,7 +104,7 @@ class _TabBarWidget extends HookConsumerWidget {
             ),
             padding: const EdgeInsets.symmetric(
               horizontal: NavigationTabViewConfig.universalPadding,
-              vertical: NavigationTabViewConfig.smallerPadding,
+              vertical: NavigationTabViewConfig.tinyPadding,
             ),
             decoration: BoxDecoration(
               color: index == selectedTabIndex.value

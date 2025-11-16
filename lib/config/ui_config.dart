@@ -215,6 +215,7 @@ abstract class NavigationTabViewConfig {
   static const radius = 8.0;
   static const navIconSize = 30.0;
   static const smallerPadding = 6.0;
+  static const tinyPadding = 5.0;
 }
 
 abstract class DigitalGuideConfig {
