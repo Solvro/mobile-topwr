@@ -4,7 +4,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
-import "../features/navigator/is_overlay_open.dart";
+import "../features/navigator/providers/is_overlay_open.dart";
 
 Future<void> showCustomDialog({
   required BuildContext context,
