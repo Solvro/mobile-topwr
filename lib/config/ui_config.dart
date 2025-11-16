@@ -262,3 +262,9 @@ abstract class AlertDialogConfig {
   static const verticalPadding = 20.0;
   static const buttonFontSize = 16.0;
 }
+
+abstract class FabConfig {
+  static const right = 18.0;
+  static const defaultBottom = 44.0;
+  static const spacing = 12.0;
+}

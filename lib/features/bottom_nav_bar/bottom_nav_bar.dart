@@ -4,7 +4,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../config/nav_bar_config.dart";
 import "../../theme/app_theme.dart";
-import "../../widgets/size_measurer.dart";
+import "../../widgets/position_detector.dart";
 import "bottom_nav_height.dart";
 
 class BottomNavBar extends ConsumerWidget {
@@ -13,8 +13,10 @@ class BottomNavBar extends ConsumerWidget {
   final void Function(int) onTap;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return SizeMeasurer(
-      onChange: (size) => ref.read(bottomNavBarHeightProvider.notifier).setHeight(size.height),
+    return PositionDetector(
+      onChange: (size, _, _, bottom, _) {
+        ref.read(bottomNavBarHeightProvider.notifier).setHeight(bottom + size.height);
+      },
       child: Theme(
         data: Theme.of(context).copyWith(splashColor: Colors.transparent, highlightColor: Colors.transparent),
         child: DecoratedBox(

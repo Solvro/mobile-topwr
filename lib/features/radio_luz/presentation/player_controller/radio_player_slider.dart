@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 
-import "../service/radio_player_controller.dart";
-import "rect_thum_shape.dart";
+import "../../service/radio_player_controller.dart";
+import "../rect_thum_shape.dart";
 
 class RadioPlayerSlider extends StatelessWidget {
   const RadioPlayerSlider({super.key, required this.radioController, required this.volume});
