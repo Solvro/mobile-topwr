@@ -33,12 +33,7 @@ class SciClubsScaffold extends ConsumerWidget {
       body: Stack(
         children: [
           if (child != null) child!,
-          if (showFab)
-            Positioned(
-              right: 16, // the left view padding is applied globally
-              bottom: MediaQuery.viewPaddingOf(context).bottom + 16,
-              child: const FiltersFAB(),
-            ),
+          if (showFab) FiltersFAB(bottomInsets: MediaQuery.viewPaddingOf(context).bottom),
         ],
       ),
     );

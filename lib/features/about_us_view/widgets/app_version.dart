@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:package_info_plus/package_info_plus.dart";
 
 import "../../../config/ui_config.dart";
@@ -7,11 +8,11 @@ import "../../../utils/context_extensions.dart";
 import "../../splash_screen/widgets/flutter_splash_screen.dart";
 import "../utils/custom_license_dialog.dart";
 
-class AppVersionTile extends StatelessWidget {
+class AppVersionTile extends ConsumerWidget {
   const AppVersionTile({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
       padding: const EdgeInsets.only(bottom: WideTileCardConfig.basePadding),
       child: FutureBuilder(
@@ -31,7 +32,7 @@ class AppVersionTile extends StatelessWidget {
             horizontalTitleGap: 8,
             onTap: () async {
               // TODO(simon-the-shark): customize [LicensePage] theme
-              await showMyLicenceDialog(context, snapshot.data?.version);
+              await showMyLicenceDialog(context, ref, snapshot.data?.version);
             },
           ),
         ),
@@ -40,9 +41,10 @@ class AppVersionTile extends StatelessWidget {
   }
 }
 
-Future<void> showMyLicenceDialog(BuildContext context, String? applicationVersion) {
+Future<void> showMyLicenceDialog(BuildContext context, WidgetRef ref, String? applicationVersion) {
   return showCustomLicenseDialog(
     context: context,
+    ref: ref,
     applicationIcon: Container(
       width: 50,
       height: 50,

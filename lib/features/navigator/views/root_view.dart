@@ -3,12 +3,12 @@ import "package:flutter/material.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
-import "../../config/nav_bar_config.dart";
-import "../../services/pop_scope/centralized_pop_scope.dart";
-import "../../widgets/horizontal_symmetric_safe_area.dart";
-import "../app_changelog/update_changelog_wrapper.dart";
-import "../bottom_nav_bar/bottom_nav_bar.dart";
-import "nested_nav_pop_scope.dart";
+import "../../../config/nav_bar_config.dart";
+import "../../../services/pop_scope/centralized_pop_scope.dart";
+import "../../../widgets/horizontal_symmetric_safe_area.dart";
+import "../../app_changelog/update_changelog_wrapper.dart";
+import "../../bottom_nav_bar/bottom_nav_bar.dart";
+import "../nested_nav_pop_scope.dart";
 
 @RoutePage()
 class RootView extends HookConsumerWidget {

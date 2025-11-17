@@ -16,6 +16,7 @@ import "../../../../utils/context_extensions.dart";
 import "../../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../../../widgets/horizontal_symmetric_safe_area.dart";
 import "../../../../widgets/my_error_widget.dart";
+import "../../../../widgets/my_floating_action_button.dart";
 import "../../../../widgets/my_text_button.dart";
 import "../../../../widgets/technical_message.dart";
 import "../../../../widgets/text_and_url_widget.dart";
@@ -75,15 +76,9 @@ class _SksMenuView extends ConsumerWidget {
     if (!isLastMenuButtonClicked && !sksMenuData.isMenuOnline) {
       return const _SKSMenuUnavailableAnimation();
     }
+
     return HorizontalSymmetricSafeAreaScaffold(
       appBar: DetailViewAppBar(actions: const [SksUserDataButton()]),
-      floatingActionButton: FloatingActionButton(
-        heroTag: "favouriteDishesFab",
-        elevation: 3,
-        backgroundColor: context.colorTheme.orangePomegranadeLighter,
-        onPressed: ref.navigateToSksFavouriteDishes,
-        child: Icon(Icons.favorite, color: context.colorTheme.whiteSoap),
-      ),
       body: RefreshIndicator(
         onRefresh: () async {
           // ignore: unused_result
@@ -92,28 +87,38 @@ class _SksMenuView extends ConsumerWidget {
           return ref.refresh(sksMenuRepositoryProvider.future);
         },
         color: context.colorTheme.orangePomegranade,
-        child: ListView(
+        child: Stack(
           children: [
-            if (!sksMenuData.isMenuOnline)
-              TechnicalMessage(
-                alertType: AlertType.info,
-                title: context.localize.sks_note,
-                message: context.localize.sks_menu_you_see_last_menu(
-                  DateFormat("dd.MM.yyyy", context.locale.languageCode).format(sksMenuData.lastUpdate),
+            ListView(
+              children: [
+                if (!sksMenuData.isMenuOnline)
+                  TechnicalMessage(
+                    alertType: AlertType.info,
+                    title: context.localize.sks_note,
+                    message: context.localize.sks_menu_you_see_last_menu(
+                      DateFormat("dd.MM.yyyy", context.locale.languageCode).format(sksMenuData.lastUpdate),
+                    ),
+                  ),
+                for (final technicalInfo in sksMenuData.technicalInfos) TechnicalMessage(message: technicalInfo),
+                SksMenuHeader(
+                  dateTimeOfLastUpdate: sksMenuData.lastUpdate.toIso8601String(),
+                  isMenuOnline: sksMenuData.isMenuOnline,
+                  openingHours: sksMenuData.openingHours,
                 ),
-              ),
-            for (final technicalInfo in sksMenuData.technicalInfos) TechnicalMessage(message: technicalInfo),
-            SksMenuHeader(
-              dateTimeOfLastUpdate: sksMenuData.lastUpdate.toIso8601String(),
-              isMenuOnline: sksMenuData.isMenuOnline,
-              openingHours: sksMenuData.openingHours,
+                Padding(
+                  padding: const EdgeInsets.all(HomeViewConfig.paddingMedium).copyWith(top: 0),
+                  child: SksMenuSection(sksMenuData.meals),
+                ),
+                TextAndUrl(SksMenuConfig.sksDataSource, "${context.localize.data_come_from_website}: "),
+                const SizedBox(height: SksMenuConfig.bottomPadding),
+              ],
             ),
-            Padding(
-              padding: const EdgeInsets.all(HomeViewConfig.paddingMedium).copyWith(top: 0),
-              child: SksMenuSection(sksMenuData.meals),
+            MyFloatingActionButton(
+              icon: Icons.favorite,
+              heroTag: "favouriteDishesFab",
+              onPressed: ref.navigateToSksFavouriteDishes,
+              bottomInset: MediaQuery.paddingOf(context).bottom,
             ),
-            TextAndUrl(SksMenuConfig.sksDataSource, "${context.localize.data_come_from_website}: "),
-            const SizedBox(height: SksMenuConfig.bottomPadding),
           ],
         ),
       ),

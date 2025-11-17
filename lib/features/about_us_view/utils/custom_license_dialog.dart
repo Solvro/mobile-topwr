@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
@@ -7,6 +8,7 @@ import "../../../widgets/my_alert_dialog.dart";
 
 Future<void> showCustomLicenseDialog({
   required BuildContext context,
+  required WidgetRef ref,
   required String applicationName,
   required String applicationVersion,
   required String applicationLegalese,
@@ -19,6 +21,7 @@ Future<void> showCustomLicenseDialog({
         context.localize.legalese_dialog_semantics_label +
         applicationLegalese,
     context: context,
+    ref: ref,
     onConfirmTapped: (context) {
       Navigator.of(context).pop();
       showLicensePage(

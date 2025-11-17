@@ -60,6 +60,7 @@ class CalendarTile extends ConsumerWidget {
                     await showCustomDialog(
                       dialogSemantics: context.localize.push_notifications_dialog_info,
                       context: context,
+                      ref: ref,
                       onConfirmTapped: null,
                       confirmText: context.localize.confirm,
                       dialogContent: Text(description, style: context.textTheme.lightTitle),

@@ -4,6 +4,8 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../config/nav_bar_config.dart";
 import "../../theme/app_theme.dart";
+import "../../widgets/position_detector.dart";
+import "bottom_nav_height.dart";
 
 class BottomNavBar extends ConsumerWidget {
   const BottomNavBar({super.key, required this.activeIndex, required this.onTap});
@@ -11,22 +13,27 @@ class BottomNavBar extends ConsumerWidget {
   final void Function(int) onTap;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Theme(
-      data: Theme.of(context).copyWith(splashColor: Colors.transparent, highlightColor: Colors.transparent),
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          boxShadow: <BoxShadow>[
-            BoxShadow(color: Colors.black.withValues(alpha: .08), blurRadius: 20, offset: const Offset(0, -1)),
-          ],
-        ),
-        child: BottomNavigationBar(
-          currentIndex: activeIndex,
-          onTap: onTap,
-          backgroundColor: context.colorTheme.greyLight,
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          type: BottomNavigationBarType.fixed,
-          items: _NavigationBarItemsList(activeIndex, context),
+    return PositionDetector(
+      onChange: (size, _, _, bottom, _) {
+        ref.read(bottomNavBarHeightProvider.notifier).setHeight(bottom + size.height);
+      },
+      child: Theme(
+        data: Theme.of(context).copyWith(splashColor: Colors.transparent, highlightColor: Colors.transparent),
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            boxShadow: <BoxShadow>[
+              BoxShadow(color: Colors.black.withValues(alpha: .08), blurRadius: 20, offset: const Offset(0, -1)),
+            ],
+          ),
+          child: BottomNavigationBar(
+            currentIndex: activeIndex,
+            onTap: onTap,
+            backgroundColor: context.colorTheme.greyLight,
+            showSelectedLabels: false,
+            showUnselectedLabels: false,
+            type: BottomNavigationBarType.fixed,
+            items: _NavigationBarItemsList(activeIndex, context),
+          ),
         ),
       ),
     );

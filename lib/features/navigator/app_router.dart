@@ -61,7 +61,8 @@ import "../science_club/science_clubs_view/science_clubs_view.dart";
 import "../settings/settings_view.dart";
 import "../sks/sks_favourite_dishes/presentation/sks_favourite_dishes_view.dart";
 import "../sks/sks_menu/presentation/sks_menu_screen.dart";
-import "root_view.dart";
+import "views/application_view.dart";
+import "views/root_view.dart";
 
 part "app_router.g.dart";
 part "app_router.gr.dart";
@@ -124,40 +125,46 @@ class AppRouter extends RootStackRouter {
 
   @override
   List<AutoRoute> get routes => [
-    AutoRoute(path: "/", page: RootRoute.page, children: routesWithinTabBar),
-    AutoRoute(path: "/sks-menu", page: SksMenuRoute.page),
-    AutoRoute(path: "/sks-favourite-dishes", page: SksFavouriteDishesRoute.page),
-    AutoRoute(path: "/guide/:id", page: GuideDetailRoute.page),
-    AutoRoute(path: "/departments", page: DepartmentsRoute.page),
-    AutoRoute(path: "/departments/:id", page: DepartmentDetailRoute.page),
-    AutoRoute(path: "/sci-clubs", page: ScienceClubsRoute.page),
-    AutoRoute(path: "/sci-clubs/:id", page: ScienceClubDetailRoute.page),
-    AutoRoute(path: "/aboutUs", page: AboutUsRoute.page),
-    AutoRoute(path: "/digital-guide/:id", page: DigitalGuideRoute.page),
-    AutoRoute(path: "/digital-guide-other/:id", page: DigitalGuideObjectRoute.page),
-    AutoRoute(page: LevelRoute.page),
-    AutoRoute(page: RegionRoute.page),
-    AutoRoute(page: DigitalGuideLiftDetailRoute.page),
-    AutoRoute(page: CorridorRoute.page),
-    AutoRoute(page: DigitalGuideEntranceDetailsRoute.page),
-    AutoRoute(page: SettingsRoute.page),
-    AutoRoute(page: StairsRoute.page),
-    AutoRoute(page: StairwayRoute.page),
-    AutoRoute(page: ToiletsRoute.page),
-    AutoRoute(page: DigitalGuideRoomDetailRoute.page),
-    AutoRoute(path: "/digital-guide/:id/micronavigation-details", page: MicronavigationDetailRoute.page),
-    AutoRoute(page: DoorRoute.page),
-    AutoRoute(page: TransportationDetailRoute.page),
-    AutoRoute(page: RailingsRoute.page),
-    AutoRoute(page: RampsRoute.page),
-    AutoRoute(page: AdaptedToiletDetailRoute.page),
-    AutoRoute(page: LodgeRoute.page),
-    AutoRoute(page: InformationPointRoute.page),
-    AutoRoute(page: DressingRoomRoute.page),
-    AutoRoute(page: ParkingRoute.page),
-    AutoRoute(page: NewsfeedRoute.page),
-    AutoRoute(page: CalendarRoute.page),
-    AutoRoute(path: "/radio-luz", page: RadioLuzRoute.page),
+    AutoRoute(
+      page: ApplicationRoute.page,
+      path: "/",
+      children: [
+        AutoRoute(path: "", page: RootRoute.page, children: routesWithinTabBar),
+        AutoRoute(path: "sks-menu", page: SksMenuRoute.page),
+        AutoRoute(path: "sks-favourite-dishes", page: SksFavouriteDishesRoute.page),
+        AutoRoute(path: "guide/:id", page: GuideDetailRoute.page),
+        AutoRoute(path: "departments", page: DepartmentsRoute.page),
+        AutoRoute(path: "departments/:id", page: DepartmentDetailRoute.page),
+        AutoRoute(path: "sci-clubs", page: ScienceClubsRoute.page),
+        AutoRoute(path: "sci-clubs/:id", page: ScienceClubDetailRoute.page),
+        AutoRoute(path: "aboutUs", page: AboutUsRoute.page),
+        AutoRoute(path: "digital-guide/:id", page: DigitalGuideRoute.page),
+        AutoRoute(path: "digital-guide-other/:id", page: DigitalGuideObjectRoute.page),
+        AutoRoute(page: LevelRoute.page),
+        AutoRoute(page: RegionRoute.page),
+        AutoRoute(page: DigitalGuideLiftDetailRoute.page),
+        AutoRoute(page: CorridorRoute.page),
+        AutoRoute(page: DigitalGuideEntranceDetailsRoute.page),
+        AutoRoute(page: SettingsRoute.page),
+        AutoRoute(page: StairsRoute.page),
+        AutoRoute(page: StairwayRoute.page),
+        AutoRoute(page: ToiletsRoute.page),
+        AutoRoute(page: DigitalGuideRoomDetailRoute.page),
+        AutoRoute(path: "digital-guide/:id/micronavigation-details", page: MicronavigationDetailRoute.page),
+        AutoRoute(page: DoorRoute.page),
+        AutoRoute(page: TransportationDetailRoute.page),
+        AutoRoute(page: RailingsRoute.page),
+        AutoRoute(page: RampsRoute.page),
+        AutoRoute(page: AdaptedToiletDetailRoute.page),
+        AutoRoute(page: LodgeRoute.page),
+        AutoRoute(page: InformationPointRoute.page),
+        AutoRoute(page: DressingRoomRoute.page),
+        AutoRoute(page: ParkingRoute.page),
+        AutoRoute(page: NewsfeedRoute.page),
+        AutoRoute(page: CalendarRoute.page),
+        AutoRoute(path: "radio-luz", page: RadioLuzRoute.page),
+      ],
+    ),
   ];
 }
 
