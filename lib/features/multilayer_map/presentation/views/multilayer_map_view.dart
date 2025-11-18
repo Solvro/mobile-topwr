@@ -18,9 +18,11 @@ class MultilayerMapView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final initialQuery = context.routeData.parent?.queryParams.optString("qMap");
     return MapView<MultilayerItem>(
       mapViewTexts: (emptyList: context.localize.building_not_found, title: context.localize.multilayer_map_title),
       initialActiveItemId: initialActiveItemId,
+      initialQuery: initialQuery,
       animateListTiles: true,
       mapSheetSize: MapViewBottomSheetConfig.buildingsMapSheetSize,
       mapControllers: multilayerMapControllers,

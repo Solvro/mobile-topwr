@@ -24,7 +24,7 @@ import "widgets/tooltip_on_click.dart";
 
 @RoutePage()
 class GuideDetailView extends StatelessWidget {
-  const GuideDetailView({@PathParam("id") required this.id, @QueryParam("sec") this.sectionId, super.key});
+  const GuideDetailView({@PathParam("id") required this.id, @QueryParam("section") this.sectionId, super.key});
 
   final int id;
   final int? sectionId;

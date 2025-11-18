@@ -56,6 +56,7 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
         await ref.watch(bottomSheetPixelsProvider.notifier).onSearchBoxTap();
       },
       actions: [if (ref.watch(context.activeMarkerController<T>()) != null) NavigateButton<T>()],
+      initialQuery: context.initialQuery<T>(),
     );
 
     final categoryData = isMultilayerMap

@@ -25,6 +25,7 @@ class MapView<T extends GoogleNavigable> extends ConsumerWidget {
     required this.semanticsLabel,
     this.animateListTiles = false,
     this.initialActiveItemId,
+    this.initialQuery,
     super.key,
   });
   final MapControllers<T> mapControllers;
@@ -35,6 +36,7 @@ class MapView<T extends GoogleNavigable> extends ConsumerWidget {
   final bool animateListTiles;
   final String? initialActiveItemId;
   final String semanticsLabel;
+  final String? initialQuery;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -54,6 +56,7 @@ class MapView<T extends GoogleNavigable> extends ConsumerWidget {
         mapSheetSize: mapSheetSize,
         animateListTiles: animateListTiles,
         initialActiveItemId: initialActiveItemId,
+        initialQuery: initialQuery,
         child: Scaffold(
           backgroundColor: context.colorTheme.whiteSoap,
           body: kIsWeb || isBigScreen
