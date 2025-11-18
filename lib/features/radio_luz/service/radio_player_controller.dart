@@ -24,7 +24,7 @@ class RadioController extends _$RadioController {
   late final AudioPlayerStrings _audioPlayerStrings;
   _AppLifecycleStopper? _stopper;
 
-  var initialized = false;
+  var _initialized = false;
 
   @override
   RadioState build() {
@@ -67,9 +67,9 @@ class RadioController extends _$RadioController {
   }
 
   void init(AudioPlayerStrings audioPlayerStrings) {
-    if (initialized) return;
+    if (_initialized) return;
     _audioPlayerStrings = audioPlayerStrings;
-    initialized = true;
+    _initialized = true;
   }
 
   Future<Uri> assetToFileUri(String assetPath) async {

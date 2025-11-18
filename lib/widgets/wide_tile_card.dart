@@ -95,7 +95,7 @@ class WideTileCard extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 16),
-                  if (trailing != null) trailing!,
+                  ?trailing,
                 ],
               ),
             ),
