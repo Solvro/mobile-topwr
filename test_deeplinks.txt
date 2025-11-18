@@ -47,7 +47,7 @@ https://topwr.solvro.pl/sks-favourite-dishes
 https://topwr.solvro.pl/aboutUs
 
 https://topwr.solvro.pl/buildings
-https://topwr.solvro.pl/buildings/10 # nie dziala
+https://topwr.solvro.pl/buildings/10
 
 https://topwr.solvro.pl/buildings?qMap=test
 https://topwr.solvro.pl/buildings?qMap=library

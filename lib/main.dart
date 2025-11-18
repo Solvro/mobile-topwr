@@ -5,7 +5,7 @@ import "package:clarity_flutter/clarity_flutter.dart";
 import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:flutter/services.dart";
-import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:hooks_riverpod/hooks_riverpod.dart";
 import "package:just_audio_background/just_audio_background.dart";
 import "package:sentry_flutter/sentry_flutter.dart";
 import "package:solvro_translator_core/solvro_translator_core.dart";
@@ -16,6 +16,7 @@ import "config/ui_config.dart";
 import "config/wiredash.dart";
 import "features/in_app_review/presentation/in_app_review.dart";
 import "features/navigator/app_router.dart";
+import "features/navigator/hooks/use_deeplink_listener.dart";
 import "features/navigator/navigation_stack.dart";
 import "features/splash_screen/splash_screen.dart";
 import "features/splash_screen/splash_screen_controller.dart";
@@ -71,13 +72,13 @@ Future<void> runToPWR() async {
   );
 }
 
-class MyApp extends ConsumerWidget {
+class MyApp extends HookConsumerWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentLocale = ref.watch(preferredLanguageRepositoryProvider);
-
+    useDeeplinkListener(ref);
     return RemoveOldTranslations(
       child: FlushCMSCacheRemotelyWidget(
         child: FlushTranslationsCacheRemotelyWidget(

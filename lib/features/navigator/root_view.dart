@@ -20,18 +20,8 @@ class RootView extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final timesPushedToTabBar = useState(0);
-
-    final qGuide = context.routeData.queryParams.optString("qGuide");
-    final qMap = context.routeData.queryParams.optString("qMap");
-    final qParkings = context.routeData.queryParams.optString("qParkings");
-
     return ShowEntryDialogWrapper(
       child: AutoTabsRouter(
-        key: ValueKey(
-          "|<->|qGuide_${qGuide ?? ''}"
-          "|<->|qMap_${qMap ?? ''}"
-          "|<->|qParkings_${qParkings ?? ''}",
-        ),
         routes: NavBarConfig.tabViews.values.toList(),
         builder: (context, child) {
           final tabsRouter = AutoTabsRouter.of(context);
