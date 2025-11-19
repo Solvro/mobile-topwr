@@ -42,7 +42,6 @@ class ScienceClubCard extends StatelessWidget {
                 Expanded(
                   child: _TextContent(
                     title: title,
-                    department: department,
                     tags: tags,
                     showVerifiedBadge: showVerifiedBadge,
                     showStrategicBadge: showStrategicBadge,
@@ -81,14 +80,12 @@ class ScienceClubCard extends StatelessWidget {
 
 class _TextContent extends StatelessWidget {
   final String title;
-  final String? department;
   final String? tags;
   final bool showVerifiedBadge;
   final bool showStrategicBadge;
 
   const _TextContent({
     required this.title,
-    this.department,
     this.tags,
     required this.showVerifiedBadge,
     required this.showStrategicBadge,
@@ -127,12 +124,7 @@ class _TextContent extends StatelessWidget {
           final int actualTitleLines = badgesIn2ndLine ? titleLines + 1 : titleLines;
 
           final scaleType = context.textScaleFactor.scaleType;
-          final maxLines = calculateMaxLines(
-            scaleType: scaleType,
-            hasTags: tags != null,
-            hasDepts: department != null,
-            titleLines: actualTitleLines,
-          );
+          final maxLines = calculateMaxLines(scaleType: scaleType, hasTags: tags != null, titleLines: actualTitleLines);
 
           return Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -144,15 +136,6 @@ class _TextContent extends StatelessWidget {
                 maxFontSize: 18,
                 overflow: TextOverflow.ellipsis,
               ),
-              if (department != null && maxLines.deptsMaxLines > 0)
-                const SizedBox(height: ScienceClubCardConfig.trailingPadding),
-              if (department != null && maxLines.deptsMaxLines > 0)
-                AutoSizeText.rich(
-                  TextSpan(text: department, style: context.textTheme.body),
-                  maxLines: maxLines.deptsMaxLines,
-                  maxFontSize: 13,
-                  overflow: TextOverflow.ellipsis,
-                ),
               if (tags != null && maxLines.tagsMaxLines > 0)
                 const SizedBox(height: ScienceClubCardConfig.trailingPadding),
               if (tags != null && maxLines.tagsMaxLines > 0)
