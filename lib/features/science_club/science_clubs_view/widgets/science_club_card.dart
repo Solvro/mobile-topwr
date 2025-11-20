@@ -21,7 +21,6 @@ class ScienceClubCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final title = sciClub.name;
-    final department = sciClub.department?.name;
     final tags = sciClub.tags?.map((tag) => "#${tag.tag}").toList().join(", ");
     final showVerifiedBadge = sciClub.source == ScienceClubSource.manualEntry;
     final showStrategicBadge = sciClub.isStrategic;
