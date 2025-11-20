@@ -48,6 +48,7 @@ class _RailingsView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    debugPrint("railing: $railing");
     return Scaffold(
       appBar: DetailViewAppBar(actions: [AccessibilityButton()]),
       body: Padding(
@@ -55,9 +56,12 @@ class _RailingsView extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              context.localize.railing,
-              style: context.textTheme.headline.copyWith(fontSize: DigitalGuideConfig.headlineFont),
+            Focus(
+              autofocus: true,
+              child: Text(
+                context.localize.railing,
+                style: context.textTheme.headline.copyWith(fontSize: DigitalGuideConfig.headlineFont),
+              ),
             ),
             const SizedBox(height: DigitalGuideConfig.heightSmall),
             BulletList(

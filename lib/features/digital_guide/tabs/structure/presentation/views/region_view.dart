@@ -81,6 +81,11 @@ class _RegionView extends ConsumerWidget {
         itemCount: region.lifts.length,
       ),
       RegionDataSliverListItem(
+        text: (index) => context.localize.lodge,
+        onTap: (index) => ref.navigateDigitalGuideLodge(regionData.lodges[index]),
+        itemCount: region.lodges.length,
+      ),
+      RegionDataSliverListItem(
         text: (index) => regionData.toilets[index].toiletType == ToiletType.men
             ? context.localize.men_toilet
             : context.localize.women_toilet,
@@ -96,11 +101,6 @@ class _RegionView extends ConsumerWidget {
         text: (index) => context.localize.parking,
         onTap: (index) => ref.navigateDigitalGuideParking(regionData.parkings[index]),
         itemCount: region.parkings.length,
-      ),
-      RegionDataSliverListItem(
-        text: (index) => context.localize.lodge,
-        onTap: (index) => ref.navigateDigitalGuideLodge(regionData.lodges[index]),
-        itemCount: region.lodges.length,
       ),
       RegionDataSliverListItem(
         text: (index) => context.localize.information_point,
