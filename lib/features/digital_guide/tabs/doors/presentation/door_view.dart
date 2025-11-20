@@ -72,7 +72,10 @@ class _DoorsView extends ConsumerWidget {
     ].map((string) => string.trim()).where((string) => string.isNotEmpty).toIList();
 
     final widgets = [
-      Text(l10n.door, style: context.textTheme.headlineMedium?.copyWith(fontSize: DigitalGuideConfig.headlineFont)),
+      Focus(
+        autofocus: true,
+        child: Text(l10n.door, style: context.textTheme.headlineMedium?.copyWith(fontSize: DigitalGuideConfig.headlineFont)),
+      ),
       const SizedBox(height: DigitalGuideConfig.heightSmall),
       BulletList(items: textStrings),
       const SizedBox(height: DigitalGuideConfig.heightSmall),

@@ -26,7 +26,10 @@ class AdaptedToiletDetailView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final List<Widget> widgets = [
-      Text(adaptedToilet.getDescription(context), style: context.textTheme.titleLarge?.copyWith(fontSize: 24)),
+      Focus(
+        autofocus: true,
+        child: Text(adaptedToilet.getDescription(context), style: context.textTheme.titleLarge?.copyWith(fontSize: 24)),
+      ),
       const SizedBox(height: DigitalGuideConfig.heightMedium),
       BulletList(
         items: [

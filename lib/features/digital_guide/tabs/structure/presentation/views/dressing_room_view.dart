@@ -31,9 +31,12 @@ class DressingRoomView extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              context.localize.dressing_room,
-              style: context.textTheme.headlineMedium?.copyWith(fontSize: DigitalGuideConfig.headlineFont),
+            Focus(
+              autofocus: true,
+              child: Text(
+                context.localize.dressing_room,
+                style: context.textTheme.headlineMedium?.copyWith(fontSize: DigitalGuideConfig.headlineFont),
+              ),
             ),
             const SizedBox(height: DigitalGuideConfig.heightSmall),
             Text(context.localize.localization, style: context.textTheme.titleLarge),

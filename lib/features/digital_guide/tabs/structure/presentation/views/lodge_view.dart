@@ -31,13 +31,16 @@ class LodgeView extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Semantics(
-              container: true,
-              label: context.localize.lodge,
-              excludeSemantics: true,
-              child: Text(
-                context.localize.lodge,
-                style: context.textTheme.headlineMedium?.copyWith(fontSize: DigitalGuideConfig.headlineFont),
+            Focus(
+              autofocus: true,
+              child: Semantics(
+                container: true,
+                label: context.localize.lodge,
+                excludeSemantics: true,
+                child: Text(
+                  context.localize.lodge,
+                  style: context.textTheme.headlineMedium?.copyWith(fontSize: DigitalGuideConfig.headlineFont),
+                ),
               ),
             ),
             const SizedBox(height: DigitalGuideConfig.heightSmall),

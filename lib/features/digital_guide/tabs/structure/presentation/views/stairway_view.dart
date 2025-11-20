@@ -28,9 +28,12 @@ class StairwayView extends ConsumerWidget {
     final StairwayTranslation stairwayInformation = stairway.translations.plTranslation;
 
     final widgets = [
-      Text(
-        stairway.translations.plTranslation.name,
-        style: context.textTheme.headlineMedium?.copyWith(fontSize: DigitalGuideConfig.headlineFont),
+      Focus(
+        autofocus: true,
+        child: Text(
+          stairway.translations.plTranslation.name,
+          style: context.textTheme.headlineMedium?.copyWith(fontSize: DigitalGuideConfig.headlineFont),
+        ),
       ),
       const SizedBox(height: DigitalGuideConfig.heightSmall),
       BulletList(items: [stairwayInformation.location, stairwayInformation.comment].toIList()),

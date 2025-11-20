@@ -32,9 +32,12 @@ class ToiletsView extends ConsumerWidget {
         padding: const EdgeInsets.symmetric(horizontal: DigitalGuideConfig.paddingBig),
         child: ListView(
           children: [
-            Text(
-              toilet.toiletType == ToiletType.men ? context.localize.men_toilet : context.localize.women_toilet,
-              style: context.textTheme.headlineMedium?.copyWith(fontSize: DigitalGuideConfig.headlineFont),
+            Focus(
+              autofocus: true,
+              child: Text(
+                toilet.toiletType == ToiletType.men ? context.localize.men_toilet : context.localize.women_toilet,
+                style: context.textTheme.headlineMedium?.copyWith(fontSize: DigitalGuideConfig.headlineFont),
+              ),
             ),
             const SizedBox(height: DigitalGuideConfig.heightSmall),
             BulletList(

@@ -57,9 +57,12 @@ class _StairsView extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              context.localize.stairs,
-              style: context.textTheme.headlineMedium?.copyWith(fontSize: DigitalGuideConfig.headlineFont),
+            Focus(
+              autofocus: true,
+              child: Text(
+                context.localize.stairs,
+                style: context.textTheme.headlineMedium?.copyWith(fontSize: DigitalGuideConfig.headlineFont),
+              ),
             ),
             const SizedBox(height: DigitalGuideConfig.heightSmall),
             BulletList(

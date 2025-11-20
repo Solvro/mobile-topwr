@@ -32,7 +32,10 @@ class DigitalGuideRoomDetailView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final roomInformation = room.translations.pl;
     final widgets = [
-      Text(roomInformation.name, style: context.textTheme.headlineMedium?.copyWith(fontSize: 18)),
+      Focus(
+        autofocus: true,
+        child: Text(roomInformation.name, style: context.textTheme.headlineMedium?.copyWith(fontSize: 18)),
+      ),
       const SizedBox(height: DigitalGuideConfig.heightTiny),
       Text(
         roomInformation.roomPurpose,
