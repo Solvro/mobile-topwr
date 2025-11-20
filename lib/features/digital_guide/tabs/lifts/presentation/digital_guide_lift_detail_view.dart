@@ -66,7 +66,7 @@ class DigitalGuideLiftDetailView extends ConsumerWidget {
                     padding: const EdgeInsets.all(DigitalGuideConfig.heightMedium),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(DigitalGuideConfig.borderRadiusSmall),
-                      child: DigitalGuideImage(id: lift.imagesIds![index]),
+                      child: DigitalGuideImage(id: lift.imagesIds![index], semanticsLabel: context.localize.lift),
                     ),
                   );
                 }, childCount: lift.imagesIds!.length),

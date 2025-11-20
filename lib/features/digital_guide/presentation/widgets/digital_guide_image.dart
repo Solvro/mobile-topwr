@@ -13,6 +13,7 @@ class DigitalGuideImage extends ConsumerWidget {
   final int id;
   final bool zoomable;
   final String? semanticsLabel;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncImageUrl = ref.watch(imageRepositoryProvider(id));
