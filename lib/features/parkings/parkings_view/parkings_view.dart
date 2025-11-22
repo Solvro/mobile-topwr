@@ -17,9 +17,12 @@ import "widgets/parking_tile.dart";
 class ParkingsView extends ConsumerWidget {
   const ParkingsView({super.key, @PathParam("initialActiveItemId") this.initialActiveItemId});
   final String? initialActiveItemId;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final initialQuery = context.routeData.parent?.queryParams.optString("qParkings");
     return MapView<Parking>(
+      initialQuery: initialQuery,
       mapViewTexts: (emptyList: context.localize.parkings_not_found, title: context.localize.parkings_title),
       initialActiveItemId: initialActiveItemId,
       animateListTiles: true,

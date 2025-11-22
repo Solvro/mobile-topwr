@@ -8,17 +8,26 @@ import "../theme/app_theme.dart";
 import "../utils/context_extensions.dart";
 
 class SearchBox extends HookWidget {
-  const SearchBox({super.key, required this.onQueryChanged, this.onTap, this.searchText});
+  const SearchBox({super.key, required this.onQueryChanged, this.onTap, this.searchText, this.initialQuery});
   final VoidCallback? onTap;
   final String? searchText;
   final void Function(String query) onQueryChanged;
+  final String? initialQuery;
 
   @override
   Widget build(BuildContext context) {
     final scaler = context.textScaler.clamp(maxScaleFactor: 2);
     final focusNode = useFocusNode();
-    final controller = useTextEditingController();
-    final showCloseIcon = useState(false);
+    final controller = useTextEditingController(text: initialQuery);
+    final showCloseIcon = useState(initialQuery?.isNotEmpty ?? false);
+
+    useEffect(() {
+      if (initialQuery != null && initialQuery != "") {
+        controller.text = initialQuery!;
+        showCloseIcon.value = initialQuery!.isNotEmpty;
+      }
+      return null;
+    }, [initialQuery]);
 
     final onTapOutside = useCallback((_) {
       if (focusNode.hasFocus) {
