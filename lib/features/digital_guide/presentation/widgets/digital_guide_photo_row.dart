@@ -14,6 +14,7 @@ class DigitalGuidePhotoRow extends StatelessWidget {
 
   const DigitalGuidePhotoRow({super.key, required this.imagesIDs, required this.semanticsLabel});
   final String semanticsLabel;
+
   @override
   Widget build(BuildContext context) {
     if (imagesIDs.isEmpty) {
