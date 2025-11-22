@@ -43,7 +43,13 @@ class CorridorView extends ConsumerWidget {
     ].map((e) => e.trim()).where((e) => e.isNotEmpty).toIList();
 
     final widgets = [
-      Text(comments.name, style: context.textTheme.headline.copyWith(fontSize: DigitalGuideConfig.headlineFont)),
+      Focus(
+        autofocus: true,
+        child: Text(
+          comments.name,
+          style: context.textTheme.headline.copyWith(fontSize: DigitalGuideConfig.headlineFont),
+        ),
+      ),
       const SizedBox(height: DigitalGuideConfig.heightMedium),
       BulletList(items: textStrings),
       AccessibilityProfileCard(
