@@ -237,6 +237,10 @@
   "@sci_circle_not_found": {
     "description": "Error message when student organizations are not found"
   },
+  "calendar_events_not_found": "Nie znaleziono wydarzeń",
+  "@calendar_events_not_found": {
+    "description": "Error message when calendar events are not found"
+  },
   "all": "Wszystkie",
   "@all": {
     "description": "Label for showing all items"

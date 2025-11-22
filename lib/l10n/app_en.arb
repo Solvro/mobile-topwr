@@ -60,6 +60,7 @@
   "polinka_prefix": "Polinka",
   "department_not_found": "Faculty not found",
   "sci_circle_not_found": "Student organizations not found",
+  "calendar_events_not_found": "Event not found",
   "all": "All",
   "parkings_title": "Parkings",
   "parkings_not_found": "Parking not found",
