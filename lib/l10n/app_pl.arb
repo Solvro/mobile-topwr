@@ -3740,5 +3740,13 @@
   "radio_luz_description2": "Jesteś twórczą osobą? Masz ucho do muzyki, głos do mikrofonu albo serce do reportażu? Rekrutujemy dwa razy do roku. Bądź z nami na bieżąco",
   "@radio_luz_description2": {
     "description": "Longer call-to-action inviting creative people to join Radio LUZ and informing about biannual recruitment"
+  },
+  "no_modification_date": "Nie znaleziono daty aktualizacji",
+  "@no_modification_date": {
+    "description": "Message displayed when no update date is found"
+  },
+  "no_creation_date": "Nie znaleziono daty utworzenia",
+  "@no_creation_date": {
+    "description": "Message displayed when no creation date is found"
   }
 }
