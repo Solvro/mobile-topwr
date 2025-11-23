@@ -59,4 +59,49 @@ extension DataCachingX on Ref {
     }
     return json;
   }
+
+  Future<JSON<T>> postAndCacheData<T>(
+    String fullUrl,
+    T Function(Map<String, dynamic> json) fromJson, {
+    TtlDays ttlDays = TtlDays.defaultDefault,
+    required bool Function(JSON<T> cachedData) extraValidityCheck,
+    required String Function(BuildContext context) localizedOfflineMessage,
+    VoidCallback? onRetry,
+    AuthHeader? authHeader,
+    Object? body,
+    Map<String, dynamic>? queryParameters,
+    Map<String, dynamic>? headers,
+  }) async {
+    final cacheManager = watch(restCacheManagerProvider(ttlDays));
+    final cacheKey = fullUrl; 
+
+    final cachedFile = await cacheManager.getFileFromCache(cacheKey);
+    if (cachedFile != null) {
+      final cachedData = await cachedFile.file.readAsString();
+      final data = parseJSON(jsonDecode(cachedData), fromJson);
+      if (extraValidityCheck(data)) {
+        return data;
+      }
+    }
+
+    final response = await safePostWatch<dynamic>(
+      fullUrl,
+      data: body,
+      queryParameters: queryParameters,
+      localizedMessage: localizedOfflineMessage,
+      onRetry: onRetry,
+      authHeader: authHeader,
+      headers: headers,
+    );
+
+    final json = parseJSON(response.data, fromJson);
+    if (extraValidityCheck(json)) {
+      await cacheManager.putFile(
+        cacheKey,
+        Uint8List.fromList(utf8.encode(jsonEncode(response.data))),
+        fileExtension: CacheManagerConfig.jsonExtesion,
+      );
+    }
+    return json;
+  }
 }

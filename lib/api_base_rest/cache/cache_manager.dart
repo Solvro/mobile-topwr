@@ -11,7 +11,7 @@ CacheManager restCacheManager(Ref ref, [TtlDays ttlDays = TtlDays.defaultDefault
   return CacheManager(
     Config(
       "NewJsonCacheManager${ttlDays.days}Days",
-      stalePeriod: Duration(days: ttlDays.days),
+      stalePeriod: ttlDays.duration,
       maxNrOfCacheObjects: 1000,
     ),
   );
