@@ -574,7 +574,6 @@
   "version_dialog_semantics_label": "app version: ",
   "legalese_dialog_semantics_label": "legalese info:",
   "fullscreen_image": " - fullscreen",
-  "localization_digital_guide_image_screen_reader_label": "Building's location map",
   "toilet": "Toilet",
   "audio_message_comment_screen_reader": "To play the message, click the play button.",
   "audio_player_slider": "Playback slider. {value} percent.",

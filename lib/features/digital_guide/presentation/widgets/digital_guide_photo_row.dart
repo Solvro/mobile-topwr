@@ -12,8 +12,7 @@ import "digital_guide_nav_link.dart";
 class DigitalGuidePhotoRow extends StatelessWidget {
   final IList<int> imagesIDs;
 
-  const DigitalGuidePhotoRow({super.key, required this.imagesIDs, required this.semanticsLabel});
-  final String semanticsLabel;
+  const DigitalGuidePhotoRow({super.key, required this.imagesIDs});
 
   @override
   Widget build(BuildContext context) {
@@ -23,63 +22,58 @@ class DigitalGuidePhotoRow extends StatelessWidget {
 
     final displayImages = imagesIDs.take(3).toIList();
 
-    return Column(
-      children: [
-        SizedBox(
-          height: DigitalGuideConfig.photoRowHeight,
-          child: Row(
-            children: displayImages
-                .map(
-                  (id) => Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: DigitalGuideConfig.paddingSmall),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(DigitalGuideConfig.borderRadiusMedium),
-                        child: Semantics(
-                          label: semanticsLabel,
-                          image: true,
-                          container: true,
-                          button: true,
-                          child: ExcludeSemantics(
-                            child: GestureDetector(
-                              onTap: () async {
-                                if (imagesIDs.length > 1) {
-                                  await showGallery(context, initId: id, semanticsLabel: semanticsLabel);
-                                }
-                              },
-                              child: DigitalGuideImage(id: id, zoomable: imagesIDs.length == 1),
+    return ExcludeSemantics(
+      child: Column(
+        children: [
+          SizedBox(
+            height: DigitalGuideConfig.photoRowHeight,
+            child: Row(
+              children: displayImages
+                  .map(
+                    (id) => Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: DigitalGuideConfig.paddingSmall),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(DigitalGuideConfig.borderRadiusMedium),
+                          child: Semantics(
+                            image: true,
+                            container: true,
+                            button: true,
+                            child: ExcludeSemantics(
+                              child: GestureDetector(
+                                onTap: () async {
+                                  if (imagesIDs.length > 1) {
+                                    await showGallery(context, initId: id);
+                                  }
+                                },
+                                child: DigitalGuideImage(id: id, zoomable: imagesIDs.length == 1),
+                              ),
                             ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                )
-                .toList(),
+                  )
+                  .toList(),
+            ),
           ),
-        ),
-        if (imagesIDs.length > 3)
-          Semantics(
-            image: true,
-            button: true,
-            container: true,
-            child: Padding(
+          if (imagesIDs.length > 3)
+            Padding(
               padding: const EdgeInsets.only(top: DigitalGuideConfig.heightSmall),
               child: DigitalGuideNavLink(
-                onTap: () => showGallery(context, semanticsLabel: semanticsLabel),
+                onTap: () => showGallery(context),
                 text: context.localize.see_all_photos(imagesIDs.length),
               ),
             ),
-          ),
-      ],
+        ],
+      ),
     );
   }
 
-  Future<void> showGallery(BuildContext context, {int? initId, required String semanticsLabel}) async {
+  Future<void> showGallery(BuildContext context, {int? initId}) async {
     await showDialog<void>(
       context: context,
-      builder: (context) =>
-          DigitalGuideCarouselWithIndicator(imgListId: imagesIDs, initId: initId, semanticsLabel: semanticsLabel),
+      builder: (context) => DigitalGuideCarouselWithIndicator(imgListId: imagesIDs, initId: initId),
     );
   }
 }

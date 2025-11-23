@@ -65,10 +65,7 @@ class LodgeView extends ConsumerWidget {
               ),
             Semantics(container: true, child: Text(lodgeInformation.comment)),
             if (lodgeInformation.comment.isNotEmpty) const SizedBox(height: DigitalGuideConfig.heightMedium),
-            DigitalGuidePhotoRow(
-              imagesIDs: lodge.imagesIds?.toIList() ?? const IList.empty(),
-              semanticsLabel: context.localize.lodge,
-            ),
+            DigitalGuidePhotoRow(imagesIDs: lodge.imagesIds?.toIList() ?? const IList.empty()),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: DigitalGuideConfig.paddingBig),
               child: AccessibilityProfileCard(
