@@ -13,6 +13,7 @@ import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../gen/assets.gen.dart";
 import "../../services/translations_service/data/preferred_lang_repository.dart";
+import "../../widgets/horizontal_symmetric_safe_area.dart";
 import "../branches/data/model/branch.dart";
 import "../branches/data/repository/branch_repository.dart";
 import "../branches/presentation/branch_dialog.dart";
@@ -69,7 +70,7 @@ class SettingsView extends ConsumerWidget {
       ),
     ];
 
-    return Scaffold(
+    return HorizontalSymmetricSafeAreaScaffold(
       backgroundColor: context.colorTheme.whiteSoap,
       appBar: DetailViewAppBar(title: (text: context.localize.settings, context: context)),
       body: Padding(

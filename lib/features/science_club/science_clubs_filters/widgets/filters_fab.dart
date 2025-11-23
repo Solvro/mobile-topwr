@@ -30,17 +30,14 @@ class FiltersFAB extends ConsumerWidget {
           builder: (context) => UncontrolledProviderScope(container: parentProvider, child: const FiltersSheet()),
         );
       },
-      backgroundColor: isActive ? context.colorTheme.orangePomegranade : context.colorTheme.whiteSoap,
+      backgroundColor: context.colorTheme.orangePomegranadeLighter,
       child: Semantics(
         label: context.localize.filters_fab_tooltip,
         child: Stack(
           children: [
             Padding(
               padding: const EdgeInsets.all(8),
-              child: Icon(
-                Icons.tune,
-                color: !isActive ? context.colorTheme.orangePomegranade : context.colorTheme.whiteSoap,
-              ),
+              child: Icon(Icons.tune, color: context.colorTheme.whiteSoap),
             ),
             if (isActive)
               Positioned(top: 4, right: 4, child: Icon(Icons.circle, size: 8, color: context.colorTheme.whiteSoap)),
