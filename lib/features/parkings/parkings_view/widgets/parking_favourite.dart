@@ -21,14 +21,8 @@ class FavouriteParkingWidget extends ConsumerWidget {
       },
       isSelected: isFavorite,
       tooltip: context.localize.favourite_button,
-      icon: FavouriteIcon(
-        icon: Icons.favorite_border_outlined,
-        color: context.colorTheme.whiteSoap,
-      ),
-      selectedIcon: FavouriteIcon(
-        icon: Icons.favorite_rounded,
-        color: context.colorTheme.orangePomegranade,
-      ),
+      icon: FavouriteIcon(icon: Icons.favorite_border_outlined, color: context.colorTheme.whiteSoap),
+      selectedIcon: FavouriteIcon(icon: Icons.favorite_rounded, color: context.colorTheme.orangePomegranade),
     );
   }
 }
