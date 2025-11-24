@@ -41,7 +41,7 @@ class StairwayView extends ConsumerWidget {
       if (stairway.imagesIds.isNotEmpty)
         Padding(
           padding: const EdgeInsets.symmetric(vertical: DigitalGuideConfig.paddingMedium),
-          child: DigitalGuidePhotoRow(imagesIDs: stairway.imagesIds, semanticsLabel: context.localize.stairs),
+          child: DigitalGuidePhotoRow(imagesIDs: stairway.imagesIds),
         ),
       if (stairway.stairsIds.isNotEmpty) const SizedBox(height: DigitalGuideConfig.heightMedium),
       ListView.separated(

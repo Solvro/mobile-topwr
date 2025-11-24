@@ -39,7 +39,7 @@ class DigitalGuideObjectsFeaturesSection extends ConsumerWidget {
                 padding: const EdgeInsets.all(DigitalGuideConfig.paddingMedium),
                 child: MyHtmlWidget(tile.translations.pl.content, textStyle: context.textTheme.body),
               ),
-              DigitalGuidePhotoRow(imagesIDs: tile.images.lock, semanticsLabel: context.localize.surroundings),
+              DigitalGuidePhotoRow(imagesIDs: tile.images.lock),
             ],
           ),
     ];

@@ -667,6 +667,10 @@
   "@entrances": {
     "description": "Title for entrances section"
   },
+  "entrance": "Wejście",
+  "@entrance": {
+    "description": "Alternative description for entrace image"
+  },
   "lifts": "Windy",
   "@lifts": {
     "description": "Title for elevators section"
@@ -674,6 +678,10 @@
   "adapted_toilets": "Toalety dostosowane",
   "@adapted_toilets": {
     "description": "Label for adapted toilets accessibility feature"
+  },
+  "adapted_toilet": "Adapted toilet",
+  "@adapted_toilet": {
+    "description": "Alternative description for adaptive toilet"
   },
   "adapted_toilet_description": "Toaleta dla osób z niepełnosprawnościami",
   "@adapted_toilet_description": {
@@ -698,6 +706,10 @@
   "room_information": "Pomieszczenia",
   "@room_information": {
     "description": "Title for room information section"
+  },
+  "alt_room_information": "Pomieszczenie",
+  "@alt_room_information": {
+    "description": "Alternative description for room image"
   },
   "evacuation": "Ewakuacja",
   "@evacuation": {
@@ -3428,10 +3440,6 @@
   "fullscreen_image": " - pełny ekran",
   "@fullscreen_image": {
     "description": "Semantics read for fullscreen image"
-  },
-  "localization_digital_guide_image_screen_reader_label": "Mapa lokalizacji budynku",
-  "@localization_digital_guide_image_screen_reader_label": {
-    "description": "Text read for localization digital guide image screen reader label"
   },
   "toilet": "Toaleta",
   "@toilet": {
