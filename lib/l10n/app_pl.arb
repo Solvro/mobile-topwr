@@ -185,6 +185,10 @@
   "@favourite_button": {
     "description": "Button add to favourite"
   },
+  "in_favourite_button": "W ulubionych",
+  "@in_favourite_button": {
+    "description": "Button favourite state - in favourites"
+  },
   "meet_our_team": "Poznaj nas!",
   "@meet_our_team": {
     "description": "Title for team introduction section"

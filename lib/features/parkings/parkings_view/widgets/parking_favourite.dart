@@ -19,6 +19,11 @@ class FavouriteParkingWidget extends ConsumerWidget {
       onPressed: () async {
         await ref.read(localFavParkingsRepositoryProvider(parking.id).notifier).toggle();
       },
+      tooltip: isFavorite == null
+          ? context.localize.favourite_button
+          : isFavorite
+              ? context.localize.in_favourite_button
+              : context.localize.favourite_button,
       icon: isFavorite == null
           ? FavouriteIcon(icon: Icons.error, color: context.colorTheme.whiteSoap)
           : FavouriteIcon(
