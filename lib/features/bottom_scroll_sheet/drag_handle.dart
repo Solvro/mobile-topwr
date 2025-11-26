@@ -4,6 +4,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../config/map_view_config.dart";
 import "../../theme/app_theme.dart";
+import "../../utils/context_extensions.dart";
 import "../map_view/controllers/bottom_sheet_controller.dart";
 
 class DragHandle extends SliverPersistentHeaderDelegate {
@@ -37,15 +38,15 @@ class HandleSemanticsWrapper extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Semantics(
-      label: "Bottom Sheet Drag Handle",
+      label: context.localize.bottom_scroll_sheet_handle,
       customSemanticsActions: {
-        const CustomSemanticsAction(label: "Hide Bottom Sheet"): () async {
+        CustomSemanticsAction(label: context.localize.bottom_scroll_sheet_hide): () async {
           await ref.watch(bottomSheetPixelsProvider.notifier).hideSheet();
         },
-        const CustomSemanticsAction(label: "Partially expand bottom sheet"): () async {
+        CustomSemanticsAction(label: context.localize.bottom_scroll_sheet_set_recommended_size): () async {
           await ref.watch(bottomSheetPixelsProvider.notifier).setRecommendedSheetSize();
         },
-        const CustomSemanticsAction(label: "Fully expand bottom sheet"): () async {
+        CustomSemanticsAction(label: context.localize.bottom_scroll_sheet_expand): () async {
           await ref.watch(bottomSheetPixelsProvider.notifier).expandSheet();
         },
       },
