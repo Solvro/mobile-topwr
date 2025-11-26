@@ -3383,22 +3383,22 @@
   "@bottom_scroll_sheet_description_expanded": {
     "description": "Text read for bottom scroll sheet description when it's expanded"
   },
-    "bottom_scroll_sheet_handle": "Sterowanie szufladą dolną",
-    "@bottom_scroll_sheet_handle": {
-        "description": "Text read for bottom scroll sheet handle"
-      },
-    "bottom_scroll_sheet_hide": "Zwiń dolną szufladę",
-    "@bottom_scroll_sheet_hide": {
-        "description": "Action to hide bottom scroll sheet"
-      },
-    "bottom_scroll_sheet_expand": "Rozwiń dolną szufladę",
-    "@bottom_scroll_sheet_expand": {
-        "description": "Action to expand bottom scroll sheet"
-      },
-    "bottom_scroll_sheet_set_recommended_size": "Ustaw dolną szufladę na zalecany rozmiar",
-    "@bottom_scroll_sheet_set_recommended_size": {
-        "description": "Action to set bottom scroll sheet to recommended size"
-      },
+  "bottom_scroll_sheet_handle": "Sterowanie szufladą dolną",
+  "@bottom_scroll_sheet_handle": {
+    "description": "Text read for bottom scroll sheet handle"
+  },
+  "bottom_scroll_sheet_hide": "Zwiń dolną szufladę",
+  "@bottom_scroll_sheet_hide": {
+    "description": "Action to hide bottom scroll sheet"
+  },
+  "bottom_scroll_sheet_expand": "Rozwiń dolną szufladę",
+  "@bottom_scroll_sheet_expand": {
+    "description": "Action to expand bottom scroll sheet"
+  },
+  "bottom_scroll_sheet_set_recommended_size": "Ustaw dolną szufladę na zalecany rozmiar",
+  "@bottom_scroll_sheet_set_recommended_size": {
+    "description": "Action to set bottom scroll sheet to recommended size"
+  },
   "building_tile_selected": "Wybrano",
   "@building_tile_selected": {
     "description": "Text read for building tile selected"
