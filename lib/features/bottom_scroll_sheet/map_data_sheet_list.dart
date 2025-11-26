@@ -53,7 +53,7 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
         } else if (T == Parking) {
           unawaited(ref.trackEvent(ClarityEvents.searchParkings));
         }
-        await ref.watch(bottomSheetPixelsProvider.notifier).expandSheet();
+        await ref.read(bottomSheetPixelsProvider.notifier).expandSheet();
       },
       actions: [if (ref.watch(context.activeMarkerController<T>()) != null) NavigateButton<T>()],
     );

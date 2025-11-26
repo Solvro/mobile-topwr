@@ -53,7 +53,7 @@ import "../map_view/controllers/bottom_sheet_controller.dart";
       selectedTabIndex.value = index;
 
       // First expand the bottom sheet fully
-      await ref.watch(bottomSheetPixelsProvider.notifier).expandSheet();
+      await ref.read(bottomSheetPixelsProvider.notifier).expandSheet();
       if (ctx.mounted) {
         await Scrollable.ensureVisible(ctx, duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
         await Future<void>.delayed(const Duration(milliseconds: 50));

@@ -41,13 +41,13 @@ class HandleSemanticsWrapper extends ConsumerWidget {
       label: context.localize.bottom_scroll_sheet_handle,
       customSemanticsActions: {
         CustomSemanticsAction(label: context.localize.bottom_scroll_sheet_hide): () async {
-          await ref.watch(bottomSheetPixelsProvider.notifier).hideSheet();
+          await ref.read(bottomSheetPixelsProvider.notifier).hideSheet();
         },
         CustomSemanticsAction(label: context.localize.bottom_scroll_sheet_set_recommended_size): () async {
-          await ref.watch(bottomSheetPixelsProvider.notifier).setRecommendedSheetSize();
+          await ref.read(bottomSheetPixelsProvider.notifier).setRecommendedSheetSize();
         },
         CustomSemanticsAction(label: context.localize.bottom_scroll_sheet_expand): () async {
-          await ref.watch(bottomSheetPixelsProvider.notifier).expandSheet();
+          await ref.read(bottomSheetPixelsProvider.notifier).expandSheet();
         },
       },
       child: child,

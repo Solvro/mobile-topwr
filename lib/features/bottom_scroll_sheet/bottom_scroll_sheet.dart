@@ -32,9 +32,12 @@ class BottomScrollSheet<T extends GoogleNavigable> extends ConsumerWidget {
 
         final double recommendedSheetFraction = min(1, recommendedSheetHeight / screenHeight);
         final minSheetFraction = min(0.25, minSheetHeight / screenHeight);
-        ref
-            .read(bottomSheetPixelsProvider.notifier)
-            .updateFractions(recommendedFraction: recommendedSheetFraction, minFraction: minSheetFraction);
+
+        WidgetsBinding.instance.addPostFrameCallback(
+          (_) => ref
+              .read(bottomSheetPixelsProvider.notifier)
+              .updateFractions(recommendedFraction: recommendedSheetFraction, minFraction: minSheetFraction),
+        );
 
         return MapViewPopBehaviour<T>(
           screenHeight: screenHeight,
