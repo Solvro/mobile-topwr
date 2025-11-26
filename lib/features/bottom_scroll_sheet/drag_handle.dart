@@ -1,16 +1,21 @@
 import "package:flutter/material.dart";
+import "package:flutter/semantics.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../config/map_view_config.dart";
 import "../../theme/app_theme.dart";
+import "../map_view/controllers/bottom_sheet_controller.dart";
 
 class DragHandle extends SliverPersistentHeaderDelegate {
   const DragHandle();
 
   @override
   Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return ColoredBox(
-      color: context.colorTheme.whiteSoap,
-      child: const Center(child: LineHandle()),
+    return HandleSemanticsWrapper(
+      child: ColoredBox(
+        color: context.colorTheme.whiteSoap,
+        child: const Center(child: LineHandle()),
+      ),
     );
   }
 
@@ -22,6 +27,31 @@ class DragHandle extends SliverPersistentHeaderDelegate {
 
   @override
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) => false;
+}
+
+class HandleSemanticsWrapper extends ConsumerWidget {
+  const HandleSemanticsWrapper({super.key, required this.child});
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Semantics(
+      label: "Bottom Sheet Drag Handle",
+      customSemanticsActions: {
+        const CustomSemanticsAction(label: "Hide Bottom Sheet"): () async {
+          await ref.watch(bottomSheetPixelsProvider.notifier).hideSheet();
+        },
+        const CustomSemanticsAction(label: "Partially expand bottom sheet"): () async {
+          await ref.watch(bottomSheetPixelsProvider.notifier).partiallyExpandSheet();
+        },
+        const CustomSemanticsAction(label: "Fully expand bottom sheet"): () async {
+          await ref.watch(bottomSheetPixelsProvider.notifier).fullyExpandSheet();
+        },
+      },
+      child: child,
+    );
+  }
 }
 
 class LineHandle extends StatelessWidget {

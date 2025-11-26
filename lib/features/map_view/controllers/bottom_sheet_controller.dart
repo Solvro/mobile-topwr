@@ -33,11 +33,25 @@ class BottomSheetPixels extends _$BottomSheetPixels {
     unwaitedMicrotask(() async => state = ref.read(bottomSheetControllerProvider).pixelsSafe);
   }
 
-  Future<void> onSearchBoxTap() async {
+  Future<void> fullyExpandSheet() async {
     const fullScreenFrac = 1.0;
     final controller = ref.read(bottomSheetControllerProvider);
     if (controller.isAttached && controller.size < fullScreenFrac) {
       await controller.animateTo(fullScreenFrac, duration: Durations.medium2, curve: Curves.decelerate);
+    }
+  }
+
+  Future<void> hideSheet() async {
+    final controller = ref.read(bottomSheetControllerProvider);
+    if (controller.isAttached) {
+      await controller.animateTo(0.2, duration: Durations.medium2, curve: Curves.decelerate);
+    }
+  }
+
+  Future<void> partiallyExpandSheet() async {
+    final controller = ref.read(bottomSheetControllerProvider);
+    if (controller.isAttached) {
+      await controller.animateTo(0.7, duration: Durations.medium2, curve: Curves.decelerate);
     }
   }
 }
