@@ -43,10 +43,10 @@ class HandleSemanticsWrapper extends ConsumerWidget {
           await ref.watch(bottomSheetPixelsProvider.notifier).hideSheet();
         },
         const CustomSemanticsAction(label: "Partially expand bottom sheet"): () async {
-          await ref.watch(bottomSheetPixelsProvider.notifier).partiallyExpandSheet();
+          await ref.watch(bottomSheetPixelsProvider.notifier).setRecommendedSheetSize();
         },
         const CustomSemanticsAction(label: "Fully expand bottom sheet"): () async {
-          await ref.watch(bottomSheetPixelsProvider.notifier).fullyExpandSheet();
+          await ref.watch(bottomSheetPixelsProvider.notifier).expandSheet();
         },
       },
       child: child,

@@ -19,6 +19,11 @@ extension SafeDraggableScrollableControllerWrapperX on DraggableScrollableContro
 
 @Riverpod(dependencies: [bottomSheetController])
 class BottomSheetPixels extends _$BottomSheetPixels {
+  final _fullScreenFraction = 1.0;
+  // These values don't really matter much, they will be updated on sheet build via updateFractions
+  var _recommendedFraction = 0.5;
+  var _minFraction = 0.2;
+
   @override
   double build() {
     final controller = ref.watch(bottomSheetControllerProvider);
@@ -33,25 +38,29 @@ class BottomSheetPixels extends _$BottomSheetPixels {
     unwaitedMicrotask(() async => state = ref.read(bottomSheetControllerProvider).pixelsSafe);
   }
 
-  Future<void> fullyExpandSheet() async {
-    const fullScreenFrac = 1.0;
+  void updateFractions({required double recommendedFraction, required double minFraction}) {
+    _recommendedFraction = recommendedFraction;
+    _minFraction = minFraction;
+  }
+
+  Future<void> expandSheet() async {
     final controller = ref.read(bottomSheetControllerProvider);
-    if (controller.isAttached && controller.size < fullScreenFrac) {
-      await controller.animateTo(fullScreenFrac, duration: Durations.medium2, curve: Curves.decelerate);
+    if (controller.isAttached && controller.size < _fullScreenFraction) {
+      await controller.animateTo(_fullScreenFraction, duration: Durations.medium2, curve: Curves.decelerate);
     }
   }
 
   Future<void> hideSheet() async {
     final controller = ref.read(bottomSheetControllerProvider);
-    if (controller.isAttached) {
-      await controller.animateTo(0.2, duration: Durations.medium2, curve: Curves.decelerate);
+    if (controller.isAttached && controller.size > _minFraction) {
+      await controller.animateTo(_minFraction, duration: Durations.medium2, curve: Curves.decelerate);
     }
   }
 
-  Future<void> partiallyExpandSheet() async {
+  Future<void> setRecommendedSheetSize() async {
     final controller = ref.read(bottomSheetControllerProvider);
-    if (controller.isAttached) {
-      await controller.animateTo(0.7, duration: Durations.medium2, curve: Curves.decelerate);
+    if (controller.isAttached && controller.size != _recommendedFraction) {
+      await controller.animateTo(_recommendedFraction, duration: Durations.medium2, curve: Curves.decelerate);
     }
   }
 }
