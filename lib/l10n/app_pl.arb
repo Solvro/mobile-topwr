@@ -1502,6 +1502,55 @@
   "@stairs_width": {
     "description": "Label for stair width"
   },
+  "is_railing_on_landings": "{boolean, select, false{Poręcz nie jest umieszczona na spocznikach.} true{Poręcz umieszczona jest również na spocznikach.} other{}}",
+  "@is_railing_on_landings": {
+    "description": "Information whether the railing is on landings",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
+  "is_two_sided_railing": "Poręcz jest dwururowa.",
+  "@is_two_sided_railing": {
+    "description": "Information whether the railing is two-sided."
+  },
+  "railing_type": "{type, select, 1{Jest to poręcz obustronna.} 2{Jest to poręcz jednostronna prawostronna.} 3{Jest to poręcz jednostronna lewostronna.} other{}}",
+  "@railing_type": {
+    "description": "Information about railing type.",
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "is_round_cross_section_railing": "{boolean, select, false{Poręcz nie posiada ostrych krawędzi i jest zaokrąglona.} true{Poręcz ma ostre krawędzie i nie jest zaokrąglona} other{}}",
+  "@is_round_cross_section_railing": {
+    "description": "Information about round cross section",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
+  "is_railing_extended_30cm": "{boolean, select, false{Poręcz nie jest przedłużona o 30 centymetrów poza bieg schodów.} true{Poręcz jest przedłużona o 30 centymetrów poza bieg schodów.} other{}}",
+  "@is_railing_extended_30cm": {
+    "description": "Information whether the reailing is extended 30 centimeters",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
+  "is_railing_obstacle": "{boolean, select, false{Poręcz nie wchodzi w przestrzeń korytarza.} true{Poręcz wchodzi w przestrzeń korytarza.} other{}}",
+  "@is_railing_obstacle": {
+    "description": "Information whether the railing is obstacle",
+    "placeholders": {
+      "boolean": {
+        "type": "String"
+      }
+    }
+  },
   "number_of_stair_gears": "Liczba biegów schodowych: ",
   "@number_of_stair_gears": {
     "description": "Label for stair flight count"
