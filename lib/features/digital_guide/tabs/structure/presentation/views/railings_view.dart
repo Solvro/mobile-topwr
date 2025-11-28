@@ -48,7 +48,6 @@ class _RailingsView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    debugPrint("railing: $railing");
     return Scaffold(
       appBar: DetailViewAppBar(actions: [AccessibilityButton()]),
       body: Padding(
