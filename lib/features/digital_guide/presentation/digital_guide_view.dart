@@ -67,10 +67,7 @@ class _DigitalGuideView extends ConsumerWidget {
       const SizedBox(height: DigitalGuideConfig.heightSmall),
       SizedBox(
         height: DetailViewsConfig.imageHeight,
-        child: Focus(
-          autofocus: true,
-          child: ZoomableCachedImage(photoUrl),
-        ),
+        child: Focus(autofocus: true, child: ZoomableCachedImage(photoUrl)),
       ),
       HeadlinesSection(
         name: digitalGuideData.translations.plTranslation.name,
