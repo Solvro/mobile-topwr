@@ -59,7 +59,7 @@ class SksMenuView extends HookConsumerWidget {
         appBar: DetailViewAppBar(actions: const [SksUserDataButton()]),
         body: MyErrorWidget(error, stackTrace: stackTrace),
       ),
-      loading: () => HorizontalSymmetricSafeAreaScaffold(body: const Center(child: SksMenuViewLoading())),
+      loading: () => const HorizontalSymmetricSafeAreaScaffold(body: Center(child: SksMenuViewLoading())),
     );
   }
 }
@@ -77,13 +77,15 @@ class _SksMenuView extends ConsumerWidget {
     }
     return HorizontalSymmetricSafeAreaScaffold(
       appBar: DetailViewAppBar(actions: const [SksUserDataButton()]),
-      floatingActionButton: FloatingActionButton(
-        heroTag: "favouriteDishesFab",
-        elevation: 3,
-        backgroundColor: context.colorTheme.orangePomegranadeLighter,
-        onPressed: ref.navigateToSksFavouriteDishes,
-        child: Icon(Icons.favorite, color: context.colorTheme.whiteSoap),
-      ),
+      extraFabs: [
+        FloatingActionButton(
+          heroTag: "favouriteDishesFab",
+          elevation: 3,
+          backgroundColor: context.colorTheme.orangePomegranadeLighter,
+          onPressed: ref.navigateToSksFavouriteDishes,
+          child: Icon(Icons.favorite, color: context.colorTheme.whiteSoap),
+        ),
+      ],
       body: RefreshIndicator(
         onRefresh: () async {
           // ignore: unused_result

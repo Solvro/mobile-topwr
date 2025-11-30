@@ -8,6 +8,7 @@ import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/context_extensions.dart";
 import "../../../../../utils/type_converter.dart";
 import "../../../../../widgets/detail_views/detail_view_app_bar.dart";
+import "../../../../../widgets/horizontal_symmetric_safe_area.dart";
 import "../../../presentation/widgets/accessibility_button.dart";
 import "../../../presentation/widgets/accessibility_profile_card.dart";
 import "../../../presentation/widgets/bullet_list.dart";
@@ -78,7 +79,7 @@ class TransportationDetailView extends ConsumerWidget {
       ),
     ];
 
-    return Scaffold(
+    return HorizontalSymmetricSafeAreaScaffold(
       appBar: DetailViewAppBar(actions: [AccessibilityButton()]),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: DigitalGuideConfig.heightBig),

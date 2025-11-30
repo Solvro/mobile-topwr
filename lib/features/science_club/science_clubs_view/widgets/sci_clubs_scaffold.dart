@@ -30,17 +30,8 @@ class SciClubsScaffold extends ConsumerWidget {
           unawaited(ref.trackEvent(ClarityEvents.searchSciClub));
         },
       ),
-      body: Stack(
-        children: [
-          ?child,
-          if (showFab)
-            Positioned(
-              right: 16, // the left view padding is applied globally
-              bottom: MediaQuery.viewPaddingOf(context).bottom + 16,
-              child: const FiltersFAB(),
-            ),
-        ],
-      ),
+      body: child ?? const SizedBox.shrink(),
+      extraFabs: const [FiltersFAB()],
     );
   }
 }

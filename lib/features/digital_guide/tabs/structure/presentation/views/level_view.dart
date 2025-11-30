@@ -6,6 +6,7 @@ import "../../../../../../config/ui_config.dart";
 import "../../../../../../theme/app_theme.dart";
 import "../../../../../../utils/context_extensions.dart";
 import "../../../../../../widgets/detail_views/detail_view_app_bar.dart";
+import "../../../../../../widgets/horizontal_symmetric_safe_area.dart";
 import "../../../../../navigator/utils/navigation_commands.dart";
 import "../../../../data/models/level_with_regions.dart";
 import "../../../../presentation/widgets/accessibility_button.dart";
@@ -18,7 +19,7 @@ class LevelView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Scaffold(
+    return HorizontalSymmetricSafeAreaScaffold(
       appBar: DetailViewAppBar(actions: [AccessibilityButton()]),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: DigitalGuideConfig.heightBig),

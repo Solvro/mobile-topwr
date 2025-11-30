@@ -9,6 +9,7 @@ import "../../theme/app_theme.dart";
 import "../../utils/context_extensions.dart";
 import "../../widgets/date_chip.dart";
 import "../../widgets/detail_views/detail_view_app_bar.dart";
+import "../../widgets/horizontal_symmetric_safe_area.dart";
 import "../../widgets/loading_widgets/shimmer_loading.dart";
 import "../../widgets/loading_widgets/simple_previews/preview_text_prototype.dart";
 import "../../widgets/my_error_widget.dart";
@@ -31,7 +32,7 @@ class GuideDetailView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Semantics(
       label: context.localize.guide_detail_view_description,
-      child: Scaffold(
+      child: HorizontalSymmetricSafeAreaScaffold(
         appBar: DetailViewAppBar(),
         body: _GuideDetailDataView(id: id),
       ),
