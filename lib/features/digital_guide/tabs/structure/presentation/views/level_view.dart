@@ -26,9 +26,12 @@ class LevelView extends ConsumerWidget {
           slivers: [
             SliverList(
               delegate: SliverChildListDelegate([
-                Text(
-                  levelInfo.level.translations.plTranslation.name,
-                  style: context.textTheme.headline.copyWith(fontSize: DigitalGuideConfig.headlineFont),
+                Focus(
+                  autofocus: true,
+                  child: Text(
+                    levelInfo.level.translations.plTranslation.name,
+                    style: context.textTheme.headline.copyWith(fontSize: DigitalGuideConfig.headlineFont),
+                  ),
                 ),
                 const SizedBox(height: DigitalGuideConfig.heightSmall),
                 Text(
