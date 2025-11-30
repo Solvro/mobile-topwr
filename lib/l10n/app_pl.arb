@@ -181,7 +181,7 @@
   "@my_location": {
     "description": "Button to allow user current location"
   },
-  "favourite_button": "Dodaj do ulubionych",
+  "favourite_button": "Ulubione",
   "@favourite_button": {
     "description": "Button add to favourite"
   },

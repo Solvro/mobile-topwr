@@ -12,19 +12,17 @@ class FavouriteParkingWidget extends ConsumerWidget {
   final Parking parking;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isFavorite = ref.watch(localFavParkingsRepositoryProvider(parking.id));
+    final isFavorite = ref.watch(localFavParkingsRepositoryProvider(parking.id)) ?? false;
 
     return IconButton(
       visualDensity: VisualDensity.compact,
       onPressed: () async {
         await ref.read(localFavParkingsRepositoryProvider(parking.id).notifier).toggle();
       },
-      icon: isFavorite == null
-          ? FavouriteIcon(icon: Icons.error, color: context.colorTheme.whiteSoap)
-          : FavouriteIcon(
-              icon: isFavorite ? Icons.favorite_rounded : Icons.favorite_border_outlined,
-              color: isFavorite ? context.colorTheme.orangePomegranade : context.colorTheme.whiteSoap,
-            ),
+      isSelected: isFavorite,
+      tooltip: context.localize.favourite_button,
+      icon: FavouriteIcon(icon: Icons.favorite_border_outlined, color: context.colorTheme.whiteSoap),
+      selectedIcon: FavouriteIcon(icon: Icons.favorite_rounded, color: context.colorTheme.orangePomegranade),
     );
   }
 }
@@ -37,10 +35,6 @@ class FavouriteIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scaler = context.textScaler.clamp(maxScaleFactor: 2);
-    return Semantics(
-      button: true,
-      label: context.localize.favourite_button,
-      child: Icon(icon, color: color, size: scaler.scale(22), shadows: iparkingShadows),
-    );
+    return Icon(icon, color: color, size: scaler.scale(22), shadows: iparkingShadows);
   }
 }
