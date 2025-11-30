@@ -14,6 +14,7 @@ abstract class Railing with _$Railing, _$RailingTranslatable {
     required String isRailingOnLandings,
     double? railingHeight,
     required String isTwoSidedRailing,
+    required String railingType,
     required String isBrailleConvexMarking,
     required String isGoodRailingContrast,
     required String isRoundCrossSectionRailing,
