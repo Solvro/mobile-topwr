@@ -10,7 +10,7 @@ part "cache_manager.g.dart";
 CacheManager restCacheManager(Ref ref, [TtlDays ttlDays = TtlDays.defaultDefault]) {
   return CacheManager(
     Config(
-      "NewJsonCacheManager${ttlDays.days}Days",
+      "JsonCache_${ttlDays.days}d${ttlDays.hours}h${ttlDays.minutes}m",
       stalePeriod: ttlDays.duration,
       maxNrOfCacheObjects: 1000,
     ),

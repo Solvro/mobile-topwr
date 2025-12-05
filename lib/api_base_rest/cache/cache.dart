@@ -54,6 +54,7 @@ extension DataCachingX on Ref {
       await cacheManager.putFile(
         fullUrl,
         Uint8List.fromList(utf8.encode(jsonEncode(response.data))),
+        maxAge: ttlDays.duration,
         fileExtension: CacheManagerConfig.jsonExtesion,
       );
     }
@@ -99,6 +100,7 @@ extension DataCachingX on Ref {
       await cacheManager.putFile(
         cacheKey,
         Uint8List.fromList(utf8.encode(jsonEncode(response.data))),
+        maxAge: ttlDays.duration,
         fileExtension: CacheManagerConfig.jsonExtesion,
       );
     }
