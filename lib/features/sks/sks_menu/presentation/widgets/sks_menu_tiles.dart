@@ -47,11 +47,13 @@ class SksMenuTile extends ConsumerWidget {
 
         children: dishes
             .map<Widget>(
-              (dish) => SksMenuDishDetailsTile(
-                dish: dish,
-                isSubscribed: subscribedIds.contains(dish.id),
-                onTap: onDishTap,
-                onDoubleTap: onDoubleTap,
+              (dish) => Focus(
+                child: SksMenuDishDetailsTile(
+                  dish: dish,
+                  isSubscribed: subscribedIds.contains(dish.id),
+                  onTap: onDishTap,
+                  onDoubleTap: onDoubleTap,
+                ),
               ),
             )
             .separate(

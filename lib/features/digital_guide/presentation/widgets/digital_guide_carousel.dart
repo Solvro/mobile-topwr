@@ -11,16 +11,10 @@ import "../../../../utils/context_extensions.dart";
 import "digital_guide_image.dart";
 
 class DigitalGuideCarouselWithIndicator extends HookWidget {
-  const DigitalGuideCarouselWithIndicator({
-    super.key,
-    required this.imgListId,
-    this.initId,
-    required this.semanticsLabel,
-  });
+  const DigitalGuideCarouselWithIndicator({super.key, required this.imgListId, this.initId});
 
   final IList<int> imgListId;
   final int? initId;
-  final String semanticsLabel;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +35,7 @@ class DigitalGuideCarouselWithIndicator extends HookWidget {
                     maxScale: 5,
                     child: ClipRRect(
                       borderRadius: const BorderRadius.all(Radius.circular(DigitalGuideConfig.borderRadiusMedium)),
-                      child: DigitalGuideImage(id: item, zoomable: false, semanticsLabel: semanticsLabel),
+                      child: DigitalGuideImage(id: item, zoomable: false),
                     ),
                   ),
                 )

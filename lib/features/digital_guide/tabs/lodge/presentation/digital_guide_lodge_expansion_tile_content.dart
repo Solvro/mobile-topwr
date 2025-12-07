@@ -90,10 +90,7 @@ class _DigitalGuideLodgeExpansionTileContent extends StatelessWidget {
               ),
             ),
           if (lodgeInformation.comment.isNotEmpty) const SizedBox(height: DigitalGuideConfig.heightMedium),
-          DigitalGuidePhotoRow(
-            imagesIDs: lodge!.imagesIds?.toIList() ?? const IList.empty(),
-            semanticsLabel: context.localize.lodge,
-          ),
+          DigitalGuidePhotoRow(imagesIDs: lodge!.imagesIds?.toIList() ?? const IList.empty()),
           Semantics(
             container: true,
 

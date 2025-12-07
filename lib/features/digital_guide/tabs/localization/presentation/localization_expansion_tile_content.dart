@@ -25,10 +25,7 @@ class LocalizationExpansionTileContent extends ConsumerWidget {
           padding: const EdgeInsets.all(DigitalGuideConfig.paddingMedium),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(DigitalGuideConfig.borderRadiusMedium),
-            child: DigitalGuideImage(
-              id: digitalGuideData.locationMapId,
-              semanticsLabel: context.localize.localization_digital_guide_image_screen_reader_label,
-            ),
+            child: DigitalGuideImage(id: digitalGuideData.locationMapId),
           ),
         ),
         Padding(
