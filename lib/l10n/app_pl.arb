@@ -3736,5 +3736,9 @@
   "radio_luz_description2": "Jesteś twórczą osobą? Masz ucho do muzyki, głos do mikrofonu albo serce do reportażu? Rekrutujemy dwa razy do roku. Bądź z nami na bieżąco",
   "@radio_luz_description2": {
     "description": "Longer call-to-action inviting creative people to join Radio LUZ and informing about biannual recruitment"
+  },
+  "add_to_streaming_head": "Wyszukaj w serwisie muzycznym",
+  "@add_to_streaming_head": {
+    "description": "Title for sheet presenting streaming services where users can add selected song to"
   }
 }
