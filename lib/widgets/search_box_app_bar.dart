@@ -47,7 +47,6 @@ class SearchBoxAppBar extends AppBar {
              ),
 
              child: Semantics(
-               button: true,
                label: context.localize.search,
                child: SearchBox(onQueryChanged: onQueryChanged, onTap: onSearchBoxTap),
              ),

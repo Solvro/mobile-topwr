@@ -39,7 +39,8 @@ class SearchBox extends HookWidget {
 
     final color = context.colorScheme.onTertiary.withValues(alpha: 0.48);
 
-    return ExcludeSemantics(
+    return Focus(
+      autofocus: true,
       child: TextField(
         controller: controller,
         focusNode: focusNode,

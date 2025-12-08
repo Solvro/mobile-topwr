@@ -63,6 +63,7 @@ class WideTileCard extends StatelessWidget {
   final bool showBadge;
   final bool showStrategicBadge;
   final bool fixedTrailingHeight;
+
   @override
   Widget build(BuildContext context) {
     return ClipRRect(

@@ -51,13 +51,16 @@ class DepartmentDetailView extends ConsumerWidget {
                   header: true,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 24),
-                    child: Text(
-                      department.name,
-                      style: context.textTheme.headlineMedium?.copyWith(
-                        fontSize: context.textScaler.scale(context.textTheme.headlineMedium?.fontSize ?? 24),
+                    child: Focus(
+                      autofocus: true,
+                      child: Text(
+                        department.name,
+                        style: context.textTheme.headlineMedium?.copyWith(
+                          fontSize: context.textScaler.scale(context.textTheme.headlineMedium?.fontSize ?? 24),
+                        ),
+                        textAlign: TextAlign.center,
+                        maxLines: 2,
                       ),
-                      textAlign: TextAlign.center,
-                      maxLines: 2,
                     ),
                   ),
                 ),

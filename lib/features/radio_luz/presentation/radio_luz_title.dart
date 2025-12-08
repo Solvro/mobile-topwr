@@ -15,7 +15,7 @@ class RadioLuzTitle extends StatelessWidget {
       child: Row(
         spacing: 8,
         children: [
-          Text(title, style: context.textTheme.displayLarge),
+          Focus(autofocus: true, child: Text(title, style: context.textTheme.displayLarge)),
           Expanded(child: Divider(color: context.colorScheme.primary, thickness: 2)),
         ],
       ),

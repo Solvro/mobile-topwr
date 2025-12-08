@@ -29,16 +29,19 @@ class SettingsView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final widgets = [
-      NavigationTile(
-        onTap: () async {
-          final selectedLang = await LanguageDialog.show(context);
-          if (selectedLang != null) {
-            final supportedLocale = SolvroLocale.values.byName(selectedLang);
-            await ref.read(preferredLanguageRepositoryProvider.notifier).setPreferredLanguage(supportedLocale);
-          }
-        },
-        title: context.localize.language,
-        icon: Icons.speaker_notes_rounded,
+      Focus(
+        autofocus: true,
+        child: NavigationTile(
+          onTap: () async {
+            final selectedLang = await LanguageDialog.show(context);
+            if (selectedLang != null) {
+              final supportedLocale = SolvroLocale.values.byName(selectedLang);
+              await ref.read(preferredLanguageRepositoryProvider.notifier).setPreferredLanguage(supportedLocale);
+            }
+          },
+          title: context.localize.language,
+          icon: Icons.speaker_notes_rounded,
+        ),
       ),
       NavigationTile(
         onTap: () async {

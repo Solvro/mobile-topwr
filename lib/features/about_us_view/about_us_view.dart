@@ -53,7 +53,7 @@ class _AboutUsView extends ConsumerWidget {
           ),
           SliverList(
             delegate: SliverChildListDelegate([
-              SectionHeader(text: context.localize.about_us),
+              Focus(autofocus: true, child: SectionHeader(text: context.localize.about_us)),
               DescriptionSection(text: value.description),
               SectionHeader(text: context.localize.follow_solvro),
               ContactSection(links: value.socialLinks.map((url) => ContactIconsModel(url: url)).toIList()),
