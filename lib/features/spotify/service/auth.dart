@@ -10,13 +10,7 @@ part "auth.g.dart";
 
 @riverpod
 Future<String> spotify(Ref ref) async {
-  print("[Spotify Auth] Provider called - fetching token");
-  // await ref.clearCache(
-  //   "${Env.spotifyAccountsUrl}/token?grant_type=client_credentials&client_id=${Env.spotifyClientId}&client_secret=${Env.spotifyClientSecret}",
-  //   TtlDays.defaultDefault,
-  // );
   final apiUrl = "${Env.spotifyAccountsUrl}/token?grant_type=client_credentials&client_id=${Env.spotifyClientId}&client_secret=${Env.spotifyClientSecret}";
-  print("[Spotify Auth] Calling postAndCacheData for: $apiUrl");
   final result = await ref.postAndCacheData(
     apiUrl, 
     SpotifyTokenResponse.fromJson,
@@ -28,6 +22,5 @@ Future<String> spotify(Ref ref) async {
       "Content-Type": "application/x-www-form-urlencoded",
     }
     );
-  print("[Spotify Auth] Got token, expires_in: ${result.castAsObject.expiresIn}s");
   return result.castAsObject.accessToken;
 }

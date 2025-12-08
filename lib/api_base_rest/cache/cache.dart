@@ -1,6 +1,6 @@
 import "dart:convert";
-import "dart:typed_data";
 
+import "package:flutter/foundation.dart";
 import "package:flutter/widgets.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
@@ -43,6 +43,7 @@ extension DataCachingX on Ref {
         return data;
       }
     }
+    
     final response = await safeGetWatch<dynamic>(
       fullUrl,
       localizedMessage: localizedOfflineMessage,
@@ -78,9 +79,12 @@ extension DataCachingX on Ref {
 
     final cachedFile = await cacheManager.getFileFromCache(cacheKey);
     if (cachedFile != null) {
+      final validTill = cachedFile.validTill;
+      final now = DateTime.now();
       final cachedData = await cachedFile.file.readAsString();
       final data = parseJSON(jsonDecode(cachedData), fromJson);
-      if (extraValidityCheck(data)) {
+      final remainingTimeUnix = validTill.millisecondsSinceEpoch - now.millisecondsSinceEpoch;
+      if (remainingTimeUnix > 0 && extraValidityCheck(data)) {
         return data;
       }
     }
