@@ -9,14 +9,8 @@ Future<Map<String, dynamic>> findSpotifyTrack(BuildContext context, WidgetRef re
     final track = tracks.first;
     if ((track["name"] as String?)?.toLowerCase().contains(title.toLowerCase()) ?? false) {
       final trackUrl = track["external_urls"]["spotify"] as String;
-      return {
-        "found": true,
-        "url": trackUrl,
-      };
+      return {"found": true, "url": trackUrl};
     }
-  } 
-  return {
-    "found": false,
-    "url": "",
-  };
+  }
+  return {"found": false, "url": ""};
 }

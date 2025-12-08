@@ -12,7 +12,6 @@ class AddToSpotify extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     return IconButton(
       icon: Icon(Icons.add, color: color),
       onPressed: () async {
@@ -21,18 +20,16 @@ class AddToSpotify extends ConsumerWidget {
         if (tracks.isNotEmpty) {
           final track = tracks.first;
           print(track["external_urls"].toString());
-          if((track["name"] as String?)?.toLowerCase().contains(title.toLowerCase()) ?? false) {
+          if ((track["name"] as String?)?.toLowerCase().contains(title.toLowerCase()) ?? false) {
             final trackUrl = track["external_urls"]["spotify"] as String;
             await ref.launch(trackUrl);
           } else {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text("Nie znaleziono utworu w Spotify.")),
-            );
+            ScaffoldMessenger.of(
+              context,
+            ).showSnackBar(const SnackBar(content: Text("Nie znaleziono utworu w Spotify.")));
           }
         } else {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text("Nie znaleziono utworu w Spotify.")),
-          );
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Nie znaleziono utworu w Spotify.")));
         }
       },
     );

@@ -10,17 +10,16 @@ part "auth.g.dart";
 
 @riverpod
 Future<String> spotify(Ref ref) async {
-  final apiUrl = "${Env.spotifyAccountsUrl}/token?grant_type=client_credentials&client_id=${Env.spotifyClientId}&client_secret=${Env.spotifyClientSecret}";
+  final apiUrl =
+      "${Env.spotifyAccountsUrl}/token?grant_type=client_credentials&client_id=${Env.spotifyClientId}&client_secret=${Env.spotifyClientSecret}";
   final result = await ref.postAndCacheData(
-    apiUrl, 
+    apiUrl,
     SpotifyTokenResponse.fromJson,
     ttlDays: TtlDays.defaultOneHour,
-    extraValidityCheck: (_) => true, 
+    extraValidityCheck: (_) => true,
     localizedOfflineMessage: (_) => "Unable to connect to Spotify services.",
     onRetry: ref.invalidateSelf,
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    }
-    );
+    headers: {"Content-Type": "application/x-www-form-urlencoded"},
+  );
   return result.castAsObject.accessToken;
 }

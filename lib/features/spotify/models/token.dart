@@ -14,6 +14,5 @@ abstract class SpotifyTokenResponse with _$SpotifyTokenResponse {
 
   const SpotifyTokenResponse._();
 
-  factory SpotifyTokenResponse.fromJson(Map<String, dynamic> json) =>
-      _$SpotifyTokenResponseFromJson(json);
+  factory SpotifyTokenResponse.fromJson(Map<String, dynamic> json) => _$SpotifyTokenResponseFromJson(json);
 }
