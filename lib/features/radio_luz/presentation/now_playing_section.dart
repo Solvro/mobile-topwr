@@ -93,9 +93,8 @@ class _NowPlayingTile extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 4),
-            if(isActive)
+            if (isActive)
             LiveIndicator(
-              radius: 4,
               spreadRadius: 8,
               spreadDuration: const Duration(milliseconds: 800),
               waitDuration: const Duration(seconds: 1),
@@ -105,7 +104,7 @@ class _NowPlayingTile extends StatelessWidget {
         ),
         trailing: IconButton(
           icon: Icon(
-            Icons.add,
+            Icons.manage_search,
             color: isActive ? colorTheme.whiteSoap : colorTheme.orangePomegranade,
           ),
           onPressed: () => AddToStreamingSheet.show(context, title: title, artist: subtitle),
