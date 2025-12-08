@@ -10,23 +10,21 @@ import "../../navigator/utils/navigation_commands.dart";
 import "../../science_club/science_clubs_filters/model/sci_club_type.dart";
 import "../../science_club/science_clubs_view/model/science_clubs.dart";
 
-typedef SocialIconData = ({String assetPath, String url, bool inApp, ScienceClub? circle});
+typedef SocialIconData = ({String assetPath, String url, bool inApp, ScienceClub? scienceClub});
 
 final List<SocialIconData> _socialIconsData = [
-  (assetPath: Assets.svg.contactIcons.fb, url: "https://www.facebook.com/radioluz", inApp: false, circle: null),
+  (assetPath: Assets.svg.contactIcons.fb, url: "https://www.facebook.com/radioluz", inApp: false, scienceClub: null),
   (
     assetPath: Assets.svg.contactIcons.yt,
     url: "https://www.youtube.com/@AkademickieRadioLUZ",
     inApp: false,
-    circle: null,
+    scienceClub: null,
   ),
-  (assetPath: Assets.svg.contactIcons.ig, url: "https://www.instagram.com/radio_luz/", inApp: false, circle: null),
-  (assetPath: Assets.svg.contactIcons.web, url: "https://radioluz.pl/", inApp: false, circle: null),
   (
     assetPath: Assets.svg.logoAppBar,
     url: "",
     inApp: true,
-    circle: const ScienceClub(
+    scienceClub: const ScienceClub(
       id: 1365,
       name: "",
       organizationStatus: ScienceClubStatus.active,
@@ -37,6 +35,8 @@ final List<SocialIconData> _socialIconsData = [
       branch: Branch.main,
     ),
   ),
+  (assetPath: Assets.svg.contactIcons.ig, url: "https://www.instagram.com/radio_luz/", inApp: false, scienceClub: null),
+  (assetPath: Assets.svg.contactIcons.web, url: "https://radioluz.pl/", inApp: false, scienceClub: null),
 ];
 
 class RadioLuzSocialsSection extends ConsumerWidget {
@@ -54,7 +54,7 @@ class RadioLuzSocialsSection extends ConsumerWidget {
           padding: EdgeInsets.only(right: index == _socialIconsData.length - 1 ? 0 : 16),
           child: InkWell(
             onTap: () => _socialIconsData[index].inApp
-                ? ref.navigateSciClubsDetail(_socialIconsData[index].circle!)
+                ? ref.navigateSciClubsDetail(_socialIconsData[index].scienceClub!)
                 : ref.launch(_socialIconsData[index].url),
             child: SvgPicture.asset(
               _socialIconsData[index].assetPath,
