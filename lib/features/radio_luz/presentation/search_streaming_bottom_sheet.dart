@@ -7,11 +7,7 @@ import "../../../utils/context_extensions.dart";
 import "../../../utils/launch_url_util.dart";
 
 enum StreamingService {
-  spotify(
-    name: "Spotify",
-    iconAsset: "assets/svg/streaming/spotify.svg",
-    searchUrlBuilder: _spotifySearchUrl,
-  ),
+  spotify(name: "Spotify", iconAsset: "assets/svg/streaming/spotify.svg", searchUrlBuilder: _spotifySearchUrl),
   appleMusic(
     name: "Apple Music",
     iconAsset: "assets/svg/streaming/apple_music.svg",
@@ -22,22 +18,10 @@ enum StreamingService {
     iconAsset: "assets/svg/streaming/youtube_music.svg",
     searchUrlBuilder: _youtubeMusicSearchUrl,
   ),
-  deezer(
-    name: "Deezer",
-    iconAsset: "assets/svg/streaming/deezer.svg",
-    searchUrlBuilder: _deezerSearchUrl,
-  ),
-  tidal(
-    name: "Tidal",
-    iconAsset: "assets/svg/streaming/tidal.svg",
-    searchUrlBuilder: _tidalSearchUrl,
-  );
+  deezer(name: "Deezer", iconAsset: "assets/svg/streaming/deezer.svg", searchUrlBuilder: _deezerSearchUrl),
+  tidal(name: "Tidal", iconAsset: "assets/svg/streaming/tidal.svg", searchUrlBuilder: _tidalSearchUrl);
 
-  const StreamingService({
-    required this.name,
-    required this.iconAsset,
-    required this.searchUrlBuilder,
-  });
+  const StreamingService({required this.name, required this.iconAsset, required this.searchUrlBuilder});
 
   final String name;
   final String iconAsset;
@@ -58,24 +42,21 @@ enum StreamingService {
     };
   }
 
-  static String _spotifySearchUrl(String query) =>
-      "https://open.spotify.com/search/${Uri.encodeComponent(query)}";
-  
+  static String _spotifySearchUrl(String query) => "https://open.spotify.com/search/${Uri.encodeComponent(query)}";
+
   static String _appleMusicSearchUrl(String query) =>
       "https://music.apple.com/pl/search?term=${Uri.encodeComponent(query)}";
-  
+
   static String _youtubeMusicSearchUrl(String query) =>
       "https://music.youtube.com/search?q=${Uri.encodeComponent(query)}";
-  
-  static String _deezerSearchUrl(String query) =>
-      "https://www.deezer.com/search/${Uri.encodeComponent(query)}";
-  
-  static String _tidalSearchUrl(String query) =>
-      "https://tidal.com/search?q=${Uri.encodeComponent(query)}";
+
+  static String _deezerSearchUrl(String query) => "https://www.deezer.com/search/${Uri.encodeComponent(query)}";
+
+  static String _tidalSearchUrl(String query) => "https://tidal.com/search?q=${Uri.encodeComponent(query)}";
 }
 
 class SearchStreamingBottomSheet extends ConsumerWidget {
-  const SearchStreamingBottomSheet ({super.key, required this.title, required this.artist});
+  const SearchStreamingBottomSheet({super.key, required this.title, required this.artist});
 
   final String title;
   final String artist;
