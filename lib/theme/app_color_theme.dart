@@ -19,6 +19,9 @@ class AppColorTheme extends ThemeExtension<AppColorTheme> with _$AppColorThemeTa
     this.buildingsGradient = ColorsConsts.buildingsGradient,
     this.gold = ColorsConsts.gold,
     this.orangePomegranadeLighter = ColorsConsts.orangePomegranadeLighter,
+    this.spotifyGreen = ColorsConsts.spotifyGreen,
+    this.appleMusicRed = ColorsConsts.appleMusicRed,
+    this.deezerPurple = ColorsConsts.deezerPurple,
   });
   @override
   final HexColor blackMirage;
@@ -40,4 +43,10 @@ class AppColorTheme extends ThemeExtension<AppColorTheme> with _$AppColorThemeTa
   final LinearGradient toPwrGradient;
   @override
   final LinearGradient buildingsGradient;
+  @override
+  final Color spotifyGreen;
+  @override
+  final Color appleMusicRed;
+  @override
+  final Color deezerPurple;
 }

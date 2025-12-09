@@ -5,9 +5,8 @@ import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../data/repository/history_entry_repository.dart";
-import "../../spotify/service/auth.dart";
 import "live_indicator.dart";
-import "add_to_streaming.dart";
+import "search_streaming_bottom_sheet.dart";
 
 const _maxElementsToShow = 5;
 
@@ -17,7 +16,6 @@ class NowPlayingSection extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final historyEntries = ref.watch(historyEntryRepositoryProvider);
-    ref.watch(spotifyProvider);
     return switch (historyEntries) {
       AsyncData(:final value) => Padding(
         padding: const EdgeInsetsGeometry.symmetric(horizontal: RadioLuzConfig.horizontalBasePadding),
@@ -80,13 +78,11 @@ class _NowPlayingTile extends StatelessWidget {
                 children: [
                   Text(
                     title,
-                    overflow: TextOverflow.ellipsis,
                     style: textTheme.title.copyWith(color: isActive ? colorTheme.whiteSoap : colorTheme.blackMirage),
                   ),
                   const SizedBox(height: 2),
                   Text(
                     subtitle,
-                    overflow: TextOverflow.ellipsis,
                     style: textTheme.tiny.copyWith(color: isActive ? colorTheme.whiteSoap : colorTheme.blackMirage),
                   ),
                 ],
@@ -104,7 +100,7 @@ class _NowPlayingTile extends StatelessWidget {
         ),
         trailing: IconButton(
           icon: Icon(Icons.manage_search, color: isActive ? colorTheme.whiteSoap : colorTheme.orangePomegranade),
-          onPressed: () => AddToStreamingSheet.show(context, title: title, artist: subtitle),
+          onPressed: () => SearchStreamingBottomSheet.show(context, title: title, artist: subtitle),
         ),
       ),
     );
