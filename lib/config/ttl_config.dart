@@ -4,27 +4,17 @@ import "package:flutter_cache_manager/flutter_cache_manager.dart";
 /// you can add more ttl days here if you need it
 enum TtlDays {
   /// month / 30 days
-  defaultDigitalGuide(30, 0, 0),
+  defaultDigitalGuide(30),
 
   /// week / 7 days
-  defaultDefault(7, 0, 0),
+  defaultDefault(7),
 
   /// day / 1 day
-  defaultSks(1, 0, 0),
+  defaultSks(1);
 
-  /// hour / 1 hour
-  defaultOneHour(0, 1, 0),
-
-  /// one minute
-  defaultOneMinute(0, 0, 1);
-
-  const TtlDays(this.days, this.hours, this.minutes);
+  const TtlDays(this.days);
 
   final int days;
-  final int hours;
-  final int minutes;
-
-  Duration get duration => Duration(days: days, hours: hours, minutes: minutes);
 }
 
 // my cached image package config for cache pruning

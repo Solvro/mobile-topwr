@@ -36,12 +36,4 @@ abstract class Env {
   static final String radioLuzApiUrl = _Env.radioLuzApiUrl;
   @EnviedField()
   static final String clarityConfigId = _Env.clarityConfigId;
-  @EnviedField()
-  static final String spotifyApiUrl = _Env.spotifyApiUrl;
-  @EnviedField()
-  static final String spotifyAccountsUrl = _Env.spotifyAccountsUrl;
-  @EnviedField()
-  static final String spotifyClientId = _Env.spotifyClientId;
-  @EnviedField()
-  static final String spotifyClientSecret = _Env.spotifyClientSecret;
 }

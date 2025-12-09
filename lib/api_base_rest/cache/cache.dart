@@ -1,6 +1,6 @@
 import "dart:convert";
+import "dart:typed_data";
 
-import "package:flutter/foundation.dart";
 import "package:flutter/widgets.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
@@ -43,7 +43,6 @@ extension DataCachingX on Ref {
         return data;
       }
     }
-    
     final response = await safeGetWatch<dynamic>(
       fullUrl,
       localizedMessage: localizedOfflineMessage,
@@ -55,56 +54,6 @@ extension DataCachingX on Ref {
       await cacheManager.putFile(
         fullUrl,
         Uint8List.fromList(utf8.encode(jsonEncode(response.data))),
-        maxAge: ttlDays.duration,
-        fileExtension: CacheManagerConfig.jsonExtesion,
-      );
-    }
-    return json;
-  }
-
-  Future<JSON<T>> postAndCacheData<T>(
-    String fullUrl,
-    T Function(Map<String, dynamic> json) fromJson, {
-    TtlDays ttlDays = TtlDays.defaultDefault,
-    required bool Function(JSON<T> cachedData) extraValidityCheck,
-    required String Function(BuildContext context) localizedOfflineMessage,
-    VoidCallback? onRetry,
-    AuthHeader? authHeader,
-    Object? body,
-    Map<String, dynamic>? queryParameters,
-    Map<String, dynamic>? headers,
-  }) async {
-    final cacheManager = watch(restCacheManagerProvider(ttlDays));
-    final cacheKey = fullUrl; 
-
-    final cachedFile = await cacheManager.getFileFromCache(cacheKey);
-    if (cachedFile != null) {
-      final validTill = cachedFile.validTill;
-      final now = DateTime.now();
-      final cachedData = await cachedFile.file.readAsString();
-      final data = parseJSON(jsonDecode(cachedData), fromJson);
-      final remainingTimeUnix = validTill.millisecondsSinceEpoch - now.millisecondsSinceEpoch;
-      if (remainingTimeUnix > 0 && extraValidityCheck(data)) {
-        return data;
-      }
-    }
-
-    final response = await safePostWatch<dynamic>(
-      fullUrl,
-      data: body,
-      queryParameters: queryParameters,
-      localizedMessage: localizedOfflineMessage,
-      onRetry: onRetry,
-      authHeader: authHeader,
-      headers: headers,
-    );
-
-    final json = parseJSON(response.data, fromJson);
-    if (extraValidityCheck(json)) {
-      await cacheManager.putFile(
-        cacheKey,
-        Uint8List.fromList(utf8.encode(jsonEncode(response.data))),
-        maxAge: ttlDays.duration,
         fileExtension: CacheManagerConfig.jsonExtesion,
       );
     }

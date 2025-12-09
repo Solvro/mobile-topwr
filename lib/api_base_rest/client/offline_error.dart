@@ -43,21 +43,4 @@ extension DioSafeRequestsX on Ref {
     final dio = watch(authRestClientProvider(authHeader));
     return safeRequest(() => dio.get<T>(url), localizedMessage: localizedMessage, onRetry: onRetry);
   }
-
-  Future<Response<T>> safePostWatch<T>(
-    String url, {
-    Object? data,
-    Map<String, dynamic>? queryParameters,
-    required String Function(BuildContext context) localizedMessage,
-    VoidCallback? onRetry,
-    AuthHeader? authHeader,
-    Map<String, dynamic>? headers,
-  }) {
-    final dio = watch(authRestClientProvider(authHeader));
-    return safeRequest(
-      () => dio.post<T>(url, data: data, queryParameters: queryParameters, options: headers != null ? Options(headers: headers) : null),
-      localizedMessage: localizedMessage,
-      onRetry: onRetry,
-    );
-  }
 }
