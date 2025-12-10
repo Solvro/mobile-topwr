@@ -1,11 +1,12 @@
 import "dart:async";
+
 import "package:flutter/material.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
 
 class LiveIndicator extends HookWidget {
   final Widget child;
   final double radius;
-  final double? spreadRadius;
+  final double spreadRadius;
   final Color color;
   final Duration spreadDuration;
   final Duration waitDuration;
@@ -14,48 +15,59 @@ class LiveIndicator extends HookWidget {
     super.key,
     this.child = const SizedBox.shrink(),
     this.radius = 4,
-    this.spreadRadius,
-    this.color = Colors.red,
-    this.spreadDuration = const Duration(seconds: 1),
+    required this.spreadRadius,
+    required this.color,
+    required this.spreadDuration,
     this.waitDuration = const Duration(seconds: 2),
   });
 
   @override
   Widget build(BuildContext context) {
-    final effectiveSpreadRadius = spreadRadius ?? (radius * .45);
-    final animationKey = useState(0);
+    final effectiveSpreadRadius = spreadRadius;
+    final controller = useAnimationController(duration: spreadDuration + waitDuration);
+
+    final animation = useMemoized(
+      () => Tween<double>(begin: 0, end: 1).animate(
+        CurvedAnimation(
+          parent: controller,
+          curve: const Interval(0, 1, curve: Curves.easeOut),
+        ),
+      ),
+      [controller],
+    );
 
     useEffect(() {
-      final timer = Timer.periodic(spreadDuration + waitDuration, (timer) {
-        animationKey.value++;
-      });
-      return timer.cancel;
-    }, []);
+      unawaited(controller.repeat());
+      return controller.stop;
+    }, [controller]);
 
-    return TweenAnimationBuilder(
-      key: ValueKey(animationKey.value),
-      duration: spreadDuration,
-      tween: Tween<double>(begin: 0, end: 1),
-      curve: Curves.easeOutCubic,
-      builder: (context, value, child) {
-        return SizedBox(
-          height: (effectiveSpreadRadius + radius) * 2,
-          width: (effectiveSpreadRadius + radius) * 2,
+    return AnimatedBuilder(
+      animation: animation,
+      builder: (context, child) {
+        return SizedBox.square(
+          dimension: (radius + effectiveSpreadRadius) * 2,
           child: Stack(
+            alignment: Alignment.center,
             children: [
-              Align(
-                child: CircleAvatar(
-                  radius: radius + effectiveSpreadRadius * value,
-                  backgroundColor: color.withValues(alpha: .8 - value * .8),
+              Container(
+                width: radius * 2 + effectiveSpreadRadius * 2 * animation.value,
+                height: radius * 2 + effectiveSpreadRadius * 2 * animation.value,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: color.withValues(alpha: 0.8 - animation.value * 0.8),
                 ),
               ),
-              Align(
-                child: CircleAvatar(radius: radius, backgroundColor: color, child: this.child),
+              Container(
+                width: radius * 2,
+                height: radius * 2,
+                decoration: BoxDecoration(shape: BoxShape.circle, color: color),
+                child: child,
               ),
             ],
           ),
         );
       },
+      child: child,
     );
   }
 }
