@@ -43,10 +43,10 @@
 //   final LinearGradient toPwrGradient;
 //   @override
 //   final LinearGradient buildingsGradient;
-  @override
-  final Color spotifyGreen;
-  @override
-  final Color appleMusicRed;
-  @override
-  final Color deezerPurple;
+  // @override
+  // final Color spotifyGreen;
+  // @override
+  // final Color appleMusicRed;
+  // @override
+  // final Color deezerPurple;
 // }
