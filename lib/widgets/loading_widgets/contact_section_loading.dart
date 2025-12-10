@@ -11,7 +11,7 @@ class ContactSectionLoading extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(top: 24, left: 24, right: 24, bottom: 8),
-      color: context.colorTheme.greyLight,
+      color: context.colorScheme.surfaceTint,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

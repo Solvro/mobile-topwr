@@ -7,14 +7,14 @@ Defines Colors and TextStyles for project with `ThemeExtension`s.
 # Colors
 
 ```dart
-// To access AppColorTheme object:
-context.colorTheme
+// To access AppcolorScheme object:
+context.colorScheme
 
 // To access some color's value:
-context.colorTheme.orangePomegranade
+context.colorScheme.primary
 ```
 
-#### Available fields in `AppColorTheme`:
+#### Available fields in `AppcolorScheme`:
 
 ```dart
 HexColor blackMirage            // Mirage #293241
@@ -70,7 +70,7 @@ This class extends Flutter'a standard `Color`, so can be used anywhere in the fr
 #### To hex string conversion:
 
 ```dart
-context.colorTheme.orangePomegranade.hexString // returns "#e43d32"
+context.colorScheme.primary.hexString // returns "#e43d32"
 ```
 
 #### From hex string conversion:

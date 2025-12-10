@@ -35,9 +35,9 @@ class CalendarDaySection extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 12),
-                if (isToday) Text(context.localize.today, style: context.textTheme.smallOrange),
-                Text(day.toString(), style: context.textTheme.megaBigHeadline),
-                Text(weekday.weekdayToShort(context), style: context.textTheme.boldBody),
+                if (isToday) Text(context.localize.today, style: context.textTheme.bodySmall),
+                Text(day.toString(), style: context.textTheme.displayLarge),
+                Text(weekday.weekdayToShort(context), style: context.textTheme.bodyMedium),
               ],
             ),
           ),

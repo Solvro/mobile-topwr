@@ -1,7 +1,7 @@
 import "package:fl_chart/fl_chart.dart";
 import "package:flutter/widgets.dart";
 
-import "../../../../theme/app_theme.dart";
+import "../../../../theme/iparking_theme.dart";
 import "../../../../utils/context_extensions.dart";
 
 extension WillMaxLabelOverlapX on TitleMeta {
@@ -23,7 +23,7 @@ class LeftLabels extends AxisTitles {
             return SideTitleWidget(
               meta: meta,
               space: 10,
-              child: Text(meta.formattedValue, style: context.iParkingTheme.chart),
+              child: Text(meta.formattedValue, style: const ParkingChartTextStyle()),
             );
           },
         ),

@@ -41,7 +41,7 @@ class SksMenuTile extends ConsumerWidget {
       padding: padding,
       child: MyExpansionTile(
         key: PageStorageKey<String>("$_keyPrefix-$title"),
-        backgroundColor: context.colorTheme.whiteSoap,
+        backgroundColor: context.colorScheme.surface,
         initiallyExpanded: true,
         title: title,
 
@@ -92,29 +92,35 @@ class SksMenuDishDetailsTile extends StatelessWidget {
       onDoubleTap: () => onDoubleTap?.call(dish.id),
       child: DecoratedBox(
         decoration: BoxDecoration(
-          color: context.colorTheme.whiteSoap,
+          color: context.colorScheme.surface,
           borderRadius: BorderRadius.circular(SksMenuConfig.borderRadius),
-          border: Border.all(color: context.colorTheme.orangePomegranade.withAlpha(50)),
+          border: Border.all(color: context.colorScheme.primary.withAlpha(50)),
         ),
         child: switch (dish) {
           SksMenuDish(:final name, :final size, :final price) => ListTile(
             key: PageStorageKey<String>("$_keyPrefix-RichTile-${dish.id}"),
-            title: Text(name, style: context.textTheme.lightTitle),
+            title: Text(name, style: context.textTheme.titleMedium),
             trailing: Text.rich(
               textAlign: TextAlign.end,
               TextSpan(
                 children: [
-                  TextSpan(text: " $size", style: context.textTheme.bodyGrey.copyWith(height: 1)),
-                  if (!hasIncreasedTextSize) TextSpan(text: " | ", style: context.textTheme.title.copyWith(height: 1)),
+                  TextSpan(
+                    text: " $size",
+                    style: context.textTheme.titleLarge
+                        ?.copyWith(color: context.colorScheme.outline)
+                        .copyWith(height: 1),
+                  ),
+                  if (!hasIncreasedTextSize)
+                    TextSpan(text: " | ", style: context.textTheme.titleLarge?.copyWith(height: 1)),
                   if (hasIncreasedTextSize) const TextSpan(text: "\n"),
-                  TextSpan(text: "$price zł", style: context.textTheme.title.copyWith(height: 1)),
+                  TextSpan(text: "$price zł", style: context.textTheme.titleLarge?.copyWith(height: 1)),
                 ],
               ),
             ),
           ),
           SksMenuDishMinimal(:final name) => ListTile(
             key: PageStorageKey<String>("$_keyPrefix-SimpleTile-${dish.id}"),
-            title: Text(name, style: context.textTheme.lightTitle),
+            title: Text(name, style: context.textTheme.titleMedium),
           ),
         },
       ),
@@ -124,8 +130,8 @@ class SksMenuDishDetailsTile extends StatelessWidget {
       borderRadius: BorderRadius.circular(SksMenuConfig.borderRadius),
       child: IconBanner(
         icon: Icons.favorite,
-        color: context.colorTheme.orangePomegranade,
-        iconColor: context.colorTheme.whiteSoap,
+        color: context.colorScheme.primary,
+        iconColor: context.colorScheme.surface,
         visible: isSubscribed,
         child: baseTile,
       ),

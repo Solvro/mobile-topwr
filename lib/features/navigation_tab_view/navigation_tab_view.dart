@@ -63,12 +63,16 @@ class NavigationTabView extends ConsumerWidget {
             await InAppRatingService.requestStoreListingReview();
           },
           title: context.localize.leave_a_review,
-          icon: Icon(Icons.star, color: context.colorTheme.gold, size: NavigationTabViewConfig.navIconSize),
+          icon: Icon(
+            Icons.star,
+            color: context.colorScheme.secondaryContainer,
+            size: NavigationTabViewConfig.navIconSize,
+          ),
         ),
       ),
       Padding(
         padding: const EdgeInsets.only(top: 16),
-        child: Text(context.localize.rest_header, style: context.textTheme.headline),
+        child: Text(context.localize.rest_header, style: context.textTheme.headlineMedium),
       ),
       const SksTile(),
       const SettingsTitle(),

@@ -32,11 +32,11 @@ class IntBox extends StatelessWidget {
       margin: const EdgeInsets.only(right: 4),
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       decoration: BoxDecoration(
-        color: context.colorTheme.whiteSoap,
+        color: context.colorScheme.surface,
         borderRadius: BorderRadius.circular(4),
         boxShadow: const [BoxShadow(color: Color(0x66c62d2e), offset: Offset(-1, 1), blurRadius: 4)],
       ),
-      child: Center(child: Text(singleInt, style: context.textTheme.headline)),
+      child: Center(child: Text(singleInt, style: context.textTheme.headlineMedium)),
     );
   }
 }

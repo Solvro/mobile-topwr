@@ -1,10 +1,7 @@
 import "package:flutter/material.dart";
-import "package:theme_tailor_annotation/theme_tailor_annotation.dart";
 
 import "colors.dart";
 import "typography.dart";
-
-part "iparking_theme.tailor.dart";
 
 const iparkingShadows = [Shadow(blurRadius: 4, color: Colors.black26, offset: Offset(0, 4))];
 
@@ -45,24 +42,5 @@ extension ParkingTextShadow on TextStyle {
   TextStyle get withoutShadows => copyWith(shadows: []);
 }
 
-@tailorMixinComponent
-class IParkingTheme extends ThemeExtension<IParkingTheme> with _$IParkingThemeTailorMixin {
-  @override
-  final TextStyle title;
-  @override
-  final TextStyle subtitle;
-  @override
-  final TextStyle subtitleLight;
-  @override
-  final TextStyle small;
-  @override
-  final TextStyle chart;
-
-  const IParkingTheme({
-    this.title = const ParkingTitleTextStyle(),
-    this.subtitle = const ParkingSubtitleTextStyle(),
-    this.subtitleLight = const ParkingLightSubtitleTextStyle(),
-    this.small = const ParkingSmallTextStyle(),
-    this.chart = const ParkingChartTextStyle(),
-  });
-}
+// IParkingTheme styles are now integrated into AppTheme
+// Access them via context.iParkingTheme extension in app_theme.dart

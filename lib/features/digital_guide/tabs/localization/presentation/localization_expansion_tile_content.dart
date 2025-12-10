@@ -31,15 +31,16 @@ class LocalizationExpansionTileContent extends ConsumerWidget {
         Padding(
           padding: EdgeInsets.all(context.textScaler.scale(2)),
           child: TextButton.icon(
-            icon: Icon(Icons.navigation, color: context.colorTheme.orangePomegranade, size: scaler.scale(16)),
+            icon: Icon(Icons.navigation, color: context.colorScheme.primary, size: scaler.scale(16)),
             onPressed: () => _navigateToBuilding(ref, building),
             label: Text.rich(
               textScaler: scaler,
               TextSpan(
                 text: context.localize.navigate_to_building,
-                style: context.textTheme.bodyOrange.copyWith(
+                style: context.textTheme.titleLarge?.copyWith(
+                  color: context.colorScheme.primary,
                   decoration: TextDecoration.underline,
-                  decorationColor: context.colorTheme.orangePomegranade,
+                  decorationColor: context.colorScheme.primary,
                   fontWeight: FontWeight.bold,
                 ),
               ),

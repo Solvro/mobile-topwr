@@ -66,7 +66,7 @@ class _MyAlertDialog extends StatelessWidget {
                   onPressed: onConfirmTapped,
                   child: Text(
                     confirmText,
-                    style: context.textTheme.bodyOrange,
+                    style: context.textTheme.titleLarge?.copyWith(color: context.colorScheme.primary),
                     textScaler: context.textScaler.clamp(maxScaleFactor: 2),
                   ),
                 ),
@@ -75,7 +75,7 @@ class _MyAlertDialog extends StatelessWidget {
               child: TextButton(
                 child: Text(
                   closeText ?? context.localize.close,
-                  style: context.textTheme.body,
+                  style: context.textTheme.bodyLarge,
                   textScaler: context.textScaler.clamp(maxScaleFactor: 2),
                 ),
                 onPressed: () {

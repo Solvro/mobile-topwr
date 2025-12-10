@@ -9,11 +9,11 @@ class ChartLine extends LineChartBarData {
   ChartLine(BuildContext context, IList<ChartPoint> chartData)
     : super(
         isCurved: false,
-        color: context.colorTheme.greyLight,
+        color: context.colorScheme.surfaceTint,
         barWidth: 1,
         isStrokeCapRound: true,
         dotData: const FlDotData(show: false),
-        belowBarData: BarAreaData(show: true, color: context.colorTheme.blueAzure.withValues(alpha: 0.2)),
+        belowBarData: BarAreaData(show: true, color: context.colorScheme.secondary.withValues(alpha: 0.2)),
         spots: chartData.unlockLazy,
       );
 }

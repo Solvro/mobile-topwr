@@ -47,7 +47,7 @@ class _ContactIcon extends ConsumerWidget {
         },
         child: DecoratedBox(
           decoration: BoxDecoration(
-            color: context.colorTheme.greyLight,
+            color: context.colorScheme.surfaceTint,
             borderRadius: BorderRadius.circular(AboutUsConfig.borderRadius),
           ),
           child: ExcludeSemantics(

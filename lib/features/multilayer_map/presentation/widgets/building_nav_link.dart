@@ -23,8 +23,8 @@ class BuildingNavLink extends ConsumerWidget {
         tooltip: "${context.localize.building_nav_link_tooltip} ${building.name}",
         iconSize: context.textScaler.clamp(maxScaleFactor: 2).scale(22),
         visualDensity: VisualDensity.compact,
-        color: isActive ? context.colorTheme.whiteSoap : context.colorTheme.blueAzure,
-        icon: Icon(Icons.home_sharp, color: isActive ? context.colorTheme.whiteSoap : context.colorTheme.blueAzure),
+        color: isActive ? context.colorScheme.surface : context.colorScheme.secondary,
+        icon: Icon(Icons.home_sharp, color: isActive ? context.colorScheme.surface : context.colorScheme.secondary),
         onPressed: () {
           unawaited(ref.read(multilayerMapControllerProvider).onMarkerTap(BuildingItem(building: building)));
         },

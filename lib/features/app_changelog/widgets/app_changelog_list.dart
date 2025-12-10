@@ -39,15 +39,15 @@ class _ListItem extends StatelessWidget {
           alignment: Alignment.center,
           padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
           decoration: BoxDecoration(
-            color: context.colorTheme.whiteSoap,
-            border: Border.all(color: context.colorTheme.orangePomegranade, width: 1.3),
+            color: context.colorScheme.surface,
+            border: Border.all(color: context.colorScheme.primary, width: 1.3),
             borderRadius: BorderRadius.circular(8),
           ),
-          child: Text(tag, style: context.textTheme.smallOrange),
+          child: Text(tag, style: context.textTheme.bodySmall),
         ),
         const SizedBox(width: 15),
         Expanded(
-          child: Text(description, style: context.textTheme.body, overflow: TextOverflow.clip),
+          child: Text(description, style: context.textTheme.bodyLarge, overflow: TextOverflow.clip),
         ),
       ],
     );

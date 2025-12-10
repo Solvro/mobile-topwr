@@ -26,7 +26,9 @@ class SksMenuHeader extends StatelessWidget {
           const SizedBox(height: SksMenuConfig.paddingLarge),
           Text(
             context.localize.sks_menu,
-            style: context.textTheme.headlineOrange.copyWith(fontSize: 28, height: 1),
+            style: context.textTheme.headlineMedium
+                ?.copyWith(color: context.colorScheme.primary)
+                .copyWith(fontSize: 28, height: 1),
             textAlign: TextAlign.center,
           ),
           Padding(
@@ -34,20 +36,24 @@ class SksMenuHeader extends StatelessWidget {
             child: Text(
               DateTime.now().toDayDateString(context),
               textAlign: TextAlign.center,
-              style: context.textTheme.title.copyWith(fontSize: 20, color: context.colorTheme.blueAzure, height: 1),
+              style: context.textTheme.titleLarge?.copyWith(
+                fontSize: 20,
+                color: context.colorScheme.secondary,
+                height: 1,
+              ),
             ),
           ),
           MergeSemantics(
             child: Column(
               children: [
-                Text(context.localize.working_hours, style: context.textTheme.body),
+                Text(context.localize.working_hours, style: context.textTheme.bodyLarge),
                 Text(
                   "${context.localize.canteen} ${openingHours.canteen.openingTime} - ${openingHours.canteen.closingTime}",
-                  style: context.textTheme.body,
+                  style: context.textTheme.bodyLarge,
                 ),
                 Text(
                   "${context.localize.cafe} ${openingHours.cafe.openingTime} - ${openingHours.cafe.closingTime}",
-                  style: context.textTheme.body,
+                  style: context.textTheme.bodyLarge,
                 ),
               ],
             ),
@@ -57,7 +63,7 @@ class SksMenuHeader extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: SksMenuConfig.paddingSmall),
               child: Text(
                 "${context.localize.last_modified}: ${Protontime.format(stamp, language: context.locale.languageCode)}",
-                style: context.textTheme.bodyGrey,
+                style: context.textTheme.titleLarge?.copyWith(color: context.colorScheme.outline),
                 textAlign: TextAlign.center,
               ),
             ),

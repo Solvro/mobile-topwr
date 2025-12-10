@@ -47,7 +47,7 @@ class DayChangesDialog extends ConsumerWidget {
           return Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Icon(Icons.swap_horiz, color: context.colorTheme.orangePomegranade, size: 32),
+              Icon(Icons.swap_horiz, color: context.colorScheme.primary, size: 32),
               const SizedBox(width: 16),
               Flexible(
                 child: Column(
@@ -55,7 +55,7 @@ class DayChangesDialog extends ConsumerWidget {
                   children: [
                     Text(
                       swap.date.toDayDateString(context, includeWeekday: false, includeYear: false),
-                      style: context.textTheme.title.copyWith(fontWeight: FontWeight.bold),
+                      style: context.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 4),
                     Text.rich(
@@ -72,7 +72,7 @@ class DayChangesDialog extends ConsumerWidget {
                           ),
                         ],
                       ),
-                      style: context.textTheme.body,
+                      style: context.textTheme.bodyLarge,
                     ),
                   ],
                 ),

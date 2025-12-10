@@ -42,3 +42,7 @@ abstract class _ToHexConverter {
 
   static String _removeOpacityChannelIf255(String str, double alpha) => str.substring(alpha == 1 ? 2 : 0);
 }
+
+extension ColorToHexString on Color {
+  String get hexString => _ToHexConverter.getHexStrFromColorInt(r, g, b, a).toUpperCase();
+}

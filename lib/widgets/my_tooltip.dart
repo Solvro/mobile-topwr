@@ -12,10 +12,10 @@ class MyTooltip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Tooltip(
-      richMessage: TextSpan(text: message, style: context.textTheme.body),
+      richMessage: TextSpan(text: message, style: context.textTheme.bodyLarge),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(MyTooltipConfig.borderRadius),
-        color: context.colorTheme.whiteSoap,
+        color: context.colorScheme.surface,
         boxShadow: MyTooltipConfig.defaultActiveShadows,
       ),
       preferBelow: preferBelow,

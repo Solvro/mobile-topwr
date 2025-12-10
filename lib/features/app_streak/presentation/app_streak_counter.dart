@@ -17,7 +17,7 @@ class AppStreakCounter extends ConsumerWidget {
       AsyncData(:final int value) => Center(
         child: Text(
           context.localize.streak_counter(value),
-          style: context.textTheme.lightTitle.copyWith(fontStyle: FontStyle.italic),
+          style: context.textTheme.titleMedium?.copyWith(fontStyle: FontStyle.italic),
         ),
       ),
       _ => const SizedBox.shrink(),

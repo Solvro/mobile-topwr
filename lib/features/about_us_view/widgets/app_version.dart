@@ -23,10 +23,10 @@ class AppVersionTile extends StatelessWidget {
             title: ExcludeSemantics(
               child: Text(
                 "${MyAppConfig.title} ${snapshot.data?.version} ${context.localize.app_info}",
-                style: context.textTheme.bodyGrey,
+                style: context.textTheme.titleLarge?.copyWith(color: context.colorScheme.outline),
               ),
             ),
-            leading: ExcludeSemantics(child: Icon(Icons.info, color: context.colorTheme.orangePomegranade, size: 22)),
+            leading: ExcludeSemantics(child: Icon(Icons.info, color: context.colorScheme.primary, size: 22)),
             contentPadding: const EdgeInsets.symmetric(horizontal: WideTileCardConfig.basePadding),
             horizontalTitleGap: 8,
             onTap: () async {

@@ -23,7 +23,7 @@ class FieldsOfStudySection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(context.localize.fields_of_study, style: context.textTheme.headline),
+          Text(context.localize.fields_of_study, style: context.textTheme.headlineMedium),
           if (firstDegree.isNotEmpty)
             FieldOfStudyExpansionTile(
               title: context.localize.first_degree,

@@ -32,7 +32,7 @@ class InformationPointView extends ConsumerWidget {
           children: [
             Text(
               l10n.information_point,
-              style: context.textTheme.headline.copyWith(fontSize: DigitalGuideConfig.headlineFont),
+              style: context.textTheme.headlineMedium?.copyWith(fontSize: DigitalGuideConfig.headlineFont),
             ),
             const SizedBox(height: DigitalGuideConfig.heightSmall),
             BulletList(items: informationPoint.getBulletList(l10n)),
@@ -42,7 +42,7 @@ class InformationPointView extends ConsumerWidget {
                 l10n: l10n,
                 infoPoint: informationPoint,
               ),
-              backgroundColor: context.colorTheme.whiteSoap,
+              backgroundColor: context.colorScheme.surface,
             ),
           ],
         ),

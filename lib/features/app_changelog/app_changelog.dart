@@ -25,7 +25,7 @@ class AppChangelog extends StatelessWidget {
           maxHeight: MediaQuery.sizeOf(context).height * 0.75,
           maxWidth: MediaQuery.sizeOf(context).width * 0.75,
         ),
-        decoration: BoxDecoration(color: context.colorTheme.whiteSoap, borderRadius: BorderRadius.circular(8)),
+        decoration: BoxDecoration(color: context.colorScheme.surface, borderRadius: BorderRadius.circular(8)),
         child: Stack(
           children: [
             Column(

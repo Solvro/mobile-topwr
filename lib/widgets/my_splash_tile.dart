@@ -18,7 +18,7 @@ class MySplashTile extends StatelessWidget {
         onTap: onTap,
         child: Ink(
           decoration: BoxDecoration(
-            color: backgroundColor ?? context.colorTheme.greyLight,
+            color: backgroundColor ?? context.colorScheme.surfaceTint,
             borderRadius: const BorderRadius.all(WideTileCardConfig.radius),
           ),
           child: child,

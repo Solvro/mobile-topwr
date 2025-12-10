@@ -57,12 +57,12 @@ class LanguageDialog extends ConsumerWidget {
                 child: DecoratedBox(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(NavigationTabViewConfig.radius),
-                    color: context.colorTheme.greyLight,
+                    color: context.colorScheme.surfaceTint,
                   ),
                   child: ListTile(
                     selected: selected,
                     title: Text(semanticsLabel: name.substring(1), name),
-                    trailing: selected ? Icon(Icons.check, color: context.colorTheme.orangePomegranade) : null,
+                    trailing: selected ? Icon(Icons.check, color: context.colorScheme.primary) : null,
                     onTap: () async {
                       if (!isFirstTimeMode) {
                         Navigator.pop(context, code);

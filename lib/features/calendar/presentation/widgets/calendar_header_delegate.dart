@@ -17,14 +17,14 @@ class CalendarHeaderDelegate extends SliverPersistentHeaderDelegate {
   @override
   Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
     return ColoredBox(
-      color: context.colorTheme.whiteSoap,
+      color: context.colorScheme.surface,
       child: Padding(
         padding: const EdgeInsets.only(
           top: HomeViewConfig.paddingMedium,
           bottom: HomeViewConfig.paddingMedium,
           left: HomeViewConfig.paddingLarge,
         ),
-        child: Text(text, style: context.textTheme.megaBigHeadline),
+        child: Text(text, style: context.textTheme.displayLarge),
       ),
     );
   }

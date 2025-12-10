@@ -14,7 +14,7 @@ class SksChartRightTiles extends AxisTitles {
         axisNameWidget: Text(
           context.localize.number_of_people,
           semanticsLabel: "${context.localize.number_of_people} ${context.localize.axis_vertical_screen_reader}",
-          style: context.textTheme.body.copyWith(fontSize: 14, fontWeight: FontWeight.w400),
+          style: context.textTheme.bodyLarge?.copyWith(fontSize: 14, fontWeight: FontWeight.w400),
         ),
         axisNameSize: context.textScaler.scale(16),
         sideTitles: SideTitles(
@@ -26,7 +26,7 @@ class SksChartRightTiles extends AxisTitles {
               child: ExcludeSemantics(
                 child: Text(
                   "${value.toInt()}",
-                  style: context.textTheme.body.copyWith(fontSize: 12, fontWeight: FontWeight.w400),
+                  style: context.textTheme.bodyLarge?.copyWith(fontSize: 12, fontWeight: FontWeight.w400),
                 ),
               ),
             );
@@ -52,7 +52,7 @@ class SksChartBottomTitles extends AxisTitles {
               child: Padding(
                 padding: const EdgeInsets.only(top: SksChartConfig.paddingSmall, left: 50),
                 child: Text(
-                  style: context.textTheme.body.copyWith(fontSize: 12, fontWeight: FontWeight.w400),
+                  style: context.textTheme.bodyLarge?.copyWith(fontSize: 12, fontWeight: FontWeight.w400),
                   textScaler: context.textScaler.clamp(maxScaleFactor: 1.5),
                   hourMinuteFormatted,
                 ),

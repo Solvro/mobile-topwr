@@ -26,14 +26,14 @@ class IncomingDayChanges extends ConsumerWidget {
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: [context.colorTheme.orangePomegranadeLighter, context.colorTheme.orangePomegranade],
+              colors: [context.colorScheme.primaryContainer, context.colorScheme.primary],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
             borderRadius: BorderRadius.circular(20),
             boxShadow: [
               BoxShadow(
-                color: context.colorTheme.orangePomegranade.withValues(alpha: 0.15),
+                color: context.colorScheme.primary.withValues(alpha: 0.15),
                 blurRadius: 8,
                 offset: const Offset(0, 2),
               ),
@@ -42,12 +42,14 @@ class IncomingDayChanges extends ConsumerWidget {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(Icons.warning_amber, size: 18, color: context.colorTheme.whiteSoap),
+              Icon(Icons.warning_amber, size: 18, color: context.colorScheme.surface),
               const SizedBox(width: 6),
               ExcludeSemantics(
                 child: Text(
                   l10n.incoming_days_changes_days(data.daysTillFirstChange),
-                  style: context.textTheme.bodyWhite.copyWith(fontWeight: FontWeight.bold, fontSize: 16),
+                  style: context.textTheme.titleLarge
+                      ?.copyWith(color: context.colorScheme.surface)
+                      .copyWith(fontWeight: FontWeight.bold, fontSize: 16),
                 ),
               ),
             ],
@@ -63,7 +65,7 @@ class IncomingDayChanges extends ConsumerWidget {
                 text: data.daysTillFirstChange == 0
                     ? l10n.incoming_days_changes_title_today(data.changesCount)
                     : l10n.incoming_days_changes_title(data.changesCount),
-                style: context.textTheme.body.copyWith(
+                style: context.textTheme.bodyLarge?.copyWith(
                   fontWeight: FontWeight.w500,
                   fontSize: MediaQuery.sizeOf(context).width > 380 ? 15 : 13,
                 ),
@@ -71,7 +73,7 @@ class IncomingDayChanges extends ConsumerWidget {
               const TextSpan(text: " "),
               WidgetSpan(
                 alignment: PlaceholderAlignment.middle,
-                child: Icon(Icons.info_outline, size: 18, color: context.colorTheme.greyPigeon),
+                child: Icon(Icons.info_outline, size: 18, color: context.colorScheme.tertiary),
               ),
             ],
           ),

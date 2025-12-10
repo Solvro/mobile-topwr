@@ -84,8 +84,8 @@ class _SksFavouriteDishesView extends ConsumerWidget {
               pinned: true,
               delegate: SksSectionHeaderDelegate(
                 title: context.localize.sks_favourite_dishes_subscribed,
-                textStyle: context.textTheme.headline,
-                backgroundColor: context.colorTheme.whiteSoap,
+                textStyle: context.textTheme.headlineMedium!,
+                backgroundColor: context.colorScheme.surface,
               ),
             ),
             if (subscribedDishes.isEmpty)
@@ -126,8 +126,8 @@ class _SksFavouriteDishesView extends ConsumerWidget {
               pinned: true,
               delegate: SksSectionHeaderDelegate(
                 title: context.localize.sks_favourite_dishes_remaining,
-                textStyle: context.textTheme.headline,
-                backgroundColor: context.colorTheme.whiteSoap,
+                textStyle: context.textTheme.headlineMedium!,
+                backgroundColor: context.colorScheme.surface,
               ),
             ),
             if (unsubscribedDishes.isEmpty)

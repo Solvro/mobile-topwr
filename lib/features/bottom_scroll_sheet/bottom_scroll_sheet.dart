@@ -83,7 +83,7 @@ class _SheetConsumer<T extends GoogleNavigable> extends HookConsumerWidget {
           : context.localize.bottom_scroll_sheet_description_collapsed,
       child: Container(
         clipBehavior: Clip.antiAlias,
-        decoration: _RoundedTopDecoration(color: context.colorTheme.whiteSoap),
+        decoration: _RoundedTopDecoration(color: context.colorScheme.surface),
         child: MapDataSheetList<T>(scrollController: scrollController),
       ),
     );

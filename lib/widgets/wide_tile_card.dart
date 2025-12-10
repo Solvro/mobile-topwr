@@ -73,7 +73,7 @@ class WideTileCard extends StatelessWidget {
           child: Ink(
             decoration: BoxDecoration(
               gradient: isActive ? activeGradient : null,
-              color: context.colorTheme.greyLight,
+              color: context.colorScheme.surfaceTint,
               borderRadius: const BorderRadius.all(WideTileCardConfig.radius),
               boxShadow: isActive ? activeShadows : null,
             ),
@@ -131,12 +131,18 @@ class _TitlesColumn extends StatelessWidget {
           padding: const EdgeInsets.only(left: basePadding, top: basePadding, right: basePadding * 1.04),
           child: EnsureVisibleTags(
             title: title,
-            titleStyle: isActive ? context.textTheme.titleWhite : context.textTheme.title,
+            titleStyle: isActive
+                ? context.textTheme.titleLarge?.copyWith(color: context.colorScheme.surface)
+                : context.textTheme.titleLarge,
             subtitle: subtitle,
-            subtitleStyle: isActive ? context.textTheme.bodyWhite : context.textTheme.body,
+            subtitleStyle: isActive
+                ? context.textTheme.titleLarge?.copyWith(color: context.colorScheme.surface)
+                : context.textTheme.bodyLarge,
             spacing: secondSubtitle == null ? WideTileCardConfig.titlesSpacing : 2,
             secondSubtitle: secondSubtitle,
-            secondSubtitleStyle: isActive ? context.textTheme.bodyWhite : context.textTheme.bodyBlue,
+            secondSubtitleStyle: isActive
+                ? context.textTheme.titleLarge?.copyWith(color: context.colorScheme.surface)
+                : context.textTheme.titleLarge?.copyWith(color: context.colorScheme.secondary),
             maxTotalLines: context.textScaleFactor > 1.5 ? 5 : 4,
             showVerifiedBadge: showBadge,
             showStrategicBadge: showStrategicBadge,

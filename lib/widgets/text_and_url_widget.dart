@@ -23,9 +23,10 @@ class TextAndUrl extends ConsumerWidget {
           children: [
             TextSpan(
               text: url.replaceFirst("https://", " www."),
-              style: context.textTheme.bodyOrange.copyWith(
+              style: context.textTheme.titleLarge?.copyWith(
+                color: context.colorScheme.primary,
                 decoration: TextDecoration.underline,
-                decorationColor: context.colorTheme.orangePomegranade,
+                decorationColor: context.colorScheme.primary,
                 fontWeight: FontWeight.bold,
               ),
               recognizer: TapGestureRecognizer()..onTap = () => ref.launch(url),
@@ -33,7 +34,7 @@ class TextAndUrl extends ConsumerWidget {
           ],
         ),
         textAlign: TextAlign.center,
-        style: context.textTheme.body,
+        style: context.textTheme.bodyLarge,
         textScaler: !scaleText ? context.textScaler.clamp(maxScaleFactor: 1) : null,
       ),
     );

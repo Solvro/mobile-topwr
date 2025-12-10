@@ -8,6 +8,7 @@ import "../../../../config/ui_config.dart";
 import "../../../../gen/assets.gen.dart";
 import "../../../../hooks/use_semantics_service_on_changed_value.dart";
 import "../../../../theme/app_theme.dart";
+import "../../../../theme/colors.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../widgets/wide_tile_card.dart";
 import "../../../analytics/data/clarity.dart";
@@ -42,7 +43,7 @@ class BicycleShowerTile extends HookConsumerWidget {
               child: ExcludeSemantics(
                 child: PhotoTrailingWideTileCard(
                   context,
-                  activeGradient: context.colorTheme.toPwrGradient,
+                  activeGradient: ColorsConsts.toPwrGradient,
                   directusPhotoUrl: shower.photo,
                   title: title,
                   subtitle: "${context.localize.room} ${shower.room}\n${shower.instructions}",
@@ -52,7 +53,7 @@ class BicycleShowerTile extends HookConsumerWidget {
                     unawaited(ref.read(multilayerMapControllerProvider).onMarkerTap(BicycleShowerItem(shower: shower)));
                   },
                   customPlaceholder: ColoredBox(
-                    color: context.colorTheme.greyLight,
+                    color: context.colorScheme.surfaceTint,
                     child: Center(
                       child: SvgPicture.asset(
                         Assets.svg.mapPlaceholders.showerIcon,

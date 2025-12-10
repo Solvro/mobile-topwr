@@ -35,7 +35,7 @@ class RadioLuzSocialsSection extends ConsumerWidget {
               _socialIconsData[index].assetPath,
               width: iconSize,
               height: iconSize,
-              colorFilter: ColorFilter.mode(context.colorTheme.blackMirage, BlendMode.srcIn),
+              colorFilter: ColorFilter.mode(context.colorScheme.onTertiary, BlendMode.srcIn),
             ),
           ),
         ),
