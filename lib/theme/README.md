@@ -7,7 +7,7 @@ Defines Colors and TextStyles for project with `ThemeExtension`s.
 # Colors
 
 ```dart
-// To access AppcolorScheme object:
+// To access AppColorScheme object:
 context.colorScheme
 
 // To access some color's value:
