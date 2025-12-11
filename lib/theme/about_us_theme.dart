@@ -15,6 +15,3 @@ class AboutUsHeadlineSmaller extends BoldBodyTextStyle {
 class AboutUsBodySmaller extends BodyTextStyle {
   const AboutUsBodySmaller({super.color}) : super(fontSize: 12);
 }
-
-// AboutUsTheme styles are now integrated into AppTheme textTheme
-// Access them via context.aboutUsTheme extension in app_theme.dart
