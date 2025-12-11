@@ -4,11 +4,6 @@ targets:
       json_serializable:
         options:
           explicit_to_json: true
-      theme_tailor:
-        options:
-          themes: [baseTheme]
-          theme_getter: on_build_context_props
-          require_static_const: true
       envied_generator:envied:
         generate_for:
           include:
