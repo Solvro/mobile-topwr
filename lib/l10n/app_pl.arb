@@ -3670,6 +3670,10 @@
   "@calendar": {
     "description": "Description of calendar section"
   },
+  "today": "Dziś",
+  "@today": {
+    "description": "A marker for today's date"
+  },
   "january": "Styczeń",
   "@january": {
     "description": "January"

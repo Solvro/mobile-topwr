@@ -5,6 +5,7 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../l10n/app_localizations.dart";
 import "../../../theme/hex_color.dart";
+import "../../../utils/datetime_utils.dart";
 import "../../../utils/watch_locale.dart";
 import "../data/model/calendar_data.dart";
 import "../data/repository/calendar_repository.dart";
@@ -117,7 +118,8 @@ CalendarMonthEvents _buildMonthEvents(int month, List<({DateTime date, SingleCal
 CalendarDayEvents _buildDayEvents(int day, List<({DateTime date, SingleCalendarItem item})> eventDays) {
   final events = eventDays.map((eventDay) => eventDay.item).toIList();
   final firstEvent = eventDays.first;
-  return (day: day, events: events, weekday: firstEvent.date.weekday);
+  final now = DateTime.now();
+  return (day: day, events: events, weekday: firstEvent.date.weekday, isToday: firstEvent.date.isSameDay(now));
 }
 
 String _formatTimeRange(DateTime start, DateTime end) {
