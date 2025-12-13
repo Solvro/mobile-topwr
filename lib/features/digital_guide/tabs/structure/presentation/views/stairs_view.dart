@@ -50,7 +50,7 @@ class _StairsView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final StairsTranslation stairsInformation = stairs.translations.plTranslation;
-    return Scaffold(
+    return HorizontalSymmetricSafeAreaScaffold(
       appBar: DetailViewAppBar(actions: [AccessibilityButton()]),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: DigitalGuideConfig.heightBig),

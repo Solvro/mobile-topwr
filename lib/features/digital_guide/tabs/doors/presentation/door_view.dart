@@ -82,7 +82,7 @@ class _DoorsView extends ConsumerWidget {
       ),
     ];
 
-    return Scaffold(
+    return HorizontalSymmetricSafeAreaScaffold(
       appBar: DetailViewAppBar(actions: [AccessibilityButton()]),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: DigitalGuideConfig.heightBig),

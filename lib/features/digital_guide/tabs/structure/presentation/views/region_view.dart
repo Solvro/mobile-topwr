@@ -6,6 +6,7 @@ import "../../../../../../config/ui_config.dart";
 import "../../../../../../theme/app_theme.dart";
 import "../../../../../../utils/context_extensions.dart";
 import "../../../../../../widgets/detail_views/detail_view_app_bar.dart";
+import "../../../../../../widgets/horizontal_symmetric_safe_area.dart";
 import "../../../../../../widgets/loading_widgets/shimmer_loading.dart";
 import "../../../../../../widgets/my_error_widget.dart";
 import "../../../../../navigator/utils/navigation_commands.dart";
@@ -114,7 +115,7 @@ class _RegionView extends ConsumerWidget {
       ),
     ];
 
-    return Scaffold(
+    return HorizontalSymmetricSafeAreaScaffold(
       appBar: DetailViewAppBar(actions: [AccessibilityButton()]),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: DigitalGuideConfig.heightBig),
