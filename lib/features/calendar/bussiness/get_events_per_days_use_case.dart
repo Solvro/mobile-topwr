@@ -8,6 +8,7 @@ import "../../../theme/hex_color.dart";
 import "../../../utils/watch_locale.dart";
 import "../data/model/calendar_data.dart";
 import "../data/repository/calendar_repository.dart";
+import "../utils/calendar_view_extension.dart";
 import "calendar_search_controller.dart";
 import "models.dart";
 
@@ -17,8 +18,9 @@ part "get_events_per_days_use_case.g.dart";
 Future<IList<CalendarYearEvents>> getEventsPerDaysUseCase(Ref ref) async {
   final query = ref.watch(searchCalendarControllerProvider);
   final events = await ref.watch(calendarRepositoryProvider(query).future);
+  final upcomingEvents = events.filterOutPastEvents();
   final l10n = ref.watch(watchLocaleProvider);
-  return groupEventsByYear(events, l10n);
+  return groupEventsByYear(upcomingEvents, l10n);
 }
 
 /// Groups calendar events by year and returns sorted year events
