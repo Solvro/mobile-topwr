@@ -21,7 +21,7 @@ extension IsLinkTagX on html.Element {
   }
 }
 
-extension CustomHtmlStylesX on BuildContext {
+extension CustomHtmlX on BuildContext {
   Map<String, String>? customStylesBuilder(html.Element element) {
     return {
       if (!element.hasTextAlign) "text-align": "left",

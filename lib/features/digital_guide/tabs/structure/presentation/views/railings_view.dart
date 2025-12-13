@@ -48,7 +48,7 @@ class _RailingsView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Scaffold(
+    return HorizontalSymmetricSafeAreaScaffold(
       appBar: DetailViewAppBar(actions: [AccessibilityButton()]),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: DigitalGuideConfig.heightBig),
@@ -64,6 +64,12 @@ class _RailingsView extends ConsumerWidget {
               items: [
                 if (railing.translations.plTranslation.comment.isNotEmpty) railing.translations.plTranslation.comment,
                 if (railing.railingHeight != null) context.localize.railing_height(railing.railingHeight!),
+                context.localize.is_railing_on_landings(railing.isRailingOnLandings.toLowerCase()),
+                if (railing.isTwoSidedRailing.toLowerCase() == "true") context.localize.is_two_sided_railing,
+                context.localize.railing_type(railing.railingType),
+                context.localize.is_round_cross_section_railing(railing.isRoundCrossSectionRailing.toLowerCase()),
+                context.localize.is_railing_extended_30cm(railing.isRailingExtended30cm.toLowerCase()),
+                context.localize.is_railing_obstacle(railing.isRailingObstacle.toLowerCase()),
               ].toIList(),
             ),
             const SizedBox(height: DigitalGuideConfig.heightBig),

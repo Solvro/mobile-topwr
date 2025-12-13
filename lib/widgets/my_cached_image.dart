@@ -28,26 +28,27 @@ class MyCachedImage extends StatelessWidget {
       return FlutterSplashScreen(size: size?.height);
     }
 
-    return Semantics(
-      label: semanticsLabel,
-      image: true,
-      container: true,
-      child: CachedNetworkImage(
-        imageUrl: imageUrl ?? "",
-        fit: boxFit,
-        cacheManager: CacheManager(MyCachedImageConfig.cacheConfig),
-        placeholder: switch (loadingType) {
-          LoadingType.noLoading => null,
-          LoadingType.shimmerLoading => (context, url) => Center(
-            child: ShimmeringEffect(child: Container(color: Colors.white)),
-          ),
-          LoadingType.circularProgressIndicator => (context, url) => const Center(child: CircularProgressIndicator()),
-        },
-        errorWidget: (context, url, error) => FlutterSplashScreen(size: size?.height),
-        height: size?.height,
-        width: size?.width ?? double.infinity,
-      ),
+    final image = CachedNetworkImage(
+      imageUrl: imageUrl ?? "",
+      fit: boxFit,
+      cacheManager: CacheManager(MyCachedImageConfig.cacheConfig),
+      placeholder: switch (loadingType) {
+        LoadingType.noLoading => null,
+        LoadingType.shimmerLoading => (context, url) => Center(
+          child: ShimmeringEffect(child: Container(color: Colors.white)),
+        ),
+        LoadingType.circularProgressIndicator => (context, url) => const Center(child: CircularProgressIndicator()),
+      },
+      errorWidget: (context, url, error) => FlutterSplashScreen(size: size?.height),
+      height: size?.height,
+      width: size?.width ?? double.infinity,
     );
+
+    if (semanticsLabel == null || semanticsLabel!.trim().isEmpty) {
+      return ExcludeSemantics(child: image);
+    }
+
+    return Semantics(label: semanticsLabel, image: true, container: true, child: image);
   }
 }
 

@@ -60,7 +60,11 @@ dependencies:
   cupertino_icons: ^1.0.8
   flutter_native_splash: ^2.4.6
   flutter_svg: ^2.2.0
-  flutter_widget_from_html_core: ^0.17.0
+  flutter_widget_from_html_core:
+    git:
+      url: https://github.com/simplyNoOne/flutter_widget_from_html.git
+      ref: accessibility
+      path: packages/core
   anim_search_bar:
     git:
       url: https://github.com/simon-the-shark/anim_search_bar.git
@@ -114,7 +118,7 @@ dependencies:
   path_provider: ^2.1.5
   path: ^1.9.1
   device_info_plus: ^12.2.0
-  android_id: ^0.4.0
+  android_id: ^0.5.1
   crypto: ^3.0.6
 
   #Audio

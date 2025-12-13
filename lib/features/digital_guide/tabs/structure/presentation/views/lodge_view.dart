@@ -7,6 +7,7 @@ import "../../../../../../config/ui_config.dart";
 import "../../../../../../theme/app_theme.dart";
 import "../../../../../../utils/context_extensions.dart";
 import "../../../../../../widgets/detail_views/detail_view_app_bar.dart";
+import "../../../../../../widgets/horizontal_symmetric_safe_area.dart";
 import "../../../../presentation/widgets/accessibility_button.dart";
 import "../../../../presentation/widgets/accessibility_profile_card.dart";
 import "../../../../presentation/widgets/digital_guide_photo_row.dart";
@@ -23,7 +24,7 @@ class LodgeView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final lodgeInformation = lodge.translations.pl;
 
-    return Scaffold(
+    return HorizontalSymmetricSafeAreaScaffold(
       appBar: DetailViewAppBar(actions: [AccessibilityButton()]),
       body: Padding(
         padding: const EdgeInsets.all(DigitalGuideConfig.paddingBig),
@@ -65,10 +66,7 @@ class LodgeView extends ConsumerWidget {
               ),
             Semantics(container: true, child: Text(lodgeInformation.comment)),
             if (lodgeInformation.comment.isNotEmpty) const SizedBox(height: DigitalGuideConfig.heightMedium),
-            DigitalGuidePhotoRow(
-              imagesIDs: lodge.imagesIds?.toIList() ?? const IList.empty(),
-              semanticsLabel: context.localize.lodge,
-            ),
+            DigitalGuidePhotoRow(imagesIDs: lodge.imagesIds?.toIList() ?? const IList.empty()),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: DigitalGuideConfig.paddingBig),
               child: AccessibilityProfileCard(

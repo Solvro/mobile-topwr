@@ -66,7 +66,7 @@ class _SurroundingExpansionTileContent extends ConsumerWidget {
         ),
       ),
       const SizedBox(height: DigitalGuideConfig.heightMedium),
-      DigitalGuidePhotoRow(imagesIDs: surroundingResponse.images.lock, semanticsLabel: context.localize.surroundings),
+      DigitalGuidePhotoRow(imagesIDs: surroundingResponse.images.lock),
       const SizedBox(height: DigitalGuideConfig.heightMedium),
     ];
 

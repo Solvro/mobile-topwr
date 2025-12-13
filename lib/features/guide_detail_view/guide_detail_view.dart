@@ -10,6 +10,7 @@ import "../../utils/context_extensions.dart";
 import "../../widgets/date_chip.dart";
 import "../../widgets/deeplink_scroll_to_section.dart";
 import "../../widgets/detail_views/detail_view_app_bar.dart";
+import "../../widgets/horizontal_symmetric_safe_area.dart";
 import "../../widgets/loading_widgets/shimmer_loading.dart";
 import "../../widgets/loading_widgets/simple_previews/preview_text_prototype.dart";
 import "../../widgets/my_error_widget.dart";
@@ -33,7 +34,7 @@ class GuideDetailView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Semantics(
       label: context.localize.guide_detail_view_description,
-      child: Scaffold(
+      child: HorizontalSymmetricSafeAreaScaffold(
         appBar: DetailViewAppBar(),
         body: _GuideDetailDataView(id: id, sectionId: sectionId),
       ),
@@ -55,6 +56,11 @@ class _GuideDetailDataView extends ConsumerWidget {
       AsyncError(:final error, :final stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
       AsyncValue(:final GuideDetails value) => Builder(
         builder: (context) {
+          final createAtDate = context.getTheLatesCreatedDateGuide(
+            questions: value.guideQuestions,
+            locale: context.locale,
+          );
+
           return DeeplinkScrollToSectionWrapper(
             sectionId: sectionId,
             builder: (context, deeplinkToSectionHelper) {
@@ -80,7 +86,7 @@ class _GuideDetailDataView extends ConsumerWidget {
                           label: context.localize.article_image_semantics_label,
                           child: SizedBox(
                             height: DetailViewsConfig.imageHeight,
-                            child: ZoomableRestApiImage(value.image),
+                            child: ZoomableRestApiImage(value.image, useFullImageQuality: true),
                           ),
                         ),
                         Positioned(
@@ -90,7 +96,7 @@ class _GuideDetailDataView extends ConsumerWidget {
                             message: context.localize.last_modified,
                             child: TooltipOnTap(
                               message: context.localize.last_modified,
-                              child: DateChip(date: lastModifiedDate),
+                              child: DateChip(date: lastModifiedDate!),
                             ),
                           ),
                         ),
@@ -154,7 +160,9 @@ class _GuideDetailDataView extends ConsumerWidget {
                               ),
                             ),
                           Text(
-                            "${context.localize.created_at} ${context.getTheLatesCreatedDateGuide(questions: value.guideQuestions, locale: context.locale)}",
+                            createAtDate != null
+                                ? "${context.localize.created_at} $createAtDate"
+                                : context.localize.no_creation_date,
                             style: context.textTheme.bodyGrey,
                             textAlign: TextAlign.end,
                           ),

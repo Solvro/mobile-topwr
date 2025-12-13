@@ -90,10 +90,7 @@ class _DigitalGuideDressingRoomsExpansionTileContent extends StatelessWidget {
               ),
             ),
           if (dressingRoomInformation.comment.isNotEmpty) const SizedBox(height: DigitalGuideConfig.heightMedium),
-          DigitalGuidePhotoRow(
-            imagesIDs: dressingRoom!.imagesIds?.toIList() ?? const IList.empty(),
-            semanticsLabel: context.localize.dressing_room,
-          ),
+          DigitalGuidePhotoRow(imagesIDs: dressingRoom!.imagesIds?.toIList() ?? const IList.empty()),
           const SizedBox(height: DigitalGuideConfig.heightSmall),
           Semantics(
             container: true,

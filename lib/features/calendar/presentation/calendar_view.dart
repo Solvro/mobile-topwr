@@ -11,6 +11,7 @@ import "../../../utils/context_extensions.dart";
 import "../../../widgets/horizontal_symmetric_safe_area.dart";
 import "../../../widgets/my_error_widget.dart";
 import "../../../widgets/search_box_app_bar.dart";
+import "../../../widgets/search_not_found.dart";
 import "../../analytics/data/clarity.dart";
 import "../../analytics/data/clarity_events.dart";
 import "../../departments/departments_view/widgets/departments_view_loading.dart";
@@ -78,6 +79,10 @@ class _CalendarViewContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (calendarData.isEmpty) {
+      return SearchNotFound(message: context.localize.calendar_events_not_found);
+    }
+
     final slivers = calendarData
         .map(
           (yearModel) => yearModel.events.map((monthModel) {

@@ -8,18 +8,16 @@ import "../../../../widgets/zoomable_images.dart";
 import "../../data/repository/image_repository.dart";
 
 class DigitalGuideImage extends ConsumerWidget {
-  const DigitalGuideImage({required this.id, this.zoomable = true, this.semanticsLabel});
+  const DigitalGuideImage({required this.id, this.zoomable = true});
 
   final int id;
   final bool zoomable;
-  final String? semanticsLabel;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncImageUrl = ref.watch(imageRepositoryProvider(id));
     return asyncImageUrl.when(
-      data: (url) => zoomable
-          ? ZoomableCachedImage(url, semanticsLabel: semanticsLabel)
-          : MyCachedImage(url, semanticsLabel: semanticsLabel),
+      data: (url) => zoomable ? ZoomableCachedImage(url) : MyCachedImage(url),
       error: (error, stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
       loading: () => Center(
         child: ShimmeringEffect(child: Container(color: Colors.white)),

@@ -11,6 +11,7 @@ typedef SocialIconData = ({String assetPath, String url});
 final List<SocialIconData> _socialIconsData = [
   (assetPath: Assets.svg.contactIcons.fb, url: "https://www.facebook.com/radioluz"),
   (assetPath: Assets.svg.contactIcons.yt, url: "https://www.youtube.com/@AkademickieRadioLUZ"),
+  (assetPath: Assets.svg.logoAppBar, url: "https://topwr.solvro.pl/sci-clubs/1365"),
   (assetPath: Assets.svg.contactIcons.ig, url: "https://www.instagram.com/radio_luz/"),
   (assetPath: Assets.svg.contactIcons.web, url: "https://radioluz.pl/"),
 ];
