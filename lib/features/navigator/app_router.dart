@@ -96,19 +96,26 @@ class AppRouter extends RootStackRouter {
   ];
 
   /// Converts a path string to a PageRouteInfo object for routes within the tab bar
-  /// Returns null if the path doesn't match any tab bar routes
-  PageRouteInfo pathToRoute(String path) {
-    // Remove leading slash if present
+  PageRouteInfo? pathToRoute(String path) {
     final cleanPath = path.startsWith("/") ? path.substring(1) : path;
-
-    // Split path into segments
     final segments = cleanPath.split("/");
-
     if (segments.isEmpty) return const HomeRoute();
-
     return switch (segments[0]) {
       "" => const HomeRoute(),
       "buildings" => BuildingsRoute(
+        initialActiveItemId: segments.length > 1 && segments[1] != "null" ? segments[1] : null,
+      ),
+      "libraries" => LibrariesRoute(
+        initialActiveItemId: segments.length > 1 && segments[1] != "null" ? segments[1] : null,
+      ),
+      "aeds" => AedsRoute(initialActiveItemId: segments.length > 1 && segments[1] != "null" ? segments[1] : null),
+      "bicycle-showers" => ShowersRoute(
+        initialActiveItemId: segments.length > 1 && segments[1] != "null" ? segments[1] : null,
+      ),
+      "pink-boxes" => PinkBoxesRoute(
+        initialActiveItemId: segments.length > 1 && segments[1] != "null" ? segments[1] : null,
+      ),
+      "multilayer-map" => MultilayerMapRoute(
         initialActiveItemId: segments.length > 1 && segments[1] != "null" ? segments[1] : null,
       ),
       "parkings" => ParkingsRoute(
@@ -116,9 +123,7 @@ class AppRouter extends RootStackRouter {
       ),
       "guide" => const GuideRoute(),
       "navigation" => const NavigationTabRoute(),
-      _ => throw Exception(
-        "This path: $path is not inside a tabview. This `pathToRoute` function should only be used for routes within the tabbar.",
-      ),
+      _ => null,
     };
   }
 

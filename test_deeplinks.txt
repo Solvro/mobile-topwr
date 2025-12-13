@@ -3,7 +3,7 @@ https://topwr.solvro.pl/navigation
 
 https://topwr.solvro.pl/guide
 https://topwr.solvro.pl/guide?qGuide=test
-https://topwr.solvro.pl/guide?qGuide=library
+https://topwr.solvro.pl/guide?qGuide=library 
 
 
 https://topwr.solvro.pl/guide/1

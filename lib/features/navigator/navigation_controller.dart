@@ -20,23 +20,48 @@ class NavigationController extends _$NavigationController {
     await _router?.push(route);
   }
 
-  // this manually handles deeplinks when they are launched within/inside the app
+  // this manually handles deeplinks
   Future<void> pushNamed(String uri) async {
-    final lastRoute = ref.read(currentRouteProvider);
-    final routesWithinTabBar = ref.read(appRouterProvider).routesWithinTabBar;
-    final isCurrentlyWithinTabView = routesWithinTabBar.any((route) => route.name == lastRoute?.settings.name);
-    final isDestinationWithinTabView = routesWithinTabBar.any(
-      (route) => route.path == uri || uri.startsWith("buildings") || uri.startsWith("parkings"),
-    );
+    final isCurrentlyWithinTabView = _isCurrentlyWithinTabView();
+
+    final uriPath = uri.split("?").first;
+    final basePath = uriPath.split("/").where((s) => s.isNotEmpty).firstOrNull ?? "";
+    final isDestinationWithinTabView = ref.read(appRouterProvider).pathToRoute(uriPath) != null;
+
     final shouldPushNewRootView = !isCurrentlyWithinTabView && isDestinationWithinTabView;
     if (shouldPushNewRootView) {
       final tabRoute = ref.read(appRouterProvider).pathToRoute(uri);
+
+      if (tabRoute == null) {
+        final properlyWorkingURI = !isDestinationWithinTabView ? "/$uri" : uri;
+        await _router?.pushPath(properlyWorkingURI);
+        return;
+      }
+
+      final navBarEnum =
+          NavBarConfig.reversedTabViews[tabRoute.routeName] ??
+          switch (basePath) {
+            "" => NavBarEnum.home,
+            "buildings" ||
+            "libraries" ||
+            "aeds" ||
+            "bicycle-showers" ||
+            "pink-boxes" ||
+            "multilayer-map" => NavBarEnum.buildings,
+            "parkings" => NavBarEnum.parkings,
+            "guide" => NavBarEnum.guide,
+            "navigation" => NavBarEnum.navigation,
+            _ => null,
+          };
+
+      if (navBarEnum == null) {
+        final properlyWorkingURI = !isDestinationWithinTabView ? "/$uri" : uri;
+        await _router?.pushPath(properlyWorkingURI);
+        return;
+      }
+
       await _router?.push(
-        RootRoute(
-          initialTabToGetBackTo: NavBarConfig.reversedTabViews[tabRoute.routeName]!,
-          children: [tabRoute],
-          isFirstRootBottomView: false,
-        ),
+        RootRoute(initialTabToGetBackTo: navBarEnum, children: [tabRoute], isFirstRootBottomView: false),
       );
       return;
     }
@@ -47,5 +72,14 @@ class NavigationController extends _$NavigationController {
   @override
   GlobalKey<AutoRouterState> build() {
     return GlobalKey<AutoRouterState>();
+  }
+
+  bool _isCurrentlyWithinTabView() {
+    final lastRoute = ref.read(currentRouteProvider);
+    final routeSettings = lastRoute?.settings;
+    if (routeSettings is AutoRoutePage) {
+      return routeSettings.routeData.name == RootRoute.name;
+    }
+    return false;
   }
 }
