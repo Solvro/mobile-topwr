@@ -41,6 +41,10 @@ abstract class ColorsConsts {
 
   static const gold = Color(0xFFFFDF00);
 
+  static const spotifyGreen = Color(0xFF1DB954);
+  static const appleMusicRed = Color(0xFFFC3C44);
+  static const deezerPurple = Color(0xFFA238FF);
+
   //Department's gradients are supposed to be pulled from server
   //
 }

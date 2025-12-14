@@ -5,6 +5,8 @@ import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../data/repository/history_entry_repository.dart";
+import "live_indicator.dart";
+import "search_streaming_bottom_sheet.dart";
 
 const _maxElementsToShow = 5;
 
@@ -67,29 +69,39 @@ class _NowPlayingTile extends StatelessWidget {
           time,
           style: textTheme.title.copyWith(color: isActive ? colorTheme.whiteSoap : colorTheme.orangePomegranadeLighter),
         ),
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        title: Row(
+          mainAxisSize: MainAxisSize.min,
           children: [
-            Text(
-              title,
-              style: textTheme.title.copyWith(color: isActive ? colorTheme.whiteSoap : colorTheme.blackMirage),
+            Flexible(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: textTheme.title.copyWith(color: isActive ? colorTheme.whiteSoap : colorTheme.blackMirage),
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    subtitle,
+                    style: textTheme.tiny.copyWith(color: isActive ? colorTheme.whiteSoap : colorTheme.blackMirage),
+                  ),
+                ],
+              ),
             ),
-            const SizedBox(height: 2),
-            Text(
-              subtitle,
-              style: textTheme.tiny.copyWith(color: isActive ? colorTheme.whiteSoap : colorTheme.blackMirage),
-            ),
+            const SizedBox(width: 4),
+            if (isActive)
+              LiveIndicator(
+                spreadRadius: 8,
+                spreadDuration: const Duration(milliseconds: 800),
+                waitDuration: const Duration(seconds: 1),
+                color: colorTheme.whiteSoap,
+              ),
           ],
         ),
-        trailing: isActive
-            ? Text(
-                context.localize.now_playing.toUpperCase(),
-                style: textTheme.tiny.copyWith(
-                  color: isActive ? colorTheme.whiteSoap : colorTheme.blackMirage,
-                  fontWeight: FontWeight.w400,
-                ),
-              )
-            : null,
+        trailing: IconButton(
+          icon: Icon(Icons.manage_search, color: isActive ? colorTheme.whiteSoap : colorTheme.orangePomegranade),
+          onPressed: () => SearchStreamingBottomSheet.show(context, title: title, artist: subtitle),
+        ),
       ),
     );
   }

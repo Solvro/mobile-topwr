@@ -236,6 +236,11 @@ flutter:
     - assets/svg/radio_luz/pause_icon.svg
     - assets/svg/radio_luz/speaker_icon.svg
     - assets/svg/radio_luz/radio_luz_logo.svg
+    - assets/svg/streaming/spotify.svg
+    - assets/svg/streaming/apple_music.svg
+    - assets/svg/streaming/youtube_music.svg
+    - assets/svg/streaming/deezer.svg
+    - assets/svg/streaming/tidal.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
