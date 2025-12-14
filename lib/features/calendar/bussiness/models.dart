@@ -10,7 +10,7 @@ typedef SingleCalendarItem = ({
   HexColor? accentColor,
 });
 
-typedef CalendarDayEvents = ({int day, IList<SingleCalendarItem> events, int weekday});
+typedef CalendarDayEvents = ({int day, IList<SingleCalendarItem> events, int weekday, bool isToday});
 
 typedef CalendarMonthEvents = ({int month, IList<CalendarDayEvents> events});
 
