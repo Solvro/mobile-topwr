@@ -6,54 +6,7 @@ import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../utils/launch_url_util.dart";
 
-enum StreamingService {
-  spotify(name: "Spotify", iconAsset: "assets/svg/streaming/spotify.svg", searchUrlBuilder: _spotifySearchUrl),
-  appleMusic(
-    name: "Apple Music",
-    iconAsset: "assets/svg/streaming/apple_music.svg",
-    searchUrlBuilder: _appleMusicSearchUrl,
-  ),
-  youtubeMusic(
-    name: "YouTube Music",
-    iconAsset: "assets/svg/streaming/youtube_music.svg",
-    searchUrlBuilder: _youtubeMusicSearchUrl,
-  ),
-  deezer(name: "Deezer", iconAsset: "assets/svg/streaming/deezer.svg", searchUrlBuilder: _deezerSearchUrl),
-  tidal(name: "Tidal", iconAsset: "assets/svg/streaming/tidal.svg", searchUrlBuilder: _tidalSearchUrl);
-
-  const StreamingService({required this.name, required this.iconAsset, required this.searchUrlBuilder});
-
-  final String name;
-  final String iconAsset;
-  final String Function(String query) searchUrlBuilder;
-
-  String getSearchUrl(String query) {
-    return searchUrlBuilder(query);
-  }
-
-  Color getColor(BuildContext context) {
-    final colorTheme = context.colorTheme;
-    return switch (this) {
-      StreamingService.spotify => colorTheme.spotifyGreen,
-      StreamingService.appleMusic => colorTheme.appleMusicRed,
-      StreamingService.youtubeMusic => Colors.red,
-      StreamingService.deezer => colorTheme.deezerPurple,
-      StreamingService.tidal => Colors.black,
-    };
-  }
-
-  static String _spotifySearchUrl(String query) => "https://open.spotify.com/search/${Uri.encodeComponent(query)}";
-
-  static String _appleMusicSearchUrl(String query) =>
-      "https://music.apple.com/pl/search?term=${Uri.encodeComponent(query)}";
-
-  static String _youtubeMusicSearchUrl(String query) =>
-      "https://music.youtube.com/search?q=${Uri.encodeComponent(query)}";
-
-  static String _deezerSearchUrl(String query) => "https://www.deezer.com/search/${Uri.encodeComponent(query)}";
-
-  static String _tidalSearchUrl(String query) => "https://tidal.com/search?q=${Uri.encodeComponent(query)}";
-}
+import "../data/streaming_service_sources.dart";
 
 class SearchStreamingBottomSheet extends ConsumerWidget {
   const SearchStreamingBottomSheet({super.key, required this.title, required this.artist});
@@ -136,7 +89,7 @@ class _StreamingServiceTile extends ConsumerWidget {
         borderRadius: BorderRadius.circular(12),
         child: InkWell(
           onTap: () async {
-            await ref.launch(service.getSearchUrl("$title $artist"));
+            await ref.launch(service.searchUrlBuilder("$title $artist"));
           },
           borderRadius: BorderRadius.circular(12),
           child: Padding(
