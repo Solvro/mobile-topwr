@@ -86,4 +86,15 @@ class AppTheme implements AppThemeData {
 extension AppThemeX on BuildContext {
   ColorScheme get colorScheme => Theme.of(this).colorScheme;
   TextTheme get textTheme => Theme.of(this).textTheme;
+
+  ThemeData defaultThemeWithOverrideTextStyles({TextStyle? titleLarge, TextStyle? bodyLarge}) {
+    final currentTheme = Theme.of(this);
+    final textTheme = currentTheme.textTheme;
+    return currentTheme.copyWith(
+      textTheme: currentTheme.textTheme.copyWith(
+        titleLarge: titleLarge ?? textTheme.titleLarge,
+        bodyLarge: bodyLarge ?? textTheme.bodyLarge,
+      ),
+    );
+  }
 }

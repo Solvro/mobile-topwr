@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 
 import "../../../../config/ui_config.dart";
+import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../widgets/my_cached_image.dart";
 import "../../../../widgets/wide_tile_card.dart";
@@ -14,23 +15,31 @@ class DepartmentCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WideTileCard(
-      onTap: onClick,
-      isActive: true,
-      title: department.code,
-      subtitle: department.name,
-      activeShadows: null,
-      activeGradient: department.gradient,
-      trailing: Padding(
-        padding: const EdgeInsets.only(right: 10),
-        child: SizedBox(
-          width: WideTileCardConfig.imageSize,
-          height: context.textScaler.scale(WideTileCardConfig.imageSize),
-          child: Opacity(
-            opacity: .5,
-            child: Padding(
-              padding: const EdgeInsets.all(DepartmentsConfig.logoMicroPadding),
-              child: MyCachedImage(department.imageUrl, boxFit: BoxFit.scaleDown, loadingType: LoadingType.noLoading),
+    final textTheme = context.textTheme;
+
+    return Theme(
+      data: context.defaultThemeWithOverrideTextStyles(
+        titleLarge: textTheme.titleLarge?.copyWith(shadows: HomeViewConfig.squareCardTextShadow),
+        bodyLarge: textTheme.bodyLarge?.copyWith(shadows: HomeViewConfig.squareCardTextShadow),
+      ),
+      child: WideTileCard(
+        onTap: onClick,
+        isActive: true,
+        title: department.code,
+        subtitle: department.name,
+        activeShadows: null,
+        activeGradient: department.gradient,
+        trailing: Padding(
+          padding: const EdgeInsets.only(right: 10),
+          child: SizedBox(
+            width: WideTileCardConfig.imageSize,
+            height: context.textScaler.scale(WideTileCardConfig.imageSize),
+            child: Opacity(
+              opacity: .5,
+              child: Padding(
+                padding: const EdgeInsets.all(DepartmentsConfig.logoMicroPadding),
+                child: MyCachedImage(department.imageUrl, boxFit: BoxFit.scaleDown, loadingType: LoadingType.noLoading),
+              ),
             ),
           ),
         ),
