@@ -37,7 +37,7 @@ class LocalizationExpansionTileContent extends ConsumerWidget {
               textScaler: scaler,
               TextSpan(
                 text: context.localize.navigate_to_building,
-                style: context.textTheme.titleLarge?.copyWith(
+                style: context.textTheme.bodyLarge?.copyWith(
                   color: context.colorScheme.primary,
                   decoration: TextDecoration.underline,
                   decorationColor: context.colorScheme.primary,

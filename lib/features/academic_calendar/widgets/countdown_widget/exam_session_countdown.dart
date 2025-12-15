@@ -67,7 +67,7 @@ class ExamSessionCountdown extends ConsumerWidget {
                       padding: const EdgeInsets.only(right: 8),
                       child: Text(
                         academicCalendar.localizeDaysCounterMessage(context),
-                        style: context.textTheme.titleLarge?.copyWith(color: context.colorScheme.surface),
+                        style: context.textTheme.bodyLarge?.copyWith(color: context.colorScheme.surface),
                         textScaler: const TextScaler.linear(0.97),
                       ),
                     ),

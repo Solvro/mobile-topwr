@@ -23,7 +23,7 @@ class TextAndUrl extends ConsumerWidget {
           children: [
             TextSpan(
               text: url.replaceFirst("https://", " www."),
-              style: context.textTheme.titleLarge?.copyWith(
+              style: context.textTheme.bodyLarge?.copyWith(
                 color: context.colorScheme.primary,
                 decoration: TextDecoration.underline,
                 decorationColor: context.colorScheme.primary,

@@ -23,7 +23,7 @@ class AppVersionTile extends StatelessWidget {
             title: ExcludeSemantics(
               child: Text(
                 "${MyAppConfig.title} ${snapshot.data?.version} ${context.localize.app_info}",
-                style: context.textTheme.titleLarge?.copyWith(color: context.colorScheme.outline),
+                style: context.textTheme.bodyLarge?.copyWith(color: context.colorScheme.outline),
               ),
             ),
             leading: ExcludeSemantics(child: Icon(Icons.info, color: context.colorScheme.primary, size: 22)),

@@ -47,9 +47,11 @@ class IncomingDayChanges extends ConsumerWidget {
               ExcludeSemantics(
                 child: Text(
                   l10n.incoming_days_changes_days(data.daysTillFirstChange),
-                  style: context.textTheme.titleLarge
-                      ?.copyWith(color: context.colorScheme.surface)
-                      .copyWith(fontWeight: FontWeight.bold, fontSize: 16),
+                  style: context.textTheme.bodyLarge?.copyWith(
+                    color: context.colorScheme.surface,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
                 ),
               ),
             ],

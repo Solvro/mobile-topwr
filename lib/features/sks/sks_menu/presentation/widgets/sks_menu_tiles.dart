@@ -106,9 +106,7 @@ class SksMenuDishDetailsTile extends StatelessWidget {
                 children: [
                   TextSpan(
                     text: " $size",
-                    style: context.textTheme.titleLarge
-                        ?.copyWith(color: context.colorScheme.outline)
-                        .copyWith(height: 1),
+                    style: context.textTheme.bodyLarge?.copyWith(color: context.colorScheme.outline, height: 1),
                   ),
                   if (!hasIncreasedTextSize)
                     TextSpan(text: " | ", style: context.textTheme.titleLarge?.copyWith(height: 1)),

@@ -136,13 +136,13 @@ class _TitlesColumn extends StatelessWidget {
                 : context.textTheme.titleLarge,
             subtitle: subtitle,
             subtitleStyle: isActive
-                ? context.textTheme.titleLarge?.copyWith(color: context.colorScheme.surface)
+                ? context.textTheme.bodyLarge?.copyWith(color: context.colorScheme.surface)
                 : context.textTheme.bodyLarge,
             spacing: secondSubtitle == null ? WideTileCardConfig.titlesSpacing : 2,
             secondSubtitle: secondSubtitle,
             secondSubtitleStyle: isActive
-                ? context.textTheme.titleLarge?.copyWith(color: context.colorScheme.surface)
-                : context.textTheme.titleLarge?.copyWith(color: context.colorScheme.secondary),
+                ? context.textTheme.bodyLarge?.copyWith(color: context.colorScheme.surface)
+                : context.textTheme.bodyLarge?.copyWith(color: context.colorScheme.secondary),
             maxTotalLines: context.textScaleFactor > 1.5 ? 5 : 4,
             showVerifiedBadge: showBadge,
             showStrategicBadge: showStrategicBadge,

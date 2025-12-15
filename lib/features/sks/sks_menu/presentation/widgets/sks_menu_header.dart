@@ -65,7 +65,7 @@ class SksMenuHeader extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: SksMenuConfig.paddingSmall),
               child: Text(
                 "${context.localize.last_modified}: ${Protontime.format(stamp, language: context.locale.languageCode)}",
-                style: context.textTheme.titleLarge?.copyWith(color: context.colorScheme.outline),
+                style: context.textTheme.bodyLarge?.copyWith(color: context.colorScheme.outline),
                 textAlign: TextAlign.center,
               ),
             ),

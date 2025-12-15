@@ -19,7 +19,7 @@ class DigitalGuideDataSourceLink extends ConsumerWidget {
           children: [
             TextSpan(
               text: context.localize.digital_guide_website,
-              style: context.textTheme.titleLarge?.copyWith(
+              style: context.textTheme.bodyLarge?.copyWith(
                 color: context.colorScheme.primary,
                 decoration: TextDecoration.underline,
                 decorationColor: context.colorScheme.primary,
