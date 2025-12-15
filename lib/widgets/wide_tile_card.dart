@@ -127,22 +127,21 @@ class _TitlesColumn extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         const basePadding = WideTileCardConfig.basePadding;
+        final textColor = isActive ? context.colorScheme.surface : null;
+        final textTheme = context.textTheme;
+
         return Padding(
           padding: const EdgeInsets.only(left: basePadding, top: basePadding, right: basePadding * 1.04),
           child: EnsureVisibleTags(
             title: title,
-            titleStyle: isActive
-                ? context.textTheme.titleLarge?.copyWith(color: context.colorScheme.surface)
-                : context.textTheme.titleLarge,
+            titleStyle: textTheme.titleLarge?.copyWith(color: textColor),
             subtitle: subtitle,
-            subtitleStyle: isActive
-                ? context.textTheme.bodyLarge?.copyWith(color: context.colorScheme.surface)
-                : context.textTheme.bodyLarge,
+            subtitleStyle: textTheme.bodyLarge?.copyWith(color: textColor),
             spacing: secondSubtitle == null ? WideTileCardConfig.titlesSpacing : 2,
             secondSubtitle: secondSubtitle,
-            secondSubtitleStyle: isActive
-                ? context.textTheme.bodyLarge?.copyWith(color: context.colorScheme.surface)
-                : context.textTheme.bodyLarge?.copyWith(color: context.colorScheme.secondary),
+            secondSubtitleStyle: textTheme.bodyLarge?.copyWith(
+              color: isActive ? textColor : context.colorScheme.secondary,
+            ),
             maxTotalLines: context.textScaleFactor > 1.5 ? 5 : 4,
             showVerifiedBadge: showBadge,
             showStrategicBadge: showStrategicBadge,
