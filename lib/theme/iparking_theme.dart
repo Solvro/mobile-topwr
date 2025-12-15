@@ -41,6 +41,3 @@ class ParkingChartTextStyle extends ParkingTextStyle {
 extension ParkingTextShadow on TextStyle {
   TextStyle get withoutShadows => copyWith(shadows: []);
 }
-
-// IParkingTheme styles are now integrated into AppTheme
-// Access them via context.iParkingTheme extension in app_theme.dart

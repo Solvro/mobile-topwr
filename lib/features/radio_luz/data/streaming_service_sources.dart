@@ -24,12 +24,12 @@ enum StreamingService {
   };
 
   Color getColor(BuildContext context) {
-    final colorTheme = context.colorTheme;
+    final colorTheme = context.colorScheme;
     return switch (this) {
-      StreamingService.spotify => colorTheme.spotifyGreen,
-      StreamingService.appleMusic => colorTheme.appleMusicRed,
+      StreamingService.spotify => colorTheme.tertiaryContainer,
+      StreamingService.appleMusic => colorTheme.onTertiaryContainer,
       StreamingService.youtubeMusic => Colors.red,
-      StreamingService.deezer => colorTheme.deezerPurple,
+      StreamingService.deezer => colorTheme.scrim,
       StreamingService.tidal => Colors.black,
     };
   }

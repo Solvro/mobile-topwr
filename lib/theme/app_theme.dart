@@ -45,7 +45,6 @@ class AppTheme implements AppThemeData {
       surface: ColorsConsts.whiteSoap,
       onPrimary: ColorsConsts.whiteSoap,
       onSecondary: ColorsConsts.whiteSoap,
-      error: ColorsConsts.orangePomegranadeLighter,
       onTertiary: ColorsConsts.blackMirage,
       surfaceTint: ColorsConsts.greyLight,
       outline: ColorsConsts.greyPigeon,
@@ -53,6 +52,9 @@ class AppTheme implements AppThemeData {
       inversePrimary: ColorsConsts.blueAzure,
       primaryContainer: ColorsConsts.orangePomegranadeLighter,
       secondaryContainer: ColorsConsts.gold,
+      tertiaryContainer: ColorsConsts.spotifyGreen,
+      onTertiaryContainer: ColorsConsts.appleMusicRed,
+      scrim: ColorsConsts.deezerPurple,
     ),
     textTheme: const _AppTextTheme(),
   );
@@ -66,7 +68,6 @@ class AppTheme implements AppThemeData {
       surface: ColorsConsts.blackMirage,
       onPrimary: ColorsConsts.blackMirage,
       onSecondary: ColorsConsts.blackMirage,
-      error: ColorsConsts.orangePomegranadeLighter,
       onTertiary: ColorsConsts.whiteSoap,
       surfaceTint: ColorsConsts.greyLight,
       outline: ColorsConsts.greyPigeon,
@@ -74,6 +75,9 @@ class AppTheme implements AppThemeData {
       inversePrimary: ColorsConsts.blueAzure,
       primaryContainer: ColorsConsts.orangePomegranadeLighter,
       secondaryContainer: ColorsConsts.gold,
+      tertiaryContainer: ColorsConsts.spotifyGreen,
+      onTertiaryContainer: ColorsConsts.appleMusicRed,
+      scrim: ColorsConsts.deezerPurple,
     ),
   );
 }

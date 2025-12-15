@@ -24,12 +24,12 @@ class SearchStreamingBottomSheet extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final colorTheme = context.colorTheme;
+    final colorTheme = context.colorScheme;
     final textTheme = context.textTheme;
 
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: colorTheme.whiteSoap,
+        color: colorTheme.surface,
         borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
       ),
       child: SafeArea(
@@ -42,16 +42,16 @@ class SearchStreamingBottomSheet extends ConsumerWidget {
                 width: 36,
                 height: 4,
                 decoration: BoxDecoration(
-                  color: colorTheme.blackMirage.withValues(alpha: 0.16),
+                  color: colorTheme.onTertiary.withValues(alpha: 0.16),
                   borderRadius: BorderRadius.circular(100),
                 ),
               ),
               const SizedBox(height: 16),
-              Text(context.localize.add_to_streaming_head, style: textTheme.headline),
+              Text(context.localize.add_to_streaming_head, style: textTheme.headlineMedium),
               const SizedBox(height: 8),
               Text(
                 "$title - $artist",
-                style: textTheme.body,
+                style: textTheme.bodyLarge,
                 textAlign: TextAlign.center,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
@@ -78,14 +78,14 @@ class _StreamingServiceTile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final colorTheme = context.colorTheme;
+    final colorTheme = context.colorScheme;
     final textTheme = context.textTheme;
     final serviceColor = service.getColor(context);
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 8),
       child: Material(
-        color: colorTheme.greyLight,
+        color: colorTheme.surfaceTint,
         borderRadius: BorderRadius.circular(12),
         child: InkWell(
           onTap: () async {
@@ -113,8 +113,8 @@ class _StreamingServiceTile extends ConsumerWidget {
                   ),
                 ),
                 const SizedBox(width: 16),
-                Expanded(child: Text(service.name, style: textTheme.title)),
-                Icon(Icons.open_in_new, color: colorTheme.greyPigeon, size: 20),
+                Expanded(child: Text(service.name, style: textTheme.titleLarge)),
+                Icon(Icons.open_in_new, color: colorTheme.outline, size: 20),
               ],
             ),
           ),
