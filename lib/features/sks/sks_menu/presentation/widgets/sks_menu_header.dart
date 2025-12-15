@@ -26,9 +26,11 @@ class SksMenuHeader extends StatelessWidget {
           const SizedBox(height: SksMenuConfig.paddingLarge),
           Text(
             context.localize.sks_menu,
-            style: context.textTheme.headlineMedium
-                ?.copyWith(color: context.colorScheme.primary)
-                .copyWith(fontSize: 28, height: 1),
+            style: context.textTheme.headlineMedium?.copyWith(
+              color: context.colorScheme.primary,
+              fontSize: 28,
+              height: 1,
+            ),
             textAlign: TextAlign.center,
           ),
           Padding(

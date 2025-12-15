@@ -20,9 +20,10 @@ class DateChip extends StatelessWidget {
         decoration: BoxDecoration(color: context.colorScheme.onTertiary, borderRadius: BorderRadius.circular(20)),
         child: Text(
           DateFormat(DateChipConfig.dateTimeFormat, context.locale.languageCode).format(date),
-          style: context.textTheme.titleLarge
-              ?.copyWith(color: context.colorScheme.surface)
-              .copyWith(fontWeight: FontWeight.w500),
+          style: context.textTheme.titleLarge?.copyWith(
+            color: context.colorScheme.surface,
+            fontWeight: FontWeight.w500,
+          ),
         ),
       ),
     );

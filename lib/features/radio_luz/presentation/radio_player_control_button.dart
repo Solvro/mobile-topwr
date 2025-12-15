@@ -51,9 +51,7 @@ class RadioPlayerControlButton extends StatelessWidget {
             child: Center(
               child: Text(
                 buttonText,
-                style: context.textTheme.titleLarge
-                    ?.copyWith(color: context.colorScheme.primary)
-                    .copyWith(fontSize: 14),
+                style: context.textTheme.titleLarge?.copyWith(color: context.colorScheme.primary, fontSize: 14),
               ),
             ),
           ),

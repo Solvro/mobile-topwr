@@ -59,6 +59,7 @@ class AppTheme implements AppThemeData {
     textTheme: const _AppTextTheme(),
   );
 
+  //TODO(tt): it need adujustment for dark theme
   @override
   ThemeData get dark => ThemeData(
     colorScheme: const ColorScheme.dark(

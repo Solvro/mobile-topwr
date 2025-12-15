@@ -42,17 +42,19 @@ class DepartmentHomeTile extends StatelessWidget {
               children: [
                 Text(
                   department.code,
-                  style: context.textTheme.titleLarge
-                      ?.copyWith(color: context.colorScheme.surface)
-                      .copyWith(shadows: HomeViewConfig.squareCardTextShadow),
+                  style: context.textTheme.titleLarge?.copyWith(
+                    color: context.colorScheme.surface,
+                    shadows: HomeViewConfig.squareCardTextShadow,
+                  ),
                 ),
                 Text(
                   department.name,
                   maxLines: 3,
                   overflow: TextOverflow.ellipsis,
-                  style: context.textTheme.bodyLarge
-                      ?.copyWith(color: context.colorScheme.surface)
-                      .copyWith(shadows: HomeViewConfig.squareCardTextShadow),
+                  style: context.textTheme.bodyLarge?.copyWith(
+                    color: context.colorScheme.surface,
+                    shadows: HomeViewConfig.squareCardTextShadow,
+                  ),
                 ),
               ],
             ),
