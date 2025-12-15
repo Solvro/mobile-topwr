@@ -10,7 +10,7 @@ import "../../../departments/departments_view/data/repository/departments_reposi
 import "../../../navigator/utils/navigation_commands.dart";
 import "../loading_widgets/scrollable_section_loading.dart";
 import "../paddings.dart";
-import "deparment_home_tile.dart";
+import "department_home_tile.dart";
 
 class DepartmentsSection extends ConsumerWidget {
   const DepartmentsSection({super.key});
