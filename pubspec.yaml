@@ -34,10 +34,6 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
-  #Theme
-  theme_tailor_annotation: ^3.0.2
-  theme_tailor: ^3.0.3
-
   #State managements
   flutter_riverpod: ^2.6.1
   riverpod_annotation: ^2.6.1

@@ -16,8 +16,8 @@ class MyPointWidget extends ConsumerWidget {
       child: RichText(
         text: TextSpan(
           text: "• ",
-          style: context.textTheme.body.copyWith(fontSize: 18),
-          children: [TextSpan(text: text, style: context.textTheme.body.copyWith(fontSize: 14))],
+          style: context.textTheme.bodyLarge?.copyWith(fontSize: 18),
+          children: [TextSpan(text: text, style: context.textTheme.bodyLarge?.copyWith(fontSize: 14))],
         ),
         maxLines: 100,
         overflow: TextOverflow.ellipsis,

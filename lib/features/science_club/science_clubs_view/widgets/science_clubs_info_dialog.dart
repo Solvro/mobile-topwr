@@ -33,7 +33,7 @@ class ScienceClubInfoDialog extends StatelessWidget {
         right: horizontalPadding / 1.5,
       ),
       actionsAlignment: MainAxisAlignment.center,
-      title: Text(context.localize.add_club_contact_info_question, style: context.textTheme.headline),
+      title: Text(context.localize.add_club_contact_info_question, style: context.textTheme.headlineMedium),
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
@@ -44,7 +44,7 @@ class ScienceClubInfoDialog extends StatelessWidget {
                 child: Text(
                   context.localize.ok,
                   textAlign: TextAlign.center,
-                  style: context.textTheme.boldBodyOrange.copyWith(color: context.colorTheme.orangePomegranade),
+                  style: context.textTheme.bodyMedium?.copyWith(color: context.colorScheme.primary),
                 ),
               ),
             ],
@@ -59,12 +59,12 @@ class ScienceClubInfoDialog extends StatelessWidget {
           Consumer(
             builder: (context, ref, child) {
               final scaler = context.textScaler.clamp(maxScaleFactor: 1.2);
-              final baseStyle = context.textTheme.lightTitle.copyWith(
-                fontSize: scaler.scale(context.textTheme.lightTitle.fontSize ?? 16),
+              final baseStyle = context.textTheme.titleMedium?.copyWith(
+                fontSize: scaler.scale(context.textTheme.titleMedium?.fontSize ?? 16),
               );
-              final linkStyle = context.textTheme.lightTitleOrange.copyWith(
+              final linkStyle = baseStyle?.copyWith(
+                color: context.colorScheme.primary,
                 decoration: TextDecoration.underline,
-                fontSize: scaler.scale(context.textTheme.lightTitleOrange.fontSize ?? 16),
               );
               return RichText(
                 textScaler: scaler,

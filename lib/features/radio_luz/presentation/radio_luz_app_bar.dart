@@ -14,7 +14,7 @@ class RadioLuzAppBar extends AppBar {
         title: AppBarLuz(logoSize: logoSize),
         centerTitle: false,
         titleSpacing: 0,
-        backgroundColor: context.colorTheme.whiteSoap,
+        backgroundColor: context.colorScheme.surface,
         scrolledUnderElevation: 0,
         automaticallyImplyLeading: false,
         toolbarHeight: toolbarHeight,

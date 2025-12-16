@@ -28,7 +28,7 @@ class _StrategicBadgeWidget extends StatelessWidget {
         child: Icon(
           isPolish ? StrategicClubBadges.polish_badge : StrategicClubBadges.english_badge,
           size: scaler.scale(14),
-          color: context.colorTheme.blueAzure,
+          color: context.colorScheme.secondary,
         ),
       ),
     );

@@ -12,8 +12,8 @@ class SksChartLineTouchData extends LineTouchData {
   SksChartLineTouchData(BuildContext context, this.dateTime)
     : super(
         touchTooltipData: LineTouchTooltipData(
-          getTooltipColor: (LineBarSpot lineBarSpot) => context.colorTheme.greyLight,
-          tooltipBorder: BorderSide(color: context.colorTheme.blackMirage),
+          getTooltipColor: (LineBarSpot lineBarSpot) => context.colorScheme.surfaceTint,
+          tooltipBorder: BorderSide(color: context.colorScheme.onTertiary),
           getTooltipItems: (touchedSpots) {
             return [
               ...touchedSpots
@@ -21,15 +21,15 @@ class SksChartLineTouchData extends LineTouchData {
                   .map((LineBarSpot touchedSpot) {
                     final value = touchedSpot.y.toStringAsFixed(0);
                     final textStyle = (touchedSpot.barIndex == 0)
-                        ? context.textTheme.title.copyWith(color: context.colorTheme.orangePomegranade, fontSize: 16)
-                        : context.textTheme.boldBody.copyWith(color: context.colorTheme.blueAzure);
-                    return LineTooltipItem(value, textStyle);
+                        ? context.textTheme.titleLarge?.copyWith(color: context.colorScheme.primary, fontSize: 16)
+                        : context.textTheme.bodyMedium?.copyWith(color: context.colorScheme.secondary);
+                    return LineTooltipItem(value, textStyle!);
                   })
                   .take(touchedSpots.length - 1),
               // hour tooltip
               LineTooltipItem(
                 dateTime.get(touchedSpots[0].x.toInt()).toHourMinuteString(context),
-                context.textTheme.boldBody,
+                context.textTheme.bodyMedium!,
               ),
             ].toList();
           },

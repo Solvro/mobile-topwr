@@ -24,12 +24,12 @@ class ReportChangeButton extends ConsumerWidget {
               unawaited(ref.launch(emailUrl));
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: context.colorTheme.orangePomegranade,
+              backgroundColor: context.colorScheme.primary,
               padding: AppWidgetsConfig.paddingMedium,
               minimumSize: const Size(144, 40),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppWidgetsConfig.borderRadiusMedium)),
             ),
-            child: Text(context.localize.report_change_button, style: TextStyle(color: context.colorTheme.whiteSoap)),
+            child: Text(context.localize.report_change_button, style: TextStyle(color: context.colorScheme.surface)),
           ),
         ],
       ),

@@ -57,7 +57,7 @@ class ChartWidget extends StatelessWidget {
                           return LineTooltipItem(
                             "$value\n",
                             TextStyle(
-                              color: context.colorTheme.whiteSoap,
+                              color: context.colorScheme.surface,
                               fontWeight: FontWeight.bold,
                               fontSize: ParkingChartConfig.labelFontSize,
                             ),
@@ -65,7 +65,7 @@ class ChartWidget extends StatelessWidget {
                               TextSpan(
                                 text: hour,
                                 style: TextStyle(
-                                  color: context.colorTheme.greyLight,
+                                  color: context.colorScheme.surfaceTint,
                                   fontWeight: FontWeight.normal,
                                   fontSize: ParkingChartConfig.labelFontSize,
                                 ),

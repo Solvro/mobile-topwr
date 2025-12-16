@@ -59,7 +59,7 @@ class _StairsView extends ConsumerWidget {
           children: [
             Text(
               context.localize.stairs,
-              style: context.textTheme.headline.copyWith(fontSize: DigitalGuideConfig.headlineFont),
+              style: context.textTheme.headlineMedium?.copyWith(fontSize: DigitalGuideConfig.headlineFont),
             ),
             const SizedBox(height: DigitalGuideConfig.heightSmall),
             BulletList(
@@ -86,7 +86,7 @@ class _StairsView extends ConsumerWidget {
             ),
             AccessibilityProfileCard(
               accessibilityCommentsManager: StairsAccessibilityCommentsManager(stairs: stairs, l10n: context.localize),
-              backgroundColor: context.colorTheme.whiteSoap,
+              backgroundColor: context.colorScheme.surface,
             ),
           ],
         ),

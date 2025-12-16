@@ -22,7 +22,7 @@ class OfflineMessage extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
           child: Align(
-            child: Text(errMessage, style: context.textTheme.title, textAlign: TextAlign.center),
+            child: Text(errMessage, style: context.textTheme.titleLarge, textAlign: TextAlign.center),
           ),
         ),
         Padding(

@@ -32,7 +32,7 @@ class HomeView extends StatelessWidget {
 
     return Scaffold(
       primary: false,
-      backgroundColor: context.colorTheme.whiteSoap,
+      backgroundColor: context.colorScheme.surface,
       appBar: LogoAppBar(context, actions: const [PlannerBannerVisibility(reverseLogic: true, child: PlanerAdBadge())]),
       body: KeepAliveHomeViewProviders(
         child: ListView.separated(

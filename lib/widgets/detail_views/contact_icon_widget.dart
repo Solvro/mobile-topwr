@@ -18,7 +18,7 @@ class ContactIconWidget extends StatelessWidget {
         child: Container(
           width: scaler.scale(35),
           height: scaler.scale(35),
-          color: context.colorTheme.whiteSoap,
+          color: context.colorScheme.surface,
           child: Center(
             child: SizedBox(
               width: scaler.scale(20),

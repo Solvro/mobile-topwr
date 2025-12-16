@@ -29,7 +29,7 @@ class CalendarTile extends ConsumerWidget {
         : null;
 
     return Card(
-      color: context.colorTheme.greyLight,
+      color: context.colorScheme.surfaceTint,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppWidgetsConfig.borderRadiusMedium)),
       elevation: 0,
       child: Row(
@@ -49,20 +49,20 @@ class CalendarTile extends ConsumerWidget {
             child: ListTile(
               contentPadding: const EdgeInsets.symmetric(horizontal: 12),
               title: Text(item.name),
-              titleTextStyle: context.textTheme.title,
+              titleTextStyle: context.textTheme.titleLarge,
               subtitle: subtitle,
-              subtitleTextStyle: context.textTheme.body,
+              subtitleTextStyle: context.textTheme.bodyLarge,
               trailing: switch (item.description) {
                 null => null,
                 final description => IconButton(
-                  color: context.colorTheme.orangePomegranade,
+                  color: context.colorScheme.primary,
                   onPressed: () async {
                     await showCustomDialog(
                       dialogSemantics: context.localize.push_notifications_dialog_info,
                       context: context,
                       onConfirmTapped: null,
                       confirmText: context.localize.confirm,
-                      dialogContent: Text(description, style: context.textTheme.lightTitle),
+                      dialogContent: Text(description, style: context.textTheme.titleMedium),
                       closeText: context.localize.ok,
                     );
                   },

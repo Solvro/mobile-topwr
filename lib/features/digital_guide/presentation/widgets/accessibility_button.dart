@@ -28,13 +28,13 @@ class AccessibilityButton extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(DigitalGuideConfig.borderRadiusMedium),
                 ),
-                side: BorderSide(color: context.colorTheme.greyPigeon),
-                backgroundColor: context.colorTheme.greyLight,
+                side: BorderSide(color: context.colorScheme.tertiary),
+                backgroundColor: context.colorScheme.surfaceTint,
                 padding: const EdgeInsets.symmetric(horizontal: 16),
               ),
               child: Icon(
                 Icons.accessibility_new,
-                color: context.colorTheme.blackMirage,
+                color: context.colorScheme.onTertiary,
                 size: context.textScaler.clamp(maxScaleFactor: 2.5).scale(16),
               ),
             ),

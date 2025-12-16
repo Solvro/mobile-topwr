@@ -41,11 +41,11 @@ class FiltersSearch extends HookConsumerWidget {
             onChanged: ref
                 .watch(searchFiltersControllerProvider.notifier)
                 .onTextChanged, // I had to fork the lib and add this callback myself 😭
-            textFieldColor: context.colorTheme.greyLight,
-            textFieldIconColor: context.colorTheme.blackMirage,
-            color: context.colorTheme.whiteSoap,
+            textFieldColor: context.colorScheme.surfaceTint,
+            textFieldIconColor: context.colorScheme.onTertiary,
+            color: context.colorScheme.surface,
             autoFocus: true,
-            searchIconColor: context.colorTheme.blackMirage,
+            searchIconColor: context.colorScheme.onTertiary,
             helpText: context.localize.search,
             boxShadow: false,
             searchBarOpen: (int x) {

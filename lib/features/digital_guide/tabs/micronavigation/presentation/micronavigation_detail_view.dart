@@ -27,16 +27,16 @@ class MicronavigationDetailView extends StatelessWidget {
         context.solvroLocale == SolvroLocale.pl
             ? micronavigationResponse.nameOverride.pl ?? micronavigationResponse.nameOverride.en ?? ""
             : micronavigationResponse.nameOverride.en ?? micronavigationResponse.nameOverride.pl ?? "",
-        style: context.textTheme.title.copyWith(fontSize: 24),
+        style: context.textTheme.titleLarge?.copyWith(fontSize: 24),
       ),
       const SizedBox(height: DigitalGuideConfig.heightBig),
-      Text(context.localize.communique, style: context.textTheme.title),
+      Text(context.localize.communique, style: context.textTheme.titleLarge),
       const SizedBox(height: DigitalGuideConfig.heightMedium),
       MyHtmlWidget(micronavigationResponse.webContent.pl ?? micronavigationResponse.webContent.en ?? ""),
       const SizedBox(height: DigitalGuideConfig.heightMedium),
-      Text(context.localize.audio_message, style: context.textTheme.title),
+      Text(context.localize.audio_message, style: context.textTheme.titleLarge),
       const SizedBox(height: DigitalGuideConfig.heightMedium),
-      Text(context.localize.audio_message_comment, style: context.textTheme.body),
+      Text(context.localize.audio_message_comment, style: context.textTheme.bodyLarge),
       Padding(
         padding: DigitalGuideConfig.symetricalPaddingBig,
         child: MyAudioPlayer(
@@ -48,7 +48,7 @@ class MicronavigationDetailView extends StatelessWidget {
     ];
 
     return HorizontalSymmetricSafeAreaScaffold(
-      backgroundColor: context.colorTheme.greyLight,
+      backgroundColor: context.colorScheme.surfaceTint,
       appBar: DetailViewAppBar(actions: [AccessibilityButton()]),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: DigitalGuideConfig.paddingBig),

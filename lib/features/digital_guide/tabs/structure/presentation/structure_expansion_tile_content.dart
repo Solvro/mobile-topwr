@@ -43,7 +43,7 @@ class _StructureExpansionTileContent extends ConsumerWidget {
         right: DigitalGuideConfig.heightMedium,
       ),
       child: Material(
-        color: context.colorTheme.greyLight,
+        color: context.colorScheme.surfaceTint,
         child: ListView.separated(
           physics: const NeverScrollableScrollPhysics(),
           itemBuilder: (context, index) => DigitalGuideNavLink(

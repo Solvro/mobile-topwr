@@ -28,16 +28,16 @@ class DigitalGuideLiftDetailView extends ConsumerWidget {
     final widgets = [
       Text(
         context.localize.localization,
-        style: context.textTheme.headline.copyWith(fontSize: DigitalGuideConfig.headlineFont),
+        style: context.textTheme.headlineMedium?.copyWith(fontSize: DigitalGuideConfig.headlineFont),
       ),
       Padding(
         padding: const EdgeInsets.only(top: DigitalGuideConfig.heightMedium, bottom: DigitalGuideConfig.heightSmall),
-        child: Text(levelName, style: context.textTheme.headline),
+        child: Text(levelName, style: context.textTheme.headlineMedium),
       ),
-      Text(liftInformation.location, style: context.textTheme.body),
+      Text(liftInformation.location, style: context.textTheme.bodyLarge),
       Padding(
         padding: const EdgeInsets.only(top: DigitalGuideConfig.heightSmall, bottom: DigitalGuideConfig.heightSmall),
-        child: Text(context.localize.key_information, style: context.textTheme.headline),
+        child: Text(context.localize.key_information, style: context.textTheme.headlineMedium),
       ),
       BulletList(
         items: [
@@ -48,7 +48,7 @@ class DigitalGuideLiftDetailView extends ConsumerWidget {
       ),
       AccessibilityProfileCard(
         accessibilityCommentsManager: LiftsAccessibilityCommentsManager(l10n: context.localize, liftResponse: lift),
-        backgroundColor: context.colorTheme.whiteSoap,
+        backgroundColor: context.colorScheme.surface,
       ),
       if (lift.imagesIds != null && lift.imagesIds!.isNotEmpty) const SizedBox(height: DigitalGuideConfig.heightMedium),
     ];

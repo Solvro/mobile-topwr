@@ -18,7 +18,7 @@ class MyHtmlWidget extends ConsumerWidget {
       label: html.parseHtmlString(),
       child: HtmlWidget(
         html,
-        textStyle: textStyle ?? context.aboutUsTheme.body,
+        textStyle: textStyle ?? context.textTheme.labelLarge,
         customStylesBuilder: context.customStylesBuilder,
         onTapUrl: ref.launch,
         excludePlainTextFromSemantics: true,

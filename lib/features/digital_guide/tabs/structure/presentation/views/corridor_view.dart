@@ -44,12 +44,12 @@ class CorridorView extends ConsumerWidget {
     ].map((e) => e.trim()).where((e) => e.isNotEmpty).toIList();
 
     final widgets = [
-      Text(comments.name, style: context.textTheme.headline.copyWith(fontSize: DigitalGuideConfig.headlineFont)),
+      Text(comments.name, style: context.textTheme.headlineMedium?.copyWith(fontSize: DigitalGuideConfig.headlineFont)),
       const SizedBox(height: DigitalGuideConfig.heightMedium),
       BulletList(items: textStrings),
       AccessibilityProfileCard(
         accessibilityCommentsManager: CorridorsAccessibilityCommentsManager(l10n: context.localize, corridor: corridor),
-        backgroundColor: context.colorTheme.whiteSoap,
+        backgroundColor: context.colorScheme.surface,
       ),
       if (corridor.imagesIndices.isNotEmpty)
         Padding(

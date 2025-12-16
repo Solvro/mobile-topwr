@@ -8,6 +8,7 @@ import "../../../../config/ui_config.dart";
 import "../../../../gen/assets.gen.dart";
 import "../../../../hooks/use_semantics_service_on_changed_value.dart";
 import "../../../../theme/app_theme.dart";
+import "../../../../theme/colors.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../widgets/wide_tile_card.dart";
 import "../../../analytics/data/clarity.dart";
@@ -42,7 +43,7 @@ class LibraryTile extends HookConsumerWidget {
               child: ExcludeSemantics(
                 child: PhotoTrailingWideTileCard(
                   context,
-                  activeGradient: context.colorTheme.toPwrGradient,
+                  activeGradient: ColorsConsts.toPwrGradient,
                   directusPhotoUrl: library.photo,
                   title: library.title,
                   subtitle:
@@ -53,7 +54,7 @@ class LibraryTile extends HookConsumerWidget {
                     unawaited(ref.read(multilayerMapControllerProvider).onMarkerTap(LibraryItem(library: library)));
                   },
                   customPlaceholder: ColoredBox(
-                    color: context.colorTheme.greyLight,
+                    color: context.colorScheme.surfaceTint,
                     child: Center(
                       child: SvgPicture.asset(
                         Assets.svg.mapPlaceholders.libraryIcon,

@@ -2,7 +2,6 @@ import "package:flutter/material.dart";
 
 import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
-import "../../../../theme/utils.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../widgets/my_cached_image.dart";
 import "../../../../widgets/wide_tile_card.dart";
@@ -16,10 +15,12 @@ class DepartmentCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = context.textTheme;
+
     return Theme(
       data: context.defaultThemeWithOverrideTextStyles(
-        titleWhite: context.textTheme.titleWhite.copyWith(shadows: HomeViewConfig.squareCardTextShadow),
-        bodyWhite: context.textTheme.bodyWhite.copyWith(shadows: HomeViewConfig.squareCardTextShadow),
+        titleLarge: textTheme.titleLarge?.copyWith(shadows: HomeViewConfig.squareCardTextShadow),
+        bodyLarge: textTheme.bodyLarge?.copyWith(shadows: HomeViewConfig.squareCardTextShadow),
       ),
       child: WideTileCard(
         onTap: onClick,

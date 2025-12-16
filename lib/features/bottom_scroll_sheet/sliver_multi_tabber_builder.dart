@@ -108,8 +108,8 @@ class _TabBarWidget extends HookConsumerWidget {
             ),
             decoration: BoxDecoration(
               color: index == selectedTabIndex.value
-                  ? context.colorTheme.orangePomegranadeLighter
-                  : context.colorTheme.greyLight,
+                  ? context.colorScheme.primaryContainer
+                  : context.colorScheme.surfaceTint,
               borderRadius: BorderRadius.circular(NavigationTabViewConfig.radius),
             ),
             child: Text(

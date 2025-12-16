@@ -35,7 +35,7 @@ class RampsView extends ConsumerWidget {
           children: [
             Text(
               context.localize.ramp,
-              style: context.textTheme.headline.copyWith(fontSize: DigitalGuideConfig.headlineFont),
+              style: context.textTheme.headlineMedium?.copyWith(fontSize: DigitalGuideConfig.headlineFont),
             ),
             const SizedBox(height: DigitalGuideConfig.heightSmall),
             BulletList(
@@ -61,7 +61,7 @@ class RampsView extends ConsumerWidget {
             ),
             AccessibilityProfileCard(
               accessibilityCommentsManager: RampsAccessibilityCommentsManager(ramps: ramps, l10n: context.localize),
-              backgroundColor: context.colorTheme.whiteSoap,
+              backgroundColor: context.colorScheme.surface,
             ),
           ],
         ),

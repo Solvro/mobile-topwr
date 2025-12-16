@@ -37,17 +37,20 @@ class LodgeView extends ConsumerWidget {
               excludeSemantics: true,
               child: Text(
                 context.localize.lodge,
-                style: context.textTheme.headline.copyWith(fontSize: DigitalGuideConfig.headlineFont),
+                style: context.textTheme.headlineMedium?.copyWith(fontSize: DigitalGuideConfig.headlineFont),
               ),
             ),
             const SizedBox(height: DigitalGuideConfig.heightSmall),
-            Semantics(container: true, child: Text(context.localize.localization, style: context.textTheme.title)),
+            Semantics(container: true, child: Text(context.localize.localization, style: context.textTheme.titleLarge)),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: DigitalGuideConfig.heightSmall),
               child: Text(lodgeInformation.location),
             ),
             if (lodgeInformation.workingDaysAndHours.isNotEmpty)
-              Semantics(container: true, child: Text(context.localize.working_hours, style: context.textTheme.title)),
+              Semantics(
+                container: true,
+                child: Text(context.localize.working_hours, style: context.textTheme.titleLarge),
+              ),
             if (lodgeInformation.workingDaysAndHours.isNotEmpty)
               Semantics(
                 container: true,
@@ -61,7 +64,7 @@ class LodgeView extends ConsumerWidget {
                 container: true,
                 child: Padding(
                   padding: const EdgeInsets.only(bottom: DigitalGuideConfig.paddingSmall),
-                  child: Text(context.localize.additional_information, style: context.textTheme.title),
+                  child: Text(context.localize.additional_information, style: context.textTheme.titleLarge),
                 ),
               ),
             Semantics(container: true, child: Text(lodgeInformation.comment)),
@@ -71,7 +74,7 @@ class LodgeView extends ConsumerWidget {
               padding: const EdgeInsets.symmetric(vertical: DigitalGuideConfig.paddingBig),
               child: AccessibilityProfileCard(
                 accessibilityCommentsManager: LodgeAccessibilityCommentsManager(l10n: context.localize, lodge: lodge),
-                backgroundColor: context.colorTheme.whiteSoap,
+                backgroundColor: context.colorScheme.surface,
               ),
             ),
           ],

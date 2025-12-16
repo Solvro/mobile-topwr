@@ -31,11 +31,11 @@ class RedDialog extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       child: DecoratedBox(
         decoration: BoxDecoration(
-          color: context.colorTheme.whiteSoap,
+          color: context.colorScheme.surface,
           borderRadius: BorderRadius.circular(8),
           border: Border(
-            top: BorderSide(color: context.colorTheme.orangePomegranade),
-            bottom: BorderSide(color: context.colorTheme.orangePomegranade, width: 5),
+            top: BorderSide(color: context.colorScheme.primary),
+            bottom: BorderSide(color: context.colorScheme.primary, width: 5),
           ),
           boxShadow: [BoxShadow(color: Colors.black.withAlpha(64), offset: const Offset(0, 4), blurRadius: 4)],
         ),
@@ -88,7 +88,7 @@ class _DialogContent extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Text(
               subtitle!,
-              style: context.aboutUsTheme.body.copyWith(height: 1.4, color: context.colorTheme.greyPigeon),
+              style: context.textTheme.labelLarge!.copyWith(height: 1.4, color: context.colorScheme.tertiary),
             ),
           ),
           const SizedBox(height: 6),
@@ -117,12 +117,17 @@ class _DialogFooter extends StatelessWidget {
           Navigator.of(context).pop();
         },
         style: ElevatedButton.styleFrom(
-          backgroundColor: context.colorTheme.orangePomegranadeLighter,
+          backgroundColor: context.colorScheme.primaryContainer,
           elevation: 2,
           padding: FilterConfig.buttonPadding,
           shape: RoundedRectangleBorder(borderRadius: FilterConfig.radius),
         ),
-        child: Center(child: Text(applyButtonText ?? context.localize.apply, style: context.textTheme.titleWhite)),
+        child: Center(
+          child: Text(
+            applyButtonText ?? context.localize.apply,
+            style: context.textTheme.titleLarge?.copyWith(color: context.colorScheme.surface),
+          ),
+        ),
       ),
     );
   }
@@ -137,7 +142,7 @@ class _DialogHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scaler = context.textScaler.clamp(maxScaleFactor: 0.9);
-    final baseStyle = context.textTheme.headline.copyWith(height: 1.4);
+    final baseStyle = context.textTheme.headlineMedium?.copyWith(height: 1.4);
 
     return Padding(
       padding: const EdgeInsets.only(left: 20, right: 20, top: 12),
@@ -147,7 +152,7 @@ class _DialogHeader extends StatelessWidget {
           Expanded(
             child: Text(
               title,
-              style: baseStyle.copyWith(fontSize: scaler.scale(baseStyle.fontSize ?? 20)),
+              style: baseStyle?.copyWith(fontSize: scaler.scale(baseStyle.fontSize ?? 20)),
               textAlign: centerTitle ? TextAlign.center : TextAlign.left,
             ),
           ),
@@ -162,7 +167,7 @@ class _DialogHeader extends StatelessWidget {
                   child: MergeSemantics(
                     child: IconButton(
                       icon: Semantics(label: context.localize.close, child: const Icon(Icons.close)),
-                      color: context.colorTheme.greyPigeon,
+                      color: context.colorScheme.tertiary,
                       onPressed: () => Navigator.of(context).pop(),
                     ),
                   ),

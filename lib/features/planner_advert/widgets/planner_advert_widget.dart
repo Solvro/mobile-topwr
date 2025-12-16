@@ -52,7 +52,7 @@ class _PlannerAdvertBanner extends ConsumerWidget {
               titleColor: data.titleColor != null ? HexColor(data.titleColor!) : null,
               message: data.description,
               alertType: AlertType.info,
-              icon: data.url != null ? Icon(Icons.open_in_new_rounded, color: context.colorTheme.whiteSoap) : null,
+              icon: data.url != null ? Icon(Icons.open_in_new_rounded, color: context.colorScheme.surface) : null,
               onTap: data.url != null
                   ? () {
                       unawaited(ref.trackEvent(ClarityEvents.goToBannerExternalLink));

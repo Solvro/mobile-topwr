@@ -22,7 +22,7 @@ class RadioLuzView extends StatelessWidget {
     return MediaQuery(
       data: MediaQuery.of(context).copyWith(textScaler: cappedTextScale),
       child: Scaffold(
-        backgroundColor: context.colorTheme.greyLight,
+        backgroundColor: context.colorScheme.surfaceTint,
         appBar: RadioLuzAppBar(context, logoSize: 55),
         body: Stack(
           children: [
@@ -66,8 +66,8 @@ class _TextSection extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         spacing: 2,
         children: [
-          Text(l10n.radio_luz_description1, style: context.textTheme.body),
-          Text(l10n.radio_luz_description2, style: context.textTheme.body),
+          Text(l10n.radio_luz_description1, style: context.textTheme.bodyLarge),
+          Text(l10n.radio_luz_description2, style: context.textTheme.bodyLarge),
         ],
       ),
     );

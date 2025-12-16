@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 
-import "../../../../theme/app_theme.dart";
+import "../../../../theme/iparking_theme.dart";
 import "../../../../utils/context_extensions.dart";
 
 class ReversedLabel extends StatelessWidget {
@@ -14,7 +14,7 @@ class ReversedLabel extends StatelessWidget {
       child: RotatedBox(
         quarterTurns: -1,
         child: ExcludeSemantics(
-          child: Text(context.localize.freePlaces, style: context.iParkingTheme.chart, textAlign: TextAlign.start),
+          child: Text(context.localize.freePlaces, style: const ParkingChartTextStyle(), textAlign: TextAlign.start),
         ),
       ),
     );

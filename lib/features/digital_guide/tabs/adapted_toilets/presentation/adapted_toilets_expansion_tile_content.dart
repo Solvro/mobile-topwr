@@ -39,7 +39,7 @@ class _AdaptedToiletsExpansionTileContent extends ConsumerWidget {
         right: DigitalGuideConfig.heightMedium,
       ),
       child: Material(
-        color: context.colorTheme.greyLight,
+        color: context.colorScheme.surfaceTint,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: levelsWithToilets.map((level) {

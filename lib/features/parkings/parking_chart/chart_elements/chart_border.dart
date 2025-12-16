@@ -5,5 +5,5 @@ import "../../../../theme/app_theme.dart";
 
 class ChartBorder extends FlBorderData {
   ChartBorder(BuildContext context)
-    : super(show: true, border: Border.all(color: context.colorTheme.greyPigeon, width: 0.5));
+    : super(show: true, border: Border.all(color: context.colorScheme.tertiary, width: 0.5));
 }

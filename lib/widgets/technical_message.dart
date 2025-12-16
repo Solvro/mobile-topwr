@@ -39,15 +39,15 @@ class TechnicalMessage extends StatelessWidget {
         child: ColoredBox(
           color:
               backgoundColor ??
-              (alertType == AlertType.error ? context.colorTheme.orangePomegranade : context.colorTheme.blueAzure),
+              (alertType == AlertType.error ? context.colorScheme.primary : context.colorScheme.secondary),
           child: ListTile(
             onTap: onTap,
             trailing: icon,
             title: Text(
               title ?? DishCategory.technicalInfo.getLocalizedName(context),
-              style: context.textTheme.title.copyWith(color: titleColor ?? context.colorTheme.whiteSoap),
+              style: context.textTheme.titleLarge?.copyWith(color: titleColor ?? context.colorScheme.surface),
             ),
-            subtitle: Text(message, style: context.textTheme.bodyWhite.copyWith(color: textColor)),
+            subtitle: Text(message, style: context.textTheme.bodyLarge?.copyWith(color: textColor)),
           ),
         ),
       ),

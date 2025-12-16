@@ -32,8 +32,8 @@ class SmallTileCard extends StatelessWidget {
           Expanded(
             child: AutoSizeText(
               title,
-              maxFontSize: context.textTheme.title.fontSize ?? 15,
-              style: context.textTheme.title.copyWith(height: 1),
+              maxFontSize: context.textTheme.titleLarge?.fontSize ?? 15,
+              style: context.textTheme.titleLarge?.copyWith(height: 1),
               maxLines: 3,
               wrapWords: false,
             ),

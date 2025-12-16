@@ -33,16 +33,16 @@ class DressingRoomView extends ConsumerWidget {
           children: [
             Text(
               context.localize.dressing_room,
-              style: context.textTheme.headline.copyWith(fontSize: DigitalGuideConfig.headlineFont),
+              style: context.textTheme.headlineMedium?.copyWith(fontSize: DigitalGuideConfig.headlineFont),
             ),
             const SizedBox(height: DigitalGuideConfig.heightSmall),
-            Text(context.localize.localization, style: context.textTheme.title),
+            Text(context.localize.localization, style: context.textTheme.titleLarge),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: DigitalGuideConfig.heightSmall),
               child: Text(dressingRoomInformation.location),
             ),
             if (dressingRoomInformation.workingDaysAndHours.isNotEmpty)
-              Text(context.localize.working_hours, style: context.textTheme.title),
+              Text(context.localize.working_hours, style: context.textTheme.titleLarge),
             if (dressingRoomInformation.workingDaysAndHours.isNotEmpty)
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: DigitalGuideConfig.heightSmall),
@@ -51,7 +51,7 @@ class DressingRoomView extends ConsumerWidget {
             if (dressingRoomInformation.comment.isNotEmpty)
               Padding(
                 padding: const EdgeInsets.only(bottom: DigitalGuideConfig.paddingSmall),
-                child: Text(context.localize.additional_information, style: context.textTheme.title),
+                child: Text(context.localize.additional_information, style: context.textTheme.titleLarge),
               ),
             Text(dressingRoomInformation.comment),
             if (dressingRoomInformation.comment.isNotEmpty) const SizedBox(height: DigitalGuideConfig.heightMedium),
@@ -62,7 +62,7 @@ class DressingRoomView extends ConsumerWidget {
                 l10n: context.localize,
                 dressingRoomResponse: dressingRoom,
               ),
-              backgroundColor: context.colorTheme.whiteSoap,
+              backgroundColor: context.colorScheme.surface,
             ),
           ],
         ),

@@ -52,7 +52,7 @@ class MapLayerCheckbox extends ConsumerWidget {
             Expanded(
               child: Text(
                 option.localizedLabel(context),
-                style: context.aboutUsTheme.body,
+                style: context.textTheme.labelLarge,
                 softWrap: true,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,

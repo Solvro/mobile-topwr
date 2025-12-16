@@ -9,6 +9,7 @@ import "../../../../config/url_config.dart";
 import "../../../../gen/assets.gen.dart";
 import "../../../../hooks/use_semantics_service_on_changed_value.dart";
 import "../../../../theme/app_theme.dart";
+import "../../../../theme/colors.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../widgets/wide_tile_card.dart";
 import "../../../analytics/data/clarity.dart";
@@ -49,7 +50,7 @@ class BuildingTile extends HookConsumerWidget {
               child: ExcludeSemantics(
                 child: PhotoTrailingWideTileCard(
                   context,
-                  activeGradient: context.colorTheme.toPwrGradient,
+                  activeGradient: ColorsConsts.toPwrGradient,
                   directusPhotoUrl: building.cover,
                   title: "${context.localize.building_prefix} ${building.name}",
                   subtitle: building.address,
@@ -59,7 +60,7 @@ class BuildingTile extends HookConsumerWidget {
                     unawaited(ref.read(multilayerMapControllerProvider).onMarkerTap(BuildingItem(building: building)));
                   },
                   customPlaceholder: ColoredBox(
-                    color: context.colorTheme.greyLight,
+                    color: context.colorScheme.surfaceTint,
                     child: Center(
                       child: SvgPicture.asset(
                         Assets.svg.mapPlaceholders.buildingIcon,
@@ -88,7 +89,7 @@ class BuildingTile extends HookConsumerWidget {
                   visualDensity: VisualDensity.compact,
                   color: switch (building.externalDigitalGuideMode) {
                     ExternalDigitalGuideMode.digitalGuideBuilding ||
-                    ExternalDigitalGuideMode.otherDigitalGuidePlace => context.colorTheme.orangePomegranade,
+                    ExternalDigitalGuideMode.otherDigitalGuidePlace => context.colorScheme.primary,
                     _ => null,
                   },
                   icon: Icon(
@@ -101,11 +102,11 @@ class BuildingTile extends HookConsumerWidget {
                       ExternalDigitalGuideMode.otherDigitalGuidePlace => Icons.accessibility_new_rounded,
                     },
                     color: isActive
-                        ? context.colorTheme.whiteSoap
+                        ? context.colorScheme.surface
                         : switch (building.externalDigitalGuideMode) {
                             ExternalDigitalGuideMode.digitalGuideBuilding ||
-                            ExternalDigitalGuideMode.otherDigitalGuidePlace => context.colorTheme.orangePomegranade,
-                            _ => context.colorTheme.greyPigeon,
+                            ExternalDigitalGuideMode.otherDigitalGuidePlace => context.colorScheme.primary,
+                            _ => context.colorScheme.tertiary,
                           },
                   ),
                   onPressed: () {
@@ -121,7 +122,7 @@ class BuildingTile extends HookConsumerWidget {
           TextButton.icon(
             icon: Icon(
               Icons.accessibility_new_rounded,
-              color: context.colorTheme.orangePomegranade,
+              color: context.colorScheme.primary,
               size: context.textScaler.scale(16),
             ),
             onPressed: () {
@@ -130,7 +131,7 @@ class BuildingTile extends HookConsumerWidget {
             style: TextButton.styleFrom(padding: const EdgeInsets.all(12)),
             label: Text(
               context.localize.navigate_to_digital_guide,
-              style: context.textTheme.boldBodyOrange,
+              style: context.textTheme.bodyMedium!.copyWith(color: ColorsConsts.orangePomegranade),
               textAlign: TextAlign.center,
             ),
           ),

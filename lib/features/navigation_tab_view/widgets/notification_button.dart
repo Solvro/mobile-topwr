@@ -32,12 +32,12 @@ class NotificationButton extends ConsumerWidget {
         child: Container(
           padding: SksConfig.innerPadding,
           decoration: BoxDecoration(
-            border: Border.all(color: context.colorTheme.orangePomegranade),
+            border: Border.all(color: context.colorScheme.primary),
             borderRadius: BorderRadius.circular(SksConfig.radius),
           ),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: SksConfig.sizedBoxWidth),
-            child: Icon(Icons.notifications, color: context.colorTheme.orangePomegranade),
+            child: Icon(Icons.notifications, color: context.colorScheme.primary),
           ),
         ),
       ),

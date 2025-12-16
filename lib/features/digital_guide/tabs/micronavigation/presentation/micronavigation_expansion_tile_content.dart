@@ -64,7 +64,7 @@ class _MicronavigationExpansionTileContent extends ConsumerWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: DigitalGuideConfig.paddingMedium),
       child: Material(
-        color: context.colorTheme.greyLight,
+        color: context.colorScheme.surfaceTint,
         child: ListView.builder(
           physics: const NeverScrollableScrollPhysics(),
           itemCount: widgets.length,

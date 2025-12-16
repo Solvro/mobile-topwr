@@ -22,7 +22,7 @@ class DetailViewPopButton extends ConsumerWidget {
         softWrap: false,
         overflow: TextOverflow.ellipsis,
         title == null ? "<" : "< $title",
-        style: context.textTheme.boldBodyOrange,
+        style: context.textTheme.bodyMedium?.copyWith(color: context.colorScheme.primary),
         semanticsLabel: "${context.localize.get_back_screen_reader_label} $title",
       ),
     );

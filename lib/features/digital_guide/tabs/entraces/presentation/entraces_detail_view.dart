@@ -26,7 +26,7 @@ class DigitalGuideEntranceDetailsView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final widgets = [
-      Text(entrance.translations.pl.name, style: context.textTheme.title.copyWith(fontSize: 24)),
+      Text(entrance.translations.pl.name, style: context.textTheme.titleLarge?.copyWith(fontSize: 24)),
       const SizedBox(height: DigitalGuideConfig.heightMedium),
       BulletList(
         items: [
@@ -46,7 +46,7 @@ class DigitalGuideEntranceDetailsView extends ConsumerWidget {
       ),
       const SizedBox(height: DigitalGuideConfig.heightSmall),
       AccessibilityProfileCard(
-        backgroundColor: context.colorTheme.whiteSoap,
+        backgroundColor: context.colorScheme.surface,
         accessibilityCommentsManager: EntrancesAccessibilityCommentsManager(
           digitalGuideEntrance: entrance,
           l10n: context.localize,

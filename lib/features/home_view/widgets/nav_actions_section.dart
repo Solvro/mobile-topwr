@@ -25,17 +25,17 @@ class NavActionsSection extends ConsumerWidget {
             children: [
               _NavActionButton(
                 context.localize.sks_menu,
-                Icon(Icons.restaurant_menu, color: context.colorTheme.whiteSoap, size: 32),
+                Icon(Icons.restaurant_menu, color: context.colorScheme.surface, size: 32),
                 ref.navigateToSksMenu,
               ),
               _NavActionButton(
                 context.localize.parkings_title,
-                Icon(Icons.directions_car, color: context.colorTheme.whiteSoap, size: 32),
+                Icon(Icons.directions_car, color: context.colorScheme.surface, size: 32),
                 ref.navigateParkings,
               ),
               _NavActionButton(
                 context.localize.calendar,
-                Icon(Icons.calendar_today_outlined, color: context.colorTheme.whiteSoap, size: 30),
+                Icon(Icons.calendar_today_outlined, color: context.colorScheme.surface, size: 30),
                 ref.navigateCalendar,
               ),
             ],
@@ -60,17 +60,17 @@ class _NavActionButton extends StatelessWidget {
           Material(
             color: Colors.transparent,
             child: Ink(
-              decoration: BoxDecoration(shape: BoxShape.circle, color: context.colorTheme.orangePomegranade),
+              decoration: BoxDecoration(shape: BoxShape.circle, color: context.colorScheme.primary),
               child: InkWell(
                 onTap: onTap,
                 borderRadius: BorderRadius.circular(56),
-                splashColor: context.colorTheme.whiteSoap.withValues(alpha: 0.3),
+                splashColor: context.colorScheme.surface.withValues(alpha: 0.3),
                 child: SizedBox.square(dimension: 56, child: Center(child: icon)),
               ),
             ),
           ),
           const SizedBox(height: 8),
-          Text(title, style: context.textTheme.boldBody),
+          Text(title, style: context.textTheme.bodyMedium),
         ],
       ),
     );

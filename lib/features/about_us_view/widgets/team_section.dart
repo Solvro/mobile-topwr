@@ -33,8 +33,8 @@ class TeamSection extends HookWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: AboutUsConfig.defaultPadding),
           child: CupertinoSlidingSegmentedControl<MultiversionTeam>(
-            backgroundColor: context.colorTheme.greyLight,
-            thumbColor: context.colorTheme.orangePomegranadeLighter,
+            backgroundColor: context.colorScheme.surfaceTint,
+            thumbColor: context.colorScheme.primaryContainer,
             groupValue: selectedTab.value,
             onValueChanged: (value) {
               if (value != null) selectedTab.value = value;
@@ -67,8 +67,8 @@ class _SelectTab extends StatelessWidget {
           semanticsLabel: "${context.localize.version}: ${version.versionName.replaceAll(".", " ")}",
           version.versionName,
           style: isSelected
-              ? context.textTheme.boldBody.copyWith(color: context.colorTheme.whiteSoap)
-              : context.textTheme.boldBody,
+              ? context.textTheme.bodyMedium?.copyWith(color: context.colorScheme.surface)
+              : context.textTheme.bodyMedium,
         ),
       ),
     );
@@ -152,7 +152,7 @@ class _TeamMemberCard extends StatelessWidget {
         width: double.infinity,
         clipBehavior: Clip.antiAlias,
         decoration: BoxDecoration(
-          color: context.colorTheme.greyLight,
+          color: context.colorScheme.surfaceTint,
           borderRadius: BorderRadius.circular(AboutUsConfig.borderRadius),
         ),
         child: IntrinsicHeight(
@@ -219,11 +219,11 @@ class _Description extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Spacer(flex: 4),
-        Text(name, style: context.aboutUsTheme.headlineSmaller, softWrap: true),
+        Text(name, style: context.textTheme.titleSmall, softWrap: true),
         const SizedBox(height: 4),
         Text(
           subtitle,
-          style: context.aboutUsTheme.bodySmaller,
+          style: context.textTheme.labelMedium,
           softWrap: true,
           maxLines: 2,
           overflow: TextOverflow.ellipsis,

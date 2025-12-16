@@ -71,7 +71,7 @@ class SettingsView extends ConsumerWidget {
     ];
 
     return HorizontalSymmetricSafeAreaScaffold(
-      backgroundColor: context.colorTheme.whiteSoap,
+      backgroundColor: context.colorScheme.surface,
       appBar: DetailViewAppBar(title: (text: context.localize.settings, context: context)),
       body: Padding(
         padding: const EdgeInsets.all(AboutUsConfig.spacerHeight),

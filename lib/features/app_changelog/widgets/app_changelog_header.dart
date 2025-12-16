@@ -19,21 +19,24 @@ class AppChangelogHeader extends StatelessWidget {
           Text.rich(
             TextSpan(
               children: [
-                TextSpan(text: context.localize.changes, style: context.textTheme.headlineOrange),
+                TextSpan(
+                  text: context.localize.changes,
+                  style: context.textTheme.headlineMedium?.copyWith(color: context.colorScheme.primary),
+                ),
                 const WidgetSpan(child: SizedBox(width: 5)),
                 TextSpan(
                   text: "${context.localize.version} ${version.toUpperCase()}",
-                  style: context.textTheme.bodyGrey,
+                  style: context.textTheme.bodyLarge?.copyWith(color: context.colorScheme.outline),
                 ),
               ],
             ),
           ),
           const SizedBox(height: 8),
-          Text(context.localize.hey_check_out_the_new_features, style: context.textTheme.headline),
+          Text(context.localize.hey_check_out_the_new_features, style: context.textTheme.headlineMedium),
           const SizedBox(height: 5),
           Text(
             context.localize.here_you_will_see_what_we_changed_in_the_latest_version,
-            style: context.textTheme.bodyGrey,
+            style: context.textTheme.bodyLarge?.copyWith(color: context.colorScheme.outline),
             overflow: TextOverflow.clip,
           ),
         ],

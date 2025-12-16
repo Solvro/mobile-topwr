@@ -22,7 +22,7 @@ class BottomNavBar extends ConsumerWidget {
         child: BottomNavigationBar(
           currentIndex: activeIndex,
           onTap: onTap,
-          backgroundColor: context.colorTheme.greyLight,
+          backgroundColor: context.colorScheme.surfaceTint,
           showSelectedLabels: false,
           showUnselectedLabels: false,
           type: BottomNavigationBarType.fixed,
@@ -42,8 +42,8 @@ class _NavigationBarItemsList extends DelegatingList<BottomNavigationBarItem> {
                 icon: Icon(
                   e.icon,
                   color: i == activeIndex
-                      ? context.colorTheme.orangePomegranade
-                      : context.colorTheme.blackMirage.withValues(alpha: .16),
+                      ? context.colorScheme.primary
+                      : context.colorScheme.onTertiary.withValues(alpha: .16),
                   size: e.size,
                 ),
                 label: e.getLabel(context),

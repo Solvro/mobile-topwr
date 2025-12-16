@@ -30,7 +30,7 @@ class ParkingWideTileCard extends StatelessWidget {
         clipBehavior: Clip.antiAlias,
         child: Stack(
           children: [
-            Container(color: isActive ? context.colorTheme.blackMirage : const Color.fromRGBO(41, 50, 65, 0.60)),
+            Container(color: isActive ? context.colorScheme.onTertiary : const Color.fromRGBO(41, 50, 65, 0.60)),
             Container(
               width: double.infinity,
               padding: ParkingsConfig.padding.copyWith(bottom: 8 / context.textScaler.scale(1)),
@@ -53,7 +53,7 @@ class ParkingWideTileCard extends StatelessWidget {
                   icon: Semantics(
                     button: true,
                     label: context.localize.close,
-                    child: Icon(Icons.close, color: context.colorTheme.whiteSoap, size: scaler.scale(22)),
+                    child: Icon(Icons.close, color: context.colorScheme.surface, size: scaler.scale(22)),
                   ),
                 ),
               ),
@@ -79,17 +79,17 @@ class _LeftColumn extends StatelessWidget {
         children: [
           Text(
             parking.symbol,
-            style: isActive ? context.iParkingTheme.title.withoutShadows : context.iParkingTheme.title,
+            style: isActive ? const ParkingTitleTextStyle().withoutShadows : const ParkingTitleTextStyle(),
           ),
           Padding(
             padding: ParkingsConfig.extraIndentPadd,
             child: isActive
                 ? Text(
                     "${context.localize.street_abbreviation} ${parking.addressFormatted}",
-                    style: context.iParkingTheme.subtitleLight.withoutShadows,
+                    style: const ParkingLightSubtitleTextStyle().withoutShadows,
                     textScaler: context.textScaler.clamp(maxScaleFactor: 2),
                   )
-                : Text(parking.nameNormalized, style: context.iParkingTheme.subtitle),
+                : Text(parking.nameNormalized, style: const ParkingSubtitleTextStyle()),
           ),
           const SizedBox(height: 2),
           if (!isActive)
@@ -98,7 +98,7 @@ class _LeftColumn extends StatelessWidget {
                 padding: ParkingsConfig.extraIndentPadd,
                 child: Semantics(
                   label: context.localize.parking_opening_hours_reader_label,
-                  child: Text(parking.openingHours, style: context.iParkingTheme.small),
+                  child: Text(parking.openingHours, style: const ParkingSmallTextStyle()),
                 ),
               ),
             ),
@@ -134,14 +134,14 @@ class _RightColumn extends StatelessWidget {
                   message: context.localize.places_currently_available,
                   child: Text(
                     parking.parsedNumberOfPlaces,
-                    style: isActive ? context.iParkingTheme.title.withoutShadows : context.iParkingTheme.title,
+                    style: isActive ? const ParkingTitleTextStyle().withoutShadows : const ParkingTitleTextStyle(),
                   ),
                 ),
               ),
               SizedBox(width: scaler.scale(4)),
               Icon(
                 parking.trend.arrowIcon,
-                color: isActive ? arrowColor(parking.trend, context) : context.colorTheme.whiteSoap,
+                color: isActive ? arrowColor(parking.trend, context) : context.colorScheme.surface,
                 size: scaler.scale(21),
                 shadows: iparkingShadows,
               ),
@@ -160,7 +160,7 @@ Color arrowColor(String trend, BuildContext context) {
     case "-1":
       return const Color(0xFFdc3545); //red arrow
     default:
-      return context.colorTheme.whiteSoap;
+      return context.colorScheme.surface;
   }
 }
 

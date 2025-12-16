@@ -21,7 +21,7 @@ class FieldOfStudyExpansionTile extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 16),
       child: MyExpansionTile(
-        backgroundColor: context.colorTheme.whiteSoap,
+        backgroundColor: context.colorScheme.surface,
         initiallyExpanded: initiallyExpanded,
         title: title,
         children: fieldsOfStudy

@@ -17,7 +17,7 @@ class DescriptionSection extends ConsumerWidget {
         width: double.infinity,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(AboutUsConfig.borderRadius),
-          color: context.colorTheme.greyLight,
+          color: context.colorScheme.surfaceTint,
         ),
         child: Padding(padding: const EdgeInsets.all(AboutUsConfig.defaultPadding), child: MyHtmlWidget(text)),
       ),

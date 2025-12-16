@@ -22,8 +22,8 @@ class SearchBoxAppBar extends AppBar {
     super.primary = false,
   }) : super(
          title: Text(title, textScaler: context.textScaler.clamp(maxScaleFactor: 2.5)),
-         titleTextStyle: context.textTheme.headline,
-         backgroundColor: context.colorTheme.whiteSoap,
+         titleTextStyle: context.textTheme.headlineMedium,
+         backgroundColor: context.colorScheme.surface,
          scrolledUnderElevation: 0,
          centerTitle: addLeadingPopButton,
          titleSpacing: addLeadingPopButton ? 0 : defaultHorizontalPadding,

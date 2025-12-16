@@ -3,7 +3,6 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../api_base_rest/shared_models/image_data.dart";
 import "../../../theme/app_theme.dart";
-import "../../../theme/utils.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../widgets/wide_tile_card.dart";
 import "../../navigator/utils/navigation_commands.dart";
@@ -14,7 +13,9 @@ class AboutUsTile extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Theme(
-      data: context.defaultThemeWithOverrideTextStyles(title: context.textTheme.titleOrange),
+      data: context.defaultThemeWithOverrideTextStyles(
+        titleLarge: context.textTheme.titleLarge?.copyWith(color: context.colorScheme.primary),
+      ),
       child: PhotoTrailingWideTileCard(
         context,
         title: context.localize.guide_about_us,

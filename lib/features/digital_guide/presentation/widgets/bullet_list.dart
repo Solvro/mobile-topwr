@@ -27,11 +27,11 @@ class BulletList extends StatelessWidget {
               children: [
                 TextSpan(
                   text: "\u2022 ",
-                  style: context.textTheme.body.copyWith(fontSize: fontSize + 3),
+                  style: context.textTheme.bodyLarge?.copyWith(fontSize: fontSize + 3),
                 ),
                 TextSpan(
                   text: item,
-                  style: context.textTheme.body.copyWith(
+                  style: context.textTheme.bodyLarge?.copyWith(
                     fontSize: fontSize,
                     height: DigitalGuideConfig.accessibleLineHeight,
                   ),

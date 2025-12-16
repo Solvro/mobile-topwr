@@ -30,7 +30,7 @@ class AccessibilityInformationCard extends StatelessWidget {
         boxShadow: [BoxShadow(color: Colors.black.withAlpha(64), offset: const Offset(0, 4), blurRadius: 4)],
         border: Border(left: BorderSide(color: color, width: 10)),
         borderRadius: BorderRadius.circular(DigitalGuideConfig.borderRadiusMedium),
-        color: context.colorTheme.whiteSoap,
+        color: context.colorScheme.surface,
       ),
       child: Row(
         children: [
@@ -42,7 +42,7 @@ class AccessibilityInformationCard extends StatelessWidget {
               decoration: BoxDecoration(
                 border: Border.all(color: color),
                 borderRadius: BorderRadius.circular(DigitalGuideConfig.borderRadiusSmall),
-                color: context.colorTheme.whiteSoap,
+                color: context.colorScheme.surface,
               ),
               child: Center(
                 child: Builder(
@@ -68,12 +68,14 @@ class AccessibilityInformationCard extends StatelessWidget {
                       padding: const EdgeInsets.all(DigitalGuideConfig.heightSmall),
                       child: MyHtmlWidget(
                         text,
-                        textStyle: context.textTheme.body.copyWith(height: DigitalGuideConfig.accessibleLineHeight),
+                        textStyle: context.textTheme.bodyLarge?.copyWith(
+                          height: DigitalGuideConfig.accessibleLineHeight,
+                        ),
                       ),
                     )
                   : Text(
                       text,
-                      style: context.textTheme.body.copyWith(height: DigitalGuideConfig.accessibleLineHeight),
+                      style: context.textTheme.bodyLarge?.copyWith(height: DigitalGuideConfig.accessibleLineHeight),
                       overflow: TextOverflow.ellipsis,
                       maxLines: context.textScaler.clamp(minScaleFactor: 1).scale(2).toInt(),
                     ),

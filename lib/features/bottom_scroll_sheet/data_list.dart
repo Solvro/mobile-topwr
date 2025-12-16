@@ -77,7 +77,7 @@ class _EmptyDataList<T extends GoogleNavigable> extends StatelessWidget {
         alignment: Alignment.topCenter,
         child: Padding(
           padding: const EdgeInsets.only(top: 24),
-          child: Text(context.mapViewTexts<T>().emptyList, style: context.textTheme.body),
+          child: Text(context.mapViewTexts<T>().emptyList, style: context.textTheme.bodyLarge),
         ),
       ),
     );

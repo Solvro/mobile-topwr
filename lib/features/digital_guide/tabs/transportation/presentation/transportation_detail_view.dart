@@ -64,7 +64,7 @@ class TransportationDetailView extends ConsumerWidget {
     final List<Widget> widgets = [
       Text(
         isPublic ? context.localize.public_transport : context.localize.private_transport,
-        style: context.textTheme.headline.copyWith(fontSize: 20),
+        style: context.textTheme.headlineMedium?.copyWith(fontSize: 20),
       ),
       const SizedBox(height: DigitalGuideConfig.heightMedium),
       BulletList(items: isPublic ? publicTransport : privateTransport),
@@ -75,7 +75,7 @@ class TransportationDetailView extends ConsumerWidget {
                 transportation: transportation,
                 l10n: context.localize,
               ),
-        backgroundColor: context.colorTheme.whiteSoap,
+        backgroundColor: context.colorScheme.surface,
       ),
     ];
 
