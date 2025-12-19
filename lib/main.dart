@@ -52,6 +52,7 @@ Future<void> runToPWR() async {
   SecurityContext.defaultContext.setTrustedCertificatesBytes(data.buffer.asUint8List());
   // await setupParkingWidgetsWorkManager();
 
+
   final config = ClarityConfig(
     projectId: Env.clarityConfigId,
     logLevel: LogLevel.None,
