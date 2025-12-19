@@ -121,12 +121,8 @@ dependencies:
   crypto: ^3.0.6
 
   #Audio
-  just_audio: ^0.10.5
-  just_audio_background:
-    git:
-      url: https://github.com/24bartixx/just_audio.git
-      path: just_audio_background
-      ref: a7cf5a2e2a1bcf5f1c7e37e7047d02e7a88e1453
+  just_audio: ^0.9.36
+  audio_service: ^0.18.12
 
   #Other
   in_app_update: ^4.2.3
@@ -137,7 +133,6 @@ dependencies:
   separate: ^1.0.3
   wiredash: ^2.5.0
   flutter_hooks: ^0.21.2
-  audioplayers: ^6.5.0
   sentry_flutter: ^9.4.1
   workmanager: ^0.8.0
 

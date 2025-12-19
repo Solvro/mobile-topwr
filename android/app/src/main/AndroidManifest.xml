@@ -12,25 +12,21 @@
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
 
-        <!-- playing radio in background permissions -->
-        <service 
-                android:name="com.ryanheise.audioservice.AudioService"
-                android:foregroundServiceType="mediaPlayback"
-                android:enabled="true"
-                android:exported="true" 
-                tools:ignore="Instantiatable" 
-                android:stopWithTask="true" >
+        <!-- Audio Service -->
+        <service android:name="com.ryanheise.audioservice.AudioService"
+            android:foregroundServiceType="mediaPlayback"
+            android:exported="true" tools:ignore="Instantiatable">
             <intent-filter>
                 <action android:name="android.media.browse.MediaBrowserService" />
             </intent-filter>
         </service>
 
-         <!-- playing radio in background permissions -->
+        <!-- Audio Service Media Button Receiver -->
         <receiver android:name="com.ryanheise.audioservice.MediaButtonReceiver"
             android:exported="true" tools:ignore="Instantiatable">
-        <intent-filter>
-            <action android:name="android.intent.action.MEDIA_BUTTON" />
-        </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_BUTTON" />
+            </intent-filter>
         </receiver> 
 
         <receiver android:name=".widget.parking.receiver.GeoParkingWidgetReceiver"
@@ -96,7 +92,6 @@
         <!-- name attribute has to be change to play radio in foreground -->
         <activity
             android:name="com.ryanheise.audioservice.AudioServiceActivity"
-            android:enableOnBackInvokedCallback="true"
             android:exported="true"
             android:launchMode="singleTask"
             android:theme="@style/LaunchTheme"
@@ -135,6 +130,10 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+        <!-- Android Auto Definition -->
+        <meta-data
+            android:name="com.google.android.gms.car.application"
+            android:resource="@xml/automotive_app_desc"/>
     </application>
     <!-- Required to query activities that can process text, see:
          https://developer.android.com/training/package-visibility?hl=en and

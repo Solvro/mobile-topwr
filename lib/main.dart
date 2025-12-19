@@ -1,12 +1,13 @@
 import "dart:async";
 import "dart:io";
 
+import "package:audio_service/audio_service.dart";
 import "package:clarity_flutter/clarity_flutter.dart";
 import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
-import "package:just_audio_background/just_audio_background.dart";
+
 import "package:sentry_flutter/sentry_flutter.dart";
 import "package:solvro_translator_core/solvro_translator_core.dart";
 import "package:wiredash/wiredash.dart";
@@ -17,6 +18,8 @@ import "config/wiredash.dart";
 import "features/in_app_review/presentation/in_app_review.dart";
 import "features/navigator/app_router.dart";
 import "features/navigator/navigation_stack.dart";
+import "features/radio_luz/service/radio_audio_handler.dart";
+import "features/radio_luz/service/radio_player_provider.dart";
 import "features/splash_screen/splash_screen.dart";
 import "features/splash_screen/splash_screen_controller.dart";
 import "features/update_dialog/presentation/update_dialog_wrapper.dart";
@@ -47,26 +50,32 @@ Future<void> runToPWR() async {
   final data = await PlatformAssetBundle().load(Assets.certs.przewodnikPwrEduPl);
   SecurityContext.defaultContext.setTrustedCertificatesBytes(data.buffer.asUint8List());
   // await setupParkingWidgetsWorkManager();
-  try {
-    await JustAudioBackground.init(
-      androidNotificationChannelId: "com.solvro.topwr.audio",
-      androidNotificationChannelName: "Audio playback",
-      androidNotificationOngoing: true,
-      showStopAction: false,
-    );
-  } on PlatformException catch (e, st) {
-    await Sentry.captureException(e, stackTrace: st);
-  }
+
 
   final config = ClarityConfig(
     projectId: Env.clarityConfigId,
-    logLevel: LogLevel.None, // Note: Use "LogLevel.Verbose" value while testing to debug initialization issues.
+    logLevel: LogLevel.None,
+  );
+
+  final audioHandler = await AudioService.init(
+    builder: RadioAudioHandler.new,
+    config: const AudioServiceConfig(
+      androidNotificationChannelId: "com.solvro.topwr.audio",
+      androidNotificationChannelName: "Audio playback",
+      androidNotificationOngoing: true,
+      androidStopForegroundOnPause: true,
+    ),
   );
 
   return runApp(
     ClarityWidget(
       clarityConfig: config,
-      app: const ProviderScope(child: SplashScreen(child: MyApp())),
+      app: ProviderScope(
+        overrides: [
+          radioPlayerProvider.overrideWithValue(audioHandler),
+        ],
+        child: const SplashScreen(child: MyApp()),
+      ),
     ),
   );
 }
