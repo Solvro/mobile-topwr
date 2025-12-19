@@ -1,9 +1,11 @@
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
+import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
+import "../service/radio_player_provider.dart";
 import "audio_player_widget.dart";
 import "broadcasts_section.dart";
 import "now_playing_section.dart";
@@ -12,13 +14,15 @@ import "radio_luz_socials_section.dart";
 import "radio_luz_title.dart";
 
 @RoutePage()
-class RadioLuzView extends StatelessWidget {
+class RadioLuzView extends ConsumerWidget {
   const RadioLuzView({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.localize;
     final cappedTextScale = context.textScaler.clamp(maxScaleFactor: 1.7);
+    final handler = ref.watch(radioPlayerProvider);
+    
     return MediaQuery(
       data: MediaQuery.of(context).copyWith(textScaler: cappedTextScale),
       child: Scaffold(
