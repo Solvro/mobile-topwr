@@ -1,8 +1,5 @@
-import "dart:async";
-
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
-import "package:flutter_hooks/flutter_hooks.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../../config/ui_config.dart";
@@ -22,7 +19,7 @@ import "radio_luz_socials_section.dart";
 import "radio_luz_title.dart";
 
 @RoutePage()
-class RadioLuzView extends HookConsumerWidget {
+class RadioLuzView extends ConsumerWidget {
   const RadioLuzView({super.key});
 
   @override
