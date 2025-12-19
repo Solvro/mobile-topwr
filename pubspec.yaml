@@ -118,10 +118,8 @@ dependencies:
   crypto: ^3.0.7
 
   #Audio
-  #TODO: bump when just_audio fixes issue: https://github.com/ryanheise/just_audio/issues/1558
   just_audio: ^0.9.36
   audio_service: ^0.18.18
-  audio_session: ^0.1.21
 
   #Other
   in_app_update: ^4.2.5
@@ -133,6 +131,7 @@ dependencies:
   wiredash: ^2.6.0
   flutter_hooks: ^0.21.3
   sentry_flutter: ^9.12.0
+  workmanager: ^0.8.0
 
   #Solvro packages
   solvro_translator_with_drift_cache_flutter: ^0.9.4
