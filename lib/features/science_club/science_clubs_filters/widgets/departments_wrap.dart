@@ -12,7 +12,6 @@ import "../../../departments/departments_view/data/utils/departments_extensions.
 import "../filters_controller.dart";
 import "../filters_search_controller.dart";
 import "../filters_sheet.dart";
-import "../utils.dart";
 import "chips_loading.dart";
 import "filter_chip.dart";
 
@@ -28,28 +27,32 @@ class DepartmentsWrap extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (value.isNotEmpty) FiltersSectionHeader(context.localize.departments),
-          Wrap(
-            runSpacing: context.isTextScaledDown ? 0 : 8,
-            children: [
-              for (final department in value)
-                Consumer(
-                  builder: (context, ref, child) {
-                    final controller = ref.watch(selectedDepartmentControllerProvider.notifier);
-                    final isSelected = ref.watchContains(selectedDepartmentControllerProvider, department);
-                    return MyFilterChip(
-                      label: department.code,
-                      onTap: () {
-                        unawaited(ref.trackEvent(ClarityEvents.selectSciClubFilterDepartment, value: department.code));
-                        controller.toggleFilter(department);
-                      },
-                      selected: isSelected,
-                      selectedColor: department.gradient.colors.first,
-                      selectedBorderColor: department.gradient.colors.last,
-                      tooltip: department.name,
-                    );
-                  },
+          Consumer(
+            builder: (context, ref, child) {
+              final controller = ref.watch(selectedDepartmentControllerProvider.notifier);
+              final selectedDepartments = ref.watch(selectedDepartmentControllerProvider);
+              return RepaintBoundary(
+                child: Wrap(
+                  runSpacing: context.isTextScaledDown ? 0 : 8,
+                  children: [
+                    for (final department in value)
+                      MyFilterChip(
+                        label: department.code,
+                        onTap: () {
+                          unawaited(
+                            ref.trackEvent(ClarityEvents.selectSciClubFilterDepartment, value: department.code),
+                          );
+                          controller.toggleFilter(department);
+                        },
+                        selected: selectedDepartments.contains(department),
+                        selectedColor: department.gradient.colors.first,
+                        selectedBorderColor: department.gradient.colors.last,
+                        tooltip: department.name,
+                      ),
+                  ],
                 ),
-            ],
+              );
+            },
           ),
         ],
       ),
