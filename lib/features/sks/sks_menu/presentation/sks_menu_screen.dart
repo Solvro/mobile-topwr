@@ -172,10 +172,13 @@ class _SKSMenuUnavailableAnimation extends HookWidget {
                           offset: Offset(0, -(animationSize * 0.1)),
                           child: Column(
                             children: [
-                              Text(
-                                context.localize.sks_menu_closed,
-                                style: context.textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.bold),
-                                textAlign: TextAlign.center,
+                              Focus(
+                                autofocus: true,
+                                child: Text(
+                                  context.localize.sks_menu_closed,
+                                  style: context.textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.bold),
+                                  textAlign: TextAlign.center,
+                                ),
                               ),
                               if (onShowLastMenuTap != null)
                                 Padding(

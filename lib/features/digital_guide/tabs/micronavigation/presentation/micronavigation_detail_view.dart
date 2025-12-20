@@ -23,11 +23,14 @@ class MicronavigationDetailView extends StatelessWidget {
   Widget build(BuildContext context) {
     final widgets = [
       const SizedBox(height: DigitalGuideConfig.heightMedium),
-      Text(
-        context.solvroLocale == SolvroLocale.pl
-            ? micronavigationResponse.nameOverride.pl ?? micronavigationResponse.nameOverride.en ?? ""
-            : micronavigationResponse.nameOverride.en ?? micronavigationResponse.nameOverride.pl ?? "",
-        style: context.textTheme.titleLarge?.copyWith(fontSize: 24),
+      Focus(
+        autofocus: true,
+        child: Text(
+          context.solvroLocale == SolvroLocale.pl
+              ? micronavigationResponse.nameOverride.pl ?? micronavigationResponse.nameOverride.en ?? ""
+              : micronavigationResponse.nameOverride.en ?? micronavigationResponse.nameOverride.pl ?? "",
+          style: context.textTheme.titleLarge?.copyWith(fontSize: 24),
+        ),
       ),
       const SizedBox(height: DigitalGuideConfig.heightBig),
       Text(context.localize.communique, style: context.textTheme.titleLarge),
