@@ -12,7 +12,6 @@ import "../filters_controller.dart";
 import "../filters_search_controller.dart";
 import "../filters_sheet.dart";
 import "../model/tags.dart";
-import "../utils.dart";
 import "chips_loading.dart";
 import "filter_chip.dart";
 
@@ -28,25 +27,28 @@ class TagsWrap extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (value.whereNonNull.isNotEmpty) FiltersSectionHeader(context.localize.categories),
-          Wrap(
-            runSpacing: context.isTextScaledDown ? 0 : 8,
-            children: [
-              for (final tag in value.whereNonNull)
-                Consumer(
-                  builder: (context, ref, child) {
-                    final controller = ref.watch(selectedTagControllerProvider.notifier);
-                    final isSelected = ref.watchContains(selectedTagControllerProvider, tag);
-                    return MyFilterChip(
-                      label: tag.tag,
-                      onTap: () {
-                        unawaited(ref.trackEvent(ClarityEvents.selectSciClubFilterTag, value: tag.tag));
-                        controller.toggleFilter(tag);
-                      },
-                      selected: isSelected,
-                    );
-                  },
+          Consumer(
+            builder: (context, ref, child) {
+              final controller = ref.watch(selectedTagControllerProvider.notifier);
+              final selectedTags = ref.watch(selectedTagControllerProvider);
+
+              return RepaintBoundary(
+                child: Wrap(
+                  runSpacing: context.isTextScaledDown ? 0 : 8,
+                  children: [
+                    for (final tag in value.whereNonNull)
+                      MyFilterChip(
+                        label: tag.tag,
+                        onTap: () {
+                          unawaited(ref.trackEvent(ClarityEvents.selectSciClubFilterTag, value: tag.tag));
+                          controller.toggleFilter(tag);
+                        },
+                        selected: selectedTags.contains(tag),
+                      ),
+                  ],
                 ),
-            ],
+              );
+            },
           ),
         ],
       ),
