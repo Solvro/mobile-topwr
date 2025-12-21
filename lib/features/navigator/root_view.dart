@@ -17,14 +17,20 @@ class RootView extends HookConsumerWidget {
   final NavBarEnum initialTabToGetBackTo;
   final bool isFirstRootBottomView;
 
+  /// Converts route index to bottom nav bar index.
+  /// Main tabs (0-4) keep their index, aliases (5+) map to buildings tab (index 1).
+  static int _routeIndexToTabIndex(int routeIndex) =>
+      routeIndex < NavBarEnum.values.length ? routeIndex : NavBarEnum.buildings.index;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final timesPushedToTabBar = useState(0);
     return ShowEntryDialogWrapper(
       child: AutoTabsRouter(
-        routes: NavBarConfig.tabViews.values.toList(),
+        routes: NavBarConfig.allTabRoutes,
         builder: (context, child) {
           final tabsRouter = AutoTabsRouter.of(context);
+          final activeTabIndex = _routeIndexToTabIndex(tabsRouter.activeIndex);
           return CentralizedPopScope(
             child: NestedNavPopScope(
               initialTabToGetBackTo: initialTabToGetBackTo,
@@ -32,7 +38,7 @@ class RootView extends HookConsumerWidget {
               timesPushedToTabBar: timesPushedToTabBar.value,
               child: HorizontalSymmetricSafeAreaScaffold(
                 bottomNavigationBar: BottomNavBar(
-                  activeIndex: tabsRouter.activeIndex,
+                  activeIndex: activeTabIndex,
                   onTap: (index) {
                     timesPushedToTabBar.value++;
                     tabsRouter.setActiveIndex(index);

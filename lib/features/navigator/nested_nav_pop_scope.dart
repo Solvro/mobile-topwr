@@ -27,7 +27,8 @@ class NestedNavPopScope extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final tabsRouter = AutoTabsRouter.of(context);
-    final needsCustomPopAction = ref.shouldNavigateBackToHome(initialTabToGetBackTo, tabsRouter.activeIndex);
+    final currentRouteName = tabsRouter.currentChild?.name;
+    final needsCustomPopAction = ref.shouldNavigateBackToHome(currentRouteName, initialTabToGetBackTo);
     useBlockPop(
       ref: ref,
       blockDefaultPop: needsCustomPopAction,
@@ -52,10 +53,16 @@ class NestedNavPopScope extends HookConsumerWidget {
 }
 
 extension on WidgetRef {
-  bool shouldNavigateBackToHome(NavBarEnum initialTab, int activeIndex) {
-    final activeRoute = NavBarConfig.tabViews.values.toList()[activeIndex];
+  bool shouldNavigateBackToHome(String? currentRouteName, NavBarEnum initialTab) {
+    if (currentRouteName == null) return false;
+
+    // Check if current route is in routesWithinTabBar
     final routesWithinTabBar = read(appRouterProvider).routesWithinTabBar;
-    final isLastRouteInTabBar = routesWithinTabBar.any((route) => route.name == activeRoute.routeName);
-    return isLastRouteInTabBar && activeIndex != initialTab.index;
+    final isLastRouteInTabBar = routesWithinTabBar.any((route) => route.name == currentRouteName);
+
+    // Map route name to NavBarEnum to compare with initialTab
+    final currentTab = NavBarConfig.routeNameToTab(currentRouteName);
+
+    return isLastRouteInTabBar && currentTab != null && currentTab != initialTab;
   }
 }

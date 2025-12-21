@@ -1,12 +1,9 @@
-import "dart:async";
-
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../config/nav_bar_config.dart";
 import "app_router.dart";
-import "navigation_stack.dart";
 
 part "navigation_controller.g.dart";
 
@@ -20,66 +17,39 @@ class NavigationController extends _$NavigationController {
     await _router?.push(route);
   }
 
-  // this manually handles deeplinks
+  /// Manually handles deeplinks by determining if the destination is a tab route
+  /// and pushing an appropriate RootRoute or using regular path navigation
   Future<void> pushNamed(String uri) async {
-    final isCurrentlyWithinTabView = _isCurrentlyWithinTabView();
-
     final uriPath = uri.split("?").first;
     final basePath = uriPath.split("/").where((s) => s.isNotEmpty).firstOrNull ?? "";
-    final isDestinationWithinTabView = ref.read(appRouterProvider).pathToRoute(uriPath) != null;
 
-    final shouldPushNewRootView = !isCurrentlyWithinTabView && isDestinationWithinTabView;
-    if (shouldPushNewRootView) {
-      final tabRoute = ref.read(appRouterProvider).pathToRoute(uri);
+    // Check if this is a tab route by trying to convert it
+    final tabRoute = ref.read(appRouterProvider).pathToRoute(uriPath);
 
-      if (tabRoute == null) {
-        final properlyWorkingURI = !isDestinationWithinTabView ? "/$uri" : uri;
-        await _router?.pushPath(properlyWorkingURI);
-        return;
-      }
-
-      final navBarEnum =
-          NavBarConfig.reversedTabViews[tabRoute.routeName] ??
-          switch (basePath) {
-            "" => NavBarEnum.home,
-            "buildings" ||
-            "libraries" ||
-            "aeds" ||
-            "bicycle-showers" ||
-            "pink-boxes" ||
-            "multilayer-map" => NavBarEnum.buildings,
-            "parkings" => NavBarEnum.parkings,
-            "guide" => NavBarEnum.guide,
-            "navigation" => NavBarEnum.navigation,
-            _ => null,
-          };
+    // If it's a tab route, handle it specially
+    if (tabRoute != null) {
+      final navBarEnum = NavBarConfig.pathToTab(basePath);
 
       if (navBarEnum == null) {
-        final properlyWorkingURI = !isDestinationWithinTabView ? "/$uri" : uri;
-        await _router?.pushPath(properlyWorkingURI);
+        // Fallback to regular navigation
+        await _router?.pushPath("/$uri");
         return;
       }
 
+      // Push a new RootRoute for tab routes (works both when inside and outside tab views)
       await _router?.push(
         RootRoute(initialTabToGetBackTo: navBarEnum, children: [tabRoute], isFirstRootBottomView: false),
       );
       return;
     }
-    final properlyWorkingURI = !isDestinationWithinTabView ? "/$uri" : uri;
+
+    // For non-tab routes, use regular path navigation
+    final properlyWorkingURI = uri.startsWith("/") ? uri : "/$uri";
     await _router?.pushPath(properlyWorkingURI);
   }
 
   @override
   GlobalKey<AutoRouterState> build() {
     return GlobalKey<AutoRouterState>();
-  }
-
-  bool _isCurrentlyWithinTabView() {
-    final lastRoute = ref.read(currentRouteProvider);
-    final routeSettings = lastRoute?.settings;
-    if (routeSettings is AutoRoutePage) {
-      return routeSettings.routeData.name == RootRoute.name;
-    }
-    return false;
   }
 }

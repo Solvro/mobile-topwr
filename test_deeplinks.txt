@@ -1,86 +1,86 @@
-https://topwr.solvro.pl/
-https://topwr.solvro.pl/navigation
+./test_deeplink.sh https://topwr.solvro.pl/
+./test_deeplink.sh https://topwr.solvro.pl/navigation
 
-https://topwr.solvro.pl/guide
-https://topwr.solvro.pl/guide?qGuide=test
-https://topwr.solvro.pl/guide?qGuide=library 
-
-
-https://topwr.solvro.pl/guide/1
-https://topwr.solvro.pl/guide/5
-https://topwr.solvro.pl/guide/1?section=0
-https://topwr.solvro.pl/guide/1?section=2
-https://topwr.solvro.pl/guide/5?section=1
+./test_deeplink.sh https://topwr.solvro.pl/guide
+./test_deeplink.sh https://topwr.solvro.pl/guide?qGuide=test
+./test_deeplink.sh https://topwr.solvro.pl/guide?qGuide=library 
 
 
-https://topwr.solvro.pl/departments
-https://topwr.solvro.pl/departments?q=test
-https://topwr.solvro.pl/departments?q=computer
-
-https://topwr.solvro.pl/departments/1
-https://topwr.solvro.pl/departments/5
-
-
-https://topwr.solvro.pl/sci-clubs
-https://topwr.solvro.pl/sci-clubs?q=test
-https://topwr.solvro.pl/sci-clubs?q=robotics
-https://topwr.solvro.pl/sci-clubs?tags=informatyka
-https://topwr.solvro.pl/sci-clubs?depts=5,10
-https://topwr.solvro.pl/sci-clubs?types=scientific_club
-https://topwr.solvro.pl/sci-clubs?q=robotics&tags=informatyka&depts=5,10,15&types=scientific_club
+./test_deeplink.sh https://topwr.solvro.pl/guide/1
+./test_deeplink.sh https://topwr.solvro.pl/guide/5
+./test_deeplink.sh https://topwr.solvro.pl/guide/1?section=0
+./test_deeplink.sh https://topwr.solvro.pl/guide/1?section=2
+./test_deeplink.sh https://topwr.solvro.pl/guide/5?section=1
 
 
-https://topwr.solvro.pl/sci-clubs/1
-https://topwr.solvro.pl/sci-clubs/10
+./test_deeplink.sh https://topwr.solvro.pl/departments
+./test_deeplink.sh https://topwr.solvro.pl/departments?q=test
+./test_deeplink.sh https://topwr.solvro.pl/departments?q=computer
 
-https://topwr.solvro.pl/calendar
-https://topwr.solvro.pl/calendar?q=test
-https://topwr.solvro.pl/calendar?q=exam
-
-https://topwr.solvro.pl/news
-
-https://topwr.solvro.pl/radio-luz
-
-https://topwr.solvro.pl/sks-menu
-https://topwr.solvro.pl/sks-favourite-dishes
-
-https://topwr.solvro.pl/aboutUs
-
-https://topwr.solvro.pl/buildings
-https://topwr.solvro.pl/buildings/10
-
-https://topwr.solvro.pl/buildings?qMap=test
-https://topwr.solvro.pl/buildings?qMap=library
-
-https://topwr.solvro.pl/multilayer-map  # nie dziala
-https://topwr.solvro.pl/multilayer-map?qMap=test # nie dziala
-https://topwr.solvro.pl/multilayer-map?qMap=building # nie dziala
+./test_deeplink.sh https://topwr.solvro.pl/departments/1
+./test_deeplink.sh https://topwr.solvro.pl/departments/5
 
 
-https://topwr.solvro.pl/parkings
-https://topwr.solvro.pl/parkings/5 # nie dziala
-
-https://topwr.solvro.pl/parkings?qParkings=test
-https://topwr.solvro.pl/parkings?qParkings=parking
-
-
-https://topwr.solvro.pl/libraries # nie dziala
-https://topwr.solvro.pl/libraries/5 # nie dziala
+./test_deeplink.sh https://topwr.solvro.pl/sci-clubs
+./test_deeplink.sh https://topwr.solvro.pl/sci-clubs?q=test
+./test_deeplink.sh https://topwr.solvro.pl/sci-clubs?q=robotics
+./test_deeplink.sh https://topwr.solvro.pl/sci-clubs?tags=informatyka
+./test_deeplink.sh https://topwr.solvro.pl/sci-clubs?depts=5,10
+./test_deeplink.sh https://topwr.solvro.pl/sci-clubs?types=scientific_club
+./test_deeplink.sh https://topwr.solvro.pl/sci-clubs?q=robotics&tags=informatyka&depts=5,10,15&types=scientific_club
 
 
-https://topwr.solvro.pl/aeds # nie dziala
-https://topwr.solvro.pl/aeds/5 # nie dziala
+./test_deeplink.sh https://topwr.solvro.pl/sci-clubs/1
+./test_deeplink.sh https://topwr.solvro.pl/sci-clubs/10
 
-https://topwr.solvro.pl/bicycle-showers # nie dziala
-https://topwr.solvro.pl/bicycle-showers/5 # nie dziala
+./test_deeplink.sh https://topwr.solvro.pl/calendar
+./test_deeplink.sh https://topwr.solvro.pl/calendar?q=test
+./test_deeplink.sh https://topwr.solvro.pl/calendar?q=exam
 
-https://topwr.solvro.pl/pink-boxes # nie dziala
-https://topwr.solvro.pl/pink-boxes/5 # nie dziala
+./test_deeplink.sh https://topwr.solvro.pl/news
+
+./test_deeplink.sh https://topwr.solvro.pl/radio-luz
+
+./test_deeplink.sh https://topwr.solvro.pl/sks-menu
+./test_deeplink.sh https://topwr.solvro.pl/sks-favourite-dishes
+
+./test_deeplink.sh https://topwr.solvro.pl/aboutUs
+
+./test_deeplink.sh https://topwr.solvro.pl/buildings
+./test_deeplink.sh https://topwr.solvro.pl/buildings/10
+
+./test_deeplink.sh https://topwr.solvro.pl/buildings?qMap=test
+./test_deeplink.sh https://topwr.solvro.pl/buildings?qMap=library
+
+./test_deeplink.sh https://topwr.solvro.pl/multilayer-map 
+./test_deeplink.sh https://topwr.solvro.pl/multilayer-map?qMap=test 
+./test_deeplink.sh https://topwr.solvro.pl/multilayer-map?qMap=building 
 
 
-https://topwr.solvro.pl/digital-guide/1  # nie dziala
-https://topwr.solvro.pl/digital-guide/10 # nie dziala
-https://topwr.solvro.pl/digital-guide/25 # nie dziala
+./test_deeplink.sh https://topwr.solvro.pl/parkings
+./test_deeplink.sh https://topwr.solvro.pl/parkings/5 
+
+./test_deeplink.sh https://topwr.solvro.pl/parkings?qParkings=test
+./test_deeplink.sh https://topwr.solvro.pl/parkings?qParkings=parking
+
+
+./test_deeplink.sh https://topwr.solvro.pl/libraries # nie dziala
+./test_deeplink.sh https://topwr.solvro.pl/libraries/5 
+
+
+./test_deeplink.sh https://topwr.solvro.pl/aeds # nie dziala
+./test_deeplink.sh https://topwr.solvro.pl/aeds/5
+
+./test_deeplink.sh https://topwr.solvro.pl/bicycle-showers # nie dziala
+./test_deeplink.sh https://topwr.solvro.pl/bicycle-showers/5
+
+./test_deeplink.sh https://topwr.solvro.pl/pink-boxes # nie dziala
+./test_deeplink.sh https://topwr.solvro.pl/pink-boxes/5
+
+
+./test_deeplink.sh https://topwr.solvro.pl/digital-guide/1  # nie dziala
+./test_deeplink.sh https://topwr.solvro.pl/digital-guide/10 # nie dziala
+./test_deeplink.sh https://topwr.solvro.pl/digital-guide/25 # nie dziala
 
 
 
