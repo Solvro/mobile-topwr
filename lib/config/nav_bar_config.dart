@@ -95,6 +95,30 @@ abstract class NavBarConfig {
     };
   }
 
+  /// Converts a URL path to a PageRouteInfo for routes within the tab bar
+  static PageRouteInfo? pathToRoute(String path) {
+    final cleanPath = path.startsWith("/") ? path.substring(1) : path;
+    final segments = cleanPath.split("/");
+    if (segments.isEmpty) return const HomeRoute();
+
+    final basePath = segments[0];
+    final itemId = segments.length > 1 && segments[1] != "null" ? segments[1] : null;
+
+    return switch (basePath) {
+      "" => const HomeRoute(),
+      "buildings" => BuildingsRoute(initialActiveItemId: itemId),
+      "libraries" => LibrariesRoute(initialActiveItemId: itemId),
+      "aeds" => AedsRoute(initialActiveItemId: itemId),
+      "bicycle-showers" => ShowersRoute(initialActiveItemId: itemId),
+      "pink-boxes" => PinkBoxesRoute(initialActiveItemId: itemId),
+      "multilayer-map" => MultilayerMapRoute(initialActiveItemId: itemId),
+      "parkings" => ParkingsRoute(initialActiveItemId: itemId),
+      "guide" => const GuideRoute(),
+      "navigation" => const NavigationTabRoute(),
+      _ => null,
+    };
+  }
+
   /// Reversed main tab views (route name -> NavBarEnum)
   static Map<String, NavBarEnum> get reversedTabViews =>
       Map.fromEntries(tabViews.entries.map((e) => MapEntry(e.value.routeName, e.key)));

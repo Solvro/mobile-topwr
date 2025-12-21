@@ -87,45 +87,18 @@ class AppRouter extends RootStackRouter {
     _NoTransitionRoute(path: "bicycle-showers/:initialActiveItemId", page: ShowersRoute.page),
     _NoTransitionRoute(path: "pink-boxes/:initialActiveItemId", page: PinkBoxesRoute.page),
     _NoTransitionRoute(path: "multilayer-map/:initialActiveItemId", page: MultilayerMapRoute.page),
-    RedirectRoute(path: "buildings", redirectTo: "buildings/null"),
-    RedirectRoute(path: "multilayer-map", redirectTo: "multilayer-map/null"),
     _NoTransitionRoute(path: "parkings/:initialActiveItemId", page: ParkingsRoute.page),
+    // Redirects for routes without :initialActiveItemId parameter
+    RedirectRoute(path: "buildings", redirectTo: "buildings/null"),
+    RedirectRoute(path: "libraries", redirectTo: "libraries/null"),
+    RedirectRoute(path: "aeds", redirectTo: "aeds/null"),
+    RedirectRoute(path: "bicycle-showers", redirectTo: "bicycle-showers/null"),
+    RedirectRoute(path: "pink-boxes", redirectTo: "pink-boxes/null"),
+    RedirectRoute(path: "multilayer-map", redirectTo: "multilayer-map/null"),
     RedirectRoute(path: "parkings", redirectTo: "parkings/null"),
     _NoTransitionRoute(path: "guide", page: GuideRoute.page),
     _NoTransitionRoute(path: "navigation", page: NavigationTabRoute.page),
   ];
-
-  /// Converts a path string to a PageRouteInfo object for routes within the tab bar
-  PageRouteInfo? pathToRoute(String path) {
-    final cleanPath = path.startsWith("/") ? path.substring(1) : path;
-    final segments = cleanPath.split("/");
-    if (segments.isEmpty) return const HomeRoute();
-    return switch (segments[0]) {
-      "" => const HomeRoute(),
-      "buildings" => BuildingsRoute(
-        initialActiveItemId: segments.length > 1 && segments[1] != "null" ? segments[1] : null,
-      ),
-      "libraries" => LibrariesRoute(
-        initialActiveItemId: segments.length > 1 && segments[1] != "null" ? segments[1] : null,
-      ),
-      "aeds" => AedsRoute(initialActiveItemId: segments.length > 1 && segments[1] != "null" ? segments[1] : null),
-      "bicycle-showers" => ShowersRoute(
-        initialActiveItemId: segments.length > 1 && segments[1] != "null" ? segments[1] : null,
-      ),
-      "pink-boxes" => PinkBoxesRoute(
-        initialActiveItemId: segments.length > 1 && segments[1] != "null" ? segments[1] : null,
-      ),
-      "multilayer-map" => MultilayerMapRoute(
-        initialActiveItemId: segments.length > 1 && segments[1] != "null" ? segments[1] : null,
-      ),
-      "parkings" => ParkingsRoute(
-        initialActiveItemId: segments.length > 1 && segments[1] != "null" ? segments[1] : null,
-      ),
-      "guide" => const GuideRoute(),
-      "navigation" => const NavigationTabRoute(),
-      _ => null,
-    };
-  }
 
   @override
   List<AutoRoute> get routes => [

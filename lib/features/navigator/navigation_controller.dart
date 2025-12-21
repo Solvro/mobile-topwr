@@ -24,7 +24,7 @@ class NavigationController extends _$NavigationController {
     final basePath = uriPath.split("/").where((s) => s.isNotEmpty).firstOrNull ?? "";
 
     // Check if this is a tab route by trying to convert it
-    final tabRoute = ref.read(appRouterProvider).pathToRoute(uriPath);
+    final tabRoute = NavBarConfig.pathToRoute(uriPath);
 
     // If it's a tab route, handle it specially
     if (tabRoute != null) {
