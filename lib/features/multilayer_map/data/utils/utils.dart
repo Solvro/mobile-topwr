@@ -61,11 +61,10 @@ extension SortByCodeOrderX on IList<Building> {
       if (indexA != -1 && indexB != -1) {
         return indexA.compareTo(indexB);
       } else if (indexA != -1) {
-        return -1; 
+        return -1;
       } else if (indexB != -1) {
-        return 1; 
+        return 1;
       } else {
-        
         return _compareCodes(a, b);
       }
     });
