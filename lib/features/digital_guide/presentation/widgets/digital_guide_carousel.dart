@@ -8,6 +8,7 @@ import "package:flutter_hooks/flutter_hooks.dart";
 import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
+import "../../../../widgets/arrow_button.dart";
 import "digital_guide_image.dart";
 
 class DigitalGuideCarouselWithIndicator extends HookWidget {
@@ -22,10 +23,17 @@ class DigitalGuideCarouselWithIndicator extends HookWidget {
     final shouldAutoplay = useState(true);
     final controller = useMemoized(CarouselSliderController.new);
 
+    Future<void> goTo(int index) async {
+      if (imgListId.isEmpty) return;
+      final wrapped = (index % imgListId.length + imgListId.length) % imgListId.length; // safe wrap
+      await controller.animateToPage(wrapped);
+    }
+
     return Dialog(
       insetPadding: EdgeInsets.zero,
       backgroundColor: Colors.transparent,
-      child: Wrap(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           CarouselSlider(
             items: imgListId
@@ -50,23 +58,35 @@ class DigitalGuideCarouselWithIndicator extends HookWidget {
               },
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: imgListId.asMap().entries.map((entry) {
-              return GestureDetector(
-                onTap: () => unawaited(controller.animateToPage(entry.key)),
-                child: Container(
-                  width: 12,
-                  height: 12,
-                  margin: const EdgeInsets.symmetric(vertical: DigitalGuideConfig.heightMedium, horizontal: 4),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.black.withAlpha(current.value == entry.key ? 230 : 102),
-                    border: Border.all(color: Colors.white),
-                  ),
+          const SizedBox(height: 12),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 40),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ArrowButton(icon: Icons.chevron_left, onPressed: () => unawaited(goTo(current.value - 1))),
+
+                Row(
+                  children: imgListId.asMap().entries.map((entry) {
+                    return GestureDetector(
+                      onTap: () => unawaited(controller.animateToPage(entry.key)),
+                      child: Container(
+                        width: 12,
+                        height: 12,
+                        margin: const EdgeInsets.symmetric(vertical: DigitalGuideConfig.heightMedium, horizontal: 4),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.black.withAlpha(current.value == entry.key ? 230 : 102),
+                          border: Border.all(color: Colors.white),
+                        ),
+                      ),
+                    );
+                  }).toList(),
                 ),
-              );
-            }).toList(),
+
+                ArrowButton(icon: Icons.chevron_right, onPressed: () => unawaited(goTo(current.value + 1))),
+              ],
+            ),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
