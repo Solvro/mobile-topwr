@@ -15,13 +15,13 @@ class MyTextButton extends StatelessWidget {
       onPressed: onClick,
       style: TextButton.styleFrom(
         padding: const EdgeInsets.all(12),
-        side: showBorder ? BorderSide(color: color ?? context.colorTheme.orangePomegranade) : null,
+        side: showBorder ? BorderSide(color: color ?? context.colorScheme.primary) : null,
       ),
       child: Text(
         actionTitle,
         style: onClick == null
-            ? context.textTheme.boldBodyOrange.copyWith(color: color ?? context.colorTheme.greyPigeon)
-            : context.textTheme.boldBodyOrange.copyWith(color: color ?? context.colorTheme.orangePomegranade),
+            ? context.textTheme.bodyMedium?.copyWith(color: color ?? context.colorScheme.tertiary)
+            : context.textTheme.bodyMedium?.copyWith(color: color ?? context.colorScheme.primary),
       ),
     );
   }

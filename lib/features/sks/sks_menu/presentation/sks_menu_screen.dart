@@ -81,9 +81,9 @@ class _SksMenuView extends ConsumerWidget {
         FloatingActionButton(
           heroTag: "favouriteDishesFab",
           elevation: 3,
-          backgroundColor: context.colorTheme.orangePomegranadeLighter,
+          backgroundColor: context.colorScheme.primary,
           onPressed: ref.navigateToSksFavouriteDishes,
-          child: Icon(Icons.favorite, color: context.colorTheme.whiteSoap),
+          child: Icon(Icons.favorite, color: context.colorScheme.surface),
         ),
       ],
       body: RefreshIndicator(
@@ -93,7 +93,7 @@ class _SksMenuView extends ConsumerWidget {
           await ref.read(sksMenuRepositoryProvider.notifier).clearCache();
           return ref.refresh(sksMenuRepositoryProvider.future);
         },
-        color: context.colorTheme.orangePomegranade,
+        color: context.colorScheme.primary,
         child: ListView(
           children: [
             if (!sksMenuData.isMenuOnline)
@@ -136,7 +136,7 @@ class _SKSMenuUnavailableAnimation extends HookWidget {
     const animationTopOffset = -0.1;
 
     return HorizontalSymmetricSafeAreaScaffold(
-      backgroundColor: context.colorTheme.whiteSoap,
+      backgroundColor: context.colorScheme.surface,
       appBar: DetailViewAppBar(actions: const [SksUserDataButton()]),
       body: LayoutBuilder(
         builder: (context, box) {
@@ -172,10 +172,13 @@ class _SKSMenuUnavailableAnimation extends HookWidget {
                           offset: Offset(0, -(animationSize * 0.1)),
                           child: Column(
                             children: [
-                              Text(
-                                context.localize.sks_menu_closed,
-                                style: context.textTheme.headline.copyWith(fontWeight: FontWeight.bold),
-                                textAlign: TextAlign.center,
+                              Focus(
+                                autofocus: true,
+                                child: Text(
+                                  context.localize.sks_menu_closed,
+                                  style: context.textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.bold),
+                                  textAlign: TextAlign.center,
+                                ),
                               ),
                               if (onShowLastMenuTap != null)
                                 Padding(
@@ -184,7 +187,7 @@ class _SKSMenuUnavailableAnimation extends HookWidget {
                                     actionTitle: context.localize.sks_show_last_menu,
                                     onClick: onShowLastMenuTap,
                                     showBorder: true,
-                                    color: context.colorTheme.blueAzure,
+                                    color: context.colorScheme.secondary,
                                   ),
                                 ),
                             ],

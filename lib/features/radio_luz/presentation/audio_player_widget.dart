@@ -30,7 +30,7 @@ class AudioPlayerWidget extends HookConsumerWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Container(
-          color: context.colorTheme.orangePomegranadeLighter,
+          color: context.colorScheme.primaryContainer,
           width: double.infinity,
           height: 59,
           child: Padding(

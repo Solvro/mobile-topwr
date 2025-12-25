@@ -22,7 +22,7 @@ class SearchNotFound extends StatelessWidget {
             Assets.animations.search,
             frameRate: const FrameRate(LottieAnimationConfig.frameRate),
           ),
-          Text(textAlign: TextAlign.center, style: context.textTheme.headline, message),
+          Text(textAlign: TextAlign.center, style: context.textTheme.headlineMedium, message),
         ],
       ),
     );

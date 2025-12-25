@@ -19,12 +19,12 @@ class EvacuationWidget extends StatelessWidget {
       const SizedBox(height: DigitalGuideConfig.heightSmall),
       MyHtmlWidget(
         digitalGuideData.translations.plTranslation.evacuationDescription,
-        textStyle: context.textTheme.boldBody.copyWith(height: DigitalGuideConfig.accessibleLineHeight),
+        textStyle: context.textTheme.bodyMedium?.copyWith(height: DigitalGuideConfig.accessibleLineHeight),
       ),
       const SizedBox(height: DigitalGuideConfig.heightMedium),
       Text(
         context.localize.evacuation_text,
-        style: context.textTheme.boldBody.copyWith(height: DigitalGuideConfig.accessibleLineHeight),
+        style: context.textTheme.bodyMedium?.copyWith(height: DigitalGuideConfig.accessibleLineHeight),
       ),
       const SizedBox(height: DigitalGuideConfig.heightMedium),
       DigitalGuideImage(id: digitalGuideData.evacuationMapId),

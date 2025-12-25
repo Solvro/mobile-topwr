@@ -1,7 +1,7 @@
 import "package:fl_chart/fl_chart.dart";
 import "package:flutter/widgets.dart";
 
-import "../../../../theme/app_theme.dart";
+import "../../../../theme/iparking_theme.dart";
 import "../../../../utils/angles.dart";
 import "../../../../utils/context_extensions.dart";
 import "../utils/chart_utils.dart";
@@ -21,7 +21,7 @@ class BottomLabels extends AxisTitles {
               angle: rotationAngle.radians,
               child: SideTitleWidget(
                 meta: meta,
-                child: Text(ChartUtilsX.getLabelForValue(val), style: context.iParkingTheme.chart),
+                child: Text(ChartUtilsX.getLabelForValue(val), style: const ParkingChartTextStyle()),
               ),
             ),
           ),

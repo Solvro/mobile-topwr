@@ -22,7 +22,7 @@ extension DigitalGuideClient on Ref {
       localizedOfflineMessage: DigitalGuideView
           .localizedOfflineMessage, // one common offline message is imo enough for the whole digital guide
       onRetry: onRetry,
-      authHeader: (authotization: "Token ${Env.digitalGuideAuthorizationToken}"),
+      authHeader: (authorization: "Token ${Env.digitalGuideAuthorizationToken}"),
     );
   }
 }

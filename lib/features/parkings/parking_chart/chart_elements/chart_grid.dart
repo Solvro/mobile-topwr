@@ -5,7 +5,7 @@ import "../../../../theme/app_theme.dart";
 
 class GridLine extends FlLine {
   GridLine(BuildContext context)
-    : super(color: context.colorTheme.greyPigeon.withValues(alpha: 0.6), dashArray: const [4, 2], strokeWidth: 0.5);
+    : super(color: context.colorScheme.tertiary.withValues(alpha: 0.6), dashArray: const [4, 2], strokeWidth: 0.5);
 }
 
 class ChartGrid extends FlGridData {

@@ -20,8 +20,8 @@ class NavigationTile extends StatelessWidget {
           child: ListTile(
             dense: true,
             leading: icon != null ? Icon(icon) : null,
-            title: Text(title, style: context.textTheme.title.copyWith(height: 1)),
-            trailing: Icon(Icons.chevron_right, color: context.colorTheme.orangePomegranade),
+            title: Text(title, style: context.textTheme.titleLarge?.copyWith(height: 1)),
+            trailing: Icon(Icons.chevron_right, color: context.colorScheme.primary),
           ),
         ),
       ),

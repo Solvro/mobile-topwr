@@ -89,17 +89,18 @@ class _GuideDetailDataView extends ConsumerWidget {
                             child: ZoomableRestApiImage(value.image, useFullImageQuality: true),
                           ),
                         ),
-                        Positioned(
-                          top: GuideDetailViewConfig.paddingMedium,
-                          right: GuideDetailViewConfig.paddingSmall,
-                          child: Tooltip(
-                            message: context.localize.last_modified,
-                            child: TooltipOnTap(
+                        if (lastModifiedDate != null)
+                          Positioned(
+                            top: GuideDetailViewConfig.paddingMedium,
+                            right: GuideDetailViewConfig.paddingSmall,
+                            child: Tooltip(
                               message: context.localize.last_modified,
-                              child: DateChip(date: lastModifiedDate!),
+                              child: TooltipOnTap(
+                                message: context.localize.last_modified,
+                                child: DateChip(date: lastModifiedDate),
+                              ),
                             ),
                           ),
-                        ),
                       ],
                     ),
                     automaticallyImplyLeading: false,
@@ -141,10 +142,10 @@ class _GuideDetailDataView extends ConsumerWidget {
                             RichText(
                               textScaler: MediaQuery.textScalerOf(context),
                               text: TextSpan(
-                                style: context.textTheme.bodyGrey,
+                                style: context.textTheme.bodyLarge?.copyWith(color: context.colorScheme.tertiary),
                                 children: [
                                   TextSpan(text: "${context.localize.authors(authorsNames.length)}: "),
-                                  TextSpan(text: authorsNames.join(", "), style: context.textTheme.boldBody),
+                                  TextSpan(text: authorsNames.join(", "), style: context.textTheme.bodyMedium),
                                 ],
                               ),
                             ),
@@ -152,10 +153,10 @@ class _GuideDetailDataView extends ConsumerWidget {
                             RichText(
                               textScaler: MediaQuery.textScalerOf(context),
                               text: TextSpan(
-                                style: context.textTheme.bodyGrey,
+                                style: context.textTheme.bodyLarge?.copyWith(color: context.colorScheme.tertiary),
                                 children: [
                                   TextSpan(text: "${context.localize.redactors(redactorsNames.length)}: "),
-                                  TextSpan(text: redactorsNames.join(", "), style: context.textTheme.boldBody),
+                                  TextSpan(text: redactorsNames.join(", "), style: context.textTheme.bodyMedium),
                                 ],
                               ),
                             ),
@@ -163,12 +164,14 @@ class _GuideDetailDataView extends ConsumerWidget {
                             createAtDate != null
                                 ? "${context.localize.created_at} $createAtDate"
                                 : context.localize.no_creation_date,
-                            style: context.textTheme.bodyGrey,
+                            style: context.textTheme.bodyLarge?.copyWith(color: context.colorScheme.tertiary),
                             textAlign: TextAlign.end,
                           ),
                           Text(
-                            "${context.localize.last_modified} ${DateFormat("dd.MM.yyyy", context.locale.countryCode).format(lastModifiedDate)}",
-                            style: context.textTheme.bodyGrey,
+                            lastModifiedDate != null
+                                ? "${context.localize.last_modified} ${DateFormat("dd.MM.yyyy", context.locale.countryCode).format(lastModifiedDate)}"
+                                : context.localize.no_modification_date,
+                            style: context.textTheme.bodyLarge?.copyWith(color: context.colorScheme.tertiary),
                             textAlign: TextAlign.end,
                           ),
                         ],

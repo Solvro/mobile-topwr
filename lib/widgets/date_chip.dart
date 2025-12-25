@@ -17,10 +17,10 @@ class DateChip extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
         margin: const EdgeInsets.all(8),
-        decoration: BoxDecoration(color: context.colorTheme.blackMirage, borderRadius: BorderRadius.circular(20)),
+        decoration: BoxDecoration(color: context.colorScheme.onTertiary, borderRadius: BorderRadius.circular(20)),
         child: Text(
           DateFormat(DateChipConfig.dateTimeFormat, context.locale.languageCode).format(date),
-          style: context.textTheme.bodyWhite.copyWith(fontWeight: FontWeight.w500),
+          style: context.textTheme.bodyLarge?.copyWith(color: context.colorScheme.surface, fontWeight: FontWeight.w500),
         ),
       ),
     );

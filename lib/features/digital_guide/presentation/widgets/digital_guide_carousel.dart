@@ -74,12 +74,12 @@ class DigitalGuideCarouselWithIndicator extends HookWidget {
             children: [
               Text(
                 shouldAutoplay.value ? context.localize.autoplay_enabled : context.localize.autoplay_disabled,
-                style: context.textTheme.titleWhite,
+                style: context.textTheme.titleLarge?.copyWith(color: context.colorScheme.surface),
               ),
               Switch(
                 value: shouldAutoplay.value,
                 trackColor: WidgetStateProperty.all(
-                  shouldAutoplay.value ? context.colorTheme.orangePomegranadeLighter : context.colorTheme.whiteSoap,
+                  shouldAutoplay.value ? context.colorScheme.primaryContainer : context.colorScheme.surface,
                 ),
                 onChanged: (newShouldAutoplay) {
                   shouldAutoplay.value = newShouldAutoplay;

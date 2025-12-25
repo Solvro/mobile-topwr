@@ -37,7 +37,7 @@ class AccessibilityProfileCard extends ConsumerWidget {
               DecoratedBox(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(DigitalGuideConfig.borderRadiusMedium),
-                  border: Border.all(color: context.colorTheme.blackMirage),
+                  border: Border.all(color: context.colorScheme.onTertiary),
                 ),
                 child: Padding(
                   padding: EdgeInsets.symmetric(
@@ -51,12 +51,12 @@ class AccessibilityProfileCard extends ConsumerWidget {
                 top: -15,
                 left: 20,
                 child: ColoredBox(
-                  color: backgroundColor ?? context.colorTheme.greyLight,
+                  color: backgroundColor ?? context.colorScheme.surfaceTint,
                   child: Padding(
                     padding: const EdgeInsets.all(DigitalGuideConfig.paddingSmall),
                     child: Row(
                       children: [
-                        Text(context.localize.accessibility_profile, style: context.textTheme.title),
+                        Text(context.localize.accessibility_profile, style: context.textTheme.titleLarge),
                         const SizedBox(width: DigitalGuideConfig.heightSmall),
                         icon,
                       ],

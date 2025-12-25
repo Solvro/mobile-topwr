@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import "package:html/dom.dart" as html;
 
 import "../../../theme/app_theme.dart";
+import "../../../theme/hex_color.dart";
 
 extension IsLinkTagX on html.Element {
   bool get isLink {
@@ -26,9 +27,9 @@ extension CustomHtmlX on BuildContext {
     return {
       if (!element.hasTextAlign) "text-align": "left",
       if (element.isH1) "font-size": "20px",
-      if (element.isLink) "color": colorTheme.orangePomegranade.hexString,
-      "text-decoration-color": colorTheme.orangePomegranade.hexString,
-      if (element.hasUnderline) "text-decoration-color": colorTheme.blackMirage.hexString,
+      if (element.isLink) "color": colorScheme.primary.hexString,
+      "text-decoration-color": colorScheme.primary.hexString,
+      if (element.hasUnderline) "text-decoration-color": colorScheme.onTertiary.hexString,
     };
   }
 }

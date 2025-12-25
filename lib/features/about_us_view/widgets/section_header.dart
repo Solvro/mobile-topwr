@@ -15,7 +15,7 @@ class SectionHeader extends StatelessWidget {
         top: AboutUsConfig.spacerHeight,
         bottom: AboutUsConfig.defaultPadding,
       ),
-      child: Text(text, style: context.aboutUsTheme.headline, maxLines: 2),
+      child: Text(text, style: context.textTheme.headlineSmall, maxLines: 2),
     );
   }
 }

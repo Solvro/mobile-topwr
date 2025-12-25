@@ -37,7 +37,7 @@ class DigitalGuideObjectsFeaturesSection extends ConsumerWidget {
               // No `AccessibilityInformationCardsList` here, cause not entry on the API has one
               Padding(
                 padding: const EdgeInsets.all(DigitalGuideConfig.paddingMedium),
-                child: MyHtmlWidget(tile.translations.pl.content, textStyle: context.textTheme.body),
+                child: MyHtmlWidget(tile.translations.pl.content, textStyle: context.textTheme.bodyLarge),
               ),
               DigitalGuidePhotoRow(imagesIDs: tile.images.lock),
             ],

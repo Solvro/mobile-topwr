@@ -32,11 +32,11 @@ class ContactSection extends StatelessWidget {
     final sorted = list.sort((a, b) => a.order.compareTo(b.order));
     return Container(
       padding: EdgeInsets.only(top: topPadding, left: 24, right: 24, bottom: 8),
-      color: context.colorTheme.greyLight,
+      color: context.colorScheme.surfaceTint,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if (title != null) ...[Text(title!, style: context.textTheme.headline), const SizedBox(height: 16)],
+          if (title != null) ...[Text(title!, style: context.textTheme.headlineMedium), const SizedBox(height: 16)],
           for (final item in sorted)
             Padding(
               padding: const EdgeInsets.only(bottom: 16),
@@ -78,12 +78,12 @@ class _ContactIcon extends ConsumerWidget {
                 textScaler: context.textScaler,
                 text: TextSpan(
                   text: text,
-                  style: context.textTheme.bodyOrange.copyWith(
-                    color: url?.isNotEmpty ?? false ? null : Colors.black,
+                  style: context.textTheme.bodyLarge?.copyWith(
+                    color: url?.isNotEmpty ?? false ? context.colorScheme.primary : Colors.black,
                     decoration: url?.isNotEmpty ?? false ? TextDecoration.underline : TextDecoration.none,
                     height: shouldBeAccessible
                         ? DigitalGuideConfig.accessibleLineHeight
-                        : context.textTheme.bodyOrange.height,
+                        : context.textTheme.bodyLarge?.copyWith(color: context.colorScheme.primary).height,
                   ),
                   recognizer: url != null ? (TapGestureRecognizer()..onTap = () => ref.launch(url!)) : null,
                 ),

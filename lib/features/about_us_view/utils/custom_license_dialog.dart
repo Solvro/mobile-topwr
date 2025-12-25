@@ -77,7 +77,7 @@ class _DialogContent extends StatelessWidget {
                   ),
                   Text(
                     applicationVersion,
-                    style: context.textTheme.lightTitle,
+                    style: context.textTheme.titleMedium,
                     semanticsLabel: "${context.localize.version} ${applicationVersion.replaceAll(".", " ")}",
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
@@ -93,7 +93,7 @@ class _DialogContent extends StatelessWidget {
           child: Flexible(
             child: Text(
               applicationLegalese,
-              style: context.textTheme.body,
+              style: context.textTheme.bodyLarge,
               maxLines: 4,
               overflow: TextOverflow.ellipsis,
             ),

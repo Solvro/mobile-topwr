@@ -64,7 +64,7 @@ class MapView<T extends GoogleNavigable> extends ConsumerWidget {
         initialQuery: initialQuery,
         initialSectionType: initialSectionType,
         child: Scaffold(
-          backgroundColor: context.colorTheme.whiteSoap,
+          backgroundColor: context.colorScheme.surface,
           body: kIsWeb || isBigScreen
               ? _HorizontalWebLayout<T>(semanticsLabel: semanticsLabel)
               : Stack(children: [MapWidget<T>(semanticsLabel), BottomScrollSheet<T>()]),

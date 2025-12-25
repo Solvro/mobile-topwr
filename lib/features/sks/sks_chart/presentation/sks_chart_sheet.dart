@@ -117,7 +117,7 @@ class _SksSheetHeader extends StatelessWidget {
           padding: const EdgeInsets.all(8).copyWith(bottom: 0),
           child: Text(
             context.localize.sks_chart_title,
-            style: context.textTheme.headline,
+            style: context.textTheme.headlineMedium,
             textAlign: TextAlign.center,
             textScaler: context.textScaler.clamp(maxScaleFactor: 1.3),
           ),

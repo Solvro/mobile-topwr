@@ -33,7 +33,7 @@ class SubsectionHeader extends StatelessWidget {
           runAlignment: WrapAlignment.center,
           runSpacing: 12,
           children: [
-            Text(title, style: context.textTheme.headline),
+            Text(title, style: context.textTheme.headlineMedium),
             if (actionTitle != null)
               Semantics(
                 label: context.localize.go_to_section(actionTitle ?? "", title),

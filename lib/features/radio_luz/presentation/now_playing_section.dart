@@ -5,6 +5,8 @@ import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../data/repository/history_entry_repository.dart";
+import "live_indicator.dart";
+import "search_streaming_bottom_sheet.dart";
 
 const _maxElementsToShow = 5;
 
@@ -36,7 +38,7 @@ class NowPlayingSection extends ConsumerWidget {
       AsyncLoading() => Center(
         child: Padding(
           padding: const EdgeInsets.all(16),
-          child: CircularProgressIndicator(color: context.colorTheme.orangePomegranade),
+          child: CircularProgressIndicator(color: context.colorScheme.primary),
         ),
       ),
       _ => Column(children: [Text(context.localize.generic_error_message)]),
@@ -54,42 +56,56 @@ class _NowPlayingTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = context.textTheme;
-    final colorTheme = context.colorTheme;
+    final colorScheme = context.colorScheme;
     return ListTileTheme(
       child: ListTile(
         horizontalTitleGap: 12,
         visualDensity: VisualDensity.compact,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        tileColor: isActive ? colorTheme.orangePomegranadeLighter : colorTheme.whiteSoap,
+        tileColor: isActive ? colorScheme.primary : colorScheme.surface,
         dense: true,
         contentPadding: const EdgeInsets.symmetric(horizontal: 12),
         leading: Text(
           time,
-          style: textTheme.title.copyWith(color: isActive ? colorTheme.whiteSoap : colorTheme.orangePomegranadeLighter),
+          style: textTheme.titleLarge?.copyWith(color: isActive ? colorScheme.surface : colorScheme.primary),
         ),
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        title: Row(
+          mainAxisSize: MainAxisSize.min,
           children: [
-            Text(
-              title,
-              style: textTheme.title.copyWith(color: isActive ? colorTheme.whiteSoap : colorTheme.blackMirage),
+            Flexible(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: textTheme.titleLarge?.copyWith(
+                      color: isActive ? colorScheme.surface : colorScheme.onTertiary,
+                    ),
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    subtitle,
+                    style: textTheme.labelSmall?.copyWith(
+                      color: isActive ? colorScheme.surface : colorScheme.onTertiary,
+                    ),
+                  ),
+                ],
+              ),
             ),
-            const SizedBox(height: 2),
-            Text(
-              subtitle,
-              style: textTheme.tiny.copyWith(color: isActive ? colorTheme.whiteSoap : colorTheme.blackMirage),
-            ),
+            const SizedBox(width: 4),
+            if (isActive)
+              LiveIndicator(
+                spreadRadius: 8,
+                spreadDuration: const Duration(milliseconds: 800),
+                waitDuration: const Duration(seconds: 1),
+                color: colorScheme.surface,
+              ),
           ],
         ),
-        trailing: isActive
-            ? Text(
-                context.localize.now_playing.toUpperCase(),
-                style: textTheme.tiny.copyWith(
-                  color: isActive ? colorTheme.whiteSoap : colorTheme.blackMirage,
-                  fontWeight: FontWeight.w400,
-                ),
-              )
-            : null,
+        trailing: IconButton(
+          icon: Icon(Icons.manage_search, color: isActive ? colorScheme.surface : colorScheme.primary),
+          onPressed: () => SearchStreamingBottomSheet.show(context, title: title, artist: subtitle),
+        ),
       ),
     );
   }

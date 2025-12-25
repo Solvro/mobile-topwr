@@ -51,13 +51,16 @@ class DepartmentDetailView extends ConsumerWidget {
                   header: true,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 24),
-                    child: Text(
-                      department.name,
-                      style: context.textTheme.headline.copyWith(
-                        fontSize: context.textScaler.scale(context.textTheme.headline.fontSize ?? 24),
+                    child: Focus(
+                      autofocus: true,
+                      child: Text(
+                        department.name,
+                        style: context.textTheme.headlineMedium?.copyWith(
+                          fontSize: context.textScaler.scale(context.textTheme.headlineMedium?.fontSize ?? 24),
+                        ),
+                        textAlign: TextAlign.center,
+                        maxLines: 2,
                       ),
-                      textAlign: TextAlign.center,
-                      maxLines: 2,
                     ),
                   ),
                 ),
@@ -66,9 +69,9 @@ class DepartmentDetailView extends ConsumerWidget {
                   label: context.localize.no_address,
                   child: Text(
                     department.address3lines,
-                    style: context.textTheme.body.copyWith(
+                    style: context.textTheme.bodyLarge?.copyWith(
                       height: 1.2,
-                      fontSize: context.textScaler.scale(context.textTheme.body.fontSize ?? 16),
+                      fontSize: context.textScaler.scale(context.textTheme.bodyLarge?.fontSize ?? 16),
                     ),
                     textAlign: TextAlign.center,
                   ),

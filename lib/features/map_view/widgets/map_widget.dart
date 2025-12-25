@@ -28,7 +28,7 @@ class MapWidget<T extends GoogleNavigable> extends HookConsumerWidget {
           options: MapOptions(
             initialCenter: MapWidgetConfig.initialCenter,
             initialZoom: MapWidgetConfig.initialZoom,
-            backgroundColor: context.colorTheme.whiteSoap,
+            backgroundColor: context.colorScheme.surface,
             interactionOptions: MapWidgetConfig.interactionOptions,
             onPositionChanged: (MapCamera camera, bool hasGesture) {
               if (hasGesture) {

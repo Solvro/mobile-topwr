@@ -12,8 +12,8 @@ class BranchesButton extends StatelessWidget {
     return FloatingActionButton.small(
       heroTag: "branches_button",
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      backgroundColor: context.colorTheme.whiteSoap,
-      child: Icon(BottomNavBarIcons.departments_icon, color: context.colorTheme.blackMirage),
+      backgroundColor: context.colorScheme.surface,
+      child: Icon(BottomNavBarIcons.departments_icon, color: context.colorScheme.onTertiary),
       onPressed: () => {BranchMapDialog.show(context)},
     );
   }

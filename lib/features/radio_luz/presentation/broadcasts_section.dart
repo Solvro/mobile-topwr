@@ -43,7 +43,7 @@ class BroadcastsSection extends HookConsumerWidget {
       AsyncLoading() => Center(
         child: Padding(
           padding: const EdgeInsets.all(16),
-          child: CircularProgressIndicator(color: context.colorTheme.orangePomegranade),
+          child: CircularProgressIndicator(color: context.colorScheme.primary),
         ),
       ),
       _ => Column(children: [Text(context.localize.generic_error_message)]),
@@ -73,18 +73,18 @@ class _BroadcastTile extends StatelessWidget {
             right: 0,
             child: Container(
               padding: const EdgeInsets.all(12),
-              color: context.colorTheme.orangePomegranadeLighter,
+              color: context.colorScheme.primaryContainer,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   if (nowPlaying) ...[
                     Text(
                       context.localize.now_playing.toUpperCase(),
-                      style: context.textTheme.title.copyWith(color: Colors.white, fontWeight: FontWeight.w400),
+                      style: context.textTheme.titleLarge?.copyWith(color: Colors.white, fontWeight: FontWeight.w400),
                     ),
                     const SizedBox(height: 8),
                   ],
-                  Text(title, style: context.textTheme.title.copyWith(color: Colors.white)),
+                  Text(title, style: context.textTheme.titleLarge?.copyWith(color: Colors.white)),
                   const SizedBox(height: 4),
                   const _ShowMoreWidget(),
                 ],
@@ -108,7 +108,7 @@ class _ShowMoreWidget extends StatelessWidget {
           spacing: 8,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(context.localize.show_more, style: context.textTheme.title.copyWith(color: Colors.white)),
+            Text(context.localize.show_more, style: context.textTheme.titleLarge?.copyWith(color: Colors.white)),
             const Expanded(child: Divider(color: Colors.white, thickness: 1, height: 1)),
             const SizedBox(width: 8),
           ],

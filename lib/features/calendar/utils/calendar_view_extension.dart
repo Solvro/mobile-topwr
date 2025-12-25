@@ -1,3 +1,4 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/widgets.dart";
 import "../../../utils/context_extensions.dart";
 import "../data/model/calendar_data.dart";
@@ -45,5 +46,12 @@ extension WeekdayFormatter on int {
     final w = context.localize;
     final weekdayShorts = [w.monday, w.tuesday, w.wednesday, w.thursday, w.friday, w.saturday, w.sunday];
     return weekdayShorts[this - 1];
+  }
+}
+
+extension FilterOutPastEvents on IList<CalendarData> {
+  IList<CalendarData> filterOutPastEvents() {
+    final now = DateTime.now();
+    return where((event) => event.startDateTime.isAfter(now)).toList().lock;
   }
 }

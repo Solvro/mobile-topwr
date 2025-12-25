@@ -19,7 +19,7 @@ Future<String?> imageRepository(Ref ref, int imageID) {
         onRetry: ref.invalidateSelf,
         extraValidityCheck: (_) => true,
         localizedOfflineMessage: DigitalGuideView.localizedOfflineMessage,
-        authHeader: (authotization: "Token ${Env.digitalGuideAuthorizationToken}"),
+        authHeader: (authorization: "Token ${Env.digitalGuideAuthorizationToken}"),
       )
       .castAsObject;
 }

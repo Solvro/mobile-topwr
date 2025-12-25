@@ -38,7 +38,7 @@ class _DigitalGuideLiftExpansionTileContent extends ConsumerWidget {
         vertical: DigitalGuideConfig.paddingMedium,
       ),
       child: Material(
-        color: context.colorTheme.greyLight,
+        color: context.colorScheme.surfaceTint,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: levelsWithLifts.map((level) {

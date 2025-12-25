@@ -28,7 +28,6 @@ import "services/cache_reference_number/translations/presentation/flush_translat
 import "services/translations_service/data/preferred_lang_repository.dart";
 import "services/translations_service/widgets/remove_old_translations.dart";
 import "theme/app_theme.dart";
-import "theme/colors.dart";
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -92,14 +91,7 @@ class MyApp extends HookConsumerWidget {
               title: MyAppConfig.title,
               localizationsDelegates: AppLocalizations.localizationsDelegates,
               supportedLocales: AppLocalizations.supportedLocales,
-              theme: ThemeData(
-                extensions: const [AppTheme()],
-                colorScheme: const ColorScheme.light().copyWith(
-                  surface: ColorsConsts.whiteSoap,
-                  primary: ColorsConsts.orangePomegranade,
-                  secondary: ColorsConsts.blueAzure,
-                ),
-              ),
+              theme: const AppTheme().light,
               debugShowCheckedModeBanner: false,
               routerConfig: ref.watch(appRouterProvider).config(navigatorObservers: () => [NavigationObserver(ref)]),
             ),

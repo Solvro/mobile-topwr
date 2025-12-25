@@ -38,7 +38,7 @@ class FaqExpansionTile extends ConsumerWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: GuideDetailViewConfig.paddingSmall),
               child: ListTile(
-                title: MyHtmlWidget(description, textStyle: context.textTheme.body.copyWith(fontSize: 14)),
+                title: MyHtmlWidget(description, textStyle: context.textTheme.bodyLarge?.copyWith(fontSize: 14)),
               ),
             ),
           ),

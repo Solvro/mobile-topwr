@@ -14,7 +14,7 @@ class DragHandle extends SliverPersistentHeaderDelegate {
   Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
     return HandleSemanticsWrapper(
       child: ColoredBox(
-        color: context.colorTheme.whiteSoap,
+        color: context.colorScheme.surface,
         child: const Center(child: LineHandle()),
       ),
     );
@@ -64,7 +64,7 @@ class LineHandle extends StatelessWidget {
       width: 36,
       height: 4,
       decoration: BoxDecoration(
-        color: context.colorTheme.blackMirage.withValues(alpha: 0.16),
+        color: context.colorScheme.onTertiary.withValues(alpha: 0.16),
         borderRadius: BorderRadius.circular(100),
       ),
     );

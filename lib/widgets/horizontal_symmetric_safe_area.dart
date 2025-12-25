@@ -59,7 +59,7 @@ class HorizontalSymmetricSafeAreaScaffold extends ConsumerWidget {
         FloatingActionButton(
           heroTag: "radioFab",
           elevation: 3,
-          backgroundColor: context.colorTheme.orangePomegranadeLighter,
+          backgroundColor: context.colorScheme.primary,
           onPressed: () async {
             await ref.navigateToRadioLuz();
           },

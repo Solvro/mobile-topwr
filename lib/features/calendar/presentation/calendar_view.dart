@@ -92,6 +92,7 @@ class _CalendarViewContent extends StatelessWidget {
                     day: dayModel.day,
                     events: dayModel.events.toIList(),
                     weekday: dayModel.weekday,
+                    isToday: dayModel.isToday,
                   ),
                 )
                 .toList();
