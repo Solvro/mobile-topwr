@@ -25,6 +25,9 @@ class SearchBox extends HookWidget {
       if (initialQuery != null && initialQuery != "") {
         controller.text = initialQuery!;
         showCloseIcon.value = initialQuery!.isNotEmpty;
+      } else {
+        controller.clear();
+        showCloseIcon.value = false;
       }
       return null;
     }, [initialQuery]);
