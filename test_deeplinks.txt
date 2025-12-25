@@ -63,6 +63,10 @@
 ./test_deeplink.sh https://topwr.solvro.pl/parkings?qParkings=parking
 
 
+# NOTE: All multilayer map deeplinks (libraries, aeds, bicycle-showers, pink-boxes)
+# reset building type to all types and campus to main campus.
+# Other campuses are not supported yet via deeplinks.
+
 ./test_deeplink.sh https://topwr.solvro.pl/libraries
 ./test_deeplink.sh https://topwr.solvro.pl/libraries/5 
 

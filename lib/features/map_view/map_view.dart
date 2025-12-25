@@ -10,6 +10,7 @@ import "../../theme/app_theme.dart";
 import "../bottom_scroll_sheet/bottom_scroll_sheet.dart";
 import "../bottom_scroll_sheet/map_data_sheet_list.dart";
 import "../bottom_scroll_sheet/map_view_pop_behaviour.dart";
+import "../multilayer_map/data/model/multilayer_section_type.dart";
 import "controllers/bottom_sheet_controller.dart";
 import "controllers/controllers_set.dart";
 import "widgets/map_config.dart";
@@ -26,6 +27,7 @@ class MapView<T extends GoogleNavigable> extends ConsumerWidget {
     this.animateListTiles = false,
     this.initialActiveItemId,
     this.initialQuery,
+    this.initialSectionType,
     super.key,
   });
   final MapControllers<T> mapControllers;
@@ -37,6 +39,9 @@ class MapView<T extends GoogleNavigable> extends ConsumerWidget {
   final String? initialActiveItemId;
   final String semanticsLabel;
   final String? initialQuery;
+
+  /// The section type to scroll to initially.
+  final MultilayerSectionType? initialSectionType;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -57,6 +62,7 @@ class MapView<T extends GoogleNavigable> extends ConsumerWidget {
         animateListTiles: animateListTiles,
         initialActiveItemId: initialActiveItemId,
         initialQuery: initialQuery,
+        initialSectionType: initialSectionType,
         child: Scaffold(
           backgroundColor: context.colorTheme.whiteSoap,
           body: kIsWeb || isBigScreen

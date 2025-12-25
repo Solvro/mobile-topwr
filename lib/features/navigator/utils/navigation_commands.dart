@@ -3,9 +3,14 @@ import "dart:async";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:logger/logger.dart";
 
+import "../../../config/nav_bar_config.dart";
 import "../../../utils/launch_url_util.dart";
 import "../../analytics/data/clarity.dart";
 import "../../analytics/data/clarity_events.dart";
+import "../../branches/business/selected_branch_on_map.dart";
+import "../../branches/data/model/branch.dart";
+import "../../map_layer_picker/data/layer_options.dart";
+import "../../map_layer_picker/data/local_layers_repository.dart";
 import "../../digital_guide/data/models/level.dart" as digital_guide;
 import "../../digital_guide/data/models/level_with_regions.dart";
 import "../../digital_guide/data/models/region.dart";
@@ -103,7 +108,21 @@ extension NavigationX on WidgetRef {
   }
 
   Future<void> navigateNamedUri(String uri) async {
+    _maybeResetMapStateForDeeplink(uri);
     await _router.pushNamed(uri);
+  }
+
+  /// Resets map state for multilayer map deeplinks:
+  /// - Sets campus to main (other campuses not supported yet)
+  /// - Enables all layer types
+  void _maybeResetMapStateForDeeplink(String uri) {
+    final basePath = uri.split("?").first.split("/").where((s) => s.isNotEmpty).firstOrNull ?? "";
+    if (!NavBarConfig.buildingsTabPaths.contains(basePath)) return;
+
+    read(selectedBranchOnMapProvider.notifier).setBranch(Branch.main);
+    for (final option in topLevelLayerOptions) {
+      unawaited(read(localLayersRepositoryProvider(option).notifier).setMode(newValue: true));
+    }
   }
 
   Future<void> navigateToSksMenu() async {

@@ -2,7 +2,7 @@ import "package:auto_route/auto_route.dart";
 import "package:flutter/widgets.dart";
 
 import "../../../../utils/context_extensions.dart";
-import "../../data/model/multilayer_item.dart";
+import "../../data/model/multilayer_section_type.dart";
 import "multilayer_map_view.dart";
 
 @RoutePage()
@@ -16,7 +16,11 @@ class BuildingsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultilayerMapView(initialActiveItemId: "${BuildingItem.idPrefix}$initialActiveItemId");
+    final hasSpecificId = initialActiveItemId != null && initialActiveItemId != "null";
+    return MultilayerMapView(
+      initialActiveItemId: "${MultilayerSectionType.building.idPrefix}$initialActiveItemId",
+      initialSectionType: hasSpecificId ? null : MultilayerSectionType.building,
+    );
   }
 }
 
@@ -31,7 +35,11 @@ class LibrariesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultilayerMapView(initialActiveItemId: "${LibraryItem.idPrefix}$initialActiveItemId");
+    final hasSpecificId = initialActiveItemId != null && initialActiveItemId != "null";
+    return MultilayerMapView(
+      initialActiveItemId: "${MultilayerSectionType.library.idPrefix}$initialActiveItemId",
+      initialSectionType: hasSpecificId ? null : MultilayerSectionType.library,
+    );
   }
 }
 
@@ -46,7 +54,11 @@ class AedsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultilayerMapView(initialActiveItemId: "${AedItem.idPrefix}$initialActiveItemId");
+    final hasSpecificId = initialActiveItemId != null && initialActiveItemId != "null";
+    return MultilayerMapView(
+      initialActiveItemId: "${MultilayerSectionType.aed.idPrefix}$initialActiveItemId",
+      initialSectionType: hasSpecificId ? null : MultilayerSectionType.aed,
+    );
   }
 }
 
@@ -61,7 +73,11 @@ class ShowersView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultilayerMapView(initialActiveItemId: "${BicycleShowerItem.idPrefix}$initialActiveItemId");
+    final hasSpecificId = initialActiveItemId != null && initialActiveItemId != "null";
+    return MultilayerMapView(
+      initialActiveItemId: "${MultilayerSectionType.bicycleShower.idPrefix}$initialActiveItemId",
+      initialSectionType: hasSpecificId ? null : MultilayerSectionType.bicycleShower,
+    );
   }
 }
 
@@ -76,6 +92,10 @@ class PinkBoxesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultilayerMapView(initialActiveItemId: "${PinkBoxItem.idPrefix}$initialActiveItemId");
+    final hasSpecificId = initialActiveItemId != null && initialActiveItemId != "null";
+    return MultilayerMapView(
+      initialActiveItemId: "${MultilayerSectionType.pinkBox.idPrefix}$initialActiveItemId",
+      initialSectionType: hasSpecificId ? null : MultilayerSectionType.pinkBox,
+    );
   }
 }
