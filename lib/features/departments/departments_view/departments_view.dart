@@ -21,7 +21,9 @@ import "widgets/departments_view_loading.dart";
 
 @RoutePage()
 class DepartmentsView extends StatelessWidget {
-  const DepartmentsView({super.key});
+  const DepartmentsView({super.key, @QueryParam("q") this.initialQuery});
+
+  final String? initialQuery;
 
   static String localizedOfflineMessage(BuildContext context) {
     return context.localize.my_offline_error_message(context.localize.departments);
@@ -29,20 +31,32 @@ class DepartmentsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ProviderScope(overrides: [searchDepartmentsControllerProvider], child: const _DepartmentsView());
+    return ProviderScope(
+      overrides: [searchDepartmentsControllerProvider],
+      child: _DepartmentsView(initialQuery: initialQuery),
+    );
   }
 }
 
 class _DepartmentsView extends ConsumerWidget {
-  const _DepartmentsView();
+  const _DepartmentsView({this.initialQuery});
+
+  final String? initialQuery;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    if (initialQuery != null && initialQuery!.isNotEmpty) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        ref.read(searchDepartmentsControllerProvider.notifier).onTextChanged(initialQuery!);
+      });
+    }
+
     return HorizontalSymmetricSafeAreaScaffold(
       appBar: SearchBoxAppBar(
         primary: true,
         addLeadingPopButton: true,
         context,
+        initialQuery: initialQuery,
         title: context.localize.departments,
         onQueryChanged: ref.watch(searchDepartmentsControllerProvider.notifier).onTextChanged,
         onSearchBoxTap: () {

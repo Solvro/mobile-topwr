@@ -15,6 +15,7 @@ import "../map_view/controllers/controllers_set.dart";
 import "../map_view/widgets/map_config.dart";
 import "../multilayer_map/business/multilayer_source_service.dart";
 import "../multilayer_map/data/model/multilayer_item.dart";
+import "../multilayer_map/data/model/multilayer_section_type.dart";
 import "../parkings/parkings_view/models/parking.dart";
 import "data_list.dart";
 import "drag_handle.dart";
@@ -56,22 +57,34 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
         await ref.read(bottomSheetPixelsProvider.notifier).expandSheet();
       },
       actions: [if (ref.watch(context.activeMarkerController<T>()) != null) NavigateButton<T>()],
+      initialQuery: context.initialQuery<T>(),
     );
 
     final categoryData = isMultilayerMap
         ? (
             buildings: (
               title: context.localize.buildings_title,
+              sectionType: MultilayerSectionType.building,
               builder: MultilayerMapSingleEntityList<BuildingItem>.new,
             ),
-            library: (title: context.localize.library_title, builder: MultilayerMapSingleEntityList<LibraryItem>.new),
-            aed: (title: context.localize.aed_title, builder: MultilayerMapSingleEntityList<AedItem>.new),
+            library: (
+              title: context.localize.library_title,
+              sectionType: MultilayerSectionType.library,
+              builder: MultilayerMapSingleEntityList<LibraryItem>.new,
+            ),
+            aed: (
+              title: context.localize.aed_title,
+              sectionType: MultilayerSectionType.aed,
+              builder: MultilayerMapSingleEntityList<AedItem>.new,
+            ),
             showers: (
               title: context.localize.showers_title,
+              sectionType: MultilayerSectionType.bicycleShower,
               builder: MultilayerMapSingleEntityList<BicycleShowerItem>.new,
             ),
             pinkBoxes: (
               title: context.localize.pink_boxes_title,
+              sectionType: MultilayerSectionType.pinkBox,
               builder: MultilayerMapSingleEntityList<PinkBoxItem>.new,
             ),
           )
@@ -122,7 +135,11 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
         ),
 
         if (categoryData != null && !areOnlyOneLayerEnabled && !isNoTabs)
-          SliverMultiTabberBuilder(tabs: tabs, scrollController: scrollController),
+          SliverMultiTabberBuilder(
+            tabs: tabs,
+            scrollController: scrollController,
+            initialSectionType: context.initialSectionType<T>(),
+          ),
         if (categoryData == null || areOnlyOneLayerEnabled) DataSliverList<T>(),
         if (isNoTabs && categoryData != null)
           SliverFillRemaining(child: Center(child: Text(context.localize.no_layers_available))),

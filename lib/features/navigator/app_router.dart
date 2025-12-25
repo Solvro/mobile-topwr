@@ -50,6 +50,7 @@ import "../guide_detail_view/guide_detail_view.dart";
 import "../guide_view/guide_view.dart";
 import "../home_view/home_view.dart";
 import "../multilayer_map/data/model/building.dart";
+import "../multilayer_map/data/model/multilayer_section_type.dart";
 import "../multilayer_map/presentation/views/multilayer_map_view.dart";
 import "../multilayer_map/presentation/views/redirect_views.dart";
 import "../navigation_tab_view/navigation_tab_view.dart";
@@ -87,40 +88,18 @@ class AppRouter extends RootStackRouter {
     _NoTransitionRoute(path: "bicycle-showers/:initialActiveItemId", page: ShowersRoute.page),
     _NoTransitionRoute(path: "pink-boxes/:initialActiveItemId", page: PinkBoxesRoute.page),
     _NoTransitionRoute(path: "multilayer-map/:initialActiveItemId", page: MultilayerMapRoute.page),
-    RedirectRoute(path: "buildings", redirectTo: "buildings/null"),
-    RedirectRoute(path: "multilayer-map", redirectTo: "multilayer-map/null"),
     _NoTransitionRoute(path: "parkings/:initialActiveItemId", page: ParkingsRoute.page),
-    RedirectRoute(path: "parkings", redirectTo: "parkings/null"),
     _NoTransitionRoute(path: "guide", page: GuideRoute.page),
     _NoTransitionRoute(path: "navigation", page: NavigationTabRoute.page),
+    // Redirects for routes without :initialActiveItemId parameter
+    RedirectRoute(path: "buildings", redirectTo: "buildings/null"),
+    RedirectRoute(path: "libraries", redirectTo: "libraries/null"),
+    RedirectRoute(path: "aeds", redirectTo: "aeds/null"),
+    RedirectRoute(path: "bicycle-showers", redirectTo: "bicycle-showers/null"),
+    RedirectRoute(path: "pink-boxes", redirectTo: "pink-boxes/null"),
+    RedirectRoute(path: "multilayer-map", redirectTo: "multilayer-map/null"),
+    RedirectRoute(path: "parkings", redirectTo: "parkings/null"),
   ];
-
-  /// Converts a path string to a PageRouteInfo object for routes within the tab bar
-  /// Returns null if the path doesn't match any tab bar routes
-  PageRouteInfo pathToRoute(String path) {
-    // Remove leading slash if present
-    final cleanPath = path.startsWith("/") ? path.substring(1) : path;
-
-    // Split path into segments
-    final segments = cleanPath.split("/");
-
-    if (segments.isEmpty) return const HomeRoute();
-
-    return switch (segments[0]) {
-      "" => const HomeRoute(),
-      "buildings" => BuildingsRoute(
-        initialActiveItemId: segments.length > 1 && segments[1] != "null" ? segments[1] : null,
-      ),
-      "parkings" => ParkingsRoute(
-        initialActiveItemId: segments.length > 1 && segments[1] != "null" ? segments[1] : null,
-      ),
-      "guide" => const GuideRoute(),
-      "navigation" => const NavigationTabRoute(),
-      _ => throw Exception(
-        "This path: $path is not inside a tabview. This `pathToRoute` function should only be used for routes within the tabbar.",
-      ),
-    };
-  }
 
   @override
   List<AutoRoute> get routes => [
@@ -155,8 +134,8 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: InformationPointRoute.page),
     AutoRoute(page: DressingRoomRoute.page),
     AutoRoute(page: ParkingRoute.page),
-    AutoRoute(page: NewsfeedRoute.page),
-    AutoRoute(page: CalendarRoute.page),
+    AutoRoute(path: "/news", page: NewsfeedRoute.page),
+    AutoRoute(path: "/calendar", page: CalendarRoute.page),
     AutoRoute(path: "/radio-luz", page: RadioLuzRoute.page),
   ];
 }

@@ -1,0 +1,87 @@
+./test_deeplink.sh https://topwr.solvro.pl/
+./test_deeplink.sh https://topwr.solvro.pl/navigation
+
+./test_deeplink.sh https://topwr.solvro.pl/guide
+./test_deeplink.sh https://topwr.solvro.pl/guide?qGuide=test
+./test_deeplink.sh https://topwr.solvro.pl/guide?qGuide=library 
+
+
+./test_deeplink.sh https://topwr.solvro.pl/guide/1
+./test_deeplink.sh https://topwr.solvro.pl/guide/5
+./test_deeplink.sh https://topwr.solvro.pl/guide/1?section=0
+./test_deeplink.sh https://topwr.solvro.pl/guide/1?section=2
+./test_deeplink.sh https://topwr.solvro.pl/guide/5?section=1
+
+
+./test_deeplink.sh https://topwr.solvro.pl/departments
+./test_deeplink.sh https://topwr.solvro.pl/departments?q=test
+./test_deeplink.sh https://topwr.solvro.pl/departments?q=computer
+
+./test_deeplink.sh https://topwr.solvro.pl/departments/1
+./test_deeplink.sh https://topwr.solvro.pl/departments/5
+
+
+./test_deeplink.sh https://topwr.solvro.pl/sci-clubs
+./test_deeplink.sh https://topwr.solvro.pl/sci-clubs?q=test
+./test_deeplink.sh https://topwr.solvro.pl/sci-clubs?q=robotics
+./test_deeplink.sh https://topwr.solvro.pl/sci-clubs?tags=informatyka
+./test_deeplink.sh https://topwr.solvro.pl/sci-clubs?depts=5,10
+./test_deeplink.sh https://topwr.solvro.pl/sci-clubs?types=scientific_club
+
+
+./test_deeplink.sh https://topwr.solvro.pl/sci-clubs/1
+./test_deeplink.sh https://topwr.solvro.pl/sci-clubs/10
+
+./test_deeplink.sh https://topwr.solvro.pl/calendar
+./test_deeplink.sh https://topwr.solvro.pl/calendar?q=test
+./test_deeplink.sh https://topwr.solvro.pl/calendar?q=exam
+
+./test_deeplink.sh https://topwr.solvro.pl/news
+
+./test_deeplink.sh https://topwr.solvro.pl/radio-luz
+
+./test_deeplink.sh https://topwr.solvro.pl/sks-menu
+./test_deeplink.sh https://topwr.solvro.pl/sks-favourite-dishes
+
+./test_deeplink.sh https://topwr.solvro.pl/aboutUs
+
+./test_deeplink.sh https://topwr.solvro.pl/buildings
+./test_deeplink.sh https://topwr.solvro.pl/buildings/10
+
+./test_deeplink.sh https://topwr.solvro.pl/buildings?qMap=test
+./test_deeplink.sh https://topwr.solvro.pl/buildings?qMap=library
+
+./test_deeplink.sh https://topwr.solvro.pl/multilayer-map 
+./test_deeplink.sh https://topwr.solvro.pl/multilayer-map?qMap=test 
+./test_deeplink.sh https://topwr.solvro.pl/multilayer-map?qMap=building 
+
+
+./test_deeplink.sh https://topwr.solvro.pl/parkings
+./test_deeplink.sh https://topwr.solvro.pl/parkings/5 
+
+./test_deeplink.sh https://topwr.solvro.pl/parkings?qParkings=test
+./test_deeplink.sh https://topwr.solvro.pl/parkings?qParkings=parking
+
+
+# NOTE: All multilayer map deeplinks (libraries, aeds, bicycle-showers, pink-boxes)
+# reset building type to all types and campus to main campus.
+# Other campuses are not supported yet via deeplinks.
+
+./test_deeplink.sh https://topwr.solvro.pl/libraries
+./test_deeplink.sh https://topwr.solvro.pl/libraries/5 
+
+
+./test_deeplink.sh https://topwr.solvro.pl/aeds
+./test_deeplink.sh https://topwr.solvro.pl/aeds/5
+
+./test_deeplink.sh https://topwr.solvro.pl/bicycle-showers
+./test_deeplink.sh https://topwr.solvro.pl/bicycle-showers/5
+
+./test_deeplink.sh https://topwr.solvro.pl/pink-boxes
+./test_deeplink.sh https://topwr.solvro.pl/pink-boxes/5
+
+
+
+
+
+

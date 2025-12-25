@@ -8,6 +8,7 @@ import "../../config/ui_config.dart";
 import "../../theme/app_theme.dart";
 import "../../utils/context_extensions.dart";
 import "../../widgets/date_chip.dart";
+import "../../widgets/deeplink_scroll_to_section.dart";
 import "../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../widgets/horizontal_symmetric_safe_area.dart";
 import "../../widgets/loading_widgets/shimmer_loading.dart";
@@ -24,9 +25,10 @@ import "widgets/tooltip_on_click.dart";
 
 @RoutePage()
 class GuideDetailView extends StatelessWidget {
-  const GuideDetailView({@PathParam("id") required this.id, super.key});
+  const GuideDetailView({@PathParam("id") required this.id, @QueryParam("section") this.sectionId, super.key});
 
   final int id;
+  final int? sectionId;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +36,7 @@ class GuideDetailView extends StatelessWidget {
       label: context.localize.guide_detail_view_description,
       child: HorizontalSymmetricSafeAreaScaffold(
         appBar: DetailViewAppBar(),
-        body: _GuideDetailDataView(id: id),
+        body: _GuideDetailDataView(id: id, sectionId: sectionId),
       ),
     );
   }
@@ -42,8 +44,9 @@ class GuideDetailView extends StatelessWidget {
 
 class _GuideDetailDataView extends ConsumerWidget {
   final int id;
+  final int? sectionId;
 
-  const _GuideDetailDataView({required this.id});
+  const _GuideDetailDataView({required this.id, this.sectionId});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -53,121 +56,131 @@ class _GuideDetailDataView extends ConsumerWidget {
       AsyncError(:final error, :final stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
       AsyncValue(:final GuideDetails value) => Builder(
         builder: (context) {
-          final lastModifiedDate = context.getTheLatestUpdatedDateGuide(questions: value.guideQuestions);
           final createAtDate = context.getTheLatesCreatedDateGuide(
             questions: value.guideQuestions,
             locale: context.locale,
           );
-          final IList<String> authorsNames = value.guideAuthors
-              .where((e) => e.role.role == GuideAuthorRoleType.author)
-              .map((a) => a.name)
-              .toIList();
-          final IList<String> redactorsNames = value.guideAuthors
-              .where((e) => e.role.role == GuideAuthorRoleType.redactor)
-              .map((r) => r.name)
-              .toIList();
 
-          return CustomScrollView(
-            slivers: [
-              SliverAppBar(
-                excludeHeaderSemantics: true,
-                expandedHeight: 254,
-                flexibleSpace: Stack(
-                  children: [
-                    Semantics(
-                      label: context.localize.article_image_semantics_label,
-                      child: SizedBox(
-                        height: DetailViewsConfig.imageHeight,
-                        child: ZoomableRestApiImage(value.image, useFullImageQuality: true),
+          return DeeplinkScrollToSectionWrapper(
+            sectionId: sectionId,
+            builder: (context, deeplinkToSectionHelper) {
+              deeplinkToSectionHelper.registerSections(List.generate(value.guideQuestions.length, (index) => index));
+              final lastModifiedDate = context.getTheLatestUpdatedDateGuide(questions: value.guideQuestions);
+              final IList<String> authorsNames = value.guideAuthors
+                  .where((e) => e.role.role == GuideAuthorRoleType.author)
+                  .map((a) => a.name)
+                  .toIList();
+              final IList<String> redactorsNames = value.guideAuthors
+                  .where((e) => e.role.role == GuideAuthorRoleType.redactor)
+                  .map((r) => r.name)
+                  .toIList();
+              return CustomScrollView(
+                controller: deeplinkToSectionHelper.scrollController,
+                slivers: [
+                  SliverAppBar(
+                    excludeHeaderSemantics: true,
+                    expandedHeight: 254,
+                    flexibleSpace: Stack(
+                      children: [
+                        Semantics(
+                          label: context.localize.article_image_semantics_label,
+                          child: SizedBox(
+                            height: DetailViewsConfig.imageHeight,
+                            child: ZoomableRestApiImage(value.image, useFullImageQuality: true),
+                          ),
+                        ),
+                        if (lastModifiedDate != null)
+                          Positioned(
+                            top: GuideDetailViewConfig.paddingMedium,
+                            right: GuideDetailViewConfig.paddingSmall,
+                            child: Tooltip(
+                              message: context.localize.last_modified,
+                              child: TooltipOnTap(
+                                message: context.localize.last_modified,
+                                child: DateChip(date: lastModifiedDate),
+                              ),
+                            ),
+                          ),
+                      ],
+                    ),
+                    automaticallyImplyLeading: false,
+                  ),
+                  SliverToBoxAdapter(
+                    child: Padding(
+                      padding: const EdgeInsets.all(24),
+                      child: MyHtmlWidget(value.description.isEmpty ? value.shortDesc : value.description),
+                    ),
+                  ),
+                  SliverPadding(
+                    padding: const EdgeInsets.only(bottom: GuideDetailViewConfig.paddingLarge),
+                    sliver: SliverList.separated(
+                      itemCount: value.guideQuestions.length,
+                      itemBuilder: (context, index) {
+                        final question = value.guideQuestions[index];
+                        return FaqExpansionTile(
+                          key: deeplinkToSectionHelper.keyFor(index),
+                          title: question.title,
+                          description: question.answer,
+                          initiallyExpanded: sectionId == index,
+                        );
+                      },
+                      separatorBuilder: (context, index) => const SizedBox(height: 8),
+                    ),
+                  ),
+
+                  SliverPadding(
+                    padding: const EdgeInsets.only(
+                      bottom: GuideDetailViewConfig.bottomPadding,
+                      left: GuideDetailViewConfig.paddingLarge,
+                      right: GuideDetailViewConfig.paddingLarge,
+                    ),
+                    sliver: SliverToBoxAdapter(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          if (authorsNames.isNotEmpty)
+                            RichText(
+                              textScaler: MediaQuery.textScalerOf(context),
+                              text: TextSpan(
+                                style: context.textTheme.bodyLarge?.copyWith(color: context.colorScheme.tertiary),
+                                children: [
+                                  TextSpan(text: "${context.localize.authors(authorsNames.length)}: "),
+                                  TextSpan(text: authorsNames.join(", "), style: context.textTheme.bodyMedium),
+                                ],
+                              ),
+                            ),
+                          if (redactorsNames.isNotEmpty)
+                            RichText(
+                              textScaler: MediaQuery.textScalerOf(context),
+                              text: TextSpan(
+                                style: context.textTheme.bodyLarge?.copyWith(color: context.colorScheme.tertiary),
+                                children: [
+                                  TextSpan(text: "${context.localize.redactors(redactorsNames.length)}: "),
+                                  TextSpan(text: redactorsNames.join(", "), style: context.textTheme.bodyMedium),
+                                ],
+                              ),
+                            ),
+                          Text(
+                            createAtDate != null
+                                ? "${context.localize.created_at} $createAtDate"
+                                : context.localize.no_creation_date,
+                            style: context.textTheme.bodyLarge?.copyWith(color: context.colorScheme.tertiary),
+                            textAlign: TextAlign.end,
+                          ),
+                          Text(
+                            lastModifiedDate != null
+                                ? "${context.localize.last_modified} ${DateFormat("dd.MM.yyyy", context.locale.countryCode).format(lastModifiedDate)}"
+                                : context.localize.no_modification_date,
+                            style: context.textTheme.bodyLarge?.copyWith(color: context.colorScheme.tertiary),
+                            textAlign: TextAlign.end,
+                          ),
+                        ],
                       ),
                     ),
-                    if (lastModifiedDate != null)
-                      Positioned(
-                        top: GuideDetailViewConfig.paddingMedium,
-                        right: GuideDetailViewConfig.paddingSmall,
-                        child: Tooltip(
-                          message: context.localize.last_modified,
-                          child: TooltipOnTap(
-                            message: context.localize.last_modified,
-                            child: DateChip(date: lastModifiedDate),
-                          ),
-                        ),
-                      )
-                    else
-                      const SizedBox.shrink(),
-                  ],
-                ),
-                automaticallyImplyLeading: false,
-              ),
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding: const EdgeInsets.all(24),
-                  child: MyHtmlWidget(value.description.isEmpty ? value.shortDesc : value.description),
-                ),
-              ),
-              SliverPadding(
-                padding: const EdgeInsets.only(bottom: GuideDetailViewConfig.paddingLarge),
-                sliver: SliverList.separated(
-                  itemCount: value.guideQuestions.length,
-                  itemBuilder: (context, index) {
-                    final question = value.guideQuestions[index];
-                    return FaqExpansionTile(title: question.title, description: question.answer);
-                  },
-                  separatorBuilder: (context, index) => const SizedBox(height: 8),
-                ),
-              ),
-
-              SliverPadding(
-                padding: const EdgeInsets.only(
-                  bottom: GuideDetailViewConfig.bottomPadding,
-                  left: GuideDetailViewConfig.paddingLarge,
-                  right: GuideDetailViewConfig.paddingLarge,
-                ),
-                sliver: SliverToBoxAdapter(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      if (authorsNames.isNotEmpty)
-                        RichText(
-                          textScaler: MediaQuery.textScalerOf(context),
-                          text: TextSpan(
-                            style: context.textTheme.bodyLarge?.copyWith(color: context.colorScheme.tertiary),
-                            children: [
-                              TextSpan(text: "${context.localize.authors(authorsNames.length)}: "),
-                              TextSpan(text: authorsNames.join(", "), style: context.textTheme.bodyMedium),
-                            ],
-                          ),
-                        ),
-                      if (redactorsNames.isNotEmpty)
-                        RichText(
-                          textScaler: MediaQuery.textScalerOf(context),
-                          text: TextSpan(
-                            style: context.textTheme.bodyLarge?.copyWith(color: context.colorScheme.tertiary),
-                            children: [
-                              TextSpan(text: "${context.localize.redactors(redactorsNames.length)}: "),
-                              TextSpan(text: redactorsNames.join(", "), style: context.textTheme.bodyMedium),
-                            ],
-                          ),
-                        ),
-                      Text(
-                        createAtDate != null
-                            ? "${context.localize.created_at} $createAtDate"
-                            : context.localize.no_creation_date,
-                        style: context.textTheme.bodyLarge?.copyWith(color: context.colorScheme.tertiary),
-                        textAlign: TextAlign.end,
-                      ),
-                      Text(
-                        lastModifiedDate != null
-                            ? "${context.localize.last_modified} ${DateFormat("dd.MM.yyyy", context.locale.countryCode).format(lastModifiedDate)}"
-                            : context.localize.no_modification_date,
-                        style: context.textTheme.bodyLarge?.copyWith(color: context.colorScheme.tertiary),
-                        textAlign: TextAlign.end,
-                      ),
-                    ],
                   ),
-                ),
-              ),
-            ],
+                ],
+              );
+            },
           );
         },
       ),

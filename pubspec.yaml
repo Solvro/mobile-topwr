@@ -88,6 +88,7 @@ dependencies:
 
   #Navigation
   auto_route: ^10.1.0
+  app_links: ^7.0.0
 
   #Maps
   flutter_map: ^8.2.1

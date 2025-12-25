@@ -7,6 +7,7 @@ import "package:hooks_riverpod/hooks_riverpod.dart";
 import "../../config/nav_bar_config.dart";
 import "../../services/pop_scope/use_block_pop.dart";
 import "app_router.dart";
+import "navigation_stack.dart";
 
 /// This widgets navigates to home route if user is in tab view and pops route
 /// Also resets entire stack if user is deeply nested and shows symptoms of a user who lost interest in stack history
@@ -26,8 +27,15 @@ class NestedNavPopScope extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // Only the topmost route should have a vote in pop behavior
+    final myRoute = ModalRoute.of(context);
+    final topRoute = ref.watch(currentRouteProvider);
+    final isTopMostRoute = myRoute == topRoute;
+
     final tabsRouter = AutoTabsRouter.of(context);
-    final needsCustomPopAction = ref.shouldNavigateBackToHome(initialTabToGetBackTo, tabsRouter.activeIndex);
+    final currentRouteName = tabsRouter.currentChild?.name;
+    final needsCustomPopAction =
+        isTopMostRoute && ref.shouldNavigateBackToHome(currentRouteName, initialTabToGetBackTo);
     useBlockPop(
       ref: ref,
       blockDefaultPop: needsCustomPopAction,
@@ -52,10 +60,11 @@ class NestedNavPopScope extends HookConsumerWidget {
 }
 
 extension on WidgetRef {
-  bool shouldNavigateBackToHome(NavBarEnum initialTab, int activeIndex) {
-    final activeRoute = NavBarConfig.tabViews.values.toList()[activeIndex];
+  bool shouldNavigateBackToHome(String? currentRouteName, NavBarEnum initialTab) {
+    if (currentRouteName == null) return false;
     final routesWithinTabBar = read(appRouterProvider).routesWithinTabBar;
-    final isLastRouteInTabBar = routesWithinTabBar.any((route) => route.name == activeRoute.routeName);
-    return isLastRouteInTabBar && activeIndex != initialTab.index;
+    final isLastRouteInTabBar = routesWithinTabBar.any((route) => route.name == currentRouteName);
+    final currentTab = NavBarConfig.routeNameToTab(currentRouteName);
+    return isLastRouteInTabBar && currentTab != null && currentTab != initialTab;
   }
 }

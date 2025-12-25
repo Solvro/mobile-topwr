@@ -11,10 +11,11 @@ import "../../analytics/data/clarity.dart";
 import "../../analytics/data/clarity_events.dart";
 
 class FaqExpansionTile extends ConsumerWidget {
-  const FaqExpansionTile({super.key, required this.title, required this.description});
+  const FaqExpansionTile({super.key, required this.title, required this.description, this.initiallyExpanded = false});
 
   final String title;
   final String description;
+  final bool initiallyExpanded;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -22,6 +23,7 @@ class FaqExpansionTile extends ConsumerWidget {
       padding: const EdgeInsets.symmetric(horizontal: GuideDetailViewConfig.paddingMedium),
       child: MyExpansionTile(
         title: title,
+        initiallyExpanded: initiallyExpanded,
         onExpansionChanged: ({bool? expanded}) {
           if (expanded != null) {
             if (expanded) {
