@@ -4,6 +4,7 @@ import "package:hooks_riverpod/hooks_riverpod.dart";
 import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
+import "../../../widgets/loading_widgets/simple_previews/horizontal_rectangular_section_loading.dart";
 import "../data/repository/history_entry_repository.dart";
 import "live_indicator.dart";
 import "search_streaming_bottom_sheet.dart";
@@ -34,11 +35,13 @@ class NowPlayingSection extends ConsumerWidget {
           ),
         ),
       ),
-      // TODO(tt): add shimmer effect
-      AsyncLoading() => Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: CircularProgressIndicator(color: context.colorScheme.primary),
+      AsyncLoading() => Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          spacing: 8,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: List.generate(4, (_) => const HorizontalRectangularSectionLoading()),
         ),
       ),
       _ => Column(children: [Text(context.localize.generic_error_message)]),

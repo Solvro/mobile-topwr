@@ -5,6 +5,7 @@ import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
+import "../../../widgets/loading_widgets/simple_previews/preview_card_loading.dart";
 import "../data/repository/schedule_repository.dart";
 
 class BroadcastsSection extends HookConsumerWidget {
@@ -39,12 +40,9 @@ class BroadcastsSection extends HookConsumerWidget {
           ),
         ),
       ),
-      // TODO(tt): add shimmer effect
-      AsyncLoading() => Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: CircularProgressIndicator(color: context.colorScheme.primary),
-        ),
+      AsyncLoading() => Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Row(spacing: 16, children: List.generate(2, (_) => const PreviewCardLoading(width: 200, height: 200))),
       ),
       _ => Column(children: [Text(context.localize.generic_error_message)]),
     };
