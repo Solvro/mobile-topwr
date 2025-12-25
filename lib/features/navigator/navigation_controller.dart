@@ -26,7 +26,6 @@ class NavigationController extends _$NavigationController {
 
     // Check if this is a tab route by trying to convert it
     final tabRoute = NavBarConfig.pathToRoute(uriPath);
-    print("tabRoute: $tabRoute");
     // If it's a tab route, handle it specially
     if (tabRoute != null) {
       final navBarEnum = NavBarConfig.pathToTab(basePath);
@@ -39,13 +38,10 @@ class NavigationController extends _$NavigationController {
 
       // Check if we're already in a tab view
       final isCurrentlyWithinTabView = _isCurrentlyWithinTabView();
-      print("isCurrentlyWithinTabView: $isCurrentlyWithinTabView");
       if (isCurrentlyWithinTabView) {
-        print("pushing tabRoute");
         // If already in tab view, navigate within the existing tab structure
         await _router?.push(tabRoute);
       } else {
-        print("pushing new RootRoute ${navBarEnum.name}");
         // If not in tab view, push a new RootRoute
         await _router?.push(
           RootRoute(initialTabToGetBackTo: navBarEnum, children: [tabRoute], isFirstRootBottomView: false),

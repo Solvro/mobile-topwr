@@ -36,8 +36,6 @@ class NestedNavPopScope extends HookConsumerWidget {
     final currentRouteName = tabsRouter.currentChild?.name;
     final needsCustomPopAction =
         isTopMostRoute && ref.shouldNavigateBackToHome(currentRouteName, initialTabToGetBackTo);
-    print("needsCustomPopAction: $needsCustomPopAction (isTopMostRoute: $isTopMostRoute)");
-    print("================================================");
     useBlockPop(
       ref: ref,
       blockDefaultPop: needsCustomPopAction,
@@ -45,16 +43,13 @@ class NestedNavPopScope extends HookConsumerWidget {
         final userLeftNestedContextOfInterest =
             timesPushedToTabBar > 1 &&
             !isFirstRootBottomView; // if user is deep into the app (second root view) and uses tab bar more than once, we reset the stack back to home entirely once they pop. We assume they've lost interest in the old UX.
-        print("userLeftNestedContextOfInterest: $userLeftNestedContextOfInterest");
         if (userLeftNestedContextOfInterest) {
-          print("resetting stack to home");
           return unawaited(
             ref.read(appRouterProvider).replaceAll([
               RootRoute(children: const [HomeRoute()]),
             ], updateExistingRoutes: false), // resets stack
           );
         }
-        print("navigating to initial tab");
         unawaited(
           ref.read(appRouterProvider).navigate(NavBarConfig.tabViews[initialTabToGetBackTo]!),
         ); // just simply navigates to the initial tab
@@ -67,16 +62,9 @@ class NestedNavPopScope extends HookConsumerWidget {
 extension on WidgetRef {
   bool shouldNavigateBackToHome(String? currentRouteName, NavBarEnum initialTab) {
     if (currentRouteName == null) return false;
-    print("================================================");
-    print("currentRouteName: $currentRouteName");
-    // Check if current route is in routesWithinTabBar
     final routesWithinTabBar = read(appRouterProvider).routesWithinTabBar;
     final isLastRouteInTabBar = routesWithinTabBar.any((route) => route.name == currentRouteName);
-    print("isLastRouteInTabBar: $isLastRouteInTabBar");
-    // Map route name to NavBarEnum to compare with initialTab
     final currentTab = NavBarConfig.routeNameToTab(currentRouteName);
-    print("currentTab: $currentTab");
-    print("initialTab: $initialTab");
     return isLastRouteInTabBar && currentTab != null && currentTab != initialTab;
   }
 }
