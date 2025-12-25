@@ -4,6 +4,7 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../config/nav_bar_config.dart";
 import "app_router.dart";
+import "navigation_stack.dart";
 
 part "navigation_controller.g.dart";
 
@@ -25,7 +26,7 @@ class NavigationController extends _$NavigationController {
 
     // Check if this is a tab route by trying to convert it
     final tabRoute = NavBarConfig.pathToRoute(uriPath);
-
+    print("tabRoute: $tabRoute");
     // If it's a tab route, handle it specially
     if (tabRoute != null) {
       final navBarEnum = NavBarConfig.pathToTab(basePath);
@@ -36,16 +37,35 @@ class NavigationController extends _$NavigationController {
         return;
       }
 
-      // Push a new RootRoute for tab routes (works both when inside and outside tab views)
-      await _router?.push(
-        RootRoute(initialTabToGetBackTo: navBarEnum, children: [tabRoute], isFirstRootBottomView: false),
-      );
+      // Check if we're already in a tab view
+      final isCurrentlyWithinTabView = _isCurrentlyWithinTabView();
+      print("isCurrentlyWithinTabView: $isCurrentlyWithinTabView");
+      if (isCurrentlyWithinTabView) {
+        print("pushing tabRoute");
+        // If already in tab view, navigate within the existing tab structure
+        await _router?.push(tabRoute);
+      } else {
+        print("pushing new RootRoute ${navBarEnum.name}");
+        // If not in tab view, push a new RootRoute
+        await _router?.push(
+          RootRoute(initialTabToGetBackTo: navBarEnum, children: [tabRoute], isFirstRootBottomView: false),
+        );
+      }
       return;
     }
 
     // For non-tab routes, use regular path navigation
     final properlyWorkingURI = uri.startsWith("/") ? uri : "/$uri";
     await _router?.pushPath(properlyWorkingURI);
+  }
+
+  bool _isCurrentlyWithinTabView() {
+    final lastRoute = ref.read(currentRouteProvider);
+    final routeSettings = lastRoute?.settings;
+    if (routeSettings is AutoRoutePage) {
+      return routeSettings.routeData.name == RootRoute.name;
+    }
+    return false;
   }
 
   @override

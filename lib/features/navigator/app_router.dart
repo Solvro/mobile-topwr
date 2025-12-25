@@ -88,6 +88,8 @@ class AppRouter extends RootStackRouter {
     _NoTransitionRoute(path: "pink-boxes/:initialActiveItemId", page: PinkBoxesRoute.page),
     _NoTransitionRoute(path: "multilayer-map/:initialActiveItemId", page: MultilayerMapRoute.page),
     _NoTransitionRoute(path: "parkings/:initialActiveItemId", page: ParkingsRoute.page),
+    _NoTransitionRoute(path: "guide", page: GuideRoute.page),
+    _NoTransitionRoute(path: "navigation", page: NavigationTabRoute.page),
     // Redirects for routes without :initialActiveItemId parameter
     RedirectRoute(path: "buildings", redirectTo: "buildings/null"),
     RedirectRoute(path: "libraries", redirectTo: "libraries/null"),
@@ -96,8 +98,6 @@ class AppRouter extends RootStackRouter {
     RedirectRoute(path: "pink-boxes", redirectTo: "pink-boxes/null"),
     RedirectRoute(path: "multilayer-map", redirectTo: "multilayer-map/null"),
     RedirectRoute(path: "parkings", redirectTo: "parkings/null"),
-    _NoTransitionRoute(path: "guide", page: GuideRoute.page),
-    _NoTransitionRoute(path: "navigation", page: NavigationTabRoute.page),
   ];
 
   @override
