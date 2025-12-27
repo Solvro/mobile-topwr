@@ -1,5 +1,4 @@
 import "package:dio/dio.dart";
-import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 import "package:solvro_translator_core/solvro_translator_core.dart";
 import "package:solvro_translator_with_drift_cache_flutter/solvro_translator_with_drift_cache_flutter.dart";
