@@ -11,6 +11,7 @@ import "package:sentry_flutter/sentry_flutter.dart";
 import "package:solvro_translator_core/solvro_translator_core.dart";
 import "package:wiredash/wiredash.dart";
 
+import "api_base_rest/client/offline_error.dart";
 import "config/env.dart";
 import "config/ui_config.dart";
 import "config/wiredash.dart";
@@ -18,6 +19,7 @@ import "features/in_app_review/presentation/in_app_review.dart";
 import "features/navigator/app_router.dart";
 import "features/navigator/hooks/use_deeplink_listener.dart";
 import "features/navigator/navigation_stack.dart";
+import "features/parkings/parkings_view/api_client/iparking_commands.dart";
 import "features/splash_screen/splash_screen.dart";
 import "features/splash_screen/splash_screen_controller.dart";
 import "features/update_dialog/presentation/update_dialog_wrapper.dart";
@@ -66,7 +68,15 @@ Future<void> runToPWR() async {
   return runApp(
     ClarityWidget(
       clarityConfig: config,
-      app: const ProviderScope(child: SplashScreen(child: MyApp())),
+      app: ProviderScope(
+        retry: (retryCount, error) {
+          if (error is ParkingsOfflineException) return null;
+          if (error is RestFrameworkOfflineException) return null;
+          if (retryCount > 5) return null;
+          return Duration(seconds: retryCount * 2);
+        },
+        child: const SplashScreen(child: MyApp()),
+      ),
     ),
   );
 }
