@@ -14,15 +14,21 @@ class SearchBoxAppBar extends AppBar {
     BuildContext context, {
     required String title,
     required void Function(String query) onQueryChanged,
-    super.actions,
     super.key,
+    List<Widget>? actions,
     VoidCallback? onSearchBoxTap,
     double bottomPadding = defaultBottomPadding,
     bool addLeadingPopButton = false,
     String? initialQuery,
     super.primary = false,
   }) : super(
-         title: Text(title, textScaler: context.textScaler.clamp(maxScaleFactor: 2.5)),
+         title: Text(
+           title,
+           textScaler: context.textScaler.clamp(maxScaleFactor: 2.5),
+           textAlign: TextAlign.center,
+           maxLines: 2,
+           overflow: TextOverflow.ellipsis,
+         ),
          titleTextStyle: context.textTheme.headlineMedium,
          backgroundColor: context.colorScheme.surface,
          scrolledUnderElevation: 0,
@@ -35,7 +41,20 @@ class SearchBoxAppBar extends AppBar {
                  child: Padding(padding: EdgeInsets.only(left: 4), child: DetailViewPopButton()),
                )
              : null,
-         leadingWidth: addLeadingPopButton ? 80 : 0,
+         leadingWidth: addLeadingPopButton ? SearchBoxConfig.leadingActionsWidth : 0,
+         actions: [
+           SizedBox(
+             width: SearchBoxConfig.leadingActionsWidth,
+             child: Align(
+               alignment: Alignment.centerRight,
+               child: Row(
+                 mainAxisSize: MainAxisSize.min,
+                 mainAxisAlignment: MainAxisAlignment.end,
+                 children: actions ?? const [],
+               ),
+             ),
+           ),
+         ],
          bottom: PreferredSize(
            preferredSize: Size.fromHeight(
              context.textScaler.clamp(maxScaleFactor: 2.5).scale(SearchBoxConfig.height) + bottomPadding,
@@ -45,6 +64,7 @@ class SearchBoxAppBar extends AppBar {
                bottom: bottomPadding,
                left: defaultHorizontalPadding,
                right: defaultHorizontalPadding,
+               top: 8,
              ),
 
              child: Semantics(

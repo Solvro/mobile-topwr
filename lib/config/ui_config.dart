@@ -64,6 +64,7 @@ abstract class BigPreviewCardConfig {
 
 abstract class SearchBoxConfig {
   static const height = 36.0;
+  static const leadingActionsWidth = 128.0;
 }
 
 abstract class WideTileCardConfig {
