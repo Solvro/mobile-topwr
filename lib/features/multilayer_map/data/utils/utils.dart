@@ -23,16 +23,63 @@ extension ChangeNullAdressX on BuildContext {
 
 extension SortByCodeOrderX on IList<Building> {
   IList<Building> sortByCodeOrder() {
-    return sort(_compareCodes);
+    const prioritizedCodes = [
+      "a-1",
+      "b-1",
+      "b-4",
+      "b-5",
+      "c-1",
+      "c-2",
+      "c-3",
+      "c-4",
+      "c-5",
+      "c-6",
+      "c-13",
+      "c-16",
+      "c-18",
+      "c-19",
+      "c-20",
+      "d-1",
+      "d-2",
+      "d-20",
+      "d-21",
+      "e-1",
+      "h-4",
+      "h-14",
+      "l-1",
+      "p-22",
+      "p-23",
+    ];
+
+    return sort((a, b) {
+      final nameA = a.name.toLowerCase();
+      final nameB = b.name.toLowerCase();
+
+      final indexA = prioritizedCodes.indexOf(nameA);
+      final indexB = prioritizedCodes.indexOf(nameB);
+
+      if (indexA != -1 && indexB != -1) {
+        return indexA.compareTo(indexB);
+      } else if (indexA != -1) {
+        return -1;
+      } else if (indexB != -1) {
+        return 1;
+      } else {
+        return _compareCodes(a, b);
+      }
+    });
   }
 
   int _compareCodes(Building a, Building b) {
     final codeA = a.name.split(BuildingSearchConfig.buildingCodeSeperator);
     final codeB = b.name.split(BuildingSearchConfig.buildingCodeSeperator);
-    if (codeA[0] == codeB[0]) {
+    final prefixA = codeA[0].toLowerCase();
+    final prefixB = codeB[0].toLowerCase();
+
+    if (prefixA == prefixB) {
       return codeA[1].tryParseInt().compareTo(codeB[1].tryParseInt());
     } else {
-      return codeA[0].compareTo(codeB[0]);
+      return prefixA.compareTo(prefixB);
     }
   }
 }
