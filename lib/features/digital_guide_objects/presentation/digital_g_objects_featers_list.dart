@@ -29,8 +29,8 @@ class DigitalGuideObjectsFeaturesSection extends ConsumerWidget {
         title: context.localize.amenities,
         content: [DigitalGuideObjectAmenietesTabTileContent(digitalGuideData: digitalGuideData)],
       ),
-      if (otherTiles.valueOrNull != null)
-        for (final tile in otherTiles.valueOrNull!)
+      if (otherTiles.value != null)
+        for (final tile in otherTiles.requireValue)
           (
             title: tile.translations.pl.name,
             content: [

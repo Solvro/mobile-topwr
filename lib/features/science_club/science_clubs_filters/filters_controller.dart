@@ -12,12 +12,10 @@ import "../../departments/departments_view/data/repository/departments_repositor
 import "filters_search_controller.dart";
 import "model/sci_club_type.dart";
 import "model/tags.dart";
-import "utils.dart";
 
 part "filters_controller.g.dart";
 
-mixin FilterController<T> on AutoDisposeNotifier<ISet<T>> {
-  @override
+mixin FilterController<T> on $Notifier<ISet<T>> {
   ISet<T> build() {
     return const ISet.empty();
   }
@@ -56,9 +54,11 @@ class SelectedTypeController extends _$SelectedTypeController with FilterControl
 
 @Riverpod(dependencies: [SelectedDepartmentController, SelectedTagController, SelectedTypeController])
 bool areFiltersEnabled(Ref ref) {
-  final selectedTagsIsNotEmpty = ref.watch(selectedTagControllerProvider.notEmpty);
-  final selectedDepartmentsIsNotEmpty = ref.watch(selectedDepartmentControllerProvider.notEmpty);
-  final selectedTypesIsNotEmpty = ref.watch(selectedTypeControllerProvider.notEmpty);
+  final selectedTagsIsNotEmpty = ref.watch(selectedTagControllerProvider.select((value) => value.isNotEmpty));
+  final selectedDepartmentsIsNotEmpty = ref.watch(
+    selectedDepartmentControllerProvider.select((value) => value.isNotEmpty),
+  );
+  final selectedTypesIsNotEmpty = ref.watch(selectedTypeControllerProvider.select((value) => value.isNotEmpty));
   return selectedTagsIsNotEmpty || selectedDepartmentsIsNotEmpty || selectedTypesIsNotEmpty;
 }
 

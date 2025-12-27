@@ -58,7 +58,7 @@ class _NewsfeedViewContent extends ConsumerWidget {
                 child: MyTextButton(
                   actionTitle: context.localize.read_more_arrows,
                   onClick: () => ref.launch(
-                    ref.watch(preferredLanguageRepositoryProvider).valueOrNull != SolvroLocale.pl
+                    ref.watch(preferredLanguageRepositoryProvider).value != SolvroLocale.pl
                         ? UrlConfig.newsfeedUrlENG
                         : UrlConfig.newsfeedUrlPL,
                   ),
