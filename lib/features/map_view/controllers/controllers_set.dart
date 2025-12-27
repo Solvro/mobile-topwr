@@ -11,14 +11,16 @@ abstract class GoogleNavigable {
   String get id;
 }
 
-typedef SourceRepositoryProv<T> = AutoDisposeFutureProvider<IList<T>>;
+// ignore: invalid_use_of_internal_member, caused by migration to riverpod 3.x
+typedef SourceRepositoryProv<T> = $FutureModifier<IList<T>>;
 
 typedef MapDataProv<T extends GoogleNavigable> =
-    AutoDisposeAsyncNotifierProvider<MapDataController<T>, MapDataControllerState<T>>;
+    $AsyncNotifierProvider<MapDataController<T>, MapDataControllerState<T>>;
 
-typedef ActiveMarkerProv<T extends GoogleNavigable> = AutoDisposeNotifierProvider<ActiveMarkerController<T>, T?>;
+typedef ActiveMarkerProv<T extends GoogleNavigable> = $NotifierProvider<ActiveMarkerController<T>, T?>;
 
-typedef MapControllerProv<T extends GoogleNavigable> = AutoDisposeProvider<MyMapController<T>>;
+// ignore: invalid_use_of_internal_member, caused by migration to riverpod 3.x
+typedef MapControllerProv<T extends GoogleNavigable> = $Provider<MyMapController<T>>;
 
 typedef MapControllers<T extends GoogleNavigable> = ({
   ActiveMarkerProv<T> activeMarker,

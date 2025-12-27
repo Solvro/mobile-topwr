@@ -3,12 +3,11 @@ import "package:shared_preferences/shared_preferences.dart";
 
 import "../../../../../../config/shared_prefs.dart";
 
-mixin LocalCacheRefNumberRepositoryMixin on AutoDisposeAsyncNotifier<int?> {
+mixin LocalCacheRefNumberRepositoryMixin on $AsyncNotifier<int?> {
   String get prefsKEY;
 
   Future<SharedPreferences> get _sharedPrefs async => ref.watch(sharedPreferencesSingletonProvider.future);
 
-  @override
   FutureOr<int?> build() async {
     return (await _sharedPrefs).getInt(prefsKEY);
   }

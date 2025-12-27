@@ -1,6 +1,7 @@
 import "dart:async";
 
 import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../data/local_number_repository.dart";
 import "../data/remote_number_repository.dart";
@@ -9,7 +10,7 @@ typedef ClearCacheCallback = Future<void> Function();
 
 extension FlushCacheUseCaseX on WidgetRef {
   Future<void> flushAllCacheIfNeededByReferenceNumber<T extends LocalCacheRefNumberRepositoryMixin>(
-    AutoDisposeAsyncNotifierProvider<T, int?> localCacheRefNumberRepoProvider,
+    $AsyncNotifierProvider<T, int?> localCacheRefNumberRepoProvider,
     RemoteCacheRefNumberRepositoryType remoteCacheRefNumberRepoProvider,
     ClearCacheCallback clearCacheCallback,
   ) async {

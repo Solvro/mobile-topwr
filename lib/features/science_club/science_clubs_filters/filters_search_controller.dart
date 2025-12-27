@@ -8,7 +8,6 @@ import "../../departments/departments_view/data/repository/departments_repositor
 import "model/sci_club_type.dart";
 import "model/tags.dart";
 import "repository/tags_repository.dart";
-import "utils.dart";
 
 part "filters_search_controller.g.dart";
 
@@ -59,9 +58,11 @@ Future<IList<Tag>> tagFiltersFiltered(Ref ref) async {
 
 @Riverpod(dependencies: [typeFiltersFiltered, departmentFiltersFiltered, tagFiltersFiltered])
 bool areNoFiltersFound(Ref ref) {
-  final source1Empty = !ref.watch(typeFiltersFilteredProvider.notEmpty);
-  final source2Empty = !(ref.watch(departmentFiltersFilteredProvider.notEmpty) ?? false);
-  final source3Empty = !(ref.watch(tagFiltersFilteredProvider.notEmpty) ?? false);
+  final source1Empty = !ref.watch(typeFiltersFilteredProvider.select((value) => value.isNotEmpty));
+  final source2Empty =
+      !(ref.watch(departmentFiltersFilteredProvider.select((value) => value.value?.isNotEmpty ?? false)) ?? false);
+  final source3Empty =
+      !(ref.watch(tagFiltersFilteredProvider.select((value) => value.value?.isNotEmpty ?? false)) ?? false);
 
   return source1Empty && source2Empty && source3Empty;
 }

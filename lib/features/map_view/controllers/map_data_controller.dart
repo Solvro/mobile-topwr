@@ -5,11 +5,10 @@ import "controllers_set.dart";
 
 typedef MapDataControllerState<T extends GoogleNavigable> = ({IList<T> data, bool isFilterStrEmpty});
 
-mixin MapDataController<T extends GoogleNavigable> on AutoDisposeAsyncNotifier<MapDataControllerState<T>> {
+mixin MapDataController<T extends GoogleNavigable> on $AsyncNotifier<MapDataControllerState<T>> {
   var _textFieldFilterText = "";
   late final MapControllers<T> mapControllers;
 
-  @override
   FutureOr<MapDataControllerState<T>> build() async {
     final itemSelected = ref.watch(mapControllers.activeMarker);
     if (itemSelected != null) {

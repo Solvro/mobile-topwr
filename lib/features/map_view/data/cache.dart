@@ -1,5 +1,4 @@
 import "package:dio_cache_interceptor_db_store/dio_cache_interceptor_db_store.dart";
-import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:path_provider/path_provider.dart" show getTemporaryDirectory;
 import "package:riverpod_annotation/riverpod_annotation.dart";
 

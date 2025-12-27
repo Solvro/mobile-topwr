@@ -1,18 +1,13 @@
-import "dart:async";
-
 import "package:flutter/foundation.dart";
-import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../config/shared_prefs.dart";
 import "../../../utils/timestamp.dart";
 
 // Resuable mixin for creating different timestamp repositories
-mixin TimestampRepository on AutoDisposeAsyncNotifier<Timestamp> {
+mixin TimestampRepository on $AsyncNotifier<Timestamp> {
   @protected
   String get storeKey;
-
-  @override
-  Future<Timestamp> build();
 
   Future<Timestamp> getStamp() async {
     final prefs = await ref.watch(sharedPreferencesSingletonProvider.future);

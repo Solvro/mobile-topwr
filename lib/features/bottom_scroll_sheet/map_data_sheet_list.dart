@@ -31,7 +31,7 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isLoading = ref.watch(context.mapDataController<T>().select((a) => a.valueOrNull == null));
+    final isLoading = ref.watch(context.mapDataController<T>().select((a) => a.value == null));
     final isMultilayerMap =
         T == MultilayerItem &&
         ref.watch(
@@ -39,7 +39,7 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
         ) // when active marker is not null, we do not show multitabs
         &&
         ref.watch(
-          context.mapDataController<T>().select((a) => a.valueOrNull?.isFilterStrEmpty ?? true),
+          context.mapDataController<T>().select((a) => a.value?.isFilterStrEmpty ?? true),
         ) // when we search in the search box, we do not show multitabs
         &&
         !isLoading // when we are loading, we do not show multitabs
@@ -90,7 +90,7 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
           )
         : null;
     final layersEnabled =
-        ref.watch(layersEnabledServiceProvider).valueOrNull ??
+        ref.watch(layersEnabledServiceProvider).value ??
         (
           buildingsEnabled: false,
           librariesEnabled: false,
@@ -119,7 +119,7 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
       context.initialActiveItemId<T>(),
       ref.watch(context.activeMarkerController<T>().notifier),
       ref.watch(context.mapController<T>()).zoomOnMarker,
-      ref.watch(context.mapDataController<T>()).valueOrNull?.data,
+      ref.watch(context.mapDataController<T>()).value?.data,
     );
 
     return CustomScrollView(
