@@ -25,7 +25,9 @@ class DigitalGuideCarouselWithIndicator extends HookWidget {
 
     Future<void> goTo(int index) async {
       if (imgListId.isEmpty) return;
-      final wrapped = (index % imgListId.length + imgListId.length) % imgListId.length;
+      // wrap index into range [0 - length-1] for the coursel to loop
+      // (for positive length the result is non-negative, eg. -1 % 3 ---> 2)
+      final wrapped = index % imgListId.length;
       await controller.animateToPage(wrapped);
     }
 
