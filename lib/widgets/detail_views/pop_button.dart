@@ -18,12 +18,24 @@ class DetailViewPopButton extends ConsumerWidget {
         Navigator.pop(context);
       },
       style: TextButton.styleFrom(padding: const EdgeInsets.all(12)),
-      child: Text(
-        softWrap: false,
-        overflow: TextOverflow.ellipsis,
-        title == null ? "<" : "< $title",
-        style: context.textTheme.bodyMedium?.copyWith(color: context.colorScheme.primary),
-        semanticsLabel: "${context.localize.get_back_screen_reader_label} $title",
+      child: Row(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 2),
+            child: Icon(Icons.chevron_left, size: 18, color: context.colorScheme.primary),
+          ),
+          if (title != null)
+            Flexible(
+              child: Text(
+                title,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.center,
+                style: context.textTheme.bodyMedium?.copyWith(color: context.colorScheme.primary),
+                semanticsLabel: "${context.localize.get_back_screen_reader_label} $title",
+              ),
+            ),
+        ],
       ),
     );
   }
