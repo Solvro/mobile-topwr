@@ -3328,8 +3328,12 @@
   "@odd_sunday_declined": {
     "description": "Text shown for odd week Sunday"
   },
-  "get_back_screen_reader_label": "Wróć do",
+  "get_back_screen_reader_label": "Wróć",
   "@get_back_screen_reader_label": {
+    "description": "Text read for back button by screen reader in the detail view app bar"
+  },
+  "get_back_screen_reader_with_title_label": "Wróć do",
+  "@get_back_screen_reader_with_title_label": {
     "description": "Text read for back button by screen reader in the detail view app bar"
   },
   "sks_people_live_screen_reader_label": "Aktualna liczba osób na stołówce to",

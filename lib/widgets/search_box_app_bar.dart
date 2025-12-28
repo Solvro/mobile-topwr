@@ -35,7 +35,7 @@ class SearchBoxAppBar extends AppBar {
                  child: Padding(padding: EdgeInsets.only(left: 4), child: DetailViewPopButton()),
                )
              : null,
-         leadingWidth: addLeadingPopButton ? 80 : 0,
+         leadingWidth: addLeadingPopButton ? 96 : 0,
          bottom: PreferredSize(
            preferredSize: Size.fromHeight(
              context.textScaler.clamp(maxScaleFactor: 2.5).scale(SearchBoxConfig.height) + bottomPadding,
