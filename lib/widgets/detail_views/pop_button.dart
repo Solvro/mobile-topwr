@@ -20,7 +20,9 @@ class DetailViewPopButton extends ConsumerWidget {
       style: TextButton.styleFrom(padding: const EdgeInsets.all(12)),
 
       child: Semantics(
-        label: "${context.localize.get_back_screen_reader_label} $title",
+        label: title != null
+            ? "${context.localize.get_back_screen_reader_label} $title"
+            : context.localize.get_back_screen_reader_with_title_label,
         child: Row(
           children: [
             Padding(
