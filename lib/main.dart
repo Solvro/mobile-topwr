@@ -51,11 +51,7 @@ Future<void> runToPWR() async {
   SecurityContext.defaultContext.setTrustedCertificatesBytes(data.buffer.asUint8List());
   // await setupParkingWidgetsWorkManager();
 
-
-  final config = ClarityConfig(
-    projectId: Env.clarityConfigId,
-    logLevel: LogLevel.None,
-  );
+  final config = ClarityConfig(projectId: Env.clarityConfigId, logLevel: LogLevel.None);
 
   final audioHandler = await AudioService.init(
     builder: RadioAudioHandler.new,
@@ -71,9 +67,7 @@ Future<void> runToPWR() async {
     ClarityWidget(
       clarityConfig: config,
       app: ProviderScope(
-        overrides: [
-          radioPlayerProvider.overrideWithValue(audioHandler),
-        ],
+        overrides: [radioPlayerProvider.overrideWithValue(audioHandler)],
         child: const SplashScreen(child: MyApp()),
       ),
     ),
