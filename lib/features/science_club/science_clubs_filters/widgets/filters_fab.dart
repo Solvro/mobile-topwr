@@ -8,7 +8,6 @@ import "../../../../utils/context_extensions.dart";
 import "../../../analytics/data/clarity.dart";
 import "../../../analytics/data/clarity_events.dart";
 import "../filters_controller.dart";
-import "../filters_search_controller.dart";
 import "../filters_sheet.dart";
 
 class FiltersFAB extends ConsumerWidget {
@@ -23,9 +22,6 @@ class FiltersFAB extends ConsumerWidget {
       heroTag: "filters_fab",
       tooltip: context.localize.filters_fab_tooltip,
       onPressed: () async {
-        ref.read(tagFiltersFilteredProvider);
-        ref.read(departmentFiltersFilteredProvider);
-        ref.read(typeFiltersFilteredProvider);
         unawaited(ref.trackEvent(ClarityEvents.openSciClubsFilterSheet));
         await showModalBottomSheet<void>(
           context: context,
