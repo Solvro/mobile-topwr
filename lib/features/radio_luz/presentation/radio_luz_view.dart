@@ -5,6 +5,7 @@ import "package:hooks_riverpod/hooks_riverpod.dart";
 import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
+import "../service/radio_player_controller.dart";
 import "../service/radio_player_provider.dart";
 import "audio_player_widget.dart";
 import "broadcasts_section.dart";
@@ -14,15 +15,30 @@ import "radio_luz_socials_section.dart";
 import "radio_luz_title.dart";
 
 @RoutePage()
-class RadioLuzView extends ConsumerWidget {
+class RadioLuzView extends ConsumerStatefulWidget {
   const RadioLuzView({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<RadioLuzView> createState() => _RadioLuzViewState();
+}
+
+class _RadioLuzViewState extends ConsumerState<RadioLuzView> {
+  @override
+  void initState() {
+    super.initState();
+    // Pre-load the audio stream when the radio screen opens
+    // This reduces iOS startup latency by buffering before user presses play
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(radioControllerProvider.notifier).preload();
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final l10n = context.localize;
     final cappedTextScale = context.textScaler.clamp(maxScaleFactor: 1.7);
-    final handler = ref.watch(radioPlayerProvider);
-    
+    ref.watch(radioPlayerProvider); // Keep watching the handler
+
     return MediaQuery(
       data: MediaQuery.of(context).copyWith(textScaler: cappedTextScale),
       child: Scaffold(

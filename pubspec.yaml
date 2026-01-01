@@ -121,6 +121,7 @@ dependencies:
   #Audio
   just_audio: ^0.9.36
   audio_service: ^0.18.18
+  audio_session: ^0.1.21
 
   #Other
   in_app_update: ^4.2.5
