@@ -37,7 +37,7 @@ dependencies:
   #State managements
   flutter_riverpod: ^3.1.0
   riverpod: ^3.1.0
-  riverpod_annotation: ^3.0.3
+  riverpod_annotation: ^4.0.0
   hooks_riverpod: ^3.1.0
 
   #Storage
@@ -226,7 +226,6 @@ flutter:
     - assets/animations/offline.json
     - assets/animations/bug.json
     - assets/animations/sks_closed.json
-    - assets/svg/settings.svg
     - assets/certs/przewodnik.pwr.edu.pl.pem
     - assets/svg/map_placeholders/pink_box_icon.svg
     - assets/svg/map_placeholders/aed_icon.svg
