@@ -52,7 +52,7 @@ class RadioAudioHandler extends BaseAudioHandler with SeekHandler {
   DateTime? _scheduleLastFetch;
   static const _scheduleTtl = Duration(minutes: 5);
 
-  bool _isDisposed = false;
+  var _isDisposed = false;
 
   Timer? _refreshTimer;
 
@@ -79,8 +79,7 @@ class RadioAudioHandler extends BaseAudioHandler with SeekHandler {
     unawaited(_initAudioSession());
   }
 
-  /// Pre-configures the audio session for streaming on iOS.
-  /// This reduces the delay when user presses play by activating the audio pipeline early.
+  /// iOS audio session
   Future<void> _initAudioSession() async {
     final session = await AudioSession.instance;
     await session.configure(
@@ -94,8 +93,7 @@ class RadioAudioHandler extends BaseAudioHandler with SeekHandler {
           contentType: AndroidAudioContentType.music,
           usage: AndroidAudioUsage.media,
         ),
-        androidAudioFocusGainType: AndroidAudioFocusGainType.gain,
-        androidWillPauseWhenDucked: true,
+        androidWillPauseWhenDucked: false,
       ),
     );
   }
@@ -108,7 +106,7 @@ class RadioAudioHandler extends BaseAudioHandler with SeekHandler {
     });
   }
 
-  // Track when the stream was paused to detect stale buffers
+  //track when the stream was paused to detect stale buffers
   DateTime? _lastPauseTime;
   static const _staleStreamThreshold = Duration(seconds: 30);
 
@@ -129,18 +127,16 @@ class RadioAudioHandler extends BaseAudioHandler with SeekHandler {
       _radioLuzMediaItem = _radioLuzMediaItem.copyWith(album: nowPlaying, artist: nowPlaying);
 
       mediaItem.add(_radioLuzMediaItem);
-    } catch (_) {
+    } on Exception catch (_) {
       //keep the old metadata
     }
   }
 
-  /// Pre-loads the audio stream to reduce startup latency when play() is called.
-  /// Call this when the radio screen is opened so buffering begins before user presses play.
+  ///pre-loads the audio stream
   Future<void> preload() async {
     if (_player.processingState == ProcessingState.idle) {
       await _player.setAudioSource(
         AudioSource.uri(Uri.parse(Env.radioLuzStreamUrl), tag: _radioLuzMediaItem),
-        preload: true,
       );
       mediaItem.add(_radioLuzMediaItem);
     }
@@ -153,17 +149,14 @@ class RadioAudioHandler extends BaseAudioHandler with SeekHandler {
 
     _lastPauseTime = null;
 
-    // If stream is stale or player is idle, reload the audio source
+    //if stream is stale or player is idle, reload the audio source
     if (isStale || _player.processingState == ProcessingState.idle) {
-      // Use preload: true to begin buffering immediately for faster playback start
       await _player.setAudioSource(
         AudioSource.uri(Uri.parse(Env.radioLuzStreamUrl), tag: _radioLuzMediaItem),
-        preload: true,
       );
       mediaItem.add(_radioLuzMediaItem);
     }
 
-    // Start playback - don't await to reduce perceived latency
     unawaited(_player.play());
   }
 
@@ -259,7 +252,7 @@ class RadioAudioHandler extends BaseAudioHandler with SeekHandler {
       _recentlyPlayedLastFetch = now;
 
       return items;
-    } catch (_) {
+    } on Exception catch (_) {
       return _recentlyPlayedCache ?? [];
     }
   }
@@ -310,7 +303,6 @@ class RadioAudioHandler extends BaseAudioHandler with SeekHandler {
               id: "schedule_${b["id"]}",
               title: isNow ? "▶ $title" : title,
               album: time,
-              playable: true,
               artUri: artUri,
             ),
           );
@@ -321,7 +313,7 @@ class RadioAudioHandler extends BaseAudioHandler with SeekHandler {
       _scheduleLastFetch = now;
 
       return items;
-    } catch (_) {
+    } on Exception catch (_) {
       return _scheduleCache ?? [];
     }
   }
@@ -341,7 +333,6 @@ class RadioAudioHandler extends BaseAudioHandler with SeekHandler {
     if (mediaId == _radioLuzMediaItem.id || mediaId.startsWith("history_") || mediaId.startsWith("schedule_")) {
       await _player.setAudioSource(
         AudioSource.uri(Uri.parse(Env.radioLuzStreamUrl), tag: _radioLuzMediaItem),
-        preload: true,
       );
       mediaItem.add(_radioLuzMediaItem);
       unawaited(_player.play());

@@ -53,8 +53,7 @@ class RadioController extends _$RadioController {
     return file.uri;
   }
 
-  /// Pre-loads the audio stream to reduce startup delay on iOS.
-  /// Call this when the radio screen is opened.
+  ///pre-loads the audio stream to reduce startup delay
   Future<void> preload() async {
     await _handler.preload();
   }
