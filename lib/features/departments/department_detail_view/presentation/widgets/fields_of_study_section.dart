@@ -6,6 +6,7 @@ import "../../../../../utils/context_extensions.dart";
 import "../../data/models/department_details.dart";
 import "../../data/utils/department_details_extension.dart";
 import "field_of_study_expansion_tile.dart";
+import "icon_legend_view.dart";
 
 class FieldsOfStudySection extends StatelessWidget {
   const FieldsOfStudySection({super.key, required this.fieldsOfStudy});
@@ -18,12 +19,20 @@ class FieldsOfStudySection extends StatelessWidget {
     final secondDegree = fieldsOfStudy.whereSecondDegree;
     final longCycle = fieldsOfStudy.whereLongCycle;
 
+    final iconData = [...firstDegree, ...secondDegree, ...longCycle].toIconSet(context);
+
     return Padding(
       padding: const EdgeInsets.only(left: 24, right: 24, top: 24, bottom: 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(context.localize.fields_of_study, style: context.textTheme.headlineMedium),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(context.localize.fields_of_study, style: context.textTheme.headlineMedium),
+              IconLegendView(iconData: iconData),
+            ],
+          ),
           if (firstDegree.isNotEmpty)
             FieldOfStudyExpansionTile(
               title: context.localize.first_degree,
