@@ -1,17 +1,14 @@
 import "dart:async";
-import "dart:math";
 
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
-import "package:flutter_svg/svg.dart";
 import "package:solvro_translator_core/solvro_translator_core.dart";
 
 import "../../../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
-import "../../gen/assets.gen.dart";
 import "../../services/translations_service/data/preferred_lang_repository.dart";
 import "../../widgets/horizontal_symmetric_safe_area.dart";
 import "../branches/data/model/branch.dart";
@@ -63,13 +60,6 @@ class SettingsView extends ConsumerWidget {
         onTap: ref.navigateToSksFavouriteDishes,
         title: context.localize.sks_favourite_dishes_see_dishes,
         icon: Icons.food_bank,
-      ),
-      Padding(
-        padding: const EdgeInsets.all(AboutUsConfig.spacerHeight),
-        child: SizedBox.square(
-          dimension: min(MediaQuery.sizeOf(context).width, MediaQuery.sizeOf(context).height) * 0.5,
-          child: SvgPicture.asset(Assets.svg.settings),
-        ),
       ),
     ];
 

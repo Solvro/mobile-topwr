@@ -41,6 +41,9 @@ IList<ScienceClubType> typeFiltersFiltered(Ref ref) {
 Future<IList<Department>> departmentFiltersFiltered(Ref ref) async {
   final query = ref.watch(searchFiltersControllerProvider);
   final depts = await ref.watch(departmentsRepositoryProvider.future);
+
+  if (query.isEmpty) return depts.toIList();
+
   return depts
       .where(
         (x) =>
