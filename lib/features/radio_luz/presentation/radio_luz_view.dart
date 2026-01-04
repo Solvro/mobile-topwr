@@ -1,3 +1,5 @@
+import "dart:async";
+
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
@@ -26,10 +28,8 @@ class _RadioLuzViewState extends ConsumerState<RadioLuzView> {
   @override
   void initState() {
     super.initState();
-    // Pre-load the audio stream when the radio screen opens
-    // This reduces iOS startup latency by buffering before user presses play
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(radioControllerProvider.notifier).preload();
+      unawaited(ref.read(radioControllerProvider.notifier).preload());
     });
   }
 
@@ -37,7 +37,7 @@ class _RadioLuzViewState extends ConsumerState<RadioLuzView> {
   Widget build(BuildContext context) {
     final l10n = context.localize;
     final cappedTextScale = context.textScaler.clamp(maxScaleFactor: 1.7);
-    ref.watch(radioPlayerProvider); // Keep watching the handler
+    ref.watch(radioPlayerProvider);
 
     return MediaQuery(
       data: MediaQuery.of(context).copyWith(textScaler: cappedTextScale),
