@@ -135,9 +135,7 @@ class RadioAudioHandler extends BaseAudioHandler with SeekHandler {
   ///pre-loads the audio stream
   Future<void> preload() async {
     if (_player.processingState == ProcessingState.idle) {
-      await _player.setAudioSource(
-        AudioSource.uri(Uri.parse(Env.radioLuzStreamUrl), tag: _radioLuzMediaItem),
-      );
+      await _player.setAudioSource(AudioSource.uri(Uri.parse(Env.radioLuzStreamUrl), tag: _radioLuzMediaItem));
       mediaItem.add(_radioLuzMediaItem);
     }
   }
@@ -151,9 +149,7 @@ class RadioAudioHandler extends BaseAudioHandler with SeekHandler {
 
     //if stream is stale or player is idle, reload the audio source
     if (isStale || _player.processingState == ProcessingState.idle) {
-      await _player.setAudioSource(
-        AudioSource.uri(Uri.parse(Env.radioLuzStreamUrl), tag: _radioLuzMediaItem),
-      );
+      await _player.setAudioSource(AudioSource.uri(Uri.parse(Env.radioLuzStreamUrl), tag: _radioLuzMediaItem));
       mediaItem.add(_radioLuzMediaItem);
     }
 
@@ -299,12 +295,7 @@ class RadioAudioHandler extends BaseAudioHandler with SeekHandler {
           }
 
           items.add(
-            MediaItem(
-              id: "schedule_${b["id"]}",
-              title: isNow ? "▶ $title" : title,
-              album: time,
-              artUri: artUri,
-            ),
+            MediaItem(id: "schedule_${b["id"]}", title: isNow ? "▶ $title" : title, album: time, artUri: artUri),
           );
         }
       }
@@ -331,9 +322,7 @@ class RadioAudioHandler extends BaseAudioHandler with SeekHandler {
   Future<void> playFromMediaId(String mediaId, [Map<String, dynamic>? extras]) async {
     //...because anything you click on should play the radio
     if (mediaId == _radioLuzMediaItem.id || mediaId.startsWith("history_") || mediaId.startsWith("schedule_")) {
-      await _player.setAudioSource(
-        AudioSource.uri(Uri.parse(Env.radioLuzStreamUrl), tag: _radioLuzMediaItem),
-      );
+      await _player.setAudioSource(AudioSource.uri(Uri.parse(Env.radioLuzStreamUrl), tag: _radioLuzMediaItem));
       mediaItem.add(_radioLuzMediaItem);
       unawaited(_player.play());
     }
