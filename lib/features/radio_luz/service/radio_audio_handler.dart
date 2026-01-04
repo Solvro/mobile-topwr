@@ -235,7 +235,6 @@ class RadioAudioHandler extends BaseAudioHandler with SeekHandler {
               title: "$time - $title",
               artist: artist,
               album: album,
-              playable: true,
             );
           })
           .whereType<MediaItem>()
