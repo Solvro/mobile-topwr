@@ -658,5 +658,10 @@
   "radio_luz_description2": "Are you a creative person? Do you have an ear for music, a voice for the microphone, or a passion for reporting? We recruit twice a year — stay tuned.",
   "add_to_streaming_head": "Search in streaming service",
   "no_modification_date": "No update date found",
-  "no_creation_date": "No creation date found"
+  "no_creation_date": "No creation date found",
+  "iconnames_legend_title": "Legend",
+  "iconnames_english_language": "Available in English",
+  "iconnames_polish_language": "Available in Polish",
+  "iconnames_sunny": "Full-time studies",
+  "iconnames_has_weekend_option": "Part-time studies"
 }

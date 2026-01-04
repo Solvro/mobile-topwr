@@ -3829,5 +3829,25 @@
   "no_creation_date": "Nie znaleziono daty utworzenia",
   "@no_creation_date": {
     "description": "Message displayed when no creation date is found"
+  },
+  "iconnames_legend_title": "Legenda",
+  "@iconnames_legend_title": {
+    "description": "Displayed as the title of a pictogram dialog"
+  },
+  "iconnames_english_language": "Dostępne w języku angielskim",
+  "@iconnames_english_language": {
+    "description": "Message displayed when the content is available in English"
+  },
+  "iconnames_polish_language": "Dostępne w języku polskim",
+  "@iconnames_polish_language": {
+    "description": "Message displayed when the content is available in Polish"
+  },
+  "iconnames_sunny": "Studia dzienne",
+  "@iconnames_sunny": {
+    "description": "Message displayed when the course is offered full-time"
+  },
+  "iconnames_has_weekend_option": "Studia zaoczne",
+  "@iconnames_has_weekend_option": {
+    "description": "Message displayed when the course has a weekend/part-time option"
   }
 }
