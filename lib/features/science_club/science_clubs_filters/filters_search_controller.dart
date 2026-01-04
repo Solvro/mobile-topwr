@@ -40,7 +40,7 @@ IList<ScienceClubType> typeFiltersFiltered(Ref ref) {
 @Riverpod(dependencies: [SearchFiltersController])
 Future<IList<Department>> departmentFiltersFiltered(Ref ref) async {
   final query = ref.watch(searchFiltersControllerProvider);
-  final depts = ref.watch(departmentsRepositoryProvider).requireValue;
+  final depts = await ref.watch(departmentsRepositoryProvider.future);
 
   if (query.isEmpty) return depts.toIList();
 
@@ -55,7 +55,7 @@ Future<IList<Department>> departmentFiltersFiltered(Ref ref) async {
 @Riverpod(dependencies: [SearchFiltersController])
 Future<IList<Tag>> tagFiltersFiltered(Ref ref) async {
   final query = ref.watch(searchFiltersControllerProvider);
-  final tags = ref.watch(tagsRepositoryProvider).requireValue;
+  final tags = await ref.watch(tagsRepositoryProvider.future);
   return tags.where((x) => x.tag.containsLowerCase(query)).toIList();
 }
 
