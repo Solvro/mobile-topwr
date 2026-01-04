@@ -14,8 +14,9 @@ import "../../../config/env.dart";
 //Thanks to that the audio player can talk to native APIs of audio services specific to the platform.
 //Specifically, it allows the app to be recognized as a media player, which allows integration with Android Auto, CarPlay, etc.
 
-const RADIO_LUZ_ARTWORK = "https://api.topwr.solvro.pl/uploads/28ef1261-47d5-4324-9f1f-9ae594af1327.png";
-const REFRESH_INTERVAL = Duration(seconds: 15);
+const radioLuzArtwork = "https://api.topwr.solvro.pl/uploads/28ef1261-47d5-4324-9f1f-9ae594af1327.png";
+const refreshInterval = Duration(seconds: 15);
+const staleStreamThreshold = Duration(seconds: 30);
 
 //used for AA and CP to display folders and media items
 class _MediaIds {
@@ -62,7 +63,7 @@ class RadioAudioHandler extends BaseAudioHandler with SeekHandler {
       id: _MediaIds.liveRadioPlayable,
       title: "Radio LUZ",
       album: "Studenckie Radio",
-      artUri: Uri.parse(RADIO_LUZ_ARTWORK), //artwork cannot be local asset
+      artUri: Uri.parse(radioLuzArtwork), //artwork cannot be local asset
     );
 
     _player.playbackEventStream
@@ -101,14 +102,13 @@ class RadioAudioHandler extends BaseAudioHandler with SeekHandler {
   //refreshes now playing metadata
   void _startPeriodicRefresh() {
     _refreshTimer?.cancel();
-    _refreshTimer = Timer.periodic(REFRESH_INTERVAL, (_) async {
+    _refreshTimer = Timer.periodic(refreshInterval, (_) async {
       await _fetchNowPlaying();
     });
   }
 
   //track when the stream was paused to detect stale buffers
   DateTime? _lastPauseTime;
-  static const _staleStreamThreshold = Duration(seconds: 30);
 
   Future<void> _fetchNowPlaying() async {
     try {
@@ -143,7 +143,7 @@ class RadioAudioHandler extends BaseAudioHandler with SeekHandler {
   @override
   Future<void> play() async {
     final now = DateTime.now();
-    final isStale = _lastPauseTime != null && now.difference(_lastPauseTime!) > _staleStreamThreshold;
+    final isStale = _lastPauseTime != null && now.difference(_lastPauseTime!) > staleStreamThreshold;
 
     _lastPauseTime = null;
 
