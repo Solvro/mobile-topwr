@@ -230,12 +230,7 @@ class RadioAudioHandler extends BaseAudioHandler with SeekHandler {
 
             final time = timeRaw.length >= 5 ? timeRaw.substring(0, 5) : "";
 
-            return MediaItem(
-              id: "history_${timeRaw}_$title",
-              title: "$time - $title",
-              artist: artist,
-              album: album,
-            );
+            return MediaItem(id: "history_${timeRaw}_$title", title: "$time - $title", artist: artist, album: album);
           })
           .whereType<MediaItem>()
           .toList();
