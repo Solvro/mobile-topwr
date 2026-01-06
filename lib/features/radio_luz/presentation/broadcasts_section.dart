@@ -7,6 +7,7 @@ import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../widgets/loading_widgets/simple_previews/preview_card_loading.dart";
 import "../data/repository/schedule_repository.dart";
+import "audition_image_fallback.dart";
 
 class BroadcastsSection extends HookConsumerWidget {
   const BroadcastsSection({super.key});
@@ -56,15 +57,26 @@ class _BroadcastTile extends StatelessWidget {
   final String imageUrl;
   final bool nowPlaying;
 
+  bool get _hasValidUrl {
+    final url = imageUrl.trim();
+    if (url.isEmpty) return false;
+    final uri = Uri.tryParse(url);
+    return uri != null && uri.hasScheme && (uri.scheme == "http" || uri.scheme == "https") && uri.host.isNotEmpty;
+  }
+
   @override
   Widget build(BuildContext context) {
+    debugPrint("imageUrl: $imageUrl");
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       clipBehavior: Clip.antiAlias,
       child: Stack(
         fit: StackFit.expand,
         children: [
-          Image.network(imageUrl, fit: BoxFit.cover),
+          if (_hasValidUrl)
+            Image.network(imageUrl.trim(), fit: BoxFit.cover, errorBuilder: (_, _, _) => const AuditionImageFallback())
+          else
+            const AuditionImageFallback(),
           Positioned(
             bottom: 0,
             left: 0,
