@@ -66,7 +66,6 @@ class _BroadcastTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint("imageUrl: $imageUrl");
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       clipBehavior: Clip.antiAlias,
