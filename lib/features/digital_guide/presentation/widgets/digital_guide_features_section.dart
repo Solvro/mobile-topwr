@@ -49,11 +49,15 @@ class DigitalGuideFeaturesSection extends ConsumerWidget {
         title: l10n.localization,
         content: [LocalizationExpansionTileContent(digitalGuideData: digitalGuideData, building: building)],
       ),
+      if (optionalTilesData.informationPoint != null)
+        (title: l10n.information_point, content: [InformationPointWidget(data: optionalTilesData.informationPoint!)]),
       (title: l10n.amenities, content: [AmenitiesExpansionTileContent(digitalGuideData: digitalGuideData)]),
       (title: l10n.surroundings, content: [SurroundingsExpansionTileContent(digitalGuideData: digitalGuideData)]),
       (title: l10n.transport, content: [TransportationExpansionTileContent(digitalGuideData: digitalGuideData)]),
       (title: l10n.entrances, content: [EntrancesExpansionTileContent(digitalGuideData: digitalGuideData)]),
       (title: l10n.lifts, content: [DigitalGuideLiftExpansionTileContent(digitalGuideResponse: digitalGuideData)]),
+      (title: l10n.lodge, content: [DigitalGuideLodgeExpansionTileContent(digitalGuideData)]),
+      (title: l10n.dressing_room, content: [DigitalGuideDressingRoomsExpansionTileContent(digitalGuideData)]),
       if (hasToilets)
         (
           title: l10n.adapted_toilets,
@@ -70,10 +74,6 @@ class DigitalGuideFeaturesSection extends ConsumerWidget {
         content: [DigitalGuideRoomExpansionTileContent(digitalGuideResponse: digitalGuideData)],
       ),
       (title: l10n.evacuation, content: [EvacuationWidget(digitalGuideData: digitalGuideData)]),
-      (title: l10n.lodge, content: [DigitalGuideLodgeExpansionTileContent(digitalGuideData)]),
-      (title: l10n.dressing_room, content: [DigitalGuideDressingRoomsExpansionTileContent(digitalGuideData)]),
-      if (optionalTilesData.informationPoint != null)
-        (title: l10n.information_point, content: [InformationPointWidget(data: optionalTilesData.informationPoint!)]),
     ];
 
     return SliverList(
