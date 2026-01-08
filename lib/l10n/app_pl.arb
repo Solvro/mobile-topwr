@@ -3822,6 +3822,10 @@
   "@radio_luz_description2": {
     "description": "Longer call-to-action inviting creative people to join Radio LUZ and informing about biannual recruitment"
   },
+  "radio_luz_audition_no_img": "Brak zdjęcia do audycji",
+  "@radio_luz_audition_no_img": {
+    "description": "Placeholder indicating the lack of image for the audition card"
+  },
   "add_to_streaming_head": "Wyszukaj w serwisie muzycznym",
   "@add_to_streaming_head": {
     "description": "Title for sheet presenting streaming services where users can add selected song to"
