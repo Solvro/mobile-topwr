@@ -182,7 +182,11 @@ class DigitalGuideFeaturesSection extends ConsumerWidget {
             horizontal: DigitalGuideConfig.paddingBig,
             vertical: DigitalGuideConfig.heightSmall,
           ),
-          child: MyExpansionTile(key: PageStorageKey(item.title), title: item.title, children: item.content),
+          child: MyExpansionTile(
+            key: PageStorageKey("${building}_${item.title}"),
+            title: item.title,
+            children: item.content,
+          ),
         );
       }, childCount: items.length),
     );
