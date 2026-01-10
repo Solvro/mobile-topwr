@@ -76,7 +76,7 @@ dependencies:
   dotted_border: ^3.1.0
   fluttertoast: ^9.0.0
   carousel_slider_plus: ^7.1.1
-  home_widget: ^0.9.0
+  home_widget: ^0.8.1
   scrollable_positioned_list: ^0.3.8
   scrolls_to_top: ^2.1.1
   sliver_tools: ^0.2.12
