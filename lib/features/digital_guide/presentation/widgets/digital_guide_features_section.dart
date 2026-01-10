@@ -175,7 +175,6 @@ class DigitalGuideFeaturesSection extends ConsumerWidget {
     ];
 
     return SliverList(
-      // key: PageStorageKey("${building}_DigitalGuideFeaturesSection"),
       delegate: SliverChildBuilderDelegate((context, index) {
         final item = items[index];
         return Padding(
