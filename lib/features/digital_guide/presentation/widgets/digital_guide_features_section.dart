@@ -47,36 +47,135 @@ class DigitalGuideFeaturesSection extends ConsumerWidget {
     final items = <TileContent>[
       (
         title: l10n.localization,
-        content: [LocalizationExpansionTileContent(digitalGuideData: digitalGuideData, building: building)],
+        content: [
+          LocalizationExpansionTileContent(
+            key: PageStorageKey("${building}_LocalizationExpansionTileContent"),
+            digitalGuideData: digitalGuideData,
+            building: building,
+          ),
+        ],
       ),
       if (optionalTilesData.informationPoint != null)
-        (title: l10n.information_point, content: [InformationPointWidget(data: optionalTilesData.informationPoint!)]),
-      (title: l10n.amenities, content: [AmenitiesExpansionTileContent(digitalGuideData: digitalGuideData)]),
-      (title: l10n.surroundings, content: [SurroundingsExpansionTileContent(digitalGuideData: digitalGuideData)]),
-      (title: l10n.transport, content: [TransportationExpansionTileContent(digitalGuideData: digitalGuideData)]),
-      (title: l10n.entrances, content: [EntrancesExpansionTileContent(digitalGuideData: digitalGuideData)]),
-      (title: l10n.lifts, content: [DigitalGuideLiftExpansionTileContent(digitalGuideResponse: digitalGuideData)]),
-      (title: l10n.lodge, content: [DigitalGuideLodgeExpansionTileContent(digitalGuideData)]),
-      (title: l10n.dressing_room, content: [DigitalGuideDressingRoomsExpansionTileContent(digitalGuideData)]),
+        (
+          title: l10n.information_point,
+          content: [
+            InformationPointWidget(
+              key: PageStorageKey("${building}_InformationPointWidget"),
+              data: optionalTilesData.informationPoint!,
+            ),
+          ],
+        ),
+      (
+        title: l10n.amenities,
+        content: [
+          AmenitiesExpansionTileContent(
+            key: PageStorageKey("${building}_AmenitiesExpansionTileContent"),
+            digitalGuideData: digitalGuideData,
+          ),
+        ],
+      ),
+      (
+        title: l10n.surroundings,
+        content: [
+          SurroundingsExpansionTileContent(
+            key: PageStorageKey("${building}_SurroundingsExpansionTileContent"),
+            digitalGuideData: digitalGuideData,
+          ),
+        ],
+      ),
+      (
+        title: l10n.transport,
+        content: [
+          TransportationExpansionTileContent(
+            key: PageStorageKey("${building}_TransportationExpansionTileContent"),
+            digitalGuideData: digitalGuideData,
+          ),
+        ],
+      ),
+      (
+        title: l10n.entrances,
+        content: [
+          EntrancesExpansionTileContent(
+            key: PageStorageKey("${building}_EntrancesExpansionTileContent"),
+            digitalGuideData: digitalGuideData,
+          ),
+        ],
+      ),
+      (
+        title: l10n.lifts,
+        content: [
+          DigitalGuideLiftExpansionTileContent(
+            key: PageStorageKey("${building}_DigitalGuideLiftExpansionTileContent"),
+            digitalGuideResponse: digitalGuideData,
+          ),
+        ],
+      ),
+      (
+        title: l10n.lodge,
+        content: [
+          DigitalGuideLodgeExpansionTileContent(
+            key: PageStorageKey("${building}_DigitalGuideLodgeExpansionTileContent"),
+            digitalGuideData,
+          ),
+        ],
+      ),
+      (
+        title: l10n.dressing_room,
+        content: [
+          DigitalGuideDressingRoomsExpansionTileContent(
+            key: PageStorageKey("${building}_DigitalGuideDressingRoomsExpansionTileContent"),
+            digitalGuideData,
+          ),
+        ],
+      ),
       if (hasToilets)
         (
           title: l10n.adapted_toilets,
-          content: [AdaptedToiletsExpansionTileContent(digitalGuideData: digitalGuideData)],
+          content: [
+            AdaptedToiletsExpansionTileContent(
+              key: PageStorageKey("${building}_AdaptedToiletsExpansionTileContent"),
+              digitalGuideData: digitalGuideData,
+            ),
+          ],
         ),
       if (digitalGuideData.externalId != null)
         (
           title: l10n.micro_navigation,
-          content: [MicronavigationExpansionTileContent(digitalGuideData: digitalGuideData)],
+          content: [
+            MicronavigationExpansionTileContent(
+              key: PageStorageKey("${building}_MicronavigationExpansionTileContent"),
+              digitalGuideData: digitalGuideData,
+            ),
+          ],
         ),
-      (title: l10n.building_structure, content: [StructureExpansionTileContent(digitalGuideData: digitalGuideData)]),
+      (
+        title: l10n.building_structure,
+        content: [
+          StructureExpansionTileContent(
+            key: PageStorageKey("${building}_StructureExpansionTileContent"),
+            digitalGuideData: digitalGuideData,
+          ),
+        ],
+      ),
       (
         title: l10n.room_information,
-        content: [DigitalGuideRoomExpansionTileContent(digitalGuideResponse: digitalGuideData)],
+        content: [
+          DigitalGuideRoomExpansionTileContent(
+            key: PageStorageKey("${building}_DigitalGuideRoomExpansionTileContent"),
+            digitalGuideResponse: digitalGuideData,
+          ),
+        ],
       ),
-      (title: l10n.evacuation, content: [EvacuationWidget(digitalGuideData: digitalGuideData)]),
+      (
+        title: l10n.evacuation,
+        content: [
+          EvacuationWidget(key: PageStorageKey("${building}_EvacuationWidget"), digitalGuideData: digitalGuideData),
+        ],
+      ),
     ];
 
     return SliverList(
+      // key: PageStorageKey("${building}_DigitalGuideFeaturesSection"),
       delegate: SliverChildBuilderDelegate((context, index) {
         final item = items[index];
         return Padding(
@@ -84,7 +183,7 @@ class DigitalGuideFeaturesSection extends ConsumerWidget {
             horizontal: DigitalGuideConfig.paddingBig,
             vertical: DigitalGuideConfig.heightSmall,
           ),
-          child: MyExpansionTile(title: item.title, children: item.content),
+          child: MyExpansionTile(key: PageStorageKey(item.title), title: item.title, children: item.content),
         );
       }, childCount: items.length),
     );

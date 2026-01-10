@@ -9,7 +9,7 @@ import "../../../../../widgets/detail_views/contact_section.dart";
 import "../../../data/models/digital_guide_response.dart";
 
 class AmenitiesExpansionTileContent extends StatelessWidget {
-  const AmenitiesExpansionTileContent({required this.digitalGuideData});
+  const AmenitiesExpansionTileContent({super.key, required this.digitalGuideData});
 
   final DigitalGuideResponse digitalGuideData;
 

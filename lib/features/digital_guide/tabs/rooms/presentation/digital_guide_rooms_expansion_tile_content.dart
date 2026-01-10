@@ -10,7 +10,7 @@ import "../domain/digital_guide_rooms_use_cases.dart";
 import "digital_guide_room_level.dart";
 
 class DigitalGuideRoomExpansionTileContent extends ConsumerWidget {
-  const DigitalGuideRoomExpansionTileContent({required this.digitalGuideResponse});
+  const DigitalGuideRoomExpansionTileContent({super.key, required this.digitalGuideResponse});
 
   final DigitalGuideResponse digitalGuideResponse;
 
