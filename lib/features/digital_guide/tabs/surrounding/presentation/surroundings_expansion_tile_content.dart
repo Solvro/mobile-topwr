@@ -15,7 +15,7 @@ import "../data/models/surrounding_response.dart";
 import "../data/repository/surrounding_repository.dart";
 
 class SurroundingsExpansionTileContent extends ConsumerWidget {
-  const SurroundingsExpansionTileContent({required this.digitalGuideData});
+  const SurroundingsExpansionTileContent({super.key, required this.digitalGuideData});
 
   final DigitalGuideResponse digitalGuideData;
 

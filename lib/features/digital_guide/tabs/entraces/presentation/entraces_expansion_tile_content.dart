@@ -11,7 +11,7 @@ import "../data/repository/entraces_repository.dart";
 import "digital_guide_entrance_widget.dart";
 
 class EntrancesExpansionTileContent extends ConsumerWidget {
-  const EntrancesExpansionTileContent({required this.digitalGuideData});
+  const EntrancesExpansionTileContent({super.key, required this.digitalGuideData});
 
   final DigitalGuideResponse digitalGuideData;
 

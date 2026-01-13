@@ -14,7 +14,7 @@ import "../data/repository/dressing_rooms_repository.dart";
 import "../domain/dressing_room_accessibility_comments_manager.dart";
 
 class DigitalGuideDressingRoomsExpansionTileContent extends ConsumerWidget {
-  const DigitalGuideDressingRoomsExpansionTileContent(this.digitalGuideResponse);
+  const DigitalGuideDressingRoomsExpansionTileContent(this.digitalGuideResponse, {super.key});
 
   final DigitalGuideResponse digitalGuideResponse;
 

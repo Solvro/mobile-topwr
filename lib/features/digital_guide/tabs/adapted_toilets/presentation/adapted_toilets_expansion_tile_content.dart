@@ -10,7 +10,7 @@ import "../business/adapted_toilets_use_cases.dart";
 import "adapted_toilet_level.dart";
 
 class AdaptedToiletsExpansionTileContent extends ConsumerWidget {
-  const AdaptedToiletsExpansionTileContent({required this.digitalGuideData});
+  const AdaptedToiletsExpansionTileContent({super.key, required this.digitalGuideData});
 
   final DigitalGuideResponse digitalGuideData;
 
