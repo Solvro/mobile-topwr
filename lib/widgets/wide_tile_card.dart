@@ -2,10 +2,10 @@ import "package:flutter/material.dart";
 
 import "../api_base_rest/shared_models/image_data.dart";
 import "../config/ui_config.dart";
-import "../features/science_club/science_clubs_view/widgets/ensure_visible_tags.dart";
 import "../theme/app_theme.dart";
 import "../utils/context_extensions.dart";
 
+import "dual_text_max_lines.dart";
 import "rest_api_image.dart";
 
 class PhotoTrailingWideTileCard extends WideTileCard {
@@ -40,7 +40,6 @@ class WideTileCard extends StatelessWidget {
     this.activeGradient,
     this.isActive = false,
     this.activeShadows = WideTileCardConfig.defaultActiveShadows,
-    this.secondSubtitle,
     this.crossAxisAlignment = CrossAxisAlignment.start,
     super.key,
     this.showBadge = false,
@@ -51,7 +50,6 @@ class WideTileCard extends StatelessWidget {
   final String title;
   final String? subtitle;
   final Widget? trailing;
-  final String? secondSubtitle;
 
   final bool isActive;
 
@@ -89,7 +87,6 @@ class WideTileCard extends StatelessWidget {
                     child: _TitlesColumn(
                       title,
                       subtitle,
-                      secondSubtitle,
                       showBadge: showBadge,
                       showStrategicBadge: showStrategicBadge,
                       isActive: isActive,
@@ -110,8 +107,7 @@ class WideTileCard extends StatelessWidget {
 class _TitlesColumn extends StatelessWidget {
   const _TitlesColumn(
     this.title,
-    this.subtitle,
-    this.secondSubtitle, {
+    this.subtitle, {
     required this.isActive,
     this.showBadge = false,
     this.showStrategicBadge = false,
@@ -119,7 +115,6 @@ class _TitlesColumn extends StatelessWidget {
 
   final String title;
   final String? subtitle;
-  final String? secondSubtitle;
   final bool isActive;
   final bool showBadge;
   final bool showStrategicBadge;
@@ -133,16 +128,12 @@ class _TitlesColumn extends StatelessWidget {
 
         return Padding(
           padding: const EdgeInsets.only(left: basePadding, top: basePadding, right: basePadding * 1.04),
-          child: EnsureVisibleTags(
+          child: DualTextMaxLines(
             title: title,
             titleStyle: textTheme.titleLarge?.copyWith(color: textColor),
             subtitle: subtitle,
             subtitleStyle: textTheme.bodyLarge?.copyWith(color: textColor),
-            spacing: secondSubtitle == null ? WideTileCardConfig.titlesSpacing : 2,
-            secondSubtitle: secondSubtitle,
-            secondSubtitleStyle: textTheme.bodyLarge?.copyWith(
-              color: isActive ? textColor : context.colorScheme.secondary,
-            ),
+            spacing: WideTileCardConfig.titlesSpacing,
             maxTotalLines: context.textScaleFactor > 1.5 ? 5 : 4,
             showVerifiedBadge: showBadge,
             showStrategicBadge: showStrategicBadge,
