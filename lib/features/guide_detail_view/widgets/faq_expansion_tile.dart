@@ -22,6 +22,7 @@ class FaqExpansionTile extends ConsumerWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: GuideDetailViewConfig.paddingMedium),
       child: MyExpansionTile(
+        key: PageStorageKey(title),
         title: title,
         initiallyExpanded: initiallyExpanded,
         onExpansionChanged: ({bool? expanded}) {

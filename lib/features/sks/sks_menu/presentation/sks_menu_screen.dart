@@ -103,6 +103,7 @@ class _SksMenuView extends ConsumerWidget {
                 message: context.localize.sks_menu_you_see_last_menu(
                   DateFormat("dd.MM.yyyy", context.locale.languageCode).format(sksMenuData.lastUpdate),
                 ),
+                textColor: context.colorScheme.surface,
               ),
             for (final technicalInfo in sksMenuData.technicalInfos) TechnicalMessage(message: technicalInfo),
             SksMenuHeader(

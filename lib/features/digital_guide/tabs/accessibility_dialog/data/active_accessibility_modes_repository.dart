@@ -1,3 +1,4 @@
+import "dart:async";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
@@ -15,14 +16,25 @@ const modes = <ModeWithKey>[
   HearingImpairment(),
 ];
 
-@riverpod
-Future<ISet<ModeWithKey>> activeAccessibilityModesRepository(Ref ref) async {
-  final modeStatesTuples = modes.map((mode) => (mode, ref.watch(accessibilityModeRepositoryProvider(mode))));
+@Riverpod(keepAlive: true)
+class ActiveAccessibilityModesRepository extends _$ActiveAccessibilityModesRepository {
+  @override
+  Future<ISet<ModeWithKey>> build() async {
+    final previous = state.asData?.value;
 
-  final activeModes = modeStatesTuples
-      .where((tuple) => tuple.$2.asData?.value ?? false)
-      .map((tuple) => tuple.$1)
-      .toISet();
+    if (previous != null) {
+      state = AsyncValue.data(previous);
+    }
 
-  return activeModes;
+    final modeStates = await Future.wait(
+      modes.map((mode) => ref.watch(accessibilityModeRepositoryProvider(mode).future)),
+    );
+
+    final activeModes = <ModeWithKey>[
+      for (var i = 0; i < modes.length; i++)
+        if (modeStates[i]) modes[i],
+    ].toISet();
+
+    return activeModes;
+  }
 }

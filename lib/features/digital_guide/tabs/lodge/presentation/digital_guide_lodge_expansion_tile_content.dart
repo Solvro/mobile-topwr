@@ -14,7 +14,7 @@ import "../data/models/digital_guide_lodge.dart";
 import "../data/repository/lodges_repository.dart";
 
 class DigitalGuideLodgeExpansionTileContent extends ConsumerWidget {
-  const DigitalGuideLodgeExpansionTileContent(this.digitalGuideResponse);
+  const DigitalGuideLodgeExpansionTileContent(this.digitalGuideResponse, {super.key});
 
   final DigitalGuideResponse digitalGuideResponse;
 
