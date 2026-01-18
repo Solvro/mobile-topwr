@@ -171,3 +171,4 @@ windows/flutter/generated_plugins.cmake
 
 # Kotlin compiler session files
 android/.kotlin/
+flux-mobile.yml
