@@ -36,7 +36,7 @@ class BranchIcon extends StatelessWidget {
     );
 
     return SizedBox(
-      height: 25,
+      height: 35,
       child: isEnabled
           ? DecoratedBox(
               decoration: BoxDecoration(
