@@ -69,47 +69,65 @@ class _BroadcastTile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return InkWell(
-      onTap: () => ref.launch(siteUrl),
-      child: Card(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        clipBehavior: Clip.antiAlias,
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            if (isValidUrl(imageUrl))
-              Image.network(
-                imageUrl.trim(),
-                fit: BoxFit.cover,
-                errorBuilder: (_, _, _) => const AuditionImageFallback(),
-              )
-            else
-              const AuditionImageFallback(),
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: Container(
-                padding: const EdgeInsets.all(12),
-                color: context.colorScheme.primaryContainer,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    if (nowPlaying) ...[
-                      Text(
-                        context.localize.now_playing.toUpperCase(),
-                        style: context.textTheme.titleLarge?.copyWith(color: Colors.white, fontWeight: FontWeight.w400),
-                      ),
-                      const SizedBox(height: 8),
-                    ],
-                    Text(title, style: context.textTheme.titleLarge?.copyWith(color: Colors.white)),
-                    const SizedBox(height: 4),
-                    if (isValidUrl(siteUrl)) const _ShowMoreWidget(),
-                  ],
+    final semanticLabel = nowPlaying ? "${context.localize.now_playing}. $title" : title;
+    final semanticHint = isValidUrl(siteUrl) ? context.localize.show_more : null;
+
+    return Semantics(
+      label: semanticLabel,
+      hint: semanticHint,
+      button: true,
+      enabled: isValidUrl(siteUrl),
+      child: InkWell(
+        onTap: () => ref.launch(siteUrl),
+        child: Card(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          clipBehavior: Clip.antiAlias,
+          child: Stack(
+            fit: StackFit.expand,
+            children: [
+              if (isValidUrl(imageUrl))
+                Semantics(
+                  image: true,
+                  label: "",
+                  child: Image.network(
+                    imageUrl.trim(),
+                    fit: BoxFit.cover,
+                    errorBuilder: (_, _, _) => const AuditionImageFallback(),
+                  ),
+                )
+              else
+                Semantics(image: true, label: "", child: const AuditionImageFallback()),
+              Positioned(
+                bottom: 0,
+                left: 0,
+                right: 0,
+                child: Container(
+                  padding: const EdgeInsets.all(12),
+                  color: context.colorScheme.primaryContainer,
+                  child: ExcludeSemantics(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        if (nowPlaying) ...[
+                          Text(
+                            context.localize.now_playing.toUpperCase(),
+                            style: context.textTheme.titleLarge?.copyWith(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                        ],
+                        Text(title, style: context.textTheme.titleLarge?.copyWith(color: Colors.white)),
+                        const SizedBox(height: 4),
+                        if (isValidUrl(siteUrl)) const _ShowMoreWidget(),
+                      ],
+                    ),
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
