@@ -1,0 +1,70 @@
+name: Continuous Deployment
+
+on:
+  push:
+    # branches:
+    #   - main
+    paths:
+      - 'pubspec.yaml'
+
+jobs:
+  version-change-detection:
+    name: Detect Version Change
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2  # Fetch last 2 commits to compare
+      
+      - name: Get current version
+        id: current_version
+        run: |
+          VERSION=$(grep '^version:' pubspec.yaml | sed 's/version: //')
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "Current version: $VERSION"
+      
+      - name: Get previous version
+        id: previous_version
+        run: |
+          git checkout HEAD~1
+          PREV_VERSION=$(grep '^version:' pubspec.yaml | sed 's/version: //')
+          echo "version=$PREV_VERSION" >> $GITHUB_OUTPUT
+          echo "Previous version: $PREV_VERSION"
+          git checkout -
+      
+      - name: Check if version changed
+        id: version_check
+        run: |
+          CURRENT="${{ steps.current_version.outputs.version }}"
+          PREVIOUS="${{ steps.previous_version.outputs.version }}"
+          
+          if [ "$CURRENT" != "$PREVIOUS" ]; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "Version changed from $PREVIOUS to $CURRENT"
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "Version unchanged: $CURRENT"
+          fi
+      
+      - name: Trigger deployment script
+        if: steps.version_check.outputs.changed == 'true'
+        run: |
+          echo "=========================================="
+          echo "VERSION CHANGE DETECTED!"
+          echo "=========================================="
+          echo "Previous: ${{ steps.previous_version.outputs.version }}"
+          echo "Current:  ${{ steps.current_version.outputs.version }}"
+          echo "=========================================="
+          echo "Triggering deployment process..."
+          echo "This is where your deployment script would run"
+          echo "=========================================="
+          
+          # Add your actual deployment commands here
+          # For example:
+          # - Build the app
+          # - Run tests
+          # - Deploy to stores
+          # - Create GitHub release
+          # - Send notifications
