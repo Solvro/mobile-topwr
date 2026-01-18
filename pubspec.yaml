@@ -241,6 +241,10 @@ flutter:
     - assets/svg/streaming/youtube_music.svg
     - assets/svg/streaming/deezer.svg
     - assets/svg/streaming/tidal.svg
+    - assets/svg/branches_logos/logo-pwr.svg
+    - assets/svg/branches_logos/logo-jelenia.svg
+    - assets/svg/branches_logos/logo-walbrzych.svg
+    - assets/svg/branches_logos/logo-legnica.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
