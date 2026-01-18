@@ -27,6 +27,7 @@ class RadioLuzView extends StatelessWidget {
         body: Stack(
           children: [
             ListView(
+              physics: const BouncingScrollPhysics(),
               padding: const EdgeInsets.symmetric(vertical: RadioLuzConfig.horizontalBasePadding),
               children: [
                 RadioLuzTitle(title: l10n.now_playing.toUpperCase()),
