@@ -5,6 +5,7 @@ import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
+import "../../../utils/launch_url_util.dart";
 import "../../../widgets/loading_widgets/simple_previews/preview_card_loading.dart";
 import "../data/repository/schedule_repository.dart";
 import "audition_image_fallback.dart";
@@ -37,6 +38,7 @@ class BroadcastsSection extends HookConsumerWidget {
               title: value![index].title,
               imageUrl: value[index].thumbnail,
               nowPlaying: value[index].isNow,
+              siteUrl: value[index].permalink,
             ),
           ),
         ),
@@ -50,57 +52,83 @@ class BroadcastsSection extends HookConsumerWidget {
   }
 }
 
-class _BroadcastTile extends StatelessWidget {
-  const _BroadcastTile({required this.title, required this.imageUrl, this.nowPlaying = false});
+class _BroadcastTile extends ConsumerWidget {
+  const _BroadcastTile({required this.title, required this.imageUrl, this.nowPlaying = false, required this.siteUrl});
 
   final String title;
   final String imageUrl;
   final bool nowPlaying;
+  final String siteUrl;
 
-  bool get _hasValidUrl {
-    final url = imageUrl.trim();
-    if (url.isEmpty) return false;
-    final uri = Uri.tryParse(url);
+  bool isValidUrl(String url) {
+    final trimmedUrl = url.trim();
+    if (trimmedUrl.isEmpty) return false;
+    final uri = Uri.tryParse(trimmedUrl);
     return uri != null && uri.hasScheme && (uri.scheme == "http" || uri.scheme == "https") && uri.host.isNotEmpty;
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      clipBehavior: Clip.antiAlias,
-      child: Stack(
-        fit: StackFit.expand,
-        children: [
-          if (_hasValidUrl)
-            Image.network(imageUrl.trim(), fit: BoxFit.cover, errorBuilder: (_, _, _) => const AuditionImageFallback())
-          else
-            const AuditionImageFallback(),
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: Container(
-              padding: const EdgeInsets.all(12),
-              color: context.colorScheme.primaryContainer,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  if (nowPlaying) ...[
-                    Text(
-                      context.localize.now_playing.toUpperCase(),
-                      style: context.textTheme.titleLarge?.copyWith(color: Colors.white, fontWeight: FontWeight.w400),
+  Widget build(BuildContext context, WidgetRef ref) {
+    final semanticLabel = nowPlaying ? "${context.localize.now_playing}. $title" : title;
+    final semanticHint = isValidUrl(siteUrl) ? context.localize.show_more : null;
+
+    return Semantics(
+      label: semanticLabel,
+      hint: semanticHint,
+      button: true,
+      enabled: isValidUrl(siteUrl),
+      child: InkWell(
+        onTap: () => ref.launch(siteUrl),
+        child: Card(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          clipBehavior: Clip.antiAlias,
+          child: Stack(
+            fit: StackFit.expand,
+            children: [
+              if (isValidUrl(imageUrl))
+                Semantics(
+                  image: true,
+                  label: "",
+                  child: Image.network(
+                    imageUrl.trim(),
+                    fit: BoxFit.cover,
+                    errorBuilder: (_, _, _) => const AuditionImageFallback(),
+                  ),
+                )
+              else
+                Semantics(image: true, label: "", child: const AuditionImageFallback()),
+              Positioned(
+                bottom: 0,
+                left: 0,
+                right: 0,
+                child: Container(
+                  padding: const EdgeInsets.all(12),
+                  color: context.colorScheme.primaryContainer,
+                  child: ExcludeSemantics(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        if (nowPlaying) ...[
+                          Text(
+                            context.localize.now_playing.toUpperCase(),
+                            style: context.textTheme.titleLarge?.copyWith(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                        ],
+                        Text(title, style: context.textTheme.titleLarge?.copyWith(color: Colors.white)),
+                        const SizedBox(height: 4),
+                        if (isValidUrl(siteUrl)) const _ShowMoreWidget(),
+                      ],
                     ),
-                    const SizedBox(height: 8),
-                  ],
-                  Text(title, style: context.textTheme.titleLarge?.copyWith(color: Colors.white)),
-                  const SizedBox(height: 4),
-                  const _ShowMoreWidget(),
-                ],
+                  ),
+                ),
               ),
-            ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
