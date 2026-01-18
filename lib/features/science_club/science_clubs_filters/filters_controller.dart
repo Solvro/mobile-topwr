@@ -64,8 +64,8 @@ bool areFiltersEnabled(Ref ref) {
     selectedDepartmentControllerProvider.select((value) => value.isNotEmpty),
   );
   final selectedTypesIsNotEmpty = ref.watch(selectedTypeControllerProvider.select((value) => value.isNotEmpty));
-  final seachFilterIsNotEmpty = ref.watch(searchFiltersControllerProvider).isNotEmpty;
-  return selectedTagsIsNotEmpty || selectedDepartmentsIsNotEmpty || selectedTypesIsNotEmpty || seachFilterIsNotEmpty;
+  final searchFilterIsNotEmpty = ref.watch(searchFiltersControllerProvider).isNotEmpty;
+  return selectedTagsIsNotEmpty || selectedDepartmentsIsNotEmpty || selectedTypesIsNotEmpty || searchFilterIsNotEmpty;
 }
 
 extension ClearAllFiltersX on WidgetRef {
