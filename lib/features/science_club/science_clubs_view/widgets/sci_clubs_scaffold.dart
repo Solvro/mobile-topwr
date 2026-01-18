@@ -38,9 +38,9 @@ class SciClubsScaffold extends ConsumerWidget {
         onSearchBoxTap: () {
           unawaited(ref.trackEvent(ClarityEvents.searchSciClub));
         },
+        filter: const FiltersFAB(),
       ),
       body: child ?? const SizedBox.shrink(),
-      extraFabs: const [FiltersFAB()],
     );
   }
 }

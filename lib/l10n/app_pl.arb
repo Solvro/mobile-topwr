@@ -389,6 +389,10 @@
   "@scientific_cirlces_short": {
     "description": "Title for scientific clubs section, but in short form"
   },
+  "scientific_clubs_results_count": "wyników",
+  "@scientific_clubs_results_count": {
+    "description": "Shows number of results above the scientific clubs grid"
+  },
   "student_organizations": "Organizacje studenckie",
   "@student_organizations": {
     "description": "Title for student organizations section"

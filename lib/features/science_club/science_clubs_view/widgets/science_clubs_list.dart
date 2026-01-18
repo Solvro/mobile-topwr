@@ -7,6 +7,7 @@ import "../../../../utils/context_extensions.dart";
 import "../../../../widgets/my_error_widget.dart";
 import "../../../../widgets/search_not_found.dart";
 import "../../../navigator/utils/navigation_commands.dart";
+import "../../science_clubs_filters/filters_controller.dart";
 import "../controllers/science_clubs_view_controller.dart";
 import "../model/science_clubs.dart";
 import "science_club_card.dart";
@@ -29,22 +30,77 @@ class ScienceClubsList extends ConsumerWidget {
   }
 }
 
-class _ScienceClubsListView extends ConsumerWidget {
-  const _ScienceClubsListView(this.filteredCircles);
+class _ScienceClubsListView extends ConsumerStatefulWidget {
+  const _ScienceClubsListView(this.clubs);
 
-  final IList<ScienceClub> filteredCircles;
+  final IList<ScienceClub> clubs;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<_ScienceClubsListView> createState() => _ScienceClubsListViewState();
+}
+
+class _ScienceClubsListViewState extends ConsumerState<_ScienceClubsListView> {
+  late final FocusNode _focusNode;
+
+  @override
+  void initState() {
+    super.initState();
+    _focusNode = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    _focusNode.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    ref.listen<bool>(focusFirstCardProvider, (prev, next) {
+      if (next && mounted) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          _focusNode.requestFocus();
+        });
+
+        ref.read(focusFirstCardProvider.notifier).state = false;
+      }
+    });
+
+    final IList<ScienceClub> filteredCircles = widget.clubs;
+
     if (filteredCircles.isEmpty) {
       return SearchNotFound(message: context.localize.sci_circle_not_found);
     }
-    return GridView.builder(
-      padding: const EdgeInsets.only(bottom: ScienceClubsViewConfig.mediumPadding),
-      gridDelegate: DepartmentsConfig.departmentsViewGridDelegate(context),
-      itemCount: filteredCircles.length,
-      itemBuilder: (context, index) =>
-          ScienceClubCard(filteredCircles[index], () => ref.navigateSciClubsDetail(filteredCircles[index])),
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
+          child: Text(
+            "${filteredCircles.length} ${context.localize.scientific_clubs_results_count}",
+            style: Theme.of(
+              context,
+            ).textTheme.bodyMedium?.copyWith(color: Theme.of(context).colorScheme.onSurfaceVariant),
+          ),
+        ),
+        Expanded(
+          child: GridView.builder(
+            padding: const EdgeInsets.only(bottom: ScienceClubsViewConfig.mediumPadding),
+            gridDelegate: DepartmentsConfig.departmentsViewGridDelegate(context),
+            itemCount: filteredCircles.length,
+            itemBuilder: (context, index) {
+              return Focus(
+                focusNode: index == 0 ? _focusNode : null,
+                child: ScienceClubCard(
+                  filteredCircles[index],
+                  () => ref.navigateSciClubsDetail(filteredCircles[index]),
+                ),
+              );
+            },
+          ),
+        ),
+      ],
     );
   }
 }
