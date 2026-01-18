@@ -17,7 +17,7 @@ class OfflineMessage extends HookWidget {
   final String errMessage;
   final VoidCallback? onRefresh;
 
-  static const _refreshTimeout = Duration(seconds: 5);
+  static const _refreshTimeout = Duration(milliseconds: 800);
 
   @override
   Widget build(BuildContext context) {
