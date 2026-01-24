@@ -37,6 +37,7 @@ class RootView extends HookConsumerWidget {
               isFirstRootBottomView: isFirstRootBottomView,
               timesPushedToTabBar: timesPushedToTabBar.value,
               child: HorizontalSymmetricSafeAreaScaffold(
+                top: activeTabIndex != 1 && activeTabIndex != 2,
                 bottomNavigationBar: BottomNavBar(
                   activeIndex: activeTabIndex,
                   onTap: (index) {
