@@ -1,6 +1,7 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
-import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:flutter_hooks/flutter_hooks.dart";
+import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../../../config/ui_config.dart";
 import "../../../../utils/context_extensions.dart";
@@ -30,43 +31,24 @@ class ScienceClubsList extends ConsumerWidget {
   }
 }
 
-class _ScienceClubsListView extends ConsumerStatefulWidget {
+class _ScienceClubsListView extends HookConsumerWidget {
   const _ScienceClubsListView(this.clubs);
 
   final IList<ScienceClub> clubs;
 
   @override
-  ConsumerState<_ScienceClubsListView> createState() => _ScienceClubsListViewState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final focusNode = useFocusNode();
+    final IList<ScienceClub> filteredCircles = clubs;
 
-class _ScienceClubsListViewState extends ConsumerState<_ScienceClubsListView> {
-  late final FocusNode _focusNode;
-
-  @override
-  void initState() {
-    super.initState();
-    _focusNode = FocusNode();
-  }
-
-  @override
-  void dispose() {
-    _focusNode.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
     ref.listen<bool>(focusFirstCardProvider, (prev, next) {
-      if (next && mounted) {
+      if (next) {
         WidgetsBinding.instance.addPostFrameCallback((_) {
-          _focusNode.requestFocus();
+          focusNode.requestFocus();
         });
-
         ref.read(focusFirstCardProvider.notifier).state = false;
       }
     });
-
-    final IList<ScienceClub> filteredCircles = widget.clubs;
 
     if (filteredCircles.isEmpty) {
       return SearchNotFound(message: context.localize.sci_circle_not_found);
@@ -91,7 +73,7 @@ class _ScienceClubsListViewState extends ConsumerState<_ScienceClubsListView> {
             itemCount: filteredCircles.length,
             itemBuilder: (context, index) {
               return Focus(
-                focusNode: index == 0 ? _focusNode : null,
+                focusNode: index == 0 ? focusNode : null,
                 child: ScienceClubCard(
                   filteredCircles[index],
                   () => ref.navigateSciClubsDetail(filteredCircles[index]),
