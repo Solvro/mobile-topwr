@@ -72,6 +72,9 @@ abstract class NavBarConfig {
   /// All routes for AutoTabsRouter (main tabs + multilayer aliases)
   static List<PageRouteInfo> get allTabRoutes => [...tabViews.values, ...multilayerAliasRoutes];
 
+  static bool isTabAMapView(int activeTabIndex) =>
+      activeTabIndex == NavBarEnum.buildings.index || activeTabIndex == NavBarEnum.parkings.index;
+
   /// Maps a route name to its NavBarEnum
   static NavBarEnum? routeNameToTab(String? routeName) {
     if (routeName == null) return null;
