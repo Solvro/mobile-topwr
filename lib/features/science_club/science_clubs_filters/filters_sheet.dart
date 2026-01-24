@@ -15,7 +15,7 @@ import "widgets/filters_header.dart";
 import "widgets/tags_wrap.dart";
 import "widgets/types_wrap.dart";
 
-class FiltersSheet extends StatelessWidget {
+class FiltersSheet extends ConsumerWidget {
   const FiltersSheet({super.key});
 
   static String localizedOfflineMessage(BuildContext context) {
@@ -23,42 +23,48 @@ class FiltersSheet extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final sheetHeight = useFiltersSheetHeight(context);
-    return ProviderScope(
-      overrides: [searchFiltersControllerProvider, areFiltersEnabledProvider],
-      child: HorizontalSymmetricSafeArea(
-        child: Semantics(
-          label: context.localize.filters_sheet_semantics_label,
-          child: SizedBox(
-            height: sheetHeight,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 16),
-              child: Column(
-                children: [
-                  FiltersHeader(),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: ListView(
-                        shrinkWrap: true,
-                        children: [
-                          const TypesWrap(),
-                          const DepartmentsWrap(),
-                          const TagsWrap(),
-                          const _NoFiltersFound(),
-                          const SizedBox(height: FilterConfig.spacingBetweenWidgets),
-                          ApplyFiltersButton(onPressed: context.maybePop),
-                          const SizedBox(height: FilterConfig.spacingBetweenWidgets),
-                        ],
-                      ),
+    return SizedBox(
+      child: Stack(
+        children: [
+          ProviderScope(
+            overrides: [areFiltersEnabledProvider],
+            child: HorizontalSymmetricSafeArea(
+              child: Semantics(
+                label: context.localize.filters_sheet_semantics_label,
+                child: SizedBox(
+                  height: sheetHeight,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 16),
+                    child: Column(
+                      children: [
+                        FiltersHeader(),
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 16),
+                            child: ListView(
+                              shrinkWrap: true,
+                              children: const [
+                                TypesWrap(),
+                                DepartmentsWrap(),
+                                TagsWrap(),
+                                _NoFiltersFound(),
+                                SizedBox(height: FilterConfig.spacingBetweenWidgets),
+                                SizedBox(height: FilterConfig.spacingBetweenWidgets),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ],
+                ),
               ),
             ),
           ),
-        ),
+          Positioned(left: 16, right: 16, bottom: 16, child: ApplyFiltersButton(onPressed: context.maybePop)),
+        ],
       ),
     );
   }

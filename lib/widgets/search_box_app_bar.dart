@@ -21,6 +21,7 @@ class SearchBoxAppBar extends AppBar {
     bool addLeadingPopButton = false,
     String? initialQuery,
     super.primary = false,
+    Widget? filter,
   }) : super(
          title: Text(title, textScaler: context.textScaler.clamp(maxScaleFactor: 2.5)),
          titleTextStyle: context.textTheme.headlineMedium,
@@ -46,11 +47,24 @@ class SearchBoxAppBar extends AppBar {
                left: defaultHorizontalPadding,
                right: defaultHorizontalPadding,
              ),
-
-             child: Semantics(
-               button: true,
-               label: context.localize.search,
-               child: SearchBox(onQueryChanged: onQueryChanged, onTap: onSearchBoxTap, initialQuery: initialQuery),
+             child: SizedBox(
+               height: SearchBoxConfig.height,
+               child: Row(
+                 children: [
+                   Expanded(
+                     child: Semantics(
+                       button: true,
+                       label: context.localize.search,
+                       child: SearchBox(
+                         onQueryChanged: onQueryChanged,
+                         onTap: onSearchBoxTap,
+                         initialQuery: initialQuery,
+                       ),
+                     ),
+                   ),
+                   if (filter != null) ...[const SizedBox(width: 15), filter],
+                 ],
+               ),
              ),
            ),
          ),
