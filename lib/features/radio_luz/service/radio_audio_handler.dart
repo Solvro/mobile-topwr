@@ -4,9 +4,13 @@ import "dart:convert";
 import "package:audio_service/audio_service.dart";
 import "package:audio_session/audio_session.dart";
 import "package:dio/dio.dart";
+import "package:flutter/widgets.dart";
 import "package:just_audio/just_audio.dart";
 
 import "../../../config/env.dart";
+import "../data/models/history_entry.dart";
+import "../data/models/now_playing.dart";
+import "../data/models/schedule.dart";
 
 //Here the audio player is defined. Its created at app startup and is used for playing live stream.
 //This whole class describes the audio player behavior, media items and metadata.
@@ -26,7 +30,7 @@ class _MediaIds {
   static const schedule = "schedule_folder";
 }
 
-class RadioAudioHandlerBridge extends BaseAudioHandler with SeekHandler {
+class RadioAudioHandlerBridge extends BaseAudioHandler with SeekHandler, WidgetsBindingObserver {
   final _player = AudioPlayer();
 
   //used for fetching recently played and schedule
@@ -43,7 +47,13 @@ class RadioAudioHandlerBridge extends BaseAudioHandler with SeekHandler {
     ),
   );
 
-  late MediaItem _radioLuzMediaItem;
+  //main media item - live radio (information source)
+  var _radioLuzMediaItem = MediaItem(
+    id: _MediaIds.liveRadioPlayable,
+    title: "Radio LUZ",
+    album: "Studenckie Radio",
+    artUri: Uri.parse(radioLuzArtwork), //artwork cannot be local asset
+  );
 
   List<MediaItem>? _recentlyPlayedCache;
   DateTime? _recentlyPlayedLastFetch;
@@ -56,28 +66,40 @@ class RadioAudioHandlerBridge extends BaseAudioHandler with SeekHandler {
   var _isDisposed = false;
 
   Timer? _refreshTimer;
+  StreamSubscription<PlaybackState>? _playbackEventSubscription;
+  StreamSubscription<SequenceState?>? _sequenceStateSubscription;
 
   RadioAudioHandlerBridge() {
-    //main media item - live radio (information source)
-    _radioLuzMediaItem = MediaItem(
-      id: _MediaIds.liveRadioPlayable,
-      title: "Radio LUZ",
-      album: "Studenckie Radio",
-      artUri: Uri.parse(radioLuzArtwork), //artwork cannot be local asset
-    );
+    _initializeListeners();
+  }
 
-    _player.playbackEventStream
-        .map(_transformEvent)
-        .listen(playbackState.add); //connecting 'just_audio' (flutter) to 'audio_service' (native)
+  void _initializeListeners() {
+    //connect 'just_audio' (Flutter) to 'audio_service' (native)
+    _playbackEventSubscription = _player.playbackEventStream.map(_transformEvent).listen(playbackState.add);
 
-    _player.sequenceStateStream.listen((state) {
+    _sequenceStateSubscription = _player.sequenceStateStream.listen((state) {
       mediaItem.add(_radioLuzMediaItem);
     });
 
-    _startPeriodicRefresh();
+    //periodically refresh now playing metadata
+    _refreshTimer?.cancel();
+    _refreshTimer = Timer.periodic(refreshInterval, (_) async {
+      await _fetchNowPlaying();
+    });
 
-    // Pre-configure audio session for iOS to reduce playback startup latency
+    //pre-configure audio session for iOS to reduce playback startup latency
     unawaited(_initAudioSession());
+
+    //register lifecycle observer to stop playback when app is killed
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // Stop playback when app is detached (killed)
+    if (state == AppLifecycleState.detached) {
+      unawaited(stop());
+    }
   }
 
   /// iOS audio session
@@ -99,14 +121,6 @@ class RadioAudioHandlerBridge extends BaseAudioHandler with SeekHandler {
     );
   }
 
-  //refreshes now playing metadata
-  void _startPeriodicRefresh() {
-    _refreshTimer?.cancel();
-    _refreshTimer = Timer.periodic(refreshInterval, (_) async {
-      await _fetchNowPlaying();
-    });
-  }
-
   //track when the stream was paused to detect stale buffers
   DateTime? _lastPauseTime;
 
@@ -121,10 +135,10 @@ class RadioAudioHandlerBridge extends BaseAudioHandler with SeekHandler {
       final dynamic decoded = jsonDecode(response.data!);
       if (decoded is! Map<String, dynamic>) return;
 
-      final nowPlaying = decoded["now"]?.toString();
-      if (nowPlaying == null || nowPlaying.isEmpty) return;
+      final nowPlaying = NowPlaying.fromJson(decoded);
+      if (nowPlaying.now == null || nowPlaying.now!.isEmpty) return;
 
-      _radioLuzMediaItem = _radioLuzMediaItem.copyWith(album: nowPlaying, artist: nowPlaying);
+      _radioLuzMediaItem = _radioLuzMediaItem.copyWith(album: nowPlaying.now, artist: nowPlaying.now);
 
       mediaItem.add(_radioLuzMediaItem);
     } on Exception catch (_) {
@@ -166,6 +180,9 @@ class RadioAudioHandlerBridge extends BaseAudioHandler with SeekHandler {
   Future<void> stop() async {
     _isDisposed = true;
     _refreshTimer?.cancel();
+    await _playbackEventSubscription?.cancel();
+    await _sequenceStateSubscription?.cancel();
+    WidgetsBinding.instance.removeObserver(this);
     await _player.stop();
     return super.stop();
   }
@@ -219,21 +236,16 @@ class RadioAudioHandlerBridge extends BaseAudioHandler with SeekHandler {
       final dynamic decoded = jsonDecode(response.data!);
       if (decoded is! List) return _recentlyPlayedCache ?? [];
 
-      final items = decoded
-          .map((e) {
-            if (e is! List) return null;
-
-            final timeRaw = e[1]?.toString() ?? "";
-            final artist = e[2]?.toString() ?? "";
-            final title = e[3]?.toString() ?? "";
-            final album = e[4]?.toString() ?? "";
-
-            final time = timeRaw.length >= 5 ? timeRaw.substring(0, 5) : "";
-
-            return MediaItem(id: "history_${timeRaw}_$title", title: "$time - $title", artist: artist, album: album);
-          })
-          .whereType<MediaItem>()
-          .toList();
+      final items = decoded.whereType<List<dynamic>>().map((e) {
+        final entry = HistoryEntry.fromList(e);
+        final timeStr = "${entry.time.hour.toString().padLeft(2, '0')}:${entry.time.minute.toString().padLeft(2, '0')}";
+        return MediaItem(
+          id: "history_${entry.date}_${entry.title}",
+          title: "$timeStr - ${entry.title}",
+          artist: entry.artist,
+          album: entry.album,
+        );
+      }).toList();
 
       //because title is in format "HH:MM - Title", it is sorted by time from latest to oldest
       items.sort((a, b) => b.title.compareTo(a.title));
@@ -262,34 +274,26 @@ class RadioAudioHandlerBridge extends BaseAudioHandler with SeekHandler {
       final dynamic jsonMap = jsonDecode(response.data!);
       if (jsonMap is! Map<String, dynamic>) return _scheduleCache ?? [];
 
-      final broadcasts = jsonMap["broadcasts"];
-      if (broadcasts is! List) return _scheduleCache ?? [];
+      final schedule = Schedule.fromJson(jsonMap);
 
       final items = <MediaItem>[];
 
-      for (final block in broadcasts) {
-        if (block is! Map<String, dynamic>) continue;
+      for (final block in schedule.broadcasts) {
+        final isNow = block.isNow ?? false;
 
-        final isNow = block["isNow"] as bool? ?? false;
-        final broadcastList = block["broadcasts"];
-
-        if (broadcastList is! List) continue;
-
-        for (final broadcast in broadcastList) {
-          if (broadcast is! Map<String, dynamic>) continue;
-
-          final b = broadcast;
-          final time = b["time"]?.toString() ?? "";
-          final title = b["title"]?.toString() ?? "";
-          final thumbnail = b["thumbnail"];
-
+        for (final broadcast in block.broadcasts) {
           Uri? artUri;
-          if (thumbnail is String && thumbnail.isNotEmpty) {
-            artUri = Uri.tryParse(thumbnail);
+          if (broadcast.thumbnail != null && broadcast.thumbnail!.isNotEmpty) {
+            artUri = Uri.tryParse(broadcast.thumbnail!);
           }
 
           items.add(
-            MediaItem(id: "schedule_${b["id"]}", title: isNow ? "▶ $title" : title, album: time, artUri: artUri),
+            MediaItem(
+              id: "schedule_${broadcast.id}",
+              title: isNow ? "▶ ${broadcast.title}" : broadcast.title,
+              album: broadcast.time,
+              artUri: artUri,
+            ),
           );
         }
       }
@@ -301,14 +305,6 @@ class RadioAudioHandlerBridge extends BaseAudioHandler with SeekHandler {
     } on Exception catch (_) {
       return _scheduleCache ?? [];
     }
-  }
-
-  //mainly for getting info about recently played media item
-  Future<MediaItem?> getItem(String mediaId) async {
-    if (mediaId == _radioLuzMediaItem.id) {
-      return _radioLuzMediaItem;
-    }
-    return mediaItem.value;
   }
 
   //start playing media item
@@ -338,13 +334,13 @@ class RadioAudioHandlerBridge extends BaseAudioHandler with SeekHandler {
       controls: [if (_player.playing) MediaControl.pause else MediaControl.play],
       systemActions: const {MediaAction.seek},
       androidCompactActionIndices: const [0],
-      processingState: const {
-        ProcessingState.idle: AudioProcessingState.idle,
-        ProcessingState.loading: AudioProcessingState.loading,
-        ProcessingState.buffering: AudioProcessingState.buffering,
-        ProcessingState.ready: AudioProcessingState.ready,
-        ProcessingState.completed: AudioProcessingState.completed,
-      }[_player.processingState]!,
+      processingState: switch (_player.processingState) {
+        ProcessingState.idle => AudioProcessingState.idle,
+        ProcessingState.loading => AudioProcessingState.loading,
+        ProcessingState.buffering => AudioProcessingState.buffering,
+        ProcessingState.ready => AudioProcessingState.ready,
+        ProcessingState.completed => AudioProcessingState.completed,
+      },
       playing: _player.playing,
       updatePosition: _player.position,
       bufferedPosition: _player.bufferedPosition,

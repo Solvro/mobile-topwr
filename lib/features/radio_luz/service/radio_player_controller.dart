@@ -69,7 +69,7 @@ class RadioController extends _$RadioController {
   Future<void> pause() async {
     await _handler.pause();
   }
-  
+
   Future<void> setVolume(double newVolume) async {
     await _handler.setVolume(newVolume);
   }
