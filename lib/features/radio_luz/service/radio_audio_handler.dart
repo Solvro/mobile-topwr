@@ -26,7 +26,7 @@ class _MediaIds {
   static const schedule = "schedule_folder";
 }
 
-class RadioAudioHandler extends BaseAudioHandler with SeekHandler {
+class RadioAudioHandlerBridge extends BaseAudioHandler with SeekHandler {
   final _player = AudioPlayer();
 
   //used for fetching recently played and schedule
@@ -57,7 +57,7 @@ class RadioAudioHandler extends BaseAudioHandler with SeekHandler {
 
   Timer? _refreshTimer;
 
-  RadioAudioHandler() {
+  RadioAudioHandlerBridge() {
     //main media item - live radio (information source)
     _radioLuzMediaItem = MediaItem(
       id: _MediaIds.liveRadioPlayable,

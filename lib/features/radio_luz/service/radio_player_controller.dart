@@ -17,7 +17,7 @@ part "radio_player_controller.g.dart";
 
 @Riverpod(keepAlive: true)
 class RadioController extends _$RadioController {
-  late final RadioAudioHandler _handler = ref.watch(radioPlayerProvider);
+  late final RadioAudioHandlerBridge _handler = ref.watch(radioPlayerProvider);
 
   var _initialized = false;
 
@@ -69,11 +69,7 @@ class RadioController extends _$RadioController {
   Future<void> pause() async {
     await _handler.pause();
   }
-
-  Future<void> stop() async {
-    await _handler.stop();
-  } //i don't think we need this, but keeping just in case
-
+  
   Future<void> setVolume(double newVolume) async {
     await _handler.setVolume(newVolume);
   }
