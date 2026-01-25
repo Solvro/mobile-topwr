@@ -23,6 +23,7 @@ rules:
       - sks-menu
       - sks-people-live
       - sks-chart
+      - sks-favs
       - splash-screen
       - update-dialog
       - theme

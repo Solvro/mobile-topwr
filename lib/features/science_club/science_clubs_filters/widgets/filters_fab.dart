@@ -28,7 +28,9 @@ class FiltersFAB extends ConsumerWidget {
           constraints: const BoxConstraints(),
           isScrollControlled: true,
           builder: (context) => UncontrolledProviderScope(container: parentProvider, child: const FiltersSheet()),
-        );
+        ).whenComplete(() {
+          ref.read(focusFirstCardProvider.notifier).state = true;
+        });
       },
       backgroundColor: context.colorScheme.primary,
       child: Semantics(

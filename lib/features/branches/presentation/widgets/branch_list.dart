@@ -4,6 +4,7 @@ import "../../../../../config/ui_config.dart";
 import "../../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../data/model/branch.dart";
+import "branch_icon.dart";
 
 class BranchList extends StatelessWidget {
   const BranchList({required this.selectedBranch, required this.onBranchTap, super.key});
@@ -34,6 +35,7 @@ class BranchList extends StatelessWidget {
             ),
             child: ListTile(
               selected: selected,
+              leading: BranchIcon(branch: branch, isEnabled: selected),
               title: Text(semanticsLabel: name.substring(1), name),
               trailing: selected ? Icon(Icons.check, color: context.colorScheme.primary) : null,
               onTap: () => onBranchTap(branch),

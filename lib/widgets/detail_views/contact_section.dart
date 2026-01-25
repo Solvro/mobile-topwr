@@ -81,6 +81,7 @@ class _ContactIcon extends ConsumerWidget {
                   style: context.textTheme.bodyLarge?.copyWith(
                     color: url?.isNotEmpty ?? false ? context.colorScheme.primary : Colors.black,
                     decoration: url?.isNotEmpty ?? false ? TextDecoration.underline : TextDecoration.none,
+                    decorationColor: url?.isNotEmpty ?? false ? context.colorScheme.primary : null,
                     height: shouldBeAccessible
                         ? DigitalGuideConfig.accessibleLineHeight
                         : context.textTheme.bodyLarge?.copyWith(color: context.colorScheme.primary).height,

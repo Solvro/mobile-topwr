@@ -159,6 +159,7 @@ class _SksFavouriteDishesView extends ConsumerWidget {
               ),
           ],
         ),
+        const SliverPadding(padding: EdgeInsets.only(bottom: SksMenuConfig.paddingLarge)),
       ],
     );
   }
