@@ -55,11 +55,12 @@ Future<void> runToPWR() async {
   final config = ClarityConfig(projectId: Env.clarityConfigId, logLevel: LogLevel.None);
 
   final audioHandler = await AudioService.init(
-    builder: RadioAudioHandler.new,
+    builder: RadioAudioHandlerBridge.new,
     config: const AudioServiceConfig(
       androidNotificationChannelId: "com.solvro.topwr.audio",
       androidNotificationChannelName: "Audio playback",
       androidNotificationOngoing: true,
+      androidStopForegroundOnPause: true,
     ),
   );
 
