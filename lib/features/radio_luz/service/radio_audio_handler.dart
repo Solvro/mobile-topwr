@@ -147,10 +147,14 @@ class RadioAudioHandlerBridge extends BaseAudioHandler with SeekHandler, Widgets
   }
 
   ///pre-loads the audio stream
+  Future<void> _loadStream() async {
+    await _player.setAudioSource(AudioSource.uri(Uri.parse(Env.radioLuzStreamUrl), tag: _radioLuzMediaItem));
+    mediaItem.add(_radioLuzMediaItem);
+  }
+
   Future<void> preload() async {
     if (_player.processingState == ProcessingState.idle) {
-      await _player.setAudioSource(AudioSource.uri(Uri.parse(Env.radioLuzStreamUrl), tag: _radioLuzMediaItem));
-      mediaItem.add(_radioLuzMediaItem);
+      await _loadStream();
     }
   }
 
@@ -163,8 +167,7 @@ class RadioAudioHandlerBridge extends BaseAudioHandler with SeekHandler, Widgets
 
     //if stream is stale or player is idle, reload the audio source
     if (isStale || _player.processingState == ProcessingState.idle) {
-      await _player.setAudioSource(AudioSource.uri(Uri.parse(Env.radioLuzStreamUrl), tag: _radioLuzMediaItem));
-      mediaItem.add(_radioLuzMediaItem);
+      await _loadStream();
     }
 
     unawaited(_player.play());
@@ -312,8 +315,7 @@ class RadioAudioHandlerBridge extends BaseAudioHandler with SeekHandler, Widgets
   Future<void> playFromMediaId(String mediaId, [Map<String, dynamic>? extras]) async {
     //...because anything you click on should play the radio
     if (mediaId == _radioLuzMediaItem.id || mediaId.startsWith("history_") || mediaId.startsWith("schedule_")) {
-      await _player.setAudioSource(AudioSource.uri(Uri.parse(Env.radioLuzStreamUrl), tag: _radioLuzMediaItem));
-      mediaItem.add(_radioLuzMediaItem);
+      await _loadStream();
       unawaited(_player.play());
     }
     //this if might be useless but you never know...
