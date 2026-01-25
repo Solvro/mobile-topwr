@@ -3638,6 +3638,10 @@
   "@multilayer_map_title": {
     "description": "Title for multilayer map title"
   },
+  "multilayer_map_offline_error": "Mapy kampusu",
+  "@multilayer_map_offline_error": {
+    "description": "Offline error for multilayer-map"
+  },
   "main_branch": "Politechnika Wrocławska",
   "@main_branch": {
     "description": "Main branch option in the branch selection dialog"

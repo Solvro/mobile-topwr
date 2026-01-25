@@ -11,15 +11,17 @@ import "../map_view/controllers/controllers_set.dart";
 import "../map_view/widgets/map_config.dart";
 import "data_list_loading.dart";
 
-class DataSliverList<T extends GoogleNavigable> extends ConsumerWidget {
-  const DataSliverList({super.key});
+class DataSliverList<T extends GoogleNavigable> extends HookConsumerWidget {
+  const DataSliverList({super.key, this.uiErrorMessage});
+
+  final String? uiErrorMessage;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final itemsState = ref.watch(context.mapDataController<T>());
     return switch (itemsState) {
       AsyncError(:final error, :final stackTrace) => SliverToBoxAdapter(
-        child: MyErrorWidget(error, stackTrace: stackTrace),
+        child: MyErrorWidget(error, stackTrace: stackTrace, uiErrorMessage: uiErrorMessage),
       ),
       AsyncValue(:final value) when value != null => _DataSliverList<T>(value.data),
       _ => const DataListLoading(),
