@@ -115,6 +115,10 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
     final areOnlyOneLayerEnabled = tabs.length == 1;
     final isNoTabs = tabs.isEmpty;
 
+    final offlineErrorMessage = context.localize.my_offline_error_message(
+      context.localize.multilayer_map_offline_error,
+    );
+
     useInitialActiveId(
       context.initialActiveItemId<T>(),
       ref.watch(context.activeMarkerController<T>().notifier),
@@ -140,7 +144,7 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
             scrollController: scrollController,
             initialSectionType: context.initialSectionType<T>(),
           ),
-        if (categoryData == null || areOnlyOneLayerEnabled) DataSliverList<T>(),
+        if (categoryData == null || areOnlyOneLayerEnabled) DataSliverList<T>(uiErrorMessage: offlineErrorMessage),
         if (isNoTabs && categoryData != null)
           SliverFillRemaining(child: Center(child: Text(context.localize.no_layers_available))),
         const SliverToBoxAdapter(child: SizedBox(height: SearchBoxAppBar.defaultBottomPadding)),
