@@ -1,8 +1,8 @@
 import "dart:async";
 
-import "package:audioplayers/audioplayers.dart";
 import "package:flutter/material.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
+import "package:just_audio/just_audio.dart";
 
 import "../../../../../../config/ui_config.dart";
 import "../../../../../../theme/app_theme.dart";
@@ -22,15 +22,15 @@ class MyAudioPlayer extends HookWidget {
     final totalTime = useState(Duration.zero);
 
     useEffect(() {
-      final stateSubscription = audioPlayer.onPlayerStateChanged.listen((state) {
-        isPlaying.value = state == PlayerState.playing;
+      final stateSubscription = audioPlayer.playerStateStream.listen((state) {
+        isPlaying.value = state.playing;
       });
 
-      final durationSubscription = audioPlayer.onDurationChanged.listen((duration) {
-        totalTime.value = duration;
+      final durationSubscription = audioPlayer.durationStream.listen((duration) {
+        totalTime.value = duration ?? Duration.zero;
       });
 
-      final positionSubscription = audioPlayer.onPositionChanged.listen((position) {
+      final positionSubscription = audioPlayer.positionStream.listen((position) {
         currentTime.value = position;
       });
 
@@ -46,7 +46,8 @@ class MyAudioPlayer extends HookWidget {
       if (isPlaying.value) {
         await audioPlayer.pause();
       } else {
-        await audioPlayer.play(UrlSource(audioUrl));
+        await audioPlayer.setUrl(audioUrl);
+        await audioPlayer.play();
       }
     }, [audioUrl]);
 
