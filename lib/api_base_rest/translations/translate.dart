@@ -23,6 +23,9 @@ extension TranslateX on Ref {
     VoidCallback? onRetry,
     AuthHeader? authHeader,
   }) async {
+    final translator = watch(solvroTranslatorProvider);
+    final localeFuture = watch(preferredLanguageRepositoryProvider.future);
+
     final data = await getAndCacheData(
       fullUrl,
       fromJson,
@@ -33,8 +36,7 @@ extension TranslateX on Ref {
       authHeader: authHeader,
     );
 
-    final translator = watch(solvroTranslatorProvider);
-    final locale = await watch(preferredLanguageRepositoryProvider.future) ?? SolvroLocale.pl;
+    final locale = await localeFuture ?? SolvroLocale.pl;
 
     try {
       return switch (data) {
