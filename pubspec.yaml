@@ -138,7 +138,7 @@ dependencies:
   sentry_flutter: ^9.9.1
 
   #Solvro packages
-  solvro_translator_with_drift_cache_flutter: ^0.8.0
+  solvro_translator_with_drift_cache_flutter: ^0.8.1
   solvro_translator_core: ^0.8.0
   clarity_flutter: ^1.6.0
 
