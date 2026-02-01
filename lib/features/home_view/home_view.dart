@@ -10,7 +10,7 @@ import "../planner_advert/widgets/banner_visibility.dart";
 import "../planner_advert/widgets/planer_ad_badge.dart";
 import "../planner_advert/widgets/planner_advert_widget.dart";
 import "keep_alive_home_view_providers.dart";
-import "widgets/buildings_section/buildings_section.dart";
+
 import "widgets/logo_app_bar.dart";
 import "widgets/nav_actions_section.dart";
 import "widgets/science_clubs_section.dart";
@@ -27,7 +27,6 @@ class HomeView extends StatelessWidget {
       const PlannerBannerVisibility(child: PlannerAdvertBanner()),
       const NewsSection(),
       const ScienceClubsSection(),
-      const BuildingsSection(),
     ].lock;
 
     return Scaffold(

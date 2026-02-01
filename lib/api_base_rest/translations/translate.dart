@@ -1,6 +1,7 @@
 import "package:flutter/widgets.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:solvro_translator_core/solvro_translator_core.dart";
+import "package:solvro_translator_with_drift_cache_flutter/solvro_translation_offline_exception.dart";
 
 import "../../config/ttl_config.dart";
 import "../../services/translations_service/business/solvro_translator.dart";
@@ -9,6 +10,7 @@ import "../../utils/ilist_nonempty.dart";
 import "../cache/cache.dart";
 import "../client/dio_client.dart";
 import "../client/json.dart";
+import "../client/offline_error.dart";
 
 extension TranslateX on Ref {
   Future<JSON<T>> getAndCacheDataWithTranslation<T extends TranslatableInterface>(
@@ -21,6 +23,9 @@ extension TranslateX on Ref {
     VoidCallback? onRetry,
     AuthHeader? authHeader,
   }) async {
+    final translator = watch(solvroTranslatorProvider);
+    final localeFuture = watch(preferredLanguageRepositoryProvider.future);
+
     final data = await getAndCacheData(
       fullUrl,
       fromJson,
@@ -31,14 +36,17 @@ extension TranslateX on Ref {
       authHeader: authHeader,
     );
 
-    final translator = watch(solvroTranslatorProvider);
-    final locale = await watch(preferredLanguageRepositoryProvider.future) ?? SolvroLocale.pl;
+    final locale = await localeFuture ?? SolvroLocale.pl;
 
-    return switch (data) {
-      ObjectJSON<T>(:final value) => ObjectJSON(await value.translate(translator, locale)),
-      ListJSON<T>(:final value) => ListJSON(
-        (await Future.wait(value.map((e) => e.translate(translator, locale)))).toIList(),
-      ),
-    };
+    try {
+      return switch (data) {
+        ObjectJSON<T>(:final value) => ObjectJSON(await value.translate(translator, locale)),
+        ListJSON<T>(:final value) => ListJSON(
+          (await Future.wait(value.map((e) => e.translate(translator, locale)))).toIList(),
+        ),
+      };
+    } on SolvroTranslationOfflineException {
+      throw RestFrameworkOfflineException(localizedMessage: localizedOfflineMessage, onRetry: onRetry);
+    }
   }
 }
