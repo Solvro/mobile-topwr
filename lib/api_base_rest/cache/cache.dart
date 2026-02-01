@@ -34,6 +34,7 @@ extension DataCachingX on Ref {
     AuthHeader? authHeader,
   }) async {
     final cacheManager = watch(restCacheManagerProvider(ttlDays));
+    final dio = watch(authRestClientProvider(authHeader));
 
     final cachedFile = await cacheManager.getFileFromCache(fullUrl);
     if (cachedFile != null) {
@@ -43,12 +44,7 @@ extension DataCachingX on Ref {
         return data;
       }
     }
-    final response = await safeGetWatch<dynamic>(
-      fullUrl,
-      localizedMessage: localizedOfflineMessage,
-      onRetry: onRetry,
-      authHeader: authHeader,
-    );
+    final response = await dio.safeGet<dynamic>(fullUrl, localizedMessage: localizedOfflineMessage, onRetry: onRetry);
     final json = parseJSON(response.data, fromJson);
     if (extraValidityCheck(json)) {
       await cacheManager.putFile(
