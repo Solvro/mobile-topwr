@@ -35,10 +35,12 @@ class HomeView extends StatelessWidget {
       appBar: LogoAppBar(context, actions: const [PlannerBannerVisibility(reverseLogic: true, child: PlanerAdBadge())]),
       body: KeepAliveHomeViewProviders(
         child: ListView.separated(
+          cacheExtent: 500,
           itemBuilder: (context, index) => sections[index],
           separatorBuilder: (context, index) =>
               SizedBox(height: index == 1 || index == 2 ? 0 : HomeViewConfig.paddingMedium),
           itemCount: sections.length,
+          padding: const EdgeInsets.only(bottom: HomeViewConfig.paddingMedium),
         ),
       ),
     );
