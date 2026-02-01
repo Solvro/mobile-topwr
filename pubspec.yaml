@@ -76,7 +76,6 @@ dependencies:
   dotted_border: ^3.1.0
   fluttertoast: ^9.0.0
   carousel_slider_plus: ^7.1.1
-  home_widget: ^0.8.1
   scrollable_positioned_list: ^0.3.8
   scrolls_to_top: ^2.1.1
   sliver_tools: ^0.2.12
@@ -137,7 +136,6 @@ dependencies:
   flutter_hooks: ^0.21.3
   audioplayers: ^6.5.1
   sentry_flutter: ^9.9.1
-  workmanager: ^0.9.0
 
   #Solvro packages
   solvro_translator_with_drift_cache_flutter: ^0.8.0
