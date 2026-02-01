@@ -19,7 +19,7 @@ import "features/in_app_review/presentation/in_app_review.dart";
 import "features/navigator/app_router.dart";
 import "features/navigator/hooks/use_deeplink_listener.dart";
 import "features/navigator/navigation_stack.dart";
-import "features/parkings/parkings_view/api_client/iparking_commands.dart";
+import "features/parkings/parkings_view/repository/parkings_repository.dart";
 import "features/splash_screen/splash_screen.dart";
 import "features/splash_screen/splash_screen_controller.dart";
 import "features/update_dialog/presentation/update_dialog_wrapper.dart";
@@ -48,7 +48,6 @@ Future<void> main() async {
 Future<void> runToPWR() async {
   final data = await PlatformAssetBundle().load(Assets.certs.przewodnikPwrEduPl);
   SecurityContext.defaultContext.setTrustedCertificatesBytes(data.buffer.asUint8List());
-  // await setupParkingWidgetsWorkManager();
   try {
     await JustAudioBackground.init(
       androidNotificationChannelId: "com.solvro.topwr.audio",

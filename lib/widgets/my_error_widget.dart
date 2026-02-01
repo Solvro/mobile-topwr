@@ -7,7 +7,7 @@ import "package:sentry_flutter/sentry_flutter.dart";
 import "../api_base_rest/client/offline_error.dart";
 import "../config/ui_config.dart";
 import "../features/offline_messages/widgets/general_offline_message.dart";
-import "../features/parkings/parkings_view/api_client/iparking_commands.dart";
+import "../features/parkings/parkings_view/repository/parkings_repository.dart";
 import "../features/parkings/parkings_view/widgets/offline_parkings_view.dart";
 import "../gen/assets.gen.dart";
 import "../theme/app_theme.dart";

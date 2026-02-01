@@ -15,6 +15,8 @@ import "local_fav_parking_repository.dart";
 
 part "parkings_repository.g.dart";
 
+class ParkingsOfflineException implements Exception {}
+
 @riverpod
 Future<IList<Parking>> parkingsRepository(Ref ref) async {
   final restClient = ref.watch(restClientProvider);
@@ -38,9 +40,14 @@ DoubleLinkedQueue<Parking> _sortParkingsByFav(Iterable<Parking> list, Ref ref) {
 
 extension DioFetchParkingsX on Dio {
   Future<List<Parking>> fetchParkings() async {
-    final url = Env.parkingApiUrl;
-    final response = await get<Map<String, dynamic>>(url);
-    return _mapResponseToParkings(response.data);
+    try {
+      final url = Env.parkingApiUrl;
+      final response = await get<Map<String, dynamic>>(url);
+      return _mapResponseToParkings(response.data);
+    } on DioException catch (_) {
+      await Future<void>.delayed(const Duration(milliseconds: 300));
+      throw ParkingsOfflineException();
+    }
   }
 
   List<Parking> _mapResponseToParkings(Map<String, dynamic>? data) {
