@@ -165,6 +165,7 @@ dev_dependencies:
   #Other
   flutter_launcher_icons: ^0.14.4
   test: ^1.26.3
+  patrol: ^4.1.0
 
 dependency_overrides:
   riverpod: 3.1.0 # todo(simon-the-shark): remove this when analyzer bump to 9 will be possible
@@ -322,3 +323,12 @@ flutter_launcher_icons:
     image_path: "assets/png/app_icon.png"
 lint_staged:
   "lib/**.dart": dart format && dart fix --apply
+
+
+patrol:
+  app_name: topwr
+  test_directory: patrol_test
+  android:
+    package_name: com.solvro.topwr
+  ios:
+    bundle_id: com.solvro.ToPwr
