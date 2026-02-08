@@ -38,9 +38,14 @@ class SksFavouriteDishesRepository extends _$SksFavouriteDishesRepository {
           .castAsObject,
       if (deviceKey != null)
         ref
-            .read(restClientProvider)
-            .get<Map<String, dynamic>>(_api + _subscriptionsEndpoint + deviceKey)
-            .then((val) => SksFavouriteDishesResponse.fromJson(val.data!)),
+            .getAndCacheDataWithTranslation(
+              _api + _subscriptionsEndpoint + deviceKey,
+              SksFavouriteDishesResponse.fromJson,
+              extraValidityCheck: (_) => false, // always invalidate the cache
+              localizedOfflineMessage: SksFavouriteDishesView.localizedOfflineMessage,
+              onRetry: ref.invalidateSelf,
+            )
+            .castAsObject,
     ]);
 
     final recentDishes = responses[0];
