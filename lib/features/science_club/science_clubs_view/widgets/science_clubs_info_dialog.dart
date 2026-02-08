@@ -65,6 +65,7 @@ class ScienceClubInfoDialog extends StatelessWidget {
               final linkStyle = baseStyle?.copyWith(
                 color: context.colorScheme.primary,
                 decoration: TextDecoration.underline,
+                decorationColor: context.colorScheme.primary,
               );
               return RichText(
                 textScaler: scaler,
