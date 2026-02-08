@@ -26,7 +26,7 @@ extension RefRegisterForNotificationsX on Ref {
   Future<({String? deviceKey})> registerForNotifications() async {
     final client = read(restClientProvider);
     final url = "${Env.sksUrl}/device/registration-token";
-    final deviceKey = await getDeviceId();
+    final deviceKey = await watch(getDeviceIdProvider.future);
     final registrationToken = await _getTokenSafe();
     if (deviceKey == null || registrationToken == null) {
       return (deviceKey: deviceKey);

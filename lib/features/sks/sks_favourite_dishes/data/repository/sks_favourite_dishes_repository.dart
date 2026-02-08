@@ -2,7 +2,6 @@ import "package:dio/dio.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "../../../../../api_base_rest/client/dio_client.dart";
 import "../../../../../api_base_rest/client/json.dart";
 import "../../../../../api_base_rest/translations/translate.dart";
 import "../../../../../config/env.dart";
@@ -24,7 +23,7 @@ class SksFavouriteDishesRepository extends _$SksFavouriteDishesRepository {
 
   @override
   Future<({IList<SksMenuDishMinimal> subscribed, IList<SksMenuDishMinimal> unsubscribed})> build() async {
-    final deviceKey = await getDeviceId();
+    final deviceKey = await ref.watch(getDeviceIdProvider.future);
     final responses = await Future.wait([
       ref
           .getAndCacheDataWithTranslation(
@@ -58,9 +57,8 @@ class SksFavouriteDishesRepository extends _$SksFavouriteDishesRepository {
   }
 
   Future<bool> toggleDishSubscription(String dishId, {required bool isSubscribed}) async {
-    final restClient = ref.read(restClientProvider);
     try {
-      await restClient.toggleSubscription(dishId, isSubscribed: isSubscribed);
+      await ref.toggleSubscription(dishId, isSubscribed: isSubscribed);
     } on DioException catch (_) {
       return false;
     }
