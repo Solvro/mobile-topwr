@@ -430,9 +430,6 @@
   "railing_height": "{value, plural, =0{No information on railing height.} one{The railing is {value} cm high.} other{The railings are {value} cm high.}}",
   "railing": "Railing",
   "stairway": "Stairway",
-  "@stairway": {
-    "description": "Label for stairway"
-  },
   "ramps_is_ramp_marked": "{boolean, select, false{The ramp is not marked.} true{The ramp is marked.} other{}}",
   "ramps_is_increased_force_needed": "{boolean, select, false{Increased force is not needed to overcome the ramp.} true{Increased force is needed to overcome the ramp.} other{}}",
   "ramps_is_permanent_ramp": "{boolean, select, false{The ramp is not a permanent structural element.} true{The ramp is a permanent structural element.} other{}}",
