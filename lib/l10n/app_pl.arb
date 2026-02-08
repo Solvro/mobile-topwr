@@ -2502,6 +2502,10 @@
     }
   },
   "railing": "Poręcz",
+  "stairway": "Klatka schodowa",
+  "@stairway": {
+    "description": "Label for stairway"
+  },
   "@railing": {
     "description": "Label for railing section"
   },
