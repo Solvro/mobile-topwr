@@ -28,7 +28,10 @@ class IconLegendDialog extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(vertical: 6),
                     child: Row(
                       children: [
-                        item.icon,
+                        SizedBox.square(
+                          dimension: 20,
+                          child: Align(alignment: Alignment.centerLeft, child: item.icon),
+                        ),
                         const SizedBox(width: 12),
                         Expanded(child: Text(item.name)),
                       ],
