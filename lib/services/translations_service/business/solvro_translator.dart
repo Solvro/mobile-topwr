@@ -13,5 +13,6 @@ SolvroTranslatorWithDriftCache solvroTranslator(Ref ref) {
     databaseName: "translations_database_new",
     dio: Dio(BaseOptions(baseUrl: Env.translateApiUrl, headers: {"x-api-token": Env.translateApiToken})),
     sourceLocale: SolvroLocale.pl,
+    batchConfig: BatchTranslationConfig.defaultConfig,
   ));
 }
