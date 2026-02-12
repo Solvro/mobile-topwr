@@ -25,6 +25,7 @@ class RadioPlayerSlider extends StatelessWidget {
         ),
         child: Slider(
           value: volume,
+          onChangeEnd: radioController.rememberVolume,
           onChanged: (newVolume) async {
             await radioController.setVolume(newVolume);
           },

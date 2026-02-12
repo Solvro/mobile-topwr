@@ -25,6 +25,8 @@ class RadioController extends _$RadioController {
   _AppLifecycleStopper? _stopper;
 
   var _initialized = false;
+  var _prevVolume = 1.0;
+  final _muteThreshold = 0.05;
 
   @override
   RadioState build() {
@@ -47,7 +49,7 @@ class RadioController extends _$RadioController {
       unawaited(_initPlayer());
     }
 
-    return RadioState(isPlaying: isPlaying, isLoading: isLoading, volume: volume);
+    return RadioState(isPlaying: isPlaying, isLoading: isLoading, volume: volume, isMuted: volume <= _muteThreshold);
   }
 
   Future<void> _initPlayer() async {
@@ -102,6 +104,18 @@ class RadioController extends _$RadioController {
 
   Future<void> setVolume(double newVolume) async {
     await _player.setVolume(newVolume);
+  }
+
+  void rememberVolume(double newVolume) {
+    _prevVolume = newVolume > _muteThreshold ? newVolume : _prevVolume;
+  }
+
+  Future<void> toggleVolume() async {
+    if (state.volume <= _muteThreshold) {
+      await _player.setVolume(_prevVolume);
+    } else {
+      await _player.setVolume(0);
+    }
   }
 }
 
