@@ -56,6 +56,7 @@ class SelectedTypeController extends _$SelectedTypeController with FilterControl
 }
 
 @Riverpod(
+  keepAlive: true,
   dependencies: [SelectedDepartmentController, SelectedTagController, SelectedTypeController, SearchFiltersController],
 )
 bool areFiltersEnabled(Ref ref) {

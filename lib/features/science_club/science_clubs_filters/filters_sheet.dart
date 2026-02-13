@@ -24,6 +24,7 @@ class FiltersSheet extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final sheetHeight = useFiltersSheetHeight(context);
+
     return ProviderScope(
       overrides: [areFiltersEnabledProvider],
       child: Semantics(
@@ -51,7 +52,6 @@ class FiltersSheet extends ConsumerWidget {
                     ),
                   ),
                 ),
-
                 SafeArea(
                   child: DecoratedBox(
                     decoration: BoxDecoration(
@@ -68,14 +68,15 @@ class FiltersSheet extends ConsumerWidget {
                       child: Row(
                         spacing: 8,
                         children: [
-                          Expanded(
-                            child: FiltersButton(
-                              text: context.localize.clear,
-                              icon: Icons.close,
-                              onPressed: ref.watch(areFiltersEnabledProvider) ? ref.getClearAllFilters(ref) : () {},
-                              isSecondary: true,
+                          if (ref.watch(areFiltersEnabledProvider))
+                            Expanded(
+                              child: FiltersButton(
+                                text: context.localize.clear,
+                                icon: Icons.close,
+                                onPressed: ref.watch(areFiltersEnabledProvider) ? ref.getClearAllFilters(ref) : () {},
+                                isSecondary: true,
+                              ),
                             ),
-                          ),
                           Expanded(
                             child: FiltersButton(
                               text: context.localize.apply,
