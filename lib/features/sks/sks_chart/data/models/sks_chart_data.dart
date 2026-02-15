@@ -20,8 +20,20 @@ abstract class SksChartData with _$SksChartData {
 
 extension SksChartDataIListX on IList<SksChartData> {
   double get maxNumberOfUsers {
+    if (isEmpty) {
+      return 0;
+    }
+
     return map(
       (data) => data.activeUsers > data.movingAverage21 ? data.activeUsers : data.movingAverage21,
     ).reduce((a, b) => a > b ? a : b).toDouble();
+  }
+
+  int get maxNumberOfActiveUsers {
+    return fold<int>(0, (prev, data) => data.activeUsers > prev ? data.activeUsers : prev);
+  }
+
+  int get maxNumberOfMovingAverage21 {
+    return fold<int>(0, (prev, data) => data.movingAverage21 > prev ? data.movingAverage21 : prev);
   }
 }
