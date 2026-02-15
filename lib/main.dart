@@ -50,7 +50,6 @@ Future<void> main() async {
 Future<void> runToPWR() async {
   final data = await PlatformAssetBundle().load(Assets.certs.przewodnikPwrEduPl);
   SecurityContext.defaultContext.setTrustedCertificatesBytes(data.buffer.asUint8List());
-  // await setupParkingWidgetsWorkManager();
 
   final config = ClarityConfig(projectId: Env.clarityConfigId, logLevel: LogLevel.None);
 
