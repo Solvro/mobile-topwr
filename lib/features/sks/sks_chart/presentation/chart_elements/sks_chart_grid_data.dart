@@ -7,7 +7,7 @@ class SksChartGridData extends FlGridData {
   SksChartGridData(BuildContext context, double horizontalInterval)
     : super(
         verticalInterval: 100,
-        horizontalInterval: horizontalInterval,
+        horizontalInterval: horizontalInterval != 0 ? horizontalInterval : null,
         getDrawingHorizontalLine: (value) => GridLine(context),
         getDrawingVerticalLine: (value) => GridLine(context),
       );
