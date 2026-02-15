@@ -2,12 +2,20 @@ import "package:flutter/material.dart";
 
 import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
-import "../../../../utils/context_extensions.dart";
 
-class ApplyFiltersButton extends StatelessWidget {
-  const ApplyFiltersButton({super.key, required this.onPressed});
+class FiltersButton extends StatelessWidget {
+  const FiltersButton({
+    super.key,
+    required this.text,
+    required this.icon,
+    required this.onPressed,
+    this.isSecondary = false,
+  });
 
+  final String text;
+  final IconData icon;
   final VoidCallback onPressed;
+  final bool isSecondary;
 
   @override
   Widget build(BuildContext context) {
@@ -16,9 +24,9 @@ class ApplyFiltersButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          backgroundColor: context.colorScheme.primary,
+          backgroundColor: isSecondary ? context.colorScheme.surface : context.colorScheme.primary,
           elevation: 4,
-          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+          padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
           shape: RoundedRectangleBorder(
             borderRadius: FilterConfig.radius, // Change this value to adjust the radius
           ),
@@ -28,11 +36,13 @@ class ApplyFiltersButton extends StatelessWidget {
           children: [
             const SizedBox(width: 5),
             Text(
-              context.localize.apply,
-              style: context.textTheme.titleLarge?.copyWith(color: context.colorScheme.surface),
+              text,
+              style: context.textTheme.titleLarge?.copyWith(
+                color: isSecondary ? context.colorScheme.primary : context.colorScheme.surface,
+              ),
             ),
             const SizedBox(width: 5),
-            Icon(Icons.check, color: context.colorScheme.surface),
+            Icon(icon, color: isSecondary ? context.colorScheme.primary : context.colorScheme.surface),
           ],
         ),
       ),
