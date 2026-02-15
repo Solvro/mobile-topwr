@@ -1,16 +1,13 @@
 import "dart:async";
-import "dart:convert";
 
 import "package:audio_service/audio_service.dart";
 import "package:audio_session/audio_session.dart";
-import "package:dio/dio.dart";
 import "package:flutter/widgets.dart";
 import "package:just_audio/just_audio.dart";
 
 import "../../../config/env.dart";
-import "../data/models/history_entry.dart";
-import "../data/models/now_playing.dart";
-import "../data/models/schedule.dart";
+import "../data/client/radio_luz_client.dart";
+import "../data/repository/radio_luz_repository.dart";
 
 //Here the audio player is defined. Its created at app startup and is used for playing live stream.
 //This whole class describes the audio player behavior, media items and metadata.
@@ -34,18 +31,7 @@ class RadioAudioHandlerBridge extends BaseAudioHandler with SeekHandler, Widgets
   final _player = AudioPlayer();
 
   //used for fetching recently played and schedule
-  final _dio = Dio(
-    BaseOptions(
-      baseUrl: Env.radioLuzApiUrl,
-      connectTimeout: const Duration(seconds: 10),
-      receiveTimeout: const Duration(seconds: 10),
-      headers: {
-        "User-Agent": "RadioLuzApp/1.0 (Dart Dio)",
-        "Accept": "*/*",
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-    ),
-  );
+  final RadioLuzRepository _repository;
 
   //main media item - live radio (information source)
   var _radioLuzMediaItem = MediaItem(
@@ -69,7 +55,7 @@ class RadioAudioHandlerBridge extends BaseAudioHandler with SeekHandler, Widgets
   StreamSubscription<PlaybackState>? _playbackEventSubscription;
   StreamSubscription<SequenceState?>? _sequenceStateSubscription;
 
-  RadioAudioHandlerBridge() {
+  RadioAudioHandlerBridge() : _repository = RadioLuzRepository(createRadioLuzDio()) {
     _initializeListeners();
   }
 
@@ -127,16 +113,11 @@ class RadioAudioHandlerBridge extends BaseAudioHandler with SeekHandler, Widgets
   Future<void> _fetchNowPlaying() async {
     try {
       if (_isDisposed) return;
-      final formData = FormData.fromMap({"action": "nowPlaying"});
-      final response = await _dio.post<String>("admin-ajax.php", data: formData);
+      final nowPlaying = await _repository.getNowPlaying();
 
-      if (response.data == null) return;
-
-      final dynamic decoded = jsonDecode(response.data!);
-      if (decoded is! Map<String, dynamic>) return;
-
-      final nowPlaying = NowPlaying.fromJson(decoded);
-      if (nowPlaying.now == null || nowPlaying.now!.isEmpty) return;
+      if (nowPlaying == null || nowPlaying.now == null || nowPlaying.now!.isEmpty) {
+        return;
+      }
 
       _radioLuzMediaItem = _radioLuzMediaItem.copyWith(album: nowPlaying.now, artist: nowPlaying.now);
 
@@ -229,18 +210,12 @@ class RadioAudioHandlerBridge extends BaseAudioHandler with SeekHandler, Widgets
     }
 
     try {
-      final formData = FormData.fromMap({"action": "histoprylog"});
-      final response = await _dio.post<String>("admin-ajax.php", data: formData);
-
       if (_isDisposed) return [];
 
-      if (response.data == null) return _recentlyPlayedCache ?? [];
+      final recentlyPlayed = await _repository.getRecentlyPlayed();
+      if (recentlyPlayed == null) return _recentlyPlayedCache ?? [];
 
-      final dynamic decoded = jsonDecode(response.data!);
-      if (decoded is! List) return _recentlyPlayedCache ?? [];
-
-      final items = decoded.whereType<List<dynamic>>().map((e) {
-        final entry = HistoryEntry.fromList(e);
+      final items = recentlyPlayed.map((entry) {
         final timeStr = "${entry.time.hour.toString().padLeft(2, '0')}:${entry.time.minute.toString().padLeft(2, '0')}";
         return MediaItem(
           id: "history_${entry.date}_${entry.title}",
@@ -269,15 +244,9 @@ class RadioAudioHandlerBridge extends BaseAudioHandler with SeekHandler, Widgets
     }
 
     try {
-      final formData = FormData.fromMap({"action": "schedule"});
-      final response = await _dio.post<String>("admin-ajax.php", data: formData);
+      final schedule = await _repository.getSchedule();
 
-      if (response.data == null) return _scheduleCache ?? [];
-
-      final dynamic jsonMap = jsonDecode(response.data!);
-      if (jsonMap is! Map<String, dynamic>) return _scheduleCache ?? [];
-
-      final schedule = Schedule.fromJson(jsonMap);
+      if (schedule == null) return _scheduleCache ?? [];
 
       final items = <MediaItem>[];
 
