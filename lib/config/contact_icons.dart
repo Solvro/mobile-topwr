@@ -13,9 +13,10 @@ abstract class ContactIconsConfig {
     "https://x.com": Assets.svg.contactIcons.x,
     "tiktok": Assets.svg.contactIcons.tiktok,
     "discord": Assets.svg.contactIcons.discord,
+    "https://topwr.solvro.pl/buildings/": Assets.svg.contactIcons.compass,
   };
   static final iconsOrder = {
-    "maps": 1,
+    "https://topwr.solvro.pl/buildings/": 1,
     "tel": 2,
     "mailto:": 3,
     "facebook": 5,
