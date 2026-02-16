@@ -43,10 +43,6 @@ class RadioController extends _$RadioController {
     final isLoading =
         processingState == ProcessingState.loading || processingState == ProcessingState.buffering || isIdle;
 
-    if (isIdle) {
-      unawaited(_initPlayer());
-    }
-
     return RadioState(isPlaying: isPlaying, isLoading: isLoading, volume: volume);
   }
 
@@ -70,6 +66,7 @@ class RadioController extends _$RadioController {
     if (_initialized) return;
     _audioPlayerStrings = audioPlayerStrings;
     _initialized = true;
+    unawaited(_initPlayer());
   }
 
   Future<Uri> assetToFileUri(String assetPath) async {

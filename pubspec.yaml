@@ -145,6 +145,9 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+    
+  integration_test:
+    sdk: flutter
 
   #Storage
   drift_dev: ^2.31.0

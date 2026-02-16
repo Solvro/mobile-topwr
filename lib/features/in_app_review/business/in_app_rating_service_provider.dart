@@ -4,7 +4,7 @@ import "in_app_rating_service.dart";
 
 part "in_app_rating_service_provider.g.dart";
 
-@riverpod
+@Riverpod(keepAlive: true)
 InAppRatingService inAppRatingService(Ref ref) {
   return InAppRatingService(ref);
 }

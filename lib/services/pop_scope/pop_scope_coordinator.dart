@@ -33,6 +33,8 @@ class PopScopeCoordinator extends _$PopScopeCoordinator {
     required bool blockDefaultPop,
     required PopScopeOrder order,
   }) {
+    if (!ref.mounted) return "";
+
     final id = _generateId();
     final registration = (id: id, onCustomPopAction: onCustomPopAction, blockDefaultPop: blockDefaultPop, order: order);
     state = state.add(registration);
@@ -40,11 +42,16 @@ class PopScopeCoordinator extends _$PopScopeCoordinator {
   }
 
   void unregisterCallback(String id) {
+    if (!ref.mounted) return;
+
     state = state.where((cb) => cb.id != id).toIList();
   }
 
   void onCustomPopAction() {
     // Execute first callback that returns that it blocks navigation
+
+    if (!ref.mounted) return;
+
     for (final registration in state.where((r) => r.blockDefaultPop).sortedBy((r) => r.order.value)) {
       return registration.onCustomPopAction();
     }
