@@ -33,7 +33,9 @@ class RadioController extends _$RadioController {
     final processingState = playerStateProvider.value?.processingState;
 
     final isPlaying = (playerStateProvider.value?.playing ?? false) && processingState == ProcessingState.ready;
-    final isLoading = processingState == ProcessingState.loading || processingState == ProcessingState.buffering;
+    final isIdle = processingState == ProcessingState.idle;
+    final isLoading =
+        processingState == ProcessingState.loading || processingState == ProcessingState.buffering || isIdle;
 
     return RadioState(isPlaying: isPlaying, isLoading: isLoading, volume: volume, isMuted: volume <= _muteThreshold);
   }
@@ -41,6 +43,7 @@ class RadioController extends _$RadioController {
   void init(AudioPlayerStrings audioPlayerStrings) {
     if (_initialized) return;
     _initialized = true;
+    unawaited(_initPlayer());
   }
 
   Future<Uri> assetToFileUri(String assetPath) async {
