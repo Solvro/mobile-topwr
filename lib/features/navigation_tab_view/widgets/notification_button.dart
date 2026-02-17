@@ -11,14 +11,28 @@ import "../../analytics/data/clarity.dart";
 import "../../analytics/data/clarity_events.dart";
 import "notification_dialog.dart";
 
-class NotificationButton extends ConsumerWidget {
+class NotificationButton extends ConsumerStatefulWidget {
   const NotificationButton({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<NotificationButton> createState() => _NotificationButtonState();
+}
+
+class _NotificationButtonState extends ConsumerState<NotificationButton> {
+  final FocusNode _focusNode = FocusNode();
+
+  @override
+  void dispose() {
+    _focusNode.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Padding(
       padding: SksConfig.outerPaddingLarge,
       child: MySplashTile(
+        focusNode: _focusNode,
         onTap: () async {
           unawaited(ref.trackEvent(ClarityEvents.openNotificationInfoBellDialog));
           await showNotificationDialog(
@@ -28,6 +42,7 @@ class NotificationButton extends ConsumerWidget {
               Navigator.of(context).pop();
             },
           );
+          _focusNode.requestFocus();
         },
         child: Container(
           padding: SksConfig.innerPadding,
