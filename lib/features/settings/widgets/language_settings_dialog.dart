@@ -60,7 +60,6 @@ class LanguageDialog extends ConsumerWidget {
                     color: context.colorScheme.surfaceTint,
                   ),
                   child: ListTile(
-                    key: ValueKey("language_choice_$code"),
                     selected: selected,
                     title: Text(semanticsLabel: name.substring(1), name),
                     trailing: selected ? Icon(Icons.check, color: context.colorScheme.primary) : null,
