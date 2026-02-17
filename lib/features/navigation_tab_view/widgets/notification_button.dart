@@ -19,7 +19,7 @@ class NotificationButton extends ConsumerStatefulWidget {
 }
 
 class _NotificationButtonState extends ConsumerState<NotificationButton> {
-  final FocusNode _focusNode = FocusNode();
+  final _focusNode = FocusNode();
 
   @override
   void dispose() {
