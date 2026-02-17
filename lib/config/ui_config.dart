@@ -46,6 +46,7 @@ abstract class HomeViewConfig {
   static const paddingSmall = 6.0;
   static const paddingMedium = 16.0;
   static const paddingLarge = 24.0;
+  static const scrollableKey = Key("scrollable");
 
   static const squareCardTextShadow = [
     Shadow(color: HexColor.consts(0x6621334D66), blurRadius: 4, offset: Offset(0, 2)),
@@ -262,4 +263,8 @@ abstract class AlertDialogConfig {
   static const horizontalPadding = 14.0;
   static const verticalPadding = 20.0;
   static const buttonFontSize = 16.0;
+}
+
+abstract class ChangelogConfig {
+  static const closeButtonKey = Key("close_button");
 }

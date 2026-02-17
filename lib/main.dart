@@ -2,7 +2,6 @@ import "dart:async";
 import "dart:io";
 
 import "package:clarity_flutter/clarity_flutter.dart";
-import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:flutter/services.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
@@ -34,37 +33,21 @@ import "theme/app_theme.dart";
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // 🛠️ ZMIANA NAZWY FLAGI I DEFAULT VALUE
-  const isTestMode = bool.fromEnvironment("IS_APP_TEST", defaultValue: false);
+  const isTestMode = bool.fromEnvironment("IS_APP_TEST");
 
-  // 🔍 DEBUG PRINT - szukaj tego w logach emulatora!
-  // ignore: avoid_print
-  print("##############################################");
-  // ignore: avoid_print
-  print("🚀 APKA STARTUJE. CZY TRYB TESTU: $isTestMode");
-  // ignore: avoid_print
-  print("##############################################");
-
-  if (!isTestMode) {
-    SplashScreenController.preserveNativeSplashScreen();
-  }
+  SplashScreenController.preserveNativeSplashScreen();
 
   final data = await PlatformAssetBundle().load(Assets.certs.przewodnikPwrEduPl);
   SecurityContext.defaultContext.setTrustedCertificatesBytes(data.buffer.asUint8List());
 
   if (isTestMode) {
-    runApp(
-      ProviderScope(
-        retry: null,
-        child: const MyApp(), // Bez SplashScreen w testach
-      ),
-    );
+    runApp(const ProviderScope(child: MyApp()));
   } else {
     await SentryFlutter.init((options) {
       options.dsn = Env.bugsinkDsn;
       options.sendDefaultPii = true;
       options.tracesSampleRate = 0;
-    }, appRunner: () => runNormalApp());
+    }, appRunner: runNormalApp);
   }
 }
 
@@ -106,9 +89,9 @@ class MyApp extends HookConsumerWidget {
     final currentLocale = ref.watch(preferredLanguageRepositoryProvider);
     useDeeplinkListener(ref);
 
-    const isTestMode = bool.fromEnvironment("IS_APP_TEST", defaultValue: false);
+    const isTestMode = bool.fromEnvironment("IS_APP_TEST");
 
-    Widget app = MaterialApp.router(
+    final Widget app = MaterialApp.router(
       locale: Locale(currentLocale.value?.name ?? SolvroLocale.pl.name),
       builder: (context, child) => InAppReviewWidget(child: UpdateDialogWrapper(child: child!)),
       title: MyAppConfig.title,
