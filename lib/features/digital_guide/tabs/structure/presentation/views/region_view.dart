@@ -82,6 +82,11 @@ class _RegionView extends ConsumerWidget {
         itemCount: region.lifts.length,
       ),
       RegionDataSliverListItem(
+        text: (index) => context.localize.lodge,
+        onTap: (index) => ref.navigateDigitalGuideLodge(regionData.lodges[index]),
+        itemCount: region.lodges.length,
+      ),
+      RegionDataSliverListItem(
         text: (index) => regionData.toilets[index].toiletType == ToiletType.men
             ? context.localize.men_toilet
             : context.localize.women_toilet,
@@ -97,11 +102,6 @@ class _RegionView extends ConsumerWidget {
         text: (index) => context.localize.parking,
         onTap: (index) => ref.navigateDigitalGuideParking(regionData.parkings[index]),
         itemCount: region.parkings.length,
-      ),
-      RegionDataSliverListItem(
-        text: (index) => context.localize.lodge,
-        onTap: (index) => ref.navigateDigitalGuideLodge(regionData.lodges[index]),
-        itemCount: region.lodges.length,
       ),
       RegionDataSliverListItem(
         text: (index) => context.localize.information_point,
@@ -125,7 +125,7 @@ class _RegionView extends ConsumerWidget {
               delegate: SliverChildListDelegate([
                 Text(
                   region.translations.plTranslation.name,
-                  style: context.textTheme.headline.copyWith(fontSize: DigitalGuideConfig.headlineFont),
+                  style: context.textTheme.headlineMedium?.copyWith(fontSize: DigitalGuideConfig.headlineFont),
                 ),
                 AccessibilityInformationCardsList(
                   prefix: context.localize.region_prefix,
@@ -143,12 +143,12 @@ class _RegionView extends ConsumerWidget {
 
                 Text(
                   context.localize.region_location,
-                  style: context.textTheme.boldBody.copyWith(fontSize: DigitalGuideConfig.bodyFont),
+                  style: context.textTheme.bodyMedium?.copyWith(fontSize: DigitalGuideConfig.bodyFont),
                 ),
                 const SizedBox(height: DigitalGuideConfig.heightSmall),
                 Text(
                   region.translations.plTranslation.location,
-                  style: context.textTheme.body.copyWith(fontSize: DigitalGuideConfig.bodyFont),
+                  style: context.textTheme.bodyLarge?.copyWith(fontSize: DigitalGuideConfig.bodyFont),
                 ),
                 const SizedBox(height: DigitalGuideConfig.heightMedium),
               ]),

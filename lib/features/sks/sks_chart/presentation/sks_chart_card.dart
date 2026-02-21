@@ -36,7 +36,7 @@ class SksChartCard extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: SksChartConfig.paddingMedium),
       width: double.infinity,
       decoration: BoxDecoration(
-        color: context.colorTheme.greyLight,
+        color: context.colorScheme.surfaceTint,
         borderRadius: BorderRadius.circular(SksChartConfig.borderRadius),
       ),
       child: Padding(

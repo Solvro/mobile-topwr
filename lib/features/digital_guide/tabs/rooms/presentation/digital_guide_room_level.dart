@@ -22,7 +22,7 @@ class DigitalGuideRoomLevel extends ConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(level.translations.plTranslation.name, style: context.textTheme.lightTitle),
+          Text(level.translations.plTranslation.name, style: context.textTheme.titleMedium),
           const SizedBox(height: 10),
           ListView.separated(
             physics: const NeverScrollableScrollPhysics(),

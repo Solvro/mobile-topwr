@@ -28,7 +28,7 @@ class ModeCheckbox extends ConsumerWidget {
     return CheckboxListTile(
       dense: true,
       controlAffinity: ListTileControlAffinity.leading,
-      title: Text(mode.localizedLabel(context), style: context.aboutUsTheme.body),
+      title: Text(mode.localizedLabel(context), style: context.textTheme.labelLarge),
       value: value.value ?? false,
       onChanged: onChanged,
     );

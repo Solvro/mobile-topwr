@@ -19,7 +19,7 @@ class AboutUsSection extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(context.localize.about_us, style: context.textTheme.headline),
+                Text(context.localize.about_us, style: context.textTheme.headlineMedium),
                 const SizedBox(height: 16),
                 MyHtmlWidget(text),
               ],

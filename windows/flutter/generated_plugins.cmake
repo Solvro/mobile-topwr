@@ -3,7 +3,7 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
-  audioplayers_windows
+  app_links
   connectivity_plus
   firebase_core
   geolocator_windows

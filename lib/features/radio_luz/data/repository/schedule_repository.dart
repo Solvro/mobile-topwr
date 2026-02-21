@@ -1,32 +1,19 @@
-import "dart:convert";
-
-import "package:dio/dio.dart";
-import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "../client/radio_luz_client.dart";
 import "../domain/schedule_entity.dart";
-import "../models/schedule.dart";
+import "radio_luz_repository.dart";
 
 part "schedule_repository.g.dart";
 
 @riverpod
 Future<List<BroadcastEntity>?> scheduleRepository(Ref ref) async {
-  final dio = ref.read(radioLuzClientProvider);
+  final repository = ref.read(radioLuzRepositoryProvider);
 
-  final formData = FormData.fromMap({"action": "schedule"});
+  final schedule = await repository.getSchedule();
 
-  final response = await dio.post<String>("admin-ajax.php", data: formData);
-
-  final rawData = response.data;
-
-  if (rawData == null) {
+  if (schedule == null) {
     return null;
   }
-
-  final jsonMap = jsonDecode(rawData) as Map<String, dynamic>;
-
-  final schedule = Schedule.fromJson(jsonMap);
 
   return schedule.broadcasts
       .expand(

@@ -8,17 +8,29 @@ import "../theme/app_theme.dart";
 import "../utils/context_extensions.dart";
 
 class SearchBox extends HookWidget {
-  const SearchBox({super.key, required this.onQueryChanged, this.onTap, this.searchText});
+  const SearchBox({super.key, required this.onQueryChanged, this.onTap, this.searchText, this.initialQuery});
   final VoidCallback? onTap;
   final String? searchText;
   final void Function(String query) onQueryChanged;
+  final String? initialQuery;
 
   @override
   Widget build(BuildContext context) {
     final scaler = context.textScaler.clamp(maxScaleFactor: 2);
     final focusNode = useFocusNode();
-    final controller = useTextEditingController();
-    final showCloseIcon = useState(false);
+    final controller = useTextEditingController(text: initialQuery);
+    final showCloseIcon = useState(initialQuery?.isNotEmpty ?? false);
+
+    useEffect(() {
+      if (initialQuery != null && initialQuery != "") {
+        controller.text = initialQuery!;
+        showCloseIcon.value = initialQuery!.isNotEmpty;
+      } else {
+        controller.clear();
+        showCloseIcon.value = false;
+      }
+      return null;
+    }, [initialQuery]);
 
     final onTapOutside = useCallback((_) {
       if (focusNode.hasFocus) {
@@ -37,9 +49,10 @@ class SearchBox extends HookWidget {
       onChanged("");
     }, [controller, onChanged, context]);
 
-    final color = context.colorTheme.blackMirage.withValues(alpha: 0.48);
+    final color = context.colorScheme.onTertiary.withValues(alpha: 0.48);
 
-    return ExcludeSemantics(
+    return Focus(
+      autofocus: true,
       child: TextField(
         controller: controller,
         focusNode: focusNode,
@@ -50,9 +63,9 @@ class SearchBox extends HookWidget {
           constraints: BoxConstraints(maxHeight: scaler.scale(SearchBoxConfig.height)),
           contentPadding: EdgeInsets.zero,
           filled: true,
-          fillColor: context.colorTheme.greyLight,
+          fillColor: context.colorScheme.surfaceTint,
           hintText: "${searchText ?? context.localize.search}...",
-          hintStyle: context.textTheme.lightTitle.copyWith(color: color),
+          hintStyle: context.textTheme.titleMedium?.copyWith(color: color),
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: BorderSide.none),
           prefixIcon: Padding(
             padding: const EdgeInsets.all(10),
@@ -60,7 +73,7 @@ class SearchBox extends HookWidget {
           ),
           suffixIcon: showCloseIcon.value
               ? IconButton(
-                  icon: Icon(Icons.cancel, color: context.colorTheme.blackMirage, size: 19),
+                  icon: Icon(Icons.cancel, color: context.colorScheme.onTertiary, size: 19),
                   onPressed: onSuffixPressed,
                 )
               : null,

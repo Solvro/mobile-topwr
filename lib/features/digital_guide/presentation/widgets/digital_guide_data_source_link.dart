@@ -19,9 +19,10 @@ class DigitalGuideDataSourceLink extends ConsumerWidget {
           children: [
             TextSpan(
               text: context.localize.digital_guide_website,
-              style: context.textTheme.bodyOrange.copyWith(
+              style: context.textTheme.bodyLarge?.copyWith(
+                color: context.colorScheme.primary,
                 decoration: TextDecoration.underline,
-                decorationColor: context.colorTheme.orangePomegranade,
+                decorationColor: context.colorScheme.primary,
                 fontWeight: FontWeight.bold,
               ),
               recognizer: TapGestureRecognizer()
@@ -32,7 +33,7 @@ class DigitalGuideDataSourceLink extends ConsumerWidget {
           ],
         ),
         textAlign: TextAlign.center,
-        style: context.textTheme.body,
+        style: context.textTheme.bodyLarge,
       ),
     );
   }

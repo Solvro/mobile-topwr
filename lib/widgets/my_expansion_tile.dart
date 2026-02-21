@@ -26,13 +26,13 @@ class MyExpansionTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ExpansionTile(
       key: key,
-      title: Text(title, style: context.textTheme.title),
-      backgroundColor: backgroundColor ?? context.colorTheme.greyLight,
-      collapsedBackgroundColor: collapsedBackgroundColor ?? context.colorTheme.greyLight,
+      title: Text(title, style: context.textTheme.titleLarge),
+      backgroundColor: backgroundColor ?? context.colorScheme.surfaceTint,
+      collapsedBackgroundColor: collapsedBackgroundColor ?? context.colorScheme.surfaceTint,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(GuideDetailViewConfig.borderRadius)),
       collapsedShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(GuideDetailViewConfig.borderRadius)),
-      iconColor: context.colorTheme.orangePomegranade,
-      collapsedIconColor: context.colorTheme.orangePomegranade,
+      iconColor: context.colorScheme.primary,
+      collapsedIconColor: context.colorScheme.primary,
       initiallyExpanded: initiallyExpanded,
       onExpansionChanged: (expanded) => onExpansionChanged?.call(expanded: expanded),
       children: children,

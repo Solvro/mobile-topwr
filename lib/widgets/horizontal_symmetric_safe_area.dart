@@ -17,17 +17,15 @@ extension MediaQueryPaddingExtensionX on BuildContext {
   }
 }
 
-class HorizontalSymmetricSafeArea extends ConsumerWidget {
-  const HorizontalSymmetricSafeArea({super.key, required this.child});
+class HorizontalSymmetricSafeArea extends StatelessWidget {
+  const HorizontalSymmetricSafeArea({super.key, required this.child, this.top = true});
   final Widget child;
-
+  final bool top;
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final currentRoute = ref.watch(currentRouteProvider)?.settings.name;
-    final isMapView = currentRoute == "BuildingsRoute" || currentRoute == "ParkingsRoute";
+  Widget build(BuildContext context) {
     return Padding(
       padding: context.maxOfHorizontalViewPaddings,
-      child: SafeArea(left: false, right: false, top: !isMapView, child: child),
+      child: SafeArea(left: false, right: false, top: top, child: child),
     );
   }
 }
@@ -40,6 +38,7 @@ class HorizontalSymmetricSafeAreaScaffold extends ConsumerWidget {
     this.appBar,
     this.backgroundColor,
     this.extraFabs,
+    this.top = true,
   });
 
   final Widget body;
@@ -47,6 +46,7 @@ class HorizontalSymmetricSafeAreaScaffold extends ConsumerWidget {
   final PreferredSizeWidget? appBar;
   final Color? backgroundColor;
   final List<Widget>? extraFabs;
+  final bool top;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -59,7 +59,7 @@ class HorizontalSymmetricSafeAreaScaffold extends ConsumerWidget {
         FloatingActionButton(
           heroTag: "radioFab",
           elevation: 3,
-          backgroundColor: context.colorTheme.orangePomegranadeLighter,
+          backgroundColor: context.colorScheme.primary,
           onPressed: () async {
             await ref.navigateToRadioLuz();
           },
@@ -72,7 +72,7 @@ class HorizontalSymmetricSafeAreaScaffold extends ConsumerWidget {
       appBar: appBar,
       bottomNavigationBar: bottomNavigationBar,
       backgroundColor: backgroundColor,
-      body: HorizontalSymmetricSafeArea(child: body),
+      body: HorizontalSymmetricSafeArea(top: top, child: body),
       floatingActionButton: fabs.isNotEmpty ? _FloatingActionButtons(fabs: fabs) : null,
     );
   }

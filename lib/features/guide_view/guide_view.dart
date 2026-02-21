@@ -3,7 +3,8 @@ import "dart:async";
 import "package:auto_route/auto_route.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
-import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:flutter_hooks/flutter_hooks.dart";
+import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../../../widgets/my_error_widget.dart";
 import "../../config/ui_config.dart";
@@ -30,21 +31,32 @@ class GuideView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ProviderScope(overrides: [searchGuideControllerProvider], child: const _GuideView());
+    return const _GuideView();
   }
 }
 
-class _GuideView extends ConsumerWidget {
+class _GuideView extends HookConsumerWidget {
   const _GuideView();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final initialQuery = context.routeData.parent?.queryParams.optString("qGuide");
+    useEffect(() {
+      if (initialQuery != null && initialQuery.isNotEmpty) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          ref.read(searchGuideControllerProvider.notifier).onTextChanged(initialQuery);
+        });
+      }
+      return null;
+    }, [initialQuery]);
+
     return Semantics(
       label: context.localize.guide_view_description,
       child: Scaffold(
         appBar: SearchBoxAppBar(
           context,
           title: context.localize.guide,
+          initialQuery: initialQuery,
           onQueryChanged: ref.watch(searchGuideControllerProvider.notifier).onTextChanged,
           onSearchBoxTap: () {
             unawaited(ref.trackEvent(ClarityEvents.searchGuideArticles));
@@ -93,7 +105,7 @@ class _GuideInfo extends ConsumerWidget {
       trailing: SizedBox(
         height: context.textScaler.scale(WideTileCardConfig.imageSize),
         width: WideTileCardConfig.imageSize,
-        child: Icon(Icons.lightbulb_outline, size: context.textScaler.scale(55), color: context.colorTheme.greyPigeon),
+        child: Icon(Icons.lightbulb_outline, size: context.textScaler.scale(55), color: context.colorScheme.tertiary),
       ),
       onTap: () async {
         await ref.launch(emailLaunchUri.toString());

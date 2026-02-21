@@ -12,8 +12,8 @@ class LayersButton extends ConsumerWidget {
     return FloatingActionButton.small(
       heroTag: "layers_button",
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      backgroundColor: context.colorTheme.whiteSoap,
-      child: Icon(Icons.map, color: context.colorTheme.blackMirage),
+      backgroundColor: context.colorScheme.surface,
+      child: Icon(Icons.map, color: context.colorScheme.onTertiary),
       onPressed: () => LayerOptionsDialog.show(context, ref),
     );
   }

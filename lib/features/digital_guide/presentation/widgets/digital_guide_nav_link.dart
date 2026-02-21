@@ -20,8 +20,8 @@ class DigitalGuideNavLink extends StatelessWidget {
         padding: DigitalGuideConfig.mediumButtonPadding,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(DigitalGuideConfig.borderRadiusMedium),
-          border: Border.all(color: context.colorTheme.greyPigeon),
-          color: context.colorTheme.greyLight,
+          border: Border.all(color: context.colorScheme.tertiary),
+          color: context.colorScheme.surfaceTint,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -30,12 +30,12 @@ class DigitalGuideNavLink extends StatelessWidget {
               child: Text(
                 text,
                 textScaler: scaler,
-                style: context.textTheme.title,
+                style: context.textTheme.titleLarge,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 3,
               ),
             ),
-            Icon(Icons.chevron_right, color: context.colorTheme.blueAzure),
+            Icon(Icons.chevron_right, color: context.colorScheme.secondary),
           ],
         ),
       ),

@@ -69,13 +69,13 @@ class MyAudioPlayer extends HookWidget {
           children: [
             IconButton(
               icon: Icon(isPlaying.value ? Icons.pause : Icons.play_arrow),
-              color: context.colorTheme.blackMirage,
+              color: context.colorScheme.onTertiary,
               onPressed: togglePlayPause,
             ),
             ExcludeSemantics(
               child: Text(
                 "${formatDurationToMinutesString(currentTime.value)} / ${formatDurationToMinutesString(totalTime.value)}",
-                style: TextStyle(fontSize: 14, color: context.colorTheme.blackMirage),
+                style: TextStyle(fontSize: 14, color: context.colorScheme.onTertiary),
               ),
             ),
             const SizedBox(width: DigitalGuideConfig.heightTiny),
@@ -85,7 +85,7 @@ class MyAudioPlayer extends HookWidget {
                 value: currentTime.value.inSeconds.toDouble(),
                 max: totalTime.value.inSeconds.toDouble(),
                 onChanged: seekAudio,
-                activeColor: context.colorTheme.blackMirage,
+                activeColor: context.colorScheme.onTertiary,
                 inactiveColor: Colors.grey[400],
               ),
             ),

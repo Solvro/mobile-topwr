@@ -61,14 +61,17 @@ class _SksButton extends StatelessWidget {
                 Container(
                   padding: SksConfig.innerPadding,
                   decoration: BoxDecoration(
-                    border: Border.all(color: context.colorTheme.orangePomegranade),
+                    border: Border.all(color: context.colorScheme.primary),
                     borderRadius: BorderRadius.circular(SksConfig.radius),
                   ),
                   child: Row(
                     children: [
-                      Icon(Icons.supervised_user_circle, color: context.colorTheme.orangePomegranade),
+                      Icon(Icons.supervised_user_circle, color: context.colorScheme.primary),
                       const SizedBox(width: SksConfig.sizedBoxWidth),
-                      Text(sksUserData.activeUsers.toString(), style: context.textTheme.titleOrange),
+                      Text(
+                        sksUserData.activeUsers.toString(),
+                        style: context.textTheme.titleLarge?.copyWith(color: context.colorScheme.primary),
+                      ),
                       const SizedBox(width: SksConfig.sizedBoxWidth),
                       sksUserData.trend.icon,
                     ],

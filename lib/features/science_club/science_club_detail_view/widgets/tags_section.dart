@@ -28,14 +28,17 @@ class TagsSection extends ConsumerWidget {
         children: [
           for (final tag in tags!)
             Chip(
-              label: Text("#${tag.tag}", style: context.textTheme.bodyBlue),
-              labelStyle: context.textTheme.body,
+              label: Text(
+                "#${tag.tag}",
+                style: context.textTheme.bodyLarge?.copyWith(color: context.colorScheme.secondary),
+              ),
+              labelStyle: context.textTheme.bodyLarge,
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
               materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
               visualDensity: VisualDensity.compact,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(ScienceClubsViewConfig.buttonBorderRadius),
-                side: BorderSide(color: context.colorTheme.greyPigeon),
+                side: BorderSide(color: context.colorScheme.tertiary),
               ),
             ),
         ],

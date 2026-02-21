@@ -3,6 +3,7 @@ import "package:flutter_map/flutter_map.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../config/map_view_config.dart";
+import "../../multilayer_map/data/model/multilayer_section_type.dart";
 import "../controllers/controllers_set.dart";
 
 typedef MarkerBuilder<T> = Marker Function(T item, WidgetRef ref, {required bool isActive});
@@ -22,6 +23,8 @@ class MapConfig<T extends GoogleNavigable> extends InheritedWidget {
     required this.mapSheetSize,
     required this.animateListTiles,
     required this.initialActiveItemId,
+    required this.initialQuery,
+    this.initialSectionType,
   });
 
   final MapControllers<T> controllers;
@@ -31,6 +34,11 @@ class MapConfig<T extends GoogleNavigable> extends InheritedWidget {
   final MapSheetSize mapSheetSize;
   final bool animateListTiles;
   final String? initialActiveItemId;
+  final String? initialQuery;
+
+  /// The section type to scroll to initially.
+  /// Used for deeplinks without specific ID to scroll to the correct section.
+  final MultilayerSectionType? initialSectionType;
 
   static MapConfig<T>? maybeOf<T extends GoogleNavigable>(BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType<MapConfig<T>>();
@@ -91,5 +99,13 @@ extension MapConfigX on BuildContext {
 
   String? initialActiveItemId<T extends GoogleNavigable>() {
     return config<T>().initialActiveItemId;
+  }
+
+  String? initialQuery<T extends GoogleNavigable>() {
+    return config<T>().initialQuery;
+  }
+
+  MultilayerSectionType? initialSectionType<T extends GoogleNavigable>() {
+    return config<T>().initialSectionType;
   }
 }

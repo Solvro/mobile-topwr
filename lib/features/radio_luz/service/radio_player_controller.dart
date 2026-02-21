@@ -1,15 +1,12 @@
 import "dart:async";
 import "dart:io";
 
-import "package:audio_service/audio_service.dart";
 import "package:flutter/services.dart";
 import "package:just_audio/just_audio.dart";
 import "package:path/path.dart" as p;
 import "package:path_provider/path_provider.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "../../../config/env.dart";
-import "../../../gen/assets.gen.dart";
 import "../data/models/audio_player_strings.dart";
 import "audio_player_streams.dart";
 import "radio_audio_handler.dart";
@@ -20,8 +17,7 @@ part "radio_player_controller.g.dart";
 
 @Riverpod(keepAlive: true)
 class RadioController extends _$RadioController {
-  late final RadioAudioHandler _handler = ref.watch(radioPlayerProvider);
-  late final AudioPlayerStrings _audioPlayerStrings;
+  late final RadioAudioHandlerBridge _handler = ref.watch(radioPlayerProvider);
 
   var _initialized = false;
 
@@ -40,24 +36,8 @@ class RadioController extends _$RadioController {
     return RadioState(isPlaying: isPlaying, isLoading: isLoading, volume: volume);
   }
 
-  Future<void> _initPlayer() async {
-    final assetPath = Assets.png.radioLuz.radioLuzLogo.path;
-    final artUri = await assetToFileUri(assetPath);
-
-    final audioSource = AudioSource.uri(
-      Uri.parse(Env.radioLuzStreamUrl),
-      tag: MediaItem(id: "1", title: _audioPlayerStrings.title, album: _audioPlayerStrings.album, artUri: artUri),
-    );
-
-    await _handler.setAudioSource(audioSource);
-
-    final volume = ref.read(audioPlayerVolumeProvider).value ?? 1.0;
-    await _handler.setVolume(volume);
-  }
-
   void init(AudioPlayerStrings audioPlayerStrings) {
     if (_initialized) return;
-    _audioPlayerStrings = audioPlayerStrings;
     _initialized = true;
   }
 
@@ -73,6 +53,11 @@ class RadioController extends _$RadioController {
     return file.uri;
   }
 
+  ///pre-loads the audio stream to reduce startup delay
+  Future<void> preload() async {
+    await _handler.preload();
+  }
+
   Future<void> play() async {
     const durationGuard = Duration(milliseconds: 200);
     final duration = _handler.bufferedPosition;
@@ -84,10 +69,6 @@ class RadioController extends _$RadioController {
   Future<void> pause() async {
     await _handler.pause();
   }
-
-  Future<void> stop() async {
-    await _handler.stop();
-  } //i don't think we need this, but keeping just in case
 
   Future<void> setVolume(double newVolume) async {
     await _handler.setVolume(newVolume);

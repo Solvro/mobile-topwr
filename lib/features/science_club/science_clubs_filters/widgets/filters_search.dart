@@ -27,7 +27,7 @@ class FiltersSearch extends HookConsumerWidget {
     // loads of fixed values, but the search box library is a very fixed
     return AnimatedPositioned(
       duration: const Duration(milliseconds: 300),
-      left: isExpanded.value ? FilterConfig.searchFilterPadding : context.textScaler.scale(67),
+      left: isExpanded.value ? FilterConfig.searchFilterPadding : context.textScaler.scale(80),
       top: 16,
       child: Semantics(
         label: context.localize.search,
@@ -38,25 +38,22 @@ class FiltersSearch extends HookConsumerWidget {
             width: expandedWidth,
             textController: textController,
             onSuffixTap: () {},
-            onChanged: ref
-                .watch(searchFiltersControllerProvider.notifier)
-                .onTextChanged, // I had to fork the lib and add this callback myself 😭
-            textFieldColor: context.colorTheme.greyLight,
-            textFieldIconColor: context.colorTheme.blackMirage,
-            color: context.colorTheme.whiteSoap,
+            onChanged: (res) {
+              ref.read(searchFiltersControllerProvider.notifier).onTextChanged(res);
+            }, // I had to fork the lib and add this callback myself 😭
+            textFieldColor: context.colorScheme.surfaceTint,
+            textFieldIconColor: context.colorScheme.onTertiary,
+            color: context.colorScheme.surface,
             autoFocus: true,
-            searchIconColor: context.colorTheme.blackMirage,
+            searchIconColor: context.colorScheme.onTertiary,
             helpText: context.localize.search,
             boxShadow: false,
             searchBarOpen: (int x) {
               isExpanded.value = x == 1; // this lib is stupid as f...
-              if (!isExpanded.value) {
-                ref.read(searchFiltersControllerProvider.notifier).onTextChanged("");
-              }
+              textController.text = ref.read(searchFiltersControllerProvider);
               unawaited(ref.trackEvent(ClarityEvents.searchSciClubFilters));
             },
             height: 48,
-            clearOnClose: true,
             clearOnSuffixTap: true,
             closeOnSubmit: false,
           ),

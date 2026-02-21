@@ -1,6 +1,7 @@
 import "package:auto_route/auto_route.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
+import "package:flutter/semantics.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:solvro_translator_core/solvro_translator_core.dart";
 
@@ -45,24 +46,27 @@ class _NewsfeedViewContent extends ConsumerWidget {
 
     return switch (newsfeed) {
       AsyncError(:final error, :final stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
-      AsyncValue(:final IList<Article> value) => GuideGrid(
-        children: [
-          for (final item in value) NewsTile(item),
-          Align(
-            alignment: Alignment.topCenter,
-            child: SizedBox(
-              width: double.infinity,
-              child: MyTextButton(
-                actionTitle: context.localize.read_more_arrows,
-                onClick: () => ref.launch(
-                  ref.watch(preferredLanguageRepositoryProvider).valueOrNull != SolvroLocale.pl
-                      ? UrlConfig.newsfeedUrlENG
-                      : UrlConfig.newsfeedUrlPL,
+      AsyncValue(:final IList<Article> value) => Padding(
+        padding: const EdgeInsets.only(top: 8),
+        child: GuideGrid(
+          children: [
+            for (int i = 0; i < value.length; i++) NewsTile(value[i], index: i),
+            Align(
+              alignment: Alignment.topCenter,
+              child: SizedBox(
+                width: double.infinity,
+                child: MyTextButton(
+                  actionTitle: context.localize.read_more_arrows,
+                  onClick: () => ref.launch(
+                    ref.watch(preferredLanguageRepositoryProvider).value != SolvroLocale.pl
+                        ? UrlConfig.newsfeedUrlENG
+                        : UrlConfig.newsfeedUrlPL,
+                  ),
                 ),
               ),
             ),
-          ),
-        ].lock,
+          ].lock,
+        ),
       ),
       _ => const Padding(padding: GuideViewConfig.gridPadding, child: DepartmentsViewLoading()),
     };
@@ -70,17 +74,25 @@ class _NewsfeedViewContent extends ConsumerWidget {
 }
 
 class NewsTile extends ConsumerWidget {
-  const NewsTile(this.item, {super.key});
+  const NewsTile(this.item, {super.key, required this.index});
   final Article item;
+  final int index;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return PhotoTrailingWideTileCard(
-      context,
-      title: item.title,
-      subtitle: item.previewText,
-      directusPhotoUrl: ImageData(url: item.imageLink),
-      onTap: () => ref.launch(item.url),
-      crossAxisAlignment: CrossAxisAlignment.stretch,
+    return Semantics(
+      label: item.title,
+      sortKey: OrdinalSortKey(index.toDouble()),
+      button: true,
+      excludeSemantics: true,
+      child: PhotoTrailingWideTileCard(
+        context,
+        title: item.title,
+        subtitle: item.previewText,
+        directusPhotoUrl: ImageData(url: item.imageLink),
+        onTap: () => ref.launch(item.url),
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+      ),
     );
   }
 }

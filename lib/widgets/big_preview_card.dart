@@ -38,7 +38,7 @@ class BigPreviewCard extends StatelessWidget {
         child: InkWell(
           onTap: onClick,
           child: Ink(
-            decoration: BoxDecoration(color: context.colorTheme.greyLight, borderRadius: BorderRadius.circular(8)),
+            decoration: BoxDecoration(color: context.colorScheme.surfaceTint, borderRadius: BorderRadius.circular(8)),
             child: SizedBox(
               width: BigPreviewCardConfig.cardWidth,
               child: Column(
@@ -71,9 +71,9 @@ class BigPreviewCard extends StatelessWidget {
                         children: [
                           DualTextMaxLines(
                             title: title,
-                            titleStyle: context.textTheme.title,
+                            titleStyle: context.textTheme.titleLarge,
                             subtitle: shortDescription,
-                            subtitleStyle: context.textTheme.body,
+                            subtitleStyle: context.textTheme.bodyLarge,
                             spacing: 7,
                             maxTotalLines: 8,
                             showVerifiedBadge: showVerifiedBadge,
@@ -84,8 +84,8 @@ class BigPreviewCard extends StatelessWidget {
                             elevation: 1,
                             padding: const EdgeInsets.all(8),
                             onPressed: onClick,
-                            color: context.colorTheme.orangePomegranade,
-                            textColor: context.colorTheme.whiteSoap,
+                            color: context.colorScheme.primary,
+                            textColor: context.colorScheme.surface,
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
                             child: Text(context.localize.read_more),
                           ),

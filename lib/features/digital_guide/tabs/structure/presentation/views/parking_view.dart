@@ -31,9 +31,12 @@ class ParkingView extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              context.localize.parking,
-              style: context.textTheme.headline.copyWith(fontSize: DigitalGuideConfig.headlineFont),
+            Focus(
+              autofocus: true,
+              child: Text(
+                context.localize.parking,
+                style: context.textTheme.headlineMedium?.copyWith(fontSize: DigitalGuideConfig.headlineFont),
+              ),
             ),
             const SizedBox(height: DigitalGuideConfig.heightSmall),
             BulletList(
@@ -55,7 +58,7 @@ class ParkingView extends ConsumerWidget {
                 l10n: context.localize,
                 parking: parking,
               ),
-              backgroundColor: context.colorTheme.whiteSoap,
+              backgroundColor: context.colorScheme.surface,
             ),
           ],
         ),

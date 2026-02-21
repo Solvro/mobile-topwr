@@ -12,7 +12,7 @@ import "../../../data/repository/levels_repository.dart";
 import "../../../presentation/widgets/digital_guide_nav_link.dart";
 
 class StructureExpansionTileContent extends ConsumerWidget {
-  const StructureExpansionTileContent({required this.digitalGuideData});
+  const StructureExpansionTileContent({super.key, required this.digitalGuideData});
 
   final DigitalGuideResponse digitalGuideData;
 
@@ -43,7 +43,7 @@ class _StructureExpansionTileContent extends ConsumerWidget {
         right: DigitalGuideConfig.heightMedium,
       ),
       child: Material(
-        color: context.colorTheme.greyLight,
+        color: context.colorScheme.surfaceTint,
         child: ListView.separated(
           physics: const NeverScrollableScrollPhysics(),
           itemBuilder: (context, index) => DigitalGuideNavLink(

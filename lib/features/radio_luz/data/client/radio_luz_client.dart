@@ -1,13 +1,11 @@
 import "package:dio/dio.dart";
-import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../../config/env.dart";
 
 part "radio_luz_client.g.dart";
 
-@riverpod
-Dio radioLuzClient(Ref ref) {
+Dio createRadioLuzDio() {
   final options = BaseOptions(
     baseUrl: Env.radioLuzApiUrl,
     connectTimeout: const Duration(seconds: 10),
@@ -19,7 +17,10 @@ Dio radioLuzClient(Ref ref) {
     },
   );
 
-  final dio = Dio(options);
+  return Dio(options);
+}
 
-  return dio;
+@riverpod
+Dio radioLuzClient(Ref ref) {
+  return createRadioLuzDio();
 }

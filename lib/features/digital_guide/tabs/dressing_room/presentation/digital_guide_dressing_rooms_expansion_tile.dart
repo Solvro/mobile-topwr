@@ -14,7 +14,7 @@ import "../data/repository/dressing_rooms_repository.dart";
 import "../domain/dressing_room_accessibility_comments_manager.dart";
 
 class DigitalGuideDressingRoomsExpansionTileContent extends ConsumerWidget {
-  const DigitalGuideDressingRoomsExpansionTileContent(this.digitalGuideResponse);
+  const DigitalGuideDressingRoomsExpansionTileContent(this.digitalGuideResponse, {super.key});
 
   final DigitalGuideResponse digitalGuideResponse;
 
@@ -51,7 +51,7 @@ class _DigitalGuideDressingRoomsExpansionTileContent extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(context.localize.localization, style: context.textTheme.title),
+                Text(context.localize.localization, style: context.textTheme.titleLarge),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: DigitalGuideConfig.heightSmall),
                   child: Text(dressingRoomInformation.location),
@@ -66,7 +66,7 @@ class _DigitalGuideDressingRoomsExpansionTileContent extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(context.localize.working_hours, style: context.textTheme.title),
+                  Text(context.localize.working_hours, style: context.textTheme.titleLarge),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: DigitalGuideConfig.heightSmall),
                     child: Text(dressingRoomInformation.workingDaysAndHours),
@@ -83,7 +83,7 @@ class _DigitalGuideDressingRoomsExpansionTileContent extends StatelessWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(bottom: DigitalGuideConfig.paddingSmall),
-                    child: Text(context.localize.additional_information, style: context.textTheme.title),
+                    child: Text(context.localize.additional_information, style: context.textTheme.titleLarge),
                   ),
                   Text(dressingRoomInformation.comment),
                 ],

@@ -15,13 +15,9 @@ class MyLocationButton extends ConsumerWidget {
       child: FloatingActionButton.small(
         heroTag: "my_location_button",
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        backgroundColor: context.colorTheme.orangePomegranade,
+        backgroundColor: context.colorScheme.primary,
         onPressed: ref.watch(isFollowingCurrentLocationControllerProvider.notifier).buttonClicked,
-        child: Icon(
-          semanticLabel: context.localize.my_location,
-          Icons.my_location,
-          color: context.colorTheme.whiteSoap,
-        ),
+        child: Icon(semanticLabel: context.localize.my_location, Icons.my_location, color: context.colorScheme.surface),
       ),
     );
   }

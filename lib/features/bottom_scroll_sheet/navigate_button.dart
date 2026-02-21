@@ -16,12 +16,12 @@ class NavigateButton<T extends GoogleNavigable> extends ConsumerWidget {
     return Padding(
       padding: const EdgeInsets.only(right: MapViewBottomSheetConfig.horizontalPadding - 12),
       child: TextButton.icon(
-        icon: Icon(ParkingsIcons.map_nav, color: context.colorTheme.orangePomegranade, size: 16),
+        icon: Icon(ParkingsIcons.map_nav, color: context.colorScheme.primary, size: 16),
         onPressed: ref.watch(context.activeMarkerController<T>().notifier).launchLink,
         style: TextButton.styleFrom(padding: const EdgeInsets.all(12)),
         label: Text(
           context.localize.navigate,
-          style: context.textTheme.boldBodyOrange,
+          style: context.textTheme.bodyMedium?.copyWith(color: context.colorScheme.primary),
           textScaler: context.textScaler.clamp(maxScaleFactor: 1.5),
         ),
       ),

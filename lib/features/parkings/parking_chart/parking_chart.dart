@@ -24,13 +24,13 @@ class ParkingChart extends ConsumerWidget {
     return switch (chartData) {
       AsyncError(:final error, :final stackTrace) => Material(
         borderRadius: const BorderRadius.all(WideTileCardConfig.radius),
-        color: context.colorTheme.greyLight.withValues(alpha: 0.8),
+        color: context.colorScheme.surfaceTint.withValues(alpha: 0.8),
         child: MyErrorWidget(error, stackTrace: stackTrace),
       ),
       AsyncValue(:final IList<ChartPoint> value) =>
         value.isEmpty
             ? Center(
-                child: Text(context.localize.noChartData, style: context.iParkingTheme.subtitleLight.withoutShadows),
+                child: Text(context.localize.noChartData, style: const ParkingLightSubtitleTextStyle().withoutShadows),
               )
             : Padding(padding: const EdgeInsets.only(top: 14, right: 25), child: ChartWidget(value, parking)),
       _ => Padding(
@@ -38,7 +38,7 @@ class ParkingChart extends ConsumerWidget {
         child: PreviewCardLoading(
           height: double.infinity,
           width: double.infinity,
-          color: context.colorTheme.greyPigeon.withValues(alpha: 0.1),
+          color: context.colorScheme.tertiary.withValues(alpha: 0.1),
         ),
       ),
     };

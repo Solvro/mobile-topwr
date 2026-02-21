@@ -29,32 +29,23 @@ class MyFilterChip extends HookConsumerWidget {
       selected,
       messageBuilder: (value) => value ? null : "${context.localize.building_tile_unselected} $label",
     );
-    return Theme(
-      data: Theme.of(
-        context,
-      ).copyWith(colorScheme: ColorScheme.fromSeed(seedColor: context.colorTheme.orangePomegranade)),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: ScienceClubsViewConfig.microPadding),
-        child: Semantics(
-          checked: selected,
-          child: ChoiceChip(
-            tooltip: tooltip ?? label,
-            showCheckmark: false,
-            label: Text(label),
-            selected: selected,
-            onSelected: (_) => onTap(),
-            selectedColor: selectedColor ?? context.colorTheme.orangePomegranade,
-            backgroundColor: Colors.transparent,
-            labelStyle: TextStyle(color: selected ? Colors.white : context.colorTheme.greyPigeon),
-            side: BorderSide(
-              color: selected
-                  ? selectedBorderColor ?? context.colorTheme.orangePomegranade
-                  : context.colorTheme.greyPigeon,
-            ),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(ScienceClubsViewConfig.buttonBorderRadius),
-            ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: ScienceClubsViewConfig.microPadding),
+      child: Semantics(
+        checked: selected,
+        child: ChoiceChip(
+          tooltip: tooltip ?? label,
+          showCheckmark: false,
+          label: Text(label),
+          selected: selected,
+          onSelected: (_) => onTap(),
+          selectedColor: selectedColor ?? context.colorScheme.primary,
+          backgroundColor: Colors.transparent,
+          labelStyle: TextStyle(color: selected ? Colors.white : context.colorScheme.tertiary),
+          side: BorderSide(
+            color: selected ? selectedBorderColor ?? context.colorScheme.primary : context.colorScheme.tertiary,
           ),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(ScienceClubsViewConfig.buttonBorderRadius)),
         ),
       ),
     );

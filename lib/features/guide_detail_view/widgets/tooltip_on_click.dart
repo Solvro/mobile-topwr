@@ -56,8 +56,8 @@ class CustomDateTooltip extends StatelessWidget {
         color: Colors.transparent,
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-          decoration: BoxDecoration(color: context.colorTheme.blackMirage, borderRadius: BorderRadius.circular(8)),
-          child: Text(message, style: context.textTheme.bodyWhite),
+          decoration: BoxDecoration(color: context.colorScheme.onTertiary, borderRadius: BorderRadius.circular(8)),
+          child: Text(message, style: context.textTheme.bodyLarge?.copyWith(color: context.colorScheme.surface)),
         ),
       ),
     );

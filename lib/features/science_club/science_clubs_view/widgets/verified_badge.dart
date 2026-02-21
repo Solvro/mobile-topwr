@@ -27,7 +27,7 @@ class _VerifiedBadgeWidget extends StatelessWidget {
           child: Icon(
             Icons.verified_sharp,
             size: scaler.scale(12),
-            color: context.colorTheme.orangePomegranade,
+            color: context.colorScheme.primary,
             semanticLabel: context.localize.verifiedBySolvro,
           ),
         ),

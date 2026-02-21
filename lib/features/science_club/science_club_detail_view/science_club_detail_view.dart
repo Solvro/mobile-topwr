@@ -61,23 +61,26 @@ class _SciClubDetailDataView extends ConsumerWidget {
               const SizedBox(height: 8),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: Text.rich(
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.center,
-                  TextSpan(
-                    text: value.name,
-                    style: context.textTheme.headline,
-                    children: [
-                      if (value.source == ScienceClubSource.manualEntry) const VerifiedBadge(),
-                      if (value.isStrategic) const StrategicBadge(),
-                    ],
+                child: Focus(
+                  autofocus: true,
+                  child: Text.rich(
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.center,
+                    TextSpan(
+                      text: value.name,
+                      style: context.textTheme.headlineMedium,
+                      children: [
+                        if (value.source == ScienceClubSource.manualEntry) const VerifiedBadge(),
+                        if (value.isStrategic) const StrategicBadge(),
+                      ],
+                    ),
                   ),
                 ),
               ),
               const SizedBox(height: 12),
               if (value.department != null)
-                Text(value.department?.name ?? "", style: context.textTheme.body, textAlign: TextAlign.center),
+                Text(value.department?.name ?? "", style: context.textTheme.bodyLarge, textAlign: TextAlign.center),
               if (value.department != null) const SizedBox(height: DetailViewsConfig.spacerHeight),
               TagsSection(tags: value.tags, department: value.department),
               const SizedBox(height: DetailViewsConfig.spacerHeight),

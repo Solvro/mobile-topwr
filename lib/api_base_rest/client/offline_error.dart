@@ -1,9 +1,6 @@
 import "package:dio/dio.dart";
 import "package:flutter/widgets.dart";
-import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:logger/logger.dart";
-
-import "dio_client.dart";
 
 class RestFrameworkOfflineException implements Exception {
   final String message;
@@ -20,27 +17,25 @@ class RestFrameworkOfflineException implements Exception {
   String toString() => "RestFrameworkOfflineException: $message";
 }
 
-extension DioSafeRequestsX on Ref {
-  Future<Response<T>> safeRequest<T>(
-    Future<Response<T>> Function() request, {
-    required String Function(BuildContext context) localizedMessage,
-    VoidCallback? onRetry,
-  }) async {
-    try {
-      return await request();
-    } on DioException catch (e) {
-      Logger().e(e);
-      throw RestFrameworkOfflineException(localizedMessage: localizedMessage, onRetry: onRetry);
-    }
+Future<Response<T>> safeRequest<T>(
+  Future<Response<T>> Function() request, {
+  required String Function(BuildContext context) localizedMessage,
+  VoidCallback? onRetry,
+}) async {
+  try {
+    return await request();
+  } on DioException catch (e) {
+    Logger().e(e);
+    throw RestFrameworkOfflineException(localizedMessage: localizedMessage, onRetry: onRetry);
   }
+}
 
-  Future<Response<T>> safeGetWatch<T>(
+extension DioSafeRequestsX on Dio {
+  Future<Response<T>> safeGet<T>(
     String url, {
     required String Function(BuildContext context) localizedMessage,
     VoidCallback? onRetry,
-    AuthHeader? authHeader,
   }) {
-    final dio = watch(authRestClientProvider(authHeader));
-    return safeRequest(() => dio.get<T>(url), localizedMessage: localizedMessage, onRetry: onRetry);
+    return safeRequest(() => get<T>(url), localizedMessage: localizedMessage, onRetry: onRetry);
   }
 }

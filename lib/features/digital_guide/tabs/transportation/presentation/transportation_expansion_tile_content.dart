@@ -11,7 +11,7 @@ import "../data/models/digital_guide_transportation.dart";
 import "../data/repository/transportation_repository.dart";
 
 class TransportationExpansionTileContent extends ConsumerWidget {
-  const TransportationExpansionTileContent({required this.digitalGuideData});
+  const TransportationExpansionTileContent({super.key, required this.digitalGuideData});
   final DigitalGuideResponse digitalGuideData;
 
   @override

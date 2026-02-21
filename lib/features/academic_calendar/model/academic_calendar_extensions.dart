@@ -48,7 +48,7 @@ extension AcademicCalendarDataX on AcademicCalendar {
 extension AcademicCalendarX on AcademicCalendarWithSwaps {
   Duration? windowDuration(WidgetRef ref) {
     final config = ref.read(remoteConfigRepositoryProvider);
-    return config.valueOrNull?.daySwapLookahead == null ? null : Duration(days: config.requireValue.daySwapLookahead);
+    return config.value?.daySwapLookahead == null ? null : Duration(days: config.requireValue.daySwapLookahead);
   }
 
   AcademicDay? get academicDayToday {

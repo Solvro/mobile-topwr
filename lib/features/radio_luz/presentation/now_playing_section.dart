@@ -4,6 +4,7 @@ import "package:hooks_riverpod/hooks_riverpod.dart";
 import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
+import "../../../widgets/loading_widgets/simple_previews/horizontal_rectangular_section_loading.dart";
 import "../data/repository/history_entry_repository.dart";
 import "live_indicator.dart";
 import "search_streaming_bottom_sheet.dart";
@@ -34,11 +35,13 @@ class NowPlayingSection extends ConsumerWidget {
           ),
         ),
       ),
-      // TODO(tt): add shimmer effect
-      AsyncLoading() => Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: CircularProgressIndicator(color: context.colorTheme.orangePomegranade),
+      AsyncLoading() => Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          spacing: 8,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: List.generate(4, (_) => const HorizontalRectangularSectionLoading()),
         ),
       ),
       _ => Column(children: [Text(context.localize.generic_error_message)]),
@@ -56,52 +59,62 @@ class _NowPlayingTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = context.textTheme;
-    final colorTheme = context.colorTheme;
-    return ListTileTheme(
-      child: ListTile(
-        horizontalTitleGap: 12,
-        visualDensity: VisualDensity.compact,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        tileColor: isActive ? colorTheme.orangePomegranadeLighter : colorTheme.whiteSoap,
-        dense: true,
-        contentPadding: const EdgeInsets.symmetric(horizontal: 12),
-        leading: Text(
-          time,
-          style: textTheme.title.copyWith(color: isActive ? colorTheme.whiteSoap : colorTheme.orangePomegranadeLighter),
-        ),
-        title: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Flexible(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    style: textTheme.title.copyWith(color: isActive ? colorTheme.whiteSoap : colorTheme.blackMirage),
+    final colorScheme = context.colorScheme;
+    return Container(
+      decoration: BoxDecoration(
+        color: isActive ? colorScheme.primary : colorScheme.surface,
+        borderRadius: BorderRadius.circular(8),
+      ),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+      child: Row(
+        children: [
+          Text(
+            time,
+            style: textTheme.titleLarge?.copyWith(color: isActive ? colorScheme.surface : colorScheme.primary),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Row(
+              children: [
+                Flexible(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        title,
+                        style: textTheme.titleLarge?.copyWith(
+                          color: isActive ? colorScheme.surface : colorScheme.onTertiary,
+                        ),
+                      ),
+                      const SizedBox(height: 2),
+                      Text(
+                        subtitle,
+                        style: textTheme.labelSmall?.copyWith(
+                          color: isActive ? colorScheme.surface : colorScheme.onTertiary,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
                   ),
-                  const SizedBox(height: 2),
-                  Text(
-                    subtitle,
-                    style: textTheme.tiny.copyWith(color: isActive ? colorTheme.whiteSoap : colorTheme.blackMirage),
+                ),
+                const SizedBox(width: 4),
+                if (isActive)
+                  LiveIndicator(
+                    spreadRadius: 8,
+                    spreadDuration: const Duration(milliseconds: 800),
+                    waitDuration: const Duration(seconds: 1),
+                    color: colorScheme.surface,
                   ),
-                ],
-              ),
+              ],
             ),
-            const SizedBox(width: 4),
-            if (isActive)
-              LiveIndicator(
-                spreadRadius: 8,
-                spreadDuration: const Duration(milliseconds: 800),
-                waitDuration: const Duration(seconds: 1),
-                color: colorTheme.whiteSoap,
-              ),
-          ],
-        ),
-        trailing: IconButton(
-          icon: Icon(Icons.manage_search, color: isActive ? colorTheme.whiteSoap : colorTheme.orangePomegranade),
-          onPressed: () => SearchStreamingBottomSheet.show(context, title: title, artist: subtitle),
-        ),
+          ),
+          IconButton(
+            icon: Icon(Icons.manage_search, color: isActive ? colorScheme.surface : colorScheme.primary),
+            onPressed: () => SearchStreamingBottomSheet.show(context, title: title, artist: subtitle),
+          ),
+        ],
       ),
     );
   }

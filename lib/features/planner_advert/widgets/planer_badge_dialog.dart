@@ -11,9 +11,9 @@ class PlanerBadgeDialogContent extends ConsumerWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text(data.title ?? "", style: context.textTheme.headline),
+        Text(data.title ?? "", style: context.textTheme.headlineMedium),
         const SizedBox(height: 12),
-        Text(data.description, style: context.textTheme.lightTitle),
+        Text(data.description, style: context.textTheme.titleMedium),
       ],
     );
   }

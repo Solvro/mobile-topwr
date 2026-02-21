@@ -7,7 +7,7 @@ import "package:sentry_flutter/sentry_flutter.dart";
 import "../api_base_rest/client/offline_error.dart";
 import "../config/ui_config.dart";
 import "../features/offline_messages/widgets/general_offline_message.dart";
-import "../features/parkings/parkings_view/api_client/iparking_commands.dart";
+import "../features/parkings/parkings_view/repository/parkings_repository.dart";
 import "../features/parkings/parkings_view/widgets/offline_parkings_view.dart";
 import "../gen/assets.gen.dart";
 import "../theme/app_theme.dart";
@@ -15,10 +15,11 @@ import "../utils/context_extensions.dart";
 import "../utils/unwaited_microtask.dart";
 
 class MyErrorWidget extends HookWidget {
-  const MyErrorWidget(this.error, {required this.stackTrace, super.key});
+  const MyErrorWidget(this.error, {required this.stackTrace, super.key, this.uiErrorMessage});
 
   final Object? error;
   final StackTrace? stackTrace;
+  final String? uiErrorMessage;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +34,7 @@ class MyErrorWidget extends HookWidget {
     return switch (error) {
       ParkingsOfflineException() => const OfflineParkingsView(),
       RestFrameworkOfflineException(:final localizedMessage, :final onRetry) => OfflineMessage(
-        localizedMessage(context),
+        uiErrorMessage ?? localizedMessage(context),
         onRefresh: onRetry,
       ),
       _ => Center(
@@ -47,10 +48,13 @@ class MyErrorWidget extends HookWidget {
               frameRate: const FrameRate(LottieAnimationConfig.frameRate),
             ),
             Align(
-              child: Text(
-                textAlign: TextAlign.center,
-                style: context.textTheme.headline.copyWith(fontSize: 25),
-                context.localize.generic_error_message,
+              child: Focus(
+                autofocus: true,
+                child: Text(
+                  textAlign: TextAlign.center,
+                  style: context.textTheme.headlineMedium?.copyWith(fontSize: 25),
+                  context.localize.generic_error_message,
+                ),
               ),
             ),
           ],

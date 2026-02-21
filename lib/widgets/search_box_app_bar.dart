@@ -19,11 +19,13 @@ class SearchBoxAppBar extends AppBar {
     VoidCallback? onSearchBoxTap,
     double bottomPadding = defaultBottomPadding,
     bool addLeadingPopButton = false,
+    String? initialQuery,
     super.primary = false,
+    Widget? filter,
   }) : super(
          title: Text(title, textScaler: context.textScaler.clamp(maxScaleFactor: 2.5)),
-         titleTextStyle: context.textTheme.headline,
-         backgroundColor: context.colorTheme.whiteSoap,
+         titleTextStyle: context.textTheme.headlineMedium,
+         backgroundColor: context.colorScheme.surface,
          scrolledUnderElevation: 0,
          centerTitle: addLeadingPopButton,
          titleSpacing: addLeadingPopButton ? 0 : defaultHorizontalPadding,
@@ -34,7 +36,7 @@ class SearchBoxAppBar extends AppBar {
                  child: Padding(padding: EdgeInsets.only(left: 4), child: DetailViewPopButton()),
                )
              : null,
-         leadingWidth: addLeadingPopButton ? 80 : 0,
+         leadingWidth: addLeadingPopButton ? 96 : 0,
          bottom: PreferredSize(
            preferredSize: Size.fromHeight(
              context.textScaler.clamp(maxScaleFactor: 2.5).scale(SearchBoxConfig.height) + bottomPadding,
@@ -45,11 +47,24 @@ class SearchBoxAppBar extends AppBar {
                left: defaultHorizontalPadding,
                right: defaultHorizontalPadding,
              ),
-
-             child: Semantics(
-               button: true,
-               label: context.localize.search,
-               child: SearchBox(onQueryChanged: onQueryChanged, onTap: onSearchBoxTap),
+             child: SizedBox(
+               height: SearchBoxConfig.height,
+               child: Row(
+                 children: [
+                   Expanded(
+                     child: Semantics(
+                       button: true,
+                       label: context.localize.search,
+                       child: SearchBox(
+                         onQueryChanged: onQueryChanged,
+                         onTap: onSearchBoxTap,
+                         initialQuery: initialQuery,
+                       ),
+                     ),
+                   ),
+                   if (filter != null) ...[const SizedBox(width: 15), filter],
+                 ],
+               ),
              ),
            ),
          ),

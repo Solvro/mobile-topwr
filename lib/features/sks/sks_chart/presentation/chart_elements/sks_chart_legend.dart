@@ -38,18 +38,18 @@ class SksChartLegendItem extends StatelessWidget {
           DottedBorder(
             options: RectDottedBorderOptions(
               dashPattern: const [SksChartConfig.borderDashArray],
-              color: context.colorTheme.blueAzure,
+              color: context.colorScheme.secondary,
               padding: EdgeInsets.zero,
             ),
             child: Container(width: SksChartConfig.legendItemSize),
           )
         else
-          Container(width: SksChartConfig.legendItemSize, height: 2, color: context.colorTheme.orangePomegranade),
+          Container(width: SksChartConfig.legendItemSize, height: 2, color: context.colorScheme.primary),
         const SizedBox(width: SksChartConfig.heightMedium),
         Expanded(
           child: Text(
             text,
-            style: context.textTheme.body,
+            style: context.textTheme.bodyLarge,
             softWrap: true,
             textScaler: context.textScaler.clamp(maxScaleFactor: 1.5),
           ),

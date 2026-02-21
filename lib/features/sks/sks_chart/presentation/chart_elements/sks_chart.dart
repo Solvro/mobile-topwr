@@ -30,14 +30,14 @@ class SksChart extends StatelessWidget {
             duration: Duration.zero,
             LineChartData(
               clipData: const FlClipData.all(),
-              backgroundColor: context.colorTheme.whiteSoap,
+              backgroundColor: context.colorScheme.surface,
               gridData: SksChartGridData(context, maxNumberOfUsers / 5),
               maxY: maxNumberOfUsers + (maxNumberOfUsers / 10).toInt(),
               lineBarsData: [
                 LineChartBarData(
                   belowBarData: BarAreaData(show: true, gradient: ColorsConsts.toPwrGradient, applyCutOffY: true),
                   isCurved: true,
-                  color: context.colorTheme.orangePomegranade,
+                  color: context.colorScheme.primary,
                   dotData: FlDotData(
                     checkToShowDot: (FlSpot spot, LineChartBarData barData) {
                       return false;
@@ -60,7 +60,7 @@ class SksChart extends StatelessWidget {
                     },
                   ),
                   barWidth: 1.25,
-                  color: context.colorTheme.blueAzure,
+                  color: context.colorScheme.secondary,
                   spots: chartData.asMap().entries.map<FlSpot>((e) {
                     return FlSpot(e.key.toDouble(), e.value.movingAverage21.toDouble());
                   }).toList(),

@@ -43,12 +43,17 @@ class RadioPlayerControlButton extends StatelessWidget {
           if (isLoading)
             SizedBox.square(
               dimension: 12,
-              child: CircularProgressIndicator(color: context.colorTheme.orangePomegranade, strokeWidth: 2),
+              child: CircularProgressIndicator(color: context.colorScheme.primary, strokeWidth: 2),
             )
           else
-            Icon(isPlaying ? Icons.pause : Icons.play_arrow, size: 16, color: context.colorTheme.orangePomegranade),
+            Icon(isPlaying ? Icons.pause : Icons.play_arrow, size: 16, color: context.colorScheme.primary),
           Expanded(
-            child: Center(child: Text(buttonText, style: context.textTheme.titleOrange.copyWith(fontSize: 14))),
+            child: Center(
+              child: Text(
+                buttonText,
+                style: context.textTheme.titleLarge?.copyWith(color: context.colorScheme.primary, fontSize: 14),
+              ),
+            ),
           ),
         ],
       ),

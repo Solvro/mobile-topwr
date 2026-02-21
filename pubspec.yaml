@@ -16,11 +16,11 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.2.6+93
+version: 1.2.9+96
 
 environment:
-  sdk: 3.10.0
-  flutter: 3.38.1
+  sdk: 3.10.4
+  flutter: 3.38.5
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -34,32 +34,29 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
-  #Theme
-  theme_tailor_annotation: ^3.0.2
-  theme_tailor: ^3.0.3
-
   #State managements
-  flutter_riverpod: ^2.6.1
-  riverpod_annotation: ^2.6.1
-  hooks_riverpod: ^2.6.1
+  flutter_riverpod: ^3.1.0
+  riverpod: ^3.1.0
+  riverpod_annotation: ^4.0.0
+  hooks_riverpod: ^3.1.0
 
   #Storage
-  shared_preferences: ^2.5.3
+  shared_preferences: ^2.5.4
   cached_network_image: ^3.4.1
   flutter_cache_manager: ^3.4.1
-  drift: ^2.28.0
-  drift_flutter: ^0.2.4
+  drift: ^2.30.0
+  drift_flutter: ^0.2.8
   dio_cache_interceptor_db_store: ^6.0.0
 
   #Network
   url_launcher: ^6.3.2
   html: ^0.15.6
-  dio: ^5.8.0+1
+  dio: ^5.9.0
 
   #Widgets
   cupertino_icons: ^1.0.8
-  flutter_native_splash: ^2.4.6
-  flutter_svg: ^2.2.0
+  flutter_native_splash: ^2.4.7
+  flutter_svg: ^2.2.3
   flutter_widget_from_html_core:
     git:
       url: https://github.com/simplyNoOne/flutter_widget_from_html.git
@@ -73,30 +70,30 @@ dependencies:
     git:
       url: https://github.com/ChrisElliotUK/auto_size_text.git
       ref: patch-1
-  lottie: ^3.3.1
+  lottie: ^3.3.2
   fl_chart: 1.1.1
   animated_list_plus: ^0.5.2
   dotted_border: ^3.1.0
   fluttertoast: ^9.0.0
   carousel_slider_plus: ^7.1.1
-  home_widget: ^0.8.0
   scrollable_positioned_list: ^0.3.8
-  scrolls_to_top: ">=1.0.0 <3.0.0"
+  scrolls_to_top: ^2.1.1
   sliver_tools: ^0.2.12
 
   #Data
   freezed_annotation: ^3.1.0
   json_annotation: ^4.9.0
   collection: ^1.19.1
-  fast_immutable_collections: ^11.0.4
+  fast_immutable_collections: ^11.1.0
 
   #Navigation
-  auto_route: ^10.1.0
+  auto_route: ^11.1.0
+  app_links: ^7.0.0
 
   #Maps
-  flutter_map: ^8.2.1
+  flutter_map: ^8.2.2
   flutter_map_cancellable_tile_provider: ^3.1.1
-  flutter_map_location_marker: ^10.1.0
+  flutter_map_location_marker: ^10.2.0
 
   flutter_map_compass: ^1.1.1
   flutter_map_cache: ^1.5.2
@@ -104,41 +101,42 @@ dependencies:
   flutter_compass: ^0.8.1
 
   #Firebase
-  firebase_core: ^4.1.1
+  firebase_core: ^4.3.0
   firebase_performance: ^0.11.1
-  firebase_messaging: ^16.0.2
+  firebase_messaging: ^16.1.0
 
   #Utility
   intl: ^0.20.2
   latlong2: ^0.9.1
   permission_handler: ^12.0.1
   package_info_plus: ^9.0.0
-  envied: ^1.1.1
+  envied: ^1.3.2
   path_provider: ^2.1.5
   path: ^1.9.1
-  device_info_plus: ^12.2.0
+  device_info_plus: ^12.3.0
   android_id: ^0.5.1
-  crypto: ^3.0.6
+  crypto: ^3.0.7
 
   #Audio
+  #TODO: bump when just_audio fixes issue: https://github.com/ryanheise/just_audio/issues/1558
   just_audio: ^0.9.36
   audio_service: ^0.18.18
+  audio_session: ^0.1.21
 
   #Other
-  in_app_update: ^4.2.3
-  upgrader: ^12.1.0
-  in_app_review: ^2.0.10
+  in_app_update: ^4.2.5
+  upgrader: ^12.3.0
+  in_app_review: ^2.0.11
   protontime: ^2.0.0
-  logger: ^2.6.0
+  logger: ^2.6.2
   separate: ^1.0.3
-  wiredash: ^2.5.0
-  flutter_hooks: ^0.21.2
-  sentry_flutter: ^9.4.1
-  workmanager: ^0.8.0
+  wiredash: ^2.6.0
+  flutter_hooks: ^0.21.3
+  sentry_flutter: ^9.9.1
 
   #Solvro packages
-  solvro_translator_with_drift_cache_flutter: ^0.6.0
-  solvro_translator_core: ^0.6.0
+  solvro_translator_with_drift_cache_flutter: ^0.8.1
+  solvro_translator_core: ^0.8.0
   clarity_flutter: ^1.6.0
 
 dev_dependencies:
@@ -146,24 +144,27 @@ dev_dependencies:
     sdk: flutter
 
   #Storage
-  drift_dev: ^2.28.0
+  drift_dev: ^2.30.0
 
   #Lints
-  solvro_config: ^1.0.1
+  solvro_config: ^1.3.0
 
   #CodeGen
-  build_runner: ^2.5.4
-  freezed: ^3.1.0
-  json_serializable: ^6.9.5
-  riverpod_generator: ^2.6.5
-  envied_generator: ^1.1.1
-  flutter_gen_runner: ^5.10.0
-  auto_route_generator: ^10.2.3
-  solvro_translator_generator: ^0.6.0
+  build_runner: ^2.10.4
+  freezed: ^3.2.3
+  json_serializable: ^6.11.2 # todo(simon-the-shark): bump when freezed does it, https://github.com/rrousselGit/freezed/issues/1326
+  riverpod_generator: ^4.0.0 # todo(simon-the-shark): this seems like a typo but it's current newest version, fix when riverpod does it
+  envied_generator: ^1.3.2
+  flutter_gen_runner: ^5.12.0
+  auto_route_generator: ^10.4.0
+  solvro_translator_generator: ^0.8.0
 
   #Other
   flutter_launcher_icons: ^0.14.4
-  test: ^1.25.15
+  test: ^1.26.3
+
+dependency_overrides:
+  riverpod: 3.1.0 # todo(simon-the-shark): remove this when riverpod sorts those versions out
 
 flutter:
   uses-material-design: true
@@ -220,7 +221,6 @@ flutter:
     - assets/animations/offline.json
     - assets/animations/bug.json
     - assets/animations/sks_closed.json
-    - assets/svg/settings.svg
     - assets/certs/przewodnik.pwr.edu.pl.pem
     - assets/svg/map_placeholders/pink_box_icon.svg
     - assets/svg/map_placeholders/aed_icon.svg
@@ -236,6 +236,10 @@ flutter:
     - assets/svg/streaming/youtube_music.svg
     - assets/svg/streaming/deezer.svg
     - assets/svg/streaming/tidal.svg
+    - assets/svg/branches_logos/logo-pwr.svg
+    - assets/svg/branches_logos/logo-jelenia.svg
+    - assets/svg/branches_logos/logo-walbrzych.svg
+    - assets/svg/branches_logos/logo-legnica.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

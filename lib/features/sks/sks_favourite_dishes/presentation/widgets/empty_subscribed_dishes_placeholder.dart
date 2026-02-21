@@ -12,15 +12,15 @@ class EmptySubscribedDishesPlaceholder extends StatelessWidget {
       child: Column(
         spacing: SksMenuConfig.paddingMedium,
         children: [
-          Icon(Icons.notifications_none, size: 48, color: context.colorTheme.greyPigeon),
+          Icon(Icons.notifications_none, size: 48, color: context.colorScheme.tertiary),
           Text(
             context.localize.sks_favourite_dishes_no_dishes_yet,
-            style: context.textTheme.title,
+            style: context.textTheme.titleLarge,
             textAlign: TextAlign.center,
           ),
           Text(
             context.localize.sks_favourite_dishes_how_it_works,
-            style: context.textTheme.bodyGrey,
+            style: context.textTheme.bodyLarge?.copyWith(color: context.colorScheme.tertiary),
             textAlign: TextAlign.justify,
           ),
         ],

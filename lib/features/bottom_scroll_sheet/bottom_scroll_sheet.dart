@@ -1,6 +1,7 @@
 import "dart:math";
 
 import "package:flutter/material.dart";
+import "package:flutter_hooks/flutter_hooks.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../config/map_view_config.dart";
@@ -13,11 +14,22 @@ import "../map_view/widgets/map_config.dart";
 import "map_data_sheet_list.dart";
 import "map_view_pop_behaviour.dart";
 
-class BottomScrollSheet<T extends GoogleNavigable> extends ConsumerWidget {
+class BottomScrollSheet<T extends GoogleNavigable> extends HookConsumerWidget {
   const BottomScrollSheet({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final initialQuery = context.initialQuery<T>();
+
+    useEffect(() {
+      if (initialQuery != null && initialQuery.isNotEmpty) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          ref.read(context.mapDataController<T>().notifier).onSearchQueryChanged(initialQuery);
+        });
+      }
+      return null;
+    }, [initialQuery]);
+
     return LayoutBuilder(
       builder: (context, constraints) {
         final scaler = context.textScaler.clamp(maxScaleFactor: 1.5);
@@ -83,7 +95,7 @@ class _SheetConsumer<T extends GoogleNavigable> extends HookConsumerWidget {
           : context.localize.bottom_scroll_sheet_description_collapsed,
       child: Container(
         clipBehavior: Clip.antiAlias,
-        decoration: _RoundedTopDecoration(color: context.colorTheme.whiteSoap),
+        decoration: _RoundedTopDecoration(color: context.colorScheme.surface),
         child: MapDataSheetList<T>(scrollController: scrollController),
       ),
     );

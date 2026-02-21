@@ -28,19 +28,21 @@ class FiltersFAB extends ConsumerWidget {
           constraints: const BoxConstraints(),
           isScrollControlled: true,
           builder: (context) => UncontrolledProviderScope(container: parentProvider, child: const FiltersSheet()),
-        );
+        ).whenComplete(() {
+          ref.read(focusFirstCardProvider.notifier).state = true;
+        });
       },
-      backgroundColor: context.colorTheme.orangePomegranadeLighter,
+      backgroundColor: context.colorScheme.primary,
       child: Semantics(
         label: context.localize.filters_fab_tooltip,
         child: Stack(
           children: [
             Padding(
               padding: const EdgeInsets.all(8),
-              child: Icon(Icons.tune, color: context.colorTheme.whiteSoap),
+              child: Icon(Icons.tune, color: context.colorScheme.surface),
             ),
             if (isActive)
-              Positioned(top: 4, right: 4, child: Icon(Icons.circle, size: 8, color: context.colorTheme.whiteSoap)),
+              Positioned(top: 4, right: 4, child: Icon(Icons.circle, size: 8, color: context.colorScheme.surface)),
           ],
         ),
       ),

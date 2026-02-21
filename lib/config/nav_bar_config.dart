@@ -30,6 +30,7 @@ enum NavBarEnum {
 }
 
 abstract class NavBarConfig {
+  /// Main tab views - one per bottom nav bar item
   static final tabViews = <NavBarEnum, PageRouteInfo>{
     NavBarEnum.home: const HomeRoute(),
     NavBarEnum.buildings: BuildingsRoute(),
@@ -38,7 +39,90 @@ abstract class NavBarConfig {
     NavBarEnum.navigation: const NavigationTabRoute(),
   };
 
-  // same but reversed key-value pairs
+  /// Additional routes that appear within the tab bar (as multilayer map aliases)
+  /// All of these map to the buildings tab
+  static List<PageRouteInfo> get multilayerAliasRoutes => [
+    LibrariesRoute(),
+    AedsRoute(),
+    ShowersRoute(),
+    PinkBoxesRoute(),
+    MultilayerMapRoute(),
+  ];
+
+  /// Route names that map to the buildings tab (used for reverse lookups)
+  static const multilayerAliasRouteNames = {
+    BuildingsRoute.name,
+    LibrariesRoute.name,
+    AedsRoute.name,
+    ShowersRoute.name,
+    PinkBoxesRoute.name,
+    MultilayerMapRoute.name,
+  };
+
+  /// URL paths that map to the buildings tab
+  static const buildingsTabPaths = {
+    "buildings",
+    "libraries",
+    "aeds",
+    "bicycle-showers",
+    "pink-boxes",
+    "multilayer-map",
+  };
+
+  /// All routes for AutoTabsRouter (main tabs + multilayer aliases)
+  static List<PageRouteInfo> get allTabRoutes => [...tabViews.values, ...multilayerAliasRoutes];
+
+  static bool isTabAMapView(int activeTabIndex) =>
+      activeTabIndex == NavBarEnum.buildings.index || activeTabIndex == NavBarEnum.parkings.index;
+
+  /// Maps a route name to its NavBarEnum
+  static NavBarEnum? routeNameToTab(String? routeName) {
+    if (routeName == null) return null;
+    // Check main tabs first
+    final mainTab = reversedTabViews[routeName];
+    if (mainTab != null) return mainTab;
+    // Check multilayer aliases (all map to buildings)
+    if (multilayerAliasRouteNames.contains(routeName)) return NavBarEnum.buildings;
+    return null;
+  }
+
+  /// Maps a URL base path to its NavBarEnum
+  static NavBarEnum? pathToTab(String basePath) {
+    return switch (basePath) {
+      "" => NavBarEnum.home,
+      "parkings" => NavBarEnum.parkings,
+      "guide" => NavBarEnum.guide,
+      "navigation" => NavBarEnum.navigation,
+      _ when buildingsTabPaths.contains(basePath) => NavBarEnum.buildings,
+      _ => null,
+    };
+  }
+
+  /// Converts a URL path to a PageRouteInfo for routes within the tab bar
+  static PageRouteInfo? pathToRoute(String path) {
+    final cleanPath = path.startsWith("/") ? path.substring(1) : path;
+    final segments = cleanPath.split("/");
+    if (segments.isEmpty) return const HomeRoute();
+
+    final basePath = segments[0];
+    final itemId = segments.length > 1 && segments[1] != "null" ? segments[1] : null;
+
+    return switch (basePath) {
+      "" => const HomeRoute(),
+      "buildings" => BuildingsRoute(initialActiveItemId: itemId),
+      "libraries" => LibrariesRoute(initialActiveItemId: itemId),
+      "aeds" => AedsRoute(initialActiveItemId: itemId),
+      "bicycle-showers" => ShowersRoute(initialActiveItemId: itemId),
+      "pink-boxes" => PinkBoxesRoute(initialActiveItemId: itemId),
+      "multilayer-map" => MultilayerMapRoute(initialActiveItemId: itemId),
+      "parkings" => ParkingsRoute(initialActiveItemId: itemId),
+      "guide" => const GuideRoute(),
+      "navigation" => const NavigationTabRoute(),
+      _ => null,
+    };
+  }
+
+  /// Reversed main tab views (route name -> NavBarEnum)
   static Map<String, NavBarEnum> get reversedTabViews =>
       Map.fromEntries(tabViews.entries.map((e) => MapEntry(e.value.routeName, e.key)));
 }

@@ -22,10 +22,12 @@ class ScienceClubsView extends StatelessWidget {
     @QueryParam("tags") this.tagsIdsSequence,
     @QueryParam("depts") this.deptsIdsSequence,
     @QueryParam("types") this.typesSequence,
+    @QueryParam("q") this.initialQuery,
   });
   final String? tagsIdsSequence;
   final String? deptsIdsSequence;
   final String? typesSequence;
+  final String? initialQuery;
 
   static String localizedOfflineMessage(BuildContext context) {
     return context.localize.my_offline_error_message(context.localize.scientific_cirlces);
@@ -44,16 +46,18 @@ class ScienceClubsView extends StatelessWidget {
         tagsIds: tagsIdsSequence?.split(",").toIList() ?? const IList.empty(),
         deptsIds: deptsIdsSequence?.split(",").toIList() ?? const IList.empty(),
         types: typesSequence?.split(",").toIList() ?? const IList.empty(),
+        initialQuery: initialQuery,
       ),
     );
   }
 }
 
 class _ScienceClubsView extends StatelessWidget {
-  const _ScienceClubsView({required this.tagsIds, required this.deptsIds, required this.types});
+  const _ScienceClubsView({required this.tagsIds, required this.deptsIds, required this.types, this.initialQuery});
   final IList<String> tagsIds;
   final IList<String> deptsIds;
   final IList<String> types;
+  final String? initialQuery;
 
   @override
   Widget build(BuildContext context) {
@@ -91,6 +95,7 @@ class _ScienceClubsView extends StatelessWidget {
                     showDialog<void>(context: context, builder: (context) => const ScienceClubInfoDialog()),
               ),
             ],
+            initialQuery: initialQuery,
             child: child,
           );
         },

@@ -11,7 +11,7 @@ import "../data/repository/entraces_repository.dart";
 import "digital_guide_entrance_widget.dart";
 
 class EntrancesExpansionTileContent extends ConsumerWidget {
-  const EntrancesExpansionTileContent({required this.digitalGuideData});
+  const EntrancesExpansionTileContent({super.key, required this.digitalGuideData});
 
   final DigitalGuideResponse digitalGuideData;
 
@@ -39,7 +39,7 @@ class _EntrancesExpansionTileContent extends ConsumerWidget {
         horizontal: DigitalGuideConfig.heightMedium,
       ),
       child: Material(
-        color: context.colorTheme.greyLight,
+        color: context.colorScheme.surfaceTint,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: entrances.map((entrance) {

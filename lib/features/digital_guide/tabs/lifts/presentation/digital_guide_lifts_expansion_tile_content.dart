@@ -10,7 +10,7 @@ import "../domain/digital_guide_lifts_use_cases.dart";
 import "digital_guide_lift_level.dart";
 
 class DigitalGuideLiftExpansionTileContent extends ConsumerWidget {
-  const DigitalGuideLiftExpansionTileContent({required this.digitalGuideResponse});
+  const DigitalGuideLiftExpansionTileContent({super.key, required this.digitalGuideResponse});
 
   final DigitalGuideResponse digitalGuideResponse;
 
@@ -38,7 +38,7 @@ class _DigitalGuideLiftExpansionTileContent extends ConsumerWidget {
         vertical: DigitalGuideConfig.paddingMedium,
       ),
       child: Material(
-        color: context.colorTheme.greyLight,
+        color: context.colorScheme.surfaceTint,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: levelsWithLifts.map((level) {

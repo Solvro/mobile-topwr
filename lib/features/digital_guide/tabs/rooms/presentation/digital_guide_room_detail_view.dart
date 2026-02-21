@@ -32,19 +32,22 @@ class DigitalGuideRoomDetailView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final roomInformation = room.translations.pl;
     final widgets = [
-      Text(roomInformation.name, style: context.textTheme.headline.copyWith(fontSize: 18)),
+      Focus(
+        autofocus: true,
+        child: Text(roomInformation.name, style: context.textTheme.headlineMedium?.copyWith(fontSize: 18)),
+      ),
       const SizedBox(height: DigitalGuideConfig.heightTiny),
       Text(
         roomInformation.roomPurpose,
-        style: context.textTheme.headline.copyWith(fontSize: 12, fontWeight: FontWeight.normal),
+        style: context.textTheme.headlineMedium?.copyWith(fontSize: 12, fontWeight: FontWeight.normal),
       ),
       if (roomInformation.workingDaysAndHours.isNotEmpty) const SizedBox(height: DigitalGuideConfig.heightMedium),
       if (roomInformation.workingDaysAndHours.isNotEmpty)
-        Text("${context.localize.working_hours}:", style: context.textTheme.headline),
+        Text("${context.localize.working_hours}:", style: context.textTheme.headlineMedium),
       if (roomInformation.workingDaysAndHours.isNotEmpty) const SizedBox(height: DigitalGuideConfig.heightSmall),
-      Text(roomInformation.workingDaysAndHours, style: context.textTheme.body.copyWith(fontSize: 16)),
+      Text(roomInformation.workingDaysAndHours, style: context.textTheme.bodyLarge?.copyWith(fontSize: 16)),
       if (roomInformation.workingDaysAndHours.isNotEmpty) const SizedBox(height: DigitalGuideConfig.heightMedium),
-      Text(context.localize.key_information, style: context.textTheme.headline),
+      Text(context.localize.key_information, style: context.textTheme.headlineMedium),
       const SizedBox(height: DigitalGuideConfig.heightSmall),
       BulletList(
         items: [
@@ -57,7 +60,7 @@ class DigitalGuideRoomDetailView extends ConsumerWidget {
       ),
       AccessibilityProfileCard(
         accessibilityCommentsManager: RoomsAccessibilityCommentsManager(digitalGuideRoom: room, l10n: context.localize),
-        backgroundColor: context.colorTheme.whiteSoap,
+        backgroundColor: context.colorScheme.surface,
       ),
       if (room.imagesIds != null && room.imagesIds!.isNotEmpty) const SizedBox(height: DigitalGuideConfig.heightMedium),
       DigitalGuidePhotoRow(imagesIDs: room.imagesIds.toIList()),

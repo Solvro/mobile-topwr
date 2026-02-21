@@ -4,8 +4,7 @@ import "../../my_loc_button/presentation/is_following_controller.dart";
 import "../utils/google_maps_link_utils.dart";
 import "controllers_set.dart";
 
-mixin ActiveMarkerController<T extends GoogleNavigable> on AutoDisposeNotifier<T?> {
-  @override
+mixin ActiveMarkerController<T extends GoogleNavigable> on $Notifier<T?> {
   T? build() {
     return null;
   }

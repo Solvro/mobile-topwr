@@ -7,15 +7,25 @@ import "../../config/ui_config.dart";
 import "../../theme/app_theme.dart";
 import "../../utils/context_extensions.dart";
 import "../multilayer_map/data/model/multilayer_item.dart";
+import "../multilayer_map/data/model/multilayer_section_type.dart";
 import "multilayer_map_single_entity_list.dart";
 import "use_tab_scroll_sync.dart";
 
+typedef TabData = ({
+  String title,
+  MultilayerSectionType sectionType,
+  MultilayerMapSingleEntityList<MultilayerItem> Function() builder,
+});
+
 /// Helper widget to build slivers for multi-tab view
 class SliverMultiTabberBuilder extends HookWidget {
-  const SliverMultiTabberBuilder({required this.tabs, required this.scrollController});
+  const SliverMultiTabberBuilder({required this.tabs, required this.scrollController, this.initialSectionType});
 
-  final List<({String title, MultilayerMapSingleEntityList<MultilayerItem> Function() builder})> tabs;
+  final List<TabData> tabs;
   final ScrollController scrollController;
+
+  /// The section type to scroll to initially.
+  final MultilayerSectionType? initialSectionType;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +42,12 @@ class SliverMultiTabberBuilder extends HookWidget {
                 alignment: Alignment.centerLeft,
                 child: SizedBox(
                   height: context.textScaler.clamp(maxScaleFactor: 2).scale(40),
-                  child: _TabBarWidget(tabs: tabs, scrollController: scrollController, sectionKeys: sectionKeys),
+                  child: _TabBarWidget(
+                    tabs: tabs,
+                    scrollController: scrollController,
+                    sectionKeys: sectionKeys,
+                    initialSectionType: initialSectionType,
+                  ),
                 ),
               ),
             ),
@@ -65,11 +80,17 @@ class SliverMultiTabberBuilder extends HookWidget {
 
 /// Widget for the tab bar
 class _TabBarWidget extends HookConsumerWidget {
-  const _TabBarWidget({required this.tabs, required this.scrollController, required this.sectionKeys});
+  const _TabBarWidget({
+    required this.tabs,
+    required this.scrollController,
+    required this.sectionKeys,
+    this.initialSectionType,
+  });
 
-  final List<({String title, MultilayerMapSingleEntityList<MultilayerItem> Function() builder})> tabs;
+  final List<TabData> tabs;
   final ScrollController scrollController;
   final List<GlobalKey> sectionKeys;
+  final MultilayerSectionType? initialSectionType;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -80,6 +101,18 @@ class _TabBarWidget extends HookConsumerWidget {
       tabController: tabController,
       ref: ref,
     );
+
+    // Scroll to initial section if specified
+    useEffect(() {
+      if (initialSectionType != null) {
+        final index = tabs.indexWhere((tab) => tab.sectionType == initialSectionType);
+        if (index > 0) {
+          // Only scroll if not the first tab (which is already visible)
+          WidgetsBinding.instance.addPostFrameCallback((_) => onTabTap(index));
+        }
+      }
+      return null;
+    }, [initialSectionType]);
 
     return Theme(
       data: Theme.of(context).copyWith(splashColor: Colors.transparent, highlightColor: Colors.transparent),
@@ -108,8 +141,8 @@ class _TabBarWidget extends HookConsumerWidget {
             ),
             decoration: BoxDecoration(
               color: index == selectedTabIndex.value
-                  ? context.colorTheme.orangePomegranadeLighter
-                  : context.colorTheme.greyLight,
+                  ? context.colorScheme.primaryContainer
+                  : context.colorScheme.surfaceTint,
               borderRadius: BorderRadius.circular(NavigationTabViewConfig.radius),
             ),
             child: Text(

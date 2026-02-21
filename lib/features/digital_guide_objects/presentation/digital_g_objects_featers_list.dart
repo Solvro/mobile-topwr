@@ -29,15 +29,15 @@ class DigitalGuideObjectsFeaturesSection extends ConsumerWidget {
         title: context.localize.amenities,
         content: [DigitalGuideObjectAmenietesTabTileContent(digitalGuideData: digitalGuideData)],
       ),
-      if (otherTiles.valueOrNull != null)
-        for (final tile in otherTiles.valueOrNull!)
+      if (otherTiles.value != null)
+        for (final tile in otherTiles.requireValue)
           (
             title: tile.translations.pl.name,
             content: [
               // No `AccessibilityInformationCardsList` here, cause not entry on the API has one
               Padding(
                 padding: const EdgeInsets.all(DigitalGuideConfig.paddingMedium),
-                child: MyHtmlWidget(tile.translations.pl.content, textStyle: context.textTheme.body),
+                child: MyHtmlWidget(tile.translations.pl.content, textStyle: context.textTheme.bodyLarge),
               ),
               DigitalGuidePhotoRow(imagesIDs: tile.images.lock),
             ],

@@ -16,7 +16,7 @@ class ApplyFiltersButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          backgroundColor: context.colorTheme.orangePomegranade,
+          backgroundColor: context.colorScheme.primary,
           elevation: 4,
           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
           shape: RoundedRectangleBorder(
@@ -27,9 +27,12 @@ class ApplyFiltersButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const SizedBox(width: 5),
-            Text(context.localize.apply, style: context.textTheme.titleWhite),
+            Text(
+              context.localize.apply,
+              style: context.textTheme.titleLarge?.copyWith(color: context.colorScheme.surface),
+            ),
             const SizedBox(width: 5),
-            Icon(Icons.check, color: context.colorTheme.whiteSoap),
+            Icon(Icons.check, color: context.colorScheme.surface),
           ],
         ),
       ),
