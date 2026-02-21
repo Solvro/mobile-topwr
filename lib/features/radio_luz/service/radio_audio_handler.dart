@@ -19,35 +19,19 @@ const radioLuzArtwork = "https://api.topwr.solvro.pl/uploads/28ef1261-47d5-4324-
 const refreshInterval = Duration(seconds: 15);
 const staleStreamThreshold = Duration(seconds: 30);
 
-//used for AA and CP to display folders and media items
-class _MediaIds {
-  static const liveRadioFolder = "radio_luz_folder";
-  static const liveRadioPlayable = "radio_luz_station";
-  static const recentlyPlayed = "recently_played_folder";
-  static const schedule = "schedule_folder";
-}
-
 class RadioAudioHandlerBridge extends BaseAudioHandler with SeekHandler, WidgetsBindingObserver {
   final _player = AudioPlayer();
 
-  //used for fetching recently played and schedule
+  //used for fetching now playing metadata
   final RadioLuzRepository _repository;
 
   //main media item - live radio (information source)
   var _radioLuzMediaItem = MediaItem(
-    id: _MediaIds.liveRadioPlayable,
+    id: "radio_luz_station",
     title: "Radio LUZ",
     album: "Studenckie Radio",
     artUri: Uri.parse(radioLuzArtwork), //artwork cannot be local asset
   );
-
-  List<MediaItem>? _recentlyPlayedCache;
-  DateTime? _recentlyPlayedLastFetch;
-  static const _recentlyPlayedTtl = Duration(minutes: 1);
-
-  List<MediaItem>? _scheduleCache;
-  DateTime? _scheduleLastFetch;
-  static const _scheduleTtl = Duration(minutes: 5);
 
   var _isDisposed = false;
 
@@ -171,123 +155,21 @@ class RadioAudioHandlerBridge extends BaseAudioHandler with SeekHandler, Widgets
     return super.stop();
   }
 
-  //most crucial - defines the structure of the media library that is visible in AA and CP
+  //defines the media library visible in Android Auto and CarPlay
   @override
   Future<List<MediaItem>> getChildren(String parentMediaId, [Map<String, dynamic>? options]) async {
-    switch (parentMediaId) {
-      case AudioService.browsableRootId:
-        return [
-          const MediaItem(
-            id: _MediaIds.liveRadioFolder,
-            title: "Radio LUZ",
-            album: "Studenckie Radio",
-            playable: false,
-          ),
-          const MediaItem(id: _MediaIds.recentlyPlayed, title: "Teraz gramy", playable: false),
-          const MediaItem(id: _MediaIds.schedule, title: "Audycje", playable: false),
-        ];
-
-      case _MediaIds.liveRadioFolder:
-        return [_radioLuzMediaItem];
-
-      case _MediaIds.recentlyPlayed:
-        return _fetchRecentlyPlayed();
-
-      case _MediaIds.schedule:
-        return _fetchSchedule();
-
-      default:
-        return [];
+    if (parentMediaId == AudioService.browsableRootId) {
+      return [_radioLuzMediaItem];
     }
+    return [];
   }
 
-  Future<List<MediaItem>> _fetchRecentlyPlayed() async {
-    final now = DateTime.now();
-    if (_recentlyPlayedCache != null &&
-        _recentlyPlayedLastFetch != null &&
-        now.difference(_recentlyPlayedLastFetch!) < _recentlyPlayedTtl) {
-      return _recentlyPlayedCache!;
-    }
-
-    try {
-      if (_isDisposed) return [];
-
-      final recentlyPlayed = await _repository.getRecentlyPlayed();
-      if (recentlyPlayed == null) return _recentlyPlayedCache ?? [];
-
-      final items = recentlyPlayed.map((entry) {
-        final timeStr = "${entry.time.hour.toString().padLeft(2, '0')}:${entry.time.minute.toString().padLeft(2, '0')}";
-        return MediaItem(
-          id: "history_${entry.date}_${entry.title}",
-          title: "$timeStr - ${entry.title}",
-          artist: entry.artist,
-          album: entry.album,
-        );
-      }).toList();
-
-      //because title is in format "HH:MM - Title", it is sorted by time from latest to oldest
-      items.sort((a, b) => b.title.compareTo(a.title));
-
-      _recentlyPlayedCache = items;
-      _recentlyPlayedLastFetch = now;
-
-      return items;
-    } on Exception catch (_) {
-      return _recentlyPlayedCache ?? [];
-    }
-  }
-
-  Future<List<MediaItem>> _fetchSchedule() async {
-    final now = DateTime.now();
-    if (_scheduleCache != null && _scheduleLastFetch != null && now.difference(_scheduleLastFetch!) < _scheduleTtl) {
-      return _scheduleCache!;
-    }
-
-    try {
-      final schedule = await _repository.getSchedule();
-
-      if (schedule == null) return _scheduleCache ?? [];
-
-      final items = <MediaItem>[];
-
-      for (final block in schedule.broadcasts) {
-        final isNow = block.isNow ?? false;
-
-        for (final broadcast in block.broadcasts) {
-          Uri? artUri;
-          if (broadcast.thumbnail != null && broadcast.thumbnail!.isNotEmpty) {
-            artUri = Uri.tryParse(broadcast.thumbnail!);
-          }
-
-          items.add(
-            MediaItem(
-              id: "schedule_${broadcast.id}",
-              title: isNow ? "▶ ${broadcast.title}" : broadcast.title,
-              album: broadcast.time,
-              artUri: artUri,
-            ),
-          );
-        }
-      }
-
-      _scheduleCache = items;
-      _scheduleLastFetch = now;
-
-      return items;
-    } on Exception catch (_) {
-      return _scheduleCache ?? [];
-    }
-  }
-
-  //start playing media item
   @override
   Future<void> playFromMediaId(String mediaId, [Map<String, dynamic>? extras]) async {
-    //...because anything you click on should play the radio
-    if (mediaId == _radioLuzMediaItem.id || mediaId.startsWith("history_") || mediaId.startsWith("schedule_")) {
+    if (mediaId == _radioLuzMediaItem.id) {
       await _loadStream();
       unawaited(_player.play());
     }
-    //this if might be useless but you never know...
   }
 
   Future<void> setVolume(double volume) => _player.setVolume(volume);
