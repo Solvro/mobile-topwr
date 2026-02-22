@@ -32,14 +32,13 @@ class ScienceClubsList extends ConsumerWidget {
 }
 
 class _ScienceClubsListView extends HookConsumerWidget {
-  const _ScienceClubsListView(this.clubs);
+  const _ScienceClubsListView(this.filteredCircles);
 
-  final IList<ScienceClub> clubs;
+  final IList<ScienceClub> filteredCircles;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final focusNode = useFocusNode();
-    final IList<ScienceClub> filteredCircles = clubs;
 
     ref.listen<bool>(focusFirstCardProvider, (prev, next) {
       if (next) {
@@ -57,15 +56,7 @@ class _ScienceClubsListView extends HookConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
-          child: Text(
-            "${filteredCircles.length} ${context.localize.scientific_clubs_results_count}",
-            style: Theme.of(
-              context,
-            ).textTheme.bodyMedium?.copyWith(color: Theme.of(context).colorScheme.onSurfaceVariant),
-          ),
-        ),
+        _ResultsCountText(filteredCircles: filteredCircles),
         Expanded(
           child: GridView.builder(
             padding: const EdgeInsets.only(bottom: ScienceClubsViewConfig.mediumPadding),
@@ -83,6 +74,27 @@ class _ScienceClubsListView extends HookConsumerWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class _ResultsCountText extends ConsumerWidget {
+  const _ResultsCountText({required this.filteredCircles});
+
+  final IList<ScienceClub> filteredCircles;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final queryIsEmpty = ref.watch(searchScienceClubsControllerProvider.select((state) => state.isEmpty));
+    if (queryIsEmpty) {
+      return const SizedBox.shrink();
+    }
+    return Padding(
+      padding: const EdgeInsets.only(left: 4, bottom: 8),
+      child: Text(
+        "${filteredCircles.length} ${context.localize.scientific_clubs_results_count}",
+        style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Theme.of(context).colorScheme.onSurfaceVariant),
+      ),
     );
   }
 }

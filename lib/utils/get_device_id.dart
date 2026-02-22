@@ -5,8 +5,10 @@ import "package:crypto/crypto.dart";
 import "package:device_info_plus/device_info_plus.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
+part "get_device_id.g.dart";
+
 @Riverpod(keepAlive: true)
-Future<String?> getDeviceId() async {
+Future<String?> getDeviceId(Ref ref) async {
   String? deviceId;
   if (Platform.isIOS) {
     final iosDeviceInfo = await DeviceInfoPlugin().iosInfo;

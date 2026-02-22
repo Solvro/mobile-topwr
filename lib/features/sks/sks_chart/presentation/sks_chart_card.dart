@@ -30,8 +30,8 @@ class SksChartCard extends StatelessWidget {
         "${context.localize.sks_people_live_screen_reader_label} ${currentNumberOfUsers?.activeUsers.toString() ?? ""}. "
         "${context.localize.sks_people_live_screen_reader_label_trend} ${currentNumberOfUsers?.trend.localizedName(context) ?? ""}. "
         "${context.localize.sks_chart_average_21_days_screen_reader_label} ${chartData.isNotEmpty ? chartData[0].movingAverage21.toString() : "0"}. "
-        "${context.localize.sks_chart_max_today_screen_reader_label} ${chartData.reduce((a, b) => a.activeUsers > b.activeUsers ? a : b).activeUsers}. "
-        "${context.localize.sks_chart_max_21_days_screen_reader_label} ${chartData.reduce((a, b) => a.movingAverage21 > b.movingAverage21 ? a : b).movingAverage21}";
+        "${context.localize.sks_chart_max_today_screen_reader_label} ${chartData.maxNumberOfActiveUsers}. "
+        "${context.localize.sks_chart_max_21_days_screen_reader_label} ${chartData.maxNumberOfMovingAverage21}";
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: SksChartConfig.paddingMedium),
       width: double.infinity,

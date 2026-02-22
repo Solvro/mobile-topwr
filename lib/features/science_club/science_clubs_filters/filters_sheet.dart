@@ -6,11 +6,10 @@ import "../../../config/ui_config.dart";
 import "../../../hooks/use_filters_sheet_height.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
-import "../../../widgets/horizontal_symmetric_safe_area.dart";
 import "filters_controller.dart";
 import "filters_search_controller.dart";
-import "widgets/apply_filters_button.dart";
 import "widgets/departments_wrap.dart";
+import "widgets/filters_button.dart";
 import "widgets/filters_header.dart";
 import "widgets/tags_wrap.dart";
 import "widgets/types_wrap.dart";
@@ -25,46 +24,75 @@ class FiltersSheet extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final sheetHeight = useFiltersSheetHeight(context);
-    return SizedBox(
-      child: Stack(
-        children: [
-          ProviderScope(
-            overrides: [areFiltersEnabledProvider],
-            child: HorizontalSymmetricSafeArea(
-              child: Semantics(
-                label: context.localize.filters_sheet_semantics_label,
-                child: SizedBox(
-                  height: sheetHeight,
+
+    return ProviderScope(
+      overrides: [areFiltersEnabledProvider],
+      child: Semantics(
+        label: context.localize.filters_sheet_semantics_label,
+        child: SizedBox(
+          height: sheetHeight,
+          child: Padding(
+            padding: const EdgeInsets.only(top: 16),
+            child: Column(
+              children: [
+                FiltersHeader(),
+                Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 16),
-                    child: Column(
-                      children: [
-                        FiltersHeader(),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 16),
-                            child: ListView(
-                              shrinkWrap: true,
-                              children: const [
-                                TypesWrap(),
-                                DepartmentsWrap(),
-                                TagsWrap(),
-                                _NoFiltersFound(),
-                                SizedBox(height: FilterConfig.spacingBetweenWidgets),
-                                SizedBox(height: FilterConfig.spacingBetweenWidgets),
-                              ],
-                            ),
-                          ),
-                        ),
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: ListView(
+                      shrinkWrap: true,
+                      children: const [
+                        TypesWrap(),
+                        DepartmentsWrap(),
+                        TagsWrap(),
+                        _NoFiltersFound(),
+                        SizedBox(height: FilterConfig.spacingBetweenWidgets),
+                        SizedBox(height: FilterConfig.spacingBetweenWidgets),
                       ],
                     ),
                   ),
                 ),
-              ),
+                SafeArea(
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      boxShadow: <BoxShadow>[
+                        BoxShadow(
+                          color: Colors.black.withValues(alpha: .04),
+                          blurRadius: 16,
+                          offset: const Offset(0, -3),
+                        ),
+                      ],
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 12, bottom: 12, left: 16, right: 16),
+                      child: Row(
+                        spacing: 8,
+                        children: [
+                          if (ref.watch(areFiltersEnabledProvider))
+                            Expanded(
+                              child: FiltersButton(
+                                text: context.localize.clear,
+                                icon: Icons.close,
+                                onPressed: ref.watch(areFiltersEnabledProvider) ? ref.getClearAllFilters(ref) : () {},
+                                isSecondary: true,
+                              ),
+                            ),
+                          Expanded(
+                            child: FiltersButton(
+                              text: context.localize.apply,
+                              icon: Icons.check,
+                              onPressed: context.maybePop,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
-          Positioned(left: 16, right: 16, bottom: 16, child: ApplyFiltersButton(onPressed: context.maybePop)),
-        ],
+        ),
       ),
     );
   }
