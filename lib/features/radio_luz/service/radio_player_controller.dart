@@ -1,18 +1,15 @@
 import "dart:async";
 import "dart:io";
 
-import "package:flutter/material.dart";
 import "package:flutter/services.dart";
 import "package:just_audio/just_audio.dart";
-import "package:just_audio_background/just_audio_background.dart";
 import "package:path/path.dart" as p;
 import "package:path_provider/path_provider.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "../../../config/env.dart";
-import "../../../gen/assets.gen.dart";
 import "../data/models/audio_player_strings.dart";
 import "audio_player_streams.dart";
+import "radio_audio_handler.dart";
 import "radio_player_provider.dart";
 import "radio_state.dart";
 
@@ -20,9 +17,7 @@ part "radio_player_controller.g.dart";
 
 @Riverpod(keepAlive: true)
 class RadioController extends _$RadioController {
-  late final AudioPlayer _player = ref.watch(radioPlayerProvider);
-  late final AudioPlayerStrings _audioPlayerStrings;
-  _AppLifecycleStopper? _stopper;
+  late final RadioAudioHandlerBridge _handler = ref.watch(radioPlayerProvider);
 
   var _initialized = false;
   var _prevVolume = 1.0;
@@ -30,9 +25,6 @@ class RadioController extends _$RadioController {
 
   @override
   RadioState build() {
-    _stopper ??= _AppLifecycleStopper(_player);
-    ref.onDispose(() => _stopper?.dispose());
-
     final volumeProvider = ref.watch(audioPlayerVolumeProvider);
     final volume = volumeProvider.value ?? 1.0;
 
@@ -41,36 +33,13 @@ class RadioController extends _$RadioController {
     final processingState = playerStateProvider.value?.processingState;
 
     final isPlaying = (playerStateProvider.value?.playing ?? false) && processingState == ProcessingState.ready;
-    final isIdle = processingState == ProcessingState.idle;
-    final isLoading =
-        processingState == ProcessingState.loading || processingState == ProcessingState.buffering || isIdle;
-
-    if (isIdle) {
-      unawaited(_initPlayer());
-    }
+    final isLoading = processingState == ProcessingState.loading || processingState == ProcessingState.buffering;
 
     return RadioState(isPlaying: isPlaying, isLoading: isLoading, volume: volume, isMuted: volume <= _muteThreshold);
   }
 
-  Future<void> _initPlayer() async {
-    final assetPath = Assets.png.radioLuz.radioLuzLogo.path;
-    final artUri = await assetToFileUri(assetPath);
-
-    final audioSource = AudioSource.uri(
-      Uri.parse(Env.radioLuzStreamUrl),
-      tag: MediaItem(id: "1", title: _audioPlayerStrings.title, album: _audioPlayerStrings.album, artUri: artUri),
-    );
-
-    await _player.setAudioSource(audioSource);
-    await _player.setCanUseNetworkResourcesForLiveStreamingWhilePaused(true);
-
-    final volume = ref.read(audioPlayerVolumeProvider).value ?? 1.0;
-    await _player.setVolume(volume);
-  }
-
   void init(AudioPlayerStrings audioPlayerStrings) {
     if (_initialized) return;
-    _audioPlayerStrings = audioPlayerStrings;
     _initialized = true;
   }
 
@@ -86,24 +55,25 @@ class RadioController extends _$RadioController {
     return file.uri;
   }
 
+  ///pre-loads the audio stream to reduce startup delay
+  Future<void> preload() async {
+    await _handler.preload();
+  }
+
   Future<void> play() async {
     const durationGuard = Duration(milliseconds: 200);
-    final duration = _player.bufferedPosition;
-    await _player.seek(duration > durationGuard ? duration - durationGuard : Duration.zero);
+    final duration = _handler.bufferedPosition;
+    await _handler.seek(duration > durationGuard ? duration - durationGuard : Duration.zero);
 
-    await _player.play();
+    await _handler.play();
   }
 
   Future<void> pause() async {
-    await _player.pause();
-  }
-
-  Future<void> stop() async {
-    await _player.stop();
+    await _handler.pause();
   }
 
   Future<void> setVolume(double newVolume) async {
-    await _player.setVolume(newVolume);
+    await _handler.setVolume(newVolume);
   }
 
   void rememberVolume(double newVolume) {
@@ -112,34 +82,9 @@ class RadioController extends _$RadioController {
 
   Future<void> toggleVolume() async {
     if (state.volume <= _muteThreshold) {
-      await _player.setVolume(_prevVolume);
+      await _handler.setVolume(_prevVolume);
     } else {
-      await _player.setVolume(0);
-    }
-  }
-}
-
-// responsible for stoping the player when the user swipes away the app (force kill) on Android
-// however, the app is still running altough its not visible to the user
-// when the user opens the app again it will have the same state as when it was closed
-// if the user does not use the app for some time, the android will kill the process
-class _AppLifecycleStopper with WidgetsBindingObserver {
-  final AudioPlayer player;
-
-  _AppLifecycleStopper(this.player) {
-    WidgetsBinding.instance.addObserver(this);
-  }
-
-  void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
-  }
-
-  @override
-  Future<void> didChangeAppLifecycleState(AppLifecycleState state) async {
-    if (state == AppLifecycleState.detached) {
-      if (player.playing) {
-        await player.stop();
-      }
+      await _handler.setVolume(0);
     }
   }
 }
