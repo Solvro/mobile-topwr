@@ -123,6 +123,7 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
     );
 
     return CustomScrollView(
+      key: const Key("scrollable"),
       controller: scrollController,
       slivers: [
         const SliverPersistentHeader(pinned: true, delegate: DragHandle()),

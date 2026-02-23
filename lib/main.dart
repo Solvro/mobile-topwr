@@ -3,6 +3,7 @@ import "dart:io";
 
 import "package:audio_service/audio_service.dart";
 import "package:clarity_flutter/clarity_flutter.dart";
+import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:flutter/services.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";

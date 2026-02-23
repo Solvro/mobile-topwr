@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:flutter_test/flutter_test.dart";
 import "package:integration_test/integration_test.dart";
+import "package:topwr/config/nav_bar_config.dart";
 import "package:topwr/config/ui_config.dart";
 
 import "package:topwr/main.dart" as app;
@@ -14,13 +15,18 @@ void main() {
     await tester.tap(choiceButton);
   }
 
+  Future<void> tapNavButton(WidgetTester tester, NavBarEnum e) async {
+    final navButton = find.byKey(Key(e.name));
+    await tester.tap(navButton);
+  }
+
   Future<void> scrollAndFailIfFound({
     required WidgetTester tester,
     required Finder scrollableFinder,
     required Finder targetFinder,
     double scrollAmount = -300.0,
   }) async {
-    bool isEndReached = false;
+    var isEndReached = false;
 
     while (!isEndReached) {
       if (targetFinder.evaluate().isNotEmpty) {
@@ -66,9 +72,23 @@ void main() {
     await tester.tap(closeButton);
 
     final errorFinder = find.byType(MyErrorWidget);
-    final scrollableFinder = find.byKey(HomeViewConfig.scrollableKey);
+    final scrollableFinder = find.byKey(MyAppConfig.scrollableKey);
+    await scrollAndFailIfFound(tester: tester, scrollableFinder: scrollableFinder, targetFinder: errorFinder);
+    await tester.pumpAndSettle();
+
+    await tapNavButton(tester, NavBarEnum.buildings);
+    await tester.pumpAndSettle();
+
     await scrollAndFailIfFound(tester: tester, scrollableFinder: scrollableFinder, targetFinder: errorFinder);
 
+    await tapNavButton(tester, NavBarEnum.parkings);
     await tester.pumpAndSettle();
+
+    await tester.pump(const Duration(seconds: 3));
+
+    await tapNavButton(tester, NavBarEnum.guide);
+    await tester.pumpAndSettle();
+
+    await tester.pump(const Duration(seconds: 3));
   });
 }

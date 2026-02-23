@@ -7,6 +7,7 @@ import "../utils/context_extensions.dart";
 abstract class MyAppConfig {
   static const title = "ToPWR";
   static final legalese = "\u{a9} 2024-${DateTime.now().year} Koło Naukowe Solvro, Politechnika Wrocławska";
+  static const scrollableKey = Key("vertical_scrollable"); // pls use one per view
 }
 
 abstract class AppWidgetsConfig {
@@ -46,7 +47,6 @@ abstract class HomeViewConfig {
   static const paddingSmall = 6.0;
   static const paddingMedium = 16.0;
   static const paddingLarge = 24.0;
-  static const scrollableKey = Key("scrollable");
 
   static const squareCardTextShadow = [
     Shadow(color: HexColor.consts(0x6621334D66), blurRadius: 4, offset: Offset(0, 2)),

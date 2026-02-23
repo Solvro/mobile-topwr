@@ -35,7 +35,7 @@ class HomeView extends StatelessWidget {
       appBar: LogoAppBar(context, actions: const [PlannerBannerVisibility(reverseLogic: true, child: PlanerAdBadge())]),
       body: KeepAliveHomeViewProviders(
         child: ListView.separated(
-          key: HomeViewConfig.scrollableKey,
+          key: MyAppConfig.scrollableKey,
           cacheExtent: 500,
           itemBuilder: (context, index) => sections[index],
           separatorBuilder: (context, index) =>
