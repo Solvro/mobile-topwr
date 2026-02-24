@@ -42,27 +42,25 @@ class _PlannerAdvertBanner extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return !data.shouldRender
-        ? const SizedBox.shrink()
-        : Padding(
-            padding: const EdgeInsets.symmetric(horizontal: HomeViewConfig.paddingSmall),
-            child: TechnicalMessage(
-              padding: const EdgeInsets.all(HomeViewConfig.paddingMedium).copyWith(bottom: 0),
-              title: data.title,
-              titleColor: data.titleColor != null ? HexColor(data.titleColor!) : null,
-              message: data.description,
-              alertType: AlertType.info,
-              icon: data.url != null ? Icon(Icons.open_in_new_rounded, color: context.colorScheme.surface) : null,
-              onTap: data.url != null
-                  ? () {
-                      unawaited(ref.trackEvent(ClarityEvents.goToBannerExternalLink));
-                      unawaited(ref.launch(data.url!));
-                    }
-                  : null,
-              backgoundColor: data.backgroundColor != null ? HexColor(data.backgroundColor!) : null,
-              textColor: data.textColor != null ? HexColor(data.textColor!) : null,
-              translate: true,
-            ),
-          );
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: HomeViewConfig.paddingSmall),
+      child: TechnicalMessage(
+        padding: const EdgeInsets.all(HomeViewConfig.paddingMedium).copyWith(bottom: 0),
+        title: data.title,
+        titleColor: data.titleColor != null ? HexColor(data.titleColor!) : null,
+        message: data.description,
+        alertType: AlertType.info,
+        icon: data.url != null ? Icon(Icons.open_in_new_rounded, color: context.colorScheme.surface) : null,
+        onTap: data.url != null
+            ? () {
+                unawaited(ref.trackEvent(ClarityEvents.goToBannerExternalLink));
+                unawaited(ref.launch(data.url!));
+              }
+            : null,
+        backgoundColor: data.backgroundColor != null ? HexColor(data.backgroundColor!) : null,
+        textColor: data.textColor != null ? HexColor(data.textColor!) : null,
+        translate: true,
+      ),
+    );
   }
 }
