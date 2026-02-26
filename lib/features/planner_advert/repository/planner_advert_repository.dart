@@ -22,10 +22,18 @@ Future<PlannerBanner?> plannerAdvertContentRepository(Ref ref) async {
       )
       .castAsObject;
 
-  final active = response.data.where((b) => b.shouldRender && !b.draft).toList()
-    ..sort((a, b) => b.updatedAt.compareTo(a.updatedAt));
+  final now = DateTime.now();
+  final active =
+      response.data
+          .where(
+            (b) =>
+                !b.draft &&
+                (b.visibleFrom == null || b.visibleFrom!.isBefore(now)) &&
+                (b.visibleUntil == null || b.visibleUntil!.isAfter(now)),
+          )
+          .toList()
+        ..sort((a, b) => b.updatedAt.compareTo(a.updatedAt));
 
   final banner = active.isNotEmpty ? active.first : null;
-
   return banner;
 }
