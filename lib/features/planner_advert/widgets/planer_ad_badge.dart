@@ -35,7 +35,6 @@ class _BadgeContent extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    if (!data.shouldRender) return const SizedBox.shrink();
     final textColor = data.textColor != null ? HexColor(data.textColor!) : context.colorScheme.onTertiary;
     final backgroundColor = data.backgroundColor != null ? HexColor(data.backgroundColor!) : null;
     return Padding(
