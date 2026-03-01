@@ -23,6 +23,8 @@ Future<IList<Department>> departmentsRepository(Ref ref) async {
       )
       .castAsObject;
 
+  if (!ref.mounted) return const IListConst([]);
+
   final branch = await ref.watch(branchRepositoryProvider.future);
 
   return ref.mounted ? response.data.sortByBranch(branch).toIList() : IList<Department>();
