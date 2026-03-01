@@ -7,7 +7,6 @@ platform :android do
 
   desc "Deploy the internal (for testers) version to Google Play"
   lane :internal do
-    sh "flutter build appbundle --release"
     upload_to_play_store(
       track: "internal",
       json_key: json_key_file,

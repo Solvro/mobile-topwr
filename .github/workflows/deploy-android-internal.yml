@@ -49,6 +49,9 @@ jobs:
           bundler-cache: true
           working-directory: android
 
+      - name: Build app bundle
+        run: flutter build appbundle --release
+
       - name: Install Fastlane (Android)
         run: |
           cd android
