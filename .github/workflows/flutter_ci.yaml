@@ -57,7 +57,8 @@ jobs:
       - name: Integration tests on Android Emulator
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 36
+          api-level: 31
           arch: x86_64
-          script: flutter test integration_test/smoke_test.dart 
-          timeout-minutes: 30
+          enable-hw-keyboard: true
+          script: flutter test integration_test/smoke_test.dart
+        timeout-minutes: 30
