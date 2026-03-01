@@ -74,6 +74,7 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: "stable"
+          flutter-version-file: pubspec.yaml
           cache: true 
       - name: Install dependencies
         run: flutter pub get
