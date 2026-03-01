@@ -10,7 +10,8 @@
 		<string>We need your permission to show your location on the map.</string>
 		<key>NSLocationUsageDescription</key>
 		<string>We need your permission to show your location on the map.</string>
-
+		<key>NSMicrophoneUsageDescription</key>
+		<string>This app uses audio for playing radio and media. Some audio components may reference microphone APIs for compatibility.</string>
 		<key>CADisableMinimumFrameDurationOnPhone</key>
 		<true />
 		<key>CFBundleDevelopmentRegion</key>
