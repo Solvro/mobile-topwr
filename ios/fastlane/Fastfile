@@ -18,6 +18,8 @@ default_platform(:ios)
 platform :ios do
   desc "Push a new intenal build to TestFlight for internal testers"
   lane :internal do
+    setup_ci if ENV["CI"]
+    match(type: "appstore", readonly: true)
     build_app(
       workspace: "./Runner.xcworkspace",
       scheme: "Runner"
