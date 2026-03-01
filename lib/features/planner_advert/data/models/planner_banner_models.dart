@@ -31,7 +31,6 @@ abstract class PlannerBanner with _$PlannerBanner {
     DateTime? visibleUntil,
     required DateTime createdAt,
     required DateTime updatedAt,
-    @Default(false) bool shouldRender,
   }) = _PlannerBanner;
 
   factory PlannerBanner.fromJson(Map<String, dynamic> json) => _$PlannerBannerFromJson(json);
