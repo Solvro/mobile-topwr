@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   android-integration-test:
-    name: CI
+    name: flutter-CI
     runs-on: macos-latest 
 
     steps:
