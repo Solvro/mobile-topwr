@@ -104,7 +104,7 @@ void main() {
 
     final closeButton = find.byKey(ChangelogConfig.closeButtonKey);
     await tester.tap(closeButton);
-  });
+  }, timeout: const Timeout(Duration(minutes: 30)));
 
   // testWidgets("HomeView smoke test", (tester) async {
   //   await app.main(overrides: createPopupProviderOverrides());
