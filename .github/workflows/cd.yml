@@ -6,6 +6,9 @@ on:
       - main
       - cd
 
+permissions:
+  contents: read
+
 jobs:
   check-version:
     runs-on: ubuntu-latest
