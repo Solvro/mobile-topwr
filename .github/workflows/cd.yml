@@ -1,0 +1,73 @@
+name: CD – Android internal (Play Store)
+
+on:
+  push:
+    branches:
+      - main
+      - cd
+
+jobs:
+  check-version:
+    runs-on: ubuntu-latest
+    outputs:
+      version_bumped: ${{ steps.bump.outputs.bumped }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 2
+
+      - name: Check if pubspec version was bumped
+        id: bump
+        run: |
+          PREV=$(git show HEAD^:pubspec.yaml 2>/dev/null | grep '^version:' | sed 's/version:[[:space:]]*//' | tr -d '\r\n ' || echo "0.0.0+0")
+          CURR=$(grep '^version:' pubspec.yaml | sed 's/version:[[:space:]]*//' | tr -d '\r\n ')
+          echo "Previous version: $PREV"
+          echo "Current version: $CURR"
+          if [ "$PREV" = "0.0.0+0" ] || [ -z "$PREV" ]; then
+            echo "bumped=true" >> "$GITHUB_OUTPUT"
+          elif [ "$CURR" != "$PREV" ] && [ "$(printf '%s\n%s' "$PREV" "$CURR" | sort -V | tail -1)" = "$CURR" ]; then
+            echo "bumped=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "bumped=false" >> "$GITHUB_OUTPUT"
+          fi
+
+  deploy-android-internal:
+    needs: check-version
+    if: needs.check-version.outputs.version_bumped == 'true'
+    runs-on: ubuntu-latest
+    environment: continuous delivery
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: git crypt unlock
+        uses: sliteteam/github-action-git-crypt-unlock@1.3.0
+        env:
+          GIT_CRYPT_KEY: ${{ secrets.GIT_CRYPT_KEY }}
+
+      - name: Place key.properties
+        run: echo "${{ secrets.KEY_PROPERTIES }}" > android/key.properties
+
+      - name: Decode and place keystore
+        run: echo "${{ secrets.GOOGLE_STORE_FILE_JKS_B64 }}" | base64 -d > android/app/storeFile.jks
+
+      - name: PLAY_STORE_UPLOAD_KEY decode
+        run: echo "${{ secrets.PLAY_STORE_UPLOAD_KEY }}" | base64 -d > android/service-account-key.json
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+          flutter-version-file: pubspec.yaml
+
+      - run: flutter --version
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Generate files
+        run: dart run build_runner build --delete-conflicting-outputs
+
+      - name: Run Fastlane internal
+        run: |
+          cd android
+          fastlane internal
