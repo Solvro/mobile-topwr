@@ -3,6 +3,19 @@ default_platform(:android)
 json_key_file = "service-account-key.json"
 topwr_package_name = "com.solvro.topwr"
 
+# Notify Discord on any lane error (CI only, when webhook is configured)
+error do |lane, exception|
+  if ENV["CI"] == "true" && ENV["DISCORD_WEBHOOK_URL"].to_s.length > 0
+    discord_notifier(
+      webhook_url: ENV["DISCORD_WEBHOOK_URL"],
+      title: "Android Internal Deploy Failed",
+      description: exception.message.to_s[0..1000],
+      success: false,
+      fields: [{ name: "Lane", value: lane.to_s, inline: true }]
+    )
+  end
+end
+
 platform :android do
 
   desc "Deploy the internal (for testers) version to Google Play"
@@ -18,5 +31,20 @@ platform :android do
       skip_upload_screenshots: true,
       validate_only: false
     )
+
+    # Discord notification on success (CI only, when webhook is configured)
+    if ENV["CI"] == "true" && ENV["DISCORD_WEBHOOK_URL"].to_s.length > 0
+      version = ENV["APP_VERSION"] || "—"
+      discord_notifier(
+        webhook_url: ENV["DISCORD_WEBHOOK_URL"],
+        title: "Android Internal Deploy",
+        description: "New build uploaded to Google Play (Internal).",
+        success: true,
+        fields: [
+          { name: "Version", value: version, inline: true },
+          { name: "Track", value: "internal", inline: true }
+        ]
+      )
+    end
   end
 end

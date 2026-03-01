@@ -58,6 +58,11 @@ jobs:
         run: |
           echo "${{ secrets.APP_STORE_CONNECT_API_KEY_P8_B64 }}" | base64 -d > ios/AuthKey.p8
 
+      - name: Get app version
+        id: version
+        run: |
+          echo "version=$(grep '^version:' pubspec.yaml | sed 's/version:[[:space:]]*//' | tr -d '\r\n ')" >> "$GITHUB_OUTPUT"
+
       - name: Build iOS - flutter minimal build
         run: flutter build ios --release --no-codesign --config-only
 
@@ -69,6 +74,8 @@ jobs:
           APP_STORE_CONNECT_API_KEY_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_KEY_ID }}
           APP_STORE_CONNECT_API_KEY_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ISSUER_ID }}
           APP_STORE_CONNECT_API_KEY_KEY_PATH: ${{ github.workspace }}/ios/AuthKey.p8
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          APP_VERSION: ${{ steps.version.outputs.version }}
         run: |
           cd ios
           bundle exec fastlane internal

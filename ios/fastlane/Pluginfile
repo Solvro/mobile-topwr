@@ -1,0 +1,3 @@
+# Fastlane plugins
+# Install with: cd ios && bundle exec fastlane install_plugins
+gem 'fastlane-plugin-discord_notifier'

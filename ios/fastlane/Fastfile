@@ -15,6 +15,19 @@
 
 default_platform(:ios)
 
+# Notify Discord on any lane error (CI only, when webhook is configured)
+error do |lane, exception|
+  if ENV["CI"] == "true" && ENV["DISCORD_WEBHOOK_URL"].to_s.length > 0
+    discord_notifier(
+      webhook_url: ENV["DISCORD_WEBHOOK_URL"],
+      title: "iOS Internal Deploy Failed",
+      description: exception.message.to_s[0..1000],
+      success: false,
+      fields: [{ name: "Lane", value: lane.to_s, inline: true }]
+    )
+  end
+end
+
 platform :ios do
   desc "Push a new intenal build to TestFlight for internal testers"
   lane :internal do
@@ -36,11 +49,26 @@ platform :ios do
       scheme: "Runner"
     )
     upload_options = {
-      skip_waiting_for_build_processing: true,
-      groups: ["Internal"],
-      distribute_external: false
+      distribute_external: false,
+      notify_external_testers: false,
+      submit_beta_review: false
     }
     upload_options[:api_key] = api_key if api_key
     upload_to_testflight(upload_options)
+
+    # Discord notification on success (CI only, when webhook is configured)
+    if ENV["CI"] == "true" && ENV["DISCORD_WEBHOOK_URL"].to_s.length > 0
+      version = ENV["APP_VERSION"] || "—"
+      discord_notifier(
+        webhook_url: ENV["DISCORD_WEBHOOK_URL"],
+        title: "iOS Internal Deploy",
+        description: "New build uploaded to TestFlight (Internal).",
+        success: true,
+        fields: [
+          { name: "Version", value: version, inline: true },
+          { name: "Group", value: "Internal", inline: true }
+        ]
+      )
+    end
   end
 end

@@ -49,6 +49,11 @@ jobs:
           bundler-cache: true
           working-directory: android
 
+      - name: Install libsodium
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libsodium-dev
+
       - name: Build app bundle
         run: flutter build appbundle --release
 
@@ -57,7 +62,16 @@ jobs:
           cd android
           bundle install
 
+      - name: Get app version
+        id: version
+        run: |
+          echo "version=$(grep '^version:' pubspec.yaml | sed 's/version:[[:space:]]*//' | tr -d '\r\n ')" >> "$GITHUB_OUTPUT"
+
       - name: Run Fastlane internal
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          APP_VERSION: ${{ steps.version.outputs.version }}
+          CI: true
         run: |
           cd android
           bundle exec fastlane internal
