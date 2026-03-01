@@ -38,8 +38,10 @@ jobs:
     needs: check-version
     if: needs.check-version.outputs.version_bumped == 'true'
     uses: ./.github/workflows/deploy-android-internal.yml
+    secrets: inherit
 
   deploy-ios-internal:
     needs: check-version
     if: needs.check-version.outputs.version_bumped == 'true'
     uses: ./.github/workflows/deploy-ios-internal.yml
+    secrets: inherit
