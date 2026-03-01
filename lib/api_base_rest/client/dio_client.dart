@@ -3,8 +3,6 @@ import "package:dio/dio.dart";
 import "package:flutter/foundation.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "dio_logging_interceptor.dart";
-
 part "dio_client.g.dart";
 
 @Riverpod(keepAlive: true)

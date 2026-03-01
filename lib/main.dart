@@ -7,6 +7,7 @@ import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:flutter/services.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
+import "package:riverpod_annotation/riverpod_annotation.dart";
 import "package:sentry_flutter/sentry_flutter.dart";
 import "package:solvro_translator_core/solvro_translator_core.dart";
 import "package:wiredash/wiredash.dart";
@@ -33,18 +34,16 @@ import "services/translations_service/data/preferred_lang_repository.dart";
 import "services/translations_service/widgets/remove_old_translations.dart";
 import "theme/app_theme.dart";
 
-Future<void> main() async {
+Future<void> main({List<Override>? overrides}) async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  const isTestMode = bool.fromEnvironment("IS_APP_TEST");
 
   SplashScreenController.preserveNativeSplashScreen();
 
   final data = await PlatformAssetBundle().load(Assets.certs.przewodnikPwrEduPl);
   SecurityContext.defaultContext.setTrustedCertificatesBytes(data.buffer.asUint8List());
 
-  if (isTestMode) {
-    runApp(const ProviderScope(child: MyApp()));
+  if (kDebugMode) {
+    runApp(ProviderScope(overrides: overrides ?? [], child: const MyApp()));
   } else {
     await SentryFlutter.init((options) {
       options.dsn = Env.bugsinkDsn;
@@ -90,23 +89,6 @@ class MyApp extends HookConsumerWidget {
     final currentLocale = ref.watch(preferredLanguageRepositoryProvider);
     useDeeplinkListener(ref);
 
-    const isTestMode = bool.fromEnvironment("IS_APP_TEST");
-
-    final Widget app = MaterialApp.router(
-      locale: Locale(currentLocale.value?.name ?? SolvroLocale.pl.name),
-      builder: (context, child) => InAppReviewWidget(child: UpdateDialogWrapper(child: child!)),
-      title: MyAppConfig.title,
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
-      theme: const AppTheme().light,
-      debugShowCheckedModeBanner: false,
-      routerConfig: ref.watch(appRouterProvider).config(navigatorObservers: () => [NavigationObserver(ref)]),
-    );
-
-    if (isTestMode) {
-      return app;
-    }
-
     return RemoveOldTranslations(
       child: FlushCMSCacheRemotelyWidget(
         child: FlushTranslationsCacheRemotelyWidget(
@@ -114,7 +96,16 @@ class MyApp extends HookConsumerWidget {
             projectId: Env.wiredashId,
             secret: Env.wiredashSecret,
             theme: context.wiredashTheme,
-            child: app,
+            child: MaterialApp.router(
+              locale: Locale(currentLocale.value?.name ?? SolvroLocale.pl.name),
+              builder: (context, child) => InAppReviewWidget(child: UpdateDialogWrapper(child: child!)),
+              title: MyAppConfig.title,
+              localizationsDelegates: AppLocalizations.localizationsDelegates,
+              supportedLocales: AppLocalizations.supportedLocales,
+              theme: const AppTheme().light,
+              debugShowCheckedModeBanner: false,
+              routerConfig: ref.watch(appRouterProvider).config(navigatorObservers: () => [NavigationObserver(ref)]),
+            ),
           ),
         ),
       ),

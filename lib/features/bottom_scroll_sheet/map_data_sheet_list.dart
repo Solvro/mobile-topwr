@@ -4,6 +4,7 @@ import "package:flutter/material.dart";
 
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
+import "../../config/ui_config.dart";
 import "../../utils/context_extensions.dart";
 import "../../utils/where_non_null_iterable.dart";
 import "../../widgets/search_box_app_bar.dart";
@@ -123,7 +124,7 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
     );
 
     return CustomScrollView(
-      key: const Key("scrollable"),
+      key: MyAppConfig.verticalScrollableKey,
       controller: scrollController,
       slivers: [
         const SliverPersistentHeader(pinned: true, delegate: DragHandle()),
