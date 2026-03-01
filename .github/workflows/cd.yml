@@ -1,4 +1,4 @@
-name: CD – Android internal (Play Store)
+name: CD – Android & iOS internal (Play Store / TestFlight)
 
 on:
   push:
@@ -70,7 +70,60 @@ jobs:
       - name: Generate files
         run: dart run build_runner build --delete-conflicting-outputs
 
+      - name: Install Fastlane (Android)
+        run: |
+          cd android
+          bundle install
+
       - name: Run Fastlane internal
         run: |
           cd android
-          fastlane internal
+          bundle exec fastlane internal
+
+  deploy-ios-internal:
+    needs: check-version
+    if: needs.check-version.outputs.version_bumped == 'true'
+    runs-on: macos-latest
+    environment: continuous delivery
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: git crypt unlock
+        uses: sliteteam/github-action-git-crypt-unlock@1.3.0
+        env:
+          GIT_CRYPT_KEY: ${{ secrets.GIT_CRYPT_KEY }}
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+          flutter-version-file: pubspec.yaml
+
+      - run: flutter --version
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Generate files
+        run: dart run build_runner build --delete-conflicting-outputs
+
+      - name: Decode App Store Connect API key
+        run: |
+          echo "${{ secrets.APP_STORE_CONNECT_API_KEY_P8_B64 }}" | base64 -d > ios/AuthKey.p8
+
+      - name: Build iOS archive
+        run: flutter build ios --release --no-codesign --config-only
+
+      - name: Install Fastlane (iOS)
+        run: |
+          cd ios
+          bundle install
+
+      - name: Run Fastlane internal
+        env:
+          APP_STORE_CONNECT_API_KEY_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_KEY_ID }}
+          APP_STORE_CONNECT_API_KEY_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ISSUER_ID }}
+          APP_STORE_CONNECT_API_KEY_KEY_PATH: ${{ github.workspace }}/ios/AuthKey.p8
+        run: |
+          cd ios
+          bundle exec fastlane internal
