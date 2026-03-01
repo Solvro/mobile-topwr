@@ -107,17 +107,32 @@ jobs:
       - name: Generate files
         run: dart run build_runner build --delete-conflicting-outputs
 
+      - name: Install Fastlane (iOS)
+        run: |
+          cd ios
+          bundle install
+
+      - name: Configure SSH for Match
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.MATCH_GIT_PRIVATE_KEY }}" > ~/.ssh/match_key
+          chmod 600 ~/.ssh/match_key
+          ssh-keyscan -t ed25519 github.com >> ~/.ssh/known_hosts
+
+      - name: Run Match (readonly)
+        env:
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          GIT_SSH_COMMAND: "ssh -i ~/.ssh/match_key -o StrictHostKeyChecking=accept-new"
+        run: |
+          cd ios
+          bundle exec fastlane match appstore --readonly
+
       - name: Decode App Store Connect API key
         run: |
           echo "${{ secrets.APP_STORE_CONNECT_API_KEY_P8_B64 }}" | base64 -d > ios/AuthKey.p8
 
       - name: Build iOS archive
         run: flutter build ios --release --no-codesign --config-only
-
-      - name: Install Fastlane (iOS)
-        run: |
-          cd ios
-          bundle install
 
       - name: Run Fastlane internal
         env:
