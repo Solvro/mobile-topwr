@@ -86,10 +86,25 @@ void main() {
   }
 
   testWidgets("Popup flow test", (tester) async {
-    await app.main(overrides: createPopupProviderOverrides());
+    await app.main();
     await tester.pumpAndSettle();
 
-    // Popups are mocked, so just verify home view loaded
+    final languageButton = find.text("🇵🇱 Polski");
+    await tester.tap(languageButton);
+
+    await tapChoiceButton(tester);
+
+    await tester.pumpAndSettle();
+
+    final branchButton = find.text("Politechnika Wrocławska");
+    await tester.tap(branchButton);
+
+    await tapChoiceButton(tester);
+    await tester.pumpAndSettle();
+
+    final closeButton = find.byKey(ChangelogConfig.closeButtonKey);
+    await tester.tap(closeButton);
+
     final errorFinder = find.byType(MyErrorWidget);
     expect(find.byType(ListView), findsOneWidget);
     expect(errorFinder, findsNothing);

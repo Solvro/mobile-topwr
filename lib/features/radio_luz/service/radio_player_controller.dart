@@ -43,7 +43,6 @@ class RadioController extends _$RadioController {
   void init(AudioPlayerStrings audioPlayerStrings) {
     if (_initialized) return;
     _initialized = true;
-    unawaited(_initPlayer());
   }
 
   Future<Uri> assetToFileUri(String assetPath) async {
