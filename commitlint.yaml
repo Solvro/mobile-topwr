@@ -37,4 +37,5 @@ rules:
       - deps
       - branches
       - radio-luz
+      - cd
     # YES, you can add new ones if you have a new feature
