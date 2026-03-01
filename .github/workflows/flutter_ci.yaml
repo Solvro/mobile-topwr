@@ -53,3 +53,11 @@ jobs:
 
       - name: Flutter tests
         run: flutter test
+
+      - name: Integration tests on Android Emulator
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 36
+          arch: x86_64
+          script: flutter test integration_test/smoke_test.dart 
+          timeout-minutes: 30
