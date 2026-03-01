@@ -54,12 +54,10 @@
 name: Integration Tests
 
 on:
-  # Uruchamia się na PR do głównych gałęzi
   pull_request:
     branches: 
       - main
       - dev
-  # Pozwala na ręczne odpalenie testów z panelu "Actions" w GitHubie!
   workflow_dispatch: 
 
 permissions:
@@ -76,7 +74,6 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: "stable"
-          flutter-version-file: pubspec.yaml
           cache: true 
       - name: Install dependencies
         run: flutter pub get
@@ -101,15 +98,17 @@ jobs:
       - name: generate files
         run: dart run build_runner build --delete-conflicting-outputs
 
-      - name: Build Android APK
-        run: flutter build apk --debug
+      - name: Boot iOS Simulator
+        run: |
+          # 1. Sprawdzamy listę dostępnych symulatorów (opcjonalne, przydatne w logach)
+          xcrun simctl list devices | grep "iPhone 15"
+          
+          # 2. Włączamy symulator (wybierz model, który jest na maszynie, np. iPhone 15)
+          xcrun simctl boot "iPhone 15"
+          
+          # 3. Czekamy, aż system w symulatorze w pełni wstanie
+          xcrun simctl bootstatus "iPhone 15"
 
-      - name: Integration tests on Android Emulator
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 31
-          arch: x86_64
-          target: google_apis
-          enable-hw-keyboard: true
-          script: flutter test integration_test/smoke_test.dart
-        timeout-minutes: 60
+      - name: Run Integration Tests on iOS Simulator
+        run: flutter test integration_test/smoke_test.dart -d "iPhone 15"
+        timeout-minutes: 30
