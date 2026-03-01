@@ -19,14 +19,27 @@ platform :ios do
   desc "Push a new intenal build to TestFlight for internal testers"
   lane :internal do
     setup_ci if ENV["CI"]
-    match(type: "appstore", readonly: true)
+
+    # Use App Store Connect API Key in CI
+    api_key = nil
+    if ENV["APP_STORE_CONNECT_API_KEY_KEY_ID"] && ENV["APP_STORE_CONNECT_API_KEY_KEY_PATH"]
+      api_key = app_store_connect_api_key(
+        key_id: ENV["APP_STORE_CONNECT_API_KEY_KEY_ID"],
+        issuer_id: ENV["APP_STORE_CONNECT_API_KEY_ISSUER_ID"],
+        key_filepath: ENV["APP_STORE_CONNECT_API_KEY_KEY_PATH"]
+      )
+    end
+
+    match(type: "appstore", readonly: true, api_key: api_key)
     build_app(
       workspace: "./Runner.xcworkspace",
       scheme: "Runner"
     )
-    upload_to_testflight(
+    upload_options = {
       groups: ["Internal"],
       distribute_external: false
-    )
+    }
+    upload_options[:api_key] = api_key if api_key
+    upload_to_testflight(upload_options)
   end
 end
