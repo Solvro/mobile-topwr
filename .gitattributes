@@ -4,3 +4,4 @@ ios/Runner/GoogleService-Info.plist filter=git-crypt diff=git-crypt
 macos/Runner/GoogleService-Info.plist filter=git-crypt diff=git-crypt
 firebase.json filter=git-crypt diff=git-crypt
 lib/firebase_options.dart filter=git-crypt diff=git-crypt
+ios/fastlane/Matchfile filter=git-crypt diff=git-crypt

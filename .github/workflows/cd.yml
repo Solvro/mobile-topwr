@@ -1,0 +1,46 @@
+name: CD
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  check-version:
+    runs-on: ubuntu-latest
+    outputs:
+      version_bumped: ${{ steps.bump.outputs.bumped }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 2
+
+      - name: Check if pubspec version was bumped
+        id: bump
+        run: |
+          PREV=$(git show HEAD^:pubspec.yaml 2>/dev/null | grep '^version:' | sed 's/version:[[:space:]]*//' | tr -d '\r\n ' || echo "0.0.0+0")
+          CURR=$(grep '^version:' pubspec.yaml | sed 's/version:[[:space:]]*//' | tr -d '\r\n ')
+          echo "Previous version: $PREV"
+          echo "Current version: $CURR"
+          if [ "$PREV" = "0.0.0+0" ] || [ -z "$PREV" ]; then
+            echo "bumped=true" >> "$GITHUB_OUTPUT"
+          elif [ "$CURR" != "$PREV" ] && [ "$(printf '%s\n%s' "$PREV" "$CURR" | sort -V | tail -1)" = "$CURR" ]; then
+            echo "bumped=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "bumped=false" >> "$GITHUB_OUTPUT"
+          fi
+
+  deploy-android-internal:
+    needs: check-version
+    if: needs.check-version.outputs.version_bumped == 'true'
+    uses: ./.github/workflows/deploy-android-internal.yml
+    secrets: inherit
+
+  deploy-ios-internal:
+    needs: check-version
+    if: needs.check-version.outputs.version_bumped == 'true'
+    uses: ./.github/workflows/deploy-ios-internal.yml
+    secrets: inherit

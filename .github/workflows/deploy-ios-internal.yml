@@ -1,0 +1,74 @@
+name: CD - ios internal
+
+on:
+  workflow_call:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: macos-latest
+    environment: continuous delivery
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: git crypt unlock
+        env:
+          GIT_CRYPT_KEY: ${{ secrets.GIT_CRYPT_KEY }}
+        run: |
+          brew install git-crypt
+          echo "$GIT_CRYPT_KEY" | base64 -d | git-crypt unlock -
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+          flutter-version-file: pubspec.yaml
+
+      - run: flutter --version
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Generate files
+        run: dart run build_runner build --delete-conflicting-outputs
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2"
+          bundler-cache: true
+          working-directory: ios
+
+      - name: Install Fastlane (iOS)
+        run: |
+          cd ios
+          bundle install
+
+      - name: Configure SSH for Match
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.MATCH_GIT_PRIVATE_KEY }}" > ~/.ssh/match_key
+          chmod 600 ~/.ssh/match_key
+          ssh-keyscan -t ed25519 github.com >> ~/.ssh/known_hosts
+
+      - name: Decode App Store Connect API key
+        run: |
+          echo "${{ secrets.APP_STORE_CONNECT_API_KEY_P8_B64 }}" | base64 -d > ios/AuthKey.p8
+
+      - name: Build iOS - flutter minimal build
+        run: flutter build ios --release --no-codesign --config-only
+
+      - name: Run Fastlane internal
+        env:
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          GIT_SSH_COMMAND: "ssh -i ~/.ssh/match_key -o StrictHostKeyChecking=accept-new"
+          CI: true
+          APP_STORE_CONNECT_API_KEY_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_KEY_ID }}
+          APP_STORE_CONNECT_API_KEY_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ISSUER_ID }}
+          APP_STORE_CONNECT_API_KEY_KEY_PATH: ${{ github.workspace }}/ios/AuthKey.p8
+        run: |
+          cd ios
+          bundle exec fastlane internal
