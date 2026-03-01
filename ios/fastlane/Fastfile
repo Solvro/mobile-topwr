@@ -19,8 +19,8 @@ platform :ios do
   desc "Push a new intenal build to TestFlight for internal testers"
   lane :internal do
     build_app(
-      skip_build_archive: true,
-      archive_path: "../build/ios/archive/Runner.xcarchive"
+      workspace: "./Runner.xcworkspace",
+      scheme: "Runner"
     )
     upload_to_testflight(
       groups: ["Internal"],
