@@ -23,7 +23,7 @@ jobs:
         run: echo "${{ secrets.KEY_PROPERTIES }}" > android/key.properties
 
       - name: Decode and place keystore
-        run: echo "${{ secrets.GOOGLE_STORE_FILE_JKS_B64 }}" | base64 -d > android/app/storeFile.jks
+        run: echo "${{ secrets.GOOGLE_STORE_FILE_JKS_B64 }}" | base64 -d > android/keystore-topwr.keystore
 
       - name: PLAY_STORE_UPLOAD_KEY decode
         run: echo "${{ secrets.PLAY_STORE_UPLOAD_KEY }}" | base64 -d > android/service-account-key.json
