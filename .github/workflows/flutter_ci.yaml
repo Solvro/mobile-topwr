@@ -126,7 +126,7 @@ jobs:
           
           # Przekazujemy ID do kolejnego kroku
           echo "SIMULATOR_ID=$DEVICE_UUID" >> $GITHUB_ENV
-
+          
       - name: Run Integration Tests on iOS Simulator
-        run: flutter test integration_test/smoke_test.dart -d "iPhone 15"
+        run: flutter test integration_test/smoke_test.dart -d "$SIMULATOR_ID"
         timeout-minutes: 30
