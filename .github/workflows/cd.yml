@@ -1,4 +1,4 @@
-name: CD – Android & iOS internal (Play Store / TestFlight)
+name: CD
 
 on:
   push:
