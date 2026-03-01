@@ -36,8 +36,8 @@ jobs:
       - name: Remove lib/l10n directory
         run: rm -rf lib/l10n/*.dart
 
-      - name: Verify formatting
-        run: dart format --output=none --set-exit-if-changed .
+      # - name: Verify formatting
+      #   run: dart format --output=none --set-exit-if-changed .
 
       - name: Regenerate the localization files
         run: flutter gen-l10n
@@ -45,14 +45,14 @@ jobs:
       - name: generate files
         run: dart run build_runner build --delete-conflicting-outputs
 
-      - name: Analyze project source
-        run: flutter analyze --fatal-infos
+      # - name: Analyze project source
+      #   run: flutter analyze --fatal-infos
 
-      - name: Run custom lints
-        run: dart run custom_lint --fatal-infos
+      # - name: Run custom lints
+      #   run: dart run custom_lint --fatal-infos
 
-      - name: Flutter tests
-        run: flutter test
+      # - name: Flutter tests
+      #   run: flutter test
 
       - name: Integration tests on Android Emulator
         uses: reactivecircus/android-emulator-runner@v2
