@@ -33,9 +33,7 @@ class RadioController extends _$RadioController {
     final processingState = playerStateProvider.value?.processingState;
 
     final isPlaying = (playerStateProvider.value?.playing ?? false) && processingState == ProcessingState.ready;
-    final isIdle = processingState == ProcessingState.idle;
-    final isLoading =
-        processingState == ProcessingState.loading || processingState == ProcessingState.buffering || isIdle;
+    final isLoading = processingState == ProcessingState.loading || processingState == ProcessingState.buffering;
 
     return RadioState(isPlaying: isPlaying, isLoading: isLoading, volume: volume, isMuted: volume <= _muteThreshold);
   }
