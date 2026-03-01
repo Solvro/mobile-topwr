@@ -23,6 +23,7 @@ jobs:
           channel: "stable"
           flutter-version-file: pubspec.yaml
           cache: true 
+
       - name: Install dependencies
         run: flutter pub get
 
@@ -46,7 +47,7 @@ jobs:
       - name: Regenerate the localization files
         run: flutter gen-l10n
 
-      - name: generate files
+      - name: Generate files
         run: dart run build_runner build --delete-conflicting-outputs
 
       - name: Analyze project source
@@ -55,15 +56,16 @@ jobs:
       - name: Run custom lints
         run: dart run custom_lint --fatal-infos
 
-      - name: Flutter tests
+      - name: Flutter unit tests
         run: flutter test
+
+      - name: Pre-build iOS Integration Test App
+        run: flutter build ios --debug --no-codesign --simulator
 
       - name: Boot iOS Simulator
         run: |
           set +e 
-          
           DEVICE_UUID=$(xcrun simctl list devices available | grep "iPhone" | head -n 1 | awk -F'[()]' '{print $2}')
-          
           set -e
           
           if [ -z "$DEVICE_UUID" ]; then
@@ -71,11 +73,9 @@ jobs:
           fi
           
           xcrun simctl boot "$DEVICE_UUID" || true
-          
           xcrun simctl bootstatus "$DEVICE_UUID"
-          
           echo "SIMULATOR_ID=$DEVICE_UUID" >> $GITHUB_ENV
 
       - name: Run Integration Tests on iOS Simulator
         run: flutter test integration_test/smoke_test.dart -d "$SIMULATOR_ID" --timeout=30m
-        timeout-minutes: 30
+        timeout-minutes: 45
