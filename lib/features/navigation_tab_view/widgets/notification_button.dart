@@ -1,7 +1,8 @@
 import "dart:async";
 
 import "package:flutter/material.dart";
-import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:flutter_hooks/flutter_hooks.dart";
+import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../../config/ui_config.dart";
 import "../../../firebase_init.dart";
@@ -11,48 +12,41 @@ import "../../analytics/data/clarity.dart";
 import "../../analytics/data/clarity_events.dart";
 import "notification_dialog.dart";
 
-class NotificationButton extends ConsumerStatefulWidget {
+class NotificationButton extends HookConsumerWidget {
   const NotificationButton({super.key});
 
   @override
-  ConsumerState<NotificationButton> createState() => _NotificationButtonState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final focusNode = useFocusNode();
 
-class _NotificationButtonState extends ConsumerState<NotificationButton> {
-  final _focusNode = FocusNode();
-
-  @override
-  void dispose() {
-    _focusNode.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return Padding(
       padding: SksConfig.outerPaddingLarge,
-      child: MySplashTile(
-        focusNode: _focusNode,
-        onTap: () async {
-          unawaited(ref.trackEvent(ClarityEvents.openNotificationInfoBellDialog));
-          await showNotificationDialog(
-            context: context,
-            onConfirmTapped: (context) {
-              unawaited(requestFCMPermission());
-              Navigator.of(context).pop();
+      child: ExcludeSemantics(
+        child: FocusableActionDetector(
+          focusNode: focusNode,
+          child: MySplashTile(
+            onTap: () async {
+              unawaited(ref.trackEvent(ClarityEvents.openNotificationInfoBellDialog));
+              await showNotificationDialog(
+                context: context,
+                onConfirmTapped: (context) {
+                  unawaited(requestFCMPermission());
+                  Navigator.of(context).pop();
+                },
+              );
+              focusNode.requestFocus();
             },
-          );
-          _focusNode.requestFocus();
-        },
-        child: Container(
-          padding: SksConfig.innerPadding,
-          decoration: BoxDecoration(
-            border: Border.all(color: context.colorScheme.primary),
-            borderRadius: BorderRadius.circular(SksConfig.radius),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: SksConfig.sizedBoxWidth),
-            child: Icon(Icons.notifications, color: context.colorScheme.primary),
+            child: Container(
+              padding: SksConfig.innerPadding,
+              decoration: BoxDecoration(
+                border: Border.all(color: context.colorScheme.primary),
+                borderRadius: BorderRadius.circular(SksConfig.radius),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: SksConfig.sizedBoxWidth),
+                child: Icon(Icons.notifications, color: context.colorScheme.primary),
+              ),
+            ),
           ),
         ),
       ),
