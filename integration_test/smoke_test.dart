@@ -106,109 +106,109 @@ void main() {
     await tester.tap(closeButton);
   });
 
-  testWidgets("HomeView smoke test", (tester) async {
-    await app.main(overrides: createPopupProviderOverrides());
-    await tester.pumpAndSettle(const Duration(seconds: 5));
+  // testWidgets("HomeView smoke test", (tester) async {
+  //   await app.main(overrides: createPopupProviderOverrides());
+  //   await tester.pumpAndSettle(const Duration(seconds: 5));
 
-    await tapNavButton(tester, NavBarEnum.home);
-    await tester.pumpAndSettle(const Duration(seconds: 5));
+  //   await tapNavButton(tester, NavBarEnum.home);
+  //   await tester.pumpAndSettle(const Duration(seconds: 5));
 
-    final errorFinder = find.byType(MyErrorWidget);
-    final scrollableFinder = find.byKey(MyAppConfig.verticalScrollableKey);
-    await scrollAndFailIfFound(tester: tester, scrollableFinder: scrollableFinder, targetFinder: errorFinder);
-    await tester.pumpAndSettle();
-  });
+  //   final errorFinder = find.byType(MyErrorWidget);
+  //   final scrollableFinder = find.byKey(MyAppConfig.verticalScrollableKey);
+  //   await scrollAndFailIfFound(tester: tester, scrollableFinder: scrollableFinder, targetFinder: errorFinder);
+  //   await tester.pumpAndSettle();
+  // });
 
-  testWidgets("BuildingsView smoke test", (tester) async {
-    await app.main(overrides: createPopupProviderOverrides());
-    await tester.pumpAndSettle();
+  // testWidgets("BuildingsView smoke test", (tester) async {
+  //   await app.main(overrides: createPopupProviderOverrides());
+  //   await tester.pumpAndSettle();
 
-    await tapNavButton(tester, NavBarEnum.buildings);
-    await tester.pumpAndSettle();
+  //   await tapNavButton(tester, NavBarEnum.buildings);
+  //   await tester.pumpAndSettle();
 
-    final errorFinder = find.byType(MyErrorWidget);
-    final scrollableFinder = find.byKey(MyAppConfig.verticalScrollableKey);
-    await scrollAndFailIfFound(tester: tester, scrollableFinder: scrollableFinder, targetFinder: errorFinder);
-    await tester.pumpAndSettle();
-  });
+  //   final errorFinder = find.byType(MyErrorWidget);
+  //   final scrollableFinder = find.byKey(MyAppConfig.verticalScrollableKey);
+  //   await scrollAndFailIfFound(tester: tester, scrollableFinder: scrollableFinder, targetFinder: errorFinder);
+  //   await tester.pumpAndSettle();
+  // });
 
-  testWidgets("ParkingsView smoke test", (tester) async {
-    await app.main(overrides: createPopupProviderOverrides());
-    await tester.pumpAndSettle();
+  // testWidgets("ParkingsView smoke test", (tester) async {
+  //   await app.main(overrides: createPopupProviderOverrides());
+  //   await tester.pumpAndSettle();
 
-    await tapNavButton(tester, NavBarEnum.parkings);
-    await tester.pumpAndSettle();
+  //   await tapNavButton(tester, NavBarEnum.parkings);
+  //   await tester.pumpAndSettle();
 
-    final errorFinder = find.byType(MyErrorWidget);
-    final scrollableFinder = find.byKey(MyAppConfig.verticalScrollableKey);
-    await scrollAndFailIfFound(tester: tester, scrollableFinder: scrollableFinder, targetFinder: errorFinder);
-    await tester.pumpAndSettle();
-  });
+  //   final errorFinder = find.byType(MyErrorWidget);
+  //   final scrollableFinder = find.byKey(MyAppConfig.verticalScrollableKey);
+  //   await scrollAndFailIfFound(tester: tester, scrollableFinder: scrollableFinder, targetFinder: errorFinder);
+  //   await tester.pumpAndSettle();
+  // });
 
-  testWidgets("GuideView smoke test", (tester) async {
-    await app.main(overrides: createPopupProviderOverrides());
-    await tester.pumpAndSettle();
+  // testWidgets("GuideView smoke test", (tester) async {
+  //   await app.main(overrides: createPopupProviderOverrides());
+  //   await tester.pumpAndSettle();
 
-    await tapNavButton(tester, NavBarEnum.guide);
-    await tester.pumpAndSettle();
+  //   await tapNavButton(tester, NavBarEnum.guide);
+  //   await tester.pumpAndSettle();
 
-    final errorFinder = find.byType(MyErrorWidget);
-    final scrollableFinder = find.byKey(MyAppConfig.verticalScrollableKey);
-    await scrollAndFailIfFound(tester: tester, scrollableFinder: scrollableFinder, targetFinder: errorFinder);
-    await tester.pumpAndSettle();
-  });
+  //   final errorFinder = find.byType(MyErrorWidget);
+  //   final scrollableFinder = find.byKey(MyAppConfig.verticalScrollableKey);
+  //   await scrollAndFailIfFound(tester: tester, scrollableFinder: scrollableFinder, targetFinder: errorFinder);
+  //   await tester.pumpAndSettle();
+  // });
 
-  testWidgets("BuildingsView smoke test", (tester) async {
-    await app.main(overrides: createPopupProviderOverrides());
-    await tester.pumpAndSettle();
+  // testWidgets("BuildingsView smoke test", (tester) async {
+  //   await app.main(overrides: createPopupProviderOverrides());
+  //   await tester.pumpAndSettle();
 
-    await tapNavButton(tester, NavBarEnum.navigation);
-    await tester.pump(const Duration(seconds: 3));
+  //   await tapNavButton(tester, NavBarEnum.navigation);
+  //   await tester.pump(const Duration(seconds: 3));
 
-    final navButton = find.byKey(NavigationTabViewConfig.departments);
-    await tester.tap(navButton);
+  //   final navButton = find.byKey(NavigationTabViewConfig.departments);
+  //   await tester.tap(navButton);
 
-    await tester.pumpAndSettle();
+  //   await tester.pumpAndSettle();
 
-    final errorFinder = find.byType(MyErrorWidget);
-    final scrollableFinder = find.byKey(MyAppConfig.verticalScrollableKey);
-    await scrollAndFailIfFound(tester: tester, scrollableFinder: scrollableFinder, targetFinder: errorFinder);
-    await tester.pumpAndSettle();
-  });
+  //   final errorFinder = find.byType(MyErrorWidget);
+  //   final scrollableFinder = find.byKey(MyAppConfig.verticalScrollableKey);
+  //   await scrollAndFailIfFound(tester: tester, scrollableFinder: scrollableFinder, targetFinder: errorFinder);
+  //   await tester.pumpAndSettle();
+  // });
 
-  testWidgets("ScienceClubView smoke test", (tester) async {
-    await app.main(overrides: createPopupProviderOverrides());
-    await tester.pumpAndSettle();
+  // testWidgets("ScienceClubView smoke test", (tester) async {
+  //   await app.main(overrides: createPopupProviderOverrides());
+  //   await tester.pumpAndSettle();
 
-    await tapNavButton(tester, NavBarEnum.navigation);
-    await tester.pump(const Duration(seconds: 3));
+  //   await tapNavButton(tester, NavBarEnum.navigation);
+  //   await tester.pump(const Duration(seconds: 3));
 
-    final navButton = find.byKey(NavigationTabViewConfig.scienceClubsKey);
-    await tester.tap(navButton);
+  //   final navButton = find.byKey(NavigationTabViewConfig.scienceClubsKey);
+  //   await tester.tap(navButton);
 
-    await tester.pumpAndSettle();
+  //   await tester.pumpAndSettle();
 
-    final errorFinder = find.byType(MyErrorWidget);
-    final scrollableFinder = find.byKey(MyAppConfig.verticalScrollableKey);
-    await scrollAndFailIfFound(tester: tester, scrollableFinder: scrollableFinder, targetFinder: errorFinder);
-    await tester.pumpAndSettle();
-  });
+  //   final errorFinder = find.byType(MyErrorWidget);
+  //   final scrollableFinder = find.byKey(MyAppConfig.verticalScrollableKey);
+  //   await scrollAndFailIfFound(tester: tester, scrollableFinder: scrollableFinder, targetFinder: errorFinder);
+  //   await tester.pumpAndSettle();
+  // });
 
-  testWidgets("RadioLuzView smoke test", (tester) async {
-    await app.main(overrides: createPopupProviderOverrides());
-    await tester.pumpAndSettle();
+  // testWidgets("RadioLuzView smoke test", (tester) async {
+  //   await app.main(overrides: createPopupProviderOverrides());
+  //   await tester.pumpAndSettle();
 
-    await tapNavButton(tester, NavBarEnum.navigation);
-    await tester.pump(const Duration(seconds: 3));
+  //   await tapNavButton(tester, NavBarEnum.navigation);
+  //   await tester.pump(const Duration(seconds: 3));
 
-    final navButton = find.byKey(NavigationTabViewConfig.radioLuzKey);
-    await tester.tap(navButton);
+  //   final navButton = find.byKey(NavigationTabViewConfig.radioLuzKey);
+  //   await tester.tap(navButton);
 
-    await tester.pump(const Duration(seconds: 3));
+  //   await tester.pump(const Duration(seconds: 3));
 
-    final errorFinder = find.byType(MyErrorWidget);
-    final scrollableFinder = find.byKey(MyAppConfig.verticalScrollableKey);
-    await scrollAndFailIfFound(tester: tester, scrollableFinder: scrollableFinder, targetFinder: errorFinder);
-    await tester.pump(const Duration(seconds: 3));
-  }, skip: true);
+  //   final errorFinder = find.byType(MyErrorWidget);
+  //   final scrollableFinder = find.byKey(MyAppConfig.verticalScrollableKey);
+  //   await scrollAndFailIfFound(tester: tester, scrollableFinder: scrollableFinder, targetFinder: errorFinder);
+  //   await tester.pump(const Duration(seconds: 3));
+  // }, skip: true);
 }

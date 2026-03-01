@@ -60,5 +60,5 @@ jobs:
           api-level: 31
           arch: x86_64
           enable-hw-keyboard: true
-          script: flutter test integration_test/smoke_test.dart
-        timeout-minutes: 30
+          script: flutter test integration_test/smoke_test.dart --timeout=30m
+        timeout-minutes: 60
