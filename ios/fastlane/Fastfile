@@ -36,6 +36,7 @@ platform :ios do
       scheme: "Runner"
     )
     upload_options = {
+      skip_waiting_for_build_processing: true,
       groups: ["Internal"],
       distribute_external: false
     }
