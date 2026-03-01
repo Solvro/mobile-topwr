@@ -1,58 +1,105 @@
-name: CI
+# name: CI
+
+# on:
+#   push:
+#     branches:
+#       - main
+#       - dev
+#   pull_request:
+#     branches: ["**"]
+
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - uses: actions/checkout@v6
+
+#       - uses: subosito/flutter-action@v2
+#         with:
+#           channel: "stable"
+#           flutter-version-file: pubspec.yaml
+
+#       - run: flutter --version
+
+#       - name: Install dependencies
+#         run: flutter pub get
+
+#       - name: git crypt unlock
+#         uses: sliteteam/github-action-git-crypt-unlock@1.3.0
+#         env:
+#           GIT_CRYPT_KEY: ${{ secrets.GIT_CRYPT_KEY }}
+
+#       - name: Remove lib/l10n directory
+#         run: rm -rf lib/l10n/*.dart
+
+#       - name: Verify formatting
+#         run: dart format --output=none --set-exit-if-changed .
+
+#       - name: Regenerate the localization files
+#         run: flutter gen-l10n
+
+#       - name: generate files
+#         run: dart run build_runner build --delete-conflicting-outputs
+
+#       - name: Analyze project source
+#         run: flutter analyze --fatal-infos
+
+#       - name: Run custom lints
+#         run: dart run custom_lint --fatal-infos
+
+#       - name: Flutter tests
+#         run: flutter test
+
+name: Integration Tests
 
 on:
-  push:
-    branches:
+  # Uruchamia się na PR do głównych gałęzi
+  pull_request:
+    branches: 
       - main
       - dev
-  pull_request:
-    branches: ["**"]
+  # Pozwala na ręczne odpalenie testów z panelu "Actions" w GitHubie!
+  workflow_dispatch: 
 
 permissions:
   contents: read
 
 jobs:
-  build:
-    runs-on: macos-latest
+  android-integration-test:
+    name: Android Integration Tests
+    runs-on: macos-latest 
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v4
 
       - uses: subosito/flutter-action@v2
         with:
           channel: "stable"
           flutter-version-file: pubspec.yaml
-
-      - run: flutter --version
-
+          cache: true 
       - name: Install dependencies
         run: flutter pub get
 
-      - name: git crypt unlock
-        uses: sliteteam/github-action-git-crypt-unlock@1.3.0
+      - name: Install git-crypt (macOS)
+        run: brew install git-crypt
+
+      - name: git crypt unlock (Manual)
         env:
           GIT_CRYPT_KEY: ${{ secrets.GIT_CRYPT_KEY }}
+        run: |
+          echo "$GIT_CRYPT_KEY" | base64 --decode > secret_key.key
+          git-crypt unlock secret_key.key
+          rm secret_key.key
 
       - name: Remove lib/l10n directory
         run: rm -rf lib/l10n/*.dart
-
-      # - name: Verify formatting
-      #   run: dart format --output=none --set-exit-if-changed .
 
       - name: Regenerate the localization files
         run: flutter gen-l10n
 
       - name: generate files
         run: dart run build_runner build --delete-conflicting-outputs
-
-      # - name: Analyze project source
-      #   run: flutter analyze --fatal-infos
-
-      # - name: Run custom lints
-      #   run: dart run custom_lint --fatal-infos
-
-      # - name: Flutter tests
-      #   run: flutter test
 
       - name: Build Android APK
         run: flutter build apk --debug
@@ -65,3 +112,4 @@ jobs:
           target: google_apis
           enable-hw-keyboard: true
           script: flutter test integration_test/smoke_test.dart
+        timeout-minutes: 60
