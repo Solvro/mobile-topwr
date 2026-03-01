@@ -70,6 +70,13 @@ jobs:
       - name: Generate files
         run: dart run build_runner build --delete-conflicting-outputs
 
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2"
+          bundler-cache: true
+          working-directory: android
+
       - name: Install Fastlane (Android)
         run: |
           cd android
@@ -89,9 +96,11 @@ jobs:
       - uses: actions/checkout@v6
 
       - name: git crypt unlock
-        uses: sliteteam/github-action-git-crypt-unlock@1.3.0
         env:
           GIT_CRYPT_KEY: ${{ secrets.GIT_CRYPT_KEY }}
+        run: |
+          brew install git-crypt
+          echo "$GIT_CRYPT_KEY" | base64 -d | git-crypt unlock -
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
@@ -106,6 +115,13 @@ jobs:
 
       - name: Generate files
         run: dart run build_runner build --delete-conflicting-outputs
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2"
+          bundler-cache: true
+          working-directory: ios
 
       - name: Install Fastlane (iOS)
         run: |
