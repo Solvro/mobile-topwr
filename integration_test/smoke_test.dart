@@ -185,6 +185,7 @@ void main() {
       final scrollableFinder = find.byKey(MyAppConfig.verticalScrollableKey);
       await scrollAndFailIfFound(tester: tester, scrollableFinder: scrollableFinder, targetFinder: errorFinder);
       await tester.pumpAndSettle();
+      await tester.pump(const Duration(seconds: 3));
     });
 
     testWidgets("ScienceClubView smoke test", (tester) async {
