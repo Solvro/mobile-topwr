@@ -62,7 +62,7 @@ void main() {
 
     while (!isEndReached) {
       if (targetFinder.evaluate().isNotEmpty) {
-        fail("Test przerwany: Znaleziono widget, którego miało nie być!");
+        fail("Test Failed: We found ${targetFinder.found.first}");
       }
 
       final ScrollableState scrollableState = tester.state(
@@ -169,12 +169,12 @@ void main() {
       await tester.pumpAndSettle();
     });
 
-    testWidgets("BuildingsView smoke test", (tester) async {
+    testWidgets("DeparmentsView smoke test", (tester) async {
       await app.main(overrides: createPopupProviderOverrides());
       await tester.pumpAndSettle();
 
       await tapNavButton(tester, NavBarEnum.navigation);
-      await tester.pump(const Duration(seconds: 3));
+      await tester.pump(const Duration(seconds: 3)); // there pumpAndSettle never ends on NavigationView
 
       final navButton = find.byKey(NavigationTabViewConfig.departments);
       await tester.tap(navButton);
@@ -193,7 +193,7 @@ void main() {
       await tester.pumpAndSettle();
 
       await tapNavButton(tester, NavBarEnum.navigation);
-      await tester.pump(const Duration(seconds: 3));
+      await tester.pump(const Duration(seconds: 3)); // there pumpAndSettle never ends on NavigationView
 
       final navButton = find.byKey(NavigationTabViewConfig.scienceClubsKey);
       await tester.tap(navButton);
@@ -211,7 +211,7 @@ void main() {
       await tester.pumpAndSettle();
 
       await tapNavButton(tester, NavBarEnum.navigation);
-      await tester.pump(const Duration(seconds: 3));
+      await tester.pump(const Duration(seconds: 3)); // there pumpAndSettle never ends on NavigationView
 
       final navButton = find.byKey(NavigationTabViewConfig.radioLuzKey);
       await tester.tap(navButton);
@@ -222,6 +222,6 @@ void main() {
       final scrollableFinder = find.byKey(MyAppConfig.verticalScrollableKey);
       await scrollAndFailIfFound(tester: tester, scrollableFinder: scrollableFinder, targetFinder: errorFinder);
       await tester.pump(const Duration(seconds: 3));
-    }, skip: true);
+    }, skip: true); // now we skipping bcs radioluzView is throwing an error
   });
 }
