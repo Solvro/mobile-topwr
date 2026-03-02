@@ -65,15 +65,10 @@ class _DigitalGuideView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final widgets1 = [
       const SizedBox(height: DigitalGuideConfig.heightSmall),
-      SizedBox(
-        height: DetailViewsConfig.imageHeight,
-        child: Focus(autofocus: true, child: ZoomableCachedImage(photoUrl)),
-      ),
       HeadlinesSection(
         name: digitalGuideData.translations.plTranslation.name,
         description: digitalGuideData.translations.plTranslation.extendedName,
       ),
-
       AccessibilityInformationCardsList(
         padding: DigitalGuideConfig.symetricalPaddingMedium,
         prefix: context.localize.building_prefix,
@@ -121,6 +116,14 @@ class _DigitalGuideView extends ConsumerWidget {
       appBar: DetailViewAppBar(actions: [AccessibilityButton()]),
       body: CustomScrollView(
         slivers: [
+          SliverAppBar(
+            excludeHeaderSemantics: true,
+            expandedHeight: DetailViewsConfig.imageHeight,
+            flexibleSpace: SizedBox(
+              height: DetailViewsConfig.imageHeight,
+              child: Focus(autofocus: true, child: ZoomableCachedImage(photoUrl)),
+            ),
+          ),
           SliverList(
             delegate: SliverChildBuilderDelegate((context, index) {
               return widgets1[index];
