@@ -11,12 +11,12 @@ permissions:
   contents: read
 
 jobs:
-  android-integration-test:
-    name: flutter-CI
+  all-checks:
+    name: All checks
     runs-on: macos-latest 
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - uses: subosito/flutter-action@v2
         with:
@@ -58,6 +58,42 @@ jobs:
 
       - name: Flutter unit tests
         run: flutter test
+
+  integration-tests:
+    name: Integration tests (iOS)
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+          flutter-version-file: pubspec.yaml
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Install git-crypt
+        run: brew install git-crypt
+
+      - name: git crypt unlock
+        env:
+          GIT_CRYPT_KEY: ${{ secrets.GIT_CRYPT_KEY }}
+        run: |
+          echo "$GIT_CRYPT_KEY" | base64 --decode > secret_key.key
+          git-crypt unlock secret_key.key
+          rm secret_key.key
+
+      - name: Remove lib/l10n directory
+        run: rm -rf lib/l10n/*.dart
+
+      - name: Regenerate the localization files
+        run: flutter gen-l10n
+
+      - name: Generate files
+        run: dart run build_runner build --delete-conflicting-outputs
 
       - name: Pre-build iOS Integration Test App
         run: flutter build ios --debug --no-codesign --simulator
