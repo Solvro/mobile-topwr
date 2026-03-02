@@ -119,6 +119,7 @@ class _DigitalGuideView extends ConsumerWidget {
           SliverAppBar(
             excludeHeaderSemantics: true,
             expandedHeight: DetailViewsConfig.imageHeight,
+            automaticallyImplyLeading: false,
             flexibleSpace: SizedBox(
               height: DetailViewsConfig.imageHeight,
               child: Focus(autofocus: true, child: ZoomableCachedImage(photoUrl)),
