@@ -28,6 +28,7 @@ class SplashScreenController extends _$SplashScreenController {
     if (deviceKey != null) {
       Clarity.setCustomUserId(deviceKey);
     }
+    await subscribeToAllUsersTopic();
     await ref.read(mapCacheStoreProvider.future); // prefetch map cache directory
   }
 
