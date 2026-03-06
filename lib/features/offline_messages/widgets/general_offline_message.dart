@@ -28,6 +28,7 @@ class OfflineMessage extends HookWidget {
 
       final timer = Timer(_refreshTimeout, () {
         isLoading.value = false;
+        onRefresh?.call();
       });
 
       return timer.cancel;
@@ -35,7 +36,6 @@ class OfflineMessage extends HookWidget {
 
     void handleRefresh() {
       isLoading.value = true;
-      onRefresh?.call();
     }
 
     return Column(

@@ -1,7 +1,6 @@
 import "package:auto_route/auto_route.dart";
 import "package:flutter/widgets.dart";
 
-import "../../../../utils/context_extensions.dart";
 import "../../data/model/multilayer_section_type.dart";
 import "multilayer_map_view.dart";
 
