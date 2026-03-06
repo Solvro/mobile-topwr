@@ -1,19 +1,24 @@
-name: Print Changelog (No Docker)
+name: Generate Changelog
 
 permissions:
   contents: read
 
 on:
-  push:
-    branches:
-      - 1046-ci-add-auto-changelog
+  workflow_call:
+    outputs:
+      latest_changelog:
+        description: "The changelog for the latest released version"
+        value: ${{ jobs.changelog.outputs.latest_changelog }}
+
 jobs:
   changelog:
     runs-on: ubuntu-latest
+    outputs:
+      latest_changelog: ${{ steps.extract.outputs.latest_changelog }}
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0 # IMPORTANT: Required to view the whole commit history
 
@@ -52,6 +57,7 @@ jobs:
           cat CHANGELOG.md
 
       - name: Print Latest Released Version Only
+        id: extract
         run: |
           echo "========================================"
           echo "   LATEST RELEASED CHANGELOG (NO UNRELEASED)"
@@ -68,3 +74,18 @@ jobs:
                 print
               }
             }' CHANGELOG.md
+
+          # Capture the same extracted block into a step output for callers
+          latest=$(awk 'BEGIN{p=0}
+            {
+              if (match($0, /^## \[(.*)\]/, m) && tolower(m[1])!="unreleased" && p==0) {
+                p=1; print; next
+              }
+              if (p==1) {
+                if ($0 ~ /^## \[/) exit
+                print
+              }
+            }' CHANGELOG.md | sed ':a;N;$!ba;s/\n/\\n/g')
+
+          # Write the multiline value to the step outputs
+          echo "latest_changelog=$latest" >> "$GITHUB_OUTPUT"

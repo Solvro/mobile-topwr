@@ -59,6 +59,9 @@ platform :ios do
     # Discord notification on success (CI only, when webhook is configured)
     if ENV["CI"] == "true" && ENV["DISCORD_WEBHOOK_URL"].to_s.length > 0
       version = ENV["APP_VERSION"] || "—"
+      changelog = ENV["LATEST_CHANGELOG"].to_s.gsub('\n', "\n").strip
+      changelog = "No changelog available" if changelog.empty?
+
       discord_notifier(
         webhook_url: ENV["DISCORD_WEBHOOK_URL"],
         title: "iOS Internal Deploy",
@@ -66,7 +69,8 @@ platform :ios do
         success: true,
         fields: [
           { name: "Version", value: version, inline: true },
-          { name: "Group", value: "Internal", inline: true }
+          { name: "Group", value: "Internal", inline: true },
+          { name: "Changelog", value: changelog, inline: false }
         ]
       )
     end
