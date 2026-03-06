@@ -5,11 +5,11 @@ import "package:flutter_hooks/flutter_hooks.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:lottie/lottie.dart";
 
-import "../../../config/ui_config.dart";
-import "../../../gen/assets.gen.dart";
-import "../../../theme/app_theme.dart";
-import "../../../utils/context_extensions.dart";
-import "../../../widgets/my_text_button.dart";
+import "../config/ui_config.dart";
+import "../gen/assets.gen.dart";
+import "../theme/app_theme.dart";
+import "../utils/context_extensions.dart";
+import "my_text_button.dart";
 
 class OfflineMessage extends HookWidget {
   const OfflineMessage(this.errMessage, {super.key, this.onRefresh});

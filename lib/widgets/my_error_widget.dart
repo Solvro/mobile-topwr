@@ -6,13 +6,13 @@ import "package:sentry_flutter/sentry_flutter.dart";
 
 import "../api_base_rest/client/offline_error.dart";
 import "../config/ui_config.dart";
-import "../features/offline_messages/widgets/general_offline_message.dart";
 import "../features/parkings/parkings_view/repository/parkings_repository.dart";
 import "../features/parkings/parkings_view/widgets/offline_parkings_view.dart";
 import "../gen/assets.gen.dart";
 import "../theme/app_theme.dart";
 import "../utils/context_extensions.dart";
 import "../utils/unwaited_microtask.dart";
+import "general_offline_message.dart";
 
 class MyErrorWidget extends HookWidget {
   const MyErrorWidget(this.error, {required this.stackTrace, super.key});
