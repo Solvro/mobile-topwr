@@ -86,12 +86,6 @@ jobs:
           git-crypt unlock secret_key.key
           rm secret_key.key
 
-      - name: Remove lib/l10n directory
-        run: rm -rf lib/l10n/*.dart
-
-      - name: Regenerate the localization files
-        run: flutter gen-l10n
-
       - name: Generate files
         run: dart run build_runner build --delete-conflicting-outputs
 
