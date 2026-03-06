@@ -19,3 +19,12 @@ Future<void> firebaseInit() async {
 Future<void> requestFCMPermission() async {
   await FirebaseMessaging.instance.requestPermission();
 }
+
+Future<void> subscribeToAllUsersTopic() async {
+  try {
+    await FirebaseMessaging.instance.subscribeToTopic("all-users");
+  } on Exception {
+    Logger().e("Failed to subscribe to all-users topic");
+    return;
+  }
+}
