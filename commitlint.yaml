@@ -38,4 +38,5 @@ rules:
       - branches
       - radio-luz
       - cd
+      - notifications
     # YES, you can add new ones if you have a new feature

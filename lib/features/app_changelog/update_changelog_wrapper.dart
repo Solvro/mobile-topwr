@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
+import "../../firebase_init.dart" show requestFCMPermission;
 import "../../hooks/use_effect_on_init.dart";
 import "../../services/translations_service/data/preferred_lang_repository.dart";
 import "../../utils/unwaited_microtask.dart";
@@ -32,6 +33,9 @@ class ShowEntryDialogWrapper extends HookConsumerWidget {
         }
         if (context.mounted) {
           await showChangelog(context, ref);
+        }
+        if (context.mounted) {
+          await requestFCMPermission();
         }
       });
       return null;
