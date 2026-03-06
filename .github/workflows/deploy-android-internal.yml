@@ -2,6 +2,10 @@ name: CD - android internal
 
 on:
   workflow_call:
+    inputs:
+      latest_changelog:
+        required: false
+        type: string
   workflow_dispatch:
 
 permissions:
@@ -72,6 +76,7 @@ jobs:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           APP_VERSION: ${{ steps.version.outputs.version }}
           CI: true
+          LATEST_CHANGELOG: ${{ inputs.latest_changelog }}
         run: |
           cd android
           bundle exec fastlane internal
