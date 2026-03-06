@@ -38,22 +38,23 @@ class MyErrorWidget extends HookWidget {
       ),
       _ => Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
           children: [
-            Lottie.asset(
-              renderCache: RenderCache.raster,
-              repeat: false,
-              Assets.animations.error,
-              frameRate: const FrameRate(LottieAnimationConfig.frameRate),
+            SizedBox.square(
+              dimension: 200,
+              child: Lottie.asset(
+                renderCache: RenderCache.raster,
+                repeat: false,
+                Assets.animations.error,
+                frameRate: const FrameRate(LottieAnimationConfig.frameRate),
+              ),
             ),
-            Align(
-              child: Focus(
-                autofocus: true,
-                child: Text(
-                  textAlign: TextAlign.center,
-                  style: context.textTheme.headlineMedium?.copyWith(fontSize: 25),
-                  context.localize.generic_error_message,
-                ),
+            Focus(
+              autofocus: true,
+              child: Text(
+                context.localize.generic_error_message,
+                textAlign: TextAlign.center,
+                style: context.textTheme.headlineMedium?.copyWith(fontSize: 18),
               ),
             ),
           ],
