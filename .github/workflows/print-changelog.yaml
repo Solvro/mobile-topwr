@@ -1,0 +1,70 @@
+name: Print Changelog (No Docker)
+
+permissions:
+  contents: read
+
+on:
+  push:
+    branches:
+      - 1046-ci-add-auto-changelog
+jobs:
+  changelog:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # IMPORTANT: Required to view the whole commit history
+
+      - name: Reconstruct Ephemeral Git Tags
+        run: |
+          echo "Scanning pubspec.yaml history for version changes..."
+          
+          # Go through every commit that modified pubspec.yaml, oldest to newest
+          git log --reverse --format='%H' pubspec.yaml | while read -r commit; do
+            
+            # Extract the version (removes spaces, quotes, and line breaks)
+            version=$(git show "$commit:pubspec.yaml" 2>/dev/null | grep '^version:' | head -n 1 | cut -d ':' -f2 | tr -d " \r\n'\"")
+            
+            if [ -n "$version" ]; then
+              # Attempt to tag the commit. 
+              # If a tag for 'v1.0.0' already exists from an older commit, it fails silently (|| true).
+              # This perfectly ensures the tag stays on the VERY FIRST commit of that version.
+              git tag "v$version" "$commit" 2>/dev/null || true
+            fi
+          done
+          
+          echo "Successfully created temporary tags:"
+          git tag -l
+
+      - name: Generate Changelog
+        # Uses the official, heavily optimized git-cliff action
+        uses: orhun/git-cliff-action@v4
+        env:
+          OUTPUT: CHANGELOG.md
+
+      - name: Print Changelog to Console
+        run: |
+          echo "========================================"
+          echo "          GENERATED CHANGELOG           "
+          echo "========================================"
+          cat CHANGELOG.md
+
+      - name: Print Latest Released Version Only
+        run: |
+          echo "========================================"
+          echo "   LATEST RELEASED CHANGELOG (NO UNRELEASED)"
+          echo "========================================"
+          # Print from the first released version header (## [<version>])
+          # until the next version header. Skip any 'unreleased' section.
+          awk 'BEGIN{p=0}
+            {
+              if (match($0, /^## \[(.*)\]/, m) && tolower(m[1])!="unreleased" && p==0) {
+                p=1; print; next
+              }
+              if (p==1) {
+                if ($0 ~ /^## \[/) exit
+                print
+              }
+            }' CHANGELOG.md
