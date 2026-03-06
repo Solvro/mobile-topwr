@@ -28,10 +28,6 @@ import "widgets/sks_section_header_delegate.dart";
 class SksFavouriteDishesView extends ConsumerWidget {
   const SksFavouriteDishesView({super.key});
 
-  static String localizedOfflineMessage(BuildContext context) {
-    return context.localize.my_offline_error_message(context.localize.offline_sks_favourite_dishes);
-  }
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncData = ref.watch(sksFavouriteDishesRepositoryProvider);

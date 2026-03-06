@@ -29,10 +29,6 @@ class ScienceClubsView extends StatelessWidget {
   final String? typesSequence;
   final String? initialQuery;
 
-  static String localizedOfflineMessage(BuildContext context) {
-    return context.localize.my_offline_error_message(context.localize.scientific_cirlces);
-  }
-
   @override
   Widget build(BuildContext context) {
     return ProviderScope(

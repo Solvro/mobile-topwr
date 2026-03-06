@@ -25,10 +25,6 @@ class DepartmentsView extends StatelessWidget {
 
   final String? initialQuery;
 
-  static String localizedOfflineMessage(BuildContext context) {
-    return context.localize.my_offline_error_message(context.localize.departments);
-  }
-
   @override
   Widget build(BuildContext context) {
     return ProviderScope(

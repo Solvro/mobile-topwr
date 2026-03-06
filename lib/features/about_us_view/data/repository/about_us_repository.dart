@@ -6,7 +6,6 @@ import "../../../../api_base_rest/cache/cache.dart";
 import "../../../../api_base_rest/client/json.dart";
 import "../../../../api_base_rest/translations/translate.dart";
 import "../../../../config/env.dart";
-import "../../about_us_view.dart";
 import "../../bussiness/models.dart";
 import "../models/about_us_data.dart";
 import "../models/team_members_data.dart";
@@ -27,7 +26,6 @@ Future<AboutUs> aboutUsRepository(Ref ref) async {
           apiUrl + aboutUsEndpoint,
           AboutUsDataResponse.fromJson,
           extraValidityCheck: (_) => true,
-          localizedOfflineMessage: AboutUsView.localizedOfflineMessage,
           onRetry: ref.invalidateSelf,
         )
         .castAsObject,
@@ -36,7 +34,6 @@ Future<AboutUs> aboutUsRepository(Ref ref) async {
           apiUrl + teamMembersEndpoint,
           TeamMembersDataResponse.fromJson,
           extraValidityCheck: (_) => true,
-          localizedOfflineMessage: AboutUsView.localizedOfflineMessage,
           onRetry: ref.invalidateSelf,
         )
         .castAsObject,
@@ -45,7 +42,6 @@ Future<AboutUs> aboutUsRepository(Ref ref) async {
           apiUrl + versionsEndpoint,
           VersionsDataResponse.fromJson,
           extraValidityCheck: (_) => true,
-          localizedOfflineMessage: AboutUsView.localizedOfflineMessage,
           onRetry: ref.invalidateSelf,
         )
         .castAsObject,

@@ -24,10 +24,6 @@ import "../data/repository/newsfeed_repository.dart";
 class NewsfeedView extends StatelessWidget {
   const NewsfeedView({super.key});
 
-  static String localizedOfflineMessage(BuildContext context) {
-    return context.localize.my_offline_error_message(context.localize.news);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

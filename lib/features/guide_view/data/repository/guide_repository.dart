@@ -5,7 +5,6 @@ import "../../../../api_base_rest/client/json.dart";
 import "../../../../api_base_rest/translations/translate.dart";
 import "../../../../config/env.dart";
 
-import "../../guide_view.dart";
 import "../models/guide_data.dart";
 part "guide_repository.g.dart";
 
@@ -17,7 +16,6 @@ Future<IList<GuideData>> guideRepository(Ref ref) async {
         "$apiUrl/guide_articles?image=true",
         GuideDataResponse.fromJson,
         extraValidityCheck: (_) => true,
-        localizedOfflineMessage: GuideView.localizedOfflineMessage,
         onRetry: ref.invalidateSelf,
       )
       .castAsObject;

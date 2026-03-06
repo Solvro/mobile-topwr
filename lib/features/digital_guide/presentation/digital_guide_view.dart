@@ -30,10 +30,6 @@ class DigitalGuideView extends ConsumerWidget {
   final String ourId;
   final Building building;
 
-  static String localizedOfflineMessage(BuildContext context) {
-    return context.localize.my_offline_error_message(context.localize.digital_guide_offline);
-  }
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncDigitalGuideData = ref.watch(digitalGuideRepositoryProvider(ourId));
