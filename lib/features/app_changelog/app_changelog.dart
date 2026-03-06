@@ -12,10 +12,6 @@ class AppChangelog extends StatelessWidget {
 
   final Changelog changelog;
 
-  static String localizedOfflineMessage(BuildContext context) {
-    return context.localize.my_offline_error_message(context.localize.offline_changelog);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Dialog(

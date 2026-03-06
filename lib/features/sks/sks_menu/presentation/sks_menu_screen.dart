@@ -34,10 +34,6 @@ import "widgets/sks_menu_view_loading.dart";
 class SksMenuView extends HookConsumerWidget {
   const SksMenuView({super.key});
 
-  static String localizedOfflineMessage(BuildContext context) {
-    return context.localize.my_offline_error_message(context.localize.sks_menu);
-  }
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncSksMenuData = ref.watch(sksMenuRepositoryProvider);

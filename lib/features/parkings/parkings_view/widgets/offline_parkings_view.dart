@@ -10,6 +10,9 @@ class OfflineParkingsView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return OfflineMessage(context.localize.offlineParkings, onRefresh: () => ref.refresh(parkingsRepositoryProvider));
+    return OfflineMessage(
+      context.localize.offline_error_message,
+      onRefresh: () => ref.refresh(parkingsRepositoryProvider),
+    );
   }
 }

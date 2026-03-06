@@ -5,7 +5,6 @@ import "../../../../../../api_base_rest/client/json.dart";
 import "../../../../../../api_base_rest/translations/translate.dart";
 import "../../../../../../config/env.dart";
 import "../../../../../../config/ttl_config.dart";
-import "../../../../presentation/digital_guide_view.dart";
 import "../models/micronavigation_response.dart";
 
 part "micronavigation_repository.g.dart";
@@ -18,7 +17,6 @@ Future<IList<MicronavigationResponse>> getMicronavigationData(Ref ref, int id) a
     micronavigationUrl,
     MicronavigationResponse.fromJson,
     ttlDays: TtlDays.defaultDigitalGuide,
-    localizedOfflineMessage: DigitalGuideView.localizedOfflineMessage,
     extraValidityCheck: (data) {
       return data.castAsList.isNotEmpty;
     },

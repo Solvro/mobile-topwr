@@ -4,7 +4,6 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 import "../../../../api_base_rest/client/json.dart";
 import "../../../../api_base_rest/translations/translate.dart";
 import "../../../../config/env.dart";
-import "../filters_sheet.dart";
 import "../model/tags.dart";
 
 part "tags_repository.g.dart";
@@ -18,7 +17,6 @@ Future<IList<Tag>> tagsRepository(Ref ref) async {
       .getAndCacheDataWithTranslation(
         apiUrl + endpoint,
         TagsData.fromJson,
-        localizedOfflineMessage: FiltersSheet.localizedOfflineMessage,
         extraValidityCheck: (_) => true,
         onRetry: ref.invalidateSelf,
       )

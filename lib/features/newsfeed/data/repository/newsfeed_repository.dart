@@ -5,7 +5,6 @@ import "../../../../api_base_rest/cache/cache.dart";
 import "../../../../api_base_rest/client/json.dart";
 import "../../../../config/env.dart";
 import "../../../../services/translations_service/data/preferred_lang_repository.dart";
-import "../../presentation/news_list_view.dart";
 import "../models/newsfeed_models.dart";
 
 part "newsfeed_repository.g.dart";
@@ -23,7 +22,6 @@ Future<IList<Article>> newsfeedRepository(Ref ref) async {
         extraValidityCheck: (newsfeed) =>
             newsfeed.castAsObject.articles.isNotEmpty &&
             newsfeed.castAsObject.updateTime.isAfter(DateTime.now().subtract(const Duration(minutes: 30))),
-        localizedOfflineMessage: NewsfeedView.localizedOfflineMessage,
         onRetry: ref.invalidateSelf,
       )
       .castAsObject;

@@ -3,7 +3,6 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 import "../../../api_base_rest/client/json.dart";
 import "../../../api_base_rest/translations/translate.dart";
 import "../../../config/env.dart";
-import "../../academic_calendar/widgets/home_screen_greeting.dart";
 import "../data/models/planner_banner_models.dart";
 
 part "planner_advert_repository.g.dart";
@@ -17,7 +16,6 @@ Future<PlannerBanner?> plannerAdvertContentRepository(Ref ref) async {
         url,
         PlannerBannerResponse.fromJson,
         extraValidityCheck: (_) => true,
-        localizedOfflineMessage: Greeting.localizedOfflineMessage,
         onRetry: ref.invalidateSelf,
       )
       .castAsObject;

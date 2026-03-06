@@ -6,7 +6,6 @@ import "../../../../../api_base_rest/translations/translate.dart";
 import "../../../../../config/env.dart";
 import "../../../../branches/data/model/branch.dart";
 import "../../../../branches/data/repository/branch_repository.dart";
-import "../../departments_view.dart";
 import "../models/department.dart";
 
 part "departments_repository.g.dart";
@@ -20,7 +19,6 @@ Future<IList<Department>> departmentsRepository(Ref ref) async {
         url,
         DepartmentsResponse.fromJson,
         extraValidityCheck: (_) => true,
-        localizedOfflineMessage: DepartmentsView.localizedOfflineMessage,
         onRetry: ref.invalidateSelf,
       )
       .castAsObject;

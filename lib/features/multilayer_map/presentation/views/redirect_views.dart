@@ -10,10 +10,6 @@ class BuildingsView extends StatelessWidget {
   const BuildingsView({super.key, @PathParam("initialActiveItemId") this.initialActiveItemId});
   final String? initialActiveItemId;
 
-  static String localizedOfflineMessage(BuildContext context) {
-    return context.localize.my_offline_error_message(context.localize.buildings_title);
-  }
-
   @override
   Widget build(BuildContext context) {
     final hasSpecificId = initialActiveItemId != null && initialActiveItemId != "null";
@@ -28,10 +24,6 @@ class BuildingsView extends StatelessWidget {
 class LibrariesView extends StatelessWidget {
   const LibrariesView({super.key, @PathParam("initialActiveItemId") this.initialActiveItemId});
   final String? initialActiveItemId;
-
-  static String localizedOfflineMessage(BuildContext context) {
-    return context.localize.my_offline_error_message(context.localize.library_title);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,10 +40,6 @@ class AedsView extends StatelessWidget {
   const AedsView({super.key, @PathParam("initialActiveItemId") this.initialActiveItemId});
   final String? initialActiveItemId;
 
-  static String localizedOfflineMessage(BuildContext context) {
-    return context.localize.my_offline_error_message(context.localize.aed_title);
-  }
-
   @override
   Widget build(BuildContext context) {
     final hasSpecificId = initialActiveItemId != null && initialActiveItemId != "null";
@@ -67,10 +55,6 @@ class ShowersView extends StatelessWidget {
   const ShowersView({super.key, @PathParam("initialActiveItemId") this.initialActiveItemId});
   final String? initialActiveItemId;
 
-  static String localizedOfflineMessage(BuildContext context) {
-    return context.localize.my_offline_error_message(context.localize.showers_title);
-  }
-
   @override
   Widget build(BuildContext context) {
     final hasSpecificId = initialActiveItemId != null && initialActiveItemId != "null";
@@ -85,10 +69,6 @@ class ShowersView extends StatelessWidget {
 class PinkBoxesView extends StatelessWidget {
   const PinkBoxesView({super.key, @PathParam("initialActiveItemId") this.initialActiveItemId});
   final String? initialActiveItemId;
-
-  static String localizedOfflineMessage(BuildContext context) {
-    return context.localize.my_offline_error_message(context.localize.pink_boxes_title);
-  }
 
   @override
   Widget build(BuildContext context) {

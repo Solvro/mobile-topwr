@@ -4,7 +4,6 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 import "../../../../api_base_rest/cache/cache.dart";
 import "../../../../api_base_rest/client/json.dart";
 import "../../../../config/env.dart";
-import "../../presentation/views/redirect_views.dart";
 import "../model/aed.dart";
 
 part "aed_repository.g.dart";
@@ -17,7 +16,6 @@ Future<IList<Aed>> aedsRepository(Ref ref) async {
         "$apiUrl/aeds?photo=true&building=true",
         AedDataResponse.fromJson,
         extraValidityCheck: (_) => true,
-        localizedOfflineMessage: AedsView.localizedOfflineMessage,
         onRetry: ref.invalidateSelf,
       )
       .castAsObject;

@@ -25,10 +25,6 @@ import "widgets/team_section.dart";
 class AboutUsView extends StatelessWidget {
   const AboutUsView({super.key});
 
-  static String localizedOfflineMessage(BuildContext context) {
-    return context.localize.my_offline_error_message(context.localize.about_us);
-  }
-
   @override
   Widget build(BuildContext context) {
     return HorizontalSymmetricSafeAreaScaffold(appBar: DetailViewAppBar(), body: const _AboutUsView());

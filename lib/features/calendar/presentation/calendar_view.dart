@@ -28,10 +28,6 @@ class CalendarView extends ConsumerWidget {
 
   final String? query;
 
-  static String localizedOfflineMessage(BuildContext context) {
-    return context.localize.my_offline_error_message(context.localize.calendar);
-  }
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     if (query != null && query!.isNotEmpty) {

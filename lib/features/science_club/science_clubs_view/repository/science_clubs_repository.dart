@@ -8,7 +8,6 @@ import "../../../../config/env.dart";
 import "../../../branches/data/model/branch.dart";
 import "../../../branches/data/repository/branch_repository.dart";
 import "../model/science_clubs.dart";
-import "../science_clubs_view.dart";
 
 part "science_clubs_repository.g.dart";
 
@@ -22,7 +21,6 @@ Future<IList<ScienceClub>> scienceClubsRepository(Ref ref) async {
         apiUrl + scienceClubsEndpoint,
         ScienceClubsResponse.fromJson,
         extraValidityCheck: (_) => true,
-        localizedOfflineMessage: ScienceClubsView.localizedOfflineMessage,
         onRetry: ref.invalidateSelf,
       )
       .castAsObject;

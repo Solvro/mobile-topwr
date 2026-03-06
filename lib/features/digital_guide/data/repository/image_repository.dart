@@ -4,7 +4,6 @@ import "../../../../api_base_rest/cache/cache.dart";
 import "../../../../api_base_rest/client/json.dart";
 import "../../../../config/env.dart";
 import "../../../../config/ttl_config.dart";
-import "../../presentation/digital_guide_view.dart";
 
 part "image_repository.g.dart";
 
@@ -17,7 +16,6 @@ Future<String?> imageRepository(Ref ref, int imageID) {
         ttlDays: TtlDays.defaultDigitalGuide,
         onRetry: ref.invalidateSelf,
         extraValidityCheck: (_) => true,
-        localizedOfflineMessage: DigitalGuideView.localizedOfflineMessage,
         authHeader: (authorization: "Token ${Env.digitalGuideAuthorizationToken}"),
       )
       .castAsObject;

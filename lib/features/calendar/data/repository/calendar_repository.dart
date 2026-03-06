@@ -7,7 +7,6 @@ import "../../../../../api_base_rest/translations/translate.dart";
 import "../../../../../config/env.dart";
 
 import "../../../../utils/contains_lower_case.dart";
-import "../../presentation/calendar_view.dart";
 import "../model/calendar_data.dart";
 part "calendar_repository.g.dart";
 
@@ -19,7 +18,6 @@ Future<IList<CalendarData>> calendarRepository(Ref ref, String? query) async {
         "$apiUrl/event_calendar",
         CalendarDataResponse.fromJson,
         extraValidityCheck: (_) => true,
-        localizedOfflineMessage: CalendarView.localizedOfflineMessage,
         onRetry: ref.invalidateSelf,
       )
       .castAsObject;

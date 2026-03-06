@@ -35,7 +35,6 @@ class SksMenuRepository extends _$SksMenuRepository {
           extraValidityCheck: (data) {
             return data.castAsObject.isMenuOnline && DateTime.now().date.isSameDay(data.castAsObject.lastUpdate.date);
           },
-          localizedOfflineMessage: SksMenuView.localizedOfflineMessage,
           onRetry: ref.invalidateSelf,
         )
         .castAsObject;
@@ -52,7 +51,6 @@ class SksMenuRepository extends _$SksMenuRepository {
                 obj.openingHours.cafe.openingTime.isNotEmpty &&
                 obj.openingHours.cafe.closingTime.isNotEmpty;
           },
-          localizedOfflineMessage: SksMenuView.localizedOfflineMessage,
           onRetry: ref.invalidateSelf,
         )
         .castAsObject;

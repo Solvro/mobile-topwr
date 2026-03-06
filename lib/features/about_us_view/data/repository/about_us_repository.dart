@@ -27,7 +27,6 @@ Future<AboutUs> aboutUsRepository(Ref ref) async {
           apiUrl + aboutUsEndpoint,
           AboutUsDataResponse.fromJson,
           extraValidityCheck: (_) => true,
-          localizedOfflineMessage: AboutUsView.localizedOfflineMessage,
           onRetry: ref.invalidateSelf,
         )
         .castAsObject,
@@ -36,7 +35,6 @@ Future<AboutUs> aboutUsRepository(Ref ref) async {
           apiUrl + teamMembersEndpoint,
           TeamMembersDataResponse.fromJson,
           extraValidityCheck: (_) => true,
-          localizedOfflineMessage: AboutUsView.localizedOfflineMessage,
           onRetry: ref.invalidateSelf,
         )
         .castAsObject,
@@ -45,7 +43,6 @@ Future<AboutUs> aboutUsRepository(Ref ref) async {
           apiUrl + versionsEndpoint,
           VersionsDataResponse.fromJson,
           extraValidityCheck: (_) => true,
-          localizedOfflineMessage: AboutUsView.localizedOfflineMessage,
           onRetry: ref.invalidateSelf,
         )
         .castAsObject,

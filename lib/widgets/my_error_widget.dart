@@ -15,11 +15,10 @@ import "../utils/context_extensions.dart";
 import "../utils/unwaited_microtask.dart";
 
 class MyErrorWidget extends HookWidget {
-  const MyErrorWidget(this.error, {required this.stackTrace, super.key, this.uiErrorMessage});
+  const MyErrorWidget(this.error, {required this.stackTrace, super.key});
 
   final Object? error;
   final StackTrace? stackTrace;
-  final String? uiErrorMessage;
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +32,8 @@ class MyErrorWidget extends HookWidget {
 
     return switch (error) {
       ParkingsOfflineException() => const OfflineParkingsView(),
-      RestFrameworkOfflineException(:final localizedMessage, :final onRetry) => OfflineMessage(
-        uiErrorMessage ?? localizedMessage(context),
+      RestFrameworkOfflineException(:final onRetry) => OfflineMessage(
+        context.localize.offline_error_message,
         onRefresh: onRetry,
       ),
       _ => Center(
