@@ -97,7 +97,7 @@ class MyApp extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentLocale = ref.watch(preferredLanguageRepositoryProvider);
-    useDeeplinkListener(ref);
+    useDeeplinks(ref);
 
     return RemoveOldTranslations(
       child: FlushCMSCacheRemotelyWidget(
