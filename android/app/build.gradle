@@ -79,20 +79,10 @@ android {
         }
     }
 
-
     buildTypes {
         release {
             signingConfig signingConfigs.release
         }
-    }
-
-    packagingOptions {
-        resources {
-            excludes += '/META-INF/{AL2.0,LGPL2.1}'
-        }
-        // Exclude 32-bit native libraries
-        exclude 'lib/armeabi-v7a/**'
-        exclude 'lib/x86/**'
     }
 
 }
