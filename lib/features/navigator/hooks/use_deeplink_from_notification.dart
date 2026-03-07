@@ -1,7 +1,6 @@
 import "dart:async";
 
 import "package:firebase_messaging/firebase_messaging.dart";
-import "package:flutter/material.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 import "../../../firebase_init.dart";
@@ -22,7 +21,6 @@ void useDeeplinkFromNotificationListener(WidgetRef ref) {
   final disposedRef = useRef(false);
   useEffect(() {
     StreamSubscription<RemoteMessage>? messagingSubscription;
-    WidgetsFlutterBinding.ensureInitialized();
     unawaited(
       firebaseInit().then((_) async {
         // 1. App launched from terminated state via notification tap
@@ -34,11 +32,9 @@ void useDeeplinkFromNotificationListener(WidgetRef ref) {
         if (disposedRef.value) return;
 
         // 2. App opened from background state via notification tap
-        messagingSubscription = FirebaseMessaging.onMessageOpenedApp.listen(
-          (message) {
-            if (!disposedRef.value) _handleNotificationRoute(ref, message, false);
-          },
-        );
+        messagingSubscription = FirebaseMessaging.onMessageOpenedApp.listen((message) {
+          if (!disposedRef.value) _handleNotificationRoute(ref, message, false);
+        });
       }),
     );
 
