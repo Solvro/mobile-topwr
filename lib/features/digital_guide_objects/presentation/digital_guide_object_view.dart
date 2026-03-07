@@ -27,7 +27,12 @@ class DigitalGuideObjectView extends ConsumerWidget {
   const DigitalGuideObjectView({@PathParam("id") required this.ourId, @QueryParam("type") this.type = "building"});
 
   final String ourId;
-  final Building building;
+  final String type;
+
+  DigitalGuideOtherObjectType get _typeEnum => DigitalGuideOtherObjectType.values.firstWhere(
+    (e) => e.name == type,
+    orElse: () => DigitalGuideOtherObjectType.building,
+  );
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
