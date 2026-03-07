@@ -95,6 +95,7 @@ class _DepartmentsDataView extends ConsumerWidget {
       );
     }
     return GridView.builder(
+      key: MyAppConfig.verticalScrollableKey,
       padding: const EdgeInsets.only(bottom: 24),
       gridDelegate: DepartmentsConfig.departmentsViewGridDelegate(context),
       itemCount: departments.length,

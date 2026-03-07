@@ -16,6 +16,7 @@ class GuideGrid extends StatelessWidget {
       return SearchNotFound(message: context.localize.guide_not_found);
     }
     return GridView.builder(
+      key: MyAppConfig.verticalScrollableKey,
       padding: GuideViewConfig.gridPadding,
       gridDelegate: DepartmentsConfig.departmentsViewGridDelegate(context),
       itemCount: children.length,

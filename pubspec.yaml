@@ -133,6 +133,7 @@ dependencies:
   wiredash: ^2.6.0
   flutter_hooks: ^0.21.3
   sentry_flutter: ^9.12.0
+  awesome_dio_interceptor: ^1.3.0
 
   #Solvro packages
   solvro_translator_with_drift_cache_flutter: ^0.9.4
@@ -141,6 +142,9 @@ dependencies:
 
 dev_dependencies:
   flutter_test:
+    sdk: flutter
+    
+  integration_test:
     sdk: flutter
 
   #Storage

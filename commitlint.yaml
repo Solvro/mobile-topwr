@@ -39,4 +39,5 @@ rules:
       - radio-luz
       - cd
       - notifications
+      - integration-tests
     # YES, you can add new ones if you have a new feature

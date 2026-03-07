@@ -7,7 +7,7 @@ import "../data/streak_start_repo.dart";
 
 part "get_days_use_case.g.dart";
 
-@riverpod
+@Riverpod(keepAlive: true)
 Future<int> getUsageDaysUseCase(Ref ref) async {
   final today = Timestamp.now().date;
   final lastEntry = (await ref.watch(lastEntryRepositoryProvider.future)).date;

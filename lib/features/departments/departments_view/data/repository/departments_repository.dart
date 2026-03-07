@@ -23,7 +23,11 @@ Future<IList<Department>> departmentsRepository(Ref ref) async {
       )
       .castAsObject;
 
-  return response.data.sortByBranch(await ref.watch(branchRepositoryProvider.future)).toIList();
+  if (!ref.mounted) return const IListConst([]);
+
+  final branch = await ref.watch(branchRepositoryProvider.future);
+
+  return ref.mounted ? response.data.sortByBranch(branch).toIList() : IList<Department>();
 }
 
 extension SortBySourceTypeX on Iterable<Department> {

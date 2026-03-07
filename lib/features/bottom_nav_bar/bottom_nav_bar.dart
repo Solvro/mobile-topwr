@@ -39,6 +39,7 @@ class _NavigationBarItemsList extends DelegatingList<BottomNavigationBarItem> {
         NavBarEnum.values
             .mapIndexed(
               (i, e) => BottomNavigationBarItem(
+                key: Key(e.name),
                 icon: Icon(
                   e.icon,
                   color: i == activeIndex

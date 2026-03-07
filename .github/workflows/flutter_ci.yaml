@@ -1,5 +1,4 @@
 name: CI
-
 on:
   push:
     branches:
@@ -13,7 +12,8 @@ permissions:
 
 jobs:
   all-checks:
-    runs-on: ubuntu-latest
+    name: All checks
+    runs-on: macos-latest 
 
     steps:
       - uses: actions/checkout@v6
@@ -22,16 +22,21 @@ jobs:
         with:
           channel: "stable"
           flutter-version-file: pubspec.yaml
-
-      - run: flutter --version
+          cache: true 
 
       - name: Install dependencies
         run: flutter pub get
 
+      - name: Install git-crypt
+        run: brew install git-crypt
+
       - name: git crypt unlock
-        uses: sliteteam/github-action-git-crypt-unlock@1.3.0
         env:
           GIT_CRYPT_KEY: ${{ secrets.GIT_CRYPT_KEY }}
+        run: |
+          echo "$GIT_CRYPT_KEY" | base64 --decode > secret_key.key
+          git-crypt unlock secret_key.key
+          rm secret_key.key
 
       - name: Remove lib/l10n directory
         run: rm -rf lib/l10n/*.dart
@@ -42,7 +47,7 @@ jobs:
       - name: Regenerate the localization files
         run: flutter gen-l10n
 
-      - name: generate files
+      - name: Generate files
         run: dart run build_runner build --delete-conflicting-outputs
 
       - name: Analyze project source
@@ -51,5 +56,56 @@ jobs:
       - name: Run custom lints
         run: dart run custom_lint --fatal-infos
 
-      - name: Flutter tests
+      - name: Flutter unit tests
         run: flutter test
+
+  integration-tests:
+    name: Integration tests (iOS)
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+          flutter-version-file: pubspec.yaml
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Install git-crypt
+        run: brew install git-crypt
+
+      - name: git crypt unlock
+        env:
+          GIT_CRYPT_KEY: ${{ secrets.GIT_CRYPT_KEY }}
+        run: |
+          echo "$GIT_CRYPT_KEY" | base64 --decode > secret_key.key
+          git-crypt unlock secret_key.key
+          rm secret_key.key
+
+      - name: Generate files
+        run: dart run build_runner build --delete-conflicting-outputs
+
+      - name: Pre-build iOS Integration Test App
+        run: flutter build ios --debug --no-codesign --simulator
+
+      - name: Boot iOS Simulator
+        run: |
+          set +e 
+          DEVICE_UUID=$(xcrun simctl list devices available | grep "iPhone" | head -n 1 | awk -F'[()]' '{print $2}')
+          set -e
+          
+          if [ -z "$DEVICE_UUID" ]; then
+            exit 1
+          fi
+          
+          xcrun simctl boot "$DEVICE_UUID" || true
+          xcrun simctl bootstatus "$DEVICE_UUID"
+          echo "SIMULATOR_ID=$DEVICE_UUID" >> $GITHUB_ENV
+
+      - name: Run Integration Tests on iOS Simulator
+        run: flutter test integration_test/smoke_test.dart -d "$SIMULATOR_ID" --timeout=30m
+        timeout-minutes: 45
