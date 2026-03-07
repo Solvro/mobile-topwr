@@ -20,5 +20,7 @@ Future<GuideDetails> guideDetailsRepository(Ref ref, int id) async {
         onRetry: ref.invalidateSelf,
       )
       .castAsObject;
-  return response.data;
+  return response.data.copyWith(
+    guideQuestions: response.data.guideQuestions.sort((a, b) => a.order.compareTo(b.order)),
+  );
 }

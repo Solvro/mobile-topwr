@@ -39,6 +39,7 @@ abstract class GuideQuestion with _$GuideQuestion {
     required String answer,
     required DateTime createdAt,
     required DateTime updatedAt,
+    @JsonKey(defaultValue: 0) @Default(0) int order,
   }) = _GuideQuestion;
 
   factory GuideQuestion.fromJson(Map<String, dynamic> json) => _$GuideQuestionFromJson(json);

@@ -19,5 +19,5 @@ Future<IList<GuideData>> guideRepository(Ref ref) async {
         onRetry: ref.invalidateSelf,
       )
       .castAsObject;
-  return guideResponse.data.map((data) => data).toIList();
+  return guideResponse.data.map((data) => data).toIList().sort((a, b) => a.order.compareTo(b.order));
 }
