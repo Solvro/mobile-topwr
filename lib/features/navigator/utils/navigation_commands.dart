@@ -305,4 +305,9 @@ extension NavigationX on WidgetRef {
   Future<void> navigateToRadioLuz() async {
     await _router.push(const RadioLuzRoute());
   }
+
+  Future<void> navigateToNotifications() async {
+    await trackEvent(ClarityEvents.openNotificationsList);
+    await _router.push(const NotificationsRoute());
+  }
 }

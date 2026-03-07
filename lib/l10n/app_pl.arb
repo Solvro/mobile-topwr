@@ -3140,6 +3140,11 @@
   "@notifications": {
     "description": "information about notifications"
   },
+  "more_info": "Więcej informacji",
+  "@more_info": {
+    "description": "tooltip of info button in notification tile"
+  },
+  "no_notifications": "Brak powiadomień",
   "feedback_option_not_supported_for_screen_readers": "Ta opcja nie jest wspierana dla czytników ekranów. Jeśli chcesz zgłosić błąd lub sugestię napisz do nas wiadomość e-mail.",
   "@feedback_option_not_supported_for_screen_readers": {
     "description": "information about feedback option that's not supported for screen readers"
@@ -3799,5 +3804,9 @@
   "iconnames_has_weekend_option": "Studia zaoczne",
   "@iconnames_has_weekend_option": {
     "description": "Message displayed when the course has a weekend/part-time option"
+  },
+  "go_to" : "Przejdź",
+  "@go_to": {
+    "description": "Button to navigate to a selected place or section from notification dialog"
   }
 }
