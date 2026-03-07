@@ -24,17 +24,19 @@ import "digital_g_objects_featers_list.dart";
 
 @RoutePage()
 class DigitalGuideObjectView extends ConsumerWidget {
-  const DigitalGuideObjectView({
-    @PathParam("id") required this.ourId,
-    @QueryParam("type") this.type = DigitalGuideOtherObjectType.building,
-  });
+  const DigitalGuideObjectView({@PathParam("id") required this.ourId, @QueryParam("type") this.type = "building"});
 
   final String ourId;
-  final DigitalGuideOtherObjectType type;
+  final String type;
+
+  DigitalGuideOtherObjectType get _typeEnum => DigitalGuideOtherObjectType.values.firstWhere(
+    (e) => e.name == type,
+    orElse: () => DigitalGuideOtherObjectType.building,
+  );
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final asyncDigitalGuideData = ref.watch(digitalGuideObjectRepositoryProvider(ourId, type));
+    final asyncDigitalGuideData = ref.watch(digitalGuideObjectRepositoryProvider(ourId, _typeEnum));
     return asyncDigitalGuideData.when(
       data: (data) {
         return _DigitalGObjectView(data.digitalGuideData, data.photoUrl);

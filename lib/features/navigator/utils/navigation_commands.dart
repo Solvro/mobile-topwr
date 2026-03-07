@@ -149,7 +149,7 @@ extension NavigationX on WidgetRef {
 
   Future<void> navigateDigitalGuideObject(String ourId, DigitalGuideOtherObjectType type) async {
     await trackEvent(ClarityEvents.openDigitalGuideDetail, value: "ourId: $ourId");
-    await _router.push(DigitalGuideObjectRoute(ourId: ourId, type: type));
+    await _router.push(DigitalGuideObjectRoute(ourId: ourId, type: type.name));
   }
 
   Future<void> navigateAdaptedToiletDetails(AdaptedToilet adaptedToilet) async {
