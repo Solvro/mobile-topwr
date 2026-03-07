@@ -9,6 +9,7 @@ import "../../map_view/controllers/map_data_controller.dart";
 import "../business/multilayer_source_service.dart";
 import "../data/model/building.dart";
 import "../data/model/multilayer_item.dart";
+import "../data/model/polinka_station.dart";
 import "../data/utils/building_codes_utils.dart";
 import "../data/utils/utils.dart";
 
@@ -51,6 +52,11 @@ class MultilayerMapViewController extends _$MultilayerMapViewController with Map
     }
   }
 
+  bool _filterPolinka(PolinkaStation station, String filterStr) {
+    final address = "${station.addressLine1}\n${station.addressLine2 ?? ""}";
+    return station.name.containsLowerCase(filterStr) || address.containsLowerCase(filterStr);
+  }
+
   @override
   bool filterMethod(MultilayerItem item, String filterStr) {
     if (filterStr.isEmpty) {
@@ -58,6 +64,7 @@ class MultilayerMapViewController extends _$MultilayerMapViewController with Map
     }
     return switch (item) {
       BuildingItem() => _filterBuilding(item.building, filterStr),
+      PolinkaItem() => _filterPolinka(item.station, filterStr),
       LibraryItem() when item.library.building == null => item.library.title.containsLowerCase(filterStr),
       LibraryItem() when item.library.building != null =>
         item.library.title.containsLowerCase(filterStr) || _filterBuilding(item.library.building!, filterStr),

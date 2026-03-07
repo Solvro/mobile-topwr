@@ -43,6 +43,7 @@ abstract class NavBarConfig {
   /// All of these map to the buildings tab
   static List<PageRouteInfo> get multilayerAliasRoutes => [
     LibrariesRoute(),
+    PolinkasRoute(),
     AedsRoute(),
     ShowersRoute(),
     PinkBoxesRoute(),
@@ -53,6 +54,7 @@ abstract class NavBarConfig {
   static const multilayerAliasRouteNames = {
     BuildingsRoute.name,
     LibrariesRoute.name,
+    PolinkasRoute.name,
     AedsRoute.name,
     ShowersRoute.name,
     PinkBoxesRoute.name,
@@ -63,6 +65,7 @@ abstract class NavBarConfig {
   static const buildingsTabPaths = {
     "buildings",
     "libraries",
+    "polinkas",
     "aeds",
     "bicycle-showers",
     "pink-boxes",
@@ -110,6 +113,7 @@ abstract class NavBarConfig {
     return switch (basePath) {
       "" => const HomeRoute(),
       "buildings" => BuildingsRoute(initialActiveItemId: itemId),
+      "polinkas" => PolinkasRoute(initialActiveItemId: itemId),
       "libraries" => LibrariesRoute(initialActiveItemId: itemId),
       "aeds" => AedsRoute(initialActiveItemId: itemId),
       "bicycle-showers" => ShowersRoute(initialActiveItemId: itemId),
@@ -136,6 +140,7 @@ extension GetFormattedRouteNameX on Route<dynamic> {
         BuildingsRoute.name => context.localize.multilayer_map_title,
         ParkingsRoute.name => context.localize.parkings_title,
         MultilayerMapRoute.name => context.localize.multilayer_map_title,
+        PolinkasRoute.name => context.localize.multilayer_map_title,
         LibrariesRoute.name => context.localize.multilayer_map_title,
         AedsRoute.name => context.localize.multilayer_map_title,
         ShowersRoute.name => context.localize.multilayer_map_title,

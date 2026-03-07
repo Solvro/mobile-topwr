@@ -17,16 +17,16 @@ class MultilayerMarker extends ConsumerWidget {
   final bool isActive;
 
   String get activeMapMarker => switch (item) {
-    BuildingItem(:final building) when building.isPolinka => Assets.png.mapMarkers.activePolinkaMarker.path,
     BuildingItem() => Assets.png.mapMarkers.activeMapMarker.path,
+    PolinkaItem() => Assets.png.mapMarkers.activePolinkaMarker.path,
     LibraryItem() => Assets.png.mapMarkers.activeLibraryMarker.path,
     AedItem() => Assets.png.mapMarkers.activeAedMarker.path,
     BicycleShowerItem() => Assets.png.mapMarkers.activeShowerMarker.path,
     PinkBoxItem() => Assets.png.mapMarkers.activePinkBoxMarker.path,
   };
   String get notActiveMapMarker => switch (item) {
-    BuildingItem(:final building) when building.isPolinka => Assets.png.mapMarkers.polinkaMarker.path,
     BuildingItem() => Assets.png.mapMarkers.mapMarker.path,
+    PolinkaItem() => Assets.png.mapMarkers.polinkaMarker.path,
     LibraryItem() => Assets.png.mapMarkers.libraryMarker.path,
     AedItem() => Assets.png.mapMarkers.aedMarker.path,
     BicycleShowerItem() => Assets.png.mapMarkers.showerMarker.path,
@@ -39,11 +39,11 @@ class MultilayerMarker extends ConsumerWidget {
       onTap: () {
         unawaited(ref.read(multilayerMapControllerProvider).onMarkerTap(item));
         return switch (item) {
-          BuildingItem(:final building) when building.isPolinka => unawaited(
-            ref.trackEvent(ClarityEvents.selectBuilding, value: building.name),
-          ),
           BuildingItem(:final building) => unawaited(
             ref.trackEvent(ClarityEvents.selectBuilding, value: building.name),
+          ),
+          PolinkaItem(:final station) => unawaited(
+            ref.trackEvent(ClarityEvents.selectBuilding, value: station.name),
           ),
           LibraryItem(:final library) => unawaited(ref.trackEvent(ClarityEvents.selectLibrary, value: library.title)),
           AedItem(:final aed) => unawaited(ref.trackEvent(ClarityEvents.selectAed, value: aed.title)),
