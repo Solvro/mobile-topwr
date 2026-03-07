@@ -37,21 +37,4 @@ abstract class PolinkaStation with _$PolinkaStation {
   const PolinkaStation._();
 
   factory PolinkaStation.fromJson(Map<String, dynamic> json) => _$PolinkaStationFromJson(json);
-
-  Building toBuilding() {
-    return Building(
-      // Use negative IDs to avoid potential clashes with real building IDs
-      rawId: -id,
-      name: name,
-      naturalName: null,
-      addressLine1: addressLine1,
-      addressLine2: addressLine2 ?? "",
-      latitude: latitude,
-      longitude: longitude,
-      externalDigitalGuideMode: externalDigitalGuideMode,
-      externalDigitalGuideIdOrUrl: externalDigitalGuideIdOrUrl,
-      cover: photo,
-      branch: branch,
-    );
-  }
 }

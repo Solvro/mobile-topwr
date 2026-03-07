@@ -115,7 +115,7 @@ class PolinkaTile extends HookConsumerWidget {
                           },
                   ),
                   onPressed: () {
-                    unawaited(ref.navigateBuildingDetailAction(station.toBuilding()));
+                    unawaited(ref.navigatePolinkaDetailAction(station));
                   },
                 ),
               ),
@@ -131,7 +131,7 @@ class PolinkaTile extends HookConsumerWidget {
               size: context.textScaler.scale(16),
             ),
             onPressed: () {
-              unawaited(ref.navigateBuildingDetailAction(station.toBuilding()));
+              unawaited(ref.navigatePolinkaDetailAction(station));
             },
             style: TextButton.styleFrom(padding: const EdgeInsets.all(12)),
             label: Text(

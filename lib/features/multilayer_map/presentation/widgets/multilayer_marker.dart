@@ -42,9 +42,7 @@ class MultilayerMarker extends ConsumerWidget {
           BuildingItem(:final building) => unawaited(
             ref.trackEvent(ClarityEvents.selectBuilding, value: building.name),
           ),
-          PolinkaItem(:final station) => unawaited(
-            ref.trackEvent(ClarityEvents.selectBuilding, value: station.name),
-          ),
+          PolinkaItem(:final station) => unawaited(ref.trackEvent(ClarityEvents.selectBuilding, value: station.name)),
           LibraryItem(:final library) => unawaited(ref.trackEvent(ClarityEvents.selectLibrary, value: library.title)),
           AedItem(:final aed) => unawaited(ref.trackEvent(ClarityEvents.selectAed, value: aed.title)),
           BicycleShowerItem(:final shower) => unawaited(
