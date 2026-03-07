@@ -18,7 +18,7 @@ import "config/ui_config.dart";
 import "config/wiredash.dart";
 import "features/in_app_review/presentation/in_app_review.dart";
 import "features/navigator/app_router.dart";
-import "features/navigator/hooks/use_deeplink_listener.dart";
+import "features/navigator/hooks/use_deeplinks.dart";
 import "features/navigator/navigation_stack.dart";
 import "features/parkings/parkings_view/repository/parkings_repository.dart";
 import "features/radio_luz/service/radio_audio_handler.dart";
@@ -87,7 +87,7 @@ class MyApp extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentLocale = ref.watch(preferredLanguageRepositoryProvider);
-    useDeeplinkListener(ref);
+    useDeeplinks(ref);
 
     return RemoveOldTranslations(
       child: FlushCMSCacheRemotelyWidget(
