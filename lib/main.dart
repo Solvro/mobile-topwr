@@ -35,14 +35,21 @@ import "services/translations_service/widgets/remove_old_translations.dart";
 import "theme/app_theme.dart";
 
 Future<void> main({List<Override>? overrides}) async {
+Future<void> main({List<Override>? overrides}) async {
   WidgetsFlutterBinding.ensureInitialized();
+
 
   SplashScreenController.preserveNativeSplashScreen();
 
   final data = await PlatformAssetBundle().load(Assets.certs.przewodnikPwrEduPl);
   SecurityContext.defaultContext.setTrustedCertificatesBytes(data.buffer.asUint8List());
 
+
+  final data = await PlatformAssetBundle().load(Assets.certs.przewodnikPwrEduPl);
+  SecurityContext.defaultContext.setTrustedCertificatesBytes(data.buffer.asUint8List());
+
   if (kDebugMode) {
+    runApp(ProviderScope(overrides: overrides ?? [], child: const MyApp()));
     runApp(ProviderScope(overrides: overrides ?? [], child: const MyApp()));
   } else {
     await SentryFlutter.init((options) {
@@ -50,15 +57,11 @@ Future<void> main({List<Override>? overrides}) async {
       options.sendDefaultPii = true;
       options.tracesSampleRate = 0;
     }, appRunner: runNormalApp);
+    }, appRunner: runNormalApp);
   }
 }
 
-Future<void> runToPWR() async {
-  final data = await PlatformAssetBundle().load(Assets.certs.przewodnikPwrEduPl);
-  SecurityContext.defaultContext.setTrustedCertificatesBytes(data.buffer.asUint8List());
-
-  final config = ClarityConfig(projectId: Env.clarityConfigId, logLevel: LogLevel.None);
-
+Future<void> runNormalApp() async {
   final audioHandler = await AudioService.init(
     builder: RadioAudioHandlerBridge.new,
     config: const AudioServiceConfig(
@@ -68,7 +71,9 @@ Future<void> runToPWR() async {
     ),
   );
   final config = ClarityConfig(projectId: Env.clarityConfigId, logLevel: LogLevel.None);
+  final config = ClarityConfig(projectId: Env.clarityConfigId, logLevel: LogLevel.None);
 
+  runApp(
   runApp(
     ClarityWidget(
       clarityConfig: config,
@@ -92,7 +97,7 @@ class MyApp extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentLocale = ref.watch(preferredLanguageRepositoryProvider);
-    useDeeplinks(ref);
+    useDeeplinkListener(ref);
 
     return RemoveOldTranslations(
       child: FlushCMSCacheRemotelyWidget(
