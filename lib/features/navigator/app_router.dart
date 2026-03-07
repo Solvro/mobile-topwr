@@ -53,6 +53,7 @@ import "../multilayer_map/presentation/views/multilayer_map_view.dart";
 import "../multilayer_map/presentation/views/redirect_views.dart";
 import "../navigation_tab_view/navigation_tab_view.dart";
 import "../newsfeed/presentation/news_list_view.dart";
+import "../notifications/presentation/notifications_view.dart";
 import "../parkings/parkings_view/parkings_view.dart";
 import "../radio_luz/presentation/radio_luz_view.dart";
 import "../science_club/science_club_detail_view/science_club_detail_view.dart";
@@ -135,6 +136,7 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: DressingRoomRoute.page),
     AutoRoute(page: ParkingRoute.page),
     AutoRoute(path: "/news", page: NewsfeedRoute.page),
+    AutoRoute(path: "/notifications", page: NotificationsRoute.page),
     AutoRoute(path: "/calendar", page: CalendarRoute.page),
     AutoRoute(path: "/radio-luz", page: RadioLuzRoute.page),
   ];

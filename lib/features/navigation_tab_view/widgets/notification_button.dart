@@ -5,12 +5,9 @@ import "package:flutter_hooks/flutter_hooks.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../../config/ui_config.dart";
-import "../../../firebase_init.dart";
 import "../../../theme/app_theme.dart";
 import "../../../widgets/my_splash_tile.dart";
-import "../../analytics/data/clarity.dart";
-import "../../analytics/data/clarity_events.dart";
-import "notification_dialog.dart";
+import "../../navigator/utils/navigation_commands.dart";
 
 class NotificationButton extends HookConsumerWidget {
   const NotificationButton({super.key});
@@ -25,16 +22,8 @@ class NotificationButton extends HookConsumerWidget {
         child: FocusableActionDetector(
           focusNode: focusNode,
           child: MySplashTile(
-            onTap: () async {
-              unawaited(ref.trackEvent(ClarityEvents.openNotificationInfoBellDialog));
-              await showNotificationDialog(
-                context: context,
-                onConfirmTapped: (context) {
-                  unawaited(requestFCMPermission());
-                  Navigator.of(context).pop();
-                },
-              );
-              focusNode.requestFocus();
+            onTap: () {
+              unawaited(ref.navigateToNotifications());
             },
             child: Container(
               padding: SksConfig.innerPadding,
