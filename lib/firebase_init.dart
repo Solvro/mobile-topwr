@@ -41,9 +41,9 @@ void subscribeToAllUsersTopic() {
   }
 }
 
-Future<void> subscribeToAllUsersTopic() async {
+void subscribeToAllUsersTopic() {
   try {
-    await FirebaseMessaging.instance.subscribeToTopic("all-users");
+    unawaited(FirebaseMessaging.instance.subscribeToTopic("all-users"));
   } on Exception {
     Logger().e("Failed to subscribe to all-users topic");
     return;

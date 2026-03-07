@@ -24,11 +24,14 @@ class SplashScreenController extends _$SplashScreenController {
     */
     await firebaseInit();
     await AppBarLogo.precacheImageIfAbsent();
-    final (:deviceKey) = await ref.registerForNotifications();
-    if (deviceKey != null) {
-      Clarity.setCustomUserId(deviceKey);
-    }
-    await subscribeToAllUsersTopic();
+    unawaited(
+      ref.registerForNotifications().then((result) {
+        if (result.deviceKey != null) {
+          Clarity.setCustomUserId(result.deviceKey!);
+        }
+      }),
+    );
+    subscribeToAllUsersTopic();
     await ref.read(mapCacheStoreProvider.future); // prefetch map cache directory
   }
 
