@@ -56,65 +56,83 @@ class _NowPlayingTile extends StatelessWidget {
   final String title;
   final String subtitle;
 
+  String _semanticsLabel() {
+    final parts = [time, title, subtitle];
+    if (isActive) {
+      parts.insert(0, "Now playing");
+    }
+    return parts.join(", ");
+  }
+
   @override
   Widget build(BuildContext context) {
     final textTheme = context.textTheme;
     final colorScheme = context.colorScheme;
-    return Container(
-      decoration: BoxDecoration(
-        color: isActive ? colorScheme.primary : colorScheme.surface,
-        borderRadius: BorderRadius.circular(8),
-      ),
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-      child: Row(
-        children: [
-          Text(
-            time,
-            style: textTheme.titleLarge?.copyWith(color: isActive ? colorScheme.surface : colorScheme.primary),
-          ),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Row(
-              children: [
-                Flexible(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        title,
-                        style: textTheme.titleLarge?.copyWith(
-                          color: isActive ? colorScheme.surface : colorScheme.onTertiary,
-                        ),
-                      ),
-                      const SizedBox(height: 2),
-                      Text(
-                        subtitle,
-                        style: textTheme.labelSmall?.copyWith(
-                          color: isActive ? colorScheme.surface : colorScheme.onTertiary,
-                        ),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ],
+    return Semantics(
+      container: true,
+      label: _semanticsLabel(),
+      child: Container(
+        decoration: BoxDecoration(
+          color: isActive ? colorScheme.primary : colorScheme.surface,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+        child: Row(
+          children: [
+            Expanded(
+              child: Row(
+                children: [
+                  Text(
+                    time,
+                    style: textTheme.titleLarge?.copyWith(color: isActive ? colorScheme.surface : colorScheme.primary),
                   ),
-                ),
-                const SizedBox(width: 4),
-                if (isActive)
-                  LiveIndicator(
-                    spreadRadius: 8,
-                    spreadDuration: const Duration(milliseconds: 800),
-                    waitDuration: const Duration(seconds: 1),
-                    color: colorScheme.surface,
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Row(
+                      children: [
+                        Flexible(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                title,
+                                style: textTheme.titleLarge?.copyWith(
+                                  color: isActive ? colorScheme.surface : colorScheme.onTertiary,
+                                ),
+                              ),
+                              const SizedBox(height: 2),
+                              Text(
+                                subtitle,
+                                style: textTheme.labelSmall?.copyWith(
+                                  color: isActive ? colorScheme.surface : colorScheme.onTertiary,
+                                ),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(width: 4),
+                        if (isActive)
+                          LiveIndicator(
+                            spreadRadius: 8,
+                            spreadDuration: const Duration(milliseconds: 800),
+                            waitDuration: const Duration(seconds: 1),
+                            color: colorScheme.surface,
+                          ),
+                      ],
+                    ),
                   ),
-              ],
+                ],
+              ),
             ),
-          ),
-          IconButton(
-            icon: Icon(Icons.manage_search, color: isActive ? colorScheme.surface : colorScheme.primary),
-            onPressed: () => SearchStreamingBottomSheet.show(context, title: title, artist: subtitle),
-          ),
-        ],
+            IconButton(
+              icon: Icon(Icons.manage_search, color: isActive ? colorScheme.surface : colorScheme.primary),
+              onPressed: () => SearchStreamingBottomSheet.show(context, title: title, artist: subtitle),
+            ),
+          ],
+        ),
       ),
     );
   }
