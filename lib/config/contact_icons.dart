@@ -28,6 +28,8 @@ abstract class ContactIconsConfig {
     "youtu": 11,
     "tiktok": 12,
   };
+  static final contributorsIconsOrder = {"github": 0, "linkedin": 1, "mailto:": 3, "facebook": 4, "instagram": 5};
   static const defaultIconOrder = 2;
+  static const defaultContributorsIconOrder = 2;
   static final defaultIcon = Assets.svg.contactIcons.web;
 }
