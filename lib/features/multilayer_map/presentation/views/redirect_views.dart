@@ -20,6 +20,21 @@ class BuildingsView extends StatelessWidget {
 }
 
 @RoutePage()
+class PolinkasView extends StatelessWidget {
+  const PolinkasView({super.key, @PathParam("initialActiveItemId") this.initialActiveItemId});
+  final String? initialActiveItemId;
+
+  @override
+  Widget build(BuildContext context) {
+    final hasSpecificId = initialActiveItemId != null && initialActiveItemId != "null";
+    return MultilayerMapView(
+      initialActiveItemId: "${MultilayerSectionType.polinka.idPrefix}$initialActiveItemId",
+      initialSectionType: hasSpecificId ? null : MultilayerSectionType.polinka,
+    );
+  }
+}
+
+@RoutePage()
 class LibrariesView extends StatelessWidget {
   const LibrariesView({super.key, @PathParam("initialActiveItemId") this.initialActiveItemId});
   final String? initialActiveItemId;

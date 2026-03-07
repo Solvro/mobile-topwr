@@ -23,8 +23,13 @@ class PinkBoxLayerOptions extends LayerOptions {
   const PinkBoxLayerOptions() : super("pink_box_layer_options");
 }
 
+class PolinkaLayerOptions extends LayerOptions {
+  const PolinkaLayerOptions() : super("polinka_layer_options");
+}
+
 final topLevelLayerOptions = [
   const BuildingLayerOptions(),
+  const PolinkaLayerOptions(),
   const LibraryLayerOptions(),
   const AedLayerOptions(),
   const BicycleShowerLayerOptions(),

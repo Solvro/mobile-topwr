@@ -8,7 +8,6 @@ import "../../../utils/context_extensions.dart";
 import "../../../widgets/my_expansion_tile.dart";
 import "../../../widgets/my_html_widget.dart";
 import "../../digital_guide/presentation/widgets/digital_guide_photo_row.dart";
-import "../../multilayer_map/data/model/building.dart";
 import "../data/models/digital_guide_object_model.dart";
 import "../data/repositories/digital_guide_tabs_repository.dart";
 import "digital_g_objects_amenietes_tab_tile_content.dart";
@@ -16,10 +15,9 @@ import "digital_g_objects_amenietes_tab_tile_content.dart";
 typedef TileContent = ({String title, List<Widget> content});
 
 class DigitalGuideObjectsFeaturesSection extends ConsumerWidget {
-  const DigitalGuideObjectsFeaturesSection({required this.digitalGuideData, required this.building});
+  const DigitalGuideObjectsFeaturesSection({required this.digitalGuideData});
 
   final DigitalGuideObjectModel digitalGuideData;
-  final Building building;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

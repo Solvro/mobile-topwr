@@ -25,17 +25,16 @@ import "widgets/report_change_button.dart";
 
 @RoutePage()
 class DigitalGuideView extends ConsumerWidget {
-  const DigitalGuideView({@PathParam("id") required this.ourId, required this.building});
+  const DigitalGuideView({@PathParam("id") required this.ourId});
 
   final String ourId;
-  final Building building;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncDigitalGuideData = ref.watch(digitalGuideRepositoryProvider(ourId));
     return asyncDigitalGuideData.when(
       data: (data) {
-        return _DigitalGuideView(data.digitalGuideData, data.photoUrl, building);
+        return _DigitalGuideView(data.digitalGuideData, data.photoUrl, data.building);
       },
       error: (error, stackTrace) {
         return HorizontalSymmetricSafeAreaScaffold(

@@ -12,6 +12,7 @@ class LayerMarkerIcon extends StatelessWidget {
 
   Color get markerColor => switch (option) {
     BuildingLayerOptions() => HexColor("#3F6499"),
+    PolinkaLayerOptions() => HexColor("#D44C4C"),
     LibraryLayerOptions() => HexColor("#815934"),
     AedLayerOptions() => HexColor("#64AD5C"),
     BicycleShowerLayerOptions() => HexColor("#3F6499"),
@@ -22,6 +23,7 @@ class LayerMarkerIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     final markerImage = switch (option) {
       BuildingLayerOptions() => Assets.png.mapMarkers.mapMarker.image(),
+      PolinkaLayerOptions() => Assets.png.mapMarkers.polinkaMarker.image(),
       LibraryLayerOptions() => Assets.png.mapMarkers.libraryMarker.image(),
       AedLayerOptions() => Assets.png.mapMarkers.aedMarker.image(),
       BicycleShowerLayerOptions() => Assets.png.mapMarkers.showerMarker.image(),

@@ -9,11 +9,13 @@ import "../data/model/building.dart";
 import "../data/model/library.dart";
 import "../data/model/multilayer_item.dart";
 import "../data/model/pink_box.dart";
+import "../data/model/polinka_station.dart";
 import "../data/repositories/aed_repository.dart";
 import "../data/repositories/bicycle_showers_repository.dart";
 import "../data/repositories/buildings_repository.dart";
 import "../data/repositories/library_repository.dart";
 import "../data/repositories/pink_box_repository.dart";
+import "../data/repositories/polinkas_repository.dart";
 
 part "multilayer_source_service.g.dart";
 
@@ -22,11 +24,15 @@ Future<IList<MultilayerItem>> multilayerSourceService(Ref ref) async {
   final layersEnabled = await ref.watch(layersEnabledServiceProvider.future);
   final branch = ref.watch(selectedBranchOnMapProvider);
 
-  final [buildings, libraries, aeds, bicycleShowers, pinkBoxes] = await Future.wait([
+  final [buildings, polinkas, libraries, aeds, bicycleShowers, pinkBoxes] = await Future.wait([
     if (layersEnabled.buildingsEnabled)
       ref.watch(buildingsRepositoryProvider.future)
     else
       Future.value(const <Building>[]),
+    if (layersEnabled.polinkasEnabled)
+      ref.watch(polinkasRepositoryProvider.future)
+    else
+      Future.value(const <PolinkaStation>[]),
     if (layersEnabled.librariesEnabled)
       ref.watch(librariesRepositoryProvider.future)
     else
@@ -46,6 +52,10 @@ Future<IList<MultilayerItem>> multilayerSourceService(Ref ref) async {
         .whereType<Building>()
         .map((building) => BuildingItem(building: building))
         .where((item) => item.building.branch == branch),
+    ...polinkas
+        .whereType<PolinkaStation>()
+        .map((station) => PolinkaItem(station: station))
+        .where((item) => item.station.branch == branch),
     ...libraries
         .whereType<Library>()
         .map((library) => LibraryItem(library: library))
@@ -66,6 +76,12 @@ Future<IList<MultilayerItem>> multilayerSourceService(Ref ref) async {
 Future<bool> hasAnyBuildingItems(Ref ref) async {
   final items = await ref.watch(multilayerSourceServiceProvider.future);
   return items.whereType<BuildingItem>().isNotEmpty;
+}
+
+@riverpod
+Future<bool> hasAnyPolinkaItems(Ref ref) async {
+  final items = await ref.watch(multilayerSourceServiceProvider.future);
+  return items.whereType<PolinkaItem>().isNotEmpty;
 }
 
 @riverpod

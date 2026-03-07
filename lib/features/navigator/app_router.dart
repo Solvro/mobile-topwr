@@ -48,7 +48,6 @@ import "../digital_guide_objects/presentation/digital_guide_object_view.dart";
 import "../guide_detail_view/guide_detail_view.dart";
 import "../guide_view/guide_view.dart";
 import "../home_view/home_view.dart";
-import "../multilayer_map/data/model/building.dart";
 import "../multilayer_map/data/model/multilayer_section_type.dart";
 import "../multilayer_map/presentation/views/multilayer_map_view.dart";
 import "../multilayer_map/presentation/views/redirect_views.dart";
@@ -82,6 +81,7 @@ class AppRouter extends RootStackRouter {
   List<AutoRoute> get routesWithinTabBar => [
     _NoTransitionRoute(path: "", page: HomeRoute.page),
     _NoTransitionRoute(path: "buildings/:initialActiveItemId", page: BuildingsRoute.page),
+    _NoTransitionRoute(path: "polinkas/:initialActiveItemId", page: PolinkasRoute.page),
     _NoTransitionRoute(path: "libraries/:initialActiveItemId", page: LibrariesRoute.page),
     _NoTransitionRoute(path: "aeds/:initialActiveItemId", page: AedsRoute.page),
     _NoTransitionRoute(path: "bicycle-showers/:initialActiveItemId", page: ShowersRoute.page),
@@ -92,6 +92,7 @@ class AppRouter extends RootStackRouter {
     _NoTransitionRoute(path: "navigation", page: NavigationTabRoute.page),
     // Redirects for routes without :initialActiveItemId parameter
     RedirectRoute(path: "buildings", redirectTo: "buildings/null"),
+    RedirectRoute(path: "polinkas", redirectTo: "polinkas/null"),
     RedirectRoute(path: "libraries", redirectTo: "libraries/null"),
     RedirectRoute(path: "aeds", redirectTo: "aeds/null"),
     RedirectRoute(path: "bicycle-showers", redirectTo: "bicycle-showers/null"),

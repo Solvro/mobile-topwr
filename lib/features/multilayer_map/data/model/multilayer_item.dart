@@ -7,6 +7,7 @@ import "bicycle_shower.dart";
 import "building.dart";
 import "library.dart";
 import "pink_box.dart";
+import "polinka_station.dart";
 
 part "multilayer_item.freezed.dart";
 
@@ -55,6 +56,21 @@ abstract class BuildingItem with _$BuildingItem implements MultilayerItem {
 
   @override
   LatLng get location => building.location;
+}
+
+@freezed
+abstract class PolinkaItem with _$PolinkaItem implements MultilayerItem {
+  @Implements<MultilayerItem>()
+  const factory PolinkaItem({required PolinkaStation station}) = _PolinkaItem;
+  const PolinkaItem._();
+
+  static const idPrefix = "polinka-";
+
+  @override
+  String get id => "$idPrefix${station.id}";
+
+  @override
+  LatLng get location => LatLng(station.latitude, station.longitude);
 }
 
 @freezed
