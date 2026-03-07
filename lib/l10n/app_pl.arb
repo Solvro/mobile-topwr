@@ -1923,7 +1923,7 @@
   "@max_capacity": {
     "description": "Label for maximum load capacity"
   },
-  "generic_error_message": "Upsss...Coś poszło nie tak",
+  "generic_error_message": "Upsss... Coś poszło nie tak",
   "@generic_error_message": {
     "description": "Generic error message"
   },
