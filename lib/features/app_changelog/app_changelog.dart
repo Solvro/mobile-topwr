@@ -1,6 +1,7 @@
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 
+import "../../config/ui_config.dart";
 import "../../theme/app_theme.dart";
 import "../../utils/context_extensions.dart";
 import "data/models/changelog.dart";
@@ -11,10 +12,6 @@ class AppChangelog extends StatelessWidget {
   const AppChangelog({super.key, required this.changelog});
 
   final Changelog changelog;
-
-  static String localizedOfflineMessage(BuildContext context) {
-    return context.localize.my_offline_error_message(context.localize.offline_changelog);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +38,7 @@ class AppChangelog extends StatelessWidget {
               right: 0,
               top: 0,
               child: IconButton(
+                key: ChangelogConfig.closeButtonKey,
                 icon: Icon(semanticLabel: context.localize.close, Icons.close),
                 onPressed: context.maybePop,
               ),

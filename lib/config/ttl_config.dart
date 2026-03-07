@@ -4,17 +4,25 @@ import "package:flutter_cache_manager/flutter_cache_manager.dart";
 /// you can add more ttl days here if you need it
 enum TtlDays {
   /// month / 30 days
-  defaultDigitalGuide(30),
+  defaultDigitalGuide(30, 0),
 
   /// week / 7 days
-  defaultDefault(7),
+  defaultDefault(7, 0),
 
   /// day / 1 day
-  defaultSks(1);
+  defaultSks(1, 0),
 
-  const TtlDays(this.days);
+  /// 30 minutes
+  notifications(0, 30);
+
+  const TtlDays(this.days, this.minutes);
 
   final int days;
+  final int minutes;
+
+  Duration get duration => Duration(minutes: minutes, days: days);
+
+  String get cacheKey => "NewJsonCacheManager${minutes}Min${days}Days";
 }
 
 // my cached image package config for cache pruning

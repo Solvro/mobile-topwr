@@ -25,10 +25,6 @@ import "widgets/guide_tile.dart";
 class GuideView extends StatelessWidget {
   const GuideView({super.key});
 
-  static String localizedOfflineMessage(BuildContext context) {
-    return context.localize.my_offline_error_message(context.localize.guide);
-  }
-
   @override
   Widget build(BuildContext context) {
     return const _GuideView();

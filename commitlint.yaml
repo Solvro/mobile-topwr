@@ -38,4 +38,8 @@ rules:
       - branches
       - radio-luz
       - cd
+      - notifications
+      - integration-tests
+      - booths
+      - activity-days
     # YES, you can add new ones if you have a new feature

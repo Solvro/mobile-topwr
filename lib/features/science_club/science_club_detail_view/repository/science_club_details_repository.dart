@@ -4,7 +4,6 @@ import "../../../../api_base_rest/client/json.dart";
 import "../../../../api_base_rest/translations/translate.dart";
 import "../../../../config/env.dart";
 import "../model/science_club_details.dart";
-import "../science_club_detail_view.dart";
 
 part "science_club_details_repository.g.dart";
 
@@ -17,7 +16,6 @@ Future<ScienceClubDetails?> scienceClubDetailsRepository(Ref ref, int id) async 
     apiUrl + clubDetailsEndpoint,
     ClubDetailsResponse.fromJson,
     extraValidityCheck: (_) => true,
-    localizedOfflineMessage: ScienceClubDetailView.localizedOfflineMessage,
     onRetry: ref.invalidateSelf,
   );
 

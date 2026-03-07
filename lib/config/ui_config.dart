@@ -7,6 +7,7 @@ import "../utils/context_extensions.dart";
 abstract class MyAppConfig {
   static const title = "ToPWR";
   static final legalese = "\u{a9} 2024-${DateTime.now().year} Koło Naukowe Solvro, Politechnika Wrocławska";
+  static const verticalScrollableKey = Key("vertical_scrollable"); // pls use one per view
 }
 
 abstract class AppWidgetsConfig {
@@ -216,6 +217,10 @@ abstract class NavigationTabViewConfig {
   static const navIconSize = 30.0;
   static const smallerPadding = 6.0;
   static const tinyPadding = 5.0;
+
+  static const departments = Key("departments");
+  static const scienceClubsKey = Key("science_club");
+  static const radioLuzKey = Key("radio_luz");
 }
 
 abstract class DigitalGuideConfig {
@@ -262,4 +267,8 @@ abstract class AlertDialogConfig {
   static const horizontalPadding = 14.0;
   static const verticalPadding = 20.0;
   static const buttonFontSize = 16.0;
+}
+
+abstract class ChangelogConfig {
+  static const closeButtonKey = Key("close_button");
 }

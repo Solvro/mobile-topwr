@@ -1,6 +1,7 @@
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../../api_base_rest/client/json.dart";
+import "../../../multilayer_map/data/model/building.dart";
 import "../../../multilayer_map/data/repositories/buildings_repository.dart";
 import "../api/digital_guide_get_and_cache.dart";
 import "../models/digital_guide_response.dart";
@@ -8,7 +9,7 @@ import "../models/digital_guide_response.dart";
 part "digital_guide_repository.g.dart";
 
 @riverpod
-Future<({DigitalGuideResponse digitalGuideData, String? photoUrl})> digitalGuideRepository(
+Future<({DigitalGuideResponse digitalGuideData, String? photoUrl, Building building})> digitalGuideRepository(
   Ref ref,
   String ourId,
 ) async {
@@ -26,5 +27,5 @@ Future<({DigitalGuideResponse digitalGuideData, String? photoUrl})> digitalGuide
       )
       .castAsObject;
 
-  return (digitalGuideData: digitalGuideData, photoUrl: building.cover?.effectiveUrl);
+  return (digitalGuideData: digitalGuideData, photoUrl: building.cover?.effectiveUrl, building: building);
 }

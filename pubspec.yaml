@@ -1,5 +1,5 @@
 name: topwr
-description: "ToPWR mobile guide over WUST university"
+description: "ToPWR mobile guide over Wrocław Tech university"
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
@@ -16,11 +16,11 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.2.20+107
+version: 1.2.22+109
 
 environment:
-  sdk: 3.10.8
-  flutter: 3.38.9
+  sdk: 3.11.1
+  flutter: 3.41.4
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -133,6 +133,7 @@ dependencies:
   wiredash: ^2.6.0
   flutter_hooks: ^0.21.3
   sentry_flutter: ^9.12.0
+  awesome_dio_interceptor: ^1.3.0
 
   #Solvro packages
   solvro_translator_with_drift_cache_flutter: ^0.9.4
@@ -141,6 +142,9 @@ dependencies:
 
 dev_dependencies:
   flutter_test:
+    sdk: flutter
+
+  integration_test:
     sdk: flutter
 
   #Storage

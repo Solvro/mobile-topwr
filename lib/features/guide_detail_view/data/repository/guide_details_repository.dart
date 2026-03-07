@@ -3,7 +3,6 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 import "../../../../api_base_rest/client/json.dart";
 import "../../../../api_base_rest/translations/translate.dart";
 import "../../../../config/env.dart";
-import "../../../guide_view/guide_view.dart";
 import "../models/guide_details.dart";
 
 part "guide_details_repository.g.dart";
@@ -18,9 +17,10 @@ Future<GuideDetails> guideDetailsRepository(Ref ref, int id) async {
         apiUrl + endpoint,
         GuideDetailsResponse.fromJson,
         extraValidityCheck: (_) => true,
-        localizedOfflineMessage: GuideView.localizedOfflineMessage,
         onRetry: ref.invalidateSelf,
       )
       .castAsObject;
-  return response.data;
+  return response.data.copyWith(
+    guideQuestions: response.data.guideQuestions.sort((a, b) => a.order.compareTo(b.order)),
+  );
 }

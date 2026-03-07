@@ -23,6 +23,7 @@ abstract class GuideData with _$GuideData {
     required String title,
     required String shortDesc,
     required ImageData image,
+    @JsonKey(defaultValue: 0) @Default(0) int order,
   }) = _GuideData;
 
   factory GuideData.fromJson(Map<String, dynamic> json) => _$GuideDataFromJson(json);

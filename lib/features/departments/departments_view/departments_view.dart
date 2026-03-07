@@ -25,10 +25,6 @@ class DepartmentsView extends StatelessWidget {
 
   final String? initialQuery;
 
-  static String localizedOfflineMessage(BuildContext context) {
-    return context.localize.my_offline_error_message(context.localize.departments);
-  }
-
   @override
   Widget build(BuildContext context) {
     return ProviderScope(
@@ -99,6 +95,7 @@ class _DepartmentsDataView extends ConsumerWidget {
       );
     }
     return GridView.builder(
+      key: MyAppConfig.verticalScrollableKey,
       padding: const EdgeInsets.only(bottom: 24),
       gridDelegate: DepartmentsConfig.departmentsViewGridDelegate(context),
       itemCount: departments.length,

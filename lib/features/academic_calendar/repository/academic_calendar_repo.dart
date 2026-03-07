@@ -5,7 +5,6 @@ import "../../../api_base_rest/client/json.dart";
 import "../../../config/env.dart";
 import "../model/academic_calendar.dart";
 import "../model/day_swap_model.dart";
-import "../widgets/home_screen_greeting.dart";
 
 part "academic_calendar_repo.g.dart";
 
@@ -28,14 +27,12 @@ Future<AcademicCalendarWithSwaps?> academicCalendarRepo(Ref ref) async {
       apiUrl + academicCalendarEndpoint,
       AcademicCalendarResponse.fromJson,
       extraValidityCheck: (_) => true,
-      localizedOfflineMessage: Greeting.localizedOfflineMessage,
       onRetry: ref.invalidateSelf,
     ),
     ref.getAndCacheData(
       apiUrl + daySwapsEndpoint,
       DaySwapResponse.fromJson,
       extraValidityCheck: (_) => true,
-      localizedOfflineMessage: Greeting.localizedOfflineMessage,
       onRetry: ref.invalidateSelf,
     ),
   ]);

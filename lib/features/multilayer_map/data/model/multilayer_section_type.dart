@@ -3,6 +3,7 @@ import "multilayer_item.dart";
 /// Represents the different section types in the multilayer map
 enum MultilayerSectionType {
   building,
+  polinka,
   library,
   aed,
   bicycleShower,
@@ -11,6 +12,7 @@ enum MultilayerSectionType {
   /// Gets the item ID prefix for this section type
   String get idPrefix => switch (this) {
     MultilayerSectionType.building => BuildingItem.idPrefix,
+    MultilayerSectionType.polinka => PolinkaItem.idPrefix,
     MultilayerSectionType.library => LibraryItem.idPrefix,
     MultilayerSectionType.aed => AedItem.idPrefix,
     MultilayerSectionType.bicycleShower => BicycleShowerItem.idPrefix,

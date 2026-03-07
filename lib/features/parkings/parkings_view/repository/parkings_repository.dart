@@ -45,7 +45,6 @@ extension DioFetchParkingsX on Dio {
       final response = await get<Map<String, dynamic>>(url);
       return _mapResponseToParkings(response.data);
     } on DioException catch (_) {
-      await Future<void>.delayed(const Duration(milliseconds: 300));
       throw ParkingsOfflineException();
     }
   }

@@ -33,11 +33,13 @@ class NavigationTabView extends ConsumerWidget {
       const SizedBox(height: NavigationTabViewConfig.universalPadding / 3),
       _NavigationRow(
         child1: SmallTileCard(
+          key: NavigationTabViewConfig.departments,
           onTap: ref.navigateDepartments,
           title: context.localize.departments,
           icon: const Icon(BottomNavBarIcons.departments_icon, size: NavigationTabViewConfig.navIconSize),
         ),
         child2: SmallTileCard(
+          key: NavigationTabViewConfig.scienceClubsKey,
           onTap: () async {
             await ref.navigateScienceClubs();
           },
@@ -47,6 +49,7 @@ class NavigationTabView extends ConsumerWidget {
       ),
       _NavigationRow(
         child1: Semantics(
+          key: NavigationTabViewConfig.radioLuzKey,
           button: true,
           label: context.localize.radio_luz,
           child: BaseSmallTileCard(
@@ -87,6 +90,7 @@ class NavigationTabView extends ConsumerWidget {
         actions: [Semantics(button: true, label: context.localize.notifications, child: const NotificationButton())],
       ),
       body: ListView.separated(
+        key: MyAppConfig.verticalScrollableKey,
         padding: GuideViewConfig.gridPadding,
         itemBuilder: (context, index) => children[index],
         separatorBuilder: (context, index) => const SizedBox(height: NavigationTabViewConfig.universalPadding),

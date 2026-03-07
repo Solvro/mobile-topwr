@@ -19,7 +19,6 @@ extension TranslateX on Ref {
     TtlDays ttlDays = TtlDays.defaultDefault,
     // returns true if the data is still valid
     required bool Function(JSON<T> cachedData) extraValidityCheck,
-    required String Function(BuildContext context) localizedOfflineMessage,
     VoidCallback? onRetry,
     AuthHeader? authHeader,
   }) async {
@@ -31,7 +30,6 @@ extension TranslateX on Ref {
       fromJson,
       ttlDays: ttlDays,
       extraValidityCheck: extraValidityCheck,
-      localizedOfflineMessage: localizedOfflineMessage,
       onRetry: onRetry,
       authHeader: authHeader,
     );
@@ -46,7 +44,7 @@ extension TranslateX on Ref {
         ),
       };
     } on SolvroTranslationOfflineException {
-      throw RestFrameworkOfflineException(localizedMessage: localizedOfflineMessage, onRetry: onRetry);
+      throw RestFrameworkOfflineException(onRetry: onRetry);
     }
   }
 }

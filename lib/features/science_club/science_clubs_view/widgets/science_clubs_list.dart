@@ -59,6 +59,7 @@ class _ScienceClubsListView extends HookConsumerWidget {
         _ResultsCountText(filteredCircles: filteredCircles),
         Expanded(
           child: GridView.builder(
+            key: MyAppConfig.verticalScrollableKey,
             padding: const EdgeInsets.only(bottom: ScienceClubsViewConfig.mediumPadding),
             gridDelegate: DepartmentsConfig.departmentsViewGridDelegate(context),
             itemCount: filteredCircles.length,

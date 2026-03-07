@@ -29,7 +29,6 @@ extension DataCachingX on Ref {
     TtlDays ttlDays = TtlDays.defaultDefault,
     // returns true if the data is still valid
     required bool Function(JSON<T> cachedData) extraValidityCheck,
-    required String Function(BuildContext context) localizedOfflineMessage,
     VoidCallback? onRetry,
     AuthHeader? authHeader,
   }) async {
@@ -44,7 +43,7 @@ extension DataCachingX on Ref {
         return data;
       }
     }
-    final response = await dio.safeGet<dynamic>(fullUrl, localizedMessage: localizedOfflineMessage, onRetry: onRetry);
+    final response = await dio.safeGet<dynamic>(fullUrl, onRetry: onRetry);
     final json = parseJSON(response.data, fromJson);
     if (extraValidityCheck(json)) {
       await cacheManager.putFile(

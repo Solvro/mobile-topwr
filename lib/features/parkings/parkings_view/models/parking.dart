@@ -25,6 +25,7 @@ abstract class Parking with _$Parking implements GoogleNavigable {
     required String geoLan,
     required String geoLat,
     required String photo,
+    @JsonKey(name: "miniature") String? miniaturePhoto,
     @JsonKey(name: "aktywny") required String active,
     required String showPark,
     required String lp,
@@ -36,6 +37,12 @@ abstract class Parking with _$Parking implements GoogleNavigable {
   factory Parking.fromJson(Map<String, dynamic> json) => _$ParkingFromJson(json);
 
   String get iParkPhotoUrl {
+    if (miniaturePhoto != null) {
+      if (miniaturePhoto!.trim().startsWith("http")) {
+        return miniaturePhoto!.trim();
+      }
+      return ParkingsConfig.rootUrl + miniaturePhoto!.trim();
+    }
     if (photo.trim().startsWith("http")) {
       return photo.trim();
     }

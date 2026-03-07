@@ -1,6 +1,7 @@
 import "dart:async";
 import "dart:io";
 
+import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
@@ -14,7 +15,7 @@ class AndroidUpdateWidget extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     assert(Platform.isAndroid, "InAppUpdate is only available on Android.");
     useEffectOnInit(() {
-      if (Platform.isAndroid) {
+      if (Platform.isAndroid && !kDebugMode) {
         unawaited(ref.update());
       }
       return null;
