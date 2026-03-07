@@ -7,7 +7,9 @@ import "package:hooks_riverpod/hooks_riverpod.dart";
 import "../../../firebase_init.dart";
 import "../../../utils/launch_url_util.dart";
 
-void _handleNotificationRoute(WidgetRef ref, RemoteMessage message) {
+void _handleNotificationRoute(WidgetRef ref, RemoteMessage message, bool isDisposed) {
+  if (isDisposed) return;
+
   final routePath = message.data["route"] as String?;
 
   if (routePath != null && routePath.isNotEmpty) {
@@ -25,15 +27,17 @@ void useDeeplinkFromNotificationListener(WidgetRef ref) {
       firebaseInit().then((_) async {
         // 1. App launched from terminated state via notification tap
         final message = await FirebaseMessaging.instance.getInitialMessage();
-        if (message != null) {
-          _handleNotificationRoute(ref, message);
+        if (message != null && !disposedRef.value) {
+          _handleNotificationRoute(ref, message, false);
         }
 
         if (disposedRef.value) return;
 
         // 2. App opened from background state via notification tap
         messagingSubscription = FirebaseMessaging.onMessageOpenedApp.listen(
-          (message) => _handleNotificationRoute(ref, message),
+          (message) {
+            if (!disposedRef.value) _handleNotificationRoute(ref, message, false);
+          },
         );
       }),
     );
