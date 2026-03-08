@@ -119,7 +119,7 @@ dependencies:
 
   #Audio
   #TODO: bump when just_audio fixes issue: https://github.com/ryanheise/just_audio/issues/1558
-  just_audio: ^0.9.36
+  just_audio: ^0.10.5
   audio_service: ^0.18.18
   audio_session: ^0.1.21
 
