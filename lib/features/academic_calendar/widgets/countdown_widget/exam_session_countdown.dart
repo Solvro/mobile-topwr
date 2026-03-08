@@ -69,6 +69,7 @@ class ExamSessionCountdown extends ConsumerWidget {
                         academicCalendar.localizeDaysCounterMessage(context),
                         style: context.textTheme.bodyLarge?.copyWith(color: context.colorScheme.surface),
                         textScaler: const TextScaler.linear(0.97),
+                        maxLines: 2,
                       ),
                     ),
                   ],
