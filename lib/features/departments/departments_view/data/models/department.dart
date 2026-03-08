@@ -3,6 +3,7 @@ import "package:flutter/foundation.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 import "package:solvro_translator_core/solvro_translator_core.dart";
 
+import "../../../../../api_base_rest/shared_models/image_data.dart";
 import "../../../../branches/data/model/branch.dart";
 
 part "department.freezed.dart";
@@ -24,7 +25,7 @@ abstract class Department with _$Department {
     @translatableField required String name,
     required String code,
     required String betterCode,
-    String? logoKey,
+    ImageData? logo,
     required String gradientStart,
     required String gradientStop,
     required Branch branch,

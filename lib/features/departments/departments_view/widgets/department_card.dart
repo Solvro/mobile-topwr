@@ -38,7 +38,11 @@ class DepartmentCard extends StatelessWidget {
               opacity: .5,
               child: Padding(
                 padding: const EdgeInsets.all(DepartmentsConfig.logoMicroPadding),
-                child: MyCachedImage(department.imageUrl, boxFit: BoxFit.scaleDown, loadingType: LoadingType.noLoading),
+                child: MyCachedImage(
+                  department.logo?.effectiveUrl,
+                  boxFit: BoxFit.scaleDown,
+                  loadingType: LoadingType.noLoading,
+                ),
               ),
             ),
           ),

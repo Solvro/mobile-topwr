@@ -21,10 +21,12 @@ class FieldOfStudyTile extends ConsumerWidget {
     return Theme(
       data: context.defaultThemeWithOverrideTextStyles(titleLarge: context.textTheme.titleMedium),
       child: WideTileCard(
-        onTap: () async {
-          unawaited(ref.trackEvent(ClarityEvents.openFieldOfStudiesLink, value: item.url));
-          await ref.launch(item.url);
-        },
+        onTap: item.url != null
+            ? () async {
+                unawaited(ref.trackEvent(ClarityEvents.openFieldOfStudiesLink, value: item.url));
+                await ref.launch(item.url!);
+              }
+            : null,
         crossAxisAlignment: CrossAxisAlignment.center,
         title: item.name,
         fixedTrailingHeight: false,

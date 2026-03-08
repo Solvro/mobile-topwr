@@ -9,7 +9,7 @@ part "department_details_repository.g.dart";
 
 @riverpod
 Future<DepartmentDetails> departmentDetailsRepository(Ref ref, int id) async {
-  final endpoint = "/departments/$id?fieldsOfStudy=true&departmentLinks=true";
+  final endpoint = "/departments/$id?fieldsOfStudy=true&departmentLinks=true&logo=true";
   final url = "${Env.mainRestApiUrl}$endpoint";
 
   final response = await ref

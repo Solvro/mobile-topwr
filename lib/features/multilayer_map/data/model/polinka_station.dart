@@ -28,7 +28,6 @@ abstract class PolinkaStation with _$PolinkaStation {
     required double latitude,
     required double longitude,
     required Branch branch,
-    required String? photoKey,
     required ExternalDigitalGuideMode? externalDigitalGuideMode,
     required String? externalDigitalGuideIdOrUrl,
     ImageData? photo,

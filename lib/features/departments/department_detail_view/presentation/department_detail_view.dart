@@ -37,7 +37,7 @@ class DepartmentDetailView extends ConsumerWidget {
             SliverPersistentHeader(
               delegate: DepartmentSliverHeaderSection(
                 activeGradient: department.gradient,
-                logoDirectusImageData: ImageData(url: department.imageUrl),
+                logoDirectusImageData: ImageData(url: department.logo?.url ?? ""),
               ),
             ),
             SliverList(

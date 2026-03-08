@@ -2,6 +2,7 @@ import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/foundation.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 import "package:solvro_translator_core/solvro_translator_core.dart";
+import "../../../../../api_base_rest/shared_models/image_data.dart";
 import "../../../../../api_base_rest/shared_models/social_links_data.dart";
 import "./studies_type.dart";
 
@@ -25,11 +26,11 @@ abstract class DepartmentDetails with _$DepartmentDetails {
     @translatableField required String name,
     required String code,
     required String betterCode,
-    required String logoKey,
+    required ImageData? logo,
     required String gradientStart,
     required String gradientStop,
     required String addressLine1,
-    required String addressLine2,
+    required String? addressLine2,
     required IList<FieldOfStudy> fieldsOfStudy,
     required IList<SocialLinksData> departmentLinks,
   }) = _DepartmentDetails;
@@ -41,7 +42,7 @@ abstract class DepartmentDetails with _$DepartmentDetails {
 abstract class FieldOfStudy with _$FieldOfStudy {
   const factory FieldOfStudy({
     required String name,
-    required String url,
+    required String? url,
     required bool isEnglish,
     required StudiesType studiesType,
     required bool hasWeekendOption,
