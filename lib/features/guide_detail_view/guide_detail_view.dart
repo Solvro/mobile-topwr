@@ -56,16 +56,13 @@ class _GuideDetailDataView extends ConsumerWidget {
       AsyncError(:final error, :final stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
       AsyncValue(:final GuideDetails value) => Builder(
         builder: (context) {
-          final createAtDate = context.getTheLatesCreatedDateGuide(
-            questions: value.guideQuestions,
-            locale: context.locale,
-          );
+          final createAtDate = context.getTheLatesCreatedDateGuide(guide: value, locale: context.locale);
 
           return DeeplinkScrollToSectionWrapper(
             sectionId: sectionId,
             builder: (context, deeplinkToSectionHelper) {
               deeplinkToSectionHelper.registerSections(List.generate(value.guideQuestions.length, (index) => index));
-              final lastModifiedDate = context.getTheLatestUpdatedDateGuide(questions: value.guideQuestions);
+              final lastModifiedDate = context.getTheLatestUpdatedDateGuide(guide: value);
               final IList<String> authorsNames = value.guideAuthors
                   .where((e) => e.role.role == GuideAuthorRoleType.author)
                   .map((a) => a.name)
