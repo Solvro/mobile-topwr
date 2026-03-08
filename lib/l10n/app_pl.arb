@@ -3378,6 +3378,8 @@
   "@parking_chart_max_today_screen_reader_label": {
     "description": "Text read for parking chart max today"
   },
+  "parking_info_button_tooltip": "Informacje o parkingach",
+  "parking_info_dialog_semantics": "Informacje o parkingach:",
   "bottom_scroll_sheet_description_collapsed": "Szuflada dolna z listą. Przewiń w górę, aby ją rozwinąć.",
   "@bottom_scroll_sheet_description_collapsed": {
     "description": "Text read for bottom scroll sheet description when it's collapsed"
