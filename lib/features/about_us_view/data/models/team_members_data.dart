@@ -21,7 +21,7 @@ abstract class TeamMembersDataResponse with _$TeamMembersDataResponse, _$TeamMem
 abstract class TeamMemberData with _$TeamMemberData {
   const factory TeamMemberData({
     required String name,
-    @JsonKey(name: "photo") required ImageData image,
+    @JsonKey(name: "photo") required ImageData? image,
     required IList<SocialLinksData> socialLinks,
     @nonTranslatableField required IList<MilestoneData> milestones,
     required IList<RoleData> roles,

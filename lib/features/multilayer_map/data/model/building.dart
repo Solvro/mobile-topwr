@@ -30,7 +30,7 @@ abstract class Building with _$Building implements GoogleNavigable {
     @JsonKey(name: "identifier") required String name,
     @translatableField @JsonKey(name: "specialName") required String? naturalName,
     required String addressLine1,
-    required String addressLine2,
+    required String? addressLine2,
     required double latitude,
     required double longitude,
     required ExternalDigitalGuideMode? externalDigitalGuideMode,
