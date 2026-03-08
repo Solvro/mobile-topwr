@@ -25,7 +25,7 @@ abstract class Department with _$Department {
     @translatableField required String name,
     required String code,
     required String betterCode,
-    String? logoKey,
+    ImageData? logo,
     required String gradientStart,
     required String gradientStop,
     required Branch branch,
