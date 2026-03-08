@@ -250,6 +250,9 @@
     "description": "Title for parkings section"
   },
   "parkings_not_found": "Nie znaleziono parkingu",
+  "parking_access_all": "Parking dla wszystkich",
+  "parking_access_employees": "Parking dla pracowników i doktorantów",
+  "parking_access_students": "Parking dla studentów",
   "@parkings_not_found": {
     "description": "Error message when parking is not found"
   },
