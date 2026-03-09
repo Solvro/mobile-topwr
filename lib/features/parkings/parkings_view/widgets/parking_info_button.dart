@@ -32,7 +32,7 @@ class ParkingInfoButton extends ConsumerWidget {
       confirmText: "",
       dialogSemantics: context.localize.parking_info_dialog_semantics,
       dialogContent: Text(
-        parkingInfo.message,
+        parkingInfo.info,
         style: context.textTheme.bodyLarge,
         textScaler: context.textScaler.clamp(maxScaleFactor: 2),
       ),
