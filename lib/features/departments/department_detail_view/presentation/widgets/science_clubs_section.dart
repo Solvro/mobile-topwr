@@ -82,6 +82,7 @@ class _ScienceClubsList extends ConsumerWidget {
             },
             showVerifiedBadge: sciClub.source == ScienceClubSource.manualEntry,
             showStrategicBadge: sciClub.isStrategic,
+            imagePadding: ScienceClubConfig.imagePadding,
           ),
         );
       },

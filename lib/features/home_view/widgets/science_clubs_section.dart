@@ -89,6 +89,7 @@ class _ScienceClubCard extends ConsumerWidget {
       showVerifiedBadge: sciClub.source == ScienceClubSource.manualEntry,
       onClick: () => ref.navigateSciClubsDetail(sciClub),
       showStrategicBadge: sciClub.isStrategic,
+      imagePadding: ScienceClubConfig.imagePadding,
     );
   }
 }

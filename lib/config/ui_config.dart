@@ -10,6 +10,10 @@ abstract class MyAppConfig {
   static const verticalScrollableKey = Key("vertical_scrollable"); // pls use one per view
 }
 
+abstract class ScienceClubConfig {
+  static const imagePadding = EdgeInsets.only(top: 8, left: 10, right: 10);
+}
+
 abstract class AppWidgetsConfig {
   static const paddingMedium = EdgeInsets.symmetric(horizontal: 16, vertical: 12);
   static const borderRadiusMedium = 8.0;

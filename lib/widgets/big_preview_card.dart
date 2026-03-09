@@ -19,6 +19,7 @@ class BigPreviewCard extends StatelessWidget {
     this.boxFit = BoxFit.scaleDown,
     this.showVerifiedBadge = false,
     this.showStrategicBadge = false,
+    this.imagePadding,
   });
 
   final String title;
@@ -29,6 +30,7 @@ class BigPreviewCard extends StatelessWidget {
   final BoxFit boxFit;
   final bool showVerifiedBadge;
   final bool showStrategicBadge;
+  final EdgeInsets? imagePadding;
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +53,9 @@ class BigPreviewCard extends StatelessWidget {
                       children: [
                         SizedBox(
                           width: double.maxFinite,
-                          child: Center(
+                          child: Container(
+                            padding: imagePadding,
+                            alignment: Alignment.center,
                             child: imageData != null
                                 ? RestApiImage(imageData, boxFit: boxFit)
                                 : const RestApiImage(null),
