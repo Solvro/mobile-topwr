@@ -97,8 +97,8 @@ class _LeftColumn extends StatelessWidget {
               child: Padding(
                 padding: ParkingsConfig.extraIndentPadd,
                 child: Semantics(
-                  label: context.localize.parking_opening_hours_reader_label,
-                  child: Text(parking.openingHours, style: const ParkingSmallTextStyle()),
+                  label: parking.accessDescription(context.localize),
+                  child: Text(parking.accessDescription(context.localize), style: const ParkingSmallTextStyle()),
                 ),
               ),
             ),

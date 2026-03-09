@@ -18,6 +18,7 @@ import "../multilayer_map/business/multilayer_source_service.dart";
 import "../multilayer_map/data/model/multilayer_item.dart";
 import "../multilayer_map/data/model/multilayer_section_type.dart";
 import "../parkings/parkings_view/models/parking.dart";
+import "../parkings/parkings_view/widgets/parking_info_button.dart";
 import "data_list.dart";
 import "drag_handle.dart";
 import "hooks/use_initial_active_id.dart";
@@ -57,7 +58,10 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
         }
         await ref.read(bottomSheetPixelsProvider.notifier).expandSheet();
       },
-      actions: [if (ref.watch(context.activeMarkerController<T>()) != null) NavigateButton<T>()],
+      actions: [
+        if (T == Parking && ref.watch(context.activeMarkerController<T>()) == null) const ParkingInfoButton(),
+        if (ref.watch(context.activeMarkerController<T>()) != null) NavigateButton<T>(),
+      ],
       initialQuery: context.initialQuery<T>(),
     );
 

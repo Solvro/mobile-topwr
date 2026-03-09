@@ -2,11 +2,14 @@ import "package:flutter/material.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 import "package:latlong2/latlong.dart";
 
+import "../../../../l10n/app_localizations.dart";
 import "../../../map_view/controllers/controllers_set.dart";
 import "../api_client/iparking_client.dart";
 
 part "parking.freezed.dart";
 part "parking.g.dart";
+
+enum ParkingAccess { all, employees, students }
 
 @freezed
 abstract class Parking with _$Parking implements GoogleNavigable {
@@ -31,6 +34,7 @@ abstract class Parking with _$Parking implements GoogleNavigable {
     required String lp,
     required String address,
     required String trend,
+    required ParkingAccess access,
   }) = _ParkingPlace;
   const Parking._();
 
@@ -63,6 +67,12 @@ abstract class Parking with _$Parking implements GoogleNavigable {
   String get nameNormalized => name.startsWith(parkingPrefix) ? name : "$parkingPrefix $name";
 
   String get openingHours => "${openHour?.formatIParkingDate ?? "06:00"} - ${closeHour?.formatIParkingDate ?? "22:00"}";
+
+  String accessDescription(AppLocalizations l10n) => switch (access) {
+    ParkingAccess.all => l10n.parking_access_all,
+    ParkingAccess.employees => l10n.parking_access_employees,
+    ParkingAccess.students => l10n.parking_access_students,
+  };
 }
 
 extension _FormatIParkingDateX on String {
