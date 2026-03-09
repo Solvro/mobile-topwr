@@ -36,6 +36,7 @@ class SmallTileCard extends StatelessWidget {
               style: context.textTheme.titleLarge?.copyWith(height: 1),
               maxLines: 3,
               wrapWords: false,
+              minFontSize: 11,
             ),
           ),
           const SizedBox(width: NavigationTabViewConfig.universalPadding),
