@@ -52,6 +52,7 @@ dependencies:
   url_launcher: ^6.3.2
   html: ^0.15.6
   dio: ^5.9.1
+  connectivity_plus: ^7.0.0
 
   #Widgets
   cupertino_icons: ^1.0.8

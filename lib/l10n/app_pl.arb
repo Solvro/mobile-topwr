@@ -3750,6 +3750,10 @@
   "@radio_luz_info": {
     "description": "Title for info section in radio luz view"
   },
+  "radio_luz_offline_view": "Wystąpił błąd podczas pobierania danych dotyczących Radia LUZ",
+  "@radio_luz_offline_view": {
+    "description": "Text for the Radio Luz offline view"
+  },
   "radio_luz_player_title": "Radio LUZ",
   "@radio_luz_player_title": {
     "description": "Title for radio luz player"
