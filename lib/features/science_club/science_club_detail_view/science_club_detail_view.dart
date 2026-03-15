@@ -2,7 +2,6 @@ import "package:auto_route/auto_route.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
-import "package:solvro_translator_core/solvro_translator_core.dart";
 
 import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
@@ -87,11 +86,7 @@ class _SciClubDetailDataView extends ConsumerWidget {
                 list: value.links.whereNonNull.map((a) => ContactIconsModel(url: a.url)).toIList(),
               ),
               const SizedBox(height: DetailViewsConfig.spacerHeight),
-              AboutUsSection(
-                text: context.solvroLocale == SolvroLocale.pl
-                    ? value.description ?? ""
-                    : value.enDescription ?? value.description ?? "",
-              ),
+              AboutUsSection(text: value.localizedDescription(context)),
             ]),
           ),
         ],
