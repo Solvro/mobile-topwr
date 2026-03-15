@@ -6,7 +6,6 @@ import "../../../../../api_base_rest/translations/translate.dart";
 import "../../../../../config/env.dart";
 import "../../../../branches/data/model/branch.dart";
 import "../../../../branches/data/repository/branch_repository.dart";
-import "../../departments_view.dart";
 import "../models/department.dart";
 
 part "departments_repository.g.dart";
@@ -20,12 +19,15 @@ Future<IList<Department>> departmentsRepository(Ref ref) async {
         url,
         DepartmentsResponse.fromJson,
         extraValidityCheck: (_) => true,
-        localizedOfflineMessage: DepartmentsView.localizedOfflineMessage,
         onRetry: ref.invalidateSelf,
       )
       .castAsObject;
 
-  return response.data.sortByBranch(await ref.watch(branchRepositoryProvider.future)).toIList();
+  if (!ref.mounted) return const IListConst([]);
+
+  final branch = await ref.watch(branchRepositoryProvider.future);
+
+  return ref.mounted ? response.data.sortByBranch(branch).toIList() : IList<Department>();
 }
 
 extension SortBySourceTypeX on Iterable<Department> {

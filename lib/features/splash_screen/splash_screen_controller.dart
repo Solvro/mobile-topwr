@@ -1,3 +1,4 @@
+import "dart:async";
 import "dart:io";
 
 import "package:clarity_flutter/clarity_flutter.dart";
@@ -21,13 +22,16 @@ class SplashScreenController extends _$SplashScreenController {
       Insert here any initialization async logic or operations 
       to be performed, when SplashScreen is showed.
     */
-    WidgetsFlutterBinding.ensureInitialized();
     await firebaseInit();
     await AppBarLogo.precacheImageIfAbsent();
-    final (:deviceKey) = await ref.registerForNotifications();
-    if (deviceKey != null) {
-      Clarity.setCustomUserId(deviceKey);
-    }
+    unawaited(
+      ref.registerForNotifications().then((result) {
+        if (result.deviceKey != null) {
+          Clarity.setCustomUserId(result.deviceKey!);
+        }
+      }),
+    );
+    subscribeToAllUsersTopic();
     await ref.read(mapCacheStoreProvider.future); // prefetch map cache directory
   }
 

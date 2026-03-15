@@ -59,6 +59,15 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+
+        // for 16 kb pages
+        externalNativeBuild {
+            cmake {
+                cppFlags ''
+                arguments '-DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON',
+                          '-DANDROID_STL=c++_shared'
+            }
+        }
     }
 
     signingConfigs {
@@ -70,7 +79,6 @@ android {
         }
     }
 
-
     buildTypes {
         release {
             signingConfig signingConfigs.release
@@ -81,5 +89,5 @@ android {
 flutter {
     source '../..'
 }
-
 dependencies {}
+

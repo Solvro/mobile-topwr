@@ -269,15 +269,11 @@
   "@noChartData": {
     "description": "Message shown when chart data is not available"
   },
-  "offlineParkings": "Błąd połączenia: niestety, moduł parkingów nie może poprawnie działać bez połączenia internetowego.",
-  "@offlineParkings": {
-    "description": "Error message when parking data cannot be fetched due to offline status"
-  },
   "refresh": "Odśwież",
   "@refresh": {
     "description": "Label for refresh action"
   },
-  "offline_error_message": "Wystąpił błąd podczas pobierania danych dotyczących ",
+  "offline_error_message": "Wystąpił błąd podczas pobierania danych",
   "@offline_error_message": {
     "description": "Generic offline error message prefix"
   },
@@ -285,53 +281,9 @@
   "@offline_try_again": {
     "description": "Message prompting user to retry later"
   },
-  "offline_news": "wiadomości",
-  "@offline_news": {
-    "description": "Label for offline news data"
-  },
   "news": "Aktualności",
   "@news": {
     "description": "Title for news section"
-  },
-  "offline_sci_clubs": "kół naukowych",
-  "@offline_sci_clubs": {
-    "description": "Label for offline scientific clubs data"
-  },
-  "offline_buildings": "budynków",
-  "@offline_buildings": {
-    "description": "Label for offline buildings data"
-  },
-  "offline_departments": "wydziałów",
-  "@offline_departments": {
-    "description": "Label for offline departments data"
-  },
-  "offline_academic_calendar": "kalendarza akademickiego",
-  "@offline_academic_calendar": {
-    "description": "Label for offline academic calendar data"
-  },
-  "offline_about_us": "o nas",
-  "@offline_about_us": {
-    "description": "Label for offline about us data"
-  },
-  "offline_department_details": "wydziału",
-  "@offline_department_details": {
-    "description": "Label for offline department details data"
-  },
-  "offline_guide_details": "wpisu z przewodnika",
-  "@offline_guide_details": {
-    "description": "Label for offline guide details data"
-  },
-  "offline_guide_posts": "wpisów z przewodnika",
-  "@offline_guide_posts": {
-    "description": "Label for offline guide posts data"
-  },
-  "offline_changelog": "zmian",
-  "@offline_changelog": {
-    "description": "Label for offline changelog data"
-  },
-  "offline_sks_favourite_dishes": "ustawień ulubionych posiłków",
-  "@offline_sks_favourite_dishes": {
-    "description": "Label for offline favourite dishes"
   },
   "guide": "Przewodnik",
   "@guide": {
@@ -826,16 +778,6 @@
     "placeholders": {
       "date": {
         "type": "String"
-      }
-    }
-  },
-  "my_offline_error_message": "Wystąpił błąd podczas pobierania danych dotyczących {data_type}",
-  "@my_offline_error_message": {
-    "description": "An error message with a single parameter",
-    "placeholders": {
-      "data_type": {
-        "type": "String",
-        "example": "wydziałów"
       }
     }
   },
@@ -1770,10 +1712,6 @@
   "@emptySection": {
     "description": "Message shown when no team members are available"
   },
-  "digital_guide_offline": "Cyfrowego Przewodnika",
-  "@digital_guide_offline": {
-    "description": "Title for offline digital guide"
-  },
   "communique": "Komunikat",
   "@communique": {
     "description": "Label for announcement section"
@@ -1973,10 +1911,6 @@
   "@no_dressing_room_in_the_building": {
     "description": "Message about absence of cloakroom"
   },
-  "general_offline": "pobierania danych",
-  "@general_offline": {
-    "description": "Label for offline data download"
-  },
   "floors_served_by_lift": "Piętra obsługiwane przez windę",
   "@floors_served_by_lift": {
     "description": "Label for floors served by elevator"
@@ -1989,7 +1923,7 @@
   "@max_capacity": {
     "description": "Label for maximum load capacity"
   },
-  "generic_error_message": "Upsss...Coś poszło nie tak",
+  "generic_error_message": "Upsss... Coś poszło nie tak",
   "@generic_error_message": {
     "description": "Generic error message"
   },
@@ -3206,6 +3140,11 @@
   "@notifications": {
     "description": "information about notifications"
   },
+  "more_info": "Więcej informacji",
+  "@more_info": {
+    "description": "tooltip of info button in notification tile"
+  },
+  "no_notifications": "Brak powiadomień",
   "feedback_option_not_supported_for_screen_readers": "Ta opcja nie jest wspierana dla czytników ekranów. Jeśli chcesz zgłosić błąd lub sugestię napisz do nas wiadomość e-mail.",
   "@feedback_option_not_supported_for_screen_readers": {
     "description": "information about feedback option that's not supported for screen readers"
@@ -3646,10 +3585,6 @@
   "@multilayer_map_title": {
     "description": "Title for multilayer map title"
   },
-  "multilayer_map_offline_error": "Mapy kampusu",
-  "@multilayer_map_offline_error": {
-    "description": "Offline error for multilayer-map"
-  },
   "main_branch": "Politechnika Wrocławska",
   "@main_branch": {
     "description": "Main branch option in the branch selection dialog"
@@ -3774,7 +3709,7 @@
   "@autoplay_disabled": {
     "description": "Text read for autoplay disabled"
   },
-  "no_layers_available": "Brak dostępnych warstw",
+  "no_layers_available": "Brak dostępnych obiektów",
   "@no_layers_available": {
     "description": "Text read for no items on multilayer map available"
   },
@@ -3869,5 +3804,9 @@
   "iconnames_has_weekend_option": "Studia zaoczne",
   "@iconnames_has_weekend_option": {
     "description": "Message displayed when the course has a weekend/part-time option"
+  },
+  "go_to" : "Przejdź",
+  "@go_to": {
+    "description": "Button to navigate to a selected place or section from notification dialog"
   }
 }

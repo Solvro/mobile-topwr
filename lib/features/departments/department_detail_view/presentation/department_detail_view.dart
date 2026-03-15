@@ -25,10 +25,6 @@ class DepartmentDetailView extends ConsumerWidget {
   const DepartmentDetailView({@PathParam("id") required this.id, super.key});
   final int id;
 
-  static String localizedOfflineMessage(BuildContext context) {
-    return context.localize.my_offline_error_message(context.localize.department);
-  }
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(departmentDetailsRepositoryProvider(id));

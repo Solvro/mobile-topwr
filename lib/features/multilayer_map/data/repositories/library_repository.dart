@@ -4,7 +4,6 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 import "../../../../api_base_rest/cache/cache.dart";
 import "../../../../api_base_rest/client/json.dart";
 import "../../../../config/env.dart";
-import "../../presentation/views/redirect_views.dart";
 import "../model/library.dart";
 
 part "library_repository.g.dart";
@@ -17,7 +16,6 @@ Future<IList<Library>> librariesRepository(Ref ref) async {
         "$apiUrl/libraries?photo=true&building=true",
         LibraryDataResponse.fromJson,
         extraValidityCheck: (_) => true,
-        localizedOfflineMessage: LibrariesView.localizedOfflineMessage,
         onRetry: ref.invalidateSelf,
       )
       .castAsObject;

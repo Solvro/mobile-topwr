@@ -26,9 +26,11 @@ import "../../digital_guide/tabs/structure/data/models/ramp.dart";
 import "../../digital_guide/tabs/structure/data/models/stairway.dart";
 import "../../digital_guide/tabs/structure/data/models/toilet.dart";
 import "../../digital_guide/tabs/transportation/data/models/digital_guide_transportation.dart";
+import "../../digital_guide_objects/data/repositories/digital_guide_object_repository.dart";
 import "../../map_layer_picker/data/layer_options.dart";
 import "../../map_layer_picker/data/local_layers_repository.dart";
 import "../../multilayer_map/data/model/building.dart";
+import "../../multilayer_map/data/model/polinka_station.dart";
 import "../../parkings/parkings_view/models/parking.dart";
 import "../../science_club/science_clubs_view/model/science_clubs.dart" show ScienceClub;
 import "../../science_club/science_clubs_view/repository/science_clubs_repository.dart";
@@ -140,14 +142,14 @@ extension NavigationX on WidgetRef {
     await _router.push(const SettingsRoute());
   }
 
-  Future<void> navigateDigitalGuide(String ourId, Building building) async {
-    await trackEvent(ClarityEvents.openDigitalGuideDetail, value: "ourId: $ourId, building: ${building.name}");
-    await _router.push(DigitalGuideRoute(ourId: ourId, building: building));
+  Future<void> navigateDigitalGuide(String ourId) async {
+    await trackEvent(ClarityEvents.openDigitalGuideDetail, value: "ourId: $ourId");
+    await _router.push(DigitalGuideRoute(ourId: ourId));
   }
 
-  Future<void> navigateDigitalGuideObject(String ourId, Building building) async {
-    await trackEvent(ClarityEvents.openDigitalGuideDetail, value: "ourId: $ourId, building: ${building.name}. Obj.");
-    await _router.push(DigitalGuideObjectRoute(ourId: ourId, building: building));
+  Future<void> navigateDigitalGuideObject(String ourId, DigitalGuideOtherObjectType type) async {
+    await trackEvent(ClarityEvents.openDigitalGuideDetail, value: "ourId: $ourId");
+    await _router.push(DigitalGuideObjectRoute(ourId: ourId, type: type.name));
   }
 
   Future<void> navigateAdaptedToiletDetails(AdaptedToilet adaptedToilet) async {
@@ -269,9 +271,26 @@ extension NavigationX on WidgetRef {
   Future<void> navigateBuildingDetailAction(Building building) async {
     return switch (building.externalDigitalGuideMode) {
       ExternalDigitalGuideMode.webUrl => launch(building.externalDigitalGuideIdOrUrl!),
-      ExternalDigitalGuideMode.digitalGuideBuilding => navigateDigitalGuide(building.id, building),
-      ExternalDigitalGuideMode.otherDigitalGuidePlace => navigateDigitalGuideObject(building.id, building),
+      ExternalDigitalGuideMode.digitalGuideBuilding => navigateDigitalGuide(building.id),
+      ExternalDigitalGuideMode.otherDigitalGuidePlace => navigateDigitalGuideObject(
+        building.id,
+        DigitalGuideOtherObjectType.building,
+      ),
       null => Logger().w("ExternalDigitalGuideMode is null, but used navigateBuildingDetailAction"),
+    };
+  }
+
+  Future<void> navigatePolinkaDetailAction(PolinkaStation polinka) async {
+    return switch (polinka.externalDigitalGuideMode) {
+      ExternalDigitalGuideMode.webUrl => launch(polinka.externalDigitalGuideIdOrUrl!),
+      ExternalDigitalGuideMode.otherDigitalGuidePlace => navigateDigitalGuideObject(
+        polinka.id.toString(),
+        DigitalGuideOtherObjectType.polinka,
+      ),
+      ExternalDigitalGuideMode.digitalGuideBuilding => throw Exception(
+        "Digital guide building is not supported for polinkas",
+      ),
+      null => Logger().w("ExternalDigitalGuideMode is null, but used navigatePolinkaDetailAction"),
     };
   }
 
@@ -285,5 +304,10 @@ extension NavigationX on WidgetRef {
 
   Future<void> navigateToRadioLuz() async {
     await _router.push(const RadioLuzRoute());
+  }
+
+  Future<void> navigateToNotifications() async {
+    await trackEvent(ClarityEvents.openNotificationsList);
+    await _router.push(const NotificationsRoute());
   }
 }

@@ -48,7 +48,7 @@ enum ClarityEvents {
   searchCalendar,
   openFAQQuestion,
   closeFAQQuestion,
-  openNotificationInfoBellDialog,
+  openNotificationsList,
   searchDepartments,
   openFieldOfStudiesLink,
   openSciClubsFilterSheet,

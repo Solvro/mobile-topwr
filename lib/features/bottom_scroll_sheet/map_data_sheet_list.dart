@@ -4,6 +4,7 @@ import "package:flutter/material.dart";
 
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
+import "../../config/ui_config.dart";
 import "../../utils/context_extensions.dart";
 import "../../utils/where_non_null_iterable.dart";
 import "../../widgets/search_box_app_bar.dart";
@@ -67,6 +68,11 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
               sectionType: MultilayerSectionType.building,
               builder: MultilayerMapSingleEntityList<BuildingItem>.new,
             ),
+            polinkas: (
+              title: context.localize.polinka_prefix,
+              sectionType: MultilayerSectionType.polinka,
+              builder: MultilayerMapSingleEntityList<PolinkaItem>.new,
+            ),
             library: (
               title: context.localize.library_title,
               sectionType: MultilayerSectionType.library,
@@ -93,6 +99,7 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
         ref.watch(layersEnabledServiceProvider).value ??
         (
           buildingsEnabled: false,
+          polinkasEnabled: false,
           librariesEnabled: false,
           aedsEnabled: false,
           bicycleShowersEnabled: false,
@@ -103,6 +110,8 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
       // this dictates the order of the tabs
       if (layersEnabled.buildingsEnabled && (ref.watch(hasAnyBuildingItemsProvider).value ?? false))
         categoryData?.buildings,
+      if (layersEnabled.polinkasEnabled && (ref.watch(hasAnyPolinkaItemsProvider).value ?? false))
+        categoryData?.polinkas,
       if (layersEnabled.librariesEnabled && (ref.watch(hasAnyLibraryItemsProvider).value ?? false))
         categoryData?.library,
       if (layersEnabled.aedsEnabled && (ref.watch(hasAnyAedItemsProvider).value ?? false)) categoryData?.aed,
@@ -115,10 +124,6 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
     final areOnlyOneLayerEnabled = tabs.length == 1;
     final isNoTabs = tabs.isEmpty;
 
-    final offlineErrorMessage = context.localize.my_offline_error_message(
-      context.localize.multilayer_map_offline_error,
-    );
-
     useInitialActiveId(
       context.initialActiveItemId<T>(),
       ref.watch(context.activeMarkerController<T>().notifier),
@@ -127,6 +132,7 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
     );
 
     return CustomScrollView(
+      key: MyAppConfig.verticalScrollableKey,
       controller: scrollController,
       slivers: [
         const SliverPersistentHeader(pinned: true, delegate: DragHandle()),
@@ -144,7 +150,7 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
             scrollController: scrollController,
             initialSectionType: context.initialSectionType<T>(),
           ),
-        if (categoryData == null || areOnlyOneLayerEnabled) DataSliverList<T>(uiErrorMessage: offlineErrorMessage),
+        if (categoryData == null || areOnlyOneLayerEnabled) DataSliverList<T>(),
         if (isNoTabs && categoryData != null)
           SliverFillRemaining(child: Center(child: Text(context.localize.no_layers_available))),
         const SliverToBoxAdapter(child: SizedBox(height: SearchBoxAppBar.defaultBottomPadding)),

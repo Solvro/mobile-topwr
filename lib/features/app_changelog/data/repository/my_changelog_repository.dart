@@ -3,7 +3,6 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 import "../../../../api_base_rest/client/json.dart";
 import "../../../../api_base_rest/translations/translate.dart";
 import "../../../../config/env.dart";
-import "../../app_changelog.dart";
 import "../models/changelog.dart";
 
 part "my_changelog_repository.g.dart";
@@ -17,7 +16,6 @@ Future<Changelog?> changelogRepository(Ref ref) async {
         url,
         ChangelogDataResponse.fromJson,
         extraValidityCheck: (_) => true,
-        localizedOfflineMessage: AppChangelog.localizedOfflineMessage,
         onRetry: ref.invalidateSelf,
       )
       .castAsObject;

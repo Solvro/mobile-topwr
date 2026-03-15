@@ -10,6 +10,15 @@ allprojects {
         google()
         mavenCentral()
     }
+
+    // workaround for 16 kb pages
+    configurations.all {
+        resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+            if (details.requested.group == 'androidx.datastore') {
+                details.useVersion '1.1.7'
+            }
+        }
+    }
 }
 
 rootProject.buildDir = '../build'

@@ -7,6 +7,7 @@ extension LayerOptionsLocalizationX on LayerOptions {
   String localizedLabel(BuildContext context) {
     return switch (this) {
       BuildingLayerOptions() => context.localize.building_prefix,
+      PolinkaLayerOptions() => context.localize.polinka_prefix,
       LibraryLayerOptions() => context.localize.library_title,
       AedLayerOptions() => context.localize.aed_title,
       BicycleShowerLayerOptions() => context.localize.showers_title_long,

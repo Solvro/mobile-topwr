@@ -4,6 +4,7 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:fluttertoast/fluttertoast.dart";
 
+import "../../../../firebase_init.dart" show requestFCMPermission;
 import "../../../../theme/colors.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../analytics/data/clarity.dart";
@@ -16,6 +17,8 @@ Future<void> toastOnDishTap({
   required BuildContext context,
   required bool subscribe,
 }) async {
+  await requestFCMPermission();
+
   final success = await ref
       .read(sksFavouriteDishesRepositoryProvider.notifier)
       .toggleDishSubscription(dishId, isSubscribed: subscribe);

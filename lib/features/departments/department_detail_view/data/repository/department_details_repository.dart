@@ -3,7 +3,6 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 import "../../../../../api_base_rest/client/json.dart";
 import "../../../../../api_base_rest/translations/translate.dart";
 import "../../../../../config/env.dart";
-import "../../presentation/department_detail_view.dart";
 import "../models/department_details.dart";
 
 part "department_details_repository.g.dart";
@@ -18,7 +17,6 @@ Future<DepartmentDetails> departmentDetailsRepository(Ref ref, int id) async {
         url,
         DepartmentDetailsResponse.fromJson,
         extraValidityCheck: (_) => true,
-        localizedOfflineMessage: DepartmentDetailView.localizedOfflineMessage,
         onRetry: ref.invalidateSelf,
       )
       .castAsObject;

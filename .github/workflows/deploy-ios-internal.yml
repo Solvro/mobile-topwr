@@ -2,6 +2,10 @@ name: CD - ios internal
 
 on:
   workflow_call:
+    inputs:
+      latest_changelog:
+        required: false
+        type: string
   workflow_dispatch:
 
 permissions:
@@ -76,6 +80,7 @@ jobs:
           APP_STORE_CONNECT_API_KEY_KEY_PATH: ${{ github.workspace }}/ios/AuthKey.p8
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           APP_VERSION: ${{ steps.version.outputs.version }}
+          LATEST_CHANGELOG: ${{ inputs.latest_changelog }}
         run: |
           cd ios
           bundle exec fastlane internal

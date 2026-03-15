@@ -18,28 +18,28 @@ import "../../digital_guide/presentation/widgets/digital_guide_data_source_link.
 import "../../digital_guide/presentation/widgets/digital_guide_loading_view.dart";
 import "../../digital_guide/presentation/widgets/headlines_section.dart";
 import "../../digital_guide/presentation/widgets/report_change_button.dart";
-import "../../multilayer_map/data/model/building.dart";
 import "../data/models/digital_guide_object_model.dart";
 import "../data/repositories/digital_guide_object_repository.dart";
 import "digital_g_objects_featers_list.dart";
 
 @RoutePage()
 class DigitalGuideObjectView extends ConsumerWidget {
-  const DigitalGuideObjectView({@PathParam("id") required this.ourId, required this.building});
+  const DigitalGuideObjectView({@PathParam("id") required this.ourId, @QueryParam("type") this.type = "building"});
 
   final String ourId;
-  final Building building;
+  final String type;
 
-  static String localizedOfflineMessage(BuildContext context) {
-    return context.localize.my_offline_error_message(context.localize.digital_guide_offline);
-  }
+  DigitalGuideOtherObjectType get _typeEnum => DigitalGuideOtherObjectType.values.firstWhere(
+    (e) => e.name == type,
+    orElse: () => DigitalGuideOtherObjectType.building,
+  );
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final asyncDigitalGuideData = ref.watch(digitalGuideObjectRepositoryProvider(ourId));
+    final asyncDigitalGuideData = ref.watch(digitalGuideObjectRepositoryProvider(ourId, _typeEnum));
     return asyncDigitalGuideData.when(
       data: (data) {
-        return _DigitalGObjectView(data.digitalGuideData, data.photoUrl, building);
+        return _DigitalGObjectView(data.digitalGuideData, data.photoUrl);
       },
       error: (error, stackTrace) {
         return HorizontalSymmetricSafeAreaScaffold(
@@ -53,11 +53,10 @@ class DigitalGuideObjectView extends ConsumerWidget {
 }
 
 class _DigitalGObjectView extends ConsumerWidget {
-  const _DigitalGObjectView(this.digitalGuideData, this.photoUrl, this.building);
+  const _DigitalGObjectView(this.digitalGuideData, this.photoUrl);
 
   final DigitalGuideObjectModel digitalGuideData;
   final String? photoUrl;
-  final Building building;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -117,7 +116,7 @@ class _DigitalGObjectView extends ConsumerWidget {
               return widgets1[index];
             }, childCount: widgets1.length),
           ),
-          DigitalGuideObjectsFeaturesSection(digitalGuideData: digitalGuideData, building: building),
+          DigitalGuideObjectsFeaturesSection(digitalGuideData: digitalGuideData),
           SliverList(
             delegate: SliverChildBuilderDelegate((context, index) {
               return widgets2[index];

@@ -7,7 +7,6 @@ import "../../../../../config/env.dart";
 import "../../../../../config/ttl_config.dart";
 import "../../../../../utils/datetime_utils.dart";
 import "../../../../../utils/ilist_nonempty.dart";
-import "../../presentation/sks_menu_screen.dart";
 import "../models/dish_category_enum.dart";
 import "../models/sks_menu_response.dart";
 import "../models/sks_opening_hours.dart";
@@ -35,7 +34,6 @@ class SksMenuRepository extends _$SksMenuRepository {
           extraValidityCheck: (data) {
             return data.castAsObject.isMenuOnline && DateTime.now().date.isSameDay(data.castAsObject.lastUpdate.date);
           },
-          localizedOfflineMessage: SksMenuView.localizedOfflineMessage,
           onRetry: ref.invalidateSelf,
         )
         .castAsObject;
@@ -52,7 +50,6 @@ class SksMenuRepository extends _$SksMenuRepository {
                 obj.openingHours.cafe.openingTime.isNotEmpty &&
                 obj.openingHours.cafe.closingTime.isNotEmpty;
           },
-          localizedOfflineMessage: SksMenuView.localizedOfflineMessage,
           onRetry: ref.invalidateSelf,
         )
         .castAsObject;

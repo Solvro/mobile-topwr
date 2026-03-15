@@ -18,6 +18,7 @@ import "../../../widgets/zoomable_images.dart";
 import "../../analytics/data/clarity.dart";
 import "../../analytics/data/clarity_events.dart";
 import "../bussiness/models.dart";
+import "../utils/contributors_social_links_utils.dart";
 
 class TeamSection extends HookWidget {
   const TeamSection({super.key, required this.multiversionTeam});
@@ -171,7 +172,7 @@ class _TeamMemberCard extends StatelessWidget {
                 child: _Description(
                   name: member.teamMemberName,
                   subtitle: member.subtitleForMilestone,
-                  links: member.socialLinks.map((socialLinks) => ContactIconsModel(url: socialLinks)).toIList(),
+                  links: sortContributorsSocialLinks(member.socialLinks),
                 ),
               ),
             ],

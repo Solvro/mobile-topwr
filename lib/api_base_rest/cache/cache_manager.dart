@@ -7,13 +7,7 @@ part "cache_manager.g.dart";
 
 @Riverpod(keepAlive: true)
 CacheManager restCacheManager(Ref ref, [TtlDays ttlDays = TtlDays.defaultDefault]) {
-  return CacheManager(
-    Config(
-      "NewJsonCacheManager${ttlDays.days}Days",
-      stalePeriod: Duration(days: ttlDays.days),
-      maxNrOfCacheObjects: 1000,
-    ),
-  );
+  return CacheManager(Config(ttlDays.cacheKey, stalePeriod: ttlDays.duration, maxNrOfCacheObjects: 2000));
 }
 
 abstract class CacheManagerConfig {

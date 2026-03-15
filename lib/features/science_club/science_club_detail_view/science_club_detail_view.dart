@@ -31,10 +31,6 @@ class ScienceClubDetailView extends StatelessWidget {
 
   final int id;
 
-  static String localizedOfflineMessage(BuildContext context) {
-    return context.localize.my_offline_error_message(context.localize.scientific_cirlces);
-  }
-
   @override
   Widget build(BuildContext context) {
     return HorizontalSymmetricSafeAreaScaffold(appBar: DetailViewAppBar(), body: _SciClubDetailDataView(id));

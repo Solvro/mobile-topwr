@@ -49,6 +49,7 @@ class RadioLuzView extends HookConsumerWidget {
                   await ref.refresh(historyEntryRepositoryProvider.future);
                 },
                 child: ListView(
+                  key: MyAppConfig.verticalScrollableKey,
                   padding: const EdgeInsets.symmetric(vertical: RadioLuzConfig.horizontalBasePadding),
                   children: [
                     RadioLuzTitle(title: l10n.now_playing.toUpperCase()),

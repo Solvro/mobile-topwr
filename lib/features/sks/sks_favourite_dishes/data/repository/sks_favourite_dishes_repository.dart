@@ -8,7 +8,6 @@ import "../../../../../config/env.dart";
 import "../../../../../config/ttl_config.dart";
 import "../../../../../utils/get_device_id.dart";
 import "../../../sks_menu/data/models/sks_menu_data.dart";
-import "../../presentation/sks_favourite_dishes_view.dart";
 import "../../utils/dish_list_extension.dart";
 import "../../utils/sks_favourite_dishes_extension.dart";
 import "../models/sks_favourite_dishes_response.dart";
@@ -31,7 +30,6 @@ class SksFavouriteDishesRepository extends _$SksFavouriteDishesRepository {
             SksFavouriteDishesResponse.fromJson,
             extraValidityCheck: (_) => true,
             ttlDays: TtlDays.defaultSks,
-            localizedOfflineMessage: SksFavouriteDishesView.localizedOfflineMessage,
             onRetry: ref.invalidateSelf,
           )
           .castAsObject,
@@ -41,7 +39,6 @@ class SksFavouriteDishesRepository extends _$SksFavouriteDishesRepository {
               _api + _subscriptionsEndpoint + deviceKey,
               SksFavouriteDishesResponse.fromJson,
               extraValidityCheck: (_) => false, // always invalidate the cache
-              localizedOfflineMessage: SksFavouriteDishesView.localizedOfflineMessage,
               onRetry: ref.invalidateSelf,
             )
             .castAsObject,
