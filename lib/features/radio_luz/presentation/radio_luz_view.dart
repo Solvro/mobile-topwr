@@ -71,7 +71,7 @@ class RadioLuzView extends HookConsumerWidget {
                 : [
                     Center(
                       child: OfflineMessage(
-                        l10n.radio_luz_offline_view,
+                        context.localize.offline_error_message,
                         onRefresh: () => ref.invalidate(hasInternetConnectionProvider),
                       ),
                     ),
