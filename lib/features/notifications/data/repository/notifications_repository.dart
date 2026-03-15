@@ -1,3 +1,4 @@
+import "package:collection/collection.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
@@ -21,5 +22,8 @@ Future<IList<NotificationModel>> notificationsRepository(Ref ref) async {
         onRetry: ref.invalidateSelf,
       )
       .castAsList;
-  return allNotifications.where((notification) => notification.wasSent).toIList();
+  final sortedNotifications = allNotifications
+      .where((notification) => notification.wasSent)
+      .sortedBy((a) => a.createdAt);
+  return sortedNotifications.toIList();
 }
