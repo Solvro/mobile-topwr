@@ -12,7 +12,7 @@ part "departments_repository.g.dart";
 
 @riverpod
 Future<IList<Department>> departmentsRepository(Ref ref) async {
-  final url = "${Env.mainRestApiUrl}/departments";
+  final url = "${Env.mainRestApiUrl}/departments?logo=true";
 
   final response = await ref
       .getAndCacheDataWithTranslation(

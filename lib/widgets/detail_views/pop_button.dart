@@ -17,7 +17,7 @@ class DetailViewPopButton extends ConsumerWidget {
       onPressed: () {
         Navigator.pop(context);
       },
-      style: TextButton.styleFrom(padding: const EdgeInsets.all(12)),
+      style: TextButton.styleFrom(padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 2)),
 
       child: Semantics(
         label: title != null
@@ -35,7 +35,7 @@ class DetailViewPopButton extends ConsumerWidget {
                   title,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.center,
+                  textAlign: TextAlign.left,
                   style: context.textTheme.bodyMedium?.copyWith(color: context.colorScheme.primary),
                 ),
               ),

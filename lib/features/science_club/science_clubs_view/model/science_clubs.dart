@@ -39,6 +39,7 @@ abstract class ScienceClub with _$ScienceClub {
   const factory ScienceClub({
     required int id,
     @translatableField required String name,
+    String? enName,
     required ScienceClubStatus organizationStatus,
     required ScienceClubSource source,
     required ScienceClubType organizationType,
@@ -49,6 +50,7 @@ abstract class ScienceClub with _$ScienceClub {
     ImageData? logo,
     ImageData? cover,
     @translatableField String? shortDescription,
+    String? enShortDescription,
     @translatableField Department? department,
   }) = _ScienceClub;
 

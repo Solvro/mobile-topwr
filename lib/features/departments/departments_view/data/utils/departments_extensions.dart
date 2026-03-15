@@ -1,6 +1,5 @@
 import "package:flutter/material.dart";
 
-import "../../../../../config/env.dart";
 import "../../../../../theme/hex_color.dart";
 import "../../../../../utils/colors_sort.dart";
 import "../models/department.dart";
@@ -8,8 +7,6 @@ import "../models/department.dart";
 extension DepartmentsX on Department {
   LinearGradient get gradient =>
       LinearGradient(colors: [HexColor(gradientStart), HexColor(gradientStop)]..sortByLightness());
-
-  String get imageUrl => "${Env.mainRestApiUrl.substring(0, Env.mainRestApiUrl.length - 7)}/uploads/$logoKey.png";
 }
 
 extension _GetDepartmentsCodeX on Department? {

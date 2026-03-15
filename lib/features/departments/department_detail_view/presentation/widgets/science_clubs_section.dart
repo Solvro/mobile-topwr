@@ -16,6 +16,7 @@ import "../../../../home_view/widgets/paddings.dart";
 import "../../../../navigator/utils/navigation_commands.dart";
 import "../../../../science_club/science_clubs_view/model/science_clubs.dart";
 import "../../../../science_club/science_clubs_view/repository/science_clubs_repository.dart";
+import "../../../../science_club/science_clubs_view/utils/science_club_localization_extension.dart";
 import "../../data/models/department_details.dart";
 
 class DepartmentScienceClubsSection extends ConsumerWidget {
@@ -69,22 +70,30 @@ class _ScienceClubsList extends ConsumerWidget {
       padding: const EdgeInsets.only(right: HomeViewConfig.paddingMedium),
       itemBuilder: (BuildContext context, int index) {
         final sciClub = scienceClubs[index];
-        return MediumLeftPadding(
-          child: BigPreviewCard(
-            title: sciClub.name,
-            shortDescription: sciClub.shortDescription ?? "",
-            imageData: (sciClub.coverPreview) ? sciClub.cover : sciClub.logo,
-            onClick: () async {
-              unawaited(
-                ref.trackEvent(ClarityEvents.openSciClubFromDepartmentDetailView, value: sciClub.id.toString()),
-              );
-              await ref.navigateSciClubsDetail(sciClub);
-            },
-            showVerifiedBadge: sciClub.source == ScienceClubSource.manualEntry,
-            showStrategicBadge: sciClub.isStrategic,
-          ),
-        );
+        return MediumLeftPadding(child: _ScienceClubCard(sciClub: sciClub));
       },
+    );
+  }
+}
+
+class _ScienceClubCard extends ConsumerWidget {
+  const _ScienceClubCard({required this.sciClub});
+
+  final ScienceClub sciClub;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return BigPreviewCard(
+      title: sciClub.localizedName(context),
+      shortDescription: sciClub.localizedShortDescription(context),
+      imageData: (sciClub.coverPreview) ? sciClub.cover : sciClub.logo,
+      onClick: () async {
+        unawaited(ref.trackEvent(ClarityEvents.openSciClubFromDepartmentDetailView, value: sciClub.id.toString()));
+        await ref.navigateSciClubsDetail(sciClub);
+      },
+      showVerifiedBadge: sciClub.source == ScienceClubSource.manualEntry,
+      showStrategicBadge: sciClub.isStrategic,
+      imagePadding: ScienceClubConfig.imagePadding,
     );
   }
 }
