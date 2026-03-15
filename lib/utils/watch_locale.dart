@@ -1,42 +1,18 @@
-import "dart:ui";
-
-import "package:flutter/widgets.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
+import "package:solvro_translator_core/solvro_translator_core.dart";
 
 import "../l10n/app_localizations.dart";
+import "../services/translations_service/data/preferred_lang_repository.dart";
 
 part "watch_locale.g.dart";
 
 @riverpod
-class WatchLocale extends _$WatchLocale {
-  @override
-  AppLocalizations build() {
-    final observer = _LocaleObserver(updateLocale);
-    WidgetsBinding.instance.addObserver(observer);
-    ref.onDispose(() => WidgetsBinding.instance.removeObserver(observer));
-    return _getCurrLocal;
-  }
-
-  void updateLocale(List<Locale>? _) {
-    state = _getCurrLocal;
-  }
-
-  static AppLocalizations get _getCurrLocal {
-    var locale = PlatformDispatcher.instance.locale;
-    if (!AppLocalizations.supportedLocales.contains(locale)) {
-      // TODO(simon-the-shark): Add english as default locale (when there is one).
-      locale = AppLocalizations.supportedLocales.first;
-    }
-    return lookupAppLocalizations(locale);
-  }
-}
-
-class _LocaleObserver extends WidgetsBindingObserver {
-  _LocaleObserver(this._didChangeLocales);
-
-  final void Function(List<Locale>? locales) _didChangeLocales;
-  @override
-  void didChangeLocales(List<Locale>? locales) {
-    _didChangeLocales(locales);
-  }
+AppLocalizations watchLocale(Ref ref) {
+  final preferredLang = ref.watch(preferredLanguageRepositoryProvider);
+  final langCode = preferredLang.value?.name ?? SolvroLocale.pl.name;
+  final supportedLocale = AppLocalizations.supportedLocales.firstWhere(
+    (supported) => supported.languageCode == langCode,
+    orElse: () => AppLocalizations.supportedLocales.first,
+  );
+  return lookupAppLocalizations(supportedLocale);
 }
