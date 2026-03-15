@@ -24,6 +24,6 @@ Future<IList<NotificationModel>> notificationsRepository(Ref ref) async {
       .castAsList;
   final sortedNotifications = allNotifications
       .where((notification) => notification.wasSent)
-      .sortedBy((a) => a.createdAt);
+      .sortedByCompare((notification) => notification.createdAt, (a, b) => b.compareTo(a));
   return sortedNotifications.toIList();
 }
