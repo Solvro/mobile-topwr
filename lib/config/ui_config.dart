@@ -119,6 +119,7 @@ abstract class ScienceClubCardConfig {
 abstract class ParkingsConfig {
   static const padding = EdgeInsets.only(left: 13, top: 10, bottom: 15, right: 10);
   static const extraIndentPadd = EdgeInsets.only(left: 2, right: 40);
+  static const peopleCounterBottomPadding = EdgeInsets.only(bottom: 10);
 }
 
 abstract class ParkingChartConfig {
