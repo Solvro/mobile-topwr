@@ -24,9 +24,11 @@ abstract class ClubDetailsResponse with _$ClubDetailsResponse, _$ClubDetailsResp
 abstract class ScienceClubDetails with _$ScienceClubDetails {
   const factory ScienceClubDetails({
     @translatableField required String name,
+    String? enName,
     required ScienceClubSource source,
     required bool isStrategic,
     @translatableField String? description,
+    String? enDescription,
     ImageData? cover,
     @translatableField IList<SocialLinksData>? links,
     ImageData? logo,

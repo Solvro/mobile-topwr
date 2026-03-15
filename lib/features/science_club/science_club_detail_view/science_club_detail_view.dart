@@ -2,6 +2,7 @@ import "package:auto_route/auto_route.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:solvro_translator_core/solvro_translator_core.dart";
 
 import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
@@ -21,6 +22,7 @@ import "../science_clubs_view/widgets/strategic_badge.dart";
 import "../science_clubs_view/widgets/verified_badge.dart";
 import "model/science_club_details.dart";
 import "repository/science_club_details_repository.dart";
+import "utils/science_club_details_localization_extension.dart";
 import "widgets/about_us_section.dart";
 import "widgets/about_us_section_loading.dart";
 import "widgets/tags_section.dart";
@@ -64,7 +66,7 @@ class _SciClubDetailDataView extends ConsumerWidget {
                     overflow: TextOverflow.ellipsis,
                     textAlign: TextAlign.center,
                     TextSpan(
-                      text: value.name,
+                      text: value.localizedName(context),
                       style: context.textTheme.headlineMedium,
                       children: [
                         if (value.source == ScienceClubSource.manualEntry) const VerifiedBadge(),
@@ -85,7 +87,11 @@ class _SciClubDetailDataView extends ConsumerWidget {
                 list: value.links.whereNonNull.map((a) => ContactIconsModel(url: a.url)).toIList(),
               ),
               const SizedBox(height: DetailViewsConfig.spacerHeight),
-              AboutUsSection(text: value.description ?? ""),
+              AboutUsSection(
+                text: context.solvroLocale == SolvroLocale.pl
+                    ? value.description ?? ""
+                    : value.enDescription ?? value.description ?? "",
+              ),
             ]),
           ),
         ],

@@ -28,7 +28,8 @@ Future<Iterable<ScienceClub>> _sciClubsFilteredByTextQuery(Ref ref) async {
     return element.name.containsLowerCase(query) ||
         (element.department?.name ?? "").containsLowerCase(query) ||
         (element.department?.code ?? "").containsLowerCase(query) ||
-        (element.department?.betterCode ?? "").containsLowerCase(query);
+        (element.department?.betterCode ?? "").containsLowerCase(query) ||
+        (element.enName ?? "").containsLowerCase(query);
   });
 }
 

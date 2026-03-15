@@ -1,6 +1,7 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:solvro_translator_core/solvro_translator_core.dart";
 
 import "../../../config/ui_config.dart";
 import "../../../utils/context_extensions.dart";
@@ -10,6 +11,7 @@ import "../../../widgets/subsection_header.dart";
 import "../../navigator/utils/navigation_commands.dart";
 import "../../science_club/science_clubs_view/model/science_clubs.dart";
 import "../../science_club/science_clubs_view/repository/science_clubs_repository.dart";
+import "../../science_club/science_clubs_view/utils/science_club_localization_extension.dart";
 import "loading_widgets/big_scrollable_section_loading.dart";
 import "paddings.dart";
 
@@ -83,8 +85,10 @@ class _ScienceClubCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return BigPreviewCard(
-      title: sciClub.name,
-      shortDescription: sciClub.shortDescription ?? "",
+      title: sciClub.localizedName(context),
+      shortDescription: context.solvroLocale == SolvroLocale.pl
+          ? sciClub.shortDescription ?? ""
+          : sciClub.enShortDescription ?? sciClub.shortDescription ?? "",
       imageData: (sciClub.coverPreview) ? sciClub.cover : sciClub.logo,
       showVerifiedBadge: sciClub.source == ScienceClubSource.manualEntry,
       onClick: () => ref.navigateSciClubsDetail(sciClub),

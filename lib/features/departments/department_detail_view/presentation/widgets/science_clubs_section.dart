@@ -3,6 +3,7 @@ import "dart:async";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:solvro_translator_core/solvro_translator_core.dart";
 
 import "../../../../../config/ui_config.dart";
 import "../../../../../utils/context_extensions.dart";
@@ -16,6 +17,7 @@ import "../../../../home_view/widgets/paddings.dart";
 import "../../../../navigator/utils/navigation_commands.dart";
 import "../../../../science_club/science_clubs_view/model/science_clubs.dart";
 import "../../../../science_club/science_clubs_view/repository/science_clubs_repository.dart";
+import "../../../../science_club/science_clubs_view/utils/science_club_localization_extension.dart";
 import "../../data/models/department_details.dart";
 
 class DepartmentScienceClubsSection extends ConsumerWidget {
@@ -71,8 +73,10 @@ class _ScienceClubsList extends ConsumerWidget {
         final sciClub = scienceClubs[index];
         return MediumLeftPadding(
           child: BigPreviewCard(
-            title: sciClub.name,
-            shortDescription: sciClub.shortDescription ?? "",
+            title: sciClub.localizedName(context),
+            shortDescription: context.solvroLocale == SolvroLocale.pl
+                ? sciClub.shortDescription ?? ""
+                : sciClub.enShortDescription ?? sciClub.shortDescription ?? "",
             imageData: (sciClub.coverPreview) ? sciClub.cover : sciClub.logo,
             onClick: () async {
               unawaited(
