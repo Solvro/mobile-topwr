@@ -9,9 +9,7 @@ void main() {
   group("HistoryEntryRepository (integration test)", () {
     test("Fetching data from api", () async {
       final container = ProviderContainer(
-        overrides: [
-          radioTrackChangedProvider.overrideWithValue(const Stream<String>.empty()),
-        ],
+        overrides: [radioTrackChangedProvider.overrideWithValue(const Stream<String>.empty())],
       );
       addTearDown(container.dispose);
 
