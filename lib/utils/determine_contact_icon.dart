@@ -9,11 +9,12 @@ class ContactIconsModel {
   final String? text;
   final String? url;
   final int order;
+  final String? title;
 
-  ContactIconsModel({String? text, this.url, String? icon})
+  ContactIconsModel({this.title, String? text, this.url, String? icon})
     : icon = icon ?? url.determineIcon(),
       order = url.determineIconOrder(),
-      text = text ?? url;
+      text = title ?? text ?? url;
 }
 
 extension IconDeterminerX on String? {
