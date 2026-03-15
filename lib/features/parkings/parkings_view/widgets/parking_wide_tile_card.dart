@@ -123,29 +123,32 @@ class _RightColumn extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         const Spacer(),
-        Semantics(
-          label:
-              "${context.localize.parking_people_live_screen_reader_label} ${parking.parsedNumberOfPlaces} ${context.localize.sks_people_live_screen_reader_label_trend}${localizedName(parking.trend, context)}",
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              ExcludeSemantics(
-                child: MyTooltip(
-                  message: context.localize.places_currently_available,
-                  child: Text(
-                    parking.parsedNumberOfPlaces,
-                    style: isActive ? const ParkingTitleTextStyle().withoutShadows : const ParkingTitleTextStyle(),
+        Padding(
+          padding: ParkingsConfig.peopleCounterBottomPadding,
+          child: Semantics(
+            label:
+                "${context.localize.parking_people_live_screen_reader_label} ${parking.parsedNumberOfPlaces} ${context.localize.sks_people_live_screen_reader_label_trend}${localizedName(parking.trend, context)}",
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                ExcludeSemantics(
+                  child: MyTooltip(
+                    message: context.localize.places_currently_available,
+                    child: Text(
+                      parking.parsedNumberOfPlaces,
+                      style: isActive ? const ParkingTitleTextStyle().withoutShadows : const ParkingTitleTextStyle(),
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(width: scaler.scale(4)),
-              Icon(
-                parking.trend.arrowIcon,
-                color: isActive ? arrowColor(parking.trend, context) : context.colorScheme.surface,
-                size: scaler.scale(21),
-                shadows: iparkingShadows,
-              ),
-            ],
+                SizedBox(width: scaler.scale(4)),
+                Icon(
+                  parking.trend.arrowIcon,
+                  color: isActive ? arrowColor(parking.trend, context) : context.colorScheme.surface,
+                  size: scaler.scale(21),
+                  shadows: iparkingShadows,
+                ),
+              ],
+            ),
           ),
         ),
       ],
