@@ -71,25 +71,32 @@ class _ScienceClubsList extends ConsumerWidget {
       padding: const EdgeInsets.only(right: HomeViewConfig.paddingMedium),
       itemBuilder: (BuildContext context, int index) {
         final sciClub = scienceClubs[index];
-        return MediumLeftPadding(
-          child: BigPreviewCard(
-            title: sciClub.localizedName(context),
-            shortDescription: context.solvroLocale == SolvroLocale.pl
-                ? sciClub.shortDescription ?? ""
-                : sciClub.enShortDescription ?? sciClub.shortDescription ?? "",
-            imageData: (sciClub.coverPreview) ? sciClub.cover : sciClub.logo,
-            onClick: () async {
-              unawaited(
-                ref.trackEvent(ClarityEvents.openSciClubFromDepartmentDetailView, value: sciClub.id.toString()),
-              );
-              await ref.navigateSciClubsDetail(sciClub);
-            },
-            showVerifiedBadge: sciClub.source == ScienceClubSource.manualEntry,
-            showStrategicBadge: sciClub.isStrategic,
-            imagePadding: ScienceClubConfig.imagePadding,
-          ),
-        );
+        return MediumLeftPadding(child: _ScienceClubCard(sciClub: sciClub));
       },
+    );
+  }
+}
+
+class _ScienceClubCard extends ConsumerWidget {
+  const _ScienceClubCard({required this.sciClub});
+
+  final ScienceClub sciClub;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return BigPreviewCard(
+      title: sciClub.localizedName(context),
+      shortDescription: context.solvroLocale == SolvroLocale.pl
+          ? sciClub.shortDescription ?? ""
+          : sciClub.enShortDescription ?? sciClub.shortDescription ?? "",
+      imageData: (sciClub.coverPreview) ? sciClub.cover : sciClub.logo,
+      onClick: () async {
+        unawaited(ref.trackEvent(ClarityEvents.openSciClubFromDepartmentDetailView, value: sciClub.id.toString()));
+        await ref.navigateSciClubsDetail(sciClub);
+      },
+      showVerifiedBadge: sciClub.source == ScienceClubSource.manualEntry,
+      showStrategicBadge: sciClub.isStrategic,
+      imagePadding: ScienceClubConfig.imagePadding,
     );
   }
 }
