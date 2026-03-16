@@ -8,7 +8,9 @@ import "package:topwr/features/radio_luz/data/repository/history_entry_repositor
 void main() {
   group("HistoryEntryRepository (integration test)", () {
     test("Fetching data from api", () async {
-      final container = ProviderContainer();
+      final container = ProviderContainer(
+        overrides: [radioTrackChangedProvider.overrideWithValue(const Stream<String>.empty())],
+      );
       addTearDown(container.dispose);
 
       final scheduleFuture = container.read(historyEntryRepositoryProvider.future);
