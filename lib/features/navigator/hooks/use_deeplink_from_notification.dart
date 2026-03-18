@@ -17,12 +17,16 @@ Future<void> _handleNotificationRoute(WidgetRef ref, RemoteMessage message, Obje
   if (routePath != null && routePath.isNotEmpty) {
     // When opening via notification, always clear notifications cache.
     await ref.read(notificationsRepositoryProvider.notifier).clearCache();
+    if (disposedRef.value) return;
+    ref.invalidate(notificationsRepositoryProvider);
 
     // Clear SKS menu cache only for the `/sks-menu` deeplink.
     final uri = Uri.tryParse(routePath);
     final isSksMenu = uri != null && uri.path == "/sks-menu";
     if (isSksMenu) {
       await ref.read(sksMenuRepositoryProvider.notifier).clearCache();
+      if (disposedRef.value) return;
+      ref.invalidate(sksMenuRepositoryProvider);
     }
 
     if (disposedRef.value) return;

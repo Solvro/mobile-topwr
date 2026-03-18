@@ -53,6 +53,7 @@ class _NotificationsListContent extends ConsumerWidget {
     return RefreshIndicator(
       onRefresh: () async {
         await ref.read(notificationsRepositoryProvider.notifier).clearCache();
+        return ref.refresh(notificationsRepositoryProvider.future);
       },
       color: context.colorScheme.primary,
       child: notifications.isEmpty

@@ -25,7 +25,6 @@ class SksMenuRepository extends _$SksMenuRepository {
     final sksApiBaseUrl = "$sksUrl/api/v1";
     await ref.clearCache("$sksApiBaseUrl/meals/current", _ttlDaysMeals);
     await ref.clearCache("$sksApiBaseUrl/info", _ttlDaysOpeningHours);
-    ref.invalidateSelf();
   }
 
   @override

@@ -14,7 +14,6 @@ part "notifications_repository.g.dart";
 class NotificationsRepository extends _$NotificationsRepository {
   Future<void> clearCache() async {
     await ref.clearCache("${Env.mainRestApiUrl}/notification", TtlDays.notifications);
-    ref.invalidateSelf();
   }
 
   @override
