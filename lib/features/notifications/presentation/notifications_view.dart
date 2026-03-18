@@ -50,27 +50,38 @@ class _NotificationsListContent extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    if (notifications.isEmpty) {
-      return Center(child: Text(context.localize.no_notifications));
-    }
-    return ListView.separated(
-      key: MyAppConfig.verticalScrollableKey,
-      padding: const EdgeInsets.fromLTRB(24, 8, 24, 24),
-      itemCount: notifications.length,
-      separatorBuilder: (_, _) => const SizedBox(height: DepartmentsConfig.listSeparatorSize),
-      itemBuilder: (context, index) {
-        final notification = notifications[index];
-        return WideTileCard(
-          title: notification.title,
-          subtitle: notification.body,
-          onTap: notification.data?.route != null ? () => ref.launch(notification.data!.route!) : null,
-          trailing: IconButton(
-            tooltip: context.localize.more_info,
-            onPressed: () => NotificationDetailsDialog.show(context, ref, notification),
-            icon: Icon(Icons.info, size: context.textScaler.scale(22), color: context.colorScheme.tertiary),
-          ),
-        );
+    return RefreshIndicator(
+      onRefresh: () async {
+        await ref.read(notificationsRepositoryProvider.notifier).clearCache();
       },
+      color: context.colorScheme.primary,
+      child: notifications.isEmpty
+          ? ListView(
+              key: MyAppConfig.verticalScrollableKey,
+              physics: const AlwaysScrollableScrollPhysics(),
+              padding: const EdgeInsets.fromLTRB(24, 8, 24, 24),
+              children: [Center(child: Text(context.localize.no_notifications))],
+            )
+          : ListView.separated(
+              key: MyAppConfig.verticalScrollableKey,
+              physics: const AlwaysScrollableScrollPhysics(),
+              padding: const EdgeInsets.fromLTRB(24, 8, 24, 24),
+              itemCount: notifications.length,
+              separatorBuilder: (_, _) => const SizedBox(height: DepartmentsConfig.listSeparatorSize),
+              itemBuilder: (context, index) {
+                final notification = notifications[index];
+                return WideTileCard(
+                  title: notification.title,
+                  subtitle: notification.body,
+                  onTap: notification.data?.route != null ? () => ref.launch(notification.data!.route!) : null,
+                  trailing: IconButton(
+                    tooltip: context.localize.more_info,
+                    onPressed: () => NotificationDetailsDialog.show(context, ref, notification),
+                    icon: Icon(Icons.info, size: context.textScaler.scale(22), color: context.colorScheme.tertiary),
+                  ),
+                );
+              },
+            ),
     );
   }
 }
