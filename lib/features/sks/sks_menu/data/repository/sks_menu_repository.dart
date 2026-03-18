@@ -5,6 +5,7 @@ import "../../../../../api_base_rest/client/json.dart";
 import "../../../../../api_base_rest/translations/translate.dart";
 import "../../../../../config/env.dart";
 import "../../../../../config/ttl_config.dart";
+import "../../../../../features/remote_config/data/repository/remote_config_repository.dart";
 import "../../../../../utils/datetime_utils.dart";
 import "../../../../../utils/ilist_nonempty.dart";
 import "../models/dish_category_enum.dart";
@@ -15,20 +16,27 @@ part "sks_menu_repository.g.dart";
 
 @riverpod
 class SksMenuRepository extends _$SksMenuRepository {
-  static final _mealsUrl = "${Env.sksUrl}/meals/current";
-  static final _openingHoursUrl = "${Env.sksUrl}/info";
   static const _ttlDays = TtlDays.defaultSks;
 
   Future<void> clearCache() async {
-    await ref.clearCache(_mealsUrl, _ttlDays);
-    await ref.clearCache(_openingHoursUrl, _ttlDays);
+    final remoteConfig = await ref.watch(remoteConfigRepositoryProvider.future);
+    final sksUrl = remoteConfig.sksMicroserviceUrl ?? Env.sksUrl;
+    final sksApiBaseUrl = "$sksUrl/api/v1";
+    await ref.clearCache("$sksApiBaseUrl/meals/current", _ttlDays);
+    await ref.clearCache("$sksApiBaseUrl/info", _ttlDays);
   }
 
   @override
   Future<ExtendedSksMenuResponse> build() async {
+    final remoteConfig = await ref.watch(remoteConfigRepositoryProvider.future);
+    final sksUrl = remoteConfig.sksMicroserviceUrl ?? Env.sksUrl;
+    final sksApiBaseUrl = "$sksUrl/api/v1";
+    final mealsUrl = "$sksApiBaseUrl/meals/current";
+    final openingHoursUrl = "$sksApiBaseUrl/info";
+
     final sksMenuResponse = await ref
         .getAndCacheDataWithTranslation(
-          _mealsUrl,
+          mealsUrl,
           SksMenuResponse.fromJson,
           ttlDays: _ttlDays,
           extraValidityCheck: (data) {
@@ -40,7 +48,7 @@ class SksMenuRepository extends _$SksMenuRepository {
 
     final openingHoursResponse = await ref
         .getAndCacheData(
-          _openingHoursUrl,
+          openingHoursUrl,
           SksOpeningHours.fromJson,
           ttlDays: _ttlDays,
           extraValidityCheck: (data) {

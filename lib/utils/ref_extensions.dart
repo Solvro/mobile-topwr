@@ -5,6 +5,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../api_base_rest/client/dio_client.dart";
 import "../config/env.dart";
+import "../features/remote_config/data/repository/remote_config_repository.dart";
 import "get_device_id.dart";
 
 extension RefIntervalRefreshX on Ref {
@@ -25,8 +26,10 @@ extension RefRegisterForNotificationsX on Ref {
 
   Future<({String? deviceKey})> registerForNotifications() async {
     final client = read(restClientProvider);
-    final url = "${Env.sksUrl}/device/registration-token";
-    final deviceKey = await watch(getDeviceIdProvider.future);
+    final remoteConfig = await read(remoteConfigRepositoryProvider.future);
+    final sksUrl = remoteConfig.sksMicroserviceUrl ?? Env.sksUrl;
+    final url = "$sksUrl/api/v1/device/registration-token";
+    final deviceKey = await read(getDeviceIdProvider.future);
     final registrationToken = await _getTokenSafe();
     if (deviceKey == null || registrationToken == null) {
       return (deviceKey: deviceKey);
