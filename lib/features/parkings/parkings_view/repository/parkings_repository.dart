@@ -7,6 +7,7 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../../api_base_rest/client/dio_client.dart";
 import "../../../../config/env.dart";
+import "../../../../features/remote_config/data/repository/remote_config_repository.dart";
 import "../../../../utils/ref_extensions.dart";
 import "../api_client/iparking_client.dart";
 import "../models/parking.dart";
@@ -20,8 +21,11 @@ class ParkingsOfflineException implements Exception {}
 @riverpod
 Future<IList<Parking>> parkingsRepository(Ref ref) async {
   final restClient = ref.watch(restClientProvider);
+  final remoteConfig = await ref.watch(remoteConfigRepositoryProvider.future);
+  final parkingBaseUrl = remoteConfig.parkingMicroserviceUrl ?? Env.parkingApiUrl;
+  final parkingApiUrl = "$parkingBaseUrl/api/v1/parkings";
   ref.setRefresh(ParkingsConfig.parkingsRefreshInterval);
-  final parkingList = await restClient.fetchParkings();
+  final parkingList = await restClient.fetchParkings(parkingApiUrl);
   return _sortParkingsByFav(parkingList, ref).toIList();
 }
 
@@ -39,10 +43,9 @@ DoubleLinkedQueue<Parking> _sortParkingsByFav(Iterable<Parking> list, Ref ref) {
 }
 
 extension DioFetchParkingsX on Dio {
-  Future<List<Parking>> fetchParkings() async {
+  Future<List<Parking>> fetchParkings(String parkingApiUrl) async {
     try {
-      final url = Env.parkingApiUrl;
-      final response = await get<Map<String, dynamic>>(url);
+      final response = await get<Map<String, dynamic>>(parkingApiUrl);
       return _mapResponseToParkings(response.data);
     } on DioException catch (_) {
       throw ParkingsOfflineException();

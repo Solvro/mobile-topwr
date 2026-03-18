@@ -6,6 +6,7 @@ import "../../../../../api_base_rest/client/json.dart";
 import "../../../../../api_base_rest/translations/translate.dart";
 import "../../../../../config/env.dart";
 import "../../../../../config/ttl_config.dart";
+import "../../../../../features/remote_config/data/repository/remote_config_repository.dart";
 import "../../../../../utils/get_device_id.dart";
 import "../../../sks_menu/data/models/sks_menu_data.dart";
 import "../../utils/dish_list_extension.dart";
@@ -16,17 +17,20 @@ part "sks_favourite_dishes_repository.g.dart";
 
 @riverpod
 class SksFavouriteDishesRepository extends _$SksFavouriteDishesRepository {
-  static final _api = Env.sksUrl;
   static const _recentEndpoint = "/meals/recent";
   static const _subscriptionsEndpoint = "/subscriptions/";
 
   @override
   Future<({IList<SksMenuDishMinimal> subscribed, IList<SksMenuDishMinimal> unsubscribed})> build() async {
+    final remoteConfig = await ref.watch(remoteConfigRepositoryProvider.future);
+    final sksUrl = remoteConfig.sksMicroserviceUrl ?? Env.sksUrl;
+    final sksApiBaseUrl = "$sksUrl/api/v1";
+
     final deviceKey = await ref.watch(getDeviceIdProvider.future);
     final responses = await Future.wait([
       ref
           .getAndCacheDataWithTranslation(
-            _api + _recentEndpoint,
+            sksApiBaseUrl + _recentEndpoint,
             SksFavouriteDishesResponse.fromJson,
             extraValidityCheck: (_) => true,
             ttlDays: TtlDays.defaultSks,
@@ -36,7 +40,7 @@ class SksFavouriteDishesRepository extends _$SksFavouriteDishesRepository {
       if (deviceKey != null)
         ref
             .getAndCacheDataWithTranslation(
-              _api + _subscriptionsEndpoint + deviceKey,
+              sksApiBaseUrl + _subscriptionsEndpoint + deviceKey,
               SksFavouriteDishesResponse.fromJson,
               extraValidityCheck: (_) => false, // always invalidate the cache
               onRetry: ref.invalidateSelf,
