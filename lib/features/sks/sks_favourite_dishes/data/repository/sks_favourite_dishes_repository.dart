@@ -81,6 +81,9 @@ class SksFavouriteDishesRepository extends _$SksFavouriteDishesRepository {
     } on DioException catch (_) {
       state = previousState;
       return false;
+    } on Exception catch (_) {
+      state = previousState;
+      rethrow;
     }
     return true;
   }
