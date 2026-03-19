@@ -1,4 +1,3 @@
-import "package:collection/collection.dart";
 import "package:dio/dio.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
@@ -10,11 +9,12 @@ import "../../../../../config/ttl_config.dart";
 import "../../../../../features/remote_config/data/repository/remote_config_repository.dart";
 import "../../../../../utils/get_device_id.dart";
 import "../../../sks_menu/data/models/sks_menu_data.dart";
-import "../../utils/dish_list_extension.dart";
 import "../../utils/sks_favourite_dishes_extension.dart";
 import "../models/sks_favourite_dishes_response.dart";
 
 part "sks_favourite_dishes_repository.g.dart";
+
+typedef SksFavouriteDishesMap = IMap<String, ({SksMenuDishMinimal dish, bool isSubscribed})>;
 
 @riverpod
 class SksFavouriteDishesRepository extends _$SksFavouriteDishesRepository {
@@ -22,7 +22,7 @@ class SksFavouriteDishesRepository extends _$SksFavouriteDishesRepository {
   static const _subscriptionsEndpoint = "/subscriptions/";
 
   @override
-  Future<({IList<SksMenuDishMinimal> subscribed, IList<SksMenuDishMinimal> unsubscribed})> build() async {
+  Future<SksFavouriteDishesMap> build() async {
     final remoteConfig = await ref.watch(remoteConfigRepositoryProvider.future);
     final sksUrl = remoteConfig.sksMicroserviceUrl ?? Env.sksUrl;
     final sksApiBaseUrl = "$sksUrl/api/v1";
@@ -50,41 +50,40 @@ class SksFavouriteDishesRepository extends _$SksFavouriteDishesRepository {
     ]);
 
     final recentDishes = responses[0];
-    if (deviceKey == null) {
-      return (subscribed: IList<SksMenuDishMinimal>(), unsubscribed: recentDishes.meals);
-    }
-    final subscribedDishes = responses[1];
-    final unsubscribedDishes = recentDishes.meals.getUnsubscribedFromSubscribed(subscribedDishes.meals);
-    return (subscribed: subscribedDishes.meals, unsubscribed: unsubscribedDishes);
+    final subscribedMeals = deviceKey == null ? const IList<SksMenuDishMinimal>.empty() : responses[1].meals;
+    final subscribedIds = subscribedMeals.map((dish) => dish.id).toSet();
+
+    return {
+      for (final dish in recentDishes.meals) dish.id: (dish: dish, isSubscribed: subscribedIds.contains(dish.id)),
+      for (final dish in subscribedMeals) dish.id: (dish: dish, isSubscribed: true),
+    }.lock;
   }
 
   Future<bool> toggleDishSubscription(String dishId, {required bool isSubscribed}) async {
-    final previousState = state;
-    final currentData = state.asData?.value;
-
-    if (currentData != null) {
-      final dish = isSubscribed
-          ? currentData.unsubscribed.firstWhereOrNull((d) => d.id == dishId)
-          : currentData.subscribed.firstWhereOrNull((d) => d.id == dishId);
-
-      if (dish != null) {
-        state = AsyncData(
-          isSubscribed
-              ? (subscribed: currentData.subscribed.add(dish), unsubscribed: currentData.unsubscribed.remove(dish))
-              : (subscribed: currentData.subscribed.remove(dish), unsubscribed: currentData.unsubscribed.add(dish)),
-        );
-      }
-    }
+    _optimisticallyMoveDish(dishId, subscribe: isSubscribed);
 
     try {
       await ref.toggleSubscription(dishId, isSubscribed: isSubscribed);
     } on DioException catch (_) {
-      state = previousState;
+      ref.invalidateSelf();
       return false;
     } on Exception catch (_) {
-      state = previousState;
-      rethrow;
+      ref.invalidateSelf();
+      return false;
     }
+
     return true;
+  }
+
+  SksMenuDishMinimal? _optimisticallyMoveDish(String dishId, {required bool subscribe}) {
+    final currentData = state.asData?.value;
+    if (currentData == null) return null;
+
+    final entry = currentData[dishId];
+    if (entry == null || entry.isSubscribed == subscribe) return null;
+
+    state = AsyncData(currentData.add(dishId, (dish: entry.dish, isSubscribed: subscribe)));
+
+    return entry.dish;
   }
 }
