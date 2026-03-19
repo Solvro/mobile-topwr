@@ -1,5 +1,5 @@
 name: widgetbook_workspace
-description: "A new Flutter project."
+description: "Widgetbook workspace for ToPWR mobile app"
 publish_to: "none"
 version: 0.1.0+1
 
@@ -13,6 +13,9 @@ dependencies:
     sdk: flutter
   widgetbook: ^3.22.0
   widgetbook_annotation: ^3.11.0
+  fast_immutable_collections: ^11.1.0
+  riverpod: ^3.1.0
+  hooks_riverpod: ^3.1.0
 
 dev_dependencies:
   flutter_test:
@@ -24,3 +27,52 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - ../assets/
+  fonts:
+    - family: BottomNavBarIcons
+      fonts:
+        - asset: ../fonts/BottomNavBarIcons.ttf
+    - family: IParkingIcons
+      fonts:
+        - asset: ../fonts/IParkingIcons.ttf
+    - family: StrategicClubBadges
+      fonts:
+        - asset: ../fonts/StrategicClubBadges.ttf
+    - family: Rubik
+      fonts:
+        - asset: ../fonts/rubik/Rubik-Light.ttf
+          weight: 300
+        - asset: ../fonts/rubik/Rubik-LightItalic.ttf
+          weight: 300
+          style: italic
+        - asset: ../fonts/rubik/Rubik-Regular.ttf
+          weight: 400
+        - asset: ../fonts/rubik/Rubik-Italic.ttf
+          weight: 400
+          style: italic
+        - asset: ../fonts/rubik/Rubik-Medium.ttf
+          weight: 500
+        - asset: ../fonts/rubik/Rubik-MediumItalic.ttf
+          weight: 500
+          style: italic
+        - asset: ../fonts/rubik/Rubik-SemiBold.ttf
+          weight: 600
+        - asset: ../fonts/rubik/Rubik-SemiBoldItalic.ttf
+          weight: 600
+          style: italic
+        - asset: ../fonts/rubik/Rubik-Bold.ttf
+          weight: 700
+        - asset: ../fonts/rubik/Rubik-BoldItalic.ttf
+          weight: 700
+          style: italic
+        - asset: ../fonts/rubik/Rubik-ExtraBold.ttf
+          weight: 800
+        - asset: ../fonts/rubik/Rubik-ExtraBoldItalic.ttf
+          weight: 800
+          style: italic
+        - asset: ../fonts/rubik/Rubik-Black.ttf
+          weight: 900
+        - asset: ../fonts/rubik/Rubik-BlackItalic.ttf
+          weight: 900
+          style: italic
