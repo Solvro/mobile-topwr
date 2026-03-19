@@ -1,3 +1,4 @@
+import "package:collection/collection.dart";
 import "package:dio/dio.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
@@ -58,12 +59,29 @@ class SksFavouriteDishesRepository extends _$SksFavouriteDishesRepository {
   }
 
   Future<bool> toggleDishSubscription(String dishId, {required bool isSubscribed}) async {
+    final previousState = state;
+    final currentData = state.asData?.value;
+
+    if (currentData != null) {
+      final dish = isSubscribed
+          ? currentData.unsubscribed.firstWhereOrNull((d) => d.id == dishId)
+          : currentData.subscribed.firstWhereOrNull((d) => d.id == dishId);
+
+      if (dish != null) {
+        state = AsyncData(
+          isSubscribed
+              ? (subscribed: currentData.subscribed.add(dish), unsubscribed: currentData.unsubscribed.remove(dish))
+              : (subscribed: currentData.subscribed.remove(dish), unsubscribed: currentData.unsubscribed.add(dish)),
+        );
+      }
+    }
+
     try {
       await ref.toggleSubscription(dishId, isSubscribed: isSubscribed);
     } on DioException catch (_) {
+      state = previousState;
       return false;
     }
-    ref.invalidateSelf();
     return true;
   }
 }
