@@ -4,7 +4,6 @@ import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../widgets/my_alert_dialog.dart";
-import "../widgets/fcm_token_section.dart";
 
 Future<void> showCustomLicenseDialog({
   required BuildContext context,
@@ -100,8 +99,6 @@ class _DialogContent extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(height: 16),
-        const FcmTokenSection(),
       ],
     );
   }

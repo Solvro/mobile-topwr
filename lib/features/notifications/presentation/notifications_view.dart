@@ -35,11 +35,42 @@ class _NotificationsList extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(notificationsRepositoryProvider);
 
-    return switch (state) {
-      AsyncError(:final error, :final stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
-      AsyncData(:final value) => _NotificationsListContent(value),
-      _ => const Padding(padding: GuideViewConfig.gridPadding, child: DepartmentsViewLoading()),
-    };
+    return RefreshIndicator(
+      onRefresh: () async {
+        await ref.read(notificationsRepositoryProvider.notifier).clearCache();
+        return ref.refresh(notificationsRepositoryProvider.future);
+      },
+      color: context.colorScheme.primary,
+      child: switch (state) {
+        AsyncError(:final error, :final stackTrace) => _NotificationsErrorContent(error: error, stackTrace: stackTrace),
+        AsyncData(:final value) => _NotificationsListContent(value),
+        _ => const Padding(padding: GuideViewConfig.gridPadding, child: DepartmentsViewLoading()),
+      },
+    );
+  }
+}
+
+class _NotificationsErrorContent extends StatelessWidget {
+  const _NotificationsErrorContent({required this.error, required this.stackTrace});
+
+  final Object error;
+  final StackTrace stackTrace;
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) => ListView(
+        key: MyAppConfig.verticalScrollableKey,
+        physics: const AlwaysScrollableScrollPhysics(),
+        padding: const EdgeInsets.fromLTRB(24, 8, 24, 24),
+        children: [
+          SizedBox(
+            height: constraints.maxHeight,
+            child: MyErrorWidget(error, stackTrace: stackTrace),
+          ),
+        ],
+      ),
+    );
   }
 }
 
@@ -50,27 +81,32 @@ class _NotificationsListContent extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    if (notifications.isEmpty) {
-      return Center(child: Text(context.localize.no_notifications));
-    }
-    return ListView.separated(
-      key: MyAppConfig.verticalScrollableKey,
-      padding: const EdgeInsets.fromLTRB(24, 8, 24, 24),
-      itemCount: notifications.length,
-      separatorBuilder: (_, _) => const SizedBox(height: DepartmentsConfig.listSeparatorSize),
-      itemBuilder: (context, index) {
-        final notification = notifications[index];
-        return WideTileCard(
-          title: notification.title,
-          subtitle: notification.body,
-          onTap: notification.data?.route != null ? () => ref.launch(notification.data!.route!) : null,
-          trailing: IconButton(
-            tooltip: context.localize.more_info,
-            onPressed: () => NotificationDetailsDialog.show(context, ref, notification),
-            icon: Icon(Icons.info, size: context.textScaler.scale(22), color: context.colorScheme.tertiary),
-          ),
-        );
-      },
-    );
+    return notifications.isEmpty
+        ? ListView(
+            key: MyAppConfig.verticalScrollableKey,
+            physics: const AlwaysScrollableScrollPhysics(),
+            padding: const EdgeInsets.fromLTRB(24, 8, 24, 24),
+            children: [Center(child: Text(context.localize.no_notifications))],
+          )
+        : ListView.separated(
+            key: MyAppConfig.verticalScrollableKey,
+            physics: const AlwaysScrollableScrollPhysics(),
+            padding: const EdgeInsets.fromLTRB(24, 8, 24, 24),
+            itemCount: notifications.length,
+            separatorBuilder: (_, _) => const SizedBox(height: DepartmentsConfig.listSeparatorSize),
+            itemBuilder: (context, index) {
+              final notification = notifications[index];
+              return WideTileCard(
+                title: notification.title,
+                subtitle: notification.body,
+                onTap: notification.data?.route != null ? () => ref.launch(notification.data!.route!) : null,
+                trailing: IconButton(
+                  tooltip: context.localize.more_info,
+                  onPressed: () => NotificationDetailsDialog.show(context, ref, notification),
+                  icon: Icon(Icons.info, size: context.textScaler.scale(22), color: context.colorScheme.tertiary),
+                ),
+              );
+            },
+          );
   }
 }

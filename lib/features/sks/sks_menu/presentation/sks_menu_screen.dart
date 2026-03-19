@@ -84,10 +84,11 @@ class _SksMenuView extends ConsumerWidget {
       ],
       body: RefreshIndicator(
         onRefresh: () async {
-          // ignore: unused_result
-          await ref.refresh(getLatestSksUserDataProvider.future);
           await ref.read(sksMenuRepositoryProvider.notifier).clearCache();
-          return ref.refresh(sksMenuRepositoryProvider.future);
+          return Future.wait([
+            ref.refresh(sksMenuRepositoryProvider.future),
+            ref.refresh(getLatestSksUserDataProvider.future),
+          ]).then((_) {});
         },
         color: context.colorScheme.primary,
         child: ListView(
