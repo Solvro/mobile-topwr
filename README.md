@@ -117,7 +117,7 @@ dart run build_runner build -d
 
 
 
-### **[OPTIONAL]** If you operate on many Flutter versions, we reccomend to you `fvm` Flutter version manager: https://fvm.app/
+### **[OPTIONAL]** If you operate on many Flutter versions, we recommend `fvm` Flutter version manager: https://fvm.app/
 ```bash
 fvm dart run build_runner watch
 fvm flutter run
@@ -130,7 +130,7 @@ fvm flutter run
 1. Introductions to internationalizing flutter apps (making them available in different languages): https://docs.flutter.dev/ui/accessibility-and-internationalization/internationalization
 2. We use `flutter_gen` for generating asset paths: https://pub.dev/packages/flutter_gen 
 3. For unified names read and follow: [taxonomy.md](./taxonomy.md)
-4. For navigation we use `auto_route`, docs here: https://pub.dev/packages/auto_route - but the setup is a bit crazy and fragile so we advice against tinkering with it whenever possible.
+4. For navigation we use `auto_route`, docs here: https://pub.dev/packages/auto_route - but the setup is a bit crazy and fragile so we advise against tinkering with it whenever possible.
 
 # Before you push a commit
 - Run the linter
