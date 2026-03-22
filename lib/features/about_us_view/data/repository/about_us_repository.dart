@@ -54,7 +54,7 @@ Future<AboutUs> aboutUsRepository(Ref ref) async {
   return (
     description: aboutUsResponse.data.aboutUsDetails.description,
     photo: aboutUsResponse.data.aboutUsDetails.coverPhoto,
-    socialLinks: aboutUsResponse.data.socialLinks.map((socialLink) => socialLink.url).toIList(),
+    socialLinks: aboutUsResponse.data.socialLinks,
     multiversionTeam: versionsResponse.data
         .map(
           (version) => (

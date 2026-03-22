@@ -52,7 +52,11 @@ class _AboutUsView extends ConsumerWidget {
               Focus(autofocus: true, child: SectionHeader(text: context.localize.about_us)),
               DescriptionSection(text: value.description),
               SectionHeader(text: context.localize.follow_solvro),
-              ContactSection(links: value.socialLinks.map((url) => ContactIconsModel(url: url)).toIList()),
+              ContactSection(
+                links: value.socialLinks
+                    .map((link) => ContactIconsModel(text: link.name ?? link.url, url: link.url))
+                    .toIList(),
+              ),
               SectionHeader(text: context.localize.meet_our_team),
               TeamSection(multiversionTeam: value.multiversionTeam),
               const AppVersionTile(),
