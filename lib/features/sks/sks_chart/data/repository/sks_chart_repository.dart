@@ -3,6 +3,7 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../../../api_base_rest/client/dio_client.dart";
 import "../../../../../config/env.dart";
+import "../../../../../features/remote_config/data/repository/remote_config_repository.dart";
 import "../models/sks_chart_data.dart";
 
 part "sks_chart_repository.g.dart";
@@ -10,7 +11,9 @@ part "sks_chart_repository.g.dart";
 @riverpod
 Future<IList<SksChartData>> sksChartRepository(Ref ref) async {
   final dio = ref.watch(restClientProvider);
-  final latestChartDataUrl = "${Env.sksUrl}/sks-users/today/";
+  final remoteConfig = await ref.watch(remoteConfigRepositoryProvider.future);
+  final sksUrl = remoteConfig.sksMicroserviceUrl ?? Env.sksUrl;
+  final latestChartDataUrl = "$sksUrl/api/v1/sks-users/today/";
   final response = await dio.get<dynamic>(latestChartDataUrl);
   final data = response.data as List<dynamic>;
   final chartDataList = data.map((entry) => SksChartData.fromJson((entry as Map).cast())).toIList();
