@@ -124,7 +124,7 @@ class _RightColumn extends StatelessWidget {
       children: [
         const Spacer(),
         Padding(
-          padding: ParkingsConfig.peopleCounterBottomPadding,
+          padding: isActive ? ParkingsConfig.peopleCounterBottomPadding : EdgeInsets.zero,
           child: Semantics(
             label:
                 "${context.localize.parking_people_live_screen_reader_label} ${parking.parsedNumberOfPlaces} ${context.localize.sks_people_live_screen_reader_label_trend}${localizedName(parking.trend, context)}",
