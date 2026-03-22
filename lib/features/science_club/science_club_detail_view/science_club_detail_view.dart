@@ -83,7 +83,9 @@ class _SciClubDetailDataView extends ConsumerWidget {
               const SizedBox(height: DetailViewsConfig.spacerHeight),
               ContactSection(
                 title: context.localize.contact,
-                list: value.links.whereNonNull.map((a) => ContactIconsModel(title: a.name, url: a.url)).toIList(),
+                list: value.links.whereNonNull
+                    .map((a) => ContactIconsModel(text: a.name ?? a.url, url: a.url))
+                    .toIList(),
               ),
               const SizedBox(height: DetailViewsConfig.spacerHeight),
               AboutUsSection(text: value.localizedDescription(context)),
