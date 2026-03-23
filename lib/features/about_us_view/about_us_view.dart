@@ -54,7 +54,7 @@ class _AboutUsView extends ConsumerWidget {
               SectionHeader(text: context.localize.follow_solvro),
               ContactSection(
                 links: value.socialLinks
-                    .map((link) => ContactIconsModel(text: link.name ?? link.url, url: link.url))
+                    .map((link) => ContactIconsModel(text: link.name, url: link.url))
                     .toIList(),
               ),
               SectionHeader(text: context.localize.meet_our_team),
