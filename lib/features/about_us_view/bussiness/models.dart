@@ -1,6 +1,7 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 
 import "../../../api_base_rest/shared_models/image_data.dart";
+import "../../../api_base_rest/shared_models/social_links_data.dart";
 
 typedef TeamMember = ({
   String teamMemberName,
@@ -12,6 +13,6 @@ typedef MultiversionTeam = ({String versionName, IList<TeamMember> members});
 typedef AboutUs = ({
   String description,
   ImageData? photo,
-  IList<String> socialLinks,
+  IList<SocialLinksData> socialLinks,
   IList<MultiversionTeam> multiversionTeam,
 });
