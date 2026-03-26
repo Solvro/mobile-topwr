@@ -2,6 +2,7 @@ import "dart:async";
 
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
+import "package:flutter_hooks/flutter_hooks.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../../config/ui_config.dart";
@@ -19,29 +20,21 @@ import "radio_luz_socials_section.dart";
 import "radio_luz_title.dart";
 
 @RoutePage()
-class RadioLuzView extends ConsumerStatefulWidget {
+class RadioLuzView extends HookConsumerWidget {
   const RadioLuzView({super.key});
 
   @override
-  ConsumerState<RadioLuzView> createState() => _RadioLuzViewState();
-}
-
-class _RadioLuzViewState extends ConsumerState<RadioLuzView> {
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      unawaited(ref.read(radioControllerProvider.notifier).preload());
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.localize;
     final cappedTextScale = context.textScaler.clamp(maxScaleFactor: 1.7);
-    final hasInternetAsync = ref.watch(hasInternetConnectionProvider);
-    final handler = ref.watch(radioPlayerProvider);
-    
+
+    useEffect(() {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        unawaited(ref.read(radioControllerProvider.notifier).preload());
+      });
+      return null;
+    }, []);
+
     return MediaQuery(
       data: MediaQuery.of(context).copyWith(textScaler: cappedTextScale),
       child: Scaffold(
