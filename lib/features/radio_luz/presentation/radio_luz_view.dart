@@ -10,6 +10,7 @@ import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../widgets/general_offline_message.dart";
 import "../../../widgets/horizontal_symmetric_safe_area.dart";
+import "../data/repository/history_entry_repository.dart";
 import "../service/has_internet_connection.dart";
 import "../service/radio_player_provider.dart";
 import "audio_player_widget.dart";
@@ -45,25 +46,31 @@ class RadioLuzView extends HookConsumerWidget {
           child: Stack(
             children: (hasInternetAsync.value ?? true)
                 ? [
-                    ListView(
-                      key: MyAppConfig.verticalScrollableKey,
+                    RefreshIndicator(
+                onRefresh: () async {
+                  // ignore: unused_result
+                  await ref.refresh(historyEntryRepositoryProvider.future);
+                },
+                child: ListView(
+                        key: MyAppConfig.verticalScrollableKey,
                       padding: const EdgeInsets.symmetric(vertical: RadioLuzConfig.horizontalBasePadding),
-                      children: [
-                        RadioLuzTitle(title: l10n.now_playing.toUpperCase()),
-                        const SizedBox(height: 12),
-                        const NowPlayingSection(),
-                        const SizedBox(height: 24),
-                        RadioLuzTitle(title: l10n.broadcast.toUpperCase()),
-                        const SizedBox(height: 12),
-                        const BroadcastsSection(),
-                        const SizedBox(height: 20),
-                        RadioLuzTitle(title: l10n.radio_luz_info.toUpperCase()),
-                        const SizedBox(height: 12),
-                        const _TextSection(),
-                        const SizedBox(height: 12),
-                        const RadioLuzSocialsSection(),
-                        const SizedBox(height: 80),
-                      ],
+                        children: [
+                          RadioLuzTitle(title: l10n.now_playing.toUpperCase()),
+                          const SizedBox(height: 12),
+                          const NowPlayingSection(),
+                          const SizedBox(height: 24),
+                          RadioLuzTitle(title: l10n.broadcast.toUpperCase()),
+                          const SizedBox(height: 12),
+                          const BroadcastsSection(),
+                          const SizedBox(height: 20),
+                          RadioLuzTitle(title: l10n.radio_luz_info.toUpperCase()),
+                          const SizedBox(height: 12),
+                          const _TextSection(),
+                          const SizedBox(height: 12),
+                          const RadioLuzSocialsSection(),
+                          const SizedBox(height: 80),
+                        ],
+                ),
                     ),
                     const Align(alignment: Alignment.bottomCenter, child: AudioPlayerWidget()),
                   ]
