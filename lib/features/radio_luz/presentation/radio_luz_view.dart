@@ -1,8 +1,5 @@
-import "dart:async";
-
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
-import "package:flutter_hooks/flutter_hooks.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../../config/ui_config.dart";
@@ -11,7 +8,7 @@ import "../../../utils/context_extensions.dart";
 import "../../../widgets/general_offline_message.dart";
 import "../../../widgets/horizontal_symmetric_safe_area.dart";
 import "../service/has_internet_connection.dart";
-import "../service/radio_player_controller.dart";
+import "../service/radio_player_provider.dart";
 import "audio_player_widget.dart";
 import "broadcasts_section.dart";
 import "now_playing_section.dart";
@@ -20,7 +17,7 @@ import "radio_luz_socials_section.dart";
 import "radio_luz_title.dart";
 
 @RoutePage()
-class RadioLuzView extends HookConsumerWidget {
+class RadioLuzView extends ConsumerWidget {
   const RadioLuzView({super.key});
 
   @override
@@ -28,13 +25,7 @@ class RadioLuzView extends HookConsumerWidget {
     final l10n = context.localize;
     final cappedTextScale = context.textScaler.clamp(maxScaleFactor: 1.7);
     final hasInternetAsync = ref.watch(hasInternetConnectionProvider);
-
-    useEffect(() {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        unawaited(ref.read(radioControllerProvider.notifier).preload());
-      });
-      return null;
-    }, []);
+    final handler = ref.watch(radioPlayerProvider);
 
     return MediaQuery(
       data: MediaQuery.of(context).copyWith(textScaler: cappedTextScale),

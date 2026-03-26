@@ -53,13 +53,23 @@ Future<void> main({List<Override>? overrides}) async {
   }
 }
 
-Future<void> runNormalApp() async {
+Future<void> runToPWR() async {
+  final data = await PlatformAssetBundle().load(Assets.certs.przewodnikPwrEduPl);
+  SecurityContext.defaultContext.setTrustedCertificatesBytes(data.buffer.asUint8List());
+  // await setupParkingWidgetsWorkManager();
+
+  final config = ClarityConfig(
+    projectId: Env.clarityConfigId,
+    logLevel: LogLevel.None,
+  );
+
   final audioHandler = await AudioService.init(
-    builder: RadioAudioHandlerBridge.new,
+    builder: RadioAudioHandler.new,
     config: const AudioServiceConfig(
       androidNotificationChannelId: "com.solvro.topwr.audio",
       androidNotificationChannelName: "Audio playback",
       androidNotificationOngoing: true,
+      androidStopForegroundOnPause: true,
     ),
   );
   final config = ClarityConfig(projectId: Env.clarityConfigId, logLevel: LogLevel.None);
@@ -74,7 +84,9 @@ Future<void> runNormalApp() async {
           if (retryCount > 5) return null;
           return Duration(seconds: retryCount * 2);
         },
-        overrides: [radioPlayerProvider.overrideWithValue(audioHandler)],
+        overrides: [
+          radioPlayerProvider.overrideWithValue(audioHandler),
+        ],
         child: const SplashScreen(child: MyApp()),
       ),
     ),

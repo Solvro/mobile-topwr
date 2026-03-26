@@ -1,6 +1,7 @@
 import "dart:async";
 import "dart:io";
 
+import "package:audio_service/audio_service.dart";
 import "package:flutter/services.dart";
 import "package:just_audio/just_audio.dart";
 import "package:path/path.dart" as p;
@@ -17,7 +18,8 @@ part "radio_player_controller.g.dart";
 
 @Riverpod(keepAlive: true)
 class RadioController extends _$RadioController {
-  late final RadioAudioHandlerBridge _handler = ref.watch(radioPlayerProvider);
+  late final RadioAudioHandler _handler = ref.watch(radioPlayerProvider);
+  late final AudioPlayerStrings _audioPlayerStrings;
 
   var _initialized = false;
   var _prevVolume = 1.0;
@@ -35,7 +37,22 @@ class RadioController extends _$RadioController {
     final isPlaying = (playerStateProvider.value?.playing ?? false) && processingState == ProcessingState.ready;
     final isLoading = processingState == ProcessingState.loading || processingState == ProcessingState.buffering;
 
-    return RadioState(isPlaying: isPlaying, isLoading: isLoading, volume: volume, isMuted: volume <= _muteThreshold);
+    return RadioState(isPlaying: isPlaying, isLoading: isLoading, volume: volume);
+  }
+
+  Future<void> _initPlayer() async {
+    final assetPath = Assets.png.radioLuz.radioLuzLogo.path;
+    final artUri = await assetToFileUri(assetPath);
+
+    final audioSource = AudioSource.uri(
+      Uri.parse(Env.radioLuzStreamUrl),
+      tag: MediaItem(id: "1", title: _audioPlayerStrings.title, album: _audioPlayerStrings.album, artUri: artUri),
+    );
+
+    await _handler.setAudioSource(audioSource);
+
+    final volume = ref.read(audioPlayerVolumeProvider).value ?? 1.0;
+    await _handler.setVolume(volume);
   }
 
   void init(AudioPlayerStrings audioPlayerStrings) {
@@ -72,19 +89,11 @@ class RadioController extends _$RadioController {
     await _handler.pause();
   }
 
+  Future<void> stop() async {
+    await _handler.stop();
+  } //i don't think we need this, but keeping just in case
+
   Future<void> setVolume(double newVolume) async {
     await _handler.setVolume(newVolume);
-  }
-
-  void rememberVolume(double newVolume) {
-    _prevVolume = newVolume > _muteThreshold ? newVolume : _prevVolume;
-  }
-
-  Future<void> toggleVolume() async {
-    if (state.volume <= _muteThreshold) {
-      await _handler.setVolume(_prevVolume);
-    } else {
-      await _handler.setVolume(0);
-    }
   }
 }
