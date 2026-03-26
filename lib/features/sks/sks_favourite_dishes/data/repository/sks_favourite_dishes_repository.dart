@@ -9,6 +9,7 @@ import "../../../../../config/ttl_config.dart";
 import "../../../../../features/remote_config/data/repository/remote_config_repository.dart";
 import "../../../../../utils/get_device_id.dart";
 import "../../../sks_menu/data/models/sks_menu_data.dart";
+import "../../utils/dish_list_extension.dart";
 import "../../utils/sks_favourite_dishes_extension.dart";
 import "../models/sks_favourite_dishes_response.dart";
 

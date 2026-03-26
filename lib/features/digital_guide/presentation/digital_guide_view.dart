@@ -28,6 +28,7 @@ class DigitalGuideView extends ConsumerWidget {
   const DigitalGuideView({@PathParam("id") required this.ourId});
 
   final String ourId;
+  final Building building;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
