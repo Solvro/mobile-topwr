@@ -12,9 +12,6 @@ enum TtlDays {
   /// day / 1 day
   defaultSks(1, 0),
 
-  /// sks menu / 1 hour
-  defaultSksMenu(0, 60),
-
   /// 30 minutes
   notifications(0, 30);
 
