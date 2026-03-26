@@ -81,10 +81,11 @@ class DepartmentDetailView extends ConsumerWidget {
                         .toIList(),
                   ),
                 ),
-                Semantics(
-                  label: context.localize.fields_of_study,
-                  child: FieldsOfStudySection(fieldsOfStudy: value.department.fieldsOfStudy),
-                ),
+                if (value.department.fieldsOfStudy.isNotEmpty)
+                  Semantics(
+                    label: context.localize.fields_of_study,
+                    child: FieldsOfStudySection(fieldsOfStudy: value.department.fieldsOfStudy),
+                  ),
                 if (value.sciclubs.isNotEmpty)
                   Semantics(label: context.localize.scientific_cirlces, child: DepartmentScienceClubsSection(value)),
                 const SizedBox(height: DetailViewsConfig.spacerHeight * 2),
