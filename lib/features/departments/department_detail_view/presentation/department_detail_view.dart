@@ -12,7 +12,7 @@ import "../../../../widgets/detail_views/contact_section.dart";
 import "../../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../../../widgets/horizontal_symmetric_safe_area.dart";
 import "../../../../widgets/my_error_widget.dart";
-import "../data/repository/department_details_repository.dart";
+import "../business/department_detail_service.dart";
 import "../data/utils/department_details_extension.dart";
 import "widgets/fields_of_study_section.dart";
 import "widgets/science_clubs_section.dart";
@@ -26,7 +26,7 @@ class DepartmentDetailView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(departmentDetailsRepositoryProvider(id));
+    final state = ref.watch(departmentDetailServiceProvider(id));
     return HorizontalSymmetricSafeAreaScaffold(
       appBar: DetailViewAppBar(),
       body: switch (state) {

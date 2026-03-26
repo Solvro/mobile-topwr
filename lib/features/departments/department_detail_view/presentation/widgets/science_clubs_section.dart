@@ -14,7 +14,7 @@ import "../../../../home_view/widgets/paddings.dart";
 import "../../../../navigator/utils/navigation_commands.dart";
 import "../../../../science_club/science_clubs_view/model/science_clubs.dart";
 import "../../../../science_club/science_clubs_view/utils/science_club_localization_extension.dart";
-import "../../data/repository/department_details_repository.dart";
+import "../../business/department_detail_service.dart";
 
 class DepartmentScienceClubsSection extends ConsumerWidget {
   const DepartmentScienceClubsSection(this.departmentWithSciClubs, {super.key});
