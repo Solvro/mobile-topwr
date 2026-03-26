@@ -66,7 +66,6 @@ Future<void> runToPWR() async {
       androidNotificationChannelId: "com.solvro.topwr.audio",
       androidNotificationChannelName: "Audio playback",
       androidNotificationOngoing: true,
-      androidStopForegroundOnPause: true,
     ),
   );
   final config = ClarityConfig(projectId: Env.clarityConfigId, logLevel: LogLevel.None);
