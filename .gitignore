@@ -172,3 +172,5 @@ windows/flutter/generated_plugins.cmake
 
 # Kotlin compiler session files
 android/.kotlin/
+
+android/app/keystore-topwr
