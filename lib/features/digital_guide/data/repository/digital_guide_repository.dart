@@ -27,5 +27,5 @@ Future<({DigitalGuideResponse digitalGuideData, String? photoUrl, Building build
       )
       .castAsObject;
 
-  return (digitalGuideData: digitalGuideData, photoUrl: building.cover?.effectiveUrl, building: building);
+  return (digitalGuideData: digitalGuideData, photoUrl: building.cover?.url, building: building);
 }

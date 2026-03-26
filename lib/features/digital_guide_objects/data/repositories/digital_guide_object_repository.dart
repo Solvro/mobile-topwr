@@ -21,13 +21,13 @@ Future<({DigitalGuideObjectModel digitalGuideData, String? photoUrl})> digitalGu
       final building = (await ref.watch(
         buildingsRepositoryProvider.future,
       )).firstWhere((b) => b.id == ourId, orElse: () => throw Exception("No such building: $ourId"));
-      return (building.externalDigitalGuideIdOrUrl, building.cover?.effectiveUrl);
+      return (building.externalDigitalGuideIdOrUrl, building.cover?.url);
     }(),
     DigitalGuideOtherObjectType.polinka => () async {
       final polinka = (await ref.watch(
         polinkasRepositoryProvider.future,
       )).firstWhere((p) => p.id.toString() == ourId, orElse: () => throw Exception("No such polinka: $ourId"));
-      return (polinka.externalDigitalGuideIdOrUrl, polinka.photo?.effectiveUrl);
+      return (polinka.externalDigitalGuideIdOrUrl, polinka.photo?.url);
     }(),
   };
   final digitalGuideData = await ref
