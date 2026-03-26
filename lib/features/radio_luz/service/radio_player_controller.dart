@@ -20,6 +20,8 @@ class RadioController extends _$RadioController {
   late final RadioAudioHandlerBridge _handler = ref.watch(radioPlayerProvider);
 
   var _initialized = false;
+  var _prevVolume = 1.0;
+  final _muteThreshold = 0.05;
 
   @override
   RadioState build() {
@@ -33,7 +35,7 @@ class RadioController extends _$RadioController {
     final isPlaying = (playerStateProvider.value?.playing ?? false) && processingState == ProcessingState.ready;
     final isLoading = processingState == ProcessingState.loading || processingState == ProcessingState.buffering;
 
-    return RadioState(isPlaying: isPlaying, isLoading: isLoading, volume: volume);
+    return RadioState(isPlaying: isPlaying, isLoading: isLoading, volume: volume, isMuted: volume <= _muteThreshold);
   }
 
   void init(AudioPlayerStrings audioPlayerStrings) {
@@ -72,5 +74,17 @@ class RadioController extends _$RadioController {
 
   Future<void> setVolume(double newVolume) async {
     await _handler.setVolume(newVolume);
+  }
+
+  void rememberVolume(double newVolume) {
+    _prevVolume = newVolume > _muteThreshold ? newVolume : _prevVolume;
+  }
+
+  Future<void> toggleVolume() async {
+    if (state.volume <= _muteThreshold) {
+      await _handler.setVolume(_prevVolume);
+    } else {
+      await _handler.setVolume(0);
+    }
   }
 }
