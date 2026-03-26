@@ -37,8 +37,8 @@ class RadioLuzView extends HookConsumerWidget {
 
     return MediaQuery(
       data: MediaQuery.of(context).copyWith(textScaler: cappedTextScale),
-      child: Scaffold(
-        backgroundColor: context.colorScheme.surfaceTint,
+      child: HorizontalSymmetricSafeAreaScaffold(
+        backgroundColor: context.colorScheme.primaryContainer,
         appBar: RadioLuzAppBar(context, logoSize: 55),
         body: ColoredBox(
           color: context.colorScheme.surfaceTint,
