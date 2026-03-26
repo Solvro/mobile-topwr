@@ -17,11 +17,26 @@ import "radio_luz_socials_section.dart";
 import "radio_luz_title.dart";
 
 @RoutePage()
-class RadioLuzView extends ConsumerWidget {
+class RadioLuzView extends ConsumerStatefulWidget {
   const RadioLuzView({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<RadioLuzView> createState() => _RadioLuzViewState();
+}
+
+class _RadioLuzViewState extends ConsumerState<RadioLuzView> {
+  @override
+  void initState() {
+    super.initState();
+    // Pre-load the audio stream when the radio screen opens
+    // This reduces iOS startup latency by buffering before user presses play
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(radioControllerProvider.notifier).preload();
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final l10n = context.localize;
     final cappedTextScale = context.textScaler.clamp(maxScaleFactor: 1.7);
     final hasInternetAsync = ref.watch(hasInternetConnectionProvider);
