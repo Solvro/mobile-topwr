@@ -26,11 +26,11 @@ class RadioLuzView extends ConsumerWidget {
     final cappedTextScale = context.textScaler.clamp(maxScaleFactor: 1.7);
     final hasInternetAsync = ref.watch(hasInternetConnectionProvider);
     final handler = ref.watch(radioPlayerProvider);
-
+    
     return MediaQuery(
       data: MediaQuery.of(context).copyWith(textScaler: cappedTextScale),
-      child: HorizontalSymmetricSafeAreaScaffold(
-        backgroundColor: context.colorScheme.primaryContainer,
+      child: Scaffold(
+        backgroundColor: context.colorScheme.surfaceTint,
         appBar: RadioLuzAppBar(context, logoSize: 55),
         body: ColoredBox(
           color: context.colorScheme.surfaceTint,

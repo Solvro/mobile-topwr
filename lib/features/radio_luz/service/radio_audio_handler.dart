@@ -19,7 +19,7 @@ import "../../../config/env.dart";
 //Specifically, it allows the app to be recognized as a media player, which allows integration with Android Auto, CarPlay, etc.
 
 const RADIO_LUZ_ARTWORK = "https://api.topwr.solvro.pl/uploads/28ef1261-47d5-4324-9f1f-9ae594af1327.png";
-const REFRESH_INTERVAL = Duration(seconds: 15);
+const REFRESH_INTERVAL = Duration(minutes: 1);
 
 //used for AA and CP to display folders and media items
 class _MediaIds {
@@ -43,7 +43,7 @@ class RadioAudioHandler extends BaseAudioHandler with SeekHandler {
       "Content-Type": "application/x-www-form-urlencoded",
     },
   ));
-
+  
   late MediaItem _radioLuzMediaItem;
 
   List<MediaItem>? _recentlyPlayedCache;
@@ -59,66 +59,44 @@ class RadioAudioHandler extends BaseAudioHandler with SeekHandler {
   Timer? _refreshTimer;
 
   RadioAudioHandler() {
+    _player.setAudioSource(AudioSource.uri(Uri.parse(Env.radioLuzStreamUrl)), preload: false); // Pre-configuration
+    _player.setAndroidAudioAttributes(const AndroidAudioAttributes(
+      contentType: AndroidAudioContentType.music,
+      usage: AndroidAudioUsage.media,
+    ));
+
     //main media item - live radio (information source)
     _radioLuzMediaItem = MediaItem(
       id: _MediaIds.liveRadioPlayable,
       title: "Radio LUZ",
       album: "Studenckie Radio",
       playable: true,
-      artUri: Uri.parse(RADIO_LUZ_ARTWORK), //artwork cannot be local asset
+      artUri: Uri.parse(RADIO_LUZ_ARTWORK) //artwork cannot be local asset
     );
-
+    
     _player.playbackEventStream.map(_transformEvent).listen(playbackState.add); //connecting 'just_audio' (flutter) to 'audio_service' (native)
-
-    _player.sequenceStateStream.listen((state) {
-      mediaItem.add(_radioLuzMediaItem);
-    });
-
+    _player.sequenceStateStream.map((state) => state?.currentSource?.tag as MediaItem?).listen(mediaItem.add); //metadata bridge to audio_service
+    
     _startPeriodicRefresh();
   }
-
-  //refreshes now playing metadata
+  
+  //refreshes recently played
   void _startPeriodicRefresh() {
     _refreshTimer?.cancel();
     _refreshTimer = Timer.periodic(REFRESH_INTERVAL, (_) async {
-      await _fetchNowPlaying();
+      _recentlyPlayedCache = null;
+      _recentlyPlayedLastFetch = null;
+      
+      await _fetchRecentlyPlayed();
+      if (_isDisposed) return; // Guard against updates after disposal
+
+      notifyChildrenChanged(_MediaIds.recentlyPlayed);
     });
-  }
-
-  // Track when the stream was paused to detect stale buffers
-  DateTime? _lastPauseTime;
-  static const _staleStreamThreshold = Duration(seconds: 30);
-
-  Future<void> _fetchNowPlaying() async {
-    try {
-      if (_isDisposed) return;
-      final formData = FormData.fromMap({"action": "nowPlaying"});
-      final response = await _dio.post<String>("admin-ajax.php", data: formData);
-      
-      if (response.data == null) return;
-      
-      final dynamic decoded = jsonDecode(response.data!);
-      if (decoded is! Map<String, dynamic>) return;
-      
-      final nowPlaying = decoded["now"]?.toString();
-      if (nowPlaying == null || nowPlaying.isEmpty) return;
-      
-      _radioLuzMediaItem = _radioLuzMediaItem.copyWith(album: nowPlaying);
-      
-      mediaItem.add(_radioLuzMediaItem);
-    } catch (_) {
-      //keep the old metadata
-    }
   }
 
   @override
   Future<void> play() async {
-    final now = DateTime.now();
-    final isStale = _lastPauseTime != null && 
-        now.difference(_lastPauseTime!) > _staleStreamThreshold;
-    
-    // If stream is stale or player is idle, reload the audio source
-    if (isStale || _player.processingState == ProcessingState.idle) {
+    if (_player.processingState == ProcessingState.idle) {
       await _player.setAudioSource(
         AudioSource.uri(
           Uri.parse(Env.radioLuzStreamUrl),
@@ -127,23 +105,18 @@ class RadioAudioHandler extends BaseAudioHandler with SeekHandler {
       );
       mediaItem.add(_radioLuzMediaItem);
     }
-    
-    _lastPauseTime = null;
     await _player.play();
   }
 
   @override
-  Future<void> pause() async {
-    _lastPauseTime = DateTime.now();
-    await _player.pause();
-  }
+  Future<void> pause() => _player.pause();
 
   @override
-  Future<void> stop() async {
+  dispose() {
     _isDisposed = true;
     _refreshTimer?.cancel();
-    await _player.stop();
-    return super.stop();
+    _player.dispose();
+    super.dispose();
   }
 
   //most crucial - defines the structure of the media library that is visible in AA and CP
@@ -157,7 +130,7 @@ class RadioAudioHandler extends BaseAudioHandler with SeekHandler {
             title: "Radio LUZ",
             album: "Studenckie Radio",
             playable: false,
-          ),
+          ),  
           MediaItem(
             id: _MediaIds.recentlyPlayed,
             title: "Teraz gramy",
@@ -169,50 +142,50 @@ class RadioAudioHandler extends BaseAudioHandler with SeekHandler {
             playable: false,
           ),
         ];
-
+      
       case _MediaIds.liveRadioFolder:
         return [_radioLuzMediaItem];
-
+      
       case _MediaIds.recentlyPlayed:
         return _fetchRecentlyPlayed();
-
+      
       case _MediaIds.schedule:
         return _fetchSchedule();
-
+      
       default:
         return [];
     }
   }
-
+  
   Future<List<MediaItem>> _fetchRecentlyPlayed() async {
     final now = DateTime.now();
-    if (_recentlyPlayedCache != null &&
+    if (_recentlyPlayedCache != null && 
         _recentlyPlayedLastFetch != null &&
         now.difference(_recentlyPlayedLastFetch!) < _recentlyPlayedTtl) {
       return _recentlyPlayedCache!;
     }
-
+    
     try {
       final formData = FormData.fromMap({"action": "histoprylog"});
       final response = await _dio.post<String>("admin-ajax.php", data: formData);
-
+      
       if (_isDisposed) return [];
 
       if (response.data == null) return _recentlyPlayedCache ?? [];
-
+      
       final dynamic decoded = jsonDecode(response.data!);
       if (decoded is! List) return _recentlyPlayedCache ?? [];
-
+      
       final items = decoded.map((e) {
         if (e is! List) return null;
-
+        
         final timeRaw = e[1]?.toString() ?? "";
         final artist = e[2]?.toString() ?? "";
         final title = e[3]?.toString() ?? "";
         final album = e[4]?.toString() ?? "";
-
+        
         final time = timeRaw.length >= 5 ? timeRaw.substring(0, 5) : "";
-
+        
         return MediaItem(
           id: "history_${timeRaw}_$title",
           title: "$time - $title",
@@ -221,41 +194,54 @@ class RadioAudioHandler extends BaseAudioHandler with SeekHandler {
           playable: true,
         );
       }).whereType<MediaItem>().toList();
-
+      
       //because title is in format "HH:MM - Title", it is sorted by time from latest to oldest
       items.sort((a, b) => b.title.compareTo(a.title));
-
+      
+      if (items.isNotEmpty) {
+        final latest = items.first;
+        final songTitle = latest.title.length >= 8 ? latest.title.substring(8) : latest.title;
+        final newAlbum = "${latest.artist} - $songTitle";
+        
+        _radioLuzMediaItem = _radioLuzMediaItem.copyWith(album: newAlbum);
+        
+        if (_player.playing) {
+          //refresh metadata
+          mediaItem.add(_radioLuzMediaItem);
+        }
+      }
+      
       _recentlyPlayedCache = items;
       _recentlyPlayedLastFetch = now;
-
+      
       return items;
     } catch (_) {
       return _recentlyPlayedCache ?? [];
     }
   }
-
+  
   Future<List<MediaItem>> _fetchSchedule() async {
     final now = DateTime.now();
-    if (_scheduleCache != null &&
+    if (_scheduleCache != null && 
         _scheduleLastFetch != null &&
         now.difference(_scheduleLastFetch!) < _scheduleTtl) {
       return _scheduleCache!;
     }
-
+    
     try {
       final formData = FormData.fromMap({"action": "schedule"});
       final response = await _dio.post<String>("admin-ajax.php", data: formData);
-
+      
       if (response.data == null) return _scheduleCache ?? [];
-
+      
       final dynamic jsonMap = jsonDecode(response.data!);
       if (jsonMap is! Map<String, dynamic>) return _scheduleCache ?? [];
 
       final broadcasts = jsonMap["broadcasts"];
       if (broadcasts is! List) return _scheduleCache ?? [];
-
+      
       final items = <MediaItem>[];
-
+      
       for (final block in broadcasts) {
         if (block is! Map<String, dynamic>) continue;
 
@@ -263,33 +249,35 @@ class RadioAudioHandler extends BaseAudioHandler with SeekHandler {
         final broadcastList = block["broadcasts"];
 
         if (broadcastList is! List) continue;
-
+        
         for (final broadcast in broadcastList) {
           if (broadcast is! Map<String, dynamic>) continue;
 
           final b = broadcast;
           final time = b["time"]?.toString() ?? "";
           final title = b["title"]?.toString() ?? "";
+          final authors = b["authors"]?.toString() ?? "";
           final thumbnail = b["thumbnail"];
-
+          
           Uri? artUri;
           if (thumbnail is String && thumbnail.isNotEmpty) {
             artUri = Uri.tryParse(thumbnail);
           }
-
+          
           items.add(MediaItem(
             id: "schedule_${b["id"]}",
             title: isNow ? "▶ $title" : title,
+            artist: authors,
             album: time,
             playable: true,
             artUri: artUri,
           ));
         }
       }
-
+      
       _scheduleCache = items;
       _scheduleLastFetch = now;
-
+      
       return items;
     } catch (_) {
       return _scheduleCache ?? [];
@@ -329,23 +317,27 @@ class RadioAudioHandler extends BaseAudioHandler with SeekHandler {
   Future<void> setAudioSource(AudioSource source) async {
     await _player.setAudioSource(source);
     if (source is UriAudioSource && source.tag is MediaItem) {
-      mediaItem.add((source.tag as MediaItem).copyWith(playable: true));
+       mediaItem.add((source.tag as MediaItem).copyWith(playable: true));
     }
   }
 
   //this is where the audio player (just_audio) and audio service (audio_service) connect
   PlaybackState _transformEvent(PlaybackEvent event) {
     return PlaybackState(
-      controls: [if (_player.playing) MediaControl.pause else MediaControl.play],
-      systemActions: const {MediaAction.seek},
-      androidCompactActionIndices: const [0],
-      processingState: switch (_player.processingState) {
-        ProcessingState.idle => AudioProcessingState.idle,
-        ProcessingState.loading => AudioProcessingState.loading,
-        ProcessingState.buffering => AudioProcessingState.buffering,
-        ProcessingState.ready => AudioProcessingState.ready,
-        ProcessingState.completed => AudioProcessingState.completed,
+      controls: [
+        if (_player.playing) MediaControl.pause else MediaControl.play,
+      ],
+      systemActions: const {
+        MediaAction.seek,
       },
+      androidCompactActionIndices: const [0],
+      processingState: const {
+        ProcessingState.idle: AudioProcessingState.idle,
+        ProcessingState.loading: AudioProcessingState.loading,
+        ProcessingState.buffering: AudioProcessingState.buffering,
+        ProcessingState.ready: AudioProcessingState.ready,
+        ProcessingState.completed: AudioProcessingState.completed,
+      }[_player.processingState]!,
       playing: _player.playing,
       updatePosition: _player.position,
       bufferedPosition: _player.bufferedPosition,
