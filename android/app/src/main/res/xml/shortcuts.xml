@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <shortcut
+        android:shortcutId="parkings"
+        android:enabled="true"
+        android:icon="@drawable/parking"
+        android:shortcutShortLabel="@string/parkings_shortcut_label"
+        android:shortcutLongLabel="@string/parkings_shortcut_label">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="https://topwr.solvro.pl/parkings"
+            android:targetPackage="com.solvro.topwr"
+            android:targetClass="com.ryanheise.audioservice.AudioServiceActivity" />
+    </shortcut>
+
+    <shortcut
+        android:shortcutId="radio"
+        android:enabled="true"
+        android:icon="@drawable/radio_luz_logo"
+        android:shortcutShortLabel="@string/radio_shortcut_label"
+        android:shortcutLongLabel="@string/radio_shortcut_label">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="https://topwr.solvro.pl/radio-luz"
+            android:targetPackage="com.solvro.topwr"
+            android:targetClass="com.ryanheise.audioservice.AudioServiceActivity" />
+    </shortcut>
+
+    <shortcut
+        android:shortcutId="map"
+        android:enabled="true"
+        android:icon="@drawable/map"
+        android:shortcutShortLabel="@string/map_shortcut_label"
+        android:shortcutLongLabel="@string/map_shortcut_label">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="https://topwr.solvro.pl/buildings"
+            android:targetPackage="com.solvro.topwr"
+            android:targetClass="com.ryanheise.audioservice.AudioServiceActivity" />
+    </shortcut>
+
+</shortcuts>
