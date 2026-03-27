@@ -39,6 +39,11 @@ class RadioAudioHandlerBridge extends BaseAudioHandler with SeekHandler, Widgets
   StreamSubscription<PlaybackState>? _playbackEventSubscription;
   StreamSubscription<SequenceState?>? _sequenceStateSubscription;
 
+  final _trackChangedController = StreamController<String>.broadcast();
+  String? _lastTrackTitle;
+
+  Stream<String> get trackChanged => _trackChangedController.stream;
+
   RadioAudioHandlerBridge() : _repository = RadioLuzRepository(createRadioLuzDio()) {
     _initializeListeners();
   }
@@ -106,6 +111,11 @@ class RadioAudioHandlerBridge extends BaseAudioHandler with SeekHandler, Widgets
       _radioLuzMediaItem = _radioLuzMediaItem.copyWith(album: nowPlaying.now, artist: nowPlaying.now);
 
       mediaItem.add(_radioLuzMediaItem);
+
+      if (nowPlaying.now != _lastTrackTitle) {
+        _lastTrackTitle = nowPlaying.now;
+        _trackChangedController.add(nowPlaying.now!);
+      }
     } on Exception catch (_) {
       //keep the old metadata
     }
@@ -150,6 +160,7 @@ class RadioAudioHandlerBridge extends BaseAudioHandler with SeekHandler, Widgets
     _refreshTimer?.cancel();
     await _playbackEventSubscription?.cancel();
     await _sequenceStateSubscription?.cancel();
+    await _trackChangedController.close();
     WidgetsBinding.instance.removeObserver(this);
     await _player.stop();
     return super.stop();
