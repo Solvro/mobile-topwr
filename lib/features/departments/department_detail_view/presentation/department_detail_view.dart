@@ -12,8 +12,7 @@ import "../../../../widgets/detail_views/contact_section.dart";
 import "../../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../../../widgets/horizontal_symmetric_safe_area.dart";
 import "../../../../widgets/my_error_widget.dart";
-import "../data/models/department_details.dart";
-import "../data/repository/department_details_repository.dart";
+import "../business/department_detail_service.dart";
 import "../data/utils/department_details_extension.dart";
 import "widgets/fields_of_study_section.dart";
 import "widgets/science_clubs_section.dart";
@@ -27,17 +26,17 @@ class DepartmentDetailView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(departmentDetailsRepositoryProvider(id));
+    final state = ref.watch(departmentDetailServiceProvider(id));
     return HorizontalSymmetricSafeAreaScaffold(
       appBar: DetailViewAppBar(),
       body: switch (state) {
         AsyncError(:final error, :final stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
-        AsyncValue(value: final DepartmentDetails department) => CustomScrollView(
+        AsyncValue(:final DepartmentWithSciClubs value) => CustomScrollView(
           slivers: [
             SliverPersistentHeader(
               delegate: DepartmentSliverHeaderSection(
-                activeGradient: department.gradient,
-                logoDirectusImageData: ImageData(url: department.logo?.url ?? ""),
+                activeGradient: value.department.gradient,
+                logoDirectusImageData: ImageData(url: value.department.logo?.url ?? ""),
               ),
             ),
             SliverList(
@@ -50,7 +49,7 @@ class DepartmentDetailView extends ConsumerWidget {
                     child: Focus(
                       autofocus: true,
                       child: Text(
-                        department.name,
+                        value.department.name,
                         style: context.textTheme.headlineMedium?.copyWith(
                           fontSize: context.textScaler.scale(context.textTheme.headlineMedium?.fontSize ?? 24),
                         ),
@@ -64,7 +63,7 @@ class DepartmentDetailView extends ConsumerWidget {
                 Semantics(
                   label: context.localize.no_address,
                   child: Text(
-                    department.address3lines,
+                    value.department.address3lines,
                     style: context.textTheme.bodyLarge?.copyWith(
                       height: 1.2,
                       fontSize: context.textScaler.scale(context.textTheme.bodyLarge?.fontSize ?? 16),
@@ -77,16 +76,18 @@ class DepartmentDetailView extends ConsumerWidget {
                   label: context.localize.deans_office,
                   child: ContactSection(
                     title: context.localize.deans_office,
-                    list: department.departmentLinks
+                    list: value.department.departmentLinks
                         .map((link) => ContactIconsModel(text: link.name, url: link.url))
                         .toIList(),
                   ),
                 ),
-                Semantics(
-                  label: context.localize.fields_of_study,
-                  child: FieldsOfStudySection(fieldsOfStudy: department.fieldsOfStudy),
-                ),
-                Semantics(label: context.localize.scientific_cirlces, child: DepartmentScienceClubsSection(department)),
+                if (value.department.fieldsOfStudy.isNotEmpty)
+                  Semantics(
+                    label: context.localize.fields_of_study,
+                    child: FieldsOfStudySection(fieldsOfStudy: value.department.fieldsOfStudy),
+                  ),
+                if (value.sciclubs.isNotEmpty)
+                  Semantics(label: context.localize.scientific_cirlces, child: DepartmentScienceClubsSection(value)),
                 const SizedBox(height: DetailViewsConfig.spacerHeight * 2),
               ]),
             ),
