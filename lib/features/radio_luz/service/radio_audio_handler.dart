@@ -114,7 +114,9 @@ class RadioAudioHandlerBridge extends BaseAudioHandler with SeekHandler, Widgets
 
       if (nowPlaying.now != _lastTrackTitle) {
         _lastTrackTitle = nowPlaying.now;
-        _trackChangedController.add(nowPlaying.now!);
+        if (!_trackChangedController.isClosed) {
+          _trackChangedController.add(nowPlaying.now!);
+        }
       }
     } on Exception catch (_) {
       //keep the old metadata
