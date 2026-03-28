@@ -2,6 +2,7 @@ import "package:dio/dio.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
+import "../../../../../api_base_rest/cache/cache.dart";
 import "../../../../../api_base_rest/client/json.dart";
 import "../../../../../api_base_rest/translations/translate.dart";
 import "../../../../../config/env.dart";
@@ -34,7 +35,7 @@ class SksFavouriteDishesRepository extends _$SksFavouriteDishesRepository {
             sksApiBaseUrl + _recentEndpoint,
             SksFavouriteDishesResponse.fromJson,
             extraValidityCheck: (_) => true,
-            ttlDays: TtlDays.defaultSks,
+            ttlDays: TtlDays.defaultSksMenu,
             onRetry: ref.invalidateSelf,
           )
           .castAsObject,
@@ -57,6 +58,13 @@ class SksFavouriteDishesRepository extends _$SksFavouriteDishesRepository {
       for (final dish in recentDishes.meals) dish.id: (dish: dish, isSubscribed: subscribedIds.contains(dish.id)),
       for (final dish in subscribedMeals) dish.id: (dish: dish, isSubscribed: true),
     }.lock;
+  }
+
+  Future<void> clearCache() async {
+    final remoteConfig = await ref.read(remoteConfigRepositoryProvider.future);
+    final sksUrl = remoteConfig.sksMicroserviceUrl ?? Env.sksUrl;
+    final sksApiBaseUrl = "$sksUrl/api/v1";
+    await ref.clearCache(sksApiBaseUrl + _recentEndpoint, TtlDays.defaultSksMenu);
   }
 
   Future<bool> toggleDishSubscription(String dishId, {required bool isSubscribed}) async {
