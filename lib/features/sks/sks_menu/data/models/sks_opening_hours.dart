@@ -8,7 +8,11 @@ abstract class SksOpeningHours with _$SksOpeningHours {
   const factory SksOpeningHours({required OpeningHours openingHours}) = _SksOpeningHours;
 
   factory SksOpeningHours.fromJson(Map<String, dynamic> json) {
-    final data = (json["data"] as List<dynamic>).first as Map<String, dynamic>;
+    final list = json["data"] as List<dynamic>;
+    if (list.isEmpty) {
+      throw const FormatException("sks_opening_hours: 'data' array is empty");
+    }
+    final data = list.first as Map<String, dynamic>;
     return SksOpeningHours(openingHours: OpeningHours.fromJson(data));
   }
 }
