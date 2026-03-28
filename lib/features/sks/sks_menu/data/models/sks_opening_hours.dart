@@ -7,19 +7,15 @@ part "sks_opening_hours.g.dart";
 abstract class SksOpeningHours with _$SksOpeningHours {
   const factory SksOpeningHours({required OpeningHours openingHours}) = _SksOpeningHours;
 
-  factory SksOpeningHours.fromJson(Map<String, dynamic> json) => _$SksOpeningHoursFromJson(json);
+  factory SksOpeningHours.fromJson(Map<String, dynamic> json) {
+    final data = (json["data"] as List<dynamic>).first as Map<String, dynamic>;
+    return SksOpeningHours(openingHours: OpeningHours.fromJson(data));
+  }
 }
 
 @freezed
 abstract class OpeningHours with _$OpeningHours {
-  const factory OpeningHours({required VenueHours canteen, required VenueHours cafe}) = _OpeningHours;
+  const factory OpeningHours({required String canteen, required String cafe}) = _OpeningHours;
 
   factory OpeningHours.fromJson(Map<String, dynamic> json) => _$OpeningHoursFromJson(json);
-}
-
-@freezed
-abstract class VenueHours with _$VenueHours {
-  const factory VenueHours({required String openingTime, required String closingTime}) = _VenueHours;
-
-  factory VenueHours.fromJson(Map<String, dynamic> json) => _$VenueHoursFromJson(json);
 }
