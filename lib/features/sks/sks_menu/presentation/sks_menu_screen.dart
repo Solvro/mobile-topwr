@@ -92,6 +92,7 @@ class _SksMenuView extends ConsumerWidget {
           return Future.wait([
             ref.refresh(sksMenuRepositoryProvider.future),
             ref.refresh(getLatestSksUserDataProvider.future),
+            ref.refresh(sksFavouriteDishesRepositoryProvider.future),
           ]).then((_) {});
         },
         color: context.colorScheme.primary,
