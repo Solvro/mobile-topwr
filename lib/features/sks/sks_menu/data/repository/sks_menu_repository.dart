@@ -23,8 +23,9 @@ class SksMenuRepository extends _$SksMenuRepository {
     final remoteConfig = await ref.read(remoteConfigRepositoryProvider.future);
     final sksUrl = remoteConfig.sksMicroserviceUrl ?? Env.sksUrl;
     final sksApiBaseUrl = "$sksUrl/api/v1";
+    final mainApiBaseUrl = Env.mainRestApiUrl;
     await ref.clearCache("$sksApiBaseUrl/meals/current", _ttlDaysMeals);
-    await ref.clearCache("$sksApiBaseUrl/info", _ttlDaysOpeningHours);
+    await ref.clearCache("$mainApiBaseUrl/sks_opening_hours", _ttlDaysOpeningHours);
   }
 
   @override
@@ -32,8 +33,9 @@ class SksMenuRepository extends _$SksMenuRepository {
     final remoteConfig = await ref.watch(remoteConfigRepositoryProvider.future);
     final sksUrl = remoteConfig.sksMicroserviceUrl ?? Env.sksUrl;
     final sksApiBaseUrl = "$sksUrl/api/v1";
+    final mainApiBaseUrl = Env.mainRestApiUrl;
     final mealsUrl = "$sksApiBaseUrl/meals/current";
-    final openingHoursUrl = "$sksApiBaseUrl/info";
+    final openingHoursUrl = "$mainApiBaseUrl/sks_opening_hours";
 
     final sksMenuResponse = await ref
         .getAndCacheDataWithTranslation(
@@ -57,10 +59,7 @@ class SksMenuRepository extends _$SksMenuRepository {
           ttlDays: _ttlDaysOpeningHours,
           extraValidityCheck: (data) {
             final obj = data.castAsObject;
-            return obj.openingHours.canteen.openingTime.isNotEmpty &&
-                obj.openingHours.canteen.closingTime.isNotEmpty &&
-                obj.openingHours.cafe.openingTime.isNotEmpty &&
-                obj.openingHours.cafe.closingTime.isNotEmpty;
+            return obj.openingHours.canteen.isNotEmpty && obj.openingHours.cafe.isNotEmpty;
           },
           onRetry: ref.invalidateSelf,
         )
