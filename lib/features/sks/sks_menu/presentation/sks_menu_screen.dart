@@ -22,6 +22,7 @@ import "../../../../widgets/text_and_url_widget.dart";
 import "../../../analytics/data/clarity.dart";
 import "../../../analytics/data/clarity_events.dart";
 import "../../../navigator/utils/navigation_commands.dart";
+import "../../sks_favourite_dishes/data/repository/sks_favourite_dishes_repository.dart";
 import "../../sks_people_live/data/repository/latest_sks_user_data_repo.dart";
 import "../../sks_people_live/presentation/widgets/sks_user_data_button.dart";
 import "../data/models/sks_menu_response.dart";
@@ -84,10 +85,14 @@ class _SksMenuView extends ConsumerWidget {
       ],
       body: RefreshIndicator(
         onRefresh: () async {
-          await ref.read(sksMenuRepositoryProvider.notifier).clearCache();
+          await Future.wait([
+            ref.read(sksMenuRepositoryProvider.notifier).clearCache(),
+            ref.read(sksFavouriteDishesRepositoryProvider.notifier).clearCache(),
+          ]);
           return Future.wait([
             ref.refresh(sksMenuRepositoryProvider.future),
             ref.refresh(getLatestSksUserDataProvider.future),
+            ref.refresh(sksFavouriteDishesRepositoryProvider.future),
           ]).then((_) {});
         },
         color: context.colorScheme.primary,
