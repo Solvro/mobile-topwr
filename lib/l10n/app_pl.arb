@@ -197,6 +197,10 @@
   "@list": {
     "description": "Label for list view"
   },
+  "branches": "Filie",
+  "@branches": {
+    "description": "Title for branches section"
+  },
   "departments": "Wydziały",
   "@departments": {
     "description": "Title for departments/faculties section"

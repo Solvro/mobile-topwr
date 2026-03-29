@@ -40,6 +40,7 @@ Future<Iterable<ScienceClub>> _sciClubsFilteredByTextQuery(Ref ref) async {
     SelectedTagController,
     SelectedDepartmentController,
     SelectedTypeController,
+    SelectedBranchController,
   ],
 )
 Future<IList<ScienceClub>> scienceClubsListController(Ref ref) async {
@@ -55,6 +56,8 @@ Future<IList<ScienceClub>> scienceClubsListController(Ref ref) async {
 
   final selectedTypes = ref.watch(selectedTypeControllerProvider);
 
+  final selectedBranches = ref.watch(selectedBranchControllerProvider);
+
   final filteredByTypes = selectedTypes.isEmpty
       ? sciClubs
       : sciClubs.where((club) => selectedTypes.contains(club.organizationType));
@@ -69,5 +72,11 @@ Future<IList<ScienceClub>> scienceClubsListController(Ref ref) async {
       ? filteredByDepartments
       : filteredByDepartments.where((club) => club.tags.whereNonNull.any(selectedTags.contains));
 
-  return filteredByTags.toIList();
+  final filteredByBranches = selectedBranches.isEmpty
+      ? filteredByTags
+      : filteredByTags.where((club) {
+          return selectedBranches.contains(club.branch);
+        });
+
+  return filteredByBranches.toIList();
 }
