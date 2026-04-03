@@ -18,7 +18,7 @@ class ScienceClubCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final subtitle = [
       ...?sciClub.tags?.map((tag) => "#${tag.tag}"),
-      if (sciClub.department?.code != null) "#${sciClub.department?.code}",
+      if (sciClub.department?.branch != null) "#${sciClub.department?.branch.localize(context.localize)}",
     ].join(", ");
 
     return ClipRRect(
