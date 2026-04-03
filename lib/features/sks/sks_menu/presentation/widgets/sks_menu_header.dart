@@ -49,14 +49,8 @@ class SksMenuHeader extends StatelessWidget {
             child: Column(
               children: [
                 Text(context.localize.working_hours, style: context.textTheme.bodyLarge),
-                Text(
-                  "${context.localize.canteen} ${openingHours.canteen.openingTime} - ${openingHours.canteen.closingTime}",
-                  style: context.textTheme.bodyLarge,
-                ),
-                Text(
-                  "${context.localize.cafe} ${openingHours.cafe.openingTime} - ${openingHours.cafe.closingTime}",
-                  style: context.textTheme.bodyLarge,
-                ),
+                Text("${context.localize.canteen} ${openingHours.canteen}", style: context.textTheme.bodyLarge),
+                Text("${context.localize.cafe} ${openingHours.cafe}", style: context.textTheme.bodyLarge),
               ],
             ),
           ),
