@@ -1,0 +1,73 @@
+name: Widgetbook CI
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "widgetbook/**"
+      - ".github/workflows/widgetbook_ci.yaml"
+  pull_request:
+    branches: ["**"]
+    paths:
+      - "widgetbook/**"
+      - ".github/workflows/widgetbook_ci.yaml"
+
+permissions:
+  contents: read
+
+jobs:
+  widgetbook-checks:
+    name: widgetbook-all-checks
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: widgetbook
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install git-crypt
+        run: sudo apt-get update && sudo apt-get install -y git-crypt
+      
+      - name: git crypt unlock
+        uses: sliteteam/github-action-git-crypt-unlock@f99c0c6b60bb7ec30dcec033a8f0a3b3d48f21e1
+        env:
+          GIT_CRYPT_KEY: ${{ secrets.GIT_CRYPT_KEY }}
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+          flutter-version-file: pubspec.yaml
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Install root dependencies
+        run: flutter pub get
+        working-directory: .
+
+      - name: Generate root localization files
+        run: flutter gen-l10n
+        working-directory: .
+
+      - name: Generate root files
+        run: dart run build_runner build --delete-conflicting-outputs
+        working-directory: .
+
+      - name: Verify formatting
+        run: dart format --output=none --set-exit-if-changed lib test
+
+      - name: Generate files
+        run: dart run build_runner build --delete-conflicting-outputs
+
+      - name: Ensure generated files are committed
+        run: git diff --exit-code
+
+      - name: Analyze project source
+        run: flutter analyze --fatal-infos
+
+      - name: Flutter tests
+        run: flutter test
