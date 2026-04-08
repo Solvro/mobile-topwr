@@ -3,6 +3,7 @@ import "package:flutter/widgets.dart";
 import "package:topwr/features/departments/department_detail_view/data/models/department_details.dart";
 import "package:topwr/features/departments/department_detail_view/data/models/studies_type.dart";
 import "package:topwr/features/departments/department_detail_view/presentation/widgets/science_clubs_section.dart";
+import "package:topwr/features/science_club/science_clubs_view/model/science_clubs.dart";
 import "package:widgetbook/widgetbook.dart";
 
 part "department_science_clubs_section.stories.g.dart";
@@ -39,5 +40,9 @@ final _mockDepartment = DepartmentDetails(
 const meta = Meta<DepartmentScienceClubsSection>();
 
 final $default = DepartmentScienceClubsSectionStory(
-  args: DepartmentScienceClubsSectionArgs(department: Arg.fixed(_mockDepartment)),
+  args: DepartmentScienceClubsSectionArgs(
+    departmentWithSciClubs: Arg.fixed(
+      (department: _mockDepartment, sciclubs: IList<ScienceClub>(const [])),
+    ),
+  ),
 );
