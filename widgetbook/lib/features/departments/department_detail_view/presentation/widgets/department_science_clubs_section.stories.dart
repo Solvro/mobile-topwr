@@ -41,8 +41,6 @@ const meta = Meta<DepartmentScienceClubsSection>();
 
 final $default = DepartmentScienceClubsSectionStory(
   args: DepartmentScienceClubsSectionArgs(
-    departmentWithSciClubs: Arg.fixed(
-      (department: _mockDepartment, sciclubs: IList<ScienceClub>(const [])),
-    ),
+    departmentWithSciClubs: Arg.fixed((department: _mockDepartment, sciclubs: IList<ScienceClub>(const []))),
   ),
 );

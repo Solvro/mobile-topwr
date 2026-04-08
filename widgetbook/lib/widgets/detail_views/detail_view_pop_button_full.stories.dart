@@ -12,20 +12,26 @@ class DetailViewPopButtonFullStory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const mockCurrentRouteName = "WidgetbookDetailMockRoute";
-    const mockCurrentRouteSettings = RouteSettings(name: mockCurrentRouteName);
+    const mockCurrentRouteSettings = RouteSettings(name: "WidgetbookDetailMockRoute");
 
     final mockPreviousRoute = MaterialPageRoute<void>(
       settings: const RouteSettings(name: DepartmentsRoute.name),
       builder: (_) => const SizedBox.shrink(),
     );
 
-    return ProviderScope(
-      overrides: [previousRouteThanProvider(mockCurrentRouteSettings).overrideWithValue(mockPreviousRoute)],
-      child: Navigator(
-        onGenerateRoute: (_) => MaterialPageRoute<void>(
-          settings: mockCurrentRouteSettings,
-          builder: (_) => const Center(child: DetailViewPopButton()),
+    // [DetailViewPopButton] watches [previousRouteThanProvider(ModalRoute.of(context)!.settings)].
+    // Override using the same [RouteSettings] instance the route exposes (not a preset family key).
+    return Navigator(
+      onGenerateRoute: (_) => MaterialPageRoute<void>(
+        settings: mockCurrentRouteSettings,
+        builder: (_) => Builder(
+          builder: (context) {
+            final routeSettings = ModalRoute.of(context)!.settings;
+            return ProviderScope(
+              overrides: [previousRouteThanProvider(routeSettings).overrideWithValue(mockPreviousRoute)],
+              child: const Center(child: DetailViewPopButton()),
+            );
+          },
         ),
       ),
     );

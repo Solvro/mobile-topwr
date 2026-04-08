@@ -38,4 +38,24 @@ final defaults = _Defaults(
   ),
 );
 
-final $default = SliverLogoStory();
+/// Same host as other widgetbook image mocks; avoids empty defaults (0 size,
+/// 0 opacity, no URL) from [SliverLogoStoryKnobsArgs] which render nothing.
+const _previewLogoUrl = "https://parking-api.topwr.solvro.pl/images/parkings/miniatures/C13.jpg";
+
+const _previewRingGradient = LinearGradient(
+  colors: [Color(0xFF1565C0), Color(0xFF42A5F5)],
+  begin: Alignment.topLeft,
+  end: Alignment.bottomRight,
+);
+
+final $default = SliverLogoStory(
+  args: SliverLogoStoryKnobsArgs(
+    logoSize: DoubleArg(100),
+    logoOpacity: DoubleArg(1),
+    scaleFactor: DoubleArg(1),
+    activeGradient: Arg.fixed(_previewRingGradient),
+    logoDirectusUrl: Arg.fixed(_previewLogoUrl),
+    boxfit: Arg.fixed(BoxFit.contain),
+    loadingType: Arg.fixed(LoadingType.shimmerLoading),
+  ),
+);
