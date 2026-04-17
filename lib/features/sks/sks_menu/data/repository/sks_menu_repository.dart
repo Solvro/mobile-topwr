@@ -66,7 +66,7 @@ class SksMenuRepository extends _$SksMenuRepository {
         )
         .castAsObject;
 
-    final preferredLang = locale == SolvroLocale.pl ? "pl" : "eng";
+    final preferredLang = locale == SolvroLocale.pl ? "pl" : "en";
     final openingHours =
         openingHoursResponse.data.firstWhereOrNull((e) => e.language == preferredLang) ??
         openingHoursResponse.data.firstOrNull;
