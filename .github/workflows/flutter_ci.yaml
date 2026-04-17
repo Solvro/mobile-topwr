@@ -13,7 +13,7 @@ permissions:
 jobs:
   all-checks:
     name: All checks
-    runs-on: macos-latest 
+    runs-on: macos-26 
 
     steps:
       - uses: actions/checkout@v6
@@ -61,7 +61,7 @@ jobs:
 
   integration-tests:
     name: Integration tests (iOS)
-    runs-on: macos-latest
+    runs-on: macos-26
 
     steps:
       - uses: actions/checkout@v6
