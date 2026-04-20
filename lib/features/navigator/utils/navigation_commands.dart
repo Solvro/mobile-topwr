@@ -310,4 +310,8 @@ extension NavigationX on WidgetRef {
     await trackEvent(ClarityEvents.openNotificationsList);
     await _router.push(const NotificationsRoute());
   }
+
+  Future<void> navigateActivityDays() async {
+    await _router.push(const ActivityDaysRoute());
+  }
 }

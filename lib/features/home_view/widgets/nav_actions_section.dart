@@ -3,64 +3,78 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
+import "../../activity_days/data/repository/activity_days_repository.dart";
 import "../../navigator/utils/navigation_commands.dart";
 
 class NavActionsSection extends ConsumerWidget {
   const NavActionsSection({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) => Center(
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8),
-          child: Wrap(
-            alignment: WrapAlignment.spaceEvenly,
-            crossAxisAlignment: WrapCrossAlignment.center,
-            runAlignment: WrapAlignment.spaceEvenly,
-            runSpacing: 12,
-            spacing: 12,
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isActivityDaysActive = ref.watch(isActivityDaysActiveProvider).value ?? false;
 
-            children: [
-              _NavActionButton(
-                context.localize.sks_menu,
-                Icon(Icons.restaurant_menu, color: context.colorScheme.surface, size: 32),
-                ref.navigateToSksMenu,
-              ),
-              _NavActionButton(
-                context.localize.parkings_title,
-                Icon(Icons.directions_car, color: context.colorScheme.surface, size: 32),
-                ref.navigateParkings,
-              ),
-              _NavActionButton(
-                context.localize.calendar,
-                Icon(Icons.calendar_today_outlined, color: context.colorScheme.surface, size: 30),
-                ref.navigateCalendar,
-              ),
-            ],
+    return Center(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: Wrap(
+              alignment: WrapAlignment.spaceEvenly,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              runAlignment: WrapAlignment.spaceEvenly,
+              runSpacing: 12,
+              spacing: 12,
+
+              children: [
+                _NavActionButton(
+                  context.localize.sks_menu,
+                  Icon(Icons.restaurant_menu, color: context.colorScheme.surface, size: 32),
+                  ref.navigateToSksMenu,
+                ),
+                _NavActionButton(
+                  context.localize.parkings_title,
+                  Icon(Icons.directions_car, color: context.colorScheme.surface, size: 32),
+                  ref.navigateParkings,
+                ),
+                _NavActionButton(
+                  context.localize.calendar,
+                  Icon(Icons.calendar_today_outlined, color: context.colorScheme.surface, size: 30),
+                  ref.navigateCalendar,
+                ),
+                if (isActivityDaysActive)
+                  _NavActionButton(
+                    context.localize.activity_days_title,
+                    Icon(Icons.celebration, color: context.colorScheme.surface, size: 32),
+                    ref.navigateActivityDays,
+                    color: const Color(0xFF1565C0),
+                  ),
+              ],
+            ),
           ),
-        ),
-      ],
-    ),
-  );
+        ],
+      ),
+    );
+  }
 }
 
 class _NavActionButton extends StatelessWidget {
-  const _NavActionButton(this.title, this.icon, this.onTap);
+  const _NavActionButton(this.title, this.icon, this.onTap, {this.color});
   final String title;
   final Widget icon;
   final VoidCallback onTap;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
+    final buttonColor = color ?? context.colorScheme.primary;
     return MergeSemantics(
       child: Column(
         children: [
           Material(
             color: Colors.transparent,
             child: Ink(
-              decoration: BoxDecoration(shape: BoxShape.circle, color: context.colorScheme.primary),
+              decoration: BoxDecoration(shape: BoxShape.circle, color: buttonColor),
               child: InkWell(
                 onTap: onTap,
                 borderRadius: BorderRadius.circular(56),

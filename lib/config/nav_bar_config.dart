@@ -166,6 +166,7 @@ extension GetFormattedRouteNameX on Route<dynamic> {
       DigitalGuideEntranceDetailsRoute.name => context.localize.entrances,
       DigitalGuideRoomDetailRoute.name => context.localize.room_information,
       SettingsRoute.name => context.localize.settings,
+      ActivityDaysRoute.name => context.localize.activity_days_title,
       _ => null,
     };
   }

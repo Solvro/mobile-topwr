@@ -660,5 +660,9 @@
   "iconnames_polish_language": "Available in Polish",
   "iconnames_sunny": "Full-time studies",
   "iconnames_has_weekend_option": "Part-time studies",
-  "go_to" : "Go to"
+  "go_to" : "Go to",
+  "activity_days_title": "Activity Days",
+  "activity_days_tab_stands": "Stands",
+  "activity_days_tab_timetable": "Timetable",
+  "activity_days_tab_info": "Information"
 }
