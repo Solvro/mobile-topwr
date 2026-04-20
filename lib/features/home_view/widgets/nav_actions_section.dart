@@ -47,7 +47,7 @@ class NavActionsSection extends ConsumerWidget {
                     context.localize.activity_days_title,
                     Icon(Icons.celebration, color: context.colorScheme.surface, size: 32),
                     ref.navigateActivityDays,
-                    color: context.colorScheme.blueAzure,
+                    color: context.colorScheme.secondary,
                   ),
               ],
             ),

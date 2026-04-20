@@ -9,6 +9,33 @@ part "activity_days_repository.g.dart";
 
 @riverpod
 Future<ActivityDaysResponse?> activityDaysRepository(Ref ref) async {
+  // MOCK: Return an active activity days example
+  final now = DateTime.now();
+  if (true) {
+    return ActivityDaysResponse(
+      id: 999,
+      name: 'Wiosenne Dni Aktywności Studenckiej',
+      startsAt: now.subtract(const Duration(days: 1)),
+      endsAt: now.add(const Duration(days: 2)),
+      createdAt: now.subtract(const Duration(days: 30)),
+      updatedAt: now.subtract(const Duration(days: 5)),
+      timetable: const ActivityDaysTimetable(
+        id: 1,
+        description: 'Harmonogram DAS',
+      ),
+      maps: const [
+        ActivityDaysMap(id: 1, name: 'Mapa główna'),
+      ],
+      links: const [
+        ActivityDaysLink(id: 1, url: 'https://pwr.edu.pl'),
+      ],
+      stands: const [
+        ActivityDaysStand(id: 1, name: 'Koło Naukowe Solvro'),
+        ActivityDaysStand(id: 2, name: 'TKN PIRM'),
+      ],
+    );
+  }
+
   final restClient = ref.watch(restClientProvider);
   final url = "${Env.mainRestApiUrl}/das";
 
@@ -18,21 +45,14 @@ Future<ActivityDaysResponse?> activityDaysRepository(Ref ref) async {
     if (data == null || data.isEmpty) return null;
 
     final now = DateTime.now();
-    final events = data
-        .whereType<Map<String, dynamic>>()
-        .map(ActivityDaysResponse.fromJson)
-        .toList();
+    final events = data.whereType<Map<String, dynamic>>().map(ActivityDaysResponse.fromJson).toList();
 
-    final runningEvents = events.where(
-      (e) => now.isAfter(e.startsAt) && now.isBefore(e.endsAt),
-    );
+    final runningEvents = events.where((e) => now.isAfter(e.startsAt) && now.isBefore(e.endsAt));
     if (runningEvents.isNotEmpty) {
       return runningEvents.first;
     }
 
-    final upcomingEvents = events
-        .where((e) => e.startsAt.isAfter(now))
-        .toList()
+    final upcomingEvents = events.where((e) => e.startsAt.isAfter(now)).toList()
       ..sort((a, b) => a.startsAt.compareTo(b.startsAt));
     if (upcomingEvents.isNotEmpty) {
       return upcomingEvents.first;

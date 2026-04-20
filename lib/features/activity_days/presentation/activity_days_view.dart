@@ -18,9 +18,7 @@ class ActivityDaysView extends HookConsumerWidget {
     final tabController = useTabController(initialLength: 3);
 
     return HorizontalSymmetricSafeAreaScaffold(
-      appBar: DetailViewAppBar(
-        title: (text: l10n.activity_days_title, context: context),
-      ),
+      appBar: DetailViewAppBar(title: (text: l10n.activity_days_title, context: context)),
       body: Column(
         children: [
           Material(
@@ -42,11 +40,7 @@ class ActivityDaysView extends HookConsumerWidget {
           Expanded(
             child: TabBarView(
               controller: tabController,
-              children: const [
-                _PlaceholderTab(),
-                _PlaceholderTab(),
-                _PlaceholderTab(),
-              ],
+              children: const [_PlaceholderTab(), _PlaceholderTab(), _PlaceholderTab()],
             ),
           ),
         ],
@@ -63,9 +57,7 @@ class _PlaceholderTab extends StatelessWidget {
     return Center(
       child: Text(
         "Coming soon",
-        style: context.textTheme.bodyLarge?.copyWith(
-          color: context.colorScheme.onSurface.withValues(alpha: 0.5),
-        ),
+        style: context.textTheme.bodyLarge?.copyWith(color: context.colorScheme.onSurface.withValues(alpha: 0.5)),
       ),
     );
   }
