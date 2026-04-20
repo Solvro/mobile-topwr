@@ -23,7 +23,6 @@ Future<ActivityDaysResponse?> activityDaysRepository(Ref ref) async {
         .map(ActivityDaysResponse.fromJson)
         .toList();
 
-    // 1. Currently running event (now is between startsAt and endsAt)
     final runningEvents = events.where(
       (e) => now.isAfter(e.startsAt) && now.isBefore(e.endsAt),
     );
@@ -31,7 +30,6 @@ Future<ActivityDaysResponse?> activityDaysRepository(Ref ref) async {
       return runningEvents.first;
     }
 
-    // 2. Closest upcoming event (startsAt is in the future)
     final upcomingEvents = events
         .where((e) => e.startsAt.isAfter(now))
         .toList()
@@ -40,15 +38,12 @@ Future<ActivityDaysResponse?> activityDaysRepository(Ref ref) async {
       return upcomingEvents.first;
     }
 
-    // 3. No active or upcoming events
     return null;
   } on DioException {
     return null;
   }
 }
 
-/// Provider that determines whether the Activity Days button should be visible.
-/// Returns true only when there is a currently running event.
 @riverpod
 Future<bool> isActivityDaysActive(Ref ref) async {
   final event = await ref.watch(activityDaysRepositoryProvider.future);
