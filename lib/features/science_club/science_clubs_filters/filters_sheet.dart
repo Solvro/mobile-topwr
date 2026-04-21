@@ -8,6 +8,7 @@ import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "filters_controller.dart";
 import "filters_search_controller.dart";
+import "widgets/branches_wrap.dart";
 import "widgets/departments_wrap.dart";
 import "widgets/filters_button.dart";
 import "widgets/filters_header.dart";
@@ -39,6 +40,7 @@ class FiltersSheet extends ConsumerWidget {
                       shrinkWrap: true,
                       children: const [
                         TypesWrap(),
+                        BranchesWrap(),
                         DepartmentsWrap(),
                         TagsWrap(),
                         _NoFiltersFound(),
@@ -111,7 +113,7 @@ class _NoFiltersFound extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final nothingFound = ref.watch(areNoFiltersFoundProvider);
+    final nothingFound = ref.watch(areNoFiltersFoundProvider(context.localize));
     if (!nothingFound) {
       return const SizedBox.shrink();
     }

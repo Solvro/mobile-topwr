@@ -197,6 +197,10 @@
   "@list": {
     "description": "Label for list view"
   },
+  "branches": "Filie",
+  "@branches": {
+    "description": "Title for branches section"
+  },
   "departments": "Wydziały",
   "@departments": {
     "description": "Title for departments/faculties section"
@@ -3594,17 +3598,33 @@
   "@main_branch": {
     "description": "Main branch option in the branch selection dialog"
   },
+  "main_branch_filter": "Wrocław",
+  "@main_branch_filter": {
+    "description": "City name used for filtering the main branch"
+  },
   "jelenia_gora_branch": "Filia w Jeleniej Górze",
   "@jelenia_gora_branch": {
     "description": "Branch option for Jelenia Góra in the branch selection dialog"
+  },
+  "jelenia_gora_branch_filter": "Jelenia Góra",
+  "@jelenia_gora_branch_filter": {
+    "description": "City name used for filtering the Jelenia Góra branch"
   },
   "walbrzych_branch": "Filia w Wałbrzychu",
   "@walbrzych_branch": {
     "description": "Branch option for Wałbrzych in the branch selection dialog"
   },
+  "walbrzych_branch_filter": "Wałbrzych",
+  "@walbrzych_branch_filter": {
+    "description": "City name used for filtering the Wałbrzych branch"
+  },
   "legnica_branch": "Filia w Legnicy",
   "@legnica_branch": {
     "description": "Branch option for Legnica in the branch selection dialog"
+  },
+  "legnica_branch_filter": "Legnica",
+  "@legnica_branch_filter": {
+    "description": "City name used for filtering the Legnica branch"
   },
   "branch": "Filia",
   "@branch": {

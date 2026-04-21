@@ -16,6 +16,7 @@ import "../../../widgets/loading_widgets/contact_section_loading.dart";
 import "../../../widgets/loading_widgets/header_section_loading.dart";
 import "../../../widgets/loading_widgets/shimmer_loading.dart";
 import "../../../widgets/my_error_widget.dart";
+import "../../departments/departments_view/data/utils/departments_extensions.dart";
 import "../science_clubs_view/model/science_clubs.dart";
 import "../science_clubs_view/widgets/strategic_badge.dart";
 import "../science_clubs_view/widgets/verified_badge.dart";
@@ -76,9 +77,14 @@ class _SciClubDetailDataView extends ConsumerWidget {
                 ),
               ),
               const SizedBox(height: 12),
-              if (value.department != null)
-                Text(value.department?.name ?? "", style: context.textTheme.bodyLarge, textAlign: TextAlign.center),
-              if (value.department != null) const SizedBox(height: DetailViewsConfig.spacerHeight),
+              if (value.department != null) ...[
+                Text(
+                  value.department?.displayName(context) ?? "",
+                  style: context.textTheme.bodyLarge,
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: DetailViewsConfig.spacerHeight),
+              ],
               TagsSection(tags: value.tags, department: value.department),
               const SizedBox(height: DetailViewsConfig.spacerHeight),
               ContactSection(
