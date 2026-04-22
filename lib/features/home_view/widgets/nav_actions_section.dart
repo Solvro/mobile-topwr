@@ -13,45 +13,42 @@ class NavActionsSection extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final isActivityDaysActive = ref.watch(isActivityDaysActiveProvider).value ?? false;
 
-    return Center(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: Wrap(
-              alignment: WrapAlignment.spaceEvenly,
-              crossAxisAlignment: WrapCrossAlignment.center,
-              runAlignment: WrapAlignment.spaceEvenly,
-              runSpacing: 12,
-              spacing: 12,
-
-              children: [
-                _NavActionButton(
-                  context.localize.sks_menu,
-                  Icon(Icons.restaurant_menu, color: context.colorScheme.surface, size: 32),
-                  ref.navigateToSksMenu,
-                ),
-                _NavActionButton(
-                  context.localize.parkings_title,
-                  Icon(Icons.directions_car, color: context.colorScheme.surface, size: 32),
-                  ref.navigateParkings,
-                ),
-                _NavActionButton(
-                  context.localize.calendar,
-                  Icon(Icons.calendar_today_outlined, color: context.colorScheme.surface, size: 30),
-                  ref.navigateCalendar,
-                ),
-                if (isActivityDaysActive)
-                  _NavActionButton(
-                    context.localize.activity_days_title,
-                    Icon(Icons.celebration, color: context.colorScheme.surface, size: 32),
-                    ref.navigateActivityDays,
-                    color: context.colorScheme.secondary,
-                  ),
-              ],
+          Expanded(
+            child: _NavActionButton(
+              context.localize.sks_menu,
+              Icon(Icons.restaurant_menu, color: context.colorScheme.surface, size: 32),
+              ref.navigateToSksMenu,
             ),
           ),
+          Expanded(
+            child: _NavActionButton(
+              context.localize.parkings_title,
+              Icon(Icons.directions_car, color: context.colorScheme.surface, size: 32),
+              ref.navigateParkings,
+            ),
+          ),
+          Expanded(
+            child: _NavActionButton(
+              context.localize.calendar,
+              Icon(Icons.calendar_today_outlined, color: context.colorScheme.surface, size: 30),
+              ref.navigateCalendar,
+            ),
+          ),
+          if (isActivityDaysActive)
+            Expanded(
+              child: _NavActionButton(
+                context.localize.activity_days_title.replaceFirst(" ", "\n"),
+                Icon(Icons.celebration, color: context.colorScheme.surface, size: 32),
+                ref.navigateActivityDays,
+                color: context.colorScheme.secondary,
+              ),
+            ),
         ],
       ),
     );
@@ -69,23 +66,34 @@ class _NavActionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final buttonColor = color ?? context.colorScheme.primary;
     return MergeSemantics(
-      child: Column(
-        children: [
-          Material(
-            color: Colors.transparent,
-            child: Ink(
-              decoration: BoxDecoration(shape: BoxShape.circle, color: buttonColor),
-              child: InkWell(
-                onTap: onTap,
-                borderRadius: BorderRadius.circular(56),
-                splashColor: context.colorScheme.surface.withValues(alpha: 0.3),
-                child: SizedBox.square(dimension: 56, child: Center(child: icon)),
+      child: GestureDetector(
+        onTap: onTap,
+        behavior: HitTestBehavior.opaque,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Material(
+              color: Colors.transparent,
+              child: Ink(
+                decoration: BoxDecoration(shape: BoxShape.circle, color: buttonColor),
+                child: InkWell(
+                  onTap: onTap,
+                  borderRadius: BorderRadius.circular(56),
+                  splashColor: context.colorScheme.surface.withValues(alpha: 0.3),
+                  child: SizedBox.square(dimension: 56, child: Center(child: icon)),
+                ),
               ),
             ),
-          ),
-          const SizedBox(height: 8),
-          Text(title, style: context.textTheme.bodyMedium),
-        ],
+            const SizedBox(height: 8),
+            Text(
+              title,
+              style: context.textTheme.bodyMedium,
+              textAlign: TextAlign.center,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -3814,7 +3814,7 @@
   "@go_to": {
     "description": "Button to navigate to a selected place or section from notification dialog"
   },
-  "activity_days_title": "Dni Aktywności",
+  "activity_days_title": "Dni\nAktywności",
   "@activity_days_title": {
     "description": "Title for the Activity Days feature screen"
   },
