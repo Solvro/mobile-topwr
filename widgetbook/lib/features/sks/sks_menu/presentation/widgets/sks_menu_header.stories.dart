@@ -4,10 +4,7 @@ import "package:widgetbook/widgetbook.dart";
 
 part "sks_menu_header.stories.g.dart";
 
-const _mockOpeningHours = OpeningHours(
-  canteen: VenueHours(openingTime: "10:00", closingTime: "16:00"),
-  cafe: VenueHours(openingTime: "08:00", closingTime: "20:00"),
-);
+const _mockOpeningHours = OpeningHours(language: "en", canteen: "10:00-16:00", cafe: "08:00-20:00");
 
 class SksMenuHeaderStoryKnobs {
   final String dateTimeOfLastUpdate;
