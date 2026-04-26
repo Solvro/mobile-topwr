@@ -6,4 +6,4 @@ part "section_header.stories.g.dart";
 
 const meta = Meta<SectionHeader>();
 
-final $default = SectionHeaderStory();
+final $default = SectionHeaderStory(args: SectionHeaderArgs(text: Arg.fixed("About us")));

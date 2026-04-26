@@ -42,6 +42,6 @@ const mockDigitalGuideResponse = DigitalGuideResponse(
 
 const meta = Meta<DigitalGuideDressingRoomsExpansionTileContent>();
 
-final $default_mock = DigitalGuideDressingRoomsExpansionTileContentStory(
+final $defaultMock = DigitalGuideDressingRoomsExpansionTileContentStory(
   args: DigitalGuideDressingRoomsExpansionTileContentArgs(digitalGuideResponse: Arg.fixed(mockDigitalGuideResponse)),
 );

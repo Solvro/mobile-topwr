@@ -10,7 +10,7 @@ import "package:widgetbook/widgetbook.dart";
 
 part "day_changes_dialog.stories.g.dart";
 
-/// Dates relative to [today] so [IList.nextDaySwapsWithinWindow] (next 7 days) is
+/// Dates relative to [today] so `IList.nextDaySwapsWithinWindow` (next 7 days) is
 /// non-empty; fixed 2024 dates were always in the past and produced an empty list.
 final AcademicCalendarWithSwaps _mockAcademicCalendar = () {
   final t = today;

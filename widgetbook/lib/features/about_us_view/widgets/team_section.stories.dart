@@ -1,4 +1,6 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
+import "package:flutter/widgets.dart";
+import "package:topwr/api_base_rest/shared_models/image_data.dart";
 import "package:topwr/features/about_us_view/bussiness/models.dart";
 import "package:topwr/features/about_us_view/widgets/team_section.dart";
 import "package:widgetbook/widgetbook.dart";
@@ -24,13 +26,6 @@ final _mockMultiversionTeam = IList<MultiversionTeam>([
   (versionName: "v2.0", members: IList([_mockTeamMember1, _mockTeamMember2])),
 ]);
 
-class TeamSectionStoryKnobs {
-  final bool useMockData;
-  TeamSectionStoryKnobs({this.useMockData = true});
-}
+const meta = Meta<TeamSection>();
 
-const meta = MetaWithArgs<TeamSection, TeamSectionStoryKnobs>();
-
-final defaults = _Defaults(builder: (context, args) => TeamSection(multiversionTeam: _mockMultiversionTeam));
-
-final $default = TeamSectionStory();
+final $default = TeamSectionStory(args: TeamSectionArgs(multiversionTeam: Arg.fixed(_mockMultiversionTeam)));

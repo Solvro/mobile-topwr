@@ -1,18 +1,11 @@
+import "package:flutter/widgets.dart";
 import "package:topwr/widgets/detail_views/contact_icon_widget.dart";
 import "package:widgetbook/widgetbook.dart";
 
 part "contact_icon_widget.stories.g.dart";
 
-class ContactIconWidgetStoryKnobs {
-  final String icon;
-  ContactIconWidgetStoryKnobs({required this.icon});
-}
+const meta = Meta<ContactIconWidget>();
 
-const meta = MetaWithArgs<ContactIconWidget, ContactIconWidgetStoryKnobs>();
+const _defaultContactSvg = "assets/svg/contact_icons/mail.svg";
 
-/// Bundled by the topwr package; same path pattern as other widgetbook SVG mocks.
-const _defaultContactSvg = "packages/topwr/assets/svg/contact_icons/mail.svg";
-
-final defaults = _Defaults(builder: (context, args) => ContactIconWidget(icon: args.icon));
-
-final $default = ContactIconWidgetStory(args: ContactIconWidgetStoryKnobsArgs(icon: Arg.fixed(_defaultContactSvg)));
+final $default = ContactIconWidgetStory(args: ContactIconWidgetArgs(icon: Arg.fixed(_defaultContactSvg)));
