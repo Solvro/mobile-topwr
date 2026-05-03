@@ -19,16 +19,9 @@ Future<ActivityDaysResponse?> activityDaysRepository(Ref ref) async {
       endsAt: now.add(const Duration(days: 2)),
       createdAt: now.subtract(const Duration(days: 30)),
       updatedAt: now.subtract(const Duration(days: 5)),
-      timetable: const ActivityDaysTimetable(
-        id: 1,
-        description: 'Harmonogram DAS',
-      ),
-      maps: const [
-        ActivityDaysMap(id: 1, name: 'Mapa główna'),
-      ],
-      links: const [
-        ActivityDaysLink(id: 1, url: 'https://pwr.edu.pl'),
-      ],
+      timetable: const ActivityDaysTimetable(id: 1, description: 'Harmonogram DAS'),
+      maps: const [ActivityDaysMap(id: 1, name: 'Mapa główna')],
+      links: const [ActivityDaysLink(id: 1, url: 'https://pwr.edu.pl')],
       stands: const [
         ActivityDaysStand(id: 1, name: 'Koło Naukowe Solvro'),
         ActivityDaysStand(id: 2, name: 'TKN PIRM'),
