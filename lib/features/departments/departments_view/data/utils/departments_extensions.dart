@@ -2,11 +2,18 @@ import "package:flutter/material.dart";
 
 import "../../../../../theme/hex_color.dart";
 import "../../../../../utils/colors_sort.dart";
+import "../../../../../utils/context_extensions.dart";
+import "../../../../branches/data/model/branch.dart";
 import "../models/department.dart";
 
 extension DepartmentsX on Department {
   LinearGradient get gradient =>
       LinearGradient(colors: [HexColor(gradientStart), HexColor(gradientStop)]..sortByLightness());
+
+  String? displayName(BuildContext context) {
+    if (branch == Branch.main) return name;
+    return branch.localize(context.localize);
+  }
 }
 
 extension _GetDepartmentsCodeX on Department? {

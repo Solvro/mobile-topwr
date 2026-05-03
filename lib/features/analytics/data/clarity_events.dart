@@ -36,6 +36,7 @@ enum ClarityEvents {
   selectBuilding,
   searchMultilayerMap,
   selectSciClubFilterTag,
+  selectSciClubFilterBranch,
   selectSciClubFilterDepartment,
   selectSciClubFilterOrgType,
   searchSciClubFilters,

@@ -8,6 +8,7 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../analytics/data/clarity.dart";
 import "../../analytics/data/clarity_events.dart";
+import "../../branches/data/model/branch.dart";
 import "../../departments/departments_view/data/models/department.dart";
 import "../../departments/departments_view/data/repository/departments_repository.dart";
 import "filters_search_controller.dart";
@@ -30,6 +31,12 @@ mixin FilterController<T> on $Notifier<ISet<T>> {
   void clearFilter() {
     state = state.clear();
   }
+}
+
+@Riverpod(dependencies: [])
+class SelectedBranchController extends _$SelectedBranchController with FilterController<Branch> {
+  @override
+  ISet<Branch> build() => const ISet.empty();
 }
 
 @Riverpod(dependencies: [])
@@ -57,7 +64,13 @@ class SelectedTypeController extends _$SelectedTypeController with FilterControl
 
 @Riverpod(
   keepAlive: true,
-  dependencies: [SelectedDepartmentController, SelectedTagController, SelectedTypeController, SearchFiltersController],
+  dependencies: [
+    SelectedDepartmentController,
+    SelectedTagController,
+    SelectedTypeController,
+    SelectedBranchController,
+    SearchFiltersController,
+  ],
 )
 bool areFiltersEnabled(Ref ref) {
   final selectedTagsIsNotEmpty = ref.watch(selectedTagControllerProvider.select((value) => value.isNotEmpty));
@@ -66,7 +79,12 @@ bool areFiltersEnabled(Ref ref) {
   );
   final selectedTypesIsNotEmpty = ref.watch(selectedTypeControllerProvider.select((value) => value.isNotEmpty));
   final searchFilterIsNotEmpty = ref.watch(searchFiltersControllerProvider).isNotEmpty;
-  return selectedTagsIsNotEmpty || selectedDepartmentsIsNotEmpty || selectedTypesIsNotEmpty || searchFilterIsNotEmpty;
+  final selectedBranchNotEmpty = ref.watch(selectedBranchControllerProvider.select((value) => value.isNotEmpty));
+  return selectedTagsIsNotEmpty ||
+      selectedDepartmentsIsNotEmpty ||
+      selectedTypesIsNotEmpty ||
+      searchFilterIsNotEmpty ||
+      selectedBranchNotEmpty;
 }
 
 extension ClearAllFiltersX on WidgetRef {
@@ -77,6 +95,7 @@ extension ClearAllFiltersX on WidgetRef {
       ref.read(selectedDepartmentControllerProvider.notifier).clearFilter();
       ref.read(selectedTypeControllerProvider.notifier).clearFilter();
       ref.read(searchFiltersControllerProvider.notifier).clear();
+      ref.read(selectedBranchControllerProvider.notifier).clearFilter();
     };
   }
 }

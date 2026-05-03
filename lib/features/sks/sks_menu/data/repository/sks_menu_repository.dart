@@ -1,4 +1,7 @@
+import "package:collection/collection.dart";
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
+import "package:solvro_translator_core/solvro_translator_core.dart";
 
 import "../../../../../api_base_rest/cache/cache.dart";
 import "../../../../../api_base_rest/client/json.dart";
@@ -6,8 +9,8 @@ import "../../../../../api_base_rest/translations/translate.dart";
 import "../../../../../config/env.dart";
 import "../../../../../config/ttl_config.dart";
 import "../../../../../features/remote_config/data/repository/remote_config_repository.dart";
+import "../../../../../services/translations_service/data/preferred_lang_repository.dart";
 import "../../../../../utils/datetime_utils.dart";
-import "../../../../../utils/ilist_nonempty.dart";
 import "../models/dish_category_enum.dart";
 import "../models/sks_menu_response.dart";
 import "../models/sks_opening_hours.dart";
@@ -23,17 +26,20 @@ class SksMenuRepository extends _$SksMenuRepository {
     final remoteConfig = await ref.read(remoteConfigRepositoryProvider.future);
     final sksUrl = remoteConfig.sksMicroserviceUrl ?? Env.sksUrl;
     final sksApiBaseUrl = "$sksUrl/api/v1";
+    final mainApiBaseUrl = Env.mainRestApiUrl;
     await ref.clearCache("$sksApiBaseUrl/meals/current", _ttlDaysMeals);
-    await ref.clearCache("$sksApiBaseUrl/info", _ttlDaysOpeningHours);
+    await ref.clearCache("$mainApiBaseUrl/sks_opening_hours", _ttlDaysOpeningHours);
   }
 
   @override
   Future<ExtendedSksMenuResponse> build() async {
     final remoteConfig = await ref.watch(remoteConfigRepositoryProvider.future);
+    final locale = await ref.watch(preferredLanguageRepositoryProvider.future) ?? SolvroLocale.pl;
     final sksUrl = remoteConfig.sksMicroserviceUrl ?? Env.sksUrl;
     final sksApiBaseUrl = "$sksUrl/api/v1";
+    final mainApiBaseUrl = Env.mainRestApiUrl;
     final mealsUrl = "$sksApiBaseUrl/meals/current";
-    final openingHoursUrl = "$sksApiBaseUrl/info";
+    final openingHoursUrl = "$mainApiBaseUrl/sks_opening_hours";
 
     final sksMenuResponse = await ref
         .getAndCacheDataWithTranslation(
@@ -53,18 +59,17 @@ class SksMenuRepository extends _$SksMenuRepository {
     final openingHoursResponse = await ref
         .getAndCacheData(
           openingHoursUrl,
-          SksOpeningHours.fromJson,
+          SksOpeningHoursResponse.fromJson,
           ttlDays: _ttlDaysOpeningHours,
-          extraValidityCheck: (data) {
-            final obj = data.castAsObject;
-            return obj.openingHours.canteen.openingTime.isNotEmpty &&
-                obj.openingHours.canteen.closingTime.isNotEmpty &&
-                obj.openingHours.cafe.openingTime.isNotEmpty &&
-                obj.openingHours.cafe.closingTime.isNotEmpty;
-          },
+          extraValidityCheck: (data) => data.castAsObject.data.isNotEmpty,
           onRetry: ref.invalidateSelf,
         )
         .castAsObject;
+
+    final preferredLang = locale == SolvroLocale.pl ? "pl" : "en";
+    final openingHours =
+        openingHoursResponse.data.firstWhereOrNull((e) => e.language == preferredLang) ??
+        openingHoursResponse.data.firstOrNull;
 
     final trueMeals = sksMenuResponse.meals.where((e) => e.category != DishCategory.technicalInfo).toIList();
 
@@ -78,7 +83,7 @@ class SksMenuRepository extends _$SksMenuRepository {
       lastUpdate: sksMenuResponse.lastUpdate,
       meals: trueMeals,
       technicalInfos: technicalInfos,
-      openingHours: openingHoursResponse.openingHours,
+      openingHours: openingHours,
     );
   }
 }

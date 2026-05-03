@@ -30,7 +30,7 @@ abstract class ExtendedSksMenuResponse with _$ExtendedSksMenuResponse {
     required DateTime lastUpdate,
     required IList<SksMenuDish> meals,
     required IList<String> technicalInfos,
-    required OpeningHours openingHours,
+    required OpeningHours? openingHours,
   }) = _ExtendedSksMenuResponse;
 
   factory ExtendedSksMenuResponse.fromJson(Map<String, dynamic> json) => _$ExtendedSksMenuResponseFromJson(json);

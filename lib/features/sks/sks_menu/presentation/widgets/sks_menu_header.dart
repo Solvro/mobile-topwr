@@ -13,7 +13,7 @@ class SksMenuHeader extends StatelessWidget {
 
   final String dateTimeOfLastUpdate;
   final bool isMenuOnline;
-  final OpeningHours openingHours;
+  final OpeningHours? openingHours;
   @override
   Widget build(BuildContext context) {
     final stamp = DateTime.tryParse(dateTimeOfLastUpdate) ?? DateTime.now();
@@ -45,21 +45,16 @@ class SksMenuHeader extends StatelessWidget {
               ),
             ),
           ),
-          MergeSemantics(
-            child: Column(
-              children: [
-                Text(context.localize.working_hours, style: context.textTheme.bodyLarge),
-                Text(
-                  "${context.localize.canteen} ${openingHours.canteen.openingTime} - ${openingHours.canteen.closingTime}",
-                  style: context.textTheme.bodyLarge,
-                ),
-                Text(
-                  "${context.localize.cafe} ${openingHours.cafe.openingTime} - ${openingHours.cafe.closingTime}",
-                  style: context.textTheme.bodyLarge,
-                ),
-              ],
+          if (openingHours != null)
+            MergeSemantics(
+              child: Column(
+                children: [
+                  Text(context.localize.working_hours, style: context.textTheme.bodyLarge),
+                  Text("${context.localize.canteen} ${openingHours!.canteen}", style: context.textTheme.bodyLarge),
+                  Text("${context.localize.cafe} ${openingHours!.cafe}", style: context.textTheme.bodyLarge),
+                ],
+              ),
             ),
-          ),
           if (isMenuOnline)
             Padding(
               padding: const EdgeInsets.symmetric(vertical: SksMenuConfig.paddingSmall),
