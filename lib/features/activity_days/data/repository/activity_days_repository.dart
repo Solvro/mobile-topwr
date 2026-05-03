@@ -1,3 +1,4 @@
+// ignore_for_file: dead_code, literal_only_boolean_expressions
 import "package:dio/dio.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
@@ -9,22 +10,21 @@ part "activity_days_repository.g.dart";
 
 @riverpod
 Future<ActivityDaysResponse?> activityDaysRepository(Ref ref) async {
-  // MOCK: Return an active activity days example
   final now = DateTime.now();
   if (true) {
     return ActivityDaysResponse(
       id: 999,
-      name: 'Wiosenne Dni Aktywności Studenckiej',
+      name: "Wiosenne Dni Aktywności Studenckiej",
       startsAt: now.subtract(const Duration(days: 1)),
       endsAt: now.add(const Duration(days: 2)),
       createdAt: now.subtract(const Duration(days: 30)),
       updatedAt: now.subtract(const Duration(days: 5)),
-      timetable: const ActivityDaysTimetable(id: 1, description: 'Harmonogram DAS'),
-      maps: const [ActivityDaysMap(id: 1, name: 'Mapa główna')],
-      links: const [ActivityDaysLink(id: 1, url: 'https://pwr.edu.pl')],
+      timetable: const ActivityDaysTimetable(id: 1, description: "Harmonogram DAS"),
+      maps: const [ActivityDaysMap(id: 1, name: "Mapa główna")],
+      links: const [ActivityDaysLink(id: 1, url: "https://pwr.edu.pl")],
       stands: const [
-        ActivityDaysStand(id: 1, name: 'Koło Naukowe Solvro'),
-        ActivityDaysStand(id: 2, name: 'TKN PIRM'),
+        ActivityDaysStand(id: 1, name: "Koło Naukowe Solvro"),
+        ActivityDaysStand(id: 2, name: "PWR Racing Team"),
       ],
     );
   }
