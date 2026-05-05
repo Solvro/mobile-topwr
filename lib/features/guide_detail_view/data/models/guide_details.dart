@@ -20,7 +20,7 @@ abstract class GuideDetailsResponse with _$GuideDetailsResponse, _$GuideDetailsR
 abstract class GuideDetails with _$GuideDetails {
   const factory GuideDetails({
     required String title,
-    required String description,
+    @JsonKey(defaultValue: "") required String description,
     required String shortDesc,
     required ImageData image,
     required DateTime createdAt,
