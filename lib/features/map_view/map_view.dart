@@ -21,6 +21,7 @@ class MapView<T extends GoogleNavigable> extends ConsumerWidget {
     required this.mapViewTexts,
     required this.mapControllers,
     required this.markerBuilder,
+    this.markerZIndex,
     required this.mapTileBuilder,
     required this.mapSheetSize,
     required this.semanticsLabel,
@@ -32,6 +33,7 @@ class MapView<T extends GoogleNavigable> extends ConsumerWidget {
   });
   final MapControllers<T> mapControllers;
   final MarkerBuilder<T> markerBuilder;
+  final MarkerZIndex<T>? markerZIndex;
   final MapTileBuilder<T> mapTileBuilder;
   final MapViewTexts mapViewTexts;
   final MapSheetSize mapSheetSize;
@@ -56,6 +58,7 @@ class MapView<T extends GoogleNavigable> extends ConsumerWidget {
       child: MapConfig(
         controllers: mapControllers,
         markerBuilder: markerBuilder,
+        markerZIndex: markerZIndex,
         mapTileBuilder: mapTileBuilder,
         mapViewTexts: mapViewTexts,
         mapSheetSize: mapSheetSize,
