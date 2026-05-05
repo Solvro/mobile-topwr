@@ -65,7 +65,8 @@ Future<AboutUs> aboutUsRepository(Ref ref) async {
                   return (
                     teamMemberName: member.name,
                     image: member.image,
-                    subtitleForMilestone: member.roles.where((role) => role.meta.milestoneId == version.id).first.name,
+                    subtitleForMilestone:
+                        member.roles.where((role) => role.meta.milestoneId == version.id).firstOrNull?.name ?? "",
                     socialLinks: member.socialLinks.map((e) => e.url).toIList(),
                   );
                 })
