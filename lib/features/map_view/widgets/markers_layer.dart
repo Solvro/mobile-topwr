@@ -1,3 +1,4 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_map/flutter_map.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
@@ -11,11 +12,15 @@ class MarkersConsumerLayer<T extends GoogleNavigable> extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final asyncItems = ref.watch(context.mapSourceRepository<T>()).value.whereNonNull.toList();
+    var asyncItems = ref.watch(context.mapSourceRepository<T>()).value.whereNonNull.toIList();
     final activeItem = ref.watch(context.activeMarkerController<T>());
     final markerZIndex = context.markerZIndex<T>();
     if (markerZIndex != null) {
-      asyncItems.sort((a, b) => markerZIndex(a).compareTo(markerZIndex(b)));
+      asyncItems = asyncItems.sort((a, b) {
+        final activeComparison = (a == activeItem ? 1 : 0).compareTo(b == activeItem ? 1 : 0);
+        if (activeComparison != 0) return activeComparison;
+        return markerZIndex(a).compareTo(markerZIndex(b));
+      });
     }
     return MarkerLayer(
       markers: asyncItems.map((item) => context.markerBuilder<T>()(item, ref, isActive: activeItem == item)).toList(),
