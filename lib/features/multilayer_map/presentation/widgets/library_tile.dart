@@ -47,7 +47,7 @@ class LibraryTile extends HookConsumerWidget {
                   directusPhotoUrl: library.photo,
                   title: library.title,
                   subtitle:
-                      "${library.room != null ? "${context.localize.room} ${library.room}\n" : ""}${context.localize.building_tile_building} ${library.building?.name}",
+                      "${library.room != null ? "${context.localize.room} ${library.room}\n" : ""}${library.building != null ? "${context.localize.building_tile_building} ${library.building!.name}" : ""}",
                   isActive: isActive,
                   onTap: () {
                     unawaited(ref.trackEvent(ClarityEvents.selectLibrary, value: library.title));
