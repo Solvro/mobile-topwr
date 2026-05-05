@@ -18,7 +18,7 @@ Future<AboutUs> aboutUsRepository(Ref ref) async {
   final apiUrl = Env.mainRestApiUrl;
   const aboutUsEndpoint = "/about_us";
   const teamMembersEndpoint = "/contributors?milestones=true&socialLinks=true&photo=true&roles=true";
-  const versionsEndpoint = "/versions";
+  const versionsEndpoint = "/milestones";
 
   final responses = await Future.wait([
     ref
@@ -60,15 +60,13 @@ Future<AboutUs> aboutUsRepository(Ref ref) async {
           (version) => (
             versionName: version.name,
             members: teamMembersResponse.data
-                .where((member) => member.milestones.any((milestone) => milestone.id == version.milestoneId))
+                .where((member) => member.milestones.any((milestone) => milestone.id == version.id))
                 .map((member) {
                   return (
                     teamMemberName: member.name,
                     image: member.image,
-                    subtitleForMilestone: member.roles
-                        .where((role) => role.meta.milestoneId == version.milestoneId)
-                        .first
-                        .name,
+                    subtitleForMilestone:
+                        member.roles.where((role) => role.meta.milestoneId == version.id).firstOrNull?.name ?? "",
                     socialLinks: member.socialLinks.map((e) => e.url).toIList(),
                   );
                 })
