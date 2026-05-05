@@ -46,7 +46,7 @@ class BicycleShowerTile extends HookConsumerWidget {
                   activeGradient: ColorsConsts.toPwrGradient,
                   directusPhotoUrl: shower.photo,
                   title: title,
-                  subtitle: "${shower.instructions}",
+                  subtitle: shower.instructions ?? "",
                   isActive: isActive,
                   onTap: () {
                     unawaited(ref.trackEvent(ClarityEvents.selectLibrary, value: title));
