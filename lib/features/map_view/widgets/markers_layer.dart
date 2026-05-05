@@ -13,6 +13,10 @@ class MarkersConsumerLayer<T extends GoogleNavigable> extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncItems = ref.watch(context.mapSourceRepository<T>()).value.whereNonNull.toList();
     final activeItem = ref.watch(context.activeMarkerController<T>());
+    final markerZIndex = context.markerZIndex<T>();
+    if (markerZIndex != null) {
+      asyncItems.sort((a, b) => markerZIndex(a).compareTo(markerZIndex(b)));
+    }
     return MarkerLayer(
       markers: asyncItems.map((item) => context.markerBuilder<T>()(item, ref, isActive: activeItem == item)).toList(),
       rotate: true,
