@@ -1,6 +1,7 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 import "package:latlong2/latlong.dart";
+import "package:solvro_translator_core/solvro_translator_core.dart";
 
 import "../../../../api_base_rest/shared_models/image_data.dart";
 import "../../../branches/data/model/branch.dart";
@@ -11,6 +12,7 @@ part "aed.freezed.dart";
 part "aed.g.dart";
 
 @freezed
+@Translatable(makeFieldsTranslatableByDefault: false)
 abstract class AedDataResponse with _$AedDataResponse {
   const factory AedDataResponse({required IList<Aed> data}) = _AedDataResponse;
   const AedDataResponse._();
@@ -27,7 +29,7 @@ abstract class Aed with _$Aed implements GoogleNavigable {
     required ImageData? photo,
     required String? addressLine1,
     required String? addressLine2,
-    required String? instructions,
+    @translatableField required String? instructions,
     Building? building,
     required Branch branch,
   }) = _Aed;
