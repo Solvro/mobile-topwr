@@ -27,6 +27,7 @@ abstract class Aed with _$Aed implements GoogleNavigable {
     required ImageData? photo,
     required String? addressLine1,
     required String? addressLine2,
+    required String? instructions,
     Building? building,
     required Branch branch,
   }) = _Aed;
