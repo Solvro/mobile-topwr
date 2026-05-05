@@ -46,7 +46,7 @@ class PinkBoxTile extends HookConsumerWidget {
                   activeGradient: ColorsConsts.toPwrGradient,
                   directusPhotoUrl: pinkBox.photo,
                   title: title,
-                  subtitle: "${pinkBox.roomOrNearby}",
+                  subtitle: pinkBox.roomOrNearby ?? "",
                   isActive: isActive,
                   onTap: () {
                     unawaited(ref.trackEvent(ClarityEvents.selectLibrary, value: title));
