@@ -1,6 +1,7 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 import "package:latlong2/latlong.dart";
+import "package:solvro_translator_core/solvro_translator_core.dart";
 
 import "../../../../api_base_rest/shared_models/image_data.dart";
 import "../../../../l10n/app_localizations.dart";
@@ -10,10 +11,12 @@ import "building.dart";
 
 part "pink_box.freezed.dart";
 part "pink_box.g.dart";
+part "pink_box.translatable.g.dart";
 
 @freezed
-abstract class PinkBoxDataResponse with _$PinkBoxDataResponse {
-  const factory PinkBoxDataResponse({required IList<PinkBox> data}) = _PinkBoxDataResponse;
+@Translatable(makeFieldsTranslatableByDefault: false)
+abstract class PinkBoxDataResponse with _$PinkBoxDataResponse, _$PinkBoxDataResponseTranslatable {
+  const factory PinkBoxDataResponse({@translatableField required IList<PinkBox> data}) = _PinkBoxDataResponse;
   const PinkBoxDataResponse._();
   factory PinkBoxDataResponse.fromJson(Map<String, dynamic> json) => _$PinkBoxDataResponseFromJson(json);
 }
@@ -23,7 +26,7 @@ abstract class PinkBox with _$PinkBox implements GoogleNavigable {
   @Implements<GoogleNavigable>()
   const factory PinkBox({
     @JsonKey(name: "id") required int rawId,
-    required String? roomOrNearby,
+    @translatableField required String? roomOrNearby,
     required double latitude,
     required double longitude,
     ImageData? photo,
