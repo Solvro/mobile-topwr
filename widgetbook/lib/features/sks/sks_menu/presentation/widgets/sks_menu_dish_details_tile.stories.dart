@@ -19,11 +19,11 @@ final defaults = _Defaults(
 );
 
 const _mockDish = SksMenuDish(
-  id: "wb-1",
-  name: "Mock dish",
+  id: "70",
+  name: "Surówka colesław",
   category: DishCategory.salad,
-  size: "200 g",
-  price: "12.00",
+  size: "100 g",
+  price: "4.50",
 );
 
 final $default = SksMenuDishDetailsTileStory(args: SksMenuDishDetailsTileStoryKnobsArgs(dish: Arg.fixed(_mockDish)));

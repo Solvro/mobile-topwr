@@ -7,8 +7,8 @@ import "package:widgetbook/widgetbook.dart";
 part "field_of_study_tile.stories.g.dart";
 
 const _mockFieldOfStudy = FieldOfStudy(
-  name: "Computer Science",
-  url: "https://example.com/cs",
+  name: "Informatyka stosowana",
+  url: "https://wit.pwr.edu.pl/kandydaci/studia-i-stopnia/informatyka-stosowana",
   isEnglish: false,
   studiesType: StudiesType.firstDegree,
   hasWeekendOption: false,

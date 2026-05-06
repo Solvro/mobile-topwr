@@ -6,4 +6,4 @@ part "sks_menu_view.stories.g.dart";
 
 const meta = Meta<SksMenuView>();
 
-final $default = SksMenuViewStory();
+final $default = SksMenuViewStory(name: "Production view with hardcoded data");

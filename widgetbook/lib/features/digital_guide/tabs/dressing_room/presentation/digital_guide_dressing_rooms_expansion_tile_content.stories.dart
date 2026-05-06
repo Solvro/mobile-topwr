@@ -10,10 +10,10 @@ const mockDigitalGuideResponse = DigitalGuideResponse(
   externalId: 123,
   translations: DigitalGuideTranslations(
     plTranslation: DigitalGuideTranslation(
-      name: "Mock name",
-      extendedName: "Mock ext name",
-      address: "Mock address",
-      evacuationDescription: "Evac desc",
+      name: "C-13 Serowiec",
+      extendedName: "Budynek C-13 Politechniki Wrocławskiej",
+      address: "Wyb. Wyspiańskiego 23-25, 50-370 Wrocław",
+      evacuationDescription: "Kieruj się oznaczeniami ewakuacyjnymi do najbliższej klatki schodowej.",
     ),
   ),
   numberOfStoreys: 3,

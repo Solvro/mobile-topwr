@@ -11,10 +11,10 @@ const _mockDigitalGuideData = DigitalGuideResponse(
   externalId: 100,
   translations: DigitalGuideTranslations(
     plTranslation: DigitalGuideTranslation(
-      name: "Building A",
-      extendedName: "Main Academic Building",
-      address: "Wroclaw, Main Street 1",
-      evacuationDescription: "Use main stairs",
+      name: "C-13 Serowiec",
+      extendedName: "Budynek C-13 Politechniki Wrocławskiej",
+      address: "Wyb. Wyspiańskiego 23-25, 50-370 Wrocław",
+      evacuationDescription: "Kieruj się oznaczeniami ewakuacyjnymi do najbliższej klatki schodowej.",
     ),
   ),
   numberOfStoreys: 5,
@@ -43,14 +43,14 @@ const _mockDigitalGuideData = DigitalGuideResponse(
 
 const _mockBuilding = Building(
   rawId: 1,
-  name: "Building A",
-  naturalName: "Main Building",
-  addressLine1: "Main Street 1",
-  addressLine2: "50-123 Wroclaw",
-  latitude: 51.1,
-  longitude: 16.9,
-  externalDigitalGuideMode: ExternalDigitalGuideMode.webUrl,
-  externalDigitalGuideIdOrUrl: null,
+  name: "C-13",
+  naturalName: "Serowiec",
+  addressLine1: "Wyb. Wyspiańskiego 23-25",
+  addressLine2: "50-370 Wrocław",
+  latitude: 51.107546,
+  longitude: 17.059038,
+  externalDigitalGuideMode: ExternalDigitalGuideMode.digitalGuideBuilding,
+  externalDigitalGuideIdOrUrl: "313",
   cover: null,
   branch: Branch.main,
 );

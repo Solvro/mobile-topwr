@@ -12,7 +12,7 @@ const _mockDigitalGuideData = DigitalGuideResponse(
     plTranslation: DigitalGuideTranslation(
       name: "Building A",
       extendedName: "Main Academic Building",
-      address: "Wroclaw, Main Street 1",
+      address: "Wyb. Wyspiańskiego 23-25, 50-370 Wrocław",
       evacuationDescription: "Use main stairs",
     ),
   ),

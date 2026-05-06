@@ -40,7 +40,7 @@ final defaults = _Defaults(
 
 /// Same host as other widgetbook image mocks; avoids empty defaults (0 size,
 /// 0 opacity, no URL) from [SliverLogoStoryKnobsArgs] which render nothing.
-const _previewLogoUrl = "https://parking-api.topwr.solvro.pl/images/parkings/miniatures/C13.jpg";
+const _previewLogoUrl = "";
 
 const _previewRingGradient = LinearGradient(
   colors: [Color(0xFF1565C0), Color(0xFF42A5F5)],

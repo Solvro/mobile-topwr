@@ -6,4 +6,4 @@ part "about_us_view.stories.g.dart";
 
 const meta = Meta<AboutUsView>();
 
-final $default = AboutUsViewStory();
+final $default = AboutUsViewStory(name: "Production view with hardcoded data");

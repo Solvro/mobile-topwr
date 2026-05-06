@@ -6,4 +6,4 @@ part "libraries_view.stories.g.dart";
 
 const meta = Meta<LibrariesView>();
 
-final $default = LibrariesViewStory();
+final $default = LibrariesViewStory(name: "Production view with hardcoded data");

@@ -19,7 +19,11 @@ class ContactSectionStoryKnobs {
 const meta = MetaWithArgs<ContactSection, ContactSectionStoryKnobs>();
 
 final _mockContactList = <ContactIconsModel>[
-  ContactIconsModel(text: "support@topwr.app", url: "mailto:support@topwr.app", icon: "assets/svg/contact_icons/mail.svg"),
+  ContactIconsModel(
+    text: "support@topwr.app",
+    url: "mailto:support@topwr.app",
+    icon: "assets/svg/contact_icons/mail.svg",
+  ),
   ContactIconsModel(text: "+1 415 555 0134", url: "tel:+14155550134", icon: "assets/svg/contact_icons/phone.svg"),
   ContactIconsModel(text: "topwr.app", url: "https://topwr.app", icon: "assets/svg/contact_icons/web.svg"),
 ].lock;

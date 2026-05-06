@@ -8,7 +8,7 @@ part "corridor_view.stories.g.dart";
 final _mockCorridor = Corridor(
   translations: const CorridorTranslations(
     plTranslation: CorridorTranslation(
-      name: "Mock Corridor",
+      name: "Korytarz główny C-13, parter",
       isSimpleCorridorLayoutComment: "Layout comment",
       isFloorMarkedComment: "Floor marked comment",
       areRoomsEntrancesComment: "Entrances comment",

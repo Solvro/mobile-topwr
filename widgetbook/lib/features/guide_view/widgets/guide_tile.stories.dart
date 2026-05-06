@@ -6,12 +6,12 @@ import "package:widgetbook/widgetbook.dart";
 
 part "guide_tile.stories.g.dart";
 
-const _mockImageData = ImageData(url: "https://example.com/image.png");
+const _mockImageData = ImageData(url: "");
 
 const _mockGuideData = GuideData(
-  id: 1,
-  title: "Guide Title",
-  shortDesc: "This is a short description of the guide.",
+  id: 2,
+  title: "Zapisy na zajęcia",
+  shortDesc: "Wszystko o rejestracji na przedmioty na naszej uczelni.",
   image: _mockImageData,
 );
 

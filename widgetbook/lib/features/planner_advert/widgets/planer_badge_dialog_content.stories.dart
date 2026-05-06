@@ -7,9 +7,9 @@ part "planer_badge_dialog_content.stories.g.dart";
 
 final _mockPlannerBanner = PlannerBanner(
   id: 1,
-  title: "Special Offer",
-  description: "Check out our new features and improvements!",
-  url: "https://example.com",
+  title: "Planer zajęć ToPWR",
+  description: "Sprawdź planer zajęć i wygodnie zaplanuj semestr.",
+  url: "https://topwr.solvro.pl/",
   textColor: "#FFFFFF",
   backgroundColor: "#FF5733",
   titleColor: "#000000",

@@ -6,4 +6,4 @@ part "sks_favourite_dishes_view.stories.g.dart";
 
 const meta = Meta<SksFavouriteDishesView>();
 
-final $default = SksFavouriteDishesViewStory();
+final $default = SksFavouriteDishesViewStory(name: "Production view with hardcoded data");

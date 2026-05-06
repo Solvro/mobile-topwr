@@ -6,4 +6,7 @@ part "guide_detail_view.stories.g.dart";
 
 const meta = Meta<GuideDetailView>();
 
-final $default = GuideDetailViewStory();
+final $default = GuideDetailViewStory(
+  name: "Production view with hardcoded data",
+  args: GuideDetailViewArgs.fixed(id: 2),
+);

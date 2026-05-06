@@ -6,4 +6,4 @@ part "home_view.stories.g.dart";
 
 const meta = Meta<HomeView>();
 
-final $default = HomeViewStory();
+final $default = HomeViewStory(name: "Production view with hardcoded data");

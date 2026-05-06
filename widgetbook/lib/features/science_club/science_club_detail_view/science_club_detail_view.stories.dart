@@ -6,4 +6,7 @@ part "science_club_detail_view.stories.g.dart";
 
 const meta = Meta<ScienceClubDetailView>();
 
-final $default = ScienceClubDetailViewStory();
+final $default = ScienceClubDetailViewStory(
+  name: "Production view with hardcoded data",
+  args: ScienceClubDetailViewArgs.fixed(id: 1365),
+);

@@ -6,4 +6,4 @@ part "showers_view.stories.g.dart";
 
 const meta = Meta<ShowersView>();
 
-final $default = ShowersViewStory();
+final $default = ShowersViewStory(name: "Production view with hardcoded data");

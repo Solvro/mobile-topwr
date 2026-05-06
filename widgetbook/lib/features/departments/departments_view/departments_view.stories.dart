@@ -6,4 +6,4 @@ part "departments_view.stories.g.dart";
 
 const meta = Meta<DepartmentsView>();
 
-final $default = DepartmentsViewStory();
+final $default = DepartmentsViewStory(name: "Production view with hardcoded data");

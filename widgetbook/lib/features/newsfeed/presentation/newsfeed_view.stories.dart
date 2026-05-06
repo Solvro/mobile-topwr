@@ -6,4 +6,4 @@ part "newsfeed_view.stories.g.dart";
 
 const meta = Meta<NewsfeedView>();
 
-final $default = NewsfeedViewStory();
+final $default = NewsfeedViewStory(name: "Production view with hardcoded data");

@@ -6,4 +6,4 @@ part "buildings_view.stories.g.dart";
 
 const meta = Meta<BuildingsView>();
 
-final $default = BuildingsViewStory();
+final $default = BuildingsViewStory(name: "Production view with hardcoded data");

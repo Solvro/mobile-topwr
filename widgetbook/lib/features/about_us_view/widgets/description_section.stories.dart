@@ -12,4 +12,7 @@ const _sampleHtml =
 
 final $default = DescriptionSectionStory(args: DescriptionSectionArgs(text: Arg.fixed(_sampleHtml)));
 
-final $empty = DescriptionSectionStory(name: "Empty", args: DescriptionSectionArgs(text: Arg.fixed("")));
+final $empty = DescriptionSectionStory(
+  name: "Empty",
+  args: DescriptionSectionArgs(text: Arg.fixed("")),
+);

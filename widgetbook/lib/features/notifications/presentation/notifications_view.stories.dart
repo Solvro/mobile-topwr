@@ -6,4 +6,4 @@ part "notifications_view.stories.g.dart";
 
 const meta = Meta<NotificationsView>();
 
-final $default = NotificationsViewStory();
+final $default = NotificationsViewStory(name: "Production view with hardcoded data");

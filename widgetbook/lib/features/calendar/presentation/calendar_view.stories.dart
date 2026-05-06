@@ -6,4 +6,4 @@ part "calendar_view.stories.g.dart";
 
 const meta = Meta<CalendarView>();
 
-final $default = CalendarViewStory();
+final $default = CalendarViewStory(name: "Production view with hardcoded data");

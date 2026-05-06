@@ -6,4 +6,4 @@ part "radio_luz_view.stories.g.dart";
 
 const meta = Meta<RadioLuzView>();
 
-final $default = RadioLuzViewStory();
+final $default = RadioLuzViewStory(name: "Production view with hardcoded data");

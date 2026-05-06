@@ -8,7 +8,7 @@ part "adapted_toilet_detail_view.stories.g.dart";
 const mockAdaptedToilet = AdaptedToilet(
   translations: AdaptedToiletTranslations(
     plTranslation: AdaptedToiletTranslation(
-      location: "mock location",
+      location: "Parter, przy wejściu od strony wybrzeża Wyspiańskiego",
       toiletDescription: "desc",
       numberOfCabins: "1",
       isAccessAccessibleForPwdComment: "",

@@ -6,4 +6,4 @@ part "parkings_view.stories.g.dart";
 
 const meta = Meta<ParkingsView>();
 
-final $default = ParkingsViewStory();
+final $default = ParkingsViewStory(name: "Production view with hardcoded data");

@@ -6,4 +6,4 @@ part "pink_boxes_view.stories.g.dart";
 
 const meta = Meta<PinkBoxesView>();
 
-final $default = PinkBoxesViewStory();
+final $default = PinkBoxesViewStory(name: "Production view with hardcoded data");

@@ -9,15 +9,15 @@ part "fields_of_study_section.stories.g.dart";
 
 final _mockFieldsOfStudy = IList<FieldOfStudy>(const [
   FieldOfStudy(
-    name: "Computer Science",
-    url: "https://example.com/cs",
+    name: "Informatyka stosowana",
+    url: "https://wit.pwr.edu.pl/kandydaci/studia-i-stopnia/informatyka-stosowana",
     isEnglish: false,
     studiesType: StudiesType.firstDegree,
     hasWeekendOption: false,
   ),
   FieldOfStudy(
-    name: "Data Science",
-    url: "https://example.com/ds",
+    name: "Applied Computer Science",
+    url: "https://wit.pwr.edu.pl/en/candidates/studies-in-english/applied-computer-science",
     isEnglish: true,
     studiesType: StudiesType.secondDegree,
     hasWeekendOption: true,

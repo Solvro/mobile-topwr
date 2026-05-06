@@ -13,6 +13,7 @@ const _mockAed = Aed(
   photo: null,
   addressLine1: "Main Campus Building",
   addressLine2: null,
+  instructions: "AED znajduje się przy portierni, obok wejścia głównego.",
   branch: Branch.main,
 );
 

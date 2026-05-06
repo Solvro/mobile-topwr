@@ -8,17 +8,17 @@ import "package:widgetbook/widgetbook.dart";
 part "team_section.stories.g.dart";
 
 final _mockTeamMember1 = (
-  teamMemberName: "John Doe",
+  teamMemberName: "Michał Nowak",
   image: null,
   subtitleForMilestone: "Flutter Developer",
-  socialLinks: <String>["https://github.com/johndoe"].lock,
+  socialLinks: <String>["https://github.com/Solvro"].lock,
 );
 
 final _mockTeamMember2 = (
-  teamMemberName: "Jane Smith",
+  teamMemberName: "Anna Kowalska",
   image: null,
   subtitleForMilestone: "UI/UX Designer",
-  socialLinks: <String>["https://github.com/janesmith"].lock,
+  socialLinks: <String>["https://www.linkedin.com/company/solvro"].lock,
 );
 
 final _mockMultiversionTeam = IList<MultiversionTeam>([

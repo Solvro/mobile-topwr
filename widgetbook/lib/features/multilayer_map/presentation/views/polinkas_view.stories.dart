@@ -6,4 +6,4 @@ part "polinkas_view.stories.g.dart";
 
 const meta = Meta<PolinkasView>();
 
-final $default = PolinkasViewStory();
+final $default = PolinkasViewStory(name: "Production view with hardcoded data");

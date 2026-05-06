@@ -7,15 +7,15 @@ part "field_of_study_expansion_tile.stories.g.dart";
 
 final _mockFieldsOfStudy = [
   const FieldOfStudy(
-    name: "Computer Science",
-    url: "https://example.com/cs",
+    name: "Informatyka stosowana",
+    url: "https://wit.pwr.edu.pl/kandydaci/studia-i-stopnia/informatyka-stosowana",
     isEnglish: false,
     studiesType: StudiesType.firstDegree,
     hasWeekendOption: false,
   ),
   const FieldOfStudy(
-    name: "Computer Science (English)",
-    url: "https://example.com/cs-en",
+    name: "Applied Computer Science",
+    url: "https://wit.pwr.edu.pl/en/candidates/studies-in-english/applied-computer-science",
     isEnglish: true,
     studiesType: StudiesType.firstDegree,
     hasWeekendOption: false,

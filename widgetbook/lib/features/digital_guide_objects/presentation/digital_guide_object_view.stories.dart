@@ -5,4 +5,7 @@ part "digital_guide_object_view.stories.g.dart";
 
 const meta = Meta<DigitalGuideObjectView>();
 
-final $default = DigitalGuideObjectViewStory();
+final $default = DigitalGuideObjectViewStory(
+  name: "Production view with hardcoded data",
+  args: DigitalGuideObjectViewArgs.fixed(ourId: "1"),
+);

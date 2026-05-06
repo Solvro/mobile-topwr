@@ -8,8 +8,8 @@ part "stairway_view.stories.g.dart";
 const mockStairway = Stairway(
   translations: StairwayTranslations(
     plTranslation: StairwayTranslation(
-      name: "Mock Stairway Name",
-      location: "Mock Location A",
+      name: "Klatka schodowa C-13 od strony Odry",
+      location: "Północna część budynku, przy głównym korytarzu",
       areObjectsNarrowCommunicationZoneComment: "Narrow communication zone comment.",
       areInformationBoardsComment: "Information boards comment.",
       areInformationBoardsInEnComment: "EN information boards comment.",
