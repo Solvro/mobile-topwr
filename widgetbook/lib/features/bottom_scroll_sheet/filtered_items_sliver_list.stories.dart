@@ -27,4 +27,5 @@ const meta = Meta<FilteredItemsSliverList>();
 
 final $default = FilteredItemsSliverListStory<BuildingItem>(
   args: FilteredItemsSliverListArgs<BuildingItem>(allItems: Arg.fixed([_mockBuildingItem])),
+  setup: (context, child, args) => CustomScrollView(slivers: [child]),
 );

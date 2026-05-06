@@ -34,6 +34,7 @@ import "package:topwr/theme/app_theme.dart";
 import "package:widgetbook/widgetbook.dart";
 
 import "components.g.dart";
+import "map_config_story_wrapper.dart";
 import "radio_luz_mocks.dart";
 import "widgetbook_mocks.dart";
 
@@ -79,7 +80,7 @@ final config = Config(
         bundle: fallbackAssetBundle,
         child: Theme(
           data: const AppTheme().light,
-          child: Material(child: child),
+          child: Material(child: widgetbookMapConfigWrapper(child)),
         ),
       ),
     );

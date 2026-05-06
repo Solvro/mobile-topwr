@@ -7,4 +7,6 @@ part "multilayer_map_single_entity_list.stories.g.dart";
 
 const meta = Meta<MultilayerMapSingleEntityList>();
 
-final $default = MultilayerMapSingleEntityListStory<BuildingItem>();
+final $default = MultilayerMapSingleEntityListStory<BuildingItem>(
+  setup: (context, child, args) => CustomScrollView(slivers: [child]),
+);

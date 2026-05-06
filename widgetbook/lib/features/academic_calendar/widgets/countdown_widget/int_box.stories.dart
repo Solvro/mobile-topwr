@@ -12,4 +12,4 @@ const meta = MetaWithArgs<IntBox, IntBoxStoryKnobs>();
 
 final defaults = _Defaults(builder: (context, args) => IntBox(singleInt: args.singleInt));
 
-final $default = IntBoxStory();
+final $default = IntBoxStory(args: IntBoxStoryKnobsArgs(singleInt: StringArg("1")));

@@ -17,6 +17,7 @@ dependencies:
   flutter_riverpod: ^3.1.0
   hooks_riverpod: ^3.1.0
   intl: ^0.20.2
+  flutter_map: ^8.2.2
 
 dev_dependencies:
   flutter_test:
@@ -27,3 +28,73 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/png/splash_screen/splash_logo.png
+    - assets/svg/logo_app_bar.svg
+    - assets/png/map_markers/map_marker.png
+    - assets/png/map_markers/active_map_marker.png
+    - assets/png/map_markers/active_parking_map_marker.png
+    - assets/png/map_markers/parking_map_marker.png
+    - assets/png/map_markers/active_library_marker.png
+    - assets/png/map_markers/library_marker.png
+    - assets/png/map_markers/active_polinka_marker.png
+    - assets/png/map_markers/polinka_marker.png
+    - assets/png/map_markers/active_aed_marker.png
+    - assets/png/map_markers/aed_marker.png
+    - assets/png/map_markers/active_shower_marker.png
+    - assets/png/map_markers/shower_marker.png
+    - assets/png/map_markers/active_pink_box_marker.png
+    - assets/png/map_markers/pink_box_marker.png
+    - assets/png/radio_luz/radio_luz_logo.png
+    - assets/svg/search_box/vectorsearch.svg
+    - assets/svg/contact_icons/compass.svg
+    - assets/svg/contact_icons/fb.svg
+    - assets/svg/contact_icons/github.svg
+    - assets/svg/contact_icons/ig.svg
+    - assets/svg/contact_icons/linkedin.svg
+    - assets/svg/contact_icons/mail.svg
+    - assets/svg/contact_icons/phone.svg
+    - assets/svg/contact_icons/web.svg
+    - assets/svg/contact_icons/yt.svg
+    - assets/svg/contact_icons/x.svg
+    - assets/svg/contact_icons/tiktok.svg
+    - assets/svg/contact_icons/discord.svg
+    - assets/svg/digital_guide/storey.svg
+    - assets/svg/digital_guide/assistance_dog.svg
+    - assets/svg/digital_guide/braille.svg
+    - assets/svg/digital_guide/emergency_chairs.svg
+    - assets/svg/digital_guide/induction_loop.svg
+    - assets/svg/digital_guide/large_font.svg
+    - assets/svg/digital_guide/micronavigation.svg
+    - assets/svg/digital_guide/orientation_paths.svg
+    - assets/svg/digital_guide/sign_language.svg
+    - assets/svg/digital_guide/accessibility_alerts/blind_profile.svg
+    - assets/svg/digital_guide/accessibility_alerts/cognitive_difficulties.svg
+    - assets/svg/digital_guide/accessibility_alerts/movement_dysfunction.svg
+    - assets/svg/digital_guide/accessibility_alerts/visually_impaired.svg
+    - assets/svg/digital_guide/accessibility_alerts/hearing_dysfunction.svg
+    - assets/svg/digital_guide/accessibility_alerts/sensory_sensitivity.svg
+    - assets/animations/error.json
+    - assets/animations/search.json
+    - assets/animations/offline.json
+    - assets/animations/bug.json
+    - assets/animations/sks_closed.json
+    - assets/certs/przewodnik.pwr.edu.pl.pem
+    - assets/svg/map_placeholders/pink_box_icon.svg
+    - assets/svg/map_placeholders/aed_icon.svg
+    - assets/svg/map_placeholders/library_icon.svg
+    - assets/svg/map_placeholders/shower_icon.svg
+    - assets/svg/map_placeholders/building_icon.svg
+    - assets/svg/radio_luz/play_icon.svg
+    - assets/svg/radio_luz/pause_icon.svg
+    - assets/svg/radio_luz/speaker_icon.svg
+    - assets/svg/radio_luz/radio_luz_logo.svg
+    - assets/svg/streaming/spotify.svg
+    - assets/svg/streaming/apple_music.svg
+    - assets/svg/streaming/youtube_music.svg
+    - assets/svg/streaming/deezer.svg
+    - assets/svg/streaming/tidal.svg
+    - assets/svg/branches_logos/logo-pwr.svg
+    - assets/svg/branches_logos/logo-jelenia.svg
+    - assets/svg/branches_logos/logo-walbrzych.svg
+    - assets/svg/branches_logos/logo-legnica.svg
