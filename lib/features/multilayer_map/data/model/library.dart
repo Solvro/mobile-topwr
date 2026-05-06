@@ -10,11 +10,12 @@ import "building.dart";
 
 part "library.freezed.dart";
 part "library.g.dart";
+part "library.translatable.g.dart";
 
 @freezed
 @Translatable(makeFieldsTranslatableByDefault: false)
-abstract class LibraryDataResponse with _$LibraryDataResponse {
-  const factory LibraryDataResponse({required IList<Library> data}) = _LibraryDataResponse;
+abstract class LibraryDataResponse with _$LibraryDataResponse, _$LibraryDataResponseTranslatable {
+  const factory LibraryDataResponse({@translatableField required IList<Library> data}) = _LibraryDataResponse;
   const LibraryDataResponse._();
   factory LibraryDataResponse.fromJson(Map<String, dynamic> json) => _$LibraryDataResponseFromJson(json);
 }

@@ -11,11 +11,12 @@ import "building.dart";
 
 part "pink_box.freezed.dart";
 part "pink_box.g.dart";
+part "pink_box.translatable.g.dart";
 
 @freezed
 @Translatable(makeFieldsTranslatableByDefault: false)
-abstract class PinkBoxDataResponse with _$PinkBoxDataResponse {
-  const factory PinkBoxDataResponse({required IList<PinkBox> data}) = _PinkBoxDataResponse;
+abstract class PinkBoxDataResponse with _$PinkBoxDataResponse, _$PinkBoxDataResponseTranslatable {
+  const factory PinkBoxDataResponse({@translatableField required IList<PinkBox> data}) = _PinkBoxDataResponse;
   const PinkBoxDataResponse._();
   factory PinkBoxDataResponse.fromJson(Map<String, dynamic> json) => _$PinkBoxDataResponseFromJson(json);
 }

@@ -10,11 +10,12 @@ import "building.dart";
 
 part "aed.freezed.dart";
 part "aed.g.dart";
+part "aed.translatable.g.dart";
 
 @freezed
 @Translatable(makeFieldsTranslatableByDefault: false)
-abstract class AedDataResponse with _$AedDataResponse {
-  const factory AedDataResponse({required IList<Aed> data}) = _AedDataResponse;
+abstract class AedDataResponse with _$AedDataResponse, _$AedDataResponseTranslatable {
+  const factory AedDataResponse({@translatableField required IList<Aed> data}) = _AedDataResponse;
   const AedDataResponse._();
   factory AedDataResponse.fromJson(Map<String, dynamic> json) => _$AedDataResponseFromJson(json);
 }

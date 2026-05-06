@@ -11,11 +11,13 @@ import "building.dart";
 
 part "bicycle_shower.freezed.dart";
 part "bicycle_shower.g.dart";
+part "bicycle_shower.translatable.g.dart";
 
 @freezed
 @Translatable(makeFieldsTranslatableByDefault: false)
-abstract class BicycleShowerDataResponse with _$BicycleShowerDataResponse {
-  const factory BicycleShowerDataResponse({required IList<BicycleShower> data}) = _BicycleShowerDataResponse;
+abstract class BicycleShowerDataResponse with _$BicycleShowerDataResponse, _$BicycleShowerDataResponseTranslatable {
+  const factory BicycleShowerDataResponse({@translatableField required IList<BicycleShower> data}) =
+      _BicycleShowerDataResponse;
   const BicycleShowerDataResponse._();
   factory BicycleShowerDataResponse.fromJson(Map<String, dynamic> json) => _$BicycleShowerDataResponseFromJson(json);
 }
