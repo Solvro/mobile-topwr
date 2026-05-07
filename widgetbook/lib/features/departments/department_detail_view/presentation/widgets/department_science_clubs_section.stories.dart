@@ -1,5 +1,7 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/widgets.dart";
+import "package:topwr/api_base_rest/shared_models/image_data.dart";
+import "package:topwr/api_base_rest/shared_models/social_links_data.dart";
 import "package:topwr/features/departments/department_detail_view/data/models/department_details.dart";
 import "package:topwr/features/departments/department_detail_view/data/models/studies_type.dart";
 import "package:topwr/features/departments/department_detail_view/presentation/widgets/science_clubs_section.dart";
@@ -13,7 +15,7 @@ final _mockDepartment = DepartmentDetails(
   name: "Wydział Informatyki i Telekomunikacji",
   code: "W4",
   betterCode: "WIT",
-  logo: null,
+  logo: const ImageData(url: "https://placehold.co/240x240/png?text=WIT"),
   gradientStart: "#FF5733",
   gradientStop: "#33FF57",
   addressLine1: "ul. Janiszewskiego 11/17",
@@ -34,7 +36,10 @@ final _mockDepartment = DepartmentDetails(
       hasWeekendOption: true,
     ),
   ]),
-  departmentLinks: IList(const []),
+  departmentLinks: IList(const [
+    SocialLinksData(url: "https://wit.pwr.edu.pl", name: "Strona wydziału"),
+    SocialLinksData(url: "https://www.facebook.com/WIT.PWr", name: "Facebook"),
+  ]),
 );
 
 const meta = Meta<DepartmentScienceClubsSection>();

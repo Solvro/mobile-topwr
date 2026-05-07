@@ -1,4 +1,5 @@
 import "package:flutter/widgets.dart";
+import "package:topwr/api_base_rest/shared_models/image_data.dart";
 import "package:topwr/features/bottom_scroll_sheet/multilayer_map_single_entity_list.dart";
 import "package:topwr/features/branches/data/model/branch.dart";
 import "package:topwr/features/multilayer_map/data/model/building.dart";
@@ -12,12 +13,12 @@ const _mockBuilding = Building(
   name: "Test Building",
   naturalName: "Test Building Name",
   addressLine1: "Test Address 123",
-  addressLine2: null,
+  addressLine2: "50-370 Wrocław",
   latitude: 51.1079,
   longitude: 17.0385,
-  externalDigitalGuideMode: null,
-  externalDigitalGuideIdOrUrl: null,
-  cover: null,
+  externalDigitalGuideMode: ExternalDigitalGuideMode.digitalGuideBuilding,
+  externalDigitalGuideIdOrUrl: "313",
+  cover: ImageData(url: "https://placehold.co/1200x800/png?text=Test+Building"),
   branch: Branch.main,
 );
 

@@ -1,3 +1,5 @@
+import "package:flutter/widgets.dart";
+import "package:topwr/api_base_rest/shared_models/image_data.dart";
 import "package:topwr/features/branches/data/model/branch.dart";
 import "package:topwr/features/digital_guide/data/models/digital_guide_response.dart";
 import "package:topwr/features/digital_guide/presentation/widgets/digital_guide_features_section.dart";
@@ -51,13 +53,14 @@ const _mockBuilding = Building(
   longitude: 17.059038,
   externalDigitalGuideMode: ExternalDigitalGuideMode.digitalGuideBuilding,
   externalDigitalGuideIdOrUrl: "313",
-  cover: null,
+  cover: ImageData(url: "https://placehold.co/1200x800/png?text=C13+Serowiec"),
   branch: Branch.main,
 );
 
 const meta = Meta<DigitalGuideFeaturesSection>();
 
 final $default = DigitalGuideFeaturesSectionStory(
+  setup: (context, child, args) => CustomScrollView(slivers: [child]),
   args: DigitalGuideFeaturesSectionArgs(
     digitalGuideData: Arg.fixed(_mockDigitalGuideData),
     building: Arg.fixed(_mockBuilding),

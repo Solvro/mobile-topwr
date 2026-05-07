@@ -1,4 +1,5 @@
 import "package:flutter/widgets.dart";
+import "package:topwr/api_base_rest/shared_models/image_data.dart";
 import "package:topwr/features/branches/data/model/branch.dart";
 import "package:topwr/features/multilayer_map/data/model/aed.dart";
 import "package:topwr/features/multilayer_map/presentation/widgets/aed_tile.dart";
@@ -10,9 +11,9 @@ const _mockAed = Aed(
   rawId: 1,
   latitude: 51.1079,
   longitude: 17.0385,
-  photo: null,
+  photo: ImageData(url: "https://placehold.co/640x480/png?text=AED+C13"),
   addressLine1: "Main Campus Building",
-  addressLine2: null,
+  addressLine2: "Hol główny, obok portierni",
   instructions: "AED znajduje się przy portierni, obok wejścia głównego.",
   branch: Branch.main,
 );

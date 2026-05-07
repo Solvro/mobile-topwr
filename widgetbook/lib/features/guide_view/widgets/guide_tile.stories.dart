@@ -6,7 +6,7 @@ import "package:widgetbook/widgetbook.dart";
 
 part "guide_tile.stories.g.dart";
 
-const _mockImageData = ImageData(url: "");
+const _mockImageData = ImageData(url: "https://placehold.co/640x360/png?text=Guide+Article");
 
 const _mockGuideData = GuideData(
   id: 2,

@@ -9,14 +9,14 @@ part "team_section.stories.g.dart";
 
 final _mockTeamMember1 = (
   teamMemberName: "Michał Nowak",
-  image: null,
+  image: const ImageData(url: "https://placehold.co/256x256/png?text=MN"),
   subtitleForMilestone: "Flutter Developer",
   socialLinks: <String>["https://github.com/Solvro"].lock,
 );
 
 final _mockTeamMember2 = (
   teamMemberName: "Anna Kowalska",
-  image: null,
+  image: const ImageData(url: "https://placehold.co/256x256/png?text=AK"),
   subtitleForMilestone: "UI/UX Designer",
   socialLinks: <String>["https://www.linkedin.com/company/solvro"].lock,
 );

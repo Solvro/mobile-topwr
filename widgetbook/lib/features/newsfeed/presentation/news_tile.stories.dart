@@ -6,7 +6,7 @@ import "package:widgetbook/widgetbook.dart";
 part "news_tile.stories.g.dart";
 
 const _productionArticle = Article(
-  imageLink: "",
+  imageLink: "https://placehold.co/1280x720/png?text=Polytechnica+Nova+2026",
   title: "15 pomysłów na naszą uczelnię. Znamy finalistów Polytechnica Nova 2026",
   url:
       "https://pwr.edu.pl/uczelnia/aktualnosci/15-pomyslow-na-nasza-uczelnie-znamy-finalistow-polytechnica-nova-2026-14102.html",

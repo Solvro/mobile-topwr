@@ -100,7 +100,7 @@ const mockChangelog = Changelog(
 const mockAboutUs = (
   description:
       "<p><b>ToPWR</b> to mobilny przewodnik po Politechnice Wroclawskiej tworzony przez studentow Solvro.</p>",
-  photo: ImageData(url: ""),
+  photo: ImageData(url: "https://placehold.co/1200x800/png?text=ToPWR+Team"),
   socialLinks: IListConst([
     SocialLinksData(url: "https://topwr.app", name: "Strona ToPWR"),
     SocialLinksData(url: "https://github.com/Solvro", name: "GitHub Solvro"),
@@ -112,7 +112,7 @@ const mockAboutUs = (
       members: IListConst([
         (
           teamMemberName: "Zespol Solvro",
-          image: ImageData(url: ""),
+          image: ImageData(url: "https://placehold.co/256x256/png?text=Solvro"),
           subtitleForMilestone: "Rozwoj aplikacji ToPWR",
           socialLinks: IListConst(["https://github.com/Solvro"]),
         ),
@@ -123,7 +123,7 @@ const mockAboutUs = (
       members: IListConst([
         (
           teamMemberName: "Zespol Solvro",
-          image: ImageData(url: ""),
+          image: ImageData(url: "https://placehold.co/256x256/png?text=ToPWR"),
           subtitleForMilestone: "Projekt, design i rozwoj aplikacji ToPWR",
           socialLinks: IListConst(["https://github.com/Solvro"]),
         ),
@@ -167,7 +167,7 @@ const mockDepartmentDetails = DepartmentDetails(
   name: "Wydział Informatyki i Telekomunikacji",
   code: "W4",
   betterCode: "WIT",
-  logo: ImageData(url: ""),
+  logo: ImageData(url: "https://placehold.co/240x240/png?text=WIT"),
   gradientStart: "#7A2229",
   gradientStop: "#B74A53",
   addressLine1: "Wybrzeze Wyspianskiego 27",
@@ -199,28 +199,28 @@ final mockGuideArticles = IList<GuideData>(const [
     id: 2,
     title: "Zapisy na zajęcia",
     shortDesc: "Wszystko o rejestracji na przedmioty na naszej uczelni.",
-    image: ImageData(url: ""),
+    image: ImageData(url: "https://placehold.co/640x360/png?text=Zapisy+na+zajecia"),
     order: 1,
   ),
   GuideData(
     id: 4,
     title: "Legitymacja studencka",
     shortDesc: "Sprawdź, jak przedłużyć ważność Twojej legitymacji.",
-    image: ImageData(url: ""),
+    image: ImageData(url: "https://placehold.co/640x360/png?text=Legitymacja+studencka"),
     order: 2,
   ),
   GuideData(
     id: 1,
     title: "Akademiki",
     shortDesc: "Sprawdź, jak możesz otrzymać miejsce w akademiku.",
-    image: ImageData(url: ""),
+    image: ImageData(url: "https://placehold.co/640x360/png?text=Akademiki"),
     order: 4,
   ),
   GuideData(
     id: 9,
     title: "Parkingi",
     shortDesc: "Dowiedz się, jak ogarnąć parking na PWr.",
-    image: ImageData(url: ""),
+    image: ImageData(url: "https://placehold.co/640x360/png?text=Parkingi+PWr"),
     order: 5,
   ),
 ]);
@@ -230,7 +230,7 @@ final mockGuideDetails = GuideDetails(
   description:
       "<h2>Zapisy na zajęcia</h2><p>Sprawdź terminy rejestracji w systemie uczelnianym i wybierz grupy zajęciowe zgodnie z planem studiów.</p>",
   shortDesc: "Wszystko o rejestracji na przedmioty na naszej uczelni.",
-  image: const ImageData(url: ""),
+  image: const ImageData(url: "https://placehold.co/1280x720/png?text=Guide+Detail"),
   createdAt: DateTime.utc(2026, 2),
   updatedAt: DateTime.utc(2026, 4, 20),
   guideAuthors: const IListConst([
@@ -259,7 +259,7 @@ final mockGuideDetails = GuideDetails(
 
 const mockNewsArticles = IListConst<Article>([
   Article(
-    imageLink: "",
+    imageLink: "https://placehold.co/1280x720/png?text=Polytechnica+Nova+2026",
     title: "15 pomyslow na nasza uczelnie. Znamy finalistow Polytechnica Nova 2026",
     url:
         "https://pwr.edu.pl/uczelnia/aktualnosci/15-pomyslow-na-nasza-uczelnie-znamy-finalistow-polytechnica-nova-2026-14102.html",
@@ -268,7 +268,7 @@ const mockNewsArticles = IListConst<Article>([
     previewText: "Od bezpieczenstwa i zielonych przestrzeni, przez nowoczesna dydaktyke, az po laboratoria badawcze.",
   ),
   Article(
-    imageLink: "",
+    imageLink: "https://placehold.co/1280x720/png?text=Parkingi+na+PWr",
     title: "Parkingi na PWr",
     url: "https://topwr.solvro.pl/guide/9",
     date: "05.05.2026",
@@ -313,8 +313,8 @@ final mockScienceClubDetails = ScienceClubDetails(
   isStrategic: true,
   description: "Studencka organizacja tworząca aplikacje dla społeczności akademickiej PWr.",
   enDescription: "Student organization building apps for the Wroclaw Tech community.",
-  cover: const ImageData(url: ""),
-  logo: const ImageData(url: ""),
+  cover: const ImageData(url: "https://placehold.co/1280x720/png?text=Solvro+Cover"),
+  logo: const ImageData(url: "https://placehold.co/256x256/png?text=Solvro"),
   department: mockDepartments[2],
   tags: mockScienceClubTags,
   links: const IListConst([
@@ -392,7 +392,7 @@ const mockBuilding = Building(
   longitude: 17.059038,
   externalDigitalGuideMode: ExternalDigitalGuideMode.digitalGuideBuilding,
   externalDigitalGuideIdOrUrl: "313",
-  cover: ImageData(url: ""),
+  cover: ImageData(url: "https://placehold.co/1200x800/png?text=C13+Serowiec"),
   branch: Branch.main,
 );
 
@@ -407,7 +407,7 @@ const mockPolinkaStation = PolinkaStation(
   branch: Branch.main,
   externalDigitalGuideMode: ExternalDigitalGuideMode.webUrl,
   externalDigitalGuideIdOrUrl: "https://topwr.solvro.pl/guide/8",
-  photo: ImageData(url: ""),
+  photo: ImageData(url: "https://placehold.co/1200x800/png?text=Polinka+Station"),
 );
 
 const mockLibrary = Library(
@@ -416,7 +416,7 @@ const mockLibrary = Library(
   room: "1.01",
   latitude: 51.1082,
   longitude: 17.0601,
-  photo: ImageData(url: ""),
+  photo: ImageData(url: "https://placehold.co/1200x800/png?text=Biblioteka+Kluczborska"),
   building: mockBuilding,
   branch: Branch.main,
 );
@@ -425,7 +425,7 @@ const mockAed = Aed(
   rawId: 1,
   latitude: 51.1077,
   longitude: 17.0592,
-  photo: ImageData(url: ""),
+  photo: ImageData(url: "https://placehold.co/1200x800/png?text=AED+C13"),
   addressLine1: "Wyb. Wyspianskiego 23-25",
   addressLine2: "Hol glowny C-13",
   instructions: "AED znajduje sie przy portierni.",
@@ -439,7 +439,7 @@ const mockBicycleShower = BicycleShower(
   instructions: "Prysznic rowerowy znajduje sie przy szatni na parterze.",
   latitude: 51.1075,
   longitude: 17.0594,
-  photo: ImageData(url: ""),
+  photo: ImageData(url: "https://placehold.co/1200x800/png?text=Prysznic+Rowerowy"),
   building: mockBuilding,
   branch: Branch.main,
 );
@@ -449,7 +449,7 @@ const mockPinkBox = PinkBox(
   roomOrNearby: "Hol przy windach",
   latitude: 51.1076,
   longitude: 17.0596,
-  photo: ImageData(url: ""),
+  photo: ImageData(url: "https://placehold.co/1200x800/png?text=Pink+Box"),
   building: mockBuilding,
   branch: Branch.main,
 );
@@ -466,11 +466,11 @@ const mockParking = Parking(
   places: "54",
   geoLan: "17.06094",
   geoLat: "51.10804",
-  photo: "",
-  miniaturePhoto: "",
+  photo: "https://placehold.co/1200x800/png?text=Parking+C13",
+  miniaturePhoto: "https://placehold.co/320x200/png?text=C13",
   active: "1",
   showPark: "1",
-  lp: "",
+  lp: "2",
   address: "wybrzeze Stanislawa Wyspianskiego 25",
   trend: "0",
   access: ParkingAccess.students,

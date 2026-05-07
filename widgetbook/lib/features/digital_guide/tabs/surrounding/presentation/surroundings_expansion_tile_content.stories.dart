@@ -7,7 +7,7 @@ part "surroundings_expansion_tile_content.stories.g.dart";
 
 const _mockDigitalGuideData = DigitalGuideResponse(
   id: 1,
-  externalId: null,
+  externalId: 313,
   translations: DigitalGuideTranslations(
     plTranslation: DigitalGuideTranslation(
       name: "Building A",
@@ -27,10 +27,10 @@ const _mockDigitalGuideData = DigitalGuideResponse(
   areEmergencyChairs: true,
   phoneNumbers: ["123456789"],
   surroundingId: 1,
-  images: [],
+  images: [1, 2],
   evacuationMapId: 1,
   locationMapId: 1,
-  levelsIndices: [],
+  levelsIndices: [0, 1, 2],
   accessId: 1,
   accessibilityLevelForMotorDisability: 1,
   accessibilityLevelForBlind: 1,

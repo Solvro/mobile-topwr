@@ -6,7 +6,7 @@ import "package:widgetbook/widgetbook.dart";
 
 part "zoomable_rest_api_image.stories.g.dart";
 
-const _mockImageData = ImageData(url: "");
+const _mockImageData = ImageData(url: "https://placehold.co/1200x800/png?text=Campus+Map");
 
 class ZoomableRestApiImageStoryKnobs {
   final ImageData imageData;

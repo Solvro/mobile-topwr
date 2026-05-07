@@ -20,18 +20,18 @@ const _mockDressingRoom = DigitalGuideDressingRoom(
     pl: DigitalGuideTranslationDressingRoom(
       location: "Ground floor",
       workingDaysAndHours: "Mon–Fri",
-      comment: "",
-      isMarkedComment: "",
-      isVisibleFromAfarComment: "",
-      areAccessBarriersComment: "",
-      areSeatsAvailableComment: "",
-      isMovementSpaceComment: "",
-      isGoodLitComment: "",
-      isSpaceUnderCounterComment: "",
-      isSpaceOnCounterComment: "",
+      comment: "Punkt znajduje się przy wejściu od strony dziedzińca.",
+      isMarkedComment: "Stanowisko oznaczone tablicą kierunkową.",
+      isVisibleFromAfarComment: "Lada widoczna z głównego korytarza.",
+      areAccessBarriersComment: "Brak barier na dojściu i przy stanowisku.",
+      areSeatsAvailableComment: "Przy stanowisku dostępne miejsca siedzące.",
+      isMovementSpaceComment: "Przestrzeń manewrowa pozwala na swobodny obrót wózkiem.",
+      isGoodLitComment: "Strefa jest równomiernie oświetlona.",
+      isSpaceUnderCounterComment: "Pod blatem pozostawiono wolną przestrzeń.",
+      isSpaceOnCounterComment: "Na blacie dostępna jest przestrzeń do odłożenia dokumentów.",
     ),
   ),
-  imagesIds: null,
+  imagesIds: [6, 7],
 );
 
 const meta = Meta<DressingRoomView>();

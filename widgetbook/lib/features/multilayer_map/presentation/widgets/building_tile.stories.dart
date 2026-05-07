@@ -1,4 +1,5 @@
 import "package:flutter/widgets.dart";
+import "package:topwr/api_base_rest/shared_models/image_data.dart";
 import "package:topwr/features/branches/data/model/branch.dart";
 import "package:topwr/features/multilayer_map/data/model/building.dart";
 import "package:topwr/features/multilayer_map/presentation/widgets/building_tile.dart";
@@ -14,9 +15,9 @@ const _mockBuilding = Building(
   addressLine2: "Building A",
   latitude: 51.1079,
   longitude: 17.0385,
-  externalDigitalGuideMode: null,
-  externalDigitalGuideIdOrUrl: null,
-  cover: null,
+  externalDigitalGuideMode: ExternalDigitalGuideMode.digitalGuideBuilding,
+  externalDigitalGuideIdOrUrl: "313",
+  cover: ImageData(url: "https://placehold.co/1200x800/png?text=C13+Serowiec"),
   branch: Branch.main,
 );
 

@@ -1,3 +1,4 @@
+import "package:flutter/widgets.dart";
 import "package:topwr/features/digital_guide/tabs/structure/presentation/views/region_data_sliver_list.dart";
 import "package:topwr/features/digital_guide/tabs/structure/presentation/views/region_data_sliver_list_item.dart";
 import "package:widgetbook/widgetbook.dart";
@@ -12,5 +13,6 @@ final _mockRegionDataSliverListItem = RegionDataSliverListItem(
 const meta = Meta<RegionDataSliverList>();
 
 final $default = RegionDataSliverListStory(
+  setup: (context, child, args) => CustomScrollView(slivers: [child]),
   args: RegionDataSliverListArgs(regionDataSliverListItem: Arg.fixed(_mockRegionDataSliverListItem)),
 );

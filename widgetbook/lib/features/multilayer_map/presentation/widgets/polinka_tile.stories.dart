@@ -1,5 +1,6 @@
 import "package:flutter/widgets.dart";
 import "package:topwr/features/branches/data/model/branch.dart";
+import "package:topwr/features/multilayer_map/data/model/building.dart";
 import "package:topwr/features/multilayer_map/data/model/polinka_station.dart";
 import "package:topwr/features/multilayer_map/presentation/widgets/polinka_tile.dart";
 import "package:widgetbook/widgetbook.dart";
@@ -15,8 +16,8 @@ const _mockPolinkaStation = PolinkaStation(
   latitude: 51.1079,
   longitude: 17.0385,
   branch: Branch.main,
-  externalDigitalGuideMode: null,
-  externalDigitalGuideIdOrUrl: null,
+  externalDigitalGuideMode: ExternalDigitalGuideMode.webUrl,
+  externalDigitalGuideIdOrUrl: "https://topwr.solvro.pl/guide/8",
 );
 
 const meta = Meta<PolinkaTile>();
