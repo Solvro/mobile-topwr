@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 
-import "../gen/fonts.gen.dart";
+import "package:topwr_assets/gen/fonts.gen.dart";
 import "colors.dart";
 
 class BodyTextStyle extends TextStyle {

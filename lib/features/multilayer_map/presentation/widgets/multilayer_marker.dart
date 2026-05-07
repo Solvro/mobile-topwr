@@ -3,7 +3,7 @@ import "dart:async";
 import "package:flutter/widgets.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../../../../gen/assets.gen.dart";
+import "package:topwr_assets/gen/assets.gen.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../analytics/data/clarity.dart";
 import "../../../analytics/data/clarity_events.dart";

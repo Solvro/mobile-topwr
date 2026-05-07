@@ -24,6 +24,13 @@ Whenever you add or modify `*.stories.dart` files, regenerate Widgetbook output:
 dart run build_runner build --delete-conflicting-outputs
 ```
 
+If shared assets or fonts change, regenerate the shared asset package first:
+
+```bash
+cd ../topwr_assets
+dart run build_runner build --delete-conflicting-outputs
+```
+
 ## Useful files
 
 - `lib/main.dart` - app entry point for Widgetbook

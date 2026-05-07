@@ -1,8 +1,8 @@
 import "package:flutter/material.dart";
 import "package:lottie/lottie.dart";
+import "package:topwr_assets/gen/assets.gen.dart";
 
 import "../config/ui_config.dart";
-import "../gen/assets.gen.dart";
 import "../theme/app_theme.dart";
 
 class SearchNotFound extends StatelessWidget {

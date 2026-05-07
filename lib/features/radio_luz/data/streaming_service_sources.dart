@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 
-import "../../../gen/assets.gen.dart";
+import "package:topwr_assets/gen/assets.gen.dart";
 import "../../../theme/app_theme.dart";
 
 enum StreamingService {

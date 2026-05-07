@@ -2,7 +2,7 @@ import "package:flutter/material.dart";
 import "package:flutter_svg/flutter_svg.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
-import "../../../gen/assets.gen.dart";
+import "package:topwr_assets/gen/assets.gen.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/launch_url_util.dart";
 

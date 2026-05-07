@@ -2,7 +2,7 @@ import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_svg/svg.dart";
 
-import "../../../../../gen/assets.gen.dart";
+import "package:topwr_assets/gen/assets.gen.dart";
 import "../tabs/accessibility_dialog/data/modes.dart";
 
 abstract class AccessibilityCommentsManager {

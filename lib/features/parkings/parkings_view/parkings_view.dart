@@ -4,9 +4,9 @@ import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_map/flutter_map.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:topwr_assets/gen/assets.gen.dart";
 
 import "../../../config/map_view_config.dart";
-import "../../../gen/assets.gen.dart";
 import "../../../utils/context_extensions.dart";
 import "../../map_view/map_view.dart";
 import "controllers.dart";

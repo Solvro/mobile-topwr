@@ -37,4 +37,6 @@ final defaults = _Defaults(
       CalendarDaySection(day: args.day, events: _productionEvents, weekday: args.weekday, isToday: args.isToday),
 );
 
-final $default = CalendarDaySectionStory();
+final $default = CalendarDaySectionStory(
+  args: CalendarDaySectionStoryKnobsArgs.fixed(day: 1, weekday: 1),
+);

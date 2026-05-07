@@ -10,6 +10,7 @@ import "package:hooks_riverpod/hooks_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 import "package:sentry_flutter/sentry_flutter.dart";
 import "package:solvro_translator_core/solvro_translator_core.dart";
+import "package:topwr_assets/gen/assets.gen.dart";
 import "package:wiredash/wiredash.dart";
 
 import "api_base_rest/client/offline_error.dart";
@@ -26,7 +27,6 @@ import "features/radio_luz/service/radio_player_provider.dart";
 import "features/splash_screen/splash_screen.dart";
 import "features/splash_screen/splash_screen_controller.dart";
 import "features/update_dialog/presentation/update_dialog_wrapper.dart";
-import "gen/assets.gen.dart";
 import "l10n/app_localizations.dart";
 import "services/cache_reference_number/cms/presentation/flush_cache_remotely_widget.dart";
 import "services/cache_reference_number/translations/presentation/flush_translations_cache_remotely_widget.dart";

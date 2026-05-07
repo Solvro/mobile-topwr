@@ -3,9 +3,9 @@ import "dart:async";
 import "package:flutter/material.dart";
 import "package:flutter_svg/svg.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
+import "package:topwr_assets/gen/assets.gen.dart";
 
 import "../../../../config/ui_config.dart";
-import "../../../../gen/assets.gen.dart";
 import "../../../../hooks/use_semantics_service_on_changed_value.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../theme/colors.dart";

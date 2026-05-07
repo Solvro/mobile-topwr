@@ -1,8 +1,8 @@
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:topwr_assets/gen/assets.gen.dart";
 
 import "../../../../../config/ui_config.dart";
-import "../../../../../gen/assets.gen.dart";
 import "../../../../../utils/context_extensions.dart";
 import "../../tabs/accessibility_dialog/data/active_accessibility_modes_repository.dart";
 import "../../tabs/accessibility_dialog/data/modes.dart";

@@ -51,6 +51,14 @@ jobs:
         run: flutter pub get
         working-directory: .
 
+      - name: Install shared asset dependencies
+        run: flutter pub get
+        working-directory: packages/topwr_assets
+
+      - name: Generate shared asset files
+        run: dart run build_runner build --delete-conflicting-outputs
+        working-directory: packages/topwr_assets
+
       - name: Generate root localization files
         run: flutter gen-l10n
         working-directory: .
@@ -69,7 +77,7 @@ jobs:
       # runs git-crypt clean filters; without a key (e.g. fork PR) that fails with exit 128.
       - name: Ensure generated files are committed
         working-directory: ${{ github.workspace }}
-        run: git diff --exit-code -- packages/widgetbook/ lib/
+        run: git diff --exit-code -- packages/widgetbook/ packages/topwr_assets/ lib/
 
       - name: Analyze project source
         run: flutter analyze --fatal-infos

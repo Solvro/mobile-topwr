@@ -1,4 +1,4 @@
-import "../gen/assets.gen.dart";
+import "package:topwr_assets/gen/assets.gen.dart";
 
 abstract class ContactIconsConfig {
   static final iconsPaths = {
