@@ -92,15 +92,19 @@ class _TopwrFallbackAssetBundle extends CachingAssetBundle {
 
   final AssetBundle _delegate;
 
-  static const _topwrPackagePrefix = "packages/topwr/";
+  static const _topwrAssetsPackagePrefix = "packages/topwr_assets/";
+  static const _legacyAssetsPrefix = "assets/";
 
   @override
   Future<ByteData> load(String key) async {
     try {
       return await _delegate.load(key);
     } catch (_) {
-      if (key.startsWith(_topwrPackagePrefix)) rethrow;
-      return _delegate.load("$_topwrPackagePrefix$key");
+      if (key.startsWith(_topwrAssetsPackagePrefix)) rethrow;
+      if (key.startsWith(_legacyAssetsPrefix)) {
+        return _delegate.load("$_topwrAssetsPackagePrefix$key");
+      }
+      rethrow;
     }
   }
 
@@ -109,8 +113,11 @@ class _TopwrFallbackAssetBundle extends CachingAssetBundle {
     try {
       return await _delegate.loadString(key, cache: cache);
     } catch (_) {
-      if (key.startsWith(_topwrPackagePrefix)) rethrow;
-      return _delegate.loadString("$_topwrPackagePrefix$key", cache: cache);
+      if (key.startsWith(_topwrAssetsPackagePrefix)) rethrow;
+      if (key.startsWith(_legacyAssetsPrefix)) {
+        return _delegate.loadString("$_topwrAssetsPackagePrefix$key", cache: cache);
+      }
+      rethrow;
     }
   }
 }

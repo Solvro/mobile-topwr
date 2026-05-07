@@ -33,6 +33,8 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
+  topwr_assets:
+    path: packages/topwr_assets
 
   #State managements
   flutter_riverpod: ^3.1.0 # todo(simon-the-shark): bump when analyzer bump to 9 will be possible
@@ -176,75 +178,75 @@ flutter:
   generate: true
 
   assets:
-    - assets/png/splash_screen/splash_logo.png
-    - assets/svg/logo_app_bar.svg
-    - assets/png/map_markers/map_marker.png
-    - assets/png/map_markers/active_map_marker.png
-    - assets/png/map_markers/active_parking_map_marker.png
-    - assets/png/map_markers/parking_map_marker.png
-    - assets/png/map_markers/active_library_marker.png
-    - assets/png/map_markers/library_marker.png
-    - assets/png/map_markers/active_polinka_marker.png
-    - assets/png/map_markers/polinka_marker.png
-    - assets/png/map_markers/active_aed_marker.png
-    - assets/png/map_markers/aed_marker.png
-    - assets/png/map_markers/active_shower_marker.png
-    - assets/png/map_markers/shower_marker.png
-    - assets/png/map_markers/active_pink_box_marker.png
-    - assets/png/map_markers/pink_box_marker.png
-    - assets/png/radio_luz/radio_luz_logo.png
-    - assets/svg/search_box/vectorsearch.svg
-    - assets/svg/contact_icons/compass.svg
-    - assets/svg/contact_icons/fb.svg
-    - assets/svg/contact_icons/github.svg
-    - assets/svg/contact_icons/ig.svg
-    - assets/svg/contact_icons/linkedin.svg
-    - assets/svg/contact_icons/mail.svg
-    - assets/svg/contact_icons/phone.svg
-    - assets/svg/contact_icons/web.svg
-    - assets/svg/contact_icons/yt.svg
-    - assets/svg/contact_icons/x.svg
-    - assets/svg/contact_icons/tiktok.svg
-    - assets/svg/contact_icons/discord.svg
-    - assets/svg/digital_guide/storey.svg
-    - assets/svg/digital_guide/assistance_dog.svg
-    - assets/svg/digital_guide/braille.svg
-    - assets/svg/digital_guide/emergency_chairs.svg
-    - assets/svg/digital_guide/induction_loop.svg
-    - assets/svg/digital_guide/large_font.svg
-    - assets/svg/digital_guide/micronavigation.svg
-    - assets/svg/digital_guide/orientation_paths.svg
-    - assets/svg/digital_guide/sign_language.svg
-    - assets/svg/digital_guide/accessibility_alerts/blind_profile.svg
-    - assets/svg/digital_guide/accessibility_alerts/cognitive_difficulties.svg
-    - assets/svg/digital_guide/accessibility_alerts/movement_dysfunction.svg
-    - assets/svg/digital_guide/accessibility_alerts/visually_impaired.svg
-    - assets/svg/digital_guide/accessibility_alerts/hearing_dysfunction.svg
-    - assets/svg/digital_guide/accessibility_alerts/sensory_sensitivity.svg
-    - assets/animations/error.json
-    - assets/animations/search.json
-    - assets/animations/offline.json
-    - assets/animations/bug.json
-    - assets/animations/sks_closed.json
-    - assets/certs/przewodnik.pwr.edu.pl.pem
-    - assets/svg/map_placeholders/pink_box_icon.svg
-    - assets/svg/map_placeholders/aed_icon.svg
-    - assets/svg/map_placeholders/library_icon.svg
-    - assets/svg/map_placeholders/shower_icon.svg
-    - assets/svg/map_placeholders/building_icon.svg
-    - assets/svg/radio_luz/play_icon.svg
-    - assets/svg/radio_luz/pause_icon.svg
-    - assets/svg/radio_luz/speaker_icon.svg
-    - assets/svg/radio_luz/radio_luz_logo.svg
-    - assets/svg/streaming/spotify.svg
-    - assets/svg/streaming/apple_music.svg
-    - assets/svg/streaming/youtube_music.svg
-    - assets/svg/streaming/deezer.svg
-    - assets/svg/streaming/tidal.svg
-    - assets/svg/branches_logos/logo-pwr.svg
-    - assets/svg/branches_logos/logo-jelenia.svg
-    - assets/svg/branches_logos/logo-walbrzych.svg
-    - assets/svg/branches_logos/logo-legnica.svg
+    - packages/topwr_assets/assets/png/splash_screen/splash_logo.png
+    - packages/topwr_assets/assets/svg/logo_app_bar.svg
+    - packages/topwr_assets/assets/png/map_markers/map_marker.png
+    - packages/topwr_assets/assets/png/map_markers/active_map_marker.png
+    - packages/topwr_assets/assets/png/map_markers/active_parking_map_marker.png
+    - packages/topwr_assets/assets/png/map_markers/parking_map_marker.png
+    - packages/topwr_assets/assets/png/map_markers/active_library_marker.png
+    - packages/topwr_assets/assets/png/map_markers/library_marker.png
+    - packages/topwr_assets/assets/png/map_markers/active_polinka_marker.png
+    - packages/topwr_assets/assets/png/map_markers/polinka_marker.png
+    - packages/topwr_assets/assets/png/map_markers/active_aed_marker.png
+    - packages/topwr_assets/assets/png/map_markers/aed_marker.png
+    - packages/topwr_assets/assets/png/map_markers/active_shower_marker.png
+    - packages/topwr_assets/assets/png/map_markers/shower_marker.png
+    - packages/topwr_assets/assets/png/map_markers/active_pink_box_marker.png
+    - packages/topwr_assets/assets/png/map_markers/pink_box_marker.png
+    - packages/topwr_assets/assets/png/radio_luz/radio_luz_logo.png
+    - packages/topwr_assets/assets/svg/search_box/vectorsearch.svg
+    - packages/topwr_assets/assets/svg/contact_icons/compass.svg
+    - packages/topwr_assets/assets/svg/contact_icons/fb.svg
+    - packages/topwr_assets/assets/svg/contact_icons/github.svg
+    - packages/topwr_assets/assets/svg/contact_icons/ig.svg
+    - packages/topwr_assets/assets/svg/contact_icons/linkedin.svg
+    - packages/topwr_assets/assets/svg/contact_icons/mail.svg
+    - packages/topwr_assets/assets/svg/contact_icons/phone.svg
+    - packages/topwr_assets/assets/svg/contact_icons/web.svg
+    - packages/topwr_assets/assets/svg/contact_icons/yt.svg
+    - packages/topwr_assets/assets/svg/contact_icons/x.svg
+    - packages/topwr_assets/assets/svg/contact_icons/tiktok.svg
+    - packages/topwr_assets/assets/svg/contact_icons/discord.svg
+    - packages/topwr_assets/assets/svg/digital_guide/storey.svg
+    - packages/topwr_assets/assets/svg/digital_guide/assistance_dog.svg
+    - packages/topwr_assets/assets/svg/digital_guide/braille.svg
+    - packages/topwr_assets/assets/svg/digital_guide/emergency_chairs.svg
+    - packages/topwr_assets/assets/svg/digital_guide/induction_loop.svg
+    - packages/topwr_assets/assets/svg/digital_guide/large_font.svg
+    - packages/topwr_assets/assets/svg/digital_guide/micronavigation.svg
+    - packages/topwr_assets/assets/svg/digital_guide/orientation_paths.svg
+    - packages/topwr_assets/assets/svg/digital_guide/sign_language.svg
+    - packages/topwr_assets/assets/svg/digital_guide/accessibility_alerts/blind_profile.svg
+    - packages/topwr_assets/assets/svg/digital_guide/accessibility_alerts/cognitive_difficulties.svg
+    - packages/topwr_assets/assets/svg/digital_guide/accessibility_alerts/movement_dysfunction.svg
+    - packages/topwr_assets/assets/svg/digital_guide/accessibility_alerts/visually_impaired.svg
+    - packages/topwr_assets/assets/svg/digital_guide/accessibility_alerts/hearing_dysfunction.svg
+    - packages/topwr_assets/assets/svg/digital_guide/accessibility_alerts/sensory_sensitivity.svg
+    - packages/topwr_assets/assets/animations/error.json
+    - packages/topwr_assets/assets/animations/search.json
+    - packages/topwr_assets/assets/animations/offline.json
+    - packages/topwr_assets/assets/animations/bug.json
+    - packages/topwr_assets/assets/animations/sks_closed.json
+    - packages/topwr_assets/assets/certs/przewodnik.pwr.edu.pl.pem
+    - packages/topwr_assets/assets/svg/map_placeholders/pink_box_icon.svg
+    - packages/topwr_assets/assets/svg/map_placeholders/aed_icon.svg
+    - packages/topwr_assets/assets/svg/map_placeholders/library_icon.svg
+    - packages/topwr_assets/assets/svg/map_placeholders/shower_icon.svg
+    - packages/topwr_assets/assets/svg/map_placeholders/building_icon.svg
+    - packages/topwr_assets/assets/svg/radio_luz/play_icon.svg
+    - packages/topwr_assets/assets/svg/radio_luz/pause_icon.svg
+    - packages/topwr_assets/assets/svg/radio_luz/speaker_icon.svg
+    - packages/topwr_assets/assets/svg/radio_luz/radio_luz_logo.svg
+    - packages/topwr_assets/assets/svg/streaming/spotify.svg
+    - packages/topwr_assets/assets/svg/streaming/apple_music.svg
+    - packages/topwr_assets/assets/svg/streaming/youtube_music.svg
+    - packages/topwr_assets/assets/svg/streaming/deezer.svg
+    - packages/topwr_assets/assets/svg/streaming/tidal.svg
+    - packages/topwr_assets/assets/svg/branches_logos/logo-pwr.svg
+    - packages/topwr_assets/assets/svg/branches_logos/logo-jelenia.svg
+    - packages/topwr_assets/assets/svg/branches_logos/logo-walbrzych.svg
+    - packages/topwr_assets/assets/svg/branches_logos/logo-legnica.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
@@ -253,74 +255,74 @@ flutter:
   fonts:
     - family: BottomNavBarIcons
       fonts:
-        - asset: fonts/BottomNavBarIcons.ttf
+        - asset: packages/topwr_assets/fonts/BottomNavBarIcons.ttf
     - family: IParkingIcons
       fonts:
-        - asset: fonts/IParkingIcons.ttf
+        - asset: packages/topwr_assets/fonts/IParkingIcons.ttf
     - family: StrategicClubBadges
       fonts:
-        - asset: fonts/StrategicClubBadges.ttf
+        - asset: packages/topwr_assets/fonts/StrategicClubBadges.ttf
     - family: Rubik
       fonts:
-        - asset: fonts/rubik/Rubik-Light.ttf
+        - asset: packages/topwr_assets/fonts/rubik/Rubik-Light.ttf
           weight: 300
-        - asset: fonts/rubik/Rubik-LightItalic.ttf
+        - asset: packages/topwr_assets/fonts/rubik/Rubik-LightItalic.ttf
           weight: 300
           style: italic
-        - asset: fonts/rubik/Rubik-Regular.ttf
+        - asset: packages/topwr_assets/fonts/rubik/Rubik-Regular.ttf
           weight: 400
-        - asset: fonts/rubik/Rubik-Italic.ttf
+        - asset: packages/topwr_assets/fonts/rubik/Rubik-Italic.ttf
           weight: 400
           style: italic
-        - asset: fonts/rubik/Rubik-Medium.ttf
+        - asset: packages/topwr_assets/fonts/rubik/Rubik-Medium.ttf
           weight: 500
-        - asset: fonts/rubik/Rubik-MediumItalic.ttf
+        - asset: packages/topwr_assets/fonts/rubik/Rubik-MediumItalic.ttf
           weight: 500
           style: italic
-        - asset: fonts/rubik/Rubik-SemiBold.ttf
+        - asset: packages/topwr_assets/fonts/rubik/Rubik-SemiBold.ttf
           weight: 600
-        - asset: fonts/rubik/Rubik-SemiBoldItalic.ttf
+        - asset: packages/topwr_assets/fonts/rubik/Rubik-SemiBoldItalic.ttf
           weight: 600
           style: italic
-        - asset: fonts/rubik/Rubik-Bold.ttf
+        - asset: packages/topwr_assets/fonts/rubik/Rubik-Bold.ttf
           weight: 700
-        - asset: fonts/rubik/Rubik-BoldItalic.ttf
+        - asset: packages/topwr_assets/fonts/rubik/Rubik-BoldItalic.ttf
           weight: 700
           style: italic
-        - asset: fonts/rubik/Rubik-ExtraBold.ttf
+        - asset: packages/topwr_assets/fonts/rubik/Rubik-ExtraBold.ttf
           weight: 800
-        - asset: fonts/rubik/Rubik-ExtraBoldItalic.ttf
+        - asset: packages/topwr_assets/fonts/rubik/Rubik-ExtraBoldItalic.ttf
           weight: 800
           style: italic
-        - asset: fonts/rubik/Rubik-Black.ttf
+        - asset: packages/topwr_assets/fonts/rubik/Rubik-Black.ttf
           weight: 900
-        - asset: fonts/rubik/Rubik-BlackItalic.ttf
+        - asset: packages/topwr_assets/fonts/rubik/Rubik-BlackItalic.ttf
           weight: 900
           style: italic
 
 flutter_native_splash:
-  background_image: assets/splash_screen/native_splash_bg.png
-  image: assets/splash_screen/splash_logo.png
+  background_image: packages/topwr_assets/assets/png/splash_screen/native_splash_bg.png
+  image: packages/topwr_assets/assets/png/splash_screen/splash_logo.png
 
   android_12:
     color: "#EE6644"
-    image: assets/splash_screen/splash_logo.png
+    image: packages/topwr_assets/assets/png/splash_screen/splash_logo.png
 
 flutter_launcher_icons:
   android: false # manually set in Android Studio
   ios: true
   remove_alpha_ios: true
-  image_path: "assets/png/app_icon.png"
+  image_path: "packages/topwr_assets/assets/png/app_icon.png"
   web:
     generate: true
-    image_path: "assets/png/app_icon.png"
+    image_path: "packages/topwr_assets/assets/png/app_icon.png"
     background_color: "#EE6644"
     theme_color: "#EE6644"
   windows:
     generate: true
-    image_path: "assets/png/app_icon.png"
+    image_path: "packages/topwr_assets/assets/png/app_icon.png"
   macos:
     generate: true
-    image_path: "assets/png/app_icon.png"
+    image_path: "packages/topwr_assets/assets/png/app_icon.png"
 lint_staged:
   "lib/**.dart": dart format && dart fix --apply

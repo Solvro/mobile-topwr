@@ -4,7 +4,7 @@ This package is a dedicated `Widgetbook` workspace for developing and reviewing 
 
 ## Getting started
 
-From the `widgetbook` directory:
+From the `packages/widgetbook` directory:
 
 ```bash
 flutter pub get

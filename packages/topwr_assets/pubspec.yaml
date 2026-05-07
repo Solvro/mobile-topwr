@@ -1,0 +1,64 @@
+name: topwr_assets
+description: Shared assets and fonts for the ToPWR app and Widgetbook.
+version: 0.0.0
+publish_to: none
+
+environment:
+  sdk: ^3.11.1
+  flutter: 3.41.4
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+flutter:
+  assets:
+    - lib/assets/
+
+  fonts:
+    - family: BottomNavBarIcons
+      fonts:
+        - asset: lib/fonts/BottomNavBarIcons.ttf
+    - family: IParkingIcons
+      fonts:
+        - asset: lib/fonts/IParkingIcons.ttf
+    - family: StrategicClubBadges
+      fonts:
+        - asset: lib/fonts/StrategicClubBadges.ttf
+    - family: Rubik
+      fonts:
+        - asset: lib/fonts/rubik/Rubik-Light.ttf
+          weight: 300
+        - asset: lib/fonts/rubik/Rubik-LightItalic.ttf
+          weight: 300
+          style: italic
+        - asset: lib/fonts/rubik/Rubik-Regular.ttf
+          weight: 400
+        - asset: lib/fonts/rubik/Rubik-Italic.ttf
+          weight: 400
+          style: italic
+        - asset: lib/fonts/rubik/Rubik-Medium.ttf
+          weight: 500
+        - asset: lib/fonts/rubik/Rubik-MediumItalic.ttf
+          weight: 500
+          style: italic
+        - asset: lib/fonts/rubik/Rubik-SemiBold.ttf
+          weight: 600
+        - asset: lib/fonts/rubik/Rubik-SemiBoldItalic.ttf
+          weight: 600
+          style: italic
+        - asset: lib/fonts/rubik/Rubik-Bold.ttf
+          weight: 700
+        - asset: lib/fonts/rubik/Rubik-BoldItalic.ttf
+          weight: 700
+          style: italic
+        - asset: lib/fonts/rubik/Rubik-ExtraBold.ttf
+          weight: 800
+        - asset: lib/fonts/rubik/Rubik-ExtraBoldItalic.ttf
+          weight: 800
+          style: italic
+        - asset: lib/fonts/rubik/Rubik-Black.ttf
+          weight: 900
+        - asset: lib/fonts/rubik/Rubik-BlackItalic.ttf
+          weight: 900
+          style: italic

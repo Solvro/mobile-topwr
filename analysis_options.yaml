@@ -2,6 +2,6 @@ include: package:solvro_config/app.yaml
 
 analyzer:
   exclude:
-    - widgetbook/**
+    - packages/widgetbook/**
   errors:
     unsafe_variance: ignore

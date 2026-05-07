@@ -5,12 +5,14 @@ on:
     branches:
       - main
     paths:
-      - "widgetbook/**"
+      - "packages/widgetbook/**"
+      - "packages/topwr_assets/**"
       - ".github/workflows/widgetbook_ci.yaml"
   pull_request:
     branches: ["**"]
     paths:
-      - "widgetbook/**"
+      - "packages/widgetbook/**"
+      - "packages/topwr_assets/**"
       - ".github/workflows/widgetbook_ci.yaml"
 
 permissions:
@@ -23,7 +25,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: widgetbook
+        working-directory: packages/widgetbook
 
     steps:
       - uses: actions/checkout@v6
@@ -67,7 +69,7 @@ jobs:
       # runs git-crypt clean filters; without a key (e.g. fork PR) that fails with exit 128.
       - name: Ensure generated files are committed
         working-directory: ${{ github.workspace }}
-        run: git diff --exit-code -- widgetbook/ lib/
+        run: git diff --exit-code -- packages/widgetbook/ lib/
 
       - name: Analyze project source
         run: flutter analyze --fatal-infos
