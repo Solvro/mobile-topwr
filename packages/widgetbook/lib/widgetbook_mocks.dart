@@ -27,6 +27,7 @@ import "package:topwr/features/multilayer_map/data/model/pink_box.dart";
 import "package:topwr/features/multilayer_map/data/model/polinka_station.dart";
 import "package:topwr/features/newsfeed/data/models/newsfeed_models.dart";
 import "package:topwr/features/notifications/data/models/notification_model.dart";
+import "package:topwr/features/parkings/parking_chart/models/chart_point.dart";
 import "package:topwr/features/parkings/parkings_view/models/parking.dart";
 import "package:topwr/features/planner_advert/data/models/planner_banner_models.dart";
 import "package:topwr/features/remote_config/data/models/remote_config.dart";
@@ -486,6 +487,18 @@ const mockMultilayerItems = IListConst<MultilayerItem>([
 ]);
 
 const mockParkings = IListConst<Parking>([mockParking]);
+
+const mockParkingChartData = IListConst<ChartPoint>([
+  ChartPoint(7, 18),
+  ChartPoint(8, 25),
+  ChartPoint(9, 41),
+  ChartPoint(10, 52),
+  ChartPoint(11, 44),
+  ChartPoint(12, 36),
+  ChartPoint(13, 29),
+  ChartPoint(14, 33),
+  ChartPoint(15, 47),
+]);
 
 final mockPlannerBanner = PlannerBanner(
   id: 1,

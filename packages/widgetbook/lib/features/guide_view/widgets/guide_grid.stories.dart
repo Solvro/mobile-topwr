@@ -5,7 +5,26 @@ import "package:widgetbook/widgetbook.dart";
 
 part "guide_grid.stories.g.dart";
 
-final _mockGuideGridChildren = IList<Widget>(const [SizedBox(width: 48, height: 48), SizedBox(width: 48, height: 48)]);
+final _mockGuideGridChildren = IList<Widget>(const [
+  Card(
+    child: Padding(
+      padding: EdgeInsets.all(16),
+      child: Center(child: Text("Student essentials")),
+    ),
+  ),
+  Card(
+    child: Padding(
+      padding: EdgeInsets.all(16),
+      child: Center(child: Text("Campus services")),
+    ),
+  ),
+  Card(
+    child: Padding(
+      padding: EdgeInsets.all(16),
+      child: Center(child: Text("Before classes")),
+    ),
+  ),
+]);
 
 const meta = Meta<GuideGrid>();
 

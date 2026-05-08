@@ -6,4 +6,7 @@ part "custom_date_tooltip.stories.g.dart";
 
 const meta = Meta<CustomDateTooltip>();
 
-final $default = CustomDateTooltipStory(args: CustomDateTooltipArgs(position: Arg.fixed(Offset.zero)));
+final $default = CustomDateTooltipStory(
+  args: CustomDateTooltipArgs.fixed(position: const Offset(180, 24), message: "Updated May 2026"),
+  setup: (context, child, args) => Stack(children: [child]),
+);

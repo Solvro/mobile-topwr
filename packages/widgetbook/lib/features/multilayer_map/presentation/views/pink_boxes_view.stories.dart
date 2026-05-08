@@ -2,8 +2,13 @@ import "package:flutter/widgets.dart";
 import "package:topwr/features/multilayer_map/presentation/views/redirect_views.dart";
 import "package:widgetbook/widgetbook.dart";
 
+import "../../../../auto_route_story_wrapper.dart";
+
 part "pink_boxes_view.stories.g.dart";
 
 const meta = Meta<PinkBoxesView>();
 
-final $default = PinkBoxesViewStory(name: "Production view with hardcoded data");
+final $default = PinkBoxesViewStory(
+  name: "Production view with hardcoded data",
+  setup: (context, child, args) => WidgetbookAutoRouteScope(child: child),
+);

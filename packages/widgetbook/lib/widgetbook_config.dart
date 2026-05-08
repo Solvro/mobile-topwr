@@ -16,6 +16,7 @@ import "package:topwr/features/multilayer_map/business/multilayer_source_service
 import "package:topwr/features/newsfeed/data/repository/newsfeed_repository.dart";
 import "package:topwr/features/notifications/data/models/notification_model.dart";
 import "package:topwr/features/notifications/data/repository/notifications_repository.dart";
+import "package:topwr/features/parkings/parking_chart/repository/chart_repository.dart";
 import "package:topwr/features/parkings/parkings_view/repository/parkings_repository.dart";
 import "package:topwr/features/planner_advert/repository/planner_advert_repository.dart";
 import "package:topwr/features/radio_luz/data/repository/history_entry_repository.dart";
@@ -26,8 +27,8 @@ import "package:topwr/features/remote_config/data/repository/remote_config_repos
 import "package:topwr/features/science_club/science_club_detail_view/repository/science_club_details_repository.dart";
 import "package:topwr/features/science_club/science_clubs_filters/repository/tags_repository.dart";
 import "package:topwr/features/science_club/science_clubs_view/repository/science_clubs_repository.dart";
-import "package:topwr/features/sks/sks_favourite_dishes/data/repository/sks_favourite_dishes_repository.dart";
 import "package:topwr/features/sks/sks_chart/data/repository/sks_chart_repository.dart";
+import "package:topwr/features/sks/sks_favourite_dishes/data/repository/sks_favourite_dishes_repository.dart";
 import "package:topwr/features/sks/sks_menu/data/models/sks_menu_response.dart";
 import "package:topwr/features/sks/sks_menu/data/repository/sks_menu_repository.dart";
 import "package:topwr/features/sks/sks_people_live/data/repository/latest_sks_user_data_repo.dart";
@@ -67,6 +68,7 @@ final config = Config(
         multilayerSourceServiceProvider.overrideWith((ref) => mockMultilayerItems),
         newsfeedRepositoryProvider.overrideWith((ref) => mockNewsArticles),
         notificationsRepositoryProvider.overrideWith(WidgetbookNotificationsRepository.new),
+        chartRepositoryProvider.overrideWith((ref, parking) => mockParkingChartData),
         parkingsRepositoryProvider.overrideWith((ref) => mockParkings),
         plannerAdvertContentRepositoryProvider.overrideWith((ref) => Future.value(mockPlannerBanner)),
         radioControllerProvider.overrideWith(FakeRadioController.new),
