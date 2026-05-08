@@ -232,6 +232,7 @@ abstract class NavigationTabViewConfig {
   static const scienceClubsKey = Key("science_club");
   static const radioLuzKey = Key("radio_luz");
   static const settingsKey = Key("settings");
+  static const sksFavouriteDishesKey = Key("sks_favourite_dishes");
 }
 
 abstract class DigitalGuideConfig {

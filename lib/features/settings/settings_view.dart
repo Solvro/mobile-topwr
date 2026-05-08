@@ -57,6 +57,7 @@ class SettingsView extends ConsumerWidget {
         icon: Icons.accessibility_new,
       ),
       NavigationTile(
+        key: NavigationTabViewConfig.sksFavouriteDishesKey,
         onTap: ref.navigateToSksFavouriteDishes,
         title: context.localize.sks_favourite_dishes_see_dishes,
         icon: Icons.food_bank,
