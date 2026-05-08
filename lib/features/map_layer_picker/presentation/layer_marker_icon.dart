@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 
-import "package:topwr_assets/gen/assets.gen.dart";
+import "../../../gen/assets.gen.dart";
 import "../../../theme/hex_color.dart";
 import "../data/layer_options.dart";
 

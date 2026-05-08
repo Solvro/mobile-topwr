@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 import "package:flutter_svg/svg.dart";
 
-import "package:topwr_assets/gen/assets.gen.dart";
+import "../../../gen/assets.gen.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../widgets/detail_views/pop_button.dart";

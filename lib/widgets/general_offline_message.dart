@@ -4,9 +4,9 @@ import "package:flutter/material.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:lottie/lottie.dart";
-import "package:topwr_assets/gen/assets.gen.dart";
 
 import "../config/ui_config.dart";
+import "../gen/assets.gen.dart";
 import "../theme/app_theme.dart";
 import "../utils/context_extensions.dart";
 import "my_text_button.dart";

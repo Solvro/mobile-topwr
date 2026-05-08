@@ -3,12 +3,12 @@ import "package:flutter_hooks/flutter_hooks.dart";
 import "package:logger/logger.dart";
 import "package:lottie/lottie.dart";
 import "package:sentry_flutter/sentry_flutter.dart";
-import "package:topwr_assets/gen/assets.gen.dart";
 
 import "../api_base_rest/client/offline_error.dart";
 import "../config/ui_config.dart";
 import "../features/parkings/parkings_view/repository/parkings_repository.dart";
 import "../features/parkings/parkings_view/widgets/offline_parkings_view.dart";
+import "../gen/assets.gen.dart";
 import "../theme/app_theme.dart";
 import "../utils/context_extensions.dart";
 import "../utils/unwaited_microtask.dart";

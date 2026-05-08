@@ -9,7 +9,6 @@ resolution: workspace
 
 dependencies:
   topwr: any
-  topwr_assets: any
   flutter:
     sdk: flutter
   widgetbook: ^4.0.0-beta.1
@@ -35,47 +34,47 @@ flutter:
   fonts:
     - family: BottomNavBarIcons
       fonts:
-        - asset: packages/topwr_assets/fonts/BottomNavBarIcons.ttf
+        - asset: packages/topwr/assets/fonts/BottomNavBarIcons.ttf
     - family: IParkingIcons
       fonts:
-        - asset: packages/topwr_assets/fonts/IParkingIcons.ttf
+        - asset: packages/topwr/assets/fonts/IParkingIcons.ttf
     - family: StrategicClubBadges
       fonts:
-        - asset: packages/topwr_assets/fonts/StrategicClubBadges.ttf
+        - asset: packages/topwr/assets/fonts/StrategicClubBadges.ttf
     - family: Rubik
       fonts:
-        - asset: packages/topwr_assets/fonts/rubik/Rubik-Light.ttf
+        - asset: packages/topwr/assets/fonts/rubik/Rubik-Light.ttf
           weight: 300
-        - asset: packages/topwr_assets/fonts/rubik/Rubik-LightItalic.ttf
+        - asset: packages/topwr/assets/fonts/rubik/Rubik-LightItalic.ttf
           weight: 300
           style: italic
-        - asset: packages/topwr_assets/fonts/rubik/Rubik-Regular.ttf
+        - asset: packages/topwr/assets/fonts/rubik/Rubik-Regular.ttf
           weight: 400
-        - asset: packages/topwr_assets/fonts/rubik/Rubik-Italic.ttf
+        - asset: packages/topwr/assets/fonts/rubik/Rubik-Italic.ttf
           weight: 400
           style: italic
-        - asset: packages/topwr_assets/fonts/rubik/Rubik-Medium.ttf
+        - asset: packages/topwr/assets/fonts/rubik/Rubik-Medium.ttf
           weight: 500
-        - asset: packages/topwr_assets/fonts/rubik/Rubik-MediumItalic.ttf
+        - asset: packages/topwr/assets/fonts/rubik/Rubik-MediumItalic.ttf
           weight: 500
           style: italic
-        - asset: packages/topwr_assets/fonts/rubik/Rubik-SemiBold.ttf
+        - asset: packages/topwr/assets/fonts/rubik/Rubik-SemiBold.ttf
           weight: 600
-        - asset: packages/topwr_assets/fonts/rubik/Rubik-SemiBoldItalic.ttf
+        - asset: packages/topwr/assets/fonts/rubik/Rubik-SemiBoldItalic.ttf
           weight: 600
           style: italic
-        - asset: packages/topwr_assets/fonts/rubik/Rubik-Bold.ttf
+        - asset: packages/topwr/assets/fonts/rubik/Rubik-Bold.ttf
           weight: 700
-        - asset: packages/topwr_assets/fonts/rubik/Rubik-BoldItalic.ttf
+        - asset: packages/topwr/assets/fonts/rubik/Rubik-BoldItalic.ttf
           weight: 700
           style: italic
-        - asset: packages/topwr_assets/fonts/rubik/Rubik-ExtraBold.ttf
+        - asset: packages/topwr/assets/fonts/rubik/Rubik-ExtraBold.ttf
           weight: 800
-        - asset: packages/topwr_assets/fonts/rubik/Rubik-ExtraBoldItalic.ttf
+        - asset: packages/topwr/assets/fonts/rubik/Rubik-ExtraBoldItalic.ttf
           weight: 800
           style: italic
-        - asset: packages/topwr_assets/fonts/rubik/Rubik-Black.ttf
+        - asset: packages/topwr/assets/fonts/rubik/Rubik-Black.ttf
           weight: 900
-        - asset: packages/topwr_assets/fonts/rubik/Rubik-BlackItalic.ttf
+        - asset: packages/topwr/assets/fonts/rubik/Rubik-BlackItalic.ttf
           weight: 900
           style: italic

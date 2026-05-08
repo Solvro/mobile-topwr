@@ -8,10 +8,10 @@ import "package:flutter_hooks/flutter_hooks.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 import "package:intl/intl.dart";
 import "package:lottie/lottie.dart";
-import "package:topwr_assets/gen/assets.gen.dart";
 
 import "../../../../../theme/app_theme.dart";
 import "../../../../config/ui_config.dart";
+import "../../../../gen/assets.gen.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../../../widgets/horizontal_symmetric_safe_area.dart";

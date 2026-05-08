@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 import "package:topwr/features/digital_guide/presentation/widgets/accessibility_information_card.dart";
-import "package:topwr_assets/gen/assets.gen.dart";
+import "package:topwr/gen/assets.gen.dart";
 import "package:widgetbook/widgetbook.dart";
 
 part "accessibility_information_card.stories.g.dart";

@@ -2,9 +2,9 @@ import "package:auto_route/auto_route.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
-import "package:topwr_assets/gen/assets.gen.dart";
 
 import "../../../config/ui_config.dart";
+import "../../../gen/assets.gen.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../utils/determine_contact_icon.dart";
 import "../../../widgets/detail_views/contact_section.dart";
