@@ -6,6 +6,6 @@ part "contact_icon_widget.stories.g.dart";
 
 const meta = Meta<ContactIconWidget>();
 
-const _defaultContactSvg = "packages/topwr_assets/assets/svg/contact_icons/mail.svg";
+const _defaultContactSvg = "packages/topwr/assets/svg/contact_icons/mail.svg";
 
 final $default = ContactIconWidgetStory(args: ContactIconWidgetArgs(icon: StringArg(_defaultContactSvg)));

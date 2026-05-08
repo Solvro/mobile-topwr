@@ -1,3 +1,4 @@
+import "package:flutter/widgets.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:topwr/features/digital_guide/tabs/rooms/platforms/models/room_platforms_response.dart";
 import "package:topwr/features/digital_guide/tabs/rooms/platforms/presentation/room_platforms_content.dart";
@@ -30,6 +31,7 @@ const _mockRoomPlatform = RoomPlatformsResponse(
 
 final $default = RoomPlatformsContentStory(
   setup: (context, child, args) => ProviderScope(
+    key: ValueKey("room_platforms_content_story_${args.platformId}"),
     overrides: [roomPlatformsRepositoryProvider(args.platformId).overrideWith((ref) async => _mockRoomPlatform)],
     child: child,
   ),

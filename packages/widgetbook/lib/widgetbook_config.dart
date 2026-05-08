@@ -100,7 +100,7 @@ class _TopwrFallbackAssetBundle extends CachingAssetBundle {
 
   final AssetBundle _delegate;
 
-  static const _topwrAssetsPackagePrefix = "packages/topwr_assets/";
+  static const _topwrAssetsPackagePrefix = "packages/topwr/";
   static const _legacyAssetsPrefix = "assets/";
 
   @override

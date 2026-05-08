@@ -22,17 +22,17 @@ final _mockContactList = <ContactIconsModel>[
   ContactIconsModel(
     text: "support@topwr.app",
     url: "mailto:support@topwr.app",
-    icon: "packages/topwr_assets/assets/svg/contact_icons/mail.svg",
+    icon: "packages/topwr/assets/svg/contact_icons/mail.svg",
   ),
   ContactIconsModel(
     text: "+1 415 555 0134",
     url: "tel:+14155550134",
-    icon: "packages/topwr_assets/assets/svg/contact_icons/phone.svg",
+    icon: "packages/topwr/assets/svg/contact_icons/phone.svg",
   ),
   ContactIconsModel(
     text: "topwr.app",
     url: "https://topwr.app",
-    icon: "packages/topwr_assets/assets/svg/contact_icons/web.svg",
+    icon: "packages/topwr/assets/svg/contact_icons/web.svg",
   ),
 ].lock;
 
