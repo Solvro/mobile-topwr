@@ -241,5 +241,23 @@ void main() {
       await scrollAndFailIfFound(tester: tester, scrollableFinder: scrollableFinder, targetFinder: errorFinder);
       await tester.pumpAndSettle();
     });
+
+    testWidgets("CalendarView smoke test", (tester) async {
+      await app.main(overrides: createPopupProviderOverrides());
+      await tester.pumpAndSettle(const Duration(seconds: 5));
+
+      await tapNavButton(tester, NavBarEnum.home);
+      await tester.pumpAndSettle(const Duration(seconds: 5));
+
+      final navButton = find.byKey(HomeViewConfig.calendarKey);
+      await tester.tap(navButton);
+
+      await tester.pumpAndSettle();
+
+      final errorFinder = find.byType(MyErrorWidget);
+      final scrollableFinder = find.byKey(MyAppConfig.verticalScrollableKey);
+      await scrollAndFailIfFound(tester: tester, scrollableFinder: scrollableFinder, targetFinder: errorFinder);
+      await tester.pumpAndSettle();
+    });
   });
 }

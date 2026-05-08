@@ -55,6 +55,8 @@ abstract class HomeViewConfig {
   static const squareCardTextShadow = [
     Shadow(color: HexColor.consts(0x6621334D66), blurRadius: 4, offset: Offset(0, 2)),
   ];
+
+  static const calendarKey = Key("calendar");
 }
 
 abstract class CalendarConfig {
