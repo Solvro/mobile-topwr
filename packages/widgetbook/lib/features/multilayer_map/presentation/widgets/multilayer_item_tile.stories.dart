@@ -42,11 +42,21 @@ const _mockBuildingItemWithoutPhoto = BuildingItem(building: _mockBuildingWithou
 const meta = Meta<MultilayerItemTile>();
 
 final $withPlaceholderPhoto = MultilayerItemTileStory(
-  name: "With placeholder photo",
-  args: MultilayerItemTileArgs(item: Arg.fixed(_mockBuildingItemWithPlaceholderPhoto)),
+  name: "With placeholder photo, active",
+  args: MultilayerItemTileArgs(item: Arg.fixed(_mockBuildingItemWithPlaceholderPhoto), isActive: Arg.fixed(true)),
 );
 
 final $withoutPhoto = MultilayerItemTileStory(
-  name: "Without photo",
-  args: MultilayerItemTileArgs(item: Arg.fixed(_mockBuildingItemWithoutPhoto)),
+  name: "With placeholder photo, inactive",
+  args: MultilayerItemTileArgs(item: Arg.fixed(_mockBuildingItemWithPlaceholderPhoto), isActive: Arg.fixed(false)),
+);
+
+final $withoutPhotoActive = MultilayerItemTileStory(
+  name: "Without photo, active",
+  args: MultilayerItemTileArgs(item: Arg.fixed(_mockBuildingItemWithoutPhoto), isActive: Arg.fixed(true)),
+);
+
+final $withoutPhotoInactive = MultilayerItemTileStory(
+  name: "Without photo, inactive",
+  args: MultilayerItemTileArgs(item: Arg.fixed(_mockBuildingItemWithoutPhoto), isActive: Arg.fixed(false)),
 );

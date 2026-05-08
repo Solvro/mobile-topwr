@@ -21,7 +21,6 @@ const _mockBicycleShowerWithoutPhoto = BicycleShower(
   rawId: 1,
   room: "Room 101",
   instructions: "Near the main entrance",
-  photo: null,
   latitude: 51.1079,
   longitude: 17.0385,
   branch: Branch.main,
@@ -30,11 +29,21 @@ const _mockBicycleShowerWithoutPhoto = BicycleShower(
 const meta = Meta<BicycleShowerTile>();
 
 final $withPlaceholderPhoto = BicycleShowerTileStory(
-  name: "With placeholder photo",
-  args: BicycleShowerTileArgs(shower: Arg.fixed(_mockBicycleShowerWithPlaceholderPhoto)),
+  name: "With placeholder photo, active",
+  args: BicycleShowerTileArgs(shower: Arg.fixed(_mockBicycleShowerWithPlaceholderPhoto), isActive: Arg.fixed(true)),
 );
 
 final $withoutPhoto = BicycleShowerTileStory(
-  name: "Without photo",
-  args: BicycleShowerTileArgs(shower: Arg.fixed(_mockBicycleShowerWithoutPhoto)),
+  name: "With placeholder photo, inactive",
+  args: BicycleShowerTileArgs(shower: Arg.fixed(_mockBicycleShowerWithPlaceholderPhoto), isActive: Arg.fixed(false)),
+);
+
+final $withoutPhotoActive = BicycleShowerTileStory(
+  name: "Without photo, active",
+  args: BicycleShowerTileArgs(shower: Arg.fixed(_mockBicycleShowerWithoutPhoto), isActive: Arg.fixed(true)),
+);
+
+final $withoutPhotoInactive = BicycleShowerTileStory(
+  name: "Without photo, inactive",
+  args: BicycleShowerTileArgs(shower: Arg.fixed(_mockBicycleShowerWithoutPhoto), isActive: Arg.fixed(false)),
 );

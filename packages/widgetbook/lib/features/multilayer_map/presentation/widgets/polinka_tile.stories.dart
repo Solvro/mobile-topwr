@@ -28,7 +28,6 @@ const _mockPolinkaStationWithoutPhoto = PolinkaStation(
   campusId: 1,
   addressLine1: "123 Polinka Street",
   addressLine2: "Station A",
-  photo: null,
   latitude: 51.1079,
   longitude: 17.0385,
   branch: Branch.main,
@@ -39,11 +38,21 @@ const _mockPolinkaStationWithoutPhoto = PolinkaStation(
 const meta = Meta<PolinkaTile>();
 
 final $withPlaceholderPhoto = PolinkaTileStory(
-  name: "With placeholder photo",
-  args: PolinkaTileArgs(station: Arg.fixed(_mockPolinkaStationWithPlaceholderPhoto)),
+  name: "With placeholder photo, active",
+  args: PolinkaTileArgs(station: Arg.fixed(_mockPolinkaStationWithPlaceholderPhoto), isActive: Arg.fixed(true)),
 );
 
 final $withoutPhoto = PolinkaTileStory(
-  name: "Without photo",
-  args: PolinkaTileArgs(station: Arg.fixed(_mockPolinkaStationWithoutPhoto)),
+  name: "With placeholder photo, inactive",
+  args: PolinkaTileArgs(station: Arg.fixed(_mockPolinkaStationWithPlaceholderPhoto), isActive: Arg.fixed(false)),
+);
+
+final $withoutPhotoActive = PolinkaTileStory(
+  name: "Without photo, active",
+  args: PolinkaTileArgs(station: Arg.fixed(_mockPolinkaStationWithoutPhoto), isActive: Arg.fixed(true)),
+);
+
+final $withoutPhotoInactive = PolinkaTileStory(
+  name: "Without photo, inactive",
+  args: PolinkaTileArgs(station: Arg.fixed(_mockPolinkaStationWithoutPhoto), isActive: Arg.fixed(false)),
 );

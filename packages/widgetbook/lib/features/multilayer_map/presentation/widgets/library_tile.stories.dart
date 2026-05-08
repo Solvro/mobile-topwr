@@ -21,7 +21,6 @@ const _mockLibraryWithoutPhoto = Library(
   rawId: 1,
   title: "Main Library",
   room: "Room 201",
-  photo: null,
   latitude: 51.1079,
   longitude: 17.0385,
   branch: Branch.main,
@@ -30,11 +29,21 @@ const _mockLibraryWithoutPhoto = Library(
 const meta = Meta<LibraryTile>();
 
 final $withPlaceholderPhoto = LibraryTileStory(
-  name: "With placeholder photo",
-  args: LibraryTileArgs(library: Arg.fixed(_mockLibraryWithPlaceholderPhoto)),
+  name: "With placeholder photo, active",
+  args: LibraryTileArgs(library: Arg.fixed(_mockLibraryWithPlaceholderPhoto), isActive: Arg.fixed(true)),
 );
 
 final $withoutPhoto = LibraryTileStory(
-  name: "Without photo",
-  args: LibraryTileArgs(library: Arg.fixed(_mockLibraryWithoutPhoto)),
+  name: "With placeholder photo, inactive",
+  args: LibraryTileArgs(library: Arg.fixed(_mockLibraryWithPlaceholderPhoto), isActive: Arg.fixed(false)),
+);
+
+final $withoutPhotoActive = LibraryTileStory(
+  name: "Without photo, active",
+  args: LibraryTileArgs(library: Arg.fixed(_mockLibraryWithoutPhoto), isActive: Arg.fixed(true)),
+);
+
+final $withoutPhotoInactive = LibraryTileStory(
+  name: "Without photo, inactive",
+  args: LibraryTileArgs(library: Arg.fixed(_mockLibraryWithoutPhoto), isActive: Arg.fixed(false)),
 );

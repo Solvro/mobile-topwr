@@ -1,4 +1,5 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
+import "package:flutter/widgets.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:topwr/features/digital_guide/tabs/structure/data/models/stairs.dart";
 import "package:topwr/features/digital_guide/tabs/structure/data/repository/stairs_repository.dart";
@@ -50,9 +51,8 @@ const _mockStairs = Stairs(
 
 final $default = StairsViewStory(
   setup: (context, child, args) => ProviderScope(
-    overrides: [
-      stairsRepositoryProvider(args.stairsId).overrideWith((ref) async => _mockStairs),
-    ],
+    key: ValueKey("stairs-view-${args.stairsId}"),
+    overrides: [stairsRepositoryProvider.overrideWith((ref, stairsID) async => _mockStairs)],
     child: child,
   ),
   args: StairsViewArgs.fixed(stairsId: 1),

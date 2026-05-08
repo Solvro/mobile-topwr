@@ -38,11 +38,21 @@ const _mockBuildingWithoutPhoto = Building(
 const meta = Meta<BuildingTile>();
 
 final $withPlaceholderPhoto = BuildingTileStory(
-  name: "With placeholder photo",
-  args: BuildingTileArgs(building: Arg.fixed(_mockBuildingWithPlaceholderPhoto)),
+  name: "With placeholder photo, active",
+  args: BuildingTileArgs(building: Arg.fixed(_mockBuildingWithPlaceholderPhoto), isActive: Arg.fixed(true)),
 );
 
 final $withoutPhoto = BuildingTileStory(
-  name: "Without photo",
-  args: BuildingTileArgs(building: Arg.fixed(_mockBuildingWithoutPhoto)),
+  name: "With placeholder photo, inactive",
+  args: BuildingTileArgs(building: Arg.fixed(_mockBuildingWithPlaceholderPhoto), isActive: Arg.fixed(false)),
+);
+
+final $withoutPhotoActive = BuildingTileStory(
+  name: "Without photo, active",
+  args: BuildingTileArgs(building: Arg.fixed(_mockBuildingWithoutPhoto), isActive: Arg.fixed(true)),
+);
+
+final $withoutPhotoInactive = BuildingTileStory(
+  name: "Without photo, inactive",
+  args: BuildingTileArgs(building: Arg.fixed(_mockBuildingWithoutPhoto), isActive: Arg.fixed(false)),
 );

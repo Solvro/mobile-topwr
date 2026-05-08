@@ -2,6 +2,8 @@ import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/widgets.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:topwr/features/digital_guide/data/models/digital_guide_response.dart";
+import "package:topwr/features/digital_guide/data/models/level.dart";
+import "package:topwr/features/digital_guide/data/models/region.dart";
 import "package:topwr/features/digital_guide/data/repository/levels_repository.dart";
 import "package:topwr/features/digital_guide/tabs/structure/presentation/structure_expansion_tile_content.dart";
 import "package:widgetbook/widgetbook.dart";
@@ -45,10 +47,48 @@ const _mockDigitalGuideData = DigitalGuideResponse(
 
 const meta = Meta<StructureExpansionTileContent>();
 
+const _mockLevel = Level(
+  id: 1,
+  floorNumber: 0,
+  translations: LevelTranslations(
+    plTranslation: LevelTranslation(name: "Ground floor", roomNumbersRange: "001-050"),
+  ),
+  regionIndices: [1],
+);
+
+const _mockRegion = Region(
+  translations: RegionTranslations(
+    plTranslation: RegionTranslation(name: "Main hall", location: "North wing"),
+  ),
+  dressingRooms: [],
+  lodges: [],
+  informationPoints: [],
+  toilets: [1],
+  adaptedToilets: [1],
+  lifts: [1],
+  stairs: [1],
+  ramps: [],
+  corridors: [1],
+  stairways: [],
+  rooms: [101, 102],
+  parkings: [],
+  accessibilityLevelForMotorDisability: 2,
+  accessibilityLevelForBlind: 2,
+  accessibilityLevelForVisuallyImpaired: 2,
+  accessibilityLevelForHardOfHearing: 2,
+  accessibilityLevelForHighSensorySensitivity: 2,
+  accessibilityLevelForCognitiveDifficulties: 2,
+);
+
 final $default = StructureExpansionTileContentStory(
   setup: (context, child, args) => ProviderScope(
+    key: ValueKey("structure-${args.digitalGuideData.id}"),
     overrides: [
-      levelsWithRegionsRepositoryProvider(args.digitalGuideData).overrideWith((ref) async => IListConst([])),
+      levelsWithRegionsRepositoryProvider.overrideWith(
+        (ref, digitalGuideData) async => IListConst(const [
+          (level: _mockLevel, regions: IListConst([_mockRegion])),
+        ]),
+      ),
     ],
     child: child,
   ),

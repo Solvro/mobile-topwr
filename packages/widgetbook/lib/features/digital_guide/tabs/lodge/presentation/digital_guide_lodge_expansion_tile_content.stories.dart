@@ -47,9 +47,8 @@ const meta = Meta<DigitalGuideLodgeExpansionTileContent>();
 
 final $default = DigitalGuideLodgeExpansionTileContentStory(
   setup: (context, child, args) => ProviderScope(
-    overrides: [
-      lodgesRepositoryProvider(args.digitalGuideResponse).overrideWith((ref) async => IListConst([])),
-    ],
+    key: ValueKey("lodge-${args.digitalGuideResponse.id}"),
+    overrides: [lodgesRepositoryProvider.overrideWith((ref, response) async => IListConst(const []))],
     child: child,
   ),
   args: DigitalGuideLodgeExpansionTileContentArgs(digitalGuideResponse: Arg.fixed(_mockDigitalGuideData)),

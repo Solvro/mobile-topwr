@@ -18,11 +18,7 @@ final class _MockActiveAccessibilityModesRepository extends ActiveAccessibilityM
 
 final $default = AccessibilityInformationCardsListStory(
   setup: (context, child, args) => ProviderScope(
-    overrides: [
-      activeAccessibilityModesRepositoryProvider.overrideWith(
-        _MockActiveAccessibilityModesRepository.new,
-      ),
-    ],
+    overrides: [activeAccessibilityModesRepositoryProvider.overrideWith(_MockActiveAccessibilityModesRepository.new)],
     child: child,
   ),
   args: AccessibilityInformationCardsListArgs(

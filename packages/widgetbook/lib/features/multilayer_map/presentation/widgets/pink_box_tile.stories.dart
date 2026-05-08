@@ -18,7 +18,6 @@ const _mockPinkBoxWithPlaceholderPhoto = PinkBox(
 const _mockPinkBoxWithoutPhoto = PinkBox(
   rawId: 1,
   roomOrNearby: "Room 101",
-  photo: null,
   latitude: 51.1,
   longitude: 16.9,
   branch: Branch.main,
@@ -36,12 +35,23 @@ final defaults = _Defaults(
 );
 
 final $withPlaceholderPhoto = PinkBoxTileStory(
-  name: "With placeholder photo",
-  args: PinkBoxTileStoryKnobsArgs(isActive: BoolArg(true)),
+  name: "With placeholder photo, active",
+  args: PinkBoxTileStoryKnobsArgs(isActive: Arg.fixed(true)),
 );
 
 final $withoutPhoto = PinkBoxTileStory(
-  name: "Without photo",
+  name: "With placeholder photo, inactive",
+  args: PinkBoxTileStoryKnobsArgs(isActive: Arg.fixed(false)),
+);
+
+final $withoutPhotoActive = PinkBoxTileStory(
+  name: "Without photo, active",
   builder: (context, args) => PinkBoxTile(_mockPinkBoxWithoutPhoto, isActive: args.isActive),
-  args: PinkBoxTileStoryKnobsArgs(isActive: BoolArg(true)),
+  args: PinkBoxTileStoryKnobsArgs(isActive: Arg.fixed(true)),
+);
+
+final $withoutPhotoInactive = PinkBoxTileStory(
+  name: "Without photo, inactive",
+  builder: (context, args) => PinkBoxTile(_mockPinkBoxWithoutPhoto, isActive: args.isActive),
+  args: PinkBoxTileStoryKnobsArgs(isActive: Arg.fixed(false)),
 );

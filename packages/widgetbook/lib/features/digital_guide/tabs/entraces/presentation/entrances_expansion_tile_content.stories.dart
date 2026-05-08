@@ -2,6 +2,7 @@ import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/widgets.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:topwr/features/digital_guide/data/models/digital_guide_response.dart";
+import "package:topwr/features/digital_guide/tabs/entraces/data/models/digital_guide_entrace.dart";
 import "package:topwr/features/digital_guide/tabs/entraces/data/repository/entraces_repository.dart";
 import "package:topwr/features/digital_guide/tabs/entraces/presentation/entraces_expansion_tile_content.dart";
 import "package:widgetbook/widgetbook.dart";
@@ -45,10 +46,56 @@ const _mockDigitalGuideData = DigitalGuideResponse(
 
 const meta = Meta<EntrancesExpansionTileContent>();
 
+const _mockEntrance = DigitalGuideEntrace(
+  id: 1,
+  translations: DigitalGuideTranslationsEntrace(
+    pl: DigitalGuideTranslationEntrace(
+      name: "Main Entrance",
+      location: "Ground floor, north side",
+      isMainComment: "Main building entry",
+      isForPersonelComment: "Available for all visitors",
+      isBuildingMarkedFromEntranceComment: "Marked by clear signage",
+      isBuildingMarkedInEnComment: "English signs available",
+      isLitComment: "Well lit",
+      isEmergencyExitComment: "Not an emergency-only exit",
+      isProtectionFromWeatherComment: "Covered by roof",
+      isSolidSurfaceComment: "Paved access",
+      areDifferentTypesOfSurfaceComment: "No problematic transitions",
+      areBenchesComment: "Bench nearby",
+      entranceThreats: "None",
+      hasSoundTransmitterComment: "Beacon available",
+      hasTactilePavingComment: "Tactile paving to door",
+      comment: "Automatic door available",
+    ),
+  ),
+  orderNumber: 1,
+  isMain: "yes",
+  isAccessible: "yes",
+  isForPersonel: "no",
+  isBuildingMarkedFromEntrance: "yes",
+  isBuildingMarkedInEn: "yes",
+  isLit: "yes",
+  isEmergencyExit: "no",
+  isProtectionFromWeather: "yes",
+  isSolidSurface: "yes",
+  areDifferentTypesOfSurface: "no",
+  areBenches: "yes",
+  numberOfDoors: 1,
+  doorsDistance: "1.2 m",
+  hasSoundTransmitter: "yes",
+  hasTactilePaving: "yes",
+  building: 1,
+  stairsIndices: IListConst([]),
+  liftsIndices: IListConst([]),
+  doorsIndices: IListConst([]),
+  rampsIndices: IListConst([]),
+  imagesIndices: IListConst([101]),
+);
+
 final $default = EntrancesExpansionTileContentStory(
   setup: (context, child, args) => ProviderScope(
     overrides: [
-      entrancesRepositoryProvider(args.digitalGuideData).overrideWith((ref) async => IListConst([])),
+      entrancesRepositoryProvider.overrideWith((ref, building) async => IListConst(const [_mockEntrance])),
     ],
     child: child,
   ),

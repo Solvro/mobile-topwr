@@ -44,9 +44,7 @@ const _mockDoor = Door(
 
 final $default = DoorViewStory(
   setup: (context, child, args) => ProviderScope(
-    overrides: [
-      doorsRepositoryProvider(args.doorsID).overrideWith((ref) async => _mockDoor),
-    ],
+    overrides: [doorsRepositoryProvider(args.doorsID).overrideWith((ref) async => _mockDoor)],
     child: child,
   ),
   args: DoorViewArgs.fixed(doorsID: 1),

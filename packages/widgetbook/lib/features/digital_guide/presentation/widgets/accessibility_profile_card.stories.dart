@@ -7,7 +7,6 @@ import "package:topwr/features/digital_guide/tabs/accessibility_dialog/data/acti
 import "package:topwr/features/digital_guide/tabs/accessibility_dialog/data/modes.dart";
 import "package:widgetbook/widgetbook.dart";
 
-import "../../../../widgetbook_mocks.dart";
 
 part "accessibility_profile_card.stories.g.dart";
 
@@ -22,19 +21,16 @@ final class _SampleAccessibilityCommentsManager extends AccessibilityCommentsMan
       const IListConst(["Simple wayfinding with color-marked zones"]);
 
   @override
-  IList<String> getCommentsListForHearingImpairment() =>
-      const IListConst(["Visual alerts available at main desk"]);
+  IList<String> getCommentsListForHearingImpairment() => const IListConst(["Visual alerts available at main desk"]);
 
   @override
   IList<String> getCommentsListForLowVision() => const IListConst(["Large-font labels near elevators"]);
 
   @override
-  IList<String> getCommentsListForMotorImpairment() =>
-      const IListConst(["Step-free route from main entrance"]);
+  IList<String> getCommentsListForMotorImpairment() => const IListConst(["Step-free route from main entrance"]);
 
   @override
-  IList<String> getCommentsListForSensorySensitivity() =>
-      const IListConst(["Quiet room available on level 1"]);
+  IList<String> getCommentsListForSensorySensitivity() => const IListConst(["Quiet room available on level 1"]);
 }
 
 final class _MockActiveAccessibilityModesRepository extends ActiveAccessibilityModesRepository {
@@ -44,11 +40,7 @@ final class _MockActiveAccessibilityModesRepository extends ActiveAccessibilityM
 
 final $default = AccessibilityProfileCardStory(
   setup: (context, child, args) => ProviderScope(
-    overrides: [
-      activeAccessibilityModesRepositoryProvider.overrideWith(
-        _MockActiveAccessibilityModesRepository.new,
-      ),
-    ],
+    overrides: [activeAccessibilityModesRepositoryProvider.overrideWith(_MockActiveAccessibilityModesRepository.new)],
     child: child,
   ),
   args: AccessibilityProfileCardArgs(accessibilityCommentsManager: Arg.fixed(_SampleAccessibilityCommentsManager())),
