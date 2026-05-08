@@ -7,7 +7,7 @@ import "package:widgetbook/widgetbook.dart";
 
 part "building_tile.stories.g.dart";
 
-const _mockBuilding = Building(
+const _mockBuildingWithPlaceholderPhoto = Building(
   rawId: 1,
   name: "Main Building",
   naturalName: "Main Campus Building",
@@ -21,6 +21,28 @@ const _mockBuilding = Building(
   branch: Branch.main,
 );
 
+const _mockBuildingWithoutPhoto = Building(
+  rawId: 1,
+  name: "Main Building",
+  naturalName: "Main Campus Building",
+  addressLine1: "123 University Street",
+  addressLine2: "Building A",
+  latitude: 51.1079,
+  longitude: 17.0385,
+  externalDigitalGuideMode: ExternalDigitalGuideMode.digitalGuideBuilding,
+  externalDigitalGuideIdOrUrl: "313",
+  cover: null,
+  branch: Branch.main,
+);
+
 const meta = Meta<BuildingTile>();
 
-final $default = BuildingTileStory(args: BuildingTileArgs(building: Arg.fixed(_mockBuilding)));
+final $withPlaceholderPhoto = BuildingTileStory(
+  name: "With placeholder photo",
+  args: BuildingTileArgs(building: Arg.fixed(_mockBuildingWithPlaceholderPhoto)),
+);
+
+final $withoutPhoto = BuildingTileStory(
+  name: "Without photo",
+  args: BuildingTileArgs(building: Arg.fixed(_mockBuildingWithoutPhoto)),
+);

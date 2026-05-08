@@ -6,4 +6,6 @@ part "digital_guide_nav_link.stories.g.dart";
 
 const meta = Meta<DigitalGuideNavLink>();
 
-final $default = DigitalGuideNavLinkStory(args: DigitalGuideNavLinkArgs(onTap: Arg.fixed(() {})));
+final $default = DigitalGuideNavLinkStory(
+  args: DigitalGuideNavLinkArgs.fixed(onTap: () {}, text: "Open digital guide details"),
+);

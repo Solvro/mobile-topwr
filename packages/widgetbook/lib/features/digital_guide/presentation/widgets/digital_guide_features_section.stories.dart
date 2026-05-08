@@ -1,7 +1,12 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/widgets.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:topwr/api_base_rest/shared_models/image_data.dart";
 import "package:topwr/features/branches/data/model/branch.dart";
 import "package:topwr/features/digital_guide/data/models/digital_guide_response.dart";
+import "package:topwr/features/digital_guide/data/models/optional_tiles_data.dart";
+import "package:topwr/features/digital_guide/data/repository/levels_repository.dart";
+import "package:topwr/features/digital_guide/data/repository/optional_tiles_data_repository.dart";
 import "package:topwr/features/digital_guide/presentation/widgets/digital_guide_features_section.dart";
 import "package:topwr/features/multilayer_map/data/model/building.dart";
 import "package:widgetbook/widgetbook.dart";
@@ -60,7 +65,13 @@ const _mockBuilding = Building(
 const meta = Meta<DigitalGuideFeaturesSection>();
 
 final $default = DigitalGuideFeaturesSectionStory(
-  setup: (context, child, args) => CustomScrollView(slivers: [child]),
+  setup: (context, child, args) => ProviderScope(
+    overrides: [
+      levelsWithRegionsRepositoryProvider(args.digitalGuideData).overrideWith((ref) async => IListConst([])),
+      optionalTilesDataRepositoryProvider(args.digitalGuideData.id).overrideWith((ref) async => const OptionalTilesData()),
+    ],
+    child: CustomScrollView(slivers: [child]),
+  ),
   args: DigitalGuideFeaturesSectionArgs(
     digitalGuideData: Arg.fixed(_mockDigitalGuideData),
     building: Arg.fixed(_mockBuilding),

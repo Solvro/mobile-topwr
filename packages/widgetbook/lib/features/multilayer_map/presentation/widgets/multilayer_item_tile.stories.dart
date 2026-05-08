@@ -8,7 +8,7 @@ import "package:widgetbook/widgetbook.dart";
 
 part "multilayer_item_tile.stories.g.dart";
 
-const _mockBuilding = Building(
+const _mockBuildingWithPlaceholderPhoto = Building(
   rawId: 1,
   name: "Main Building",
   naturalName: "Main Campus Building",
@@ -22,8 +22,31 @@ const _mockBuilding = Building(
   branch: Branch.main,
 );
 
-const _mockBuildingItem = BuildingItem(building: _mockBuilding);
+const _mockBuildingWithoutPhoto = Building(
+  rawId: 1,
+  name: "Main Building",
+  naturalName: "Main Campus Building",
+  addressLine1: "123 University Street",
+  addressLine2: "Building A",
+  latitude: 51.1079,
+  longitude: 17.0385,
+  externalDigitalGuideMode: ExternalDigitalGuideMode.digitalGuideBuilding,
+  externalDigitalGuideIdOrUrl: "313",
+  cover: null,
+  branch: Branch.main,
+);
+
+const _mockBuildingItemWithPlaceholderPhoto = BuildingItem(building: _mockBuildingWithPlaceholderPhoto);
+const _mockBuildingItemWithoutPhoto = BuildingItem(building: _mockBuildingWithoutPhoto);
 
 const meta = Meta<MultilayerItemTile>();
 
-final $default = MultilayerItemTileStory(args: MultilayerItemTileArgs(item: Arg.fixed(_mockBuildingItem)));
+final $withPlaceholderPhoto = MultilayerItemTileStory(
+  name: "With placeholder photo",
+  args: MultilayerItemTileArgs(item: Arg.fixed(_mockBuildingItemWithPlaceholderPhoto)),
+);
+
+final $withoutPhoto = MultilayerItemTileStory(
+  name: "Without photo",
+  args: MultilayerItemTileArgs(item: Arg.fixed(_mockBuildingItemWithoutPhoto)),
+);

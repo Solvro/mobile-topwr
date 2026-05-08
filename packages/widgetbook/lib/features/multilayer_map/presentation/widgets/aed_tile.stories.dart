@@ -7,7 +7,7 @@ import "package:widgetbook/widgetbook.dart";
 
 part "aed_tile.stories.g.dart";
 
-const _mockAed = Aed(
+const _mockAedWithPlaceholderPhoto = Aed(
   rawId: 1,
   latitude: 51.1079,
   longitude: 17.0385,
@@ -18,6 +18,25 @@ const _mockAed = Aed(
   branch: Branch.main,
 );
 
+const _mockAedWithoutPhoto = Aed(
+  rawId: 1,
+  latitude: 51.1079,
+  longitude: 17.0385,
+  photo: null,
+  addressLine1: "Main Campus Building",
+  addressLine2: "Hol główny, obok portierni",
+  instructions: "AED znajduje się przy portierni, obok wejścia głównego.",
+  branch: Branch.main,
+);
+
 const meta = Meta<AedTile>();
 
-final $default = AedTileStory(args: AedTileArgs(aed: Arg.fixed(_mockAed)));
+final $withPlaceholderPhoto = AedTileStory(
+  name: "With placeholder photo",
+  args: AedTileArgs(aed: Arg.fixed(_mockAedWithPlaceholderPhoto)),
+);
+
+final $withoutPhoto = AedTileStory(
+  name: "Without photo",
+  args: AedTileArgs(aed: Arg.fixed(_mockAedWithoutPhoto)),
+);

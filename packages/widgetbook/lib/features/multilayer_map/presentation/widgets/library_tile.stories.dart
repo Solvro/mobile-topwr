@@ -1,4 +1,5 @@
 import "package:flutter/widgets.dart";
+import "package:topwr/api_base_rest/shared_models/image_data.dart";
 import "package:topwr/features/branches/data/model/branch.dart";
 import "package:topwr/features/multilayer_map/data/model/library.dart";
 import "package:topwr/features/multilayer_map/presentation/widgets/library_tile.dart";
@@ -6,10 +7,21 @@ import "package:widgetbook/widgetbook.dart";
 
 part "library_tile.stories.g.dart";
 
-const _mockLibrary = Library(
+const _mockLibraryWithPlaceholderPhoto = Library(
   rawId: 1,
   title: "Main Library",
   room: "Room 201",
+  photo: ImageData(url: "https://placehold.co/640x480/png?text=Library"),
+  latitude: 51.1079,
+  longitude: 17.0385,
+  branch: Branch.main,
+);
+
+const _mockLibraryWithoutPhoto = Library(
+  rawId: 1,
+  title: "Main Library",
+  room: "Room 201",
+  photo: null,
   latitude: 51.1079,
   longitude: 17.0385,
   branch: Branch.main,
@@ -17,4 +29,12 @@ const _mockLibrary = Library(
 
 const meta = Meta<LibraryTile>();
 
-final $default = LibraryTileStory(args: LibraryTileArgs(library: Arg.fixed(_mockLibrary)));
+final $withPlaceholderPhoto = LibraryTileStory(
+  name: "With placeholder photo",
+  args: LibraryTileArgs(library: Arg.fixed(_mockLibraryWithPlaceholderPhoto)),
+);
+
+final $withoutPhoto = LibraryTileStory(
+  name: "Without photo",
+  args: LibraryTileArgs(library: Arg.fixed(_mockLibraryWithoutPhoto)),
+);

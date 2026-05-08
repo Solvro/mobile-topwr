@@ -1,5 +1,8 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/widgets.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:topwr/features/digital_guide/data/models/digital_guide_response.dart";
+import "package:topwr/features/digital_guide/tabs/entraces/data/repository/entraces_repository.dart";
 import "package:topwr/features/digital_guide/tabs/entraces/presentation/entraces_expansion_tile_content.dart";
 import "package:widgetbook/widgetbook.dart";
 
@@ -43,5 +46,11 @@ const _mockDigitalGuideData = DigitalGuideResponse(
 const meta = Meta<EntrancesExpansionTileContent>();
 
 final $default = EntrancesExpansionTileContentStory(
+  setup: (context, child, args) => ProviderScope(
+    overrides: [
+      entrancesRepositoryProvider(args.digitalGuideData).overrideWith((ref) async => IListConst([])),
+    ],
+    child: child,
+  ),
   args: EntrancesExpansionTileContentArgs(digitalGuideData: Arg.fixed(_mockDigitalGuideData)),
 );

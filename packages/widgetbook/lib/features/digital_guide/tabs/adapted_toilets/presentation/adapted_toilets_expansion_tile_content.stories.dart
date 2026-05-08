@@ -1,5 +1,8 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/widgets.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:topwr/features/digital_guide/data/models/digital_guide_response.dart";
+import "package:topwr/features/digital_guide/tabs/adapted_toilets/business/adapted_toilets_use_cases.dart";
 import "package:topwr/features/digital_guide/tabs/adapted_toilets/presentation/adapted_toilets_expansion_tile_content.dart";
 import "package:widgetbook/widgetbook.dart";
 
@@ -43,5 +46,11 @@ const _mockDigitalGuideData = DigitalGuideResponse(
 const meta = Meta<AdaptedToiletsExpansionTileContent>();
 
 final $default = AdaptedToiletsExpansionTileContentStory(
+  setup: (context, child, args) => ProviderScope(
+    overrides: [
+      getLevelsWithToiletsUseCaseProvider(args.digitalGuideData).overrideWith((ref) async => IListConst([])),
+    ],
+    child: child,
+  ),
   args: AdaptedToiletsExpansionTileContentArgs(digitalGuideData: Arg.fixed(_mockDigitalGuideData)),
 );

@@ -1,5 +1,8 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/widgets.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:topwr/features/digital_guide/data/models/digital_guide_response.dart";
+import "package:topwr/features/digital_guide/tabs/dressing_room/data/repository/dressing_rooms_repository.dart";
 import "package:topwr/features/digital_guide/tabs/dressing_room/presentation/digital_guide_dressing_rooms_expansion_tile.dart";
 import "package:widgetbook/widgetbook.dart";
 
@@ -43,5 +46,11 @@ const mockDigitalGuideResponse = DigitalGuideResponse(
 const meta = Meta<DigitalGuideDressingRoomsExpansionTileContent>();
 
 final $defaultMock = DigitalGuideDressingRoomsExpansionTileContentStory(
+  setup: (context, child, args) => ProviderScope(
+    overrides: [
+      dressingRoomsRepositoryProvider(args.digitalGuideResponse).overrideWith((ref) async => IListConst([])),
+    ],
+    child: child,
+  ),
   args: DigitalGuideDressingRoomsExpansionTileContentArgs(digitalGuideResponse: Arg.fixed(mockDigitalGuideResponse)),
 );

@@ -6,4 +6,9 @@ part "reversed_label.stories.g.dart";
 
 const meta = Meta<ReversedLabel>();
 
-final $default = ReversedLabelStory();
+final $default = ReversedLabelStory(args: ReversedLabelArgs.fixed(key: ValueKey("reversed-label-default")));
+final $withHardcodedDefaults = ReversedLabelStory(
+  name: "With hardcoded defaults",
+  args: ReversedLabelArgs.fixed(key: ValueKey("reversed-label")),
+  builder: (context, args) => ReversedLabel(key: args.key),
+);

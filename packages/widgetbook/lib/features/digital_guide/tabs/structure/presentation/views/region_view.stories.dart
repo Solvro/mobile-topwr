@@ -1,5 +1,19 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:topwr/features/digital_guide/data/models/level.dart";
 import "package:topwr/features/digital_guide/data/models/region.dart";
+import "package:topwr/features/digital_guide/tabs/dressing_room/data/models/digital_guide_dressing_room.dart";
+import "package:topwr/features/digital_guide/tabs/information_points/models/digital_guide_information_points.dart";
+import "package:topwr/features/digital_guide/tabs/lifts/data/models/digital_guide_lift.dart";
+import "package:topwr/features/digital_guide/tabs/lodge/data/models/digital_guide_lodge.dart";
+import "package:topwr/features/digital_guide/tabs/rooms/data/models/digital_guide_room.dart";
+import "package:topwr/features/digital_guide/tabs/structure/data/models/corridor.dart";
+import "package:topwr/features/digital_guide/tabs/structure/data/models/parking.dart";
+import "package:topwr/features/digital_guide/tabs/structure/data/models/ramp.dart";
+import "package:topwr/features/digital_guide/tabs/structure/data/models/stairs.dart";
+import "package:topwr/features/digital_guide/tabs/structure/data/models/stairway.dart";
+import "package:topwr/features/digital_guide/tabs/structure/data/models/toilet.dart";
+import "package:topwr/features/digital_guide/tabs/structure/domain/digital_guide_region_use_cases.dart";
 import "package:topwr/features/digital_guide/tabs/structure/presentation/views/region_view.dart";
 import "package:widgetbook/widgetbook.dart";
 
@@ -41,5 +55,25 @@ const _mockRegion = Region(
 const meta = Meta<RegionView>();
 
 final $default = RegionViewStory(
+  setup: (context, child, args) => ProviderScope(
+    overrides: [
+      digitalGuideRegionUseCasesProvider(args.region).overrideWith(
+        (ref) async => (
+          corridors: IListConst<Corridor>([]),
+          stairs: IListConst<Stairs>([]),
+          ramps: IListConst<Ramp>([]),
+          stairways: IListConst<Stairway>([]),
+          lifts: IListConst<DigitalGuideLift>([]),
+          lodges: IListConst<DigitalGuideLodge>([]),
+          informationPoints: IListConst<DigitalGuideInformationPoint>([]),
+          dressingRooms: IListConst<DigitalGuideDressingRoom>([]),
+          toilets: IListConst<Toilet>([]),
+          rooms: IListConst<DigitalGuideRoom>([]),
+          parkings: IListConst<DigitalGuideParking>([]),
+        ),
+      ),
+    ],
+    child: child,
+  ),
   args: RegionViewArgs(level: Arg.fixed(_mockLevel), region: Arg.fixed(_mockRegion)),
 );

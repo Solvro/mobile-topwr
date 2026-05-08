@@ -6,4 +6,4 @@ part "my_audio_player.stories.g.dart";
 
 const meta = Meta<MyAudioPlayer>();
 
-final $default = MyAudioPlayerStory();
+final $default = MyAudioPlayerStory(args: MyAudioPlayerArgs.fixed(audioUrl: "asset:///mock_audio.mp3"));
