@@ -92,23 +92,7 @@ Check in pubspec.yaml
 - For one-time generation:
 
 ```zsh
-fvm dart pub global activate melos
-fvm exec melos run install
-fvm exec melos run build_runner
-```
-
-If you prefer using the local `melos` dependency without global installation, run:
-
-```bash
-fvm dart run melos run install
-fvm dart run melos run build_runner
-```
-
-Alternatively, if you have `melos` installed globally and in your PATH, you can just use:
-
-```bash
-melos run install
-melos run build_runner
+dart run build_runner build
 ```
 
 **OR**
@@ -116,40 +100,30 @@ melos run build_runner
 - For watch mode and continous necessary rebuilds after every change to connected files (usufull for development):
 
 ```zsh
-fvm exec melos run watch
+dart run build_runner watch
 ```
 
-Local `melos` dependency alternative:
+- If something doesn't build correctly, this might help:
 
 ```zsh
-fvm dart run melos run watch
+dart run build_runner build -d
 ```
-
 
 ### It's now possible to run or build the app in the usual way
     _Rebuilds are necessary after any updates or changes to affected files (`watch` command does it for you)_
    - Either with your IDE or
    - From Terminal:
    ```bash
-   fvm flutter run
+   flutter run
    ```
 
 
 
-### We use `fvm` Flutter version manager: https://fvm.app/
+### **[OPTIONAL]** If you operate on many Flutter versions, we recommend `fvm` Flutter version manager: https://fvm.app/
 ```bash
+fvm dart run build_runner watch
 fvm flutter run
-fvm exec melos run install
-fvm exec melos run build_runner
-fvm exec melos run watch
 // etc...
-```
-
-### all-in-one scripts
-ready to use, u can just run them and they will do install + build runner + flutter run
-```
-melos run topwr
-melos run widgetbook
 ```
     
 

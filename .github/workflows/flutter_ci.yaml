@@ -47,8 +47,8 @@ jobs:
       - name: Verify formatting by Melos
         run: melos format --output=none --set-exit-if-changed .
 
-      - name: Install dependencies again and regenerate localization files
-        run: melos install
+      - name: Regenerate the localization files
+        run: flutter gen-l10n
 
       - name: Generate files
         run: melos build_runner
