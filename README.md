@@ -144,6 +144,13 @@ fvm exec sip run build_runner
 fvm exec sip run build_runner watch
 // etc...
 ```
+
+### all-in-one scripts
+ready to use, u can just run them and they will do install + build runner + flutter run
+```
+sip run topwr
+sip run widgetbook
+```
     
 
 ### Additional notes:

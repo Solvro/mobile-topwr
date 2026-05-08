@@ -20,3 +20,21 @@ build_runner:
     (command):
       - (+) ${{ dart }} run build_runner watch --delete-conflicting-outputs
       - (+) cd packages/topwr_assets && ${{ dart }} run build_runner watch --delete-conflicting-outputs
+
+topwr:
+  (description): Install dependencies, run build_runner, and run the app.
+  (bail):
+  (command):
+    - ${{ install }}
+    - ${{ build_runner }}
+    - ${{ flutter }} run
+
+widgetbook:
+  (description): Install dependencies, run build_runner, and run Widgetbook on Chrome.
+  (bail):
+  (command):
+    - ${{ install }}
+    - ${{ build_runner }}
+    - cd packages/widgetbook && ${{ flutter }} pub get
+    - cd packages/widgetbook && ${{ dart }} run build_runner build --delete-conflicting-outputs
+    - cd packages/widgetbook && ${{ flutter }} run -d chrome
