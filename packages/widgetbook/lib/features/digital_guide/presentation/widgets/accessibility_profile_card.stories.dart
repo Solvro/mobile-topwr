@@ -7,7 +7,6 @@ import "package:topwr/features/digital_guide/tabs/accessibility_dialog/data/acti
 import "package:topwr/features/digital_guide/tabs/accessibility_dialog/data/modes.dart";
 import "package:widgetbook/widgetbook.dart";
 
-
 part "accessibility_profile_card.stories.g.dart";
 
 const meta = Meta<AccessibilityProfileCard>();

@@ -57,8 +57,8 @@ class AccessibilityInformationCardsList extends ConsumerWidget {
         }
 
         Color colorForLevel(int level) {
-          final colors = DigitalGuideConfig.accessibilityLevelColors;
-          return colors[level.clamp(0, colors.length - 1) as int];
+          const colors = DigitalGuideConfig.accessibilityLevelColors;
+          return colors[level.clamp(0, colors.length - 1)];
         }
 
         final cards = {
