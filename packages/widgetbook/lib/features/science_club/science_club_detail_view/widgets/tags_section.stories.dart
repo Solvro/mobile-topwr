@@ -9,4 +9,8 @@ part "tags_section.stories.g.dart";
 
 const meta = Meta<TagsSection>();
 
-final $default = TagsSectionStory();
+final $default = TagsSectionStory(
+  args: TagsSectionArgs(
+    tags: Arg.fixed(IList([Tag(tag: "ai"), Tag(tag: "robotyka"), Tag(tag: "embedded")])),
+  ),
+);

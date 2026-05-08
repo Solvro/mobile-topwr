@@ -36,4 +36,13 @@ final defaults = _Defaults(
   ),
 );
 
-final $default = RedDialogStory();
+final $default = RedDialogStory(
+  args: RedDialogStoryKnobsArgs(
+    title: StringArg("Accessibility options"),
+    subtitle: NullableStringArg("Choose preferences for easier navigation."),
+    showApplyButton: BoolArg(true),
+    centerTitle: BoolArg(false),
+    applyButtonText: NullableStringArg("Apply"),
+    showCloseButton: BoolArg(true),
+  ),
+);

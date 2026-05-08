@@ -32,4 +32,12 @@ final defaults = _Defaults(
   ),
 );
 
-final $default = IconBannerStory(args: IconBannerStoryKnobsArgs(icon: Arg.fixed(Icons.restaurant)));
+final $default = IconBannerStory(
+  args: IconBannerStoryKnobsArgs(
+    icon: Arg.fixed(Icons.restaurant),
+    color: ColorArg(const Color(0xFFE53935)),
+    iconColor: ColorArg(Colors.white),
+    size: DoubleArg(24),
+    visible: BoolArg(true),
+  ),
+);

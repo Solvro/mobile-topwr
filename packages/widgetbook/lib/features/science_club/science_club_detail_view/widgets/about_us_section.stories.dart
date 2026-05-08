@@ -6,4 +6,8 @@ part "about_us_section.stories.g.dart";
 
 const meta = Meta<AboutUsSection>();
 
-final $default = AboutUsSectionStory();
+final $default = AboutUsSectionStory(
+  args: AboutUsSectionArgs(
+    text: StringArg("<p>Jestesmy kolem naukowym skupionym na projektach AI i automatyzacji.</p>"),
+  ),
+);

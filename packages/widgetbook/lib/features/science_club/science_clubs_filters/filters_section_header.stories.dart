@@ -5,4 +5,6 @@ part "filters_section_header.stories.g.dart";
 
 const meta = Meta<FiltersSectionHeader>();
 
-final $default = FiltersSectionHeaderStory();
+final $default = FiltersSectionHeaderStory(args: FiltersSectionHeaderArgs(text: StringArg("Departments")));
+
+final $empty = FiltersSectionHeaderStory(name: "empty", args: FiltersSectionHeaderArgs(text: StringArg("")));

@@ -32,4 +32,6 @@ final defaults = _Defaults(
   ),
 );
 
-final $default = MyFilterChipStory();
+final $default = MyFilterChipStory(
+  args: MyFilterChipStoryKnobsArgs(label: StringArg("Informatyka"), selected: BoolArg(false)),
+);

@@ -6,4 +6,10 @@ part "faq_expansion_tile.stories.g.dart";
 
 const meta = Meta<FaqExpansionTile>();
 
-final $default = FaqExpansionTileStory();
+final $default = FaqExpansionTileStory(
+  args: FaqExpansionTileArgs(
+    title: StringArg("Where can I find registration dates?"),
+    description: StringArg("Check USOS announcements and faculty communication channels."),
+    initiallyExpanded: BoolArg(true),
+  ),
+);

@@ -18,4 +18,19 @@ final defaults = _Defaults(
       FiltersButton(text: args.text, icon: args.icon, onPressed: () {}, isSecondary: args.isSecondary),
 );
 
-final $default = FiltersButtonStory(args: FiltersButtonStoryKnobsArgs(icon: Arg.fixed(Icons.filter_alt)));
+final $default = FiltersButtonStory(
+  args: FiltersButtonStoryKnobsArgs(
+    text: StringArg("Apply filters"),
+    icon: Arg.fixed(Icons.filter_alt),
+    isSecondary: BoolArg(false),
+  ),
+);
+
+final $empty = FiltersButtonStory(
+  name: "empty",
+  args: FiltersButtonStoryKnobsArgs(
+    text: StringArg(""),
+    icon: Arg.fixed(Icons.filter_alt),
+    isSecondary: BoolArg(true),
+  ),
+);

@@ -5,4 +5,4 @@ part "room_platforms_content.stories.g.dart";
 
 const meta = Meta<RoomPlatformsContent>();
 
-final $default = RoomPlatformsContentStory();
+final $default = RoomPlatformsContentStory(args: RoomPlatformsContentArgs.fixed(platformId: 1));

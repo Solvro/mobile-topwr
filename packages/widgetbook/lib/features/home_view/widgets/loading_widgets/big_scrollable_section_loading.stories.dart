@@ -14,4 +14,6 @@ final defaults = _Defaults(
   builder: (context, args) => BigScrollableSectionLoading(crossAxisForcedSize: args.crossAxisForcedSize),
 );
 
-final $default = BigScrollableSectionLoadingStory();
+final $default = BigScrollableSectionLoadingStory(
+  args: BigScrollableSectionLoadingStoryKnobsArgs(crossAxisForcedSize: DoubleArg(220)),
+);

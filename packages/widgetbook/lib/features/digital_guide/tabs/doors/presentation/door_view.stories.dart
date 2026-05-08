@@ -5,4 +5,4 @@ part "door_view.stories.g.dart";
 
 const meta = Meta<DoorView>();
 
-final $default = DoorViewStory();
+final $default = DoorViewStory(args: DoorViewArgs.fixed(doorsID: 1));

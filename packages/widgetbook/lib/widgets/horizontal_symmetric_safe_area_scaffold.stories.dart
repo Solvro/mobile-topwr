@@ -14,11 +14,27 @@ const meta = MetaWithArgs<HorizontalSymmetricSafeAreaScaffold, HorizontalSymmetr
 
 final defaults = _Defaults(
   builder: (context, args) => HorizontalSymmetricSafeAreaScaffold(
-    body: const SizedBox(width: 100, height: 100),
-    bottomNavigationBar: const SizedBox(width: 100, height: 100),
+    body: const DecoratedBox(
+      decoration: BoxDecoration(color: Color(0xFFE3F2FD)),
+      child: Center(
+        child: Padding(
+          padding: EdgeInsets.all(24),
+          child: Text("Scaffold body with symmetric horizontal safe area"),
+        ),
+      ),
+    ),
+    bottomNavigationBar: const DecoratedBox(
+      decoration: BoxDecoration(color: Color(0xFFBBDEFB)),
+      child: Padding(
+        padding: EdgeInsets.all(16),
+        child: Text("Bottom navigation content"),
+      ),
+    ),
     backgroundColor: args.backgroundColor,
     top: args.top,
   ),
 );
 
-final $default = HorizontalSymmetricSafeAreaScaffoldStory();
+final $default = HorizontalSymmetricSafeAreaScaffoldStory(
+  args: HorizontalSymmetricSafeAreaScaffoldStoryKnobsArgs.fixed(backgroundColor: Colors.white, top: true),
+);

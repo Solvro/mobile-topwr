@@ -5,4 +5,4 @@ part "room_stairs_content.stories.g.dart";
 
 const meta = Meta<RoomStairsContent>();
 
-final $default = RoomStairsContentStory();
+final $default = RoomStairsContentStory(args: RoomStairsContentArgs.fixed(roomStairsId: 1));

@@ -6,4 +6,4 @@ part "app_changelog_header.stories.g.dart";
 
 const meta = Meta<AppChangelogHeader>();
 
-final $default = AppChangelogHeaderStory();
+final $default = AppChangelogHeaderStory(args: AppChangelogHeaderArgs(version: StringArg("v2.4.1")));

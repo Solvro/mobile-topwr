@@ -15,4 +15,4 @@ final defaults = _Defaults(
   builder: (context, args) => BranchList(selectedBranch: args.selectedBranch, onBranchTap: (_) {}),
 );
 
-final $default = BranchListStory();
+final $default = BranchListStory(args: BranchListStoryKnobsArgs(selectedBranch: Arg.fixed(Branch.main)));

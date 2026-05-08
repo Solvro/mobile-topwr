@@ -16,4 +16,4 @@ const meta = MetaWithArgs<PinkBoxTile, PinkBoxTileStoryKnobs>();
 
 final defaults = _Defaults(builder: (context, args) => PinkBoxTile(_mockPinkBox, isActive: args.isActive));
 
-final $default = PinkBoxTileStory();
+final $default = PinkBoxTileStory(args: PinkBoxTileStoryKnobsArgs(isActive: BoolArg(true)));

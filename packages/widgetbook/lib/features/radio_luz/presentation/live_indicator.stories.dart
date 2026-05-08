@@ -31,4 +31,12 @@ final defaults = _Defaults(
   ),
 );
 
-final $default = LiveIndicatorStory();
+final $default = LiveIndicatorStory(
+  args: LiveIndicatorStoryKnobsArgs(
+    radius: DoubleArg(5),
+    spreadRadius: DoubleArg(16),
+    color: ColorArg(const Color(0xFFE53935)),
+    spreadDuration: Arg.fixed(const Duration(milliseconds: 800)),
+    waitDuration: Arg.fixed(const Duration(milliseconds: 300)),
+  ),
+);

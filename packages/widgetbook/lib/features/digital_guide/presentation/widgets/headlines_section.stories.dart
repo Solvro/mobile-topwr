@@ -5,4 +5,9 @@ part "headlines_section.stories.g.dart";
 
 const meta = Meta<HeadlinesSection>();
 
-final $default = HeadlinesSectionStory();
+final $default = HeadlinesSectionStory(
+  args: HeadlinesSectionArgs(
+    name: StringArg("Building C-13"),
+    description: StringArg("Main entrance, accessible routes and key facilities overview."),
+  ),
+);

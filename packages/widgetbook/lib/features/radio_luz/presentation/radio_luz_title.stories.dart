@@ -6,4 +6,4 @@ part "radio_luz_title.stories.g.dart";
 
 const meta = Meta<RadioLuzTitle>();
 
-final $default = RadioLuzTitleStory();
+final $default = RadioLuzTitleStory(args: RadioLuzTitleArgs(title: StringArg("Radio Luz")));

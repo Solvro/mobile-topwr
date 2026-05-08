@@ -15,4 +15,9 @@ final defaults = _Defaults(
   builder: (context, args) => SksChartLegendItem(text: args.text, isPredicted: args.isPredicted),
 );
 
-final $default = SksChartLegendItemStory();
+final $default = SksChartLegendItemStory(
+  args: SksChartLegendItemStoryKnobsArgs(
+    text: StringArg("Measured number of users"),
+    isPredicted: BoolArg(false),
+  ),
+);

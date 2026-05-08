@@ -5,4 +5,4 @@ part "stairs_view.stories.g.dart";
 
 const meta = Meta<StairsView>();
 
-final $default = StairsViewStory();
+final $default = StairsViewStory(args: StairsViewArgs.fixed(stairsId: 1));

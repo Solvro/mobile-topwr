@@ -5,4 +5,4 @@ part "railings_view.stories.g.dart";
 
 const meta = Meta<RailingsView>();
 
-final $default = RailingsViewStory();
+final $default = RailingsViewStory(args: RailingsViewArgs.fixed(railingId: 1));

@@ -27,6 +27,7 @@ import "package:topwr/features/science_club/science_club_detail_view/repository/
 import "package:topwr/features/science_club/science_clubs_filters/repository/tags_repository.dart";
 import "package:topwr/features/science_club/science_clubs_view/repository/science_clubs_repository.dart";
 import "package:topwr/features/sks/sks_favourite_dishes/data/repository/sks_favourite_dishes_repository.dart";
+import "package:topwr/features/sks/sks_chart/data/repository/sks_chart_repository.dart";
 import "package:topwr/features/sks/sks_menu/data/models/sks_menu_response.dart";
 import "package:topwr/features/sks/sks_menu/data/repository/sks_menu_repository.dart";
 import "package:topwr/features/sks/sks_people_live/data/repository/latest_sks_user_data_repo.dart";
@@ -56,6 +57,7 @@ final config = Config(
           (ref, args) => (digitalGuideData: mockDigitalGuideObjectModel, photoUrl: ""),
         ),
         getLatestSksUserDataProvider.overrideWith((ref) => mockSksUserData),
+        sksChartRepositoryProvider.overrideWith((ref) => mockSksChartData),
         getEventsPerDaysUseCaseProvider.overrideWith((ref) => mockCalendarYearEvents),
         guideRepositoryProvider.overrideWith((ref) => mockGuideArticles),
         guideDetailsRepositoryProvider.overrideWith((ref, id) => mockGuideDetails),

@@ -40,4 +40,13 @@ final defaults = _Defaults(
   ),
 );
 
-final $default = ScienceClubTextStory();
+final $default = ScienceClubTextStory(
+  args: ScienceClubTextStoryKnobsArgs(
+    title: StringArg("Koło Naukowe Robotyków"),
+    subtitle: NullableStringArg("Budujemy roboty mobilne i manipulatory."),
+    spacing: DoubleArg(8),
+    showVerifiedBadge: BoolArg(true),
+    showStrategicBadge: BoolArg(false),
+    maxTotalLines: IntArg(3),
+  ),
+);

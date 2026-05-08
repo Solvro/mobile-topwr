@@ -33,4 +33,12 @@ final defaults = _Defaults(
   ),
 );
 
-final $default = BranchBaseDialogStory();
+final $default = BranchBaseDialogStory(
+  args: BranchBaseDialogStoryKnobsArgs(
+    title: StringArg("Choose branch"),
+    selectedBranch: Arg.fixed(Branch.main),
+    centerTitle: BoolArg(true),
+    showApplyButton: BoolArg(true),
+    applyButtonText: NullableStringArg("Apply"),
+  ),
+);

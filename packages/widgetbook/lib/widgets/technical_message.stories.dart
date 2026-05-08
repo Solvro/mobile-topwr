@@ -45,8 +45,11 @@ final defaults = _Defaults(
 );
 
 final $default = TechnicalMessageStory(
-  args: TechnicalMessageStoryKnobsArgs(
-    message: StringArg("Something went wrong while loading this section."),
-    title: NullableStringArg("Technical message"),
+  args: TechnicalMessageStoryKnobsArgs.fixed(
+    message: "Something went wrong while loading this section.",
+    title: "Technical message",
+    titleColor: Colors.white,
+    backgoundColor: const Color(0xFFB00020),
+    textColor: Colors.white,
   ),
 );

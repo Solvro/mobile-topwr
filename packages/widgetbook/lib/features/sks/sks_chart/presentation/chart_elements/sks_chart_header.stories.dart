@@ -16,4 +16,9 @@ final defaults = _Defaults(
   builder: (context, args) => SksChartHeader(numberOfPeople: args.numberOfPeople, trend: args.trend),
 );
 
-final $default = SksChartHeaderStory();
+final $default = SksChartHeaderStory(
+  args: SksChartHeaderStoryKnobsArgs(
+    numberOfPeople: StringArg("184"),
+    trend: EnumArg(Trend.increasing, values: Trend.values),
+  ),
+);

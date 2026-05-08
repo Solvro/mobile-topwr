@@ -23,4 +23,10 @@ final defaults = _Defaults(
   ),
 );
 
-final $default = SksMenuHeaderStory(args: SksMenuHeaderStoryKnobsArgs(openingHours: Arg.fixed(_mockOpeningHours)));
+final $default = SksMenuHeaderStory(
+  args: SksMenuHeaderStoryKnobsArgs(
+    dateTimeOfLastUpdate: StringArg("Updated 5 minutes ago"),
+    isMenuOnline: BoolArg(true),
+    openingHours: Arg.fixed(_mockOpeningHours),
+  ),
+);

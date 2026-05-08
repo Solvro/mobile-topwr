@@ -30,5 +30,9 @@ final _mockDishes = [
 ];
 
 final $default = SksMenuTileStory(
-  args: SksMenuTileStoryKnobsArgs(dishes: Arg.fixed(_mockDishes), padding: Arg.fixed(EdgeInsets.zero)),
+  args: SksMenuTileStoryKnobsArgs(
+    title: StringArg("Soups"),
+    dishes: Arg.fixed(_mockDishes),
+    padding: Arg.fixed(EdgeInsets.zero),
+  ),
 );
