@@ -223,6 +223,7 @@ abstract class NavigationTabViewConfig {
   static const smallerPadding = 6.0;
   static const tinyPadding = 5.0;
 
+  static const aboutUsKey = Key("aboutUs");
   static const departments = Key("departments");
   static const scienceClubsKey = Key("science_club");
   static const radioLuzKey = Key("radio_luz");

@@ -223,5 +223,23 @@ void main() {
       await scrollAndFailIfFound(tester: tester, scrollableFinder: scrollableFinder, targetFinder: errorFinder);
       await tester.pump(const Duration(seconds: 3));
     }, skip: true); // now we skipping bcs radioluzView is throwing an error
+
+    testWidgets("AboutUs smoke test", (tester) async {
+      await app.main(overrides: createPopupProviderOverrides());
+      await tester.pumpAndSettle();
+
+      await tapNavButton(tester, NavBarEnum.navigation);
+      await tester.pump(const Duration(seconds: 3)); // there pumpAndSettle never ends on Navigationview
+
+      final navButton = find.byKey(NavigationTabViewConfig.aboutUsKey);
+      await tester.tap(navButton);
+
+      await tester.pumpAndSettle();
+
+      final errorFinder = find.byType(MyErrorWidget);
+      final scrollableFinder = find.byKey(MyAppConfig.verticalScrollableKey);
+      await scrollAndFailIfFound(tester: tester, scrollableFinder: scrollableFinder, targetFinder: errorFinder);
+      await tester.pumpAndSettle();
+    });
   });
 }

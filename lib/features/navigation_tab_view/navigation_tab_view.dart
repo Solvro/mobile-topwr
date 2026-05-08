@@ -28,7 +28,7 @@ class NavigationTabView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final children = [
       const SizedBox(height: NavigationTabViewConfig.universalPadding),
-      const AboutUsTile(),
+      const AboutUsTile(key: NavigationTabViewConfig.aboutUsKey),
       const ShowFeedbackTile(),
       const SizedBox(height: NavigationTabViewConfig.universalPadding / 3),
       _NavigationRow(
