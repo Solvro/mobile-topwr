@@ -14,9 +14,7 @@ const meta = Meta<TagsWrap>();
 final $default = TagsWrapStory(
   setup: (context, child, args) => ProviderScope(
     key: const ValueKey("tags_wrap_story"),
-    overrides: [
-      tagsRepositoryProvider.overrideWith((ref) => mockScienceClubTags),
-    ],
+    overrides: [tagsRepositoryProvider.overrideWith((ref) => mockScienceClubTags)],
     child: child,
   ),
 );

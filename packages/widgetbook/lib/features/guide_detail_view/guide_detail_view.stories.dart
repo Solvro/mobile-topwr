@@ -20,9 +20,7 @@ final $noDescription = GuideDetailViewStory(
   args: GuideDetailViewArgs.fixed(id: 3),
   setup: (context, child, args) => ProviderScope(
     key: ValueKey("guide_detail_view_story_${args.id}"),
-    overrides: [
-      guideDetailsRepositoryProvider.overrideWith((ref, id) => mockGuideDetails.copyWith(description: "")),
-    ],
+    overrides: [guideDetailsRepositoryProvider.overrideWith((ref, id) => mockGuideDetails.copyWith(description: ""))],
     child: child,
   ),
 );

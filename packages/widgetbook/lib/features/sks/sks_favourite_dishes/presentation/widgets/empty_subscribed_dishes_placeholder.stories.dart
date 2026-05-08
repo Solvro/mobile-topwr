@@ -6,6 +6,4 @@ part "empty_subscribed_dishes_placeholder.stories.g.dart";
 
 const meta = Meta<EmptySubscribedDishesPlaceholder>();
 
-final $default = EmptySubscribedDishesPlaceholderStory(
-  setup: (context, child, args) => Center(child: child),
-);
+final $default = EmptySubscribedDishesPlaceholderStory(setup: (context, child, args) => Center(child: child));

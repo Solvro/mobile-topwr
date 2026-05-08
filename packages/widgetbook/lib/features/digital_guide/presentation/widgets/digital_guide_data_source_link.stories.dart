@@ -6,6 +6,4 @@ part "digital_guide_data_source_link.stories.g.dart";
 
 const meta = Meta<DigitalGuideDataSourceLink>();
 
-final $default = DigitalGuideDataSourceLinkStory(
-  setup: (context, child, args) => Center(child: child),
-);
+final $default = DigitalGuideDataSourceLinkStory(setup: (context, child, args) => Center(child: child));
