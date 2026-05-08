@@ -31,18 +31,13 @@ jobs:
           channel: "stable"
           flutter-version-file: pubspec.yaml
 
-      - name: Install SIP CLI
-        run: |
-          dart pub global activate sip_cli
-          echo "$HOME/.pub-cache/bin" >> "$GITHUB_PATH"
+      - name: Setup Melos
+        uses: bluefireteam/melos-action@v3
 
       - run: flutter --version
 
-      - name: Install dependencies
-        run: sip run install
-
       - name: Generate files
-        run: sip run build_runner
+        run: melos build_runner
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1

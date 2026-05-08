@@ -5,12 +5,11 @@ version: 0.1.0+1
 
 environment:
   sdk: ^3.11.1
+resolution: workspace
 
 dependencies:
-  topwr:
-    path: ../../
-  topwr_assets:
-    path: ../topwr_assets
+  topwr: any
+  topwr_assets: any
   flutter:
     sdk: flutter
   widgetbook: ^4.0.0-beta.1

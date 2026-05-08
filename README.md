@@ -1,6 +1,7 @@
 # ToPWR
 
 ![ToPWR file cover](/assets/png/topwr_header.png)
+[![melos](https://img.shields.io/badge/maintained%20with-melos-f700ff.svg?style=flat-square)](https://github.com/invertase/melos)
 
 ## PL
 
@@ -59,6 +60,7 @@ We're using many UI/UX designs and graphic assets created by [@domkakromka](http
 - Microsoft Clarity
 - bugsink
 - fastlane
+- [![melos](https://img.shields.io/badge/maintained%20with-melos-f700ff.svg?style=flat-square)](https://github.com/invertase/melos)
 
 ## Links
 
@@ -90,23 +92,23 @@ Check in pubspec.yaml
 - For one-time generation:
 
 ```zsh
-fvm dart pub global activate sip_cli
-fvm exec sip run install
-fvm exec sip run build_runner
+fvm dart pub global activate melos
+fvm exec melos run install
+fvm exec melos run build_runner
 ```
 
-If you prefer using the local `sip_cli` dependency without global installation, run:
+If you prefer using the local `melos` dependency without global installation, run:
 
-```zsh
-fvm dart run sip_cli:sip run install
-fvm dart run sip_cli:sip run build_runner
+```bash
+fvm dart run melos run install
+fvm dart run melos run build_runner
 ```
 
-If you are not using FVM, run the same SIP script directly:
+Alternatively, if you have `melos` installed globally and in your PATH, you can just use:
 
-```zsh
-sip run install
-sip run build_runner
+```bash
+melos run install
+melos run build_runner
 ```
 
 **OR**
@@ -114,17 +116,15 @@ sip run build_runner
 - For watch mode and continous necessary rebuilds after every change to connected files (usufull for development):
 
 ```zsh
-fvm exec sip run build_runner watch
+fvm exec melos run watch
 ```
 
-Local `sip_cli` dependency alternative:
+Local `melos` dependency alternative:
 
 ```zsh
-fvm dart run sip_cli:sip run build_runner watch
+fvm dart run melos run watch
 ```
 
-- The `sip_cli` `install` script runs `flutter pub get` for both the main app and `packages/topwr_assets`.
-- The `sip_cli` `build_runner` scripts run `build_runner` for both the main app and `packages/topwr_assets`, with `--delete-conflicting-outputs` enabled.
 
 ### It's now possible to run or build the app in the usual way
     _Rebuilds are necessary after any updates or changes to affected files (`watch` command does it for you)_
@@ -139,17 +139,17 @@ fvm dart run sip_cli:sip run build_runner watch
 ### We use `fvm` Flutter version manager: https://fvm.app/
 ```bash
 fvm flutter run
-fvm exec sip run install
-fvm exec sip run build_runner
-fvm exec sip run build_runner watch
+fvm exec melos run install
+fvm exec melos run build_runner
+fvm exec melos run watch
 // etc...
 ```
 
 ### all-in-one scripts
 ready to use, u can just run them and they will do install + build runner + flutter run
 ```
-sip run topwr
-sip run widgetbook
+melos run topwr
+melos run widgetbook
 ```
     
 
