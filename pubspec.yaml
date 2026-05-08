@@ -177,6 +177,7 @@ dependency_overrides:
   riverpod: 3.1.0 # todo(simon-the-shark): remove this when analyzer bump to 9 will be possible
 
 melos:
+  useRootAsPackage: true
   scripts:
     install:
       description: Install dependencies for all packages
@@ -185,16 +186,10 @@ melos:
     build_runner:
       description: Run build_runner for topwr
       exec: dart run build_runner build --delete-conflicting-outputs
-      packageFilters:
-        scope:
-          - topwr
 
     watch:
       description: Run build_runner watch for topwr
       exec: dart run build_runner watch --delete-conflicting-outputs
-      packageFilters:
-        scope:
-          - topwr
 
     analyze:
       description: Analyze all workspace packages
@@ -203,9 +198,8 @@ melos:
     widgetbook:
       description: Run Widgetbook on Chrome
       run: |
-        melos run install
-        melos run build_runner
-        melos exec --scope="widgetbook_workspace" -- dart run build_runner build --delete-conflicting-outputs
+        melos install
+        melos build_runner
         cd packages/widgetbook && flutter run -d chrome
 
 flutter:
