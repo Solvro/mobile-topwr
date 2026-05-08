@@ -105,11 +105,14 @@ const _mockLevel = Level(
 
 final $default = DigitalGuideLiftExpansionTileContentStory(
   setup: (context, child, args) => ProviderScope(
+    key: const ValueKey("digital-guide-lift-expansion-tile-content"),
     overrides: [
       getLevelWithLiftsUseCaseProvider.overrideWith(
-        (ref, digitalGuideData) => Future.value(const IListConst([
-          (level: _mockLevel, lifts: IListConst([_mockLift, _mockLift])),
-        ])),
+        (ref, digitalGuideData) => Future.value(
+          const IListConst([
+            (level: _mockLevel, lifts: IListConst([_mockLift, _mockLift])),
+          ]),
+        ),
       ),
     ],
     child: child,

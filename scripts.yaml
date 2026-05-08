@@ -1,0 +1,22 @@
+(executables): # it's possible to change them to always use fvm here
+  dart: dart
+  flutter: flutter
+
+install:
+  (description): Install dependencies for the app and shared assets package.
+  (bail):
+  (command):
+    - ${{ flutter }} pub get
+    - cd packages/topwr_assets && ${{ flutter }} pub get
+
+build_runner:
+  (description): Run build_runner for the app and shared assets package.
+  (bail):
+  (command):
+    - ${{ dart }} run build_runner build --delete-conflicting-outputs
+    - cd packages/topwr_assets && ${{ dart }} run build_runner build --delete-conflicting-outputs
+  watch:
+    (description): Watch build_runner for the app and shared assets package.
+    (command):
+      - (+) ${{ dart }} run build_runner watch --delete-conflicting-outputs
+      - (+) cd packages/topwr_assets && ${{ dart }} run build_runner watch --delete-conflicting-outputs

@@ -31,13 +31,18 @@ jobs:
           channel: "stable"
           flutter-version-file: pubspec.yaml
 
+      - name: Install SIP CLI
+        run: |
+          dart pub global activate sip_cli
+          echo "$HOME/.pub-cache/bin" >> "$GITHUB_PATH"
+
       - run: flutter --version
 
       - name: Install dependencies
-        run: flutter pub get
+        run: sip run install
 
       - name: Generate files
-        run: dart run build_runner build --delete-conflicting-outputs
+        run: sip run build_runner
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1

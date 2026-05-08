@@ -90,7 +90,23 @@ Check in pubspec.yaml
 - For one-time generation:
 
 ```zsh
-dart run build_runner build
+fvm dart pub global activate sip_cli
+fvm exec sip run install
+fvm exec sip run build_runner
+```
+
+If you prefer using the local `sip_cli` dependency without global installation, run:
+
+```zsh
+fvm dart run sip_cli:sip run install
+fvm dart run sip_cli:sip run build_runner
+```
+
+If you are not using FVM, run the same SIP script directly:
+
+```zsh
+sip run install
+sip run build_runner
 ```
 
 **OR**
@@ -98,29 +114,34 @@ dart run build_runner build
 - For watch mode and continous necessary rebuilds after every change to connected files (usufull for development):
 
 ```zsh
-dart run build_runner watch
+fvm exec sip run build_runner watch
 ```
 
-- If something doesn't build correctly, this might help:
+Local `sip_cli` dependency alternative:
 
 ```zsh
-dart run build_runner build -d
+fvm dart run sip_cli:sip run build_runner watch
 ```
+
+- The `sip_cli` `install` script runs `flutter pub get` for both the main app and `packages/topwr_assets`.
+- The `sip_cli` `build_runner` scripts run `build_runner` for both the main app and `packages/topwr_assets`, with `--delete-conflicting-outputs` enabled.
 
 ### It's now possible to run or build the app in the usual way
     _Rebuilds are necessary after any updates or changes to affected files (`watch` command does it for you)_
    - Either with your IDE or
    - From Terminal:
    ```bash
-   flutter run
+   fvm flutter run
    ```
 
 
 
-### **[OPTIONAL]** If you operate on many Flutter versions, we recommend `fvm` Flutter version manager: https://fvm.app/
+### We use `fvm` Flutter version manager: https://fvm.app/
 ```bash
-fvm dart run build_runner watch
 fvm flutter run
+fvm exec sip run install
+fvm exec sip run build_runner
+fvm exec sip run build_runner watch
 // etc...
 ```
     

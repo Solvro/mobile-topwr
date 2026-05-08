@@ -24,8 +24,13 @@ jobs:
           flutter-version-file: pubspec.yaml
           cache: true 
 
+      - name: Install SIP CLI
+        run: |
+          dart pub global activate sip_cli
+          echo "$HOME/.pub-cache/bin" >> "$GITHUB_PATH"
+
       - name: Install dependencies
-        run: flutter pub get
+        run: sip run install
 
       - name: Install git-crypt
         run: brew install git-crypt
@@ -48,7 +53,7 @@ jobs:
         run: flutter gen-l10n
 
       - name: Generate files
-        run: dart run build_runner build --delete-conflicting-outputs
+        run: sip run build_runner
 
       - name: Analyze project source
         run: flutter analyze --fatal-infos --no-pub
@@ -72,8 +77,13 @@ jobs:
           flutter-version-file: pubspec.yaml
           cache: true
 
+      - name: Install SIP CLI
+        run: |
+          dart pub global activate sip_cli
+          echo "$HOME/.pub-cache/bin" >> "$GITHUB_PATH"
+
       - name: Install dependencies
-        run: flutter pub get
+        run: sip run install
 
       - name: Install git-crypt
         run: brew install git-crypt
@@ -87,7 +97,7 @@ jobs:
           rm secret_key.key
 
       - name: Generate files
-        run: dart run build_runner build --delete-conflicting-outputs
+        run: sip run build_runner
 
       - name: Pre-build iOS Integration Test App
         run: flutter build ios --debug --no-codesign --simulator

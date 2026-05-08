@@ -44,27 +44,25 @@ jobs:
           flutter-version-file: pubspec.yaml
           cache: true
 
+      - name: Install SIP CLI
+        run: |
+          dart pub global activate sip_cli
+          echo "$HOME/.pub-cache/bin" >> "$GITHUB_PATH"
+        working-directory: .
+
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Install root dependencies
-        run: flutter pub get
+      - name: Install root and shared asset dependencies
+        run: sip run install
         working-directory: .
-
-      - name: Install shared asset dependencies
-        run: flutter pub get
-        working-directory: packages/topwr_assets
-
-      - name: Generate shared asset files
-        run: dart run build_runner build --delete-conflicting-outputs
-        working-directory: packages/topwr_assets
 
       - name: Generate root localization files
         run: flutter gen-l10n
         working-directory: .
 
-      - name: Generate root files
-        run: dart run build_runner build --delete-conflicting-outputs
+      - name: Generate root and shared asset files
+        run: sip run build_runner
         working-directory: .
 
       - name: Verify formatting
