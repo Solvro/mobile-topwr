@@ -11,6 +11,6 @@ const meta = Meta<TagsSection>();
 
 final $default = TagsSectionStory(
   args: TagsSectionArgs(
-    tags: Arg.fixed(IList([Tag(tag: "ai"), Tag(tag: "robotyka"), Tag(tag: "embedded")])),
+    tags: Arg.fixed(IList(const [Tag(tag: "ai"), Tag(tag: "robotyka"), Tag(tag: "embedded")])),
   ),
 );

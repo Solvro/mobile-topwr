@@ -28,9 +28,5 @@ final $default = FiltersButtonStory(
 
 final $empty = FiltersButtonStory(
   name: "empty",
-  args: FiltersButtonStoryKnobsArgs(
-    text: StringArg(""),
-    icon: Arg.fixed(Icons.filter_alt),
-    isSecondary: BoolArg(true),
-  ),
+  args: FiltersButtonStoryKnobsArgs(text: StringArg(""), icon: Arg.fixed(Icons.filter_alt), isSecondary: BoolArg(true)),
 );

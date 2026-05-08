@@ -16,8 +16,5 @@ final defaults = _Defaults(
 );
 
 final $default = SksChartLegendItemStory(
-  args: SksChartLegendItemStoryKnobsArgs(
-    text: StringArg("Measured number of users"),
-    isPredicted: BoolArg(false),
-  ),
+  args: SksChartLegendItemStoryKnobsArgs(text: StringArg("Measured number of users"), isPredicted: BoolArg(false)),
 );

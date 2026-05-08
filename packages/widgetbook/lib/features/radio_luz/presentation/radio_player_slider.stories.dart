@@ -13,7 +13,9 @@ class RadioPlayerSliderStory extends StatelessWidget {
   Widget build(BuildContext context) {
     return ColoredBox(
       color: const Color(0xFF1C1B2F),
-      child: Center(child: RadioPlayerSlider(radioController: mockRadioController, volume: mockRadioController.state.volume)),
+      child: Center(
+        child: RadioPlayerSlider(radioController: mockRadioController, volume: mockRadioController.state.volume),
+      ),
     );
   }
 }

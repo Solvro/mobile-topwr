@@ -15,6 +15,4 @@ final defaults = _Defaults(
   builder: (context, args) => FavouriteIcon(icon: Icons.favorite, color: args.color),
 );
 
-final $default = FavouriteIconStory(
-  args: FavouriteIconStoryKnobsArgs(color: ColorArg(const Color(0xFFE53935))),
-);
+final $default = FavouriteIconStory(args: FavouriteIconStoryKnobsArgs(color: ColorArg(const Color(0xFFE53935))));

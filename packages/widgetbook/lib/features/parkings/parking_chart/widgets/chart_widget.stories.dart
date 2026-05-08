@@ -5,6 +5,8 @@ import "package:topwr/features/parkings/parking_chart/widgets/chart_widget.dart"
 import "package:topwr/features/parkings/parkings_view/models/parking.dart";
 import "package:widgetbook/widgetbook.dart";
 
+import "../../../../widgetbook_mocks.dart";
+
 part "chart_widget.stories.g.dart";
 
 const _productionParking = Parking(
@@ -32,5 +34,5 @@ const _productionParking = Parking(
 const meta = Meta<ChartWidget>();
 
 final $default = ChartWidgetStory(
-  args: ChartWidgetArgs(chartData: Arg.fixed(const IList<ChartPoint>.empty()), parking: Arg.fixed(_productionParking)),
+  args: ChartWidgetArgs(chartData: Arg.fixed(mockParkingChartData), parking: Arg.fixed(_productionParking)),
 );

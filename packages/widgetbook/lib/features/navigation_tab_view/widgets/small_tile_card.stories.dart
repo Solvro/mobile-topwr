@@ -6,4 +6,6 @@ part "small_tile_card.stories.g.dart";
 
 const meta = Meta<SmallTileCard>();
 
-final $default = SmallTileCardStory(args: SmallTileCardArgs(icon: Arg.fixed(const Icon(Icons.dashboard))));
+final $default = SmallTileCardStory(
+  args: SmallTileCardArgs.fixed(title: "Campus map", icon: const Icon(Icons.map_outlined, size: 36), onTap: () {}),
+);

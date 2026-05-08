@@ -7,8 +7,5 @@ part "search_streaming_bottom_sheet.stories.g.dart";
 const meta = Meta<SearchStreamingBottomSheet>();
 
 final $default = SearchStreamingBottomSheetStory(
-  args: SearchStreamingBottomSheetArgs(
-    title: StringArg("Wroclaw Sunset"),
-    artist: StringArg("DJ Solvro"),
-  ),
+  args: SearchStreamingBottomSheetArgs(title: StringArg("Wroclaw Sunset"), artist: StringArg("DJ Solvro")),
 );

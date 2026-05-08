@@ -17,18 +17,12 @@ final defaults = _Defaults(
     body: const DecoratedBox(
       decoration: BoxDecoration(color: Color(0xFFE3F2FD)),
       child: Center(
-        child: Padding(
-          padding: EdgeInsets.all(24),
-          child: Text("Scaffold body with symmetric horizontal safe area"),
-        ),
+        child: Padding(padding: EdgeInsets.all(24), child: Text("Scaffold body with symmetric horizontal safe area")),
       ),
     ),
     bottomNavigationBar: const DecoratedBox(
       decoration: BoxDecoration(color: Color(0xFFBBDEFB)),
-      child: Padding(
-        padding: EdgeInsets.all(16),
-        child: Text("Bottom navigation content"),
-      ),
+      child: Padding(padding: EdgeInsets.all(16), child: Text("Bottom navigation content")),
     ),
     backgroundColor: args.backgroundColor,
     top: args.top,

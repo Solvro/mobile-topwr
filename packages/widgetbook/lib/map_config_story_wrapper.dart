@@ -18,7 +18,10 @@ Widget widgetbookMapConfigWrapper(Widget child) {
     ],
     child: MapConfig<MultilayerItem>(
       controllers: multilayerMapControllers,
-      markerBuilder: (item, ref, {required isActive}) => Marker(point: item.location, child: const SizedBox.shrink()),
+      markerBuilder: (item, ref, {required isActive}) => Marker(
+        point: item.location,
+        child: Icon(Icons.location_on, color: isActive ? Colors.red : Colors.blue, size: 32),
+      ),
       mapTileBuilder: MultilayerItemTile.new,
       mapViewTexts: const (emptyList: "No map items", title: "Map"),
       mapSheetSize: MapViewBottomSheetConfig.buildingsMapSheetSize,

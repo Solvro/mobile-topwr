@@ -13,10 +13,7 @@ final _scrollController = ScrollController();
 const meta = Meta<SliverMultiTabberBuilder>();
 
 final $default = SliverMultiTabberBuilderStory(
-  setup: (context, child, args) => CustomScrollView(
-    controller: args.scrollController,
-    slivers: [child],
-  ),
+  setup: (context, child, args) => CustomScrollView(controller: args.scrollController, slivers: [child]),
   args: SliverMultiTabberBuilderArgs(
     scrollController: Arg.fixed(_scrollController),
     tabs: Arg.fixed([

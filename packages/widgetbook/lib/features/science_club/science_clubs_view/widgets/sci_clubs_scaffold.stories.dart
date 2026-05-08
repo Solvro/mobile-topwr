@@ -11,10 +11,7 @@ final $default = SciClubsScaffoldStory(
     initialQuery: NullableStringArg("robot"),
     child: Arg.fixed(
       const Center(
-        child: Padding(
-          padding: EdgeInsets.all(24),
-          child: Text("Science clubs list preview"),
-        ),
+        child: Padding(padding: EdgeInsets.all(24), child: Text("Science clubs list preview")),
       ),
     ),
   ),
