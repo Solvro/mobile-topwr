@@ -78,7 +78,7 @@ class NavigationTabView extends ConsumerWidget {
         child: Text(context.localize.rest_header, style: context.textTheme.headlineMedium),
       ),
       const SksTile(),
-      const SettingsTitle(),
+      const SettingsTitle(key: NavigationTabViewConfig.settingsKey),
       const AboutTheAppTile(),
       const SizedBox(height: NavigationTabViewConfig.universalPadding),
     ];

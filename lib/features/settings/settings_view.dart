@@ -69,6 +69,7 @@ class SettingsView extends ConsumerWidget {
       body: Padding(
         padding: const EdgeInsets.all(AboutUsConfig.spacerHeight),
         child: ListView.separated(
+          key: MyAppConfig.verticalScrollableKey,
           physics: const NeverScrollableScrollPhysics(),
           itemCount: widgets.length,
           itemBuilder: (context, index) => widgets[index],

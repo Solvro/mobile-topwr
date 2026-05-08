@@ -231,6 +231,7 @@ abstract class NavigationTabViewConfig {
   static const departments = Key("departments");
   static const scienceClubsKey = Key("science_club");
   static const radioLuzKey = Key("radio_luz");
+  static const settingsKey = Key("settings");
 }
 
 abstract class DigitalGuideConfig {
