@@ -41,9 +41,6 @@ jobs:
       - name: Remove lib/l10n directory
         run: rm -rf lib/l10n/*.dart
 
-      - name: Verify formatting
-        run: dart format --output=none --set-exit-if-changed .
-      
       - name: Verify formatting by Melos
         run: melos format --output=none --set-exit-if-changed .
 
