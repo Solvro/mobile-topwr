@@ -56,7 +56,9 @@ abstract class HomeViewConfig {
     Shadow(color: HexColor.consts(0x6621334D66), blurRadius: 4, offset: Offset(0, 2)),
   ];
 
+  static const sksMenuKey = Key("sks_menu");
   static const calendarKey = Key("calendar");
+  static const newsListKey = Key("news_list");
 }
 
 abstract class CalendarConfig {

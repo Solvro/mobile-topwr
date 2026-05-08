@@ -23,6 +23,7 @@ class NewsSection extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) => Column(
     children: [
       SubsectionHeader(
+        actionKey: HomeViewConfig.newsListKey,
         title: context.localize.news,
         actionTitle: context.localize.list,
         onClick: () => ref.navigateNewsfeed(),

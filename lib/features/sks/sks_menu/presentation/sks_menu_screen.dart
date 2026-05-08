@@ -97,6 +97,7 @@ class _SksMenuView extends ConsumerWidget {
         },
         color: context.colorScheme.primary,
         child: ListView(
+          key: MyAppConfig.verticalScrollableKey,
           children: [
             if (!sksMenuData.isMenuOnline)
               TechnicalMessage(

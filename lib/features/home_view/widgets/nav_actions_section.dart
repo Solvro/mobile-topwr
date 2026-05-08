@@ -25,6 +25,7 @@ class NavActionsSection extends ConsumerWidget {
 
             children: [
               _NavActionButton(
+                key: HomeViewConfig.sksMenuKey,
                 context.localize.sks_menu,
                 Icon(Icons.restaurant_menu, color: context.colorScheme.surface, size: 32),
                 ref.navigateToSksMenu,
