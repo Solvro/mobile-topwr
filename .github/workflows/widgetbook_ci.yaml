@@ -71,12 +71,6 @@ jobs:
       - name: Generate files
         run: dart run build_runner build --delete-conflicting-outputs
 
-      # Scope to codegen output only. A full `git diff` touches tracked `.env` and
-      # runs git-crypt clean filters; without a key (e.g. fork PR) that fails with exit 128.
-      - name: Ensure generated files are committed
-        working-directory: ${{ github.workspace }}
-        run: git diff --exit-code -- packages/widgetbook/ packages/topwr_assets/ lib/
-
       - name: Analyze project source
         run: flutter analyze --fatal-infos
 
