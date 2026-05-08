@@ -32,6 +32,9 @@ flutter:
   uses-material-design: true
 
   fonts:
+    - family: ContacsIcons
+      fonts:
+        - asset: ../../assets/fonts/ContacsIcons.ttf
     - family: BottomNavBarIcons
       fonts:
         - asset: ../../assets/fonts/BottomNavBarIcons.ttf
