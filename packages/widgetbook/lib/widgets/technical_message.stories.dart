@@ -44,4 +44,9 @@ final defaults = _Defaults(
   ),
 );
 
-final $default = TechnicalMessageStory();
+final $default = TechnicalMessageStory(
+  args: TechnicalMessageStoryKnobsArgs(
+    message: StringArg("Something went wrong while loading this section."),
+    title: NullableStringArg("Technical message"),
+  ),
+);

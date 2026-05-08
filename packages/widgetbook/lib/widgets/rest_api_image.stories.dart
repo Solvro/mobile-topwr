@@ -6,6 +6,8 @@ import "package:widgetbook/widgetbook.dart";
 
 part "rest_api_image.stories.g.dart";
 
+const _mockImageData = ImageData(url: "https://placehold.co/800x600/png?text=REST+Image");
+
 class RestApiImageStoryKnobs {
   final ImageData? imageData;
   final LoadingType loadingType;
@@ -36,4 +38,9 @@ final defaults = _Defaults(
   ),
 );
 
-final $default = RestApiImageStory();
+final $default = RestApiImageStory(
+  args: RestApiImageStoryKnobsArgs(
+    imageData: Arg.fixed(_mockImageData),
+    semanticsLabel: NullableStringArg("REST API image"),
+  ),
+);

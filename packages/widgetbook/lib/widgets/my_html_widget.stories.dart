@@ -6,4 +6,6 @@ part "my_html_widget.stories.g.dart";
 
 const meta = Meta<MyHtmlWidget>();
 
-final $default = MyHtmlWidgetStory();
+final $default = MyHtmlWidgetStory(
+  args: MyHtmlWidgetArgs(html: StringArg("<p><strong>Widgetbook</strong> preview content with a link.</p>")),
+);

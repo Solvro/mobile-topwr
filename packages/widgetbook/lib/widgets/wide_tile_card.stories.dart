@@ -45,4 +45,10 @@ final defaults = _Defaults(
   ),
 );
 
-final $default = WideTileCardStory();
+final $default = WideTileCardStory(
+  args: WideTileCardStoryKnobsArgs(
+    title: StringArg("Study at Wroclaw Tech"),
+    subtitle: StringArg("Explore courses, campus news, and upcoming events."),
+    showBadge: BoolArg(true),
+  ),
+);

@@ -6,4 +6,6 @@ part "my_text_button.stories.g.dart";
 
 const meta = Meta<MyTextButton>();
 
-final $default = MyTextButtonStory();
+final $default = MyTextButtonStory(
+  args: MyTextButtonArgs(onClick: Arg.fixed(() {}), actionTitle: StringArg("Read more"), showBorder: BoolArg(true)),
+);

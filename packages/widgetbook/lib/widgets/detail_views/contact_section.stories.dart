@@ -45,4 +45,10 @@ final defaults = _Defaults(
   ),
 );
 
-final $default = ContactSectionStory();
+final $default = ContactSectionStory(
+  args: ContactSectionStoryKnobsArgs(
+    title: NullableStringArg("Contact"),
+    topPadding: DoubleArg(16),
+    shouldBeAccessible: BoolArg(true),
+  ),
+);

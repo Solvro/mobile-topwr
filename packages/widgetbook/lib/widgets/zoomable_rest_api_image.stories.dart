@@ -39,5 +39,8 @@ final defaults = _Defaults(
 );
 
 final $default = ZoomableRestApiImageStory(
-  args: ZoomableRestApiImageStoryKnobsArgs(imageData: Arg.fixed(_mockImageData)),
+  args: ZoomableRestApiImageStoryKnobsArgs(
+    imageData: Arg.fixed(_mockImageData),
+    semanticsLabel: StringArg("Zoomable campus map"),
+  ),
 );

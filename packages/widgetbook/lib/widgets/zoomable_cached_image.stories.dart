@@ -32,4 +32,9 @@ final defaults = _Defaults(
   ),
 );
 
-final $default = ZoomableCachedImageStory();
+final $default = ZoomableCachedImageStory(
+  args: ZoomableCachedImageStoryKnobsArgs(
+    imageUrl: StringArg("https://placehold.co/1200x800/png?text=Zoomable+Image"),
+    semanticsLabel: StringArg("Zoomable campus image"),
+  ),
+);

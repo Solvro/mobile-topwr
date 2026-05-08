@@ -6,4 +6,9 @@ part "my_tooltip.stories.g.dart";
 
 const meta = Meta<MyTooltip>();
 
-final $default = MyTooltipStory(args: MyTooltipArgs(child: Arg.fixed(const SizedBox.shrink())));
+final $default = MyTooltipStory(
+  args: MyTooltipArgs(
+    message: StringArg("Helpful tooltip text"),
+    child: Arg.fixed(const Text("Hover or long press me")),
+  ),
+);

@@ -5,4 +5,4 @@ part "my_point_widget.stories.g.dart";
 
 const meta = Meta<MyPointWidget>();
 
-final $default = MyPointWidgetStory();
+final $default = MyPointWidgetStory(args: MyPointWidgetArgs(text: StringArg("Important point")));

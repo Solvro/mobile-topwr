@@ -6,4 +6,9 @@ part "offline_message.stories.g.dart";
 
 const meta = Meta<OfflineMessage>();
 
-final $default = OfflineMessageStory();
+final $default = OfflineMessageStory(
+  args: OfflineMessageArgs(
+    errMessage: StringArg("You are offline. Check your connection and try again."),
+    onRefresh: Arg.fixed(() {}),
+  ),
+);

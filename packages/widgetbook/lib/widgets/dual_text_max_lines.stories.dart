@@ -40,4 +40,11 @@ final defaults = _Defaults(
   ),
 );
 
-final $default = DualTextMaxLinesStory();
+final $default = DualTextMaxLinesStory(
+  args: DualTextMaxLinesStoryKnobsArgs(
+    title: StringArg("Faculty of Information and Communication Technology"),
+    maxTotalLines: IntArg(3),
+    subtitle: NullableStringArg("Wroclaw University of Science and Technology"),
+    spacing: DoubleArg(4),
+  ),
+);

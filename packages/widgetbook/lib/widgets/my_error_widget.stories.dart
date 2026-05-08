@@ -6,4 +6,4 @@ part "my_error_widget.stories.g.dart";
 
 const meta = Meta<MyErrorWidget>();
 
-final $default = MyErrorWidgetStory();
+final $default = MyErrorWidgetStory(args: MyErrorWidgetArgs(error: Arg.fixed("Example error message")));

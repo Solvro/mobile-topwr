@@ -6,4 +6,6 @@ part "text_and_url.stories.g.dart";
 
 const meta = Meta<TextAndUrl>();
 
-final $default = TextAndUrlStory();
+final $default = TextAndUrlStory(
+  args: TextAndUrlArgs(url: StringArg("https://pwr.edu.pl"), text: StringArg("Read more at")),
+);

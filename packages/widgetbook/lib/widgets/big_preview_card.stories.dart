@@ -5,6 +5,8 @@ import "package:widgetbook/widgetbook.dart";
 
 part "big_preview_card.stories.g.dart";
 
+const _mockImageData = ImageData(url: "https://placehold.co/1200x800/png?text=Campus+News");
+
 class BigPreviewCardStoryKnobs {
   final String title;
   final String shortDescription;
@@ -42,4 +44,11 @@ final defaults = _Defaults(
   ),
 );
 
-final $default = BigPreviewCardStory();
+final $default = BigPreviewCardStory(
+  args: BigPreviewCardStoryKnobsArgs(
+    title: StringArg("Open days at Wroclaw Tech"),
+    shortDescription: StringArg("Meet students, visit laboratories, and learn about our courses."),
+    imageData: Arg.fixed(_mockImageData),
+    date: DateTimeArg(DateTime(2026, 5, 8)),
+  ),
+);

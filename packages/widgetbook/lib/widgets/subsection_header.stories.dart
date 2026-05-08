@@ -31,4 +31,10 @@ final defaults = _Defaults(
   ),
 );
 
-final $default = SubsectionHeaderStory();
+final $default = SubsectionHeaderStory(
+  args: SubsectionHeaderStoryKnobsArgs(
+    title: StringArg("News"),
+    actionTitle: NullableStringArg("See all"),
+    addArrow: BoolArg(true),
+  ),
+);

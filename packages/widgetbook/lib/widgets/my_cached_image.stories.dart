@@ -31,4 +31,9 @@ final defaults = _Defaults(
   ),
 );
 
-final $default = MyCachedImageStory();
+final $default = MyCachedImageStory(
+  args: MyCachedImageStoryKnobsArgs(
+    imageUrl: NullableStringArg("https://placehold.co/800x600/png?text=Cached+Image"),
+    semanticsLabel: NullableStringArg("Cached image preview"),
+  ),
+);

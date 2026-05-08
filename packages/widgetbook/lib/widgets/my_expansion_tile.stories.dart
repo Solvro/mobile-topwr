@@ -32,5 +32,9 @@ final defaults = _Defaults(
 );
 
 final $default = MyExpansionTileStory(
-  args: MyExpansionTileStoryKnobsArgs(children: Arg.fixed(const [Text("First child"), Text("Second child")])),
+  args: MyExpansionTileStoryKnobsArgs(
+    title: StringArg("Expandable section"),
+    initiallyExpanded: BoolArg(true),
+    children: Arg.fixed(const [Text("First child"), Text("Second child")]),
+  ),
 );

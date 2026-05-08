@@ -6,4 +6,9 @@ part "my_splash_tile.stories.g.dart";
 
 const meta = Meta<MySplashTile>();
 
-final $default = MySplashTileStory(args: MySplashTileArgs(child: Arg.fixed(const SizedBox.shrink())));
+final $default = MySplashTileStory(
+  args: MySplashTileArgs(
+    child: Arg.fixed(const Padding(padding: EdgeInsets.all(24), child: Text("Tap tile content"))),
+    onTap: Arg.fixed(() {}),
+  ),
+);

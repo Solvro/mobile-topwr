@@ -44,5 +44,8 @@ final defaults = _Defaults(
 );
 
 final $default = FieldOfStudyExpansionTileStory(
-  args: FieldOfStudyExpansionTileStoryKnobsArgs(fieldsOfStudy: Arg.fixed(_mockFieldsOfStudy)),
+  args: FieldOfStudyExpansionTileStoryKnobsArgs(
+    fieldsOfStudy: Arg.fixed(_mockFieldsOfStudy),
+    title: Arg.fixed("Kierunki studiów"),
+  ),
 );

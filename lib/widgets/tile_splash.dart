@@ -1,9 +1,10 @@
 import "package:flutter/material.dart";
 
 class TileSplash extends StatelessWidget {
-  const TileSplash({super.key, this.onTap});
+  const TileSplash({super.key, this.onTap, this.child});
 
   final VoidCallback? onTap;
+  final Widget? child;
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +12,7 @@ class TileSplash extends StatelessWidget {
       color: Colors.transparent,
       child: InkWell(
         onTap: onTap,
-        child: Container(color: Colors.transparent),
+        child: ColoredBox(color: Colors.transparent, child: child ?? const SizedBox.expand()),
       ),
     );
   }

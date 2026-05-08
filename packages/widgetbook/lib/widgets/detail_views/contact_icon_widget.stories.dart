@@ -8,4 +8,4 @@ const meta = Meta<ContactIconWidget>();
 
 const _defaultContactSvg = "packages/topwr_assets/assets/svg/contact_icons/mail.svg";
 
-final $default = ContactIconWidgetStory(args: ContactIconWidgetArgs(icon: Arg.fixed(_defaultContactSvg)));
+final $default = ContactIconWidgetStory(args: ContactIconWidgetArgs(icon: StringArg(_defaultContactSvg)));
