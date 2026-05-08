@@ -9,6 +9,7 @@ import "package:topwr/features/calendar/bussiness/get_events_per_days_use_case.d
 import "package:topwr/features/departments/department_detail_view/data/repository/department_details_repository.dart";
 import "package:topwr/features/departments/departments_view/data/repository/departments_repository.dart";
 import "package:topwr/features/digital_guide/data/repository/digital_guide_repository.dart";
+import "package:topwr/features/digital_guide/data/repository/image_repository.dart";
 import "package:topwr/features/digital_guide_objects/data/repositories/digital_guide_object_repository.dart";
 import "package:topwr/features/guide_detail_view/data/repository/guide_details_repository.dart";
 import "package:topwr/features/guide_view/data/repository/guide_repository.dart";
@@ -53,6 +54,9 @@ final config = Config(
         departmentsRepositoryProvider.overrideWith((ref) => mockDepartments),
         digitalGuideRepositoryProvider.overrideWith(
           (ref, ourId) => (digitalGuideData: mockDigitalGuideResponse, photoUrl: "", building: mockBuilding),
+        ),
+        imageRepositoryProvider.overrideWith(
+          (ref, imageID) => Future.value("https://placehold.co/1200x800/png?text=Digital+Guide+Image+$imageID"),
         ),
         digitalGuideObjectRepositoryProvider.overrideWith(
           (ref, args) => (digitalGuideData: mockDigitalGuideObjectModel, photoUrl: ""),

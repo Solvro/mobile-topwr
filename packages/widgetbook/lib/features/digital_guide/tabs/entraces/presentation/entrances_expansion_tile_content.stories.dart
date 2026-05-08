@@ -95,7 +95,7 @@ const _mockEntrance = DigitalGuideEntrace(
 final $default = EntrancesExpansionTileContentStory(
   setup: (context, child, args) => ProviderScope(
     overrides: [
-      entrancesRepositoryProvider.overrideWith((ref, building) async => IListConst(const [_mockEntrance])),
+      entrancesRepositoryProvider.overrideWith((ref, building) => Future.value(const IListConst([_mockEntrance]))),
     ],
     child: child,
   ),

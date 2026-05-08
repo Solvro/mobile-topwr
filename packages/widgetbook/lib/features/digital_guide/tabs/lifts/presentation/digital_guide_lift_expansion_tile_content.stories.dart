@@ -107,9 +107,9 @@ final $default = DigitalGuideLiftExpansionTileContentStory(
   setup: (context, child, args) => ProviderScope(
     overrides: [
       getLevelWithLiftsUseCaseProvider.overrideWith(
-        (ref, digitalGuideData) async => IListConst(const [
+        (ref, digitalGuideData) => Future.value(const IListConst([
           (level: _mockLevel, lifts: IListConst([_mockLift, _mockLift])),
-        ]),
+        ])),
       ),
     ],
     child: child,

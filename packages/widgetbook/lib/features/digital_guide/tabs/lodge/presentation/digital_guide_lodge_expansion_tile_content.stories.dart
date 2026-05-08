@@ -2,6 +2,7 @@ import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/widgets.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:topwr/features/digital_guide/data/models/digital_guide_response.dart";
+import "package:topwr/features/digital_guide/tabs/lodge/data/models/digital_guide_lodge.dart";
 import "package:topwr/features/digital_guide/tabs/lodge/data/repository/lodges_repository.dart";
 import "package:topwr/features/digital_guide/tabs/lodge/presentation/digital_guide_lodge_expansion_tile_content.dart";
 import "package:widgetbook/widgetbook.dart";
@@ -43,12 +44,46 @@ const _mockDigitalGuideData = DigitalGuideResponse(
   accessibilityLevelForCognitiveDifficulties: 1,
 );
 
+const _mockLodge = DigitalGuideLodge(
+  id: 1,
+  translations: DigitalGuideTranslationsLodge(
+    pl: DigitalGuideTranslationLodge(
+      location: "Main hall",
+      workingDaysAndHours: "Mon-Fri 8:00-16:00",
+      comment: "Punkt informacyjny znajduje się przy głównym wejściu.",
+      areAccessBarriersComment: "Brak progów i przeszkód na dojściu.",
+      isMovementSpaceComment: "Zapewniona przestrzeń manewrowa przed ladą.",
+      isSpaceUnderCounterComment: "Dostępna przestrzeń pod ladą dla użytkowników wózków.",
+      isVisibleFromAfarComment: "Lada widoczna z głównego ciągu komunikacyjnego.",
+      isGoodLitComment: "Strefa obsługi jest dobrze doświetlona.",
+    ),
+  ),
+  areAccessBarriers: "no",
+  isMovementSpace: "yes",
+  counterHeight: 90,
+  isSpaceUnderCounter: "yes",
+  isVisibleFromAfar: "yes",
+  isGoodLit: "yes",
+  imagesIds: [8],
+);
+
 const meta = Meta<DigitalGuideLodgeExpansionTileContent>();
 
-final $default = DigitalGuideLodgeExpansionTileContentStory(
+final $withData = DigitalGuideLodgeExpansionTileContentStory(
   setup: (context, child, args) => ProviderScope(
     key: ValueKey("lodge-${args.digitalGuideResponse.id}"),
-    overrides: [lodgesRepositoryProvider.overrideWith((ref, response) async => IListConst(const []))],
+    overrides: [
+      lodgesRepositoryProvider.overrideWith((ref, response) => const IListConst([_mockLodge])),
+    ],
+    child: child,
+  ),
+  args: DigitalGuideLodgeExpansionTileContentArgs(digitalGuideResponse: Arg.fixed(_mockDigitalGuideData)),
+);
+
+final $withoutData = DigitalGuideLodgeExpansionTileContentStory(
+  setup: (context, child, args) => ProviderScope(
+    key: ValueKey("lodge-empty-${args.digitalGuideResponse.id}"),
+    overrides: [lodgesRepositoryProvider.overrideWith((ref, response) => const IListConst([]))],
     child: child,
   ),
   args: DigitalGuideLodgeExpansionTileContentArgs(digitalGuideResponse: Arg.fixed(_mockDigitalGuideData)),
