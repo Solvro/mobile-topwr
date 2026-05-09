@@ -164,7 +164,7 @@ dev_dependencies:
   riverpod_generator: ^4.0.0 # todo(simon-the-shark): bump when analyzer bump to 9 will be possible
   envied_generator: ^1.3.2
   flutter_gen_runner: ^5.12.0
-  auto_route_generator: ^10.4.0
+  auto_route_generator: ^10.5.0
   solvro_translator_generator: ^0.8.0
 
   melos: ^7.5.0
