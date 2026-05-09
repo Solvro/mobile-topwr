@@ -5,7 +5,6 @@ import "package:hooks_riverpod/hooks_riverpod.dart";
 import "../../firebase_init.dart" show requestFCMPermission;
 import "../../hooks/use_effect_on_init.dart";
 import "../../services/translations_service/data/preferred_lang_repository.dart";
-import "../../utils/context_extensions.dart";
 import "../../utils/unwaited_microtask.dart";
 import "../branches/data/repository/branch_repository.dart";
 import "../branches/presentation/branch_dialog.dart";
@@ -28,10 +27,8 @@ class ShowEntryDialogWrapper extends HookConsumerWidget {
             await LanguageDialog.show(context, isFirstTimeMode: true);
           }
         }
-        if (context.mounted) {
-          if (kIsWeb && context.localize.home_screen_greeting.contains("Dzień dobry")) {
-            await showWebVersionDialog(context);
-          }
+        if (kIsWeb && context.mounted) {
+          await showWebVersionDialog(context);
         }
         if (context.mounted) {
           final branch = await ref.read(branchRepositoryProvider.future);
