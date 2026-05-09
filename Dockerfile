@@ -1,5 +1,7 @@
 FROM ubuntu:latest AS builder
 
+ARG FLUTTER_VERSION
+
 RUN apt-get update && apt-get install -y \
     curl \
     git \
@@ -7,54 +9,14 @@ RUN apt-get update && apt-get install -y \
     xz-utils \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Flutter
-RUN git clone https://github.com/flutter/flutter.git /flutter
+RUN test -n "${FLUTTER_VERSION}" && git clone --branch ${FLUTTER_VERSION} --depth 1 https://github.com/flutter/flutter.git /flutter
 ENV PATH="/flutter/bin:${PATH}"
 RUN flutter doctor
-RUN flutter channel stable
-RUN flutter upgrade
 
-# Clone project and build it
 WORKDIR /app
 COPY . .
 
-# Create .env file from build args
-ARG ASSETS_URL
-ARG IPARKING_URL
-ARG WIREDASH_ID
-ARG WIREDASH_SECRET
-ARG SKS_URL
-ARG DIGITAL_GUIDE_URL
-ARG DIGITAL_GUIDE_AUTHORIZATION_TOKEN
-ARG DIGITAL_GUIDE_ADDONS_URL
-ARG PARKING_API_URL
-ARG TRANSLATE_API_URL
-ARG TRANSLATE_API_TOKEN
-ARG BUGSINK_DSN
-ARG MAIN_REST_API_URL
-ARG RADIO_LUZ_STREAM_URL
-ARG RADIO_LUZ_API_URL
-ARG CLARITY_CONFIG_ID
-ARG VAPID_WEB_PUB_KEY
-
-RUN echo "ASSETS_URL=${ASSETS_URL}" > .env && \
-    echo "IPARKING_URL=${IPARKING_URL}" >> .env && \
-    echo "WIREDASH_ID=${WIREDASH_ID}" >> .env && \
-    echo "WIREDASH_SECRET=${WIREDASH_SECRET}" >> .env && \
-    echo "SKS_URL=${SKS_URL}" >> .env && \
-    echo "DIGITAL_GUIDE_URL=${DIGITAL_GUIDE_URL}" >> .env && \
-    echo "DIGITAL_GUIDE_AUTHORIZATION_TOKEN=${DIGITAL_GUIDE_AUTHORIZATION_TOKEN}" >> .env && \
-    echo "DIGITAL_GUIDE_ADDONS_URL=${DIGITAL_GUIDE_ADDONS_URL}" >> .env && \
-    echo "PARKING_API_URL=${PARKING_API_URL}" >> .env && \
-    echo "TRANSLATE_API_URL=${TRANSLATE_API_URL}" >> .env && \
-    echo "TRANSLATE_API_TOKEN=${TRANSLATE_API_TOKEN}" >> .env && \
-    echo "BUGSINK_DSN=${BUGSINK_DSN}" >> .env && \
-    echo "MAIN_REST_API_URL=${MAIN_REST_API_URL}" >> .env && \
-    echo "RADIO_LUZ_STREAM_URL=${RADIO_LUZ_STREAM_URL}" >> .env && \
-    echo "RADIO_LUZ_API_URL=${RADIO_LUZ_API_URL}" >> .env && \
-    echo "CLARITY_CONFIG_ID=${CLARITY_CONFIG_ID}" >> .env && \
-    echo "VAPID_WEB_PUB_KEY=${VAPID_WEB_PUB_KEY}" >> .env
-
+RUN test -s .env
 RUN dart run build_runner build -d
 RUN flutter build web --release
 
