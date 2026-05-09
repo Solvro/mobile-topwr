@@ -6,6 +6,7 @@ import "../../../config/url_config.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../widgets/my_alert_dialog.dart";
+import "../../../widgets/store_tile.dart";
 
 Future<void> showWebVersionDialog(BuildContext context) async {
   await showCustomDialog(
@@ -56,74 +57,15 @@ class WebVersionDialogContent extends StatelessWidget {
           textScaler: textScaler,
         ),
         const SizedBox(height: 18),
-        const _StoreTile(
+        const StoreTile(
           icon: Icons.android,
           label: "Android",
           storeName: "Google Play",
           url: UrlConfig.androidStoreUrl,
         ),
         const SizedBox(height: 12),
-        const _StoreTile(icon: Icons.apple, label: "iOS", storeName: "App Store", url: UrlConfig.iosStoreUrl),
+        const StoreTile(icon: Icons.apple, label: "iOS", storeName: "App Store", url: UrlConfig.iosStoreUrl),
       ],
-    );
-  }
-}
-
-class _StoreTile extends StatelessWidget {
-  const _StoreTile({required this.icon, required this.label, required this.storeName, required this.url});
-
-  final IconData icon;
-  final String label;
-  final String storeName;
-  final String url;
-
-  @override
-  Widget build(BuildContext context) {
-    final accent = context.colorScheme.primary;
-    final borderColor = accent.withValues(alpha: 0.18);
-    final tileColor = accent.withValues(alpha: 0.08);
-    return InkWell(
-      borderRadius: BorderRadius.circular(16),
-      onTap: () => launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication),
-      child: Ink(
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
-        decoration: BoxDecoration(
-          color: tileColor,
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: borderColor),
-          boxShadow: [BoxShadow(color: accent.withValues(alpha: 0.12), blurRadius: 16, offset: const Offset(0, 6))],
-        ),
-        child: Row(
-          children: [
-            Container(
-              width: 40,
-              height: 40,
-              decoration: BoxDecoration(shape: BoxShape.circle, color: accent.withValues(alpha: 0.16)),
-              child: Icon(icon, size: 22, color: accent),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    label.toUpperCase(),
-                    style: context.textTheme.labelSmall?.copyWith(
-                      color: accent,
-                      letterSpacing: 1.1,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  const SizedBox(height: 2),
-                  Text(storeName, style: context.textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.w600)),
-                ],
-              ),
-            ),
-            Icon(Icons.arrow_forward, size: 18, color: accent.withValues(alpha: 0.7)),
-          ],
-        ),
-      ),
     );
   }
 }

@@ -3841,5 +3841,13 @@
   "go_to" : "Przejdź",
   "@go_to": {
     "description": "Button to navigate to a selected place or section from notification dialog"
+  },
+  "rate_store_dialog_title": "Oceń aplikację",
+  "@rate_store_dialog_title": {
+    "description": "Title of the rate store dialog"
+  },
+  "rate_store_dialog_message": "Wybierz swoją platformę, aby ocenić aplikację:",
+  "@rate_store_dialog_message": {
+    "description": "Message shown in the rate store dialog"
   }
 }
