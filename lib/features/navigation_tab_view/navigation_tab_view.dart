@@ -1,6 +1,8 @@
 import "package:auto_route/auto_route.dart";
+import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:url_launcher/url_launcher.dart";
 
 import "../../config/ui_config.dart";
 import "../../theme/app_theme.dart";
@@ -53,7 +55,9 @@ class NavigationTabView extends ConsumerWidget {
           button: true,
           label: context.localize.radio_luz,
           child: BaseSmallTileCard(
-            onTap: ref.navigateToRadioLuz,
+            onTap: kIsWeb
+                ? () => launchUrl(Uri.parse("https://radioluz.pl/"))
+                : ref.navigateToRadioLuz,
             child: const SizedBox(
               height: WideTileCardConfig.imageSize,
               child: AppBarLuz(logoSize: WideTileCardConfig.imageSize),

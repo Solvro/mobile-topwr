@@ -1,5 +1,6 @@
 import "dart:math";
 
+import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
@@ -52,7 +53,8 @@ class HorizontalSymmetricSafeAreaScaffold extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final shouldDisplayRadio =
         ref.watch(radioControllerProvider).isPlaying &&
-        ref.watch(currentRouteProvider)?.settings.name != RadioLuzRoute.name;
+        ref.watch(currentRouteProvider)?.settings.name != RadioLuzRoute.name &&
+        !kIsWeb;
 
     final fabs = <Widget>[
       if (shouldDisplayRadio)

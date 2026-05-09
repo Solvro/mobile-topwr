@@ -135,10 +135,10 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: InformationPointRoute.page),
     AutoRoute(page: DressingRoomRoute.page),
     AutoRoute(page: ParkingRoute.page),
-    AutoRoute(path: "/news", page: NewsfeedRoute.page),
+    if (!kIsWeb) AutoRoute(path: "/news", page: NewsfeedRoute.page),
     AutoRoute(path: "/notifications", page: NotificationsRoute.page),
     AutoRoute(path: "/calendar", page: CalendarRoute.page),
-    AutoRoute(path: "/radio-luz", page: RadioLuzRoute.page),
+    if (!kIsWeb) AutoRoute(path: "/radio-luz", page: RadioLuzRoute.page),
   ];
 }
 
