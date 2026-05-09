@@ -1,0 +1,48 @@
+name: Widgetbook Cloud Hosting
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  widgetbook-cloud-hosting:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version-file: pubspec.yaml
+    
+      - name: git crypt unlock
+        uses: sliteteam/github-action-git-crypt-unlock@f99c0c6b60bb7ec30dcec033a8f0a3b3d48f21e1
+        env:
+          GIT_CRYPT_KEY: ${{ secrets.GIT_CRYPT_KEY }}
+
+      - name: Setup Melos
+        uses: bluefireteam/melos-action@v3
+
+      - run: flutter --version
+
+      - name: Bootstrap App
+        run: |
+          melos build_runner
+
+      - name: Build Widgetbook
+        working-directory: packages/widgetbook/
+        run: |
+          flutter build web -t lib/main.dart
+
+      - name: Install Widgetbook CLI
+        run: dart pub global activate widgetbook_cli 3.14.0
+
+      - name: Push Widgetbook Build
+        working-directory: packages/widgetbook/
+        run: widgetbook cloud build push --api-key ${{ secrets.WIDGETBOOK_API_KEY }}
