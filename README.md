@@ -1,6 +1,7 @@
 # ToPWR
 
 ![ToPWR file cover](/assets/png/topwr_header.png)
+[![melos](https://img.shields.io/badge/maintained%20with-melos-f700ff.svg?style=flat-square)](https://github.com/invertase/melos)
 
 ## PL
 
@@ -59,6 +60,7 @@ We're using many UI/UX designs and graphic assets created by [@domkakromka](http
 - Microsoft Clarity
 - bugsink
 - fastlane
+- [![melos](https://img.shields.io/badge/maintained%20with-melos-f700ff.svg?style=flat-square)](https://github.com/invertase/melos)
 
 ## Links
 

@@ -16,7 +16,9 @@ class BranchRepository extends _$BranchRepository {
 
     final branchName = sharedPrefs.getString(_key);
     final branch = Branch.fromNameOrNull(branchName);
-    Clarity.setCustomTags("branch", [branch?.name ?? ""]);
+    if (branch != null) {
+      Clarity.setCustomTags("branch", [branch.name]);
+    }
     return branch;
   }
 

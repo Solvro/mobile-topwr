@@ -2,8 +2,8 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../config/ui_config.dart";
-import "../../../../../gen/assets.gen.dart";
 import "../../../../../utils/context_extensions.dart";
+import "../../../../gen/assets.gen.dart";
 import "../../tabs/accessibility_dialog/data/active_accessibility_modes_repository.dart";
 import "../../tabs/accessibility_dialog/data/modes.dart";
 import "accessibility_information_card.dart";
@@ -56,11 +56,16 @@ class AccessibilityInformationCardsList extends ConsumerWidget {
           return const SizedBox.shrink();
         }
 
+        Color colorForLevel(int level) {
+          const colors = DigitalGuideConfig.accessibilityLevelColors;
+          return colors[level.clamp(0, colors.length - 1)];
+        }
+
         final cards = {
           // Card for blind accessibility
           const Blind(): AccessibilityInformationCard(
             icon: Assets.svg.digitalGuide.accessibilityAlerts.blindProfile,
-            color: DigitalGuideConfig.accessibilityLevelColors[accLevels.accessibilityLevelForBlind],
+            color: colorForLevel(accLevels.accessibilityLevelForBlind),
             text:
                 accComments?.commentForBlind ??
                 context.localize.accessibility_card_information(
@@ -73,7 +78,7 @@ class AccessibilityInformationCardsList extends ConsumerWidget {
           // Card for visually impaired
           const LowVision(): AccessibilityInformationCard(
             icon: Assets.svg.digitalGuide.accessibilityAlerts.visuallyImpaired,
-            color: DigitalGuideConfig.accessibilityLevelColors[accLevels.accessibilityLevelForVisuallyImpaired],
+            color: colorForLevel(accLevels.accessibilityLevelForVisuallyImpaired),
             text:
                 accComments?.commentForVisuallyImpaired ??
                 context.localize.accessibility_card_information(
@@ -86,7 +91,7 @@ class AccessibilityInformationCardsList extends ConsumerWidget {
           // Card for motor disabilities
           const MotorImpairment(): AccessibilityInformationCard(
             icon: Assets.svg.digitalGuide.accessibilityAlerts.movementDysfunction,
-            color: DigitalGuideConfig.accessibilityLevelColors[accLevels.accessibilityLevelForMotorDisability],
+            color: colorForLevel(accLevels.accessibilityLevelForMotorDisability),
             text:
                 accComments?.commentForMotorDisability ??
                 context.localize.accessibility_card_information(
@@ -99,7 +104,7 @@ class AccessibilityInformationCardsList extends ConsumerWidget {
           // Card for cognitive difficulties
           const CognitiveImpairment(): AccessibilityInformationCard(
             icon: Assets.svg.digitalGuide.accessibilityAlerts.cognitiveDifficulties,
-            color: DigitalGuideConfig.accessibilityLevelColors[accLevels.accessibilityLevelForCognitiveDifficulties],
+            color: colorForLevel(accLevels.accessibilityLevelForCognitiveDifficulties),
             text:
                 accComments?.commentForCognitiveDifficulties ??
                 context.localize.accessibility_card_information(
@@ -112,7 +117,7 @@ class AccessibilityInformationCardsList extends ConsumerWidget {
           // Card for hard of hearing
           const HearingImpairment(): AccessibilityInformationCard(
             icon: Assets.svg.digitalGuide.accessibilityAlerts.hearingDysfunction,
-            color: DigitalGuideConfig.accessibilityLevelColors[accLevels.accessibilityLevelForHardOfHearing],
+            color: colorForLevel(accLevels.accessibilityLevelForHardOfHearing),
             text:
                 accComments?.commentForHardOfHearing ??
                 context.localize.accessibility_card_information(
@@ -125,7 +130,7 @@ class AccessibilityInformationCardsList extends ConsumerWidget {
           // Card for high sensory sensitivity
           const SensorySensitivity(): AccessibilityInformationCard(
             icon: Assets.svg.digitalGuide.accessibilityAlerts.sensorySensitivity,
-            color: DigitalGuideConfig.accessibilityLevelColors[accLevels.accessibilityLevelForHighSensorySensitivity],
+            color: colorForLevel(accLevels.accessibilityLevelForHighSensorySensitivity),
             text:
                 accComments?.commentForHighSensorySensitivity ??
                 context.localize.accessibility_card_information(

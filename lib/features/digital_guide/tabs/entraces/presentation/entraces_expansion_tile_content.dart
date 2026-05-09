@@ -4,6 +4,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../config/ui_config.dart";
 import "../../../../../theme/app_theme.dart";
+import "../../../../../utils/context_extensions.dart";
 import "../../../../../widgets/my_error_widget.dart";
 import "../../../data/models/digital_guide_response.dart";
 import "../data/models/digital_guide_entrace.dart";
@@ -33,6 +34,10 @@ class _EntrancesExpansionTileContent extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    if (entrances.isEmpty) {
+      return Center(child: Text(context.localize.no_layers_available));
+    }
+
     return Padding(
       padding: const EdgeInsets.symmetric(
         vertical: DigitalGuideConfig.heightMedium,
