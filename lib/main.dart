@@ -39,8 +39,10 @@ Future<void> main({List<Override>? overrides}) async {
 
   SplashScreenController.preserveNativeSplashScreen();
 
-  final data = await PlatformAssetBundle().load(Assets.certs.przewodnikPwrEduPl);
-  SecurityContext.defaultContext.setTrustedCertificatesBytes(data.buffer.asUint8List());
+  if (!kIsWeb) {
+    final data = await PlatformAssetBundle().load(Assets.certs.przewodnikPwrEduPl);
+    SecurityContext.defaultContext.setTrustedCertificatesBytes(data.buffer.asUint8List());
+  }
 
   if (kDebugMode) {
     runApp(ProviderScope(overrides: overrides ?? [], child: const MyApp()));
