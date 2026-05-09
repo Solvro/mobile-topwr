@@ -29,6 +29,10 @@
   "@web_version_dialog_message": {
     "description": "Message shown in the web version dialog"
   },
+  "web_version_banner": "Wersja webowa",
+  "@web_version_banner": {
+    "description": "Text shown in the web version banner"
+  },
   "even_monday": "w Parzysty Poniedziałek",
   "@even_monday": {
     "description": "Text shown for even week Monday"

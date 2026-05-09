@@ -13,7 +13,6 @@ import "keep_alive_home_view_providers.dart";
 import "widgets/logo_app_bar.dart";
 import "widgets/nav_actions_section.dart";
 import "widgets/science_clubs_section.dart";
-import "widgets/web_version_prompt.dart";
 
 @RoutePage()
 class HomeView extends StatelessWidget {
@@ -46,7 +45,6 @@ class HomeView extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: HomeViewConfig.paddingMedium),
             ),
           ),
-          if (kIsWeb) const Positioned(top: 12, right: 12, child: WebVersionBanner()),
         ],
       ),
     );
