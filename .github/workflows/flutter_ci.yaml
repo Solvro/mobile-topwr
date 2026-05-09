@@ -50,9 +50,6 @@ jobs:
       - name: Generate files
         run: melos build_runner
 
-      - name: Analyze project source
-        run: flutter analyze --fatal-infos --no-pub
-
       - name: Analyze project source with Melos
         run: melos analyze
 
