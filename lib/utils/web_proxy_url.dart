@@ -10,7 +10,8 @@ String proxyUrlOnWeb(String url, {required String sourceHost, required String pr
     return url;
   }
 
-  final proxyUri = Uri.https("proxy.topwr.solvro.pl", "/$proxyPath${uri.path}", uri.queryParametersAll);
+  final queryParameters = uri.queryParametersAll.isEmpty ? null : uri.queryParametersAll;
+  final proxyUri = Uri.https("proxy.topwr.solvro.pl", "/$proxyPath${uri.path}", queryParameters);
 
   return proxyUri.toString();
 }
