@@ -45,8 +45,9 @@ Future<RadioAudioHandlerBridge> _initAudioHandler() => AudioService.init(
 
 Future<void> main({List<Override>? overrides}) async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  SplashScreenController.preserveNativeSplashScreen();
+  if (!kDebugMode) {
+    SplashScreenController.preserveNativeSplashScreen();
+  }
 
   if (!kIsWeb) {
     final data = await PlatformAssetBundle().load(Assets.certs.przewodnikPwrEduPl);
