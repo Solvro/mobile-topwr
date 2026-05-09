@@ -21,9 +21,17 @@
   "@english_title": {
     "description": "Display title for English language with flag emoji"
   },
-  "home_screen_greeting": "Cześć, miło Cię widzieć",
+  "home_screen_greeting": "Dzień dobry",
   "@home_screen_greeting": {
     "description": "Welcome message shown on the home screen"
+  },
+  "web_version_dialog_message": "To jest wersja webowa aplikacji mobilnej ToPWR. Nie wszystkie funckjonalności tu działają. Zalecamy pobranie aplikacji mobilnej dla twojego najwyższego konfortu użytkowania:",
+  "@web_version_dialog_message": {
+    "description": "Message shown in the web version dialog"
+  },
+  "web_version_banner": "Wersja webowa",
+  "@web_version_banner": {
+    "description": "Text shown in the web version banner"
   },
   "even_monday": "w Parzysty Poniedziałek",
   "@even_monday": {
@@ -3833,5 +3841,13 @@
   "go_to" : "Przejdź",
   "@go_to": {
     "description": "Button to navigate to a selected place or section from notification dialog"
+  },
+  "rate_store_dialog_title": "Oceń aplikację",
+  "@rate_store_dialog_title": {
+    "description": "Title of the rate store dialog"
+  },
+  "rate_store_dialog_message": "Wybierz swoją platformę, aby ocenić aplikację:",
+  "@rate_store_dialog_message": {
+    "description": "Message shown in the rate store dialog"
   }
 }

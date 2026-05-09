@@ -1,5 +1,6 @@
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
+import "../../../../utils/web_proxy_url.dart";
 import "../domain/schedule_entity.dart";
 import "radio_luz_repository.dart";
 
@@ -22,7 +23,7 @@ Future<List<BroadcastEntity>?> scheduleRepository(Ref ref) async {
           return BroadcastEntity(
             id: broadcast.id,
             time: broadcast.time,
-            thumbnail: broadcast.thumbnail ?? "",
+            thumbnail: proxyUrlOnWeb(broadcast.thumbnail ?? "", sourceHost: "radioluz.pl", proxyPath: "radioluz"),
             title: broadcast.title,
             content: broadcast.content,
             authors: broadcast.authors,

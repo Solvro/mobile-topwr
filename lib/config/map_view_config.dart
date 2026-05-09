@@ -1,3 +1,5 @@
+import "dart:io";
+
 import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:flutter_map/flutter_map.dart";
@@ -44,7 +46,7 @@ abstract class OpenStreetMapConfig {
   static const tileUrl = "https://tile.openstreetmap.org/{z}/{x}/{y}.png";
   static const attribution = "© OpenStreetMap contributors";
   static const copyright = "https://openstreetmap.org/copyright";
-  static final userAgent = defaultTargetPlatform == TargetPlatform.iOS ? "com.solvro.ToPwr" : "com.solvro.topwr";
+  static final userAgent = kIsWeb || Platform.isIOS ? "com.solvro.ToPwr" : "com.solvro.topwr";
 }
 
 abstract class MapCacheConfig {

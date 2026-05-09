@@ -1,0 +1,65 @@
+name: CD - web
+
+on:
+  workflow_call:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+env:
+  REGISTRY: ghcr.io
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    environment: web coolify
+    outputs:
+      image_tag: ${{ steps.image.outputs.tag }}
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: git crypt unlock
+        uses: sliteteam/github-action-git-crypt-unlock@f99c0c6b60bb7ec30dcec033a8f0a3b3d48f21e1
+        env:
+          GIT_CRYPT_KEY: ${{ secrets.GIT_CRYPT_KEY }}
+
+      - name: Verify web environment file
+        run: test -s .env
+
+      - name: Resolve image tag
+        id: image
+        run: |
+          IMAGE_NAME=$(printf '%s' "$GITHUB_REPOSITORY" | tr '[:upper:]' '[:lower:]')
+          echo "name=$IMAGE_NAME" >> "$GITHUB_OUTPUT"
+          echo "tag=${REGISTRY}/${IMAGE_NAME}:web-${GITHUB_SHA}" >> "$GITHUB_OUTPUT"
+          echo "latest=${REGISTRY}/${IMAGE_NAME}:latest" >> "$GITHUB_OUTPUT"
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push web image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.image.outputs.tag }},${{ steps.image.outputs.latest }}
+
+      - name: Trigger Coolify deployment
+        env:
+          COOLIFY_WEBHOOK_URL: ${{ secrets.COOLIFY_WEBHOOK_URL }}
+          COOLIFY_TOKEN: ${{ secrets.COOLIFY_TOKEN }}
+        run: |
+          if [ -n "$COOLIFY_WEBHOOK_URL" ] && [ -n "$COOLIFY_TOKEN" ]; then
+            curl --fail --show-error --silent \
+              --request GET "$COOLIFY_WEBHOOK_URL" \
+              --header "Authorization: Bearer $COOLIFY_TOKEN"
+          fi

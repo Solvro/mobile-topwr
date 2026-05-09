@@ -1,8 +1,10 @@
 import "dart:math";
 
+import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
+import "../features/home_view/widgets/web_version_prompt.dart";
 import "../features/navigator/app_router.dart";
 import "../features/navigator/navigation_stack.dart";
 import "../features/navigator/utils/navigation_commands.dart";
@@ -50,14 +52,15 @@ class HorizontalSymmetricSafeAreaScaffold extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final currentRoute = ref.watch(currentRouteProvider);
     final shouldDisplayRadio =
-        ref.watch(radioControllerProvider).isPlaying &&
-        ref.watch(currentRouteProvider)?.settings.name != RadioLuzRoute.name;
+        ref.watch(radioControllerProvider).isPlaying && currentRoute?.settings.name != RadioLuzRoute.name;
+    final shouldShowWebBanner = kIsWeb && currentRoute is! PopupRoute<dynamic>;
 
     final fabs = <Widget>[
       if (shouldDisplayRadio)
         FloatingActionButton(
-          heroTag: "radioFab",
+          heroTag: null,
           elevation: 3,
           backgroundColor: context.colorScheme.primary,
           onPressed: () async {
@@ -68,11 +71,25 @@ class HorizontalSymmetricSafeAreaScaffold extends ConsumerWidget {
       ...?extraFabs,
     ];
 
+    final baseBody = HorizontalSymmetricSafeArea(top: top, child: body);
+    final wrappedBody = shouldShowWebBanner
+        ? Stack(
+            children: [
+              baseBody,
+              Positioned(
+                right: 12,
+                bottom: currentRoute?.settings.name == RadioLuzRoute.name ? 70 : 12,
+                child: const WebVersionBanner(),
+              ),
+            ],
+          )
+        : baseBody;
+
     return Scaffold(
       appBar: appBar,
       bottomNavigationBar: bottomNavigationBar,
       backgroundColor: backgroundColor,
-      body: HorizontalSymmetricSafeArea(top: top, child: body),
+      body: wrappedBody,
       floatingActionButton: fabs.isNotEmpty ? _FloatingActionButtons(fabs: fabs) : null,
     );
   }

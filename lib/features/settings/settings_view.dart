@@ -1,6 +1,7 @@
 import "dart:async";
 
 import "package:auto_route/auto_route.dart";
+import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:solvro_translator_core/solvro_translator_core.dart";
@@ -56,11 +57,12 @@ class SettingsView extends ConsumerWidget {
         title: context.localize.digital_guide_accessibility,
         icon: Icons.accessibility_new,
       ),
-      NavigationTile(
-        onTap: ref.navigateToSksFavouriteDishes,
-        title: context.localize.sks_favourite_dishes_see_dishes,
-        icon: Icons.food_bank,
-      ),
+      if (!kIsWeb)
+        NavigationTile(
+          onTap: ref.navigateToSksFavouriteDishes,
+          title: context.localize.sks_favourite_dishes_see_dishes,
+          icon: Icons.food_bank,
+        ),
     ];
 
     return HorizontalSymmetricSafeAreaScaffold(
