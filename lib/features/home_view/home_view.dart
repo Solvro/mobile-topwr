@@ -11,10 +11,10 @@ import "../planner_advert/widgets/banner_visibility.dart";
 import "../planner_advert/widgets/planer_ad_badge.dart";
 import "../planner_advert/widgets/planner_advert_widget.dart";
 import "keep_alive_home_view_providers.dart";
-
 import "widgets/logo_app_bar.dart";
 import "widgets/nav_actions_section.dart";
 import "widgets/science_clubs_section.dart";
+import "widgets/web_version_prompt.dart";
 
 @RoutePage()
 class HomeView extends StatelessWidget {
@@ -34,16 +34,21 @@ class HomeView extends StatelessWidget {
       primary: false,
       backgroundColor: context.colorScheme.surface,
       appBar: LogoAppBar(context, actions: const [PlannerBannerVisibility(reverseLogic: true, child: PlanerAdBadge())]),
-      body: KeepAliveHomeViewProviders(
-        child: ListView.separated(
-          key: MyAppConfig.verticalScrollableKey,
-          cacheExtent: 500,
-          itemBuilder: (context, index) => sections[index],
-          separatorBuilder: (context, index) =>
-              SizedBox(height: index == 1 || index == 2 ? 0 : HomeViewConfig.paddingMedium),
-          itemCount: sections.length,
-          padding: const EdgeInsets.only(bottom: HomeViewConfig.paddingMedium),
-        ),
+      body: Stack(
+        children: [
+          KeepAliveHomeViewProviders(
+            child: ListView.separated(
+              key: MyAppConfig.verticalScrollableKey,
+              cacheExtent: 500,
+              itemBuilder: (context, index) => sections[index],
+              separatorBuilder: (context, index) =>
+                  SizedBox(height: index == 1 || index == 2 ? 0 : HomeViewConfig.paddingMedium),
+              itemCount: sections.length,
+              padding: const EdgeInsets.only(bottom: HomeViewConfig.paddingMedium),
+            ),
+          ),
+          if (kIsWeb) const Positioned(top: 12, right: 12, child: WebVersionBanner()),
+        ],
       ),
     );
   }

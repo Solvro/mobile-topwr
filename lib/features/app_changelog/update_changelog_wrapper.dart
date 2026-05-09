@@ -1,12 +1,15 @@
+import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../firebase_init.dart" show requestFCMPermission;
 import "../../hooks/use_effect_on_init.dart";
 import "../../services/translations_service/data/preferred_lang_repository.dart";
+import "../../utils/context_extensions.dart";
 import "../../utils/unwaited_microtask.dart";
 import "../branches/data/repository/branch_repository.dart";
 import "../branches/presentation/branch_dialog.dart";
+import "../home_view/widgets/web_version_prompt.dart";
 import "../settings/widgets/language_settings_dialog.dart";
 import "show_changelog.dart";
 
@@ -23,6 +26,11 @@ class ShowEntryDialogWrapper extends HookConsumerWidget {
           final preferredLanguage = await ref.read(preferredLanguageRepositoryProvider.future);
           if (preferredLanguage == null && context.mounted) {
             await LanguageDialog.show(context, isFirstTimeMode: true);
+          }
+        }
+        if (context.mounted) {
+          if (kIsWeb && context.localize.home_screen_greeting.contains("Dzień dobry")) {
+            await showWebVersionDialog(context);
           }
         }
         if (context.mounted) {

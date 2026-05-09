@@ -21,9 +21,13 @@
   "@english_title": {
     "description": "Display title for English language with flag emoji"
   },
-  "home_screen_greeting": "Cześć, miło Cię widzieć",
+  "home_screen_greeting": "Dzień dobry",
   "@home_screen_greeting": {
     "description": "Welcome message shown on the home screen"
+  },
+  "web_version_dialog_message": "To jest wersja webowa aplikacji mobilnej ToPWR. Nie wszystkie funckjonalności tu działają. Zalecamy pobranie aplikacji mobilnej dla twojego najwyższego konfortu użytkowania:",
+  "@web_version_dialog_message": {
+    "description": "Message shown in the web version dialog"
   },
   "even_monday": "w Parzysty Poniedziałek",
   "@even_monday": {
