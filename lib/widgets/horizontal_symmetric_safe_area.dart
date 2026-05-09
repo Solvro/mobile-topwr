@@ -57,7 +57,7 @@ class HorizontalSymmetricSafeAreaScaffold extends ConsumerWidget {
     final fabs = <Widget>[
       if (shouldDisplayRadio)
         FloatingActionButton(
-          heroTag: "radioFab",
+          heroTag: null,
           elevation: 3,
           backgroundColor: context.colorScheme.primary,
           onPressed: () async {

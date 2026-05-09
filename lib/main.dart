@@ -34,6 +34,15 @@ import "services/translations_service/data/preferred_lang_repository.dart";
 import "services/translations_service/widgets/remove_old_translations.dart";
 import "theme/app_theme.dart";
 
+Future<RadioAudioHandlerBridge> _initAudioHandler() => AudioService.init(
+  builder: RadioAudioHandlerBridge.new,
+  config: const AudioServiceConfig(
+    androidNotificationChannelId: "com.solvro.topwr.audio",
+    androidNotificationChannelName: "Audio playback",
+    androidNotificationOngoing: true,
+  ),
+);
+
 Future<void> main({List<Override>? overrides}) async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -45,7 +54,16 @@ Future<void> main({List<Override>? overrides}) async {
   }
 
   if (kDebugMode) {
-    runApp(ProviderScope(overrides: overrides ?? [], child: const MyApp()));
+    final audioHandler = await _initAudioHandler();
+    runApp(
+      ProviderScope(
+        retry: (retryCount, error) {
+          return null; // no retries in debug mode, to surface errors more quickly
+        },
+        overrides: [...?overrides, radioPlayerProvider.overrideWithValue(audioHandler)],
+        child: const MyApp(),
+      ),
+    );
   } else {
     await SentryFlutter.init((options) {
       options.dsn = Env.bugsinkDsn;
@@ -56,14 +74,7 @@ Future<void> main({List<Override>? overrides}) async {
 }
 
 Future<void> runNormalApp() async {
-  final audioHandler = await AudioService.init(
-    builder: RadioAudioHandlerBridge.new,
-    config: const AudioServiceConfig(
-      androidNotificationChannelId: "com.solvro.topwr.audio",
-      androidNotificationChannelName: "Audio playback",
-      androidNotificationOngoing: true,
-    ),
-  );
+  final audioHandler = await _initAudioHandler();
   final config = ClarityConfig(projectId: Env.clarityConfigId, logLevel: LogLevel.None);
 
   runApp(

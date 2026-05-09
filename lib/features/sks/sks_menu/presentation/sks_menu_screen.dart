@@ -76,7 +76,7 @@ class _SksMenuView extends ConsumerWidget {
       appBar: DetailViewAppBar(actions: const [SksUserDataButton()]),
       extraFabs: [
         FloatingActionButton(
-          heroTag: "favouriteDishesFab",
+          heroTag: null,
           elevation: 3,
           backgroundColor: context.colorScheme.primary,
           onPressed: ref.navigateToSksFavouriteDishes,
