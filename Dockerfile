@@ -18,8 +18,7 @@ RUN flutter upgrade
 WORKDIR /app
 COPY . .
 
-# Create .env file with TOKEN from build arg
-ARG API_URL
+# Create .env file from build args
 ARG ASSETS_URL
 ARG IPARKING_URL
 ARG WIREDASH_ID
@@ -31,10 +30,14 @@ ARG DIGITAL_GUIDE_ADDONS_URL
 ARG PARKING_API_URL
 ARG TRANSLATE_API_URL
 ARG TRANSLATE_API_TOKEN
+ARG BUGSINK_DSN
+ARG MAIN_REST_API_URL
+ARG RADIO_LUZ_STREAM_URL
+ARG RADIO_LUZ_API_URL
+ARG CLARITY_CONFIG_ID
 ARG VAPID_WEB_PUB_KEY
 
-RUN echo "API_URL=${API_URL}" > .env && \
-    echo "ASSETS_URL=${ASSETS_URL}" >> .env && \
+RUN echo "ASSETS_URL=${ASSETS_URL}" > .env && \
     echo "IPARKING_URL=${IPARKING_URL}" >> .env && \
     echo "WIREDASH_ID=${WIREDASH_ID}" >> .env && \
     echo "WIREDASH_SECRET=${WIREDASH_SECRET}" >> .env && \
@@ -45,6 +48,11 @@ RUN echo "API_URL=${API_URL}" > .env && \
     echo "PARKING_API_URL=${PARKING_API_URL}" >> .env && \
     echo "TRANSLATE_API_URL=${TRANSLATE_API_URL}" >> .env && \
     echo "TRANSLATE_API_TOKEN=${TRANSLATE_API_TOKEN}" >> .env && \
+    echo "BUGSINK_DSN=${BUGSINK_DSN}" >> .env && \
+    echo "MAIN_REST_API_URL=${MAIN_REST_API_URL}" >> .env && \
+    echo "RADIO_LUZ_STREAM_URL=${RADIO_LUZ_STREAM_URL}" >> .env && \
+    echo "RADIO_LUZ_API_URL=${RADIO_LUZ_API_URL}" >> .env && \
+    echo "CLARITY_CONFIG_ID=${CLARITY_CONFIG_ID}" >> .env && \
     echo "VAPID_WEB_PUB_KEY=${VAPID_WEB_PUB_KEY}" >> .env
 
 RUN dart run build_runner build -d
