@@ -5,6 +5,7 @@ import "../../../../api_base_rest/cache/cache.dart";
 import "../../../../api_base_rest/client/json.dart";
 import "../../../../config/env.dart";
 import "../../../../services/translations_service/data/preferred_lang_repository.dart";
+import "../../../../utils/web_proxy_url.dart";
 import "../models/newsfeed_models.dart";
 
 part "newsfeed_repository.g.dart";
@@ -26,5 +27,11 @@ Future<IList<Article>> newsfeedRepository(Ref ref) async {
       )
       .castAsObject;
 
-  return response.articles;
+  return response.articles
+      .map(
+        (article) => article.copyWith(
+          imageLink: proxyUrlOnWeb(article.imageLink, sourceHost: "pwr.edu.pl", proxyPath: "pwr"),
+        ),
+      )
+      .toIList();
 }
