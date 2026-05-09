@@ -26,6 +26,9 @@ FROM nginx:alpine AS nginx
 # Copy the built Flutter web app from the builder stage to nginx html directory
 COPY --from=builder /app/build/web /usr/share/nginx/html
 
+# Serve files from public/ at root (e.g., /.well-known/*)
+COPY --from=builder /app/public /usr/share/nginx/html
+
 # Optional: Copy custom nginx configuration
 # COPY nginx.conf /etc/nginx/conf.d/default.conf
 
