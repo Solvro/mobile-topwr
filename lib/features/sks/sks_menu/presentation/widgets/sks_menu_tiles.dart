@@ -1,6 +1,7 @@
 // There is already similar widget in lib/features/department_detail_view/widgets/field_of_study_expansion_tile.dart
 // I thought about making it generic but decided to use this one, at least for now
 
+import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:separate/separate.dart";
@@ -88,8 +89,8 @@ class SksMenuDishDetailsTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final hasIncreasedTextSize = context.isTextScaledUp;
     final baseTile = GestureDetector(
-      onTap: () => onTap?.call(dish.id),
-      onDoubleTap: () => onDoubleTap?.call(dish.id),
+      onTap: !kIsWeb ? () => onTap?.call(dish.id) : null,
+      onDoubleTap: !kIsWeb ? () => onDoubleTap?.call(dish.id) : null,
       child: DecoratedBox(
         decoration: BoxDecoration(
           color: context.colorScheme.surface,
@@ -130,7 +131,7 @@ class SksMenuDishDetailsTile extends StatelessWidget {
         icon: Icons.favorite,
         color: context.colorScheme.primary,
         iconColor: context.colorScheme.surface,
-        visible: isSubscribed,
+        visible: isSubscribed && !kIsWeb,
         child: baseTile,
       ),
     );
