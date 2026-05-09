@@ -24,6 +24,9 @@ Future<void> firebaseInit() async {
 }
 
 Future<void> requestFCMPermission() async {
+  if (kIsWeb) {
+    return;
+  }
   try {
     await FirebaseMessaging.instance.requestPermission();
   } on Exception {
