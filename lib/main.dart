@@ -34,14 +34,18 @@ import "services/translations_service/data/preferred_lang_repository.dart";
 import "services/translations_service/widgets/remove_old_translations.dart";
 import "theme/app_theme.dart";
 
-Future<RadioAudioHandlerBridge> _initAudioHandler() => AudioService.init(
-  builder: RadioAudioHandlerBridge.new,
-  config: const AudioServiceConfig(
-    androidNotificationChannelId: "com.solvro.topwr.audio",
-    androidNotificationChannelName: "Audio playback",
-    androidNotificationOngoing: true,
-  ),
-);
+Future<RadioAudioHandlerBridge>? _audioHandlerFuture;
+
+Future<RadioAudioHandlerBridge> _initAudioHandler() {
+  return _audioHandlerFuture ??= AudioService.init(
+    builder: RadioAudioHandlerBridge.new,
+    config: const AudioServiceConfig(
+      androidNotificationChannelId: "com.solvro.topwr.audio",
+      androidNotificationChannelName: "Audio playback",
+      androidNotificationOngoing: true,
+    ),
+  );
+}
 
 Future<void> main({List<Override>? overrides}) async {
   WidgetsFlutterBinding.ensureInitialized();
