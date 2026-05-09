@@ -1,6 +1,5 @@
 import "package:auto_route/auto_route.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
-import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 
 import "../../config/ui_config.dart";
@@ -26,7 +25,7 @@ class HomeView extends StatelessWidget {
       const AcademicCalendarConsumer(),
       const NavActionsSection(),
       const PlannerBannerVisibility(child: PlannerAdvertBanner()),
-      if (!kIsWeb) const NewsSection(),
+      const NewsSection(),
       const ScienceClubsSection(),
     ].lock;
 
