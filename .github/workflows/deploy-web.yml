@@ -70,7 +70,10 @@ jobs:
       - name: Trigger Coolify deployment
         env:
           COOLIFY_WEBHOOK_URL: ${{ secrets.COOLIFY_WEBHOOK_URL }}
+          COOLIFY_TOKEN: ${{ secrets.COOLIFY_TOKEN }}
         run: |
-          if [ -n "$COOLIFY_WEBHOOK_URL" ]; then
-            curl --fail --show-error --silent --request POST "$COOLIFY_WEBHOOK_URL"
+          if [ -n "$COOLIFY_WEBHOOK_URL" ] && [ -n "$COOLIFY_TOKEN" ]; then
+            curl --fail --show-error --silent \
+              --request GET "$COOLIFY_WEBHOOK_URL" \
+              --header "Authorization: Bearer $COOLIFY_TOKEN"
           fi
