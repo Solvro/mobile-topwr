@@ -152,7 +152,11 @@ class WebVersionBanner extends StatelessWidget {
             InkWell(
               onTap: () => showWebVersionDialog(context),
               borderRadius: BorderRadius.circular(16), // match the container
-              child: Text(context.localize.web_version_banner, style: context.textTheme.bodyMedium, textScaler: textScaler),
+              child: Text(
+                context.localize.web_version_banner,
+                style: context.textTheme.bodyMedium,
+                textScaler: textScaler,
+              ),
             ),
             const SizedBox(width: 8),
             const _BannerIconButton(icon: Icons.android, tooltip: "Google Play", url: UrlConfig.androidStoreUrl),

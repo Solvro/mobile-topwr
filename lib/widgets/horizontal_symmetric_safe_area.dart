@@ -76,7 +76,11 @@ class HorizontalSymmetricSafeAreaScaffold extends ConsumerWidget {
         ? Stack(
             children: [
               baseBody,
-              const Positioned(right: 12, bottom: 12, child: WebVersionBanner()),
+              Positioned(
+                right: 12,
+                bottom: currentRoute?.settings.name == RadioLuzRoute.name ? 70 : 12,
+                child: const WebVersionBanner(),
+              ),
             ],
           )
         : baseBody;
