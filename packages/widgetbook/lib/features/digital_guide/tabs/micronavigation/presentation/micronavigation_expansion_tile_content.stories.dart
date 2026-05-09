@@ -60,7 +60,7 @@ const _mockMicronavigationResponse = MicronavigationResponse(
 final $default = MicronavigationExpansionTileContentStory(
   setup: (context, child, args) => ProviderScope(
     overrides: [
-      getMicronavigationDataProvider.overrideWith((ref, id) async => IListConst(const [_mockMicronavigationResponse])),
+      getMicronavigationDataProvider.overrideWith((ref, id) => const IListConst([_mockMicronavigationResponse])),
     ],
     child: child,
   ),

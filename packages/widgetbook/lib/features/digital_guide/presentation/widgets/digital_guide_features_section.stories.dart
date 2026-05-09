@@ -67,10 +67,8 @@ const meta = Meta<DigitalGuideFeaturesSection>();
 final $default = DigitalGuideFeaturesSectionStory(
   setup: (context, child, args) => ProviderScope(
     overrides: [
-      levelsWithRegionsRepositoryProvider(args.digitalGuideData).overrideWith((ref) async => IListConst(const [])),
-      optionalTilesDataRepositoryProvider(
-        args.digitalGuideData.id,
-      ).overrideWith((ref) async => const OptionalTilesData()),
+      levelsWithRegionsRepositoryProvider(args.digitalGuideData).overrideWith((ref) => const IListConst([])),
+      optionalTilesDataRepositoryProvider(args.digitalGuideData.id).overrideWith((ref) => const OptionalTilesData()),
     ],
     child: CustomScrollView(slivers: [child]),
   ),

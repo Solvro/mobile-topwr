@@ -93,9 +93,7 @@ const _mockSurroundingResponse = SurroundingResponse(
 
 final $default = SurroundingsExpansionTileContentStory(
   setup: (context, child, args) => ProviderScope(
-    overrides: [
-      surroundingRepositoryProvider(args.digitalGuideData).overrideWith((ref) async => _mockSurroundingResponse),
-    ],
+    overrides: [surroundingRepositoryProvider(args.digitalGuideData).overrideWith((ref) => _mockSurroundingResponse)],
     child: child,
   ),
   args: SurroundingsExpansionTileContentArgs(digitalGuideData: Arg.fixed(_mockDigitalGuideData)),

@@ -114,7 +114,7 @@ final $default = AdaptedToiletsExpansionTileContentStory(
   setup: (context, child, args) => ProviderScope(
     overrides: [
       getLevelsWithToiletsUseCaseProvider.overrideWith(
-        (ref, digitalGuideData) async => IListConst(const [
+        (ref, digitalGuideData) => const IListConst([
           (level: _mockLevel, adaptedToilets: IListConst([_mockToilet])),
         ]),
       ),

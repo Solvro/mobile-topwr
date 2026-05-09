@@ -79,7 +79,7 @@ final $defaultMock = DigitalGuideDressingRoomsExpansionTileContentStory(
   setup: (context, child, args) => ProviderScope(
     key: ValueKey("dressing-room-${args.digitalGuideResponse.id}"),
     overrides: [
-      dressingRoomsRepositoryProvider.overrideWith((ref, response) async => IListConst(const [_mockDressingRoom])),
+      dressingRoomsRepositoryProvider.overrideWith((ref, response) => const IListConst([_mockDressingRoom])),
     ],
     child: child,
   ),

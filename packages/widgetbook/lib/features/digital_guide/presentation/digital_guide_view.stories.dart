@@ -13,9 +13,9 @@ final $default = DigitalGuideViewStory(
   name: "Production view with hardcoded data",
   setup: (context, child, args) => ProviderScope(
     overrides: [
-      digitalGuideRepositoryProvider(args.ourId).overrideWith(
-        (ref) async => (building: mockBuilding, digitalGuideData: mockDigitalGuideResponse, photoUrl: null),
-      ),
+      digitalGuideRepositoryProvider(
+        args.ourId,
+      ).overrideWith((ref) => (building: mockBuilding, digitalGuideData: mockDigitalGuideResponse, photoUrl: null)),
     ],
     child: child,
   ),

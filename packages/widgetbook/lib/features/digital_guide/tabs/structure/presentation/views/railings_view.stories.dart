@@ -34,7 +34,7 @@ const _mockRailing = Railing(
 
 final $default = RailingsViewStory(
   setup: (context, child, args) => ProviderScope(
-    overrides: [railingsRepositoryProvider(args.railingId).overrideWith((ref) async => _mockRailing)],
+    overrides: [railingsRepositoryProvider(args.railingId).overrideWith((ref) => _mockRailing)],
     child: child,
   ),
   args: RailingsViewArgs.fixed(railingId: 1),

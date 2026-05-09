@@ -85,7 +85,7 @@ final $default = StructureExpansionTileContentStory(
     key: ValueKey("structure-${args.digitalGuideData.id}"),
     overrides: [
       levelsWithRegionsRepositoryProvider.overrideWith(
-        (ref, digitalGuideData) async => IListConst(const [
+        (ref, digitalGuideData) => const IListConst([
           (level: _mockLevel, regions: IListConst([_mockRegion])),
         ]),
       ),

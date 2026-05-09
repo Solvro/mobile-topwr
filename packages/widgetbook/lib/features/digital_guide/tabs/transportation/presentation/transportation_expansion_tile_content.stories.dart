@@ -49,9 +49,7 @@ const meta = Meta<TransportationExpansionTileContent>();
 final $default = TransportationExpansionTileContentStory(
   setup: (context, child, args) => ProviderScope(
     overrides: [
-      transportationRepositoryProvider(
-        args.digitalGuideData,
-      ).overrideWith((ref) async => mockDigitalGuideTransportationC13),
+      transportationRepositoryProvider(args.digitalGuideData).overrideWith((ref) => mockDigitalGuideTransportationC13),
     ],
     child: child,
   ),

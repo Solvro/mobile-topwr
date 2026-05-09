@@ -45,7 +45,7 @@ const _mockRoomStairs = RoomStairsResponse(
 
 final $default = RoomStairsContentStory(
   setup: (context, child, args) => ProviderScope(
-    overrides: [roomStairsRepositoryProvider(args.roomStairsId).overrideWith((ref) async => _mockRoomStairs)],
+    overrides: [roomStairsRepositoryProvider(args.roomStairsId).overrideWith((ref) => _mockRoomStairs)],
     child: child,
   ),
   args: RoomStairsContentArgs.fixed(roomStairsId: 1),

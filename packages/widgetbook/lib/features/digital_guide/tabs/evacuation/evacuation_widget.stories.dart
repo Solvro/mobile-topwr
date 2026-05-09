@@ -96,7 +96,7 @@ final $default = EvacuationWidgetStory(
   setup: (context, child, args) => ProviderScope(
     key: ValueKey("evacuation-${args.digitalGuideData.id}"),
     overrides: [
-      entrancesRepositoryProvider.overrideWith((ref, building) async => IListConst(const [_mockEntrance])),
+      entrancesRepositoryProvider.overrideWith((ref, building) => const IListConst([_mockEntrance])),
     ],
     child: child,
   ),

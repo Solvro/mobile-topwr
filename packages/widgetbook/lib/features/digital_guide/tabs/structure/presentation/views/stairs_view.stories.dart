@@ -52,7 +52,7 @@ const _mockStairs = Stairs(
 final $default = StairsViewStory(
   setup: (context, child, args) => ProviderScope(
     key: ValueKey("stairs-view-${args.stairsId}"),
-    overrides: [stairsRepositoryProvider.overrideWith((ref, stairsID) async => _mockStairs)],
+    overrides: [stairsRepositoryProvider.overrideWith((ref, stairsID) => _mockStairs)],
     child: child,
   ),
   args: StairsViewArgs.fixed(stairsId: 1),

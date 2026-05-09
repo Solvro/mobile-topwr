@@ -13,7 +13,7 @@ final $default = DigitalGuideImageStory(
     key: ValueKey("digital-guide-image-${args.id}-${args.zoomable}"),
     overrides: [
       imageRepositoryProvider.overrideWith(
-        (ref, imageID) async => "https://placehold.co/1200x800/png?text=Digital+Guide+Image+$imageID",
+        (ref, imageID) => "https://placehold.co/1200x800/png?text=Digital+Guide+Image+$imageID",
       ),
     ],
     child: child,

@@ -32,7 +32,7 @@ const _mockRoomPlatform = RoomPlatformsResponse(
 final $default = RoomPlatformsContentStory(
   setup: (context, child, args) => ProviderScope(
     key: ValueKey("room_platforms_content_story_${args.platformId}"),
-    overrides: [roomPlatformsRepositoryProvider(args.platformId).overrideWith((ref) async => _mockRoomPlatform)],
+    overrides: [roomPlatformsRepositoryProvider(args.platformId).overrideWith((ref) => _mockRoomPlatform)],
     child: child,
   ),
   args: RoomPlatformsContentArgs.fixed(platformId: 1),

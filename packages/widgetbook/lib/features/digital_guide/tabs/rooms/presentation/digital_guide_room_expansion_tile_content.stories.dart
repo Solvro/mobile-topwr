@@ -120,7 +120,7 @@ final $default = DigitalGuideRoomExpansionTileContentStory(
     key: ValueKey("rooms-${args.digitalGuideResponse.id}"),
     overrides: [
       getLevelsWithRoomsUseCaseProvider.overrideWith(
-        (ref, digitalGuideData) async => IListConst(const [
+        (ref, digitalGuideData) => const IListConst([
           (level: _mockLevel, rooms: IListConst([_mockRoom])),
         ]),
       ),

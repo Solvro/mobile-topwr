@@ -58,18 +58,18 @@ final $default = RegionViewStory(
   setup: (context, child, args) => ProviderScope(
     overrides: [
       digitalGuideRegionUseCasesProvider(args.region).overrideWith(
-        (ref) async => (
-          corridors: IListConst<Corridor>(const []),
-          stairs: IListConst<Stairs>(const []),
-          ramps: IListConst<Ramp>(const []),
-          stairways: IListConst<Stairway>(const []),
-          lifts: IListConst<DigitalGuideLift>(const []),
-          lodges: IListConst<DigitalGuideLodge>(const []),
-          informationPoints: IListConst<DigitalGuideInformationPoint>(const []),
-          dressingRooms: IListConst<DigitalGuideDressingRoom>(const []),
-          toilets: IListConst<Toilet>(const []),
-          rooms: IListConst<DigitalGuideRoom>(const []),
-          parkings: IListConst<DigitalGuideParking>(const []),
+        (ref) => (
+          corridors: const IListConst<Corridor>([]),
+          stairs: const IListConst<Stairs>([]),
+          ramps: const IListConst<Ramp>([]),
+          stairways: const IListConst<Stairway>([]),
+          lifts: const IListConst<DigitalGuideLift>([]),
+          lodges: const IListConst<DigitalGuideLodge>([]),
+          informationPoints: const IListConst<DigitalGuideInformationPoint>([]),
+          dressingRooms: const IListConst<DigitalGuideDressingRoom>([]),
+          toilets: const IListConst<Toilet>([]),
+          rooms: const IListConst<DigitalGuideRoom>([]),
+          parkings: const IListConst<DigitalGuideParking>([]),
         ),
       ),
     ],
