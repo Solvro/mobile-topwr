@@ -50,6 +50,9 @@ jobs:
       - name: Install Widgetbook CLI
         run: dart pub global activate widgetbook_cli 3.14.0
 
+      - name: Get Widgetbook Help
+        run: widgetbook cloud --help
+
       - name: Push Widgetbook Build
         working-directory: packages/widgetbook/
         run: widgetbook build upload --api-key ${{ secrets.WIDGETBOOK_API_KEY }} --branch ${{ github.head_ref || github.ref_name }} --path build/web
