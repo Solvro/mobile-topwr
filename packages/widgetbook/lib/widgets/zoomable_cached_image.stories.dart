@@ -1,0 +1,40 @@
+import "package:flutter/widgets.dart";
+import "package:topwr/widgets/my_cached_image.dart";
+import "package:topwr/widgets/zoomable_images.dart";
+import "package:widgetbook/widgetbook.dart";
+
+part "zoomable_cached_image.stories.g.dart";
+
+class ZoomableCachedImageStoryKnobs {
+  final String imageUrl;
+  final LoadingType loadingType;
+  final BoxFit boxFit;
+  final bool shouldHaveRectBackground;
+  final String semanticsLabel;
+  ZoomableCachedImageStoryKnobs({
+    required this.imageUrl,
+    required this.loadingType,
+    required this.boxFit,
+    required this.shouldHaveRectBackground,
+    required this.semanticsLabel,
+  });
+}
+
+const meta = MetaWithArgs<ZoomableCachedImage, ZoomableCachedImageStoryKnobs>();
+
+final defaults = _Defaults(
+  builder: (context, args) => ZoomableCachedImage(
+    args.imageUrl,
+    loadingType: args.loadingType,
+    boxFit: args.boxFit,
+    shouldHaveRectBackground: args.shouldHaveRectBackground,
+    semanticsLabel: args.semanticsLabel,
+  ),
+);
+
+final $default = ZoomableCachedImageStory(
+  args: ZoomableCachedImageStoryKnobsArgs(
+    imageUrl: StringArg("https://placehold.co/1200x800/png?text=Zoomable+Image"),
+    semanticsLabel: StringArg("Zoomable campus image"),
+  ),
+);

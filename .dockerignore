@@ -1,0 +1,16 @@
+.dart_tool/
+.git/
+.github/
+.idea/
+.vscode/
+.fvm/
+build/
+coverage/
+**/build/
+**/.dart_tool/
+**/Pods/
+**/.symlinks/
+*.log
+*.iml
+Dockerfile
+README.md

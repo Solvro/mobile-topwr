@@ -1,6 +1,7 @@
 import "dart:async";
 
 import "package:firebase_messaging/firebase_messaging.dart";
+import "package:flutter/foundation.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../api_base_rest/client/dio_client.dart";
@@ -18,7 +19,7 @@ extension RefIntervalRefreshX on Ref {
 extension RefRegisterForNotificationsX on Ref {
   Future<String?> _getTokenSafe() async {
     try {
-      return await FirebaseMessaging.instance.getToken();
+      return await FirebaseMessaging.instance.getToken(vapidKey: kIsWeb ? Env.vapidWebPubKey : null);
     } on Exception {
       return null;
     }

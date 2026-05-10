@@ -7,7 +7,7 @@ extension GetTheLatestDateGuideX on BuildContext {
     final questions = guide.guideQuestions;
     final dates = [guide.createdAt, ...questions.map((e) => e.createdAt)];
     final newestDate = dates.reduce((a, b) => (a.isAfter(b)) ? a : b);
-    final formatter = DateFormat("dd.MM.yyyy", locale.countryCode);
+    final formatter = DateFormat("dd.MM.yyyy", locale.languageCode);
     return formatter.format(newestDate);
   }
 

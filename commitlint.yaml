@@ -42,4 +42,5 @@ rules:
       - integration-tests
       - booths
       - activity-days
+      - widgetbook
     # YES, you can add new ones if you have a new feature

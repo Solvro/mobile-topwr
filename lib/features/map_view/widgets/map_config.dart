@@ -8,6 +8,8 @@ import "../controllers/controllers_set.dart";
 
 typedef MarkerBuilder<T> = Marker Function(T item, WidgetRef ref, {required bool isActive});
 
+typedef MarkerZIndex<T> = int Function(T item);
+
 typedef MapTileBuilder<T> = Widget Function(T item, {required bool isActive});
 
 typedef MapViewTexts = ({String emptyList, String title});
@@ -17,6 +19,7 @@ class MapConfig<T extends GoogleNavigable> extends InheritedWidget {
     super.key,
     required this.controllers,
     required this.markerBuilder,
+    this.markerZIndex,
     required this.mapTileBuilder,
     required this.mapViewTexts,
     required super.child,
@@ -29,6 +32,7 @@ class MapConfig<T extends GoogleNavigable> extends InheritedWidget {
 
   final MapControllers<T> controllers;
   final MarkerBuilder<T> markerBuilder;
+  final MarkerZIndex<T>? markerZIndex;
   final MapTileBuilder<T> mapTileBuilder;
   final MapViewTexts mapViewTexts;
   final MapSheetSize mapSheetSize;
@@ -79,6 +83,10 @@ extension MapConfigX on BuildContext {
 
   MarkerBuilder<T> markerBuilder<T extends GoogleNavigable>() {
     return config<T>().markerBuilder;
+  }
+
+  MarkerZIndex<T>? markerZIndex<T extends GoogleNavigable>() {
+    return config<T>().markerZIndex;
   }
 
   MapTileBuilder<T> mapTileBuilder<T extends GoogleNavigable>() {

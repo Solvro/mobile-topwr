@@ -1,6 +1,7 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 import "package:latlong2/latlong.dart";
+import "package:solvro_translator_core/solvro_translator_core.dart";
 
 import "../../../../api_base_rest/shared_models/image_data.dart";
 import "../../../branches/data/model/branch.dart";
@@ -9,10 +10,12 @@ import "building.dart";
 
 part "library.freezed.dart";
 part "library.g.dart";
+part "library.translatable.g.dart";
 
 @freezed
-abstract class LibraryDataResponse with _$LibraryDataResponse {
-  const factory LibraryDataResponse({required IList<Library> data}) = _LibraryDataResponse;
+@Translatable(makeFieldsTranslatableByDefault: false)
+abstract class LibraryDataResponse with _$LibraryDataResponse, _$LibraryDataResponseTranslatable {
+  const factory LibraryDataResponse({@translatableField required IList<Library> data}) = _LibraryDataResponse;
   const LibraryDataResponse._();
   factory LibraryDataResponse.fromJson(Map<String, dynamic> json) => _$LibraryDataResponseFromJson(json);
 }
@@ -22,7 +25,7 @@ abstract class Library with _$Library implements GoogleNavigable {
   @Implements<GoogleNavigable>()
   const factory Library({
     @JsonKey(name: "id") required int rawId,
-    required String title,
+    @translatableField required String title,
     required String? room,
     required double latitude,
     required double longitude,

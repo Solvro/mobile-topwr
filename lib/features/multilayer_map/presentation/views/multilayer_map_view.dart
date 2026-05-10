@@ -36,6 +36,7 @@ class MultilayerMapView extends ConsumerWidget {
       mapSheetSize: MapViewBottomSheetConfig.buildingsMapSheetSize,
       mapControllers: multilayerMapControllers,
       mapTileBuilder: MultilayerItemTile.new,
+      markerZIndex: _markerZIndex,
       markerBuilder: (item, ref, {required isActive}) => Marker(
         alignment: Alignment.topCenter,
         point: item.location,
@@ -45,3 +46,12 @@ class MultilayerMapView extends ConsumerWidget {
     );
   }
 }
+
+int _markerZIndex(MultilayerItem item) => switch (item) {
+  PinkBoxItem() => 0,
+  BicycleShowerItem() => 1,
+  AedItem() => 2,
+  LibraryItem() => 3,
+  PolinkaItem() => 4,
+  BuildingItem() => 5,
+};

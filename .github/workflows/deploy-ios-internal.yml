@@ -31,13 +31,13 @@ jobs:
           channel: "stable"
           flutter-version-file: pubspec.yaml
 
+      - name: Setup Melos
+        uses: bluefireteam/melos-action@v3
+
       - run: flutter --version
 
-      - name: Install dependencies
-        run: flutter pub get
-
       - name: Generate files
-        run: dart run build_runner build --delete-conflicting-outputs
+        run: melos build_runner
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1

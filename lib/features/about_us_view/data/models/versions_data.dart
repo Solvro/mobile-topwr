@@ -11,6 +11,6 @@ abstract class VersionsDataResponse with _$VersionsDataResponse {
 
 @freezed
 abstract class VersionsData with _$VersionsData {
-  const factory VersionsData({required String name, required int milestoneId}) = _VersionsData;
+  const factory VersionsData({required String name, required int id}) = _VersionsData;
   factory VersionsData.fromJson(Map<String, dynamic> json) => _$VersionsDataFromJson(json);
 }

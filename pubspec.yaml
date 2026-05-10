@@ -16,11 +16,14 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.2.27+114
+version: 1.2.28+115
 
 environment:
-  sdk: 3.11.1
+  sdk: ">=3.11.1 <4.0.0"
   flutter: 3.41.4
+
+workspace:
+  - packages/widgetbook
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -102,7 +105,7 @@ dependencies:
   flutter_compass: ^0.8.1
 
   #Firebase
-  firebase_core: ^4.4.0
+  firebase_core: ^4.7.0
   firebase_performance: ^0.11.1
   firebase_messaging: ^16.1.1
 
@@ -164,12 +167,40 @@ dev_dependencies:
   auto_route_generator: ^10.4.0
   solvro_translator_generator: ^0.8.0
 
+  melos: ^7.5.0
+
   #Other
   flutter_launcher_icons: ^0.14.4
   test: ^1.26.3
 
 dependency_overrides:
   riverpod: 3.1.0 # todo(simon-the-shark): remove this when analyzer bump to 9 will be possible
+
+melos:
+  useRootAsPackage: true
+  scripts:
+    install:
+      description: Install dependencies for all packages
+      run: flutter pub get
+
+    build_runner:
+      description: Run build_runner for topwr
+      exec: dart run build_runner build --delete-conflicting-outputs
+
+    watch:
+      description: Run build_runner watch for topwr
+      exec: dart run build_runner watch --delete-conflicting-outputs
+
+    analyze:
+      description: Analyze all workspace packages
+      exec: flutter analyze --fatal-infos --no-pub
+
+    widgetbook:
+      description: Run Widgetbook on Chrome
+      run: |
+        melos install
+        melos build_runner
+        cd packages/widgetbook && flutter run -d chrome
 
 flutter:
   uses-material-design: true
@@ -253,58 +284,58 @@ flutter:
   fonts:
     - family: BottomNavBarIcons
       fonts:
-        - asset: fonts/BottomNavBarIcons.ttf
+        - asset: assets/fonts/BottomNavBarIcons.ttf
     - family: IParkingIcons
       fonts:
-        - asset: fonts/IParkingIcons.ttf
+        - asset: assets/fonts/IParkingIcons.ttf
     - family: StrategicClubBadges
       fonts:
-        - asset: fonts/StrategicClubBadges.ttf
+        - asset: assets/fonts/StrategicClubBadges.ttf
     - family: Rubik
       fonts:
-        - asset: fonts/rubik/Rubik-Light.ttf
+        - asset: assets/fonts/rubik/Rubik-Light.ttf
           weight: 300
-        - asset: fonts/rubik/Rubik-LightItalic.ttf
+        - asset: assets/fonts/rubik/Rubik-LightItalic.ttf
           weight: 300
           style: italic
-        - asset: fonts/rubik/Rubik-Regular.ttf
+        - asset: assets/fonts/rubik/Rubik-Regular.ttf
           weight: 400
-        - asset: fonts/rubik/Rubik-Italic.ttf
+        - asset: assets/fonts/rubik/Rubik-Italic.ttf
           weight: 400
           style: italic
-        - asset: fonts/rubik/Rubik-Medium.ttf
+        - asset: assets/fonts/rubik/Rubik-Medium.ttf
           weight: 500
-        - asset: fonts/rubik/Rubik-MediumItalic.ttf
+        - asset: assets/fonts/rubik/Rubik-MediumItalic.ttf
           weight: 500
           style: italic
-        - asset: fonts/rubik/Rubik-SemiBold.ttf
+        - asset: assets/fonts/rubik/Rubik-SemiBold.ttf
           weight: 600
-        - asset: fonts/rubik/Rubik-SemiBoldItalic.ttf
+        - asset: assets/fonts/rubik/Rubik-SemiBoldItalic.ttf
           weight: 600
           style: italic
-        - asset: fonts/rubik/Rubik-Bold.ttf
+        - asset: assets/fonts/rubik/Rubik-Bold.ttf
           weight: 700
-        - asset: fonts/rubik/Rubik-BoldItalic.ttf
+        - asset: assets/fonts/rubik/Rubik-BoldItalic.ttf
           weight: 700
           style: italic
-        - asset: fonts/rubik/Rubik-ExtraBold.ttf
+        - asset: assets/fonts/rubik/Rubik-ExtraBold.ttf
           weight: 800
-        - asset: fonts/rubik/Rubik-ExtraBoldItalic.ttf
+        - asset: assets/fonts/rubik/Rubik-ExtraBoldItalic.ttf
           weight: 800
           style: italic
-        - asset: fonts/rubik/Rubik-Black.ttf
+        - asset: assets/fonts/rubik/Rubik-Black.ttf
           weight: 900
-        - asset: fonts/rubik/Rubik-BlackItalic.ttf
+        - asset: assets/fonts/rubik/Rubik-BlackItalic.ttf
           weight: 900
           style: italic
 
 flutter_native_splash:
-  background_image: assets/splash_screen/native_splash_bg.png
-  image: assets/splash_screen/splash_logo.png
+  background_image: assets/png/splash_screen/native_splash_bg.png
+  image: assets/png/splash_screen/splash_logo.png
 
   android_12:
     color: "#EE6644"
-    image: assets/splash_screen/splash_logo.png
+    image: assets/png/splash_screen/splash_logo.png
 
 flutter_launcher_icons:
   android: false # manually set in Android Studio
@@ -322,5 +353,12 @@ flutter_launcher_icons:
   macos:
     generate: true
     image_path: "assets/png/app_icon.png"
+
+flutter_gen:
+  output: lib/gen/
+  assets:
+    outputs:
+      package_parameter_enabled: false
+
 lint_staged:
   "lib/**.dart": dart format && dart fix --apply

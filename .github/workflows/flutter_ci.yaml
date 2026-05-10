@@ -24,8 +24,8 @@ jobs:
           flutter-version-file: pubspec.yaml
           cache: true 
 
-      - name: Install dependencies
-        run: flutter pub get
+      - name: Setup Melos
+        uses: bluefireteam/melos-action@v3
 
       - name: Install git-crypt
         run: brew install git-crypt
@@ -41,17 +41,17 @@ jobs:
       - name: Remove lib/l10n directory
         run: rm -rf lib/l10n/*.dart
 
-      - name: Verify formatting
-        run: dart format --output=none --set-exit-if-changed .
+      - name: Verify formatting by Melos
+        run: melos format --output=none --set-exit-if-changed .
 
       - name: Regenerate the localization files
         run: flutter gen-l10n
 
       - name: Generate files
-        run: dart run build_runner build --delete-conflicting-outputs
+        run: melos build_runner
 
-      - name: Analyze project source
-        run: flutter analyze --fatal-infos
+      - name: Analyze project source with Melos
+        run: melos analyze
 
       - name: Run custom lints
         run: dart run custom_lint --fatal-infos
@@ -72,8 +72,8 @@ jobs:
           flutter-version-file: pubspec.yaml
           cache: true
 
-      - name: Install dependencies
-        run: flutter pub get
+      - name: Setup Melos
+        uses: bluefireteam/melos-action@v3
 
       - name: Install git-crypt
         run: brew install git-crypt
@@ -87,7 +87,7 @@ jobs:
           rm secret_key.key
 
       - name: Generate files
-        run: dart run build_runner build --delete-conflicting-outputs
+        run: melos build_runner
 
       - name: Pre-build iOS Integration Test App
         run: flutter build ios --debug --no-codesign --simulator

@@ -46,7 +46,7 @@ class AedTile extends HookConsumerWidget {
                   activeGradient: ColorsConsts.toPwrGradient,
                   directusPhotoUrl: aed.photo,
                   title: title,
-                  subtitle: "${aed.addressLine1 ?? ''}\n${aed.addressLine2 ?? ''}".trim(),
+                  subtitle: (aed.instructions ?? "").trim(),
                   isActive: isActive,
                   onTap: () {
                     unawaited(ref.trackEvent(ClarityEvents.selectAed, value: title));

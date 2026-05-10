@@ -84,14 +84,19 @@ class BigPreviewCard extends StatelessWidget {
                             showStrategicBadge: showStrategicBadge,
                           ),
                           const Spacer(),
-                          MaterialButton(
-                            elevation: 1,
-                            padding: const EdgeInsets.all(8),
-                            onPressed: onClick,
-                            color: context.colorScheme.primary,
-                            textColor: context.colorScheme.surface,
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-                            child: Text(context.localize.read_more),
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: ElevatedButton(
+                              onPressed: onClick,
+                              style: ElevatedButton.styleFrom(
+                                elevation: 1,
+                                padding: const EdgeInsets.all(8),
+                                backgroundColor: context.colorScheme.primary,
+                                foregroundColor: context.colorScheme.surface,
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+                              ),
+                              child: Text(context.localize.read_more),
+                            ),
                           ),
                         ],
                       ),

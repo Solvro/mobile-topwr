@@ -102,12 +102,10 @@ class _GuideDetailDataView extends ConsumerWidget {
                     ),
                     automaticallyImplyLeading: false,
                   ),
-                  SliverToBoxAdapter(
-                    child: Padding(
-                      padding: const EdgeInsets.all(24),
-                      child: MyHtmlWidget(value.description.isEmpty ? value.shortDesc : value.description),
+                  if (value.description.isNotEmpty)
+                    SliverToBoxAdapter(
+                      child: Padding(padding: const EdgeInsets.all(24), child: MyHtmlWidget(value.description)),
                     ),
-                  ),
                   SliverPadding(
                     padding: const EdgeInsets.only(bottom: GuideDetailViewConfig.paddingLarge),
                     sliver: SliverList.separated(
@@ -166,7 +164,7 @@ class _GuideDetailDataView extends ConsumerWidget {
                           ),
                           Text(
                             lastModifiedDate != null
-                                ? "${context.localize.last_modified} ${DateFormat("dd.MM.yyyy", context.locale.countryCode).format(lastModifiedDate)}"
+                                ? "${context.localize.last_modified} ${DateFormat("dd.MM.yyyy", context.locale.languageCode).format(lastModifiedDate)}"
                                 : context.localize.no_modification_date,
                             style: context.textTheme.bodyLarge?.copyWith(color: context.colorScheme.tertiary),
                             textAlign: TextAlign.end,
