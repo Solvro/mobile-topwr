@@ -1,3 +1,4 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 
 part "activity_days_response.freezed.dart";
@@ -13,9 +14,9 @@ abstract class ActivityDaysResponse with _$ActivityDaysResponse {
     required DateTime createdAt,
     required DateTime updatedAt,
     ActivityDaysTimetable? timetable,
-    @Default([]) List<ActivityDaysMap> maps,
-    @Default([]) List<ActivityDaysLink> links,
-    @Default([]) List<ActivityDaysStand> stands,
+    @Default(IListConst([])) IList<ActivityDaysMap> maps,
+    @Default(IListConst([])) IList<ActivityDaysLink> links,
+    @Default(IListConst([])) IList<ActivityDaysStand> stands,
   }) = _ActivityDaysResponse;
 
   factory ActivityDaysResponse.fromJson(Map<String, dynamic> json) => _$ActivityDaysResponseFromJson(json);

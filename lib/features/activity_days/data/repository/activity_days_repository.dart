@@ -1,5 +1,6 @@
 // ignore_for_file: dead_code, literal_only_boolean_expressions
 import "package:dio/dio.dart";
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../../api_base_rest/client/dio_client.dart";
@@ -20,12 +21,12 @@ Future<ActivityDaysResponse?> activityDaysRepository(Ref ref) async {
       createdAt: now.subtract(const Duration(days: 30)),
       updatedAt: now.subtract(const Duration(days: 5)),
       timetable: const ActivityDaysTimetable(id: 1, description: "Harmonogram DAS"),
-      maps: const [ActivityDaysMap(id: 1, name: "Mapa główna")],
-      links: const [ActivityDaysLink(id: 1, url: "https://pwr.edu.pl")],
-      stands: const [
+      maps: const IListConst([ActivityDaysMap(id: 1, name: "Mapa główna")]),
+      links: const IListConst([ActivityDaysLink(id: 1, url: "https://pwr.edu.pl")]),
+      stands: const IListConst([
         ActivityDaysStand(id: 1, name: "Koło Naukowe Solvro"),
         ActivityDaysStand(id: 2, name: "PWR Racing Team"),
-      ],
+      ]),
     );
   }
 
