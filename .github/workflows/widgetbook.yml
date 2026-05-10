@@ -56,6 +56,7 @@ jobs:
       - name: Push Widgetbook Build
         working-directory: packages/widgetbook/
         run: |
+          test -e .dart_tool || ln -s ../../.dart_tool .dart_tool
           widgetbook cloud build push \
             --api-key ${{ secrets.WIDGETBOOK_API_KEY }} \
             --branch ${{ github.head_ref || github.ref_name }} \
