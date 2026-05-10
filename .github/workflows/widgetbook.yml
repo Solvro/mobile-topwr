@@ -40,6 +40,7 @@ jobs:
       - name: Build Widgetbook
         working-directory: packages/widgetbook/
         run: |
+          dart run build_runner build --delete-conflicting-outputs
           flutter build web -t lib/main.dart
 
       - name: Install Widgetbook CLI
@@ -47,4 +48,4 @@ jobs:
 
       - name: Push Widgetbook Build
         working-directory: packages/widgetbook/
-        run: widgetbook cloud build push --api-key ${{ secrets.WIDGETBOOK_API_KEY }} --branch ${{ github.ref_name }}
+        run: widgetbook cloud build push --api-key ${{ secrets.WIDGETBOOK_API_KEY }} --branch ${{ github.head_ref || github.ref_name }}
