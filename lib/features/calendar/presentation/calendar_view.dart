@@ -120,9 +120,6 @@ class _CalendarViewContent extends StatelessWidget {
         .expand((e) => e)
         .toList();
 
-    return CustomScrollView(
-      key: MyAppConfig.verticalScrollableKey,
-      slivers: slivers
-    );
+    return CustomScrollView(key: MyAppConfig.verticalScrollableKey, slivers: slivers);
   }
 }

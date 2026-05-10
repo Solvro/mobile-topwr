@@ -42,7 +42,11 @@ class SubsectionHeader extends StatelessWidget {
                 button: true,
                 container: true,
                 child: ExcludeSemantics(
-                  child: MyTextButton(key: actionKey, onClick: onClick, actionTitle: addArrow ? "$actionTitle >" : actionTitle ?? ""),
+                  child: MyTextButton(
+                    key: actionKey,
+                    onClick: onClick,
+                    actionTitle: addArrow ? "$actionTitle >" : actionTitle ?? "",
+                  ),
                 ),
               ),
           ],
