@@ -34,6 +34,8 @@ jobs:
       - name: Bootstrap App
         run: |
           melos build_runner
+          dart pub remove auto_route_generator
+          dart pub deps --style=compact | grep xxh3 -B 20 -A 5
 
       - name: Build Widgetbook
         working-directory: packages/widgetbook/
