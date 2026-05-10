@@ -21,4 +21,7 @@ class SksChartProductionStory extends StatelessWidget {
 
 const meta = Meta<SksChartProductionStory>();
 
-final $fromProduction = SksChartProductionStoryStory(name: "Hardcoded production snapshot");
+final $fromProduction = SksChartProductionStoryStory(
+  name: "Hardcoded production snapshot",
+  setup: (context, widget, args) => Column(children: [widget]),
+);

@@ -8,9 +8,13 @@ import "package:topwr/features/app_streak/business/get_days_use_case.dart";
 import "package:topwr/features/calendar/bussiness/get_events_per_days_use_case.dart";
 import "package:topwr/features/departments/department_detail_view/data/repository/department_details_repository.dart";
 import "package:topwr/features/departments/departments_view/data/repository/departments_repository.dart";
+import "package:topwr/features/digital_guide/data/models/optional_tiles_data.dart";
 import "package:topwr/features/digital_guide/data/repository/digital_guide_repository.dart";
 import "package:topwr/features/digital_guide/data/repository/image_repository.dart";
+import "package:topwr/features/digital_guide/data/repository/levels_repository.dart";
+import "package:topwr/features/digital_guide/data/repository/optional_tiles_data_repository.dart";
 import "package:topwr/features/digital_guide_objects/data/repositories/digital_guide_object_repository.dart";
+import "package:topwr/features/digital_guide_objects/data/repositories/digital_guide_tabs_repository.dart";
 import "package:topwr/features/guide_detail_view/data/repository/guide_details_repository.dart";
 import "package:topwr/features/guide_view/data/repository/guide_repository.dart";
 import "package:topwr/features/multilayer_map/business/multilayer_source_service.dart";
@@ -33,6 +37,7 @@ import "package:topwr/features/sks/sks_favourite_dishes/data/repository/sks_favo
 import "package:topwr/features/sks/sks_menu/data/models/sks_menu_response.dart";
 import "package:topwr/features/sks/sks_menu/data/repository/sks_menu_repository.dart";
 import "package:topwr/features/sks/sks_people_live/data/repository/latest_sks_user_data_repo.dart";
+import "package:topwr/l10n/app_localizations.dart";
 import "package:topwr/theme/app_theme.dart";
 import "package:widgetbook/widgetbook.dart";
 
@@ -55,12 +60,15 @@ final config = Config(
         digitalGuideRepositoryProvider.overrideWith(
           (ref, ourId) => (digitalGuideData: mockDigitalGuideResponse, photoUrl: "", building: mockBuilding),
         ),
+        levelsWithRegionsRepositoryProvider.overrideWith((ref, buildingData) => const IListConst([])),
+        optionalTilesDataRepositoryProvider.overrideWith((ref, buildingId) => const OptionalTilesData()),
         imageRepositoryProvider.overrideWith(
           (ref, imageID) => Future.value("https://placehold.co/1200x800/png?text=Digital+Guide+Image+$imageID"),
         ),
         digitalGuideObjectRepositoryProvider.overrideWith(
           (ref, args) => (digitalGuideData: mockDigitalGuideObjectModel, photoUrl: ""),
         ),
+        digitalGuideObjectTabsRepositoryProvider.overrideWith((ref, object) => const IListConst([])),
         getLatestSksUserDataProvider.overrideWith((ref) => mockSksUserData),
         sksChartRepositoryProvider.overrideWith((ref) => mockSksChartData),
         getEventsPerDaysUseCaseProvider.overrideWith((ref) => mockCalendarYearEvents),
@@ -86,9 +94,13 @@ final config = Config(
       ],
       child: DefaultAssetBundle(
         bundle: fallbackAssetBundle,
-        child: Theme(
-          data: const AppTheme().light,
-          child: Material(child: widgetbookMapConfigWrapper(child)),
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          locale: const Locale("pl"),
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          theme: const AppTheme().light,
+          home: Material(child: widgetbookMapConfigWrapper(child)),
         ),
       ),
     );

@@ -41,16 +41,15 @@ jobs:
         working-directory: packages/widgetbook/
         run: |
           flutter build web -t lib/main.dart
+      
+      - name: Install Widgetbook CLI
+        run: dart pub global activate widgetbook_cli 4.0.0-beta.3
 
       - name: Generate Widgetbook snapshots
         working-directory: packages/widgetbook/
         run: |
-          dart ../../tool/generate_widgetbook_cloud_cache.dart
-          ls -la build/.widgetbook
-
-      - name: Install Widgetbook CLI
-        run: dart pub global activate widgetbook_cli 4.0.0-beta.3
-
+          flutter test
+          
       - name: Push Widgetbook Build
         working-directory: packages/widgetbook/
         run: |
