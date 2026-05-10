@@ -43,9 +43,13 @@ jobs:
           dart run build_runner build -d
           flutter build web -t lib/main.dart
 
+      - name: List files
+        working-directory: packages/widgetbook/
+        run: ls -la build/web
+
       - name: Install Widgetbook CLI
         run: dart pub global activate widgetbook_cli 3.14.0
 
       - name: Push Widgetbook Build
         working-directory: packages/widgetbook/
-        run: widgetbook cloud build push --api-key ${{ secrets.WIDGETBOOK_API_KEY }} --branch ${{ github.head_ref || github.ref_name }}
+        run: widgetbook cloud build push --api-key ${{ secrets.WIDGETBOOK_API_KEY }} --branch ${{ github.head_ref || github.ref_name }} --path build/web
