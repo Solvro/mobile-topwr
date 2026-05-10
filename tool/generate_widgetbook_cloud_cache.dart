@@ -50,7 +50,6 @@ void main() {
         },
         "story": {
           "name": storyName,
-          "path": componentPath,
         },
         "scenario": {
           "name": "Default",
@@ -59,7 +58,7 @@ void main() {
           "args": {},
         },
         "image": {
-          "path": "dummy.png",
+          "path": "build/.widgetbook/dummy.png",
           "hash": "dummyhash",
           "width": 1,
           "height": 1,
