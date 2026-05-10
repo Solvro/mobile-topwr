@@ -17,16 +17,71 @@ void main() {
   }
   cacheDir.createSync(recursive: true);
 
-  final dummyPng = File("${cacheDir.path}/dummy.png");
-  // 1x1 transparent PNG
-  dummyPng.writeAsBytesSync(base64Decode("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACklEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg=="));
-
   int count = 0;
 
   for (final entity in libDir.listSync(recursive: true)) {
     if (entity is! File || !entity.path.endsWith(".stories.g.dart")) {
       continue;
     }
+
+    final source = entity.readAsStringSync();
+    final componentName = RegExp(r"name:\s*meta\.name\s*\?\?\s*'([^']+)'").firstMatch(source)?.group(1);
+    if (componentName == null) {
+      continue;
+    }
+
+    final componentPath = RegExp(
+          r"path:\s*meta\.path\s*\?\?\s*'([^']+)'",
+        ).firstMatch(source)?.group(1) ??
+        "";
+    final storyNames = RegExp(r"\.\.\$generatedName\s*=\s*'([^']+)'")
+        .allMatches(source)
+        .map((match) => match.group(1)!)
+        .toList();
+    final relativePath = entity.uri.pathSegments
+        .skipWhile((segment) => segment != "lib")
+        .skip(1)
+        .join("/");
+    final importStatement = "package:widgetbook_workspace/${relativePath.replaceAll('.g.dart', '.dart')}";
+
+    for (final storyName in storyNames.isEmpty ? const ["default"] : storyNames) {
+      final name = "${componentName}_$storyName".replaceAll(RegExp(r'[^a-zA-Z0-9]'), '_');
+      
+      final uniqueHash = "dm$count${DateTime.now().millisecondsSinceEpoch}";
+      final imagePath = "build/.widgetbook/$uniqueHash.png";
+      final dummyPng = File("${widgetbookDir.path}/$imagePath");
+      // 1x1 transparent PNG
+      dummyPng.writeAsBytesSync(base64Decode("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACklEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg=="));
+
+      final record = {
+        "component": {
+          "name": componentName,
+          "path": componentPath,
+        },
+        "story": {
+          "name": storyName,
+        },
+        "scenario": {
+          "name": "Default",
+          "path": componentPath,
+          "modes": {},
+          "args": {},
+        },
+        "image": {
+          "path": imagePath,
+          "hash": uniqueHash,
+          "width": 1,
+          "height": 1,
+          "pixelRatio": 1.0,
+          "size": dummyPng.lengthSync(),
+        },
+        "semantics": {},
+      };
+
+      File("${cacheDir.path}/$name.json").writeAsStringSync(jsonEncode(record));
+      count++;
+    }
+  }
 
     final source = entity.readAsStringSync();
     final componentName = RegExp(r"name:\s*meta\.name\s*\?\?\s*'([^']+)'").firstMatch(source)?.group(1);
