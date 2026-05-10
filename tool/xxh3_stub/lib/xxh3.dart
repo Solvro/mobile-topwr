@@ -1,5 +1,3 @@
-library xxh3;
-
 import "dart:typed_data";
 
 export "src/constants.dart" show kSecretSizeMin, kXXH3SmallDataSize, kXXH3StreamBufferSize;
@@ -35,7 +33,7 @@ int _unsupportedHashLongFunction(ByteData input, int seed, ByteData secret) {
 }
 
 class XXH3State {
-  XXH3State.create({Uint8List? secret, int? seed});
+  XXH3State.create();
 
   void update(Uint8List input) {
     throw UnsupportedError("xxh3 is stubbed for web CI builds only.");

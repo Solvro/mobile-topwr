@@ -1,3 +1,3 @@
-const int kSecretSizeMin = 136;
-const int kXXH3SmallDataSize = 240;
-const int kXXH3StreamBufferSize = 256;
+const kSecretSizeMin = 136;
+const kXXH3SmallDataSize = 240;
+const kXXH3StreamBufferSize = 256;
