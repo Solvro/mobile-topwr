@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: read
+  packages: write
 
 jobs:
   check-version:
@@ -52,4 +53,10 @@ jobs:
     uses: ./.github/workflows/deploy-ios-internal.yml
     with:
       latest_changelog: ${{ needs.prepare-changelog.outputs.latest_changelog }}
+    secrets: inherit
+
+  deploy-web:
+    needs: [check-version]
+    if: needs.check-version.outputs.version_bumped == 'true'
+    uses: ./.github/workflows/deploy-web.yml
     secrets: inherit

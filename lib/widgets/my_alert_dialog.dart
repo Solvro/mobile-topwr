@@ -11,19 +11,23 @@ Future<void> showCustomDialog({
   String? dialogSemantics,
   required Widget dialogContent,
   String? closeText,
+  double? maxWidth,
 }) async {
   await showDialog<void>(
     context: context,
     builder: (BuildContext context) {
       return Center(
-        child: _MyAlertDialog(
-          dialogSemantics: dialogSemantics != null
-              ? context.localize.dialog_semantics_label + dialogSemantics
-              : context.localize.dialog_semantics_label,
-          dialogContent: dialogContent,
-          onConfirmTapped: onConfirmTapped != null ? () => onConfirmTapped(context) : null,
-          confirmText: confirmText,
-          closeText: closeText,
+        child: ConstrainedBox(
+          constraints: BoxConstraints(maxWidth: maxWidth ?? double.infinity),
+          child: _MyAlertDialog(
+            dialogSemantics: dialogSemantics != null
+                ? context.localize.dialog_semantics_label + dialogSemantics
+                : context.localize.dialog_semantics_label,
+            dialogContent: dialogContent,
+            onConfirmTapped: onConfirmTapped != null ? () => onConfirmTapped(context) : null,
+            confirmText: confirmText,
+            closeText: closeText,
+          ),
         ),
       );
     },

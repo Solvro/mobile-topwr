@@ -15,7 +15,7 @@ import "../data/repository/radio_luz_repository.dart";
 //Thanks to that the audio player can talk to native APIs of audio services specific to the platform.
 //Specifically, it allows the app to be recognized as a media player, which allows integration with Android Auto, CarPlay, etc.
 
-const radioLuzArtwork = "https://api.topwr.solvro.pl/uploads/28ef1261-47d5-4324-9f1f-9ae594af1327.png";
+const radioLuzArtwork = "https://api.topwr.solvro.pl/uploads/4143cab4-81d8-417b-ad0e-c1e3276249db.png";
 const refreshInterval = Duration(seconds: 15);
 const staleStreamThreshold = Duration(seconds: 30);
 

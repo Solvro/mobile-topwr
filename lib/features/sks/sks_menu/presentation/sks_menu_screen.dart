@@ -3,6 +3,7 @@ import "dart:core";
 import "dart:math";
 
 import "package:auto_route/annotations.dart";
+import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
@@ -75,13 +76,14 @@ class _SksMenuView extends ConsumerWidget {
     return HorizontalSymmetricSafeAreaScaffold(
       appBar: DetailViewAppBar(actions: const [SksUserDataButton()]),
       extraFabs: [
-        FloatingActionButton(
-          heroTag: "favouriteDishesFab",
-          elevation: 3,
-          backgroundColor: context.colorScheme.primary,
-          onPressed: ref.navigateToSksFavouriteDishes,
-          child: Icon(Icons.favorite, color: context.colorScheme.surface),
-        ),
+        if (!kIsWeb)
+          FloatingActionButton(
+            heroTag: null,
+            elevation: 3,
+            backgroundColor: context.colorScheme.primary,
+            onPressed: ref.navigateToSksFavouriteDishes,
+            child: Icon(Icons.favorite, color: context.colorScheme.surface),
+          ),
       ],
       body: RefreshIndicator(
         onRefresh: () async {

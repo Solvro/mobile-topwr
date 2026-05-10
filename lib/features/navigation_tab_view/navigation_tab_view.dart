@@ -1,4 +1,5 @@
 import "package:auto_route/auto_route.dart";
+import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
@@ -11,6 +12,7 @@ import "../analytics/presentation/show_feedback_tile.dart";
 import "../bottom_nav_bar/bottom_nav_bar_icon_icons.icons.dart";
 import "../home_view/widgets/logo_app_bar.dart";
 import "../in_app_review/business/in_app_rating_service.dart";
+import "../in_app_review/presentation/rate_store_dialog.dart";
 import "../navigator/utils/navigation_commands.dart";
 import "../radio_luz/presentation/radio_luz_app_bar.dart";
 import "widgets/about_the_app_tile.dart";
@@ -63,7 +65,13 @@ class NavigationTabView extends ConsumerWidget {
         child2: SmallTileCard(
           onTap: () async {
             await ref.trackEvent(ClarityEvents.openLeaveReview);
-            await InAppRatingService.requestStoreListingReview();
+            if (!kIsWeb) {
+              await InAppRatingService.requestStoreListingReview();
+            } else {
+              if (context.mounted) {
+                await showRateStoreDialog(context);
+              }
+            }
           },
           title: context.localize.leave_a_review,
           icon: Icon(

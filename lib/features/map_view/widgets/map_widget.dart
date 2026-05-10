@@ -1,4 +1,5 @@
 import "package:dio_cache_interceptor_db_store/dio_cache_interceptor_db_store.dart";
+import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:flutter_map/flutter_map.dart";
 import "package:flutter_map_cache/flutter_map_cache.dart";
@@ -58,18 +59,34 @@ class MapTileLayer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    if (kIsWeb) {
+      return const _OpenStreetMapTileLayer();
+    }
+
     final cacheStore = ref.watch(mapCacheStoreProvider);
     return switch (cacheStore) {
-      AsyncData(:final DbCacheStore value) => TileLayer(
-        urlTemplate: OpenStreetMapConfig.tileUrl,
-        userAgentPackageName: OpenStreetMapConfig.userAgent,
+      AsyncData(:final DbCacheStore value) => _OpenStreetMapTileLayer(
         tileProvider: CachedTileProvider(
           maxStale: const Duration(days: MapCacheConfig.cacheDuration),
           store: value,
         ),
       ),
-      _ =>
-        const SizedBox.shrink(), // no need for fancy loading, cause it should be instant if prefetch is done in the splash screen
+      _ => const _OpenStreetMapTileLayer(),
     };
+  }
+}
+
+class _OpenStreetMapTileLayer extends StatelessWidget {
+  const _OpenStreetMapTileLayer({this.tileProvider});
+
+  final TileProvider? tileProvider;
+
+  @override
+  Widget build(BuildContext context) {
+    return TileLayer(
+      urlTemplate: OpenStreetMapConfig.tileUrl,
+      userAgentPackageName: OpenStreetMapConfig.userAgent,
+      tileProvider: tileProvider,
+    );
   }
 }

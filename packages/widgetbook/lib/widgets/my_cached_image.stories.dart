@@ -1,0 +1,39 @@
+import "package:flutter/widgets.dart";
+import "package:topwr/widgets/my_cached_image.dart";
+import "package:widgetbook/widgetbook.dart";
+
+part "my_cached_image.stories.g.dart";
+
+class MyCachedImageStoryKnobs {
+  final String? imageUrl;
+  final LoadingType loadingType;
+  final BoxFit boxFit;
+  final Size? size;
+  final String? semanticsLabel;
+  MyCachedImageStoryKnobs({
+    this.imageUrl,
+    required this.loadingType,
+    required this.boxFit,
+    this.size,
+    this.semanticsLabel,
+  });
+}
+
+const meta = MetaWithArgs<MyCachedImage, MyCachedImageStoryKnobs>();
+
+final defaults = _Defaults(
+  builder: (context, args) => MyCachedImage(
+    args.imageUrl,
+    loadingType: args.loadingType,
+    boxFit: args.boxFit,
+    size: args.size,
+    semanticsLabel: args.semanticsLabel,
+  ),
+);
+
+final $default = MyCachedImageStory(
+  args: MyCachedImageStoryKnobsArgs(
+    imageUrl: NullableStringArg("https://placehold.co/800x600/png?text=Cached+Image"),
+    semanticsLabel: NullableStringArg("Cached image preview"),
+  ),
+);

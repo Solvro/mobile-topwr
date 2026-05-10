@@ -31,7 +31,7 @@ class AppChangelog extends StatelessWidget {
               children: [
                 AppChangelogHeader(version: changelog.name),
                 const SizedBox(height: 15),
-                AppChangelogList(changelog: changelog),
+                Flexible(child: AppChangelogList(changelog: changelog)),
               ],
             ),
             Positioned(

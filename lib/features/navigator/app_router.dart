@@ -1,5 +1,5 @@
 import "package:auto_route/auto_route.dart";
-import "package:flutter/material.dart";
+import "package:flutter/foundation.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../config/nav_bar_config.dart";
@@ -106,7 +106,7 @@ class AppRouter extends RootStackRouter {
   List<AutoRoute> get routes => [
     AutoRoute(path: "/", page: RootRoute.page, children: routesWithinTabBar),
     AutoRoute(path: "/sks-menu", page: SksMenuRoute.page),
-    AutoRoute(path: "/sks-favourite-dishes", page: SksFavouriteDishesRoute.page),
+    if (!kIsWeb) AutoRoute(path: "/sks-favourite-dishes", page: SksFavouriteDishesRoute.page),
     AutoRoute(path: "/guide/:id", page: GuideDetailRoute.page),
     AutoRoute(path: "/departments", page: DepartmentsRoute.page),
     AutoRoute(path: "/departments/:id", page: DepartmentDetailRoute.page),
