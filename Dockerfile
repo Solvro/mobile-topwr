@@ -9,6 +9,8 @@ COPY . .
 RUN dart pub global activate melos \
 	&& melos install \
 	&& melos build_runner \
+	&& cp tool/pubspec_overrides_web.yaml pubspec_overrides.yaml \
+	&& flutter pub get \
 	&& flutter build web --release
 
 FROM nginx:alpine
