@@ -40,7 +40,7 @@ jobs:
       - name: Build Widgetbook
         working-directory: packages/widgetbook/
         run: |
-          dart run build_runner build --delete-conflicting-outputs
+          dart run build_runner build -d
           flutter build web -t lib/main.dart
 
       - name: Install Widgetbook CLI
