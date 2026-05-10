@@ -23,4 +23,7 @@ const _mockBuilding = Building(
 
 const meta = Meta<BuildingNavLink>();
 
-final $default = BuildingNavLinkStory(args: BuildingNavLinkArgs(building: Arg.fixed(_mockBuilding)));
+final $default = BuildingNavLinkStory(
+  args: BuildingNavLinkArgs(building: Arg.fixed(_mockBuilding)),
+  setup: (context, widget, args) => SizedBox(width: 320, height: 80, child: Stack(children: [widget])),
+);

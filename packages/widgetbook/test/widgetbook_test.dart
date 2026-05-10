@@ -115,7 +115,7 @@ void testScenario(Config config, Scenario scenario) {
   });
 }
 
-Future<ui.Image> captureImage(Element element, double pixelRatio) async {
+Future<ui.Image> captureImage(Element element, double pixelRatio) {
   var renderObject = element.renderObject!;
   while (!renderObject.isRepaintBoundary) {
     renderObject = renderObject.parent!;
@@ -414,6 +414,7 @@ void addInt(Map<String, dynamic> properties, String key, int value) {
   if (value != 0) properties[key] = value;
 }
 
+// ignore: avoid_positional_boolean_parameters
 void addBool(Map<String, dynamic> properties, String key, bool value) {
   if (value) properties[key] = value;
 }
