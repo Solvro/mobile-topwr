@@ -45,8 +45,7 @@ jobs:
       - name: Generate Widgetbook snapshots
         working-directory: packages/widgetbook/
         run: |
-          flutter test test/widgetbook_test.dart
-          test -d build/.widgetbook
+          dart ../../tool/generate_widgetbook_cloud_cache.dart
           ls -la build/.widgetbook
 
       - name: Install Widgetbook CLI
