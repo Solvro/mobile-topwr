@@ -80,9 +80,18 @@ SingleCalendarItem _createCalendarItem(
 
   final hoursString = isSingleDay ? _formatTimeRange(startDate, endDate) : "${l10n.day} $dayNumber/$totalDays";
 
+  // Sometimes the location text comes with escape sequences
+  // that arent handled correctly
+  final cleanLocation = (event.location ?? "")
+      .replaceAll(r"\\", r"\")
+      .replaceAll(r"\;", ";")
+      .replaceAll(r"\,", ",")
+      .replaceAll(r"\N", "\n")
+      .replaceAll(r"\n", "\n");
+
   return (
     name: event.name,
-    location: event.location ?? "",
+    location: cleanLocation,
     hoursString: hoursString,
     description: event.description,
     accentColor: event.accentColor != null ? HexColor(event.accentColor!) : null,
