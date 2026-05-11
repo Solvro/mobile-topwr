@@ -20,12 +20,12 @@ class CalendarTile extends ConsumerWidget {
                   text: item.hoursString,
                   style: TextStyle(fontWeight: item.hoursString.trim().contains("-") ? FontWeight.bold : null),
                 ),
-                if (item.location.trim().isNotEmpty) TextSpan(text: "\n${item.location}"),
+                if (item.location.trim().isNotEmpty) TextSpan(text: "\n${item.location.replaceAll(r'\,', ',')}"),
               ],
             ),
           )
         : item.location.trim().isNotEmpty
-        ? Text(item.location)
+        ? Text(item.location.replaceAll(r"\,", ","))
         : null;
 
     return Card(
