@@ -13,6 +13,7 @@ class SubsectionHeader extends StatelessWidget {
     this.leftPadding = 24,
     this.rightPadding = 12,
     this.addArrow = true,
+    this.actionKey,
   });
 
   final String title;
@@ -21,6 +22,7 @@ class SubsectionHeader extends StatelessWidget {
   final double leftPadding;
   final double rightPadding;
   final bool addArrow;
+  final Key? actionKey;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -40,7 +42,11 @@ class SubsectionHeader extends StatelessWidget {
                 button: true,
                 container: true,
                 child: ExcludeSemantics(
-                  child: MyTextButton(onClick: onClick, actionTitle: addArrow ? "$actionTitle >" : actionTitle ?? ""),
+                  child: MyTextButton(
+                    key: actionKey,
+                    onClick: onClick,
+                    actionTitle: addArrow ? "$actionTitle >" : actionTitle ?? "",
+                  ),
                 ),
               ),
           ],

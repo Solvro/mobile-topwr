@@ -59,6 +59,7 @@ class SettingsView extends ConsumerWidget {
       ),
       if (!kIsWeb)
         NavigationTile(
+          key: NavigationTabViewConfig.sksFavouriteDishesKey,
           onTap: ref.navigateToSksFavouriteDishes,
           title: context.localize.sks_favourite_dishes_see_dishes,
           icon: Icons.food_bank,
@@ -71,6 +72,7 @@ class SettingsView extends ConsumerWidget {
       body: Padding(
         padding: const EdgeInsets.all(AboutUsConfig.spacerHeight),
         child: ListView.separated(
+          key: MyAppConfig.verticalScrollableKey,
           physics: const NeverScrollableScrollPhysics(),
           itemCount: widgets.length,
           itemBuilder: (context, index) => widgets[index],

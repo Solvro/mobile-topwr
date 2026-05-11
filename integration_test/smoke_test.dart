@@ -223,5 +223,129 @@ void main() {
       await scrollAndFailIfFound(tester: tester, scrollableFinder: scrollableFinder, targetFinder: errorFinder);
       await tester.pump(const Duration(seconds: 3));
     }, skip: true); // now we skipping bcs radioluzView is throwing an error
+
+    testWidgets("AboutUs smoke test", (tester) async {
+      await app.main(overrides: createPopupProviderOverrides());
+      await tester.pumpAndSettle();
+
+      await tapNavButton(tester, NavBarEnum.navigation);
+      await tester.pump(const Duration(seconds: 3)); // there pumpAndSettle never ends on Navigationview
+
+      final navButton = find.byKey(NavigationTabViewConfig.aboutUsKey);
+      await tester.tap(navButton);
+
+      await tester.pumpAndSettle();
+
+      final errorFinder = find.byType(MyErrorWidget);
+      final scrollableFinder = find.byKey(MyAppConfig.verticalScrollableKey);
+      await scrollAndFailIfFound(tester: tester, scrollableFinder: scrollableFinder, targetFinder: errorFinder);
+      await tester.pumpAndSettle();
+    });
+
+    testWidgets("CalendarView smoke test", (tester) async {
+      await app.main(overrides: createPopupProviderOverrides());
+      await tester.pumpAndSettle(const Duration(seconds: 5));
+
+      await tapNavButton(tester, NavBarEnum.home);
+      await tester.pumpAndSettle(const Duration(seconds: 5));
+
+      final navButton = find.byKey(HomeViewConfig.calendarKey);
+      await tester.tap(navButton);
+
+      await tester.pumpAndSettle();
+
+      final errorFinder = find.byType(MyErrorWidget);
+      final scrollableFinder = find.byKey(MyAppConfig.verticalScrollableKey);
+      await scrollAndFailIfFound(tester: tester, scrollableFinder: scrollableFinder, targetFinder: errorFinder);
+      await tester.pumpAndSettle();
+    });
+
+    testWidgets("NewsListView smoke test", (tester) async {
+      await app.main(overrides: createPopupProviderOverrides());
+      await tester.pumpAndSettle(const Duration(seconds: 5));
+
+      await tapNavButton(tester, NavBarEnum.home);
+      await tester.pumpAndSettle(const Duration(seconds: 5));
+
+      final navButton = find.byKey(HomeViewConfig.newsListKey);
+      await tester.tap(navButton);
+
+      await tester.pumpAndSettle();
+
+      final errorFinder = find.byType(MyErrorWidget);
+      final scrollableFinder = find.byKey(MyAppConfig.verticalScrollableKey);
+      await scrollAndFailIfFound(tester: tester, scrollableFinder: scrollableFinder, targetFinder: errorFinder);
+      await tester.pumpAndSettle();
+    });
+
+    testWidgets("SksMenuScreen smoke test", (tester) async {
+      await app.main(overrides: createPopupProviderOverrides());
+      await tester.pumpAndSettle(const Duration(seconds: 5));
+
+      await tapNavButton(tester, NavBarEnum.home);
+      await tester.pumpAndSettle(const Duration(seconds: 5));
+
+      final navButton = find.byKey(HomeViewConfig.sksMenuKey);
+      await tester.tap(navButton);
+
+      await tester.pumpAndSettle(const Duration(seconds: 5));
+
+      final errorFinder = find.byType(MyErrorWidget);
+      final scrollableFinder = find.byKey(MyAppConfig.verticalScrollableKey);
+
+      if (tester.any(scrollableFinder)) {
+        await scrollAndFailIfFound(tester: tester, scrollableFinder: scrollableFinder, targetFinder: errorFinder);
+      }
+      await tester.pumpAndSettle();
+    });
+
+    testWidgets("SettingsView smoke test", (tester) async {
+      await app.main(overrides: createPopupProviderOverrides());
+      await tester.pumpAndSettle();
+
+      await tapNavButton(tester, NavBarEnum.navigation);
+      await tester.pump(const Duration(seconds: 3)); // there pumpAndSettle never ends on NavigationView
+
+      final scrollableFinder = find.byKey(MyAppConfig.verticalScrollableKey);
+
+      await tester.dragFrom(tester.getCenter(scrollableFinder), const Offset(0, -100));
+      await tester.pump(const Duration(seconds: 1));
+
+      final navButton = find.byKey(NavigationTabViewConfig.settingsKey);
+
+      await tester.tap(navButton);
+      await tester.pumpAndSettle();
+
+      final errorFinder = find.byType(MyErrorWidget);
+      await scrollAndFailIfFound(tester: tester, scrollableFinder: scrollableFinder, targetFinder: errorFinder);
+      await tester.pumpAndSettle();
+    });
+
+    testWidgets("SksFavouriteDishesView smoke test", (tester) async {
+      await app.main(overrides: createPopupProviderOverrides());
+      await tester.pumpAndSettle();
+
+      await tapNavButton(tester, NavBarEnum.navigation);
+      await tester.pump(const Duration(seconds: 3)); // there pumpAndSettle never ends on NavigationView
+
+      final scrollableFinder = find.byKey(MyAppConfig.verticalScrollableKey);
+
+      await tester.dragFrom(tester.getCenter(scrollableFinder), const Offset(0, -100));
+      await tester.pump(const Duration(seconds: 1));
+
+      final navButton = find.byKey(NavigationTabViewConfig.settingsKey);
+      await tester.tap(navButton);
+
+      await tester.pumpAndSettle();
+
+      final settingsNavButton = find.byKey(NavigationTabViewConfig.sksFavouriteDishesKey);
+      await tester.tap(settingsNavButton);
+
+      await tester.pumpAndSettle();
+
+      final errorFinder = find.byType(MyErrorWidget);
+      await scrollAndFailIfFound(tester: tester, scrollableFinder: scrollableFinder, targetFinder: errorFinder);
+      await tester.pumpAndSettle();
+    }, skip: true); // SksFavouriteDishesView throws an error
   });
 }

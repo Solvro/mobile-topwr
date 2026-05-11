@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
+import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../navigator/utils/navigation_commands.dart";
@@ -24,6 +25,7 @@ class NavActionsSection extends ConsumerWidget {
 
             children: [
               _NavActionButton(
+                key: HomeViewConfig.sksMenuKey,
                 context.localize.sks_menu,
                 Icon(Icons.restaurant_menu, color: context.colorScheme.surface, size: 32),
                 ref.navigateToSksMenu,
@@ -34,6 +36,7 @@ class NavActionsSection extends ConsumerWidget {
                 ref.navigateParkings,
               ),
               _NavActionButton(
+                key: HomeViewConfig.calendarKey,
                 context.localize.calendar,
                 Icon(Icons.calendar_today_outlined, color: context.colorScheme.surface, size: 30),
                 ref.navigateCalendar,
@@ -47,7 +50,7 @@ class NavActionsSection extends ConsumerWidget {
 }
 
 class _NavActionButton extends StatelessWidget {
-  const _NavActionButton(this.title, this.icon, this.onTap);
+  const _NavActionButton(this.title, this.icon, this.onTap, {super.key});
   final String title;
   final Widget icon;
   final VoidCallback onTap;
