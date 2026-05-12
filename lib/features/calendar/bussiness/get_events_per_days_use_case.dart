@@ -82,12 +82,21 @@ SingleCalendarItem _createCalendarItem(
 
   // Sometimes the location text comes with escape sequences
   // that arent handled correctly
-  final cleanLocation = (event.location ?? "")
-      .replaceAll(r"\\", r"\")
-      .replaceAll(r"\;", ";")
-      .replaceAll(r"\,", ",")
-      .replaceAll(r"\N", "\n")
-      .replaceAll(r"\n", "\n");
+  final cleanLocation = (event.location ?? "").replaceAllMapped(RegExp(r"\\([\\;,nN])"), (match) {
+    switch (match.group(1)) {
+      case r"\":
+        return r"\";
+      case ";":
+        return ";";
+      case ",":
+        return ",";
+      case "n":
+      case "N":
+        return "\n";
+      default:
+        return match.group(0)!;
+    }
+  });
 
   return (
     name: event.name,
