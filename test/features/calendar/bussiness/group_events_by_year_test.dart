@@ -251,7 +251,7 @@ void main() {
         endTime: "2026-06-15T14:40:00",
         location: r"Budynek D-21\, pokój A\nBudynek A-2 \\ Budynek C-4 \; \N Aleja Profesorów",
         description: null,
-        accentColor: null
+        accentColor: null,
       );
 
       final events = [event].toIList();
