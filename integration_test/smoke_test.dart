@@ -224,7 +224,7 @@ void main() {
       await tester.pump(const Duration(seconds: 3));
     }, skip: true); // now we skipping bcs radioluzView is throwing an error
 
-    testWidgets("AboutUs smoke test", (tester) async {
+    testWidgets("AboutUsView smoke test", (tester) async {
       await app.main(overrides: createPopupProviderOverrides());
       await tester.pumpAndSettle();
 
@@ -292,10 +292,7 @@ void main() {
 
       final errorFinder = find.byType(MyErrorWidget);
       final scrollableFinder = find.byKey(MyAppConfig.verticalScrollableKey);
-
-      if (tester.any(scrollableFinder)) {
-        await scrollAndFailIfFound(tester: tester, scrollableFinder: scrollableFinder, targetFinder: errorFinder);
-      }
+      await scrollAndFailIfFound(tester: tester, scrollableFinder: scrollableFinder, targetFinder: errorFinder);
       await tester.pumpAndSettle();
     });
 
@@ -306,17 +303,14 @@ void main() {
       await tapNavButton(tester, NavBarEnum.navigation);
       await tester.pump(const Duration(seconds: 3)); // there pumpAndSettle never ends on NavigationView
 
-      final scrollableFinder = find.byKey(MyAppConfig.verticalScrollableKey);
-
-      await tester.dragFrom(tester.getCenter(scrollableFinder), const Offset(0, -100));
-      await tester.pump(const Duration(seconds: 1));
-
       final navButton = find.byKey(NavigationTabViewConfig.settingsKey);
+      await tester.scrollUntilVisible(navButton, 50, maxScrolls: 10);
 
       await tester.tap(navButton);
       await tester.pumpAndSettle();
 
       final errorFinder = find.byType(MyErrorWidget);
+      final scrollableFinder = find.byKey(MyAppConfig.verticalScrollableKey);
       await scrollAndFailIfFound(tester: tester, scrollableFinder: scrollableFinder, targetFinder: errorFinder);
       await tester.pumpAndSettle();
     });
