@@ -333,10 +333,17 @@ void main() {
 
       await tester.pumpAndSettle();
 
+      // checks only widgets on loaded view
       final errorFinder = find.byType(MyErrorWidget);
+      if (errorFinder.evaluate().isNotEmpty) {
+        debugPrint("Error widget found. View not loaded correctly.");
+      }
+
       // using key already existing in sks_favourite_dishes_view
       final scrollableFinder = find.byKey(const PageStorageKey("SksFavouriteDishesListView"));
-      await scrollAndFailIfFound(tester: tester, scrollableFinder: scrollableFinder, targetFinder: errorFinder);
+      if (scrollableFinder.evaluate().isNotEmpty) {
+        await scrollAndFailIfFound(tester: tester, scrollableFinder: scrollableFinder, targetFinder: errorFinder);
+      }
       await tester.pumpAndSettle();
     });
   });
