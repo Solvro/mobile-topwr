@@ -322,14 +322,10 @@ void main() {
       await tapNavButton(tester, NavBarEnum.navigation);
       await tester.pump(const Duration(seconds: 3)); // there pumpAndSettle never ends on NavigationView
 
-      final scrollableFinder = find.byKey(MyAppConfig.verticalScrollableKey);
-
-      await tester.dragFrom(tester.getCenter(scrollableFinder), const Offset(0, -100));
-      await tester.pump(const Duration(seconds: 1));
-
       final navButton = find.byKey(NavigationTabViewConfig.settingsKey);
-      await tester.tap(navButton);
+      await tester.scrollUntilVisible(navButton, 50, maxScrolls: 10);
 
+      await tester.tap(navButton);
       await tester.pumpAndSettle();
 
       final settingsNavButton = find.byKey(NavigationTabViewConfig.sksFavouriteDishesKey);
@@ -338,8 +334,10 @@ void main() {
       await tester.pumpAndSettle();
 
       final errorFinder = find.byType(MyErrorWidget);
+      // using key already existing in sks_favourite_dishes_view
+      final scrollableFinder = find.byKey(const PageStorageKey("SksFavouriteDishesListView"));
       await scrollAndFailIfFound(tester: tester, scrollableFinder: scrollableFinder, targetFinder: errorFinder);
       await tester.pumpAndSettle();
-    }, skip: true); // SksFavouriteDishesView throws an error
+    });
   });
 }
