@@ -243,6 +243,23 @@ void main() {
       expect(calendarItem.accentColor!.hexString, "#E43D32");
     });
 
+    test("should handle escape sequences in location correctly", () {
+      const event = CalendarData(
+        id: 42,
+        name: "Event",
+        startTime: "2026-06-14T10:30:00",
+        endTime: "2026-06-15T14:40:00",
+        location: r"Budynek D-21\, pokój A\nBudynek A-2 \\ Budynek C-4 \; \N Aleja Profesorów",
+        description: null,
+        accentColor: null
+      );
+
+      final events = [event].toIList();
+      final result = groupEventsByYear(events, l10n);
+      final calendarItem = result.first.events.first.events.first.events.first;
+      expect(calendarItem.location, "Budynek D-21, pokój A\nBudynek A-2 \\ Budynek C-4 ; \n Aleja Profesorów");
+    });
+
     test("should handle multiple events on the same day", () {
       const event1 = CalendarData(
         id: 1,
