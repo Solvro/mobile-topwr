@@ -45,6 +45,7 @@ import "components.g.dart";
 import "map_config_story_wrapper.dart";
 import "radio_luz_mocks.dart";
 import "widgetbook_mocks.dart";
+import "widgetbook_placeholders.dart";
 
 final config = Config(
   components: components,
@@ -62,9 +63,7 @@ final config = Config(
         ),
         levelsWithRegionsRepositoryProvider.overrideWith((ref, buildingData) => const IListConst([])),
         optionalTilesDataRepositoryProvider.overrideWith((ref, buildingId) => const OptionalTilesData()),
-        imageRepositoryProvider.overrideWith(
-          (ref, imageID) => Future.value("https://placehold.co/1200x800/png?text=Digital+Guide+Image+$imageID"),
-        ),
+        imageRepositoryProvider.overrideWith((ref, imageID) => Future.value(widgetbookPlaceholderImageUrl)),
         digitalGuideObjectRepositoryProvider.overrideWith(
           (ref, args) => (digitalGuideData: mockDigitalGuideObjectModel, photoUrl: ""),
         ),

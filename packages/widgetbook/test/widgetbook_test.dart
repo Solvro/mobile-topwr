@@ -13,6 +13,7 @@ import "package:widgetbook/src/test/font_loader.dart";
 import "package:widgetbook/src/test/scenario_metadata.dart";
 import "package:widgetbook/widgetbook.dart";
 import "package:widgetbook_workspace/widgetbook_config.dart";
+import "package:widgetbook_workspace/widgetbook_placeholders.dart";
 
 const widgetbookTestViewport = ViewportData(
   name: "Widgetbook Test",
@@ -26,13 +27,16 @@ void main() {
   final binding = TestWidgetsFlutterBinding.ensureInitialized();
   final pluginTempDirectory = Directory.systemTemp.createTempSync("widgetbook_test_");
   final previousHttpOverrides = HttpOverrides.current;
+  Uint8List? placeholderImageBytes;
+
   sqfliteFfiInit();
   databaseFactory = databaseFactoryFfi;
 
-  setUpAll(() {
-    HttpOverrides.global = WidgetbookHttpOverrides();
+  setUpAll(() async {
     mockPathProvider(binding, pluginTempDirectory);
-    return loadFonts();
+    placeholderImageBytes = await loadPlaceholderImageBytes();
+    HttpOverrides.global = WidgetbookHttpOverrides(placeholderImageBytes ?? transparentPngBytes);
+    await loadFonts();
   });
 
   tearDownAll(() {
@@ -43,27 +47,27 @@ void main() {
   testWidgetbook(config);
 }
 
-void testWidgetbook(Config config) {
-  for (final component in config.components) {
-    testComponent(config, component);
+Future<Uint8List?> loadPlaceholderImageBytes() async {
+  final placeholderFile = File.fromUri(Directory.current.uri.resolve("../../assets/png/app_icon.png"));
+  try {
+    return await placeholderFile.readAsBytes();
+  } catch (_) {
+    return null;
   }
 }
 
-void testComponent(Config config, Component component) {
-  group(component.name, () {
-    for (final story in component.stories) {
-      testStory(config, story);
-    }
-  });
-}
-
-void testStory(Config config, Story story) {
-  group(story.name, () {
-    final scenarios = story.allScenarios(config);
-    for (final scenario in scenarios) {
-      testScenario(config, scenario);
-    }
-  });
+void testWidgetbook(Config config) {
+  for (final component in config.components) {
+    group(component.name, () {
+      for (final story in component.stories) {
+        group(story.name, () {
+          for (final scenario in story.allScenarios(config)) {
+            testScenario(config, scenario);
+          }
+        });
+      }
+    });
+  }
 }
 
 void testScenario(Config config, Scenario scenario) {
@@ -140,87 +144,29 @@ void mockPathProvider(TestWidgetsFlutterBinding binding, Directory directory) {
   });
 }
 
-const transparentPngBytes = [
-  0x89,
-  0x50,
-  0x4E,
-  0x47,
-  0x0D,
-  0x0A,
-  0x1A,
-  0x0A,
-  0x00,
-  0x00,
-  0x00,
-  0x0D,
-  0x49,
-  0x48,
-  0x44,
-  0x52,
-  0x00,
-  0x00,
-  0x00,
-  0x01,
-  0x00,
-  0x00,
-  0x00,
-  0x01,
-  0x08,
-  0x06,
-  0x00,
-  0x00,
-  0x00,
-  0x1F,
-  0x15,
-  0xC4,
-  0x89,
-  0x00,
-  0x00,
-  0x00,
-  0x0A,
-  0x49,
-  0x44,
-  0x41,
-  0x54,
-  0x78,
-  0x9C,
-  0x63,
-  0x00,
-  0x01,
-  0x00,
-  0x00,
-  0x05,
-  0x00,
-  0x01,
-  0x0D,
-  0x0A,
-  0x2D,
-  0xB4,
-  0x00,
-  0x00,
-  0x00,
-  0x00,
-  0x49,
-  0x45,
-  0x4E,
-  0x44,
-  0xAE,
-  0x42,
-  0x60,
-  0x82,
-];
+final transparentPngBytes = base64Decode(
+  "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACklEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg==",
+);
 
 class WidgetbookHttpOverrides extends HttpOverrides {
+  WidgetbookHttpOverrides(this.placeholderBytes);
+
+  final Uint8List placeholderBytes;
+
   @override
-  HttpClient createHttpClient(SecurityContext? context) => WidgetbookHttpClient();
+  HttpClient createHttpClient(SecurityContext? context) => WidgetbookHttpClient(placeholderBytes);
 }
 
 class WidgetbookHttpClient implements HttpClient {
+  WidgetbookHttpClient(this.placeholderBytes);
+
+  final Uint8List placeholderBytes;
+
   @override
   var autoUncompress = true;
 
   @override
-  Future<HttpClientRequest> getUrl(Uri url) async => WidgetbookHttpClientRequest();
+  Future<HttpClientRequest> getUrl(Uri url) async => WidgetbookHttpClientRequest(url, placeholderBytes);
 
   @override
   void close({bool force = false}) {}
@@ -230,19 +176,30 @@ class WidgetbookHttpClient implements HttpClient {
 }
 
 class WidgetbookHttpClientRequest implements HttpClientRequest {
+  WidgetbookHttpClientRequest(this.url, this.placeholderBytes);
+
+  final Uri url;
+  final Uint8List placeholderBytes;
+
   @override
   final headers = WidgetbookHttpHeaders();
 
   @override
-  Future<HttpClientResponse> close() async => WidgetbookHttpClientResponse();
+  Future<HttpClientResponse> close() async => WidgetbookHttpClientResponse(
+    url == Uri.parse(widgetbookPlaceholderImageUrl) ? placeholderBytes : transparentPngBytes,
+  );
 
   @override
   dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }
 
 class WidgetbookHttpClientResponse extends Stream<List<int>> implements HttpClientResponse {
+  WidgetbookHttpClientResponse(this.bytes);
+
+  final Uint8List bytes;
+
   @override
-  final contentLength = transparentPngBytes.length;
+  int get contentLength => bytes.length;
 
   @override
   final headers = WidgetbookHttpHeaders();
@@ -276,7 +233,7 @@ class WidgetbookHttpClientResponse extends Stream<List<int>> implements HttpClie
     bool? cancelOnError,
   }) {
     return Stream<List<int>>.value(
-      transparentPngBytes,
+      bytes,
     ).listen(onData, onError: onError, onDone: onDone, cancelOnError: cancelOnError);
   }
 

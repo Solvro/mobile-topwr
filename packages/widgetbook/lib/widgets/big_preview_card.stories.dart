@@ -2,10 +2,11 @@ import "package:flutter/material.dart";
 import "package:topwr/api_base_rest/shared_models/image_data.dart";
 import "package:topwr/widgets/big_preview_card.dart";
 import "package:widgetbook/widgetbook.dart";
+import "../widgetbook_placeholders.dart";
 
 part "big_preview_card.stories.g.dart";
 
-const _mockImageData = ImageData(url: "https://placehold.co/1200x800/png?text=Campus+News");
+const _mockImageData = ImageData(url: widgetbookPlaceholderImageUrl);
 
 class BigPreviewCardStoryKnobs {
   final String title;

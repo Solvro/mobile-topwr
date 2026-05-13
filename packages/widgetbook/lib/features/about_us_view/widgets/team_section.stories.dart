@@ -4,19 +4,20 @@ import "package:topwr/api_base_rest/shared_models/image_data.dart";
 import "package:topwr/features/about_us_view/bussiness/models.dart";
 import "package:topwr/features/about_us_view/widgets/team_section.dart";
 import "package:widgetbook/widgetbook.dart";
+import "../../../widgetbook_placeholders.dart";
 
 part "team_section.stories.g.dart";
 
 final _mockTeamMember1 = (
   teamMemberName: "Michał Nowak",
-  image: const ImageData(url: "https://placehold.co/256x256/png?text=MN"),
+  image: const ImageData(url: widgetbookPlaceholderImageUrl),
   subtitleForMilestone: "Flutter Developer",
   socialLinks: <String>["https://github.com/Solvro"].lock,
 );
 
 final _mockTeamMember2 = (
   teamMemberName: "Anna Kowalska",
-  image: const ImageData(url: "https://placehold.co/256x256/png?text=AK"),
+  image: const ImageData(url: widgetbookPlaceholderImageUrl),
   subtitleForMilestone: "UI/UX Designer",
   socialLinks: <String>["https://www.linkedin.com/company/solvro"].lock,
 );
