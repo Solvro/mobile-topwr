@@ -243,6 +243,44 @@ void main() {
       expect(calendarItem.accentColor!.hexString, "#E43D32");
     });
 
+    test("should handle escape sequences in location correctly", () {
+      const event1 = CalendarData(
+        id: 42,
+        name: "Event 1",
+        startTime: "2026-06-14T10:30:00",
+        endTime: "2026-06-15T14:40:00",
+        location: r"Budynek D-21\, pokój A\nBudynek A-2 \\ Budynek C-4 \; \N Aleja Profesorów\\, Aula \\; SKS",
+        description: null,
+        accentColor: null,
+      );
+
+      const event2 = CalendarData(
+        id: 42,
+        name: "Event 2",
+        startTime: "2026-06-16T10:30:00",
+        endTime: "2026-06-17T14:40:00",
+        location: r"\\, Aula \\; SKS \\n A-4",
+        description: null,
+        accentColor: null,
+      );
+
+      final events = [event1, event2].toIList();
+      final results = groupEventsByYear(events, l10n);
+
+      final calendarItem1 = results.first.events.first.events.first.events.first;
+      final calendarItem2 = results.first.events.first.events[2].events.first;
+
+      const correctString1 =
+          "Budynek D-21, pokój A\n"
+          "Budynek A-2 \\ Budynek C-4 ; \n"
+          r" Aleja Profesorów\, Aula \; SKS";
+
+      const correctString2 = r"\, Aula \; SKS \n A-4";
+
+      expect(calendarItem1.location, correctString1);
+      expect(calendarItem2.location, correctString2);
+    });
+
     test("should handle multiple events on the same day", () {
       const event1 = CalendarData(
         id: 1,
