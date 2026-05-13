@@ -51,7 +51,7 @@ Future<Uint8List?> loadPlaceholderImageBytes() async {
   final placeholderFile = File.fromUri(Directory.current.uri.resolve("../../assets/png/app_icon.png"));
   try {
     return await placeholderFile.readAsBytes();
-  } catch (_) {
+  } on FileSystemException {
     return null;
   }
 }
