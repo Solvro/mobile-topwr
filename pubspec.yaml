@@ -16,7 +16,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.2.31+120
+version: 1.2.32+121
 
 environment:
   sdk: ">=3.11.1 <4.0.0"
@@ -143,6 +143,7 @@ dependencies:
   solvro_translator_with_drift_cache_flutter: ^0.9.4
   solvro_translator_core: ^0.8.0
   clarity_flutter: ^1.7.1
+  clarity_web: ^1.0.1
 
 dev_dependencies:
   flutter_test:
@@ -200,14 +201,6 @@ melos:
       run: |
         melos install
         melos build_runner
-        root_dir="$PWD"
-        if [ -e pubspec_overrides.yaml ]; then
-          echo "pubspec_overrides.yaml already exists. Merge tool/pubspec_overrides_web.yaml before running Widgetbook."
-          exit 1
-        fi
-        cp tool/pubspec_overrides_web.yaml pubspec_overrides.yaml
-        trap 'rm -f "$root_dir/pubspec_overrides.yaml"' EXIT
-        melos install
         cd packages/widgetbook && flutter run -d chrome
 
 flutter:
