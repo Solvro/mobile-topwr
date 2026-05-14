@@ -49,7 +49,7 @@ Future<RadioAudioHandlerBridge> _initAudioHandler() {
 
 Future<void> main({List<Override>? overrides}) async {
   WidgetsFlutterBinding.ensureInitialized();
-  if (!kDebugMode) {
+  if (!kDebugMode && !kIsWeb) {
     SplashScreenController.preserveNativeSplashScreen();
   }
 
