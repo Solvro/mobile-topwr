@@ -1,0 +1,61 @@
+name: Widgetbook Cloud Hosting
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  widgetbook-cloud-hosting:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version-file: pubspec.yaml
+    
+      - name: git crypt unlock
+        uses: sliteteam/github-action-git-crypt-unlock@f99c0c6b60bb7ec30dcec033a8f0a3b3d48f21e1
+        env:
+          GIT_CRYPT_KEY: ${{ secrets.GIT_CRYPT_KEY }}
+
+      - name: Setup Melos
+        uses: bluefireteam/melos-action@v3
+
+      - run: flutter --version
+
+      - name: Bootstrap App
+        run: |
+          melos build_runner
+          cp tool/pubspec_overrides_web.yaml pubspec_overrides.yaml
+          flutter pub get
+
+      - name: Build Widgetbook
+        working-directory: packages/widgetbook/
+        run: |
+          flutter build web -t lib/main.dart
+      
+      - name: Install Widgetbook CLI
+        run: dart pub global activate widgetbook_cli 4.0.0-beta.3
+
+      - name: Generate Widgetbook snapshots
+        working-directory: packages/widgetbook/
+        run: |
+          flutter test
+          
+      # - name: Push Widgetbook Build
+      #   working-directory: packages/widgetbook/
+      #   run: |
+      #     widgetbook cloud build push \
+      #       --api-key ${{ secrets.WIDGETBOOK_API_KEY }} \
+      #       --branch ${{ github.head_ref || github.ref_name }} \
+      #       --commit ${{ github.sha }} \
+      #       --repository ${{ github.repository }} \
+      #       --actor ${{ github.actor }}

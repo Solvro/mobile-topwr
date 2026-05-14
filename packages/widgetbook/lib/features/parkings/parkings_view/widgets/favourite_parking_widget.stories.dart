@@ -1,6 +1,7 @@
 import "package:topwr/features/parkings/parkings_view/models/parking.dart";
 import "package:topwr/features/parkings/parkings_view/widgets/parking_favourite.dart";
 import "package:widgetbook/widgetbook.dart";
+import "../../../../widgetbook_placeholders.dart";
 
 part "favourite_parking_widget.stories.g.dart";
 
@@ -16,8 +17,8 @@ const _productionParking = Parking(
   places: "54",
   geoLan: "17.06094",
   geoLat: "51.10804",
-  photo: "https://placehold.co/1200x800/png?text=Parking+C13",
-  miniaturePhoto: "https://placehold.co/320x200/png?text=C13",
+  photo: widgetbookPlaceholderImageUrl,
+  miniaturePhoto: widgetbookPlaceholderImageUrl,
   active: "1",
   showPark: "1",
   lp: "2",

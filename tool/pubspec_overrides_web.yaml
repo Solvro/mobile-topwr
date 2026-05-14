@@ -1,0 +1,4 @@
+dependency_overrides:
+  riverpod: 3.1.0
+  xxh3:
+    path: tool/xxh3_stub

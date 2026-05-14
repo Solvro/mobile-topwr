@@ -5,6 +5,7 @@ import "package:topwr/features/multilayer_map/data/model/building.dart";
 import "package:topwr/features/multilayer_map/data/model/multilayer_item.dart";
 import "package:topwr/features/multilayer_map/presentation/widgets/multilater_tile.dart";
 import "package:widgetbook/widgetbook.dart";
+import "../../../../widgetbook_placeholders.dart";
 
 part "multilayer_item_tile.stories.g.dart";
 
@@ -18,7 +19,7 @@ const _mockBuildingWithPlaceholderPhoto = Building(
   longitude: 17.0385,
   externalDigitalGuideMode: ExternalDigitalGuideMode.digitalGuideBuilding,
   externalDigitalGuideIdOrUrl: "313",
-  cover: ImageData(url: "https://placehold.co/1200x800/png?text=C13+Serowiec"),
+  cover: ImageData(url: widgetbookPlaceholderImageUrl),
   branch: Branch.main,
 );
 

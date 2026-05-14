@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import "package:topwr/widgets/detail_views/sliver_logo.dart";
 import "package:topwr/widgets/my_cached_image.dart";
 import "package:widgetbook/widgetbook.dart";
+import "../../widgetbook_placeholders.dart";
 
 part "sliver_logo.stories.g.dart";
 
@@ -40,7 +41,7 @@ final defaults = _Defaults(
 
 /// Same host as other widgetbook image mocks; avoids empty defaults (0 size,
 /// 0 opacity, no URL) from [SliverLogoStoryKnobsArgs] which render nothing.
-const _previewLogoUrl = "https://placehold.co/512x512/png?text=ToPWR";
+const _previewLogoUrl = widgetbookPlaceholderImageUrl;
 
 const _previewRingGradient = LinearGradient(
   colors: [Color(0xFF1565C0), Color(0xFF42A5F5)],

@@ -10,6 +10,7 @@ import "package:topwr/features/digital_guide/data/repository/optional_tiles_data
 import "package:topwr/features/digital_guide/presentation/widgets/digital_guide_features_section.dart";
 import "package:topwr/features/multilayer_map/data/model/building.dart";
 import "package:widgetbook/widgetbook.dart";
+import "../../../../widgetbook_placeholders.dart";
 
 part "digital_guide_features_section.stories.g.dart";
 
@@ -58,7 +59,7 @@ const _mockBuilding = Building(
   longitude: 17.059038,
   externalDigitalGuideMode: ExternalDigitalGuideMode.digitalGuideBuilding,
   externalDigitalGuideIdOrUrl: "313",
-  cover: ImageData(url: "https://placehold.co/1200x800/png?text=C13+Serowiec"),
+  cover: ImageData(url: widgetbookPlaceholderImageUrl),
   branch: Branch.main,
 );
 

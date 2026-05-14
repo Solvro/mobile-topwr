@@ -3,10 +3,11 @@ import "package:topwr/api_base_rest/shared_models/image_data.dart";
 import "package:topwr/widgets/my_cached_image.dart";
 import "package:topwr/widgets/rest_api_image.dart";
 import "package:widgetbook/widgetbook.dart";
+import "../widgetbook_placeholders.dart";
 
 part "rest_api_image.stories.g.dart";
 
-const _mockImageData = ImageData(url: "https://placehold.co/800x600/png?text=REST+Image");
+const _mockImageData = ImageData(url: widgetbookPlaceholderImageUrl);
 
 class RestApiImageStoryKnobs {
   final ImageData? imageData;

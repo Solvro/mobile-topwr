@@ -4,6 +4,7 @@ import "package:topwr/features/branches/data/model/branch.dart";
 import "package:topwr/features/multilayer_map/data/model/building.dart";
 import "package:topwr/features/multilayer_map/presentation/widgets/building_nav_link.dart";
 import "package:widgetbook/widgetbook.dart";
+import "../../../../widgetbook_placeholders.dart";
 
 part "building_nav_link.stories.g.dart";
 
@@ -17,10 +18,13 @@ const _mockBuilding = Building(
   longitude: 17.0385,
   externalDigitalGuideMode: ExternalDigitalGuideMode.digitalGuideBuilding,
   externalDigitalGuideIdOrUrl: "313",
-  cover: ImageData(url: "https://placehold.co/1200x800/png?text=C13+Serowiec"),
+  cover: ImageData(url: widgetbookPlaceholderImageUrl),
   branch: Branch.main,
 );
 
 const meta = Meta<BuildingNavLink>();
 
-final $default = BuildingNavLinkStory(args: BuildingNavLinkArgs(building: Arg.fixed(_mockBuilding)));
+final $default = BuildingNavLinkStory(
+  args: BuildingNavLinkArgs(building: Arg.fixed(_mockBuilding)),
+  setup: (context, widget, args) => SizedBox(width: 320, height: 80, child: Stack(children: [widget])),
+);
