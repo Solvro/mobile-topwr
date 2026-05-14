@@ -200,6 +200,14 @@ melos:
       run: |
         melos install
         melos build_runner
+        root_dir="$PWD"
+        if [ -e pubspec_overrides.yaml ]; then
+          echo "pubspec_overrides.yaml already exists. Merge tool/pubspec_overrides_web.yaml before running Widgetbook."
+          exit 1
+        fi
+        cp tool/pubspec_overrides_web.yaml pubspec_overrides.yaml
+        trap 'rm -f "$root_dir/pubspec_overrides.yaml"' EXIT
+        melos install
         cd packages/widgetbook && flutter run -d chrome
 
 flutter:
