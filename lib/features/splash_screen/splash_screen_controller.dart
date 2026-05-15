@@ -24,15 +24,17 @@ class SplashScreenController extends _$SplashScreenController {
     */
     await firebaseInit();
     await AppBarLogo.precacheImageIfAbsent();
-    unawaited(
-      ref.registerForNotifications().then((result) {
-        if (result.deviceKey != null) {
-          appAnalytics.setCustomUserId(result.deviceKey!);
-        }
-      }),
-    );
-    subscribeToAllUsersTopic();
-    await ref.read(mapCacheStoreProvider.future); // prefetch map cache directory
+    if (!kIsWeb) {
+      unawaited(
+        ref.registerForNotifications().then((result) {
+          if (result.deviceKey != null) {
+            appAnalytics.setCustomUserId(result.deviceKey!);
+          }
+        }),
+      );
+      subscribeToAllUsersTopic();
+      await ref.read(mapCacheStoreProvider.future); // prefetch map cache directory
+    }
   }
 
   @override
