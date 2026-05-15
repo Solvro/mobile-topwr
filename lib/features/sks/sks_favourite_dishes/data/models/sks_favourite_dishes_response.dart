@@ -11,8 +11,9 @@ part "sks_favourite_dishes_response.translatable.g.dart";
 @freezed
 @Translatable(makeFieldsTranslatableByDefault: false)
 abstract class SksFavouriteDishesResponse with _$SksFavouriteDishesResponse, _$SksFavouriteDishesResponseTranslatable {
-  const factory SksFavouriteDishesResponse({@translatableField required IList<SksMenuDishMinimal> meals}) =
-      _SksFavouriteDishesResponse;
+  const factory SksFavouriteDishesResponse({
+    @translatableField @Default(IListConst([])) IList<SksMenuDishMinimal> meals,
+  }) = _SksFavouriteDishesResponse;
 
   const SksFavouriteDishesResponse._();
 
