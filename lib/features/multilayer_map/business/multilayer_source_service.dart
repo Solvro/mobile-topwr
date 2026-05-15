@@ -16,6 +16,7 @@ import "../data/repositories/buildings_repository.dart";
 import "../data/repositories/library_repository.dart";
 import "../data/repositories/pink_box_repository.dart";
 import "../data/repositories/polinkas_repository.dart";
+import "../data/utils/utils.dart";
 
 part "multilayer_source_service.g.dart";
 
@@ -47,6 +48,35 @@ Future<IList<MultilayerItem>> multilayerSourceService(Ref ref) async {
     else
       Future.value(const <PinkBox>[]),
   ]);
+  final sortedLibraries = libraries
+      .whereType<Library>()
+      .where((library) => library.branch == branch)
+      .toIList()
+      .sortByAssociatedBuilding(
+        buildingOf: (library) => library.building,
+        tieBreaker: (a, b) => a.rawId.compareTo(b.rawId),
+      );
+  final sortedAeds = aeds
+      .whereType<Aed>()
+      .where((aed) => aed.branch == branch)
+      .toIList()
+      .sortByAssociatedBuilding(buildingOf: (aed) => aed.building, tieBreaker: (a, b) => a.rawId.compareTo(b.rawId));
+  final sortedBicycleShowers = bicycleShowers
+      .whereType<BicycleShower>()
+      .where((shower) => shower.branch == branch)
+      .toIList()
+      .sortByAssociatedBuilding(
+        buildingOf: (shower) => shower.building,
+        tieBreaker: (a, b) => a.rawId.compareTo(b.rawId),
+      );
+  final sortedPinkBoxes = pinkBoxes
+      .whereType<PinkBox>()
+      .where((pinkBox) => pinkBox.branch == branch)
+      .toIList()
+      .sortByAssociatedBuilding(
+        buildingOf: (pinkBox) => pinkBox.building,
+        tieBreaker: (a, b) => a.rawId.compareTo(b.rawId),
+      );
   return <MultilayerItem>[
     ...buildings
         .whereType<Building>()
@@ -56,19 +86,10 @@ Future<IList<MultilayerItem>> multilayerSourceService(Ref ref) async {
         .whereType<PolinkaStation>()
         .map((station) => PolinkaItem(station: station))
         .where((item) => item.station.branch == branch),
-    ...libraries
-        .whereType<Library>()
-        .map((library) => LibraryItem(library: library))
-        .where((item) => item.library.branch == branch),
-    ...aeds.whereType<Aed>().map((aed) => AedItem(aed: aed)).where((item) => item.aed.branch == branch),
-    ...bicycleShowers
-        .whereType<BicycleShower>()
-        .map((shower) => BicycleShowerItem(shower: shower))
-        .where((item) => item.shower.branch == branch),
-    ...pinkBoxes
-        .whereType<PinkBox>()
-        .map((pinkBox) => PinkBoxItem(pinkBox: pinkBox))
-        .where((item) => item.pinkBox.branch == branch),
+    ...sortedLibraries.map((library) => LibraryItem(library: library)),
+    ...sortedAeds.map((aed) => AedItem(aed: aed)),
+    ...sortedBicycleShowers.map((shower) => BicycleShowerItem(shower: shower)),
+    ...sortedPinkBoxes.map((pinkBox) => PinkBoxItem(pinkBox: pinkBox)),
   ].lock;
 }
 
