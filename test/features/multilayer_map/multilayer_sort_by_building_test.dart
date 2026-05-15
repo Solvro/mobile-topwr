@@ -50,7 +50,7 @@ void main() {
     branch: Branch.main,
   );
 
-  test("sortByAssociatedBuilding orders items by building code and keeps null buildings last", () {
+  test("sortByAssociatedBuilding orders libraries by building code, then raw id", () {
     final libraries = [
       const Library(
         rawId: 10,
@@ -87,6 +87,23 @@ void main() {
         longitude: 17.31,
         branch: Branch.main,
       ),
+      const Library(
+        rawId: 9,
+        title: "Earlier library A1",
+        room: "100",
+        latitude: 51,
+        longitude: 17,
+        building: buildingA1,
+        branch: Branch.main,
+      ),
+      const Library(
+        rawId: 8,
+        title: "Earlier library without building",
+        room: null,
+        latitude: 51.32,
+        longitude: 17.32,
+        branch: Branch.main,
+      ),
     ].toIList();
 
     final sortedLibraries = libraries.sortByAssociatedBuilding(
@@ -94,8 +111,10 @@ void main() {
       tieBreaker: (a, b) => a.rawId.compareTo(b.rawId),
     );
 
-    expect(sortedLibraries.map((library) => library.building?.name).toList(), ["A-1", "A-2", "B-1", null]);
+    expect(sortedLibraries.map((library) => library.rawId).toList(), [9, 12, 11, 10, 8, 13]);
+  });
 
+  test("sortByAssociatedBuilding orders AEDs by building code, then raw id", () {
     final aeds = [
       const Aed(
         rawId: 20,
@@ -140,6 +159,27 @@ void main() {
         instructions: null,
         branch: Branch.main,
       ),
+      const Aed(
+        rawId: 19,
+        latitude: 51,
+        longitude: 17,
+        photo: null,
+        addressLine1: "Line 0",
+        addressLine2: null,
+        instructions: "Earlier A1",
+        building: buildingA1,
+        branch: Branch.main,
+      ),
+      const Aed(
+        rawId: 18,
+        latitude: 51.31,
+        longitude: 17.31,
+        photo: null,
+        addressLine1: "Line 5",
+        addressLine2: null,
+        instructions: null,
+        branch: Branch.main,
+      ),
     ].toIList();
 
     final sortedAeds = aeds.sortByAssociatedBuilding(
@@ -147,8 +187,10 @@ void main() {
       tieBreaker: (a, b) => a.rawId.compareTo(b.rawId),
     );
 
-    expect(sortedAeds.map((aed) => aed.building?.name).toList(), ["A-1", "A-2", "B-1", null]);
+    expect(sortedAeds.map((aed) => aed.rawId).toList(), [19, 21, 22, 20, 18, 23]);
+  });
 
+  test("sortByAssociatedBuilding orders showers by building code, then raw id", () {
     final showers = [
       const BicycleShower(
         rawId: 30,
@@ -185,6 +227,23 @@ void main() {
         longitude: 17.3,
         branch: Branch.main,
       ),
+      const BicycleShower(
+        rawId: 29,
+        room: "Earlier room A1",
+        instructions: "Earlier A1",
+        latitude: 51,
+        longitude: 17,
+        building: buildingA1,
+        branch: Branch.main,
+      ),
+      const BicycleShower(
+        rawId: 28,
+        room: null,
+        instructions: null,
+        latitude: 51.31,
+        longitude: 17.31,
+        branch: Branch.main,
+      ),
     ].toIList();
 
     final sortedShowers = showers.sortByAssociatedBuilding(
@@ -192,8 +251,10 @@ void main() {
       tieBreaker: (a, b) => a.rawId.compareTo(b.rawId),
     );
 
-    expect(sortedShowers.map((shower) => shower.building?.name).toList(), ["A-1", "A-2", "B-1", null]);
+    expect(sortedShowers.map((shower) => shower.rawId).toList(), [29, 32, 31, 30, 28, 33]);
+  });
 
+  test("sortByAssociatedBuilding orders pink boxes by building code, then raw id", () {
     final pinkBoxes = [
       const PinkBox(
         rawId: 40,
@@ -219,13 +280,16 @@ void main() {
         building: buildingA1,
         branch: Branch.main,
       ),
+      const PinkBox(rawId: 43, roomOrNearby: null, latitude: 51.3, longitude: 17.3, branch: Branch.main),
       const PinkBox(
-        rawId: 43,
-        roomOrNearby: null,
-        latitude: 51.3,
-        longitude: 17.3,
+        rawId: 39,
+        roomOrNearby: "Earlier A1",
+        latitude: 51,
+        longitude: 17,
+        building: buildingA1,
         branch: Branch.main,
       ),
+      const PinkBox(rawId: 38, roomOrNearby: null, latitude: 51.31, longitude: 17.31, branch: Branch.main),
     ].toIList();
 
     final sortedPinkBoxes = pinkBoxes.sortByAssociatedBuilding(
@@ -233,6 +297,6 @@ void main() {
       tieBreaker: (a, b) => a.rawId.compareTo(b.rawId),
     );
 
-    expect(sortedPinkBoxes.map((pinkBox) => pinkBox.building?.name).toList(), ["A-1", "A-2", "B-1", null]);
+    expect(sortedPinkBoxes.map((pinkBox) => pinkBox.rawId).toList(), [39, 42, 41, 40, 38, 43]);
   });
 }
