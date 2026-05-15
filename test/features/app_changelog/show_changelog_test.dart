@@ -27,6 +27,14 @@ void main() {
   test("returns false when app version is empty", () {
     final changelog = buildChangelog("1.2.28");
 
+    final result = isChangelogForAppVersion(appVersion: "", changelog: changelog);
+
+    expect(result, isFalse);
+  });
+
+  test("returns false when app version is whitespace only", () {
+    final changelog = buildChangelog("1.2.28");
+
     final result = isChangelogForAppVersion(appVersion: " ", changelog: changelog);
 
     expect(result, isFalse);

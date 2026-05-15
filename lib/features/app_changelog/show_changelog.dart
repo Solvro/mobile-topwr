@@ -24,11 +24,12 @@ Future<void> showChangelog(BuildContext context, WidgetRef ref) async {
   if (changelog == null) return;
 
   final packageInfo = await PackageInfo.fromPlatform();
-  if (!isChangelogForAppVersion(appVersion: packageInfo.version, changelog: changelog)) {
+  final appVersion = packageInfo.version.trim();
+  if (!isChangelogForAppVersion(appVersion: appVersion, changelog: changelog)) {
     return;
   }
 
-  final changelogSeen = await ref.read(localChangelogRepositoryProvider(packageInfo.version).future) ?? true;
+  final changelogSeen = await ref.read(localChangelogRepositoryProvider(appVersion).future) ?? true;
 
   if (!changelogSeen && context.mounted && changelog.changes.isNotEmpty) {
     await showDialog<void>(
