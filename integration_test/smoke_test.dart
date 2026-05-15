@@ -2,14 +2,18 @@
 library;
 
 import "package:drift/drift.dart";
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_test/flutter_test.dart";
 import "package:integration_test/integration_test.dart";
+import "package:package_info_plus/package_info_plus.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 import "package:solvro_translator_core/solvro_translator_core.dart";
 import "package:topwr/config/nav_bar_config.dart";
 import "package:topwr/config/ui_config.dart";
+import "package:topwr/features/app_changelog/data/models/changelog.dart";
 import "package:topwr/features/app_changelog/data/repository/local_changelog_repository.dart";
+import "package:topwr/features/app_changelog/data/repository/my_changelog_repository.dart";
 import "package:topwr/features/branches/data/model/branch.dart";
 import "package:topwr/features/branches/data/repository/branch_repository.dart";
 import "package:topwr/main.dart" as app;
@@ -23,6 +27,13 @@ class MockPreferredLanguageRepository extends PreferredLanguageRepository {
   }
 }
 
+class MockFirstTimePreferredLanguageRepository extends PreferredLanguageRepository {
+  @override
+  Future<SolvroLocale?> build() {
+    return Future.value();
+  }
+}
+
 class MockBranchRepository extends BranchRepository {
   @override
   Future<Branch?> build() {
@@ -30,10 +41,24 @@ class MockBranchRepository extends BranchRepository {
   }
 }
 
+class MockFirstTimeBranchRepository extends BranchRepository {
+  @override
+  Future<Branch?> build() {
+    return Future.value();
+  }
+}
+
 class MockLocalChangelogRepository extends LocalChangelogRepository {
   @override
   Future<bool?> build(String appVersion) {
     return Future.value(true);
+  }
+}
+
+class MockUnseenChangelogRepository extends LocalChangelogRepository {
+  @override
+  Future<bool?> build(String appVersion) {
+    return Future.value(false);
   }
 }
 
@@ -91,13 +116,29 @@ void main() {
     ];
   }
 
+  Future<List<Override>> createFirstTimePopupProviderOverrides() async {
+    final packageInfo = await PackageInfo.fromPlatform();
+
+    return [
+      preferredLanguageRepositoryProvider.overrideWith(MockFirstTimePreferredLanguageRepository.new),
+      branchRepositoryProvider.overrideWith(MockFirstTimeBranchRepository.new),
+      localChangelogRepositoryProvider.overrideWith(MockUnseenChangelogRepository.new),
+      changelogRepositoryProvider.overrideWith(
+        (ref) => Changelog(
+          name: packageInfo.version,
+          changes: const IListConst([ChangelogChange(changeType: TypeOfChange.feature, name: "Smoke test changelog")]),
+        ),
+      ),
+    ];
+  }
+
   group("End-to-End Smoke Tests", () {
     tearDown(() async {
       await Future<void>.delayed(const Duration(milliseconds: 200));
     });
 
     testWidgets("Popup flow test", (tester) async {
-      await app.main();
+      await app.main(overrides: await createFirstTimePopupProviderOverrides());
       await tester.pumpAndSettle();
 
       final languageButton = find.text("🇵🇱 Polski");
