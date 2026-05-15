@@ -6,4 +6,6 @@ part "filters_search.stories.g.dart";
 
 const meta = Meta<FiltersSearch>();
 
-final $default = FiltersSearchStory();
+final $default = FiltersSearchStory(
+  setup: (context, widget, args) => SizedBox(height: 80, child: Stack(children: [widget])),
+);

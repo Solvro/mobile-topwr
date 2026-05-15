@@ -3,10 +3,11 @@ import "package:topwr/api_base_rest/shared_models/image_data.dart";
 import "package:topwr/widgets/my_cached_image.dart";
 import "package:topwr/widgets/zoomable_images.dart";
 import "package:widgetbook/widgetbook.dart";
+import "../widgetbook_placeholders.dart";
 
 part "zoomable_rest_api_image.stories.g.dart";
 
-const _mockImageData = ImageData(url: "https://placehold.co/1200x800/png?text=Campus+Map");
+const _mockImageData = ImageData(url: widgetbookPlaceholderImageUrl);
 
 class ZoomableRestApiImageStoryKnobs {
   final ImageData imageData;

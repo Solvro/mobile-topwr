@@ -2,7 +2,6 @@ import "dart:async";
 import "dart:io";
 
 import "package:audio_service/audio_service.dart";
-import "package:clarity_flutter/clarity_flutter.dart";
 import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:flutter/services.dart";
@@ -16,6 +15,7 @@ import "api_base_rest/client/offline_error.dart";
 import "config/env.dart";
 import "config/ui_config.dart";
 import "config/wiredash.dart";
+import "features/analytics/data/app_analytics.dart";
 import "features/in_app_review/presentation/in_app_review.dart";
 import "features/navigator/app_router.dart";
 import "features/navigator/hooks/use_deeplinks.dart";
@@ -49,7 +49,7 @@ Future<RadioAudioHandlerBridge> _initAudioHandler() {
 
 Future<void> main({List<Override>? overrides}) async {
   WidgetsFlutterBinding.ensureInitialized();
-  if (!kDebugMode) {
+  if (!kDebugMode && !kIsWeb) {
     SplashScreenController.preserveNativeSplashScreen();
   }
 
@@ -80,11 +80,10 @@ Future<void> main({List<Override>? overrides}) async {
 
 Future<void> runNormalApp() async {
   final audioHandler = await _initAudioHandler();
-  final config = ClarityConfig(projectId: Env.clarityConfigId, logLevel: LogLevel.None);
+  await appAnalytics.initialize(projectId: Env.clarityConfigId);
 
   runApp(
-    ClarityWidget(
-      clarityConfig: config,
+    appAnalytics.wrapApp(
       app: ProviderScope(
         retry: (retryCount, error) {
           if (error is ParkingsOfflineException) return null;

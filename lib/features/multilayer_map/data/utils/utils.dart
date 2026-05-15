@@ -21,19 +21,47 @@ extension ChangeNullAdressX on BuildContext {
   }
 }
 
+int compareBuildingCodes(Building a, Building b) {
+  final codeA = a.name.split(BuildingSearchConfig.buildingCodeSeperator);
+  final codeB = b.name.split(BuildingSearchConfig.buildingCodeSeperator);
+  if (codeA[0] == codeB[0]) {
+    return codeA[1].tryParseInt().compareTo(codeB[1].tryParseInt());
+  } else {
+    return codeA[0].compareTo(codeB[0]);
+  }
+}
+
+int compareBuildingsNullable(Building? a, Building? b) {
+  if (a == null && b == null) {
+    return 0;
+  }
+  if (a == null) {
+    return 1;
+  }
+  if (b == null) {
+    return -1;
+  }
+  return compareBuildingCodes(a, b);
+}
+
 extension SortByCodeOrderX on IList<Building> {
   IList<Building> sortByCodeOrder() {
-    return sort(_compareCodes);
+    return sort(compareBuildingCodes);
   }
+}
 
-  int _compareCodes(Building a, Building b) {
-    final codeA = a.name.split(BuildingSearchConfig.buildingCodeSeperator);
-    final codeB = b.name.split(BuildingSearchConfig.buildingCodeSeperator);
-    if (codeA[0] == codeB[0]) {
-      return codeA[1].tryParseInt().compareTo(codeB[1].tryParseInt());
-    } else {
-      return codeA[0].compareTo(codeB[0]);
-    }
+extension SortByAssociatedBuildingX<T> on IList<T> {
+  IList<T> sortByAssociatedBuilding({
+    required Building? Function(T item) buildingOf,
+    required int Function(T a, T b) tieBreaker,
+  }) {
+    return sort((a, b) {
+      final buildingComparison = compareBuildingsNullable(buildingOf(a), buildingOf(b));
+      if (buildingComparison != 0) {
+        return buildingComparison;
+      }
+      return tieBreaker(a, b);
+    });
   }
 }
 

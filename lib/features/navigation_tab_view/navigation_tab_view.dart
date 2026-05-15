@@ -30,7 +30,7 @@ class NavigationTabView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final children = [
       const SizedBox(height: NavigationTabViewConfig.universalPadding),
-      const AboutUsTile(),
+      const AboutUsTile(key: NavigationTabViewConfig.aboutUsKey),
       const ShowFeedbackTile(),
       const SizedBox(height: NavigationTabViewConfig.universalPadding / 3),
       _NavigationRow(
@@ -86,7 +86,7 @@ class NavigationTabView extends ConsumerWidget {
         child: Text(context.localize.rest_header, style: context.textTheme.headlineMedium),
       ),
       const SksTile(),
-      const SettingsTitle(),
+      const SettingsTitle(key: NavigationTabViewConfig.settingsKey),
       const AboutTheAppTile(),
       const SizedBox(height: NavigationTabViewConfig.universalPadding),
     ];

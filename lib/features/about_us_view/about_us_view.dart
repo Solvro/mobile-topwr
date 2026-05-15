@@ -40,6 +40,7 @@ class _AboutUsView extends ConsumerWidget {
     return switch (state) {
       AsyncError(:final error, :final stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
       AsyncValue(:final AboutUs value) => CustomScrollView(
+        key: MyAppConfig.verticalScrollableKey,
         slivers: [
           SliverPersistentHeader(
             delegate: SliverHeaderSection(

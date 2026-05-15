@@ -1,7 +1,7 @@
-import "package:clarity_flutter/clarity_flutter.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../../config/shared_prefs.dart";
+import "../../../analytics/data/app_analytics.dart";
 import "../model/branch.dart";
 
 part "branch_repository.g.dart";
@@ -17,7 +17,7 @@ class BranchRepository extends _$BranchRepository {
     final branchName = sharedPrefs.getString(_key);
     final branch = Branch.fromNameOrNull(branchName);
     if (branch != null) {
-      Clarity.setCustomTags("branch", [branch.name]);
+      appAnalytics.setCustomTag("branch", branch.name);
     }
     return branch;
   }
@@ -26,7 +26,7 @@ class BranchRepository extends _$BranchRepository {
     final sharedPrefs = await ref.watch(sharedPreferencesSingletonProvider.future);
 
     await sharedPrefs.setString(_key, branch.name);
-    Clarity.setCustomTags("branch", [branch.name]);
+    appAnalytics.setCustomTag("branch", branch.name);
     state = AsyncValue.data(branch);
   }
 }

@@ -5,6 +5,7 @@ import "package:topwr/features/digital_guide/data/models/digital_guide_response.
 import "package:topwr/features/digital_guide/tabs/localization/presentation/localization_expansion_tile_content.dart";
 import "package:topwr/features/multilayer_map/data/model/building.dart";
 import "package:widgetbook/widgetbook.dart";
+import "../../../../../widgetbook_placeholders.dart";
 
 part "localization_expansion_tile_content.stories.g.dart";
 
@@ -53,7 +54,7 @@ const _mockBuilding = Building(
   longitude: 17.0385,
   externalDigitalGuideMode: ExternalDigitalGuideMode.digitalGuideBuilding,
   externalDigitalGuideIdOrUrl: "313",
-  cover: ImageData(url: "https://placehold.co/1200x800/png?text=Building+A"),
+  cover: ImageData(url: widgetbookPlaceholderImageUrl),
   branch: Branch.main,
 );
 

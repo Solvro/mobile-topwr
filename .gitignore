@@ -174,3 +174,5 @@ windows/flutter/generated_plugins.cmake
 android/.kotlin/
 
 packages/widgetbook/assets/
+
+pubspec_overrides.yaml

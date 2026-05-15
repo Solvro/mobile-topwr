@@ -5,6 +5,7 @@ import "package:topwr/features/multilayer_map/data/model/building.dart";
 import "package:topwr/features/multilayer_map/data/model/polinka_station.dart";
 import "package:topwr/features/multilayer_map/presentation/widgets/polinka_tile.dart";
 import "package:widgetbook/widgetbook.dart";
+import "../../../../widgetbook_placeholders.dart";
 
 part "polinka_tile.stories.g.dart";
 
@@ -14,7 +15,7 @@ const _mockPolinkaStationWithPlaceholderPhoto = PolinkaStation(
   campusId: 1,
   addressLine1: "123 Polinka Street",
   addressLine2: "Station A",
-  photo: ImageData(url: "https://placehold.co/640x480/png?text=Polinka+Station"),
+  photo: ImageData(url: widgetbookPlaceholderImageUrl),
   latitude: 51.1079,
   longitude: 17.0385,
   branch: Branch.main,

@@ -1,6 +1,7 @@
 import "package:flutter/widgets.dart";
 import "package:topwr/widgets/my_cached_image.dart";
 import "package:widgetbook/widgetbook.dart";
+import "../widgetbook_placeholders.dart";
 
 part "my_cached_image.stories.g.dart";
 
@@ -33,7 +34,7 @@ final defaults = _Defaults(
 
 final $default = MyCachedImageStory(
   args: MyCachedImageStoryKnobsArgs(
-    imageUrl: NullableStringArg("https://placehold.co/800x600/png?text=Cached+Image"),
+    imageUrl: NullableStringArg(widgetbookPlaceholderImageUrl),
     semanticsLabel: NullableStringArg("Cached image preview"),
   ),
 );

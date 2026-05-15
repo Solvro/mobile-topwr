@@ -26,9 +26,11 @@ class MyLocationLayer extends ConsumerWidget {
           zoomStream.add(18);
         }
 
-        return CurrentLocationLayer(
-          alignPositionStream: zoomStream.stream,
-          alignPositionOnUpdate: isFollowingCurrLoc ? AlignOnUpdate.always : AlignOnUpdate.never,
+        return IgnorePointer(
+          child: CurrentLocationLayer(
+            alignPositionStream: zoomStream.stream,
+            alignPositionOnUpdate: isFollowingCurrLoc ? AlignOnUpdate.always : AlignOnUpdate.never,
+          ),
         );
       },
     );

@@ -55,6 +55,10 @@ abstract class HomeViewConfig {
   static const squareCardTextShadow = [
     Shadow(color: HexColor.consts(0x6621334D66), blurRadius: 4, offset: Offset(0, 2)),
   ];
+
+  static const sksMenuKey = Key("sks_menu");
+  static const calendarKey = Key("calendar");
+  static const newsListKey = Key("news_list");
 }
 
 abstract class CalendarConfig {
@@ -223,9 +227,12 @@ abstract class NavigationTabViewConfig {
   static const smallerPadding = 6.0;
   static const tinyPadding = 5.0;
 
+  static const aboutUsKey = Key("aboutUs");
   static const departments = Key("departments");
   static const scienceClubsKey = Key("science_club");
   static const radioLuzKey = Key("radio_luz");
+  static const settingsKey = Key("settings");
+  static const sksFavouriteDishesKey = Key("sks_favourite_dishes");
 }
 
 abstract class DigitalGuideConfig {

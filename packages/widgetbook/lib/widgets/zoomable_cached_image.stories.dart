@@ -2,6 +2,7 @@ import "package:flutter/widgets.dart";
 import "package:topwr/widgets/my_cached_image.dart";
 import "package:topwr/widgets/zoomable_images.dart";
 import "package:widgetbook/widgetbook.dart";
+import "../widgetbook_placeholders.dart";
 
 part "zoomable_cached_image.stories.g.dart";
 
@@ -34,7 +35,7 @@ final defaults = _Defaults(
 
 final $default = ZoomableCachedImageStory(
   args: ZoomableCachedImageStoryKnobsArgs(
-    imageUrl: StringArg("https://placehold.co/1200x800/png?text=Zoomable+Image"),
+    imageUrl: StringArg(widgetbookPlaceholderImageUrl),
     semanticsLabel: StringArg("Zoomable campus image"),
   ),
 );

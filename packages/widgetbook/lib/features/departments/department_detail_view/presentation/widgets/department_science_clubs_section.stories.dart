@@ -7,6 +7,7 @@ import "package:topwr/features/departments/department_detail_view/data/models/st
 import "package:topwr/features/departments/department_detail_view/presentation/widgets/science_clubs_section.dart";
 import "package:topwr/features/science_club/science_clubs_view/model/science_clubs.dart";
 import "package:widgetbook/widgetbook.dart";
+import "../../../../../widgetbook_placeholders.dart";
 
 part "department_science_clubs_section.stories.g.dart";
 
@@ -15,7 +16,7 @@ final _mockDepartment = DepartmentDetails(
   name: "Wydział Informatyki i Telekomunikacji",
   code: "W4",
   betterCode: "WIT",
-  logo: const ImageData(url: "https://placehold.co/240x240/png?text=WIT"),
+  logo: const ImageData(url: widgetbookPlaceholderImageUrl),
   gradientStart: "#FF5733",
   gradientStop: "#33FF57",
   addressLine1: "ul. Janiszewskiego 11/17",
