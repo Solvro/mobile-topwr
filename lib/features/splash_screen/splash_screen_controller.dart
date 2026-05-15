@@ -1,7 +1,6 @@
 import "dart:async";
 import "dart:io";
 
-import "package:clarity_flutter/clarity_flutter.dart";
 import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:flutter_native_splash/flutter_native_splash.dart";
@@ -10,6 +9,7 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 import "../../config/ui_config.dart";
 import "../../firebase_init.dart";
 import "../../utils/ref_extensions.dart";
+import "../analytics/data/app_analytics.dart";
 import "../home_view/widgets/logo_app_bar.dart";
 import "../map_view/data/cache.dart";
 
@@ -27,7 +27,7 @@ class SplashScreenController extends _$SplashScreenController {
     unawaited(
       ref.registerForNotifications().then((result) {
         if (result.deviceKey != null) {
-          Clarity.setCustomUserId(result.deviceKey!);
+          appAnalytics.setCustomUserId(result.deviceKey!);
         }
       }),
     );
