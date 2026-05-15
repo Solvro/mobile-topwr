@@ -58,7 +58,7 @@ class NavActionsSection extends ConsumerWidget {
 }
 
 class _NavActionButton extends StatelessWidget {
-  const _NavActionButton(this.title, this.icon, this.onTap, {this.color}, {super.key});
+  const _NavActionButton(this.title, this.icon, this.onTap, {this.color, super.key});
   final String title;
   final Widget icon;
   final VoidCallback onTap;
