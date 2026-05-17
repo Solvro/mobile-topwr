@@ -13,7 +13,16 @@ class LocalLayersRepository extends _$LocalLayersRepository {
   @override
   Future<bool> build(LayerOptions layerOption) async {
     final prefs = await ref.watch(sharedPreferencesSingletonProvider.future);
-    return prefs.getBool(layerOption.sharedPrefsKey) ?? true;
+    final storedValue = prefs.getBool(layerOption.sharedPrefsKey);
+    if (storedValue != null) {
+      return storedValue;
+    }
+
+    if (layerOption is BicycleShowerLayerOptions || layerOption is PinkBoxLayerOptions) {
+      return false;
+    }
+
+    return true;
   }
 
   Future<void> setMode({required bool newValue}) async {
