@@ -61,6 +61,7 @@ class BottomScrollSheet<T extends GoogleNavigable> extends HookConsumerWidget {
             snapSizes: [recommendedSheetFraction],
             builder: (BuildContext context, ScrollController scrollController) {
               return _SheetConsumer<T>(
+                sheetParentHeight: screenHeight,
                 recommendedSheetHeight: recommendedSheetHeight,
                 scrollController: scrollController,
               );
@@ -73,8 +74,15 @@ class BottomScrollSheet<T extends GoogleNavigable> extends HookConsumerWidget {
 }
 
 class _SheetConsumer<T extends GoogleNavigable> extends HookConsumerWidget {
-  const _SheetConsumer({required this.recommendedSheetHeight, required this.scrollController});
+  const _SheetConsumer({
+    required this.sheetParentHeight,
+    required this.recommendedSheetHeight,
+    required this.scrollController,
+  });
 
+  /// Max height of the sheet's parent (same as [LayoutBuilder] `constraints.maxHeight`).
+  /// Do not use [MediaQuery.sizeOf]: it is the full window, but the sheet never exceeds this value.
+  final double sheetParentHeight;
   final double recommendedSheetHeight;
   final ScrollController scrollController;
 
@@ -89,6 +97,9 @@ class _SheetConsumer<T extends GoogleNavigable> extends HookConsumerWidget {
       messageBuilder: (expanded) => expanded ? l10n.expanded_screen_reader_label : l10n.collapsed_screen_reader_label,
     );
 
+    final statusBarHeight = MediaQuery.viewPaddingOf(context).top;
+    final topSafeAreaPadding = size > sheetParentHeight - statusBarHeight ? statusBarHeight : 0.0;
+
     return Semantics(
       label: isExpanded
           ? context.localize.bottom_scroll_sheet_description_expanded
@@ -96,7 +107,7 @@ class _SheetConsumer<T extends GoogleNavigable> extends HookConsumerWidget {
       child: Container(
         clipBehavior: Clip.antiAlias,
         decoration: _RoundedTopDecoration(color: context.colorScheme.surface),
-        child: MapDataSheetList<T>(scrollController: scrollController),
+        child: MapDataSheetList<T>(scrollController: scrollController, topSafeAreaPadding: topSafeAreaPadding),
       ),
     );
   }

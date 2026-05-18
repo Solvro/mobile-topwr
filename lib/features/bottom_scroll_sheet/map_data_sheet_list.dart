@@ -27,9 +27,10 @@ import "navigate_button.dart";
 import "sliver_multi_tabber_builder.dart";
 
 class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
-  const MapDataSheetList({required this.scrollController, super.key});
+  const MapDataSheetList({required this.scrollController, this.topSafeAreaPadding = 0, super.key});
 
   final ScrollController scrollController;
+  final double topSafeAreaPadding;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -139,7 +140,7 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
       key: MyAppConfig.verticalScrollableKey,
       controller: scrollController,
       slivers: [
-        const SliverPersistentHeader(pinned: true, delegate: DragHandle()),
+        SliverPersistentHeader(pinned: true, delegate: DragHandle(topPadding: topSafeAreaPadding)),
         SliverAppBar(
           primary: false,
           pinned: true,
