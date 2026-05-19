@@ -105,7 +105,9 @@ class _GuideDetailDataView extends ConsumerWidget {
                   if (value.description.isNotEmpty)
                     SliverToBoxAdapter(
                       child: Padding(padding: const EdgeInsets.all(24), child: MyHtmlWidget(value.description)),
-                    ),
+                    )
+                  else
+                    const SliverToBoxAdapter(child: SizedBox(height: 12)),
                   SliverPadding(
                     padding: const EdgeInsets.only(bottom: GuideDetailViewConfig.paddingLarge),
                     sliver: SliverList.separated(
