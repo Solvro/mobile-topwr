@@ -5,6 +5,7 @@ import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../widgets/my_cached_image.dart";
 import "../../../../widgets/wide_tile_card.dart";
+import "../../../branches/data/model/branch.dart";
 import "../data/models/department.dart";
 import "../data/utils/departments_extensions.dart";
 
@@ -25,8 +26,8 @@ class DepartmentCard extends StatelessWidget {
       child: WideTileCard(
         onTap: onClick,
         isActive: true,
-        title: department.name,
-        subtitle: department.code,
+        title: department.branch == Branch.main ? department.code : department.name,
+        subtitle: department.branch == Branch.main ? department.name : null,
         activeShadows: null,
         activeGradient: department.gradient,
         trailing: Padding(
