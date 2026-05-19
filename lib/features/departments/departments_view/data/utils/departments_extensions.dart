@@ -30,8 +30,8 @@ extension _GetDepartmentsCodeX on Department? {
 extension SortByCodeX on List<Department> {
   void sortByCodeOrder() {
     sort((a, b) {
-      final aStartsWithW = a.code.startsWith("W");
-      final bStartsWithW = b.code.startsWith("W");
+      final aStartsWithW = a.code.startsWith("W") && !a.code.startsWith("W0");
+      final bStartsWithW = b.code.startsWith("W") && !b.code.startsWith("W0");
 
       if (aStartsWithW != bStartsWithW) return aStartsWithW ? -1 : 1;
 
