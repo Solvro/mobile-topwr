@@ -98,7 +98,12 @@ class _SheetConsumer<T extends GoogleNavigable> extends HookConsumerWidget {
     );
 
     final statusBarHeight = MediaQuery.viewPaddingOf(context).top;
-    final topSafeAreaPadding = size > sheetParentHeight - statusBarHeight ? statusBarHeight : 0.0;
+    // Inset ramps with sheet height: top of sheet is at (parentHeight - size); overlap with the
+    // status bar is max(0, statusBarHeight - thatY), so padding tracks slow and fast drags alike.
+    final sheetTopFromParentTop = sheetParentHeight - size;
+    final topSafeAreaPadding = statusBarHeight > 0
+        ? (statusBarHeight - sheetTopFromParentTop).clamp(0.0, statusBarHeight)
+        : 0.0;
 
     return Semantics(
       label: isExpanded
