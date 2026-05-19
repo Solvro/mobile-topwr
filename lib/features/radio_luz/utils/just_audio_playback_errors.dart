@@ -32,7 +32,9 @@ void logJustAudioPlaybackError(String context, Object error, [StackTrace? stackT
   }
 }
 
-Never logAndRethrowJustAudioPlaybackError(String context, Object error, StackTrace stackTrace) {
+void logAndRethrowJustAudioPlaybackError(String context, Object error, StackTrace stackTrace) {
   logJustAudioPlaybackError(context, error, stackTrace);
+  if (isIgnorableJustAudioPlaybackError(error)) return;
+
   Error.throwWithStackTrace(error, stackTrace);
 }

@@ -69,9 +69,6 @@ jobs:
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
           echo "release=com.solvro.ToPwr@${VERSION}" >> "$GITHUB_OUTPUT"
 
-      - name: Configure iOS Dart debug symbols
-        run: flutter build ios --release --split-debug-info=build/app/outputs/symbols --no-codesign --config-only
-
       - name: Run Fastlane internal
         env:
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
@@ -83,6 +80,7 @@ jobs:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           APP_VERSION: ${{ steps.version.outputs.version }}
           LATEST_CHANGELOG: ${{ inputs.latest_changelog }}
+          SPLIT_DEBUG_INFO: ${{ github.workspace }}/build/app/outputs/symbols
         run: |
           cd ios
           bundle exec fastlane internal

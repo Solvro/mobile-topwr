@@ -44,9 +44,11 @@ platform :ios do
     end
 
     match(type: "appstore", readonly: true, api_key: api_key)
+    split_debug_info = ENV["SPLIT_DEBUG_INFO"] || File.expand_path("../../build/app/outputs/symbols", __dir__)
     build_app(
       workspace: "./Runner.xcworkspace",
-      scheme: "Runner"
+      scheme: "Runner",
+      xcargs: "SPLIT_DEBUG_INFO=#{split_debug_info}"
     )
     upload_options = {
       distribute_external: false,

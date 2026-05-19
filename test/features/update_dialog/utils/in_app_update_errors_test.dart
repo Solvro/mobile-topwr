@@ -9,8 +9,7 @@ void main() {
         isIgnorableInAppUpdateError(
           PlatformException(
             code: "TASK_FAILURE",
-            message:
-                "-9: Install Error(-9): The Play Store app is either not installed or not the official version.",
+            message: "-9: Install Error(-9): The Play Store app is either not installed or not the official version.",
           ),
         ),
         isTrue,
@@ -22,8 +21,7 @@ void main() {
         isIgnorableInAppUpdateError(
           PlatformException(
             code: "TASK_FAILURE",
-            message:
-                "-6: Install Error(-6): The download/install is not allowed, due to the current device state.",
+            message: "-6: Install Error(-6): The download/install is not allowed, due to the current device state.",
           ),
         ),
         isTrue,
@@ -35,8 +33,7 @@ void main() {
         isIgnorableInAppUpdateError(
           PlatformException(
             code: "TASK_FAILURE",
-            message:
-                "-10: Install Error(-10): The app is not owned by any user on this device.",
+            message: "-10: Install Error(-10): The app is not owned by any user on this device.",
           ),
         ),
         isTrue,
@@ -45,27 +42,15 @@ void main() {
 
     test("ignores Play Core service bind failures", () {
       expect(
-        isIgnorableInAppUpdateError(
-          PlatformException(
-            code: "TASK_FAILURE",
-            message: "Failed to bind to the service.",
-          ),
-        ),
+        isIgnorableInAppUpdateError(PlatformException(code: "TASK_FAILURE", message: "Failed to bind to the service.")),
         isTrue,
       );
     });
 
     test("does not ignore unrelated platform exceptions", () {
+      expect(isIgnorableInAppUpdateError(PlatformException(code: "OTHER", message: "Install Error(-9): ...")), isFalse);
       expect(
-        isIgnorableInAppUpdateError(
-          PlatformException(code: "OTHER", message: "Install Error(-9): ..."),
-        ),
-        isFalse,
-      );
-      expect(
-        isIgnorableInAppUpdateError(
-          PlatformException(code: "TASK_FAILURE", message: "Unexpected failure"),
-        ),
+        isIgnorableInAppUpdateError(PlatformException(code: "TASK_FAILURE", message: "Unexpected failure")),
         isFalse,
       );
     });
