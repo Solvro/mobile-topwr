@@ -6,6 +6,7 @@ import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:flutter/services.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
+import "package:package_info_plus/package_info_plus.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 import "package:sentry_flutter/sentry_flutter.dart";
 import "package:solvro_translator_core/solvro_translator_core.dart";
@@ -70,8 +71,16 @@ Future<void> main({List<Override>? overrides}) async {
       ),
     );
   } else {
+    String? release;
+    if (!kIsWeb) {
+      final packageInfo = await PackageInfo.fromPlatform();
+      release = "${packageInfo.packageName}@${packageInfo.version}+${packageInfo.buildNumber}";
+    }
     await SentryFlutter.init((options) {
       options.dsn = Env.bugsinkDsn;
+      if (release != null) {
+        options.release = release;
+      }
       options.sendDefaultPii = true;
       options.tracesSampleRate = 0;
     }, appRunner: runNormalApp);

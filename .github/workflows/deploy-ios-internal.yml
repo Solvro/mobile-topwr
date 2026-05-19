@@ -65,10 +65,12 @@ jobs:
       - name: Get app version
         id: version
         run: |
-          echo "version=$(grep '^version:' pubspec.yaml | sed 's/version:[[:space:]]*//' | tr -d '\r\n ')" >> "$GITHUB_OUTPUT"
+          VERSION=$(grep '^version:' pubspec.yaml | sed 's/version:[[:space:]]*//' | tr -d '\r\n ')
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "release=com.solvro.ToPwr@${VERSION}" >> "$GITHUB_OUTPUT"
 
-      - name: Build iOS - flutter minimal build
-        run: flutter build ios --release --no-codesign --config-only
+      - name: Configure iOS Dart debug symbols
+        run: flutter build ios --release --split-debug-info=build/app/outputs/symbols --no-codesign --config-only
 
       - name: Run Fastlane internal
         env:
@@ -84,3 +86,12 @@ jobs:
         run: |
           cd ios
           bundle exec fastlane internal
+
+      - name: Upload debug symbols to Bugsink
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.BUGSINK_AUTH_TOKEN }}
+          SENTRY_URL: ${{ secrets.BUGSINK_URL }}
+          SENTRY_ORG: ignored
+          SENTRY_PROJECT: ignored
+          SENTRY_RELEASE: ${{ steps.version.outputs.release }}
+        run: dart run sentry_dart_plugin
