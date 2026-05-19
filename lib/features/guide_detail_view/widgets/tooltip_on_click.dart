@@ -1,3 +1,5 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
 
@@ -12,27 +14,31 @@ class TooltipOnTap extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final overlayEntry = useRef<OverlayEntry?>(null);
-    useEffect(() {
-      return () {
-        if (overlayEntry.value != null) {
-          overlayEntry.value?.remove();
-        }
-      };
-    }, []);
+    final hideTimer = useRef<Timer?>(null);
+
+    void hideOverlay() {
+      hideTimer.value?.cancel();
+      hideTimer.value = null;
+      final entry = overlayEntry.value;
+      overlayEntry.value = null;
+      if (entry != null && entry.mounted) {
+        entry.remove();
+      }
+    }
+
+    useEffect(() => hideOverlay, const []);
+
     final showTooltip = useCallback((TapDownDetails details) {
-      overlayEntry.value?.remove();
+      hideOverlay();
+      if (!context.mounted) return;
       final entry = _createOverlayEntry(context, details.globalPosition);
       Overlay.of(context).insert(entry);
       overlayEntry.value = entry;
-      Future.delayed(const Duration(seconds: 2), () {
-        overlayEntry.value?.remove();
-        overlayEntry.value = null;
-      });
-    }, []);
-    final removeTooltip = useCallback(() {
-      overlayEntry.value?.remove();
-      overlayEntry.value = null;
-    }, []);
+      hideTimer.value = Timer(const Duration(seconds: 2), hideOverlay);
+    }, [context]);
+
+    final removeTooltip = useCallback(hideOverlay, const []);
+
     return GestureDetector(onTapDown: showTooltip, onTapCancel: removeTooltip, child: child);
   }
 
