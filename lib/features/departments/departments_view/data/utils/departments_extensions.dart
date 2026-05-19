@@ -29,6 +29,17 @@ extension _GetDepartmentsCodeX on Department? {
 
 extension SortByCodeX on List<Department> {
   void sortByCodeOrder() {
-    sort((a, b) => a.extractIntFromStrCode().compareTo(b.extractIntFromStrCode()));
+    sort((a, b) {
+      final aStartsWithW = a.code.startsWith("W");
+      final bStartsWithW = b.code.startsWith("W");
+
+      if (aStartsWithW != bStartsWithW) return aStartsWithW ? -1 : 1;
+
+      if (aStartsWithW) {
+        return a.extractIntFromStrCode().compareTo(b.extractIntFromStrCode());
+      }
+
+      return a.code.toLowerCase().compareTo(b.code.toLowerCase());
+    });
   }
 }
