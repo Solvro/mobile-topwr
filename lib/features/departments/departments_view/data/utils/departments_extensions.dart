@@ -39,7 +39,7 @@ extension SortByCodeX on List<Department> {
         return a.extractIntFromStrCode().compareTo(b.extractIntFromStrCode());
       }
 
-      return a.code.toLowerCase().compareTo(b.code.toLowerCase());
+      return b.code.toLowerCase().compareTo(a.code.toLowerCase());
     });
   }
 }
