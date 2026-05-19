@@ -27,7 +27,7 @@ extension _GetDepartmentsCodeX on Department? {
   }
 }
 
-extension SortByCodeX on List<Department?> {
+extension SortByCodeX on List<Department> {
   void sortByCodeOrder() {
     sort((a, b) => a.extractIntFromStrCode().compareTo(b.extractIntFromStrCode()));
   }

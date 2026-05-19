@@ -25,8 +25,8 @@ class DepartmentCard extends StatelessWidget {
       child: WideTileCard(
         onTap: onClick,
         isActive: true,
-        title: department.code,
-        subtitle: department.name,
+        title: department.name,
+        subtitle: department.code,
         activeShadows: null,
         activeGradient: department.gradient,
         trailing: Padding(
