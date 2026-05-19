@@ -32,6 +32,9 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
   final ScrollController scrollController;
   final double topSafeAreaPadding;
 
+  /// Pinned slivers + fractional extents can trip `remainingPaintExtent` by one ULP (short viewports).
+  static double _quantizeLayoutExtent(double value) => value.roundToDouble();
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isLoading = ref.watch(context.mapDataController<T>().select((a) => a.value == null));
@@ -140,11 +143,14 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
       key: MyAppConfig.verticalScrollableKey,
       controller: scrollController,
       slivers: [
-        SliverPersistentHeader(pinned: true, delegate: DragHandle(topPadding: topSafeAreaPadding)),
+        SliverPersistentHeader(
+          pinned: true,
+          delegate: DragHandle(topPadding: _quantizeLayoutExtent(topSafeAreaPadding)),
+        ),
         SliverAppBar(
           primary: false,
           pinned: true,
-          toolbarHeight: appBar.preferredSize.height,
+          toolbarHeight: _quantizeLayoutExtent(appBar.preferredSize.height),
           flexibleSpace: appBar,
           automaticallyImplyLeading: false,
         ),

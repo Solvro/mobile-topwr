@@ -101,9 +101,10 @@ class _SheetConsumer<T extends GoogleNavigable> extends HookConsumerWidget {
     // Inset ramps with sheet height: top of sheet is at (parentHeight - size); overlap with the
     // status bar is max(0, statusBarHeight - thatY), so padding tracks slow and fast drags alike.
     final sheetTopFromParentTop = sheetParentHeight - size;
-    final topSafeAreaPadding = statusBarHeight > 0
+    final topInsetRaw = statusBarHeight > 0
         ? (statusBarHeight - sheetTopFromParentTop).clamp(0.0, statusBarHeight)
         : 0.0;
+    final topSafeAreaPadding = topInsetRaw.roundToDouble();
 
     return Semantics(
       label: isExpanded

@@ -18,9 +18,13 @@ class DragHandle extends SliverPersistentHeaderDelegate {
       child: ColoredBox(
         color: context.colorScheme.surface,
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(height: topPadding),
-            const Expanded(child: Center(child: LineHandle())),
+            const SizedBox(
+              height: MapViewBottomSheetConfig.lineHandleSectionHeight,
+              child: Center(child: LineHandle()),
+            ),
           ],
         ),
       ),
@@ -28,10 +32,10 @@ class DragHandle extends SliverPersistentHeaderDelegate {
   }
 
   @override
-  double get minExtent => MapViewBottomSheetConfig.lineHandleSectionHeight + topPadding;
+  double get minExtent => (MapViewBottomSheetConfig.lineHandleSectionHeight + topPadding).roundToDouble();
 
   @override
-  double get maxExtent => MapViewBottomSheetConfig.lineHandleSectionHeight + topPadding;
+  double get maxExtent => (MapViewBottomSheetConfig.lineHandleSectionHeight + topPadding).roundToDouble();
 
   @override
   bool shouldRebuild(covariant DragHandle oldDelegate) => oldDelegate.topPadding != topPadding;
