@@ -8,26 +8,37 @@ import "../../utils/context_extensions.dart";
 import "../map_view/controllers/bottom_sheet_controller.dart";
 
 class DragHandle extends SliverPersistentHeaderDelegate {
-  const DragHandle();
+  const DragHandle({this.topPadding = 0});
+
+  final double topPadding;
 
   @override
   Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
     return HandleSemanticsWrapper(
       child: ColoredBox(
         color: context.colorScheme.surface,
-        child: const Center(child: LineHandle()),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SizedBox(height: topPadding),
+            const SizedBox(
+              height: MapViewBottomSheetConfig.lineHandleSectionHeight,
+              child: Center(child: LineHandle()),
+            ),
+          ],
+        ),
       ),
     );
   }
 
   @override
-  double get minExtent => MapViewBottomSheetConfig.lineHandleSectionHeight;
+  double get minExtent => (MapViewBottomSheetConfig.lineHandleSectionHeight + topPadding).roundToDouble();
 
   @override
-  double get maxExtent => MapViewBottomSheetConfig.lineHandleSectionHeight;
+  double get maxExtent => (MapViewBottomSheetConfig.lineHandleSectionHeight + topPadding).roundToDouble();
 
   @override
-  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) => false;
+  bool shouldRebuild(covariant DragHandle oldDelegate) => oldDelegate.topPadding != topPadding;
 }
 
 class HandleSemanticsWrapper extends ConsumerWidget {
