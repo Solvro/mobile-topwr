@@ -14,6 +14,7 @@ import "../../../../utils/context_extensions.dart";
 import "../../../../widgets/wide_tile_card.dart";
 import "../../../analytics/data/clarity.dart";
 import "../../../analytics/data/clarity_events.dart";
+import "../../../branches/data/model/branch.dart";
 import "../../../navigator/utils/navigation_commands.dart";
 import "../../data/model/building.dart";
 import "../../data/model/multilayer_item.dart";
@@ -32,6 +33,9 @@ class BuildingTile extends HookConsumerWidget {
             building.externalDigitalGuideMode == ExternalDigitalGuideMode.digitalGuideBuilding);
 
     final l10n = context.localize;
+    final buildingTitle = building.branch == Branch.main
+        ? "${context.localize.building_prefix} ${building.name}"
+        : building.name;
     useSemanticsServiceOnChangedValue(
       isActive,
       messageBuilder: (active) => active
@@ -52,7 +56,7 @@ class BuildingTile extends HookConsumerWidget {
                   context,
                   activeGradient: ColorsConsts.toPwrGradient,
                   directusPhotoUrl: building.cover,
-                  title: "${context.localize.building_prefix} ${building.name}",
+                  title: buildingTitle,
                   subtitle: building.address,
                   isActive: isActive,
                   onTap: () {

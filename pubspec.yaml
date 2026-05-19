@@ -16,7 +16,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.2.35+124
+version: 1.2.40+128
 
 environment:
   sdk: ">=3.11.1 <4.0.0"
@@ -172,7 +172,6 @@ dev_dependencies:
 
   #Other
   flutter_launcher_icons: ^0.14.4
-  sentry_dart_plugin: ^3.3.0
   test: ^1.26.3
 
 dependency_overrides:
@@ -364,8 +363,3 @@ flutter_gen:
 
 lint_staged:
   "lib/**.dart": dart format && dart fix --apply
-
-# Bugsink (Sentry-compatible) debug symbol upload — org/project/auth_token via CI secrets.
-sentry:
-  upload_debug_symbols: true
-  symbols_path: build/app/outputs/symbols
