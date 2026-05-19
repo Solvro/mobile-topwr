@@ -5,6 +5,7 @@ import "package:flutter_map_animations/flutter_map_animations.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../config/map_view_config.dart";
+import "../utils/lat_lng_validity.dart";
 import "bottom_sheet_controller.dart";
 import "controllers_set.dart";
 
@@ -23,6 +24,7 @@ class MyMapController<T extends GoogleNavigable> {
   }
 
   Future<void> zoomOnMarker(T item) async {
+    if (!item.location.isValidForMap) return;
     final controller = await _controller;
     await controller.animateTo(
       dest: item.location,
