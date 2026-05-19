@@ -58,18 +58,29 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y libsodium-dev
 
+      - name: Get app version
+        id: version
+        run: |
+          VERSION=$(grep '^version:' pubspec.yaml | sed 's/version:[[:space:]]*//' | tr -d '\r\n ')
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "release=com.solvro.topwr@${VERSION}" >> "$GITHUB_OUTPUT"
+
       - name: Build app bundle
-        run: flutter build appbundle --release
+        run: flutter build appbundle --release --split-debug-info=build/app/outputs/symbols
+
+      - name: Upload debug symbols to Bugsink
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.BUGSINK_AUTH_TOKEN }}
+          SENTRY_URL: ${{ secrets.BUGSINK_URL }}
+          SENTRY_ORG: ignored
+          SENTRY_PROJECT: ignored
+          SENTRY_RELEASE: ${{ steps.version.outputs.release }}
+        run: dart run sentry_dart_plugin
 
       - name: Install Fastlane (Android)
         run: |
           cd android
           bundle install
-
-      - name: Get app version
-        id: version
-        run: |
-          echo "version=$(grep '^version:' pubspec.yaml | sed 's/version:[[:space:]]*//' | tr -d '\r\n ')" >> "$GITHUB_OUTPUT"
 
       - name: Run Fastlane internal
         env:
