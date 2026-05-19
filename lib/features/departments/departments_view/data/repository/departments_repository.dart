@@ -34,10 +34,8 @@ Future<IList<Department>> departmentsRepository(Ref ref) async {
 extension SortBySourceTypeX on Iterable<Department> {
   List<Department> sortByBranch(Branch? branch) {
     if (branch == null) return toList();
-    final branchDepartments = where((element) => element.branch == branch).toList();
-    print("branchDepartments: ${branchDepartments.map((element) => element.code).toList()}");
+    final branchDepartments = where((element) => element.branch == branch).toList()..sortByCodeOrder();
     final otherDepartments = where((element) => element.branch != branch).toList()..sortByCodeOrder();
-    print("otherDepartments: ${otherDepartments.map((element) => element.code).toList()}");
     return [...branchDepartments, ...otherDepartments];
   }
 }
