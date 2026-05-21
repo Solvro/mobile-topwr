@@ -97,13 +97,11 @@ class _DialogContent extends StatelessWidget {
         ),
         const SizedBox(height: 20),
         Flexible(
-          child: Flexible(
-            child: Text(
-              applicationLegalese,
-              style: context.textTheme.bodyLarge,
-              maxLines: 4,
-              overflow: TextOverflow.ellipsis,
-            ),
+          child: Text(
+            applicationLegalese,
+            style: context.textTheme.bodyLarge,
+            maxLines: 4,
+            overflow: TextOverflow.ellipsis,
           ),
         ),
       ],

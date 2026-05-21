@@ -9,6 +9,11 @@ import "../../../config/shared_prefs.dart";
 part "feature_codes_repository.g.dart";
 
 @riverpod
+IList<String> defaultFeatureCodes(Ref ref) {
+  return Env.defaultFeatureCodes.split(",").map((code) => code.trim()).where((code) => code.isNotEmpty).toIList();
+}
+
+@riverpod
 class FeatureCodesRepository extends _$FeatureCodesRepository {
   static const _prefsKey = "__feature_codes__";
 
@@ -19,7 +24,7 @@ class FeatureCodesRepository extends _$FeatureCodesRepository {
       AsyncError() => const <String>[],
       AsyncValue(:final value) => value?.getStringList(_prefsKey) ?? const <String>[],
     };
-    final defaults = _defaultCodes;
+    final defaults = ref.watch(defaultFeatureCodesProvider);
     if (stored.isEmpty && defaults.isNotEmpty) {
       final seeded = defaults.toISet();
       unawaited(_save(seeded));
@@ -46,10 +51,4 @@ class FeatureCodesRepository extends _$FeatureCodesRepository {
     final prefs = await ref.read(sharedPreferencesSingletonProvider.future);
     await prefs.setStringList(_prefsKey, codes.toList());
   }
-
-  static IList<String> get _defaultCodes => Env.defaultFeatureCodes
-      .split(",")
-      .map((code) => code.trim())
-      .where((code) => code.isNotEmpty && code != '""')
-      .toIList();
 }
