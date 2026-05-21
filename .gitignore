@@ -176,3 +176,9 @@ android/.kotlin/
 packages/widgetbook/assets/
 
 pubspec_overrides.yaml
+graphify-out/manifest.json
+graphify-out/cost.json 
+graphify-out/cache/
+lib/graphify-out/manifest.json
+lib/graphify-out/cost.json 
+lib/graphify-out/cache/

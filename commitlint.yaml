@@ -43,4 +43,5 @@ rules:
       - booths
       - activity-days
       - widgetbook
+      - feature-codes
     # YES, you can add new ones if you have a new feature

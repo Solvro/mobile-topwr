@@ -262,6 +262,16 @@
     "description": "Title for parkings section"
   },
   "parkings_not_found": "Nie znaleziono parkingu",
+  "booths_title": "Strefy wyciszenia",
+  "booths_not_found": "Nie znaleziono stref wyciszenia",
+  "booths_more_coming_soon": "Więcej wkrótce...",
+  "booth_status": "Status",
+  "booth_status_available": "Wolna",
+  "booth_status_occupied": "Zajęta",
+  "booth_status_offline": "Offline",
+  "booth_last_update": "Ostatnia aktualizacja statusu",
+  "booth_no_statistics": "Statystyki niedostępne",
+  "booths_sns_cooperation": "We współpracy z SNS Automatyk",
   "parking_access_all": "Parking dla wszystkich",
   "parking_access_employees": "Parking dla pracowników i doktorantów",
   "parking_access_students": "Parking dla studentów",
@@ -589,6 +599,30 @@
   "about_the_app": "O aplikacji",
   "@about_the_app": {
     "description": "Title for app information section"
+  },
+  "feature_codes_title": "Kody funkcji",
+  "@feature_codes_title": {
+    "description": "Title for feature codes dialog"
+  },
+  "feature_codes_subtitle": "Wpisz krótki kod, aby odblokować dodatkowe funkcje.",
+  "@feature_codes_subtitle": {
+    "description": "Subtitle for feature codes dialog"
+  },
+  "feature_codes_input_hint": "Wpisz kod",
+  "@feature_codes_input_hint": {
+    "description": "Placeholder for feature code input"
+  },
+  "feature_codes_add_button": "Dodaj",
+  "@feature_codes_add_button": {
+    "description": "Add button label in feature codes dialog"
+  },
+  "feature_codes_remove_button": "Usuń",
+  "@feature_codes_remove_button": {
+    "description": "Remove button label in feature codes dialog"
+  },
+  "feature_codes_empty": "Brak zapisanych kodów.",
+  "@feature_codes_empty": {
+    "description": "Empty state text for feature codes dialog"
   },
   "other_view": "Inne",
   "@other_view": {

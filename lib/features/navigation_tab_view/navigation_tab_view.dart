@@ -1,8 +1,10 @@
 import "package:auto_route/auto_route.dart";
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
+import "../../config/env.dart";
 import "../../config/ui_config.dart";
 import "../../theme/app_theme.dart";
 import "../../utils/context_extensions.dart";
@@ -10,6 +12,7 @@ import "../analytics/data/clarity.dart";
 import "../analytics/data/clarity_events.dart";
 import "../analytics/presentation/show_feedback_tile.dart";
 import "../bottom_nav_bar/bottom_nav_bar_icon_icons.icons.dart";
+import "../feature_codes/data/feature_codes_repository.dart";
 import "../home_view/widgets/logo_app_bar.dart";
 import "../in_app_review/business/in_app_rating_service.dart";
 import "../in_app_review/presentation/rate_store_dialog.dart";
@@ -28,6 +31,8 @@ class NavigationTabView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final ISet<String> featureCodes = ref.watch(featureCodesRepositoryProvider);
+    final bool hasBoothsAccess = featureCodes.contains(Env.boothFeatureCode);
     final children = [
       const SizedBox(height: NavigationTabViewConfig.universalPadding),
       const AboutUsTile(key: NavigationTabViewConfig.aboutUsKey),
@@ -50,42 +55,15 @@ class NavigationTabView extends ConsumerWidget {
         ),
       ),
       _NavigationRow(
-        child1: Semantics(
-          key: NavigationTabViewConfig.radioLuzKey,
-          button: true,
-          label: context.localize.radio_luz,
-          child: BaseSmallTileCard(
-            onTap: ref.navigateToRadioLuz,
-            child: const SizedBox(
-              height: WideTileCardConfig.imageSize,
-              child: AppBarLuz(logoSize: WideTileCardConfig.imageSize),
-            ),
-          ),
-        ),
-        child2: SmallTileCard(
-          onTap: () async {
-            await ref.trackEvent(ClarityEvents.openLeaveReview);
-            if (!kIsWeb) {
-              await InAppRatingService.requestStoreListingReview();
-            } else {
-              if (context.mounted) {
-                await showRateStoreDialog(context);
-              }
-            }
-          },
-          title: context.localize.leave_a_review,
-          icon: Icon(
-            Icons.star,
-            color: context.colorScheme.secondaryContainer,
-            size: NavigationTabViewConfig.navIconSize,
-          ),
-        ),
+        child1: const _RadioLuzTile(),
+        child2: hasBoothsAccess ? const _BoothsTile() : const _RatingTile(),
       ),
+      if (hasBoothsAccess) const _NavigationRow(child1: _SksSmallBigTile(), child2: _RatingTile()),
       Padding(
         padding: const EdgeInsets.only(top: 16),
         child: Text(context.localize.rest_header, style: context.textTheme.headlineMedium),
       ),
-      const SksTile(),
+      if (!hasBoothsAccess) const SksTile(),
       const SettingsTitle(key: NavigationTabViewConfig.settingsKey),
       const AboutTheAppTile(),
       const SizedBox(height: NavigationTabViewConfig.universalPadding),
@@ -103,6 +81,74 @@ class NavigationTabView extends ConsumerWidget {
         itemBuilder: (context, index) => children[index],
         separatorBuilder: (context, index) => const SizedBox(height: NavigationTabViewConfig.universalPadding),
         itemCount: children.length,
+      ),
+    );
+  }
+}
+
+class _SksSmallBigTile extends ConsumerWidget {
+  const _SksSmallBigTile();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return SmallTileCard(
+      onTap: ref.navigateToSksMenu,
+      title: context.localize.sks_menu,
+      icon: const Icon(Icons.restaurant),
+    );
+  }
+}
+
+class _BoothsTile extends ConsumerWidget {
+  const _BoothsTile();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return SmallTileCard(
+      onTap: ref.navigateBooths,
+      title: context.localize.booths_title,
+      icon: const Icon(Icons.meeting_room),
+    );
+  }
+}
+
+class _RatingTile extends ConsumerWidget {
+  const _RatingTile();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return SmallTileCard(
+      onTap: () async {
+        await ref.trackEvent(ClarityEvents.openLeaveReview);
+        if (!kIsWeb) {
+          await InAppRatingService.requestStoreListingReview();
+        } else {
+          if (context.mounted) {
+            await showRateStoreDialog(context);
+          }
+        }
+      },
+      title: context.localize.leave_a_review,
+      icon: Icon(Icons.star, color: context.colorScheme.secondaryContainer, size: NavigationTabViewConfig.navIconSize),
+    );
+  }
+}
+
+class _RadioLuzTile extends ConsumerWidget {
+  const _RadioLuzTile();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Semantics(
+      key: NavigationTabViewConfig.radioLuzKey,
+      button: true,
+      label: context.localize.radio_luz,
+      child: BaseSmallTileCard(
+        onTap: ref.navigateToRadioLuz,
+        child: const SizedBox(
+          height: WideTileCardConfig.imageSize,
+          child: AppBarLuz(logoSize: WideTileCardConfig.imageSize),
+        ),
       ),
     );
   }

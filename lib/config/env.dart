@@ -38,4 +38,8 @@ abstract class Env {
   static final String clarityConfigId = _Env.clarityConfigId;
   @EnviedField()
   static final String vapidWebPubKey = _Env.vapidWebPubKey;
+  @EnviedField()
+  static final String boothFeatureCode = _Env.boothFeatureCode;
+  @EnviedField()
+  static final String defaultFeatureCodes = _Env.defaultFeatureCodes;
 }
