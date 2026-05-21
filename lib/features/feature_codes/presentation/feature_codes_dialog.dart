@@ -10,7 +10,7 @@ import "../data/feature_codes_repository.dart";
 class FeatureCodesDialog extends HookConsumerWidget {
   const FeatureCodesDialog({super.key});
 
-  static Future<void> show(BuildContext context, WidgetRef ref) {
+  static Future<void> show(BuildContext context) {
     return showDialog<void>(context: context, builder: (context) => const FeatureCodesDialog());
   }
 

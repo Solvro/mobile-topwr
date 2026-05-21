@@ -6,7 +6,7 @@ import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../utils/launch_url_util.dart";
 
-class BoothsPartnerFooter extends HookConsumerWidget {
+class BoothsPartnerFooter extends ConsumerWidget {
   const BoothsPartnerFooter({super.key});
 
   static const _automatykUrl = "https://automatyk.pwr.edu.pl/";

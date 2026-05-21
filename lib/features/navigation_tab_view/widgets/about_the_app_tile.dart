@@ -31,7 +31,7 @@ class AboutTheAppTile extends HookConsumerWidget {
               logoTapCount.value += 1;
               if (logoTapCount.value >= 5) {
                 logoTapCount.value = 0;
-                await FeatureCodesDialog.show(dialogContext, ref);
+                await FeatureCodesDialog.show(dialogContext);
               }
             },
           );

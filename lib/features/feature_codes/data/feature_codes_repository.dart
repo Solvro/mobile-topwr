@@ -19,18 +19,21 @@ class FeatureCodesRepository extends _$FeatureCodesRepository {
 
   @override
   ISet<String> build() {
-    final prefs = ref.watch(sharedPreferencesSingletonProvider);
-    final stored = switch (prefs) {
-      AsyncError() => const <String>[],
-      AsyncValue(:final value) => value?.getStringList(_prefsKey) ?? const <String>[],
-    };
     final defaults = ref.watch(defaultFeatureCodesProvider);
-    if (stored.isEmpty && defaults.isNotEmpty) {
-      final seeded = defaults.toISet();
-      unawaited(_save(seeded));
-      return seeded;
-    }
-    return stored.where((code) => code.trim().isNotEmpty).toISet();
+    final prefs = ref.watch(sharedPreferencesSingletonProvider);
+
+    return switch (prefs) {
+      AsyncData(:final value) => () {
+        final stored = value.getStringList(_prefsKey) ?? const <String>[];
+        if (!value.containsKey(_prefsKey) && defaults.isNotEmpty) {
+          final seeded = defaults.toISet();
+          unawaited(value.setStringList(_prefsKey, seeded.toList()));
+          return seeded;
+        }
+        return stored.where((code) => code.trim().isNotEmpty).toISet();
+      }(),
+      AsyncLoading() || AsyncError() => defaults.toISet(),
+    };
   }
 
   Future<void> addCode(String code) async {
