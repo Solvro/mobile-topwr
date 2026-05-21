@@ -76,11 +76,12 @@ Future<IList<Tag>> tagFiltersFiltered(Ref ref) async {
   return tags.where((x) => x.tag.containsLowerCase(query)).toIList();
 }
 
-@Riverpod(dependencies: [typeFiltersFiltered, departmentFiltersFiltered, tagFiltersFiltered, branchFiltersFiltered])
+@Riverpod(dependencies: [typeFiltersFiltered, branchDepartmentFilteredHelper, tagFiltersFiltered, branchFiltersFiltered])
 bool areNoFiltersFound(Ref ref, AppLocalizations l10n) {
   final typeSrcEmpty = !ref.watch(typeFiltersFilteredProvider.select((value) => value.isNotEmpty));
   final departmentSrcEmpty =
-      !(ref.watch(departmentFiltersFilteredProvider.select((value) => value.value?.isNotEmpty ?? false)) ?? false);
+      !(ref.watch(branchDepartmentFilteredHelperProvider(l10n).select((value) => value.value?.departments.isNotEmpty ?? false)) ?? false);
+
   final tagSrcEmpty =
       !(ref.watch(tagFiltersFilteredProvider.select((value) => value.value?.isNotEmpty ?? false)) ?? false);
 
