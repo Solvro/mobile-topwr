@@ -106,7 +106,7 @@ Future<BranchDepartmentData> branchDepartmentFilteredHelper(Ref ref, AppLocaliza
 
   final branchesToShow = selectedDepartments.isEmpty ? branches : IList<Branch>();
   final departmentsToShow = (selectedBranches.isEmpty || selectedBranches.contains(Branch.main))
-      ? departments
+      ? departments.where((d) => d.branch == Branch.main).toIList()
       : IList<Department>();
 
   return (branches: branchesToShow, departments: departmentsToShow);
