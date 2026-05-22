@@ -10,7 +10,6 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 import "package:solvro_translator_core/solvro_translator_core.dart";
 import "package:topwr/config/env.dart";
 import "package:topwr/config/nav_bar_config.dart";
-import "package:topwr/config/ui_config.dart";
 import "package:topwr/features/app_changelog/data/repository/local_changelog_repository.dart";
 import "package:topwr/features/booths/data/models/booth.dart";
 import "package:topwr/features/booths/data/repository/booths_repository.dart";
@@ -72,20 +71,32 @@ void main() {
     await tester.tap(find.byKey(Key(e.name)));
   }
 
+  Future<void> pumpUntilFound(WidgetTester tester, Finder finder) async {
+    final end = tester.binding.clock.fromNowBy(const Duration(seconds: 10));
+    while (tester.binding.clock.now().isBefore(end)) {
+      await tester.pump(const Duration(milliseconds: 100));
+      if (tester.any(finder)) return;
+    }
+  }
+
   testWidgets("Quiet booths are available from default feature codes", (tester) async {
     await app.main(overrides: overrides());
-    await tester.pumpAndSettle(const Duration(seconds: 5));
+
+    final navigationButton = find.byKey(Key(NavBarEnum.navigation.name));
+    await pumpUntilFound(tester, navigationButton);
+    expect(navigationButton, findsOneWidget);
 
     await tapNavButton(tester, NavBarEnum.navigation);
-    await tester.pump(const Duration(seconds: 3));
 
     final boothsTile = find.text("Strefy wyciszenia");
+    await pumpUntilFound(tester, boothsTile);
     expect(boothsTile, findsOneWidget);
 
-    await tester.scrollUntilVisible(boothsTile, 50, scrollable: find.byKey(MyAppConfig.verticalScrollableKey));
+    await tester.ensureVisible(boothsTile);
     await tester.tap(boothsTile);
-    await tester.pumpAndSettle(const Duration(seconds: 5));
 
-    expect(find.text(_testBooths.first.name), findsOneWidget);
+    final boothName = find.text(_testBooths.first.name);
+    await pumpUntilFound(tester, boothName);
+    expect(boothName, findsOneWidget);
   });
 }
