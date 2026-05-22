@@ -17,8 +17,7 @@ Future<DepartmentWithSciClubs> departmentDetailService(Ref ref, int id) async {
   final scienceClubs = await ref.watch(scienceClubsRepositoryProvider.future);
   final filtered = scienceClubs.where((sciClub) {
     final isAssignedToDepartment = sciClub.department?.id == department.id;
-    final isAssignedToDepartmentBranch =
-        department.branch != Branch.main && sciClub.department == null && sciClub.branch == department.branch;
+    final isAssignedToDepartmentBranch = department.branch != Branch.main && sciClub.branch == department.branch;
 
     return isAssignedToDepartment || isAssignedToDepartmentBranch;
   }).toIList();
