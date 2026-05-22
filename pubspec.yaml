@@ -225,6 +225,7 @@ flutter:
     - assets/png/map_markers/active_pink_box_marker.png
     - assets/png/map_markers/pink_box_marker.png
     - assets/png/radio_luz/radio_luz_logo.png
+    - assets/png/booths/sns_automatyk_logo.png
     - assets/svg/search_box/vectorsearch.svg
     - assets/svg/contact_icons/compass.svg
     - assets/svg/contact_icons/fb.svg

@@ -4,6 +4,7 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../config/nav_bar_config.dart";
 import "../about_us_view/about_us_view.dart";
+import "../booths/presentation/booths_view.dart";
 import "../calendar/presentation/calendar_view.dart";
 import "../departments/department_detail_view/presentation/department_detail_view.dart";
 import "../departments/departments_view/departments_view.dart";
@@ -105,6 +106,7 @@ class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
     AutoRoute(path: "/", page: RootRoute.page, children: routesWithinTabBar),
+    AutoRoute(path: "/booths", page: BoothsRoute.page),
     AutoRoute(path: "/sks-menu", page: SksMenuRoute.page),
     if (!kIsWeb) AutoRoute(path: "/sks-favourite-dishes", page: SksFavouriteDishesRoute.page),
     AutoRoute(path: "/guide/:id", page: GuideDetailRoute.page),

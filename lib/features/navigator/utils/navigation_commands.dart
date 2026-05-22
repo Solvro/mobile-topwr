@@ -62,6 +62,10 @@ extension NavigationX on WidgetRef {
     await _router.push(ParkingsRoute());
   }
 
+  Future<void> navigateBooths() async {
+    await _router.push(const BoothsRoute());
+  }
+
   Future<void> navigateParking(Parking model) async {
     await trackEvent(ClarityEvents.openParkingChart, value: model.nameNormalized);
     await _router.push(ParkingsRoute(initialActiveItemId: model.id));
