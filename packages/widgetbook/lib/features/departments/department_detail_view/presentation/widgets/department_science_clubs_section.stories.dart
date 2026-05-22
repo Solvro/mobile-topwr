@@ -2,6 +2,7 @@ import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/widgets.dart";
 import "package:topwr/api_base_rest/shared_models/image_data.dart";
 import "package:topwr/api_base_rest/shared_models/social_links_data.dart";
+import "package:topwr/features/branches/data/model/branch.dart";
 import "package:topwr/features/departments/department_detail_view/data/models/department_details.dart";
 import "package:topwr/features/departments/department_detail_view/data/models/studies_type.dart";
 import "package:topwr/features/departments/department_detail_view/presentation/widgets/science_clubs_section.dart";
@@ -21,6 +22,7 @@ final _mockDepartment = DepartmentDetails(
   gradientStop: "#33FF57",
   addressLine1: "ul. Janiszewskiego 11/17",
   addressLine2: "50-372 Wrocław",
+  branch: Branch.main,
   fieldsOfStudy: IList(const [
     FieldOfStudy(
       name: "Informatyka stosowana",

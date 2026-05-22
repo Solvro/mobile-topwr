@@ -10,6 +10,7 @@ import "../../../../../widgets/big_preview_card.dart";
 import "../../../../../widgets/subsection_header.dart";
 import "../../../../analytics/data/clarity.dart";
 import "../../../../analytics/data/clarity_events.dart" show ClarityEvents;
+import "../../../../branches/data/model/branch.dart";
 import "../../../../home_view/widgets/paddings.dart";
 import "../../../../navigator/utils/navigation_commands.dart";
 import "../../../../science_club/science_clubs_view/model/science_clubs.dart";
@@ -30,7 +31,13 @@ class DepartmentScienceClubsSection extends ConsumerWidget {
           title: context.localize.study_circles,
           actionTitle: context.localize.list,
           onClick: () {
-            unawaited(ref.navigateScienceClubs(departmentWithSciClubs.department.id.toString()));
+            final department = departmentWithSciClubs.department;
+            unawaited(
+              ref.navigateScienceClubs(
+                departmentFilterId: department.branch == Branch.main ? department.id.toString() : null,
+                branchFilter: department.branch == Branch.main ? null : department.branch,
+              ),
+            );
           },
         ),
         SizedBox(
