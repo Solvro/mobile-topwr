@@ -17,6 +17,10 @@ import "../models/sks_opening_hours.dart";
 
 part "sks_menu_repository.g.dart";
 
+final class _SksMenuRepositoryDisposed implements Exception {
+  const _SksMenuRepositoryDisposed();
+}
+
 @riverpod
 class SksMenuRepository extends _$SksMenuRepository {
   static const _ttlDaysMeals = TtlDays.defaultSksMenu;
@@ -24,17 +28,28 @@ class SksMenuRepository extends _$SksMenuRepository {
 
   Future<void> clearCache() async {
     final remoteConfig = await ref.read(remoteConfigRepositoryProvider.future);
+    if (!ref.mounted) return;
+
     final sksUrl = remoteConfig.sksMicroserviceUrl ?? Env.sksUrl;
     final sksApiBaseUrl = "$sksUrl/api/v1";
     final mainApiBaseUrl = Env.mainRestApiUrl;
     await ref.clearCache("$sksApiBaseUrl/meals/current", _ttlDaysMeals);
+    if (!ref.mounted) return;
+
     await ref.clearCache("$mainApiBaseUrl/sks_opening_hours", _ttlDaysOpeningHours);
   }
 
   @override
   Future<ExtendedSksMenuResponse> build() async {
-    final remoteConfig = await ref.watch(remoteConfigRepositoryProvider.future);
-    final locale = await ref.watch(preferredLanguageRepositoryProvider.future) ?? SolvroLocale.pl;
+    final remoteConfigFuture = ref.watch(remoteConfigRepositoryProvider.future);
+    final localeFuture = ref.watch(preferredLanguageRepositoryProvider.future);
+
+    final remoteConfig = await remoteConfigFuture;
+    if (!ref.mounted) throw const _SksMenuRepositoryDisposed();
+
+    final locale = await localeFuture ?? SolvroLocale.pl;
+    if (!ref.mounted) throw const _SksMenuRepositoryDisposed();
+
     final sksUrl = remoteConfig.sksMicroserviceUrl ?? Env.sksUrl;
     final sksApiBaseUrl = "$sksUrl/api/v1";
     final mainApiBaseUrl = Env.mainRestApiUrl;
@@ -55,6 +70,7 @@ class SksMenuRepository extends _$SksMenuRepository {
           onRetry: ref.invalidateSelf,
         )
         .castAsObject;
+    if (!ref.mounted) throw const _SksMenuRepositoryDisposed();
 
     final openingHoursResponse = await ref
         .getAndCacheData(
