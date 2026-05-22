@@ -206,6 +206,7 @@ const mockDepartmentDetails = DepartmentDetails(
   gradientStop: "#B74A53",
   addressLine1: "Wybrzeze Wyspianskiego 27",
   addressLine2: "50-370 Wroclaw",
+  branch: Branch.main,
   fieldsOfStudy: IListConst([
     FieldOfStudy(
       name: "Informatyka stosowana",

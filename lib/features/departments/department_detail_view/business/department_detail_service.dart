@@ -1,6 +1,7 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
+import "../../../branches/data/model/branch.dart";
 import "../../../science_club/science_clubs_view/model/science_clubs.dart";
 import "../../../science_club/science_clubs_view/repository/science_clubs_repository.dart";
 import "../data/models/department_details.dart";
@@ -14,7 +15,13 @@ typedef DepartmentWithSciClubs = ({DepartmentDetails department, IList<ScienceCl
 Future<DepartmentWithSciClubs> departmentDetailService(Ref ref, int id) async {
   final department = await ref.watch(departmentDetailsRepositoryProvider(id).future);
   final scienceClubs = await ref.watch(scienceClubsRepositoryProvider.future);
-  final filtered = scienceClubs.where((sciClub) => sciClub.department?.id == department.id).toIList();
+  final filtered = scienceClubs.where((sciClub) {
+    final isAssignedToDepartment = sciClub.department?.id == department.id;
+    final isAssignedToDepartmentBranch =
+        department.branch != Branch.main && sciClub.department == null && sciClub.branch == department.branch;
+
+    return isAssignedToDepartment || isAssignedToDepartmentBranch;
+  }).toIList();
 
   return (department: department, sciclubs: filtered);
 }

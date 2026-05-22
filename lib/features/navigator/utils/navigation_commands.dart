@@ -81,13 +81,15 @@ extension NavigationX on WidgetRef {
     await _router.push(DepartmentDetailRoute(id: id));
   }
 
-  Future<void> navigateScienceClubs([String? departmentFilterId]) async {
+  Future<void> navigateScienceClubs({String? departmentFilterId, Branch? branchFilter}) async {
     if (departmentFilterId != null) {
       await trackEvent(ClarityEvents.openSciClubsList, value: "filtered by department: $departmentFilterId");
+    } else if (branchFilter != null) {
+      await trackEvent(ClarityEvents.openSciClubsList, value: "filtered by branch: ${branchFilter.name}");
     } else {
       await trackEvent(ClarityEvents.openSciClubsList);
     }
-    await _router.push(ScienceClubsRoute(deptsIdsSequence: departmentFilterId));
+    await _router.push(ScienceClubsRoute(deptsIdsSequence: departmentFilterId, branchesSequence: branchFilter?.name));
   }
 
   Future<void> navigateSciClubsDetail(ScienceClub model) async {
