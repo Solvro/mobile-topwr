@@ -47,7 +47,7 @@ void useMultilayerBranchRecenter({
           (item) => item.building.branch == branchToRecenter,
         );
 
-        if (!dataMatchesSelectedBranch) return null;
+        if (!dataMatchesSelectedBranch || buildings.isEmpty) return null;
 
         pendingBranchRecenter.value = null;
         WidgetsBinding.instance.addPostFrameCallback((_) {
