@@ -1,3 +1,5 @@
+import "dart:async";
+
 import "package:dio_cache_interceptor_db_store/dio_cache_interceptor_db_store.dart";
 import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
@@ -7,8 +9,11 @@ import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../../config/map_view_config.dart";
 import "../../../theme/app_theme.dart";
+import "../../branches/business/selected_branch_on_map.dart";
+import "../../multilayer_map/data/model/multilayer_item.dart";
 import "../../my_loc_button/presentation/is_following_controller.dart";
 import "../../my_loc_button/presentation/my_loc_layer.dart";
+import "../controllers/bottom_sheet_controller.dart";
 import "../controllers/controllers_set.dart";
 import "../data/cache.dart";
 import "load_animated_controller.dart";
@@ -22,8 +27,22 @@ class MapWidget<T extends GoogleNavigable> extends HookConsumerWidget {
   const MapWidget(this.semanticsLabel, {super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final mapControllerProvider = context.mapController<T>();
+    final activeMarkerProvider = context.activeMarkerController<T>();
+    final sourceRepositoryProvider = context.mapSourceRepository<T>();
+
+    if (T == MultilayerItem) {
+      ref.listen(selectedBranchOnMapProvider, (previous, next) {
+        if (previous == null || previous == next) return;
+
+        ref.read(activeMarkerProvider.notifier).unselect();
+        ref.read(bottomSheetControllerProvider).resetSafe();
+        unawaited(_recenterOnBranchBuildings(ref, sourceRepositoryProvider, mapControllerProvider));
+      });
+    }
+
     return LoadAnimationMapController<T>(
-      myMapController: ref.watch(context.mapController<T>()),
+      myMapController: ref.watch(mapControllerProvider),
       builder: (context, controller) {
         return FlutterMap(
           options: MapOptions(
@@ -38,7 +57,7 @@ class MapWidget<T extends GoogleNavigable> extends HookConsumerWidget {
                     .mapMoved(); // stop following location on user interaction
               }
             },
-            onTap: ref.watch(context.mapController<T>()).onMapBackgroundTap,
+            onTap: ref.watch(mapControllerProvider).onMapBackgroundTap,
           ),
           mapController: controller.mapController,
           children: [
@@ -52,6 +71,17 @@ class MapWidget<T extends GoogleNavigable> extends HookConsumerWidget {
       },
     );
   }
+}
+
+Future<void> _recenterOnBranchBuildings<T extends GoogleNavigable>(
+  WidgetRef ref,
+  SourceRepositoryProv<T> sourceRepository,
+  MapControllerProv<T> mapControllerProvider,
+) async {
+  final mapController = ref.read(mapControllerProvider);
+  final items = await ref.read(sourceRepository.future);
+  final buildings = items.whereType<BuildingItem>().cast<T>();
+  await mapController.zoomOnItems(buildings);
 }
 
 class MapTileLayer extends ConsumerWidget {

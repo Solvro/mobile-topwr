@@ -1,6 +1,7 @@
 import "dart:async";
 
 import "package:flutter/material.dart";
+import "package:flutter_map/flutter_map.dart";
 import "package:flutter_map_animations/flutter_map_animations.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
@@ -30,6 +31,23 @@ class MyMapController<T extends GoogleNavigable> {
       dest: item.location,
       zoom: MapWidgetConfig.defaultMarkerZoom,
       offset: Offset(0, -ref.read(bottomSheetControllerProvider).pixelsSafe / 2),
+      rotation: 0,
+    );
+  }
+
+  Future<void> zoomOnItems(Iterable<T> items) async {
+    final validItems = items.where((item) => item.location.isValidForMap).toList();
+    if (validItems.isEmpty) return;
+    if (validItems.length == 1) {
+      return zoomOnMarker(validItems.first);
+    }
+
+    final controller = await _controller;
+    await controller.animatedFitCamera(
+      cameraFit: CameraFit.coordinates(
+        coordinates: validItems.map((item) => item.location).toList(),
+        padding: EdgeInsets.fromLTRB(24, 24, 24, ref.read(bottomSheetControllerProvider).pixelsSafe + 24),
+      ),
       rotation: 0,
     );
   }
