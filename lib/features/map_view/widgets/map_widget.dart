@@ -1,5 +1,3 @@
-import "dart:async";
-
 import "package:dio_cache_interceptor_db_store/dio_cache_interceptor_db_store.dart";
 import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
@@ -13,9 +11,9 @@ import "../../branches/business/selected_branch_on_map.dart";
 import "../../multilayer_map/data/model/multilayer_item.dart";
 import "../../my_loc_button/presentation/is_following_controller.dart";
 import "../../my_loc_button/presentation/my_loc_layer.dart";
-import "../controllers/bottom_sheet_controller.dart";
 import "../controllers/controllers_set.dart";
 import "../data/cache.dart";
+import "../hooks/use_multilayer_branch_recenter.dart";
 import "load_animated_controller.dart";
 import "map_atrribution.dart";
 import "map_config.dart";
@@ -28,17 +26,15 @@ class MapWidget<T extends GoogleNavigable> extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final mapControllerProvider = context.mapController<T>();
-    final activeMarkerProvider = context.activeMarkerController<T>();
-    final sourceRepositoryProvider = context.mapSourceRepository<T>();
 
     if (T == MultilayerItem) {
-      ref.listen(selectedBranchOnMapProvider, (previous, next) {
-        if (previous == null || previous == next) return;
-
-        ref.read(activeMarkerProvider.notifier).unselect();
-        ref.read(bottomSheetControllerProvider).resetSafe();
-        unawaited(_recenterOnBranchBuildings(ref, sourceRepositoryProvider, mapControllerProvider));
-      });
+      useMultilayerBranchRecenter(
+        ref: ref,
+        selectedBranch: ref.watch(selectedBranchOnMapProvider),
+        sourceState: ref.watch(context.mapSourceRepository<MultilayerItem>()),
+        activeMarkerProvider: context.activeMarkerController<MultilayerItem>(),
+        mapControllerProvider: context.mapController<MultilayerItem>(),
+      );
     }
 
     return LoadAnimationMapController<T>(
@@ -71,17 +67,6 @@ class MapWidget<T extends GoogleNavigable> extends HookConsumerWidget {
       },
     );
   }
-}
-
-Future<void> _recenterOnBranchBuildings<T extends GoogleNavigable>(
-  WidgetRef ref,
-  SourceRepositoryProv<T> sourceRepository,
-  MapControllerProv<T> mapControllerProvider,
-) async {
-  final mapController = ref.read(mapControllerProvider);
-  final items = await ref.read(sourceRepository.future);
-  final buildings = items.whereType<BuildingItem>().cast<T>();
-  await mapController.zoomOnItems(buildings);
 }
 
 class MapTileLayer extends ConsumerWidget {
