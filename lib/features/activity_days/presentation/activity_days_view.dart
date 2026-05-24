@@ -18,7 +18,7 @@ class ActivityDaysView extends HookConsumerWidget {
     final tabController = useTabController(initialLength: 3);
 
     return HorizontalSymmetricSafeAreaScaffold(
-      appBar: DetailViewAppBar(title: (text: l10n.activity_days_title, context: context)),
+      appBar: DetailViewAppBar(title: (text: l10n.activity_days_title, context: context), leadingWidth: 100),
       body: Column(
         children: [
           Material(
