@@ -3876,6 +3876,22 @@
   "@go_to": {
     "description": "Button to navigate to a selected place or section from notification dialog"
   },
+  "activity_days_title": "Dni Aktywności",
+  "@activity_days_title": {
+    "description": "Title for the Activity Days feature screen"
+  },
+  "activity_days_tab_stands": "Stoiska",
+  "@activity_days_tab_stands": {
+    "description": "Tab label for stands section in Activity Days"
+  },
+  "activity_days_tab_timetable": "Harmonogram",
+  "@activity_days_tab_timetable": {
+    "description": "Tab label for timetable section in Activity Days"
+  },
+  "activity_days_tab_info": "Informacje",
+  "@activity_days_tab_info": {
+    "description": "Tab label for information section in Activity Days"
+  },
   "rate_store_dialog_title": "Oceń aplikację",
   "@rate_store_dialog_title": {
     "description": "Title of the rate store dialog"
