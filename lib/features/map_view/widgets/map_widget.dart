@@ -7,10 +7,13 @@ import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../../config/map_view_config.dart";
 import "../../../theme/app_theme.dart";
+import "../../branches/business/selected_branch_on_map.dart";
+import "../../multilayer_map/data/model/multilayer_item.dart";
 import "../../my_loc_button/presentation/is_following_controller.dart";
 import "../../my_loc_button/presentation/my_loc_layer.dart";
 import "../controllers/controllers_set.dart";
 import "../data/cache.dart";
+import "../hooks/use_multilayer_branch_recenter.dart";
 import "load_animated_controller.dart";
 import "map_atrribution.dart";
 import "map_config.dart";
@@ -22,8 +25,20 @@ class MapWidget<T extends GoogleNavigable> extends HookConsumerWidget {
   const MapWidget(this.semanticsLabel, {super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final mapControllerProvider = context.mapController<T>();
+
+    if (T == MultilayerItem) {
+      useMultilayerBranchRecenter(
+        ref: ref,
+        selectedBranch: ref.watch(selectedBranchOnMapProvider),
+        sourceState: ref.watch(context.mapSourceRepository<MultilayerItem>()),
+        activeMarkerProvider: context.activeMarkerController<MultilayerItem>(),
+        mapControllerProvider: context.mapController<MultilayerItem>(),
+      );
+    }
+
     return LoadAnimationMapController<T>(
-      myMapController: ref.watch(context.mapController<T>()),
+      myMapController: ref.watch(mapControllerProvider),
       builder: (context, controller) {
         return FlutterMap(
           options: MapOptions(
@@ -38,7 +53,7 @@ class MapWidget<T extends GoogleNavigable> extends HookConsumerWidget {
                     .mapMoved(); // stop following location on user interaction
               }
             },
-            onTap: ref.watch(context.mapController<T>()).onMapBackgroundTap,
+            onTap: ref.watch(mapControllerProvider).onMapBackgroundTap,
           ),
           mapController: controller.mapController,
           children: [
