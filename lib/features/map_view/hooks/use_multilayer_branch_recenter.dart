@@ -19,16 +19,16 @@ void useMultilayerBranchRecenter({
   required MapControllerProv<MultilayerItem> mapControllerProvider,
 }) {
   final lastHandledBranch = useRef<Branch?>(selectedBranch);
-  final pendingBranchRecenter = useRef<Branch?>(null);
+  final pendingBranchRecenter = useState<Branch?>(null);
 
   useEffect(() {
     if (selectedBranch == null || lastHandledBranch.value == selectedBranch) return null;
 
     lastHandledBranch.value = selectedBranch;
+    pendingBranchRecenter.value = selectedBranch;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref.read(activeMarkerProvider.notifier).unselect();
       ref.read(bottomSheetControllerProvider).resetSafe();
-      pendingBranchRecenter.value = selectedBranch;
     });
     return null;
   }, [selectedBranch]);
@@ -66,5 +66,5 @@ void useMultilayerBranchRecenter({
         return null;
     }
     return null;
-  }, [sourceState, selectedBranch]);
+  }, [sourceState, pendingBranchRecenter.value]);
 }
