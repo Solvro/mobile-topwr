@@ -8,6 +8,7 @@ import "package:just_audio/just_audio.dart";
 import "../../../config/env.dart";
 import "../data/client/radio_luz_client.dart";
 import "../data/repository/radio_luz_repository.dart";
+import "../utils/just_audio_playback_errors.dart";
 
 //Here the audio player is defined. Its created at app startup and is used for playing live stream.
 //This whole class describes the audio player behavior, media items and metadata.
@@ -50,11 +51,13 @@ class RadioAudioHandlerBridge extends BaseAudioHandler with SeekHandler, Widgets
 
   void _initializeListeners() {
     //connect 'just_audio' (Flutter) to 'audio_service' (native)
-    _playbackEventSubscription = _player.playbackEventStream.map(_transformEvent).listen(playbackState.add);
+    _playbackEventSubscription = _player.playbackEventStream
+        .map(_transformEvent)
+        .listen(playbackState.add, onError: _onPlaybackStreamError);
 
     _sequenceStateSubscription = _player.sequenceStateStream.listen((state) {
       mediaItem.add(_radioLuzMediaItem);
-    });
+    }, onError: _onPlaybackStreamError);
 
     //periodically refresh now playing metadata
     _refreshTimer?.cancel();
@@ -123,10 +126,26 @@ class RadioAudioHandlerBridge extends BaseAudioHandler with SeekHandler, Widgets
     }
   }
 
+  void _onPlaybackStreamError(Object error, StackTrace stackTrace) {
+    logAndRethrowJustAudioPlaybackError("RadioAudioHandler.playbackEventStream", error, stackTrace);
+  }
+
   ///pre-loads the audio stream
   Future<void> _loadStream() async {
-    await _player.setAudioSource(AudioSource.uri(Uri.parse(Env.radioLuzStreamUrl), tag: _radioLuzMediaItem));
-    mediaItem.add(_radioLuzMediaItem);
+    try {
+      await _player.setAudioSource(AudioSource.uri(Uri.parse(Env.radioLuzStreamUrl), tag: _radioLuzMediaItem));
+      mediaItem.add(_radioLuzMediaItem);
+    } on PlayerException catch (error, stackTrace) {
+      logAndRethrowJustAudioPlaybackError("RadioAudioHandler._loadStream", error, stackTrace);
+    }
+  }
+
+  Future<void> _startPlayback() async {
+    try {
+      await _player.play();
+    } on PlayerException catch (error, stackTrace) {
+      logAndRethrowJustAudioPlaybackError("RadioAudioHandler._startPlayback", error, stackTrace);
+    }
   }
 
   Future<void> preload() async {
@@ -147,7 +166,7 @@ class RadioAudioHandlerBridge extends BaseAudioHandler with SeekHandler, Widgets
       await _loadStream();
     }
 
-    unawaited(_player.play());
+    unawaited(_startPlayback());
   }
 
   @override
@@ -181,7 +200,7 @@ class RadioAudioHandlerBridge extends BaseAudioHandler with SeekHandler, Widgets
   Future<void> playFromMediaId(String mediaId, [Map<String, dynamic>? extras]) async {
     if (mediaId == _radioLuzMediaItem.id) {
       await _loadStream();
-      unawaited(_player.play());
+      unawaited(_startPlayback());
     }
   }
 

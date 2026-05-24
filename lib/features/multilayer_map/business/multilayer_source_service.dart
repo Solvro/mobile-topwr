@@ -2,6 +2,7 @@ import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../branches/business/selected_branch_on_map.dart";
+import "../../branches/data/model/branch.dart";
 import "../../map_layer_picker/business/layers_enabled_service.dart";
 import "../data/model/aed.dart";
 import "../data/model/bicycle_shower.dart";
@@ -48,49 +49,75 @@ Future<IList<MultilayerItem>> multilayerSourceService(Ref ref) async {
     else
       Future.value(const <PinkBox>[]),
   ]);
-  final sortedLibraries = libraries
-      .whereType<Library>()
-      .where((library) => library.branch == branch)
-      .toIList()
-      .sortByAssociatedBuilding(
-        buildingOf: (library) => library.building,
-        tieBreaker: (a, b) => a.rawId.compareTo(b.rawId),
-      );
-  final sortedAeds = aeds
-      .whereType<Aed>()
-      .where((aed) => aed.branch == branch)
-      .toIList()
-      .sortByAssociatedBuilding(buildingOf: (aed) => aed.building, tieBreaker: (a, b) => a.rawId.compareTo(b.rawId));
-  final sortedBicycleShowers = bicycleShowers
-      .whereType<BicycleShower>()
-      .where((shower) => shower.branch == branch)
-      .toIList()
-      .sortByAssociatedBuilding(
-        buildingOf: (shower) => shower.building,
-        tieBreaker: (a, b) => a.rawId.compareTo(b.rawId),
-      );
-  final sortedPinkBoxes = pinkBoxes
-      .whereType<PinkBox>()
-      .where((pinkBox) => pinkBox.branch == branch)
-      .toIList()
-      .sortByAssociatedBuilding(
-        buildingOf: (pinkBox) => pinkBox.building,
-        tieBreaker: (a, b) => a.rawId.compareTo(b.rawId),
-      );
+  final sortedBuildings = _sortBuildingsForBranch(buildings.whereType<Building>(), branch);
+  final branchPolinkas = _itemsForBranch(
+    polinkas.whereType<PolinkaStation>(),
+    branch,
+    branchOf: (station) => station.branch,
+  );
+  final sortedLibraries = _sortByBuildingForBranch(
+    libraries.whereType<Library>(),
+    branch,
+    branchOf: (library) => library.branch,
+    buildingOf: (library) => library.building,
+    rawIdOf: (library) => library.rawId,
+  );
+  final sortedAeds = _sortByBuildingForBranch(
+    aeds.whereType<Aed>(),
+    branch,
+    branchOf: (aed) => aed.branch,
+    buildingOf: (aed) => aed.building,
+    rawIdOf: (aed) => aed.rawId,
+  );
+  final sortedBicycleShowers = _sortByBuildingForBranch(
+    bicycleShowers.whereType<BicycleShower>(),
+    branch,
+    branchOf: (shower) => shower.branch,
+    buildingOf: (shower) => shower.building,
+    rawIdOf: (shower) => shower.rawId,
+  );
+  final sortedPinkBoxes = _sortByBuildingForBranch(
+    pinkBoxes.whereType<PinkBox>(),
+    branch,
+    branchOf: (pinkBox) => pinkBox.branch,
+    buildingOf: (pinkBox) => pinkBox.building,
+    rawIdOf: (pinkBox) => pinkBox.rawId,
+  );
   return <MultilayerItem>[
-    ...buildings
-        .whereType<Building>()
-        .map((building) => BuildingItem(building: building))
-        .where((item) => item.building.branch == branch),
-    ...polinkas
-        .whereType<PolinkaStation>()
-        .map((station) => PolinkaItem(station: station))
-        .where((item) => item.station.branch == branch),
+    ...sortedBuildings.map((building) => BuildingItem(building: building)),
+    ...branchPolinkas.map((station) => PolinkaItem(station: station)),
     ...sortedLibraries.map((library) => LibraryItem(library: library)),
     ...sortedAeds.map((aed) => AedItem(aed: aed)),
     ...sortedBicycleShowers.map((shower) => BicycleShowerItem(shower: shower)),
     ...sortedPinkBoxes.map((pinkBox) => PinkBoxItem(pinkBox: pinkBox)),
   ].lock;
+}
+
+IList<Building> _sortBuildingsForBranch(Iterable<Building> buildings, Branch? branch) {
+  final branchBuildings = _itemsForBranch(buildings, branch, branchOf: (building) => building.branch);
+  return branch == Branch.main
+      ? branchBuildings.sortByCodeOrder()
+      : branchBuildings.sort((a, b) => a.rawId.compareTo(b.rawId));
+}
+
+IList<T> _sortByBuildingForBranch<T>(
+  Iterable<T> items,
+  Branch? branch, {
+  required Branch Function(T item) branchOf,
+  required Building? Function(T item) buildingOf,
+  required int Function(T item) rawIdOf,
+}) {
+  final branchItems = _itemsForBranch(items, branch, branchOf: branchOf);
+  return branch == Branch.main
+      ? branchItems.sortByAssociatedBuilding(
+          buildingOf: buildingOf,
+          tieBreaker: (a, b) => rawIdOf(a).compareTo(rawIdOf(b)),
+        )
+      : branchItems.sort((a, b) => rawIdOf(a).compareTo(rawIdOf(b)));
+}
+
+IList<T> _itemsForBranch<T>(Iterable<T> items, Branch? branch, {required Branch Function(T item) branchOf}) {
+  return items.where((item) => branchOf(item) == branch).toIList();
 }
 
 @riverpod

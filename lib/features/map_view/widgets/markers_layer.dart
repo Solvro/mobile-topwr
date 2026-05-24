@@ -5,6 +5,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../utils/where_non_null_iterable.dart";
 import "../controllers/controllers_set.dart";
+import "../utils/lat_lng_validity.dart";
 import "map_config.dart";
 
 class MarkersConsumerLayer<T extends GoogleNavigable> extends ConsumerWidget {
@@ -12,7 +13,12 @@ class MarkersConsumerLayer<T extends GoogleNavigable> extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var asyncItems = ref.watch(context.mapSourceRepository<T>()).value.whereNonNull.toIList();
+    var asyncItems = ref
+        .watch(context.mapSourceRepository<T>())
+        .value
+        .whereNonNull
+        .where((item) => item.location.isValidForMap)
+        .toIList();
     final activeItem = ref.watch(context.activeMarkerController<T>());
     final markerZIndex = context.markerZIndex<T>();
     if (markerZIndex != null) {

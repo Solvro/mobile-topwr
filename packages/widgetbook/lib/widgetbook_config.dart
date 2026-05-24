@@ -15,6 +15,7 @@ import "package:topwr/features/digital_guide/data/repository/levels_repository.d
 import "package:topwr/features/digital_guide/data/repository/optional_tiles_data_repository.dart";
 import "package:topwr/features/digital_guide_objects/data/repositories/digital_guide_object_repository.dart";
 import "package:topwr/features/digital_guide_objects/data/repositories/digital_guide_tabs_repository.dart";
+import "package:topwr/features/feature_codes/data/feature_codes_repository.dart";
 import "package:topwr/features/guide_detail_view/data/repository/guide_details_repository.dart";
 import "package:topwr/features/guide_view/data/repository/guide_repository.dart";
 import "package:topwr/features/multilayer_map/business/multilayer_source_service.dart";
@@ -87,6 +88,7 @@ final config = Config(
         scheduleRepositoryProvider.overrideWith((ref) => Future.value(mockBroadcasts)),
         scienceClubDetailsRepositoryProvider.overrideWith((ref, id) => mockScienceClubDetails),
         scienceClubsRepositoryProvider.overrideWith((ref) => mockScienceClubs),
+        featureCodesRepositoryProvider.overrideWithValue(const ISetConst({})),
         sksFavouriteDishesRepositoryProvider.overrideWith(WidgetbookSksFavouriteDishesRepository.new),
         sksMenuRepositoryProvider.overrideWith(WidgetbookSksMenuRepository.new),
         tagsRepositoryProvider.overrideWith((ref) => mockScienceClubTags),

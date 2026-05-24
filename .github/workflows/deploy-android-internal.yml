@@ -58,18 +58,32 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y libsodium-dev
 
+      - name: Get app version
+        id: version
+        run: |
+          VERSION=$(grep '^version:' pubspec.yaml | sed 's/version:[[:space:]]*//' | tr -d '\r\n ')
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "release=com.solvro.topwr@${VERSION}" >> "$GITHUB_OUTPUT"
+
       - name: Build app bundle
-        run: flutter build appbundle --release
+        run: flutter build appbundle --release --split-debug-info=build/app/outputs/symbols
+
+      - name: Upload debug symbols to Bugsink
+        env:
+          BUGSINK_AUTH_TOKEN: ${{ secrets.BUGSINK_AUTH_TOKEN }}
+          BUGSINK_URL: ${{ secrets.BUGSINK_URL }}
+          BUGSINK_ORG: bugsinkhasnoorgs
+          BUGSINK_PROJECT: ignoredfornow
+        run: |
+          mkdir -p .dart_tool/sentry-cli
+          curl -fsSL https://downloads.sentry-cdn.com/sentry-cli/2.52.0/sentry-cli-Linux-x86_64 -o .dart_tool/sentry-cli/sentry-cli
+          chmod +x .dart_tool/sentry-cli/sentry-cli
+          .dart_tool/sentry-cli/sentry-cli --log-level debug --url "$BUGSINK_URL" --auth-token "$BUGSINK_AUTH_TOKEN" debug-files upload --org "$BUGSINK_ORG" --project "$BUGSINK_PROJECT" build/app/outputs/symbols
 
       - name: Install Fastlane (Android)
         run: |
           cd android
           bundle install
-
-      - name: Get app version
-        id: version
-        run: |
-          echo "version=$(grep '^version:' pubspec.yaml | sed 's/version:[[:space:]]*//' | tr -d '\r\n ')" >> "$GITHUB_OUTPUT"
 
       - name: Run Fastlane internal
         env:

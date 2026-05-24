@@ -41,7 +41,7 @@ class SliverMultiTabberBuilder extends HookWidget {
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: SizedBox(
-                  height: context.textScaler.clamp(maxScaleFactor: 2).scale(40),
+                  height: context.textScaler.clamp(maxScaleFactor: 2).scale(50),
                   child: _TabBarWidget(
                     tabs: tabs,
                     scrollController: scrollController,
@@ -51,7 +51,7 @@ class SliverMultiTabberBuilder extends HookWidget {
                 ),
               ),
             ),
-            height: context.textScaler.clamp(maxScaleFactor: 2).scale(40),
+            height: context.textScaler.clamp(maxScaleFactor: 2).scale(50),
           ),
         ),
         // Add each tab's content
@@ -121,36 +121,37 @@ class _TabBarWidget extends HookConsumerWidget {
         labelPadding: const EdgeInsets.symmetric(horizontal: NavigationTabViewConfig.smallerPadding),
         onTap: onTabTap,
         isScrollable: true,
-        padding: EdgeInsets.zero,
+        padding: const EdgeInsets.only(
+          left: MapViewBottomSheetConfig.horizontalPadding - NavigationTabViewConfig.smallerPadding,
+          bottom: NavigationTabViewConfig.smallerPadding * 1.5,
+        ),
         indicatorColor: Colors.transparent,
+        splashBorderRadius: BorderRadius.circular(NavigationTabViewConfig.radius),
         dividerHeight: 0,
         tabAlignment: TabAlignment.start,
         tabs: List.generate(
           tabs.length,
-          (index) => Container(
-            key: ValueKey("tab_$index"),
-            margin: EdgeInsets.only(
-              bottom: NavigationTabViewConfig.smallerPadding * 1.5,
-              left: index == 0
-                  ? MapViewBottomSheetConfig.horizontalPadding - NavigationTabViewConfig.smallerPadding
-                  : 0,
-            ),
-            padding: const EdgeInsets.symmetric(
-              horizontal: NavigationTabViewConfig.universalPadding,
-              vertical: NavigationTabViewConfig.tinyPadding,
-            ),
-            decoration: BoxDecoration(
-              color: index == selectedTabIndex.value
-                  ? context.colorScheme.primaryContainer
-                  : context.colorScheme.surfaceTint,
-              borderRadius: BorderRadius.circular(NavigationTabViewConfig.radius),
-            ),
-            child: Text(
-              tabs[index].title,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontWeight: index == selectedTabIndex.value ? FontWeight.bold : FontWeight.normal,
-                color: index == selectedTabIndex.value ? Colors.white : Colors.black,
+          (index) => Tab(
+            height: 40,
+            child: Container(
+              key: ValueKey("tab_$index"),
+              padding: const EdgeInsets.symmetric(
+                horizontal: NavigationTabViewConfig.universalPadding,
+                vertical: NavigationTabViewConfig.tinyPadding,
+              ),
+              decoration: BoxDecoration(
+                color: index == selectedTabIndex.value
+                    ? context.colorScheme.primaryContainer
+                    : context.colorScheme.surfaceTint,
+                borderRadius: BorderRadius.circular(NavigationTabViewConfig.radius),
+              ),
+              child: Text(
+                tabs[index].title,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontWeight: index == selectedTabIndex.value ? FontWeight.bold : FontWeight.normal,
+                  color: index == selectedTabIndex.value ? Colors.white : Colors.black,
+                ),
               ),
             ),
           ),

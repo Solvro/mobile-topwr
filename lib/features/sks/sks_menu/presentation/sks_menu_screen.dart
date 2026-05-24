@@ -152,6 +152,7 @@ class _SKSMenuUnavailableAnimation extends HookWidget {
             child: Align(
               alignment: const Alignment(0, -0.2),
               child: SingleChildScrollView(
+                key: MyAppConfig.verticalScrollableKey,
                 child: Transform.translate(
                   offset: Offset(0, animationTopOffset * animationSize),
                   child: Column(

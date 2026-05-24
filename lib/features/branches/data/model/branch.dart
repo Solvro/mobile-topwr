@@ -6,9 +6,9 @@ import "../../../../l10n/app_localizations.dart";
 @JsonEnum(fieldRename: FieldRename.snake)
 enum Branch {
   main,
-  jeleniaGora,
   walbrzych,
-  legnica;
+  legnica,
+  jeleniaGora;
 
   String localize(AppLocalizations localize) => switch (this) {
     Branch.main => localize.main_branch,

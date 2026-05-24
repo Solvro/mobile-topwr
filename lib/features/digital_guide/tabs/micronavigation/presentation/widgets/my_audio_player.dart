@@ -3,11 +3,13 @@ import "dart:async";
 import "package:flutter/material.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
 import "package:just_audio/just_audio.dart";
+import "package:logger/logger.dart";
 
 import "../../../../../../config/ui_config.dart";
 import "../../../../../../theme/app_theme.dart";
 import "../../../../../../utils/context_extensions.dart";
 import "../../../../../../utils/duration_utils.dart";
+import "../../../../../radio_luz/utils/just_audio_playback_errors.dart";
 
 class MyAudioPlayer extends HookWidget {
   final String audioUrl;
@@ -22,17 +24,21 @@ class MyAudioPlayer extends HookWidget {
     final totalTime = useState(Duration.zero);
 
     useEffect(() {
+      void onStreamError(Object error, StackTrace stackTrace) {
+        logAndRethrowJustAudioPlaybackError("MyAudioPlayer", error, stackTrace);
+      }
+
       final stateSubscription = audioPlayer.playerStateStream.listen((state) {
         isPlaying.value = state.playing;
-      });
+      }, onError: onStreamError);
 
       final durationSubscription = audioPlayer.durationStream.listen((duration) {
         totalTime.value = duration ?? Duration.zero;
-      });
+      }, onError: onStreamError);
 
       final positionSubscription = audioPlayer.positionStream.listen((position) {
         currentTime.value = position;
-      });
+      }, onError: onStreamError);
 
       return () {
         unawaited(stateSubscription.cancel());
@@ -45,9 +51,17 @@ class MyAudioPlayer extends HookWidget {
     final togglePlayPause = useCallback(() async {
       if (isPlaying.value) {
         await audioPlayer.pause();
+      } else if (audioUrl.isEmpty) {
+        const message = "[MyAudioPlayer.togglePlayPause] empty audioUrl";
+        Logger().w(message);
+        throw StateError(message);
       } else {
-        await audioPlayer.setUrl(audioUrl);
-        await audioPlayer.play();
+        try {
+          await audioPlayer.setUrl(audioUrl);
+          await audioPlayer.play();
+        } on PlayerException catch (error, stackTrace) {
+          logAndRethrowJustAudioPlaybackError("MyAudioPlayer.togglePlayPause", error, stackTrace);
+        }
       }
     }, [audioUrl]);
 

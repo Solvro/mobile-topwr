@@ -13,6 +13,8 @@
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
 
+require "fileutils"
+
 default_platform(:ios)
 
 # Notify Discord on any lane error (CI only, when webhook is configured)
@@ -44,10 +46,15 @@ platform :ios do
     end
 
     match(type: "appstore", readonly: true, api_key: api_key)
+    split_debug_info = ENV["SPLIT_DEBUG_INFO"] || File.expand_path("../../build/app/outputs/symbols", __dir__)
     build_app(
       workspace: "./Runner.xcworkspace",
-      scheme: "Runner"
+      scheme: "Runner",
+      xcargs: "SPLIT_DEBUG_INFO=#{split_debug_info} DART_OBFUSCATION=true"
     )
+    FileUtils.mkdir_p(File.expand_path("../../build/app/outputs", __dir__))
+    File.write(File.expand_path("../../build/app/outputs/ios_archive_path.txt", __dir__), lane_context[SharedValues::XCODEBUILD_ARCHIVE].to_s)
+    File.write(File.expand_path("../../build/app/outputs/ios_dsym_path.txt", __dir__), lane_context[SharedValues::DSYM_OUTPUT_PATH].to_s)
     upload_options = {
       distribute_external: false,
       notify_external_testers: false,
