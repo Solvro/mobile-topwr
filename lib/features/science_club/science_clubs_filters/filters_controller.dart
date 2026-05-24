@@ -25,10 +25,12 @@ mixin FilterController<T> on $Notifier<ISet<T>> {
   }
 
   void toggleFilter(T val) {
+    if (!ref.mounted) return;
     state = state.toggle(val);
   }
 
   void clearFilter() {
+    if (!ref.mounted) return;
     state = state.clear();
   }
 }
@@ -46,6 +48,7 @@ class SelectedDepartmentController extends _$SelectedDepartmentController with F
 
   Future<void> selectDepartmentById(int id) async {
     final department = (await ref.read(departmentsRepositoryProvider.future)).firstWhere((element) => element.id == id);
+    if (!ref.mounted) return;
     state = state.clear().add(department);
   }
 }

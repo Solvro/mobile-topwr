@@ -6,6 +6,7 @@ import "package:topwr/features/academic_calendar/model/day_swap_model.dart";
 import "package:topwr/features/academic_calendar/model/weekday_enum.dart";
 import "package:topwr/features/academic_calendar/repository/academic_calendar_repo.dart";
 import "package:topwr/features/app_changelog/data/models/changelog.dart";
+import "package:topwr/features/booths/data/models/booth.dart";
 import "package:topwr/features/branches/data/model/branch.dart";
 import "package:topwr/features/calendar/bussiness/models.dart";
 import "package:topwr/features/departments/department_detail_view/data/models/department_details.dart";
@@ -44,6 +45,7 @@ import "package:topwr/features/sks/sks_menu/data/models/sks_opening_hours.dart";
 import "package:topwr/features/sks/sks_people_live/data/models/sks_user_data.dart";
 import "package:topwr/theme/hex_color.dart";
 import "package:topwr/utils/datetime_utils.dart";
+
 import "widgetbook_placeholders.dart";
 
 const mockRemoteConfig = RemoteConfig(
@@ -53,6 +55,36 @@ const mockRemoteConfig = RemoteConfig(
   sksMicroserviceUrl: "",
   parkingMicroserviceUrl: "",
 );
+
+final mockBooths = IList<Booth>([
+  Booth(
+    id: "booth-1",
+    name: "Strefa 11.C",
+    photoUrl: "",
+    localization: "Biblioteka, 1 pietro",
+    isOccupied: false,
+    reportedAt: DateTime.utc(2026, 5, 21, 10, 15),
+    isOnline: true,
+  ),
+  Booth(
+    id: "booth-2",
+    name: "Strefa D20",
+    photoUrl: "",
+    localization: "Lacznik przy patio",
+    isOccupied: true,
+    reportedAt: DateTime.utc(2026, 5, 21, 10, 17),
+    isOnline: true,
+  ),
+  const Booth(
+    id: "booth-3",
+    name: "Strefa C13",
+    photoUrl: "",
+    localization: "Parter przy wejsciu glownym",
+    isOccupied: null,
+    reportedAt: null,
+    isOnline: false,
+  ),
+]);
 
 /// Relative dates keep countdown and day-swap stories populated without API calls.
 final mockAcademicCalendarWithSwaps = () {
@@ -174,6 +206,7 @@ const mockDepartmentDetails = DepartmentDetails(
   gradientStop: "#B74A53",
   addressLine1: "Wybrzeze Wyspianskiego 27",
   addressLine2: "50-370 Wroclaw",
+  branch: Branch.main,
   fieldsOfStudy: IListConst([
     FieldOfStudy(
       name: "Informatyka stosowana",

@@ -4,6 +4,7 @@ import "package:flutter/material.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../../utils/context_extensions.dart";
+import "../../branches/data/model/branch.dart";
 import "../../departments/departments_view/data/repository/departments_repository.dart";
 import "../science_clubs_filters/filters_controller.dart";
 import "../science_clubs_filters/hooks/use_initial_filter_ids.dart";
@@ -21,11 +22,13 @@ class ScienceClubsView extends StatelessWidget {
     super.key,
     @QueryParam("tags") this.tagsIdsSequence,
     @QueryParam("depts") this.deptsIdsSequence,
+    @QueryParam("branches") this.branchesSequence,
     @QueryParam("types") this.typesSequence,
     @QueryParam("q") this.initialQuery,
   });
   final String? tagsIdsSequence;
   final String? deptsIdsSequence;
+  final String? branchesSequence;
   final String? typesSequence;
   final String? initialQuery;
 
@@ -35,12 +38,14 @@ class ScienceClubsView extends StatelessWidget {
       overrides: [
         searchScienceClubsControllerProvider,
         selectedDepartmentControllerProvider,
+        selectedBranchControllerProvider,
         selectedTagControllerProvider,
         selectedTypeControllerProvider,
       ],
       child: _ScienceClubsView(
         tagsIds: tagsIdsSequence?.split(",").toIList() ?? const IList.empty(),
         deptsIds: deptsIdsSequence?.split(",").toIList() ?? const IList.empty(),
+        branches: branchesSequence?.split(",").toIList() ?? const IList.empty(),
         types: typesSequence?.split(",").toIList() ?? const IList.empty(),
         initialQuery: initialQuery,
       ),
@@ -49,9 +54,16 @@ class ScienceClubsView extends StatelessWidget {
 }
 
 class _ScienceClubsView extends StatelessWidget {
-  const _ScienceClubsView({required this.tagsIds, required this.deptsIds, required this.types, this.initialQuery});
+  const _ScienceClubsView({
+    required this.tagsIds,
+    required this.deptsIds,
+    required this.branches,
+    required this.types,
+    this.initialQuery,
+  });
   final IList<String> tagsIds;
   final IList<String> deptsIds;
+  final IList<String> branches;
   final IList<String> types;
   final String? initialQuery;
 
@@ -72,6 +84,13 @@ class _ScienceClubsView extends StatelessWidget {
             () => ref.read(departmentsRepositoryProvider.future),
             ref.watch(selectedDepartmentControllerProvider.notifier),
             (ids, dept) => ids.contains(dept.id.toString()),
+          );
+
+          useInitialFilterIds(
+            branches.map((it) => it.toLowerCase()).toIList(),
+            () async => Branch.values.toIList(),
+            ref.watch(selectedBranchControllerProvider.notifier),
+            (ids, branch) => ids.contains(branch.name.toLowerCase()),
           );
 
           useInitialFilterIds(

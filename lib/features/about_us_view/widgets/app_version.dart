@@ -40,7 +40,11 @@ class AppVersionTile extends StatelessWidget {
   }
 }
 
-Future<void> showMyLicenceDialog(BuildContext context, String? applicationVersion) {
+Future<void> showMyLicenceDialog(
+  BuildContext context,
+  String? applicationVersion, {
+  Future<void> Function(BuildContext context)? onApplicationIconTap,
+}) {
   return showCustomLicenseDialog(
     context: context,
     applicationIcon: Container(
@@ -53,5 +57,6 @@ Future<void> showMyLicenceDialog(BuildContext context, String? applicationVersio
     applicationName: MyAppConfig.title,
     applicationVersion: applicationVersion ?? context.localize.no_version,
     applicationLegalese: MyAppConfig.legalese,
+    onApplicationIconTap: onApplicationIconTap,
   );
 }

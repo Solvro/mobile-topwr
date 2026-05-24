@@ -11,6 +11,7 @@ Future<void> showCustomLicenseDialog({
   required String applicationVersion,
   required String applicationLegalese,
   required Widget applicationIcon,
+  Future<void> Function(BuildContext context)? onApplicationIconTap,
 }) async {
   await showCustomDialog(
     dialogSemantics:
@@ -35,6 +36,7 @@ Future<void> showCustomLicenseDialog({
       applicationVersion: applicationVersion,
       applicationIcon: applicationIcon,
       applicationLegalese: applicationLegalese,
+      onApplicationIconTap: onApplicationIconTap,
     ),
   );
 }
@@ -45,12 +47,14 @@ class _DialogContent extends StatelessWidget {
     required this.applicationVersion,
     required this.applicationIcon,
     required this.applicationLegalese,
+    this.onApplicationIconTap,
   });
 
   final String applicationName;
   final String applicationVersion;
   final Widget applicationIcon;
   final String applicationLegalese;
+  final Future<void> Function(BuildContext context)? onApplicationIconTap;
 
   @override
   Widget build(BuildContext context) {
@@ -85,18 +89,19 @@ class _DialogContent extends StatelessWidget {
                 ],
               ),
             ),
-            applicationIcon,
+            GestureDetector(
+              onTap: onApplicationIconTap == null ? null : () => onApplicationIconTap!(context),
+              child: applicationIcon,
+            ),
           ],
         ),
         const SizedBox(height: 20),
         Flexible(
-          child: Flexible(
-            child: Text(
-              applicationLegalese,
-              style: context.textTheme.bodyLarge,
-              maxLines: 4,
-              overflow: TextOverflow.ellipsis,
-            ),
+          child: Text(
+            applicationLegalese,
+            style: context.textTheme.bodyLarge,
+            maxLines: 4,
+            overflow: TextOverflow.ellipsis,
           ),
         ),
       ],

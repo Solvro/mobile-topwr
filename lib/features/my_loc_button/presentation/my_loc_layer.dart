@@ -3,6 +3,7 @@ import "package:flutter_hooks/flutter_hooks.dart";
 import "package:flutter_map_location_marker/flutter_map_location_marker.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
+import "../../map_view/utils/lat_lng_validity.dart";
 import "../data/location_permission_status_provider.dart";
 import "is_following_controller.dart";
 
@@ -28,6 +29,9 @@ class MyLocationLayer extends ConsumerWidget {
 
         return IgnorePointer(
           child: CurrentLocationLayer(
+            positionStream: const LocationMarkerDataStreamFactory().fromGeolocatorPositionStream().where(
+              (position) => position != null && position.isValidForMap,
+            ),
             alignPositionStream: zoomStream.stream,
             alignPositionOnUpdate: isFollowingCurrLoc ? AlignOnUpdate.always : AlignOnUpdate.never,
           ),

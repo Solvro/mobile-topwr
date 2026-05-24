@@ -13,11 +13,19 @@ void useInitialFilterIds<T>(
 ) {
   if (ids == null) return;
   useEffect(() {
+    var cancelled = false;
     unwaitedMicrotask(() async {
       final items = await itemsCallback();
+      if (cancelled) return;
       filterController.clearFilter();
-      items.where((item) => test(ids, item)).forEach(filterController.toggleFilter);
+      if (cancelled) return;
+      for (final item in items.where((item) => test(ids, item))) {
+        if (cancelled) return;
+        filterController.toggleFilter(item);
+      }
     });
-    return null;
+    return () {
+      cancelled = true;
+    };
   }, [ids]);
 }

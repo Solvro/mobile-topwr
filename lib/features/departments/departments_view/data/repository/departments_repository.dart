@@ -7,6 +7,7 @@ import "../../../../../config/env.dart";
 import "../../../../branches/data/model/branch.dart";
 import "../../../../branches/data/repository/branch_repository.dart";
 import "../models/department.dart";
+import "../utils/departments_extensions.dart";
 
 part "departments_repository.g.dart";
 
@@ -33,8 +34,8 @@ Future<IList<Department>> departmentsRepository(Ref ref) async {
 extension SortBySourceTypeX on Iterable<Department> {
   List<Department> sortByBranch(Branch? branch) {
     if (branch == null) return toList();
-    final branchDepartments = where((element) => element.branch == branch);
-    final otherDepartments = where((element) => element.branch != branch);
+    final branchDepartments = where((element) => element.branch == branch).toList()..sortByCodeOrder();
+    final otherDepartments = where((element) => element.branch != branch).toList()..sortByCodeOrder();
     return [...branchDepartments, ...otherDepartments];
   }
 }
