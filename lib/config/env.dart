@@ -41,5 +41,7 @@ abstract class Env {
   @EnviedField()
   static final String boothFeatureCode = _Env.boothFeatureCode;
   @EnviedField()
+  static final String activityDaysFeatureCode = _Env.activityDaysFeatureCode;
+  @EnviedField()
   static final String defaultFeatureCodes = _Env.defaultFeatureCodes;
 }

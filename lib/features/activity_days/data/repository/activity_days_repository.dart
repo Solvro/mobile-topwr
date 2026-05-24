@@ -5,6 +5,7 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 import "../../../../api_base_rest/cache/cache.dart";
 import "../../../../api_base_rest/client/json.dart";
 import "../../../../config/env.dart";
+import "../../../feature_codes/data/feature_codes_repository.dart";
 import "../models/activity_days_response.dart";
 
 part "activity_days_repository.g.dart";
@@ -57,6 +58,9 @@ Future<ActivityDaysResponse?> activityDaysRepository(Ref ref) async {
 
 @riverpod
 Future<bool> isActivityDaysActive(Ref ref) async {
+  final featureCodes = ref.watch(featureCodesRepositoryProvider);
+  if (!featureCodes.contains(Env.activityDaysFeatureCode)) return false;
+
   final event = await ref.watch(activityDaysRepositoryProvider.future);
   if (event == null) return false;
 
