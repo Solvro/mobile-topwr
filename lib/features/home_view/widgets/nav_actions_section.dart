@@ -37,6 +37,7 @@ class NavActionsSection extends ConsumerWidget {
           ),
           Expanded(
             child: _NavActionButton(
+              key: HomeViewConfig.calendarKey,
               context.localize.calendar,
               Icon(Icons.calendar_today_outlined, color: context.colorScheme.surface, size: 30),
               ref.navigateCalendar,
