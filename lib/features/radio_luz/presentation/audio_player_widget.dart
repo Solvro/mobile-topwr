@@ -34,18 +34,22 @@ class AudioPlayerWidget extends HookConsumerWidget {
           width: double.infinity,
           height: 59,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
+            padding: EdgeInsets.symmetric(horizontal: 16 / MediaQuery.textScalerOf(context).scale(2), vertical: 2),
             child: Row(
               spacing: RadioLuzConfig.spacingMedium,
               children: [
-                IconButton(
-                  onPressed: radioController.toggleVolume,
-                  icon: Icon(
-                    radioState.isMuted ? Icons.volume_off : Icons.volume_up,
-                    color: context.colorScheme.onPrimaryContainer,
-                  ),
+                Row(
+                  children: [
+                    IconButton(
+                      onPressed: radioController.toggleVolume,
+                      icon: Icon(
+                        radioState.isMuted ? Icons.volume_off : Icons.volume_up,
+                        color: context.colorScheme.onPrimaryContainer,
+                      ),
+                    ),
+                    RadioPlayerSlider(radioController: radioController, volume: radioState.volume),
+                  ],
                 ),
-                RadioPlayerSlider(radioController: radioController, volume: radioState.volume),
                 const RadioPlayerInfo(),
                 RadioPlayerControlButton(
                   radioController: radioController,
