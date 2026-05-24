@@ -68,34 +68,30 @@ class _NavActionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final buttonColor = color ?? context.colorScheme.primary;
     return MergeSemantics(
-      child: GestureDetector(
-        onTap: onTap,
-        behavior: HitTestBehavior.opaque,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Material(
-              color: Colors.transparent,
-              child: Ink(
-                decoration: BoxDecoration(shape: BoxShape.circle, color: buttonColor),
-                child: InkWell(
-                  onTap: onTap,
-                  borderRadius: BorderRadius.circular(56),
-                  splashColor: context.colorScheme.surface.withValues(alpha: 0.3),
-                  child: SizedBox.square(dimension: 56, child: Center(child: icon)),
-                ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Material(
+            color: Colors.transparent,
+            child: Ink(
+              decoration: BoxDecoration(shape: BoxShape.circle, color: buttonColor),
+              child: InkWell(
+                onTap: onTap,
+                borderRadius: BorderRadius.circular(56),
+                splashColor: context.colorScheme.surface.withValues(alpha: 0.3),
+                child: SizedBox.square(dimension: 56, child: Center(child: icon)),
               ),
             ),
-            const SizedBox(height: 8),
-            Text(
-              title,
-              style: context.textTheme.bodyMedium,
-              textAlign: TextAlign.center,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ],
-        ),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            title,
+            style: context.textTheme.bodyMedium,
+            textAlign: TextAlign.center,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ],
       ),
     );
   }

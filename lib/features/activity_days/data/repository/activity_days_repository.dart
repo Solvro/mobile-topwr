@@ -1,9 +1,9 @@
 // ignore_for_file: dead_code, literal_only_boolean_expressions
-import "package:dio/dio.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "../../../../api_base_rest/client/dio_client.dart";
+import "../../../../api_base_rest/cache/cache.dart";
+import "../../../../api_base_rest/client/json.dart";
 import "../../../../config/env.dart";
 import "../models/activity_days_response.dart";
 
@@ -30,32 +30,29 @@ Future<ActivityDaysResponse?> activityDaysRepository(Ref ref) async {
     );
   }
 
-  final restClient = ref.watch(restClientProvider);
   final url = "${Env.mainRestApiUrl}/das";
 
-  try {
-    final response = await restClient.get<List<dynamic>>(url);
-    final data = response.data;
-    if (data == null || data.isEmpty) return null;
+  final response = await ref.getAndCacheData(
+    url,
+    ActivityDaysResponse.fromJson,
+    extraValidityCheck: (_) => true,
+    onRetry: ref.invalidateSelf,
+  );
+  final events = response.castAsList;
+  if (events.isEmpty) return null;
 
-    final now = DateTime.now();
-    final events = data.whereType<Map<String, dynamic>>().map(ActivityDaysResponse.fromJson).toList();
-
-    final runningEvents = events.where((e) => now.isAfter(e.startsAt) && now.isBefore(e.endsAt));
-    if (runningEvents.isNotEmpty) {
-      return runningEvents.first;
-    }
-
-    final upcomingEvents = events.where((e) => e.startsAt.isAfter(now)).toList()
-      ..sort((a, b) => a.startsAt.compareTo(b.startsAt));
-    if (upcomingEvents.isNotEmpty) {
-      return upcomingEvents.first;
-    }
-
-    return null;
-  } on DioException {
-    return null;
+  final runningEvents = events.where((e) => now.isAfter(e.startsAt) && now.isBefore(e.endsAt));
+  if (runningEvents.isNotEmpty) {
+    return runningEvents.first;
   }
+
+  final upcomingEvents = events.where((e) => e.startsAt.isAfter(now)).toList()
+    ..sort((a, b) => a.startsAt.compareTo(b.startsAt));
+  if (upcomingEvents.isNotEmpty) {
+    return upcomingEvents.first;
+  }
+
+  return null;
 }
 
 @riverpod
