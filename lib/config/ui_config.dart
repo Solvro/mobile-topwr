@@ -270,7 +270,7 @@ abstract class DigitalGuideConfig {
 
 abstract class RadioLuzConfig {
   static const spacingSmall = 4.0;
-  static const spacingMedium = 8.0;
+  static const spacingMedium = 12.0;
   static const paddingSmall = 8.0;
   static const horizontalBasePadding = 16.0;
 }
