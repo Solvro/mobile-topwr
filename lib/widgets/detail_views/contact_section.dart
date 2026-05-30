@@ -29,6 +29,9 @@ class ContactSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (list.isEmpty) {
+      return const SizedBox.shrink();
+    }
     final sorted = list.sort((a, b) => a.order.compareTo(b.order));
     return Container(
       padding: EdgeInsets.only(top: topPadding, left: 24, right: 24, bottom: 8),
