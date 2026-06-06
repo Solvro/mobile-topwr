@@ -9,5 +9,8 @@ plugins:
     version: ^1.4.2
 
 analyzer:
+  exclude:
+    - build/**
+    - "**/build/**"
   errors:
     unsafe_variance: ignore

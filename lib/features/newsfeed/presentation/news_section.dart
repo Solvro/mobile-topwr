@@ -1,5 +1,6 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
+import "package:flutter/rendering.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../api_base_rest/shared_models/image_data.dart";
@@ -62,7 +63,7 @@ class _NewsDataList extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return ListView.builder(
-      cacheExtent: 4,
+      scrollCacheExtent: const ScrollCacheExtent.pixels(4),
       shrinkWrap: true,
       scrollDirection: Axis.horizontal,
       itemCount: news.length,

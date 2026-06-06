@@ -50,7 +50,7 @@ class ContactSection extends StatelessWidget {
                 shouldBeAccessible: shouldBeAccessible,
               ),
             ),
-          if (bottomSpace != null) ...bottomSpace!,
+          ...?bottomSpace,
         ],
       ),
     );
