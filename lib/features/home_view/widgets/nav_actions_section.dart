@@ -1,4 +1,7 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../config/ui_config.dart";
@@ -77,7 +80,10 @@ class _NavActionButton extends StatelessWidget {
             child: Ink(
               decoration: BoxDecoration(shape: BoxShape.circle, color: buttonColor),
               child: InkWell(
-                onTap: onTap,
+                onTap: () {
+                  unawaited(HapticFeedback.selectionClick());
+                  onTap();
+                },
                 borderRadius: BorderRadius.circular(56),
                 splashColor: context.colorScheme.surface.withValues(alpha: 0.3),
                 child: SizedBox.square(dimension: 56, child: Center(child: icon)),

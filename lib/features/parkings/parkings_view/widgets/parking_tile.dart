@@ -1,6 +1,7 @@
 import "dart:async";
 
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../analytics/data/clarity.dart";
@@ -20,6 +21,7 @@ class ParkingTile extends ConsumerWidget {
       parking: parking,
       isActive: isActive,
       onTap: () {
+        unawaited(HapticFeedback.selectionClick());
         if (!isActive) {
           unawaited(ref.trackEvent(ClarityEvents.openParkingChart, value: parking.nameNormalized));
         }

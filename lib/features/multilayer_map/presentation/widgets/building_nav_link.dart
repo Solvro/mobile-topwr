@@ -1,6 +1,7 @@
 import "dart:async";
 
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../../../config/ui_config.dart";
@@ -26,6 +27,7 @@ class BuildingNavLink extends ConsumerWidget {
         color: isActive ? context.colorScheme.surface : context.colorScheme.secondary,
         icon: Icon(Icons.home_sharp, color: isActive ? context.colorScheme.surface : context.colorScheme.secondary),
         onPressed: () {
+          unawaited(HapticFeedback.selectionClick());
           unawaited(ref.read(multilayerMapControllerProvider).onMarkerTap(BuildingItem(building: building)));
         },
       ),

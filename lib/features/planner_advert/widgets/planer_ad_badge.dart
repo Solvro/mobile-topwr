@@ -1,6 +1,7 @@
 import "dart:async";
 
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../theme/app_theme.dart";
@@ -41,6 +42,7 @@ class _BadgeContent extends ConsumerWidget {
       padding: const EdgeInsets.only(right: 12),
       child: OutlinedButton(
         onPressed: () async {
+          unawaited(HapticFeedback.selectionClick());
           unawaited(ref.trackEvent(ClarityEvents.openBannerDialog));
           await showCustomDialog(
             context: context,

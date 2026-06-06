@@ -1,6 +1,7 @@
 import "dart:async";
 
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../utils/context_extensions.dart";
@@ -35,6 +36,7 @@ class TypesWrap extends ConsumerWidget {
                     MyFilterChip(
                       label: context.sciClubTypeDisplayName(type),
                       onTap: () {
+                        unawaited(HapticFeedback.selectionClick());
                         unawaited(ref.trackEvent(ClarityEvents.selectSciClubFilterOrgType, value: type.name));
                         controller.toggleFilter(type);
                       },

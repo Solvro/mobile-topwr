@@ -1,6 +1,7 @@
 import "dart:async";
 
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../config/ui_config.dart";
@@ -23,6 +24,7 @@ class SksUserDataButton extends ConsumerWidget {
       data: (sksUsersData) => _SksButton(
         sksUsersData,
         onTap: () async {
+          unawaited(HapticFeedback.selectionClick());
           unawaited(ref.trackEvent(ClarityEvents.openSksChart));
           await showModalBottomSheet<void>(
             context: context,
@@ -54,7 +56,10 @@ class _SksButton extends StatelessWidget {
             "${context.localize.sks_people_live_screen_reader_label} ${sksUserData.activeUsers}. ${context.localize.sks_people_live_screen_reader_label_trend} ${sksUserData.trend.localizedName(context)}",
         button: true,
         child: GestureDetector(
-          onTap: onTap,
+          onTap: () {
+            unawaited(HapticFeedback.selectionClick());
+            onTap();
+          },
           child: ExcludeSemantics(
             child: Row(
               children: [

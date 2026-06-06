@@ -1,6 +1,7 @@
 import "dart:async";
 
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../config/ui_config.dart";
@@ -21,6 +22,7 @@ class AccessibilityButton extends StatelessWidget {
           child: Consumer(
             builder: (context, ref, child) => OutlinedButton(
               onPressed: () {
+                unawaited(HapticFeedback.selectionClick());
                 unawaited(AccessibilityDialog.show(context, ref));
               },
 

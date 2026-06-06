@@ -1,5 +1,8 @@
+import "dart:async";
+
 import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_map/flutter_map.dart";
 import "package:flutter_map_cache/flutter_map_cache.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
@@ -54,7 +57,10 @@ class MapWidget<T extends GoogleNavigable> extends HookConsumerWidget {
                     .mapMoved(); // stop following location on user interaction
               }
             },
-            onTap: ref.watch(mapControllerProvider).onMapBackgroundTap,
+            onTap: (tapPosition, point) {
+              unawaited(HapticFeedback.selectionClick());
+              ref.watch(mapControllerProvider).onMapBackgroundTap(tapPosition, point);
+            },
           ),
           mapController: controller.mapController,
           children: [

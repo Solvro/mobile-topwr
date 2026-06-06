@@ -1,4 +1,7 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 
 import "../api_base_rest/shared_models/image_data.dart";
 import "../theme/colors.dart";
@@ -19,6 +22,7 @@ extension ShowFullscreenImageX on BuildContext {
       builder: (context) {
         return GestureDetector(
           onTap: () {
+            unawaited(HapticFeedback.selectionClick());
             Navigator.of(context).pop();
           },
           child: Semantics(
@@ -113,6 +117,7 @@ class ZoomableCachedImage extends StatelessWidget {
       child: ExcludeSemantics(
         child: GestureDetector(
           onTap: () async {
+            unawaited(HapticFeedback.selectionClick());
             await context.showFullScreenImage(
               imageUrl,
               shouldHaveRectBackground: shouldHaveRectBackground,
@@ -154,6 +159,7 @@ class ZoomableRestApiImage extends StatelessWidget {
       child: ExcludeSemantics(
         child: GestureDetector(
           onTap: () async {
+            unawaited(HapticFeedback.selectionClick());
             await context.showFullScreenImage(
               imageData?.url,
               shouldHaveRectBackground: shouldHaveRectBackground,

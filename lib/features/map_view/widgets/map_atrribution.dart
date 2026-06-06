@@ -1,4 +1,7 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_map/flutter_map.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
@@ -13,7 +16,13 @@ class OpenMapAtrribution extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return RichAttributionWidget(
       attributions: [
-        TextSourceAttribution(OpenStreetMapConfig.attribution, onTap: () => ref.launch(OpenStreetMapConfig.copyright)),
+        TextSourceAttribution(
+          OpenStreetMapConfig.attribution,
+          onTap: () async {
+            unawaited(HapticFeedback.selectionClick());
+            await ref.launch(OpenStreetMapConfig.copyright);
+          },
+        ),
       ],
     );
   }

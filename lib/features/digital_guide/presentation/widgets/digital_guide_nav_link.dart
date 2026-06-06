@@ -1,4 +1,7 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 
 import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
@@ -14,7 +17,10 @@ class DigitalGuideNavLink extends StatelessWidget {
   Widget build(BuildContext context) {
     final scaler = context.textScaler.clamp(maxScaleFactor: 2);
     return InkWell(
-      onTap: onTap,
+      onTap: () {
+        unawaited(HapticFeedback.selectionClick());
+        onTap();
+      },
       borderRadius: BorderRadius.circular(DigitalGuideConfig.borderRadiusMedium),
       child: Ink(
         padding: DigitalGuideConfig.mediumButtonPadding,

@@ -1,4 +1,7 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
@@ -104,6 +107,7 @@ class IncomingDayChanges extends ConsumerWidget {
             builder: (context, ref, child) => MySplashTile(
               backgroundColor: Colors.transparent,
               onTap: () async {
+                unawaited(HapticFeedback.selectionClick());
                 await DayChangesDialog.show(context, calendar, ref);
               },
               child: child ?? const SizedBox.shrink(),

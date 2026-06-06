@@ -1,4 +1,7 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../../config/ui_config.dart";
@@ -17,7 +20,10 @@ class RegionDataSliverList extends ConsumerWidget {
         (context, index) => Column(
           children: [
             DigitalGuideNavLink(
-              onTap: () => regionDataSliverListItem.onTap?.call(index),
+              onTap: () async {
+                unawaited(HapticFeedback.selectionClick());
+                await regionDataSliverListItem.onTap?.call(index);
+              },
               text: regionDataSliverListItem.text(index),
             ),
             const SizedBox(height: DigitalGuideConfig.heightMedium),

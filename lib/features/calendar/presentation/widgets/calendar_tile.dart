@@ -1,4 +1,7 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../config/ui_config.dart";
@@ -58,6 +61,7 @@ class CalendarTile extends ConsumerWidget {
                   tooltip: context.localize.push_notifications_dialog_info,
                   color: context.colorScheme.primary,
                   onPressed: () async {
+                    unawaited(HapticFeedback.selectionClick());
                     await showCustomDialog(
                       dialogSemantics: context.localize.push_notifications_dialog_info,
                       context: context,

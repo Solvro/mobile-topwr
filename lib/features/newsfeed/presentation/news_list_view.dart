@@ -1,7 +1,10 @@
+import "dart:async";
+
 import "package:auto_route/auto_route.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter/semantics.dart";
+import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:solvro_translator_core/solvro_translator_core.dart";
 
@@ -86,7 +89,10 @@ class NewsTile extends ConsumerWidget {
         title: item.title,
         subtitle: item.previewText,
         directusPhotoUrl: ImageData(url: item.imageLink),
-        onTap: () => ref.launch(item.url),
+        onTap: () async {
+          unawaited(HapticFeedback.selectionClick());
+          await ref.launch(item.url);
+        },
         crossAxisAlignment: CrossAxisAlignment.stretch,
       ),
     );

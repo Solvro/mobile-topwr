@@ -1,6 +1,9 @@
+import "dart:async";
+
 import "package:auto_route/auto_route.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../../config/ui_config.dart";
@@ -70,7 +73,10 @@ class CorridorView extends ConsumerWidget {
           itemCount: corridor.doorsIndices.length,
           separatorBuilder: (context, index) => const SizedBox(height: DigitalGuideConfig.heightMedium),
           itemBuilder: (context, index) => DigitalGuideNavLink(
-            onTap: () => ref.navigateDigitalGuideDoor(corridor.doorsIndices[index]),
+            onTap: () async {
+              unawaited(HapticFeedback.selectionClick());
+              await ref.navigateDigitalGuideDoor(corridor.doorsIndices[index]);
+            },
             text: context.localize.door,
           ),
         ),

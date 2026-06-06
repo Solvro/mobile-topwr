@@ -1,4 +1,7 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
 import "package:flutter_svg/svg.dart";
 
@@ -56,7 +59,12 @@ class SearchBox extends HookWidget {
       child: TextField(
         controller: controller,
         focusNode: focusNode,
-        onTap: onTap,
+        onTap: onTap == null
+            ? null
+            : () {
+                unawaited(HapticFeedback.selectionClick());
+                onTap!();
+              },
         onTapOutside: onTapOutside,
         onChanged: onChanged,
         decoration: InputDecoration(
@@ -75,7 +83,10 @@ class SearchBox extends HookWidget {
               ? IconButton(
                   tooltip: context.localize.clear,
                   icon: Icon(Icons.cancel, color: context.colorScheme.onTertiary, size: 19),
-                  onPressed: onSuffixPressed,
+                  onPressed: () {
+                    unawaited(HapticFeedback.selectionClick());
+                    onSuffixPressed();
+                  },
                 )
               : null,
         ),

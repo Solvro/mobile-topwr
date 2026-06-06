@@ -3,6 +3,7 @@ import "dart:async";
 import "package:auto_route/auto_route.dart";
 import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:solvro_translator_core/solvro_translator_core.dart";
 
@@ -30,7 +31,8 @@ class SettingsView extends ConsumerWidget {
       Focus(
         autofocus: true,
         child: NavigationTile(
-          onTap: () async {
+          onTap:() async {
+            unawaited(HapticFeedback.selectionClick());
             final selectedLang = await LanguageDialog.show(context);
             if (selectedLang != null) {
               final supportedLocale = SolvroLocale.values.byName(selectedLang);
@@ -42,7 +44,8 @@ class SettingsView extends ConsumerWidget {
         ),
       ),
       NavigationTile(
-        onTap: () async {
+        onTap:() async {
+          unawaited(HapticFeedback.selectionClick());
           final selectedBranch = await BranchDialog.show(context);
           if (selectedBranch != null) {
             final branch = Branch.fromName(selectedBranch);
@@ -53,14 +56,14 @@ class SettingsView extends ConsumerWidget {
         icon: Icons.house,
       ),
       NavigationTile(
-        onTap: () => unawaited(AccessibilityDialog.show(context, ref)),
+        onTap:() { unawaited(HapticFeedback.selectionClick()); unawaited(AccessibilityDialog.show(context, ref)); },
         title: context.localize.digital_guide_accessibility,
         icon: Icons.accessibility_new,
       ),
       if (!kIsWeb)
         NavigationTile(
           key: NavigationTabViewConfig.sksFavouriteDishesKey,
-          onTap: ref.navigateToSksFavouriteDishes,
+          onTap:() { unawaited(HapticFeedback.selectionClick()); ref.navigateToSksFavouriteDishes(); },
           title: context.localize.sks_favourite_dishes_see_dishes,
           icon: Icons.food_bank,
         ),

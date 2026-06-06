@@ -1,6 +1,7 @@
 import "dart:async";
 
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 import "package:package_info_plus/package_info_plus.dart";
@@ -23,6 +24,7 @@ class AboutTheAppTile extends HookConsumerWidget {
       future: Future.microtask(PackageInfo.fromPlatform),
       builder: (context, snapshot) => NavigationTile(
         onTap: () async {
+          unawaited(HapticFeedback.selectionClick());
           unawaited(ref.trackEvent(ClarityEvents.openAboutTheApp));
           await showMyLicenceDialog(
             context,

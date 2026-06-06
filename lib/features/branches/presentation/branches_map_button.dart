@@ -1,4 +1,7 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
@@ -17,7 +20,10 @@ class BranchesButton extends StatelessWidget {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         backgroundColor: context.colorScheme.surface,
         child: Icon(BottomNavBarIcons.departments_icon, color: context.colorScheme.onTertiary),
-        onPressed: () => {BranchMapDialog.show(context)},
+        onPressed: () async {
+          unawaited(HapticFeedback.selectionClick());
+          await BranchMapDialog.show(context);
+        },
       ),
     );
   }

@@ -1,5 +1,8 @@
+import "dart:async";
+
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 
 import "../../config/ui_config.dart";
 import "../../theme/app_theme.dart";
@@ -41,7 +44,10 @@ class AppChangelog extends StatelessWidget {
                 key: ChangelogConfig.closeButtonKey,
                 tooltip: context.localize.close,
                 icon: Icon(semanticLabel: context.localize.close, Icons.close),
-                onPressed: context.maybePop,
+                onPressed: () async {
+                  unawaited(HapticFeedback.selectionClick());
+                  await context.maybePop();
+                },
               ),
             ),
           ],

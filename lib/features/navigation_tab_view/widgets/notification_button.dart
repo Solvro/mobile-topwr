@@ -1,6 +1,7 @@
 import "dart:async";
 
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
@@ -22,7 +23,8 @@ class NotificationButton extends HookConsumerWidget {
         child: FocusableActionDetector(
           focusNode: focusNode,
           child: MySplashTile(
-            onTap: () {
+            onTap:() {
+              unawaited(HapticFeedback.selectionClick());
               unawaited(ref.navigateToNotifications());
             },
             child: Container(

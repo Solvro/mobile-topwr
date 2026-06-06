@@ -1,5 +1,8 @@
+import "dart:async";
+
 import "package:auto_size_text/auto_size_text.dart";
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 
 import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
@@ -12,7 +15,15 @@ class BaseSmallTileCard extends StatelessWidget {
   final Widget child;
   @override
   Widget build(BuildContext context) {
-    return MySplashTile(onTap: onTap, child: child);
+    return MySplashTile(
+      onTap: onTap == null
+          ? null
+          : () {
+              unawaited(HapticFeedback.selectionClick());
+              onTap!();
+            },
+      child: child,
+    );
   }
 }
 
@@ -25,7 +36,12 @@ class SmallTileCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseSmallTileCard(
-      onTap: onTap,
+      onTap: onTap == null
+          ? null
+          : () {
+              unawaited(HapticFeedback.selectionClick());
+              onTap!();
+            },
       child: Row(
         children: [
           SizedBox(width: WideTileCardConfig.imageSize / 3 * 2, height: WideTileCardConfig.imageSize, child: icon),

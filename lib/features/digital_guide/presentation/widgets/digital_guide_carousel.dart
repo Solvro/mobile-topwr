@@ -3,6 +3,7 @@ import "dart:async";
 import "package:carousel_slider_plus/carousel_slider_plus.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
 
 import "../../../../config/ui_config.dart";
@@ -66,12 +67,21 @@ class DigitalGuideCarouselWithIndicator extends HookWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                ArrowButton(icon: Icons.chevron_left, onPressed: () => unawaited(goTo(current.value - 1))),
+                ArrowButton(
+                  icon: Icons.chevron_left,
+                  onPressed: () {
+                    unawaited(HapticFeedback.selectionClick());
+                    unawaited(goTo(current.value - 1));
+                  },
+                ),
 
                 Row(
                   children: imgListId.asMap().entries.map((entry) {
                     return GestureDetector(
-                      onTap: () => unawaited(controller.animateToPage(entry.key)),
+                      onTap: () {
+                        unawaited(HapticFeedback.selectionClick());
+                        unawaited(controller.animateToPage(entry.key));
+                      },
                       child: Container(
                         width: 12,
                         height: 12,
@@ -86,7 +96,13 @@ class DigitalGuideCarouselWithIndicator extends HookWidget {
                   }).toList(),
                 ),
 
-                ArrowButton(icon: Icons.chevron_right, onPressed: () => unawaited(goTo(current.value + 1))),
+                ArrowButton(
+                  icon: Icons.chevron_right,
+                  onPressed: () {
+                    unawaited(HapticFeedback.selectionClick());
+                    unawaited(goTo(current.value + 1));
+                  },
+                ),
               ],
             ),
           ),

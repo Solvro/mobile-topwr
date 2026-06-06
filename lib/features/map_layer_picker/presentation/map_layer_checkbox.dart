@@ -1,6 +1,7 @@
 import "dart:async";
 
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:fluttertoast/fluttertoast.dart";
 
@@ -35,6 +36,7 @@ class MapLayerCheckbox extends ConsumerWidget {
     return GestureDetector(
       onTap: checkboxDisabled
           ? () async {
+              unawaited(HapticFeedback.selectionClick());
               await Fluttertoast.showToast(
                 msg: context.localize.map_layer_minimum_required,
                 toastLength: Toast.LENGTH_LONG,

@@ -1,6 +1,7 @@
 import "dart:async";
 
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../config/ui_config.dart";
@@ -19,6 +20,7 @@ class ReportChangeButton extends ConsumerWidget {
           const SizedBox(height: 8),
           ElevatedButton(
             onPressed: () {
+              unawaited(HapticFeedback.selectionClick());
               final emailUrl =
                   "mailto:${context.localize.report_change_email}?subject=${Uri.encodeComponent(context.localize.report_change_subject)}";
               unawaited(ref.launch(emailUrl));

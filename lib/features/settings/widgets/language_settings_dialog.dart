@@ -1,4 +1,7 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:logger/logger.dart";
 import "package:solvro_translator_core/solvro_translator_core.dart";
@@ -40,6 +43,7 @@ class LanguageDialog extends ConsumerWidget {
           showApplyButton: isFirstTimeMode,
           applyButtonText: context.localize.select,
           onApplyButtonPressed: () async {
+            unawaited(HapticFeedback.selectionClick());
             await ref
                 .read(preferredLanguageRepositoryProvider.notifier)
                 .setPreferredLanguage(SolvroLocale.values.byName(selectedLanguage));
@@ -64,6 +68,7 @@ class LanguageDialog extends ConsumerWidget {
                     title: Text(semanticsLabel: name.substring(1), name),
                     trailing: selected ? Icon(Icons.check, color: context.colorScheme.primary) : null,
                     onTap: () async {
+                      unawaited(HapticFeedback.selectionClick());
                       if (!isFirstTimeMode) {
                         Navigator.pop(context, code);
                         Logger().d("returning language: $code");

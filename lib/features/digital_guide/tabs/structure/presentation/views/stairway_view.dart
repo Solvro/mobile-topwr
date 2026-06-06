@@ -1,6 +1,9 @@
+import "dart:async";
+
 import "package:auto_route/auto_route.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../../config/ui_config.dart";
@@ -53,7 +56,10 @@ class StairwayView extends ConsumerWidget {
         physics: const NeverScrollableScrollPhysics(),
         itemCount: stairway.stairsIds.length,
         itemBuilder: (context, index) => DigitalGuideNavLink(
-          onTap: () => ref.navigateDigitalGuideStairs(stairway.stairsIds[index]),
+          onTap: () async {
+            unawaited(HapticFeedback.selectionClick());
+            await ref.navigateDigitalGuideStairs(stairway.stairsIds[index]);
+          },
           text: context.localize.stairs,
         ),
         separatorBuilder: (context, index) => const SizedBox(height: DigitalGuideConfig.heightMedium),
@@ -64,7 +70,10 @@ class StairwayView extends ConsumerWidget {
         physics: const NeverScrollableScrollPhysics(),
         itemCount: stairway.doorsIds.length,
         itemBuilder: (context, index) => DigitalGuideNavLink(
-          onTap: () => ref.navigateDigitalGuideDoor(stairway.doorsIds[index]),
+          onTap: () async {
+            unawaited(HapticFeedback.selectionClick());
+            await ref.navigateDigitalGuideDoor(stairway.doorsIds[index]);
+          },
           text: context.localize.door,
         ),
         separatorBuilder: (context, index) => const SizedBox(height: DigitalGuideConfig.heightMedium),

@@ -1,4 +1,7 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 
 import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
@@ -67,7 +70,12 @@ class _MyAlertDialog extends StatelessWidget {
             if (onConfirmTapped != null)
               Flexible(
                 child: TextButton(
-                  onPressed: onConfirmTapped,
+                  onPressed: onConfirmTapped == null
+                      ? null
+                      : () {
+                          unawaited(HapticFeedback.selectionClick());
+                          onConfirmTapped!();
+                        },
                   child: Text(
                     confirmText,
                     style: context.textTheme.bodyLarge?.copyWith(color: context.colorScheme.primary),
@@ -83,6 +91,7 @@ class _MyAlertDialog extends StatelessWidget {
                   textScaler: context.textScaler.clamp(maxScaleFactor: 2),
                 ),
                 onPressed: () {
+                  unawaited(HapticFeedback.selectionClick());
                   Navigator.of(context).pop();
                 },
               ),

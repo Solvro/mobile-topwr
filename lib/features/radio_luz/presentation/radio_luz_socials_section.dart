@@ -1,4 +1,7 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_svg/flutter_svg.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
@@ -30,7 +33,10 @@ class RadioLuzSocialsSection extends ConsumerWidget {
         (index) => Padding(
           padding: EdgeInsets.only(right: index == _socialIconsData.length - 1 ? 0 : 16),
           child: InkWell(
-            onTap: () => ref.launch(_socialIconsData[index].url),
+            onTap: () async {
+              unawaited(HapticFeedback.selectionClick());
+              await ref.launch(_socialIconsData[index].url);
+            },
             child: SvgPicture.asset(
               _socialIconsData[index].assetPath,
               width: iconSize,

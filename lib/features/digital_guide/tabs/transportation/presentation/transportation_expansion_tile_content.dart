@@ -1,4 +1,7 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../config/ui_config.dart";
@@ -44,6 +47,7 @@ class _TransportationExpansionTileContent extends ConsumerWidget {
         children: [
           DigitalGuideNavLink(
             onTap: () async {
+              unawaited(HapticFeedback.selectionClick());
               await ref.navigateTransportDetails(transportation: transportation, isPublic: true);
             },
             text: context.localize.public_transport,
@@ -51,6 +55,7 @@ class _TransportationExpansionTileContent extends ConsumerWidget {
           const SizedBox(height: DigitalGuideConfig.heightMedium),
           DigitalGuideNavLink(
             onTap: () async {
+              unawaited(HapticFeedback.selectionClick());
               await ref.navigateTransportDetails(transportation: transportation, isPublic: false);
             },
             text: context.localize.private_transport,

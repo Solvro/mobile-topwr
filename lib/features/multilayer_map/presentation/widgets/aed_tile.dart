@@ -1,6 +1,7 @@
 import "dart:async";
 
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_svg/svg.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
@@ -49,6 +50,7 @@ class AedTile extends HookConsumerWidget {
                   subtitle: (aed.instructions ?? "").trim(),
                   isActive: isActive,
                   onTap: () {
+                    unawaited(HapticFeedback.selectionClick());
                     unawaited(ref.trackEvent(ClarityEvents.selectAed, value: title));
                     unawaited(ref.read(multilayerMapControllerProvider).onMarkerTap(AedItem(aed: aed)));
                   },

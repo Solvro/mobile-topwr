@@ -1,6 +1,7 @@
 import "dart:async";
 
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_svg/svg.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
@@ -61,6 +62,7 @@ class PolinkaTile extends HookConsumerWidget {
                   subtitle: _address,
                   isActive: isActive,
                   onTap: () {
+                    unawaited(HapticFeedback.selectionClick());
                     unawaited(ref.trackEvent(ClarityEvents.selectBuilding, value: station.name));
                     unawaited(ref.read(multilayerMapControllerProvider).onMarkerTap(PolinkaItem(station: station)));
                   },
@@ -115,6 +117,7 @@ class PolinkaTile extends HookConsumerWidget {
                           },
                   ),
                   onPressed: () {
+                    unawaited(HapticFeedback.selectionClick());
                     unawaited(ref.navigatePolinkaDetailAction(station));
                   },
                 ),
@@ -131,6 +134,7 @@ class PolinkaTile extends HookConsumerWidget {
               size: context.textScaler.scale(16),
             ),
             onPressed: () {
+              unawaited(HapticFeedback.selectionClick());
               unawaited(ref.navigatePolinkaDetailAction(station));
             },
             style: TextButton.styleFrom(padding: const EdgeInsets.all(12)),

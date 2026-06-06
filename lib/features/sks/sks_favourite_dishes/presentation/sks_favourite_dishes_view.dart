@@ -4,6 +4,7 @@ import "package:auto_route/auto_route.dart";
 import "package:collection/collection.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:sliver_tools/sliver_tools.dart";
 
@@ -104,7 +105,10 @@ class _SksFavouriteDishesView extends ConsumerWidget {
                       child: SksMenuDishDetailsTile(
                         dish: dish,
                         isSubscribed: true,
-                        onTap: (dishId) => toastOnDishTap(dishId: dishId, ref: ref, context: context, subscribe: false),
+                        onTap: (dishId) async {
+                          unawaited(HapticFeedback.selectionClick());
+                          await toastOnDishTap(dishId: dishId, ref: ref, context: context, subscribe: false);
+                        },
                         onDoubleTap: (dishId) =>
                             toastOnDishTap(dishId: dishId, ref: ref, context: context, subscribe: false),
                       ),

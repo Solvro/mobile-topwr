@@ -1,6 +1,7 @@
 import "dart:async";
 
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_svg/svg.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
@@ -50,6 +51,7 @@ class LibraryTile extends HookConsumerWidget {
                       "${library.room != null ? "${context.localize.room} ${library.room}\n" : ""}${library.building != null ? "${context.localize.building_tile_building} ${library.building!.name}" : ""}",
                   isActive: isActive,
                   onTap: () {
+                    unawaited(HapticFeedback.selectionClick());
                     unawaited(ref.trackEvent(ClarityEvents.selectLibrary, value: library.title));
                     unawaited(ref.read(multilayerMapControllerProvider).onMarkerTap(LibraryItem(library: library)));
                   },

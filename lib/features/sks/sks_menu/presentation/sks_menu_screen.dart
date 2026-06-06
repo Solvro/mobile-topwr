@@ -5,6 +5,7 @@ import "dart:math";
 import "package:auto_route/annotations.dart";
 import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 import "package:intl/intl.dart";
@@ -81,7 +82,10 @@ class _SksMenuView extends ConsumerWidget {
             heroTag: null,
             elevation: 3,
             backgroundColor: context.colorScheme.primary,
-            onPressed: ref.navigateToSksFavouriteDishes,
+            onPressed: () async {
+              unawaited(HapticFeedback.selectionClick());
+              await ref.navigateToSksFavouriteDishes();
+            },
             child: Icon(Icons.favorite, color: context.colorScheme.surface),
           ),
       ],

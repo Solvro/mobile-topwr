@@ -1,6 +1,7 @@
 import "dart:async";
 
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../utils/context_extensions.dart";
@@ -34,6 +35,7 @@ class LayerOptionsDialog extends StatelessWidget {
           child: Consumer(
             builder: (context, ref, child) => GestureDetector(
               onTap: () {
+                unawaited(HapticFeedback.selectionClick());
                 unawaited(ref.trackEvent(ClarityEvents.closeLayerOptionsDialog));
                 Navigator.of(context).pop();
               },
@@ -49,6 +51,7 @@ class LayerOptionsDialog extends StatelessWidget {
             subtitle: null,
             child: child ?? const SizedBox.shrink(),
             onApplyButtonPressed: () {
+              unawaited(HapticFeedback.selectionClick());
               unawaited(ref.trackEvent(ClarityEvents.setLayerOptions));
             },
           ),

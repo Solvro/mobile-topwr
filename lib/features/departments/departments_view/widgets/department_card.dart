@@ -1,4 +1,7 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 
 import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
@@ -24,7 +27,12 @@ class DepartmentCard extends StatelessWidget {
         bodyLarge: textTheme.bodyLarge?.copyWith(shadows: HomeViewConfig.squareCardTextShadow),
       ),
       child: WideTileCard(
-        onTap: onClick,
+        onTap: onClick == null
+            ? null
+            : () {
+                unawaited(HapticFeedback.selectionClick());
+                onClick!();
+              },
         isActive: true,
         title: department.branch == Branch.main ? department.code : department.name,
         subtitle: department.branch == Branch.main ? department.name : null,

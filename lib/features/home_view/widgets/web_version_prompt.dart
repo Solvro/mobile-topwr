@@ -1,5 +1,8 @@
+import "dart:async";
+
 import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:url_launcher/url_launcher.dart";
 
 import "../../../config/url_config.dart";
@@ -92,7 +95,10 @@ class WebVersionBanner extends StatelessWidget {
             Icon(Icons.language, size: 18, color: context.colorScheme.primary),
             const SizedBox(width: 8),
             InkWell(
-              onTap: () => showWebVersionDialog(context),
+              onTap: () async {
+                unawaited(HapticFeedback.selectionClick());
+                await showWebVersionDialog(context);
+              },
               borderRadius: BorderRadius.circular(16), // match the container
               child: Text(
                 context.localize.web_version_banner,
@@ -124,7 +130,10 @@ class _BannerIconButton extends StatelessWidget {
       visualDensity: VisualDensity.compact,
       iconSize: 18,
       tooltip: kIsWeb ? null : tooltip,
-      onPressed: () => launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication),
+      onPressed: () async {
+        unawaited(HapticFeedback.selectionClick());
+        await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
+      },
       icon: Icon(icon, color: context.colorScheme.primary),
     );
   }

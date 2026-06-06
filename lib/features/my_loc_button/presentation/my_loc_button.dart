@@ -1,4 +1,7 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../theme/app_theme.dart";
@@ -16,7 +19,10 @@ class MyLocationButton extends ConsumerWidget {
         heroTag: null,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         backgroundColor: context.colorScheme.primary,
-        onPressed: ref.watch(isFollowingCurrentLocationControllerProvider.notifier).buttonClicked,
+        onPressed: () {
+          unawaited(HapticFeedback.selectionClick());
+          ref.watch(isFollowingCurrentLocationControllerProvider.notifier).buttonClicked();
+        },
         child: Icon(semanticLabel: context.localize.my_location, Icons.my_location, color: context.colorScheme.surface),
       ),
     );

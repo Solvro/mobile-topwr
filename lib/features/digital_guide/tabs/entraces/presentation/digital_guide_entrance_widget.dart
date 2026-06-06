@@ -1,4 +1,7 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../config/ui_config.dart";
@@ -18,6 +21,7 @@ class DigitalGuideEntranceWidget extends ConsumerWidget {
       children: [
         DigitalGuideNavLink(
           onTap: () async {
+            unawaited(HapticFeedback.selectionClick());
             await ref.navigateEntrancesDetails(entrance);
           },
           text: entrance.translations.pl.name,

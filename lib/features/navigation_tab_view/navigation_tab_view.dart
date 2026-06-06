@@ -1,7 +1,10 @@
+import "dart:async";
+
 import "package:auto_route/auto_route.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../config/env.dart";
@@ -41,13 +44,17 @@ class NavigationTabView extends ConsumerWidget {
       _NavigationRow(
         child1: SmallTileCard(
           key: NavigationTabViewConfig.departments,
-          onTap: ref.navigateDepartments,
+          onTap: () async {
+            unawaited(HapticFeedback.selectionClick());
+            await ref.navigateDepartments();
+          },
           title: context.localize.departments,
           icon: const Icon(BottomNavBarIcons.departments_icon, size: NavigationTabViewConfig.navIconSize),
         ),
         child2: SmallTileCard(
           key: NavigationTabViewConfig.scienceClubsKey,
           onTap: () async {
+            unawaited(HapticFeedback.selectionClick());
             await ref.navigateScienceClubs();
           },
           title: context.localize.student_organizations,
@@ -92,7 +99,10 @@ class _SksSmallBigTile extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return SmallTileCard(
-      onTap: ref.navigateToSksMenu,
+      onTap: () async {
+        unawaited(HapticFeedback.selectionClick());
+        await ref.navigateToSksMenu();
+      },
       title: context.localize.sks_menu,
       icon: const Icon(Icons.restaurant),
     );
@@ -105,7 +115,10 @@ class _BoothsTile extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return SmallTileCard(
-      onTap: ref.navigateBooths,
+      onTap: () async {
+        unawaited(HapticFeedback.selectionClick());
+        await ref.navigateBooths();
+      },
       title: context.localize.booths_title,
       icon: const Icon(Icons.meeting_room),
     );
@@ -119,6 +132,7 @@ class _RatingTile extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return SmallTileCard(
       onTap: () async {
+        unawaited(HapticFeedback.selectionClick());
         await ref.trackEvent(ClarityEvents.openLeaveReview);
         if (!kIsWeb) {
           await InAppRatingService.requestStoreListingReview();
@@ -144,7 +158,10 @@ class _RadioLuzTile extends ConsumerWidget {
       button: true,
       label: context.localize.radio_luz,
       child: BaseSmallTileCard(
-        onTap: ref.navigateToRadioLuz,
+        onTap: () async {
+          unawaited(HapticFeedback.selectionClick());
+          await ref.navigateToRadioLuz();
+        },
         child: const SizedBox(
           height: WideTileCardConfig.imageSize,
           child: AppBarLuz(logoSize: WideTileCardConfig.imageSize),

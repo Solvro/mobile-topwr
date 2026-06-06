@@ -1,6 +1,7 @@
 import "dart:async";
 
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:separate/separate.dart";
 
@@ -23,6 +24,7 @@ class FieldOfStudyTile extends ConsumerWidget {
       child: WideTileCard(
         onTap: item.url != null
             ? () async {
+                unawaited(HapticFeedback.selectionClick());
                 unawaited(ref.trackEvent(ClarityEvents.openFieldOfStudiesLink, value: item.url));
                 await ref.launch(item.url!);
               }

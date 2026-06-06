@@ -1,5 +1,8 @@
+import "dart:async";
+
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../../config/ui_config.dart";
@@ -55,62 +58,95 @@ class _RegionView extends ConsumerWidget {
     final sliverListItems = [
       RegionDataSliverListItem(
         text: (index) => regionData.corridors[index].translations.plTranslation.name,
-        onTap: (index) => ref.navigateDigitalGuideCorridor(regionData.corridors[index]),
+        onTap: (index) {
+          unawaited(HapticFeedback.selectionClick());
+          return ref.navigateDigitalGuideCorridor(regionData.corridors[index]);
+        },
         itemCount: region.corridors.length,
       ),
       if (regionData.stairs.isNotEmpty)
         RegionDataSliverListItem(
           text: (index) => context.localize.stairs,
-          onTap: (index) => ref.navigateDigitalGuideStairs(regionData.stairs[index].id),
+          onTap: (index) {
+            unawaited(HapticFeedback.selectionClick());
+            return ref.navigateDigitalGuideStairs(regionData.stairs[index].id);
+          },
           itemCount: region.stairs.length,
         ),
       if (regionData.stairways.isNotEmpty)
         RegionDataSliverListItem(
           text: (index) => regionData.stairways[index].translations.plTranslation.name,
-          onTap: (index) => ref.navigateDigitalGuideStairway(regionData.stairways[index]),
+          onTap: (index) {
+            unawaited(HapticFeedback.selectionClick());
+            return ref.navigateDigitalGuideStairway(regionData.stairways[index]);
+          },
           itemCount: region.stairways.length,
         ),
       if (regionData.ramps.isNotEmpty)
         RegionDataSliverListItem(
           text: (index) => context.localize.ramp,
-          onTap: (index) => ref.navigateDigitalGuideRamps(regionData.ramps[index]),
+          onTap: (index) {
+            unawaited(HapticFeedback.selectionClick());
+            return ref.navigateDigitalGuideRamps(regionData.ramps[index]);
+          },
           itemCount: region.ramps.length,
         ),
       RegionDataSliverListItem(
         text: (index) => context.localize.lift,
-        onTap: (index) => ref.navigateLiftDetails(regionData.lifts[index], level.translations.plTranslation.name),
+        onTap: (index) {
+          unawaited(HapticFeedback.selectionClick());
+          return ref.navigateLiftDetails(regionData.lifts[index], level.translations.plTranslation.name);
+        },
         itemCount: region.lifts.length,
       ),
       RegionDataSliverListItem(
         text: (index) => context.localize.lodge,
-        onTap: (index) => ref.navigateDigitalGuideLodge(regionData.lodges[index]),
+        onTap: (index) {
+          unawaited(HapticFeedback.selectionClick());
+          return ref.navigateDigitalGuideLodge(regionData.lodges[index]);
+        },
         itemCount: region.lodges.length,
       ),
       RegionDataSliverListItem(
         text: (index) => regionData.toilets[index].toiletType == ToiletType.men
             ? context.localize.men_toilet
             : context.localize.women_toilet,
-        onTap: (index) => ref.navigateDigitalGuideToilet(regionData.toilets[index]),
+        onTap: (index) {
+          unawaited(HapticFeedback.selectionClick());
+          return ref.navigateDigitalGuideToilet(regionData.toilets[index]);
+        },
         itemCount: region.toilets.length,
       ),
       RegionDataSliverListItem(
         text: (index) => regionData.rooms[index].translations.pl.name,
-        onTap: (index) => ref.navigateRoomDetails(regionData.rooms[index]),
+        onTap: (index) {
+          unawaited(HapticFeedback.selectionClick());
+          return ref.navigateRoomDetails(regionData.rooms[index]);
+        },
         itemCount: region.rooms.length,
       ),
       RegionDataSliverListItem(
         text: (index) => context.localize.parking,
-        onTap: (index) => ref.navigateDigitalGuideParking(regionData.parkings[index]),
+        onTap: (index) {
+          unawaited(HapticFeedback.selectionClick());
+          return ref.navigateDigitalGuideParking(regionData.parkings[index]);
+        },
         itemCount: region.parkings.length,
       ),
       RegionDataSliverListItem(
         text: (index) => context.localize.information_point,
-        onTap: (index) => ref.navigateDigitalGuideInformationPoint(regionData.informationPoints[index]),
+        onTap: (index) {
+          unawaited(HapticFeedback.selectionClick());
+          return ref.navigateDigitalGuideInformationPoint(regionData.informationPoints[index]);
+        },
         itemCount: region.informationPoints.length,
       ),
       RegionDataSliverListItem(
         text: (index) => context.localize.dressing_room,
-        onTap: (index) => ref.navigateDigitalGuideDressingRoom(regionData.dressingRooms[index]),
+        onTap: (index) {
+          unawaited(HapticFeedback.selectionClick());
+          return ref.navigateDigitalGuideDressingRoom(regionData.dressingRooms[index]);
+        },
         itemCount: region.dressingRooms.length,
       ),
     ];

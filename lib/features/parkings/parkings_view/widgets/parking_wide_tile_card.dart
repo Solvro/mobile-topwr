@@ -1,4 +1,7 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 
 import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
@@ -20,7 +23,14 @@ class ParkingWideTileCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final scaler = context.textScaler.clamp(maxScaleFactor: 2);
     return GestureDetector(
-      onTap: isActive ? null : onTap,
+      onTap: isActive
+          ? null
+          : onTap == null
+          ? null
+          : () {
+              unawaited(HapticFeedback.selectionClick());
+              onTap!();
+            },
       child: Container(
         height: isActive ? scaler.clamp(maxScaleFactor: 1.5).scale(300) : scaler.scale(WideTileCardConfig.imageSize),
         decoration: BoxDecoration(
@@ -50,7 +60,12 @@ class ParkingWideTileCard extends StatelessWidget {
                 child: IconButton(
                   tooltip: context.localize.close,
                   padding: EdgeInsets.zero,
-                  onPressed: onTap,
+                  onPressed: onTap == null
+                      ? null
+                      : () {
+                          unawaited(HapticFeedback.selectionClick());
+                          onTap!();
+                        },
                   icon: Semantics(
                     button: true,
                     label: context.localize.close,

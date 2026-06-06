@@ -1,4 +1,7 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 
 import "../api_base_rest/shared_models/image_data.dart";
 import "../config/ui_config.dart";
@@ -68,7 +71,12 @@ class WideTileCard extends StatelessWidget {
       borderRadius: const BorderRadius.all(WideTileCardConfig.radius),
       child: Material(
         child: InkWell(
-          onTap: onTap,
+          onTap: onTap == null
+              ? null
+              : () {
+                  unawaited(HapticFeedback.selectionClick());
+                  onTap!();
+                },
           child: Ink(
             decoration: BoxDecoration(
               gradient: isActive ? activeGradient : null,

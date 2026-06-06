@@ -1,6 +1,7 @@
 import "dart:async";
 
 import "package:flutter/widgets.dart";
+import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../gen/assets.gen.dart";
@@ -37,6 +38,7 @@ class MultilayerMarker extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
       onTap: () {
+        unawaited(HapticFeedback.selectionClick());
         unawaited(ref.read(multilayerMapControllerProvider).onMarkerTap(item));
         return switch (item) {
           BuildingItem(:final building) => unawaited(

@@ -1,4 +1,7 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:latlong2/latlong.dart";
 
@@ -32,7 +35,10 @@ class LocalizationExpansionTileContent extends ConsumerWidget {
           padding: EdgeInsets.all(context.textScaler.scale(2)),
           child: TextButton.icon(
             icon: Icon(Icons.navigation, color: context.colorScheme.primary, size: scaler.scale(16)),
-            onPressed: () => _navigateToBuilding(ref, building),
+            onPressed: () async {
+              unawaited(HapticFeedback.selectionClick());
+              await _navigateToBuilding(ref, building);
+            },
             label: Text.rich(
               textScaler: scaler,
               TextSpan(

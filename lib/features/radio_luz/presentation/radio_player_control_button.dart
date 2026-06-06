@@ -1,4 +1,7 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 
 import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
@@ -24,6 +27,7 @@ class RadioPlayerControlButton extends StatelessWidget {
 
     return ElevatedButton(
       onPressed: () async {
+        unawaited(HapticFeedback.selectionClick());
         if (isPlaying) {
           await radioController.pause();
         } else {

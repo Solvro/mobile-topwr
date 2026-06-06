@@ -1,4 +1,7 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../utils/context_extensions.dart";
@@ -11,7 +14,10 @@ class SettingsTitle extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return NavigationTile(
-      onTap: () => ref.navigateSettings(),
+      onTap: () async {
+        unawaited(HapticFeedback.selectionClick());
+        await ref.navigateSettings();
+      },
       title: context.localize.settings,
       icon: Icons.settings,
     ); // NavigationTitle

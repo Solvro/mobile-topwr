@@ -1,4 +1,7 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 
 import "../theme/app_theme.dart";
 
@@ -12,7 +15,12 @@ class MyTextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: onClick,
+      onPressed: onClick == null
+          ? null
+          : () {
+              unawaited(HapticFeedback.selectionClick());
+              onClick!();
+            },
       style: TextButton.styleFrom(
         padding: const EdgeInsets.all(12),
         side: showBorder ? BorderSide(color: color ?? context.colorScheme.primary) : null,

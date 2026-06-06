@@ -1,4 +1,7 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:url_launcher/url_launcher.dart";
 
 import "../theme/app_theme.dart";
@@ -19,6 +22,7 @@ class StoreTile extends StatelessWidget {
     return InkWell(
       borderRadius: BorderRadius.circular(16),
       onTap: () async {
+        unawaited(HapticFeedback.selectionClick());
         final uri = Uri.parse(url);
         if (await canLaunchUrl(uri)) {
           await launchUrl(uri);

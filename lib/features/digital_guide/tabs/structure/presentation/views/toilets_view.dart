@@ -1,6 +1,9 @@
+import "dart:async";
+
 import "package:auto_route/auto_route.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../../config/ui_config.dart";
@@ -63,7 +66,10 @@ class ToiletsView extends ConsumerWidget {
               physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
                 return DigitalGuideNavLink(
-                  onTap: () => ref.navigateDigitalGuideDoor(toilet.doorsIds[index]),
+                  onTap: () async {
+                    unawaited(HapticFeedback.selectionClick());
+                    await ref.navigateDigitalGuideDoor(toilet.doorsIds[index]);
+                  },
                   text: context.localize.door,
                 );
               },

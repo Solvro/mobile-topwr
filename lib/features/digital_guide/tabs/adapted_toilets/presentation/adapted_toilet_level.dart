@@ -1,5 +1,8 @@
+import "dart:async";
+
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../config/ui_config.dart";
@@ -27,7 +30,10 @@ class AdaptedToiletLevel extends ConsumerWidget {
           ListView.separated(
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) => DigitalGuideNavLink(
-              onTap: () => ref.navigateAdaptedToiletDetails(adaptedToilets[index]),
+              onTap: () async {
+                unawaited(HapticFeedback.selectionClick());
+                await ref.navigateAdaptedToiletDetails(adaptedToilets[index]);
+              },
               text: adaptedToilets[index].getDescription(context),
             ),
             separatorBuilder: (context, index) => const SizedBox(height: DigitalGuideConfig.heightMedium),

@@ -1,4 +1,7 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 
 import "../../../../../config/ui_config.dart";
 import "../../../../../theme/app_theme.dart";
@@ -51,7 +54,12 @@ class RedDialog extends StatelessWidget {
                     subtitle: subtitle,
                     applyButtonText: applyButtonText,
                     showApplyButton: showApplyButton,
-                    onApplyButtonPressed: onApplyButtonPressed,
+                    onApplyButtonPressed: onApplyButtonPressed == null
+                        ? null
+                        : () {
+                            unawaited(HapticFeedback.selectionClick());
+                            onApplyButtonPressed!();
+                          },
                     child: child,
                   ),
                 ),
@@ -95,7 +103,15 @@ class _DialogContent extends StatelessWidget {
         ],
         child,
         if (showApplyButton)
-          _DialogFooter(applyButtonText: applyButtonText, onApplyButtonPressed: onApplyButtonPressed),
+          _DialogFooter(
+            applyButtonText: applyButtonText,
+            onApplyButtonPressed: onApplyButtonPressed == null
+                ? null
+                : () {
+                    unawaited(HapticFeedback.selectionClick());
+                    onApplyButtonPressed!();
+                  },
+          ),
       ],
     );
   }
@@ -112,6 +128,7 @@ class _DialogFooter extends StatelessWidget {
       padding: DialogsConfig.padding,
       child: ElevatedButton(
         onPressed: () {
+          unawaited(HapticFeedback.selectionClick());
           // we're saving the changes in real time anyway
           onApplyButtonPressed?.call();
           Navigator.of(context).pop();
@@ -169,7 +186,10 @@ class _DialogHeader extends StatelessWidget {
                       tooltip: context.localize.close,
                       icon: Semantics(label: context.localize.close, child: const Icon(Icons.close)),
                       color: context.colorScheme.tertiary,
-                      onPressed: () => Navigator.of(context).pop(),
+                      onPressed: () {
+                        unawaited(HapticFeedback.selectionClick());
+                        Navigator.of(context).pop();
+                      },
                     ),
                   ),
                 ),

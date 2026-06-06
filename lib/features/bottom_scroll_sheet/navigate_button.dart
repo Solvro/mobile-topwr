@@ -1,4 +1,7 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../config/map_view_config.dart";
@@ -17,7 +20,10 @@ class NavigateButton<T extends GoogleNavigable> extends ConsumerWidget {
       padding: const EdgeInsets.only(right: MapViewBottomSheetConfig.horizontalPadding - 12),
       child: TextButton.icon(
         icon: Icon(ParkingsIcons.map_nav, color: context.colorScheme.primary, size: 16),
-        onPressed: ref.watch(context.activeMarkerController<T>().notifier).launchLink,
+        onPressed: () async {
+          unawaited(HapticFeedback.selectionClick());
+          await ref.watch(context.activeMarkerController<T>().notifier).launchLink();
+        },
         style: TextButton.styleFrom(padding: const EdgeInsets.all(12)),
         label: Text(
           context.localize.navigate,

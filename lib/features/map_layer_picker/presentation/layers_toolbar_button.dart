@@ -1,4 +1,7 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../theme/app_theme.dart";
@@ -17,7 +20,10 @@ class LayersButton extends ConsumerWidget {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         backgroundColor: context.colorScheme.surface,
         child: Icon(Icons.map, color: context.colorScheme.onTertiary),
-        onPressed: () => LayerOptionsDialog.show(context, ref),
+        onPressed: () async {
+          unawaited(HapticFeedback.selectionClick());
+          await LayerOptionsDialog.show(context, ref);
+        },
       ),
     );
   }

@@ -1,4 +1,7 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 
 import "../config/ui_config.dart";
 import "../features/sks/sks_menu/data/models/dish_category_enum.dart";
@@ -41,7 +44,12 @@ class TechnicalMessage extends StatelessWidget {
               backgoundColor ??
               (alertType == AlertType.error ? context.colorScheme.primary : context.colorScheme.secondary),
           child: ListTile(
-            onTap: onTap,
+            onTap: onTap == null
+                ? null
+                : () {
+                    unawaited(HapticFeedback.selectionClick());
+                    onTap!();
+                  },
             trailing: icon,
             title: Text(
               title ?? DishCategory.technicalInfo.getLocalizedName(context),

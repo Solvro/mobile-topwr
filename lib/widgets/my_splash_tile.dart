@@ -1,4 +1,7 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 
 import "../config/ui_config.dart";
 import "../theme/app_theme.dart";
@@ -18,7 +21,12 @@ class MySplashTile extends StatelessWidget {
       child: InkWell(
         focusNode: focusNode,
         borderRadius: const BorderRadius.all(WideTileCardConfig.radius),
-        onTap: onTap,
+        onTap: onTap == null
+            ? null
+            : () {
+                unawaited(HapticFeedback.selectionClick());
+                onTap!();
+              },
         child: Ink(
           decoration: BoxDecoration(
             color: backgroundColor ?? context.colorScheme.surfaceTint,

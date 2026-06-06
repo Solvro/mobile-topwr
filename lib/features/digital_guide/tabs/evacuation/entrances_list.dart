@@ -1,4 +1,7 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../config/ui_config.dart";
@@ -18,7 +21,10 @@ class EntrancesList extends ConsumerWidget {
       data: (entrancesData) => ListView.separated(
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) => DigitalGuideNavLink(
-          onTap: () => ref.navigateEntrancesDetails(entrancesData[index]),
+          onTap: () async {
+            unawaited(HapticFeedback.selectionClick());
+            await ref.navigateEntrancesDetails(entrancesData[index]);
+          },
           text: entrancesData[index].translations.pl.name,
         ),
         separatorBuilder: (context, index) => const SizedBox(height: DigitalGuideConfig.heightMedium),

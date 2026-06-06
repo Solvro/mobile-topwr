@@ -1,7 +1,9 @@
+import "dart:async";
 import "dart:math";
 
 import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../features/home_view/widgets/web_version_prompt.dart";
@@ -64,6 +66,7 @@ class HorizontalSymmetricSafeAreaScaffold extends ConsumerWidget {
           elevation: 3,
           backgroundColor: context.colorScheme.primary,
           onPressed: () async {
+            unawaited(HapticFeedback.selectionClick());
             await ref.navigateToRadioLuz();
           },
           child: const Icon(Icons.radio),

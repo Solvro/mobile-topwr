@@ -1,6 +1,9 @@
+import "dart:async";
+
 import "package:auto_route/auto_route.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../config/ui_config.dart";
@@ -99,10 +102,18 @@ class _NotificationsListContent extends ConsumerWidget {
               return WideTileCard(
                 title: notification.title,
                 subtitle: notification.body,
-                onTap: notification.data?.route != null ? () => ref.launch(notification.data!.route!) : null,
+                onTap: notification.data?.route != null
+                    ? () async {
+                        unawaited(HapticFeedback.selectionClick());
+                        await ref.launch(notification.data!.route!);
+                      }
+                    : null,
                 trailing: IconButton(
                   tooltip: context.localize.more_info,
-                  onPressed: () => NotificationDetailsDialog.show(context, ref, notification),
+                  onPressed: () async {
+                    unawaited(HapticFeedback.selectionClick());
+                    await NotificationDetailsDialog.show(context, ref, notification);
+                  },
                   icon: Icon(Icons.info, size: context.textScaler.scale(22), color: context.colorScheme.tertiary),
                 ),
               );

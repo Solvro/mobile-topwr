@@ -1,6 +1,7 @@
 import "dart:async";
 
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../utils/context_extensions.dart";
@@ -33,6 +34,7 @@ class AccessibilityDialog extends StatelessWidget {
           child: Consumer(
             builder: (context, ref, child) => GestureDetector(
               onTap: () {
+                unawaited(HapticFeedback.selectionClick());
                 unawaited(ref.trackEvent(ClarityEvents.closeAccessibilityModeDialog));
                 Navigator.of(context).pop();
               },
@@ -48,6 +50,7 @@ class AccessibilityDialog extends StatelessWidget {
             subtitle: context.localize.you_can_adjust,
             child: child ?? const SizedBox.shrink(),
             onApplyButtonPressed: () {
+              unawaited(HapticFeedback.selectionClick());
               unawaited(ref.trackEvent(ClarityEvents.saveAccessibilityModeDialog));
             },
           ),

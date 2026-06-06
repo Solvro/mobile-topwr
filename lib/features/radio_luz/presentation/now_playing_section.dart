@@ -1,4 +1,7 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../../config/ui_config.dart";
@@ -130,7 +133,10 @@ class _NowPlayingTile extends StatelessWidget {
             IconButton(
               tooltip: context.localize.radio_luz_search_streaming,
               icon: Icon(Icons.manage_search, color: isActive ? colorScheme.surface : colorScheme.primary),
-              onPressed: () => SearchStreamingBottomSheet.show(context, title: title, artist: subtitle),
+              onPressed: () async {
+                unawaited(HapticFeedback.selectionClick());
+                await SearchStreamingBottomSheet.show(context, title: title, artist: subtitle);
+              },
             ),
           ],
         ),

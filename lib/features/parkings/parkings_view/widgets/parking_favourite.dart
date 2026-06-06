@@ -1,4 +1,7 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../theme/app_theme.dart";
@@ -17,6 +20,7 @@ class FavouriteParkingWidget extends ConsumerWidget {
     return IconButton(
       visualDensity: VisualDensity.compact,
       onPressed: () async {
+        unawaited(HapticFeedback.selectionClick());
         await ref.read(localFavParkingsRepositoryProvider(parking.id).notifier).toggle();
       },
       isSelected: isFavorite,

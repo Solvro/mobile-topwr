@@ -1,4 +1,7 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../api_base_rest/shared_models/image_data.dart";
@@ -20,7 +23,10 @@ class AboutUsTile extends ConsumerWidget {
         context,
         title: context.localize.guide_about_us,
         subtitle: context.localize.guide_meet_creators,
-        onTap: ref.navigateAboutUs,
+        onTap: () async {
+          unawaited(HapticFeedback.selectionClick());
+          await ref.navigateAboutUs();
+        },
         // Empty URL triggers MyCachedImage's fallback to show FlutterSplashScreen
         directusPhotoUrl: const ImageData(url: ""),
       ),

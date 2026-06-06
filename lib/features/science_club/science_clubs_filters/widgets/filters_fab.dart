@@ -1,6 +1,7 @@
 import "dart:async";
 
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../../theme/app_theme.dart";
@@ -22,6 +23,7 @@ class FiltersFAB extends ConsumerWidget {
       heroTag: "filters_fab",
       tooltip: context.localize.filters_fab_tooltip,
       onPressed: () async {
+        unawaited(HapticFeedback.selectionClick());
         unawaited(ref.trackEvent(ClarityEvents.openSciClubsFilterSheet));
         await showModalBottomSheet<void>(
           context: context,

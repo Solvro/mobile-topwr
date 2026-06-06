@@ -2,6 +2,7 @@ import "dart:async";
 
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_map/flutter_map.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
@@ -34,6 +35,7 @@ class ParkingsView extends ConsumerWidget {
         child: ExcludeSemantics(
           child: GestureDetector(
             onTap: () {
+              unawaited(HapticFeedback.selectionClick());
               unawaited(ref.read(parkingsMapControllerProvider).onMarkerTap(item));
             },
             child: (isActive ? Assets.png.mapMarkers.activeParkingMapMarker : Assets.png.mapMarkers.parkingMapMarker)
