@@ -41,6 +41,7 @@ class AudioPlayerWidget extends HookConsumerWidget {
                 Row(
                   children: [
                     IconButton(
+                      tooltip: radioState.isMuted ? l10n.radio_luz_unmute : l10n.radio_luz_mute,
                       onPressed: radioController.toggleVolume,
                       icon: Icon(
                         radioState.isMuted ? Icons.volume_off : Icons.volume_up,

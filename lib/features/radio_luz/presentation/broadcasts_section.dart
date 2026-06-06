@@ -88,7 +88,7 @@ class _BroadcastTile extends ConsumerWidget {
               if (isValidUrl(imageUrl))
                 Semantics(
                   image: true,
-                  label: "",
+                  label: context.localize.radio_luz_broadcast_cover_image,
                   child: Image.network(
                     imageUrl.trim(),
                     fit: BoxFit.cover,

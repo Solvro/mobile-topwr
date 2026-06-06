@@ -48,6 +48,7 @@ class ParkingWideTileCard extends StatelessWidget {
                 top: 0,
                 right: 0,
                 child: IconButton(
+                  tooltip: context.localize.close,
                   padding: EdgeInsets.zero,
                   onPressed: onTap,
                   icon: Semantics(

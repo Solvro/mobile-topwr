@@ -16,21 +16,21 @@ class MultilayerMarker extends ConsumerWidget {
   final MultilayerItem item;
   final bool isActive;
 
-  String get activeMapMarker => switch (item) {
-    BuildingItem() => Assets.png.mapMarkers.activeMapMarker.path,
-    PolinkaItem() => Assets.png.mapMarkers.activePolinkaMarker.path,
-    LibraryItem() => Assets.png.mapMarkers.activeLibraryMarker.path,
-    AedItem() => Assets.png.mapMarkers.activeAedMarker.path,
-    BicycleShowerItem() => Assets.png.mapMarkers.activeShowerMarker.path,
-    PinkBoxItem() => Assets.png.mapMarkers.activePinkBoxMarker.path,
+  AssetGenImage get activeMapMarker => switch (item) {
+    BuildingItem() => Assets.png.mapMarkers.activeMapMarker,
+    PolinkaItem() => Assets.png.mapMarkers.activePolinkaMarker,
+    LibraryItem() => Assets.png.mapMarkers.activeLibraryMarker,
+    AedItem() => Assets.png.mapMarkers.activeAedMarker,
+    BicycleShowerItem() => Assets.png.mapMarkers.activeShowerMarker,
+    PinkBoxItem() => Assets.png.mapMarkers.activePinkBoxMarker,
   };
-  String get notActiveMapMarker => switch (item) {
-    BuildingItem() => Assets.png.mapMarkers.mapMarker.path,
-    PolinkaItem() => Assets.png.mapMarkers.polinkaMarker.path,
-    LibraryItem() => Assets.png.mapMarkers.libraryMarker.path,
-    AedItem() => Assets.png.mapMarkers.aedMarker.path,
-    BicycleShowerItem() => Assets.png.mapMarkers.showerMarker.path,
-    PinkBoxItem() => Assets.png.mapMarkers.pinkBoxMarker.path,
+  AssetGenImage get notActiveMapMarker => switch (item) {
+    BuildingItem() => Assets.png.mapMarkers.mapMarker,
+    PolinkaItem() => Assets.png.mapMarkers.polinkaMarker,
+    LibraryItem() => Assets.png.mapMarkers.libraryMarker,
+    AedItem() => Assets.png.mapMarkers.aedMarker,
+    BicycleShowerItem() => Assets.png.mapMarkers.showerMarker,
+    PinkBoxItem() => Assets.png.mapMarkers.pinkBoxMarker,
   };
 
   @override
@@ -53,7 +53,7 @@ class MultilayerMarker extends ConsumerWidget {
           ),
         };
       },
-      child: Image.asset(isActive ? activeMapMarker : notActiveMapMarker),
+      child: (isActive ? activeMapMarker : notActiveMapMarker).image(),
     );
   }
 }

@@ -2,9 +2,9 @@ import "dart:math";
 
 import "package:flutter/material.dart";
 
-import "../config/ui_config.dart";
+import "../../../../config/ui_config.dart";
 
-double useFiltersSheetHeight(
+double getFiltersSheetHeight(
   BuildContext context, {
   double prefferedHeightFactor = FilterConfig.bottomSheetHeightFactor,
 }) {

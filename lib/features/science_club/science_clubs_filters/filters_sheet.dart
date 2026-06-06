@@ -3,11 +3,11 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../config/ui_config.dart";
-import "../../../hooks/use_filters_sheet_height.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "filters_controller.dart";
 import "filters_search_controller.dart";
+import "utils/get_filters_sheet_height.dart";
 import "widgets/branches_wrap.dart";
 import "widgets/departments_wrap.dart";
 import "widgets/filters_button.dart";
@@ -20,7 +20,7 @@ class FiltersSheet extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final sheetHeight = useFiltersSheetHeight(context);
+    final sheetHeight = getFiltersSheetHeight(context);
 
     return ProviderScope(
       overrides: [areFiltersEnabledProvider],

@@ -36,11 +36,8 @@ class ParkingsView extends ConsumerWidget {
             onTap: () {
               unawaited(ref.read(parkingsMapControllerProvider).onMarkerTap(item));
             },
-            child: Image.asset(
-              isActive
-                  ? Assets.png.mapMarkers.activeParkingMapMarker.path
-                  : Assets.png.mapMarkers.parkingMapMarker.path,
-            ),
+            child: (isActive ? Assets.png.mapMarkers.activeParkingMapMarker : Assets.png.mapMarkers.parkingMapMarker)
+                .image(),
           ),
         ),
         point: item.location,

@@ -92,16 +92,16 @@ Future<void> runNormalApp() async {
   await appAnalytics.initialize(projectId: Env.clarityConfigId);
 
   runApp(
-    appAnalytics.wrapApp(
-      app: ProviderScope(
-        retry: (retryCount, error) {
-          if (error is ParkingsOfflineException) return null;
-          if (error is RestFrameworkOfflineException) return null;
-          if (retryCount > 5) return null;
-          return Duration(seconds: retryCount * 2);
-        },
-        overrides: [radioPlayerProvider.overrideWithValue(audioHandler)],
-        child: const SplashScreen(child: MyApp()),
+    ProviderScope(
+      retry: (retryCount, error) {
+        if (error is ParkingsOfflineException) return null;
+        if (error is RestFrameworkOfflineException) return null;
+        if (retryCount > 5) return null;
+        return Duration(seconds: retryCount * 2);
+      },
+      overrides: [radioPlayerProvider.overrideWithValue(audioHandler)],
+      child: appAnalytics.wrapApp(
+        app: const SplashScreen(child: MyApp()),
       ),
     ),
   );

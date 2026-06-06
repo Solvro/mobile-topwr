@@ -82,6 +82,7 @@ class MyAudioPlayer extends HookWidget {
         child: Row(
           children: [
             IconButton(
+              tooltip: isPlaying.value ? context.localize.audio_player_pause : context.localize.audio_player_play,
               icon: Icon(isPlaying.value ? Icons.pause : Icons.play_arrow),
               color: context.colorScheme.onTertiary,
               onPressed: togglePlayPause,

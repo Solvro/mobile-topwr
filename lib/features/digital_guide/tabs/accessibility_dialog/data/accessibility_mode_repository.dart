@@ -7,7 +7,7 @@ import "modes.dart";
 
 part "accessibility_mode_repository.g.dart";
 
-@riverpod
+@Riverpod(keepAlive: true)
 class AccessibilityModeRepository extends _$AccessibilityModeRepository {
   @override
   Future<bool> build(ModeWithKey mode) async {

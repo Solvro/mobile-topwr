@@ -3526,6 +3526,14 @@
       }
     }
   },
+  "audio_player_play": "Odtwórz",
+  "@audio_player_play": {
+    "description": "Tooltip for audio player play button"
+  },
+  "audio_player_pause": "Wstrzymaj",
+  "@audio_player_pause": {
+    "description": "Tooltip for audio player pause button"
+  },
   "go_to_section": "Przejdź do {action} z {title}",
   "@go_to_section": {
     "description": "Text read for go to section",
@@ -3787,6 +3795,22 @@
   "radio_luz_subtitle": "Studenckie radio",
   "@radio_luz_subtitle": {
     "description": "Subtitle for radio luz player"
+  },
+  "radio_luz_mute": "Wycisz",
+  "@radio_luz_mute": {
+    "description": "Tooltip for radio player mute button"
+  },
+  "radio_luz_unmute": "Włącz dźwięk",
+  "@radio_luz_unmute": {
+    "description": "Tooltip for radio player unmute button"
+  },
+  "radio_luz_search_streaming": "Wyszukaj w serwisie streamingowym",
+  "@radio_luz_search_streaming": {
+    "description": "Tooltip for button that opens streaming service search"
+  },
+  "radio_luz_broadcast_cover_image": "Okładka audycji",
+  "@radio_luz_broadcast_cover_image": {
+    "description": "Screen reader label for broadcast cover image"
   },
   "start_playing": "Słuchaj",
   "@start_playing": {

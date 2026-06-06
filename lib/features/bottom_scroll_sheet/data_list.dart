@@ -11,7 +11,7 @@ import "../map_view/controllers/controllers_set.dart";
 import "../map_view/widgets/map_config.dart";
 import "data_list_loading.dart";
 
-class DataSliverList<T extends GoogleNavigable> extends HookConsumerWidget {
+class DataSliverList<T extends GoogleNavigable> extends ConsumerWidget {
   const DataSliverList({super.key});
 
   @override

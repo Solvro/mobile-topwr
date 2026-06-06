@@ -56,10 +56,10 @@ class _NowPlayingTile extends StatelessWidget {
   final String title;
   final String subtitle;
 
-  String _semanticsLabel() {
+  String _semanticsLabel(BuildContext context) {
     final parts = [time, title, subtitle];
     if (isActive) {
-      parts.insert(0, "Now playing");
+      parts.insert(0, context.localize.now_playing);
     }
     return parts.join(", ");
   }
@@ -70,7 +70,7 @@ class _NowPlayingTile extends StatelessWidget {
     final colorScheme = context.colorScheme;
     return Semantics(
       container: true,
-      label: _semanticsLabel(),
+      label: _semanticsLabel(context),
       child: Container(
         decoration: BoxDecoration(
           color: isActive ? colorScheme.primary : colorScheme.surface,
@@ -128,6 +128,7 @@ class _NowPlayingTile extends StatelessWidget {
               ),
             ),
             IconButton(
+              tooltip: context.localize.radio_luz_search_streaming,
               icon: Icon(Icons.manage_search, color: isActive ? colorScheme.surface : colorScheme.primary),
               onPressed: () => SearchStreamingBottomSheet.show(context, title: title, artist: subtitle),
             ),

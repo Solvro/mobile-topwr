@@ -53,6 +53,7 @@ class ScienceClubsView extends StatelessWidget {
   }
 }
 
+// ignore: solvro_config/hooks_extends SafeLoadInitialRepos is a HookConsumer builder
 class _ScienceClubsView extends StatelessWidget {
   const _ScienceClubsView({
     required this.tagsIds,

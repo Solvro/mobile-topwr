@@ -55,6 +55,7 @@ class CalendarTile extends ConsumerWidget {
               trailing: switch (item.description) {
                 null => null,
                 final description => IconButton(
+                  tooltip: context.localize.push_notifications_dialog_info,
                   color: context.colorScheme.primary,
                   onPressed: () async {
                     await showCustomDialog(

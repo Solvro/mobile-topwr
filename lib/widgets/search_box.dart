@@ -73,6 +73,7 @@ class SearchBox extends HookWidget {
           ),
           suffixIcon: showCloseIcon.value
               ? IconButton(
+                  tooltip: context.localize.clear,
                   icon: Icon(Icons.cancel, color: context.colorScheme.onTertiary, size: 19),
                   onPressed: onSuffixPressed,
                 )

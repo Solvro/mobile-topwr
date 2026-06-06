@@ -32,8 +32,8 @@ class BoothsPartnerFooter extends ConsumerWidget {
                   style: context.textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 8),
-                Image.asset(
-                  Assets.png.booths.snsAutomatykLogo.path,
+                Assets.png.booths.snsAutomatykLogo.image(
+                  semanticLabel: "SNS Automatyk logo",
                   height: context.textScaler.clamp(maxScaleFactor: 1.4).scale(44),
                   fit: BoxFit.contain,
                 ),

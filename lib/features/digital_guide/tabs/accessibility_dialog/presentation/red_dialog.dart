@@ -166,6 +166,7 @@ class _DialogHeader extends StatelessWidget {
                   ignoring: !showCloseButton,
                   child: MergeSemantics(
                     child: IconButton(
+                      tooltip: context.localize.close,
                       icon: Semantics(label: context.localize.close, child: const Icon(Icons.close)),
                       color: context.colorScheme.tertiary,
                       onPressed: () => Navigator.of(context).pop(),

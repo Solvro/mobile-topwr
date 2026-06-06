@@ -39,6 +39,7 @@ class AppChangelog extends StatelessWidget {
               top: 0,
               child: IconButton(
                 key: ChangelogConfig.closeButtonKey,
+                tooltip: context.localize.close,
                 icon: Icon(semanticLabel: context.localize.close, Icons.close),
                 onPressed: context.maybePop,
               ),

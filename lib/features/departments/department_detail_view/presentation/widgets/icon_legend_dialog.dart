@@ -13,6 +13,7 @@ class IconLegendDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: IconButton(
+        tooltip: context.localize.iconnames_legend_title,
         icon: const Icon(Icons.info_outline, size: 20),
         color: context.colorScheme.tertiary,
         onPressed: () => showDialog<String>(

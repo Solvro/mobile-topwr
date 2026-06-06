@@ -28,6 +28,7 @@ class MapWidget<T extends GoogleNavigable> extends HookConsumerWidget {
     final mapControllerProvider = context.mapController<T>();
 
     if (T == MultilayerItem) {
+      // ignore: solvro_config/hooks_avoid_nesting this never change during runtime, it's a static condition
       useMultilayerBranchRecenter(
         ref: ref,
         selectedBranch: ref.watch(selectedBranchOnMapProvider),

@@ -8,7 +8,7 @@ part "radio_player_provider.g.dart";
 //the actual implementation is in radio_audio_handler.dart
 //the player is assigned in main.dart so it starts even before app is fully loaded
 
-@Riverpod(keepAlive: true)
+@Riverpod(keepAlive: true, dependencies: [])
 RadioAudioHandlerBridge radioPlayer(Ref ref) {
   throw UnimplementedError("radioPlayer provider must be overridden in main.dart");
 }
