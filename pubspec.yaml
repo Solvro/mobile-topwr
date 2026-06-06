@@ -19,8 +19,8 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 version: 2.0.2+142
 
 environment:
-  sdk: ">=3.11.1 <3.12.0"
-  flutter: 3.41.4
+  sdk: ">=3.12.0 <4.0.0"
+  flutter: 3.44.1
 
 workspace:
   - packages/widgetbook
@@ -48,7 +48,7 @@ dependencies:
   cached_network_image: ^3.4.1
   flutter_cache_manager: ^3.4.1
   drift: ^2.31.0
-  drift_flutter: ^0.2.8
+  drift_flutter: ^0.3.0
   http_cache_drift_store: ^7.0.0
 
   #Network
@@ -59,7 +59,7 @@ dependencies:
 
   #Widgets
   cupertino_icons: ^1.0.8
-  flutter_native_splash: 2.4.7
+  flutter_native_splash: ^2.4.8
   flutter_svg: ^2.2.3
   flutter_widget_from_html_core:
     git:
@@ -92,7 +92,7 @@ dependencies:
 
   #Navigation
   auto_route: ^11.1.0
-  app_links: ^7.0.0
+  app_links: ^7.1.1
 
   #Maps
   flutter_map: ^8.2.2
@@ -139,8 +139,8 @@ dependencies:
   awesome_dio_interceptor: ^1.3.0
 
   #Solvro packages
-  solvro_translator_with_drift_cache_flutter: ^0.10.2
-  solvro_translator_core: ^0.10.2
+  solvro_translator_with_drift_cache_flutter: 0.11.0-dev
+  solvro_translator_core: 0.11.0-dev
   clarity_flutter: ^1.7.1
   clarity_web: ^1.1.0
 
@@ -152,26 +152,32 @@ dev_dependencies:
     sdk: flutter
 
   #Storage
-  drift_dev: ^2.31.0
+  drift_dev: ^2.33.0
 
   #Lints
-  solvro_config: ^1.7.0
+  solvro_config: ^1.8.1-dev.1
 
   #CodeGen
   build_runner: ^2.15.0
-  freezed: ^3.2.3
+  freezed: ^3.2.6-dev.1
   json_serializable: ^6.13.0
-  riverpod_generator: ^4.0.3
+  riverpod_generator: ^4.0.4-dev.3
   envied_generator: ^1.3.5
   flutter_gen_runner: ^5.12.0
   auto_route_generator: ^10.4.0
-  solvro_translator_generator: ^0.10.2
+  solvro_translator_generator: 0.11.0-dev
 
   melos: ^7.8.1
 
   #Other
   flutter_launcher_icons: ^0.14.4
   test: ^1.26.3
+
+# auto_route_generator (<=10.5.0) caps analyzer <11 and has no analyzer-12 build yet;
+# the analyzer-12 lint/codegen stack needs analyzer 12, so force it here.
+# Revisit once auto_route_generator ships analyzer-12 support.
+dependency_overrides:
+  analyzer: ^12.0.0
 
 melos:
   useRootAsPackage: true
@@ -190,7 +196,9 @@ melos:
 
     analyze:
       description: Analyze all workspace packages
-      exec: flutter analyze --fatal-infos --no-pub
+      # dart analyze runs the native analyzer plugins (riverpod_lint, solvro_config);
+      # flutter analyze does not surface them on Flutter 3.44.1.
+      exec: dart analyze --fatal-infos
 
     widgetbook:
       description: Run Widgetbook on Chrome

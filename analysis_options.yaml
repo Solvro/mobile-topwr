@@ -2,11 +2,11 @@ include: package:solvro_config/app.yaml
 
 plugins:
   riverpod_lint:
-    version: ^3.1.3
+    version: ^3.1.4-dev.3
     diagnostics:
       provider_dependencies: false # this works weirdly
   solvro_config:
-    version: ^1.7.0
+    version: ^1.8.1-dev.1
     diagnostics:
       provider_dependencies: false # this works weirdly
 
