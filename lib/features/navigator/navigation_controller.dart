@@ -15,6 +15,14 @@ class NavigationController extends _$NavigationController {
   StackRouter? get _router => ref.watch(appRouterProvider);
 
   Future<void> push(TRoute route) async {
+    final navBarEnum = NavBarConfig.routeNameToTab(route.routeName);
+    if (navBarEnum != null && !_isCurrentlyWithinTabView()) {
+      await _router?.push(
+        RootRoute(initialTabToGetBackTo: navBarEnum, children: [route], isFirstRootBottomView: false),
+      );
+      return;
+    }
+
     await _router?.push(route);
   }
 
@@ -36,17 +44,7 @@ class NavigationController extends _$NavigationController {
         return;
       }
 
-      // Check if we're already in a tab view
-      final isCurrentlyWithinTabView = _isCurrentlyWithinTabView();
-      if (isCurrentlyWithinTabView) {
-        // If already in tab view, navigate within the existing tab structure
-        await _router?.push(tabRoute);
-      } else {
-        // If not in tab view, push a new RootRoute
-        await _router?.push(
-          RootRoute(initialTabToGetBackTo: navBarEnum, children: [tabRoute], isFirstRootBottomView: false),
-        );
-      }
+      await push(tabRoute);
       return;
     }
 
