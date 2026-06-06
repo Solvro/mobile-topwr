@@ -16,6 +16,7 @@ class NavigationStack extends _$NavigationStack {
   }
 
   void setStack(IList<Route<dynamic>> value) {
+    if (!ref.mounted) return;
     state = value;
   }
 }
@@ -46,11 +47,13 @@ class RootRouteActiveTabs extends _$RootRouteActiveTabs {
   }
 
   void setActiveTab(Route<dynamic> route, NavBarEnum tab) {
+    if (!ref.mounted) return;
     if (state[route] == tab) return;
     state = state.add(route, tab);
   }
 
   void remove(Route<dynamic> route) {
+    if (!ref.mounted) return;
     if (!state.containsKey(route)) return;
     state = state.remove(route);
   }
@@ -62,8 +65,9 @@ class RootRouteActiveTabs extends _$RootRouteActiveTabs {
 */
 class NavigationObserver extends NavigatorObserver {
   final WidgetRef ref;
+  final BuildContext context;
 
-  NavigationObserver(this.ref);
+  NavigationObserver(this.ref, this.context);
 
   var _stack = const IList<Route<dynamic>>.empty();
   var _removedRoutes = const ISet<Route<dynamic>>.empty();
@@ -84,6 +88,7 @@ class NavigationObserver extends NavigatorObserver {
     _flushScheduled = true;
     unwaitedMicrotask(() async {
       _flushScheduled = false;
+      if (!context.mounted) return;
       _removedRoutes.forEach(ref.read(rootRouteActiveTabsProvider.notifier).remove);
       _removedRoutes = const ISet<Route<dynamic>>.empty();
       ref.read(navigationStackProvider.notifier).setStack(_stack);
