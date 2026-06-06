@@ -12,7 +12,7 @@ class FlushCMSCacheRemotelyWidget extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     useEffectOnInit(() {
-      unwaitedMicrotask(ref.flushAllCacheIfNeededFromCms);
+      unwaitedMicrotask(() => ref.flushAllCacheIfNeededFromCms(context));
       return null;
     });
     return child;
