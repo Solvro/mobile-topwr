@@ -1,3 +1,4 @@
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:topwr/features/navigator/app_router.dart";
@@ -14,25 +15,23 @@ class DetailViewPopButtonFullStory extends StatelessWidget {
   Widget build(BuildContext context) {
     const mockCurrentRouteSettings = RouteSettings(name: "WidgetbookDetailMockRoute");
 
-    final mockPreviousRoute = MaterialPageRoute<void>(
+    final Route<dynamic> mockPreviousRoute = MaterialPageRoute<void>(
       settings: const RouteSettings(name: DepartmentsRoute.name),
       builder: (_) => const SizedBox.shrink(),
     );
 
-    // [DetailViewPopButton] watches [previousRouteThanProvider(ModalRoute.of(context)!.settings)].
-    // Override using the same [RouteSettings] instance the route exposes (not a preset family key).
     return Navigator(
       onGenerateRoute: (_) => MaterialPageRoute<void>(
         settings: mockCurrentRouteSettings,
-        builder: (_) => Builder(
-          builder: (context) {
-            final routeSettings = ModalRoute.of(context)!.settings;
-            return ProviderScope(
-              overrides: [previousRouteThanProvider(routeSettings).overrideWithValue(mockPreviousRoute)],
-              child: const Center(child: DetailViewPopButton()),
-            );
-          },
-        ),
+        builder: (context) {
+          final mockCurrentRoute = ModalRoute.of(context)!;
+          return ProviderScope(
+            overrides: [
+              navigationStackProvider.overrideWithValue([mockPreviousRoute, mockCurrentRoute].lock),
+            ],
+            child: const Center(child: DetailViewPopButton()),
+          );
+        },
       ),
     );
   }

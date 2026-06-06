@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../config/nav_bar_config.dart";
+import "../../features/navigator/app_router.dart";
 import "../../features/navigator/navigation_stack.dart";
 import "../../theme/app_theme.dart";
 import "../../utils/context_extensions.dart";
@@ -10,8 +11,11 @@ class DetailViewPopButton extends ConsumerWidget {
   const DetailViewPopButton({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final route = ModalRoute.of(context)?.settings;
-    final title = route != null ? ref.watch(previousRouteThanProvider(route))?.getFormattedRouteName(context) : null;
+    final route = ModalRoute.of(context);
+    final stack = ref.watch(navigationStackProvider);
+    final routeIndex = stack.lastIndexWhere((stackRoute) => identical(stackRoute, route));
+    final previousRoute = routeIndex > 0 ? stack[routeIndex - 1] : null;
+    final title = _getPreviousRouteTitle(previousRoute, context);
 
     return TextButton(
       onPressed: () {
@@ -43,5 +47,14 @@ class DetailViewPopButton extends ConsumerWidget {
         ),
       ),
     );
+  }
+
+  String? _getPreviousRouteTitle(Route<dynamic>? route, BuildContext context) {
+    final args = route?.settings.arguments;
+    if (route?.settings.name == RootRoute.name && args is RootRouteArgs && !args.isFirstRootBottomView) {
+      return args.initialTabToGetBackTo.getRootRouteTitle(context);
+    }
+
+    return route?.getFormattedRouteName(context);
   }
 }

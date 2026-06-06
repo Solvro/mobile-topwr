@@ -37,19 +37,6 @@ Route<dynamic>? previousRoute(Ref ref) {
   return stack.removeLast().last; // second top most route
 }
 
-@riverpod
-Route<dynamic>? previousRouteThan(Ref ref, RouteSettings currentRouteSettings) {
-  final stack = ref.watch(navigationStackProvider);
-  if (stack.length <= 1) {
-    return null;
-  }
-  final index = stack.indexWhere((r) => r.settings.name == currentRouteSettings.name);
-  if (index <= 0) {
-    return null;
-  }
-  return stack[index - 1];
-}
-
 /*
   This class is used to observe the navigation stack
   Acts as a bridge between navigator and riverpod state notifier

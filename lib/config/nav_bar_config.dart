@@ -134,20 +134,9 @@ abstract class NavBarConfig {
 extension GetFormattedRouteNameX on Route<dynamic> {
   String? getFormattedRouteName(BuildContext context) {
     return switch (settings.name) {
-      RootRoute.name => switch ((context.router.childControllers.first as TabsRouter).currentChild?.name) {
-        HomeRoute.name => context.localize.home_screen,
-        NavigationTabRoute.name => context.localize.other_view,
-        BuildingsRoute.name => context.localize.multilayer_map_title,
-        ParkingsRoute.name => context.localize.parkings_title,
-        MultilayerMapRoute.name => context.localize.multilayer_map_title,
-        PolinkasRoute.name => context.localize.multilayer_map_title,
-        LibrariesRoute.name => context.localize.multilayer_map_title,
-        AedsRoute.name => context.localize.multilayer_map_title,
-        ShowersRoute.name => context.localize.multilayer_map_title,
-        PinkBoxesRoute.name => context.localize.multilayer_map_title,
-        GuideRoute.name => context.localize.guide,
-        _ => null,
-      },
+      RootRoute.name => NavBarConfig.routeNameToTab(
+        (context.router.childControllers.first as TabsRouter).currentChild?.name,
+      )?.getRootRouteTitle(context),
       DepartmentsRoute.name => context.localize.departments,
       SksMenuRoute.name => context.localize.sks_menu,
       ScienceClubsRoute.name => context.localize.scientific_cirlces_short,
@@ -168,6 +157,18 @@ extension GetFormattedRouteNameX on Route<dynamic> {
       SettingsRoute.name => context.localize.settings,
       ActivityDaysRoute.name => context.localize.activity_days_title,
       _ => null,
+    };
+  }
+}
+
+extension RootRouteTitleX on NavBarEnum {
+  String getRootRouteTitle(BuildContext context) {
+    return switch (this) {
+      NavBarEnum.home => context.localize.home_screen,
+      NavBarEnum.buildings => context.localize.multilayer_map_title,
+      NavBarEnum.parkings => context.localize.parkings_title,
+      NavBarEnum.guide => context.localize.guide,
+      NavBarEnum.navigation => context.localize.other_view,
     };
   }
 }
