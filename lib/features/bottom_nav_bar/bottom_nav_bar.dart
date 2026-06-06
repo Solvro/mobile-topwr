@@ -6,6 +6,7 @@ import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../config/nav_bar_config.dart";
+import "../../config/ui_config.dart";
 import "../../theme/app_theme.dart";
 
 class BottomNavBar extends ConsumerWidget {
@@ -17,11 +18,7 @@ class BottomNavBar extends ConsumerWidget {
     return Theme(
       data: Theme.of(context).copyWith(splashColor: Colors.transparent, highlightColor: Colors.transparent),
       child: DecoratedBox(
-        decoration: BoxDecoration(
-          boxShadow: <BoxShadow>[
-            BoxShadow(color: Colors.black.withValues(alpha: .08), blurRadius: 20, offset: const Offset(0, -1)),
-          ],
-        ),
+        decoration: const BoxDecoration(boxShadow: ShadowConfig.navBar),
         child: BottomNavigationBar(
           currentIndex: activeIndex,
           onTap: (indx) {

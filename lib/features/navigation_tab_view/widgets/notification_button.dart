@@ -23,7 +23,7 @@ class NotificationButton extends HookConsumerWidget {
         child: FocusableActionDetector(
           focusNode: focusNode,
           child: MySplashTile(
-            onTap:() {
+            onTap: () {
               unawaited(HapticFeedback.selectionClick());
               unawaited(ref.navigateToNotifications());
             },

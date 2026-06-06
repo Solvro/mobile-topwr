@@ -1,5 +1,7 @@
 import "package:flutter/material.dart";
 
+import "../../config/ui_config.dart";
+
 /// Widget that simplify use of [ShimmerLoadingItem] and [Shimmer]
 /// Designed to cover only one widget.
 class ShimmeringEffect extends StatelessWidget {
@@ -8,7 +10,7 @@ class ShimmeringEffect extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer(
-      linearGradient: shimmerGradient,
+      linearGradient: ShimmerLoadingConfig.gradient,
       child: ShimmerLoadingItem(child: child),
     );
   }
@@ -155,10 +157,5 @@ class _SlidingGradientTransform extends GradientTransform {
   }
 }
 
-/// [shimmerGradient] is a linear gradient that is used to create the shimmering effect.
-const shimmerGradient = LinearGradient(
-  colors: [Color(0xFFEBEBF4), Color(0xFFF4F4F4), Color(0xFFEBEBF4)],
-  stops: [0.1, 0.3, 0.4],
-  begin: Alignment(-1, -0.3),
-  end: Alignment(1, 0.3),
-);
+/// [ShimmerLoadingConfig.gradient] is a linear gradient that is used to create the shimmering effect.
+const shimmerGradient = ShimmerLoadingConfig.gradient;

@@ -41,7 +41,7 @@ class MyFilterChip extends HookConsumerWidget {
           onSelected: (_) => onTap(),
           selectedColor: selectedColor ?? context.colorScheme.primary,
           backgroundColor: Colors.transparent,
-          labelStyle: TextStyle(color: selected ? Colors.white : context.colorScheme.tertiary),
+          labelStyle: TextStyle(color: selected ? context.colorScheme.onPrimary : context.colorScheme.tertiary),
           side: BorderSide(
             color: selected ? selectedBorderColor ?? context.colorScheme.primary : context.colorScheme.tertiary,
           ),

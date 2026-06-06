@@ -3,6 +3,7 @@ import "package:freezed_annotation/freezed_annotation.dart";
 import "package:solvro_translator_core/solvro_translator_core.dart";
 
 import "../../../../l10n/app_localizations.dart";
+import "../../../../theme/colors.dart";
 
 part "booth.freezed.dart";
 part "booth.g.dart";
@@ -39,9 +40,9 @@ abstract class Booth with _$Booth, _$BoothTranslatable {
 
 extension BoothStatusX on BoothStatus {
   Color color(BuildContext context) => switch (this) {
-    BoothStatus.available => const Color(0xFF28A745),
-    BoothStatus.occupied => const Color(0xFFDC3545),
-    BoothStatus.offline => const Color(0xFF5F6673),
+    BoothStatus.available => ColorsConsts.trendUp,
+    BoothStatus.occupied => ColorsConsts.trendDown,
+    BoothStatus.offline => ColorsConsts.statusOffline,
   };
 
   String localizedName(AppLocalizations localize) => switch (this) {

@@ -55,13 +55,9 @@ class FiltersSheet extends ConsumerWidget {
                 ),
                 SafeArea(
                   child: DecoratedBox(
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       boxShadow: <BoxShadow>[
-                        BoxShadow(
-                          color: Colors.black.withValues(alpha: .04),
-                          blurRadius: 16,
-                          offset: const Offset(0, -3),
-                        ),
+                        BoxShadow(color: ShadowConfig.filterSheet, blurRadius: 16, offset: Offset(0, -3)),
                       ],
                     ),
                     child: Padding(

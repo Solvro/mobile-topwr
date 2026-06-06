@@ -5,6 +5,7 @@ import "package:flutter/services.dart";
 
 import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
+import "../../../../theme/colors.dart";
 import "../../../../theme/iparking_theme.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../widgets/my_tooltip.dart";
@@ -40,7 +41,7 @@ class ParkingWideTileCard extends StatelessWidget {
         clipBehavior: Clip.antiAlias,
         child: Stack(
           children: [
-            Container(color: isActive ? context.colorScheme.onTertiary : const Color.fromRGBO(41, 50, 65, 0.60)),
+            Container(color: isActive ? context.colorScheme.onTertiary : ParkingsConfig.inactiveOverlayColor),
             Container(
               width: double.infinity,
               padding: ParkingsConfig.padding.copyWith(bottom: 8 / context.textScaler.scale(1)),
@@ -175,9 +176,9 @@ class _RightColumn extends StatelessWidget {
 Color arrowColor(String trend, BuildContext context) {
   switch (trend) {
     case "1":
-      return const Color(0xFF28a745); //green arrow
+      return ColorsConsts.trendUp;
     case "-1":
-      return const Color(0xFFdc3545); //red arrow
+      return ColorsConsts.trendDown;
     default:
       return context.colorScheme.surface;
   }

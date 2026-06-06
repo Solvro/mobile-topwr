@@ -19,9 +19,9 @@ class MyLocationButton extends ConsumerWidget {
         heroTag: null,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         backgroundColor: context.colorScheme.primary,
-        onPressed: () {
+        onPressed: () async {
           unawaited(HapticFeedback.selectionClick());
-          ref.watch(isFollowingCurrentLocationControllerProvider.notifier).buttonClicked();
+          await ref.watch(isFollowingCurrentLocationControllerProvider.notifier).buttonClicked();
         },
         child: Icon(semanticLabel: context.localize.my_location, Icons.my_location, color: context.colorScheme.surface),
       ),

@@ -17,7 +17,10 @@ class BigPreviewCardLoading extends StatelessWidget {
             child: Container(
               width: BigPreviewCardConfig.cardWidth,
               height: 155,
-              decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(8)),
+              decoration: BoxDecoration(
+                color: ShimmerLoadingConfig.placeholderColor,
+                borderRadius: BorderRadius.circular(8),
+              ),
             ),
           ),
           const ShimmerLoadingItem(child: _LoadingText()),

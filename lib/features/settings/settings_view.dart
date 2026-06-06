@@ -31,7 +31,7 @@ class SettingsView extends ConsumerWidget {
       Focus(
         autofocus: true,
         child: NavigationTile(
-          onTap:() async {
+          onTap: () async {
             unawaited(HapticFeedback.selectionClick());
             final selectedLang = await LanguageDialog.show(context);
             if (selectedLang != null) {
@@ -44,7 +44,7 @@ class SettingsView extends ConsumerWidget {
         ),
       ),
       NavigationTile(
-        onTap:() async {
+        onTap: () async {
           unawaited(HapticFeedback.selectionClick());
           final selectedBranch = await BranchDialog.show(context);
           if (selectedBranch != null) {
@@ -56,14 +56,20 @@ class SettingsView extends ConsumerWidget {
         icon: Icons.house,
       ),
       NavigationTile(
-        onTap:() { unawaited(HapticFeedback.selectionClick()); unawaited(AccessibilityDialog.show(context, ref)); },
+        onTap: () {
+          unawaited(HapticFeedback.selectionClick());
+          unawaited(AccessibilityDialog.show(context, ref));
+        },
         title: context.localize.digital_guide_accessibility,
         icon: Icons.accessibility_new,
       ),
       if (!kIsWeb)
         NavigationTile(
           key: NavigationTabViewConfig.sksFavouriteDishesKey,
-          onTap:() { unawaited(HapticFeedback.selectionClick()); ref.navigateToSksFavouriteDishes(); },
+          onTap: () async {
+            unawaited(HapticFeedback.selectionClick());
+            await ref.navigateToSksFavouriteDishes();
+          },
           title: context.localize.sks_favourite_dishes_see_dishes,
           icon: Icons.food_bank,
         ),

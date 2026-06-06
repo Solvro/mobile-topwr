@@ -37,7 +37,7 @@ class RadioPlayerControlButton extends StatelessWidget {
       style: OutlinedButton.styleFrom(
         fixedSize: const Size(100, 36),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        backgroundColor: Colors.white,
+        backgroundColor: context.colorScheme.onPrimary,
         padding: const EdgeInsets.all(RadioLuzConfig.paddingSmall),
         elevation: 2,
       ),

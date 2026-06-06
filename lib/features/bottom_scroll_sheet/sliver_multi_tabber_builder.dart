@@ -156,7 +156,9 @@ class _TabBarWidget extends HookConsumerWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontWeight: index == selectedTabIndex.value ? FontWeight.bold : FontWeight.normal,
-                  color: index == selectedTabIndex.value ? Colors.white : Colors.black,
+                  color: index == selectedTabIndex.value
+                      ? context.colorScheme.onPrimary
+                      : context.colorScheme.onTertiary,
                 ),
               ),
             ),
@@ -181,7 +183,7 @@ class _MultiTabHeaderDelegate extends SliverPersistentHeaderDelegate {
 
   @override
   Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return ColoredBox(color: Colors.white, child: child);
+    return ColoredBox(color: context.colorScheme.surface, child: child);
   }
 
   @override

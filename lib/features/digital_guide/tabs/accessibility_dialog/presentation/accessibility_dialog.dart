@@ -4,6 +4,7 @@ import "package:flutter/material.dart";
 import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
+import "../../../../../config/ui_config.dart";
 import "../../../../../utils/context_extensions.dart";
 import "../../../../analytics/data/clarity.dart";
 import "../../../../analytics/data/clarity_events.dart";
@@ -38,7 +39,7 @@ class AccessibilityDialog extends StatelessWidget {
                 unawaited(ref.trackEvent(ClarityEvents.closeAccessibilityModeDialog));
                 Navigator.of(context).pop();
               },
-              child: ModalBarrier(color: Colors.black.withValues(alpha: 0.7), dismissible: false),
+              child: const ModalBarrier(color: ShadowConfig.modalBarrier, dismissible: false),
             ),
           ),
         ),

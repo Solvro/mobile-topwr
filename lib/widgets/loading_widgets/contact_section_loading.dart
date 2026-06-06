@@ -19,7 +19,10 @@ class ContactSectionLoading extends StatelessWidget {
             child: Container(
               height: 24, //36
               width: 100,
-              decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(16)),
+              decoration: BoxDecoration(
+                color: ShimmerLoadingConfig.placeholderColor,
+                borderRadius: BorderRadius.circular(16),
+              ),
             ),
           ),
           const SizedBox(height: DetailViewsConfig.spacerHeight),
@@ -57,7 +60,10 @@ class _IconWithUrlLoading extends StatelessWidget {
           child: Container(
             width: 28,
             height: 28,
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), color: Colors.white),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              color: ShimmerLoadingConfig.placeholderColor,
+            ),
           ),
         ),
         const SizedBox(width: 16),
@@ -66,7 +72,10 @@ class _IconWithUrlLoading extends StatelessWidget {
             child: Container(
               height: 24,
               width: 200,
-              decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(16)),
+              decoration: BoxDecoration(
+                color: ShimmerLoadingConfig.placeholderColor,
+                borderRadius: BorderRadius.circular(16),
+              ),
             ),
           ),
         ),

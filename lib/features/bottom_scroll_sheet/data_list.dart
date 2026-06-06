@@ -22,7 +22,7 @@ class DataSliverList<T extends GoogleNavigable> extends ConsumerWidget {
         child: MyErrorWidget(error, stackTrace: stackTrace),
       ),
       AsyncValue(:final value) when value != null => _DataSliverList<T>(value.data),
-      _ => const DataListLoading(),
+      _ => const DataSliverListLoading(),
     };
   }
 }
@@ -34,7 +34,7 @@ class _DataSliverList<T extends GoogleNavigable> extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    if (items.isEmpty) return _EmptyDataList<T>();
+    if (items.isEmpty) return _EmptyDataSliverList<T>();
     final previousLength = usePrevious(items.length);
     final skipAnimationAnyway = previousLength != items.length; // do not animate on active item change
     return SliverPadding(
@@ -67,8 +67,8 @@ class _DataSliverList<T extends GoogleNavigable> extends HookConsumerWidget {
   }
 }
 
-class _EmptyDataList<T extends GoogleNavigable> extends StatelessWidget {
-  const _EmptyDataList();
+class _EmptyDataSliverList<T extends GoogleNavigable> extends StatelessWidget {
+  const _EmptyDataSliverList();
 
   @override
   Widget build(BuildContext context) {

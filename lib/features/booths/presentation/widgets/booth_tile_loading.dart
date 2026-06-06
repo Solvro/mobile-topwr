@@ -61,7 +61,10 @@ class BoothTileLoading extends StatelessWidget {
                 alignment: Alignment.bottomRight,
                 child: ShimmerLoadingItem(
                   child: DecoratedBox(
-                    decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(999)),
+                    decoration: BoxDecoration(
+                      color: ShimmerLoadingConfig.placeholderColor,
+                      borderRadius: BorderRadius.circular(999),
+                    ),
                     child: const SizedBox(width: 96, height: 31),
                   ),
                 ),

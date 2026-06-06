@@ -34,7 +34,7 @@ class IntBox extends StatelessWidget {
       decoration: BoxDecoration(
         color: context.colorScheme.surface,
         borderRadius: BorderRadius.circular(4),
-        boxShadow: const [BoxShadow(color: Color(0x66c62d2e), offset: Offset(-1, 1), blurRadius: 4)],
+        boxShadow: CountdownConfig.digitShadow,
       ),
       child: Center(child: Text(singleInt, style: context.textTheme.headlineMedium)),
     );

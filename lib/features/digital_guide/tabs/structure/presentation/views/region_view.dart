@@ -40,7 +40,7 @@ class RegionView extends ConsumerWidget {
         body: MyErrorWidget(error, stackTrace: stackTrace),
       ),
       loading: () => const Center(
-        child: ShimmeringEffect(child: ColoredBox(color: Colors.white)),
+        child: ShimmeringEffect(child: ColoredBox(color: ShimmerLoadingConfig.placeholderColor)),
       ),
     );
   }

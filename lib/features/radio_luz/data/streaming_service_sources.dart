@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 
 import "../../../gen/assets.gen.dart";
 import "../../../theme/app_theme.dart";
+import "../../../theme/colors.dart";
 
 enum StreamingService {
   spotify(name: "Spotify", searchUrlBuilder: _spotifySearchUrl),
@@ -28,9 +29,9 @@ enum StreamingService {
     return switch (this) {
       StreamingService.spotify => colorTheme.tertiaryContainer,
       StreamingService.appleMusic => colorTheme.onTertiaryContainer,
-      StreamingService.youtubeMusic => Colors.red,
+      StreamingService.youtubeMusic => ColorsConsts.youtubeRed,
       StreamingService.deezer => colorTheme.scrim,
-      StreamingService.tidal => Colors.black,
+      StreamingService.tidal => colorTheme.onTertiary,
     };
   }
 

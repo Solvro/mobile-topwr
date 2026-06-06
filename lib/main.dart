@@ -100,9 +100,7 @@ Future<void> runNormalApp() async {
         return Duration(seconds: retryCount * 2);
       },
       overrides: [radioPlayerProvider.overrideWithValue(audioHandler)],
-      child: appAnalytics.wrapApp(
-        app: const SplashScreen(child: MyApp()),
-      ),
+      child: appAnalytics.wrapApp(app: const SplashScreen(child: MyApp())),
     ),
   );
 }

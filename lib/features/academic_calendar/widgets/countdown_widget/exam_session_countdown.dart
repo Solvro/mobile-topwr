@@ -43,7 +43,7 @@ class ExamSessionCountdown extends ConsumerWidget {
           decoration: BoxDecoration(
             gradient: ColorsConsts.toPwrGradient,
             borderRadius: BorderRadius.circular(8),
-            boxShadow: const [BoxShadow(spreadRadius: 6, blurRadius: 11, color: Color(0x28fa6465))],
+            boxShadow: CountdownConfig.examSessionShadow,
           ),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,

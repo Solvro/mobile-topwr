@@ -78,7 +78,7 @@ class _SksButton extends StatelessWidget {
                         style: context.textTheme.titleLarge?.copyWith(color: context.colorScheme.primary),
                       ),
                       const SizedBox(width: SksConfig.sizedBoxWidth),
-                      sksUserData.trend.icon,
+                      sksUserData.trend.icon(context),
                     ],
                   ),
                 ),
@@ -92,14 +92,15 @@ class _SksButton extends StatelessWidget {
 }
 
 extension TrendIcon on Trend {
-  Icon get icon {
+  Icon icon(BuildContext context) {
+    final color = context.colorScheme.onTertiary;
     switch (this) {
       case Trend.increasing:
-        return Icon(Icons.trending_up, color: Colors.grey.shade900);
+        return Icon(Icons.trending_up, color: color);
       case Trend.decreasing:
-        return Icon(Icons.trending_down, color: Colors.grey.shade900);
+        return Icon(Icons.trending_down, color: color);
       case Trend.stable:
-        return Icon(Icons.trending_flat, color: Colors.grey.shade900);
+        return Icon(Icons.trending_flat, color: color);
     }
   }
 

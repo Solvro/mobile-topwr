@@ -77,7 +77,7 @@ class MyAudioPlayer extends HookWidget {
       child: Container(
         padding: const EdgeInsets.all(DigitalGuideConfig.paddingSmall),
         decoration: BoxDecoration(
-          color: Colors.grey[200],
+          color: context.colorScheme.surfaceTint,
           borderRadius: BorderRadius.circular(DigitalGuideConfig.borderRadiusHuge),
         ),
         child: Row(
@@ -105,7 +105,7 @@ class MyAudioPlayer extends HookWidget {
                 max: totalTime.value.inSeconds.toDouble(),
                 onChanged: seekAudio,
                 activeColor: context.colorScheme.onTertiary,
-                inactiveColor: Colors.grey[400],
+                inactiveColor: context.colorScheme.outline,
               ),
             ),
           ],

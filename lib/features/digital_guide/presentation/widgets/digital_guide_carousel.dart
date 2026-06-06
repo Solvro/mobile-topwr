@@ -88,8 +88,8 @@ class DigitalGuideCarouselWithIndicator extends HookWidget {
                         margin: const EdgeInsets.symmetric(vertical: DigitalGuideConfig.heightMedium, horizontal: 4),
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: Colors.black.withAlpha(current.value == entry.key ? 230 : 102),
-                          border: Border.all(color: Colors.white),
+                          color: context.colorScheme.shadow.withAlpha(current.value == entry.key ? 230 : 102),
+                          border: Border.all(color: context.colorScheme.onPrimary),
                         ),
                       ),
                     );

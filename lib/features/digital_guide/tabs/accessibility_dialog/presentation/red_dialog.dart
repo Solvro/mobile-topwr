@@ -40,7 +40,7 @@ class RedDialog extends StatelessWidget {
             top: BorderSide(color: context.colorScheme.primary),
             bottom: BorderSide(color: context.colorScheme.primary, width: 5),
           ),
-          boxShadow: [BoxShadow(color: Colors.black.withAlpha(64), offset: const Offset(0, 4), blurRadius: 4)],
+          boxShadow: ShadowConfig.card,
         ),
         child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 332),

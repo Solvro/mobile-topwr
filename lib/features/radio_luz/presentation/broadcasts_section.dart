@@ -118,13 +118,16 @@ class _BroadcastTile extends ConsumerWidget {
                           Text(
                             context.localize.now_playing.toUpperCase(),
                             style: context.textTheme.titleLarge?.copyWith(
-                              color: Colors.white,
+                              color: context.colorScheme.onPrimary,
                               fontWeight: FontWeight.w400,
                             ),
                           ),
                           const SizedBox(height: 8),
                         ],
-                        Text(title, style: context.textTheme.titleLarge?.copyWith(color: Colors.white)),
+                        Text(
+                          title,
+                          style: context.textTheme.titleLarge?.copyWith(color: context.colorScheme.onPrimary),
+                        ),
                         const SizedBox(height: 4),
                         if (isValidUrl(siteUrl)) const _ShowMoreWidget(),
                       ],
@@ -151,12 +154,15 @@ class _ShowMoreWidget extends StatelessWidget {
           spacing: 8,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(context.localize.show_more, style: context.textTheme.titleLarge?.copyWith(color: Colors.white)),
-            const Expanded(child: Divider(color: Colors.white, thickness: 1, height: 1)),
+            Text(
+              context.localize.show_more,
+              style: context.textTheme.titleLarge?.copyWith(color: context.colorScheme.onPrimary),
+            ),
+            Expanded(child: Divider(color: context.colorScheme.onPrimary, thickness: 1, height: 1)),
             const SizedBox(width: 8),
           ],
         ),
-        const Positioned(bottom: 0, right: 0, child: Icon(Icons.arrow_right, color: Colors.white, size: 18)),
+        Positioned(bottom: 0, right: 0, child: Icon(Icons.arrow_right, color: context.colorScheme.onPrimary, size: 18)),
       ],
     );
   }
