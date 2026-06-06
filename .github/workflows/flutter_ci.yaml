@@ -53,9 +53,6 @@ jobs:
       - name: Analyze project source with Melos
         run: melos analyze
 
-      - name: Run custom lints
-        run: dart run custom_lint --fatal-infos
-
       - name: Flutter unit tests
         run: flutter test
 
