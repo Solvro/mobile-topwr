@@ -139,8 +139,8 @@ dependencies:
   awesome_dio_interceptor: ^1.3.0
 
   #Solvro packages
-  solvro_translator_with_drift_cache_flutter: ^0.10.1
-  solvro_translator_core: ^0.10.1
+  solvro_translator_with_drift_cache_flutter: ^0.10.2
+  solvro_translator_core: ^0.10.2
   clarity_flutter: ^1.7.1
   clarity_web: ^1.1.0
 
@@ -155,7 +155,7 @@ dev_dependencies:
   drift_dev: ^2.31.0
 
   #Lints
-  solvro_config: ^1.6.3
+  solvro_config: ^1.7.0
 
   #CodeGen
   build_runner: ^2.15.0
@@ -165,7 +165,7 @@ dev_dependencies:
   envied_generator: ^1.3.5
   flutter_gen_runner: ^5.12.0
   auto_route_generator: ^10.4.0
-  solvro_translator_generator: ^0.10.1
+  solvro_translator_generator: ^0.10.2
 
   melos: ^7.8.1
 
