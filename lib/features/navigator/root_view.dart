@@ -27,16 +27,17 @@ class RootView extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final rootRoute = ModalRoute.of(context);
+    final rootRouteActiveTabs = ref.read(rootRouteActiveTabsProvider.notifier);
     final timesPushedToTabBar = useState(0);
 
     useEffect(() {
       if (rootRoute == null) return null;
       return () {
         unwaitedMicrotask(() async {
-          ref.read(rootRouteActiveTabsProvider.notifier).remove(rootRoute);
+          rootRouteActiveTabs.remove(rootRoute);
         });
       };
-    }, [rootRoute]);
+    }, [rootRoute, rootRouteActiveTabs]);
 
     return ShowEntryDialogWrapper(
       child: AutoTabsRouter(
@@ -48,7 +49,7 @@ class RootView extends HookConsumerWidget {
           if (rootRoute != null) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
               if (!context.mounted) return;
-              ref.read(rootRouteActiveTabsProvider.notifier).setActiveTab(rootRoute, activeTab);
+              rootRouteActiveTabs.setActiveTab(rootRoute, activeTab);
             });
           }
           return CentralizedPopScope(

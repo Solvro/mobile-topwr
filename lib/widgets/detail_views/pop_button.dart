@@ -55,6 +55,7 @@ class DetailViewPopButton extends ConsumerWidget {
       final activeTab = route != null ? ref.watch(rootRouteActiveTabsProvider.select((tabs) => tabs[route])) : null;
       if (activeTab != null) return activeTab.getRootRouteTitle(context);
       if (args is RootRouteArgs) return args.initialTabToGetBackTo.getRootRouteTitle(context);
+      return null;
     }
 
     return route?.getFormattedRouteName(context);

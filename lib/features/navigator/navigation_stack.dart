@@ -41,18 +41,18 @@ Route<dynamic>? previousRoute(Ref ref) {
 @Riverpod(keepAlive: true)
 class RootRouteActiveTabs extends _$RootRouteActiveTabs {
   @override
-  Map<Route<dynamic>, NavBarEnum> build() {
-    return const {};
+  IMap<Route<dynamic>, NavBarEnum> build() {
+    return <Route<dynamic>, NavBarEnum>{}.lock;
   }
 
   void setActiveTab(Route<dynamic> route, NavBarEnum tab) {
     if (state[route] == tab) return;
-    state = {...state, route: tab};
+    state = state.add(route, tab);
   }
 
   void remove(Route<dynamic> route) {
     if (!state.containsKey(route)) return;
-    state = {...state}..remove(route);
+    state = state.remove(route);
   }
 }
 
@@ -66,7 +66,7 @@ class NavigationObserver extends NavigatorObserver {
   NavigationObserver(this.ref);
 
   var _stack = const IList<Route<dynamic>>.empty();
-  final _removedRoutes = <Route<dynamic>>{};
+  var _removedRoutes = const ISet<Route<dynamic>>.empty();
   var _flushScheduled = false;
 
   /*
@@ -85,13 +85,13 @@ class NavigationObserver extends NavigatorObserver {
     unwaitedMicrotask(() async {
       _flushScheduled = false;
       _removedRoutes.forEach(ref.read(rootRouteActiveTabsProvider.notifier).remove);
-      _removedRoutes.clear();
+      _removedRoutes = const ISet<Route<dynamic>>.empty();
       ref.read(navigationStackProvider.notifier).setStack(_stack);
     });
   }
 
   void _removeRoute(Route<dynamic> route) {
-    _removedRoutes.add(route);
+    _removedRoutes = _removedRoutes.add(route);
     setStack(stack.where((stackRoute) => !identical(stackRoute, route)).toIList());
   }
 
@@ -111,7 +111,7 @@ class NavigationObserver extends NavigatorObserver {
   @override
   void didReplace({Route<dynamic>? newRoute, Route<dynamic>? oldRoute}) {
     if (oldRoute != null) {
-      _removedRoutes.add(oldRoute);
+      _removedRoutes = _removedRoutes.add(oldRoute);
     }
     if (newRoute == null) {
       if (oldRoute != null) _removeRoute(oldRoute);
