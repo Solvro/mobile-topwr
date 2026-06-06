@@ -4,7 +4,7 @@ publish_to: "none"
 version: 0.1.0+1
 
 environment:
-  sdk: ^3.11.1
+  sdk: ^3.12.0
 resolution: workspace
 
 dependencies:
@@ -18,7 +18,7 @@ dependencies:
   flutter_riverpod: ^3.3.1
   hooks_riverpod: ^3.3.1
   intl: ^0.20.2
-  flutter_map: ^8.2.2
+  flutter_map: ^8.3.0
   latlong2: ^0.9.1
   crypto: ^3.0.7
 
@@ -26,9 +26,9 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
-  build_runner: ^2.13.0
+  build_runner: ^2.15.0
   solvro_config: ^1.8.1-dev.1
-  sqflite_common_ffi: ^2.3.7+1
+  sqflite_common_ffi: ^2.4.1
 
 flutter:
   uses-material-design: true
