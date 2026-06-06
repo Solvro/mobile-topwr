@@ -5,6 +5,7 @@ import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../config/nav_bar_config.dart";
 import "../../services/pop_scope/centralized_pop_scope.dart";
+import "../../utils/unwaited_microtask.dart";
 import "../../widgets/horizontal_symmetric_safe_area.dart";
 import "../app_changelog/update_changelog_wrapper.dart";
 import "../bottom_nav_bar/bottom_nav_bar.dart";
@@ -30,7 +31,11 @@ class RootView extends HookConsumerWidget {
 
     useEffect(() {
       if (rootRoute == null) return null;
-      return () => ref.read(rootRouteActiveTabsProvider.notifier).remove(rootRoute);
+      return () {
+        unwaitedMicrotask(() async {
+          ref.read(rootRouteActiveTabsProvider.notifier).remove(rootRoute);
+        });
+      };
     }, [rootRoute]);
 
     return ShowEntryDialogWrapper(
