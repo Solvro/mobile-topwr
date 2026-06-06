@@ -15,7 +15,7 @@ class DetailViewPopButton extends ConsumerWidget {
     final stack = ref.watch(navigationStackProvider);
     final routeIndex = stack.lastIndexWhere((stackRoute) => identical(stackRoute, route));
     final previousRoute = routeIndex > 0 ? stack[routeIndex - 1] : null;
-    final title = _getPreviousRouteTitle(previousRoute, context);
+    final title = _getPreviousRouteTitle(previousRoute, context, ref);
 
     return TextButton(
       onPressed: () {
@@ -49,10 +49,12 @@ class DetailViewPopButton extends ConsumerWidget {
     );
   }
 
-  String? _getPreviousRouteTitle(Route<dynamic>? route, BuildContext context) {
+  String? _getPreviousRouteTitle(Route<dynamic>? route, BuildContext context, WidgetRef ref) {
     final args = route?.settings.arguments;
-    if (route?.settings.name == RootRoute.name && args is RootRouteArgs && !args.isFirstRootBottomView) {
-      return args.initialTabToGetBackTo.getRootRouteTitle(context);
+    if (route?.settings.name == RootRoute.name) {
+      final activeTab = route != null ? ref.watch(rootRouteActiveTabsProvider.select((tabs) => tabs[route])) : null;
+      if (activeTab != null) return activeTab.getRootRouteTitle(context);
+      if (args is RootRouteArgs) return args.initialTabToGetBackTo.getRootRouteTitle(context);
     }
 
     return route?.getFormattedRouteName(context);

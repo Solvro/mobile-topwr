@@ -3,6 +3,7 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
+import "../../config/nav_bar_config.dart";
 import "../../utils/unwaited_microtask.dart";
 
 part "navigation_stack.g.dart";
@@ -35,6 +36,24 @@ Route<dynamic>? previousRoute(Ref ref) {
     return null;
   }
   return stack.removeLast().last; // second top most route
+}
+
+@Riverpod(keepAlive: true)
+class RootRouteActiveTabs extends _$RootRouteActiveTabs {
+  @override
+  Map<Route<dynamic>, NavBarEnum> build() {
+    return const {};
+  }
+
+  void setActiveTab(Route<dynamic> route, NavBarEnum tab) {
+    if (state[route] == tab) return;
+    state = {...state, route: tab};
+  }
+
+  void remove(Route<dynamic> route) {
+    if (!state.containsKey(route)) return;
+    state = {...state}..remove(route);
+  }
 }
 
 /*

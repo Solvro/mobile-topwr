@@ -8,6 +8,7 @@ import "../../services/pop_scope/centralized_pop_scope.dart";
 import "../../widgets/horizontal_symmetric_safe_area.dart";
 import "../app_changelog/update_changelog_wrapper.dart";
 import "../bottom_nav_bar/bottom_nav_bar.dart";
+import "navigation_stack.dart";
 import "nested_nav_pop_scope.dart";
 
 @RoutePage()
@@ -24,13 +25,27 @@ class RootView extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final rootRoute = ModalRoute.of(context);
     final timesPushedToTabBar = useState(0);
+
+    useEffect(() {
+      if (rootRoute == null) return null;
+      return () => ref.read(rootRouteActiveTabsProvider.notifier).remove(rootRoute);
+    }, [rootRoute]);
+
     return ShowEntryDialogWrapper(
       child: AutoTabsRouter(
         routes: NavBarConfig.allTabRoutes,
         builder: (context, child) {
           final tabsRouter = AutoTabsRouter.of(context);
           final activeTabIndex = _routeIndexToTabIndex(tabsRouter.activeIndex);
+          final activeTab = NavBarEnum.values[activeTabIndex];
+          if (rootRoute != null) {
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              if (!context.mounted) return;
+              ref.read(rootRouteActiveTabsProvider.notifier).setActiveTab(rootRoute, activeTab);
+            });
+          }
           return CentralizedPopScope(
             child: NestedNavPopScope(
               initialTabToGetBackTo: initialTabToGetBackTo,
