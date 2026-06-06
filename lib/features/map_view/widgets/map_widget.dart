@@ -1,9 +1,9 @@
-import "package:dio_cache_interceptor_db_store/dio_cache_interceptor_db_store.dart";
 import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:flutter_map/flutter_map.dart";
 import "package:flutter_map_cache/flutter_map_cache.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
+import "package:http_cache_drift_store/http_cache_drift_store.dart";
 
 import "../../../config/map_view_config.dart";
 import "../../../theme/app_theme.dart";
@@ -80,7 +80,7 @@ class MapTileLayer extends ConsumerWidget {
 
     final cacheStore = ref.watch(mapCacheStoreProvider);
     return switch (cacheStore) {
-      AsyncData(:final DbCacheStore value) => _OpenStreetMapTileLayer(
+      AsyncData(:final DriftCacheStore value) => _OpenStreetMapTileLayer(
         tileProvider: CachedTileProvider(
           maxStale: const Duration(days: MapCacheConfig.cacheDuration),
           store: value,
