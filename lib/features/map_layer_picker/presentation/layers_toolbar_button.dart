@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
+import "../../../services/haptics/app_haptics.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "layer_options_dialog.dart";
@@ -14,10 +15,17 @@ class LayersButton extends ConsumerWidget {
       scale: context.textScaler.clamp(minScaleFactor: 0.9, maxScaleFactor: 1.5).scale(1),
       child: FloatingActionButton.small(
         heroTag: "layers_button",
+        tooltip: context.localize.map_details_title,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         backgroundColor: context.colorScheme.surface,
-        child: Icon(Icons.map, color: context.colorScheme.onTertiary),
-        onPressed: () => LayerOptionsDialog.show(context, ref),
+        onPressed: AppHaptics.wrapperLight(() async {
+          await LayerOptionsDialog.show(context, ref);
+        }),
+        child: Icon(
+          Icons.map,
+          semanticLabel: context.localize.map_details_title,
+          color: context.colorScheme.onTertiary,
+        ),
       ),
     );
   }

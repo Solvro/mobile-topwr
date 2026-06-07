@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 
 import "../../../../config/ui_config.dart";
+import "../../../../services/haptics/app_haptics.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../widgets/my_cached_image.dart";
@@ -25,7 +26,7 @@ class ScienceClubCard extends StatelessWidget {
       borderRadius: const BorderRadius.all(WideTileCardConfig.radius),
       child: Material(
         child: InkWell(
-          onTap: onTap,
+          onTap: AppHaptics.wrapperSelection(onTap),
           child: Ink(
             decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.surfaceTint,

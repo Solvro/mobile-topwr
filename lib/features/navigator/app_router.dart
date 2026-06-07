@@ -146,7 +146,7 @@ class AppRouter extends RootStackRouter {
   ];
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 Raw<AppRouter> appRouter(Ref ref) {
   return AppRouter(ref: ref);
 }

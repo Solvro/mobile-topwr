@@ -56,7 +56,10 @@ class _SksMenuHeaderLoading extends StatelessWidget {
   Widget build(BuildContext context) {
     return ShimmerLoadingItem(
       child: Container(
-        decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(SksMenuConfig.borderRadius)),
+        decoration: BoxDecoration(
+          color: ShimmerLoadingConfig.placeholderColor,
+          borderRadius: BorderRadius.circular(SksMenuConfig.borderRadius),
+        ),
         width: double.infinity,
         height: 250,
       ),
@@ -76,7 +79,10 @@ class _LoadingTitle extends StatelessWidget {
         SksMenuConfig.paddingMedium,
       ),
       child: Container(
-        decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(SksMenuConfig.borderRadius)),
+        decoration: BoxDecoration(
+          color: ShimmerLoadingConfig.placeholderColor,
+          borderRadius: BorderRadius.circular(SksMenuConfig.borderRadius),
+        ),
         width: double.infinity,
         height: 50,
       ),

@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
+
 import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
@@ -42,7 +43,7 @@ class IncomingDayChanges extends ConsumerWidget {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(Icons.warning_amber, size: 18, color: context.colorScheme.surface),
+              Icon(Icons.warning_amber, semanticLabel: "", size: 18, color: context.colorScheme.surface),
               const SizedBox(width: 6),
               ExcludeSemantics(
                 child: Text(
@@ -75,41 +76,39 @@ class IncomingDayChanges extends ConsumerWidget {
               const TextSpan(text: " "),
               WidgetSpan(
                 alignment: PlaceholderAlignment.middle,
-                child: Icon(Icons.info_outline, size: 18, color: context.colorScheme.tertiary),
+                child: Icon(Icons.info_outline, semanticLabel: "", size: 18, color: context.colorScheme.tertiary),
               ),
             ],
           ),
         ),
       ),
     ];
-    return Container(
+    return Padding(
       padding: const EdgeInsets.symmetric(horizontal: HomeViewConfig.paddingLarge),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Consumer(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8),
-              child: context.isTextScaledUp
-                  ? Wrap(
-                      alignment: WrapAlignment.center,
-                      crossAxisAlignment: WrapCrossAlignment.center,
-                      runAlignment: WrapAlignment.center,
-                      runSpacing: 12,
-                      spacing: 12,
-                      children: children,
-                    )
-                  : Row(spacing: 12, mainAxisAlignment: MainAxisAlignment.center, children: children),
-            ),
-            builder: (context, ref, child) => MySplashTile(
-              backgroundColor: Colors.transparent,
-              onTap: () async {
-                await DayChangesDialog.show(context, calendar, ref);
-              },
-              child: child ?? const SizedBox.shrink(),
-            ),
+      child: SizedBox(
+        width: double.infinity,
+        child: Consumer(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8),
+            child: context.isTextScaledUp
+                ? Wrap(
+                    alignment: WrapAlignment.center,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    runAlignment: WrapAlignment.center,
+                    runSpacing: 12,
+                    spacing: 12,
+                    children: children,
+                  )
+                : Row(spacing: 12, mainAxisAlignment: MainAxisAlignment.center, children: children),
           ),
-        ],
+          builder: (context, ref, child) => MySplashTile(
+            backgroundColor: Colors.transparent,
+            onTap: () async {
+              await DayChangesDialog.show(context, calendar, ref);
+            },
+            child: child ?? const SizedBox.shrink(),
+          ),
+        ),
       ),
     );
   }

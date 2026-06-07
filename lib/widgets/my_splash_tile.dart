@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 
 import "../config/ui_config.dart";
+import "../services/haptics/app_haptics.dart";
 import "../theme/app_theme.dart";
 
 class MySplashTile extends StatelessWidget {
@@ -18,7 +19,7 @@ class MySplashTile extends StatelessWidget {
       child: InkWell(
         focusNode: focusNode,
         borderRadius: const BorderRadius.all(WideTileCardConfig.radius),
-        onTap: onTap,
+        onTap: AppHaptics.wrapperSelection(onTap),
         child: Ink(
           decoration: BoxDecoration(
             color: backgroundColor ?? context.colorScheme.surfaceTint,

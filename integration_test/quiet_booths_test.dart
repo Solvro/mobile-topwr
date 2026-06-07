@@ -61,7 +61,7 @@ void main() {
     return [
       preferredLanguageRepositoryProvider.overrideWith(_MockPreferredLanguageRepository.new),
       branchRepositoryProvider.overrideWith(_MockBranchRepository.new),
-      localChangelogRepositoryProvider.overrideWith(_MockLocalChangelogRepository.new),
+      localChangelogRepositoryProvider.overrideWith2((_) => _MockLocalChangelogRepository()),
       defaultFeatureCodesProvider.overrideWith((ref) => IListConst([Env.boothFeatureCode])),
       boothsRepositoryProvider.overrideWith((ref) => Future.value(_testBooths)),
     ];

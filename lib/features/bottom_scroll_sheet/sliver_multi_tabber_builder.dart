@@ -1,9 +1,12 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../config/map_view_config.dart";
 import "../../config/ui_config.dart";
+import "../../services/haptics/app_haptics.dart";
 import "../../theme/app_theme.dart";
 import "../../utils/context_extensions.dart";
 import "../multilayer_map/data/model/multilayer_item.dart";
@@ -119,7 +122,10 @@ class _TabBarWidget extends HookConsumerWidget {
       child: TabBar(
         controller: tabController,
         labelPadding: const EdgeInsets.symmetric(horizontal: NavigationTabViewConfig.smallerPadding),
-        onTap: onTabTap,
+        onTap: (index) async {
+          unawaited(AppHaptics.selectionClick());
+          await onTabTap(index);
+        },
         isScrollable: true,
         padding: const EdgeInsets.only(
           left: MapViewBottomSheetConfig.horizontalPadding - NavigationTabViewConfig.smallerPadding,
@@ -150,7 +156,9 @@ class _TabBarWidget extends HookConsumerWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontWeight: index == selectedTabIndex.value ? FontWeight.bold : FontWeight.normal,
-                  color: index == selectedTabIndex.value ? Colors.white : Colors.black,
+                  color: index == selectedTabIndex.value
+                      ? context.colorScheme.onPrimary
+                      : context.colorScheme.onTertiary,
                 ),
               ),
             ),
@@ -175,7 +183,7 @@ class _MultiTabHeaderDelegate extends SliverPersistentHeaderDelegate {
 
   @override
   Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return ColoredBox(color: Colors.white, child: child);
+    return ColoredBox(color: context.colorScheme.surface, child: child);
   }
 
   @override

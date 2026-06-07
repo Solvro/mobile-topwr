@@ -1,5 +1,6 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
+import "package:flutter/rendering.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../config/ui_config.dart";
@@ -59,7 +60,7 @@ class _ScienceClubsDataList extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return ListView.builder(
-      cacheExtent: 4,
+      scrollCacheExtent: const ScrollCacheExtent.pixels(4),
       shrinkWrap: true,
       scrollDirection: Axis.horizontal,
       itemCount: scienceClubs.length,

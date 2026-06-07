@@ -33,7 +33,7 @@ class NotificationButton extends HookConsumerWidget {
               ),
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: SksConfig.sizedBoxWidth),
-                child: Icon(Icons.notifications, color: context.colorScheme.primary),
+                child: Icon(Icons.notifications, semanticLabel: "", color: context.colorScheme.primary),
               ),
             ),
           ),

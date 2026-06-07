@@ -33,41 +33,37 @@ class BicycleShowerTile extends HookConsumerWidget {
           active ? "${l10n.building_tile_selected} $title" : "${l10n.building_tile_unselected} $title",
     );
 
-    return Column(
+    return Stack(
       children: [
-        Stack(
-          children: [
-            Semantics(
-              label: "${isActive ? "${context.localize.building_tile_selected} " : ""} $title",
-              button: true,
-              child: ExcludeSemantics(
-                child: PhotoTrailingWideTileCard(
-                  context,
-                  activeGradient: ColorsConsts.toPwrGradient,
-                  directusPhotoUrl: shower.photo,
-                  title: title,
-                  subtitle: shower.instructions ?? "",
-                  isActive: isActive,
-                  onTap: () {
-                    unawaited(ref.trackEvent(ClarityEvents.selectLibrary, value: title));
-                    unawaited(ref.read(multilayerMapControllerProvider).onMarkerTap(BicycleShowerItem(shower: shower)));
-                  },
-                  customPlaceholder: ColoredBox(
-                    color: context.colorScheme.surfaceTint,
-                    child: Center(
-                      child: SvgPicture.asset(
-                        Assets.svg.mapPlaceholders.showerIcon,
-                        height: WideTileCardConfig.imageSize / 2,
-                      ),
-                    ),
+        Semantics(
+          label: "${isActive ? "${context.localize.building_tile_selected} " : ""} $title",
+          button: true,
+          child: ExcludeSemantics(
+            child: PhotoTrailingWideTileCard(
+              context,
+              activeGradient: ColorsConsts.toPwrGradient,
+              directusPhotoUrl: shower.photo,
+              title: title,
+              subtitle: shower.instructions ?? "",
+              isActive: isActive,
+              onTap: () {
+                unawaited(ref.trackEvent(ClarityEvents.selectLibrary, value: title));
+                unawaited(ref.read(multilayerMapControllerProvider).onMarkerTap(BicycleShowerItem(shower: shower)));
+              },
+              customPlaceholder: ColoredBox(
+                color: context.colorScheme.surfaceTint,
+                child: Center(
+                  child: SvgPicture.asset(
+                    Assets.svg.mapPlaceholders.showerIcon,
+                    height: WideTileCardConfig.imageSize / 2,
                   ),
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
                 ),
               ),
+              crossAxisAlignment: CrossAxisAlignment.stretch,
             ),
-            if (shower.building != null) BuildingNavLink(building: shower.building!, isActive: isActive),
-          ],
+          ),
         ),
+        if (shower.building != null) BuildingNavLink(building: shower.building!, isActive: isActive),
       ],
     );
   }

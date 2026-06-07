@@ -2,6 +2,7 @@ import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 
 import "../../config/ui_config.dart";
+import "../../services/haptics/app_haptics.dart";
 import "../../theme/app_theme.dart";
 import "../../utils/context_extensions.dart";
 import "data/models/changelog.dart";
@@ -39,8 +40,11 @@ class AppChangelog extends StatelessWidget {
               top: 0,
               child: IconButton(
                 key: ChangelogConfig.closeButtonKey,
+                tooltip: context.localize.close,
                 icon: Icon(semanticLabel: context.localize.close, Icons.close),
-                onPressed: context.maybePop,
+                onPressed: AppHaptics.wrapperLight(() async {
+                  await context.maybePop();
+                }),
               ),
             ),
           ],

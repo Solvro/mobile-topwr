@@ -7,7 +7,7 @@ import "timstamp_repo_mixin.dart";
 
 part "last_entry_repo.g.dart";
 
-@riverpod
+@Riverpod(keepAlive: true)
 class LastEntryRepository extends _$LastEntryRepository with TimestampRepository {
   @override
   @protected

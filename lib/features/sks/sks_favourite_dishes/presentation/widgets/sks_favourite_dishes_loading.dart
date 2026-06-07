@@ -60,7 +60,7 @@ class _LoadingTitle extends StatelessWidget {
       child: ShimmerLoadingItem(
         child: Container(
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: ShimmerLoadingConfig.placeholderColor,
             borderRadius: BorderRadius.circular(SksMenuConfig.borderRadius),
           ),
           width: double.infinity,
@@ -78,7 +78,10 @@ class _LoadingDishTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ShimmerLoadingItem(
       child: Container(
-        decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(SksMenuConfig.borderRadius)),
+        decoration: BoxDecoration(
+          color: ShimmerLoadingConfig.placeholderColor,
+          borderRadius: BorderRadius.circular(SksMenuConfig.borderRadius),
+        ),
         width: double.infinity,
         height: 50,
       ),

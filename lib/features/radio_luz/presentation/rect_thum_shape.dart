@@ -1,5 +1,7 @@
 import "package:flutter/material.dart";
 
+import "../../../../theme/colors.dart";
+
 class RectThumbShape extends SliderComponentShape {
   const RectThumbShape({required this.width, required this.height});
 
@@ -28,7 +30,7 @@ class RectThumbShape extends SliderComponentShape {
 
     final Color color =
         ColorTween(begin: sliderTheme.disabledThumbColor, end: sliderTheme.thumbColor).evaluate(enableAnimation) ??
-        Colors.white;
+        ColorsConsts.whiteSoap;
 
     final paint = Paint()
       ..color = color

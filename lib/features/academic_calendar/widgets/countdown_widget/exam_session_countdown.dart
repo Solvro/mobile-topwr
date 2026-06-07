@@ -6,6 +6,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../config/ui_config.dart";
 import "../../../../config/url_config.dart";
+import "../../../../services/haptics/app_haptics.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../theme/colors.dart";
 import "../../../../utils/context_extensions.dart";
@@ -31,17 +32,17 @@ class ExamSessionCountdown extends ConsumerWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: HomeViewConfig.paddingLarge),
       child: GestureDetector(
-        onTap: () async {
+        onTap: AppHaptics.wrapperLight(() async {
           unawaited(ref.trackEvent(ClarityEvents.openAcademicCalendarExternalLink));
           await ref.launch(UrlConfig.academicCalendarUrl);
-        },
+        }),
         child: Container(
           height: height,
           width: double.infinity,
           decoration: BoxDecoration(
             gradient: ColorsConsts.toPwrGradient,
             borderRadius: BorderRadius.circular(8),
-            boxShadow: const [BoxShadow(spreadRadius: 6, blurRadius: 11, color: Color(0x28fa6465))],
+            boxShadow: CountdownConfig.examSessionShadow,
           ),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -79,7 +80,7 @@ class ExamSessionCountdown extends ConsumerWidget {
                 alignment: Alignment.centerRight,
                 child: Padding(
                   padding: const EdgeInsets.all(16),
-                  child: Icon(Icons.open_in_new_rounded, color: context.colorScheme.surface),
+                  child: Icon(Icons.open_in_new_rounded, semanticLabel: "", color: context.colorScheme.surface),
                 ),
               ),
             ],

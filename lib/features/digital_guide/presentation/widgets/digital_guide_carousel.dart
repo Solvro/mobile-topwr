@@ -6,6 +6,7 @@ import "package:flutter/material.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
 
 import "../../../../config/ui_config.dart";
+import "../../../../services/haptics/app_haptics.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../widgets/arrow_button.dart";
@@ -71,15 +72,15 @@ class DigitalGuideCarouselWithIndicator extends HookWidget {
                 Row(
                   children: imgListId.asMap().entries.map((entry) {
                     return GestureDetector(
-                      onTap: () => unawaited(controller.animateToPage(entry.key)),
+                      onTap: AppHaptics.wrapperSelection(() => unawaited(controller.animateToPage(entry.key))),
                       child: Container(
                         width: 12,
                         height: 12,
                         margin: const EdgeInsets.symmetric(vertical: DigitalGuideConfig.heightMedium, horizontal: 4),
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: Colors.black.withAlpha(current.value == entry.key ? 230 : 102),
-                          border: Border.all(color: Colors.white),
+                          color: context.colorScheme.shadow.withAlpha(current.value == entry.key ? 230 : 102),
+                          border: Border.all(color: context.colorScheme.onPrimary),
                         ),
                       ),
                     );

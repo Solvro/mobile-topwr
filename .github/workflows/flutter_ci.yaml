@@ -41,6 +41,9 @@ jobs:
       - name: Remove lib/l10n directory
         run: rm -rf lib/l10n/*.dart
 
+      - name: Remove build directory # TODO: remove when this rolls out: https://github.com/dart-lang/dart_style/issues/1840
+        run: rm -rf build packages/*/build
+
       - name: Verify formatting by Melos
         run: melos format --output=none --set-exit-if-changed .
 
@@ -52,9 +55,6 @@ jobs:
 
       - name: Analyze project source with Melos
         run: melos analyze
-
-      - name: Run custom lints
-        run: dart run custom_lint --fatal-infos
 
       - name: Flutter unit tests
         run: flutter test

@@ -7,6 +7,7 @@ import "../../map_view/utils/lat_lng_validity.dart";
 import "../data/location_permission_status_provider.dart";
 import "is_following_controller.dart";
 
+// ignore: solvro_config/hooks_extends hooks are inside HookBuilder
 class MyLocationLayer extends ConsumerWidget {
   const MyLocationLayer({super.key});
 

@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 
 import "../api_base_rest/shared_models/image_data.dart";
+import "../services/haptics/app_haptics.dart";
 import "../theme/colors.dart";
 import "../utils/context_extensions.dart";
 import "my_cached_image.dart";
@@ -18,9 +19,7 @@ extension ShowFullscreenImageX on BuildContext {
       context: this,
       builder: (context) {
         return GestureDetector(
-          onTap: () {
-            Navigator.of(context).pop();
-          },
+          onTap: AppHaptics.wrapperSelection(() => Navigator.of(context).pop()),
           child: Semantics(
             container: true,
             image: true,
@@ -112,13 +111,13 @@ class ZoomableCachedImage extends StatelessWidget {
       button: false,
       child: ExcludeSemantics(
         child: GestureDetector(
-          onTap: () async {
+          onTap: AppHaptics.wrapperSelection(() async {
             await context.showFullScreenImage(
               imageUrl,
               shouldHaveRectBackground: shouldHaveRectBackground,
               semanticsLabel: semanticsLabel,
             );
-          },
+          }),
           child: MyCachedImage(imageUrl, boxFit: boxFit, loadingType: loadingType, semanticsLabel: semanticsLabel),
         ),
       ),
@@ -153,13 +152,13 @@ class ZoomableRestApiImage extends StatelessWidget {
       button: false,
       child: ExcludeSemantics(
         child: GestureDetector(
-          onTap: () async {
+          onTap: AppHaptics.wrapperSelection(() async {
             await context.showFullScreenImage(
               imageData?.url,
               shouldHaveRectBackground: shouldHaveRectBackground,
               semanticsLabel: semanticsLabel,
             );
-          },
+          }),
           child: MyCachedImage(
             useFullImageQuality ? imageData?.url : imageData?.effectiveUrl,
             boxFit: boxFit,

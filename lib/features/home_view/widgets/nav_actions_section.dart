@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../config/ui_config.dart";
+import "../../../services/haptics/app_haptics.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../activity_days/data/repository/activity_days_repository.dart";
@@ -24,14 +25,14 @@ class NavActionsSection extends ConsumerWidget {
             child: _NavActionButton(
               key: HomeViewConfig.sksMenuKey,
               context.localize.sks_menu,
-              Icon(Icons.restaurant_menu, color: context.colorScheme.surface, size: 32),
+              Icon(Icons.restaurant_menu, semanticLabel: "", color: context.colorScheme.surface, size: 32),
               ref.navigateToSksMenu,
             ),
           ),
           Expanded(
             child: _NavActionButton(
               context.localize.parkings_title,
-              Icon(Icons.directions_car, color: context.colorScheme.surface, size: 32),
+              Icon(Icons.directions_car, semanticLabel: "", color: context.colorScheme.surface, size: 32),
               ref.navigateParkings,
             ),
           ),
@@ -39,7 +40,7 @@ class NavActionsSection extends ConsumerWidget {
             child: _NavActionButton(
               key: HomeViewConfig.calendarKey,
               context.localize.calendar,
-              Icon(Icons.calendar_today_outlined, color: context.colorScheme.surface, size: 30),
+              Icon(Icons.calendar_today_outlined, semanticLabel: "", color: context.colorScheme.surface, size: 30),
               ref.navigateCalendar,
             ),
           ),
@@ -47,7 +48,7 @@ class NavActionsSection extends ConsumerWidget {
             Expanded(
               child: _NavActionButton(
                 context.localize.activity_days_title.replaceFirst(" ", "\n"),
-                Icon(Icons.celebration, color: context.colorScheme.surface, size: 32),
+                Icon(Icons.celebration, semanticLabel: "", color: context.colorScheme.surface, size: 32),
                 ref.navigateActivityDays,
                 color: context.colorScheme.secondary,
               ),
@@ -77,7 +78,7 @@ class _NavActionButton extends StatelessWidget {
             child: Ink(
               decoration: BoxDecoration(shape: BoxShape.circle, color: buttonColor),
               child: InkWell(
-                onTap: onTap,
+                onTap: AppHaptics.wrapperLight(onTap),
                 borderRadius: BorderRadius.circular(56),
                 splashColor: context.colorScheme.surface.withValues(alpha: 0.3),
                 child: SizedBox.square(dimension: 56, child: Center(child: icon)),

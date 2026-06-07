@@ -1,11 +1,14 @@
-import "package:dio_cache_interceptor_db_store/dio_cache_interceptor_db_store.dart";
+import "dart:async";
+
 import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:flutter_map/flutter_map.dart";
 import "package:flutter_map_cache/flutter_map_cache.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
+import "package:http_cache_drift_store/http_cache_drift_store.dart";
 
 import "../../../config/map_view_config.dart";
+import "../../../services/haptics/app_haptics.dart";
 import "../../../theme/app_theme.dart";
 import "../../branches/business/selected_branch_on_map.dart";
 import "../../multilayer_map/data/model/multilayer_item.dart";
@@ -28,6 +31,7 @@ class MapWidget<T extends GoogleNavigable> extends HookConsumerWidget {
     final mapControllerProvider = context.mapController<T>();
 
     if (T == MultilayerItem) {
+      // ignore: solvro_config/hooks_avoid_nesting this never change during runtime, it's a static condition
       useMultilayerBranchRecenter(
         ref: ref,
         selectedBranch: ref.watch(selectedBranchOnMapProvider),
@@ -53,7 +57,10 @@ class MapWidget<T extends GoogleNavigable> extends HookConsumerWidget {
                     .mapMoved(); // stop following location on user interaction
               }
             },
-            onTap: ref.watch(mapControllerProvider).onMapBackgroundTap,
+            onTap: (tapPosition, point) {
+              unawaited(AppHaptics.selectionClick());
+              ref.watch(mapControllerProvider).onMapBackgroundTap(tapPosition, point);
+            },
           ),
           mapController: controller.mapController,
           children: [
@@ -80,7 +87,7 @@ class MapTileLayer extends ConsumerWidget {
 
     final cacheStore = ref.watch(mapCacheStoreProvider);
     return switch (cacheStore) {
-      AsyncData(:final DbCacheStore value) => _OpenStreetMapTileLayer(
+      AsyncData(:final DriftCacheStore value) => _OpenStreetMapTileLayer(
         tileProvider: CachedTileProvider(
           maxStale: const Duration(days: MapCacheConfig.cacheDuration),
           store: value,

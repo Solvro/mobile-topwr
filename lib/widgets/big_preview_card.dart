@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 
 import "../api_base_rest/shared_models/image_data.dart";
 import "../config/ui_config.dart";
+import "../services/haptics/app_haptics.dart";
 import "../theme/app_theme.dart";
 import "../utils/context_extensions.dart";
 import "date_chip.dart";
@@ -38,7 +39,7 @@ class BigPreviewCard extends StatelessWidget {
       borderRadius: BorderRadius.circular(8),
       child: Material(
         child: InkWell(
-          onTap: onClick,
+          onTap: AppHaptics.wrapperSelection(onClick),
           child: Ink(
             decoration: BoxDecoration(color: context.colorScheme.surfaceTint, borderRadius: BorderRadius.circular(8)),
             child: SizedBox(
@@ -87,7 +88,7 @@ class BigPreviewCard extends StatelessWidget {
                           Align(
                             alignment: Alignment.centerLeft,
                             child: ElevatedButton(
-                              onPressed: onClick,
+                              onPressed: AppHaptics.wrapperLight(onClick),
                               style: ElevatedButton.styleFrom(
                                 elevation: 1,
                                 padding: const EdgeInsets.all(8),

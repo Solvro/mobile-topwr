@@ -48,7 +48,7 @@ class MyExpansionTileLoading extends StatelessWidget {
     return ShimmerLoadingItem(
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: ShimmerLoadingConfig.placeholderColor,
           borderRadius: BorderRadius.circular(GuideDetailViewConfig.borderRadius),
         ),
         width: double.infinity,

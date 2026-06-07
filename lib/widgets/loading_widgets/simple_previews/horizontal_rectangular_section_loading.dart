@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 
+import "../../../config/ui_config.dart";
 import "../shimmer_loading.dart";
 
 class HorizontalRectangularSectionLoading extends StatelessWidget {
@@ -11,7 +12,7 @@ class HorizontalRectangularSectionLoading extends StatelessWidget {
       child: Container(
         width: double.maxFinite,
         height: 69,
-        decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(8)),
+        decoration: BoxDecoration(color: ShimmerLoadingConfig.placeholderColor, borderRadius: BorderRadius.circular(8)),
       ),
     );
   }

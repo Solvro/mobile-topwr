@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 
 import "../../../../../config/ui_config.dart";
 import "../../../../../theme/app_theme.dart";
+import "../../../../services/haptics/app_haptics.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../data/model/branch.dart";
 import "branch_icon.dart";
@@ -28,17 +29,15 @@ class BranchList extends StatelessWidget {
 
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-          child: DecoratedBox(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(NavigationTabViewConfig.radius),
-              color: context.colorScheme.surfaceTint,
-            ),
+          child: Material(
+            borderRadius: BorderRadius.circular(NavigationTabViewConfig.radius),
+            color: context.colorScheme.surfaceTint,
             child: ListTile(
               selected: selected,
               leading: BranchIcon(branch: branch, isEnabled: selected),
               title: Text(semanticsLabel: name.substring(1), name),
-              trailing: selected ? Icon(Icons.check, color: context.colorScheme.primary) : null,
-              onTap: () => onBranchTap(branch),
+              trailing: selected ? Icon(Icons.check, semanticLabel: "", color: context.colorScheme.primary) : null,
+              onTap: AppHaptics.wrapperSelection(() => onBranchTap(branch)),
             ),
           ),
         );

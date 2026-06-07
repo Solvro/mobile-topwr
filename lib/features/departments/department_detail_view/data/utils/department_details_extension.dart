@@ -44,7 +44,7 @@ extension FieldOfStudyIconSetExtension on Iterable<FieldOfStudy> {
     return {
       IconViewName(
         name: context.localize.iconnames_sunny,
-        icon: Icon(Icons.sunny, color: context.colorScheme.tertiary, size: fontSize),
+        icon: Icon(Icons.sunny, semanticLabel: "", color: context.colorScheme.tertiary, size: fontSize),
       ),
       for (final degree in this) ...{
         if (degree.isEnglish)
@@ -61,7 +61,12 @@ extension FieldOfStudyIconSetExtension on Iterable<FieldOfStudy> {
         if (degree.hasWeekendOption)
           IconViewName(
             name: context.localize.iconnames_has_weekend_option,
-            icon: Icon(Icons.remove_red_eye_outlined, color: context.colorScheme.tertiary, size: fontSize),
+            icon: Icon(
+              Icons.remove_red_eye_outlined,
+              semanticLabel: "",
+              color: context.colorScheme.tertiary,
+              size: fontSize,
+            ),
           ),
       },
     }.toISet();

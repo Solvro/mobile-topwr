@@ -7,7 +7,7 @@ import "package:hooks_riverpod/hooks_riverpod.dart";
 import "android_update.dart";
 import "ios_update.dart";
 
-class UpdateDialogWrapper extends HookConsumerWidget {
+class UpdateDialogWrapper extends ConsumerWidget {
   const UpdateDialogWrapper({super.key, required this.child});
   final Widget child;
 

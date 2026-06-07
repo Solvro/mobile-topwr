@@ -63,7 +63,9 @@ class ToiletsView extends ConsumerWidget {
               physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
                 return DigitalGuideNavLink(
-                  onTap: () => ref.navigateDigitalGuideDoor(toilet.doorsIds[index]),
+                  onTap: () async {
+                    await ref.navigateDigitalGuideDoor(toilet.doorsIds[index]);
+                  },
                   text: context.localize.door,
                 );
               },

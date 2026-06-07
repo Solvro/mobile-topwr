@@ -7,6 +7,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:separate/separate.dart";
 
 import "../../../../../config/ui_config.dart";
+import "../../../../../services/haptics/app_haptics.dart";
 import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/context_extensions.dart";
 import "../../../../../widgets/my_expansion_tile.dart";
@@ -89,14 +90,14 @@ class SksMenuDishDetailsTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final hasIncreasedTextSize = context.isTextScaledUp;
     final baseTile = GestureDetector(
-      onTap: !kIsWeb ? () => onTap?.call(dish.id) : null,
+      onTap: !kIsWeb ? AppHaptics.wrapperSelection(() => onTap?.call(dish.id)) : null,
       onDoubleTap: !kIsWeb ? () => onDoubleTap?.call(dish.id) : null,
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: context.colorScheme.surface,
+      child: Material(
+        shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(SksMenuConfig.borderRadius),
-          border: Border.all(color: context.colorScheme.primary.withAlpha(50)),
+          side: BorderSide(color: context.colorScheme.primary.withAlpha(50)),
         ),
+        color: context.colorScheme.surface,
         child: switch (dish) {
           SksMenuDish(:final name, :final size, :final price) => ListTile(
             key: PageStorageKey<String>("$_keyPrefix-RichTile-${dish.id}"),

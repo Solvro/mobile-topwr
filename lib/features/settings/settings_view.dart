@@ -10,6 +10,7 @@ import "../../../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
+import "../../services/haptics/app_haptics.dart";
 import "../../services/translations_service/data/preferred_lang_repository.dart";
 import "../../widgets/horizontal_symmetric_safe_area.dart";
 import "../branches/data/model/branch.dart";
@@ -18,6 +19,7 @@ import "../branches/presentation/branch_dialog.dart";
 import "../digital_guide/tabs/accessibility_dialog/presentation/accessibility_dialog.dart";
 import "../navigation_tab_view/widgets/navigation_tile.dart";
 import "../navigator/utils/navigation_commands.dart";
+import "data/haptic_feedback_repository.dart";
 import "widgets/language_settings_dialog.dart";
 
 @RoutePage()
@@ -26,6 +28,14 @@ class SettingsView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final hapticFeedbackEnabled = ref.watch(hapticFeedbackRepositoryProvider);
+
+    Future<void> setHapticFeedback({required bool isEnabled}) async {
+      if (!isEnabled) unawaited(AppHaptics.selectionClick());
+      await ref.read(hapticFeedbackRepositoryProvider.notifier).setEnabled(isEnabled: isEnabled);
+      if (isEnabled) unawaited(AppHaptics.selectionClick());
+    }
+
     final widgets = [
       Focus(
         autofocus: true,
@@ -53,17 +63,39 @@ class SettingsView extends ConsumerWidget {
         icon: Icons.house,
       ),
       NavigationTile(
-        onTap: () => unawaited(AccessibilityDialog.show(context, ref)),
+        onTap: () {
+          unawaited(AccessibilityDialog.show(context, ref));
+        },
         title: context.localize.digital_guide_accessibility,
         icon: Icons.accessibility_new,
       ),
       if (!kIsWeb)
         NavigationTile(
           key: NavigationTabViewConfig.sksFavouriteDishesKey,
-          onTap: ref.navigateToSksFavouriteDishes,
+          onTap: () async {
+            await ref.navigateToSksFavouriteDishes();
+          },
           title: context.localize.sks_favourite_dishes_see_dishes,
           icon: Icons.food_bank,
         ),
+      DecoratedBox(
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(NavigationTabViewConfig.radius)),
+        child: ListTile(
+          dense: true,
+          leading: const Icon(Icons.vibration, semanticLabel: ""),
+          title: Text(context.localize.haptic_feedback, style: context.textTheme.titleLarge?.copyWith(height: 1)),
+          trailing: Switch.adaptive(
+            value: hapticFeedbackEnabled,
+            onChanged: (value) => unawaited(setHapticFeedback(isEnabled: value)),
+          ),
+          onTap: () async {
+            final isEnabled = !hapticFeedbackEnabled;
+            if (!isEnabled) unawaited(AppHaptics.selectionClick());
+            await ref.read(hapticFeedbackRepositoryProvider.notifier).setEnabled(isEnabled: isEnabled);
+            if (isEnabled) unawaited(AppHaptics.selectionClick());
+          },
+        ),
+      ),
     ];
 
     return HorizontalSymmetricSafeAreaScaffold(
@@ -73,7 +105,6 @@ class SettingsView extends ConsumerWidget {
         padding: const EdgeInsets.all(AboutUsConfig.spacerHeight),
         child: ListView.separated(
           key: MyAppConfig.verticalScrollableKey,
-          physics: const NeverScrollableScrollPhysics(),
           itemCount: widgets.length,
           itemBuilder: (context, index) => widgets[index],
           separatorBuilder: (context, index) => const SizedBox(height: AboutUsConfig.spacerHeight),

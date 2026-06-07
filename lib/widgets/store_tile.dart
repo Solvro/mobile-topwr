@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:url_launcher/url_launcher.dart";
 
+import "../services/haptics/app_haptics.dart";
 import "../theme/app_theme.dart";
 
 class StoreTile extends StatelessWidget {
@@ -18,12 +19,12 @@ class StoreTile extends StatelessWidget {
     final tileColor = accent.withValues(alpha: 0.08);
     return InkWell(
       borderRadius: BorderRadius.circular(16),
-      onTap: () async {
+      onTap: AppHaptics.wrapperLight(() async {
         final uri = Uri.parse(url);
         if (await canLaunchUrl(uri)) {
           await launchUrl(uri);
         }
-      },
+      }),
       child: Ink(
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
         decoration: BoxDecoration(
@@ -38,7 +39,7 @@ class StoreTile extends StatelessWidget {
               width: 40,
               height: 40,
               decoration: BoxDecoration(shape: BoxShape.circle, color: accent.withValues(alpha: 0.16)),
-              child: Icon(icon, size: 22, color: accent),
+              child: Icon(icon, semanticLabel: "", size: 22, color: accent),
             ),
             const SizedBox(width: 12),
             Expanded(
@@ -59,7 +60,7 @@ class StoreTile extends StatelessWidget {
                 ],
               ),
             ),
-            Icon(Icons.arrow_forward, size: 18, color: accent.withValues(alpha: 0.7)),
+            Icon(Icons.arrow_forward, semanticLabel: "", size: 18, color: accent.withValues(alpha: 0.7)),
           ],
         ),
       ),

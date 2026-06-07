@@ -86,7 +86,9 @@ class NewsTile extends ConsumerWidget {
         title: item.title,
         subtitle: item.previewText,
         directusPhotoUrl: ImageData(url: item.imageLink),
-        onTap: () => ref.launch(item.url),
+        onTap: () async {
+          await ref.launch(item.url);
+        },
         crossAxisAlignment: CrossAxisAlignment.stretch,
       ),
     );

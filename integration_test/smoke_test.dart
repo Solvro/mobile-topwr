@@ -120,7 +120,7 @@ void main() {
     return [
       preferredLanguageRepositoryProvider.overrideWith(MockPreferredLanguageRepository.new),
       branchRepositoryProvider.overrideWith(MockBranchRepository.new),
-      localChangelogRepositoryProvider.overrideWith(MockLocalChangelogRepository.new),
+      localChangelogRepositoryProvider.overrideWith2((_) => MockLocalChangelogRepository()),
     ];
   }
 
@@ -130,7 +130,7 @@ void main() {
     return [
       preferredLanguageRepositoryProvider.overrideWith(MockFirstTimePreferredLanguageRepository.new),
       branchRepositoryProvider.overrideWith(MockFirstTimeBranchRepository.new),
-      localChangelogRepositoryProvider.overrideWith(MockUnseenChangelogRepository.new),
+      localChangelogRepositoryProvider.overrideWith2((_) => MockUnseenChangelogRepository()),
       changelogRepositoryProvider.overrideWith(
         (ref) => Changelog(
           name: packageInfo.version,

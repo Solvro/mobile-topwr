@@ -3,6 +3,7 @@ import "package:flutter_hooks/flutter_hooks.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../../config/ui_config.dart";
+import "../../../services/haptics/app_haptics.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../data/models/audio_player_strings.dart";
@@ -26,41 +27,38 @@ class AudioPlayerWidget extends HookConsumerWidget {
       return null;
     }, []);
 
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Container(
-          color: context.colorScheme.primaryContainer,
-          width: double.infinity,
-          height: 59,
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16 / MediaQuery.textScalerOf(context).scale(2), vertical: 2),
-            child: Row(
-              spacing: RadioLuzConfig.spacingMedium,
+    return Container(
+      color: context.colorScheme.primaryContainer,
+      width: double.infinity,
+      height: 59,
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 16 / MediaQuery.textScalerOf(context).scale(2), vertical: 2),
+        child: Row(
+          spacing: RadioLuzConfig.spacingMedium,
+          children: [
+            Row(
               children: [
-                Row(
-                  children: [
-                    IconButton(
-                      onPressed: radioController.toggleVolume,
-                      icon: Icon(
-                        radioState.isMuted ? Icons.volume_off : Icons.volume_up,
-                        color: context.colorScheme.onPrimaryContainer,
-                      ),
-                    ),
-                    RadioPlayerSlider(radioController: radioController, volume: radioState.volume),
-                  ],
+                IconButton(
+                  tooltip: radioState.isMuted ? l10n.radio_luz_unmute : l10n.radio_luz_mute,
+                  onPressed: AppHaptics.wrapperLight(radioController.toggleVolume),
+                  icon: Icon(
+                    radioState.isMuted ? Icons.volume_off : Icons.volume_up,
+                    semanticLabel: "",
+                    color: context.colorScheme.onPrimaryContainer,
+                  ),
                 ),
-                const RadioPlayerInfo(),
-                RadioPlayerControlButton(
-                  radioController: radioController,
-                  isLoading: radioState.isLoading,
-                  isPlaying: radioState.isPlaying,
-                ),
+                RadioPlayerSlider(radioController: radioController, volume: radioState.volume),
               ],
             ),
-          ),
+            const RadioPlayerInfo(),
+            RadioPlayerControlButton(
+              radioController: radioController,
+              isLoading: radioState.isLoading,
+              isPlaying: radioState.isPlaying,
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }

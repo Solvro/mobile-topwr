@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
+import "../../../../services/haptics/app_haptics.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../theme/iparking_theme.dart";
 import "../../../../utils/context_extensions.dart";
@@ -16,9 +17,9 @@ class FavouriteParkingWidget extends ConsumerWidget {
 
     return IconButton(
       visualDensity: VisualDensity.compact,
-      onPressed: () async {
+      onPressed: AppHaptics.wrapperLight(() async {
         await ref.read(localFavParkingsRepositoryProvider(parking.id).notifier).toggle();
-      },
+      }),
       isSelected: isFavorite,
       tooltip: context.localize.favourite_button,
       icon: FavouriteIcon(icon: Icons.favorite_border_outlined, color: context.colorScheme.surface),
@@ -35,6 +36,6 @@ class FavouriteIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scaler = context.textScaler.clamp(maxScaleFactor: 2);
-    return Icon(icon, color: color, size: scaler.scale(22), shadows: iparkingShadows);
+    return Icon(icon, semanticLabel: "", color: color, size: scaler.scale(22), shadows: iparkingShadows);
   }
 }

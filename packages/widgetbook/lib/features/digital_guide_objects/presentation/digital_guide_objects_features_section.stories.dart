@@ -7,9 +7,9 @@ import "../../../widgetbook_mocks.dart";
 
 part "digital_guide_objects_features_section.stories.g.dart";
 
-const meta = Meta<DigitalGuideObjectsFeaturesSection>();
+const meta = Meta<DigitalGuideObjectsFeaturesSliverList>();
 
-final $default = DigitalGuideObjectsFeaturesSectionStory(
+final $default = DigitalGuideObjectsFeaturesSliverListStory(
   setup: (context, child, args) => CustomScrollView(slivers: [child]),
-  args: DigitalGuideObjectsFeaturesSectionArgs(digitalGuideData: Arg.fixed(mockDigitalGuideObjectModel)),
+  args: DigitalGuideObjectsFeaturesSliverListArgs(digitalGuideData: Arg.fixed(mockDigitalGuideObjectModel)),
 );

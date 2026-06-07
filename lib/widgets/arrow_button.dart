@@ -1,5 +1,8 @@
 import "package:flutter/material.dart";
 
+import "../services/haptics/app_haptics.dart";
+import "../theme/app_theme.dart";
+
 class ArrowButton extends StatelessWidget {
   const ArrowButton({required this.icon, required this.onPressed});
 
@@ -9,14 +12,14 @@ class ArrowButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.black.withAlpha(140),
+      color: context.colorScheme.shadow.withAlpha(140),
       shape: const CircleBorder(),
       child: InkWell(
         customBorder: const CircleBorder(),
-        onTap: onPressed,
+        onTap: AppHaptics.wrapperLight(onPressed),
         child: Padding(
           padding: const EdgeInsets.all(4),
-          child: Icon(icon, size: 28, color: Colors.white),
+          child: Icon(icon, semanticLabel: "", size: 28, color: context.colorScheme.onPrimary),
         ),
       ),
     );

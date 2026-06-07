@@ -41,9 +41,7 @@ class BoothTile extends StatelessWidget {
         child: Stack(
           children: [
             const DecoratedBox(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(colors: [Color.fromRGBO(41, 50, 65, 0.78), Color.fromRGBO(41, 50, 65, 0.46)]),
-              ),
+              decoration: BoxDecoration(gradient: BoothConfig.tileGradient),
               child: SizedBox.expand(),
             ),
             Container(
@@ -103,9 +101,9 @@ class _RightColumn extends StatelessWidget {
           label: "${context.localize.booth_status}: ${status.localizedName(context.localize)}",
           child: DecoratedBox(
             decoration: BoxDecoration(
-              color: Colors.white.withValues(alpha: 0.78),
+              color: BoothConfig.badgeBackground,
               borderRadius: BorderRadius.circular(999),
-              border: Border.all(color: Colors.white.withValues(alpha: 0.34)),
+              border: Border.all(color: BoothConfig.badgeBorder),
             ),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
@@ -168,7 +166,7 @@ class _Dot extends StatelessWidget {
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         color: color,
-        border: Border.all(color: Colors.white.withValues(alpha: 0.34), width: 1.5),
+        border: Border.all(color: BoothConfig.badgeBorder, width: 1.5),
         boxShadow: [BoxShadow(color: color.withValues(alpha: 0.35), blurRadius: 6)],
       ),
     );

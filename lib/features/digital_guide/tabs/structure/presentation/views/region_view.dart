@@ -37,7 +37,7 @@ class RegionView extends ConsumerWidget {
         body: MyErrorWidget(error, stackTrace: stackTrace),
       ),
       loading: () => const Center(
-        child: ShimmeringEffect(child: ColoredBox(color: Colors.white)),
+        child: ShimmeringEffect(child: ColoredBox(color: ShimmerLoadingConfig.placeholderColor)),
       ),
     );
   }
@@ -55,34 +55,40 @@ class _RegionView extends ConsumerWidget {
     final sliverListItems = [
       RegionDataSliverListItem(
         text: (index) => regionData.corridors[index].translations.plTranslation.name,
+        // ignore: solvro_config/add_haptic_feedback_on_user_interaction this is then passed to the DigitalGuideNavLink widget
         onTap: (index) => ref.navigateDigitalGuideCorridor(regionData.corridors[index]),
         itemCount: region.corridors.length,
       ),
       if (regionData.stairs.isNotEmpty)
         RegionDataSliverListItem(
           text: (index) => context.localize.stairs,
+          // ignore: solvro_config/add_haptic_feedback_on_user_interaction this is then passed to the DigitalGuideNavLink widget
           onTap: (index) => ref.navigateDigitalGuideStairs(regionData.stairs[index].id),
           itemCount: region.stairs.length,
         ),
       if (regionData.stairways.isNotEmpty)
         RegionDataSliverListItem(
           text: (index) => regionData.stairways[index].translations.plTranslation.name,
+          // ignore: solvro_config/add_haptic_feedback_on_user_interaction this is then passed to the DigitalGuideNavLink widget
           onTap: (index) => ref.navigateDigitalGuideStairway(regionData.stairways[index]),
           itemCount: region.stairways.length,
         ),
       if (regionData.ramps.isNotEmpty)
         RegionDataSliverListItem(
           text: (index) => context.localize.ramp,
+          // ignore: solvro_config/add_haptic_feedback_on_user_interaction this is then passed to the DigitalGuideNavLink widget
           onTap: (index) => ref.navigateDigitalGuideRamps(regionData.ramps[index]),
           itemCount: region.ramps.length,
         ),
       RegionDataSliverListItem(
         text: (index) => context.localize.lift,
+        // ignore: solvro_config/add_haptic_feedback_on_user_interaction this is then passed to the DigitalGuideNavLink widget
         onTap: (index) => ref.navigateLiftDetails(regionData.lifts[index], level.translations.plTranslation.name),
         itemCount: region.lifts.length,
       ),
       RegionDataSliverListItem(
         text: (index) => context.localize.lodge,
+        // ignore: solvro_config/add_haptic_feedback_on_user_interaction this is then passed to the DigitalGuideNavLink widget
         onTap: (index) => ref.navigateDigitalGuideLodge(regionData.lodges[index]),
         itemCount: region.lodges.length,
       ),
@@ -90,26 +96,31 @@ class _RegionView extends ConsumerWidget {
         text: (index) => regionData.toilets[index].toiletType == ToiletType.men
             ? context.localize.men_toilet
             : context.localize.women_toilet,
+        // ignore: solvro_config/add_haptic_feedback_on_user_interaction this is then passed to the DigitalGuideNavLink widget
         onTap: (index) => ref.navigateDigitalGuideToilet(regionData.toilets[index]),
         itemCount: region.toilets.length,
       ),
       RegionDataSliverListItem(
         text: (index) => regionData.rooms[index].translations.pl.name,
+        // ignore: solvro_config/add_haptic_feedback_on_user_interaction this is then passed to the DigitalGuideNavLink widget
         onTap: (index) => ref.navigateRoomDetails(regionData.rooms[index]),
         itemCount: region.rooms.length,
       ),
       RegionDataSliverListItem(
         text: (index) => context.localize.parking,
+        // ignore: solvro_config/add_haptic_feedback_on_user_interaction this is then passed to the DigitalGuideNavLink widget
         onTap: (index) => ref.navigateDigitalGuideParking(regionData.parkings[index]),
         itemCount: region.parkings.length,
       ),
       RegionDataSliverListItem(
         text: (index) => context.localize.information_point,
+        // ignore: solvro_config/add_haptic_feedback_on_user_interaction this is then passed to the DigitalGuideNavLink widget
         onTap: (index) => ref.navigateDigitalGuideInformationPoint(regionData.informationPoints[index]),
         itemCount: region.informationPoints.length,
       ),
       RegionDataSliverListItem(
         text: (index) => context.localize.dressing_room,
+        // ignore: solvro_config/add_haptic_feedback_on_user_interaction this is then passed to the DigitalGuideNavLink widget
         onTap: (index) => ref.navigateDigitalGuideDressingRoom(regionData.dressingRooms[index]),
         itemCount: region.dressingRooms.length,
       ),

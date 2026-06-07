@@ -4,6 +4,7 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../config/ui_config.dart";
+import "../../../../../services/haptics/app_haptics.dart";
 import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/context_extensions.dart";
 import "../../../../analytics/data/clarity.dart";
@@ -54,30 +55,30 @@ class _SksButton extends StatelessWidget {
             "${context.localize.sks_people_live_screen_reader_label} ${sksUserData.activeUsers}. ${context.localize.sks_people_live_screen_reader_label_trend} ${sksUserData.trend.localizedName(context)}",
         button: true,
         child: GestureDetector(
-          onTap: onTap,
+          onTap: AppHaptics.wrapperLight(onTap),
           child: ExcludeSemantics(
-            child: Row(
-              children: [
-                Container(
-                  padding: SksConfig.innerPadding,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: context.colorScheme.primary),
-                    borderRadius: BorderRadius.circular(SksConfig.radius),
-                  ),
-                  child: Row(
-                    children: [
-                      Icon(Icons.supervised_user_circle, color: context.colorScheme.primary),
-                      const SizedBox(width: SksConfig.sizedBoxWidth),
-                      Text(
-                        sksUserData.activeUsers.toString(),
-                        style: context.textTheme.titleLarge?.copyWith(color: context.colorScheme.primary),
-                      ),
-                      const SizedBox(width: SksConfig.sizedBoxWidth),
-                      sksUserData.trend.icon,
-                    ],
-                  ),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Container(
+                padding: SksConfig.innerPadding,
+                decoration: BoxDecoration(
+                  border: Border.all(color: context.colorScheme.primary),
+                  borderRadius: BorderRadius.circular(SksConfig.radius),
                 ),
-              ],
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.supervised_user_circle, semanticLabel: "", color: context.colorScheme.primary),
+                    const SizedBox(width: SksConfig.sizedBoxWidth),
+                    Text(
+                      sksUserData.activeUsers.toString(),
+                      style: context.textTheme.titleLarge?.copyWith(color: context.colorScheme.primary),
+                    ),
+                    const SizedBox(width: SksConfig.sizedBoxWidth),
+                    sksUserData.trend.icon(context),
+                  ],
+                ),
+              ),
             ),
           ),
         ),
@@ -87,14 +88,15 @@ class _SksButton extends StatelessWidget {
 }
 
 extension TrendIcon on Trend {
-  Icon get icon {
+  Icon icon(BuildContext context) {
+    final color = context.colorScheme.onTertiary;
     switch (this) {
       case Trend.increasing:
-        return Icon(Icons.trending_up, color: Colors.grey.shade900);
+        return Icon(Icons.trending_up, semanticLabel: "", color: color);
       case Trend.decreasing:
-        return Icon(Icons.trending_down, color: Colors.grey.shade900);
+        return Icon(Icons.trending_down, semanticLabel: "", color: color);
       case Trend.stable:
-        return Icon(Icons.trending_flat, color: Colors.grey.shade900);
+        return Icon(Icons.trending_flat, semanticLabel: "", color: color);
     }
   }
 

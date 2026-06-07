@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 
 import "../../../../config/ui_config.dart";
+import "../../../../services/haptics/app_haptics.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
 
@@ -14,7 +15,7 @@ class DigitalGuideNavLink extends StatelessWidget {
   Widget build(BuildContext context) {
     final scaler = context.textScaler.clamp(maxScaleFactor: 2);
     return InkWell(
-      onTap: onTap,
+      onTap: AppHaptics.wrapperSelection(onTap),
       borderRadius: BorderRadius.circular(DigitalGuideConfig.borderRadiusMedium),
       child: Ink(
         padding: DigitalGuideConfig.mediumButtonPadding,
@@ -35,7 +36,7 @@ class DigitalGuideNavLink extends StatelessWidget {
                 maxLines: 3,
               ),
             ),
-            Icon(Icons.chevron_right, color: context.colorScheme.secondary),
+            Icon(Icons.chevron_right, semanticLabel: "", color: context.colorScheme.secondary),
           ],
         ),
       ),

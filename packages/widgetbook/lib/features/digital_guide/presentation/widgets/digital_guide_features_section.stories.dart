@@ -63,9 +63,9 @@ const _mockBuilding = Building(
   branch: Branch.main,
 );
 
-const meta = Meta<DigitalGuideFeaturesSection>();
+const meta = Meta<DigitalGuideFeaturesSliverSection>();
 
-final $default = DigitalGuideFeaturesSectionStory(
+final $default = DigitalGuideFeaturesSliverSectionStory(
   setup: (context, child, args) => ProviderScope(
     overrides: [
       levelsWithRegionsRepositoryProvider(args.digitalGuideData).overrideWith((ref) => const IListConst([])),
@@ -73,7 +73,7 @@ final $default = DigitalGuideFeaturesSectionStory(
     ],
     child: CustomScrollView(slivers: [child]),
   ),
-  args: DigitalGuideFeaturesSectionArgs(
+  args: DigitalGuideFeaturesSliverSectionArgs(
     digitalGuideData: Arg.fixed(_mockDigitalGuideData),
     building: Arg.fixed(_mockBuilding),
   ),

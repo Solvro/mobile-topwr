@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 
+import "../../../theme/app_theme.dart";
 import "../service/radio_player_controller.dart";
 import "rect_thum_shape.dart";
 
@@ -14,14 +15,14 @@ class RadioPlayerSlider extends StatelessWidget {
     return SizedBox(
       width: MediaQuery.sizeOf(context).width * 0.25,
       child: SliderTheme(
-        data: const SliderThemeData(
-          thumbShape: RectThumbShape(width: 4, height: 14),
-          thumbColor: Colors.white,
+        data: SliderThemeData(
+          thumbShape: const RectThumbShape(width: 4, height: 14),
+          thumbColor: context.colorScheme.onPrimary,
           trackHeight: 3,
-          trackShape: RectangularSliderTrackShape(),
-          activeTrackColor: Colors.white,
-          inactiveTrackColor: Colors.white,
-          overlayShape: RoundSliderOverlayShape(overlayRadius: 0),
+          trackShape: const RectangularSliderTrackShape(),
+          activeTrackColor: context.colorScheme.onPrimary,
+          inactiveTrackColor: context.colorScheme.onPrimary,
+          overlayShape: const RoundSliderOverlayShape(overlayRadius: 0),
         ),
         child: Slider(
           value: volume,

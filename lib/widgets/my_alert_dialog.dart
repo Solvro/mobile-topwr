@@ -1,8 +1,11 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
 
 import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
+import "../services/haptics/app_haptics.dart";
 
 Future<void> showCustomDialog({
   required BuildContext context,
@@ -67,7 +70,7 @@ class _MyAlertDialog extends StatelessWidget {
             if (onConfirmTapped != null)
               Flexible(
                 child: TextButton(
-                  onPressed: onConfirmTapped,
+                  onPressed: AppHaptics.wrapperLight(onConfirmTapped),
                   child: Text(
                     confirmText,
                     style: context.textTheme.bodyLarge?.copyWith(color: context.colorScheme.primary),
@@ -77,14 +80,12 @@ class _MyAlertDialog extends StatelessWidget {
               ),
             Flexible(
               child: TextButton(
+                onPressed: AppHaptics.wrapperSelection(Navigator.of(context).pop),
                 child: Text(
                   closeText ?? context.localize.close,
                   style: context.textTheme.bodyLarge,
                   textScaler: context.textScaler.clamp(maxScaleFactor: 2),
                 ),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
               ),
             ),
           ],

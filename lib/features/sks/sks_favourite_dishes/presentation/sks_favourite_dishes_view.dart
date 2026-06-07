@@ -22,7 +22,7 @@ import "../utils/toast_on_dish_tap.dart";
 import "sks_favourite_dishes_controller.dart";
 import "widgets/empty_subscribed_dishes_placeholder.dart";
 import "widgets/sks_favourite_dishes_loading.dart";
-import "widgets/sks_section_header_delegate.dart";
+import "widgets/sliver_sticky_header.dart";
 
 @RoutePage()
 class SksFavouriteDishesView extends ConsumerWidget {
@@ -76,12 +76,11 @@ class _SksFavouriteDishesView extends ConsumerWidget {
         MultiSliver(
           pushPinnedChildren: true,
           children: [
-            SliverPersistentHeader(
-              pinned: true,
-              delegate: SksSectionHeaderDelegate(
-                title: context.localize.sks_favourite_dishes_subscribed,
-                textStyle: context.textTheme.headlineMedium!,
-                backgroundColor: context.colorScheme.surface,
+            SliverStickyHeader(
+              child: Container(
+                color: context.colorScheme.surface,
+                padding: const EdgeInsets.all(SksMenuConfig.paddingLarge),
+                child: Text(context.localize.sks_favourite_dishes_subscribed, style: context.textTheme.headlineMedium),
               ),
             ),
             if (subscribedDishes.isEmpty)
@@ -104,7 +103,9 @@ class _SksFavouriteDishesView extends ConsumerWidget {
                       child: SksMenuDishDetailsTile(
                         dish: dish,
                         isSubscribed: true,
-                        onTap: (dishId) => toastOnDishTap(dishId: dishId, ref: ref, context: context, subscribe: false),
+                        onTap: (dishId) async {
+                          await toastOnDishTap(dishId: dishId, ref: ref, context: context, subscribe: false);
+                        },
                         onDoubleTap: (dishId) =>
                             toastOnDishTap(dishId: dishId, ref: ref, context: context, subscribe: false),
                       ),
@@ -118,12 +119,11 @@ class _SksFavouriteDishesView extends ConsumerWidget {
         MultiSliver(
           pushPinnedChildren: true,
           children: [
-            SliverPersistentHeader(
-              pinned: true,
-              delegate: SksSectionHeaderDelegate(
-                title: context.localize.sks_favourite_dishes_remaining,
-                textStyle: context.textTheme.headlineMedium!,
-                backgroundColor: context.colorScheme.surface,
+            SliverStickyHeader(
+              child: Container(
+                color: context.colorScheme.surface,
+                padding: const EdgeInsets.all(SksMenuConfig.paddingLarge),
+                child: Text(context.localize.sks_favourite_dishes_remaining, style: context.textTheme.headlineMedium),
               ),
             ),
             if (unsubscribedDishes.isEmpty)

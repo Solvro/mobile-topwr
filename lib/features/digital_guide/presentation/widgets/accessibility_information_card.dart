@@ -27,7 +27,7 @@ class AccessibilityInformationCard extends StatelessWidget {
         // if it's not HTML, we limit it to 2 lines, so the minHeight = height in such case
       ),
       decoration: BoxDecoration(
-        boxShadow: [BoxShadow(color: Colors.black.withAlpha(64), offset: const Offset(0, 4), blurRadius: 4)],
+        boxShadow: ShadowConfig.card,
         border: Border(left: BorderSide(color: color, width: 10)),
         borderRadius: BorderRadius.circular(DigitalGuideConfig.borderRadiusMedium),
         color: context.colorScheme.surface,

@@ -20,7 +20,9 @@ class AboutUsTile extends ConsumerWidget {
         context,
         title: context.localize.guide_about_us,
         subtitle: context.localize.guide_meet_creators,
-        onTap: ref.navigateAboutUs,
+        onTap: () async {
+          await ref.navigateAboutUs();
+        },
         // Empty URL triggers MyCachedImage's fallback to show FlutterSplashScreen
         directusPhotoUrl: const ImageData(url: ""),
       ),

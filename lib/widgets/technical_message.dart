@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 
 import "../config/ui_config.dart";
 import "../features/sks/sks_menu/data/models/dish_category_enum.dart";
+import "../services/haptics/app_haptics.dart";
 import "../theme/app_theme.dart";
 
 enum AlertType { info, error }
@@ -36,12 +37,12 @@ class TechnicalMessage extends StatelessWidget {
       padding: padding ?? const EdgeInsets.all(HomeViewConfig.paddingMedium),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(AppWidgetsConfig.borderRadiusMedium),
-        child: ColoredBox(
+        child: Material(
           color:
               backgoundColor ??
               (alertType == AlertType.error ? context.colorScheme.primary : context.colorScheme.secondary),
           child: ListTile(
-            onTap: onTap,
+            onTap: AppHaptics.wrapperSelection(onTap),
             trailing: icon,
             title: Text(
               title ?? DishCategory.technicalInfo.getLocalizedName(context),

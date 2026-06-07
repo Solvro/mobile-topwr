@@ -33,44 +33,40 @@ class PinkBoxTile extends HookConsumerWidget {
           active ? "${l10n.building_tile_selected} $title" : "${l10n.building_tile_unselected} $title",
     );
 
-    return Column(
+    return Stack(
       children: [
-        Stack(
-          children: [
-            Semantics(
-              label: "${isActive ? "${context.localize.building_tile_selected} " : ""} $title",
-              button: true,
-              child: ExcludeSemantics(
-                child: PhotoTrailingWideTileCard(
-                  context,
-                  activeGradient: ColorsConsts.toPwrGradient,
-                  directusPhotoUrl: pinkBox.photo,
-                  title: title,
-                  subtitle: pinkBox.roomOrNearby ?? "",
-                  isActive: isActive,
-                  onTap: () {
-                    unawaited(ref.trackEvent(ClarityEvents.selectLibrary, value: title));
-                    unawaited(ref.read(multilayerMapControllerProvider).onMarkerTap(PinkBoxItem(pinkBox: pinkBox)));
-                  },
-                  customPlaceholder: ColoredBox(
-                    color: context.colorScheme.surfaceTint,
-                    child: Center(
-                      child: Transform.translate(
-                        offset: const Offset(-3, -7),
-                        child: SvgPicture.asset(
-                          Assets.svg.mapPlaceholders.pinkBoxIcon,
-                          height: WideTileCardConfig.imageSize,
-                        ),
-                      ),
+        Semantics(
+          label: "${isActive ? "${context.localize.building_tile_selected} " : ""} $title",
+          button: true,
+          child: ExcludeSemantics(
+            child: PhotoTrailingWideTileCard(
+              context,
+              activeGradient: ColorsConsts.toPwrGradient,
+              directusPhotoUrl: pinkBox.photo,
+              title: title,
+              subtitle: pinkBox.roomOrNearby ?? "",
+              isActive: isActive,
+              onTap: () {
+                unawaited(ref.trackEvent(ClarityEvents.selectLibrary, value: title));
+                unawaited(ref.read(multilayerMapControllerProvider).onMarkerTap(PinkBoxItem(pinkBox: pinkBox)));
+              },
+              customPlaceholder: ColoredBox(
+                color: context.colorScheme.surfaceTint,
+                child: Center(
+                  child: Transform.translate(
+                    offset: const Offset(-3, -7),
+                    child: SvgPicture.asset(
+                      Assets.svg.mapPlaceholders.pinkBoxIcon,
+                      height: WideTileCardConfig.imageSize,
                     ),
                   ),
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
                 ),
               ),
+              crossAxisAlignment: CrossAxisAlignment.stretch,
             ),
-            if (pinkBox.building != null) BuildingNavLink(building: pinkBox.building!, isActive: isActive),
-          ],
+          ),
         ),
+        if (pinkBox.building != null) BuildingNavLink(building: pinkBox.building!, isActive: isActive),
       ],
     );
   }

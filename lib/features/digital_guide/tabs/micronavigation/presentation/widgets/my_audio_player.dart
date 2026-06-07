@@ -6,6 +6,7 @@ import "package:just_audio/just_audio.dart";
 import "package:logger/logger.dart";
 
 import "../../../../../../config/ui_config.dart";
+import "../../../../../../services/haptics/app_haptics.dart";
 import "../../../../../../theme/app_theme.dart";
 import "../../../../../../utils/context_extensions.dart";
 import "../../../../../../utils/duration_utils.dart";
@@ -76,15 +77,16 @@ class MyAudioPlayer extends HookWidget {
       child: Container(
         padding: const EdgeInsets.all(DigitalGuideConfig.paddingSmall),
         decoration: BoxDecoration(
-          color: Colors.grey[200],
+          color: context.colorScheme.surfaceTint,
           borderRadius: BorderRadius.circular(DigitalGuideConfig.borderRadiusHuge),
         ),
         child: Row(
           children: [
             IconButton(
-              icon: Icon(isPlaying.value ? Icons.pause : Icons.play_arrow),
+              tooltip: isPlaying.value ? context.localize.audio_player_pause : context.localize.audio_player_play,
+              icon: Icon(isPlaying.value ? Icons.pause : Icons.play_arrow, semanticLabel: ""),
               color: context.colorScheme.onTertiary,
-              onPressed: togglePlayPause,
+              onPressed: AppHaptics.wrapperLight(togglePlayPause),
             ),
             ExcludeSemantics(
               child: Text(
@@ -100,7 +102,7 @@ class MyAudioPlayer extends HookWidget {
                 max: totalTime.value.inSeconds.toDouble(),
                 onChanged: seekAudio,
                 activeColor: context.colorScheme.onTertiary,
-                inactiveColor: Colors.grey[400],
+                inactiveColor: context.colorScheme.outline,
               ),
             ),
           ],

@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 
 import "../../../../config/ui_config.dart";
+import "../../../../services/haptics/app_haptics.dart";
 import "../../../../theme/app_theme.dart";
 
 class FiltersButton extends StatelessWidget {
@@ -22,7 +23,7 @@ class FiltersButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 2),
       child: ElevatedButton(
-        onPressed: onPressed,
+        onPressed: AppHaptics.wrapperLight(onPressed),
         style: ElevatedButton.styleFrom(
           backgroundColor: isSecondary ? context.colorScheme.surface : context.colorScheme.primary,
           elevation: 4,
@@ -42,7 +43,11 @@ class FiltersButton extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 5),
-            Icon(icon, color: isSecondary ? context.colorScheme.primary : context.colorScheme.surface),
+            Icon(
+              icon,
+              semanticLabel: "",
+              color: isSecondary ? context.colorScheme.primary : context.colorScheme.surface,
+            ),
           ],
         ),
       ),

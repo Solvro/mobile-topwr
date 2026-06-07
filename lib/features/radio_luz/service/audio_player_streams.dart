@@ -5,13 +5,13 @@ import "radio_player_provider.dart";
 
 part "audio_player_streams.g.dart";
 
-@riverpod
+@Riverpod(keepAlive: true)
 Stream<PlayerState> audioPlayerState(Ref ref) {
   final handler = ref.watch(radioPlayerProvider);
   return handler.playerState;
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 Stream<double> audioPlayerVolume(Ref ref) {
   final handler = ref.watch(radioPlayerProvider);
   return handler.volume;

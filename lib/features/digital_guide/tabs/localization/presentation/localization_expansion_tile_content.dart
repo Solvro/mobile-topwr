@@ -3,6 +3,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:latlong2/latlong.dart";
 
 import "../../../../../config/ui_config.dart";
+import "../../../../../services/haptics/app_haptics.dart";
 import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/context_extensions.dart";
 import "../../../../map_view/utils/google_maps_link_utils.dart";
@@ -31,8 +32,10 @@ class LocalizationExpansionTileContent extends ConsumerWidget {
         Padding(
           padding: EdgeInsets.all(context.textScaler.scale(2)),
           child: TextButton.icon(
-            icon: Icon(Icons.navigation, color: context.colorScheme.primary, size: scaler.scale(16)),
-            onPressed: () => _navigateToBuilding(ref, building),
+            icon: Icon(Icons.navigation, semanticLabel: "", color: context.colorScheme.primary, size: scaler.scale(16)),
+            onPressed: AppHaptics.wrapperLight(() async {
+              await _navigateToBuilding(ref, building);
+            }),
             label: Text.rich(
               textScaler: scaler,
               TextSpan(

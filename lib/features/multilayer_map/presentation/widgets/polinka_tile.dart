@@ -8,6 +8,7 @@ import "../../../../config/ui_config.dart";
 import "../../../../config/url_config.dart";
 import "../../../../gen/assets.gen.dart";
 import "../../../../hooks/use_semantics_service_on_changed_value.dart";
+import "../../../../services/haptics/app_haptics.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../theme/colors.dart";
 import "../../../../utils/context_extensions.dart";
@@ -106,6 +107,7 @@ class PolinkaTile extends HookConsumerWidget {
                       ExternalDigitalGuideMode.digitalGuideBuilding ||
                       ExternalDigitalGuideMode.otherDigitalGuidePlace => Icons.accessibility_new_rounded,
                     },
+                    semanticLabel: "",
                     color: isActive
                         ? context.colorScheme.surface
                         : switch (station.externalDigitalGuideMode) {
@@ -114,9 +116,7 @@ class PolinkaTile extends HookConsumerWidget {
                             _ => context.colorScheme.tertiary,
                           },
                   ),
-                  onPressed: () {
-                    unawaited(ref.navigatePolinkaDetailAction(station));
-                  },
+                  onPressed: AppHaptics.wrapperLight(() => unawaited(ref.navigatePolinkaDetailAction(station))),
                 ),
               ),
           ],
@@ -127,12 +127,11 @@ class PolinkaTile extends HookConsumerWidget {
           TextButton.icon(
             icon: Icon(
               Icons.accessibility_new_rounded,
+              semanticLabel: "",
               color: context.colorScheme.primary,
               size: context.textScaler.scale(16),
             ),
-            onPressed: () {
-              unawaited(ref.navigatePolinkaDetailAction(station));
-            },
+            onPressed: AppHaptics.wrapperLight(() => unawaited(ref.navigatePolinkaDetailAction(station))),
             style: TextButton.styleFrom(padding: const EdgeInsets.all(12)),
             label: Text(
               context.localize.navigate_to_digital_guide,
