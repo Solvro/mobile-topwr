@@ -21,7 +21,7 @@ class NavigationStack extends _$NavigationStack {
   }
 }
 
-@Riverpod(keepAlive: true)
+@riverpod
 Route<dynamic>? currentRoute(Ref ref) {
   final stack = ref.watch(navigationStackProvider);
   if (stack.isEmpty) {
