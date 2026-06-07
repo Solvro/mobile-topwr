@@ -22,6 +22,7 @@ import "features/navigator/app_router.dart";
 import "features/navigator/hooks/use_deeplinks.dart";
 import "features/navigator/navigation_stack.dart";
 import "features/parkings/parkings_view/repository/parkings_repository.dart";
+import "features/radio_luz/service/carplay_service.dart";
 import "features/radio_luz/service/radio_audio_handler.dart";
 import "features/radio_luz/service/radio_player_provider.dart";
 import "features/splash_screen/splash_screen.dart";
@@ -61,6 +62,8 @@ Future<void> main({List<Override>? overrides}) async {
 
   if (kDebugMode) {
     final audioHandler = await _initAudioHandler();
+    final carPlayService = CarPlayService(audioHandler);
+    await carPlayService.initialize();
     runApp(
       ProviderScope(
         retry: (retryCount, error) {
@@ -90,6 +93,8 @@ Future<void> main({List<Override>? overrides}) async {
 Future<void> runNormalApp() async {
   final audioHandler = await _initAudioHandler();
   await appAnalytics.initialize(projectId: Env.clarityConfigId);
+  final carPlayService = CarPlayService(audioHandler);
+  await carPlayService.initialize();
 
   runApp(
     appAnalytics.wrapApp(
