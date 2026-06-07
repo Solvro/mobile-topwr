@@ -65,7 +65,7 @@ Future<void> main({List<Override>? overrides, bool skipCarPlay = false}) async {
     final audioHandler = await _initAudioHandler();
     if (!skipCarPlay) {
       _carPlayService = CarPlayService(audioHandler);
-      await _carPlayService.initialize();
+      unawaited(_carPlayService.initialize());
     }
     runApp(
       ProviderScope(
@@ -97,7 +97,7 @@ Future<void> runNormalApp() async {
   final audioHandler = await _initAudioHandler();
   await appAnalytics.initialize(projectId: Env.clarityConfigId);
   _carPlayService = CarPlayService(audioHandler);
-  await _carPlayService.initialize();
+  unawaited(_carPlayService.initialize());
 
   runApp(
     appAnalytics.wrapApp(

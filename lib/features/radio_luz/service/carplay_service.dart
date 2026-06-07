@@ -1,3 +1,4 @@
+import "dart:async";
 import "dart:io";
 
 import "package:flutter/foundation.dart";
@@ -8,6 +9,7 @@ import "radio_audio_handler.dart";
 class CarPlayService {
   final RadioAudioHandlerBridge _audioHandler;
   late final FlutterCarplay _carplay;
+  var _initialized = false;
 
   CarPlayService(this._audioHandler);
 
@@ -15,6 +17,25 @@ class CarPlayService {
     if (kIsWeb || !Platform.isIOS) return;
 
     _carplay = FlutterCarplay();
+
+    // Listen to connection changes to set up templates dynamically when CarPlay connects
+    _carplay.addListenerOnConnectionChange(_onCarplayConnectionChange);
+
+    // If CarPlay is already connected on startup, initialize immediately
+    if (FlutterCarplay.connectionStatus == ConnectionStatusTypes.connected.name) {
+      await _setupCarplayTemplate();
+    }
+  }
+
+  void _onCarplayConnectionChange(ConnectionStatusTypes status) {
+    if (status == ConnectionStatusTypes.connected) {
+      unawaited(_setupCarplayTemplate());
+    }
+  }
+
+  Future<void> _setupCarplayTemplate() async {
+    if (_initialized) return;
+    _initialized = true;
 
     await FlutterCarplay.setRootTemplate(
       rootTemplate: CPListTemplate(
