@@ -49,7 +49,7 @@ class NavigationTabView extends ConsumerWidget {
             await ref.navigateDepartments();
           },
           title: context.localize.departments,
-          icon: const Icon(BottomNavBarIcons.departments_icon, size: NavigationTabViewConfig.navIconSize),
+          icon: const Icon(BottomNavBarIcons.departments_icon, semanticLabel: "", size: NavigationTabViewConfig.navIconSize),
         ),
         child2: SmallTileCard(
           key: NavigationTabViewConfig.scienceClubsKey,
@@ -58,7 +58,7 @@ class NavigationTabView extends ConsumerWidget {
             await ref.navigateScienceClubs();
           },
           title: context.localize.student_organizations,
-          icon: const Icon(BottomNavBarIcons.sci_clubs_icon, size: 24),
+          icon: const Icon(BottomNavBarIcons.sci_clubs_icon, semanticLabel: "", size: 24),
         ),
       ),
       _NavigationRow(
@@ -104,7 +104,7 @@ class _SksSmallBigTile extends ConsumerWidget {
         await ref.navigateToSksMenu();
       },
       title: context.localize.sks_menu,
-      icon: const Icon(Icons.restaurant),
+      icon: const Icon(Icons.restaurant, semanticLabel: ""),
     );
   }
 }
@@ -120,7 +120,7 @@ class _BoothsTile extends ConsumerWidget {
         await ref.navigateBooths();
       },
       title: context.localize.booths_title,
-      icon: const Icon(Icons.meeting_room),
+      icon: const Icon(Icons.meeting_room, semanticLabel: ""),
     );
   }
 }
@@ -143,7 +143,12 @@ class _RatingTile extends ConsumerWidget {
         }
       },
       title: context.localize.leave_a_review,
-      icon: Icon(Icons.star, color: context.colorScheme.secondaryContainer, size: NavigationTabViewConfig.navIconSize),
+      icon: Icon(
+        Icons.star,
+        semanticLabel: "",
+        color: context.colorScheme.secondaryContainer,
+        size: NavigationTabViewConfig.navIconSize,
+      ),
     );
   }
 }

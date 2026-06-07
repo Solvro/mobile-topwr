@@ -184,7 +184,10 @@ class _DialogHeader extends StatelessWidget {
                   child: MergeSemantics(
                     child: IconButton(
                       tooltip: context.localize.close,
-                      icon: Semantics(label: context.localize.close, child: const Icon(Icons.close)),
+                      icon: Semantics(
+                        label: context.localize.close,
+                        child: Icon(Icons.close, semanticLabel: context.localize.close),
+                      ),
                       color: context.colorScheme.tertiary,
                       onPressed: () {
                         unawaited(HapticFeedback.selectionClick());

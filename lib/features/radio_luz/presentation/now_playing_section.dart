@@ -132,7 +132,11 @@ class _NowPlayingTile extends StatelessWidget {
             ),
             IconButton(
               tooltip: context.localize.radio_luz_search_streaming,
-              icon: Icon(Icons.manage_search, color: isActive ? colorScheme.surface : colorScheme.primary),
+              icon: Icon(
+                Icons.manage_search,
+                semanticLabel: "",
+                color: isActive ? colorScheme.surface : colorScheme.primary,
+              ),
               onPressed: () async {
                 unawaited(HapticFeedback.selectionClick());
                 await SearchStreamingBottomSheet.show(context, title: title, artist: subtitle);

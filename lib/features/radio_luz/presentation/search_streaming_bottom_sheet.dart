@@ -118,7 +118,7 @@ class _StreamingServiceTile extends ConsumerWidget {
                 ),
                 const SizedBox(width: 16),
                 Expanded(child: Text(service.name, style: textTheme.titleLarge)),
-                Icon(Icons.open_in_new, color: colorTheme.outline, size: 20),
+                Icon(Icons.open_in_new, semanticLabel: "", color: colorTheme.outline, size: 20),
               ],
             ),
           ),

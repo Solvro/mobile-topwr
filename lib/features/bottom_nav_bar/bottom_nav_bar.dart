@@ -43,9 +43,10 @@ class _NavigationBarItemsList extends DelegatingList<BottomNavigationBarItem> {
             .mapIndexed(
               (i, e) => BottomNavigationBarItem(
                 key: Key(e.name),
-                icon: Icon(
-                  e.icon,
-                  color: i == activeIndex
+                 icon: Icon(
+                   e.icon,
+                   semanticLabel: "",
+                   color: i == activeIndex
                       ? context.colorScheme.primary
                       : context.colorScheme.onTertiary.withValues(alpha: .16),
                   size: e.size,

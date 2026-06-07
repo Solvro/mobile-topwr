@@ -114,7 +114,12 @@ class _NotificationsListContent extends ConsumerWidget {
                     unawaited(HapticFeedback.selectionClick());
                     await NotificationDetailsDialog.show(context, ref, notification);
                   },
-                  icon: Icon(Icons.info, size: context.textScaler.scale(22), color: context.colorScheme.tertiary),
+                  icon: Icon(
+                    Icons.info,
+                    semanticLabel: "",
+                    size: context.textScaler.scale(22),
+                    color: context.colorScheme.tertiary,
+                  ),
                 ),
               );
             },

@@ -30,7 +30,7 @@ abstract class AccessibilityCommentsManager {
     const double width = 28;
 
     if (modesCount != 1) {
-      return const SizedBox(height: height, width: width, child: Icon(Icons.accessibility));
+      return const SizedBox(height: height, width: width, child: Icon(Icons.accessibility, semanticLabel: ""));
     }
 
     final currentMode = modes.first;

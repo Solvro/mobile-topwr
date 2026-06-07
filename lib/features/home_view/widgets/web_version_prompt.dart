@@ -41,7 +41,7 @@ class WebVersionDialogContent extends StatelessWidget {
                 shape: BoxShape.circle,
                 color: context.colorScheme.primary.withValues(alpha: 0.12),
               ),
-              child: Icon(Icons.language, size: 20, color: context.colorScheme.primary),
+              child: Icon(Icons.language, semanticLabel: "", size: 20, color: context.colorScheme.primary),
             ),
             const SizedBox(width: 12),
             Expanded(
@@ -92,7 +92,7 @@ class WebVersionBanner extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(Icons.language, size: 18, color: context.colorScheme.primary),
+            Icon(Icons.language, semanticLabel: "", size: 18, color: context.colorScheme.primary),
             const SizedBox(width: 8),
             InkWell(
               onTap: () async {
@@ -134,7 +134,7 @@ class _BannerIconButton extends StatelessWidget {
         unawaited(HapticFeedback.selectionClick());
         await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
       },
-      icon: Icon(icon, color: context.colorScheme.primary),
+      icon: Icon(icon, semanticLabel: "", color: context.colorScheme.primary),
     );
   }
 }

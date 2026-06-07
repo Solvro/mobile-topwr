@@ -51,6 +51,7 @@ class AudioPlayerWidget extends HookConsumerWidget {
                       },
                       icon: Icon(
                         radioState.isMuted ? Icons.volume_off : Icons.volume_up,
+                        semanticLabel: "",
                         color: context.colorScheme.onPrimaryContainer,
                       ),
                     ),

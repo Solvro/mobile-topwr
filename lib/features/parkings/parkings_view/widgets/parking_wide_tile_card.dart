@@ -70,7 +70,12 @@ class ParkingWideTileCard extends StatelessWidget {
                   icon: Semantics(
                     button: true,
                     label: context.localize.close,
-                    child: Icon(Icons.close, color: context.colorScheme.surface, size: scaler.scale(22)),
+                    child: Icon(
+                      Icons.close,
+                      semanticLabel: context.localize.close,
+                      color: context.colorScheme.surface,
+                      size: scaler.scale(22),
+                    ),
                   ),
                 ),
               ),
@@ -160,6 +165,7 @@ class _RightColumn extends StatelessWidget {
                 SizedBox(width: scaler.scale(4)),
                 Icon(
                   parking.trend.arrowIcon,
+                  semanticLabel: "",
                   color: isActive ? arrowColor(parking.trend, context) : context.colorScheme.surface,
                   size: scaler.scale(21),
                   shadows: iparkingShadows,

@@ -27,14 +27,14 @@ class NavActionsSection extends ConsumerWidget {
             child: _NavActionButton(
               key: HomeViewConfig.sksMenuKey,
               context.localize.sks_menu,
-              Icon(Icons.restaurant_menu, color: context.colorScheme.surface, size: 32),
+              Icon(Icons.restaurant_menu, semanticLabel: "", color: context.colorScheme.surface, size: 32),
               ref.navigateToSksMenu,
             ),
           ),
           Expanded(
             child: _NavActionButton(
               context.localize.parkings_title,
-              Icon(Icons.directions_car, color: context.colorScheme.surface, size: 32),
+              Icon(Icons.directions_car, semanticLabel: "", color: context.colorScheme.surface, size: 32),
               ref.navigateParkings,
             ),
           ),
@@ -42,7 +42,7 @@ class NavActionsSection extends ConsumerWidget {
             child: _NavActionButton(
               key: HomeViewConfig.calendarKey,
               context.localize.calendar,
-              Icon(Icons.calendar_today_outlined, color: context.colorScheme.surface, size: 30),
+              Icon(Icons.calendar_today_outlined, semanticLabel: "", color: context.colorScheme.surface, size: 30),
               ref.navigateCalendar,
             ),
           ),
@@ -50,7 +50,7 @@ class NavActionsSection extends ConsumerWidget {
             Expanded(
               child: _NavActionButton(
                 context.localize.activity_days_title.replaceFirst(" ", "\n"),
-                Icon(Icons.celebration, color: context.colorScheme.surface, size: 32),
+                Icon(Icons.celebration, semanticLabel: "", color: context.colorScheme.surface, size: 32),
                 ref.navigateActivityDays,
                 color: context.colorScheme.secondary,
               ),

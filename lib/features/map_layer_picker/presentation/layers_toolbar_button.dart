@@ -17,9 +17,10 @@ class LayersButton extends ConsumerWidget {
       scale: context.textScaler.clamp(minScaleFactor: 0.9, maxScaleFactor: 1.5).scale(1),
       child: FloatingActionButton.small(
         heroTag: "layers_button",
+        tooltip: context.localize.map_details_title,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         backgroundColor: context.colorScheme.surface,
-        child: Icon(Icons.map, color: context.colorScheme.onTertiary),
+        child: Icon(Icons.map, semanticLabel: context.localize.map_details_title, color: context.colorScheme.onTertiary),
         onPressed: () async {
           unawaited(HapticFeedback.selectionClick());
           await LayerOptionsDialog.show(context, ref);

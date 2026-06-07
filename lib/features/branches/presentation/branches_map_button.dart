@@ -13,13 +13,16 @@ class BranchesButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final label = "${context.localize.branches} ${context.localize.map}";
+
     return Transform.scale(
       scale: context.textScaler.clamp(minScaleFactor: 0.9, maxScaleFactor: 1.5).scale(1),
       child: FloatingActionButton.small(
         heroTag: "branches_button",
+        tooltip: label,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         backgroundColor: context.colorScheme.surface,
-        child: Icon(BottomNavBarIcons.departments_icon, color: context.colorScheme.onTertiary),
+        child: Icon(BottomNavBarIcons.departments_icon, semanticLabel: label, color: context.colorScheme.onTertiary),
         onPressed: () async {
           unawaited(HapticFeedback.selectionClick());
           await BranchMapDialog.show(context);

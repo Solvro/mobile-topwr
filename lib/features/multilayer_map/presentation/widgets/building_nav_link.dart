@@ -25,7 +25,11 @@ class BuildingNavLink extends ConsumerWidget {
         iconSize: context.textScaler.clamp(maxScaleFactor: 2).scale(22),
         visualDensity: VisualDensity.compact,
         color: isActive ? context.colorScheme.surface : context.colorScheme.secondary,
-        icon: Icon(Icons.home_sharp, color: isActive ? context.colorScheme.surface : context.colorScheme.secondary),
+        icon: Icon(
+          Icons.home_sharp,
+          semanticLabel: "",
+          color: isActive ? context.colorScheme.surface : context.colorScheme.secondary,
+        ),
         onPressed: () {
           unawaited(HapticFeedback.selectionClick());
           unawaited(ref.read(multilayerMapControllerProvider).onMarkerTap(BuildingItem(building: building)));

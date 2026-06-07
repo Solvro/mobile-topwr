@@ -18,7 +18,7 @@ class ParkingInfoButton extends ConsumerWidget {
     return Padding(
       padding: const EdgeInsets.only(right: MapViewBottomSheetConfig.horizontalPadding - 12),
       child: IconButton(
-        icon: Icon(Icons.info, color: context.colorScheme.primary),
+        icon: Icon(Icons.info, semanticLabel: "", color: context.colorScheme.primary),
         onPressed: () async {
           unawaited(HapticFeedback.selectionClick());
           await _onPressed(context, ref);

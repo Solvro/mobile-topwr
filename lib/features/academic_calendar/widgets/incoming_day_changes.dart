@@ -45,7 +45,7 @@ class IncomingDayChanges extends ConsumerWidget {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(Icons.warning_amber, size: 18, color: context.colorScheme.surface),
+              Icon(Icons.warning_amber, semanticLabel: "", size: 18, color: context.colorScheme.surface),
               const SizedBox(width: 6),
               ExcludeSemantics(
                 child: Text(
@@ -78,7 +78,7 @@ class IncomingDayChanges extends ConsumerWidget {
               const TextSpan(text: " "),
               WidgetSpan(
                 alignment: PlaceholderAlignment.middle,
-                child: Icon(Icons.info_outline, size: 18, color: context.colorScheme.tertiary),
+                child: Icon(Icons.info_outline, semanticLabel: "", size: 18, color: context.colorScheme.tertiary),
               ),
             ],
           ),

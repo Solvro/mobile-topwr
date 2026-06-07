@@ -62,7 +62,7 @@ class _BadgeContent extends ConsumerWidget {
           padding: const EdgeInsets.all(8),
           elevation: 2,
         ),
-        child: Icon(Icons.warning_rounded, color: textColor, size: 24),
+        child: Icon(Icons.warning_rounded, semanticLabel: "", color: textColor, size: 24),
       ),
     );
   }

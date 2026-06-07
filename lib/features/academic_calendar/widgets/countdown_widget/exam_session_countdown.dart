@@ -81,7 +81,7 @@ class ExamSessionCountdown extends ConsumerWidget {
                 alignment: Alignment.centerRight,
                 child: Padding(
                   padding: const EdgeInsets.all(16),
-                  child: Icon(Icons.open_in_new_rounded, color: context.colorScheme.surface),
+                  child: Icon(Icons.open_in_new_rounded, semanticLabel: "", color: context.colorScheme.surface),
                 ),
               ),
             ],

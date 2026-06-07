@@ -71,7 +71,7 @@ class CalendarTile extends ConsumerWidget {
                       closeText: context.localize.ok,
                     );
                   },
-                  icon: const Icon(Icons.info_outline),
+                  icon: const Icon(Icons.info_outline, semanticLabel: ""),
                 ),
               },
             ),

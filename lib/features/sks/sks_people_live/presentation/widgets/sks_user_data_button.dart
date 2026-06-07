@@ -71,7 +71,7 @@ class _SksButton extends StatelessWidget {
                   ),
                   child: Row(
                     children: [
-                      Icon(Icons.supervised_user_circle, color: context.colorScheme.primary),
+                      Icon(Icons.supervised_user_circle, semanticLabel: "", color: context.colorScheme.primary),
                       const SizedBox(width: SksConfig.sizedBoxWidth),
                       Text(
                         sksUserData.activeUsers.toString(),
@@ -96,11 +96,11 @@ extension TrendIcon on Trend {
     final color = context.colorScheme.onTertiary;
     switch (this) {
       case Trend.increasing:
-        return Icon(Icons.trending_up, color: color);
+        return Icon(Icons.trending_up, semanticLabel: "", color: color);
       case Trend.decreasing:
-        return Icon(Icons.trending_down, color: color);
+        return Icon(Icons.trending_down, semanticLabel: "", color: color);
       case Trend.stable:
-        return Icon(Icons.trending_flat, color: color);
+        return Icon(Icons.trending_flat, semanticLabel: "", color: color);
     }
   }
 

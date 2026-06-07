@@ -29,7 +29,9 @@ class AppVersionTile extends StatelessWidget {
                 style: context.textTheme.bodyLarge?.copyWith(color: context.colorScheme.outline),
               ),
             ),
-            leading: ExcludeSemantics(child: Icon(Icons.info, color: context.colorScheme.primary, size: 22)),
+            leading: ExcludeSemantics(
+              child: Icon(Icons.info, semanticLabel: "", color: context.colorScheme.primary, size: 22),
+            ),
             contentPadding: const EdgeInsets.symmetric(horizontal: WideTileCardConfig.basePadding),
             horizontalTitleGap: 8,
             onTap: () async {

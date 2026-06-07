@@ -162,7 +162,11 @@ class _ShowMoreWidget extends StatelessWidget {
             const SizedBox(width: 8),
           ],
         ),
-        Positioned(bottom: 0, right: 0, child: Icon(Icons.arrow_right, color: context.colorScheme.onPrimary, size: 18)),
+        Positioned(
+          bottom: 0,
+          right: 0,
+          child: Icon(Icons.arrow_right, semanticLabel: "", color: context.colorScheme.onPrimary, size: 18),
+        ),
       ],
     );
   }

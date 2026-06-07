@@ -84,7 +84,7 @@ class MyAudioPlayer extends HookWidget {
           children: [
             IconButton(
               tooltip: isPlaying.value ? context.localize.audio_player_pause : context.localize.audio_player_play,
-              icon: Icon(isPlaying.value ? Icons.pause : Icons.play_arrow),
+              icon: Icon(isPlaying.value ? Icons.pause : Icons.play_arrow, semanticLabel: ""),
               color: context.colorScheme.onTertiary,
               onPressed: () async {
                 unawaited(HapticFeedback.selectionClick());

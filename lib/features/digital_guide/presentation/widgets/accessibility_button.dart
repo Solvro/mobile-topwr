@@ -36,6 +36,7 @@ class AccessibilityButton extends StatelessWidget {
               ),
               child: Icon(
                 Icons.accessibility_new,
+                semanticLabel: context.localize.accessibility_profiles,
                 color: context.colorScheme.onTertiary,
                 size: context.textScaler.clamp(maxScaleFactor: 2.5).scale(16),
               ),

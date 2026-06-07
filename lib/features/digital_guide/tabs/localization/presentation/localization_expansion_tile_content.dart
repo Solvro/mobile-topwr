@@ -34,7 +34,7 @@ class LocalizationExpansionTileContent extends ConsumerWidget {
         Padding(
           padding: EdgeInsets.all(context.textScaler.scale(2)),
           child: TextButton.icon(
-            icon: Icon(Icons.navigation, color: context.colorScheme.primary, size: scaler.scale(16)),
+            icon: Icon(Icons.navigation, semanticLabel: "", color: context.colorScheme.primary, size: scaler.scale(16)),
             onPressed: () async {
               unawaited(HapticFeedback.selectionClick());
               await _navigateToBuilding(ref, building);

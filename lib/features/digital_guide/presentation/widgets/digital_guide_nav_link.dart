@@ -41,7 +41,7 @@ class DigitalGuideNavLink extends StatelessWidget {
                 maxLines: 3,
               ),
             ),
-            Icon(Icons.chevron_right, color: context.colorScheme.secondary),
+            Icon(Icons.chevron_right, semanticLabel: "", color: context.colorScheme.secondary),
           ],
         ),
       ),

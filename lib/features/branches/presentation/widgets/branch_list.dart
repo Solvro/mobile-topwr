@@ -40,7 +40,7 @@ class BranchList extends StatelessWidget {
               selected: selected,
               leading: BranchIcon(branch: branch, isEnabled: selected),
               title: Text(semanticsLabel: name.substring(1), name),
-              trailing: selected ? Icon(Icons.check, color: context.colorScheme.primary) : null,
+              trailing: selected ? Icon(Icons.check, semanticLabel: "", color: context.colorScheme.primary) : null,
               onTap: () {
                 unawaited(HapticFeedback.selectionClick());
                 onBranchTap(branch);

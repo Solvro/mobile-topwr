@@ -81,12 +81,17 @@ class _SksMenuView extends ConsumerWidget {
           FloatingActionButton(
             heroTag: null,
             elevation: 3,
+            tooltip: context.localize.sks_favourite_dishes,
             backgroundColor: context.colorScheme.primary,
             onPressed: () async {
               unawaited(HapticFeedback.selectionClick());
               await ref.navigateToSksFavouriteDishes();
             },
-            child: Icon(Icons.favorite, color: context.colorScheme.surface),
+            child: Icon(
+              Icons.favorite,
+              semanticLabel: context.localize.sks_favourite_dishes,
+              color: context.colorScheme.surface,
+            ),
           ),
       ],
       body: RefreshIndicator(

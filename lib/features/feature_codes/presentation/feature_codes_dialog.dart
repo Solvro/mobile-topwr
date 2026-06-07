@@ -105,7 +105,7 @@ class _InputRow extends HookWidget {
                   await onAdd();
                 }
               : null,
-          icon: const Icon(Icons.add),
+          icon: const Icon(Icons.add, semanticLabel: ""),
           color: context.colorScheme.primary,
           tooltip: context.localize.feature_codes_add_button,
         ),
@@ -144,7 +144,7 @@ class _CodesList extends StatelessWidget {
             dense: true,
             title: Text(code, style: context.textTheme.bodyLarge),
             trailing: IconButton(
-              icon: const Icon(Icons.delete_outline),
+              icon: const Icon(Icons.delete_outline, semanticLabel: ""),
               tooltip: context.localize.feature_codes_remove_button,
               onPressed: () async {
                 unawaited(HapticFeedback.selectionClick());

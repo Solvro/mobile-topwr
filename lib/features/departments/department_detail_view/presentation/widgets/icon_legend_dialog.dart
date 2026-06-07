@@ -17,7 +17,7 @@ class IconLegendDialog extends StatelessWidget {
     return Center(
       child: IconButton(
         tooltip: context.localize.iconnames_legend_title,
-        icon: const Icon(Icons.info_outline, size: 20),
+        icon: const Icon(Icons.info_outline, semanticLabel: "", size: 20),
         color: context.colorScheme.tertiary,
         onPressed: () async {
           unawaited(HapticFeedback.selectionClick());

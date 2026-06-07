@@ -19,7 +19,7 @@ class NavigateButton<T extends GoogleNavigable> extends ConsumerWidget {
     return Padding(
       padding: const EdgeInsets.only(right: MapViewBottomSheetConfig.horizontalPadding - 12),
       child: TextButton.icon(
-        icon: Icon(ParkingsIcons.map_nav, color: context.colorScheme.primary, size: 16),
+        icon: Icon(ParkingsIcons.map_nav, semanticLabel: "", color: context.colorScheme.primary, size: 16),
         onPressed: () async {
           unawaited(HapticFeedback.selectionClick());
           await ref.watch(context.activeMarkerController<T>().notifier).launchLink();

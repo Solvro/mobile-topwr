@@ -42,7 +42,7 @@ class StoreTile extends StatelessWidget {
               width: 40,
               height: 40,
               decoration: BoxDecoration(shape: BoxShape.circle, color: accent.withValues(alpha: 0.16)),
-              child: Icon(icon, size: 22, color: accent),
+              child: Icon(icon, semanticLabel: "", size: 22, color: accent),
             ),
             const SizedBox(width: 12),
             Expanded(
@@ -63,7 +63,7 @@ class StoreTile extends StatelessWidget {
                 ],
               ),
             ),
-            Icon(Icons.arrow_forward, size: 18, color: accent.withValues(alpha: 0.7)),
+            Icon(Icons.arrow_forward, semanticLabel: "", size: 18, color: accent.withValues(alpha: 0.7)),
           ],
         ),
       ),

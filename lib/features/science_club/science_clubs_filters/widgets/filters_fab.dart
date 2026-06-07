@@ -41,10 +41,14 @@ class FiltersFAB extends ConsumerWidget {
           children: [
             Padding(
               padding: const EdgeInsets.all(8),
-              child: Icon(Icons.tune, color: context.colorScheme.surface),
+              child: Icon(Icons.tune, semanticLabel: "", color: context.colorScheme.surface),
             ),
             if (isActive)
-              Positioned(top: 4, right: 4, child: Icon(Icons.circle, size: 8, color: context.colorScheme.surface)),
+              Positioned(
+                top: 4,
+                right: 4,
+                child: Icon(Icons.circle, semanticLabel: "", size: 8, color: context.colorScheme.surface),
+              ),
           ],
         ),
       ),

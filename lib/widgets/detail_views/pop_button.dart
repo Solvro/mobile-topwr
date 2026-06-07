@@ -35,7 +35,7 @@ class DetailViewPopButton extends ConsumerWidget {
           children: [
             Padding(
               padding: const EdgeInsets.only(top: 2),
-              child: Icon(Icons.chevron_left, size: 18, color: context.colorScheme.primary),
+              child: Icon(Icons.chevron_left, semanticLabel: "", size: 18, color: context.colorScheme.primary),
             ),
             if (title != null)
               Flexible(

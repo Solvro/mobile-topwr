@@ -24,7 +24,7 @@ class ArrowButton extends StatelessWidget {
         },
         child: Padding(
           padding: const EdgeInsets.all(4),
-          child: Icon(icon, size: 28, color: context.colorScheme.onPrimary),
+          child: Icon(icon, semanticLabel: "", size: 28, color: context.colorScheme.onPrimary),
         ),
       ),
     );

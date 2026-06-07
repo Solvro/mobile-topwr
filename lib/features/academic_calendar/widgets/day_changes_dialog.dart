@@ -47,7 +47,7 @@ class DayChangesDialog extends ConsumerWidget {
           return Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Icon(Icons.swap_horiz, color: context.colorScheme.primary, size: 32),
+              Icon(Icons.swap_horiz, semanticLabel: "", color: context.colorScheme.primary, size: 32),
               const SizedBox(width: 16),
               Flexible(
                 child: Column(

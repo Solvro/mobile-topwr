@@ -107,6 +107,7 @@ class BuildingTile extends HookConsumerWidget {
                       ExternalDigitalGuideMode.digitalGuideBuilding ||
                       ExternalDigitalGuideMode.otherDigitalGuidePlace => Icons.accessibility_new_rounded,
                     },
+                    semanticLabel: "",
                     color: isActive
                         ? context.colorScheme.surface
                         : switch (building.externalDigitalGuideMode) {
@@ -129,6 +130,7 @@ class BuildingTile extends HookConsumerWidget {
           TextButton.icon(
             icon: Icon(
               Icons.accessibility_new_rounded,
+              semanticLabel: "",
               color: context.colorScheme.primary,
               size: context.textScaler.scale(16),
             ),
