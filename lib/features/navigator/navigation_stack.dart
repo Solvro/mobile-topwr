@@ -4,7 +4,6 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../config/nav_bar_config.dart";
-import "../../utils/unwaited_microtask.dart";
 
 part "navigation_stack.g.dart";
 
@@ -86,7 +85,7 @@ class NavigationObserver extends NavigatorObserver {
   void _scheduleProviderFlush() {
     if (_flushScheduled) return;
     _flushScheduled = true;
-    unwaitedMicrotask(() async {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       _flushScheduled = false;
       if (!context.mounted) return;
       _removedRoutes.forEach(ref.read(rootRouteActiveTabsProvider.notifier).remove);
