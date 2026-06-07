@@ -37,6 +37,7 @@ class CarPlayService {
 
   Future<void> _setupCarplayTemplate() async {
     if (_initialized) return;
+    _initialized = true;
 
     try {
       await FlutterCarplay.setRootTemplate(
@@ -66,7 +67,6 @@ class CarPlayService {
         animated: false,
       );
       await _carplay.forceUpdateRootTemplate();
-      _initialized = true;
     } on Exception catch (_) {
       _initialized = false;
     }
