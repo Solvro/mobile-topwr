@@ -1,5 +1,6 @@
 import "dart:async";
 
+import "package:flutter/widgets.dart";
 import "package:flutter_cache_manager/flutter_cache_manager.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
@@ -10,8 +11,9 @@ import "../data/local_cache_ref_number_repo.dart";
 import "../data/remote_cache_ref_number_repo.dart";
 
 extension FlushCacheUseCaseX on WidgetRef {
-  Future<void> flushAllCacheIfNeededFromCms() {
+  Future<void> flushAllCacheIfNeededFromCms(BuildContext context) {
     return flushAllCacheIfNeededByReferenceNumber(
+      context,
       localCacheRefNumberRepoProvider,
       remoteCacheRefNumberRepoProvider,
       () async {

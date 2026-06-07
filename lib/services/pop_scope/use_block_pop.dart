@@ -2,6 +2,7 @@ import "package:flutter/widgets.dart" show VoidCallback, WidgetsBinding;
 import "package:flutter_hooks/flutter_hooks.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
+import "../../utils/unwaited_microtask.dart";
 import "pop_priority.dart";
 import "pop_scope_coordinator.dart";
 
@@ -14,7 +15,9 @@ void useBlockPop({
   final coordinator = ref.read(popScopeCoordinatorProvider.notifier);
   useEffect(() {
     var callbackId = "";
+    var disposed = false;
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (disposed) return;
       callbackId = coordinator.registerCallback(
         onCustomPopAction: onCustomPopAction,
         blockDefaultPop: blockDefaultPop,
@@ -22,8 +25,9 @@ void useBlockPop({
       );
     });
     return () {
+      disposed = true;
       if (callbackId.isNotEmpty) {
-        WidgetsBinding.instance.addPostFrameCallback((_) {
+        unwaitedMicrotask(() async {
           coordinator.unregisterCallback(callbackId);
         });
       }

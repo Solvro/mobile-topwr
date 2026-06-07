@@ -1,5 +1,6 @@
 import "dart:async";
 
+import "package:flutter/widgets.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../translations_service/business/flush_cache_drift_use_cases.dart";
@@ -8,8 +9,9 @@ import "../data/local_cache_ref_number_repo.dart";
 import "../data/remote_cache_ref_number_repo.dart";
 
 extension FlushTranslatorCacheUseCaseX on WidgetRef {
-  Future<void> flushTranslationsCacheIfNeededFromRemote() {
+  Future<void> flushTranslationsCacheIfNeededFromRemote(BuildContext context) {
     return flushAllCacheIfNeededByReferenceNumber(
+      context,
       localTranslatorRefNumberRepoProvider,
       remoteTranslatorRefNumberRepoProvider,
       () async {

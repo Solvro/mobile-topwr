@@ -3,6 +3,7 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
+import "../../config/nav_bar_config.dart";
 import "../../utils/unwaited_microtask.dart";
 
 part "navigation_stack.g.dart";
@@ -15,6 +16,7 @@ class NavigationStack extends _$NavigationStack {
   }
 
   void setStack(IList<Route<dynamic>> value) {
+    if (!ref.mounted) return;
     state = value;
   }
 }
@@ -37,17 +39,24 @@ Route<dynamic>? previousRoute(Ref ref) {
   return stack.removeLast().last; // second top most route
 }
 
-@riverpod
-Route<dynamic>? previousRouteThan(Ref ref, RouteSettings currentRouteSettings) {
-  final stack = ref.watch(navigationStackProvider);
-  if (stack.length <= 1) {
-    return null;
+@Riverpod(keepAlive: true)
+class RootRouteActiveTabs extends _$RootRouteActiveTabs {
+  @override
+  IMap<Route<dynamic>, NavBarEnum> build() {
+    return <Route<dynamic>, NavBarEnum>{}.lock;
   }
-  final index = stack.indexWhere((r) => r.settings.name == currentRouteSettings.name);
-  if (index <= 0) {
-    return null;
+
+  void setActiveTab(Route<dynamic> route, NavBarEnum tab) {
+    if (!ref.mounted) return;
+    if (state[route] == tab) return;
+    state = state.add(route, tab);
   }
-  return stack[index - 1];
+
+  void remove(Route<dynamic> route) {
+    if (!ref.mounted) return;
+    if (!state.containsKey(route)) return;
+    state = state.remove(route);
+  }
 }
 
 /*
@@ -56,24 +65,47 @@ Route<dynamic>? previousRouteThan(Ref ref, RouteSettings currentRouteSettings) {
 */
 class NavigationObserver extends NavigatorObserver {
   final WidgetRef ref;
+  final BuildContext context;
 
-  NavigationObserver(this.ref);
+  NavigationObserver(this.ref, this.context);
+
+  var _stack = const IList<Route<dynamic>>.empty();
+  var _removedRoutes = const ISet<Route<dynamic>>.empty();
+  var _flushScheduled = false;
 
   /*
   This 2 methods sync observer with the riverpod state
   */
   void setStack(IList<Route<dynamic>> value) {
-    unwaitedMicrotask(() async => ref.read(navigationStackProvider.notifier).setStack(value));
+    _stack = value;
+    _scheduleProviderFlush();
   }
 
-  IList<Route<dynamic>> get stack => ref.read(navigationStackProvider);
+  IList<Route<dynamic>> get stack => _stack;
+
+  void _scheduleProviderFlush() {
+    if (_flushScheduled) return;
+    _flushScheduled = true;
+    unwaitedMicrotask(() async {
+      _flushScheduled = false;
+      if (!context.mounted) return;
+      _removedRoutes.forEach(ref.read(rootRouteActiveTabsProvider.notifier).remove);
+      _removedRoutes = const ISet<Route<dynamic>>.empty();
+      ref.read(navigationStackProvider.notifier).setStack(_stack);
+    });
+  }
+
+  void _removeRoute(Route<dynamic> route) {
+    _removedRoutes = _removedRoutes.add(route);
+    setStack(stack.where((stackRoute) => !identical(stackRoute, route)).toIList());
+  }
 
   /*
   This 4 methods sync observer with the actual navigation stack
   */
   @override
   void didPop(Route<dynamic> route, Route<dynamic>? previousRoute) {
-    setStack(stack.removeLast());
+    _removeRoute(route);
   }
 
   @override
@@ -83,11 +115,28 @@ class NavigationObserver extends NavigatorObserver {
 
   @override
   void didReplace({Route<dynamic>? newRoute, Route<dynamic>? oldRoute}) {
-    setStack(stack.removeLast().add(newRoute!));
+    if (oldRoute != null) {
+      _removedRoutes = _removedRoutes.add(oldRoute);
+    }
+    if (newRoute == null) {
+      if (oldRoute != null) _removeRoute(oldRoute);
+      return;
+    }
+    if (oldRoute == null) {
+      setStack(stack.add(newRoute));
+      return;
+    }
+
+    final index = stack.indexWhere((stackRoute) => identical(stackRoute, oldRoute));
+    if (index == -1) {
+      setStack(stack.add(newRoute));
+      return;
+    }
+    setStack(stack.replace(index, newRoute));
   }
 
   @override
   void didRemove(Route<dynamic> route, Route<dynamic>? previousRoute) {
-    setStack(stack.removeLast());
+    _removeRoute(route);
   }
 }

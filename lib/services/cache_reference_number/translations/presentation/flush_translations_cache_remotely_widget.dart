@@ -12,7 +12,7 @@ class FlushTranslationsCacheRemotelyWidget extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     useEffectOnInit(() {
-      unwaitedMicrotask(ref.flushTranslationsCacheIfNeededFromRemote);
+      unwaitedMicrotask(() => ref.flushTranslationsCacheIfNeededFromRemote(context));
       return null;
     });
     return child;

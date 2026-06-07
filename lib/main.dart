@@ -136,7 +136,9 @@ class MyApp extends HookConsumerWidget {
               supportedLocales: AppLocalizations.supportedLocales,
               theme: const AppTheme().light,
               debugShowCheckedModeBanner: false,
-              routerConfig: ref.watch(appRouterProvider).config(navigatorObservers: () => [NavigationObserver(ref)]),
+              routerConfig: ref
+                  .watch(appRouterProvider)
+                  .config(navigatorObservers: () => [NavigationObserver(ref, context)]),
             ),
           ),
         ),
