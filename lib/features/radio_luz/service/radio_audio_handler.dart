@@ -2,7 +2,6 @@ import "dart:async";
 
 import "package:audio_service/audio_service.dart";
 import "package:audio_session/audio_session.dart";
-import "package:flutter/widgets.dart";
 import "package:just_audio/just_audio.dart";
 
 import "../../../config/env.dart";
@@ -20,7 +19,7 @@ const radioLuzArtwork = "https://api.topwr.solvro.pl/uploads/4143cab4-81d8-417b-
 const refreshInterval = Duration(seconds: 15);
 const staleStreamThreshold = Duration(seconds: 30);
 
-class RadioAudioHandlerBridge extends BaseAudioHandler with SeekHandler, WidgetsBindingObserver {
+class RadioAudioHandlerBridge extends BaseAudioHandler with SeekHandler {
   final _player = AudioPlayer();
 
   //used for fetching now playing metadata
@@ -30,7 +29,6 @@ class RadioAudioHandlerBridge extends BaseAudioHandler with SeekHandler, Widgets
   var _radioLuzMediaItem = MediaItem(
     id: "radio_luz_station",
     title: "Radio LUZ",
-    album: "Studenckie Radio",
     artUri: Uri.parse(radioLuzArtwork), //artwork cannot be local asset
   );
 
@@ -67,17 +65,6 @@ class RadioAudioHandlerBridge extends BaseAudioHandler with SeekHandler, Widgets
 
     //pre-configure audio session for iOS to reduce playback startup latency
     unawaited(_initAudioSession());
-
-    //register lifecycle observer to stop playback when app is killed
-    WidgetsBinding.instance.addObserver(this);
-  }
-
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    // Stop playback when app is detached (killed)
-    if (state == AppLifecycleState.detached) {
-      unawaited(stop());
-    }
   }
 
   /// iOS audio session
@@ -111,7 +98,7 @@ class RadioAudioHandlerBridge extends BaseAudioHandler with SeekHandler, Widgets
         return;
       }
 
-      _radioLuzMediaItem = _radioLuzMediaItem.copyWith(album: nowPlaying.now, artist: nowPlaying.now);
+      _radioLuzMediaItem = _radioLuzMediaItem.copyWith(artist: nowPlaying.now);
 
       mediaItem.add(_radioLuzMediaItem);
 
@@ -182,7 +169,6 @@ class RadioAudioHandlerBridge extends BaseAudioHandler with SeekHandler, Widgets
     await _playbackEventSubscription?.cancel();
     await _sequenceStateSubscription?.cancel();
     await _trackChangedController.close();
-    WidgetsBinding.instance.removeObserver(this);
     await _player.stop();
     return super.stop();
   }
