@@ -6,4 +6,4 @@ part "data_list_loading.stories.g.dart";
 
 const meta = Meta<DataSliverListLoading>();
 
-final $default = DataListLoadingStory(setup: (context, child, args) => CustomScrollView(slivers: [child]));
+final $default = DataSliverListLoadingStory(setup: (context, child, args) => CustomScrollView(slivers: [child]));

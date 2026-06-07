@@ -36,6 +36,7 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
   static double _quantizeLayoutExtent(double value) => value.roundToDouble();
 
   @override
+  // ignore: solvro_config/cognitive_complexity
   Widget build(BuildContext context, WidgetRef ref) {
     final isLoading = ref.watch(context.mapDataController<T>().select((a) => a.value == null));
     final isMultilayerMap =

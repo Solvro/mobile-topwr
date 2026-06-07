@@ -28,8 +28,8 @@ import "../../tabs/transportation/presentation/transportation_expansion_tile_con
 
 typedef TileContent = ({String title, List<Widget> content});
 
-class DigitalGuideFeaturesSection extends ConsumerWidget {
-  const DigitalGuideFeaturesSection({required this.digitalGuideData, required this.building});
+class DigitalGuideFeaturesSliverSection extends ConsumerWidget {
+  const DigitalGuideFeaturesSliverSection({required this.digitalGuideData, required this.building});
 
   final DigitalGuideResponse digitalGuideData;
   final Building building;

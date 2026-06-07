@@ -125,7 +125,7 @@ class _DigitalGuideView extends ConsumerWidget {
               return widgets1[index];
             }, childCount: widgets1.length),
           ),
-          DigitalGuideFeaturesSection(digitalGuideData: digitalGuideData, building: building),
+          DigitalGuideFeaturesSliverSection(digitalGuideData: digitalGuideData, building: building),
           SliverList(
             delegate: SliverChildBuilderDelegate((context, index) {
               return widgets2[index];

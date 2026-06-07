@@ -97,6 +97,7 @@ class _BroadcastTile extends ConsumerWidget {
                   label: context.localize.radio_luz_broadcast_cover_image,
                   child: Image.network(
                     imageUrl.trim(),
+                    semanticLabel: context.localize.radio_luz_broadcast_cover_image,
                     fit: BoxFit.cover,
                     errorBuilder: (_, _, _) => const AuditionImageFallback(),
                   ),
