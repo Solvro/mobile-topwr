@@ -30,7 +30,6 @@ class RadioAudioHandlerBridge extends BaseAudioHandler with SeekHandler, Widgets
   var _radioLuzMediaItem = MediaItem(
     id: "radio_luz_station",
     title: "Radio LUZ",
-    album: "Studenckie Radio",
     artUri: Uri.parse(radioLuzArtwork), //artwork cannot be local asset
   );
 
@@ -111,7 +110,7 @@ class RadioAudioHandlerBridge extends BaseAudioHandler with SeekHandler, Widgets
         return;
       }
 
-      _radioLuzMediaItem = _radioLuzMediaItem.copyWith(album: nowPlaying.now, artist: nowPlaying.now);
+      _radioLuzMediaItem = _radioLuzMediaItem.copyWith(artist: nowPlaying.now);
 
       mediaItem.add(_radioLuzMediaItem);
 
