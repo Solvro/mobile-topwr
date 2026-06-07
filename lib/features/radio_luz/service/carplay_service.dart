@@ -30,6 +30,8 @@ class CarPlayService {
   void _onCarplayConnectionChange(ConnectionStatusTypes status) {
     if (status == ConnectionStatusTypes.connected) {
       unawaited(_setupCarplayTemplate());
+    } else {
+      _initialized = false;
     }
   }
 
