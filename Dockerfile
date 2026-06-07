@@ -1,4 +1,4 @@
-FROM ghcr.io/gmeligio/flutter-android:3.44.1 AS build
+FROM ghcr.io/solvro/flutter-web-only:3.44.1 AS build
 
 WORKDIR /app
 
