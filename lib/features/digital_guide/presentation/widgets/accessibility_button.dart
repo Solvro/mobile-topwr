@@ -22,7 +22,7 @@ class AccessibilityButton extends StatelessWidget {
           child: Consumer(
             builder: (context, ref, child) => OutlinedButton(
               onPressed: () {
-                unawaited(AppHaptics.selectionClick());
+                unawaited(AppHaptics.lightImpact());
                 unawaited(AccessibilityDialog.show(context, ref));
               },
 

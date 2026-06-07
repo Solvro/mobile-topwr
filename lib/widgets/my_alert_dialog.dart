@@ -70,12 +70,7 @@ class _MyAlertDialog extends StatelessWidget {
             if (onConfirmTapped != null)
               Flexible(
                 child: TextButton(
-                  onPressed: onConfirmTapped == null
-                      ? null
-                      : () {
-                          unawaited(AppHaptics.selectionClick());
-                          onConfirmTapped!();
-                        },
+                  onPressed: AppHaptics.wrapperLight(onConfirmTapped),
                   child: Text(
                     confirmText,
                     style: context.textTheme.bodyLarge?.copyWith(color: context.colorScheme.primary),

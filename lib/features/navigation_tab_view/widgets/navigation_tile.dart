@@ -1,9 +1,6 @@
-import "dart:async";
-
 import "package:flutter/material.dart";
 
 import "../../../config/ui_config.dart";
-import "../../../services/haptics/app_haptics.dart";
 import "../../../theme/app_theme.dart";
 import "../../../widgets/my_splash_tile.dart";
 
@@ -16,12 +13,7 @@ class NavigationTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MySplashTile(
-      onTap: onTap == null
-          ? null
-          : () {
-              unawaited(AppHaptics.selectionClick());
-              onTap!();
-            },
+      onTap: onTap,
       child: SizedBox(
         child: DecoratedBox(
           decoration: BoxDecoration(borderRadius: BorderRadius.circular(NavigationTabViewConfig.radius)),

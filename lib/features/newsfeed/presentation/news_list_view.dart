@@ -1,5 +1,3 @@
-import "dart:async";
-
 import "package:auto_route/auto_route.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
@@ -11,7 +9,6 @@ import "../../../../widgets/my_error_widget.dart";
 import "../../../api_base_rest/shared_models/image_data.dart";
 import "../../../config/ui_config.dart";
 import "../../../config/url_config.dart";
-import "../../../services/haptics/app_haptics.dart";
 import "../../../services/translations_service/data/preferred_lang_repository.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../utils/launch_url_util.dart";
@@ -90,7 +87,6 @@ class NewsTile extends ConsumerWidget {
         subtitle: item.previewText,
         directusPhotoUrl: ImageData(url: item.imageLink),
         onTap: () async {
-          unawaited(AppHaptics.selectionClick());
           await ref.launch(item.url);
         },
         crossAxisAlignment: CrossAxisAlignment.stretch,

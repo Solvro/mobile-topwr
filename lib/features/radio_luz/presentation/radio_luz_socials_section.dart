@@ -34,7 +34,7 @@ class RadioLuzSocialsSection extends ConsumerWidget {
           padding: EdgeInsets.only(right: index == _socialIconsData.length - 1 ? 0 : 16),
           child: InkWell(
             onTap: () async {
-              unawaited(AppHaptics.selectionClick());
+              unawaited(AppHaptics.lightImpact());
               await ref.launch(_socialIconsData[index].url);
             },
             child: SvgPicture.asset(

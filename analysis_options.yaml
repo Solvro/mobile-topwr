@@ -6,11 +6,37 @@ plugins:
     diagnostics:
       provider_dependencies: false # this works weirdly
   solvro_config:
-    version: ^1.8.1-dev.1
+    version: ^1.8.3-dev
     diagnostics:
       provider_dependencies: false # this works weirdly
     haptic_wrappers:
       - AppHaptics. # only custom wrapper allowed
+    haptic_owning_widgets:
+      - ArrowButton
+      - BaseSmallTileCard
+      - BigPreviewCard
+      - BranchBaseDialog
+      - DepartmentCard
+      - DigitalGuideNavLink
+      - FiltersButton
+      - MyFilterChip
+      - MySplashTile
+      - MyTextButton
+      - NavigationTile
+      - OfflineMessage
+      - ParkingWideTileCard
+      - PhotoTrailingWideTileCard
+      - RedDialog
+      - ScienceClubCard
+      - SearchBox
+      - SearchBoxAppBar
+      - SmallTileCard
+      - SubsectionHeader
+      - TechnicalMessage
+      - TileSplash
+      - WideTileCard
+      - _NavActionButton
+      - _SksButton
 
 analyzer:
   errors:

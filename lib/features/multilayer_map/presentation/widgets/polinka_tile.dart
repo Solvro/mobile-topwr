@@ -62,7 +62,6 @@ class PolinkaTile extends HookConsumerWidget {
                   subtitle: _address,
                   isActive: isActive,
                   onTap: () {
-                    unawaited(AppHaptics.selectionClick());
                     unawaited(ref.trackEvent(ClarityEvents.selectBuilding, value: station.name));
                     unawaited(ref.read(multilayerMapControllerProvider).onMarkerTap(PolinkaItem(station: station)));
                   },
@@ -118,7 +117,7 @@ class PolinkaTile extends HookConsumerWidget {
                           },
                   ),
                   onPressed: () {
-                    unawaited(AppHaptics.selectionClick());
+                    unawaited(AppHaptics.lightImpact());
                     unawaited(ref.navigatePolinkaDetailAction(station));
                   },
                 ),
@@ -136,7 +135,7 @@ class PolinkaTile extends HookConsumerWidget {
               size: context.textScaler.scale(16),
             ),
             onPressed: () {
-              unawaited(AppHaptics.selectionClick());
+              unawaited(AppHaptics.lightImpact());
               unawaited(ref.navigatePolinkaDetailAction(station));
             },
             style: TextButton.styleFrom(padding: const EdgeInsets.all(12)),

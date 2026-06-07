@@ -20,7 +20,7 @@ class ReportChangeButton extends ConsumerWidget {
           const SizedBox(height: 8),
           ElevatedButton(
             onPressed: () {
-              unawaited(AppHaptics.selectionClick());
+              unawaited(AppHaptics.lightImpact());
               final emailUrl =
                   "mailto:${context.localize.report_change_email}?subject=${Uri.encodeComponent(context.localize.report_change_subject)}";
               unawaited(ref.launch(emailUrl));

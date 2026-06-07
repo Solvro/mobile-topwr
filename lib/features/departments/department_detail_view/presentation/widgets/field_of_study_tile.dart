@@ -4,7 +4,6 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:separate/separate.dart";
 
-import "../../../../../services/haptics/app_haptics.dart";
 import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/launch_url_util.dart";
 import "../../../../../widgets/wide_tile_card.dart";
@@ -24,7 +23,6 @@ class FieldOfStudyTile extends ConsumerWidget {
       child: WideTileCard(
         onTap: item.url != null
             ? () async {
-                unawaited(AppHaptics.selectionClick());
                 unawaited(ref.trackEvent(ClarityEvents.openFieldOfStudiesLink, value: item.url));
                 await ref.launch(item.url!);
               }

@@ -24,7 +24,6 @@ class SksUserDataButton extends ConsumerWidget {
       data: (sksUsersData) => _SksButton(
         sksUsersData,
         onTap: () async {
-          unawaited(AppHaptics.selectionClick());
           unawaited(ref.trackEvent(ClarityEvents.openSksChart));
           await showModalBottomSheet<void>(
             context: context,
@@ -56,10 +55,7 @@ class _SksButton extends StatelessWidget {
             "${context.localize.sks_people_live_screen_reader_label} ${sksUserData.activeUsers}. ${context.localize.sks_people_live_screen_reader_label_trend} ${sksUserData.trend.localizedName(context)}",
         button: true,
         child: GestureDetector(
-          onTap: () {
-            unawaited(AppHaptics.selectionClick());
-            onTap();
-          },
+          onTap: AppHaptics.wrapperLight(onTap),
           child: ExcludeSemantics(
             child: Align(
               alignment: Alignment.centerLeft,

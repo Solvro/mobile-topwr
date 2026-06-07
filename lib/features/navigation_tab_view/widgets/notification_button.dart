@@ -5,7 +5,6 @@ import "package:flutter_hooks/flutter_hooks.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../../config/ui_config.dart";
-import "../../../services/haptics/app_haptics.dart";
 import "../../../theme/app_theme.dart";
 import "../../../widgets/my_splash_tile.dart";
 import "../../navigator/utils/navigation_commands.dart";
@@ -24,7 +23,6 @@ class NotificationButton extends HookConsumerWidget {
           focusNode: focusNode,
           child: MySplashTile(
             onTap: () {
-              unawaited(AppHaptics.selectionClick());
               unawaited(ref.navigateToNotifications());
             },
             child: Container(

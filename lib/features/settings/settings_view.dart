@@ -72,6 +72,16 @@ class SettingsView extends ConsumerWidget {
         title: context.localize.digital_guide_accessibility,
         icon: Icons.accessibility_new,
       ),
+      if (!kIsWeb)
+        NavigationTile(
+          key: NavigationTabViewConfig.sksFavouriteDishesKey,
+          onTap: () async {
+            unawaited(AppHaptics.selectionClick());
+            await ref.navigateToSksFavouriteDishes();
+          },
+          title: context.localize.sks_favourite_dishes_see_dishes,
+          icon: Icons.food_bank,
+        ),
       DecoratedBox(
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(NavigationTabViewConfig.radius)),
         child: ListTile(
@@ -90,16 +100,6 @@ class SettingsView extends ConsumerWidget {
           },
         ),
       ),
-      if (!kIsWeb)
-        NavigationTile(
-          key: NavigationTabViewConfig.sksFavouriteDishesKey,
-          onTap: () async {
-            unawaited(AppHaptics.selectionClick());
-            await ref.navigateToSksFavouriteDishes();
-          },
-          title: context.localize.sks_favourite_dishes_see_dishes,
-          icon: Icons.food_bank,
-        ),
     ];
 
     return HorizontalSymmetricSafeAreaScaffold(

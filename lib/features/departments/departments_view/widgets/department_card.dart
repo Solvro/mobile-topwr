@@ -1,9 +1,6 @@
-import "dart:async";
-
 import "package:flutter/material.dart";
 
 import "../../../../config/ui_config.dart";
-import "../../../../services/haptics/app_haptics.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../widgets/my_cached_image.dart";
@@ -27,12 +24,7 @@ class DepartmentCard extends StatelessWidget {
         bodyLarge: textTheme.bodyLarge?.copyWith(shadows: HomeViewConfig.squareCardTextShadow),
       ),
       child: WideTileCard(
-        onTap: onClick == null
-            ? null
-            : () {
-                unawaited(AppHaptics.selectionClick());
-                onClick!();
-              },
+        onTap: onClick,
         isActive: true,
         title: department.branch == Branch.main ? department.code : department.name,
         subtitle: department.branch == Branch.main ? department.name : null,

@@ -51,12 +51,7 @@ class RedDialog extends StatelessWidget {
                         subtitle: subtitle,
                         applyButtonText: applyButtonText,
                         showApplyButton: showApplyButton,
-                        onApplyButtonPressed: onApplyButtonPressed == null
-                            ? null
-                            : () {
-                                unawaited(AppHaptics.selectionClick());
-                                onApplyButtonPressed!();
-                              },
+                        onApplyButtonPressed: onApplyButtonPressed,
                         child: child,
                       ),
                     ),
@@ -104,15 +99,7 @@ class _DialogContent extends StatelessWidget {
         ],
         child,
         if (showApplyButton)
-          _DialogFooter(
-            applyButtonText: applyButtonText,
-            onApplyButtonPressed: onApplyButtonPressed == null
-                ? null
-                : () {
-                    unawaited(AppHaptics.selectionClick());
-                    onApplyButtonPressed!();
-                  },
-          ),
+          _DialogFooter(applyButtonText: applyButtonText, onApplyButtonPressed: onApplyButtonPressed),
       ],
     );
   }
@@ -129,7 +116,7 @@ class _DialogFooter extends StatelessWidget {
       padding: DialogsConfig.padding,
       child: ElevatedButton(
         onPressed: () {
-          unawaited(AppHaptics.selectionClick());
+          unawaited(AppHaptics.lightImpact());
           // we're saving the changes in real time anyway
           onApplyButtonPressed?.call();
           Navigator.of(context).pop();
@@ -191,7 +178,7 @@ class _DialogHeader extends StatelessWidget {
                       ),
                       color: context.colorScheme.tertiary,
                       onPressed: () {
-                        unawaited(AppHaptics.selectionClick());
+                        unawaited(AppHaptics.lightImpact());
                         Navigator.of(context).pop();
                       },
                     ),

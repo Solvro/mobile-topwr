@@ -24,7 +24,7 @@ class BranchesButton extends StatelessWidget {
         backgroundColor: context.colorScheme.surface,
         child: Icon(BottomNavBarIcons.departments_icon, semanticLabel: label, color: context.colorScheme.onTertiary),
         onPressed: () async {
-          unawaited(AppHaptics.selectionClick());
+          unawaited(AppHaptics.lightImpact());
           await BranchMapDialog.show(context);
         },
       ),

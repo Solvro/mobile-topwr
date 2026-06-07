@@ -1,9 +1,6 @@
-import "dart:async";
-
 import "package:flutter/material.dart";
 
 import "../config/ui_config.dart";
-import "../services/haptics/app_haptics.dart";
 import "../theme/app_theme.dart";
 import "../utils/context_extensions.dart";
 import "detail_views/pop_button.dart";
@@ -60,12 +57,7 @@ class SearchBoxAppBar extends AppBar {
                        label: context.localize.search,
                        child: SearchBox(
                          onQueryChanged: onQueryChanged,
-                         onTap: onSearchBoxTap == null
-                             ? null
-                             : () {
-                                 unawaited(AppHaptics.selectionClick());
-                                 onSearchBoxTap();
-                               },
+                         onTap: onSearchBoxTap,
                          initialQuery: initialQuery,
                        ),
                      ),

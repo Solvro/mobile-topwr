@@ -1,5 +1,3 @@
-import "dart:async";
-
 import "package:flutter/material.dart";
 
 import "../../../../config/ui_config.dart";
@@ -25,10 +23,7 @@ class FiltersButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 2),
       child: ElevatedButton(
-        onPressed: () {
-          unawaited(AppHaptics.selectionClick());
-          onPressed();
-        },
+        onPressed: AppHaptics.wrapperLight(onPressed),
         style: ElevatedButton.styleFrom(
           backgroundColor: isSecondary ? context.colorScheme.surface : context.colorScheme.primary,
           elevation: 4,

@@ -1,5 +1,3 @@
-import "dart:async";
-
 import "package:flutter/material.dart";
 
 import "../services/haptics/app_haptics.dart";
@@ -15,12 +13,7 @@ class MyTextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: onClick == null
-          ? null
-          : () {
-              unawaited(AppHaptics.selectionClick());
-              onClick!();
-            },
+      onPressed: AppHaptics.wrapperLight(onClick),
       style: TextButton.styleFrom(
         padding: const EdgeInsets.all(12),
         side: showBorder ? BorderSide(color: color ?? context.colorScheme.primary) : null,

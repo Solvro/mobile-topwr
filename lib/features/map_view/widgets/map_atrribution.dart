@@ -19,7 +19,7 @@ class OpenMapAtrribution extends ConsumerWidget {
         TextSourceAttribution(
           OpenStreetMapConfig.attribution,
           onTap: () async {
-            unawaited(AppHaptics.selectionClick());
+            unawaited(AppHaptics.lightImpact());
             await ref.launch(OpenStreetMapConfig.copyright);
           },
         ),

@@ -1,5 +1,3 @@
-import "dart:async";
-
 import "package:flutter/material.dart";
 
 import "../services/haptics/app_haptics.dart";
@@ -18,10 +16,7 @@ class ArrowButton extends StatelessWidget {
       shape: const CircleBorder(),
       child: InkWell(
         customBorder: const CircleBorder(),
-        onTap: () {
-          unawaited(AppHaptics.selectionClick());
-          onPressed();
-        },
+        onTap: AppHaptics.wrapperLight(onPressed),
         child: Padding(
           padding: const EdgeInsets.all(4),
           child: Icon(icon, semanticLabel: "", size: 28, color: context.colorScheme.onPrimary),

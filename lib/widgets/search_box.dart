@@ -59,12 +59,7 @@ class SearchBox extends HookWidget {
       child: TextField(
         controller: controller,
         focusNode: focusNode,
-        onTap: onTap == null
-            ? null
-            : () {
-                unawaited(AppHaptics.selectionClick());
-                onTap!();
-              },
+        onTap: AppHaptics.wrapperSelection(onTap),
         onTapOutside: onTapOutside,
         onChanged: onChanged,
         decoration: InputDecoration(
@@ -84,7 +79,7 @@ class SearchBox extends HookWidget {
                   tooltip: context.localize.clear,
                   icon: Icon(Icons.cancel, semanticLabel: "", color: context.colorScheme.onTertiary, size: 19),
                   onPressed: () {
-                    unawaited(AppHaptics.selectionClick());
+                    unawaited(AppHaptics.lightImpact());
                     onSuffixPressed();
                   },
                 )

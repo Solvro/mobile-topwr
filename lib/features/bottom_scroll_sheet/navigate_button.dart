@@ -21,7 +21,7 @@ class NavigateButton<T extends GoogleNavigable> extends ConsumerWidget {
       child: TextButton.icon(
         icon: Icon(ParkingsIcons.map_nav, semanticLabel: "", color: context.colorScheme.primary, size: 16),
         onPressed: () async {
-          unawaited(AppHaptics.selectionClick());
+          unawaited(AppHaptics.lightImpact());
           await ref.watch(context.activeMarkerController<T>().notifier).launchLink();
         },
         style: TextButton.styleFrom(padding: const EdgeInsets.all(12)),

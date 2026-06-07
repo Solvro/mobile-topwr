@@ -1,5 +1,3 @@
-import "dart:async";
-
 import "package:flutter/material.dart";
 
 import "../api_base_rest/shared_models/image_data.dart";
@@ -41,12 +39,7 @@ class BigPreviewCard extends StatelessWidget {
       borderRadius: BorderRadius.circular(8),
       child: Material(
         child: InkWell(
-          onTap: onClick == null
-              ? null
-              : () {
-                  unawaited(AppHaptics.selectionClick());
-                  onClick!();
-                },
+          onTap: AppHaptics.wrapperSelection(onClick),
           child: Ink(
             decoration: BoxDecoration(color: context.colorScheme.surfaceTint, borderRadius: BorderRadius.circular(8)),
             child: SizedBox(
@@ -95,12 +88,7 @@ class BigPreviewCard extends StatelessWidget {
                           Align(
                             alignment: Alignment.centerLeft,
                             child: ElevatedButton(
-                              onPressed: onClick == null
-                                  ? null
-                                  : () {
-                                      unawaited(AppHaptics.selectionClick());
-                                      onClick!();
-                                    },
+                              onPressed: AppHaptics.wrapperLight(onClick),
                               style: ElevatedButton.styleFrom(
                                 elevation: 1,
                                 padding: const EdgeInsets.all(8),

@@ -43,7 +43,7 @@ class AudioPlayerWidget extends HookConsumerWidget {
                 IconButton(
                   tooltip: radioState.isMuted ? l10n.radio_luz_unmute : l10n.radio_luz_mute,
                   onPressed: () async {
-                    unawaited(AppHaptics.selectionClick());
+                    unawaited(AppHaptics.lightImpact());
                     await radioController.toggleVolume();
                   },
                   icon: Icon(

@@ -1,5 +1,3 @@
-import "dart:async";
-
 import "package:flutter/material.dart";
 
 import "../services/haptics/app_haptics.dart";
@@ -15,12 +13,7 @@ class TileSplash extends StatelessWidget {
     return Material(
       color: Colors.transparent,
       child: InkWell(
-        onTap: onTap == null
-            ? null
-            : () {
-                unawaited(AppHaptics.selectionClick());
-                onTap!();
-              },
+        onTap: AppHaptics.wrapperSelection(onTap),
         child: ColoredBox(color: Colors.transparent, child: child ?? const SizedBox.expand()),
       ),
     );

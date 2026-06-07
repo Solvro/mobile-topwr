@@ -8,7 +8,6 @@ import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../../../widgets/my_error_widget.dart";
 import "../../config/ui_config.dart";
-import "../../services/haptics/app_haptics.dart";
 import "../../theme/app_theme.dart";
 import "../../utils/context_extensions.dart";
 import "../../utils/launch_url_util.dart";
@@ -110,7 +109,6 @@ class _GuideInfo extends ConsumerWidget {
         ),
       ),
       onTap: () async {
-        unawaited(AppHaptics.selectionClick());
         await ref.launch(emailLaunchUri.toString());
       },
     );

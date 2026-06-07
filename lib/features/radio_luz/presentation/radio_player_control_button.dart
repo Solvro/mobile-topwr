@@ -27,7 +27,7 @@ class RadioPlayerControlButton extends StatelessWidget {
 
     return ElevatedButton(
       onPressed: () async {
-        unawaited(AppHaptics.selectionClick());
+        unawaited(AppHaptics.lightImpact());
         if (isPlaying) {
           await radioController.pause();
         } else {

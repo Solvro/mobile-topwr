@@ -1,5 +1,3 @@
-import "dart:async";
-
 import "package:flutter/material.dart";
 
 import "../config/ui_config.dart";
@@ -44,12 +42,7 @@ class TechnicalMessage extends StatelessWidget {
               backgoundColor ??
               (alertType == AlertType.error ? context.colorScheme.primary : context.colorScheme.secondary),
           child: ListTile(
-            onTap: onTap == null
-                ? null
-                : () {
-                    unawaited(AppHaptics.selectionClick());
-                    onTap!();
-                  },
+            onTap: AppHaptics.wrapperSelection(onTap),
             trailing: icon,
             title: Text(
               title ?? DishCategory.technicalInfo.getLocalizedName(context),

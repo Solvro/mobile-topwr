@@ -7,7 +7,6 @@ import "package:hooks_riverpod/hooks_riverpod.dart";
 import "../../../../config/ui_config.dart";
 import "../../../../gen/assets.gen.dart";
 import "../../../../hooks/use_semantics_service_on_changed_value.dart";
-import "../../../../services/haptics/app_haptics.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../theme/colors.dart";
 import "../../../../utils/context_extensions.dart";
@@ -49,7 +48,6 @@ class LibraryTile extends HookConsumerWidget {
                   "${library.room != null ? "${context.localize.room} ${library.room}\n" : ""}${library.building != null ? "${context.localize.building_tile_building} ${library.building!.name}" : ""}",
               isActive: isActive,
               onTap: () {
-                unawaited(AppHaptics.selectionClick());
                 unawaited(ref.trackEvent(ClarityEvents.selectLibrary, value: library.title));
                 unawaited(ref.read(multilayerMapControllerProvider).onMarkerTap(LibraryItem(library: library)));
               },

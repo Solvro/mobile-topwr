@@ -61,7 +61,6 @@ class BuildingTile extends HookConsumerWidget {
                   subtitle: building.address,
                   isActive: isActive,
                   onTap: () {
-                    unawaited(AppHaptics.selectionClick());
                     unawaited(ref.trackEvent(ClarityEvents.selectBuilding, value: building.name));
                     unawaited(ref.read(multilayerMapControllerProvider).onMarkerTap(BuildingItem(building: building)));
                   },
@@ -117,7 +116,7 @@ class BuildingTile extends HookConsumerWidget {
                           },
                   ),
                   onPressed: () {
-                    unawaited(AppHaptics.selectionClick());
+                    unawaited(AppHaptics.lightImpact());
                     unawaited(ref.navigateBuildingDetailAction(building));
                   },
                 ),
@@ -135,7 +134,7 @@ class BuildingTile extends HookConsumerWidget {
               size: context.textScaler.scale(16),
             ),
             onPressed: () {
-              unawaited(AppHaptics.selectionClick());
+              unawaited(AppHaptics.lightImpact());
               unawaited(ref.navigateBuildingDetailAction(building));
             },
             style: TextButton.styleFrom(padding: const EdgeInsets.all(12)),

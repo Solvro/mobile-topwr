@@ -23,7 +23,7 @@ class FiltersFAB extends ConsumerWidget {
       heroTag: "filters_fab",
       tooltip: context.localize.filters_fab_tooltip,
       onPressed: () async {
-        unawaited(AppHaptics.selectionClick());
+        unawaited(AppHaptics.lightImpact());
         unawaited(ref.trackEvent(ClarityEvents.openSciClubsFilterSheet));
         await showModalBottomSheet<void>(
           context: context,
