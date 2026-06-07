@@ -37,34 +37,38 @@ class CarPlayService {
 
   Future<void> _setupCarplayTemplate() async {
     if (_initialized) return;
-    _initialized = true;
 
-    await FlutterCarplay.setRootTemplate(
-      rootTemplate: CPListTemplate(
-        sections: [
-          CPListSection(
-            items: [
-              CPListItem(
-                text: "Radio LUZ",
-                detailText: "Studenckie Radio",
-                image: radioLuzArtwork,
-                onPress: (complete, self) async {
-                  try {
-                    await _audioHandler.play();
-                    await FlutterCarplay.showSharedNowPlaying();
-                  } finally {
-                    complete();
-                  }
-                },
-              ),
-            ],
-          ),
-        ],
-        title: "ToPWR",
-        systemIcon: "music.note",
-      ),
-      animated: false,
-    );
-    await _carplay.forceUpdateRootTemplate();
+    try {
+      await FlutterCarplay.setRootTemplate(
+        rootTemplate: CPListTemplate(
+          sections: [
+            CPListSection(
+              items: [
+                CPListItem(
+                  text: "Radio LUZ",
+                  detailText: "Studenckie Radio",
+                  image: radioLuzArtwork,
+                  onPress: (complete, self) async {
+                    try {
+                      await _audioHandler.play();
+                      await FlutterCarplay.showSharedNowPlaying();
+                    } finally {
+                      complete();
+                    }
+                  },
+                ),
+              ],
+            ),
+          ],
+          title: "ToPWR",
+          systemIcon: "music.note",
+        ),
+        animated: false,
+      );
+      await _carplay.forceUpdateRootTemplate();
+      _initialized = true;
+    } on Exception catch (_) {
+      _initialized = false;
+    }
   }
 }
