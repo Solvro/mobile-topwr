@@ -67,10 +67,7 @@ class DigitalGuideCarouselWithIndicator extends HookWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                ArrowButton(
-                  icon: Icons.chevron_left,
-                  onPressed: () => unawaited(goTo(current.value - 1)),
-                ),
+                ArrowButton(icon: Icons.chevron_left, onPressed: () => unawaited(goTo(current.value - 1))),
 
                 Row(
                   children: imgListId.asMap().entries.map((entry) {
@@ -90,10 +87,7 @@ class DigitalGuideCarouselWithIndicator extends HookWidget {
                   }).toList(),
                 ),
 
-                ArrowButton(
-                  icon: Icons.chevron_right,
-                  onPressed: () => unawaited(goTo(current.value + 1)),
-                ),
+                ArrowButton(icon: Icons.chevron_right, onPressed: () => unawaited(goTo(current.value + 1))),
               ],
             ),
           ),
