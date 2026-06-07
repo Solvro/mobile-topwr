@@ -54,7 +54,6 @@ class NavigationController extends _$NavigationController {
   }
 
   bool _isCurrentlyWithinTabView() {
-    // ignore: riverpod_lint/only_use_keep_alive_inside_keep_alive otherwhise we have weird stuff happening
     final lastRoute = ref.read(currentRouteProvider);
     final routeSettings = lastRoute?.settings;
     if (routeSettings is AutoRoutePage) {
