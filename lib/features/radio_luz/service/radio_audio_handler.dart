@@ -65,7 +65,6 @@ class RadioAudioHandlerBridge extends BaseAudioHandler with SeekHandler {
 
     //pre-configure audio session for iOS to reduce playback startup latency
     unawaited(_initAudioSession());
-
   }
 
   /// iOS audio session
