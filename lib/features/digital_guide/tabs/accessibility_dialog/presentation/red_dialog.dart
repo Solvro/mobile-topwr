@@ -32,40 +32,41 @@ class RedDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: context.colorScheme.surface,
-          borderRadius: BorderRadius.circular(8),
-          border: Border(
-            top: BorderSide(color: context.colorScheme.primary),
-            bottom: BorderSide(color: context.colorScheme.primary, width: 5),
-          ),
-          boxShadow: ShadowConfig.card,
-        ),
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 332),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              _DialogHeader(title: title, centerTitle: centerTitle, showCloseButton: showCloseButton),
-              Flexible(
-                child: SingleChildScrollView(
-                  child: _DialogContent(
-                    subtitle: subtitle,
-                    applyButtonText: applyButtonText,
-                    showApplyButton: showApplyButton,
-                    onApplyButtonPressed: onApplyButtonPressed == null
-                        ? null
-                        : () {
-                            unawaited(HapticFeedback.selectionClick());
-                            onApplyButtonPressed!();
-                          },
-                    child: child,
+      child: Material(
+        borderRadius: BorderRadius.circular(8),
+        clipBehavior: Clip.antiAlias,
+        color: context.colorScheme.surface,
+        elevation: 4,
+        child: Stack(
+          children: [
+            ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 332),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  _DialogHeader(title: title, centerTitle: centerTitle, showCloseButton: showCloseButton),
+                  Flexible(
+                    child: SingleChildScrollView(
+                      child: _DialogContent(
+                        subtitle: subtitle,
+                        applyButtonText: applyButtonText,
+                        showApplyButton: showApplyButton,
+                        onApplyButtonPressed: onApplyButtonPressed == null
+                            ? null
+                            : () {
+                                unawaited(HapticFeedback.selectionClick());
+                                onApplyButtonPressed!();
+                              },
+                        child: child,
+                      ),
+                    ),
                   ),
-                ),
+                ],
               ),
-            ],
-          ),
+            ),
+            Positioned(top: 0, left: 0, right: 0, height: 1, child: ColoredBox(color: context.colorScheme.primary)),
+            Positioned(bottom: 0, left: 0, right: 0, height: 5, child: ColoredBox(color: context.colorScheme.primary)),
+          ],
         ),
       ),
     );
