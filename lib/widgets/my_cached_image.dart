@@ -3,6 +3,7 @@ import "package:flutter/material.dart";
 import "package:flutter_cache_manager/flutter_cache_manager.dart";
 
 import "../config/ttl_config.dart";
+import "../config/ui_config.dart";
 import "../features/splash_screen/widgets/flutter_splash_screen.dart";
 import "loading_widgets/shimmer_loading.dart";
 
@@ -35,7 +36,7 @@ class MyCachedImage extends StatelessWidget {
       placeholder: switch (loadingType) {
         LoadingType.noLoading => null,
         LoadingType.shimmerLoading => (context, url) => Center(
-          child: ShimmeringEffect(child: Container(color: Colors.white)),
+          child: ShimmeringEffect(child: Container(color: ShimmerLoadingConfig.placeholderColor)),
         ),
         LoadingType.circularProgressIndicator => (context, url) => const Center(child: CircularProgressIndicator()),
       },

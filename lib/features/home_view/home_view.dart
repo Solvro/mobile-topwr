@@ -1,6 +1,7 @@
 import "package:auto_route/auto_route.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
+import "package:flutter/rendering.dart";
 
 import "../../config/ui_config.dart";
 import "../../theme/app_theme.dart";
@@ -34,8 +35,8 @@ class HomeView extends StatelessWidget {
       appBar: LogoAppBar(context, actions: const [PlannerBannerVisibility(reverseLogic: true, child: PlanerAdBadge())]),
       body: KeepAliveHomeViewProviders(
         child: ListView.separated(
+          scrollCacheExtent: const ScrollCacheExtent.pixels(500),
           key: MyAppConfig.verticalScrollableKey,
-          cacheExtent: 500,
           itemBuilder: (context, index) => sections[index],
           separatorBuilder: (context, index) =>
               SizedBox(height: index == 1 || index == 2 ? 0 : HomeViewConfig.paddingMedium),

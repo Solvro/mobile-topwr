@@ -13,6 +13,7 @@ import "package:lottie/lottie.dart";
 import "../../../../../theme/app_theme.dart";
 import "../../../../config/ui_config.dart";
 import "../../../../gen/assets.gen.dart";
+import "../../../../services/haptics/app_haptics.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../../../widgets/horizontal_symmetric_safe_area.dart";
@@ -80,9 +81,14 @@ class _SksMenuView extends ConsumerWidget {
           FloatingActionButton(
             heroTag: null,
             elevation: 3,
+            tooltip: context.localize.sks_favourite_dishes,
             backgroundColor: context.colorScheme.primary,
-            onPressed: ref.navigateToSksFavouriteDishes,
-            child: Icon(Icons.favorite, color: context.colorScheme.surface),
+            onPressed: AppHaptics.wrapperLight(ref.navigateToSksFavouriteDishes),
+            child: Icon(
+              Icons.favorite,
+              semanticLabel: context.localize.sks_favourite_dishes,
+              color: context.colorScheme.surface,
+            ),
           ),
       ],
       body: RefreshIndicator(

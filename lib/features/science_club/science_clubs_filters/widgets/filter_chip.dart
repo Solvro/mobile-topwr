@@ -3,6 +3,7 @@ import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../../../config/ui_config.dart";
 import "../../../../hooks/use_semantics_service_on_changed_value.dart";
+import "../../../../services/haptics/app_haptics.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
 
@@ -38,10 +39,10 @@ class MyFilterChip extends HookConsumerWidget {
           showCheckmark: false,
           label: Text(label),
           selected: selected,
-          onSelected: (_) => onTap(),
+          onSelected: (_) => AppHaptics.wrapperSelection(onTap),
           selectedColor: selectedColor ?? context.colorScheme.primary,
           backgroundColor: Colors.transparent,
-          labelStyle: TextStyle(color: selected ? Colors.white : context.colorScheme.tertiary),
+          labelStyle: TextStyle(color: selected ? context.colorScheme.onPrimary : context.colorScheme.tertiary),
           side: BorderSide(
             color: selected ? selectedBorderColor ?? context.colorScheme.primary : context.colorScheme.tertiary,
           ),

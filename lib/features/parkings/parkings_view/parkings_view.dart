@@ -7,6 +7,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../config/map_view_config.dart";
 import "../../../gen/assets.gen.dart";
+import "../../../services/haptics/app_haptics.dart";
 import "../../../utils/context_extensions.dart";
 import "../../map_view/map_view.dart";
 import "controllers.dart";
@@ -33,14 +34,11 @@ class ParkingsView extends ConsumerWidget {
         alignment: Alignment.topCenter,
         child: ExcludeSemantics(
           child: GestureDetector(
-            onTap: () {
+            onTap: AppHaptics.wrapperSelection(() {
               unawaited(ref.read(parkingsMapControllerProvider).onMarkerTap(item));
-            },
-            child: Image.asset(
-              isActive
-                  ? Assets.png.mapMarkers.activeParkingMapMarker.path
-                  : Assets.png.mapMarkers.parkingMapMarker.path,
-            ),
+            }),
+            child: (isActive ? Assets.png.mapMarkers.activeParkingMapMarker : Assets.png.mapMarkers.parkingMapMarker)
+                .image(),
           ),
         ),
         point: item.location,

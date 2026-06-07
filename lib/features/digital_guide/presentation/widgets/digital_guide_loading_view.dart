@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 
-import "../../../../config/ui_config.dart" show DetailViewsConfig, DigitalGuideConfig, GuideDetailViewConfig;
+import "../../../../config/ui_config.dart"
+    show DetailViewsConfig, DigitalGuideConfig, GuideDetailViewConfig, ShimmerLoadingConfig;
 import "../../../../widgets/loading_widgets/shimmer_loading.dart";
 
 class DigitalGuideLoadingView extends StatelessWidget {
@@ -35,12 +36,16 @@ class _DigitalGuideTitleSectionLoading extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ShimmerLoadingItem(
-            child: Container(color: Colors.white, width: 100, height: DigitalGuideConfig.paddingBig),
+            child: Container(
+              color: ShimmerLoadingConfig.placeholderColor,
+              width: 100,
+              height: DigitalGuideConfig.paddingBig,
+            ),
           ),
           const SizedBox(height: DigitalGuideConfig.paddingSmall),
           ShimmerLoadingItem(
             child: Container(
-              color: Colors.white,
+              color: ShimmerLoadingConfig.placeholderColor,
               width: MediaQuery.of(context).size.width - 2 * DigitalGuideConfig.paddingBig,
               height: DigitalGuideConfig.paddingBig,
             ),
@@ -60,7 +65,7 @@ class _DigitalGuideHeaderLoading extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.only(top: DigitalGuideConfig.borderRadiusBig),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: ShimmerLoadingConfig.placeholderColor,
           borderRadius: BorderRadius.circular(GuideDetailViewConfig.borderRadius),
         ),
         width: double.infinity,
@@ -78,7 +83,7 @@ class _DigitalGuideInfoSectionLoading extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: DigitalGuideConfig.borderRadiusBig),
       child: ShimmerLoadingItem(
-        child: Container(color: Colors.white, width: double.infinity, height: 180),
+        child: Container(color: ShimmerLoadingConfig.placeholderColor, width: double.infinity, height: 180),
       ),
     );
   }
@@ -116,7 +121,7 @@ class _LoadingTile extends StatelessWidget {
     return ShimmerLoadingItem(
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: ShimmerLoadingConfig.placeholderColor,
           borderRadius: BorderRadius.circular(GuideDetailViewConfig.borderRadius),
         ),
         width: double.infinity,

@@ -1,8 +1,12 @@
+import "dart:async";
+
 import "package:collection/collection.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../config/nav_bar_config.dart";
+import "../../config/ui_config.dart";
+import "../../services/haptics/app_haptics.dart";
 import "../../theme/app_theme.dart";
 
 class BottomNavBar extends ConsumerWidget {
@@ -14,14 +18,13 @@ class BottomNavBar extends ConsumerWidget {
     return Theme(
       data: Theme.of(context).copyWith(splashColor: Colors.transparent, highlightColor: Colors.transparent),
       child: DecoratedBox(
-        decoration: BoxDecoration(
-          boxShadow: <BoxShadow>[
-            BoxShadow(color: Colors.black.withValues(alpha: .08), blurRadius: 20, offset: const Offset(0, -1)),
-          ],
-        ),
+        decoration: const BoxDecoration(boxShadow: ShadowConfig.navBar),
         child: BottomNavigationBar(
           currentIndex: activeIndex,
-          onTap: onTap,
+          onTap: (indx) {
+            unawaited(AppHaptics.selectionClick());
+            onTap(indx);
+          },
           backgroundColor: context.colorScheme.surfaceTint,
           showSelectedLabels: false,
           showUnselectedLabels: false,
@@ -42,6 +45,7 @@ class _NavigationBarItemsList extends DelegatingList<BottomNavigationBarItem> {
                 key: Key(e.name),
                 icon: Icon(
                   e.icon,
+                  semanticLabel: "",
                   color: i == activeIndex
                       ? context.colorScheme.primary
                       : context.colorScheme.onTertiary.withValues(alpha: .16),

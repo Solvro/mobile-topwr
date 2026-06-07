@@ -14,6 +14,7 @@ mixin LocalCacheRefNumberRepositoryMixin on $AsyncNotifier<int?> {
 
   Future<void> saveNumber(int number) async {
     await (await _sharedPrefs).setInt(prefsKEY, number);
+    if (!ref.mounted) return;
     state = AsyncValue.data(number);
   }
 }

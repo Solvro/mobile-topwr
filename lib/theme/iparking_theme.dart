@@ -3,6 +3,7 @@ import "package:flutter/material.dart";
 import "colors.dart";
 import "typography.dart";
 
+// ignore: solvro_config/avoid_hardcoded_color
 const iparkingShadows = [Shadow(blurRadius: 4, color: Colors.black26, offset: Offset(0, 4))];
 
 class ParkingTextStyle extends BodyTextStyle {

@@ -1,7 +1,9 @@
 import "package:flutter/material.dart";
 
 import "../../../../config/ui_config.dart";
+import "../../../../services/haptics/app_haptics.dart";
 import "../../../../theme/app_theme.dart";
+import "../../../../theme/colors.dart";
 import "../../../../theme/iparking_theme.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../widgets/my_tooltip.dart";
@@ -20,7 +22,7 @@ class ParkingWideTileCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final scaler = context.textScaler.clamp(maxScaleFactor: 2);
     return GestureDetector(
-      onTap: isActive ? null : onTap,
+      onTap: isActive ? null : AppHaptics.wrapperSelection(onTap),
       child: Container(
         height: isActive ? scaler.clamp(maxScaleFactor: 1.5).scale(300) : scaler.scale(WideTileCardConfig.imageSize),
         decoration: BoxDecoration(
@@ -30,7 +32,7 @@ class ParkingWideTileCard extends StatelessWidget {
         clipBehavior: Clip.antiAlias,
         child: Stack(
           children: [
-            Container(color: isActive ? context.colorScheme.onTertiary : const Color.fromRGBO(41, 50, 65, 0.60)),
+            Container(color: isActive ? context.colorScheme.onTertiary : ParkingsConfig.inactiveOverlayColor),
             Container(
               width: double.infinity,
               padding: ParkingsConfig.padding.copyWith(bottom: 8 / context.textScaler.scale(1)),
@@ -48,12 +50,18 @@ class ParkingWideTileCard extends StatelessWidget {
                 top: 0,
                 right: 0,
                 child: IconButton(
+                  tooltip: context.localize.close,
                   padding: EdgeInsets.zero,
-                  onPressed: onTap,
+                  onPressed: AppHaptics.wrapperLight(onTap),
                   icon: Semantics(
                     button: true,
                     label: context.localize.close,
-                    child: Icon(Icons.close, color: context.colorScheme.surface, size: scaler.scale(22)),
+                    child: Icon(
+                      Icons.close,
+                      semanticLabel: context.localize.close,
+                      color: context.colorScheme.surface,
+                      size: scaler.scale(22),
+                    ),
                   ),
                 ),
               ),
@@ -143,6 +151,7 @@ class _RightColumn extends StatelessWidget {
                 SizedBox(width: scaler.scale(4)),
                 Icon(
                   parking.trend.arrowIcon,
+                  semanticLabel: "",
                   color: isActive ? arrowColor(parking.trend, context) : context.colorScheme.surface,
                   size: scaler.scale(21),
                   shadows: iparkingShadows,
@@ -159,9 +168,9 @@ class _RightColumn extends StatelessWidget {
 Color arrowColor(String trend, BuildContext context) {
   switch (trend) {
     case "1":
-      return const Color(0xFF28a745); //green arrow
+      return ColorsConsts.trendUp;
     case "-1":
-      return const Color(0xFFdc3545); //red arrow
+      return ColorsConsts.trendDown;
     default:
       return context.colorScheme.surface;
   }

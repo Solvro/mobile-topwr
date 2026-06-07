@@ -101,7 +101,12 @@ class _GuideInfo extends ConsumerWidget {
       trailing: SizedBox(
         height: context.textScaler.scale(WideTileCardConfig.imageSize),
         width: WideTileCardConfig.imageSize,
-        child: Icon(Icons.lightbulb_outline, size: context.textScaler.scale(55), color: context.colorScheme.tertiary),
+        child: Icon(
+          Icons.lightbulb_outline,
+          semanticLabel: "",
+          size: context.textScaler.scale(55),
+          color: context.colorScheme.tertiary,
+        ),
       ),
       onTap: () async {
         await ref.launch(emailLaunchUri.toString());

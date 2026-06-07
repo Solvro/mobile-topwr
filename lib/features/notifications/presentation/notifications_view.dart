@@ -1,9 +1,12 @@
+import "dart:async";
+
 import "package:auto_route/auto_route.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../config/ui_config.dart";
+import "../../../services/haptics/app_haptics.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../utils/launch_url_util.dart";
@@ -59,16 +62,14 @@ class _NotificationsErrorContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
-      builder: (context, constraints) => ListView(
+      builder: (context, constraints) => SingleChildScrollView(
         key: MyAppConfig.verticalScrollableKey,
         physics: const AlwaysScrollableScrollPhysics(),
         padding: const EdgeInsets.fromLTRB(24, 8, 24, 24),
-        children: [
-          SizedBox(
-            height: constraints.maxHeight,
-            child: MyErrorWidget(error, stackTrace: stackTrace),
-          ),
-        ],
+        child: SizedBox(
+          height: constraints.maxHeight,
+          child: MyErrorWidget(error, stackTrace: stackTrace),
+        ),
       ),
     );
   }
@@ -82,11 +83,11 @@ class _NotificationsListContent extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return notifications.isEmpty
-        ? ListView(
+        ? SingleChildScrollView(
             key: MyAppConfig.verticalScrollableKey,
             physics: const AlwaysScrollableScrollPhysics(),
             padding: const EdgeInsets.fromLTRB(24, 8, 24, 24),
-            children: [Center(child: Text(context.localize.no_notifications))],
+            child: Center(child: Text(context.localize.no_notifications)),
           )
         : ListView.separated(
             key: MyAppConfig.verticalScrollableKey,
@@ -99,11 +100,22 @@ class _NotificationsListContent extends ConsumerWidget {
               return WideTileCard(
                 title: notification.title,
                 subtitle: notification.body,
-                onTap: notification.data?.route != null ? () => ref.launch(notification.data!.route!) : null,
+                onTap: notification.data?.route != null
+                    ? () async {
+                        await ref.launch(notification.data!.route!);
+                      }
+                    : null,
                 trailing: IconButton(
                   tooltip: context.localize.more_info,
-                  onPressed: () => NotificationDetailsDialog.show(context, ref, notification),
-                  icon: Icon(Icons.info, size: context.textScaler.scale(22), color: context.colorScheme.tertiary),
+                  onPressed: AppHaptics.wrapperLight(
+                    () => unawaited(NotificationDetailsDialog.show(context, ref, notification)),
+                  ),
+                  icon: Icon(
+                    Icons.info,
+                    semanticLabel: "",
+                    size: context.textScaler.scale(22),
+                    color: context.colorScheme.tertiary,
+                  ),
                 ),
               );
             },

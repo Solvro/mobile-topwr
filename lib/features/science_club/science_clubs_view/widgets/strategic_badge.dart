@@ -27,6 +27,7 @@ class _StrategicBadgeWidget extends StatelessWidget {
         padding: const EdgeInsets.only(left: 4),
         child: Icon(
           isPolish ? StrategicClubBadges.polish_badge : StrategicClubBadges.english_badge,
+          semanticLabel: "",
           size: scaler.scale(14),
           color: context.colorScheme.secondary,
         ),

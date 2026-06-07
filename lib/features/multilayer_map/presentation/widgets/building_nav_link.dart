@@ -4,6 +4,7 @@ import "package:flutter/material.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../../../config/ui_config.dart";
+import "../../../../services/haptics/app_haptics.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../data/model/building.dart";
@@ -24,10 +25,14 @@ class BuildingNavLink extends ConsumerWidget {
         iconSize: context.textScaler.clamp(maxScaleFactor: 2).scale(22),
         visualDensity: VisualDensity.compact,
         color: isActive ? context.colorScheme.surface : context.colorScheme.secondary,
-        icon: Icon(Icons.home_sharp, color: isActive ? context.colorScheme.surface : context.colorScheme.secondary),
-        onPressed: () {
+        icon: Icon(
+          Icons.home_sharp,
+          semanticLabel: "",
+          color: isActive ? context.colorScheme.surface : context.colorScheme.secondary,
+        ),
+        onPressed: AppHaptics.wrapperLight(() {
           unawaited(ref.read(multilayerMapControllerProvider).onMarkerTap(BuildingItem(building: building)));
-        },
+        }),
       ),
     );
   }

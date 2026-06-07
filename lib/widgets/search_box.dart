@@ -4,6 +4,7 @@ import "package:flutter_svg/svg.dart";
 
 import "../config/ui_config.dart";
 import "../gen/assets.gen.dart";
+import "../services/haptics/app_haptics.dart";
 import "../theme/app_theme.dart";
 import "../utils/context_extensions.dart";
 
@@ -56,7 +57,7 @@ class SearchBox extends HookWidget {
       child: TextField(
         controller: controller,
         focusNode: focusNode,
-        onTap: onTap,
+        onTap: AppHaptics.wrapperSelection(onTap),
         onTapOutside: onTapOutside,
         onChanged: onChanged,
         decoration: InputDecoration(
@@ -73,8 +74,9 @@ class SearchBox extends HookWidget {
           ),
           suffixIcon: showCloseIcon.value
               ? IconButton(
-                  icon: Icon(Icons.cancel, color: context.colorScheme.onTertiary, size: 19),
-                  onPressed: onSuffixPressed,
+                  tooltip: context.localize.clear,
+                  icon: Icon(Icons.cancel, semanticLabel: "", color: context.colorScheme.onTertiary, size: 19),
+                  onPressed: AppHaptics.wrapperLight(onSuffixPressed),
                 )
               : null,
         ),

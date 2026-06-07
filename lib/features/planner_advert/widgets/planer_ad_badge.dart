@@ -3,6 +3,7 @@ import "dart:async";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
+import "../../../services/haptics/app_haptics.dart";
 import "../../../theme/app_theme.dart";
 import "../../../theme/hex_color.dart";
 import "../../../utils/context_extensions.dart";
@@ -40,7 +41,7 @@ class _BadgeContent extends ConsumerWidget {
     return Padding(
       padding: const EdgeInsets.only(right: 12),
       child: OutlinedButton(
-        onPressed: () async {
+        onPressed: AppHaptics.wrapperLight(() async {
           unawaited(ref.trackEvent(ClarityEvents.openBannerDialog));
           await showCustomDialog(
             context: context,
@@ -52,7 +53,7 @@ class _BadgeContent extends ConsumerWidget {
             confirmText: context.localize.read_more,
             dialogContent: PlanerBadgeDialogContent(data: data),
           );
-        },
+        }),
         style: OutlinedButton.styleFrom(
           shape: const CircleBorder(),
           side: const BorderSide(color: Colors.transparent),
@@ -60,7 +61,7 @@ class _BadgeContent extends ConsumerWidget {
           padding: const EdgeInsets.all(8),
           elevation: 2,
         ),
-        child: Icon(Icons.warning_rounded, color: textColor, size: 24),
+        child: Icon(Icons.warning_rounded, semanticLabel: "", color: textColor, size: 24),
       ),
     );
   }

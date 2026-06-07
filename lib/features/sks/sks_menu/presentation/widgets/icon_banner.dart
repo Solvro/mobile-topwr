@@ -87,7 +87,7 @@ class IconBanner extends HookWidget {
                     alignment: Alignment.topRight,
                     child: Padding(
                       padding: const EdgeInsets.all(padding / 3),
-                      child: Icon(icon, color: iconColor, size: size),
+                      child: Icon(icon, semanticLabel: "", color: iconColor, size: size),
                     ),
                   ),
                 ),

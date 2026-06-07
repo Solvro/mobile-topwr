@@ -24,6 +24,7 @@ import "features/navigator/navigation_stack.dart";
 import "features/parkings/parkings_view/repository/parkings_repository.dart";
 import "features/radio_luz/service/radio_audio_handler.dart";
 import "features/radio_luz/service/radio_player_provider.dart";
+import "features/settings/data/haptic_feedback_repository.dart";
 import "features/splash_screen/splash_screen.dart";
 import "features/splash_screen/splash_screen_controller.dart";
 import "features/update_dialog/presentation/update_dialog_wrapper.dart";
@@ -92,17 +93,15 @@ Future<void> runNormalApp() async {
   await appAnalytics.initialize(projectId: Env.clarityConfigId);
 
   runApp(
-    appAnalytics.wrapApp(
-      app: ProviderScope(
-        retry: (retryCount, error) {
-          if (error is ParkingsOfflineException) return null;
-          if (error is RestFrameworkOfflineException) return null;
-          if (retryCount > 5) return null;
-          return Duration(seconds: retryCount * 2);
-        },
-        overrides: [radioPlayerProvider.overrideWithValue(audioHandler)],
-        child: const SplashScreen(child: MyApp()),
-      ),
+    ProviderScope(
+      retry: (retryCount, error) {
+        if (error is ParkingsOfflineException) return null;
+        if (error is RestFrameworkOfflineException) return null;
+        if (retryCount > 5) return null;
+        return Duration(seconds: retryCount * 2);
+      },
+      overrides: [radioPlayerProvider.overrideWithValue(audioHandler)],
+      child: appAnalytics.wrapApp(app: const SplashScreen(child: MyApp())),
     ),
   );
 }
@@ -113,6 +112,7 @@ class MyApp extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentLocale = ref.watch(preferredLanguageRepositoryProvider);
+    ref.watch(hapticFeedbackRepositoryProvider);
     useDeeplinks(ref);
 
     return RemoveOldTranslations(

@@ -54,7 +54,7 @@ class SksChartHeader extends StatelessWidget {
                   textScaler: context.textScaler.clamp(maxScaleFactor: 1.5),
                 ),
                 const SizedBox(width: SksChartConfig.heightSmall),
-                trend?.icon ?? const SizedBox.shrink(),
+                trend?.icon(context) ?? const SizedBox.shrink(),
               ],
             ),
           ),

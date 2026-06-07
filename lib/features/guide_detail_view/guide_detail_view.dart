@@ -197,7 +197,7 @@ class _GuideDetailLoading extends StatelessWidget {
         physics: const NeverScrollableScrollPhysics(),
         children: [
           ShimmerLoadingItem(
-            child: Container(color: Colors.white, width: double.infinity, height: 300),
+            child: Container(color: ShimmerLoadingConfig.placeholderColor, width: double.infinity, height: 300),
           ),
           Padding(
             padding: const EdgeInsets.all(GuideDetailViewConfig.paddingMedium),

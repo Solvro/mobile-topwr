@@ -3,11 +3,11 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../config/ui_config.dart";
-import "../../../hooks/use_filters_sheet_height.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "filters_controller.dart";
 import "filters_search_controller.dart";
+import "utils/get_filters_sheet_height.dart";
 import "widgets/branches_wrap.dart";
 import "widgets/departments_wrap.dart";
 import "widgets/filters_button.dart";
@@ -20,7 +20,7 @@ class FiltersSheet extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final sheetHeight = useFiltersSheetHeight(context);
+    final sheetHeight = getFiltersSheetHeight(context);
 
     return ProviderScope(
       overrides: [areFiltersEnabledProvider],
@@ -52,13 +52,9 @@ class FiltersSheet extends ConsumerWidget {
                 ),
                 SafeArea(
                   child: DecoratedBox(
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       boxShadow: <BoxShadow>[
-                        BoxShadow(
-                          color: Colors.black.withValues(alpha: .04),
-                          blurRadius: 16,
-                          offset: const Offset(0, -3),
-                        ),
+                        BoxShadow(color: ShadowConfig.filterSheet, blurRadius: 16, offset: Offset(0, -3)),
                       ],
                     ),
                     child: Padding(
@@ -71,7 +67,11 @@ class FiltersSheet extends ConsumerWidget {
                               child: FiltersButton(
                                 text: context.localize.clear,
                                 icon: Icons.close,
-                                onPressed: ref.watch(areFiltersEnabledProvider) ? ref.getClearAllFilters(ref) : () {},
+                                onPressed: ref.watch(areFiltersEnabledProvider)
+                                    ? () {
+                                        ref.getClearAllFilters(ref);
+                                      }
+                                    : () {},
                                 isSecondary: true,
                               ),
                             ),
@@ -79,7 +79,9 @@ class FiltersSheet extends ConsumerWidget {
                             child: FiltersButton(
                               text: context.localize.apply,
                               icon: Icons.check,
-                              onPressed: context.maybePop,
+                              onPressed: () async {
+                                await context.maybePop();
+                              },
                             ),
                           ),
                         ],

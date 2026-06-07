@@ -1,10 +1,11 @@
+import "dart:async";
+
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../config/nav_bar_config.dart";
-import "../../utils/unwaited_microtask.dart";
 
 part "navigation_stack.g.dart";
 
@@ -17,11 +18,20 @@ class NavigationStack extends _$NavigationStack {
 
   void setStack(IList<Route<dynamic>> value) {
     if (!ref.mounted) return;
+    if (_routesEqual(state, value)) return;
     state = value;
   }
 }
 
-@riverpod
+bool _routesEqual(IList<Route<dynamic>> a, IList<Route<dynamic>> b) {
+  if (a.length != b.length) return false;
+  for (var i = 0; i < a.length; i++) {
+    if (!identical(a[i], b[i])) return false;
+  }
+  return true;
+}
+
+@Riverpod(keepAlive: true)
 Route<dynamic>? currentRoute(Ref ref) {
   final stack = ref.watch(navigationStackProvider);
   if (stack.isEmpty) {
@@ -86,12 +96,21 @@ class NavigationObserver extends NavigatorObserver {
   void _scheduleProviderFlush() {
     if (_flushScheduled) return;
     _flushScheduled = true;
-    unwaitedMicrotask(() async {
-      _flushScheduled = false;
-      if (!context.mounted) return;
-      _removedRoutes.forEach(ref.read(rootRouteActiveTabsProvider.notifier).remove);
-      _removedRoutes = const ISet<Route<dynamic>>.empty();
-      ref.read(navigationStackProvider.notifier).setStack(_stack);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      // Defer provider writes to the next event-loop turn so they run after
+      // handleDrawFrame and any post-frame Riverpod refresh tasks complete.
+      unawaited(
+        Future(() {
+          _flushScheduled = false;
+          if (!context.mounted) return;
+          final removedRoutes = _removedRoutes;
+          _removedRoutes = const ISet<Route<dynamic>>.empty();
+          if (removedRoutes.isNotEmpty) {
+            removedRoutes.forEach(ref.read(rootRouteActiveTabsProvider.notifier).remove);
+          }
+          ref.read(navigationStackProvider.notifier).setStack(_stack);
+        }),
+      );
     });
   }
 

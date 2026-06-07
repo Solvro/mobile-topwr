@@ -4,6 +4,7 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../../theme/app_theme.dart";
+import "../../../../services/haptics/app_haptics.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../analytics/data/clarity.dart";
 import "../../../analytics/data/clarity_events.dart";
@@ -21,7 +22,7 @@ class FiltersFAB extends ConsumerWidget {
     return FloatingActionButton(
       heroTag: "filters_fab",
       tooltip: context.localize.filters_fab_tooltip,
-      onPressed: () async {
+      onPressed: AppHaptics.wrapperLight(() async {
         unawaited(ref.trackEvent(ClarityEvents.openSciClubsFilterSheet));
         await showModalBottomSheet<void>(
           context: context,
@@ -31,7 +32,7 @@ class FiltersFAB extends ConsumerWidget {
         ).whenComplete(() {
           ref.read(focusFirstCardProvider.notifier).state = true;
         });
-      },
+      }),
       backgroundColor: context.colorScheme.primary,
       child: Semantics(
         label: context.localize.filters_fab_tooltip,
@@ -39,10 +40,14 @@ class FiltersFAB extends ConsumerWidget {
           children: [
             Padding(
               padding: const EdgeInsets.all(8),
-              child: Icon(Icons.tune, color: context.colorScheme.surface),
+              child: Icon(Icons.tune, semanticLabel: "", color: context.colorScheme.surface),
             ),
             if (isActive)
-              Positioned(top: 4, right: 4, child: Icon(Icons.circle, size: 8, color: context.colorScheme.surface)),
+              Positioned(
+                top: 4,
+                right: 4,
+                child: Icon(Icons.circle, semanticLabel: "", size: 8, color: context.colorScheme.surface),
+              ),
           ],
         ),
       ),

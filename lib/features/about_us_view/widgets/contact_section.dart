@@ -6,6 +6,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:flutter_svg/svg.dart";
 
 import "../../../config/ui_config.dart";
+import "../../../services/haptics/app_haptics.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../utils/determine_contact_icon.dart";
@@ -41,10 +42,10 @@ class _ContactIcon extends ConsumerWidget {
     return Semantics(
       label: "${context.localize.button_leading_to}: ${Uri.parse(url).host}",
       child: GestureDetector(
-        onTap: () async {
+        onTap: AppHaptics.wrapperLight(() async {
           unawaited(ref.trackEvent(ClarityEvents.openSolvroAboutUsLink, value: url));
           await ref.launch(url);
-        },
+        }),
         child: DecoratedBox(
           decoration: BoxDecoration(
             color: context.colorScheme.surfaceTint,

@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../../../gen/assets.gen.dart";
+import "../../../../services/haptics/app_haptics.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../utils/launch_url_util.dart";
@@ -20,7 +21,9 @@ class BoothsPartnerFooter extends ConsumerWidget {
         label: "${context.localize.booths_sns_cooperation}. $_automatykUrl",
         child: InkWell(
           borderRadius: BorderRadius.circular(16),
-          onTap: () => ref.launch(_automatykUrl),
+          onTap: AppHaptics.wrapperLight(() async {
+            await ref.launch(_automatykUrl);
+          }),
           child: Padding(
             padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),
             child: Column(
@@ -32,8 +35,8 @@ class BoothsPartnerFooter extends ConsumerWidget {
                   style: context.textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 8),
-                Image.asset(
-                  Assets.png.booths.snsAutomatykLogo.path,
+                Assets.png.booths.snsAutomatykLogo.image(
+                  semanticLabel: "SNS Automatyk logo",
                   height: context.textScaler.clamp(maxScaleFactor: 1.4).scale(44),
                   fit: BoxFit.contain,
                 ),

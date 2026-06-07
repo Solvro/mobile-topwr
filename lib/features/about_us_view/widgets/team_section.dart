@@ -8,6 +8,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:flutter_svg/svg.dart";
 
 import "../../../config/ui_config.dart";
+import "../../../services/haptics/app_haptics.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../utils/determine_contact_icon.dart";
@@ -100,7 +101,10 @@ class _SingleVersionTeamList extends HookWidget {
     final content = version.members.isEmpty
         ? Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [const Icon(Icons.escalator_warning), Text(context.localize.emptySection)],
+            children: [
+              const Icon(Icons.escalator_warning, semanticLabel: ""),
+              Text(context.localize.emptySection),
+            ],
           )
         : ListView.builder(
             physics: const NeverScrollableScrollPhysics(),
@@ -194,10 +198,10 @@ class _Icon extends ConsumerWidget {
     return Padding(
       padding: const EdgeInsets.only(right: 11),
       child: GestureDetector(
-        onTap: () async {
+        onTap: AppHaptics.wrapperLight(() async {
           unawaited(ref.trackEvent(ClarityEvents.openTeamMemberLink, value: launchUrl));
           await ref.launch(launchUrl);
-        },
+        }),
         child: SizedBox.square(
           dimension: context.textScaler.clamp(maxScaleFactor: 2).scale(22),
           child: SvgPicture.asset(icon),

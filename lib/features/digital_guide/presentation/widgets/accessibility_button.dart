@@ -1,9 +1,8 @@
-import "dart:async";
-
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../config/ui_config.dart";
+import "../../../../services/haptics/app_haptics.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../tabs/accessibility_dialog/presentation/accessibility_dialog.dart";
@@ -20,9 +19,7 @@ class AccessibilityButton extends StatelessWidget {
         child: ExcludeSemantics(
           child: Consumer(
             builder: (context, ref, child) => OutlinedButton(
-              onPressed: () {
-                unawaited(AccessibilityDialog.show(context, ref));
-              },
+              onPressed: AppHaptics.wrapperLight(() => AccessibilityDialog.show(context, ref)),
 
               style: OutlinedButton.styleFrom(
                 shape: RoundedRectangleBorder(
@@ -34,6 +31,7 @@ class AccessibilityButton extends StatelessWidget {
               ),
               child: Icon(
                 Icons.accessibility_new,
+                semanticLabel: context.localize.accessibility_profiles,
                 color: context.colorScheme.onTertiary,
                 size: context.textScaler.clamp(maxScaleFactor: 2.5).scale(16),
               ),

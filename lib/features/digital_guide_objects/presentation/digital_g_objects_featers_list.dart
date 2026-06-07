@@ -14,8 +14,8 @@ import "digital_g_objects_amenietes_tab_tile_content.dart";
 
 typedef TileContent = ({String title, List<Widget> content});
 
-class DigitalGuideObjectsFeaturesSection extends ConsumerWidget {
-  const DigitalGuideObjectsFeaturesSection({required this.digitalGuideData});
+class DigitalGuideObjectsFeaturesSliverList extends ConsumerWidget {
+  const DigitalGuideObjectsFeaturesSliverList({required this.digitalGuideData});
 
   final DigitalGuideObjectModel digitalGuideData;
 

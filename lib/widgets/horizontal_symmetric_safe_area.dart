@@ -9,7 +9,9 @@ import "../features/navigator/app_router.dart";
 import "../features/navigator/navigation_stack.dart";
 import "../features/navigator/utils/navigation_commands.dart";
 import "../features/radio_luz/service/radio_player_controller.dart";
+import "../services/haptics/app_haptics.dart";
 import "../theme/app_theme.dart";
+import "../utils/context_extensions.dart";
 
 extension MediaQueryPaddingExtensionX on BuildContext {
   EdgeInsets get maxOfHorizontalViewPaddings {
@@ -62,11 +64,12 @@ class HorizontalSymmetricSafeAreaScaffold extends ConsumerWidget {
         FloatingActionButton(
           heroTag: null,
           elevation: 3,
+          tooltip: context.localize.radio_luz,
           backgroundColor: context.colorScheme.primary,
-          onPressed: () async {
+          onPressed: AppHaptics.wrapperLight(() async {
             await ref.navigateToRadioLuz();
-          },
-          child: const Icon(Icons.radio),
+          }),
+          child: Icon(Icons.radio, semanticLabel: context.localize.radio_luz),
         ),
       ...?extraFabs,
     ];

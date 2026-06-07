@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 
 import "../../../../../config/ui_config.dart";
+import "../../../../../services/haptics/app_haptics.dart";
 import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/context_extensions.dart";
 
@@ -29,35 +30,36 @@ class RedDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: context.colorScheme.surface,
-          borderRadius: BorderRadius.circular(8),
-          border: Border(
-            top: BorderSide(color: context.colorScheme.primary),
-            bottom: BorderSide(color: context.colorScheme.primary, width: 5),
-          ),
-          boxShadow: [BoxShadow(color: Colors.black.withAlpha(64), offset: const Offset(0, 4), blurRadius: 4)],
-        ),
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 332),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              _DialogHeader(title: title, centerTitle: centerTitle, showCloseButton: showCloseButton),
-              Flexible(
-                child: SingleChildScrollView(
-                  child: _DialogContent(
-                    subtitle: subtitle,
-                    applyButtonText: applyButtonText,
-                    showApplyButton: showApplyButton,
-                    onApplyButtonPressed: onApplyButtonPressed,
-                    child: child,
+      child: Material(
+        borderRadius: BorderRadius.circular(8),
+        clipBehavior: Clip.antiAlias,
+        color: context.colorScheme.surface,
+        elevation: 4,
+        child: Stack(
+          children: [
+            ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 332),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  _DialogHeader(title: title, centerTitle: centerTitle, showCloseButton: showCloseButton),
+                  Flexible(
+                    child: SingleChildScrollView(
+                      child: _DialogContent(
+                        subtitle: subtitle,
+                        applyButtonText: applyButtonText,
+                        showApplyButton: showApplyButton,
+                        onApplyButtonPressed: onApplyButtonPressed,
+                        child: child,
+                      ),
+                    ),
                   ),
-                ),
+                ],
               ),
-            ],
-          ),
+            ),
+            Positioned(top: 0, left: 0, right: 0, height: 1, child: ColoredBox(color: context.colorScheme.primary)),
+            Positioned(bottom: 0, left: 0, right: 0, height: 5, child: ColoredBox(color: context.colorScheme.primary)),
+          ],
         ),
       ),
     );
@@ -111,11 +113,11 @@ class _DialogFooter extends StatelessWidget {
     return Padding(
       padding: DialogsConfig.padding,
       child: ElevatedButton(
-        onPressed: () {
+        onPressed: AppHaptics.wrapperLight(() {
           // we're saving the changes in real time anyway
           onApplyButtonPressed?.call();
           Navigator.of(context).pop();
-        },
+        }),
         style: ElevatedButton.styleFrom(
           backgroundColor: context.colorScheme.primaryContainer,
           elevation: 2,
@@ -166,9 +168,13 @@ class _DialogHeader extends StatelessWidget {
                   ignoring: !showCloseButton,
                   child: MergeSemantics(
                     child: IconButton(
-                      icon: Semantics(label: context.localize.close, child: const Icon(Icons.close)),
+                      tooltip: context.localize.close,
+                      icon: Semantics(
+                        label: context.localize.close,
+                        child: Icon(Icons.close, semanticLabel: context.localize.close),
+                      ),
                       color: context.colorScheme.tertiary,
-                      onPressed: () => Navigator.of(context).pop(),
+                      onPressed: AppHaptics.wrapperLight(Navigator.of(context).pop),
                     ),
                   ),
                 ),

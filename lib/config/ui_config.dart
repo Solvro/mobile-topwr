@@ -1,7 +1,9 @@
+// ignore_for_file: solvro_config/avoid_hardcoded_color
+
 import "package:flutter/material.dart";
 
 import "../features/parkings/parking_chart/utils/range_hour_points.dart";
-import "../theme/hex_color.dart";
+import "../theme/colors.dart";
 import "../utils/context_extensions.dart";
 
 abstract class MyAppConfig {
@@ -28,6 +30,10 @@ abstract class SplashScreenConfig {
 
 abstract class CountdownConfig {
   static const defaultDigit = 0;
+
+  static const digitShadow = [BoxShadow(color: Color(0x66C62D2E), offset: Offset(-1, 1), blurRadius: 4)];
+
+  static const examSessionShadow = [BoxShadow(spreadRadius: 6, blurRadius: 11, color: Color(0x28FA6465))];
 }
 
 abstract class DepartmentsConfig {
@@ -52,9 +58,7 @@ abstract class HomeViewConfig {
   static const paddingMedium = 16.0;
   static const paddingLarge = 24.0;
 
-  static const squareCardTextShadow = [
-    Shadow(color: HexColor.consts(0x6621334D66), blurRadius: 4, offset: Offset(0, 2)),
-  ];
+  static const squareCardTextShadow = [Shadow(color: Color(0x6621334D), blurRadius: 4, offset: Offset(0, 2))];
 
   static const sksMenuKey = Key("sks_menu");
   static const calendarKey = Key("calendar");
@@ -87,6 +91,27 @@ abstract class WideTileCardConfig {
   static const defaultActiveShadows = [
     BoxShadow(color: Color.fromRGBO(250, 100, 101, 0.16), blurRadius: 11, spreadRadius: 6),
   ];
+}
+
+abstract class ShimmerLoadingConfig {
+  static const gradient = LinearGradient(
+    colors: [Color(0xFFEBEBF4), Color(0xFFF4F4F4), Color(0xFFEBEBF4)],
+    stops: [0.1, 0.3, 0.4],
+    begin: Alignment(-1, -0.3),
+    end: Alignment(1, 0.3),
+  );
+
+  static const placeholderColor = ColorsConsts.whiteSoap;
+}
+
+abstract class ShadowConfig {
+  static const card = [BoxShadow(color: Color(0x40000000), offset: Offset(0, 4), blurRadius: 4)];
+
+  static const navBar = [BoxShadow(color: Color(0x14000000), blurRadius: 20, offset: Offset(0, -1))];
+
+  static const modalBarrier = Color(0xB3000000);
+
+  static const filterSheet = Color(0x0A000000);
 }
 
 abstract class DetailViewsConfig {
@@ -124,6 +149,8 @@ abstract class ParkingsConfig {
   static const padding = EdgeInsets.only(left: 13, top: 10, bottom: 15, right: 10);
   static const extraIndentPadd = EdgeInsets.only(left: 2, right: 40);
   static const peopleCounterBottomPadding = EdgeInsets.only(bottom: 10);
+
+  static const inactiveOverlayColor = Color.fromRGBO(41, 50, 65, 0.60);
 }
 
 abstract class ParkingChartConfig {
@@ -175,9 +202,16 @@ abstract class LottieAnimationConfig {
 abstract class MyTooltipConfig {
   static const borderRadius = 8.0;
 
-  static const defaultActiveShadows = [
-    BoxShadow(color: Color.fromRGBO(250, 100, 101, 0.16), blurRadius: 11, spreadRadius: 6),
-  ];
+  static const defaultActiveShadows = WideTileCardConfig.defaultActiveShadows;
+}
+
+abstract class BoothConfig {
+  static const tileGradient = LinearGradient(
+    colors: [Color.fromRGBO(41, 50, 65, 0.78), Color.fromRGBO(41, 50, 65, 0.46)],
+  );
+
+  static const badgeBackground = Color(0xC7FFFFFF);
+  static const badgeBorder = Color(0x57FFFFFF);
 }
 
 abstract class SksMenuConfig {

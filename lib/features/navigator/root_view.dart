@@ -1,9 +1,12 @@
+import "dart:async";
+
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../config/nav_bar_config.dart";
+import "../../services/haptics/app_haptics.dart";
 import "../../services/pop_scope/centralized_pop_scope.dart";
 import "../../utils/unwaited_microtask.dart";
 import "../../widgets/horizontal_symmetric_safe_area.dart";
@@ -62,6 +65,7 @@ class RootView extends HookConsumerWidget {
                 bottomNavigationBar: BottomNavBar(
                   activeIndex: activeTabIndex,
                   onTap: (index) {
+                    unawaited(AppHaptics.lightImpact());
                     timesPushedToTabBar.value++;
                     tabsRouter.setActiveIndex(index);
                   },

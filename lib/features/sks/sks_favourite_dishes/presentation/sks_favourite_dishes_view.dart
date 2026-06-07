@@ -104,7 +104,9 @@ class _SksFavouriteDishesView extends ConsumerWidget {
                       child: SksMenuDishDetailsTile(
                         dish: dish,
                         isSubscribed: true,
-                        onTap: (dishId) => toastOnDishTap(dishId: dishId, ref: ref, context: context, subscribe: false),
+                        onTap: (dishId) async {
+                          await toastOnDishTap(dishId: dishId, ref: ref, context: context, subscribe: false);
+                        },
                         onDoubleTap: (dishId) =>
                             toastOnDishTap(dishId: dishId, ref: ref, context: context, subscribe: false),
                       ),

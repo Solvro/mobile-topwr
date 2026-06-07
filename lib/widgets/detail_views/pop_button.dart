@@ -4,6 +4,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "../../config/nav_bar_config.dart";
 import "../../features/navigator/app_router.dart";
 import "../../features/navigator/navigation_stack.dart";
+import "../../services/haptics/app_haptics.dart";
 import "../../theme/app_theme.dart";
 import "../../utils/context_extensions.dart";
 
@@ -18,9 +19,7 @@ class DetailViewPopButton extends ConsumerWidget {
     final title = _getPreviousRouteTitle(previousRoute, context, ref);
 
     return TextButton(
-      onPressed: () {
-        Navigator.pop(context);
-      },
+      onPressed: AppHaptics.wrapperLight(() => Navigator.pop(context)),
       style: TextButton.styleFrom(padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 2)),
 
       child: Semantics(
@@ -31,7 +30,7 @@ class DetailViewPopButton extends ConsumerWidget {
           children: [
             Padding(
               padding: const EdgeInsets.only(top: 2),
-              child: Icon(Icons.chevron_left, size: 18, color: context.colorScheme.primary),
+              child: Icon(Icons.chevron_left, semanticLabel: "", size: 18, color: context.colorScheme.primary),
             ),
             if (title != null)
               Flexible(

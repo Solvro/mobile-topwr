@@ -5,6 +5,7 @@ import "package:solvro_translator_core/solvro_translator_core.dart";
 
 import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
+import "../../../services/haptics/app_haptics.dart";
 import "../../../services/translations_service/data/preferred_lang_repository.dart";
 import "../../../utils/context_extensions.dart";
 import "../../digital_guide/tabs/accessibility_dialog/presentation/red_dialog.dart";
@@ -54,16 +55,16 @@ class LanguageDialog extends ConsumerWidget {
               final selected = selectedLanguage == code;
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(NavigationTabViewConfig.radius),
-                    color: context.colorScheme.surfaceTint,
-                  ),
+                child: Material(
+                  borderRadius: BorderRadius.circular(NavigationTabViewConfig.radius),
+                  color: context.colorScheme.surfaceTint,
                   child: ListTile(
                     selected: selected,
                     title: Text(semanticsLabel: name.substring(1), name),
-                    trailing: selected ? Icon(Icons.check, color: context.colorScheme.primary) : null,
-                    onTap: () async {
+                    trailing: selected
+                        ? Icon(Icons.check, semanticLabel: "", color: context.colorScheme.primary)
+                        : null,
+                    onTap: AppHaptics.wrapperSelection(() async {
                       if (!isFirstTimeMode) {
                         Navigator.pop(context, code);
                         Logger().d("returning language: $code");
@@ -73,7 +74,7 @@ class LanguageDialog extends ConsumerWidget {
                             .read(preferredLanguageRepositoryProvider.notifier)
                             .setPreferredLanguage(SolvroLocale.values.byName(code));
                       }
-                    },
+                    }),
                   ),
                 ),
               );

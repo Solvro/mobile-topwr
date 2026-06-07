@@ -1,8 +1,11 @@
+import "dart:async";
+
 import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:url_launcher/url_launcher.dart";
 
 import "../../../config/url_config.dart";
+import "../../../services/haptics/app_haptics.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../widgets/my_alert_dialog.dart";
@@ -38,7 +41,7 @@ class WebVersionDialogContent extends StatelessWidget {
                 shape: BoxShape.circle,
                 color: context.colorScheme.primary.withValues(alpha: 0.12),
               ),
-              child: Icon(Icons.language, size: 20, color: context.colorScheme.primary),
+              child: Icon(Icons.language, semanticLabel: "", size: 20, color: context.colorScheme.primary),
             ),
             const SizedBox(width: 12),
             Expanded(
@@ -89,10 +92,12 @@ class WebVersionBanner extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(Icons.language, size: 18, color: context.colorScheme.primary),
+            Icon(Icons.language, semanticLabel: "", size: 18, color: context.colorScheme.primary),
             const SizedBox(width: 8),
             InkWell(
-              onTap: () => showWebVersionDialog(context),
+              onTap: AppHaptics.wrapperLight(() async {
+                await showWebVersionDialog(context);
+              }),
               borderRadius: BorderRadius.circular(16), // match the container
               child: Text(
                 context.localize.web_version_banner,
@@ -124,8 +129,10 @@ class _BannerIconButton extends StatelessWidget {
       visualDensity: VisualDensity.compact,
       iconSize: 18,
       tooltip: kIsWeb ? null : tooltip,
-      onPressed: () => launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication),
-      icon: Icon(icon, color: context.colorScheme.primary),
+      onPressed: AppHaptics.wrapperLight(() async {
+        await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
+      }),
+      icon: Icon(icon, semanticLabel: "", color: context.colorScheme.primary),
     );
   }
 }

@@ -53,7 +53,9 @@ class StairwayView extends ConsumerWidget {
         physics: const NeverScrollableScrollPhysics(),
         itemCount: stairway.stairsIds.length,
         itemBuilder: (context, index) => DigitalGuideNavLink(
-          onTap: () => ref.navigateDigitalGuideStairs(stairway.stairsIds[index]),
+          onTap: () async {
+            await ref.navigateDigitalGuideStairs(stairway.stairsIds[index]);
+          },
           text: context.localize.stairs,
         ),
         separatorBuilder: (context, index) => const SizedBox(height: DigitalGuideConfig.heightMedium),
@@ -64,7 +66,9 @@ class StairwayView extends ConsumerWidget {
         physics: const NeverScrollableScrollPhysics(),
         itemCount: stairway.doorsIds.length,
         itemBuilder: (context, index) => DigitalGuideNavLink(
-          onTap: () => ref.navigateDigitalGuideDoor(stairway.doorsIds[index]),
+          onTap: () async {
+            await ref.navigateDigitalGuideDoor(stairway.doorsIds[index]);
+          },
           text: context.localize.door,
         ),
         separatorBuilder: (context, index) => const SizedBox(height: DigitalGuideConfig.heightMedium),

@@ -3,7 +3,6 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../config/ui_config.dart";
-import "../../../../hooks/use_filters_sheet_height.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../widgets/horizontal_symmetric_safe_area.dart";
@@ -12,6 +11,7 @@ import "../../../../widgets/loading_widgets/simple_previews/preview_card_loading
 import "../../../../widgets/my_error_widget.dart";
 import "../../../../widgets/text_and_url_widget.dart";
 import "../../../bottom_scroll_sheet/drag_handle.dart";
+import "../../../science_club/science_clubs_filters/utils/get_filters_sheet_height.dart";
 import "../../sks_people_live/data/repository/latest_sks_user_data_repo.dart";
 import "../data/models/sks_chart_data.dart";
 import "../data/repository/sks_chart_repository.dart";
@@ -29,7 +29,7 @@ class SksChartSheet extends ConsumerWidget {
     final maxNumberOfUsers = asyncChartData.value?.maxNumberOfUsers ?? 0;
 
     final screenWidth = MediaQuery.sizeOf(context).width;
-    final sheetHeight = useFiltersSheetHeight(context, prefferedHeightFactor: screenWidth > 400 ? .72 : .84);
+    final sheetHeight = getFiltersSheetHeight(context, prefferedHeightFactor: screenWidth > 400 ? .72 : .84);
 
     return switch (asyncChartData) {
       AsyncError(:final error, :final stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),

@@ -33,9 +33,14 @@ class FieldOfStudyTile extends ConsumerWidget {
         trailing: Row(
           children: <Widget>[
             if (item.isEnglish) Text("🇬🇧", style: emojiStyle) else Text("🇵🇱", style: emojiStyle),
-            Icon(Icons.sunny, color: context.colorScheme.tertiary, size: fontSize),
+            Icon(Icons.sunny, semanticLabel: "", color: context.colorScheme.tertiary, size: fontSize),
             if (item.hasWeekendOption)
-              Icon(Icons.remove_red_eye_outlined, color: context.colorScheme.tertiary, size: fontSize),
+              Icon(
+                Icons.remove_red_eye_outlined,
+                semanticLabel: "",
+                color: context.colorScheme.tertiary,
+                size: fontSize,
+              ),
             const SizedBox(width: 4),
           ].separate((i, e0, e1) => const SizedBox(width: 4)),
         ),

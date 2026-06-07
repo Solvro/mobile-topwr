@@ -60,7 +60,9 @@ class DigitalGuideEntranceDetailsView extends ConsumerWidget {
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
           return DigitalGuideNavLink(
-            onTap: () => ref.navigateDigitalGuideDoor(entrance.doorsIndices[index]),
+            onTap: () async {
+              await ref.navigateDigitalGuideDoor(entrance.doorsIndices[index]);
+            },
             text: context.localize.door,
           );
         },

@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 
 import "../../../config/ui_config.dart";
+import "../../../services/haptics/app_haptics.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../service/radio_player_controller.dart";
@@ -23,17 +24,17 @@ class RadioPlayerControlButton extends StatelessWidget {
     if (isLoading) buttonText = context.localize.loading;
 
     return ElevatedButton(
-      onPressed: () async {
+      onPressed: AppHaptics.wrapperLight(() async {
         if (isPlaying) {
           await radioController.pause();
         } else {
           await radioController.play();
         }
-      },
+      }),
       style: OutlinedButton.styleFrom(
         fixedSize: const Size(100, 36),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        backgroundColor: Colors.white,
+        backgroundColor: context.colorScheme.onPrimary,
         padding: const EdgeInsets.all(RadioLuzConfig.paddingSmall),
         elevation: 2,
       ),
@@ -46,7 +47,12 @@ class RadioPlayerControlButton extends StatelessWidget {
               child: CircularProgressIndicator(color: context.colorScheme.primary, strokeWidth: 2),
             )
           else
-            Icon(isPlaying ? Icons.pause : Icons.play_arrow, size: 16, color: context.colorScheme.primary),
+            Icon(
+              isPlaying ? Icons.pause : Icons.play_arrow,
+              semanticLabel: "",
+              size: 16,
+              color: context.colorScheme.primary,
+            ),
           Expanded(
             child: Center(
               child: Text(

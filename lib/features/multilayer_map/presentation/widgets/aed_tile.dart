@@ -33,41 +33,34 @@ class AedTile extends HookConsumerWidget {
           active ? "${l10n.building_tile_selected} $title" : "${l10n.building_tile_unselected} $title",
     );
 
-    return Column(
+    return Stack(
       children: [
-        Stack(
-          children: [
-            Semantics(
-              label: "${isActive ? "${context.localize.building_tile_selected} " : ""} $title",
-              button: true,
-              child: ExcludeSemantics(
-                child: PhotoTrailingWideTileCard(
-                  context,
-                  activeGradient: ColorsConsts.toPwrGradient,
-                  directusPhotoUrl: aed.photo,
-                  title: title,
-                  subtitle: (aed.instructions ?? "").trim(),
-                  isActive: isActive,
-                  onTap: () {
-                    unawaited(ref.trackEvent(ClarityEvents.selectAed, value: title));
-                    unawaited(ref.read(multilayerMapControllerProvider).onMarkerTap(AedItem(aed: aed)));
-                  },
-                  customPlaceholder: ColoredBox(
-                    color: context.colorScheme.surfaceTint,
-                    child: Center(
-                      child: SvgPicture.asset(
-                        Assets.svg.mapPlaceholders.aedIcon,
-                        height: WideTileCardConfig.imageSize / 2,
-                      ),
-                    ),
-                  ),
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
+        Semantics(
+          label: "${isActive ? "${context.localize.building_tile_selected} " : ""} $title",
+          button: true,
+          child: ExcludeSemantics(
+            child: PhotoTrailingWideTileCard(
+              context,
+              activeGradient: ColorsConsts.toPwrGradient,
+              directusPhotoUrl: aed.photo,
+              title: title,
+              subtitle: (aed.instructions ?? "").trim(),
+              isActive: isActive,
+              onTap: () {
+                unawaited(ref.trackEvent(ClarityEvents.selectAed, value: title));
+                unawaited(ref.read(multilayerMapControllerProvider).onMarkerTap(AedItem(aed: aed)));
+              },
+              customPlaceholder: ColoredBox(
+                color: context.colorScheme.surfaceTint,
+                child: Center(
+                  child: SvgPicture.asset(Assets.svg.mapPlaceholders.aedIcon, height: WideTileCardConfig.imageSize / 2),
                 ),
               ),
+              crossAxisAlignment: CrossAxisAlignment.stretch,
             ),
-            if (aed.building != null) BuildingNavLink(building: aed.building!, isActive: isActive),
-          ],
+          ),
         ),
+        if (aed.building != null) BuildingNavLink(building: aed.building!, isActive: isActive),
       ],
     );
   }

@@ -4,7 +4,6 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../config/ui_config.dart";
-
 import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/context_extensions.dart";
 import "../../../../../utils/ilist_nonempty.dart";
@@ -69,7 +68,9 @@ class DigitalGuideRoomDetailView extends ConsumerWidget {
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
           return DigitalGuideNavLink(
-            onTap: () => ref.navigateDigitalGuideDoor(room.doors[index]),
+            onTap: () async {
+              await ref.navigateDigitalGuideDoor(room.doors[index]);
+            },
             text: context.localize.door,
           );
         },

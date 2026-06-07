@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../../config/ui_config.dart";
+import "../../../services/haptics/app_haptics.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../widgets/loading_widgets/simple_previews/horizontal_rectangular_section_loading.dart";
@@ -44,7 +45,7 @@ class NowPlayingSection extends ConsumerWidget {
           children: List.generate(4, (_) => const HorizontalRectangularSectionLoading()),
         ),
       ),
-      _ => Column(children: [Text(context.localize.generic_error_message)]),
+      _ => Center(child: Text(context.localize.generic_error_message)),
     };
   }
 }
@@ -56,10 +57,10 @@ class _NowPlayingTile extends StatelessWidget {
   final String title;
   final String subtitle;
 
-  String _semanticsLabel() {
+  String _semanticsLabel(BuildContext context) {
     final parts = [time, title, subtitle];
     if (isActive) {
-      parts.insert(0, "Now playing");
+      parts.insert(0, context.localize.now_playing);
     }
     return parts.join(", ");
   }
@@ -70,7 +71,7 @@ class _NowPlayingTile extends StatelessWidget {
     final colorScheme = context.colorScheme;
     return Semantics(
       container: true,
-      label: _semanticsLabel(),
+      label: _semanticsLabel(context),
       child: Container(
         decoration: BoxDecoration(
           color: isActive ? colorScheme.primary : colorScheme.surface,
@@ -128,8 +129,15 @@ class _NowPlayingTile extends StatelessWidget {
               ),
             ),
             IconButton(
-              icon: Icon(Icons.manage_search, color: isActive ? colorScheme.surface : colorScheme.primary),
-              onPressed: () => SearchStreamingBottomSheet.show(context, title: title, artist: subtitle),
+              tooltip: context.localize.radio_luz_search_streaming,
+              icon: Icon(
+                Icons.manage_search,
+                semanticLabel: "",
+                color: isActive ? colorScheme.surface : colorScheme.primary,
+              ),
+              onPressed: AppHaptics.wrapperLight(() async {
+                await SearchStreamingBottomSheet.show(context, title: title, artist: subtitle);
+              }),
             ),
           ],
         ),

@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
+import "../../../services/haptics/app_haptics.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../digital_guide/tabs/accessibility_dialog/presentation/red_dialog.dart";
@@ -96,8 +97,12 @@ class _InputRow extends HookWidget {
         ),
         const SizedBox(width: 8),
         IconButton(
-          onPressed: canAdd.value ? onAdd : null,
-          icon: const Icon(Icons.add),
+          onPressed: canAdd.value
+              ? AppHaptics.wrapperLight(() async {
+                  await onAdd();
+                })
+              : null,
+          icon: const Icon(Icons.add, semanticLabel: ""),
           color: context.colorScheme.primary,
           tooltip: context.localize.feature_codes_add_button,
         ),
@@ -130,15 +135,18 @@ class _CodesList extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
         final code = sortedCodes[index];
-        return DecoratedBox(
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), color: context.colorScheme.surfaceTint),
+        return Material(
+          borderRadius: BorderRadius.circular(8),
+          color: context.colorScheme.surfaceTint,
           child: ListTile(
             dense: true,
             title: Text(code, style: context.textTheme.bodyLarge),
             trailing: IconButton(
-              icon: const Icon(Icons.delete_outline),
+              icon: const Icon(Icons.delete_outline, semanticLabel: ""),
               tooltip: context.localize.feature_codes_remove_button,
-              onPressed: () => onRemove(code),
+              onPressed: AppHaptics.wrapperLight(() async {
+                await onRemove(code);
+              }),
             ),
           ),
         );

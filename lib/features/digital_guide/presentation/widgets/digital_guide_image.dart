@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
+import "../../../../config/ui_config.dart";
 import "../../../../widgets/loading_widgets/shimmer_loading.dart";
 import "../../../../widgets/my_cached_image.dart";
 import "../../../../widgets/my_error_widget.dart";
@@ -20,7 +21,7 @@ class DigitalGuideImage extends ConsumerWidget {
       data: (url) => zoomable ? ZoomableCachedImage(url) : MyCachedImage(url),
       error: (error, stackTrace) => MyErrorWidget(error, stackTrace: stackTrace),
       loading: () => Center(
-        child: ShimmeringEffect(child: Container(color: Colors.white)),
+        child: ShimmeringEffect(child: Container(color: ShimmerLoadingConfig.placeholderColor)),
       ),
     );
   }

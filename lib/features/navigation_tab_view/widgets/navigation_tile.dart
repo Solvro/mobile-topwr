@@ -19,9 +19,9 @@ class NavigationTile extends StatelessWidget {
           decoration: BoxDecoration(borderRadius: BorderRadius.circular(NavigationTabViewConfig.radius)),
           child: ListTile(
             dense: true,
-            leading: icon != null ? Icon(icon) : null,
+            leading: icon != null ? Icon(icon, semanticLabel: "") : null,
             title: Text(title, style: context.textTheme.titleLarge?.copyWith(height: 1)),
-            trailing: Icon(Icons.chevron_right, color: context.colorScheme.primary),
+            trailing: Icon(Icons.chevron_right, semanticLabel: "", color: context.colorScheme.primary),
           ),
         ),
       ),

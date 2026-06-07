@@ -3,6 +3,7 @@ import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
+import "../../../services/haptics/app_haptics.dart";
 import "../../../utils/context_extensions.dart";
 import "../../branches/data/model/branch.dart";
 import "../../departments/departments_view/data/repository/departments_repository.dart";
@@ -53,6 +54,7 @@ class ScienceClubsView extends StatelessWidget {
   }
 }
 
+// ignore: solvro_config/hooks_extends SafeLoadInitialRepos is a HookConsumer builder
 class _ScienceClubsView extends StatelessWidget {
   const _ScienceClubsView({
     required this.tagsIds,
@@ -106,8 +108,9 @@ class _ScienceClubsView extends StatelessWidget {
               IconButton(
                 icon: Icon(Icons.info_outline, semanticLabel: context.localize.studyClub_howToAddYourOrganization),
                 tooltip: context.localize.studyClub_howToAddYourOrganization,
-                onPressed: () =>
-                    showDialog<void>(context: context, builder: (context) => const ScienceClubInfoDialog()),
+                onPressed: AppHaptics.wrapperLight(() async {
+                  await showDialog<void>(context: context, builder: (context) => const ScienceClubInfoDialog());
+                }),
               ),
             ],
             initialQuery: initialQuery,

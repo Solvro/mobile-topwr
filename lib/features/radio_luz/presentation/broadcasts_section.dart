@@ -3,6 +3,7 @@ import "package:flutter/material.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
+import "../../../services/haptics/app_haptics.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../utils/launch_url_util.dart";
@@ -47,7 +48,7 @@ class BroadcastsSection extends HookConsumerWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Row(spacing: 16, children: List.generate(2, (_) => const PreviewCardLoading(width: 200, height: 200))),
       ),
-      _ => Column(children: [Text(context.localize.generic_error_message)]),
+      _ => Center(child: Text(context.localize.generic_error_message)),
     };
   }
 }
@@ -78,7 +79,9 @@ class _BroadcastTile extends ConsumerWidget {
       button: true,
       enabled: isValidUrl(siteUrl),
       child: InkWell(
-        onTap: () => ref.launch(siteUrl),
+        onTap: AppHaptics.wrapperLight(() async {
+          await ref.launch(siteUrl);
+        }),
         child: Card(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           clipBehavior: Clip.antiAlias,
@@ -88,9 +91,10 @@ class _BroadcastTile extends ConsumerWidget {
               if (isValidUrl(imageUrl))
                 Semantics(
                   image: true,
-                  label: "",
+                  label: context.localize.radio_luz_broadcast_cover_image,
                   child: Image.network(
                     imageUrl.trim(),
+                    semanticLabel: context.localize.radio_luz_broadcast_cover_image,
                     fit: BoxFit.cover,
                     errorBuilder: (_, _, _) => const AuditionImageFallback(),
                   ),
@@ -112,13 +116,16 @@ class _BroadcastTile extends ConsumerWidget {
                           Text(
                             context.localize.now_playing.toUpperCase(),
                             style: context.textTheme.titleLarge?.copyWith(
-                              color: Colors.white,
+                              color: context.colorScheme.onPrimary,
                               fontWeight: FontWeight.w400,
                             ),
                           ),
                           const SizedBox(height: 8),
                         ],
-                        Text(title, style: context.textTheme.titleLarge?.copyWith(color: Colors.white)),
+                        Text(
+                          title,
+                          style: context.textTheme.titleLarge?.copyWith(color: context.colorScheme.onPrimary),
+                        ),
                         const SizedBox(height: 4),
                         if (isValidUrl(siteUrl)) const _ShowMoreWidget(),
                       ],
@@ -145,12 +152,19 @@ class _ShowMoreWidget extends StatelessWidget {
           spacing: 8,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(context.localize.show_more, style: context.textTheme.titleLarge?.copyWith(color: Colors.white)),
-            const Expanded(child: Divider(color: Colors.white, thickness: 1, height: 1)),
+            Text(
+              context.localize.show_more,
+              style: context.textTheme.titleLarge?.copyWith(color: context.colorScheme.onPrimary),
+            ),
+            Expanded(child: Divider(color: context.colorScheme.onPrimary, thickness: 1, height: 1)),
             const SizedBox(width: 8),
           ],
         ),
-        const Positioned(bottom: 0, right: 0, child: Icon(Icons.arrow_right, color: Colors.white, size: 18)),
+        Positioned(
+          bottom: 0,
+          right: 0,
+          child: Icon(Icons.arrow_right, semanticLabel: "", color: context.colorScheme.onPrimary, size: 18),
+        ),
       ],
     );
   }

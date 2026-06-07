@@ -36,7 +36,7 @@ class RateStoreDialogContent extends StatelessWidget {
                 shape: BoxShape.circle,
                 color: context.colorScheme.primary.withValues(alpha: 0.12),
               ),
-              child: Icon(Icons.star, size: 20, color: context.colorScheme.primary),
+              child: Icon(Icons.star, semanticLabel: "", size: 20, color: context.colorScheme.primary),
             ),
             const SizedBox(width: 12),
             Expanded(

@@ -50,7 +50,7 @@ class ContactSection extends StatelessWidget {
                 shouldBeAccessible: shouldBeAccessible,
               ),
             ),
-          if (bottomSpace != null) ...bottomSpace!,
+          ...?bottomSpace,
         ],
       ),
     );
@@ -82,7 +82,7 @@ class _ContactIcon extends ConsumerWidget {
                 text: TextSpan(
                   text: text,
                   style: context.textTheme.bodyLarge?.copyWith(
-                    color: url?.isNotEmpty ?? false ? context.colorScheme.primary : Colors.black,
+                    color: url?.isNotEmpty ?? false ? context.colorScheme.primary : context.colorScheme.onTertiary,
                     decoration: url?.isNotEmpty ?? false ? TextDecoration.underline : TextDecoration.none,
                     decorationColor: url?.isNotEmpty ?? false ? context.colorScheme.primary : null,
                     height: shouldBeAccessible
