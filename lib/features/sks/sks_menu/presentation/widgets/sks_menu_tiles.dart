@@ -104,12 +104,12 @@ class SksMenuDishDetailsTile extends StatelessWidget {
             }
           : null,
       onDoubleTap: !kIsWeb ? () => onDoubleTap?.call(dish.id) : null,
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: context.colorScheme.surface,
+      child: Material(
+        shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(SksMenuConfig.borderRadius),
-          border: Border.all(color: context.colorScheme.primary.withAlpha(50)),
+          side: BorderSide(color: context.colorScheme.primary.withAlpha(50)),
         ),
+        color: context.colorScheme.surface,
         child: switch (dish) {
           SksMenuDish(:final name, :final size, :final price) => ListTile(
             key: PageStorageKey<String>("$_keyPrefix-RichTile-${dish.id}"),

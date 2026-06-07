@@ -11,7 +11,9 @@ import "get_device_id.dart";
 
 extension RefIntervalRefreshX on Ref {
   void setRefresh(Duration interval) {
-    final timer = Timer.periodic(interval, (t) => invalidateSelf());
+    final timer = Timer(interval, () {
+      if (mounted) invalidateSelf();
+    });
     onDispose(timer.cancel);
   }
 }

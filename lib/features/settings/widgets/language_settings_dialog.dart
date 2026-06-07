@@ -58,11 +58,9 @@ class LanguageDialog extends ConsumerWidget {
               final selected = selectedLanguage == code;
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(NavigationTabViewConfig.radius),
-                    color: context.colorScheme.surfaceTint,
-                  ),
+                child: Material(
+                  borderRadius: BorderRadius.circular(NavigationTabViewConfig.radius),
+                  color: context.colorScheme.surfaceTint,
                   child: ListTile(
                     selected: selected,
                     title: Text(semanticsLabel: name.substring(1), name),

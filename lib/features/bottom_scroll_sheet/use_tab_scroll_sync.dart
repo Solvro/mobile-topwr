@@ -1,4 +1,4 @@
-// ignore_for_file: solvro_config/cognitive_complexity
+// ignore_for_file: solvro_config/cognitive_complexity if it works, do not touch it. But if someone is going to fix/tweak/change that, then in such case, pls remove rule override and do a nice cleanup
 
 import "package:flutter/material.dart";
 import "package:flutter_hooks/flutter_hooks.dart";

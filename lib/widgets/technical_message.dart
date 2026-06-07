@@ -39,7 +39,7 @@ class TechnicalMessage extends StatelessWidget {
       padding: padding ?? const EdgeInsets.all(HomeViewConfig.paddingMedium),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(AppWidgetsConfig.borderRadiusMedium),
-        child: ColoredBox(
+        child: Material(
           color:
               backgoundColor ??
               (alertType == AlertType.error ? context.colorScheme.primary : context.colorScheme.secondary),

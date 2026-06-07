@@ -138,8 +138,9 @@ class _CodesList extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
         final code = sortedCodes[index];
-        return DecoratedBox(
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), color: context.colorScheme.surfaceTint),
+        return Material(
+          borderRadius: BorderRadius.circular(8),
+          color: context.colorScheme.surfaceTint,
           child: ListTile(
             dense: true,
             title: Text(code, style: context.textTheme.bodyLarge),
