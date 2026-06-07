@@ -37,7 +37,7 @@ import "services/translations_service/widgets/remove_old_translations.dart";
 import "theme/app_theme.dart";
 
 Future<RadioAudioHandlerBridge>? _audioHandlerFuture;
-late final CarPlayService _carPlayService;
+late CarPlayService _carPlayService;
 
 Future<RadioAudioHandlerBridge> _initAudioHandler() {
   return _audioHandlerFuture ??= AudioService.init(
