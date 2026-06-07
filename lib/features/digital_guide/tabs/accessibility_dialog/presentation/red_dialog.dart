@@ -177,10 +177,7 @@ class _DialogHeader extends StatelessWidget {
                         child: Icon(Icons.close, semanticLabel: context.localize.close),
                       ),
                       color: context.colorScheme.tertiary,
-                      onPressed: () {
-                        unawaited(AppHaptics.lightImpact());
-                        Navigator.of(context).pop();
-                      },
+                      onPressed: AppHaptics.wrapperLight(Navigator.of(context).pop),
                     ),
                   ),
                 ),

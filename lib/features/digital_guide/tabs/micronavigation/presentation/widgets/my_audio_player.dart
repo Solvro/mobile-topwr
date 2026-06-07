@@ -86,10 +86,7 @@ class MyAudioPlayer extends HookWidget {
               tooltip: isPlaying.value ? context.localize.audio_player_pause : context.localize.audio_player_play,
               icon: Icon(isPlaying.value ? Icons.pause : Icons.play_arrow, semanticLabel: ""),
               color: context.colorScheme.onTertiary,
-              onPressed: () async {
-                unawaited(AppHaptics.lightImpact());
-                await togglePlayPause();
-              },
+              onPressed: AppHaptics.wrapperLight(togglePlayPause),
             ),
             ExcludeSemantics(
               child: Text(

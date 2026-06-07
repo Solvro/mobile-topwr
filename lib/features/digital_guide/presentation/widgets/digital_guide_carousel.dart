@@ -69,19 +69,13 @@ class DigitalGuideCarouselWithIndicator extends HookWidget {
               children: [
                 ArrowButton(
                   icon: Icons.chevron_left,
-                  onPressed: () {
-                    unawaited(AppHaptics.selectionClick());
-                    unawaited(goTo(current.value - 1));
-                  },
+                  onPressed: () => unawaited(goTo(current.value - 1)),
                 ),
 
                 Row(
                   children: imgListId.asMap().entries.map((entry) {
                     return GestureDetector(
-                      onTap: () {
-                        unawaited(AppHaptics.selectionClick());
-                        unawaited(controller.animateToPage(entry.key));
-                      },
+                      onTap: AppHaptics.wrapperSelection(() => unawaited(controller.animateToPage(entry.key))),
                       child: Container(
                         width: 12,
                         height: 12,
@@ -98,10 +92,7 @@ class DigitalGuideCarouselWithIndicator extends HookWidget {
 
                 ArrowButton(
                   icon: Icons.chevron_right,
-                  onPressed: () {
-                    unawaited(AppHaptics.selectionClick());
-                    unawaited(goTo(current.value + 1));
-                  },
+                  onPressed: () => unawaited(goTo(current.value + 1)),
                 ),
               ],
             ),

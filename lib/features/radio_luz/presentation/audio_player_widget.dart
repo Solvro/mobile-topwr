@@ -1,5 +1,3 @@
-import "dart:async";
-
 import "package:flutter/material.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
@@ -42,10 +40,7 @@ class AudioPlayerWidget extends HookConsumerWidget {
               children: [
                 IconButton(
                   tooltip: radioState.isMuted ? l10n.radio_luz_unmute : l10n.radio_luz_mute,
-                  onPressed: () async {
-                    unawaited(AppHaptics.lightImpact());
-                    await radioController.toggleVolume();
-                  },
+                  onPressed: AppHaptics.wrapperLight(radioController.toggleVolume),
                   icon: Icon(
                     radioState.isMuted ? Icons.volume_off : Icons.volume_up,
                     semanticLabel: "",

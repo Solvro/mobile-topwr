@@ -1,5 +1,3 @@
-import "dart:async";
-
 import "package:flutter/material.dart";
 
 import "../../../config/ui_config.dart";
@@ -26,14 +24,13 @@ class RadioPlayerControlButton extends StatelessWidget {
     if (isLoading) buttonText = context.localize.loading;
 
     return ElevatedButton(
-      onPressed: () async {
-        unawaited(AppHaptics.lightImpact());
+      onPressed: AppHaptics.wrapperLight(() async {
         if (isPlaying) {
           await radioController.pause();
         } else {
           await radioController.play();
         }
-      },
+      }),
       style: OutlinedButton.styleFrom(
         fixedSize: const Size(100, 36),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),

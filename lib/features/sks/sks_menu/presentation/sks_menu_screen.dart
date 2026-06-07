@@ -83,10 +83,7 @@ class _SksMenuView extends ConsumerWidget {
             elevation: 3,
             tooltip: context.localize.sks_favourite_dishes,
             backgroundColor: context.colorScheme.primary,
-            onPressed: () async {
-              unawaited(AppHaptics.selectionClick());
-              await ref.navigateToSksFavouriteDishes();
-            },
+            onPressed: AppHaptics.wrapperLight(ref.navigateToSksFavouriteDishes),
             child: Icon(
               Icons.favorite,
               semanticLabel: context.localize.sks_favourite_dishes,

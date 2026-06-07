@@ -19,12 +19,11 @@ class ReportChangeButton extends ConsumerWidget {
           Text(context.localize.report_change_title),
           const SizedBox(height: 8),
           ElevatedButton(
-            onPressed: () {
-              unawaited(AppHaptics.lightImpact());
+            onPressed: AppHaptics.wrapperLight(() {
               final emailUrl =
                   "mailto:${context.localize.report_change_email}?subject=${Uri.encodeComponent(context.localize.report_change_subject)}";
               unawaited(ref.launch(emailUrl));
-            },
+            }),
             style: ElevatedButton.styleFrom(
               backgroundColor: context.colorScheme.primary,
               padding: AppWidgetsConfig.paddingMedium,

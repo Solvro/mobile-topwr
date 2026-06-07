@@ -22,8 +22,7 @@ class FiltersFAB extends ConsumerWidget {
     return FloatingActionButton(
       heroTag: "filters_fab",
       tooltip: context.localize.filters_fab_tooltip,
-      onPressed: () async {
-        unawaited(AppHaptics.lightImpact());
+      onPressed: AppHaptics.wrapperLight(() async {
         unawaited(ref.trackEvent(ClarityEvents.openSciClubsFilterSheet));
         await showModalBottomSheet<void>(
           context: context,
@@ -33,7 +32,7 @@ class FiltersFAB extends ConsumerWidget {
         ).whenComplete(() {
           ref.read(focusFirstCardProvider.notifier).state = true;
         });
-      },
+      }),
       backgroundColor: context.colorScheme.primary,
       child: Semantics(
         label: context.localize.filters_fab_tooltip,

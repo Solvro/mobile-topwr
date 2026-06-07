@@ -85,10 +85,7 @@ class _MyAlertDialog extends StatelessWidget {
                   style: context.textTheme.bodyLarge,
                   textScaler: context.textScaler.clamp(maxScaleFactor: 2),
                 ),
-                onPressed: () {
-                  unawaited(AppHaptics.selectionClick());
-                  Navigator.of(context).pop();
-                },
+                onPressed: AppHaptics.wrapperSelection(Navigator.of(context).pop),
               ),
             ),
           ],
