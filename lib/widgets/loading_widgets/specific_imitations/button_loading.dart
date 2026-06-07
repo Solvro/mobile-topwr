@@ -10,19 +10,15 @@ class ButtonLoading extends StatelessWidget {
   Widget build(BuildContext context) {
     return Shimmer(
       linearGradient: shimmerGradient,
-      child: Column(
-        children: [
-          ShimmerLoadingItem(
-            child: Container(
-              width: 110,
-              height: 36,
-              decoration: BoxDecoration(
-                color: ShimmerLoadingConfig.placeholderColor,
-                borderRadius: BorderRadius.circular(100),
-              ),
-            ),
+      child: ShimmerLoadingItem(
+        child: Container(
+          width: 110,
+          height: 36,
+          decoration: BoxDecoration(
+            color: ShimmerLoadingConfig.placeholderColor,
+            borderRadius: BorderRadius.circular(100),
           ),
-        ],
+        ),
       ),
     );
   }

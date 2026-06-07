@@ -50,7 +50,7 @@ class BroadcastsSection extends HookConsumerWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Row(spacing: 16, children: List.generate(2, (_) => const PreviewCardLoading(width: 200, height: 200))),
       ),
-      _ => Column(children: [Text(context.localize.generic_error_message)]),
+      _ => Center(child: Text(context.localize.generic_error_message)),
     };
   }
 }

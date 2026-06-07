@@ -61,28 +61,28 @@ class _SksButton extends StatelessWidget {
             onTap();
           },
           child: ExcludeSemantics(
-            child: Row(
-              children: [
-                Container(
-                  padding: SksConfig.innerPadding,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: context.colorScheme.primary),
-                    borderRadius: BorderRadius.circular(SksConfig.radius),
-                  ),
-                  child: Row(
-                    children: [
-                      Icon(Icons.supervised_user_circle, semanticLabel: "", color: context.colorScheme.primary),
-                      const SizedBox(width: SksConfig.sizedBoxWidth),
-                      Text(
-                        sksUserData.activeUsers.toString(),
-                        style: context.textTheme.titleLarge?.copyWith(color: context.colorScheme.primary),
-                      ),
-                      const SizedBox(width: SksConfig.sizedBoxWidth),
-                      sksUserData.trend.icon(context),
-                    ],
-                  ),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Container(
+                padding: SksConfig.innerPadding,
+                decoration: BoxDecoration(
+                  border: Border.all(color: context.colorScheme.primary),
+                  borderRadius: BorderRadius.circular(SksConfig.radius),
                 ),
-              ],
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.supervised_user_circle, semanticLabel: "", color: context.colorScheme.primary),
+                    const SizedBox(width: SksConfig.sizedBoxWidth),
+                    Text(
+                      sksUserData.activeUsers.toString(),
+                      style: context.textTheme.titleLarge?.copyWith(color: context.colorScheme.primary),
+                    ),
+                    const SizedBox(width: SksConfig.sizedBoxWidth),
+                    sksUserData.trend.icon(context),
+                  ],
+                ),
+              ),
             ),
           ),
         ),

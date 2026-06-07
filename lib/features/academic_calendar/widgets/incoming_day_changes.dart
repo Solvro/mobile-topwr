@@ -85,35 +85,33 @@ class IncomingDayChanges extends ConsumerWidget {
         ),
       ),
     ];
-    return Container(
+    return Padding(
       padding: const EdgeInsets.symmetric(horizontal: HomeViewConfig.paddingLarge),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Consumer(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8),
-              child: context.isTextScaledUp
-                  ? Wrap(
-                      alignment: WrapAlignment.center,
-                      crossAxisAlignment: WrapCrossAlignment.center,
-                      runAlignment: WrapAlignment.center,
-                      runSpacing: 12,
-                      spacing: 12,
-                      children: children,
-                    )
-                  : Row(spacing: 12, mainAxisAlignment: MainAxisAlignment.center, children: children),
-            ),
-            builder: (context, ref, child) => MySplashTile(
-              backgroundColor: Colors.transparent,
-              onTap: () async {
-                unawaited(HapticFeedback.selectionClick());
-                await DayChangesDialog.show(context, calendar, ref);
-              },
-              child: child ?? const SizedBox.shrink(),
-            ),
+      child: SizedBox(
+        width: double.infinity,
+        child: Consumer(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8),
+            child: context.isTextScaledUp
+                ? Wrap(
+                    alignment: WrapAlignment.center,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    runAlignment: WrapAlignment.center,
+                    runSpacing: 12,
+                    spacing: 12,
+                    children: children,
+                  )
+                : Row(spacing: 12, mainAxisAlignment: MainAxisAlignment.center, children: children),
           ),
-        ],
+          builder: (context, ref, child) => MySplashTile(
+            backgroundColor: Colors.transparent,
+            onTap: () async {
+              unawaited(HapticFeedback.selectionClick());
+              await DayChangesDialog.show(context, calendar, ref);
+            },
+            child: child ?? const SizedBox.shrink(),
+          ),
+        ),
       ),
     );
   }

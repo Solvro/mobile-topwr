@@ -15,18 +15,14 @@ class DepartmentSliverHeaderSection extends SliverHeaderSection {
     final logoSize = calcLogoSize(shrinkOffset);
     final logoOpacity = calcLogoOpacity(shrinkOffset, logoSize);
     final scaleFactor = activeGradient != null ? 0.5 : 1.0;
-    return Stack(
-      children: [
-        SliverLogo(
-          scaleFactor: scaleFactor,
-          activeGradient: activeGradient,
-          logoDirectusUrl: logoDirectusImageData?.effectiveUrl,
-          logoOpacity: logoOpacity,
-          logoSize: logoSize,
-          boxfit: BoxFit.scaleDown,
-          loadingType: LoadingType.noLoading,
-        ),
-      ],
+    return SliverLogo(
+      scaleFactor: scaleFactor,
+      activeGradient: activeGradient,
+      logoDirectusUrl: logoDirectusImageData?.effectiveUrl,
+      logoOpacity: logoOpacity,
+      logoSize: logoSize,
+      boxfit: BoxFit.scaleDown,
+      loadingType: LoadingType.noLoading,
     );
   }
 }

@@ -34,43 +34,39 @@ class LibraryTile extends HookConsumerWidget {
           : "${l10n.building_tile_unselected} ${library.title}",
     );
 
-    return Column(
+    return Stack(
       children: [
-        Stack(
-          children: [
-            Semantics(
-              label: "${isActive ? "${context.localize.building_tile_selected} " : ""} ${library.title}",
-              button: true,
-              child: ExcludeSemantics(
-                child: PhotoTrailingWideTileCard(
-                  context,
-                  activeGradient: ColorsConsts.toPwrGradient,
-                  directusPhotoUrl: library.photo,
-                  title: library.title,
-                  subtitle:
-                      "${library.room != null ? "${context.localize.room} ${library.room}\n" : ""}${library.building != null ? "${context.localize.building_tile_building} ${library.building!.name}" : ""}",
-                  isActive: isActive,
-                  onTap: () {
-                    unawaited(HapticFeedback.selectionClick());
-                    unawaited(ref.trackEvent(ClarityEvents.selectLibrary, value: library.title));
-                    unawaited(ref.read(multilayerMapControllerProvider).onMarkerTap(LibraryItem(library: library)));
-                  },
-                  customPlaceholder: ColoredBox(
-                    color: context.colorScheme.surfaceTint,
-                    child: Center(
-                      child: SvgPicture.asset(
-                        Assets.svg.mapPlaceholders.libraryIcon,
-                        height: WideTileCardConfig.imageSize / 2,
-                      ),
-                    ),
+        Semantics(
+          label: "${isActive ? "${context.localize.building_tile_selected} " : ""} ${library.title}",
+          button: true,
+          child: ExcludeSemantics(
+            child: PhotoTrailingWideTileCard(
+              context,
+              activeGradient: ColorsConsts.toPwrGradient,
+              directusPhotoUrl: library.photo,
+              title: library.title,
+              subtitle:
+                  "${library.room != null ? "${context.localize.room} ${library.room}\n" : ""}${library.building != null ? "${context.localize.building_tile_building} ${library.building!.name}" : ""}",
+              isActive: isActive,
+              onTap: () {
+                unawaited(HapticFeedback.selectionClick());
+                unawaited(ref.trackEvent(ClarityEvents.selectLibrary, value: library.title));
+                unawaited(ref.read(multilayerMapControllerProvider).onMarkerTap(LibraryItem(library: library)));
+              },
+              customPlaceholder: ColoredBox(
+                color: context.colorScheme.surfaceTint,
+                child: Center(
+                  child: SvgPicture.asset(
+                    Assets.svg.mapPlaceholders.libraryIcon,
+                    height: WideTileCardConfig.imageSize / 2,
                   ),
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
                 ),
               ),
+              crossAxisAlignment: CrossAxisAlignment.stretch,
             ),
-            if (library.building != null) BuildingNavLink(building: library.building!, isActive: isActive),
-          ],
+          ),
         ),
+        if (library.building != null) BuildingNavLink(building: library.building!, isActive: isActive),
       ],
     );
   }

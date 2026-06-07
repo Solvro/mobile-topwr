@@ -4,7 +4,6 @@ import "package:flutter/gestures.dart" show TapGestureRecognizer;
 import "package:flutter/material.dart";
 import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
-import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../utils/launch_url_util.dart";
@@ -42,57 +41,47 @@ class ScienceClubInfoDialog extends StatelessWidget {
             Navigator.of(context).pop();
           },
           style: TextButton.styleFrom(padding: const EdgeInsets.all(12)),
-          child: Row(
-            children: [
-              Expanded(
-                child: Text(
-                  context.localize.ok,
-                  textAlign: TextAlign.center,
-                  style: context.textTheme.bodyMedium?.copyWith(color: context.colorScheme.primary),
-                ),
-              ),
-            ],
+          child: Text(
+            context.localize.ok,
+            textAlign: TextAlign.center,
+            style: context.textTheme.bodyMedium?.copyWith(color: context.colorScheme.primary),
           ),
         ),
       ],
-      content: Column(
-        spacing: ScienceClubsViewConfig.listSeparatorSize,
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Consumer(
-            builder: (context, ref, child) {
-              final scaler = context.textScaler.clamp(maxScaleFactor: 1.2);
-              final baseStyle = context.textTheme.titleMedium?.copyWith(
-                fontSize: scaler.scale(context.textTheme.titleMedium?.fontSize ?? 16),
-              );
-              final linkStyle = baseStyle?.copyWith(
-                color: context.colorScheme.primary,
-                decoration: TextDecoration.underline,
-                decorationColor: context.colorScheme.primary,
-              );
-              return RichText(
-                textScaler: scaler,
-                text: TextSpan(
-                  text: context.localize.add_club_contact_info,
-                  style: baseStyle,
-                  children: [
-                    TextSpan(
-                      text: context.localize.report_change_email,
-                      style: linkStyle,
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () {
-                          final emailUrl = "mailto:${context.localize.report_change_email}";
-                          unawaited(ref.launch(emailUrl));
-                        },
-                    ),
-                    const TextSpan(text: "."),
-                  ],
-                ),
-              );
-            },
-          ),
-        ],
+      content: SizedBox(
+        width: double.infinity,
+        child: Consumer(
+          builder: (context, ref, child) {
+            final scaler = context.textScaler.clamp(maxScaleFactor: 1.2);
+            final baseStyle = context.textTheme.titleMedium?.copyWith(
+              fontSize: scaler.scale(context.textTheme.titleMedium?.fontSize ?? 16),
+            );
+            final linkStyle = baseStyle?.copyWith(
+              color: context.colorScheme.primary,
+              decoration: TextDecoration.underline,
+              decorationColor: context.colorScheme.primary,
+            );
+            return RichText(
+              textScaler: scaler,
+              text: TextSpan(
+                text: context.localize.add_club_contact_info,
+                style: baseStyle,
+                children: [
+                  TextSpan(
+                    text: context.localize.report_change_email,
+                    style: linkStyle,
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        final emailUrl = "mailto:${context.localize.report_change_email}";
+                        unawaited(ref.launch(emailUrl));
+                      },
+                  ),
+                  const TextSpan(text: "."),
+                ],
+              ),
+            );
+          },
+        ),
       ),
     );
   }

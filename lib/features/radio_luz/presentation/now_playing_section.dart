@@ -47,7 +47,7 @@ class NowPlayingSection extends ConsumerWidget {
           children: List.generate(4, (_) => const HorizontalRectangularSectionLoading()),
         ),
       ),
-      _ => Column(children: [Text(context.localize.generic_error_message)]),
+      _ => Center(child: Text(context.localize.generic_error_message)),
     };
   }
 }

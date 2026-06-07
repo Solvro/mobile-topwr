@@ -62,16 +62,14 @@ class _NotificationsErrorContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
-      builder: (context, constraints) => ListView(
+      builder: (context, constraints) => SingleChildScrollView(
         key: MyAppConfig.verticalScrollableKey,
         physics: const AlwaysScrollableScrollPhysics(),
         padding: const EdgeInsets.fromLTRB(24, 8, 24, 24),
-        children: [
-          SizedBox(
-            height: constraints.maxHeight,
-            child: MyErrorWidget(error, stackTrace: stackTrace),
-          ),
-        ],
+        child: SizedBox(
+          height: constraints.maxHeight,
+          child: MyErrorWidget(error, stackTrace: stackTrace),
+        ),
       ),
     );
   }
@@ -85,11 +83,11 @@ class _NotificationsListContent extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return notifications.isEmpty
-        ? ListView(
+        ? SingleChildScrollView(
             key: MyAppConfig.verticalScrollableKey,
             physics: const AlwaysScrollableScrollPhysics(),
             padding: const EdgeInsets.fromLTRB(24, 8, 24, 24),
-            children: [Center(child: Text(context.localize.no_notifications))],
+            child: Center(child: Text(context.localize.no_notifications)),
           )
         : ListView.separated(
             key: MyAppConfig.verticalScrollableKey,
