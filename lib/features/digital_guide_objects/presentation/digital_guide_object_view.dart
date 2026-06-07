@@ -62,7 +62,6 @@ class _DigitalGObjectView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final widgets1 = [
       const SizedBox(height: DigitalGuideConfig.heightSmall),
-      SizedBox(height: DetailViewsConfig.imageHeight, child: ZoomableCachedImage(photoUrl)),
       HeadlinesSection(name: digitalGuideData.translations.pl.name, description: ""),
       ContactSection(
         shouldBeAccessible: true,
@@ -111,6 +110,15 @@ class _DigitalGObjectView extends ConsumerWidget {
       appBar: DetailViewAppBar(actions: [AccessibilityButton()]),
       body: CustomScrollView(
         slivers: [
+          SliverAppBar(
+            excludeHeaderSemantics: true,
+            expandedHeight: DetailViewsConfig.imageHeight,
+            automaticallyImplyLeading: false,
+            flexibleSpace: SizedBox(
+              height: DetailViewsConfig.imageHeight,
+              child: Focus(autofocus: true, child: ZoomableCachedImage(photoUrl)),
+            ),
+          ),
           SliverList(
             delegate: SliverChildBuilderDelegate((context, index) {
               return widgets1[index];
