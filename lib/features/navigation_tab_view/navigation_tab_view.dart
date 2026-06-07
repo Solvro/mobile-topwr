@@ -49,7 +49,11 @@ class NavigationTabView extends ConsumerWidget {
             await ref.navigateDepartments();
           },
           title: context.localize.departments,
-          icon: const Icon(BottomNavBarIcons.departments_icon, semanticLabel: "", size: NavigationTabViewConfig.navIconSize),
+          icon: const Icon(
+            BottomNavBarIcons.departments_icon,
+            semanticLabel: "",
+            size: NavigationTabViewConfig.navIconSize,
+          ),
         ),
         child2: SmallTileCard(
           key: NavigationTabViewConfig.scienceClubsKey,

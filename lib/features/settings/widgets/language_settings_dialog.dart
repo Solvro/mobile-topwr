@@ -66,7 +66,9 @@ class LanguageDialog extends ConsumerWidget {
                   child: ListTile(
                     selected: selected,
                     title: Text(semanticsLabel: name.substring(1), name),
-                    trailing: selected ? Icon(Icons.check, semanticLabel: "", color: context.colorScheme.primary) : null,
+                    trailing: selected
+                        ? Icon(Icons.check, semanticLabel: "", color: context.colorScheme.primary)
+                        : null,
                     onTap: () async {
                       unawaited(HapticFeedback.selectionClick());
                       if (!isFirstTimeMode) {

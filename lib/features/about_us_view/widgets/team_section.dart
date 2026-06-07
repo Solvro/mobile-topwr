@@ -101,7 +101,10 @@ class _SingleVersionTeamList extends HookWidget {
     final content = version.members.isEmpty
         ? Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [const Icon(Icons.escalator_warning, semanticLabel: ""), Text(context.localize.emptySection)],
+            children: [
+              const Icon(Icons.escalator_warning, semanticLabel: ""),
+              Text(context.localize.emptySection),
+            ],
           )
         : ListView.builder(
             physics: const NeverScrollableScrollPhysics(),

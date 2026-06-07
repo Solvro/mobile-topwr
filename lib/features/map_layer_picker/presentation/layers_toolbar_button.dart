@@ -20,7 +20,11 @@ class LayersButton extends ConsumerWidget {
         tooltip: context.localize.map_details_title,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         backgroundColor: context.colorScheme.surface,
-        child: Icon(Icons.map, semanticLabel: context.localize.map_details_title, color: context.colorScheme.onTertiary),
+        child: Icon(
+          Icons.map,
+          semanticLabel: context.localize.map_details_title,
+          color: context.colorScheme.onTertiary,
+        ),
         onPressed: () async {
           unawaited(HapticFeedback.selectionClick());
           await LayerOptionsDialog.show(context, ref);

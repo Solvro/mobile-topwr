@@ -48,7 +48,11 @@ class FiltersButton extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 5),
-            Icon(icon, semanticLabel: "", color: isSecondary ? context.colorScheme.primary : context.colorScheme.surface),
+            Icon(
+              icon,
+              semanticLabel: "",
+              color: isSecondary ? context.colorScheme.primary : context.colorScheme.surface,
+            ),
           ],
         ),
       ),

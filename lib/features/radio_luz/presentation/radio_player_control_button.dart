@@ -50,7 +50,12 @@ class RadioPlayerControlButton extends StatelessWidget {
               child: CircularProgressIndicator(color: context.colorScheme.primary, strokeWidth: 2),
             )
           else
-            Icon(isPlaying ? Icons.pause : Icons.play_arrow, semanticLabel: "", size: 16, color: context.colorScheme.primary),
+            Icon(
+              isPlaying ? Icons.pause : Icons.play_arrow,
+              semanticLabel: "",
+              size: 16,
+              color: context.colorScheme.primary,
+            ),
           Expanded(
             child: Center(
               child: Text(
