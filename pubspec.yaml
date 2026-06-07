@@ -212,6 +212,11 @@ melos:
         cd packages/widgetbook && flutter run -d chrome
 
 flutter:
+  # Keep SPM disabled until all iOS plugins support it. Currently blocked by
+  # flutter_compass and flutter_rotation_sensor.
+  config:
+    enable-swift-package-manager: false
+
   uses-material-design: true
   generate: true
 
