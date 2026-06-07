@@ -2,11 +2,11 @@ import "dart:async";
 
 import "package:collection/collection.dart";
 import "package:flutter/material.dart";
-import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../config/nav_bar_config.dart";
 import "../../config/ui_config.dart";
+import "../../services/haptics/app_haptics.dart";
 import "../../theme/app_theme.dart";
 
 class BottomNavBar extends ConsumerWidget {
@@ -22,7 +22,7 @@ class BottomNavBar extends ConsumerWidget {
         child: BottomNavigationBar(
           currentIndex: activeIndex,
           onTap: (indx) {
-            unawaited(HapticFeedback.selectionClick());
+            unawaited(AppHaptics.selectionClick());
             onTap(indx);
           },
           backgroundColor: context.colorScheme.surfaceTint,

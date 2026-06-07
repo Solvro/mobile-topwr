@@ -4,11 +4,11 @@ import "package:auto_route/auto_route.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
-import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../config/env.dart";
 import "../../config/ui_config.dart";
+import "../../services/haptics/app_haptics.dart";
 import "../../theme/app_theme.dart";
 import "../../utils/context_extensions.dart";
 import "../analytics/data/clarity.dart";
@@ -45,7 +45,7 @@ class NavigationTabView extends ConsumerWidget {
         child1: SmallTileCard(
           key: NavigationTabViewConfig.departments,
           onTap: () async {
-            unawaited(HapticFeedback.selectionClick());
+            unawaited(AppHaptics.selectionClick());
             await ref.navigateDepartments();
           },
           title: context.localize.departments,
@@ -58,7 +58,7 @@ class NavigationTabView extends ConsumerWidget {
         child2: SmallTileCard(
           key: NavigationTabViewConfig.scienceClubsKey,
           onTap: () async {
-            unawaited(HapticFeedback.selectionClick());
+            unawaited(AppHaptics.selectionClick());
             await ref.navigateScienceClubs();
           },
           title: context.localize.student_organizations,
@@ -104,7 +104,7 @@ class _SksSmallBigTile extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return SmallTileCard(
       onTap: () async {
-        unawaited(HapticFeedback.selectionClick());
+        unawaited(AppHaptics.selectionClick());
         await ref.navigateToSksMenu();
       },
       title: context.localize.sks_menu,
@@ -120,7 +120,7 @@ class _BoothsTile extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return SmallTileCard(
       onTap: () async {
-        unawaited(HapticFeedback.selectionClick());
+        unawaited(AppHaptics.selectionClick());
         await ref.navigateBooths();
       },
       title: context.localize.booths_title,
@@ -136,7 +136,7 @@ class _RatingTile extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return SmallTileCard(
       onTap: () async {
-        unawaited(HapticFeedback.selectionClick());
+        unawaited(AppHaptics.selectionClick());
         await ref.trackEvent(ClarityEvents.openLeaveReview);
         if (!kIsWeb) {
           await InAppRatingService.requestStoreListingReview();
@@ -168,7 +168,7 @@ class _RadioLuzTile extends ConsumerWidget {
       label: context.localize.radio_luz,
       child: BaseSmallTileCard(
         onTap: () async {
-          unawaited(HapticFeedback.selectionClick());
+          unawaited(AppHaptics.selectionClick());
           await ref.navigateToRadioLuz();
         },
         child: const SizedBox(

@@ -3,7 +3,6 @@ import "dart:math";
 
 import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
-import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../features/home_view/widgets/web_version_prompt.dart";
@@ -11,6 +10,7 @@ import "../features/navigator/app_router.dart";
 import "../features/navigator/navigation_stack.dart";
 import "../features/navigator/utils/navigation_commands.dart";
 import "../features/radio_luz/service/radio_player_controller.dart";
+import "../services/haptics/app_haptics.dart";
 import "../theme/app_theme.dart";
 import "../utils/context_extensions.dart";
 
@@ -68,7 +68,7 @@ class HorizontalSymmetricSafeAreaScaffold extends ConsumerWidget {
           tooltip: context.localize.radio_luz,
           backgroundColor: context.colorScheme.primary,
           onPressed: () async {
-            unawaited(HapticFeedback.selectionClick());
+            unawaited(AppHaptics.selectionClick());
             await ref.navigateToRadioLuz();
           },
           child: Icon(Icons.radio, semanticLabel: context.localize.radio_luz),

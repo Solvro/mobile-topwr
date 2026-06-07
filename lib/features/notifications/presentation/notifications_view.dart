@@ -3,10 +3,10 @@ import "dart:async";
 import "package:auto_route/auto_route.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
-import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../config/ui_config.dart";
+import "../../../services/haptics/app_haptics.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../utils/launch_url_util.dart";
@@ -102,14 +102,14 @@ class _NotificationsListContent extends ConsumerWidget {
                 subtitle: notification.body,
                 onTap: notification.data?.route != null
                     ? () async {
-                        unawaited(HapticFeedback.selectionClick());
+                        unawaited(AppHaptics.selectionClick());
                         await ref.launch(notification.data!.route!);
                       }
                     : null,
                 trailing: IconButton(
                   tooltip: context.localize.more_info,
                   onPressed: () async {
-                    unawaited(HapticFeedback.selectionClick());
+                    unawaited(AppHaptics.selectionClick());
                     await NotificationDetailsDialog.show(context, ref, notification);
                   },
                   icon: Icon(

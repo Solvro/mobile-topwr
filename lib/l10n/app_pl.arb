@@ -5,6 +5,10 @@
   "@language": {
     "description": "Language selection label"
   },
+  "haptic_feedback": "Wibracje",
+  "@haptic_feedback": {
+    "description": "Setting switch label for enabling or disabling haptic feedback"
+  },
   "polish_id": "pl",
   "@polish_id": {
     "description": "Language code for Polish"

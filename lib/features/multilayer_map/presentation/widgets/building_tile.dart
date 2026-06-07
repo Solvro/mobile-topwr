@@ -1,7 +1,6 @@
 import "dart:async";
 
 import "package:flutter/material.dart";
-import "package:flutter/services.dart";
 import "package:flutter_svg/svg.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
@@ -9,6 +8,7 @@ import "../../../../config/ui_config.dart";
 import "../../../../config/url_config.dart";
 import "../../../../gen/assets.gen.dart";
 import "../../../../hooks/use_semantics_service_on_changed_value.dart";
+import "../../../../services/haptics/app_haptics.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../theme/colors.dart";
 import "../../../../utils/context_extensions.dart";
@@ -61,7 +61,7 @@ class BuildingTile extends HookConsumerWidget {
                   subtitle: building.address,
                   isActive: isActive,
                   onTap: () {
-                    unawaited(HapticFeedback.selectionClick());
+                    unawaited(AppHaptics.selectionClick());
                     unawaited(ref.trackEvent(ClarityEvents.selectBuilding, value: building.name));
                     unawaited(ref.read(multilayerMapControllerProvider).onMarkerTap(BuildingItem(building: building)));
                   },
@@ -117,7 +117,7 @@ class BuildingTile extends HookConsumerWidget {
                           },
                   ),
                   onPressed: () {
-                    unawaited(HapticFeedback.selectionClick());
+                    unawaited(AppHaptics.selectionClick());
                     unawaited(ref.navigateBuildingDetailAction(building));
                   },
                 ),
@@ -135,7 +135,7 @@ class BuildingTile extends HookConsumerWidget {
               size: context.textScaler.scale(16),
             ),
             onPressed: () {
-              unawaited(HapticFeedback.selectionClick());
+              unawaited(AppHaptics.selectionClick());
               unawaited(ref.navigateBuildingDetailAction(building));
             },
             style: TextButton.styleFrom(padding: const EdgeInsets.all(12)),

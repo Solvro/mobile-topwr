@@ -1,9 +1,9 @@
 import "dart:async";
 
 import "package:flutter/material.dart";
-import "package:flutter/services.dart";
 
 import "../config/ui_config.dart";
+import "../services/haptics/app_haptics.dart";
 import "../theme/app_theme.dart";
 
 class MySplashTile extends StatelessWidget {
@@ -24,7 +24,7 @@ class MySplashTile extends StatelessWidget {
         onTap: onTap == null
             ? null
             : () {
-                unawaited(HapticFeedback.selectionClick());
+                unawaited(AppHaptics.selectionClick());
                 onTap!();
               },
         child: Ink(

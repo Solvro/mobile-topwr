@@ -5,7 +5,6 @@ import "dart:math";
 import "package:auto_route/annotations.dart";
 import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
-import "package:flutter/services.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 import "package:intl/intl.dart";
@@ -14,6 +13,7 @@ import "package:lottie/lottie.dart";
 import "../../../../../theme/app_theme.dart";
 import "../../../../config/ui_config.dart";
 import "../../../../gen/assets.gen.dart";
+import "../../../../services/haptics/app_haptics.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../../../widgets/horizontal_symmetric_safe_area.dart";
@@ -84,7 +84,7 @@ class _SksMenuView extends ConsumerWidget {
             tooltip: context.localize.sks_favourite_dishes,
             backgroundColor: context.colorScheme.primary,
             onPressed: () async {
-              unawaited(HapticFeedback.selectionClick());
+              unawaited(AppHaptics.selectionClick());
               await ref.navigateToSksFavouriteDishes();
             },
             child: Icon(

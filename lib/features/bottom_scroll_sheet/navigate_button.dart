@@ -1,10 +1,10 @@
 import "dart:async";
 
 import "package:flutter/material.dart";
-import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../config/map_view_config.dart";
+import "../../services/haptics/app_haptics.dart";
 import "../../theme/app_theme.dart";
 import "../../utils/context_extensions.dart";
 import "../map_view/controllers/controllers_set.dart";
@@ -21,7 +21,7 @@ class NavigateButton<T extends GoogleNavigable> extends ConsumerWidget {
       child: TextButton.icon(
         icon: Icon(ParkingsIcons.map_nav, semanticLabel: "", color: context.colorScheme.primary, size: 16),
         onPressed: () async {
-          unawaited(HapticFeedback.selectionClick());
+          unawaited(AppHaptics.selectionClick());
           await ref.watch(context.activeMarkerController<T>().notifier).launchLink();
         },
         style: TextButton.styleFrom(padding: const EdgeInsets.all(12)),

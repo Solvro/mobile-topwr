@@ -1,10 +1,10 @@
 import "dart:async";
 
 import "package:flutter/material.dart";
-import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../config/map_view_config.dart";
+import "../../../../services/haptics/app_haptics.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../widgets/my_alert_dialog.dart";
@@ -20,7 +20,7 @@ class ParkingInfoButton extends ConsumerWidget {
       child: IconButton(
         icon: Icon(Icons.info, semanticLabel: "", color: context.colorScheme.primary),
         onPressed: () async {
-          unawaited(HapticFeedback.selectionClick());
+          unawaited(AppHaptics.selectionClick());
           await _onPressed(context, ref);
         },
         style: IconButton.styleFrom(padding: const EdgeInsets.all(12)),

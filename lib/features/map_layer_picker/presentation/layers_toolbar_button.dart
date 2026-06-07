@@ -1,9 +1,9 @@
 import "dart:async";
 
 import "package:flutter/material.dart";
-import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
+import "../../../services/haptics/app_haptics.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "layer_options_dialog.dart";
@@ -26,7 +26,7 @@ class LayersButton extends ConsumerWidget {
           color: context.colorScheme.onTertiary,
         ),
         onPressed: () async {
-          unawaited(HapticFeedback.selectionClick());
+          unawaited(AppHaptics.selectionClick());
           await LayerOptionsDialog.show(context, ref);
         },
       ),

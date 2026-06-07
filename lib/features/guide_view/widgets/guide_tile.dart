@@ -1,9 +1,9 @@
 import "dart:async";
 
 import "package:flutter/material.dart";
-import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
+import "../../../services/haptics/app_haptics.dart";
 import "../../../widgets/wide_tile_card.dart";
 import "../../navigator/utils/navigation_commands.dart";
 import "../data/models/guide_data.dart";
@@ -19,7 +19,7 @@ class GuideTile extends ConsumerWidget {
       subtitle: item.shortDesc,
       directusPhotoUrl: item.image,
       onTap: () async {
-        unawaited(HapticFeedback.selectionClick());
+        unawaited(AppHaptics.selectionClick());
         await ref.navigateGuideDetail(item.id);
       },
       crossAxisAlignment: CrossAxisAlignment.stretch,

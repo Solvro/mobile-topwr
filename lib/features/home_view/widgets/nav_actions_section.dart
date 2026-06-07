@@ -1,10 +1,10 @@
 import "dart:async";
 
 import "package:flutter/material.dart";
-import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../config/ui_config.dart";
+import "../../../services/haptics/app_haptics.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../activity_days/data/repository/activity_days_repository.dart";
@@ -81,7 +81,7 @@ class _NavActionButton extends StatelessWidget {
               decoration: BoxDecoration(shape: BoxShape.circle, color: buttonColor),
               child: InkWell(
                 onTap: () {
-                  unawaited(HapticFeedback.selectionClick());
+                  unawaited(AppHaptics.selectionClick());
                   onTap();
                 },
                 borderRadius: BorderRadius.circular(56),

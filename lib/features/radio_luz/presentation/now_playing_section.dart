@@ -1,10 +1,10 @@
 import "dart:async";
 
 import "package:flutter/material.dart";
-import "package:flutter/services.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../../config/ui_config.dart";
+import "../../../services/haptics/app_haptics.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../widgets/loading_widgets/simple_previews/horizontal_rectangular_section_loading.dart";
@@ -138,7 +138,7 @@ class _NowPlayingTile extends StatelessWidget {
                 color: isActive ? colorScheme.surface : colorScheme.primary,
               ),
               onPressed: () async {
-                unawaited(HapticFeedback.selectionClick());
+                unawaited(AppHaptics.selectionClick());
                 await SearchStreamingBottomSheet.show(context, title: title, artist: subtitle);
               },
             ),

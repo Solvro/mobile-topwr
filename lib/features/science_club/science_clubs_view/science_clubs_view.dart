@@ -3,9 +3,9 @@ import "dart:async";
 import "package:auto_route/auto_route.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
-import "package:flutter/services.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
+import "../../../services/haptics/app_haptics.dart";
 import "../../../utils/context_extensions.dart";
 import "../../branches/data/model/branch.dart";
 import "../../departments/departments_view/data/repository/departments_repository.dart";
@@ -111,7 +111,7 @@ class _ScienceClubsView extends StatelessWidget {
                 icon: Icon(Icons.info_outline, semanticLabel: context.localize.studyClub_howToAddYourOrganization),
                 tooltip: context.localize.studyClub_howToAddYourOrganization,
                 onPressed: () async {
-                  unawaited(HapticFeedback.selectionClick());
+                  unawaited(AppHaptics.selectionClick());
                   await showDialog<void>(context: context, builder: (context) => const ScienceClubInfoDialog());
                 },
               ),

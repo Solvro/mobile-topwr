@@ -5,11 +5,11 @@ import "dart:async";
 
 import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
-import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:separate/separate.dart";
 
 import "../../../../../config/ui_config.dart";
+import "../../../../../services/haptics/app_haptics.dart";
 import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/context_extensions.dart";
 import "../../../../../widgets/my_expansion_tile.dart";
@@ -58,7 +58,7 @@ class SksMenuTile extends ConsumerWidget {
                   onTap: onDishTap == null
                       ? null
                       : (String dishId) {
-                          unawaited(HapticFeedback.selectionClick());
+                          unawaited(AppHaptics.selectionClick());
                           onDishTap!(dishId);
                         },
                   onDoubleTap: onDoubleTap,
@@ -99,7 +99,7 @@ class SksMenuDishDetailsTile extends StatelessWidget {
     final baseTile = GestureDetector(
       onTap: !kIsWeb
           ? () {
-              unawaited(HapticFeedback.selectionClick());
+              unawaited(AppHaptics.selectionClick());
               onTap?.call(dish.id);
             }
           : null,

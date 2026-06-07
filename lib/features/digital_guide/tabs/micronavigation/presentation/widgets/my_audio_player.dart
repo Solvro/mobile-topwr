@@ -1,12 +1,12 @@
 import "dart:async";
 
 import "package:flutter/material.dart";
-import "package:flutter/services.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
 import "package:just_audio/just_audio.dart";
 import "package:logger/logger.dart";
 
 import "../../../../../../config/ui_config.dart";
+import "../../../../../../services/haptics/app_haptics.dart";
 import "../../../../../../theme/app_theme.dart";
 import "../../../../../../utils/context_extensions.dart";
 import "../../../../../../utils/duration_utils.dart";
@@ -87,7 +87,7 @@ class MyAudioPlayer extends HookWidget {
               icon: Icon(isPlaying.value ? Icons.pause : Icons.play_arrow, semanticLabel: ""),
               color: context.colorScheme.onTertiary,
               onPressed: () async {
-                unawaited(HapticFeedback.selectionClick());
+                unawaited(AppHaptics.selectionClick());
                 await togglePlayPause();
               },
             ),

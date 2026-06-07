@@ -1,10 +1,10 @@
 import "dart:async";
 
-import "package:flutter/services.dart";
 import "package:flutter/widgets.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../gen/assets.gen.dart";
+import "../../../../services/haptics/app_haptics.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../analytics/data/clarity.dart";
 import "../../../analytics/data/clarity_events.dart";
@@ -38,7 +38,7 @@ class MultilayerMarker extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
       onTap: () {
-        unawaited(HapticFeedback.selectionClick());
+        unawaited(AppHaptics.selectionClick());
         unawaited(ref.read(multilayerMapControllerProvider).onMarkerTap(item));
         return switch (item) {
           BuildingItem(:final building) => unawaited(

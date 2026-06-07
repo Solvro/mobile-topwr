@@ -3,10 +3,10 @@ import "dart:async";
 import "package:carousel_slider_plus/carousel_slider_plus.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
-import "package:flutter/services.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
 
 import "../../../../config/ui_config.dart";
+import "../../../../services/haptics/app_haptics.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../widgets/arrow_button.dart";
@@ -70,7 +70,7 @@ class DigitalGuideCarouselWithIndicator extends HookWidget {
                 ArrowButton(
                   icon: Icons.chevron_left,
                   onPressed: () {
-                    unawaited(HapticFeedback.selectionClick());
+                    unawaited(AppHaptics.selectionClick());
                     unawaited(goTo(current.value - 1));
                   },
                 ),
@@ -79,7 +79,7 @@ class DigitalGuideCarouselWithIndicator extends HookWidget {
                   children: imgListId.asMap().entries.map((entry) {
                     return GestureDetector(
                       onTap: () {
-                        unawaited(HapticFeedback.selectionClick());
+                        unawaited(AppHaptics.selectionClick());
                         unawaited(controller.animateToPage(entry.key));
                       },
                       child: Container(
@@ -99,7 +99,7 @@ class DigitalGuideCarouselWithIndicator extends HookWidget {
                 ArrowButton(
                   icon: Icons.chevron_right,
                   onPressed: () {
-                    unawaited(HapticFeedback.selectionClick());
+                    unawaited(AppHaptics.selectionClick());
                     unawaited(goTo(current.value + 1));
                   },
                 ),

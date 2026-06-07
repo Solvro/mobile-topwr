@@ -1,9 +1,9 @@
 import "dart:async";
 
 import "package:flutter/material.dart";
-import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
+import "../../../services/haptics/app_haptics.dart";
 import "../../../theme/app_theme.dart";
 import "../../../theme/hex_color.dart";
 import "../../../utils/context_extensions.dart";
@@ -42,7 +42,7 @@ class _BadgeContent extends ConsumerWidget {
       padding: const EdgeInsets.only(right: 12),
       child: OutlinedButton(
         onPressed: () async {
-          unawaited(HapticFeedback.selectionClick());
+          unawaited(AppHaptics.selectionClick());
           unawaited(ref.trackEvent(ClarityEvents.openBannerDialog));
           await showCustomDialog(
             context: context,

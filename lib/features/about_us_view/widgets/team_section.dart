@@ -3,12 +3,12 @@ import "dart:async";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/cupertino.dart";
 import "package:flutter/material.dart";
-import "package:flutter/services.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:flutter_svg/svg.dart";
 
 import "../../../config/ui_config.dart";
+import "../../../services/haptics/app_haptics.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../utils/determine_contact_icon.dart";
@@ -199,7 +199,7 @@ class _Icon extends ConsumerWidget {
       padding: const EdgeInsets.only(right: 11),
       child: GestureDetector(
         onTap: () async {
-          unawaited(HapticFeedback.selectionClick());
+          unawaited(AppHaptics.selectionClick());
           unawaited(ref.trackEvent(ClarityEvents.openTeamMemberLink, value: launchUrl));
           await ref.launch(launchUrl);
         },

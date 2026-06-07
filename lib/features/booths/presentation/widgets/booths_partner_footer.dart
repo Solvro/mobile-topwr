@@ -1,10 +1,10 @@
 import "dart:async";
 
 import "package:flutter/material.dart";
-import "package:flutter/services.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../../../gen/assets.gen.dart";
+import "../../../../services/haptics/app_haptics.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../utils/launch_url_util.dart";
@@ -24,7 +24,7 @@ class BoothsPartnerFooter extends ConsumerWidget {
         child: InkWell(
           borderRadius: BorderRadius.circular(16),
           onTap: () async {
-            unawaited(HapticFeedback.selectionClick());
+            unawaited(AppHaptics.selectionClick());
             await ref.launch(_automatykUrl);
           },
           child: Padding(

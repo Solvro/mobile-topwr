@@ -2,7 +2,8 @@ import "dart:async";
 
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
-import "package:flutter/services.dart";
+
+import "../../../../../services/haptics/app_haptics.dart";
 import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/context_extensions.dart";
 import "icon_view_name.dart";
@@ -20,7 +21,7 @@ class IconLegendDialog extends StatelessWidget {
         icon: const Icon(Icons.info_outline, semanticLabel: "", size: 20),
         color: context.colorScheme.tertiary,
         onPressed: () async {
-          unawaited(HapticFeedback.selectionClick());
+          unawaited(AppHaptics.selectionClick());
           await showDialog<String>(
             context: context,
             builder: (BuildContext context) => AlertDialog(
@@ -47,7 +48,7 @@ class IconLegendDialog extends StatelessWidget {
                   const SizedBox(height: 15),
                   TextButton(
                     onPressed: () {
-                      unawaited(HapticFeedback.selectionClick());
+                      unawaited(AppHaptics.selectionClick());
                       Navigator.pop(context);
                     },
                     child: Text(context.localize.close),

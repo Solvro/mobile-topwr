@@ -2,13 +2,13 @@ import "dart:async";
 
 import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
-import "package:flutter/services.dart";
 import "package:flutter_map/flutter_map.dart";
 import "package:flutter_map_cache/flutter_map_cache.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 import "package:http_cache_drift_store/http_cache_drift_store.dart";
 
 import "../../../config/map_view_config.dart";
+import "../../../services/haptics/app_haptics.dart";
 import "../../../theme/app_theme.dart";
 import "../../branches/business/selected_branch_on_map.dart";
 import "../../multilayer_map/data/model/multilayer_item.dart";
@@ -58,7 +58,7 @@ class MapWidget<T extends GoogleNavigable> extends HookConsumerWidget {
               }
             },
             onTap: (tapPosition, point) {
-              unawaited(HapticFeedback.selectionClick());
+              unawaited(AppHaptics.selectionClick());
               ref.watch(mapControllerProvider).onMapBackgroundTap(tapPosition, point);
             },
           ),

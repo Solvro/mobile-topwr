@@ -1,12 +1,12 @@
 import "dart:async";
 
 import "package:flutter/material.dart";
-import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../config/nav_bar_config.dart";
 import "../../features/navigator/app_router.dart";
 import "../../features/navigator/navigation_stack.dart";
+import "../../services/haptics/app_haptics.dart";
 import "../../theme/app_theme.dart";
 import "../../utils/context_extensions.dart";
 
@@ -22,7 +22,7 @@ class DetailViewPopButton extends ConsumerWidget {
 
     return TextButton(
       onPressed: () {
-        unawaited(HapticFeedback.selectionClick());
+        unawaited(AppHaptics.selectionClick());
         Navigator.pop(context);
       },
       style: TextButton.styleFrom(padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 2)),

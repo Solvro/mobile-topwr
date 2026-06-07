@@ -1,13 +1,13 @@
 import "dart:async";
 
 import "package:flutter/material.dart";
-import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:logger/logger.dart";
 import "package:solvro_translator_core/solvro_translator_core.dart";
 
 import "../../../../config/ui_config.dart";
 import "../../../../theme/app_theme.dart";
+import "../../../services/haptics/app_haptics.dart";
 import "../../../services/translations_service/data/preferred_lang_repository.dart";
 import "../../../utils/context_extensions.dart";
 import "../../digital_guide/tabs/accessibility_dialog/presentation/red_dialog.dart";
@@ -43,7 +43,7 @@ class LanguageDialog extends ConsumerWidget {
           showApplyButton: isFirstTimeMode,
           applyButtonText: context.localize.select,
           onApplyButtonPressed: () async {
-            unawaited(HapticFeedback.selectionClick());
+            unawaited(AppHaptics.selectionClick());
             await ref
                 .read(preferredLanguageRepositoryProvider.notifier)
                 .setPreferredLanguage(SolvroLocale.values.byName(selectedLanguage));
@@ -68,7 +68,7 @@ class LanguageDialog extends ConsumerWidget {
                         ? Icon(Icons.check, semanticLabel: "", color: context.colorScheme.primary)
                         : null,
                     onTap: () async {
-                      unawaited(HapticFeedback.selectionClick());
+                      unawaited(AppHaptics.selectionClick());
                       if (!isFirstTimeMode) {
                         Navigator.pop(context, code);
                         Logger().d("returning language: $code");

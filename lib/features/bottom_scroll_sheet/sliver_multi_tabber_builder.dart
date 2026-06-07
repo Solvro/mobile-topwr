@@ -1,12 +1,12 @@
 import "dart:async";
 
 import "package:flutter/material.dart";
-import "package:flutter/services.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../config/map_view_config.dart";
 import "../../config/ui_config.dart";
+import "../../services/haptics/app_haptics.dart";
 import "../../theme/app_theme.dart";
 import "../../utils/context_extensions.dart";
 import "../multilayer_map/data/model/multilayer_item.dart";
@@ -123,7 +123,7 @@ class _TabBarWidget extends HookConsumerWidget {
         controller: tabController,
         labelPadding: const EdgeInsets.symmetric(horizontal: NavigationTabViewConfig.smallerPadding),
         onTap: (index) async {
-          unawaited(HapticFeedback.selectionClick());
+          unawaited(AppHaptics.selectionClick());
           await onTabTap(index);
         },
         isScrollable: true,

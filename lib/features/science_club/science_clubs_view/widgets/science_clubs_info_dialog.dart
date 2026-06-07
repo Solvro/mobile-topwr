@@ -2,8 +2,9 @@ import "dart:async";
 
 import "package:flutter/gestures.dart" show TapGestureRecognizer;
 import "package:flutter/material.dart";
-import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
+
+import "../../../../services/haptics/app_haptics.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../utils/launch_url_util.dart";
@@ -37,7 +38,7 @@ class ScienceClubInfoDialog extends StatelessWidget {
       actions: [
         TextButton(
           onPressed: () {
-            unawaited(HapticFeedback.selectionClick());
+            unawaited(AppHaptics.selectionClick());
             Navigator.of(context).pop();
           },
           style: TextButton.styleFrom(padding: const EdgeInsets.all(12)),

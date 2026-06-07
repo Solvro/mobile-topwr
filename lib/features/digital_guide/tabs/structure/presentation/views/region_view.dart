@@ -2,10 +2,10 @@ import "dart:async";
 
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
-import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../../config/ui_config.dart";
+import "../../../../../../services/haptics/app_haptics.dart";
 import "../../../../../../theme/app_theme.dart";
 import "../../../../../../utils/context_extensions.dart";
 import "../../../../../../widgets/detail_views/detail_view_app_bar.dart";
@@ -59,7 +59,7 @@ class _RegionView extends ConsumerWidget {
       RegionDataSliverListItem(
         text: (index) => regionData.corridors[index].translations.plTranslation.name,
         onTap: (index) {
-          unawaited(HapticFeedback.selectionClick());
+          unawaited(AppHaptics.selectionClick());
           return ref.navigateDigitalGuideCorridor(regionData.corridors[index]);
         },
         itemCount: region.corridors.length,
@@ -68,7 +68,7 @@ class _RegionView extends ConsumerWidget {
         RegionDataSliverListItem(
           text: (index) => context.localize.stairs,
           onTap: (index) {
-            unawaited(HapticFeedback.selectionClick());
+            unawaited(AppHaptics.selectionClick());
             return ref.navigateDigitalGuideStairs(regionData.stairs[index].id);
           },
           itemCount: region.stairs.length,
@@ -77,7 +77,7 @@ class _RegionView extends ConsumerWidget {
         RegionDataSliverListItem(
           text: (index) => regionData.stairways[index].translations.plTranslation.name,
           onTap: (index) {
-            unawaited(HapticFeedback.selectionClick());
+            unawaited(AppHaptics.selectionClick());
             return ref.navigateDigitalGuideStairway(regionData.stairways[index]);
           },
           itemCount: region.stairways.length,
@@ -86,7 +86,7 @@ class _RegionView extends ConsumerWidget {
         RegionDataSliverListItem(
           text: (index) => context.localize.ramp,
           onTap: (index) {
-            unawaited(HapticFeedback.selectionClick());
+            unawaited(AppHaptics.selectionClick());
             return ref.navigateDigitalGuideRamps(regionData.ramps[index]);
           },
           itemCount: region.ramps.length,
@@ -94,7 +94,7 @@ class _RegionView extends ConsumerWidget {
       RegionDataSliverListItem(
         text: (index) => context.localize.lift,
         onTap: (index) {
-          unawaited(HapticFeedback.selectionClick());
+          unawaited(AppHaptics.selectionClick());
           return ref.navigateLiftDetails(regionData.lifts[index], level.translations.plTranslation.name);
         },
         itemCount: region.lifts.length,
@@ -102,7 +102,7 @@ class _RegionView extends ConsumerWidget {
       RegionDataSliverListItem(
         text: (index) => context.localize.lodge,
         onTap: (index) {
-          unawaited(HapticFeedback.selectionClick());
+          unawaited(AppHaptics.selectionClick());
           return ref.navigateDigitalGuideLodge(regionData.lodges[index]);
         },
         itemCount: region.lodges.length,
@@ -112,7 +112,7 @@ class _RegionView extends ConsumerWidget {
             ? context.localize.men_toilet
             : context.localize.women_toilet,
         onTap: (index) {
-          unawaited(HapticFeedback.selectionClick());
+          unawaited(AppHaptics.selectionClick());
           return ref.navigateDigitalGuideToilet(regionData.toilets[index]);
         },
         itemCount: region.toilets.length,
@@ -120,7 +120,7 @@ class _RegionView extends ConsumerWidget {
       RegionDataSliverListItem(
         text: (index) => regionData.rooms[index].translations.pl.name,
         onTap: (index) {
-          unawaited(HapticFeedback.selectionClick());
+          unawaited(AppHaptics.selectionClick());
           return ref.navigateRoomDetails(regionData.rooms[index]);
         },
         itemCount: region.rooms.length,
@@ -128,7 +128,7 @@ class _RegionView extends ConsumerWidget {
       RegionDataSliverListItem(
         text: (index) => context.localize.parking,
         onTap: (index) {
-          unawaited(HapticFeedback.selectionClick());
+          unawaited(AppHaptics.selectionClick());
           return ref.navigateDigitalGuideParking(regionData.parkings[index]);
         },
         itemCount: region.parkings.length,
@@ -136,7 +136,7 @@ class _RegionView extends ConsumerWidget {
       RegionDataSliverListItem(
         text: (index) => context.localize.information_point,
         onTap: (index) {
-          unawaited(HapticFeedback.selectionClick());
+          unawaited(AppHaptics.selectionClick());
           return ref.navigateDigitalGuideInformationPoint(regionData.informationPoints[index]);
         },
         itemCount: region.informationPoints.length,
@@ -144,7 +144,7 @@ class _RegionView extends ConsumerWidget {
       RegionDataSliverListItem(
         text: (index) => context.localize.dressing_room,
         onTap: (index) {
-          unawaited(HapticFeedback.selectionClick());
+          unawaited(AppHaptics.selectionClick());
           return ref.navigateDigitalGuideDressingRoom(regionData.dressingRooms[index]);
         },
         itemCount: region.dressingRooms.length,

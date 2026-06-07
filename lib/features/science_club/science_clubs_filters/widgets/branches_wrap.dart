@@ -1,9 +1,9 @@
 import "dart:async";
 
 import "package:flutter/material.dart";
-import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
+import "../../../../services/haptics/app_haptics.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../analytics/data/clarity.dart";
 import "../../../analytics/data/clarity_events.dart";
@@ -38,7 +38,7 @@ class BranchesWrap extends ConsumerWidget {
                       MyFilterChip(
                         label: branch.localizeFilter(context.localize),
                         onTap: () {
-                          unawaited(HapticFeedback.selectionClick());
+                          unawaited(AppHaptics.selectionClick());
                           unawaited(ref.trackEvent(ClarityEvents.selectSciClubFilterBranch, value: branch.name));
                           controller.toggleFilter(branch);
                         },

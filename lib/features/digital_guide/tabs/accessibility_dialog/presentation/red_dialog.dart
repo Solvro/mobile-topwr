@@ -1,9 +1,9 @@
 import "dart:async";
 
 import "package:flutter/material.dart";
-import "package:flutter/services.dart";
 
 import "../../../../../config/ui_config.dart";
+import "../../../../../services/haptics/app_haptics.dart";
 import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/context_extensions.dart";
 
@@ -54,7 +54,7 @@ class RedDialog extends StatelessWidget {
                         onApplyButtonPressed: onApplyButtonPressed == null
                             ? null
                             : () {
-                                unawaited(HapticFeedback.selectionClick());
+                                unawaited(AppHaptics.selectionClick());
                                 onApplyButtonPressed!();
                               },
                         child: child,
@@ -109,7 +109,7 @@ class _DialogContent extends StatelessWidget {
             onApplyButtonPressed: onApplyButtonPressed == null
                 ? null
                 : () {
-                    unawaited(HapticFeedback.selectionClick());
+                    unawaited(AppHaptics.selectionClick());
                     onApplyButtonPressed!();
                   },
           ),
@@ -129,7 +129,7 @@ class _DialogFooter extends StatelessWidget {
       padding: DialogsConfig.padding,
       child: ElevatedButton(
         onPressed: () {
-          unawaited(HapticFeedback.selectionClick());
+          unawaited(AppHaptics.selectionClick());
           // we're saving the changes in real time anyway
           onApplyButtonPressed?.call();
           Navigator.of(context).pop();
@@ -191,7 +191,7 @@ class _DialogHeader extends StatelessWidget {
                       ),
                       color: context.colorScheme.tertiary,
                       onPressed: () {
-                        unawaited(HapticFeedback.selectionClick());
+                        unawaited(AppHaptics.selectionClick());
                         Navigator.of(context).pop();
                       },
                     ),

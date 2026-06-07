@@ -2,10 +2,10 @@ import "dart:async";
 
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
-import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../config/ui_config.dart";
+import "../../../../../services/haptics/app_haptics.dart";
 import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/context_extensions.dart";
 import "../../../../navigator/utils/navigation_commands.dart";
@@ -32,7 +32,7 @@ class DigitalGuideLiftLevel extends ConsumerWidget {
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) => DigitalGuideNavLink(
               onTap: () async {
-                unawaited(HapticFeedback.selectionClick());
+                unawaited(AppHaptics.selectionClick());
                 await ref.navigateLiftDetails(lifts[index], level.translations.plTranslation.name);
               },
               text: context.localize.lift,

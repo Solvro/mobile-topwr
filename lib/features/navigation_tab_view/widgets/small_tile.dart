@@ -2,9 +2,9 @@ import "dart:async";
 
 import "package:auto_size_text/auto_size_text.dart";
 import "package:flutter/material.dart";
-import "package:flutter/services.dart";
 
 import "../../../config/ui_config.dart";
+import "../../../services/haptics/app_haptics.dart";
 import "../../../theme/app_theme.dart";
 import "../../../widgets/my_splash_tile.dart";
 
@@ -19,7 +19,7 @@ class BaseSmallTileCard extends StatelessWidget {
       onTap: onTap == null
           ? null
           : () {
-              unawaited(HapticFeedback.selectionClick());
+              unawaited(AppHaptics.selectionClick());
               onTap!();
             },
       child: child,
@@ -39,7 +39,7 @@ class SmallTileCard extends StatelessWidget {
       onTap: onTap == null
           ? null
           : () {
-              unawaited(HapticFeedback.selectionClick());
+              unawaited(AppHaptics.selectionClick());
               onTap!();
             },
       child: Row(

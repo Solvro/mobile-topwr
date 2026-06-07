@@ -1,10 +1,10 @@
 import "dart:async";
 
 import "package:flutter/material.dart";
-import "package:flutter/services.dart";
 
 import "../../../../../config/ui_config.dart";
 import "../../../../../theme/app_theme.dart";
+import "../../../../services/haptics/app_haptics.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../data/model/branch.dart";
 import "branch_icon.dart";
@@ -40,7 +40,7 @@ class BranchList extends StatelessWidget {
               title: Text(semanticsLabel: name.substring(1), name),
               trailing: selected ? Icon(Icons.check, semanticLabel: "", color: context.colorScheme.primary) : null,
               onTap: () {
-                unawaited(HapticFeedback.selectionClick());
+                unawaited(AppHaptics.selectionClick());
                 onBranchTap(branch);
               },
             ),

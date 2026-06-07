@@ -2,11 +2,11 @@ import "dart:async";
 
 import "package:auto_size_text/auto_size_text.dart";
 import "package:flutter/material.dart";
-import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../config/ui_config.dart";
 import "../../../../config/url_config.dart";
+import "../../../../services/haptics/app_haptics.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../theme/colors.dart";
 import "../../../../utils/context_extensions.dart";
@@ -33,7 +33,7 @@ class ExamSessionCountdown extends ConsumerWidget {
       padding: const EdgeInsets.symmetric(horizontal: HomeViewConfig.paddingLarge),
       child: GestureDetector(
         onTap: () async {
-          unawaited(HapticFeedback.selectionClick());
+          unawaited(AppHaptics.selectionClick());
           unawaited(ref.trackEvent(ClarityEvents.openAcademicCalendarExternalLink));
           await ref.launch(UrlConfig.academicCalendarUrl);
         },

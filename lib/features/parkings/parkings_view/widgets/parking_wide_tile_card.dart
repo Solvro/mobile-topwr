@@ -1,9 +1,9 @@
 import "dart:async";
 
 import "package:flutter/material.dart";
-import "package:flutter/services.dart";
 
 import "../../../../config/ui_config.dart";
+import "../../../../services/haptics/app_haptics.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../theme/colors.dart";
 import "../../../../theme/iparking_theme.dart";
@@ -29,7 +29,7 @@ class ParkingWideTileCard extends StatelessWidget {
           : onTap == null
           ? null
           : () {
-              unawaited(HapticFeedback.selectionClick());
+              unawaited(AppHaptics.selectionClick());
               onTap!();
             },
       child: Container(
@@ -64,7 +64,7 @@ class ParkingWideTileCard extends StatelessWidget {
                   onPressed: onTap == null
                       ? null
                       : () {
-                          unawaited(HapticFeedback.selectionClick());
+                          unawaited(AppHaptics.selectionClick());
                           onTap!();
                         },
                   icon: Semantics(

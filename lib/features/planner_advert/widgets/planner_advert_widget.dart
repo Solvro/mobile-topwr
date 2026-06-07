@@ -1,10 +1,10 @@
 import "dart:async";
 
 import "package:flutter/material.dart";
-import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../config/ui_config.dart";
+import "../../../services/haptics/app_haptics.dart";
 import "../../../theme/app_theme.dart";
 import "../../../theme/hex_color.dart";
 import "../../../utils/launch_url_util.dart";
@@ -56,7 +56,7 @@ class _PlannerAdvertBanner extends ConsumerWidget {
             : null,
         onTap: data.url != null
             ? () {
-                unawaited(HapticFeedback.selectionClick());
+                unawaited(AppHaptics.selectionClick());
                 unawaited(ref.trackEvent(ClarityEvents.goToBannerExternalLink));
                 unawaited(ref.launch(data.url!));
               }

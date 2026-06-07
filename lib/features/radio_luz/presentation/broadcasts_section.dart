@@ -2,10 +2,10 @@ import "dart:async";
 
 import "package:carousel_slider_plus/carousel_slider_plus.dart";
 import "package:flutter/material.dart";
-import "package:flutter/services.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
+import "../../../services/haptics/app_haptics.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../utils/launch_url_util.dart";
@@ -82,7 +82,7 @@ class _BroadcastTile extends ConsumerWidget {
       enabled: isValidUrl(siteUrl),
       child: InkWell(
         onTap: () async {
-          unawaited(HapticFeedback.selectionClick());
+          unawaited(AppHaptics.selectionClick());
           await ref.launch(siteUrl);
         },
         child: Card(

@@ -1,9 +1,9 @@
 import "dart:async";
 
 import "package:flutter/material.dart";
-import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
+import "../../../services/haptics/app_haptics.dart";
 import "../../../utils/context_extensions.dart";
 import "../../navigator/utils/navigation_commands.dart";
 import "navigation_tile.dart";
@@ -15,7 +15,7 @@ class SettingsTitle extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return NavigationTile(
       onTap: () async {
-        unawaited(HapticFeedback.selectionClick());
+        unawaited(AppHaptics.selectionClick());
         await ref.navigateSettings();
       },
       title: context.localize.settings,

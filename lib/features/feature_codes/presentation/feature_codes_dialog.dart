@@ -1,10 +1,10 @@
 import "dart:async";
 
 import "package:flutter/material.dart";
-import "package:flutter/services.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
+import "../../../services/haptics/app_haptics.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../digital_guide/tabs/accessibility_dialog/presentation/red_dialog.dart";
@@ -101,7 +101,7 @@ class _InputRow extends HookWidget {
         IconButton(
           onPressed: canAdd.value
               ? () async {
-                  unawaited(HapticFeedback.selectionClick());
+                  unawaited(AppHaptics.selectionClick());
                   await onAdd();
                 }
               : null,
@@ -148,7 +148,7 @@ class _CodesList extends StatelessWidget {
               icon: const Icon(Icons.delete_outline, semanticLabel: ""),
               tooltip: context.localize.feature_codes_remove_button,
               onPressed: () async {
-                unawaited(HapticFeedback.selectionClick());
+                unawaited(AppHaptics.selectionClick());
                 await onRemove(code);
               },
             ),

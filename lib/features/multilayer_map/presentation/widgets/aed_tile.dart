@@ -1,13 +1,13 @@
 import "dart:async";
 
 import "package:flutter/material.dart";
-import "package:flutter/services.dart";
 import "package:flutter_svg/svg.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../../../config/ui_config.dart";
 import "../../../../gen/assets.gen.dart";
 import "../../../../hooks/use_semantics_service_on_changed_value.dart";
+import "../../../../services/haptics/app_haptics.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../theme/colors.dart";
 import "../../../../utils/context_extensions.dart";
@@ -48,7 +48,7 @@ class AedTile extends HookConsumerWidget {
               subtitle: (aed.instructions ?? "").trim(),
               isActive: isActive,
               onTap: () {
-                unawaited(HapticFeedback.selectionClick());
+                unawaited(AppHaptics.selectionClick());
                 unawaited(ref.trackEvent(ClarityEvents.selectAed, value: title));
                 unawaited(ref.read(multilayerMapControllerProvider).onMarkerTap(AedItem(aed: aed)));
               },

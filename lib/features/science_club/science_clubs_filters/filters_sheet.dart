@@ -2,10 +2,10 @@ import "dart:async";
 
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
-import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../config/ui_config.dart";
+import "../../../services/haptics/app_haptics.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "filters_controller.dart";
@@ -72,11 +72,11 @@ class FiltersSheet extends ConsumerWidget {
                                 icon: Icons.close,
                                 onPressed: ref.watch(areFiltersEnabledProvider)
                                     ? () {
-                                        unawaited(HapticFeedback.selectionClick());
+                                        unawaited(AppHaptics.selectionClick());
                                         ref.getClearAllFilters(ref);
                                       }
                                     : () {
-                                        unawaited(HapticFeedback.selectionClick());
+                                        unawaited(AppHaptics.selectionClick());
                                       },
                                 isSecondary: true,
                               ),
@@ -86,7 +86,7 @@ class FiltersSheet extends ConsumerWidget {
                               text: context.localize.apply,
                               icon: Icons.check,
                               onPressed: () async {
-                                unawaited(HapticFeedback.selectionClick());
+                                unawaited(AppHaptics.selectionClick());
                                 await context.maybePop();
                               },
                             ),

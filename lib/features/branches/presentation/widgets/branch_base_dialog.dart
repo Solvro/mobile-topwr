@@ -1,8 +1,8 @@
 import "dart:async";
 
 import "package:flutter/material.dart";
-import "package:flutter/services.dart";
 
+import "../../../../services/haptics/app_haptics.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../digital_guide/tabs/accessibility_dialog/presentation/red_dialog.dart";
 import "../../data/model/branch.dart";
@@ -44,7 +44,7 @@ class BranchBaseDialog extends StatelessWidget {
           onApplyButtonPressed: onApplyButtonPressed == null
               ? null
               : () {
-                  unawaited(HapticFeedback.selectionClick());
+                  unawaited(AppHaptics.selectionClick());
                   onApplyButtonPressed!();
                 },
           child: BranchList(selectedBranch: selectedBranch, onBranchTap: onBranchTap),

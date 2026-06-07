@@ -1,12 +1,12 @@
 import "dart:async";
 
 import "package:flutter/material.dart";
-import "package:flutter/services.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
 import "package:flutter_svg/svg.dart";
 
 import "../config/ui_config.dart";
 import "../gen/assets.gen.dart";
+import "../services/haptics/app_haptics.dart";
 import "../theme/app_theme.dart";
 import "../utils/context_extensions.dart";
 
@@ -62,7 +62,7 @@ class SearchBox extends HookWidget {
         onTap: onTap == null
             ? null
             : () {
-                unawaited(HapticFeedback.selectionClick());
+                unawaited(AppHaptics.selectionClick());
                 onTap!();
               },
         onTapOutside: onTapOutside,
@@ -84,7 +84,7 @@ class SearchBox extends HookWidget {
                   tooltip: context.localize.clear,
                   icon: Icon(Icons.cancel, semanticLabel: "", color: context.colorScheme.onTertiary, size: 19),
                   onPressed: () {
-                    unawaited(HapticFeedback.selectionClick());
+                    unawaited(AppHaptics.selectionClick());
                     onSuffixPressed();
                   },
                 )

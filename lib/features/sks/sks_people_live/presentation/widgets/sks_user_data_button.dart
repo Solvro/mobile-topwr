@@ -1,10 +1,10 @@
 import "dart:async";
 
 import "package:flutter/material.dart";
-import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../config/ui_config.dart";
+import "../../../../../services/haptics/app_haptics.dart";
 import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/context_extensions.dart";
 import "../../../../analytics/data/clarity.dart";
@@ -24,7 +24,7 @@ class SksUserDataButton extends ConsumerWidget {
       data: (sksUsersData) => _SksButton(
         sksUsersData,
         onTap: () async {
-          unawaited(HapticFeedback.selectionClick());
+          unawaited(AppHaptics.selectionClick());
           unawaited(ref.trackEvent(ClarityEvents.openSksChart));
           await showModalBottomSheet<void>(
             context: context,
@@ -57,7 +57,7 @@ class _SksButton extends StatelessWidget {
         button: true,
         child: GestureDetector(
           onTap: () {
-            unawaited(HapticFeedback.selectionClick());
+            unawaited(AppHaptics.selectionClick());
             onTap();
           },
           child: ExcludeSemantics(

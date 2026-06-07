@@ -1,10 +1,10 @@
 import "dart:async";
 
 import "package:flutter/material.dart";
-import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../api_base_rest/shared_models/image_data.dart";
+import "../../../services/haptics/app_haptics.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../widgets/wide_tile_card.dart";
@@ -24,7 +24,7 @@ class AboutUsTile extends ConsumerWidget {
         title: context.localize.guide_about_us,
         subtitle: context.localize.guide_meet_creators,
         onTap: () async {
-          unawaited(HapticFeedback.selectionClick());
+          unawaited(AppHaptics.selectionClick());
           await ref.navigateAboutUs();
         },
         // Empty URL triggers MyCachedImage's fallback to show FlutterSplashScreen

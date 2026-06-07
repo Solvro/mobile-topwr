@@ -1,13 +1,12 @@
 import "dart:async";
 
 import "package:flutter/material.dart";
-import "package:flutter/services.dart";
 
 import "../api_base_rest/shared_models/image_data.dart";
 import "../config/ui_config.dart";
+import "../services/haptics/app_haptics.dart";
 import "../theme/app_theme.dart";
 import "../utils/context_extensions.dart";
-
 import "dual_text_max_lines.dart";
 import "rest_api_image.dart";
 
@@ -74,7 +73,7 @@ class WideTileCard extends StatelessWidget {
           onTap: onTap == null
               ? null
               : () {
-                  unawaited(HapticFeedback.selectionClick());
+                  unawaited(AppHaptics.selectionClick());
                   onTap!();
                 },
           child: Ink(

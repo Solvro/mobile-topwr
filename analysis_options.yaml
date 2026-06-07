@@ -9,6 +9,8 @@ plugins:
     version: ^1.8.1-dev.1
     diagnostics:
       provider_dependencies: false # this works weirdly
+    haptic_wrappers:
+      - AppHaptics. # only custom wrapper allowed
 
 analyzer:
   errors:

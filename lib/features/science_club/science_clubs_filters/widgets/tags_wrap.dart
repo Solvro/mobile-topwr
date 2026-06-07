@@ -2,9 +2,9 @@ import "dart:async";
 
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
-import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
+import "../../../../services/haptics/app_haptics.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../utils/where_non_null_iterable.dart";
 import "../../../analytics/data/clarity.dart";
@@ -41,7 +41,7 @@ class TagsWrap extends ConsumerWidget {
                       MyFilterChip(
                         label: tag.tag,
                         onTap: () {
-                          unawaited(HapticFeedback.selectionClick());
+                          unawaited(AppHaptics.selectionClick());
                           unawaited(ref.trackEvent(ClarityEvents.selectSciClubFilterTag, value: tag.tag));
                           controller.toggleFilter(tag);
                         },

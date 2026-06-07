@@ -2,11 +2,11 @@ import "dart:async";
 
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
-import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:solvro_translator_core/solvro_translator_core.dart";
 
 import "../../../../../config/ui_config.dart";
+import "../../../../../services/haptics/app_haptics.dart";
 import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/context_extensions.dart";
 import "../../../../../widgets/my_error_widget.dart";
@@ -55,7 +55,7 @@ class _MicronavigationExpansionTileContent extends ConsumerWidget {
         ),
         child: DigitalGuideNavLink(
           onTap: () async {
-            unawaited(HapticFeedback.selectionClick());
+            unawaited(AppHaptics.selectionClick());
             await ref.navigateMicronavigationDetails(response);
           },
           text: context.solvroLocale == SolvroLocale.pl
