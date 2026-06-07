@@ -1,11 +1,8 @@
-import "dart:async";
-
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../../config/ui_config.dart";
-import "../../../../../../services/haptics/app_haptics.dart";
 import "../../../../../../theme/app_theme.dart";
 import "../../../../../../utils/context_extensions.dart";
 import "../../../../../../widgets/detail_views/detail_view_app_bar.dart";
@@ -56,7 +53,6 @@ class LevelView extends ConsumerWidget {
                   children: [
                     DigitalGuideNavLink(
                       onTap: () async {
-                        unawaited(AppHaptics.selectionClick());
                         await ref.navigateDigitalGuideRegion(levelInfo.level, levelInfo.regions[index]);
                       },
                       text: levelInfo.regions[index].translations.plTranslation.name,

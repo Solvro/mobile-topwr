@@ -116,10 +116,7 @@ class PolinkaTile extends HookConsumerWidget {
                             _ => context.colorScheme.tertiary,
                           },
                   ),
-                  onPressed: () {
-                    unawaited(AppHaptics.lightImpact());
-                    unawaited(ref.navigatePolinkaDetailAction(station));
-                  },
+                  onPressed: AppHaptics.wrapperLight(() => unawaited(ref.navigatePolinkaDetailAction(station))),
                 ),
               ),
           ],
@@ -134,10 +131,7 @@ class PolinkaTile extends HookConsumerWidget {
               color: context.colorScheme.primary,
               size: context.textScaler.scale(16),
             ),
-            onPressed: () {
-              unawaited(AppHaptics.lightImpact());
-              unawaited(ref.navigatePolinkaDetailAction(station));
-            },
+            onPressed: AppHaptics.wrapperLight(() => unawaited(ref.navigatePolinkaDetailAction(station))),
             style: TextButton.styleFrom(padding: const EdgeInsets.all(12)),
             label: Text(
               context.localize.navigate_to_digital_guide,

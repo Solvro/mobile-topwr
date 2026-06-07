@@ -1,8 +1,6 @@
 // There is already similar widget in lib/features/department_detail_view/widgets/field_of_study_expansion_tile.dart
 // I thought about making it generic but decided to use this one, at least for now
 
-import "dart:async";
-
 import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
@@ -55,12 +53,7 @@ class SksMenuTile extends ConsumerWidget {
                 child: SksMenuDishDetailsTile(
                   dish: dish,
                   isSubscribed: subscribedIds.contains(dish.id),
-                  onTap: onDishTap == null
-                      ? null
-                      : (String dishId) {
-                          unawaited(AppHaptics.selectionClick());
-                          onDishTap!(dishId);
-                        },
+                  onTap: onDishTap,
                   onDoubleTap: onDoubleTap,
                 ),
               ),
@@ -97,12 +90,7 @@ class SksMenuDishDetailsTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final hasIncreasedTextSize = context.isTextScaledUp;
     final baseTile = GestureDetector(
-      onTap: !kIsWeb
-          ? () {
-              unawaited(AppHaptics.selectionClick());
-              onTap?.call(dish.id);
-            }
-          : null,
+      onTap: !kIsWeb ? AppHaptics.wrapperSelection(() => onTap?.call(dish.id)) : null,
       onDoubleTap: !kIsWeb ? () => onDoubleTap?.call(dish.id) : null,
       child: Material(
         shape: RoundedRectangleBorder(

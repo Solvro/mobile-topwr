@@ -1,5 +1,3 @@
-import "dart:async";
-
 import "package:flutter/material.dart";
 
 import "../../../config/ui_config.dart";
@@ -95,10 +93,9 @@ class _DialogContent extends StatelessWidget {
             GestureDetector(
               onTap: onApplicationIconTap == null
                   ? null
-                  : () async {
-                      unawaited(AppHaptics.selectionClick());
+                  : AppHaptics.wrapperSelection(() async {
                       await onApplicationIconTap!(context);
-                    },
+                    }),
               child: applicationIcon,
             ),
           ],

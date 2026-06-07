@@ -198,11 +198,10 @@ class _Icon extends ConsumerWidget {
     return Padding(
       padding: const EdgeInsets.only(right: 11),
       child: GestureDetector(
-        onTap: () async {
-          unawaited(AppHaptics.selectionClick());
+        onTap: AppHaptics.wrapperLight(() async {
           unawaited(ref.trackEvent(ClarityEvents.openTeamMemberLink, value: launchUrl));
           await ref.launch(launchUrl);
-        },
+        }),
         child: SizedBox.square(
           dimension: context.textScaler.clamp(maxScaleFactor: 2).scale(22),
           child: SvgPicture.asset(icon),

@@ -95,10 +95,9 @@ class WebVersionBanner extends StatelessWidget {
             Icon(Icons.language, semanticLabel: "", size: 18, color: context.colorScheme.primary),
             const SizedBox(width: 8),
             InkWell(
-              onTap: () async {
-                unawaited(AppHaptics.selectionClick());
+              onTap: AppHaptics.wrapperLight(() async {
                 await showWebVersionDialog(context);
-              },
+              }),
               borderRadius: BorderRadius.circular(16), // match the container
               child: Text(
                 context.localize.web_version_banner,
@@ -130,10 +129,9 @@ class _BannerIconButton extends StatelessWidget {
       visualDensity: VisualDensity.compact,
       iconSize: 18,
       tooltip: kIsWeb ? null : tooltip,
-      onPressed: () async {
-        unawaited(AppHaptics.selectionClick());
+      onPressed: AppHaptics.wrapperLight(() async {
         await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
-      },
+      }),
       icon: Icon(icon, semanticLabel: "", color: context.colorScheme.primary),
     );
   }

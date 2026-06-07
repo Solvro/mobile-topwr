@@ -1,10 +1,7 @@
-import "dart:async";
-
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../../config/ui_config.dart";
-import "../../../../../../services/haptics/app_haptics.dart";
 import "../../../../presentation/widgets/digital_guide_nav_link.dart";
 import "region_data_sliver_list_item.dart";
 
@@ -21,7 +18,6 @@ class RegionDataSliverList extends ConsumerWidget {
           children: [
             DigitalGuideNavLink(
               onTap: () async {
-                unawaited(AppHaptics.selectionClick());
                 await regionDataSliverListItem.onTap?.call(index);
               },
               text: regionDataSliverListItem.text(index),

@@ -1,5 +1,3 @@
-import "dart:async";
-
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 
@@ -42,12 +40,11 @@ class DigitalGuidePhotoRow extends StatelessWidget {
                             button: true,
                             child: ExcludeSemantics(
                               child: GestureDetector(
-                                onTap: () async {
-                                  unawaited(AppHaptics.selectionClick());
+                                onTap: AppHaptics.wrapperSelection(() async {
                                   if (imagesIDs.length > 1) {
                                     await showGallery(context, initId: id);
                                   }
-                                },
+                                }),
                                 child: DigitalGuideImage(id: id, zoomable: imagesIDs.length == 1),
                               ),
                             ),
@@ -64,7 +61,6 @@ class DigitalGuidePhotoRow extends StatelessWidget {
               padding: const EdgeInsets.only(top: DigitalGuideConfig.heightSmall),
               child: DigitalGuideNavLink(
                 onTap: () async {
-                  unawaited(AppHaptics.selectionClick());
                   await showGallery(context);
                 },
                 text: context.localize.see_all_photos(imagesIDs.length),

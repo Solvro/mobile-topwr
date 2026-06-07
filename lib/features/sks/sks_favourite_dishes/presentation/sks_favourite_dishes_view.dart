@@ -8,7 +8,6 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:sliver_tools/sliver_tools.dart";
 
 import "../../../../config/ui_config.dart";
-import "../../../../services/haptics/app_haptics.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../widgets/horizontal_symmetric_safe_area.dart";
@@ -106,7 +105,6 @@ class _SksFavouriteDishesView extends ConsumerWidget {
                         dish: dish,
                         isSubscribed: true,
                         onTap: (dishId) async {
-                          unawaited(AppHaptics.selectionClick());
                           await toastOnDishTap(dishId: dishId, ref: ref, context: context, subscribe: false);
                         },
                         onDoubleTap: (dishId) =>

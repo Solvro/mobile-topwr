@@ -34,11 +34,10 @@ class AccessibilityDialog extends StatelessWidget {
           button: false,
           child: Consumer(
             builder: (context, ref, child) => GestureDetector(
-              onTap: () {
-                unawaited(AppHaptics.selectionClick());
+              onTap: AppHaptics.wrapperSelection(() {
                 unawaited(ref.trackEvent(ClarityEvents.closeAccessibilityModeDialog));
                 Navigator.of(context).pop();
-              },
+              }),
               child: const ModalBarrier(color: ShadowConfig.modalBarrier, dismissible: false),
             ),
           ),
@@ -51,7 +50,6 @@ class AccessibilityDialog extends StatelessWidget {
             subtitle: context.localize.you_can_adjust,
             child: child ?? const SizedBox.shrink(),
             onApplyButtonPressed: () {
-              unawaited(AppHaptics.selectionClick());
               unawaited(ref.trackEvent(ClarityEvents.saveAccessibilityModeDialog));
             },
           ),

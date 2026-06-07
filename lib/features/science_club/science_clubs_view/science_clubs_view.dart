@@ -1,5 +1,3 @@
-import "dart:async";
-
 import "package:auto_route/auto_route.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
@@ -110,10 +108,9 @@ class _ScienceClubsView extends StatelessWidget {
               IconButton(
                 icon: Icon(Icons.info_outline, semanticLabel: context.localize.studyClub_howToAddYourOrganization),
                 tooltip: context.localize.studyClub_howToAddYourOrganization,
-                onPressed: () async {
-                  unawaited(AppHaptics.selectionClick());
+                onPressed: AppHaptics.wrapperLight(() async {
                   await showDialog<void>(context: context, builder: (context) => const ScienceClubInfoDialog());
-                },
+                }),
               ),
             ],
             initialQuery: initialQuery,

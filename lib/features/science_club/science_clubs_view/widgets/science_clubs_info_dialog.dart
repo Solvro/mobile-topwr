@@ -37,10 +37,7 @@ class ScienceClubInfoDialog extends StatelessWidget {
       title: Text(context.localize.add_club_contact_info_question, style: context.textTheme.headlineMedium),
       actions: [
         TextButton(
-          onPressed: () {
-            unawaited(AppHaptics.selectionClick());
-            Navigator.of(context).pop();
-          },
+          onPressed: AppHaptics.wrapperLight(() => Navigator.of(context).pop()),
           style: TextButton.styleFrom(padding: const EdgeInsets.all(12)),
           child: Text(
             context.localize.ok,

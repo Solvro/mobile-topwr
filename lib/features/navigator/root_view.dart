@@ -65,7 +65,7 @@ class RootView extends HookConsumerWidget {
                 bottomNavigationBar: BottomNavBar(
                   activeIndex: activeTabIndex,
                   onTap: (index) {
-                    unawaited(AppHaptics.selectionClick());
+                    unawaited(AppHaptics.lightImpact());
                     timesPushedToTabBar.value++;
                     tabsRouter.setActiveIndex(index);
                   },

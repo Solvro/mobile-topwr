@@ -115,10 +115,7 @@ class BuildingTile extends HookConsumerWidget {
                             _ => context.colorScheme.tertiary,
                           },
                   ),
-                  onPressed: () {
-                    unawaited(AppHaptics.lightImpact());
-                    unawaited(ref.navigateBuildingDetailAction(building));
-                  },
+                  onPressed: AppHaptics.wrapperLight(() => unawaited(ref.navigateBuildingDetailAction(building))),
                 ),
               ),
           ],
@@ -133,10 +130,7 @@ class BuildingTile extends HookConsumerWidget {
               color: context.colorScheme.primary,
               size: context.textScaler.scale(16),
             ),
-            onPressed: () {
-              unawaited(AppHaptics.lightImpact());
-              unawaited(ref.navigateBuildingDetailAction(building));
-            },
+            onPressed: AppHaptics.wrapperLight(() => unawaited(ref.navigateBuildingDetailAction(building))),
             style: TextButton.styleFrom(padding: const EdgeInsets.all(12)),
             label: Text(
               context.localize.navigate_to_digital_guide,

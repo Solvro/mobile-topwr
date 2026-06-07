@@ -1,5 +1,3 @@
-import "dart:async";
-
 import "package:flutter/material.dart";
 import "package:url_launcher/url_launcher.dart";
 
@@ -21,13 +19,12 @@ class StoreTile extends StatelessWidget {
     final tileColor = accent.withValues(alpha: 0.08);
     return InkWell(
       borderRadius: BorderRadius.circular(16),
-      onTap: () async {
-        unawaited(AppHaptics.selectionClick());
+      onTap: AppHaptics.wrapperLight(() async {
         final uri = Uri.parse(url);
         if (await canLaunchUrl(uri)) {
           await launchUrl(uri);
         }
-      },
+      }),
       child: Ink(
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
         decoration: BoxDecoration(

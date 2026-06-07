@@ -30,10 +30,9 @@ class BuildingNavLink extends ConsumerWidget {
           semanticLabel: "",
           color: isActive ? context.colorScheme.surface : context.colorScheme.secondary,
         ),
-        onPressed: () {
-          unawaited(AppHaptics.selectionClick());
+        onPressed: AppHaptics.wrapperLight(() {
           unawaited(ref.read(multilayerMapControllerProvider).onMarkerTap(BuildingItem(building: building)));
-        },
+        }),
       ),
     );
   }

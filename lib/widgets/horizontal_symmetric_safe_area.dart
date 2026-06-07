@@ -1,4 +1,3 @@
-import "dart:async";
 import "dart:math";
 
 import "package:flutter/foundation.dart";
@@ -67,10 +66,9 @@ class HorizontalSymmetricSafeAreaScaffold extends ConsumerWidget {
           elevation: 3,
           tooltip: context.localize.radio_luz,
           backgroundColor: context.colorScheme.primary,
-          onPressed: () async {
-            unawaited(AppHaptics.selectionClick());
+          onPressed: AppHaptics.wrapperLight(() async {
             await ref.navigateToRadioLuz();
-          },
+          }),
           child: Icon(Icons.radio, semanticLabel: context.localize.radio_luz),
         ),
       ...?extraFabs,

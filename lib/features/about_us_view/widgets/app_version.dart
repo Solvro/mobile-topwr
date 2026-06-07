@@ -1,5 +1,3 @@
-import "dart:async";
-
 import "package:flutter/material.dart";
 import "package:package_info_plus/package_info_plus.dart";
 
@@ -34,11 +32,10 @@ class AppVersionTile extends StatelessWidget {
             ),
             contentPadding: const EdgeInsets.symmetric(horizontal: WideTileCardConfig.basePadding),
             horizontalTitleGap: 8,
-            onTap: () async {
-              unawaited(AppHaptics.selectionClick());
+            onTap: AppHaptics.wrapperSelection(() async {
               // TODO(simon-the-shark): customize [LicensePage] theme
               await showMyLicenceDialog(context, snapshot.data?.version);
-            },
+            }),
           ),
         ),
       ),

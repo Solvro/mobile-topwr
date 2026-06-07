@@ -1,9 +1,6 @@
-import "dart:async";
-
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../../../services/haptics/app_haptics.dart";
 import "../../../utils/context_extensions.dart";
 import "../../navigator/utils/navigation_commands.dart";
 import "navigation_tile.dart";
@@ -15,7 +12,6 @@ class SksTile extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return NavigationTile(
       onTap: () async {
-        unawaited(AppHaptics.selectionClick());
         await ref.navigateToSksMenu();
       },
       title: context.localize.sks_menu,

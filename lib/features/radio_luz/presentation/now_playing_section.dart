@@ -1,5 +1,3 @@
-import "dart:async";
-
 import "package:flutter/material.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
@@ -137,10 +135,9 @@ class _NowPlayingTile extends StatelessWidget {
                 semanticLabel: "",
                 color: isActive ? colorScheme.surface : colorScheme.primary,
               ),
-              onPressed: () async {
-                unawaited(AppHaptics.selectionClick());
+              onPressed: AppHaptics.wrapperLight(() async {
                 await SearchStreamingBottomSheet.show(context, title: title, artist: subtitle);
-              },
+              }),
             ),
           ],
         ),

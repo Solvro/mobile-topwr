@@ -1,5 +1,3 @@
-import "dart:async";
-
 import "package:flutter/material.dart";
 import "package:flutter_svg/flutter_svg.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
@@ -90,10 +88,9 @@ class _StreamingServiceTile extends ConsumerWidget {
         color: colorTheme.surfaceTint,
         borderRadius: BorderRadius.circular(12),
         child: InkWell(
-          onTap: () async {
-            unawaited(AppHaptics.selectionClick());
+          onTap: AppHaptics.wrapperLight(() async {
             await ref.launch(service.searchUrlBuilder("$title $artist"));
-          },
+          }),
           borderRadius: BorderRadius.circular(12),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),

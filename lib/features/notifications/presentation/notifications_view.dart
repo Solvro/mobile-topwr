@@ -107,10 +107,9 @@ class _NotificationsListContent extends ConsumerWidget {
                     : null,
                 trailing: IconButton(
                   tooltip: context.localize.more_info,
-                  onPressed: () async {
-                    unawaited(AppHaptics.lightImpact());
-                    await NotificationDetailsDialog.show(context, ref, notification);
-                  },
+                  onPressed: AppHaptics.wrapperLight(
+                    () => unawaited(NotificationDetailsDialog.show(context, ref, notification)),
+                  ),
                   icon: Icon(
                     Icons.info,
                     semanticLabel: "",

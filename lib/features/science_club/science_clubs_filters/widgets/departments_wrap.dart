@@ -3,7 +3,6 @@ import "dart:async";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../../../../services/haptics/app_haptics.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../analytics/data/clarity.dart";
 import "../../../analytics/data/clarity_events.dart";
@@ -39,7 +38,6 @@ class DepartmentsWrap extends ConsumerWidget {
                       MyFilterChip(
                         label: department.code,
                         onTap: () {
-                          unawaited(AppHaptics.selectionClick());
                           unawaited(
                             ref.trackEvent(ClarityEvents.selectSciClubFilterDepartment, value: department.code),
                           );

@@ -1,11 +1,8 @@
-import "dart:async";
-
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../config/ui_config.dart";
-import "../../../../../services/haptics/app_haptics.dart";
 import "../../../../../theme/app_theme.dart";
 import "../../../../../widgets/my_error_widget.dart";
 import "../../../../navigator/utils/navigation_commands.dart";
@@ -51,7 +48,6 @@ class _StructureExpansionTileContent extends ConsumerWidget {
           physics: const NeverScrollableScrollPhysics(),
           itemBuilder: (context, index) => DigitalGuideNavLink(
             onTap: () async {
-              unawaited(AppHaptics.selectionClick());
               await ref.navigateDigitalGuideLevel(levels[index]);
             },
             text: levels[index].level.translations.plTranslation.name,

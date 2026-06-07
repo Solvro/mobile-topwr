@@ -1,10 +1,7 @@
-import "dart:async";
-
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../config/ui_config.dart";
-import "../../../../../services/haptics/app_haptics.dart";
 import "../../../../navigator/utils/navigation_commands.dart";
 import "../../../presentation/widgets/digital_guide_nav_link.dart";
 import "../data/models/digital_guide_entrace.dart";
@@ -21,7 +18,6 @@ class DigitalGuideEntranceWidget extends ConsumerWidget {
       children: [
         DigitalGuideNavLink(
           onTap: () async {
-            unawaited(AppHaptics.selectionClick());
             await ref.navigateEntrancesDetails(entrance);
           },
           text: entrance.translations.pl.name,

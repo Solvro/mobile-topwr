@@ -32,11 +32,10 @@ class ExamSessionCountdown extends ConsumerWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: HomeViewConfig.paddingLarge),
       child: GestureDetector(
-        onTap: () async {
-          unawaited(AppHaptics.selectionClick());
+        onTap: AppHaptics.wrapperLight(() async {
           unawaited(ref.trackEvent(ClarityEvents.openAcademicCalendarExternalLink));
           await ref.launch(UrlConfig.academicCalendarUrl);
-        },
+        }),
         child: Container(
           height: height,
           width: double.infinity,

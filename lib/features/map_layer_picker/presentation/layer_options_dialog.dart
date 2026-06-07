@@ -35,11 +35,10 @@ class LayerOptionsDialog extends StatelessWidget {
           button: false,
           child: Consumer(
             builder: (context, ref, child) => GestureDetector(
-              onTap: () {
-                unawaited(AppHaptics.selectionClick());
+              onTap: AppHaptics.wrapperSelection(() {
                 unawaited(ref.trackEvent(ClarityEvents.closeLayerOptionsDialog));
                 Navigator.of(context).pop();
-              },
+              }),
               child: const ModalBarrier(color: ShadowConfig.modalBarrier, dismissible: false),
             ),
           ),
@@ -52,7 +51,6 @@ class LayerOptionsDialog extends StatelessWidget {
             subtitle: null,
             child: child ?? const SizedBox.shrink(),
             onApplyButtonPressed: () {
-              unawaited(AppHaptics.selectionClick());
               unawaited(ref.trackEvent(ClarityEvents.setLayerOptions));
             },
           ),

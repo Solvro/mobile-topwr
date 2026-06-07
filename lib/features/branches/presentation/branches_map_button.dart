@@ -20,8 +20,8 @@ class BranchesButton extends StatelessWidget {
         tooltip: label,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         backgroundColor: context.colorScheme.surface,
-        child: Icon(BottomNavBarIcons.departments_icon, semanticLabel: label, color: context.colorScheme.onTertiary),
         onPressed: AppHaptics.wrapperLight(() => BranchMapDialog.show(context)),
+        child: Icon(BottomNavBarIcons.departments_icon, semanticLabel: label, color: context.colorScheme.onTertiary),
       ),
     );
   }

@@ -1,5 +1,3 @@
-import "dart:async";
-
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
@@ -20,15 +18,14 @@ class LayersButton extends ConsumerWidget {
         tooltip: context.localize.map_details_title,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         backgroundColor: context.colorScheme.surface,
+        onPressed: AppHaptics.wrapperLight(() async {
+          await LayerOptionsDialog.show(context, ref);
+        }),
         child: Icon(
           Icons.map,
           semanticLabel: context.localize.map_details_title,
           color: context.colorScheme.onTertiary,
         ),
-        onPressed: () async {
-          unawaited(AppHaptics.selectionClick());
-          await LayerOptionsDialog.show(context, ref);
-        },
       ),
     );
   }

@@ -42,11 +42,10 @@ class _ContactIcon extends ConsumerWidget {
     return Semantics(
       label: "${context.localize.button_leading_to}: ${Uri.parse(url).host}",
       child: GestureDetector(
-        onTap: () async {
-          unawaited(AppHaptics.selectionClick());
+        onTap: AppHaptics.wrapperLight(() async {
           unawaited(ref.trackEvent(ClarityEvents.openSolvroAboutUsLink, value: url));
           await ref.launch(url);
-        },
+        }),
         child: DecoratedBox(
           decoration: BoxDecoration(
             color: context.colorScheme.surfaceTint,

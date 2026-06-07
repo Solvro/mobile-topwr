@@ -1,5 +1,3 @@
-import "dart:async";
-
 import "package:flutter/material.dart";
 
 import "../../../../../config/ui_config.dart";
@@ -115,12 +113,11 @@ class _DialogFooter extends StatelessWidget {
     return Padding(
       padding: DialogsConfig.padding,
       child: ElevatedButton(
-        onPressed: () {
-          unawaited(AppHaptics.lightImpact());
+        onPressed: AppHaptics.wrapperLight(() {
           // we're saving the changes in real time anyway
           onApplyButtonPressed?.call();
           Navigator.of(context).pop();
-        },
+        }),
         style: ElevatedButton.styleFrom(
           backgroundColor: context.colorScheme.primaryContainer,
           elevation: 2,

@@ -1,5 +1,3 @@
-import "dart:async";
-
 import "package:carousel_slider_plus/carousel_slider_plus.dart";
 import "package:flutter/material.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
@@ -81,10 +79,9 @@ class _BroadcastTile extends ConsumerWidget {
       button: true,
       enabled: isValidUrl(siteUrl),
       child: InkWell(
-        onTap: () async {
-          unawaited(AppHaptics.selectionClick());
+        onTap: AppHaptics.wrapperLight(() async {
           await ref.launch(siteUrl);
-        },
+        }),
         child: Card(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           clipBehavior: Clip.antiAlias,

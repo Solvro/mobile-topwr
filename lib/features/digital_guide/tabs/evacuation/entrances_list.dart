@@ -1,10 +1,7 @@
-import "dart:async";
-
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../config/ui_config.dart";
-import "../../../../services/haptics/app_haptics.dart";
 import "../../../../widgets/my_error_widget.dart";
 import "../../../navigator/utils/navigation_commands.dart";
 import "../../data/models/digital_guide_response.dart";
@@ -22,7 +19,6 @@ class EntrancesList extends ConsumerWidget {
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) => DigitalGuideNavLink(
           onTap: () async {
-            unawaited(AppHaptics.selectionClick());
             await ref.navigateEntrancesDetails(entrancesData[index]);
           },
           text: entrancesData[index].translations.pl.name,

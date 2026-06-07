@@ -34,10 +34,9 @@ class ParkingsView extends ConsumerWidget {
         alignment: Alignment.topCenter,
         child: ExcludeSemantics(
           child: GestureDetector(
-            onTap: () {
-              unawaited(AppHaptics.selectionClick());
+            onTap: AppHaptics.wrapperSelection(() {
               unawaited(ref.read(parkingsMapControllerProvider).onMarkerTap(item));
-            },
+            }),
             child: (isActive ? Assets.png.mapMarkers.activeParkingMapMarker : Assets.png.mapMarkers.parkingMapMarker)
                 .image(),
           ),

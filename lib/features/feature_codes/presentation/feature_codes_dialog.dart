@@ -1,5 +1,3 @@
-import "dart:async";
-
 import "package:flutter/material.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
@@ -100,10 +98,9 @@ class _InputRow extends HookWidget {
         const SizedBox(width: 8),
         IconButton(
           onPressed: canAdd.value
-              ? () async {
-                  unawaited(AppHaptics.selectionClick());
+              ? AppHaptics.wrapperLight(() async {
                   await onAdd();
-                }
+                })
               : null,
           icon: const Icon(Icons.add, semanticLabel: ""),
           color: context.colorScheme.primary,
@@ -147,10 +144,9 @@ class _CodesList extends StatelessWidget {
             trailing: IconButton(
               icon: const Icon(Icons.delete_outline, semanticLabel: ""),
               tooltip: context.localize.feature_codes_remove_button,
-              onPressed: () async {
-                unawaited(AppHaptics.selectionClick());
+              onPressed: AppHaptics.wrapperLight(() async {
                 await onRemove(code);
-              },
+              }),
             ),
           ),
         );

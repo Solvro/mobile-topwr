@@ -1,5 +1,3 @@
-import "dart:async";
-
 import "package:flutter/material.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
@@ -23,10 +21,9 @@ class BoothsPartnerFooter extends ConsumerWidget {
         label: "${context.localize.booths_sns_cooperation}. $_automatykUrl",
         child: InkWell(
           borderRadius: BorderRadius.circular(16),
-          onTap: () async {
-            unawaited(AppHaptics.selectionClick());
+          onTap: AppHaptics.wrapperLight(() async {
             await ref.launch(_automatykUrl);
-          },
+          }),
           child: Padding(
             padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),
             child: Column(

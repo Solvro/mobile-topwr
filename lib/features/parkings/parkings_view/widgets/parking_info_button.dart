@@ -1,5 +1,3 @@
-import "dart:async";
-
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
@@ -19,10 +17,9 @@ class ParkingInfoButton extends ConsumerWidget {
       padding: const EdgeInsets.only(right: MapViewBottomSheetConfig.horizontalPadding - 12),
       child: IconButton(
         icon: Icon(Icons.info, semanticLabel: "", color: context.colorScheme.primary),
-        onPressed: () async {
-          unawaited(AppHaptics.selectionClick());
+        onPressed: AppHaptics.wrapperLight(() async {
           await _onPressed(context, ref);
-        },
+        }),
         style: IconButton.styleFrom(padding: const EdgeInsets.all(12)),
         tooltip: context.localize.parking_info_button_tooltip,
       ),

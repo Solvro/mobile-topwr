@@ -41,7 +41,6 @@ class SettingsView extends ConsumerWidget {
         autofocus: true,
         child: NavigationTile(
           onTap: () async {
-            unawaited(AppHaptics.selectionClick());
             final selectedLang = await LanguageDialog.show(context);
             if (selectedLang != null) {
               final supportedLocale = SolvroLocale.values.byName(selectedLang);
@@ -54,7 +53,6 @@ class SettingsView extends ConsumerWidget {
       ),
       NavigationTile(
         onTap: () async {
-          unawaited(AppHaptics.selectionClick());
           final selectedBranch = await BranchDialog.show(context);
           if (selectedBranch != null) {
             final branch = Branch.fromName(selectedBranch);
@@ -66,7 +64,6 @@ class SettingsView extends ConsumerWidget {
       ),
       NavigationTile(
         onTap: () {
-          unawaited(AppHaptics.selectionClick());
           unawaited(AccessibilityDialog.show(context, ref));
         },
         title: context.localize.digital_guide_accessibility,
@@ -76,7 +73,6 @@ class SettingsView extends ConsumerWidget {
         NavigationTile(
           key: NavigationTabViewConfig.sksFavouriteDishesKey,
           onTap: () async {
-            unawaited(AppHaptics.selectionClick());
             await ref.navigateToSksFavouriteDishes();
           },
           title: context.localize.sks_favourite_dishes_see_dishes,

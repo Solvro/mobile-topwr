@@ -1,5 +1,3 @@
-import "dart:async";
-
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 
@@ -20,8 +18,7 @@ class IconLegendDialog extends StatelessWidget {
         tooltip: context.localize.iconnames_legend_title,
         icon: const Icon(Icons.info_outline, semanticLabel: "", size: 20),
         color: context.colorScheme.tertiary,
-        onPressed: () async {
-          unawaited(AppHaptics.selectionClick());
+        onPressed: AppHaptics.wrapperLight(() async {
           await showDialog<String>(
             context: context,
             builder: (BuildContext context) => AlertDialog(
@@ -47,17 +44,14 @@ class IconLegendDialog extends StatelessWidget {
                   ),
                   const SizedBox(height: 15),
                   TextButton(
-                    onPressed: () {
-                      unawaited(AppHaptics.selectionClick());
-                      Navigator.pop(context);
-                    },
+                    onPressed: AppHaptics.wrapperLight(() => Navigator.pop(context)),
                     child: Text(context.localize.close),
                   ),
                 ],
               ),
             ),
           );
-        },
+        }),
       ),
     );
   }

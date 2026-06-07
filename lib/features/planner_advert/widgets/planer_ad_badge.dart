@@ -41,8 +41,7 @@ class _BadgeContent extends ConsumerWidget {
     return Padding(
       padding: const EdgeInsets.only(right: 12),
       child: OutlinedButton(
-        onPressed: () async {
-          unawaited(AppHaptics.selectionClick());
+        onPressed: AppHaptics.wrapperLight(() async {
           unawaited(ref.trackEvent(ClarityEvents.openBannerDialog));
           await showCustomDialog(
             context: context,
@@ -54,7 +53,7 @@ class _BadgeContent extends ConsumerWidget {
             confirmText: context.localize.read_more,
             dialogContent: PlanerBadgeDialogContent(data: data),
           );
-        },
+        }),
         style: OutlinedButton.styleFrom(
           shape: const CircleBorder(),
           side: const BorderSide(color: Colors.transparent),

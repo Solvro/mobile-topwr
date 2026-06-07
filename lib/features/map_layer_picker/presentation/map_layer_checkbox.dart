@@ -35,8 +35,7 @@ class MapLayerCheckbox extends ConsumerWidget {
 
     return GestureDetector(
       onTap: checkboxDisabled
-          ? () async {
-              unawaited(AppHaptics.selectionClick());
+          ? AppHaptics.wrapperSelection(() async {
               await Fluttertoast.showToast(
                 msg: context.localize.map_layer_minimum_required,
                 toastLength: Toast.LENGTH_LONG,
@@ -44,7 +43,7 @@ class MapLayerCheckbox extends ConsumerWidget {
                 backgroundColor: ColorsConsts.greyLight.withAlpha(200),
                 textColor: ColorsConsts.blackMirage,
               );
-            }
+            })
           : null,
       child: CheckboxListTile(
         dense: true,

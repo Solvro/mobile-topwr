@@ -1,5 +1,3 @@
-import "dart:async";
-
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
@@ -21,10 +19,7 @@ class DetailViewPopButton extends ConsumerWidget {
     final title = _getPreviousRouteTitle(previousRoute, context, ref);
 
     return TextButton(
-      onPressed: () {
-        unawaited(AppHaptics.selectionClick());
-        Navigator.pop(context);
-      },
+      onPressed: AppHaptics.wrapperLight(() => Navigator.pop(context)),
       style: TextButton.styleFrom(padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 2)),
 
       child: Semantics(

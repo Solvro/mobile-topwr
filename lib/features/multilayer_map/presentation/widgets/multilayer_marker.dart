@@ -37,8 +37,7 @@ class MultilayerMarker extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
-      onTap: () {
-        unawaited(AppHaptics.selectionClick());
+      onTap: AppHaptics.wrapperSelection(() {
         unawaited(ref.read(multilayerMapControllerProvider).onMarkerTap(item));
         return switch (item) {
           BuildingItem(:final building) => unawaited(
@@ -54,7 +53,7 @@ class MultilayerMarker extends ConsumerWidget {
             ref.trackEvent(ClarityEvents.selectPinkBox, value: pinkBox.title(context.localize)),
           ),
         };
-      },
+      }),
       child: (isActive ? activeMapMarker : notActiveMapMarker).image(),
     );
   }

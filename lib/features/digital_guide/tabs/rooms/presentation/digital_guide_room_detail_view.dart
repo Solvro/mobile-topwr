@@ -1,12 +1,9 @@
-import "dart:async";
-
 import "package:auto_route/annotations.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../../config/ui_config.dart";
-import "../../../../../services/haptics/app_haptics.dart";
 import "../../../../../theme/app_theme.dart";
 import "../../../../../utils/context_extensions.dart";
 import "../../../../../utils/ilist_nonempty.dart";
@@ -72,7 +69,6 @@ class DigitalGuideRoomDetailView extends ConsumerWidget {
         itemBuilder: (context, index) {
           return DigitalGuideNavLink(
             onTap: () async {
-              unawaited(AppHaptics.selectionClick());
               await ref.navigateDigitalGuideDoor(room.doors[index]);
             },
             text: context.localize.door,

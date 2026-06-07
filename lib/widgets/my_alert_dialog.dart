@@ -80,12 +80,12 @@ class _MyAlertDialog extends StatelessWidget {
               ),
             Flexible(
               child: TextButton(
+                onPressed: AppHaptics.wrapperSelection(Navigator.of(context).pop),
                 child: Text(
                   closeText ?? context.localize.close,
                   style: context.textTheme.bodyLarge,
                   textScaler: context.textScaler.clamp(maxScaleFactor: 2),
                 ),
-                onPressed: AppHaptics.wrapperSelection(Navigator.of(context).pop),
               ),
             ),
           ],

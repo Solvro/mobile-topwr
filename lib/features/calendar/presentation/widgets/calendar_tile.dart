@@ -1,5 +1,3 @@
-import "dart:async";
-
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
@@ -60,8 +58,7 @@ class CalendarTile extends ConsumerWidget {
                 final description => IconButton(
                   tooltip: context.localize.push_notifications_dialog_info,
                   color: context.colorScheme.primary,
-                  onPressed: () async {
-                    unawaited(AppHaptics.selectionClick());
+                  onPressed: AppHaptics.wrapperLight(() async {
                     await showCustomDialog(
                       dialogSemantics: context.localize.push_notifications_dialog_info,
                       context: context,
@@ -70,7 +67,7 @@ class CalendarTile extends ConsumerWidget {
                       dialogContent: Text(description, style: context.textTheme.titleMedium),
                       closeText: context.localize.ok,
                     );
-                  },
+                  }),
                   icon: const Icon(Icons.info_outline, semanticLabel: ""),
                 ),
               },

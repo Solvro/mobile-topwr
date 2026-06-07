@@ -155,7 +155,7 @@ dev_dependencies:
   drift_dev: ^2.33.0
 
   #Lints
-  solvro_config: ^1.8.3-dev
+  solvro_config: ^1.8.4-dev
 
   #CodeGen
   build_runner: ^2.15.0

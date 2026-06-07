@@ -6,7 +6,7 @@ plugins:
     diagnostics:
       provider_dependencies: false # this works weirdly
   solvro_config:
-    version: ^1.8.3-dev
+    version: ^1.8.4-dev
     diagnostics:
       provider_dependencies: false # this works weirdly
     haptic_wrappers:
@@ -28,6 +28,7 @@ plugins:
       - PhotoTrailingWideTileCard
       - RedDialog
       - ScienceClubCard
+      - SksMenuDishDetailsTile
       - SearchBox
       - SearchBoxAppBar
       - SmallTileCard
