@@ -26,9 +26,12 @@ class CarPlayService {
                 detailText: "Studenckie Radio",
                 image: radioLuzArtwork,
                 onPress: (complete, self) async {
-                  await _audioHandler.play();
-                  await FlutterCarplay.showSharedNowPlaying();
-                  complete();
+                  try {
+                    await _audioHandler.play();
+                    await FlutterCarplay.showSharedNowPlaying();
+                  } finally {
+                    complete();
+                  }
                 },
               ),
             ],
