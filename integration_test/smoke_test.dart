@@ -138,7 +138,7 @@ void main() {
     });
 
     testWidgets("Popup flow test", (tester) async {
-      await app.main(overrides: await createFirstTimePopupProviderOverrides());
+      await app.main(overrides: await createFirstTimePopupProviderOverrides(), skipCarPlay: true);
       await tester.pumpAndSettle();
 
       final languageButton = find.text("🇵🇱 Polski");
@@ -159,7 +159,7 @@ void main() {
     });
 
     testWidgets("HomeView smoke test", (tester) async {
-      await app.main(overrides: createPopupProviderOverrides());
+      await app.main(overrides: createPopupProviderOverrides(), skipCarPlay: true);
       await tester.pumpAndSettle(const Duration(seconds: 5));
 
       await tapNavButton(tester, NavBarEnum.home);
@@ -172,7 +172,7 @@ void main() {
     });
 
     testWidgets("BuildingsView smoke test", (tester) async {
-      await app.main(overrides: createPopupProviderOverrides());
+      await app.main(overrides: createPopupProviderOverrides(), skipCarPlay: true);
       await tester.pumpAndSettle();
 
       await tapNavButton(tester, NavBarEnum.buildings);
@@ -185,7 +185,7 @@ void main() {
     });
 
     testWidgets("ParkingsView smoke test", (tester) async {
-      await app.main(overrides: createPopupProviderOverrides());
+      await app.main(overrides: createPopupProviderOverrides(), skipCarPlay: true);
       await tester.pumpAndSettle();
 
       await tapNavButton(tester, NavBarEnum.parkings);
@@ -198,7 +198,7 @@ void main() {
     });
 
     testWidgets("GuideView smoke test", (tester) async {
-      await app.main(overrides: createPopupProviderOverrides());
+      await app.main(overrides: createPopupProviderOverrides(), skipCarPlay: true);
       await tester.pumpAndSettle();
 
       await tapNavButton(tester, NavBarEnum.guide);
@@ -211,7 +211,7 @@ void main() {
     });
 
     testWidgets("DeparmentsView smoke test", (tester) async {
-      await app.main(overrides: createPopupProviderOverrides());
+      await app.main(overrides: createPopupProviderOverrides(), skipCarPlay: true);
       await tester.pumpAndSettle();
 
       await tapNavButton(tester, NavBarEnum.navigation);
@@ -230,7 +230,7 @@ void main() {
     });
 
     testWidgets("ScienceClubView smoke test", (tester) async {
-      await app.main(overrides: createPopupProviderOverrides());
+      await app.main(overrides: createPopupProviderOverrides(), skipCarPlay: true);
       await tester.pumpAndSettle();
 
       await tapNavButton(tester, NavBarEnum.navigation);
@@ -248,7 +248,7 @@ void main() {
     });
 
     testWidgets("RadioLuzView smoke test", (tester) async {
-      await app.main(overrides: createPopupProviderOverrides());
+      await app.main(overrides: createPopupProviderOverrides(), skipCarPlay: true);
       await tester.pumpAndSettle();
 
       await tapNavButton(tester, NavBarEnum.navigation);
@@ -266,7 +266,7 @@ void main() {
     }, skip: true); // now we skipping bcs radioluzView is throwing an error
 
     testWidgets("AboutUsView smoke test", (tester) async {
-      await app.main(overrides: createPopupProviderOverrides());
+      await app.main(overrides: createPopupProviderOverrides(), skipCarPlay: true);
       await tester.pumpAndSettle();
 
       await tapNavButton(tester, NavBarEnum.navigation);
@@ -284,7 +284,7 @@ void main() {
     });
 
     testWidgets("CalendarView smoke test", (tester) async {
-      await app.main(overrides: createPopupProviderOverrides());
+      await app.main(overrides: createPopupProviderOverrides(), skipCarPlay: true);
       await tester.pumpAndSettle(const Duration(seconds: 5));
 
       await tapNavButton(tester, NavBarEnum.home);
@@ -302,7 +302,7 @@ void main() {
     });
 
     testWidgets("NewsListView smoke test", (tester) async {
-      await app.main(overrides: createPopupProviderOverrides());
+      await app.main(overrides: createPopupProviderOverrides(), skipCarPlay: true);
       await tester.pumpAndSettle(const Duration(seconds: 5));
 
       await tapNavButton(tester, NavBarEnum.home);
@@ -320,7 +320,7 @@ void main() {
     });
 
     testWidgets("SksMenuScreen smoke test", (tester) async {
-      await app.main(overrides: createPopupProviderOverrides());
+      await app.main(overrides: createPopupProviderOverrides(), skipCarPlay: true);
       await tester.pumpAndSettle(const Duration(seconds: 5));
 
       await tapNavButton(tester, NavBarEnum.home);
@@ -338,7 +338,7 @@ void main() {
     });
 
     testWidgets("SettingsView smoke test", (tester) async {
-      await app.main(overrides: createPopupProviderOverrides());
+      await app.main(overrides: createPopupProviderOverrides(), skipCarPlay: true);
       await tester.pumpAndSettle();
 
       await tapNavButton(tester, NavBarEnum.navigation);
@@ -357,7 +357,7 @@ void main() {
     });
 
     testWidgets("SksFavouriteDishesView smoke test", (tester) async {
-      await app.main(overrides: createPopupProviderOverrides());
+      await app.main(overrides: createPopupProviderOverrides(), skipCarPlay: true);
       await tester.pumpAndSettle();
 
       await tapNavButton(tester, NavBarEnum.navigation);

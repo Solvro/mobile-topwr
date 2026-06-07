@@ -50,7 +50,7 @@ Future<RadioAudioHandlerBridge> _initAudioHandler() {
   );
 }
 
-Future<void> main({List<Override>? overrides}) async {
+Future<void> main({List<Override>? overrides, bool skipCarPlay = false}) async {
   WidgetsFlutterBinding.ensureInitialized();
   if (!kDebugMode && !kIsWeb) {
     SplashScreenController.preserveNativeSplashScreen();
@@ -63,8 +63,10 @@ Future<void> main({List<Override>? overrides}) async {
 
   if (kDebugMode) {
     final audioHandler = await _initAudioHandler();
-    _carPlayService = CarPlayService(audioHandler);
-    await _carPlayService.initialize();
+    if (!skipCarPlay) {
+      _carPlayService = CarPlayService(audioHandler);
+      await _carPlayService.initialize();
+    }
     runApp(
       ProviderScope(
         retry: (retryCount, error) {
