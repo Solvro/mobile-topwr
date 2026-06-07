@@ -37,6 +37,7 @@ import "services/translations_service/widgets/remove_old_translations.dart";
 import "theme/app_theme.dart";
 
 Future<RadioAudioHandlerBridge>? _audioHandlerFuture;
+late final CarPlayService _carPlayService;
 
 Future<RadioAudioHandlerBridge> _initAudioHandler() {
   return _audioHandlerFuture ??= AudioService.init(
@@ -62,8 +63,8 @@ Future<void> main({List<Override>? overrides}) async {
 
   if (kDebugMode) {
     final audioHandler = await _initAudioHandler();
-    final carPlayService = CarPlayService(audioHandler);
-    await carPlayService.initialize();
+    _carPlayService = CarPlayService(audioHandler);
+    await _carPlayService.initialize();
     runApp(
       ProviderScope(
         retry: (retryCount, error) {
@@ -93,8 +94,8 @@ Future<void> main({List<Override>? overrides}) async {
 Future<void> runNormalApp() async {
   final audioHandler = await _initAudioHandler();
   await appAnalytics.initialize(projectId: Env.clarityConfigId);
-  final carPlayService = CarPlayService(audioHandler);
-  await carPlayService.initialize();
+  _carPlayService = CarPlayService(audioHandler);
+  await _carPlayService.initialize();
 
   runApp(
     appAnalytics.wrapApp(
