@@ -21,7 +21,30 @@ Future<ActivityDaysResponse?> activityDaysRepository(Ref ref) async {
       endsAt: now.add(const Duration(days: 2)),
       createdAt: now.subtract(const Duration(days: 30)),
       updatedAt: now.subtract(const Duration(days: 5)),
-      timetable: const ActivityDaysTimetable(id: 1, description: "Harmonogram DAS"),
+      timetable: ActivityDaysTimetable(
+        id: 1,
+        description: "Harmonogram DAS",
+        entries: [
+          ActivityDaysTimetableEntry(
+            id: 1,
+            name: "Entry 1",
+            startTime: now.add(const Duration(hours: 2)),
+            // endTime: now.add(const Duration(hours: 3)),
+          ),
+          ActivityDaysTimetableEntry(
+            id: 2,
+            name: "Entry 2",
+            startTime: now.add(const Duration(hours: 4)),
+            endTime: now.add(const Duration(hours: 6)),
+          ),
+          ActivityDaysTimetableEntry(
+            id: 3,
+            name: "Entry 3",
+            startTime: now.add(const Duration(days: 1, hours: 2)),
+            endTime: now.add(const Duration(days: 1, hours: 4)),
+          ),
+        ].lock,
+      ),
       maps: const IListConst([ActivityDaysMap(id: 1, name: "Mapa główna")]),
       links: const IListConst([ActivityDaysLink(id: 1, url: "https://pwr.edu.pl")]),
       stands: const IListConst([
@@ -35,11 +58,11 @@ Future<ActivityDaysResponse?> activityDaysRepository(Ref ref) async {
 
   final response = await ref.getAndCacheData(
     url,
-    ActivityDaysResponse.fromJson,
+    ActivityDaysListResponse.fromJson,
     extraValidityCheck: (_) => true,
     onRetry: ref.invalidateSelf,
   );
-  final events = response.castAsList;
+  final events = response.castAsObject.data;
   if (events.isEmpty) return null;
 
   final runningEvents = events.where((e) => now.isAfter(e.startsAt) && now.isBefore(e.endsAt));

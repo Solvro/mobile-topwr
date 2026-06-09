@@ -5,6 +5,13 @@ part "activity_days_response.freezed.dart";
 part "activity_days_response.g.dart";
 
 @freezed
+abstract class ActivityDaysListResponse with _$ActivityDaysListResponse {
+  const factory ActivityDaysListResponse(IList<ActivityDaysResponse> data) = _ActivityDaysListResponse;
+
+  factory ActivityDaysListResponse.fromJson(Map<String, dynamic> json) => _$ActivityDaysListResponseFromJson(json);
+}
+
+@freezed
 abstract class ActivityDaysResponse with _$ActivityDaysResponse {
   const factory ActivityDaysResponse({
     required int id,
@@ -24,9 +31,26 @@ abstract class ActivityDaysResponse with _$ActivityDaysResponse {
 
 @freezed
 abstract class ActivityDaysTimetable with _$ActivityDaysTimetable {
-  const factory ActivityDaysTimetable({required int id, String? description}) = _ActivityDaysTimetable;
+  const factory ActivityDaysTimetable({
+    required int id,
+    String? description,
+    @Default(IListConst([])) IList<ActivityDaysTimetableEntry> entries,
+  }) = _ActivityDaysTimetable;
 
   factory ActivityDaysTimetable.fromJson(Map<String, dynamic> json) => _$ActivityDaysTimetableFromJson(json);
+}
+
+@freezed
+abstract class ActivityDaysTimetableEntry with _$ActivityDaysTimetableEntry {
+  const factory ActivityDaysTimetableEntry({
+    required int id,
+    required String name,
+    required DateTime startTime,
+    DateTime? endTime,
+  }) = _ActivityDaysTimetableEntry;
+
+  factory ActivityDaysTimetableEntry.fromJson(Map<String, dynamic> json) =>
+      _$ActivityDaysTimetableEntryFromJson(json);
 }
 
 @freezed
