@@ -25,10 +25,7 @@ Future<IList<TimetableDay>> activityDaysTimetableUseCase(Ref ref) async {
       .map(
         (dayEntry) => (
           date: dayEntry.key,
-          events: dayEntry.value
-              .sorted((a, b) => a.startTime.compareTo(b.startTime))
-              .map(_toCalendarItem)
-              .toIList(),
+          events: dayEntry.value.sorted((a, b) => a.startTime.compareTo(b.startTime)).map(_toCalendarItem).toIList(),
         ),
       )
       .sorted((a, b) => a.date.compareTo(b.date))

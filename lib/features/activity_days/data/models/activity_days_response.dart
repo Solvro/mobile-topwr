@@ -49,8 +49,7 @@ abstract class ActivityDaysTimetableEntry with _$ActivityDaysTimetableEntry {
     DateTime? endTime,
   }) = _ActivityDaysTimetableEntry;
 
-  factory ActivityDaysTimetableEntry.fromJson(Map<String, dynamic> json) =>
-      _$ActivityDaysTimetableEntryFromJson(json);
+  factory ActivityDaysTimetableEntry.fromJson(Map<String, dynamic> json) => _$ActivityDaysTimetableEntryFromJson(json);
 }
 
 @freezed
