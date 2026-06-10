@@ -44,5 +44,5 @@ SingleCalendarItem _toCalendarItem(ActivityDaysTimetableEntry entry) {
 
 String _formatHours(DateTime start, DateTime? end) {
   String hm(DateTime time) => "${time.hour.toString().padLeft(2, "0")}:${time.minute.toString().padLeft(2, "0")}";
-  return end != null ? "${hm(start)} – ${hm(end)}" : hm(start);
+  return end != null ? "${hm(start)} - ${hm(end)}" : hm(start);
 }

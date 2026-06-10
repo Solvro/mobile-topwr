@@ -19,7 +19,7 @@ class CalendarTile extends ConsumerWidget {
               children: [
                 TextSpan(
                   text: item.hoursString,
-                  style: TextStyle(fontWeight: item.hoursString.trim().contains("-") ? FontWeight.bold : null),
+                  style: TextStyle(fontWeight: item.hoursString.trim().contains(":") ? FontWeight.bold : null),
                 ),
                 if (item.location.trim().isNotEmpty) TextSpan(text: "\n${item.location}"),
               ],
