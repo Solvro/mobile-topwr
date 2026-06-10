@@ -25,11 +25,7 @@ Future<ActivityDaysResponse?> activityDaysRepository(Ref ref) async {
         id: 1,
         description: "Harmonogram DAS",
         entries: [
-          ActivityDaysTimetableEntry(
-            id: 1,
-            name: "Entry 1",
-            startTime: now.add(const Duration(hours: 2)),
-          ),
+          ActivityDaysTimetableEntry(id: 1, name: "Entry 1", startTime: now.add(const Duration(hours: 2))),
           ActivityDaysTimetableEntry(
             id: 2,
             name: "Entry 2",
