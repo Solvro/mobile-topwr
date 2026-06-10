@@ -29,7 +29,6 @@ Future<ActivityDaysResponse?> activityDaysRepository(Ref ref) async {
             id: 1,
             name: "Entry 1",
             startTime: now.add(const Duration(hours: 2)),
-            // endTime: now.add(const Duration(hours: 3)),
           ),
           ActivityDaysTimetableEntry(
             id: 2,
