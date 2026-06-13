@@ -10,6 +10,7 @@ import "../branches/data/repository/branch_repository.dart";
 import "../branches/presentation/branch_dialog.dart";
 import "../home_view/widgets/web_version_prompt.dart";
 import "../settings/widgets/language_settings_dialog.dart";
+import "entry_dialogs_have_started.dart";
 import "show_changelog.dart";
 
 class ShowEntryDialogWrapper extends HookConsumerWidget {
@@ -20,7 +21,14 @@ class ShowEntryDialogWrapper extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     useEffectOnInit(() {
+      if (ref.read(entryDialogsHaveStartedProvider)) {
+        return null;
+      }
       unwaitedMicrotask(() async {
+        if (ref.read(entryDialogsHaveStartedProvider)) {
+          return;
+        }
+        ref.read(entryDialogsHaveStartedProvider.notifier).markStarted();
         if (context.mounted) {
           final preferredLanguage = await ref.read(preferredLanguageRepositoryProvider.future);
           if (preferredLanguage == null && context.mounted) {
