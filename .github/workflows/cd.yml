@@ -15,7 +15,7 @@ jobs:
     outputs:
       version_bumped: ${{ steps.bump.outputs.bumped }}
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 2
 
