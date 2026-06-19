@@ -18,7 +18,7 @@ jobs:
     outputs:
       image_tag: ${{ steps.image.outputs.tag }}
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: git crypt unlock
         uses: sliteteam/github-action-git-crypt-unlock@f99c0c6b60bb7ec30dcec033a8f0a3b3d48f21e1

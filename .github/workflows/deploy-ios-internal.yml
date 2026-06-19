@@ -16,7 +16,7 @@ jobs:
     runs-on: macos-26
     environment: continuous delivery
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: git crypt unlock
         env:
