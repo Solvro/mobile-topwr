@@ -181,6 +181,7 @@ class RadioAudioHandlerBridge extends BaseAudioHandler with SeekHandler, Widgets
     await _playbackEventSubscription?.cancel();
     await _sequenceStateSubscription?.cancel();
     await _trackChangedController.close();
+    WidgetsBinding.instance.removeObserver(this);
     await _player.stop();
     return super.stop();
   }
