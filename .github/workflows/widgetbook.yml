@@ -49,12 +49,19 @@ jobs:
         run: |
           flutter test
           
-      # - name: Push Widgetbook Build
-      #   working-directory: packages/widgetbook/
-      #   run: |
-      #     widgetbook cloud build push \
-      #       --api-key ${{ secrets.WIDGETBOOK_API_KEY }} \
-      #       --branch ${{ github.head_ref || github.ref_name }} \
-      #       --commit ${{ github.sha }} \
-      #       --repository ${{ github.repository }} \
-      #       --actor ${{ github.actor }}
+      - name: Push Widgetbook Build
+        working-directory: packages/widgetbook/
+        env:
+          WIDGETBOOK_API_KEY: ${{ secrets.WIDGETBOOK_API_KEY }}
+        run: |
+          if [ -z "$WIDGETBOOK_API_KEY" ]; then
+            echo "Skipping Widgetbook Cloud push because WIDGETBOOK_API_KEY is not configured."
+            exit 0
+          fi
+
+          widgetbook cloud build push \
+            --api-key "$WIDGETBOOK_API_KEY" \
+            --branch ${{ github.head_ref || github.ref_name }} \
+            --commit ${{ github.sha }} \
+            --repository ${{ github.repository }} \
+            --actor ${{ github.actor }}
