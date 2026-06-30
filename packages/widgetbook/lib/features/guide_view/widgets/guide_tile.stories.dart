@@ -16,6 +16,6 @@ const _mockGuideData = GuideData(
   image: _mockImageData,
 );
 
-const meta = Meta<GuideTile>();
+const meta = Meta(GuideTile.new);
 
 final $default = GuideTileStory(args: GuideTileArgs(item: Arg.fixed(_mockGuideData)));

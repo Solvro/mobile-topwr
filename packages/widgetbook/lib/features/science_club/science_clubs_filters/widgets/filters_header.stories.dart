@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "filters_header.stories.g.dart";
 
-const meta = Meta<FiltersHeader>();
+const meta = Meta(FiltersHeader.new);
 
 final $default = FiltersHeaderStory(setup: (context, child, args) => SizedBox(width: 390, child: child));

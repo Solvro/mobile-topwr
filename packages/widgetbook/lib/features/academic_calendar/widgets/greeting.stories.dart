@@ -7,6 +7,6 @@ import "../../../widgetbook_mocks.dart";
 
 part "greeting.stories.g.dart";
 
-const meta = Meta<Greeting>();
+const meta = Meta(Greeting.new);
 
 final $default = GreetingStory(args: GreetingArgs(academicCalendar: Arg.fixed(mockAcademicCalendarWithSwaps)));

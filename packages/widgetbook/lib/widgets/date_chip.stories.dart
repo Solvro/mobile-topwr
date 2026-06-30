@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "date_chip.stories.g.dart";
 
-const meta = Meta<DateChip>();
+const meta = Meta(DateChip.new);
 
 final $default = DateChipStory();

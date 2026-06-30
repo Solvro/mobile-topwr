@@ -10,7 +10,7 @@ class SksChartHeaderStoryKnobs {
   SksChartHeaderStoryKnobs({required this.numberOfPeople, required this.trend});
 }
 
-const meta = MetaWithArgs<SksChartHeader, SksChartHeaderStoryKnobs>();
+const meta = Meta(SksChartHeader.new, argsType: SksChartHeaderStoryKnobs.new);
 
 final defaults = _Defaults(
   builder: (context, args) => SksChartHeader(numberOfPeople: args.numberOfPeople, trend: args.trend),

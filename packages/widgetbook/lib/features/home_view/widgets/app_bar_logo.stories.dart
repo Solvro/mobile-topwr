@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "app_bar_logo.stories.g.dart";
 
-const meta = Meta<AppBarLogo>();
+const meta = Meta(AppBarLogo.new);
 
 final $default = AppBarLogoStory();

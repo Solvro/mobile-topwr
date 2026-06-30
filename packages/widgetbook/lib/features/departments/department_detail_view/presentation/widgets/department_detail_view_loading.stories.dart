@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "department_detail_view_loading.stories.g.dart";
 
-const meta = Meta<DepartmentDetailViewLoading>();
+const meta = Meta(DepartmentDetailViewLoading.new);
 
 final $default = DepartmentDetailViewLoadingStory();

@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "accessibility_button.stories.g.dart";
 
-const meta = Meta<AccessibilityButton>();
+const meta = Meta(AccessibilityButton.new);
 
 final $default = AccessibilityButtonStory(setup: (context, child, args) => Center(child: child));

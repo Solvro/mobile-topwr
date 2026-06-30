@@ -45,7 +45,7 @@ const _mockDigitalGuideData = DigitalGuideResponse(
   accessibilityLevelForCognitiveDifficulties: 1,
 );
 
-const meta = Meta<StructureExpansionTileContent>();
+const meta = Meta(StructureExpansionTileContent.new);
 
 const _mockLevel = Level(
   id: 1,

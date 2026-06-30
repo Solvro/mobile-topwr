@@ -4,7 +4,7 @@ import "package:widgetbook/widgetbook.dart";
 
 part "my_tooltip.stories.g.dart";
 
-const meta = Meta<MyTooltip>();
+const meta = Meta(MyTooltip.new);
 
 final $default = MyTooltipStory(
   args: MyTooltipArgs(

@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "science_clubs_section.stories.g.dart";
 
-const meta = Meta<ScienceClubsSection>();
+const meta = Meta(ScienceClubsSection.new);
 
 final $default = ScienceClubsSectionStory();

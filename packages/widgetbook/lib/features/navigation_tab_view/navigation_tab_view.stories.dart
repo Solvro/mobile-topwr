@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "navigation_tab_view.stories.g.dart";
 
-const meta = Meta<NavigationTabView>();
+const meta = Meta(NavigationTabView.new);
 
 final $default = NavigationTabViewStory();

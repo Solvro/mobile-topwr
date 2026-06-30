@@ -4,7 +4,7 @@ import "package:widgetbook/widgetbook.dart";
 
 part "web_version_prompt.stories.g.dart";
 
-const meta = Meta<WebVersionDialogContent>(name: "WebVersionDialogContent");
+const meta = Meta(WebVersionDialogContent.new);
 
 final $default = WebVersionDialogContentStory(
   args: WebVersionDialogContentArgs.fixed(),

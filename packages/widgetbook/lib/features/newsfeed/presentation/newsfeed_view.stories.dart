@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "newsfeed_view.stories.g.dart";
 
-const meta = Meta<NewsfeedView>();
+const meta = Meta(NewsfeedView.new);
 
 final $default = NewsfeedViewStory(name: "Production view with hardcoded data");

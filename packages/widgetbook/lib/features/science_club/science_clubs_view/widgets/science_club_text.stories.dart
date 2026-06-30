@@ -25,7 +25,7 @@ class ScienceClubTextStoryKnobs {
   });
 }
 
-const meta = MetaWithArgs<ScienceClubText, ScienceClubTextStoryKnobs>();
+const meta = Meta(ScienceClubText.new, argsType: ScienceClubTextStoryKnobs.new);
 
 final defaults = _Defaults(
   builder: (context, args) => ScienceClubText(

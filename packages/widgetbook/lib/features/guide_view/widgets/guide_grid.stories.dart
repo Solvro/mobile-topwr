@@ -26,6 +26,6 @@ final _mockGuideGridChildren = IList<Widget>(const [
   ),
 ]);
 
-const meta = Meta<GuideGrid>();
+const meta = Meta(GuideGrid.new);
 
 final $default = GuideGridStory(args: GuideGridArgs(children: Arg.fixed(_mockGuideGridChildren)));

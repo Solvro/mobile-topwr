@@ -4,7 +4,7 @@ import "package:widgetbook/widgetbook.dart";
 
 part "tile_splash.stories.g.dart";
 
-const meta = Meta<TileSplash>();
+const meta = Meta(TileSplash.new);
 
 final $default = TileSplashStory(
   args: TileSplashArgs(onTap: Arg.fixed(() {})),

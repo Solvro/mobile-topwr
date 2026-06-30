@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "science_clubs_view_loading.stories.g.dart";
 
-const meta = Meta<ScienceClubsViewLoading>();
+const meta = Meta(ScienceClubsViewLoading.new);
 
 final $default = ScienceClubsViewLoadingStory();

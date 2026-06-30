@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "my_audio_player.stories.g.dart";
 
-const meta = Meta<MyAudioPlayer>();
+const meta = Meta(MyAudioPlayer.new);
 
 final $default = MyAudioPlayerStory(args: MyAudioPlayerArgs.fixed(audioUrl: "asset:///mock_audio.mp3"));

@@ -7,7 +7,7 @@ import "../../../radio_luz_mocks.dart";
 
 part "radio_player_control_button.stories.g.dart";
 
-const meta = Meta<RadioPlayerControlButton>();
+const meta = Meta(RadioPlayerControlButton.new);
 
 final $stopped = RadioPlayerControlButtonStory(
   name: "Stopped",

@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "report_change_button.stories.g.dart";
 
-const meta = Meta<ReportChangeButton>();
+const meta = Meta(ReportChangeButton.new);
 
 final $default = ReportChangeButtonStory(setup: (context, child, args) => Center(child: child));

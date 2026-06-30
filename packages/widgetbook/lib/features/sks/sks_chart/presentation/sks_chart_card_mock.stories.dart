@@ -33,6 +33,6 @@ class SksChartCardMockStory extends StatelessWidget {
   }
 }
 
-const meta = Meta<SksChartCardMockStory>();
+const meta = Meta(SksChartCardMockStory.new);
 
 final $withMockData = SksChartCardMockStoryStory();

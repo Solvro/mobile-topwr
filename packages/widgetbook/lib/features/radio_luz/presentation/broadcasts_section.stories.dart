@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "broadcasts_section.stories.g.dart";
 
-const meta = Meta<BroadcastsSection>();
+const meta = Meta(BroadcastsSection.new);
 
 final $default = BroadcastsSectionStory();

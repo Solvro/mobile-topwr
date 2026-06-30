@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "radio_luz_socials_section.stories.g.dart";
 
-const meta = Meta<RadioLuzSocialsSection>();
+const meta = Meta(RadioLuzSocialsSection.new);
 
 final $default = RadioLuzSocialsSectionStory();

@@ -25,6 +25,6 @@ const _mockBuilding = Building(
 
 const _mockBuildingItem = BuildingItem(building: _mockBuilding);
 
-const meta = Meta<MultilayerMarker>();
+const meta = Meta(MultilayerMarker.new);
 
 final $default = MultilayerMarkerStory(args: MultilayerMarkerArgs(item: Arg.fixed(_mockBuildingItem)));

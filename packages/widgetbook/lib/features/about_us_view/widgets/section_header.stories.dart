@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "section_header.stories.g.dart";
 
-const meta = Meta<SectionHeader>();
+const meta = Meta(SectionHeader.new);
 
 final $default = SectionHeaderStory(args: SectionHeaderArgs(text: Arg.fixed("About us")));

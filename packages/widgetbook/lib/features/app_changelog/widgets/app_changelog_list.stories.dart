@@ -7,6 +7,6 @@ import "../../../widgetbook_mocks.dart";
 
 part "app_changelog_list.stories.g.dart";
 
-const meta = Meta<AppChangelogList>();
+const meta = Meta(AppChangelogList.new);
 
 final $default = AppChangelogListStory(args: AppChangelogListArgs(changelog: Arg.fixed(mockChangelog)));

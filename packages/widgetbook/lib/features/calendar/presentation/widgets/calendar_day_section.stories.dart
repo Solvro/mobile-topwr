@@ -30,7 +30,7 @@ class CalendarDaySectionStoryKnobs {
   CalendarDaySectionStoryKnobs({required this.day, required this.weekday, required this.isToday});
 }
 
-const meta = MetaWithArgs<CalendarDaySection, CalendarDaySectionStoryKnobs>();
+const meta = Meta(CalendarDaySection.new, argsType: CalendarDaySectionStoryKnobs.new);
 
 final defaults = _Defaults(
   builder: (context, args) =>

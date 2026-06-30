@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "app_streak_counter.stories.g.dart";
 
-const meta = Meta<AppStreakCounter>();
+const meta = Meta(AppStreakCounter.new);
 
 final $default = AppStreakCounterStory();

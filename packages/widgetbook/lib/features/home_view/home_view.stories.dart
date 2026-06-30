@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "home_view.stories.g.dart";
 
-const meta = Meta<HomeView>();
+const meta = Meta(HomeView.new);
 
 final $default = HomeViewStory(name: "Production view with hardcoded data");

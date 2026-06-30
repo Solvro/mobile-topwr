@@ -52,7 +52,7 @@ const _mockRegion = Region(
   accessibilityLevelForCognitiveDifficulties: 0,
 );
 
-const meta = Meta<RegionView>();
+const meta = Meta(RegionView.new);
 
 final $default = RegionViewStory(
   setup: (context, child, args) => ProviderScope(

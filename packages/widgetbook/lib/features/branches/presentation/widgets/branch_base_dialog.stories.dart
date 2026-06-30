@@ -19,7 +19,7 @@ class BranchBaseDialogStoryKnobs {
   });
 }
 
-const meta = MetaWithArgs<BranchBaseDialog, BranchBaseDialogStoryKnobs>();
+const meta = Meta(BranchBaseDialog.new, argsType: BranchBaseDialogStoryKnobs.new);
 
 final defaults = _Defaults(
   builder: (context, args) => BranchBaseDialog(

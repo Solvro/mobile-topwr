@@ -19,7 +19,7 @@ class LiveIndicatorStoryKnobs {
   });
 }
 
-const meta = MetaWithArgs<LiveIndicator, LiveIndicatorStoryKnobs>();
+const meta = Meta(LiveIndicator.new, argsType: LiveIndicatorStoryKnobs.new);
 
 final defaults = _Defaults(
   builder: (context, args) => LiveIndicator(

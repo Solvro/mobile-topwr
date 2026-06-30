@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "accessibility_dialog.stories.g.dart";
 
-const meta = Meta<AccessibilityDialog>();
+const meta = Meta(AccessibilityDialog.new);
 
 final $default = AccessibilityDialogStory();

@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "big_preview_card_loading.stories.g.dart";
 
-const meta = Meta<BigPreviewCardLoading>();
+const meta = Meta(BigPreviewCardLoading.new);
 
 final $default = BigPreviewCardLoadingStory();

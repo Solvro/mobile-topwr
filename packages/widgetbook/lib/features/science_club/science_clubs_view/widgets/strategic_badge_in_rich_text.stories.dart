@@ -20,6 +20,6 @@ class StrategicBadgeInRichTextStory extends StatelessWidget {
   }
 }
 
-const meta = Meta<StrategicBadgeInRichTextStory>();
+const meta = Meta(StrategicBadgeInRichTextStory.new);
 
 final $default = StrategicBadgeInRichTextStoryStory();

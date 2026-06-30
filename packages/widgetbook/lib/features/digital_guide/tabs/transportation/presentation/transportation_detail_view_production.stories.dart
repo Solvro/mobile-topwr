@@ -15,6 +15,6 @@ class TransportationDetailViewProductionStory extends StatelessWidget {
   }
 }
 
-const meta = Meta<TransportationDetailViewProductionStory>();
+const meta = Meta(TransportationDetailViewProductionStory.new);
 
 final $fromProduction = TransportationDetailViewProductionStoryStory(name: "Hardcoded production snapshot");

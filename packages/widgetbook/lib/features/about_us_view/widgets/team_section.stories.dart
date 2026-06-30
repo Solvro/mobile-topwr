@@ -27,6 +27,6 @@ final _mockMultiversionTeam = IList<MultiversionTeam>([
   (versionName: "v2.0", members: IList([_mockTeamMember1, _mockTeamMember2])),
 ]);
 
-const meta = Meta<TeamSection>();
+const meta = Meta(TeamSection.new);
 
 final $default = TeamSectionStory(args: TeamSectionArgs(multiversionTeam: Arg.fixed(_mockMultiversionTeam)));

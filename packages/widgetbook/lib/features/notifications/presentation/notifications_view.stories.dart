@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "notifications_view.stories.g.dart";
 
-const meta = Meta<NotificationsView>();
+const meta = Meta(NotificationsView.new);
 
 final $default = NotificationsViewStory(name: "Production view with hardcoded data");

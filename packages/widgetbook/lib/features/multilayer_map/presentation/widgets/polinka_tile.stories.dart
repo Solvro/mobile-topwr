@@ -36,7 +36,7 @@ const _mockPolinkaStationWithoutPhoto = PolinkaStation(
   externalDigitalGuideIdOrUrl: "https://topwr.solvro.pl/guide/8",
 );
 
-const meta = Meta<PolinkaTile>();
+const meta = Meta(PolinkaTile.new);
 
 final $withPlaceholderPhoto = PolinkaTileStory(
   name: "With placeholder photo, active",

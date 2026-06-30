@@ -37,6 +37,6 @@ class DetailViewPopButtonFullStory extends StatelessWidget {
   }
 }
 
-const meta = Meta<DetailViewPopButtonFullStory>();
+const meta = Meta(DetailViewPopButtonFullStory.new);
 
 final $default = DetailViewPopButtonFullStoryStory();

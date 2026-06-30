@@ -6,7 +6,7 @@ import "../../../../auto_route_story_wrapper.dart";
 
 part "showers_view.stories.g.dart";
 
-const meta = Meta<ShowersView>();
+const meta = Meta(ShowersView.new);
 
 final $default = ShowersViewStory(
   name: "Production view with hardcoded data",

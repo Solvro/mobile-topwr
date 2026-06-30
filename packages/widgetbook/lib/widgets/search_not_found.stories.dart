@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "search_not_found.stories.g.dart";
 
-const meta = Meta<SearchNotFound>();
+const meta = Meta(SearchNotFound.new);
 
 final $default = SearchNotFoundStory(args: SearchNotFoundArgs(message: StringArg("No results found for this query")));

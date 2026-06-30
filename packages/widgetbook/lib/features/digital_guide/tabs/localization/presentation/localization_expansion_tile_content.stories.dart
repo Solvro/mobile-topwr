@@ -58,7 +58,7 @@ const _mockBuilding = Building(
   branch: Branch.main,
 );
 
-const meta = Meta<LocalizationExpansionTileContent>();
+const meta = Meta(LocalizationExpansionTileContent.new);
 
 final $default = LocalizationExpansionTileContentStory(
   args: LocalizationExpansionTileContentArgs(

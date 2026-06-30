@@ -44,7 +44,7 @@ const _mockDigitalGuideData = DigitalGuideResponse(
   accessibilityLevelForCognitiveDifficulties: 1,
 );
 
-const meta = Meta<MicronavigationExpansionTileContent>();
+const meta = Meta(MicronavigationExpansionTileContent.new);
 
 const _mockMicronavigationResponse = MicronavigationResponse(
   id: 1,

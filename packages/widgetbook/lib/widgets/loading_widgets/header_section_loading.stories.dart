@@ -5,7 +5,7 @@ import "package:widgetbook/widgetbook.dart";
 
 part "header_section_loading.stories.g.dart";
 
-const meta = Meta<HeaderSectionLoading>();
+const meta = Meta(HeaderSectionLoading.new);
 
 final defaults = _Defaults(
   setup: (context, child, args) => Shimmer(linearGradient: shimmerGradient, child: child),

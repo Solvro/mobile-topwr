@@ -27,7 +27,7 @@ const _mockLibraryWithoutPhoto = Library(
   branch: Branch.main,
 );
 
-const meta = Meta<LibraryTile>();
+const meta = Meta(LibraryTile.new);
 
 final $withPlaceholderPhoto = LibraryTileStory(
   name: "With placeholder photo, active",

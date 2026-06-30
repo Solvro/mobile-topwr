@@ -5,7 +5,7 @@ import "package:widgetbook/widgetbook.dart";
 
 part "contact_section_loading.stories.g.dart";
 
-const meta = Meta<ContactSectionLoading>();
+const meta = Meta(ContactSectionLoading.new);
 
 final defaults = _Defaults(
   setup: (context, child, args) => Shimmer(linearGradient: shimmerGradient, child: child),

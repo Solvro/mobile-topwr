@@ -28,6 +28,6 @@ const _mockLodge = DigitalGuideLodge(
   imagesIds: [8],
 );
 
-const meta = Meta<LodgeView>();
+const meta = Meta(LodgeView.new);
 
 final $default = LodgeViewStory(args: LodgeViewArgs(lodge: Arg.fixed(_mockLodge)));

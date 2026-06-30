@@ -7,7 +7,7 @@ import "../../../../widgetbook_placeholders.dart";
 
 part "digital_guide_image.stories.g.dart";
 
-const meta = Meta<DigitalGuideImage>();
+const meta = Meta(DigitalGuideImage.new);
 
 final $default = DigitalGuideImageStory(
   setup: (context, child, args) => ProviderScope(

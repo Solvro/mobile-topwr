@@ -7,7 +7,7 @@ import "../../../widgetbook_mocks.dart";
 
 part "digital_guide_objects_features_section.stories.g.dart";
 
-const meta = Meta<DigitalGuideObjectsFeaturesSliverList>();
+const meta = Meta(DigitalGuideObjectsFeaturesSliverList.new);
 
 final $default = DigitalGuideObjectsFeaturesSliverListStory(
   setup: (context, child, args) => CustomScrollView(slivers: [child]),

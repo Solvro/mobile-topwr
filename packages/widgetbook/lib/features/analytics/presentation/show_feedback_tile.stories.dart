@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "show_feedback_tile.stories.g.dart";
 
-const meta = Meta<ShowFeedbackTile>();
+const meta = Meta(ShowFeedbackTile.new);
 
 final $default = ShowFeedbackTileStory();

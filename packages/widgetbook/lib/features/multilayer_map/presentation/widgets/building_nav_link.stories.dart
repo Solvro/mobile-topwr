@@ -22,7 +22,7 @@ const _mockBuilding = Building(
   branch: Branch.main,
 );
 
-const meta = Meta<BuildingNavLink>();
+const meta = Meta(BuildingNavLink.new);
 
 final $default = BuildingNavLinkStory(
   args: BuildingNavLinkArgs(building: Arg.fixed(_mockBuilding)),

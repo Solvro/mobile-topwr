@@ -11,6 +11,6 @@ final _mockIconData = ISet<IconViewName>({
   const IconViewName(name: "Weekend", icon: Icon(Icons.calendar_today)),
 });
 
-const meta = Meta<IconLegendDialog>();
+const meta = Meta(IconLegendDialog.new);
 
 final $default = IconLegendDialogStory(args: IconLegendDialogArgs(iconData: Arg.fixed(_mockIconData)));

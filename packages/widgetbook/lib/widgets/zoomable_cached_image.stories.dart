@@ -21,7 +21,7 @@ class ZoomableCachedImageStoryKnobs {
   });
 }
 
-const meta = MetaWithArgs<ZoomableCachedImage, ZoomableCachedImageStoryKnobs>();
+const meta = Meta(ZoomableCachedImage.new, argsType: ZoomableCachedImageStoryKnobs.new);
 
 final defaults = _Defaults(
   builder: (context, args) => ZoomableCachedImage(

@@ -44,7 +44,7 @@ const _mockDigitalGuideData = DigitalGuideResponse(
   accessibilityLevelForCognitiveDifficulties: 1,
 );
 
-const meta = Meta<EntrancesExpansionTileContent>();
+const meta = Meta(EntrancesExpansionTileContent.new);
 
 const _mockEntrance = DigitalGuideEntrace(
   id: 1,

@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "sks_favourite_dishes_view.stories.g.dart";
 
-const meta = Meta<SksFavouriteDishesView>();
+const meta = Meta(SksFavouriteDishesView.new);
 
 final $default = SksFavouriteDishesViewStory(name: "Production view with hardcoded data");

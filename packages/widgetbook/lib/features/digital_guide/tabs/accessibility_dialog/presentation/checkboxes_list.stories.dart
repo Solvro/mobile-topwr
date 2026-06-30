@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "checkboxes_list.stories.g.dart";
 
-const meta = Meta<CheckboxesList>();
+const meta = Meta(CheckboxesList.new);
 
 final $default = CheckboxesListStory();

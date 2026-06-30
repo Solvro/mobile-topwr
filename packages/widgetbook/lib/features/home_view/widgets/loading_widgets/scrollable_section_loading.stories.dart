@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "scrollable_section_loading.stories.g.dart";
 
-const meta = Meta<ScrollableSectionLoading>();
+const meta = Meta(ScrollableSectionLoading.new);
 
 final $default = ScrollableSectionLoadingStory();

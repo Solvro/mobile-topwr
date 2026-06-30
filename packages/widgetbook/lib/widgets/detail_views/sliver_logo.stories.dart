@@ -25,7 +25,7 @@ class SliverLogoStoryKnobs {
   });
 }
 
-const meta = MetaWithArgs<SliverLogo, SliverLogoStoryKnobs>();
+const meta = Meta(SliverLogo.new, argsType: SliverLogoStoryKnobs.new);
 
 final defaults = _Defaults(
   builder: (context, args) => SliverLogo(

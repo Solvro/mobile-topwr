@@ -6,6 +6,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "navigate_button.stories.g.dart";
 
-const meta = Meta<NavigateButton>();
+const meta = Meta(NavigateButton.new);
 
 final $default = NavigateButtonStory<MultilayerItem>();

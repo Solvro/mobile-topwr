@@ -19,6 +19,6 @@ final _mockPlannerBanner = PlannerBanner(
   updatedAt: DateTime(2024),
 );
 
-const meta = Meta<PlanerBadgeDialogContent>();
+const meta = Meta(PlanerBadgeDialogContent.new);
 
 final $default = PlanerBadgeDialogContentStory(args: PlanerBadgeDialogContentArgs(data: Arg.fixed(_mockPlannerBanner)));

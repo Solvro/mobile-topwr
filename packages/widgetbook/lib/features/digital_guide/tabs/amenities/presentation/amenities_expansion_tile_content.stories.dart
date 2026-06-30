@@ -40,7 +40,7 @@ const _mockDigitalGuideData = DigitalGuideResponse(
   accessibilityLevelForCognitiveDifficulties: 1,
 );
 
-const meta = Meta<AmenitiesExpansionTileContent>();
+const meta = Meta(AmenitiesExpansionTileContent.new);
 
 final $default = AmenitiesExpansionTileContentStory(
   args: AmenitiesExpansionTileContentArgs(digitalGuideData: Arg.fixed(_mockDigitalGuideData)),

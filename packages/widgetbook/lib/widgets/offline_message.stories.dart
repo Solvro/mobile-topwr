@@ -4,7 +4,7 @@ import "package:widgetbook/widgetbook.dart";
 
 part "offline_message.stories.g.dart";
 
-const meta = Meta<OfflineMessage>();
+const meta = Meta(OfflineMessage.new);
 
 final $default = OfflineMessageStory(
   args: OfflineMessageArgs(

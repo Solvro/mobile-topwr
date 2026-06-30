@@ -43,7 +43,7 @@ const _mockDigitalGuideData = DigitalGuideResponse(
   accessibilityLevelForCognitiveDifficulties: 1,
 );
 
-const meta = Meta<SurroundingsExpansionTileContent>();
+const meta = Meta(SurroundingsExpansionTileContent.new);
 
 const _mockSurroundingResponse = SurroundingResponse(
   id: 1,

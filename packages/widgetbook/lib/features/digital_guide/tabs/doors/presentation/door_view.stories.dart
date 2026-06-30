@@ -6,7 +6,7 @@ import "package:widgetbook/widgetbook.dart";
 
 part "door_view.stories.g.dart";
 
-const meta = Meta<DoorView>();
+const meta = Meta(DoorView.new);
 
 const _mockDoor = Door(
   translations: DoorTranslations(

@@ -63,7 +63,7 @@ const _mockBuilding = Building(
   branch: Branch.main,
 );
 
-const meta = Meta<DigitalGuideFeaturesSliverSection>();
+const meta = Meta(DigitalGuideFeaturesSliverSection.new);
 
 final $default = DigitalGuideFeaturesSliverSectionStory(
   setup: (context, child, args) => ProviderScope(

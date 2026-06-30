@@ -29,7 +29,7 @@ const mockMicronavigationResponse = MicronavigationResponse(
   ],
 );
 
-const meta = Meta<MicronavigationDetailView>();
+const meta = Meta(MicronavigationDetailView.new);
 
 final $default = MicronavigationDetailViewStory(
   args: MicronavigationDetailViewArgs(micronavigationResponse: Arg.fixed(mockMicronavigationResponse)),

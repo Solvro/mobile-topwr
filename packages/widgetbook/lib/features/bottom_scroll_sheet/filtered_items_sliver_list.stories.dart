@@ -25,7 +25,7 @@ const _mockBuilding = Building(
 
 const _mockBuildingItem = BuildingItem(building: _mockBuilding);
 
-const meta = Meta<FilteredItemsSliverList>();
+const meta = Meta(FilteredItemsSliverList.new);
 
 final $default = FilteredItemsSliverListStory<BuildingItem>(
   args: FilteredItemsSliverListArgs<BuildingItem>(allItems: Arg.fixed([_mockBuildingItem])),

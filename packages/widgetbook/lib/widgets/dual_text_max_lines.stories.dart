@@ -25,7 +25,7 @@ class DualTextMaxLinesStoryKnobs {
   });
 }
 
-const meta = MetaWithArgs<DualTextMaxLines, DualTextMaxLinesStoryKnobs>();
+const meta = Meta(DualTextMaxLines.new, argsType: DualTextMaxLinesStoryKnobs.new);
 
 final defaults = _Defaults(
   builder: (context, args) => DualTextMaxLines(

@@ -6,7 +6,7 @@ import "../../../../auto_route_story_wrapper.dart";
 
 part "aeds_view.stories.g.dart";
 
-const meta = Meta<AedsView>();
+const meta = Meta(AedsView.new);
 
 final $default = AedsViewStory(
   name: "Production view with hardcoded data",

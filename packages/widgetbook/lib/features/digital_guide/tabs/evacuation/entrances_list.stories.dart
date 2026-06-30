@@ -44,7 +44,7 @@ const _mockDigitalGuideData = DigitalGuideResponse(
   accessibilityLevelForCognitiveDifficulties: 1,
 );
 
-const meta = Meta<EntrancesList>();
+const meta = Meta(EntrancesList.new);
 
 const _mockEntrance = DigitalGuideEntrace(
   id: 1,

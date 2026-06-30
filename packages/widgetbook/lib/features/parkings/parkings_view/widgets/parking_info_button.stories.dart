@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "parking_info_button.stories.g.dart";
 
-const meta = Meta<ParkingInfoButton>();
+const meta = Meta(ParkingInfoButton.new);
 
 final $default = ParkingInfoButtonStory();

@@ -5,7 +5,7 @@ import "../../../widgetbook_mocks.dart";
 
 part "digital_guide_object_amenietes_tab_tile_content.stories.g.dart";
 
-const meta = Meta<DigitalGuideObjectAmenietesTabTileContent>();
+const meta = Meta(DigitalGuideObjectAmenietesTabTileContent.new);
 
 final $default = DigitalGuideObjectAmenietesTabTileContentStory(
   args: DigitalGuideObjectAmenietesTabTileContentArgs(digitalGuideData: Arg.fixed(mockDigitalGuideObjectModel)),

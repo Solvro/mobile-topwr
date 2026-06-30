@@ -13,6 +13,6 @@ class RateStoreDialogContentStory extends StatelessWidget {
   }
 }
 
-const meta = Meta<RateStoreDialogContentStory>();
+const meta = Meta(RateStoreDialogContentStory.new);
 
 final $default = RateStoreDialogContentStoryStory();

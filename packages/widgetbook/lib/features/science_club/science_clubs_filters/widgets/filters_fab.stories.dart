@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "filters_fab.stories.g.dart";
 
-const meta = Meta<FiltersFAB>();
+const meta = Meta(FiltersFAB.new);
 
 final $default = FiltersFABStory();

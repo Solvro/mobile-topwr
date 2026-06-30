@@ -28,6 +28,6 @@ const _productionParking = Parking(
   access: ParkingAccess.students,
 );
 
-const meta = Meta<ParkingTile>();
+const meta = Meta(ParkingTile.new);
 
 final $default = ParkingTileStory(args: ParkingTileArgs(parking: Arg.fixed(_productionParking)));

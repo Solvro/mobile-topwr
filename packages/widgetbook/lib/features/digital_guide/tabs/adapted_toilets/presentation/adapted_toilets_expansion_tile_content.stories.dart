@@ -45,7 +45,7 @@ const _mockDigitalGuideData = DigitalGuideResponse(
   accessibilityLevelForCognitiveDifficulties: 1,
 );
 
-const meta = Meta<AdaptedToiletsExpansionTileContent>();
+const meta = Meta(AdaptedToiletsExpansionTileContent.new);
 
 const _mockToilet = AdaptedToilet(
   translations: AdaptedToiletTranslations(

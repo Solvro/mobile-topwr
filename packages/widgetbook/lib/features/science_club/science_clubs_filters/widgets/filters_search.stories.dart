@@ -4,7 +4,7 @@ import "package:widgetbook/widgetbook.dart";
 
 part "filters_search.stories.g.dart";
 
-const meta = Meta<FiltersSearch>();
+const meta = Meta(FiltersSearch.new);
 
 final $default = FiltersSearchStory(
   setup: (context, widget, args) => SizedBox(height: 80, child: Stack(children: [widget])),

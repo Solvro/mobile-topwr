@@ -7,7 +7,7 @@ import "../../../../widgetbook_mocks.dart";
 
 part "exam_session_countdown.stories.g.dart";
 
-const meta = Meta<ExamSessionCountdown>();
+const meta = Meta(ExamSessionCountdown.new);
 
 final $default = ExamSessionCountdownStory(
   args: ExamSessionCountdownArgs(academicCalendar: Arg.fixed(mockAcademicCalendarWithSwaps)),

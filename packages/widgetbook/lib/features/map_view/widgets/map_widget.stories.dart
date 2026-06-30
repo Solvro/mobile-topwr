@@ -6,6 +6,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "map_widget.stories.g.dart";
 
-const meta = Meta<MapWidget>();
+const meta = Meta(MapWidget.new);
 
 final $default = MapWidgetStory<MultilayerItem>(args: MapWidgetArgs.fixed(semanticsLabel: "Campus map preview"));

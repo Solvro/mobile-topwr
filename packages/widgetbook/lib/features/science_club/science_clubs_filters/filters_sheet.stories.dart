@@ -11,7 +11,7 @@ import "../../../widgetbook_mocks.dart";
 
 part "filters_sheet.stories.g.dart";
 
-const meta = Meta<FiltersSheet>();
+const meta = Meta(FiltersSheet.new);
 
 final $default = FiltersSheetStory(
   setup: (context, child, args) => ProviderScope(

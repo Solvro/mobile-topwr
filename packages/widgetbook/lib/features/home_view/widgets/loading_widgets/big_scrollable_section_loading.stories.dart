@@ -8,7 +8,7 @@ class BigScrollableSectionLoadingStoryKnobs {
   BigScrollableSectionLoadingStoryKnobs({required this.crossAxisForcedSize});
 }
 
-const meta = MetaWithArgs<BigScrollableSectionLoading, BigScrollableSectionLoadingStoryKnobs>();
+const meta = Meta(BigScrollableSectionLoading.new, argsType: BigScrollableSectionLoadingStoryKnobs.new);
 
 final defaults = _Defaults(
   builder: (context, args) => BigScrollableSectionLoading(crossAxisForcedSize: args.crossAxisForcedSize),

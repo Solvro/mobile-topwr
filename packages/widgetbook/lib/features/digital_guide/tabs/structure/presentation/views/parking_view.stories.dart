@@ -30,6 +30,6 @@ const _mockParkingDg = DigitalGuideParking(
   building: 1,
 );
 
-const meta = Meta<ParkingView>();
+const meta = Meta(ParkingView.new);
 
 final $default = ParkingViewStory(args: ParkingViewArgs(parking: Arg.fixed(_mockParkingDg)));

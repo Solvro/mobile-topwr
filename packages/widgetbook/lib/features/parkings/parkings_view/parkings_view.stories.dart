@@ -6,7 +6,7 @@ import "../../../auto_route_story_wrapper.dart";
 
 part "parkings_view.stories.g.dart";
 
-const meta = Meta<ParkingsView>();
+const meta = Meta(ParkingsView.new);
 
 final $default = ParkingsViewStory(
   name: "Production view with hardcoded data",

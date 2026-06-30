@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "button_loading.stories.g.dart";
 
-const meta = Meta<ButtonLoading>();
+const meta = Meta(ButtonLoading.new);
 
 final $default = ButtonLoadingStory();

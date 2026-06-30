@@ -12,7 +12,7 @@ class StoreTileStoryKnobs {
   StoreTileStoryKnobs({required this.icon, required this.label, required this.storeName, required this.url});
 }
 
-const meta = MetaWithArgs<StoreTile, StoreTileStoryKnobs>();
+const meta = Meta(StoreTile.new, argsType: StoreTileStoryKnobs.new);
 
 final defaults = _Defaults(
   builder: (context, args) => StoreTile(icon: args.icon, label: args.label, storeName: args.storeName, url: args.url),

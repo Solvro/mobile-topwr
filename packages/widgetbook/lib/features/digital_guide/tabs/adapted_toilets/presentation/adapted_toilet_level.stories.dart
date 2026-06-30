@@ -69,7 +69,7 @@ final _mockAdaptedToilet = AdaptedToilet(
   doorsIndices: IList(const [1]),
 );
 
-const meta = Meta<AdaptedToiletLevel>();
+const meta = Meta(AdaptedToiletLevel.new);
 
 final $default = AdaptedToiletLevelStory(
   args: AdaptedToiletLevelArgs(level: Arg.fixed(_mockLevel), adaptedToilets: Arg.fixed(IList([_mockAdaptedToilet]))),

@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "web_version_banner.stories.g.dart";
 
-const meta = Meta<WebVersionBanner>();
+const meta = Meta(WebVersionBanner.new);
 
 final $default = WebVersionBannerStory();

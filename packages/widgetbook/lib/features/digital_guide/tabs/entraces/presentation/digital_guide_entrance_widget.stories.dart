@@ -52,7 +52,7 @@ const mockDigitalGuideEntrace = DigitalGuideEntrace(
   imagesIndices: IListConst([]),
 );
 
-const meta = Meta<DigitalGuideEntranceWidget>();
+const meta = Meta(DigitalGuideEntranceWidget.new);
 
 final $default = DigitalGuideEntranceWidgetStory(
   args: DigitalGuideEntranceWidgetArgs(entrance: Arg.fixed(mockDigitalGuideEntrace)),

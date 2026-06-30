@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "my_error_widget.stories.g.dart";
 
-const meta = Meta<MyErrorWidget>();
+const meta = Meta(MyErrorWidget.new);
 
 final $default = MyErrorWidgetStory(args: MyErrorWidgetArgs(error: Arg.fixed("Example error message")));

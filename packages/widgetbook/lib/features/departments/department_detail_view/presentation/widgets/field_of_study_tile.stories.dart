@@ -14,6 +14,6 @@ const _mockFieldOfStudy = FieldOfStudy(
   hasWeekendOption: false,
 );
 
-const meta = Meta<FieldOfStudyTile>();
+const meta = Meta(FieldOfStudyTile.new);
 
 final $default = FieldOfStudyTileStory(args: FieldOfStudyTileArgs(item: Arg.fixed(_mockFieldOfStudy)));

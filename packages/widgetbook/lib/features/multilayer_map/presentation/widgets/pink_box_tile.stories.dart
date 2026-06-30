@@ -29,7 +29,7 @@ class PinkBoxTileStoryKnobs {
   PinkBoxTileStoryKnobs({required this.isActive});
 }
 
-const meta = MetaWithArgs<PinkBoxTile, PinkBoxTileStoryKnobs>();
+const meta = Meta(PinkBoxTile.new, argsType: PinkBoxTileStoryKnobs.new);
 
 final defaults = _Defaults(
   builder: (context, args) => PinkBoxTile(_mockPinkBoxWithPlaceholderPhoto, isActive: args.isActive),

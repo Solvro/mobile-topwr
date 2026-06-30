@@ -7,7 +7,7 @@ import "package:widgetbook/widgetbook.dart";
 
 part "tags_section.stories.g.dart";
 
-const meta = Meta<TagsSection>();
+const meta = Meta(TagsSection.new);
 
 final $default = TagsSectionStory(
   args: TagsSectionArgs(

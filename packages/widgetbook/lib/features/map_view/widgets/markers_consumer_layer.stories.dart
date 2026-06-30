@@ -8,7 +8,7 @@ import "package:widgetbook/widgetbook.dart";
 
 part "markers_consumer_layer.stories.g.dart";
 
-const meta = Meta<MarkersConsumerLayer>();
+const meta = Meta(MarkersConsumerLayer.new);
 
 final $default = MarkersConsumerLayerStory<MultilayerItem>(
   setup: (context, child, args) => FlutterMap(

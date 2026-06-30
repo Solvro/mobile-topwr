@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "audio_player_widget.stories.g.dart";
 
-const meta = Meta<AudioPlayerWidget>();
+const meta = Meta(AudioPlayerWidget.new);
 
 final $default = AudioPlayerWidgetStory(name: "Production widget with fake controller");

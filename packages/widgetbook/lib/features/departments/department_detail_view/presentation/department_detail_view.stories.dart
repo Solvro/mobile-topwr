@@ -4,7 +4,7 @@ import "package:widgetbook/widgetbook.dart";
 
 part "department_detail_view.stories.g.dart";
 
-const meta = Meta<DepartmentDetailView>();
+const meta = Meta(DepartmentDetailView.new);
 
 final $default = DepartmentDetailViewStory(
   name: "Production view with hardcoded data",

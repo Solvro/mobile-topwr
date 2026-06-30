@@ -13,6 +13,6 @@ class LanguageDialogFirstTimeStory extends StatelessWidget {
   }
 }
 
-const meta = Meta<LanguageDialogFirstTimeStory>();
+const meta = Meta(LanguageDialogFirstTimeStory.new);
 
 final $firstTime = LanguageDialogFirstTimeStoryStory();

@@ -27,6 +27,6 @@ const _productionParking = Parking(
   access: ParkingAccess.students,
 );
 
-const meta = Meta<FavouriteParkingWidget>();
+const meta = Meta(FavouriteParkingWidget.new);
 
 final $default = FavouriteParkingWidgetStory(args: FavouriteParkingWidgetArgs(parking: Arg.fixed(_productionParking)));

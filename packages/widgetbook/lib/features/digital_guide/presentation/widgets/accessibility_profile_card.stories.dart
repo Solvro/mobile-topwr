@@ -9,7 +9,7 @@ import "package:widgetbook/widgetbook.dart";
 
 part "accessibility_profile_card.stories.g.dart";
 
-const meta = Meta<AccessibilityProfileCard>();
+const meta = Meta(AccessibilityProfileCard.new);
 
 final class _SampleAccessibilityCommentsManager extends AccessibilityCommentsManager {
   @override

@@ -40,6 +40,6 @@ final _mockInformationPoint = DigitalGuideInformationPoint(
   images: [],
 );
 
-const meta = Meta<InformationPointWidget>();
+const meta = Meta(InformationPointWidget.new);
 
 final $default = InformationPointWidgetStory(args: InformationPointWidgetArgs(data: Arg.fixed(_mockInformationPoint)));

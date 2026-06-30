@@ -34,6 +34,6 @@ const _mockDressingRoom = DigitalGuideDressingRoom(
   imagesIds: [6, 7],
 );
 
-const meta = Meta<DressingRoomView>();
+const meta = Meta(DressingRoomView.new);
 
 final $default = DressingRoomViewStory(args: DressingRoomViewArgs(dressingRoom: Arg.fixed(_mockDressingRoom)));

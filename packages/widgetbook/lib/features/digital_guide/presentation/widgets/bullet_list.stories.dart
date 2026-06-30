@@ -11,6 +11,6 @@ final _mockItems = IList<String>(const [
   "Third item with more details",
 ]);
 
-const meta = Meta<BulletList>();
+const meta = Meta(BulletList.new);
 
 final $default = BulletListStory(args: BulletListArgs(items: Arg.fixed(_mockItems)));

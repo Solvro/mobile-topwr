@@ -19,7 +19,7 @@ class SksChartProductionStory extends StatelessWidget {
   }
 }
 
-const meta = Meta<SksChartProductionStory>();
+const meta = Meta(SksChartProductionStory.new);
 
 final $fromProduction = SksChartProductionStoryStory(
   name: "Hardcoded production snapshot",

@@ -10,7 +10,7 @@ import "../../../widgetbook_mocks.dart";
 
 part "booths_view.stories.g.dart";
 
-const meta = Meta<BoothsView>();
+const meta = Meta(BoothsView.new);
 
 final $default = BoothsViewStory(
   name: "Production view with hardcoded data",

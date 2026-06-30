@@ -4,7 +4,7 @@ import "package:widgetbook/widgetbook.dart";
 
 part "search_box.stories.g.dart";
 
-const meta = Meta<SearchBox>();
+const meta = Meta(SearchBox.new);
 
 final $default = SearchBoxStory(
   args: SearchBoxArgs(

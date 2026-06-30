@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "app_version_tile.stories.g.dart";
 
-const meta = Meta<AppVersionTile>();
+const meta = Meta(AppVersionTile.new);
 
 final $default = AppVersionTileStory();

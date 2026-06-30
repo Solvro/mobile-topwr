@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "radio_luz_title.stories.g.dart";
 
-const meta = Meta<RadioLuzTitle>();
+const meta = Meta(RadioLuzTitle.new);
 
 final $default = RadioLuzTitleStory(args: RadioLuzTitleArgs(title: StringArg("Radio Luz")));

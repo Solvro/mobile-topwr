@@ -27,7 +27,7 @@ const _mockBicycleShowerWithoutPhoto = BicycleShower(
   branch: Branch.main,
 );
 
-const meta = Meta<BicycleShowerTile>();
+const meta = Meta(BicycleShowerTile.new);
 
 final $withPlaceholderPhoto = BicycleShowerTileStory(
   name: "With placeholder photo, active",

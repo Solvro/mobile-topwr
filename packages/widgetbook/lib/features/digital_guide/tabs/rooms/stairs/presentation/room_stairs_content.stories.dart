@@ -6,7 +6,7 @@ import "package:widgetbook/widgetbook.dart";
 
 part "room_stairs_content.stories.g.dart";
 
-const meta = Meta<RoomStairsContent>();
+const meta = Meta(RoomStairsContent.new);
 
 const _mockRoomStairs = RoomStairsResponse(
   id: 1,

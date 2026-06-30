@@ -13,6 +13,6 @@ class LanguageDialogDefaultStory extends StatelessWidget {
   }
 }
 
-const meta = Meta<LanguageDialogDefaultStory>();
+const meta = Meta(LanguageDialogDefaultStory.new);
 
 final $default = LanguageDialogDefaultStoryStory();

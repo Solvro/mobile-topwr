@@ -4,7 +4,7 @@ import "package:widgetbook/widgetbook.dart";
 
 part "custom_date_tooltip.stories.g.dart";
 
-const meta = Meta<CustomDateTooltip>();
+const meta = Meta(CustomDateTooltip.new);
 
 final $default = CustomDateTooltipStory(
   args: CustomDateTooltipArgs.fixed(position: const Offset(180, 24), message: "Updated May 2026"),

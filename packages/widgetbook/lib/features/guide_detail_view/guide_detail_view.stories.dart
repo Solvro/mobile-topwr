@@ -8,7 +8,7 @@ import "../../../widgetbook_mocks.dart";
 
 part "guide_detail_view.stories.g.dart";
 
-const meta = Meta<GuideDetailView>();
+const meta = Meta(GuideDetailView.new);
 
 final $default = GuideDetailViewStory(
   name: "Production view with hardcoded data",

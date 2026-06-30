@@ -21,6 +21,6 @@ class SksMenuSectionMockStory extends StatelessWidget {
   }
 }
 
-const meta = Meta<SksMenuSectionMockStory>();
+const meta = Meta(SksMenuSectionMockStory.new);
 
 final $withMockData = SksMenuSectionMockStoryStory();

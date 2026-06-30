@@ -67,7 +67,7 @@ const _mockLodge = DigitalGuideLodge(
   imagesIds: [8],
 );
 
-const meta = Meta<DigitalGuideLodgeExpansionTileContent>();
+const meta = Meta(DigitalGuideLodgeExpansionTileContent.new);
 
 final $withData = DigitalGuideLodgeExpansionTileContentStory(
   setup: (context, child, args) => ProviderScope(

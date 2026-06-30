@@ -6,7 +6,7 @@ import "package:widgetbook/widgetbook.dart";
 
 part "bottom_scroll_sheet.stories.g.dart";
 
-const meta = Meta<BottomScrollSheet>();
+const meta = Meta(BottomScrollSheet.new);
 
 final $default = BottomScrollSheetStory<MultilayerItem>(
   setup: (context, child, args) => SizedBox(height: 700, child: child),

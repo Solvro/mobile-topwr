@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "about_the_app_tile.stories.g.dart";
 
-const meta = Meta<AboutTheAppTile>();
+const meta = Meta(AboutTheAppTile.new);
 
 final $default = AboutTheAppTileStory();

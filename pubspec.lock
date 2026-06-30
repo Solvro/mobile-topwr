@@ -2448,10 +2448,10 @@ packages:
     dependency: transitive
     description:
       name: widgetbook
-      sha256: e294e08aeb5b85f0120a1148d3263466d9b6c3daa584ef4f41b18c2e00821ef2
+      sha256: "328c4e40cdef0c92a6986a35516b69677b599a0a8507d656ad8905a29fc2cea1"
       url: "https://pub.dev"
     source: hosted
-    version: "4.0.0-beta.3"
+    version: "4.0.0-beta.8"
   win32:
     dependency: transitive
     description:

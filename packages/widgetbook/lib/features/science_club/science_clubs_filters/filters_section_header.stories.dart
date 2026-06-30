@@ -3,7 +3,7 @@ import "package:widgetbook/widgetbook.dart";
 
 part "filters_section_header.stories.g.dart";
 
-const meta = Meta<FiltersSectionHeader>();
+const meta = Meta(FiltersSectionHeader.new);
 
 final $default = FiltersSectionHeaderStory(args: FiltersSectionHeaderArgs(text: StringArg("Departments")));
 

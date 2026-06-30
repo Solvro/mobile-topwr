@@ -21,6 +21,6 @@ class VerifiedBadgeInRichTextStory extends StatelessWidget {
   }
 }
 
-const meta = Meta<VerifiedBadgeInRichTextStory>();
+const meta = Meta(VerifiedBadgeInRichTextStory.new);
 
 final $default = VerifiedBadgeInRichTextStoryStory();

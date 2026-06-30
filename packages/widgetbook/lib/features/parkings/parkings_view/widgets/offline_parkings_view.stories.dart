@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "offline_parkings_view.stories.g.dart";
 
-const meta = Meta<OfflineParkingsView>();
+const meta = Meta(OfflineParkingsView.new);
 
 final $default = OfflineParkingsViewStory();

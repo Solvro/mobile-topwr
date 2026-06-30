@@ -6,7 +6,7 @@ import "../../../../auto_route_story_wrapper.dart";
 
 part "polinkas_view.stories.g.dart";
 
-const meta = Meta<PolinkasView>();
+const meta = Meta(PolinkasView.new);
 
 final $default = PolinkasViewStory(
   name: "Production view with hardcoded data",

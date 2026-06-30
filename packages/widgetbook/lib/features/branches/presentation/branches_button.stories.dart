@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "branches_button.stories.g.dart";
 
-const meta = Meta<BranchesButton>();
+const meta = Meta(BranchesButton.new);
 
 final $default = BranchesButtonStory();

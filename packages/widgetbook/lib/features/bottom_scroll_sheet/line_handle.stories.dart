@@ -3,6 +3,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "line_handle.stories.g.dart";
 
-const meta = Meta<LineHandle>();
+const meta = Meta(LineHandle.new);
 
 final $default = LineHandleStory();

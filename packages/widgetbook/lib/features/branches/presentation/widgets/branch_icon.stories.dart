@@ -5,6 +5,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "branch_icon.stories.g.dart";
 
-const meta = Meta<BranchIcon>();
+const meta = Meta(BranchIcon.new);
 
 final $default = BranchIconStory();

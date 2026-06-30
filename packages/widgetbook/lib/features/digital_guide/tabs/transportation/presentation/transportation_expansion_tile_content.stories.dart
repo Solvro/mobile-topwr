@@ -44,7 +44,7 @@ const _mockDigitalGuideData = DigitalGuideResponse(
   accessibilityLevelForCognitiveDifficulties: 1,
 );
 
-const meta = Meta<TransportationExpansionTileContent>();
+const meta = Meta(TransportationExpansionTileContent.new);
 
 final $default = TransportationExpansionTileContentStory(
   setup: (context, child, args) => ProviderScope(

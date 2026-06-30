@@ -4,7 +4,7 @@ import "package:widgetbook/widgetbook.dart";
 
 part "science_club_detail_view.stories.g.dart";
 
-const meta = Meta<ScienceClubDetailView>();
+const meta = Meta(ScienceClubDetailView.new);
 
 final $default = ScienceClubDetailViewStory(
   name: "Production view with hardcoded data",

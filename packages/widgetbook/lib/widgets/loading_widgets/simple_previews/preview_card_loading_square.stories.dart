@@ -13,6 +13,6 @@ class PreviewCardLoadingSquareStory extends StatelessWidget {
   }
 }
 
-const meta = Meta<PreviewCardLoadingSquareStory>();
+const meta = Meta(PreviewCardLoadingSquareStory.new);
 
 final $square = PreviewCardLoadingSquareStoryStory();

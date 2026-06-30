@@ -4,7 +4,7 @@ import "package:widgetbook/widgetbook.dart";
 
 part "text_and_url.stories.g.dart";
 
-const meta = Meta<TextAndUrl>();
+const meta = Meta(TextAndUrl.new);
 
 final $default = TextAndUrlStory(
   args: TextAndUrlArgs(url: StringArg("https://pwr.edu.pl"), text: StringArg("Read more at")),

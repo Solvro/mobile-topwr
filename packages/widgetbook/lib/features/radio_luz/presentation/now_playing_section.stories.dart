@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "now_playing_section.stories.g.dart";
 
-const meta = Meta<NowPlayingSection>();
+const meta = Meta(NowPlayingSection.new);
 
 final $default = NowPlayingSectionStory();

@@ -5,7 +5,7 @@ import "../../../../../widgetbook_mocks.dart";
 
 part "digital_guide_room_detail_view.stories.g.dart";
 
-const meta = Meta<DigitalGuideRoomDetailView>();
+const meta = Meta(DigitalGuideRoomDetailView.new);
 
 final $default = DigitalGuideRoomDetailViewStory(
   args: DigitalGuideRoomDetailViewArgs(room: Arg.fixed(mockDigitalGuideRoom)),

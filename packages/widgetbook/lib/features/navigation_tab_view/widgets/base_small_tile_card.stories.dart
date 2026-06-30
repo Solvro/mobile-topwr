@@ -4,7 +4,7 @@ import "package:widgetbook/widgetbook.dart";
 
 part "base_small_tile_card.stories.g.dart";
 
-const meta = Meta<BaseSmallTileCard>();
+const meta = Meta(BaseSmallTileCard.new);
 
 final $default = BaseSmallTileCardStory(
   args: BaseSmallTileCardArgs.fixed(

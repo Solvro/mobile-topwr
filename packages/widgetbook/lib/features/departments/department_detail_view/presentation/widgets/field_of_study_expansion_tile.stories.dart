@@ -33,7 +33,7 @@ class FieldOfStudyExpansionTileStoryKnobs {
   });
 }
 
-const meta = MetaWithArgs<FieldOfStudyExpansionTile, FieldOfStudyExpansionTileStoryKnobs>();
+const meta = Meta(FieldOfStudyExpansionTile.new, argsType: FieldOfStudyExpansionTileStoryKnobs.new);
 
 final defaults = _Defaults(
   builder: (context, args) => FieldOfStudyExpansionTile(

@@ -28,6 +28,6 @@ const _mockRamp = Ramp(
   railingsIDs: IList.empty(),
 );
 
-const meta = Meta<RampsView>();
+const meta = Meta(RampsView.new);
 
 final $default = RampsViewStory(args: RampsViewArgs(ramps: Arg.fixed(_mockRamp)));

@@ -10,7 +10,7 @@ class HorizontalSymmetricSafeAreaScaffoldStoryKnobs {
   HorizontalSymmetricSafeAreaScaffoldStoryKnobs({this.backgroundColor, required this.top});
 }
 
-const meta = MetaWithArgs<HorizontalSymmetricSafeAreaScaffold, HorizontalSymmetricSafeAreaScaffoldStoryKnobs>();
+const meta = Meta(HorizontalSymmetricSafeAreaScaffold.new, argsType: HorizontalSymmetricSafeAreaScaffoldStoryKnobs.new);
 
 final defaults = _Defaults(
   builder: (context, args) => HorizontalSymmetricSafeAreaScaffold(

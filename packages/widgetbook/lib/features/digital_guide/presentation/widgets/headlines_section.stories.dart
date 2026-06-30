@@ -3,7 +3,7 @@ import "package:widgetbook/widgetbook.dart";
 
 part "headlines_section.stories.g.dart";
 
-const meta = Meta<HeadlinesSection>();
+const meta = Meta(HeadlinesSection.new);
 
 final $default = HeadlinesSectionStory(
   args: HeadlinesSectionArgs(

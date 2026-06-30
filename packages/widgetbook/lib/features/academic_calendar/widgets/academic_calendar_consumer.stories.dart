@@ -4,7 +4,7 @@ import "package:widgetbook/widgetbook.dart";
 
 part "academic_calendar_consumer.stories.g.dart";
 
-const meta = Meta<AcademicCalendarConsumer>();
+const meta = Meta(AcademicCalendarConsumer.new);
 
 final $default = AcademicCalendarConsumerStory(
   setup: (context, child, args) => ColoredBox(color: Colors.white, child: child),

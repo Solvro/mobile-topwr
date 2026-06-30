@@ -5,7 +5,7 @@ import "package:widgetbook/widgetbook.dart";
 
 part "my_expansion_tile_loading.stories.g.dart";
 
-const meta = Meta<MyExpansionTileLoading>();
+const meta = Meta(MyExpansionTileLoading.new);
 
 final $default = MyExpansionTileLoadingStory(
   setup: (context, child, args) => SizedBox(

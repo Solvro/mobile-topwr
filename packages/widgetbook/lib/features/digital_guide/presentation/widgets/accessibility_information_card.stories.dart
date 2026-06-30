@@ -5,7 +5,7 @@ import "package:widgetbook/widgetbook.dart";
 
 part "accessibility_information_card.stories.g.dart";
 
-const meta = Meta<AccessibilityInformationCard>();
+const meta = Meta(AccessibilityInformationCard.new);
 
 final $default = AccessibilityInformationCardStory(
   args: AccessibilityInformationCardArgs.fixed(

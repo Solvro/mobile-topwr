@@ -27,7 +27,7 @@ class WideTileCardStoryKnobs {
   });
 }
 
-const meta = MetaWithArgs<WideTileCard, WideTileCardStoryKnobs>();
+const meta = Meta(WideTileCard.new, argsType: WideTileCardStoryKnobs.new);
 
 final defaults = _Defaults(
   builder: (context, args) => WideTileCard(

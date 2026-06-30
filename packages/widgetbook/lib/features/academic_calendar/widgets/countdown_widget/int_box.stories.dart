@@ -8,7 +8,7 @@ class IntBoxStoryKnobs {
   IntBoxStoryKnobs({required this.singleInt});
 }
 
-const meta = MetaWithArgs<IntBox, IntBoxStoryKnobs>();
+const meta = Meta(IntBox.new, argsType: IntBoxStoryKnobs.new);
 
 final defaults = _Defaults(builder: (context, args) => IntBox(singleInt: args.singleInt));
 

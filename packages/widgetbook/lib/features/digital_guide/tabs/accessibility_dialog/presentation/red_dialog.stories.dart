@@ -21,7 +21,7 @@ class RedDialogStoryKnobs {
   });
 }
 
-const meta = MetaWithArgs<RedDialog, RedDialogStoryKnobs>();
+const meta = Meta(RedDialog.new, argsType: RedDialogStoryKnobs.new);
 
 final defaults = _Defaults(
   builder: (context, args) => RedDialog(

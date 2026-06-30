@@ -8,7 +8,7 @@ import "../../../../widgetbook_mocks.dart";
 
 part "tags_wrap.stories.g.dart";
 
-const meta = Meta<TagsWrap>();
+const meta = Meta(TagsWrap.new);
 
 final $default = TagsWrapStory(
   setup: (context, child, args) => ProviderScope(

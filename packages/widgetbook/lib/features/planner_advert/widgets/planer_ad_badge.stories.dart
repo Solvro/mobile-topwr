@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "planer_ad_badge.stories.g.dart";
 
-const meta = Meta<PlanerAdBadge>();
+const meta = Meta(PlanerAdBadge.new);
 
 final $default = PlanerAdBadgeStory();

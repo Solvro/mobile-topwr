@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "settings_title.stories.g.dart";
 
-const meta = Meta<SettingsTitle>();
+const meta = Meta(SettingsTitle.new);
 
 final $default = SettingsTitleStory();

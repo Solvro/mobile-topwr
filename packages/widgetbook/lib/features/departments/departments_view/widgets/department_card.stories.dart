@@ -16,6 +16,6 @@ const _mockDepartment = Department(
   branch: Branch.main,
 );
 
-const meta = Meta<DepartmentCard>();
+const meta = Meta(DepartmentCard.new);
 
 final $default = DepartmentCardStory(args: DepartmentCardArgs(department: Arg.fixed(_mockDepartment)));

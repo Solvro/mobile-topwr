@@ -8,7 +8,7 @@ import "package:widgetbook/widgetbook.dart";
 
 part "toolbar.stories.g.dart";
 
-const meta = Meta<Toolbar>();
+const meta = Meta(Toolbar.new);
 
 final $default = ToolbarStory<MultilayerItem>(
   setup: (context, child, args) => FlutterMap(

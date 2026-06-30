@@ -39,7 +39,7 @@ const _mockRegion = Region(
   accessibilityLevelForCognitiveDifficulties: 0,
 );
 
-const meta = Meta<LevelView>();
+const meta = Meta(LevelView.new);
 
 final $default = LevelViewStory(
   args: LevelViewArgs(levelInfo: Arg.fixed((level: _mockLevel, regions: IList(const [_mockRegion])))),

@@ -4,7 +4,7 @@ import "package:widgetbook/widgetbook.dart";
 
 part "description_section.stories.g.dart";
 
-const meta = Meta<DescriptionSection>();
+const meta = Meta(DescriptionSection.new);
 
 const _sampleHtml =
     "<p>ToPWR is a community-driven mobile guide for the Wrocław University of Science and Technology. "

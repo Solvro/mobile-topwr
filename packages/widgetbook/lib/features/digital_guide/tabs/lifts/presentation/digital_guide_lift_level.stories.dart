@@ -64,7 +64,7 @@ const _mockLevel = Level(
   regionIndices: [1],
 );
 
-const meta = Meta<DigitalGuideLiftLevel>();
+const meta = Meta(DigitalGuideLiftLevel.new);
 
 final $default = DigitalGuideLiftLevelStory(
   args: DigitalGuideLiftLevelArgs(level: Arg.fixed(_mockLevel), lifts: Arg.fixed(_mockLifts)),

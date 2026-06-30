@@ -8,7 +8,7 @@ import "package:widgetbook/widgetbook.dart";
 
 part "stairs_view.stories.g.dart";
 
-const meta = Meta<StairsView>();
+const meta = Meta(StairsView.new);
 
 const _mockStairs = Stairs(
   id: 1,

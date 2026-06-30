@@ -13,6 +13,6 @@ final _productionCalendarItem = (
   accentColor: HexColor("#2962FF"), // realistic Wroclaw Tech color
 );
 
-const meta = Meta<CalendarTile>();
+const meta = Meta(CalendarTile.new);
 
 final $default = CalendarTileStory(args: CalendarTileArgs(item: Arg.fixed(_productionCalendarItem)));

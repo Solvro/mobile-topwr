@@ -26,7 +26,7 @@ class RestApiImageStoryKnobs {
   });
 }
 
-const meta = MetaWithArgs<RestApiImage, RestApiImageStoryKnobs>();
+const meta = Meta(RestApiImage.new, argsType: RestApiImageStoryKnobs.new);
 
 final defaults = _Defaults(
   builder: (context, args) => RestApiImage(

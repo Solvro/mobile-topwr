@@ -9,7 +9,7 @@ class BranchListStoryKnobs {
   BranchListStoryKnobs({this.selectedBranch});
 }
 
-const meta = MetaWithArgs<BranchList, BranchListStoryKnobs>();
+const meta = Meta(BranchList.new, argsType: BranchListStoryKnobs.new);
 
 final defaults = _Defaults(
   builder: (context, args) => BranchList(selectedBranch: args.selectedBranch, onBranchTap: (_) {}),

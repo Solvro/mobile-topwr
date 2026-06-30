@@ -5,7 +5,7 @@ import "package:widgetbook/widgetbook.dart";
 
 part "about_us_section_loading.stories.g.dart";
 
-const meta = Meta<AboutUsSectionLoading>();
+const meta = Meta(AboutUsSectionLoading.new);
 
 final $default = AboutUsSectionLoadingStory(
   setup: (context, child, args) => SizedBox(

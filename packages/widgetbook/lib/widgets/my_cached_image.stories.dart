@@ -20,7 +20,7 @@ class MyCachedImageStoryKnobs {
   });
 }
 
-const meta = MetaWithArgs<MyCachedImage, MyCachedImageStoryKnobs>();
+const meta = Meta(MyCachedImage.new, argsType: MyCachedImageStoryKnobs.new);
 
 final defaults = _Defaults(
   builder: (context, args) => MyCachedImage(

@@ -73,7 +73,7 @@ const _mockDressingRoom = DigitalGuideDressingRoom(
   imagesIds: [6, 7],
 );
 
-const meta = Meta<DigitalGuideDressingRoomsExpansionTileContent>();
+const meta = Meta(DigitalGuideDressingRoomsExpansionTileContent.new);
 
 final $defaultMock = DigitalGuideDressingRoomsExpansionTileContentStory(
   setup: (context, child, args) => ProviderScope(

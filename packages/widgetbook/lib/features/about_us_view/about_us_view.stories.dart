@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "about_us_view.stories.g.dart";
 
-const meta = Meta<AboutUsView>();
+const meta = Meta(AboutUsView.new);
 
 final $default = AboutUsViewStory(name: "Production view with hardcoded data");

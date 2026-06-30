@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "notification_button.stories.g.dart";
 
-const meta = Meta<NotificationButton>();
+const meta = Meta(NotificationButton.new);
 
 final $default = NotificationButtonStory();

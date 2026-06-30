@@ -3,6 +3,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "settings_view.stories.g.dart";
 
-const meta = Meta<SettingsView>();
+const meta = Meta(SettingsView.new);
 
 final $default = SettingsViewStory();

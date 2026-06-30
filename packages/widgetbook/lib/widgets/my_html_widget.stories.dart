@@ -4,7 +4,7 @@ import "package:widgetbook/widgetbook.dart";
 
 part "my_html_widget.stories.g.dart";
 
-const meta = Meta<MyHtmlWidget>();
+const meta = Meta(MyHtmlWidget.new);
 
 final $default = MyHtmlWidgetStory(
   args: MyHtmlWidgetArgs(html: StringArg("<p><strong>Widgetbook</strong> preview content with a link.</p>")),

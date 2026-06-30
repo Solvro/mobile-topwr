@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "app_changelog_header.stories.g.dart";
 
-const meta = Meta<AppChangelogHeader>();
+const meta = Meta(AppChangelogHeader.new);
 
 final $default = AppChangelogHeaderStory(args: AppChangelogHeaderArgs(version: StringArg("v2.4.1")));

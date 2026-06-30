@@ -5,7 +5,7 @@ import "package:widgetbook/widgetbook.dart";
 
 part "sliver_sticky_header.stories.g.dart";
 
-const meta = Meta<SliverStickyHeader>();
+const meta = Meta(SliverStickyHeader.new);
 
 final $default = SliverStickyHeaderStory(
   args: SliverStickyHeaderArgs.fixed(child: const Text("Lorem ipsum")),

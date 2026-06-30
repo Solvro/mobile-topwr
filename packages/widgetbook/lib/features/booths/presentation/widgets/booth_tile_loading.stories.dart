@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "booth_tile_loading.stories.g.dart";
 
-const meta = Meta<BoothTileLoading>();
+const meta = Meta(BoothTileLoading.new);
 
 final $default = BoothTileLoadingStory();

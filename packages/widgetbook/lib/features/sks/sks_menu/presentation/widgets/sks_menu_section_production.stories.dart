@@ -15,6 +15,6 @@ class SksMenuSectionProductionStory extends StatelessWidget {
   }
 }
 
-const meta = Meta<SksMenuSectionProductionStory>();
+const meta = Meta(SksMenuSectionProductionStory.new);
 
 final $fromProduction = SksMenuSectionProductionStoryStory(name: "Hardcoded production snapshot");

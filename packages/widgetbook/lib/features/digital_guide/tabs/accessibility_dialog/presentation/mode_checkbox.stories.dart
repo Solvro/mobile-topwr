@@ -8,7 +8,7 @@ import "package:widgetbook/widgetbook.dart";
 
 part "mode_checkbox.stories.g.dart";
 
-const meta = Meta<ModeCheckbox>();
+const meta = Meta(ModeCheckbox.new);
 
 final class _MockAccessibilityModeService extends AccessibilityModeService {
   @override

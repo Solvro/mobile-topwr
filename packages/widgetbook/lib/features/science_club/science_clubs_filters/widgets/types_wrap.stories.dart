@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "types_wrap.stories.g.dart";
 
-const meta = Meta<TypesWrap>();
+const meta = Meta(TypesWrap.new);
 
 final $default = TypesWrapStory();

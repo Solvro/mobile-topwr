@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "open_map_atrribution.stories.g.dart";
 
-const meta = Meta<OpenMapAtrribution>();
+const meta = Meta(OpenMapAtrribution.new);
 
 final $default = OpenMapAtrributionStory();

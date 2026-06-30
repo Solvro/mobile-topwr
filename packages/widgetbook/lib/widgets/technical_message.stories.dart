@@ -27,7 +27,7 @@ class TechnicalMessageStoryKnobs {
   });
 }
 
-const meta = MetaWithArgs<TechnicalMessage, TechnicalMessageStoryKnobs>();
+const meta = Meta(TechnicalMessage.new, argsType: TechnicalMessageStoryKnobs.new);
 
 final defaults = _Defaults(
   builder: (context, args) => TechnicalMessage(

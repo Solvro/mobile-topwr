@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "sks_user_data_button.stories.g.dart";
 
-const meta = Meta<SksUserDataButton>();
+const meta = Meta(SksUserDataButton.new);
 
 final $default = SksUserDataButtonStory();

@@ -3,7 +3,7 @@ import "package:widgetbook/widgetbook.dart";
 
 part "digital_guide_object_view.stories.g.dart";
 
-const meta = Meta<DigitalGuideObjectView>();
+const meta = Meta(DigitalGuideObjectView.new);
 
 final $default = DigitalGuideObjectViewStory(
   name: "Production view with hardcoded data",

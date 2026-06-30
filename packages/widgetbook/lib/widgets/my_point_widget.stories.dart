@@ -3,6 +3,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "my_point_widget.stories.g.dart";
 
-const meta = Meta<MyPointWidget>();
+const meta = Meta(MyPointWidget.new);
 
 final $default = MyPointWidgetStory(args: MyPointWidgetArgs(text: StringArg("Important point")));

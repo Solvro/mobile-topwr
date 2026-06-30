@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "flutter_splash_screen.stories.g.dart";
 
-const meta = Meta<FlutterSplashScreen>();
+const meta = Meta(FlutterSplashScreen.new);
 
 final $default = FlutterSplashScreenStory();

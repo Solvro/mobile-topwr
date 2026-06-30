@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "bottom_nav_bar.stories.g.dart";
 
-const meta = Meta<BottomNavBar>();
+const meta = Meta(BottomNavBar.new);
 
 final $default = BottomNavBarStory(args: BottomNavBarArgs(onTap: Arg.fixed((int _) {})));

@@ -21,6 +21,6 @@ const _productionScienceClub = ScienceClub(
   shortDescription: "Adres e-mail:",
 );
 
-const meta = Meta<ScienceClubCard>();
+const meta = Meta(ScienceClubCard.new);
 
 final $default = ScienceClubCardStory(args: ScienceClubCardArgs(sciClub: Arg.fixed(_productionScienceClub)));

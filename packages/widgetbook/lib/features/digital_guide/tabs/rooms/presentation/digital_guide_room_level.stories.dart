@@ -17,7 +17,7 @@ const _mockLevel = Level(
   regionIndices: [1],
 );
 
-const meta = Meta<DigitalGuideRoomLevel>();
+const meta = Meta(DigitalGuideRoomLevel.new);
 
 final $default = DigitalGuideRoomLevelStory(
   args: DigitalGuideRoomLevelArgs(level: Arg.fixed(_mockLevel), rooms: Arg.fixed(IList(const [mockDigitalGuideRoom]))),

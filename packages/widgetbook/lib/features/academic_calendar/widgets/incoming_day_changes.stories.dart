@@ -7,7 +7,7 @@ import "../../../widgetbook_mocks.dart";
 
 part "incoming_day_changes.stories.g.dart";
 
-const meta = Meta<IncomingDayChanges>();
+const meta = Meta(IncomingDayChanges.new);
 
 final $default = IncomingDayChangesStory(
   args: IncomingDayChangesArgs(calendar: Arg.fixed(mockAcademicCalendarWithSwaps)),

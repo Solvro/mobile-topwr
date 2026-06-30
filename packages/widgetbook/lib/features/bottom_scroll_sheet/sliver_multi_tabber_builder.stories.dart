@@ -10,7 +10,7 @@ part "sliver_multi_tabber_builder.stories.g.dart";
 
 final _scrollController = ScrollController();
 
-const meta = Meta<SliverMultiTabberBuilder>();
+const meta = Meta(SliverMultiTabberBuilder.new);
 
 final $default = SliverMultiTabberBuilderStory(
   setup: (context, child, args) => CustomScrollView(controller: args.scrollController, slivers: [child]),

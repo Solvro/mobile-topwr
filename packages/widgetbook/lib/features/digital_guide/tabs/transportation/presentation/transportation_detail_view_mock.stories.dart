@@ -15,6 +15,6 @@ class TransportationDetailViewMockStory extends StatelessWidget {
   }
 }
 
-const meta = Meta<TransportationDetailViewMockStory>();
+const meta = Meta(TransportationDetailViewMockStory.new);
 
 final $withMockData = TransportationDetailViewMockStoryStory();

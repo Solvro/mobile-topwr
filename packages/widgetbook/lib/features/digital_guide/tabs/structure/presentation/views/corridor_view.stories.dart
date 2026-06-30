@@ -69,6 +69,6 @@ final _mockCorridor = Corridor(
   imagesIndices: IList(const [10, 11]),
 );
 
-const meta = Meta<CorridorView>();
+const meta = Meta(CorridorView.new);
 
 final $default = CorridorViewStory(args: CorridorViewArgs(corridor: Arg.fixed(_mockCorridor)));

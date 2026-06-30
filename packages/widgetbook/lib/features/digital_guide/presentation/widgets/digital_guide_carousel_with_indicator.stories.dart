@@ -7,7 +7,7 @@ part "digital_guide_carousel_with_indicator.stories.g.dart";
 
 final _mockImgListId = IList<int>(const [101, 102, 103]);
 
-const meta = Meta<DigitalGuideCarouselWithIndicator>();
+const meta = Meta(DigitalGuideCarouselWithIndicator.new);
 
 final $default = DigitalGuideCarouselWithIndicatorStory(
   args: DigitalGuideCarouselWithIndicatorArgs(imgListId: Arg.fixed(_mockImgListId)),

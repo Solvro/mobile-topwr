@@ -30,7 +30,7 @@ const _mockAedWithoutPhoto = Aed(
   branch: Branch.main,
 );
 
-const meta = Meta<AedTile>();
+const meta = Meta(AedTile.new);
 
 final $withPlaceholderPhoto = AedTileStory(
   name: "With placeholder photo, active",

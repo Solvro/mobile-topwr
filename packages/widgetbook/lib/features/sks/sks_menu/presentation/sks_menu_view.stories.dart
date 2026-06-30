@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "sks_menu_view.stories.g.dart";
 
-const meta = Meta<SksMenuView>();
+const meta = Meta(SksMenuView.new);
 
 final $default = SksMenuViewStory(name: "Production view with hardcoded data");

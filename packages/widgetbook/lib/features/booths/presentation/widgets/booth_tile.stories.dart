@@ -7,7 +7,7 @@ import "../../../../widgetbook_mocks.dart";
 
 part "booth_tile.stories.g.dart";
 
-const meta = Meta<BoothTile>();
+const meta = Meta(BoothTile.new);
 
 final $available = BoothTileStory(
   name: "Available",

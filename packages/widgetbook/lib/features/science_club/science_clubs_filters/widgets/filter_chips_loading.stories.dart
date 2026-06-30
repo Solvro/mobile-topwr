@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "filter_chips_loading.stories.g.dart";
 
-const meta = Meta<FilterChipsLoading>();
+const meta = Meta(FilterChipsLoading.new);
 
 final $default = FilterChipsLoadingStory();

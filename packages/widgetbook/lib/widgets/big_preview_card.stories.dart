@@ -29,7 +29,7 @@ class BigPreviewCardStoryKnobs {
   });
 }
 
-const meta = MetaWithArgs<BigPreviewCard, BigPreviewCardStoryKnobs>();
+const meta = Meta(BigPreviewCard.new, argsType: BigPreviewCardStoryKnobs.new);
 
 final defaults = _Defaults(
   builder: (context, args) => BigPreviewCard(

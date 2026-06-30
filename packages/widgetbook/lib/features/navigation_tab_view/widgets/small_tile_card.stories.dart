@@ -4,7 +4,7 @@ import "package:widgetbook/widgetbook.dart";
 
 part "small_tile_card.stories.g.dart";
 
-const meta = Meta<SmallTileCard>();
+const meta = Meta(SmallTileCard.new);
 
 final $default = SmallTileCardStory(
   args: SmallTileCardArgs.fixed(title: "Campus map", icon: const Icon(Icons.map_outlined, size: 36), onTap: () {}),

@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "planner_advert_banner.stories.g.dart";
 
-const meta = Meta<PlannerAdvertBanner>();
+const meta = Meta(PlannerAdvertBanner.new);
 
 final $default = PlannerAdvertBannerStory();

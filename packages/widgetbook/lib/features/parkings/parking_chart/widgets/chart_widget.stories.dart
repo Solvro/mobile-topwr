@@ -32,7 +32,7 @@ const _productionParking = Parking(
   access: ParkingAccess.students,
 );
 
-const meta = Meta<ChartWidget>();
+const meta = Meta(ChartWidget.new);
 
 final $default = ChartWidgetStory(
   args: ChartWidgetArgs(chartData: Arg.fixed(mockParkingChartData), parking: Arg.fixed(_productionParking)),

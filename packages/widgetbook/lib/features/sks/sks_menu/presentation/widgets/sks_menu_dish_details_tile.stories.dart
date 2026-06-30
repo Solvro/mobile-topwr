@@ -11,7 +11,7 @@ class SksMenuDishDetailsTileStoryKnobs {
   SksMenuDishDetailsTileStoryKnobs({required this.dish, required this.isSubscribed});
 }
 
-const meta = MetaWithArgs<SksMenuDishDetailsTile, SksMenuDishDetailsTileStoryKnobs>();
+const meta = Meta(SksMenuDishDetailsTile.new, argsType: SksMenuDishDetailsTileStoryKnobs.new);
 
 final defaults = _Defaults(
   builder: (context, args) =>

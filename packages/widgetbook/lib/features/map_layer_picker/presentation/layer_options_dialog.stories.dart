@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "layer_options_dialog.stories.g.dart";
 
-const meta = Meta<LayerOptionsDialog>();
+const meta = Meta(LayerOptionsDialog.new);
 
 final $default = LayerOptionsDialogStory();

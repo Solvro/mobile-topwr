@@ -11,7 +11,7 @@ class FadeInGradientAnimationStoryKnobs {
   FadeInGradientAnimationStoryKnobs({required this.gradientStart, required this.gradientStop, required this.duration});
 }
 
-const meta = MetaWithArgs<FadeInGradientAnimation, FadeInGradientAnimationStoryKnobs>();
+const meta = Meta(FadeInGradientAnimation.new, argsType: FadeInGradientAnimationStoryKnobs.new);
 
 final defaults = _Defaults(
   builder: (context, args) => FadeInGradientAnimation(

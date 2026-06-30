@@ -19,7 +19,7 @@ class IconBannerStoryKnobs {
   });
 }
 
-const meta = MetaWithArgs<IconBanner, IconBannerStoryKnobs>();
+const meta = Meta(IconBanner.new, argsType: IconBannerStoryKnobs.new);
 
 final defaults = _Defaults(
   builder: (context, args) => IconBanner(

@@ -13,7 +13,7 @@ class SksMenuTileStoryKnobs {
   SksMenuTileStoryKnobs({required this.title, required this.dishes, required this.padding});
 }
 
-const meta = MetaWithArgs<SksMenuTile, SksMenuTileStoryKnobs>();
+const meta = Meta(SksMenuTile.new, argsType: SksMenuTileStoryKnobs.new);
 
 final defaults = _Defaults(
   builder: (context, args) => SksMenuTile(

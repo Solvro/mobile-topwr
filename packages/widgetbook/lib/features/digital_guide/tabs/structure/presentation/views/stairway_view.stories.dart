@@ -31,6 +31,6 @@ const mockStairway = Stairway(
   imagesIds: IListConst([101, 102]),
 );
 
-const meta = Meta<StairwayView>();
+const meta = Meta(StairwayView.new);
 
 final $default = StairwayViewStory(args: StairwayViewArgs(stairway: Arg.fixed(mockStairway)));

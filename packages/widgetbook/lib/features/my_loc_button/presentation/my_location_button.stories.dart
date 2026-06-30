@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "my_location_button.stories.g.dart";
 
-const meta = Meta<MyLocationButton>();
+const meta = Meta(MyLocationButton.new);
 
 final $default = MyLocationButtonStory();

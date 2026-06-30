@@ -6,7 +6,7 @@ import "../../auto_route_story_wrapper.dart";
 
 part "guide_view.stories.g.dart";
 
-const meta = Meta<GuideView>();
+const meta = Meta(GuideView.new);
 
 final $default = GuideViewStory(
   name: "Production view with hardcoded data",

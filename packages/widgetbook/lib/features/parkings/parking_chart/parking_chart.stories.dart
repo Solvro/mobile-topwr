@@ -28,6 +28,6 @@ const _productionParking = Parking(
   access: ParkingAccess.students,
 );
 
-const meta = Meta<ParkingChart>();
+const meta = Meta(ParkingChart.new);
 
 final $default = ParkingChartStory(args: ParkingChartArgs(parking: Arg.fixed(_productionParking)));

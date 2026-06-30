@@ -4,7 +4,7 @@ import "package:widgetbook/widgetbook.dart";
 
 part "sci_clubs_scaffold.stories.g.dart";
 
-const meta = Meta<SciClubsScaffold>();
+const meta = Meta(SciClubsScaffold.new);
 
 final $default = SciClubsScaffoldStory(
   args: SciClubsScaffoldArgs(

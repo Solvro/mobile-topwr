@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "sks_tile.stories.g.dart";
 
-const meta = Meta<SksTile>();
+const meta = Meta(SksTile.new);
 
 final $default = SksTileStory();

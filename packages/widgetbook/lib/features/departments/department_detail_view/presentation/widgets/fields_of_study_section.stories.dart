@@ -24,7 +24,7 @@ final _mockFieldsOfStudy = IList<FieldOfStudy>(const [
   ),
 ]);
 
-const meta = Meta<FieldsOfStudySection>();
+const meta = Meta(FieldsOfStudySection.new);
 
 final $default = FieldsOfStudySectionStory(
   args: FieldsOfStudySectionArgs(fieldsOfStudy: Arg.fixed(_mockFieldsOfStudy)),

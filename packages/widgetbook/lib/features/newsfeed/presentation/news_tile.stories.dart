@@ -17,6 +17,6 @@ const _productionArticle = Article(
       "Od bezpieczeństwa i zielonych przestrzeni, przez nowoczesną dydaktykę, aż po zaawansowane laboratoria badawcze. Poznaliśmy 15 projektów, które przeszły do finału konkursu Polytechnica Nova 2026.",
 );
 
-const meta = Meta<NewsTile>();
+const meta = Meta(NewsTile.new);
 
 final $default = NewsTileStory(args: NewsTileArgs(item: Arg.fixed(_productionArticle)));

@@ -7,7 +7,7 @@ import "package:widgetbook/widgetbook.dart";
 
 part "room_platforms_content.stories.g.dart";
 
-const meta = Meta<RoomPlatformsContent>();
+const meta = Meta(RoomPlatformsContent.new);
 
 const _mockRoomPlatform = RoomPlatformsResponse(
   id: 1,

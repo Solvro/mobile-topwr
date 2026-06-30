@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "app_bar_luz.stories.g.dart";
 
-const meta = Meta<AppBarLuz>();
+const meta = Meta(AppBarLuz.new);
 
 final $default = AppBarLuzStory();

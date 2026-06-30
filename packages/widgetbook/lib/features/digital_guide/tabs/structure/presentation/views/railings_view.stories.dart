@@ -6,7 +6,7 @@ import "package:widgetbook/widgetbook.dart";
 
 part "railings_view.stories.g.dart";
 
-const meta = Meta<RailingsView>();
+const meta = Meta(RailingsView.new);
 
 const _mockRailing = Railing(
   translations: RailingTranslations(

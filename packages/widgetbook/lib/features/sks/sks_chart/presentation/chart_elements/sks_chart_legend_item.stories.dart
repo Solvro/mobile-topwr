@@ -9,7 +9,7 @@ class SksChartLegendItemStoryKnobs {
   SksChartLegendItemStoryKnobs({required this.text, required this.isPredicted});
 }
 
-const meta = MetaWithArgs<SksChartLegendItem, SksChartLegendItemStoryKnobs>();
+const meta = Meta(SksChartLegendItem.new, argsType: SksChartLegendItemStoryKnobs.new);
 
 final defaults = _Defaults(
   builder: (context, args) => SksChartLegendItem(text: args.text, isPredicted: args.isPredicted),

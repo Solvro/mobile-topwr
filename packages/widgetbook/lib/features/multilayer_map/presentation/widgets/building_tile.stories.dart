@@ -36,7 +36,7 @@ const _mockBuildingWithoutPhoto = Building(
   branch: Branch.main,
 );
 
-const meta = Meta<BuildingTile>();
+const meta = Meta(BuildingTile.new);
 
 final $withPlaceholderPhoto = BuildingTileStory(
   name: "With placeholder photo, active",

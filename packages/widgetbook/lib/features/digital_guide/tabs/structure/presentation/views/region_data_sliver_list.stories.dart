@@ -10,7 +10,7 @@ final _mockRegionDataSliverListItem = RegionDataSliverListItem(
   itemCount: 5,
 );
 
-const meta = Meta<RegionDataSliverList>();
+const meta = Meta(RegionDataSliverList.new);
 
 final $default = RegionDataSliverListStory(
   setup: (context, child, args) => CustomScrollView(slivers: [child]),

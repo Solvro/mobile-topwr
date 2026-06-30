@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "science_club_info_dialog.stories.g.dart";
 
-const meta = Meta<ScienceClubInfoDialog>();
+const meta = Meta(ScienceClubInfoDialog.new);
 
 final $default = ScienceClubInfoDialogStory();

@@ -6,7 +6,7 @@ import "../../../../auto_route_story_wrapper.dart";
 
 part "libraries_view.stories.g.dart";
 
-const meta = Meta<LibrariesView>();
+const meta = Meta(LibrariesView.new);
 
 final $default = LibrariesViewStory(
   name: "Production view with hardcoded data",

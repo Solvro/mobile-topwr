@@ -51,6 +51,6 @@ const _mockLift = DigitalGuideLift(
   isGoodDoorWallContrast: "yes",
 );
 
-const meta = Meta<DigitalGuideLiftDetailView>();
+const meta = Meta(DigitalGuideLiftDetailView.new);
 
 final $default = DigitalGuideLiftDetailViewStory(args: DigitalGuideLiftDetailViewArgs(lift: Arg.fixed(_mockLift)));

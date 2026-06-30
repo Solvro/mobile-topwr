@@ -13,7 +13,7 @@ class SksMenuHeaderStoryKnobs {
   SksMenuHeaderStoryKnobs({required this.dateTimeOfLastUpdate, required this.isMenuOnline, required this.openingHours});
 }
 
-const meta = MetaWithArgs<SksMenuHeader, SksMenuHeaderStoryKnobs>();
+const meta = Meta(SksMenuHeader.new, argsType: SksMenuHeaderStoryKnobs.new);
 
 final defaults = _Defaults(
   builder: (context, args) => SksMenuHeader(

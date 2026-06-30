@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "nav_actions_section.stories.g.dart";
 
-const meta = Meta<NavActionsSection>();
+const meta = Meta(NavActionsSection.new);
 
 final $default = NavActionsSectionStory();

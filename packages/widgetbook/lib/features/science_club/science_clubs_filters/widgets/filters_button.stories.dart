@@ -11,7 +11,7 @@ class FiltersButtonStoryKnobs {
   FiltersButtonStoryKnobs({required this.text, required this.icon, required this.isSecondary});
 }
 
-const meta = MetaWithArgs<FiltersButton, FiltersButtonStoryKnobs>();
+const meta = Meta(FiltersButton.new, argsType: FiltersButtonStoryKnobs.new);
 
 final defaults = _Defaults(
   builder: (context, args) =>

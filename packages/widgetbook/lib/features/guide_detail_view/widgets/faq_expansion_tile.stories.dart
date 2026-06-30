@@ -4,7 +4,7 @@ import "package:widgetbook/widgetbook.dart";
 
 part "faq_expansion_tile.stories.g.dart";
 
-const meta = Meta<FaqExpansionTile>();
+const meta = Meta(FaqExpansionTile.new);
 
 final $default = FaqExpansionTileStory(
   args: FaqExpansionTileArgs(

@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "digital_guide_data_source_link.stories.g.dart";
 
-const meta = Meta<DigitalGuideDataSourceLink>();
+const meta = Meta(DigitalGuideDataSourceLink.new);
 
 final $default = DigitalGuideDataSourceLinkStory(setup: (context, child, args) => Center(child: child));

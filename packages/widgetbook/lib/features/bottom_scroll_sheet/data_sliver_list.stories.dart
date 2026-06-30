@@ -6,7 +6,7 @@ import "package:widgetbook/widgetbook.dart";
 
 part "data_sliver_list.stories.g.dart";
 
-const meta = Meta<DataSliverList>();
+const meta = Meta(DataSliverList.new);
 
 final $default = DataSliverListStory<MultilayerItem>(
   setup: (context, child, args) => CustomScrollView(slivers: [child]),

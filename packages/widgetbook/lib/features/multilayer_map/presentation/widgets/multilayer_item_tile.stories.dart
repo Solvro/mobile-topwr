@@ -40,7 +40,7 @@ const _mockBuildingWithoutPhoto = Building(
 const _mockBuildingItemWithPlaceholderPhoto = BuildingItem(building: _mockBuildingWithPlaceholderPhoto);
 const _mockBuildingItemWithoutPhoto = BuildingItem(building: _mockBuildingWithoutPhoto);
 
-const meta = Meta<MultilayerItemTile>();
+const meta = Meta(MultilayerItemTile.new);
 
 final $withPlaceholderPhoto = MultilayerItemTileStory(
   name: "With placeholder photo, active",

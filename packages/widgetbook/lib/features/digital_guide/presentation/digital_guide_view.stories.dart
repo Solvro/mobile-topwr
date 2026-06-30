@@ -7,7 +7,7 @@ import "../../../widgetbook_mocks.dart";
 
 part "digital_guide_view.stories.g.dart";
 
-const meta = Meta<DigitalGuideView>();
+const meta = Meta(DigitalGuideView.new);
 
 final $default = DigitalGuideViewStory(
   name: "Production view with hardcoded data",

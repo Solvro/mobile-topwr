@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "news_section.stories.g.dart";
 
-const meta = Meta<NewsSection>();
+const meta = Meta(NewsSection.new);
 
 final $default = NewsSectionStory();

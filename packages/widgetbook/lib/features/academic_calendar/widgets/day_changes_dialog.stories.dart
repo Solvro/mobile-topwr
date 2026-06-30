@@ -7,6 +7,6 @@ import "../../../widgetbook_mocks.dart";
 
 part "day_changes_dialog.stories.g.dart";
 
-const meta = Meta<DayChangesDialog>();
+const meta = Meta(DayChangesDialog.new);
 
 final $default = DayChangesDialogStory(args: DayChangesDialogArgs(calendar: Arg.fixed(mockAcademicCalendarWithSwaps)));

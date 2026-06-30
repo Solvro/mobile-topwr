@@ -7,7 +7,7 @@ import "../../../../widgetbook_mocks.dart";
 
 part "parking_wide_tile_card.stories.g.dart";
 
-const meta = Meta<ParkingWideTileCard>();
+const meta = Meta(ParkingWideTileCard.new);
 
 final $inactive = ParkingWideTileCardStory(
   name: "Inactive",

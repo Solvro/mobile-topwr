@@ -7,6 +7,6 @@ part "map_layer_checkbox.stories.g.dart";
 
 const _mockLayerOptions = BuildingLayerOptions();
 
-const meta = Meta<MapLayerCheckbox>();
+const meta = Meta(MapLayerCheckbox.new);
 
 final $default = MapLayerCheckboxStory(args: MapLayerCheckboxArgs(option: Arg.fixed(_mockLayerOptions)));

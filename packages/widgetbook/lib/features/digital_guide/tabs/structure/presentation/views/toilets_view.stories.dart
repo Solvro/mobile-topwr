@@ -38,6 +38,6 @@ final mockToilet = Toilet(
   doorsIds: IList(const [101, 102]),
 );
 
-const meta = Meta<ToiletsView>();
+const meta = Meta(ToiletsView.new);
 
 final $default = ToiletsViewStory(args: ToiletsViewArgs(toilet: Arg.fixed(mockToilet)));

@@ -4,7 +4,7 @@ import "package:widgetbook/widgetbook.dart";
 
 part "radio_player_info.stories.g.dart";
 
-const meta = Meta<RadioPlayerInfo>();
+const meta = Meta(RadioPlayerInfo.new);
 
 final $default = RadioPlayerInfoStory(
   setup: (context, child, args) => ColoredBox(

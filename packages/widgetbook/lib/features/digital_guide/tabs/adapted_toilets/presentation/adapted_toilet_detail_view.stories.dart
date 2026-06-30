@@ -59,7 +59,7 @@ const mockAdaptedToilet = AdaptedToilet(
   doorsIndices: IListConst([4]),
 );
 
-const meta = Meta<AdaptedToiletDetailView>();
+const meta = Meta(AdaptedToiletDetailView.new);
 
 final $default = AdaptedToiletDetailViewStory(
   args: AdaptedToiletDetailViewArgs(adaptedToilet: Arg.fixed(mockAdaptedToilet)),

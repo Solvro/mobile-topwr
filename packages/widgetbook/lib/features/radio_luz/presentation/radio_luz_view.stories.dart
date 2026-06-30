@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "radio_luz_view.stories.g.dart";
 
-const meta = Meta<RadioLuzView>();
+const meta = Meta(RadioLuzView.new);
 
 final $default = RadioLuzViewStory(name: "Production view with hardcoded data");

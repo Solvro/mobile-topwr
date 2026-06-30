@@ -8,7 +8,7 @@ import "package:widgetbook/widgetbook.dart";
 
 part "accessibility_information_cards_list.stories.g.dart";
 
-const meta = Meta<AccessibilityInformationCardsList>();
+const meta = Meta(AccessibilityInformationCardsList.new);
 
 final class _MockActiveAccessibilityModesRepository extends ActiveAccessibilityModesRepository {
   @override

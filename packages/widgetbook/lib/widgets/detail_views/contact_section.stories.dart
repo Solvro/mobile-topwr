@@ -16,7 +16,7 @@ class ContactSectionStoryKnobs {
   ContactSectionStoryKnobs({this.title, required this.topPadding, required this.shouldBeAccessible});
 }
 
-const meta = MetaWithArgs<ContactSection, ContactSectionStoryKnobs>();
+const meta = Meta(ContactSection.new, argsType: ContactSectionStoryKnobs.new);
 
 final _mockContactList = <ContactIconsModel>[
   ContactIconsModel(

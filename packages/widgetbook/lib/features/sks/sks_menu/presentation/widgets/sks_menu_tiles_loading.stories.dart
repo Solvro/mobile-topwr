@@ -5,7 +5,7 @@ import "package:widgetbook/widgetbook.dart";
 
 part "sks_menu_tiles_loading.stories.g.dart";
 
-const meta = Meta<SksMenuTilesLoading>();
+const meta = Meta(SksMenuTilesLoading.new);
 
 final $default = SksMenuTilesLoadingStory(
   setup: (context, child, args) => SizedBox(

@@ -10,7 +10,7 @@ import "../../../../widgetbook_mocks.dart";
 
 part "departments_wrap.stories.g.dart";
 
-const meta = Meta<DepartmentsWrap>();
+const meta = Meta(DepartmentsWrap.new);
 
 final $default = DepartmentsWrapStory(
   setup: (context, child, args) => ProviderScope(

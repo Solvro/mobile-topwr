@@ -26,7 +26,7 @@ class ZoomableRestApiImageStoryKnobs {
   });
 }
 
-const meta = MetaWithArgs<ZoomableRestApiImage, ZoomableRestApiImageStoryKnobs>();
+const meta = Meta(ZoomableRestApiImage.new, argsType: ZoomableRestApiImageStoryKnobs.new);
 
 final defaults = _Defaults(
   builder: (context, args) => ZoomableRestApiImage(

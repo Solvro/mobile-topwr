@@ -4,7 +4,7 @@ import "package:widgetbook/widgetbook.dart";
 
 part "my_text_button.stories.g.dart";
 
-const meta = Meta<MyTextButton>();
+const meta = Meta(MyTextButton.new);
 
 final $default = MyTextButtonStory(
   args: MyTextButtonArgs(onClick: Arg.fixed(() {}), actionTitle: StringArg("Read more"), showBorder: BoolArg(true)),

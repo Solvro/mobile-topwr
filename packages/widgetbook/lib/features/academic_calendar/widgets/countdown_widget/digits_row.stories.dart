@@ -7,6 +7,6 @@ import "../../../../widgetbook_mocks.dart";
 
 part "digits_row.stories.g.dart";
 
-const meta = Meta<DigitsRow>();
+const meta = Meta(DigitsRow.new);
 
 final $default = DigitsRowStory(args: DigitsRowArgs(calendarData: Arg.fixed(mockAcademicCalendarWithSwaps)));

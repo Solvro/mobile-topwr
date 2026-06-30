@@ -45,7 +45,7 @@ final _mockDepartment = DepartmentDetails(
   ]),
 );
 
-const meta = Meta<DepartmentScienceClubsSection>();
+const meta = Meta(DepartmentScienceClubsSection.new);
 
 final $default = DepartmentScienceClubsSectionStory(
   args: DepartmentScienceClubsSectionArgs(

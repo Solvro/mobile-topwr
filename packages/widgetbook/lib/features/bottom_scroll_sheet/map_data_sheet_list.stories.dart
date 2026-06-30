@@ -9,7 +9,7 @@ part "map_data_sheet_list.stories.g.dart";
 
 final _mapScrollController = ScrollController();
 
-const meta = Meta<MapDataSheetList>();
+const meta = Meta(MapDataSheetList.new);
 
 final $default = MapDataSheetListStory<MultilayerItem>(
   args: MapDataSheetListArgs(scrollController: Arg.fixed(_mapScrollController)),

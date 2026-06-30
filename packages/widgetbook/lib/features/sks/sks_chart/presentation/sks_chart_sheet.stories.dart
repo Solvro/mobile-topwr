@@ -10,7 +10,7 @@ import "package:widgetbook/widgetbook.dart";
 
 part "sks_chart_sheet.stories.g.dart";
 
-const meta = Meta<SksChartSheet>();
+const meta = Meta(SksChartSheet.new);
 
 final _mockChartData = IList<SksChartData>([
   SksChartData(activeUsers: 120, movingAverage21: 110, externalTimestamp: DateTime(2026, 5, 8, 8)),

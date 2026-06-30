@@ -20,6 +20,6 @@ class RadioPlayerSliderStory extends StatelessWidget {
   }
 }
 
-const meta = Meta<RadioPlayerSliderStory>();
+const meta = Meta(RadioPlayerSliderStory.new);
 
 final $default = RadioPlayerSliderStoryStory();

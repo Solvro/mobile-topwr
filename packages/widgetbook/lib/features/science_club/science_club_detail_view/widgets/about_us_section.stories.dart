@@ -4,7 +4,7 @@ import "package:widgetbook/widgetbook.dart";
 
 part "about_us_section.stories.g.dart";
 
-const meta = Meta<AboutUsSection>();
+const meta = Meta(AboutUsSection.new);
 
 final $default = AboutUsSectionStory(
   args: AboutUsSectionArgs(

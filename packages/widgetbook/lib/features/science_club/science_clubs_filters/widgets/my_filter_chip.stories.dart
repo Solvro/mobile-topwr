@@ -19,7 +19,7 @@ class MyFilterChipStoryKnobs {
   });
 }
 
-const meta = MetaWithArgs<MyFilterChip, MyFilterChipStoryKnobs>();
+const meta = Meta(MyFilterChip.new, argsType: MyFilterChipStoryKnobs.new);
 
 final defaults = _Defaults(
   builder: (context, args) => MyFilterChip(

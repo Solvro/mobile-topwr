@@ -4,7 +4,7 @@ import "package:widgetbook/widgetbook.dart";
 
 part "contact_icon_widget.stories.g.dart";
 
-const meta = Meta<ContactIconWidget>();
+const meta = Meta(ContactIconWidget.new);
 
 const _defaultContactSvg = "packages/topwr/assets/svg/contact_icons/mail.svg";
 

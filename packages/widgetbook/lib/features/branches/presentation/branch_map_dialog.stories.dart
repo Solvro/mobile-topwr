@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "branch_map_dialog.stories.g.dart";
 
-const meta = Meta<BranchMapDialog>();
+const meta = Meta(BranchMapDialog.new);
 
 final $default = BranchMapDialogStory();

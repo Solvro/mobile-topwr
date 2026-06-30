@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "offline_booths_view.stories.g.dart";
 
-const meta = Meta<OfflineBoothsView>();
+const meta = Meta(OfflineBoothsView.new);
 
 final $default = OfflineBoothsViewStory();

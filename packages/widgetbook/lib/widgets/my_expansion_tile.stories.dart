@@ -19,7 +19,7 @@ class MyExpansionTileStoryKnobs {
   });
 }
 
-const meta = MetaWithArgs<MyExpansionTile, MyExpansionTileStoryKnobs>();
+const meta = Meta(MyExpansionTile.new, argsType: MyExpansionTileStoryKnobs.new);
 
 final defaults = _Defaults(
   builder: (context, args) => MyExpansionTile(

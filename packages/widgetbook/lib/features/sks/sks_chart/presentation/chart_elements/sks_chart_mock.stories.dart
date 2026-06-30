@@ -21,6 +21,6 @@ class SksChartMockStory extends StatelessWidget {
   }
 }
 
-const meta = Meta<SksChartMockStory>();
+const meta = Meta(SksChartMockStory.new);
 
 final $withMockData = SksChartMockStoryStory(setup: (context, widget, args) => Column(children: [widget]));

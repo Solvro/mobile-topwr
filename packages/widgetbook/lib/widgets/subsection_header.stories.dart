@@ -18,7 +18,7 @@ class SubsectionHeaderStoryKnobs {
   });
 }
 
-const meta = MetaWithArgs<SubsectionHeader, SubsectionHeaderStoryKnobs>();
+const meta = Meta(SubsectionHeader.new, argsType: SubsectionHeaderStoryKnobs.new);
 
 final defaults = _Defaults(
   builder: (context, args) => SubsectionHeader(

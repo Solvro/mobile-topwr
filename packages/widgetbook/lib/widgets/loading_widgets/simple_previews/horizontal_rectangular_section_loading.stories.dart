@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "horizontal_rectangular_section_loading.stories.g.dart";
 
-const meta = Meta<HorizontalRectangularSectionLoading>();
+const meta = Meta(HorizontalRectangularSectionLoading.new);
 
 final $default = HorizontalRectangularSectionLoadingStory();

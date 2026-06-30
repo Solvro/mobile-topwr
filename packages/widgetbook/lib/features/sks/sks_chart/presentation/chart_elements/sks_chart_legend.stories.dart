@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "sks_chart_legend.stories.g.dart";
 
-const meta = Meta<SksChartLegend>();
+const meta = Meta(SksChartLegend.new);
 
 final $default = SksChartLegendStory();

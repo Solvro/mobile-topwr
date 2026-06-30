@@ -13,6 +13,6 @@ class PreviewCardLoadingDefaultStory extends StatelessWidget {
   }
 }
 
-const meta = Meta<PreviewCardLoadingDefaultStory>();
+const meta = Meta(PreviewCardLoadingDefaultStory.new);
 
 final $default = PreviewCardLoadingDefaultStoryStory();

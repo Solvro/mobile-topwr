@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "sks_menu_view_loading.stories.g.dart";
 
-const meta = Meta<SksMenuViewLoading>();
+const meta = Meta(SksMenuViewLoading.new);
 
 final $default = SksMenuViewLoadingStory();

@@ -4,6 +4,6 @@ import "package:widgetbook/widgetbook.dart";
 
 part "layers_button.stories.g.dart";
 
-const meta = Meta<LayersButton>();
+const meta = Meta(LayersButton.new);
 
 final $default = LayersButtonStory();

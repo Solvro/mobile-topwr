@@ -4,7 +4,7 @@ import "package:widgetbook/widgetbook.dart";
 
 part "my_splash_tile.stories.g.dart";
 
-const meta = Meta<MySplashTile>();
+const meta = Meta(MySplashTile.new);
 
 final $default = MySplashTileStory(
   args: MySplashTileArgs(
