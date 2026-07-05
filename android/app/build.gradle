@@ -31,6 +31,13 @@ if (keystorePropertiesFile.exists()) {
     keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 }
 
+def requiredSigningProperties = ['keyAlias', 'keyPassword', 'storeFile', 'storePassword']
+def missingSigningProperties = requiredSigningProperties.findAll { !keystoreProperties[it] }
+def isReleaseBuild = gradle.startParameter.taskNames.any { it.toLowerCase().contains('release') }
+if (isReleaseBuild && !missingSigningProperties.empty) {
+    throw new GradleException("Missing Android release signing configuration in android/key.properties: ${missingSigningProperties.join(', ')}")
+}
+
 android {
     namespace "com.solvro.topwr"
     compileSdkVersion flutter.compileSdkVersion
