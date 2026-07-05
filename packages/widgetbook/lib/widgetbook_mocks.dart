@@ -54,6 +54,8 @@ const mockRemoteConfig = RemoteConfig(
   translatorReferenceNumber: 0,
   sksMicroserviceUrl: "",
   parkingMicroserviceUrl: "",
+  boothsApiBaseUrl: "",
+  boothsEnabled: true,
 );
 
 final mockBooths = IList<Booth>([
