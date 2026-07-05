@@ -85,6 +85,19 @@ void main() {
     await tester.tap(navButton);
   }
 
+  Future<void> openSettingsView(WidgetTester tester) async {
+    await tapNavButton(tester, NavBarEnum.navigation);
+    await tester.pump(const Duration(seconds: 3)); // pumpAndSettle never ends on NavigationView
+
+    final navButton = find.byKey(NavigationTabViewConfig.settingsKey);
+    await tester.scrollUntilVisible(navButton, 50, maxScrolls: 10);
+    await tester.drag(find.byKey(MyAppConfig.verticalScrollableKey), const Offset(0, -200));
+    await tester.pump(const Duration(milliseconds: 300));
+
+    await tester.tap(navButton);
+    await tester.pump(const Duration(seconds: 3));
+  }
+
   Future<void> scrollAndFailIfFound({
     required WidgetTester tester,
     required Finder scrollableFinder,
@@ -349,14 +362,7 @@ void main() {
       await startApp(tester, overrides: createPopupProviderOverrides());
       await tester.pumpAndSettle();
 
-      await tapNavButton(tester, NavBarEnum.navigation);
-      await tester.pump(const Duration(seconds: 3)); // there pumpAndSettle never ends on NavigationView
-
-      final navButton = find.byKey(NavigationTabViewConfig.settingsKey);
-      await tester.scrollUntilVisible(navButton, 50, maxScrolls: 10);
-
-      await tester.tap(navButton);
-      await tester.pumpAndSettle();
+      await openSettingsView(tester);
 
       final errorFinder = find.byType(MyErrorWidget);
       final scrollableFinder = find.byKey(MyAppConfig.verticalScrollableKey);
@@ -368,14 +374,7 @@ void main() {
       await startApp(tester, overrides: createPopupProviderOverrides());
       await tester.pumpAndSettle();
 
-      await tapNavButton(tester, NavBarEnum.navigation);
-      await tester.pump(const Duration(seconds: 3)); // there pumpAndSettle never ends on NavigationView
-
-      final navButton = find.byKey(NavigationTabViewConfig.settingsKey);
-      await tester.scrollUntilVisible(navButton, 50, maxScrolls: 10);
-
-      await tester.tap(navButton);
-      await tester.pumpAndSettle();
+      await openSettingsView(tester);
 
       final settingsNavButton = find.byKey(NavigationTabViewConfig.sksFavouriteDishesKey);
       await tester.tap(settingsNavButton);

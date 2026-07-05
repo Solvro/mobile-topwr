@@ -8,14 +8,14 @@ import "package:flutter_test/flutter_test.dart";
 import "package:integration_test/integration_test.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 import "package:solvro_translator_core/solvro_translator_core.dart";
-import "package:topwr/config/env.dart";
 import "package:topwr/config/nav_bar_config.dart";
 import "package:topwr/features/app_changelog/data/repository/local_changelog_repository.dart";
 import "package:topwr/features/booths/data/models/booth.dart";
 import "package:topwr/features/booths/data/repository/booths_repository.dart";
 import "package:topwr/features/branches/data/model/branch.dart";
 import "package:topwr/features/branches/data/repository/branch_repository.dart";
-import "package:topwr/features/feature_codes/data/feature_codes_repository.dart";
+import "package:topwr/features/remote_config/data/models/remote_config.dart";
+import "package:topwr/features/remote_config/data/repository/remote_config_repository.dart";
 import "package:topwr/main.dart" as app;
 import "package:topwr/services/translations_service/data/preferred_lang_repository.dart";
 
@@ -62,7 +62,7 @@ void main() {
       preferredLanguageRepositoryProvider.overrideWith(_MockPreferredLanguageRepository.new),
       branchRepositoryProvider.overrideWith(_MockBranchRepository.new),
       localChangelogRepositoryProvider.overrideWith2((_) => _MockLocalChangelogRepository()),
-      defaultFeatureCodesProvider.overrideWith((ref) => IListConst([Env.boothFeatureCode])),
+      remoteConfigRepositoryProvider.overrideWith((ref) => Future.value(_remoteConfigWithBooths)),
       boothsRepositoryProvider.overrideWith((ref) => Future.value(_testBooths)),
     ];
   }
@@ -79,7 +79,7 @@ void main() {
     }
   }
 
-  testWidgets("Quiet booths are available from default feature codes", (tester) async {
+  testWidgets("Quiet booths are available from remote config", (tester) async {
     await app.main(overrides: overrides());
 
     final navigationButton = find.byKey(Key(NavBarEnum.navigation.name));
@@ -100,3 +100,11 @@ void main() {
     expect(boothName, findsOneWidget);
   });
 }
+
+const _remoteConfigWithBooths = RemoteConfig(
+  cmsReferenceNumber: 0,
+  daySwapLookahead: 7,
+  translatorReferenceNumber: 0,
+  boothsApiBaseUrl: "https://booths-api.topwr.solvro.pl/api/v1",
+  boothsEnabled: true,
+);

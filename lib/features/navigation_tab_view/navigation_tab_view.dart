@@ -1,10 +1,8 @@
 import "package:auto_route/auto_route.dart";
-import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../../config/env.dart";
 import "../../config/ui_config.dart";
 import "../../theme/app_theme.dart";
 import "../../utils/context_extensions.dart";
@@ -12,12 +10,12 @@ import "../analytics/data/clarity.dart";
 import "../analytics/data/clarity_events.dart";
 import "../analytics/presentation/show_feedback_tile.dart";
 import "../bottom_nav_bar/bottom_nav_bar_icon_icons.icons.dart";
-import "../feature_codes/data/feature_codes_repository.dart";
 import "../home_view/widgets/logo_app_bar.dart";
 import "../in_app_review/business/in_app_rating_service.dart";
 import "../in_app_review/presentation/rate_store_dialog.dart";
 import "../navigator/utils/navigation_commands.dart";
 import "../radio_luz/presentation/radio_luz_app_bar.dart";
+import "../remote_config/data/repository/remote_config_repository.dart";
 import "widgets/about_the_app_tile.dart";
 import "widgets/about_us_tile.dart";
 import "widgets/notification_button.dart";
@@ -31,8 +29,7 @@ class NavigationTabView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final ISet<String> featureCodes = ref.watch(featureCodesRepositoryProvider);
-    final bool hasBoothsAccess = featureCodes.contains(Env.boothFeatureCode);
+    final bool hasBoothsAccess = ref.watch(remoteConfigRepositoryProvider).value?.boothsEnabled ?? false;
     final children = [
       const SizedBox(height: NavigationTabViewConfig.universalPadding),
       const AboutUsTile(key: NavigationTabViewConfig.aboutUsKey),

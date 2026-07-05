@@ -23,6 +23,8 @@ abstract class Env {
   @EnviedField()
   static final String parkingApiUrl = _Env.parkingApiUrl;
   @EnviedField()
+  static final String boothsApiBaseUrl = _Env.boothsApiBaseUrl;
+  @EnviedField()
   static final String translateApiUrl = _Env.translateApiUrl;
   @EnviedField()
   static final String translateApiToken = _Env.translateApiToken;
@@ -38,8 +40,6 @@ abstract class Env {
   static final String clarityConfigId = _Env.clarityConfigId;
   @EnviedField()
   static final String vapidWebPubKey = _Env.vapidWebPubKey;
-  @EnviedField()
-  static final String boothFeatureCode = _Env.boothFeatureCode;
   @EnviedField()
   static final String activityDaysFeatureCode = _Env.activityDaysFeatureCode;
   @EnviedField()

@@ -11,6 +11,8 @@ abstract class RemoteConfig with _$RemoteConfig {
     required int translatorReferenceNumber,
     String? sksMicroserviceUrl,
     String? parkingMicroserviceUrl,
+    String? boothsApiBaseUrl,
+    @Default(false) bool boothsEnabled,
   }) = _RemoteConfig;
 
   factory RemoteConfig.fromJson(Map<String, dynamic> json) => _$RemoteConfigFromJson(json);
