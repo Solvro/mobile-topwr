@@ -181,6 +181,9 @@ dependency_overrides:
   analyzer: ^12.0.0
   # dart_style 3.1.9 requires analyzer ^13; pin to last analyzer-12-compatible release.
   dart_style: 3.1.8
+  # 0.3.0 moved iOS sources to an SPM layout but still has a CocoaPods podspec
+  # pointing at Classes/**, so CocoaPods does not build the module.
+  flutter_rotation_sensor: 0.2.0
   # mockito 5.7.0 requires analyzer ^13; pulled in transitively by riverpod_generator.
   mockito: 5.6.4
 
