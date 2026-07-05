@@ -20,7 +20,7 @@ version: 2.0.5+145
 
 environment:
   sdk: ">=3.12.0 <4.0.0"
-  flutter: 3.44.1
+  flutter: 3.44.4
 
 workspace:
   - packages/widgetbook
@@ -38,13 +38,13 @@ dependencies:
     sdk: flutter
 
   #State managements
-  flutter_riverpod: ^3.3.1
-  riverpod: ^3.2.1
-  riverpod_annotation: ^4.0.2
-  hooks_riverpod: ^3.3.1
+  flutter_riverpod: ^3.3.2
+  riverpod: ^3.3.2
+  riverpod_annotation: ^4.0.3
+  hooks_riverpod: ^3.3.2
 
   #Storage
-  shared_preferences: ^2.5.4
+  shared_preferences: ^2.5.5
   cached_network_image: ^3.4.1
   flutter_cache_manager: ^3.4.1
   drift: ^2.33.0
@@ -54,13 +54,13 @@ dependencies:
   #Network
   url_launcher: ^6.3.2
   html: ^0.15.6
-  dio: ^5.9.1
-  connectivity_plus: ^7.0.0
+  dio: ^5.10.0
+  connectivity_plus: ^7.2.0
 
   #Widgets
-  cupertino_icons: ^1.0.8
+  cupertino_icons: ^1.0.9
   flutter_native_splash: ^2.4.8
-  flutter_svg: ^2.2.3
+  flutter_svg: ^2.3.0
   flutter_widget_from_html_core:
     git:
       url: https://github.com/simplyNoOne/flutter_widget_from_html.git
@@ -74,29 +74,29 @@ dependencies:
     git:
       url: https://github.com/ChrisElliotUK/auto_size_text.git
       ref: patch-1
-  lottie: ^3.3.2
+  lottie: ^3.4.0
   fl_chart: 1.2.0
   animated_list_plus: ^0.5.2
   dotted_border: ^3.1.0
   fluttertoast: ^9.1.0
-  carousel_slider_plus: ^7.1.1
+  carousel_slider_plus: ^7.1.2
   scrollable_positioned_list: ^0.3.8
   scrolls_to_top: ^2.1.1
   sliver_tools: ^0.2.12
 
   #Data
   freezed_annotation: ^3.1.0
-  json_annotation: ^4.9.0
+  json_annotation: ^4.12.0
   collection: ^1.19.1
-  fast_immutable_collections: ^11.1.0
+  fast_immutable_collections: ^11.2.0
 
   #Navigation
   auto_route: ^11.1.0
-  app_links: ^7.1.1
+  app_links: ^7.2.0
 
   #Maps
-  flutter_map: ^8.3.0
-  flutter_map_location_marker: ^10.2.0
+  flutter_map: ^8.3.1
+  flutter_map_location_marker: ^10.3.0
 
   flutter_map_compass: ^1.1.1
   flutter_map_cache: ^2.1.0
@@ -104,7 +104,7 @@ dependencies:
   flutter_compass: ^0.8.1
 
   #Firebase
-  firebase_core: ^4.10.0
+  firebase_core: ^4.11.0
   firebase_performance: ^0.11.4
   firebase_messaging: ^16.3.0
 
@@ -112,36 +112,36 @@ dependencies:
   intl: ^0.20.2
   latlong2: ^0.9.1
   permission_handler: ^12.0.3
-  package_info_plus: ^10.1.0
-  envied: ^1.3.5
-  path_provider: ^2.1.5
+  package_info_plus: 9.0.1
+  envied: ^1.3.8
+  path_provider: ^2.1.6
   path: ^1.9.1
-  device_info_plus: ^13.1.0
-  android_id: ^0.5.1
+  device_info_plus: 12.4.0
+  android_id: ^0.5.2
   crypto: ^3.0.7
 
   #Audio
   #TODO: bump when just_audio fixes issue: https://github.com/ryanheise/just_audio/issues/1558
   just_audio: ^0.9.36
-  audio_service: ^0.18.18
+  audio_service: ^0.18.19
   audio_session: ^0.1.21
   flutter_carplay: ^1.3.3
 
   #Other
-  in_app_update: ^4.2.5
+  in_app_update: ^5.0.0
   upgrader: ^13.5.0
   in_app_review: ^2.0.12
   protontime: ^2.0.0
-  logger: ^2.6.2
+  logger: ^2.7.0
   separate: ^1.0.3
   wiredash: ^2.6.1
   flutter_hooks: ^0.21.3
-  sentry_flutter: ^9.21.0
+  sentry_flutter: ^9.23.0
   awesome_dio_interceptor: ^1.3.0
 
   #Solvro packages
-  solvro_translator_with_drift_cache_flutter: 0.11.1-dev
-  solvro_translator_core: 0.11.1-dev
+  solvro_translator_with_drift_cache_flutter: 0.11.1
+  solvro_translator_core: 0.11.1
   clarity_flutter: ^1.9.0
   clarity_web: ^1.1.0
 
@@ -156,17 +156,17 @@ dev_dependencies:
   drift_dev: 2.33.0
 
   #Lints
-  solvro_config: ^1.8.4-dev
+  solvro_config: ^1.9.0
 
   #CodeGen
   build_runner: ^2.15.0
-  freezed: ^3.2.6-dev.1
+  freezed: ^3.2.5
   json_serializable: ^6.14.0
-  riverpod_generator: ^4.0.4-dev.3
-  envied_generator: ^1.3.5
-  flutter_gen_runner: ^5.14.0
+  riverpod_generator: ^4.0.4
+  envied_generator: ^1.3.8
+  flutter_gen_runner: ^5.14.1
   auto_route_generator: ^10.5.0
-  solvro_translator_generator: 0.11.1-dev
+  solvro_translator_generator: 0.11.1
 
   melos: ^7.8.1
 
