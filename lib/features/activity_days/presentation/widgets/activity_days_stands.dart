@@ -130,6 +130,9 @@ class _FloorStands extends StatelessWidget {
   }
 }
 
+// key for stands where floorId == null,
+// segmented control reserves null for no selection, so
+// _noFloorKey is set to -1, which can't collide with positive floorIds
 const _noFloorKey = -1;
 
 String _floorLabel(BuildContext context, int? floorId) =>
