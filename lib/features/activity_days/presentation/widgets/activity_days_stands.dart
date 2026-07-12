@@ -40,8 +40,11 @@ class _StandsSection extends HookWidget {
       return _FloorStands(floor: floors.first);
     }
 
+    final hasSelected = floors.any((floor) => (floor.floorId ?? _noFloorKey) == selected.value);
+    final activeKey = hasSelected ? selected.value : (floors.first.floorId ?? _noFloorKey);
+
     final current = floors.firstWhere(
-      (floor) => (floor.floorId ?? _noFloorKey) == selected.value,
+      (floor) => (floor.floorId ?? _noFloorKey) == activeKey,
       orElse: () => floors.first,
     );
 
@@ -56,7 +59,7 @@ class _StandsSection extends HookWidget {
           child: CupertinoSlidingSegmentedControl<int>(
             backgroundColor: context.colorScheme.surfaceTint,
             thumbColor: context.colorScheme.primaryContainer,
-            groupValue: selected.value,
+            groupValue: activeKey,
             onValueChanged: (value) {
               if (value != null) selected.value = value;
             },
@@ -64,7 +67,7 @@ class _StandsSection extends HookWidget {
               for (final floor in floors)
                 (floor.floorId ?? _noFloorKey): _SegmentLabel(
                   label: _floorLabel(context, floor.floorId),
-                  isSelected: selected.value == (floor.floorId ?? _noFloorKey),
+                  isSelected: activeKey == (floor.floorId ?? _noFloorKey),
                 ),
             },
           ),
