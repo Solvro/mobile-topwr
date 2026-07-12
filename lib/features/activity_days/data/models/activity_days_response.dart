@@ -1,6 +1,8 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 
+import "../../../../api_base_rest/shared_models/image_data.dart";
+
 part "activity_days_response.freezed.dart";
 part "activity_days_response.g.dart";
 
@@ -54,14 +56,23 @@ abstract class ActivityDaysTimetableEntry with _$ActivityDaysTimetableEntry {
 
 @freezed
 abstract class ActivityDaysMap with _$ActivityDaysMap {
-  const factory ActivityDaysMap({required int id, required String name}) = _ActivityDaysMap;
+  const factory ActivityDaysMap({
+    required int id,
+    required String name,
+    ImageData? image,
+  }) = _ActivityDaysMap;
 
   factory ActivityDaysMap.fromJson(Map<String, dynamic> json) => _$ActivityDaysMapFromJson(json);
 }
 
 @freezed
 abstract class ActivityDaysLink with _$ActivityDaysLink {
-  const factory ActivityDaysLink({required int id, required String url}) = _ActivityDaysLink;
+  const factory ActivityDaysLink({
+    required int id,
+    required String url,
+    String? title,
+    String? subtitle,
+  }) = _ActivityDaysLink;
 
   factory ActivityDaysLink.fromJson(Map<String, dynamic> json) => _$ActivityDaysLinkFromJson(json);
 }
