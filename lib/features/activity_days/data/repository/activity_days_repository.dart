@@ -1,4 +1,3 @@
-// ignore_for_file: dead_code, literal_only_boolean_expressions
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
@@ -13,6 +12,7 @@ part "activity_days_repository.g.dart";
 @riverpod
 Future<ActivityDaysResponse?> activityDaysRepository(Ref ref) async {
   final now = DateTime.now();
+
   if (true) {
     return ActivityDaysResponse(
       id: 999,
@@ -48,7 +48,6 @@ Future<ActivityDaysResponse?> activityDaysRepository(Ref ref) async {
       ]),
     );
   }
-
   final url = "${Env.mainRestApiUrl}/das";
 
   final response = await ref.getAndCacheData(

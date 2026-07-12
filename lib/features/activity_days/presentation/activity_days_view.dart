@@ -7,7 +7,7 @@ import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../../widgets/horizontal_symmetric_safe_area.dart";
-import "widgets/activity_days_timetable.dart";
+import "maps_links_view.dart";
 
 @RoutePage()
 class ActivityDaysView extends HookConsumerWidget {
@@ -41,7 +41,7 @@ class ActivityDaysView extends HookConsumerWidget {
           Expanded(
             child: TabBarView(
               controller: tabController,
-              children: const [_PlaceholderTab(), ActivityDaysTimetable(), _PlaceholderTab()],
+              children: const [_PlaceholderTab(), _PlaceholderTab(), MapsLinksView()],
             ),
           ),
         ],
