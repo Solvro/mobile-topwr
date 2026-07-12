@@ -1,6 +1,7 @@
 @Timeout(Duration(minutes: 45))
 library;
 
+import "dart:math";
 import "package:drift/drift.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
@@ -16,6 +17,9 @@ import "package:topwr/features/app_changelog/data/repository/local_changelog_rep
 import "package:topwr/features/app_changelog/data/repository/my_changelog_repository.dart";
 import "package:topwr/features/branches/data/model/branch.dart";
 import "package:topwr/features/branches/data/repository/branch_repository.dart";
+import "package:topwr/features/departments/departments_view/widgets/department_card.dart";
+import "package:topwr/features/guide_view/widgets/guide_tile.dart";
+import "package:topwr/features/science_club/science_clubs_view/widgets/science_club_card.dart";
 import "package:topwr/main.dart" as app;
 import "package:topwr/services/translations_service/data/preferred_lang_repository.dart";
 import "package:topwr/widgets/my_error_widget.dart";
@@ -129,6 +133,28 @@ void main() {
     }
   }
 
+  final random = Random(1234);
+
+  Future<void> checkRandomDetailsScreen(WidgetTester tester, Finder tileFinder) async {
+    final tileCount = tileFinder.evaluate().length;
+    if (tileCount == 0) fail("Test failed: No detail tiles found");
+
+    final tile = tileFinder.at(random.nextInt(tileCount));
+    await tester.ensureVisible(tile);
+    await tester.pumpAndSettle();
+    await tester.tap(tile);
+    await tester.pumpAndSettle(const Duration(seconds: 5));
+
+    final errorFinder = find.byType(MyErrorWidget);
+    final scrollableFinder = find.byType(CustomScrollView);
+    if (scrollableFinder.evaluate().isNotEmpty) {
+      await scrollAndFailIfFound(tester: tester, scrollableFinder: scrollableFinder, targetFinder: errorFinder);
+    } else if (errorFinder.evaluate().isNotEmpty) {
+      fail("Test failed: Screen didn't load correctly ${errorFinder.found.first}");
+    }
+    await tester.pumpAndSettle();
+  }
+
   List<Override> createPopupProviderOverrides() {
     return [
       preferredLanguageRepositoryProvider.overrideWith(MockPreferredLanguageRepository.new),
@@ -229,6 +255,8 @@ void main() {
       final scrollableFinder = find.byKey(MyAppConfig.verticalScrollableKey);
       await scrollAndFailIfFound(tester: tester, scrollableFinder: scrollableFinder, targetFinder: errorFinder);
       await tester.pumpAndSettle();
+
+      await checkRandomDetailsScreen(tester, find.byType(GuideTile));
     });
 
     testWidgets("DeparmentsView smoke test", (tester) async {
@@ -248,6 +276,8 @@ void main() {
       await scrollAndFailIfFound(tester: tester, scrollableFinder: scrollableFinder, targetFinder: errorFinder);
       await tester.pumpAndSettle();
       await tester.pump(const Duration(seconds: 3));
+
+      await checkRandomDetailsScreen(tester, find.byType(DepartmentCard));
     });
 
     testWidgets("ScienceClubView smoke test", (tester) async {
@@ -266,6 +296,8 @@ void main() {
       final scrollableFinder = find.byKey(MyAppConfig.verticalScrollableKey);
       await scrollAndFailIfFound(tester: tester, scrollableFinder: scrollableFinder, targetFinder: errorFinder);
       await tester.pumpAndSettle();
+
+      await checkRandomDetailsScreen(tester, find.byType(ScienceClubCard));
     });
 
     testWidgets("RadioLuzView smoke test", (tester) async {
