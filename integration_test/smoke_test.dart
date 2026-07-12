@@ -133,6 +133,21 @@ void main() {
     }
   }
 
+  Future<bool> pumpUntil(
+    WidgetTester tester,
+    bool Function() condition, {
+    Duration timeout = const Duration(seconds: 30),
+    Duration step = const Duration(milliseconds: 100),
+  }) async {
+    final clock = tester.binding.clock;
+    final end = clock.fromNowBy(timeout);
+    while (clock.now().isBefore(end)) {
+      if (condition()) return true;
+      await tester.pump(step);
+    }
+    return condition();
+  }
+
   final random = Random(1234);
 
   Future<void> checkRandomDetailsScreen(WidgetTester tester, Finder tileFinder) async {
@@ -143,16 +158,22 @@ void main() {
     await tester.ensureVisible(tile);
     await tester.pumpAndSettle();
     await tester.tap(tile);
-    await tester.pumpAndSettle(const Duration(seconds: 5));
 
     final errorFinder = find.byType(MyErrorWidget);
-    final scrollableFinder = find.byType(CustomScrollView);
-    if (scrollableFinder.evaluate().isNotEmpty) {
-      await scrollAndFailIfFound(tester: tester, scrollableFinder: scrollableFinder, targetFinder: errorFinder);
-    } else if (errorFinder.evaluate().isNotEmpty) {
+    final loadedFinder = find.byType(CustomScrollView);
+    final resolved = await pumpUntil(
+      tester,
+      () => loadedFinder.evaluate().isNotEmpty || errorFinder.evaluate().isNotEmpty,
+    );
+
+    if (!resolved) {
+      fail("Test failed: Detail screen didn't reach loaded or error state in time");
+    }
+    if (errorFinder.evaluate().isNotEmpty) {
       fail("Test failed: Screen didn't load correctly ${errorFinder.found.first}");
     }
-    await tester.pumpAndSettle();
+
+    await scrollAndFailIfFound(tester: tester, scrollableFinder: loadedFinder, targetFinder: errorFinder);
   }
 
   List<Override> createPopupProviderOverrides() {
