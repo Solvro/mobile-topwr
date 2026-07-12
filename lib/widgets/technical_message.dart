@@ -48,7 +48,10 @@ class TechnicalMessage extends StatelessWidget {
               title ?? DishCategory.technicalInfo.getLocalizedName(context),
               style: context.textTheme.titleLarge?.copyWith(color: titleColor ?? context.colorScheme.surface),
             ),
-            subtitle: Text(message, style: context.textTheme.bodyLarge?.copyWith(color: textColor)),
+            subtitle: Text(
+              message,
+              style: context.textTheme.bodyLarge?.copyWith(color: textColor ?? context.colorScheme.surface),
+            ),
           ),
         ),
       ),
