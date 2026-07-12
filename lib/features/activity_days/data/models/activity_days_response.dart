@@ -4,6 +4,8 @@ import "package:solvro_translator_core/solvro_translator_core.dart";
 
 import "../../../../api_base_rest/shared_models/image_data.dart";
 
+import "../../../../api_base_rest/shared_models/image_data.dart";
+
 part "activity_days_response.freezed.dart";
 part "activity_days_response.g.dart";
 
