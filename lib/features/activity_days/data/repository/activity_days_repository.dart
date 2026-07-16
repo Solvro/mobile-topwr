@@ -1,5 +1,3 @@
-// ignore_for_file: dead_code, literal_only_boolean_expressions
-import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../../api_base_rest/cache/cache.dart";
@@ -13,48 +11,12 @@ part "activity_days_repository.g.dart";
 @riverpod
 Future<ActivityDaysResponse?> activityDaysRepository(Ref ref) async {
   final now = DateTime.now();
-  if (true) {
-    return ActivityDaysResponse(
-      id: 999,
-      name: "Wiosenne Dni Aktywności Studenckiej",
-      startsAt: now.subtract(const Duration(days: 1)),
-      endsAt: now.add(const Duration(days: 2)),
-      createdAt: now.subtract(const Duration(days: 30)),
-      updatedAt: now.subtract(const Duration(days: 5)),
-      timetable: ActivityDaysTimetable(
-        id: 1,
-        description: "Harmonogram DAS",
-        entries: [
-          ActivityDaysTimetableEntry(id: 1, name: "Entry 1", startTime: now.add(const Duration(hours: 2))),
-          ActivityDaysTimetableEntry(
-            id: 2,
-            name: "Entry 2",
-            startTime: now.add(const Duration(hours: 4)),
-            endTime: now.add(const Duration(hours: 6)),
-          ),
-          ActivityDaysTimetableEntry(
-            id: 3,
-            name: "Entry 3",
-            startTime: now.add(const Duration(days: 1, hours: 2)),
-            endTime: now.add(const Duration(days: 1, hours: 4)),
-          ),
-        ].lock,
-      ),
-      maps: const IListConst([ActivityDaysMap(id: 1, name: "Mapa główna")]),
-      links: const IListConst([ActivityDaysLink(id: 1, url: "https://pwr.edu.pl")]),
-      stands: const IListConst([
-        ActivityDaysStand(id: 1, name: "Koło Naukowe Solvro"),
-        ActivityDaysStand(id: 2, name: "PWR Racing Team"),
-      ]),
-    );
-  }
-
   final url = "${Env.mainRestApiUrl}/das";
 
   final response = await ref.getAndCacheData(
     url,
     ActivityDaysListResponse.fromJson,
-    extraValidityCheck: (_) => true,
+    extraValidityCheck: (response) => response.castAsObject.data.any((event) => event.endsAt.isAfter(DateTime.now())),
     onRetry: ref.invalidateSelf,
   );
   final events = response.castAsObject.data;

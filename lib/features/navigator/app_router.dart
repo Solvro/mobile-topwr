@@ -4,6 +4,7 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../config/nav_bar_config.dart";
 import "../about_us_view/about_us_view.dart";
+import "../activity_days/presentation/activity_days_stand_detail_view.dart";
 import "../activity_days/presentation/activity_days_view.dart";
 import "../booths/presentation/booths_view.dart";
 import "../calendar/presentation/calendar_view.dart";
@@ -143,6 +144,7 @@ class AppRouter extends RootStackRouter {
     AutoRoute(path: "/calendar", page: CalendarRoute.page),
     AutoRoute(path: "/radio-luz", page: RadioLuzRoute.page),
     AutoRoute(path: "/activity-days", page: ActivityDaysRoute.page),
+    AutoRoute(path: "/activity-days/stands/:id", page: ActivityDaysStandDetailRoute.page),
   ];
 }
 

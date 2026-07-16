@@ -101,6 +101,11 @@ extension NavigationX on WidgetRef {
     await _router.push(ScienceClubDetailRoute(id: model.id));
   }
 
+  Future<void> navigateSciClubDetailById(int id) async {
+    await trackEvent(ClarityEvents.openScienceClubDetail, value: id.toString());
+    await _router.push(ScienceClubDetailRoute(id: id));
+  }
+
   Future<void> navigateGuide() async {
     await _router.push(const GuideRoute());
   }
@@ -319,5 +324,9 @@ extension NavigationX on WidgetRef {
 
   Future<void> navigateActivityDays() async {
     await _router.push(const ActivityDaysRoute());
+  }
+
+  Future<void> navigateActivityDaysStand(int id) async {
+    await _router.push(ActivityDaysStandDetailRoute(id: id));
   }
 }

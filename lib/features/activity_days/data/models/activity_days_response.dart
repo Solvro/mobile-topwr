@@ -1,5 +1,6 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
+import "package:solvro_translator_core/solvro_translator_core.dart";
 
 part "activity_days_response.freezed.dart";
 part "activity_days_response.g.dart";
@@ -33,8 +34,8 @@ abstract class ActivityDaysResponse with _$ActivityDaysResponse {
 abstract class ActivityDaysTimetable with _$ActivityDaysTimetable {
   const factory ActivityDaysTimetable({
     required int id,
-    String? description,
-    @Default(IListConst([])) IList<ActivityDaysTimetableEntry> entries,
+    @translatableField required String name,
+    @translatableField @Default(IListConst([])) IList<ActivityDaysTimetableEntry> entries,
   }) = _ActivityDaysTimetable;
 
   factory ActivityDaysTimetable.fromJson(Map<String, dynamic> json) => _$ActivityDaysTimetableFromJson(json);
@@ -44,7 +45,7 @@ abstract class ActivityDaysTimetable with _$ActivityDaysTimetable {
 abstract class ActivityDaysTimetableEntry with _$ActivityDaysTimetableEntry {
   const factory ActivityDaysTimetableEntry({
     required int id,
-    required String name,
+    @translatableField required String name,
     required DateTime startTime,
     DateTime? endTime,
   }) = _ActivityDaysTimetableEntry;
