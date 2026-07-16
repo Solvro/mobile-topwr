@@ -18,7 +18,7 @@ Future<AboutUs> aboutUsRepository(Ref ref) async {
   final apiUrl = Env.mainRestApiUrl;
   const aboutUsEndpoint = "/about_us";
   const teamMembersEndpoint = "/contributors?milestones=true&socialLinks=true&photo=true&roles=true";
-  const versionsEndpoint = "/milestones";
+  const milestonesEndpoint = "/milestones?contributors=true";
 
   final responses = await Future.wait([
     ref
@@ -39,7 +39,7 @@ Future<AboutUs> aboutUsRepository(Ref ref) async {
         .castAsObject,
     ref
         .getAndCacheData(
-          apiUrl + versionsEndpoint,
+          apiUrl + milestonesEndpoint,
           VersionsDataResponse.fromJson,
           extraValidityCheck: (_) => true,
           onRetry: ref.invalidateSelf,
@@ -49,31 +49,46 @@ Future<AboutUs> aboutUsRepository(Ref ref) async {
 
   final aboutUsResponse = responses[0] as AboutUsDataResponse;
   final teamMembersResponse = responses[1] as TeamMembersDataResponse;
-  final versionsResponse = responses[2] as VersionsDataResponse;
+  final milestonesResponse = responses[2] as VersionsDataResponse;
 
   return (
     description: aboutUsResponse.data.aboutUsDetails.description,
     photo: aboutUsResponse.data.aboutUsDetails.coverPhoto,
     socialLinks: aboutUsResponse.data.socialLinks,
-    multiversionTeam: versionsResponse.data
+    multiversionTeam: milestonesResponse.data
         .map(
-          (version) => (
-            versionName: version.name,
-            members: teamMembersResponse.data
-                .where((member) => member.milestones.any((milestone) => milestone.id == version.id))
-                .map((member) {
-                  return (
-                    teamMemberName: member.name,
-                    image: member.image,
-                    subtitleForMilestone:
-                        member.roles.where((role) => role.meta.milestoneId == version.id).firstOrNull?.name ?? "",
-                    socialLinks: member.socialLinks.map((e) => e.url).toIList(),
-                  );
-                })
-                .toIList(),
+          (milestone) => (
+            versionName: milestone.name,
+            members: _membersForMilestone(
+              teamMembers: teamMembersResponse.data,
+              milestoneId: milestone.id,
+              contributorOrder: milestone.contributors.map((contributor) => contributor.id).toIList(),
+            ),
           ),
         )
         .sortedBy((team) => team.versionName)
         .toIList(),
   );
+}
+
+IList<TeamMember> _membersForMilestone({
+  required IList<TeamMemberData> teamMembers,
+  required int milestoneId,
+  required IList<int> contributorOrder,
+}) {
+  final orderIndex = {for (final (index, contributorId) in contributorOrder.indexed) contributorId: index};
+
+  return teamMembers
+      .where((member) => member.milestones.any((milestone) => milestone.id == milestoneId))
+      .sortedBy((member) => orderIndex[member.id] ?? contributorOrder.length)
+      .map((member) {
+        return (
+          teamMemberName: member.name,
+          image: member.image,
+          subtitleForMilestone:
+              member.roles.where((role) => role.meta.milestoneId == milestoneId).firstOrNull?.name ?? "",
+          socialLinks: member.socialLinks.map((e) => e.url).toIList(),
+        );
+      })
+      .toIList();
 }

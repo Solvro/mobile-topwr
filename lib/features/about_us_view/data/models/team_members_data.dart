@@ -20,6 +20,7 @@ abstract class TeamMembersDataResponse with _$TeamMembersDataResponse, _$TeamMem
 @freezed
 abstract class TeamMemberData with _$TeamMemberData {
   const factory TeamMemberData({
+    required int id,
     required String name,
     @JsonKey(name: "photo") required ImageData? image,
     required IList<SocialLinksData> socialLinks,

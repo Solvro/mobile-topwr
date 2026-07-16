@@ -1,5 +1,8 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
+
+import "milestone_contributors_data.dart";
+
 part "versions_data.freezed.dart";
 part "versions_data.g.dart";
 
@@ -11,6 +14,10 @@ abstract class VersionsDataResponse with _$VersionsDataResponse {
 
 @freezed
 abstract class VersionsData with _$VersionsData {
-  const factory VersionsData({required String name, required int id}) = _VersionsData;
+  const factory VersionsData({
+    required String name,
+    required int id,
+    @Default(IListConst([])) IList<MilestoneContributorData> contributors,
+  }) = _VersionsData;
   factory VersionsData.fromJson(Map<String, dynamic> json) => _$VersionsDataFromJson(json);
 }
