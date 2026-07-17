@@ -19,6 +19,7 @@ import "../multilayer_map/data/model/multilayer_item.dart";
 import "../multilayer_map/data/model/multilayer_section_type.dart";
 import "../parkings/parkings_view/models/parking.dart";
 import "../parkings/parkings_view/widgets/parking_info_button.dart";
+import "active_map_item_sliver.dart";
 import "data_list.dart";
 import "drag_handle.dart";
 import "hooks/use_initial_active_id.dart";
@@ -39,13 +40,11 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
   @override
   // ignore: solvro_config/cognitive_complexity if it works, do not touch it. But if someone is going to fix/tweak/change that, then in such case, pls remove rule override and do a nice cleanup
   Widget build(BuildContext context, WidgetRef ref) {
+    final activeItem = ref.watch(context.activeMarkerController<T>());
     final isLoading = ref.watch(context.mapDataController<T>().select((a) => a.value == null));
     final isMultilayerMap =
         T == MultilayerItem &&
-        ref.watch(
-          context.activeMarkerController<T>().select((a) => a == null),
-        ) // when active marker is not null, we do not show multitabs
-        &&
+        activeItem == null &&
         ref.watch(
           context.mapDataController<T>().select((a) => a.value?.isFilterStrEmpty ?? true),
         ) // when we search in the search box, we do not show multitabs
@@ -65,8 +64,8 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
         await ref.read(bottomSheetPixelsProvider.notifier).expandSheet();
       },
       actions: [
-        if (T == Parking && ref.watch(context.activeMarkerController<T>()) == null) const ParkingInfoButton(),
-        if (ref.watch(context.activeMarkerController<T>()) != null) NavigateButton<T>(),
+        if (T == Parking && activeItem == null) const ParkingInfoButton(),
+        if (activeItem != null) NavigateButton<T>(),
       ],
       initialQuery: context.initialQuery<T>(),
     );
@@ -146,6 +145,9 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
     return CustomScrollView(
       key: MyAppConfig.verticalScrollableKey,
       controller: scrollController,
+      // Active item is a single tile — disable scrolling so shrinking content
+      // cannot clamp the prior list offset a frame later.
+      physics: activeItem != null ? const NeverScrollableScrollPhysics() : null,
       slivers: [
         SliverPersistentHeader(
           pinned: true,
@@ -159,16 +161,20 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
           automaticallyImplyLeading: false,
         ),
 
-        if (categoryData != null && !areOnlyOneLayerEnabled && !isNoTabs)
+        if (activeItem != null)
+          ActiveMapItemSliver<T>(activeItem)
+        else if (categoryData != null && !areOnlyOneLayerEnabled && !isNoTabs)
           SliverMultiTabberBuilder(
             tabs: tabs,
             scrollController: scrollController,
             initialSectionType: context.initialSectionType<T>(),
-          ),
-        if (categoryData == null || areOnlyOneLayerEnabled) DataSliverList<T>(),
-        if (isNoTabs && categoryData != null)
+          )
+        else if (categoryData == null || areOnlyOneLayerEnabled)
+          DataSliverList<T>()
+        else
+          // Multilayer with no enabled layers that have items.
           SliverFillRemaining(child: Center(child: Text(context.localize.no_layers_available))),
-        const SliverToBoxAdapter(child: SizedBox(height: SearchBoxAppBar.defaultBottomPadding)),
+        if (activeItem == null) const SliverToBoxAdapter(child: SizedBox(height: SearchBoxAppBar.defaultBottomPadding)),
       ],
     );
   }

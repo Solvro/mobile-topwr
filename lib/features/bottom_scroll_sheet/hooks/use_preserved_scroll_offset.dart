@@ -38,6 +38,9 @@ void _capture(DraggableScrollableController sheet, ScrollController scrollContro
       sheetSize: sheet.size,
       tabIndex: sheet.lastSyncedTabIndex,
     );
+    // Drop to 0 before the short active-item content mounts, so layout does not
+    // clamp a large offset a frame later and visually jump.
+    scrollController.jumpTo(0);
   }
 }
 
