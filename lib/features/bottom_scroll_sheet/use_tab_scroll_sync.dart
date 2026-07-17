@@ -13,8 +13,31 @@ import "../map_view/controllers/bottom_sheet_controller.dart";
   required TabController tabController,
   required WidgetRef ref,
 }) {
-  final selectedTabIndex = useState(0);
+  final sheet = ref.read(bottomSheetControllerProvider);
+  final restoredTabIndex = useMemoized(() {
+    final pending = sheet.takePendingTabIndex();
+    if (pending == null || sectionKeys.isEmpty) {
+      return 0;
+    }
+    return pending.clamp(0, sectionKeys.length - 1);
+  });
+
+  final selectedTabIndex = useState(restoredTabIndex);
   final isScrollingToTab = useRef(false);
+
+  // Apply restored tab to TabController once after remount (e.g. marker deactivate).
+  useEffect(() {
+    if (restoredTabIndex <= 0) {
+      return null;
+    }
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (tabController.index != restoredTabIndex) {
+        tabController.index = restoredTabIndex;
+      }
+      sheet.lastSyncedTabIndex = restoredTabIndex;
+    });
+    return null;
+  }, [restoredTabIndex]);
 
   // Listen to scroll to update active tab
   useEffect(() {
@@ -35,6 +58,7 @@ import "../map_view/controllers/bottom_sheet_controller.dart";
         if (position.dy <= 200) {
           if (selectedTabIndex.value != i) {
             selectedTabIndex.value = i;
+            sheet.lastSyncedTabIndex = i;
             if (tabController.index != i) {
               tabController.animateTo(i);
             }
@@ -45,14 +69,16 @@ import "../map_view/controllers/bottom_sheet_controller.dart";
     }
 
     scrollController.addListener(onScroll);
+    sheet.lastSyncedTabIndex = selectedTabIndex.value;
     return () => scrollController.removeListener(onScroll);
-  }, [scrollController]);
+  }, [scrollController, sectionKeys]);
 
   final onTabTap = useCallback((int index) async {
     final ctx = sectionKeys[index].currentContext;
     if (ctx != null) {
       isScrollingToTab.value = true;
       selectedTabIndex.value = index;
+      sheet.lastSyncedTabIndex = index;
 
       // First expand the bottom sheet fully
       await ref.read(bottomSheetPixelsProvider.notifier).expandSheet();

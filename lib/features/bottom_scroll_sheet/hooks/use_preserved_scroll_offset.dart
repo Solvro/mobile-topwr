@@ -33,7 +33,11 @@ void usePreservedSheetPosition<T extends GoogleNavigable>(
 
 void _capture(DraggableScrollableController sheet, ScrollController scrollController) {
   if (scrollController.hasClients && sheet.isAttached) {
-    sheet.preservedPosition = (scrollOffset: scrollController.offset, sheetSize: sheet.size);
+    sheet.preservedPosition = (
+      scrollOffset: scrollController.offset,
+      sheetSize: sheet.size,
+      tabIndex: sheet.lastSyncedTabIndex,
+    );
   }
 }
 
@@ -43,6 +47,9 @@ void _restore(DraggableScrollableController sheet, ScrollController scrollContro
   if (position == null) {
     return;
   }
+
+  // Consumed when SliverMultiTabberBuilder remounts — survives until then.
+  sheet.pendingTabIndex = position.tabIndex;
 
   var attempts = 0;
   void restore() {
