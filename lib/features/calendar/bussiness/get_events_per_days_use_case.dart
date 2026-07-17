@@ -42,7 +42,7 @@ Iterable<DateTime> _generateDateRange(DateTime start, DateTime end) sync* {
   var current = start;
   while (!current.isAfter(end)) {
     yield current;
-    current = current.add(const Duration(days: 1));
+    current = DateTime(current.year, current.month, current.day + 1);
   }
 }
 
