@@ -26,7 +26,6 @@ class ParkingsView extends ConsumerWidget {
       initialQuery: initialQuery,
       mapViewTexts: (emptyList: context.localize.parkings_not_found, title: context.localize.parkings_title),
       initialActiveItemId: initialActiveItemId,
-      animateListTiles: true,
       mapSheetSize: MapViewBottomSheetConfig.parkingsMapSheetSize,
       mapControllers: parkingsMapControllers,
       mapTileBuilder: ParkingTile.new,

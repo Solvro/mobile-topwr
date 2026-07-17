@@ -66,15 +66,26 @@ class MyMapController<T extends GoogleNavigable> {
   }
 
   Future<void> onMarkerTap(T item) async {
+    final currentlyActive = ref.read(mapControllers.activeMarker);
+    final isDeactivating = currentlyActive == item;
+    final sheet = ref.read(bottomSheetControllerProvider);
+
     ref.read(mapControllers.activeMarker.notifier).toggleItem(item);
-    ref.read(bottomSheetControllerProvider).resetSafe();
-    if (ref.read(mapControllers.activeMarker) == item) {
+
+    // Activate: snap sheet to recommended size. Deactivate: expansion + list
+    // offset are restored by usePreservedSheetPosition — don't resetSafe.
+    if (!isDeactivating && ref.read(mapControllers.activeMarker) == item) {
+      sheet.resetSafe();
       await zoomOnMarker(item);
     }
   }
 
   void onMapBackgroundTap(_, _) {
+    final currentlyActive = ref.read(mapControllers.activeMarker);
     ref.read(mapControllers.activeMarker.notifier).unselect();
-    ref.read(bottomSheetControllerProvider).resetSafe();
+    // Only reset when there was nothing to restore (already inactive / expanded sheet).
+    if (currentlyActive == null) {
+      ref.read(bottomSheetControllerProvider).resetSafe();
+    }
   }
 }

@@ -1,7 +1,5 @@
-import "package:animated_list_plus/animated_list_plus.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
-import "package:flutter_hooks/flutter_hooks.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../config/map_view_config.dart";
@@ -27,42 +25,20 @@ class DataSliverList<T extends GoogleNavigable> extends ConsumerWidget {
   }
 }
 
-class _DataSliverList<T extends GoogleNavigable> extends HookConsumerWidget {
+class _DataSliverList<T extends GoogleNavigable> extends StatelessWidget {
   const _DataSliverList(this.items);
 
   final IList<T> items;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     if (items.isEmpty) return _EmptyDataSliverList<T>();
-    final previousLength = usePrevious(items.length);
-    final skipAnimationAnyway = previousLength != items.length; // do not animate on active item change
     return SliverPadding(
       padding: const EdgeInsets.only(
         left: MapViewBottomSheetConfig.horizontalPadding,
         right: MapViewBottomSheetConfig.horizontalPadding,
       ),
-      sliver: Consumer(
-        builder: (context, ref, child) {
-          final animate = context.animateListTiles<T>();
-          if (!animate) {
-            return SliverList.builder(itemCount: items.length, itemBuilder: (context, index) => _Tile(items[index]));
-          }
-          return SliverImplicitlyAnimatedList(
-            items: items.toList(),
-            areItemsTheSame: (oldItem, newItem) => oldItem.id == newItem.id,
-            updateDuration: skipAnimationAnyway ? Duration.zero : MapViewBottomSheetConfig.listAnimationDuration,
-            removeDuration: skipAnimationAnyway ? Duration.zero : MapViewBottomSheetConfig.listAnimationDuration,
-            insertDuration: MapViewBottomSheetConfig.listAnimationDuration,
-            itemBuilder: (context, animation, item, i) {
-              return FadeTransition(
-                opacity: animation,
-                child: SizeTransition(sizeFactor: animation, child: _Tile(item)),
-              );
-            },
-          );
-        },
-      ),
+      sliver: SliverList.builder(itemCount: items.length, itemBuilder: (context, index) => _Tile(items[index])),
     );
   }
 }

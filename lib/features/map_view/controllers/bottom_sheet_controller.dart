@@ -8,9 +8,54 @@ part "bottom_sheet_controller.g.dart";
 @Riverpod(dependencies: [])
 Raw<DraggableScrollableController> bottomSheetController(Ref ref) => DraggableScrollableController();
 
+typedef MapSheetPreservedPosition = ({double scrollOffset, double? sheetSize, int tabIndex});
+
+final _preservedPosition = Expando<MapSheetPreservedPosition>();
+final _lastSyncedTabIndex = Expando<int>();
+final _pendingTabIndex = Expando<int>();
+
 extension SafeDraggableScrollableControllerWrapperX on DraggableScrollableController {
   void resetSafe() {
     if (isAttached) reset();
+  }
+
+  void jumpToSafe(double size) {
+    if (isAttached) jumpTo(size.clamp(0, 1));
+  }
+
+  Future<void> animateToSafe(
+    double size, {
+    Duration duration = Durations.medium2,
+    Curve curve = Curves.decelerate,
+  }) async {
+    if (!isAttached) {
+      return;
+    }
+    await animateTo(size.clamp(0, 1), duration: duration, curve: curve);
+  }
+
+  /// Pre-activation list offset + sheet expansion, scoped to this controller
+  /// instance (each map view overrides its own bottom-sheet controller).
+  MapSheetPreservedPosition? get preservedPosition => _preservedPosition[this];
+  set preservedPosition(MapSheetPreservedPosition? value) => _preservedPosition[this] = value;
+
+  void clearPreservedPosition() {
+    _preservedPosition[this] = null;
+    _pendingTabIndex[this] = null;
+  }
+
+  /// Last tab highlighted by scroll-sync; captured on marker activation.
+  int get lastSyncedTabIndex => _lastSyncedTabIndex[this] ?? 0;
+  set lastSyncedTabIndex(int value) => _lastSyncedTabIndex[this] = value;
+
+  /// Tab to apply when the multitab list remounts after deactivation.
+  int? get pendingTabIndex => _pendingTabIndex[this];
+  set pendingTabIndex(int? value) => _pendingTabIndex[this] = value;
+
+  int? takePendingTabIndex() {
+    final index = _pendingTabIndex[this];
+    _pendingTabIndex[this] = null;
+    return index;
   }
 
   double get pixelsSafe => isAttached ? pixels : 0;

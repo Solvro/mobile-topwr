@@ -27,8 +27,10 @@ void useMultilayerBranchRecenter({
     lastHandledBranch.value = selectedBranch;
     pendingBranchRecenter.value = selectedBranch;
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      final sheet = ref.read(bottomSheetControllerProvider);
+      sheet.clearPreservedPosition();
       ref.read(activeMarkerProvider.notifier).unselect();
-      ref.read(bottomSheetControllerProvider).resetSafe();
+      sheet.resetSafe();
     });
     return null;
   }, [selectedBranch]);
