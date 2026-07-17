@@ -1,3 +1,5 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
@@ -39,7 +41,10 @@ class MyFilterChip extends HookConsumerWidget {
           showCheckmark: false,
           label: Text(label),
           selected: selected,
-          onSelected: (_) => AppHaptics.wrapperSelection(onTap),
+          onSelected: (_) {
+            unawaited(AppHaptics.selectionClick());
+            onTap();
+          },
           selectedColor: selectedColor ?? context.colorScheme.primary,
           backgroundColor: Colors.transparent,
           labelStyle: TextStyle(color: selected ? context.colorScheme.onPrimary : context.colorScheme.tertiary),
