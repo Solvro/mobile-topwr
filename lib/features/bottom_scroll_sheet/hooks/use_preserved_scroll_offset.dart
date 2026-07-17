@@ -37,16 +37,18 @@ void usePreservedSheetPosition<T extends GoogleNavigable>(
 }
 
 void _capture(DraggableScrollableController sheet, ScrollController scrollController) {
-  if (scrollController.hasClients && sheet.isAttached) {
-    sheet.preservedPosition = (
-      scrollOffset: scrollController.offset,
-      sheetSize: sheet.size,
-      tabIndex: sheet.lastSyncedTabIndex,
-    );
-    // Drop to 0 before the short active-item content mounts, so layout does not
-    // clamp a large offset a frame later and visually jump.
-    scrollController.jumpTo(0);
+  if (!scrollController.hasClients) {
+    return;
   }
+
+  sheet.preservedPosition = (
+    scrollOffset: scrollController.offset,
+    sheetSize: sheet.isAttached ? sheet.size : null,
+    tabIndex: sheet.lastSyncedTabIndex,
+  );
+  // Drop to 0 before the short active-item content mounts, so layout does not
+  // clamp a large offset a frame later and visually jump.
+  scrollController.jumpTo(0);
 }
 
 void _restore(DraggableScrollableController sheet, ScrollController scrollController, {required bool animateSheet}) {
@@ -59,24 +61,16 @@ void _restore(DraggableScrollableController sheet, ScrollController scrollContro
   // Consumed when SliverMultiTabberBuilder remounts — survives until then.
   sheet.pendingTabIndex = position.tabIndex;
 
-  var attempts = 0;
-  var sheetRestoreStarted = false;
+  var sheetAttachmentAttempts = 0;
+  var scrollAttempts = 0;
 
-  void restore() {
-    if (attempts++ > 12) {
+  void schedule(Future<void> Function() callback) {
+    SchedulerBinding.instance.addPostFrameCallback((_) => unawaited(callback()));
+  }
+
+  Future<void> restoreScroll() async {
+    if (scrollAttempts++ > 12) {
       return;
-    }
-
-    if (!sheetRestoreStarted && sheet.isAttached) {
-      sheetRestoreStarted = true;
-      final targetSheet = position.sheetSize.clamp(0.0, 1.0);
-      if ((sheet.size - targetSheet).abs() > 0.001) {
-        if (animateSheet) {
-          unawaited(sheet.animateToSafe(targetSheet));
-        } else {
-          sheet.jumpToSafe(targetSheet);
-        }
-      }
     }
 
     if (position.scrollOffset <= 0) {
@@ -84,7 +78,7 @@ void _restore(DraggableScrollableController sheet, ScrollController scrollContro
     }
 
     if (!scrollController.hasClients) {
-      SchedulerBinding.instance.addPostFrameCallback((_) => restore());
+      schedule(restoreScroll);
       return;
     }
 
@@ -96,9 +90,32 @@ void _restore(DraggableScrollableController sheet, ScrollController scrollContro
 
     // Full list may still be laying out after async map-data reload.
     if (maxExtent < position.scrollOffset) {
-      SchedulerBinding.instance.addPostFrameCallback((_) => restore());
+      schedule(restoreScroll);
     }
   }
 
-  SchedulerBinding.instance.addPostFrameCallback((_) => restore());
+  Future<void> restore() async {
+    final sheetSize = position.sheetSize;
+    if (sheetSize != null) {
+      if (!sheet.isAttached) {
+        if (sheetAttachmentAttempts++ <= 12) {
+          schedule(restore);
+        }
+        return;
+      }
+
+      final targetSheet = sheetSize.clamp(0.0, 1.0);
+      if ((sheet.size - targetSheet).abs() > 0.001) {
+        if (animateSheet) {
+          await sheet.animateToSafe(targetSheet);
+        } else {
+          sheet.jumpToSafe(targetSheet);
+        }
+      }
+    }
+
+    await restoreScroll();
+  }
+
+  schedule(restore);
 }

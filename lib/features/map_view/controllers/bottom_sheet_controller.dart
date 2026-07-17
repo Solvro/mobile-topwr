@@ -8,7 +8,7 @@ part "bottom_sheet_controller.g.dart";
 @Riverpod(dependencies: [])
 Raw<DraggableScrollableController> bottomSheetController(Ref ref) => DraggableScrollableController();
 
-typedef MapSheetPreservedPosition = ({double scrollOffset, double sheetSize, int tabIndex});
+typedef MapSheetPreservedPosition = ({double scrollOffset, double? sheetSize, int tabIndex});
 
 final _preservedPosition = Expando<MapSheetPreservedPosition>();
 final _lastSyncedTabIndex = Expando<int>();
@@ -23,7 +23,11 @@ extension SafeDraggableScrollableControllerWrapperX on DraggableScrollableContro
     if (isAttached) jumpTo(size.clamp(0, 1));
   }
 
-  Future<void> animateToSafe(double size, {Duration duration = Durations.medium2, Curve curve = Curves.decelerate}) async {
+  Future<void> animateToSafe(
+    double size, {
+    Duration duration = Durations.medium2,
+    Curve curve = Curves.decelerate,
+  }) async {
     if (!isAttached) {
       return;
     }
