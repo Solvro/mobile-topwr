@@ -1,3 +1,5 @@
+import "dart:async";
+
 import "package:flutter/scheduler.dart";
 import "package:flutter/widgets.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
@@ -5,6 +7,7 @@ import "package:hooks_riverpod/hooks_riverpod.dart";
 import "../../map_view/controllers/bottom_sheet_controller.dart";
 import "../../map_view/controllers/controllers_set.dart";
 import "../../map_view/widgets/map_config.dart";
+import "../../parkings/parkings_view/models/parking.dart";
 
 /// Preserves the sheet's expansion and list scroll offset across marker activation.
 ///
@@ -12,6 +15,8 @@ import "../../map_view/widgets/map_config.dart";
 /// the sheet to its recommended size. This hook captures both values at the
 /// moment of activation (synchronously, before `resetSafe()` runs) and restores
 /// them once the marker is deactivated.
+///
+/// Sheet-size restore is animated only for parkings; multilayer jumps instantly.
 void usePreservedSheetPosition<T extends GoogleNavigable>(
   BuildContext context,
   WidgetRef ref, {
@@ -26,7 +31,7 @@ void usePreservedSheetPosition<T extends GoogleNavigable>(
     }
 
     if (previous != null && next == null) {
-      _restore(sheet, scrollController);
+      _restore(sheet, scrollController, animateSheet: T == Parking);
     }
   });
 }
@@ -44,7 +49,7 @@ void _capture(DraggableScrollableController sheet, ScrollController scrollContro
   }
 }
 
-void _restore(DraggableScrollableController sheet, ScrollController scrollController) {
+void _restore(DraggableScrollableController sheet, ScrollController scrollController, {required bool animateSheet}) {
   final position = sheet.preservedPosition;
   sheet.clearPreservedPosition();
   if (position == null) {
@@ -55,15 +60,22 @@ void _restore(DraggableScrollableController sheet, ScrollController scrollContro
   sheet.pendingTabIndex = position.tabIndex;
 
   var attempts = 0;
+  var sheetRestoreStarted = false;
+
   void restore() {
     if (attempts++ > 12) {
       return;
     }
 
-    if (sheet.isAttached) {
+    if (!sheetRestoreStarted && sheet.isAttached) {
+      sheetRestoreStarted = true;
       final targetSheet = position.sheetSize.clamp(0.0, 1.0);
       if ((sheet.size - targetSheet).abs() > 0.001) {
-        sheet.jumpToSafe(targetSheet);
+        if (animateSheet) {
+          unawaited(sheet.animateToSafe(targetSheet));
+        } else {
+          sheet.jumpToSafe(targetSheet);
+        }
       }
     }
 

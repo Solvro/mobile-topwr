@@ -23,6 +23,13 @@ extension SafeDraggableScrollableControllerWrapperX on DraggableScrollableContro
     if (isAttached) jumpTo(size.clamp(0, 1));
   }
 
+  Future<void> animateToSafe(double size, {Duration duration = Durations.medium2, Curve curve = Curves.decelerate}) async {
+    if (!isAttached) {
+      return;
+    }
+    await animateTo(size.clamp(0, 1), duration: duration, curve: curve);
+  }
+
   /// Pre-activation list offset + sheet expansion, scoped to this controller
   /// instance (each map view overrides its own bottom-sheet controller).
   MapSheetPreservedPosition? get preservedPosition => _preservedPosition[this];
