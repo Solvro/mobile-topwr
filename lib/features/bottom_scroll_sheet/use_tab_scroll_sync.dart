@@ -75,24 +75,34 @@ import "../map_view/controllers/bottom_sheet_controller.dart";
 
   final onTabTap = useCallback((int index) async {
     final ctx = sectionKeys[index].currentContext;
-    if (ctx != null) {
-      isScrollingToTab.value = true;
-      selectedTabIndex.value = index;
-      sheet.lastSyncedTabIndex = index;
-
-      // First expand the bottom sheet fully
-      await ref.read(bottomSheetPixelsProvider.notifier).expandSheet();
-      if (ctx.mounted) {
-        await Scrollable.ensureVisible(ctx, duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
-        await Future<void>.delayed(const Duration(milliseconds: 50));
-        if (ctx.mounted) {
-          // ! this is nasty hack due to some bug with the `Scrollable.ensureVisible` overshooting while scrolling to the tab
-          await Scrollable.ensureVisible(ctx, alignment: 0.08);
-          await Future<void>.delayed(const Duration(milliseconds: 200));
-        }
-      }
-      isScrollingToTab.value = false;
+    if (ctx == null) {
+      return;
     }
+
+    final scrollingToLowerSection = index > selectedTabIndex.value;
+    isScrollingToTab.value = true;
+    selectedTabIndex.value = index;
+    sheet.lastSyncedTabIndex = index;
+
+    await ref.read(bottomSheetPixelsProvider.notifier).expandSheet();
+    if (!ctx.mounted) {
+      isScrollingToTab.value = false;
+      return;
+    }
+
+    await Scrollable.ensureVisible(ctx, duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
+
+    // ensureVisible overshoots when jumping down through sections; snap once more
+    // after layout settles. alignment: 0 keeps the section at the top without the
+    // extra downward nudge that 0.08 caused.
+    if (scrollingToLowerSection && ctx.mounted) {
+      await Future<void>.delayed(const Duration(milliseconds: 50));
+      if (ctx.mounted) {
+        await Scrollable.ensureVisible(ctx);
+      }
+    }
+
+    isScrollingToTab.value = false;
   }, [sectionKeys, ref]);
 
   return (selectedTabIndex: selectedTabIndex, onTabTap: onTabTap);
