@@ -1,6 +1,5 @@
 import "dart:async";
 
-import "package:flutter/foundation.dart";
 import "package:flutter/scheduler.dart";
 import "package:flutter/widgets.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
@@ -77,11 +76,7 @@ void _schedulePostFrame(Future<void> Function() callback) {
     unawaited(
       callback().catchError((Object error, StackTrace stackTrace) {
         FlutterError.reportError(
-          FlutterErrorDetails(
-            exception: error,
-            stack: stackTrace,
-            library: "use_preserved_scroll_offset",
-          ),
+          FlutterErrorDetails(exception: error, stack: stackTrace, library: "use_preserved_scroll_offset"),
         );
       }),
     );
