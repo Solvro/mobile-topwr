@@ -1,11 +1,13 @@
 import "package:flutter/material.dart";
 
-import "../../../../../widgets/detail_views/sliver_header_section.dart";
-import "../../../../../widgets/detail_views/sliver_logo.dart";
-import "../../../../../widgets/my_cached_image.dart";
+import "../../api_base_rest/shared_models/image_data.dart";
+import "../my_cached_image.dart";
+import "sliver_header_section.dart";
+import "sliver_logo.dart";
 
-class DepartmentSliverHeaderSection extends SliverHeaderSection {
-  DepartmentSliverHeaderSection({super.activeGradient, super.logoDirectusImageData}) : super(backgroundImageData: null);
+class LogoOnlySliverHeaderSection extends SliverHeaderSection {
+  LogoOnlySliverHeaderSection({super.activeGradient, ImageData? logoImageData})
+    : super(logoDirectusImageData: logoImageData, backgroundImageData: null);
 
   @override
   double get maxExtent => 140;

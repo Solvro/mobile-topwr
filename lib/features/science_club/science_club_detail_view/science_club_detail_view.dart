@@ -13,6 +13,7 @@ import "../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../../widgets/detail_views/sliver_header_section.dart";
 import "../../../widgets/horizontal_symmetric_safe_area.dart";
 import "../../../widgets/loading_widgets/contact_section_loading.dart";
+import "../../../widgets/loading_widgets/description_section_loading.dart";
 import "../../../widgets/loading_widgets/header_section_loading.dart";
 import "../../../widgets/loading_widgets/shimmer_loading.dart";
 import "../../../widgets/my_error_widget.dart";
@@ -24,7 +25,6 @@ import "model/science_club_details.dart";
 import "repository/science_club_details_repository.dart";
 import "utils/science_club_details_localization_extension.dart";
 import "widgets/about_us_section.dart";
-import "widgets/about_us_section_loading.dart";
 import "widgets/tags_section.dart";
 
 @RoutePage()
@@ -118,7 +118,7 @@ class _SciClubDetailViewLoading extends StatelessWidget {
           SizedBox(height: DetailViewsConfig.spacerHeight),
           ContactSectionLoading(),
           SizedBox(height: DetailViewsConfig.spacerHeight),
-          AboutUsSectionLoading(),
+          DescriptionSectionLoading(),
         ],
       ),
     );

@@ -4,6 +4,9 @@ import "package:flutter/services.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 import "package:topwr/features/about_us_view/data/repository/about_us_repository.dart";
 import "package:topwr/features/academic_calendar/repository/academic_calendar_repo.dart";
+import "package:topwr/features/activity_days/data/repository/activity_days_repository.dart";
+import "package:topwr/features/activity_days/data/repository/activity_days_stands_repository.dart";
+import "package:topwr/features/activity_days/data/repository/activity_days_timetable_repository.dart";
 import "package:topwr/features/app_streak/business/get_days_use_case.dart";
 import "package:topwr/features/calendar/bussiness/get_events_per_days_use_case.dart";
 import "package:topwr/features/departments/department_detail_view/data/repository/department_details_repository.dart";
@@ -56,6 +59,12 @@ final config = Config(
     return ProviderScope(
       overrides: [
         academicCalendarRepoProvider.overrideWith((ref) => mockAcademicCalendarWithSwaps),
+        activityDaysRepositoryProvider.overrideWith((ref) => mockActivityDays),
+        activityDaysTimetableRepositoryProvider.overrideWith((ref) => mockActivityDaysTimetableEntries),
+        dasStandsRepositoryProvider.overrideWith((ref) => mockDasStands),
+        dasStandRepositoryProvider.overrideWith(
+          (ref, id) => mockDasStands.firstWhere((stand) => stand.id == id, orElse: () => mockDasStands.first),
+        ),
         aboutUsRepositoryProvider.overrideWith((ref) => mockAboutUs),
         departmentDetailsRepositoryProvider.overrideWith((ref, id) => mockDepartmentDetails),
         departmentsRepositoryProvider.overrideWith((ref) => mockDepartments),

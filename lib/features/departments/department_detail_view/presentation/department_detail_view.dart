@@ -10,13 +10,13 @@ import "../../../../utils/context_extensions.dart";
 import "../../../../utils/determine_contact_icon.dart";
 import "../../../../widgets/detail_views/contact_section.dart";
 import "../../../../widgets/detail_views/detail_view_app_bar.dart";
+import "../../../../widgets/detail_views/logo_only_sliver_header_section.dart";
 import "../../../../widgets/horizontal_symmetric_safe_area.dart";
 import "../../../../widgets/my_error_widget.dart";
 import "../business/department_detail_service.dart";
 import "../data/utils/department_details_extension.dart";
 import "widgets/fields_of_study_section.dart";
 import "widgets/science_clubs_section.dart";
-import "widgets/sliver_header_section.dart";
 import "widgets/view_loading.dart";
 
 @RoutePage()
@@ -34,9 +34,9 @@ class DepartmentDetailView extends ConsumerWidget {
         AsyncValue(:final DepartmentWithSciClubs value) => CustomScrollView(
           slivers: [
             SliverPersistentHeader(
-              delegate: DepartmentSliverHeaderSection(
+              delegate: LogoOnlySliverHeaderSection(
                 activeGradient: value.department.gradient,
-                logoDirectusImageData: ImageData(url: value.department.logo?.url ?? ""),
+                logoImageData: ImageData(url: value.department.logo?.url ?? ""),
               ),
             ),
             SliverList(

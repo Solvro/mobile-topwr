@@ -5,6 +5,8 @@ import "package:topwr/features/academic_calendar/model/academic_calendar.dart";
 import "package:topwr/features/academic_calendar/model/day_swap_model.dart";
 import "package:topwr/features/academic_calendar/model/weekday_enum.dart";
 import "package:topwr/features/academic_calendar/repository/academic_calendar_repo.dart";
+import "package:topwr/features/activity_days/data/models/activity_days_response.dart";
+import "package:topwr/features/activity_days/data/models/activity_days_stands_response.dart";
 import "package:topwr/features/app_changelog/data/models/changelog.dart";
 import "package:topwr/features/booths/data/models/booth.dart";
 import "package:topwr/features/branches/data/model/branch.dart";
@@ -47,6 +49,60 @@ import "package:topwr/theme/hex_color.dart";
 import "package:topwr/utils/datetime_utils.dart";
 
 import "widgetbook_placeholders.dart";
+
+final mockActivityDays = ActivityDaysResponse(
+  id: 1,
+  name: "Dni Aktywności Studenckiej",
+  startsAt: DateTime.now().subtract(const Duration(hours: 1)),
+  endsAt: DateTime.now().add(const Duration(days: 2)),
+  createdAt: DateTime.now().subtract(const Duration(days: 30)),
+  updatedAt: DateTime.now(),
+);
+
+const mockDasFloorGround = DasFloor(id: 1, name: "Parter (C-13)");
+const mockDasFloorFirst = DasFloor(id: 2, name: "Piętro 1 (C-13)");
+
+const mockDasStands = IListConst([
+  DasStand(
+    id: 1,
+    dasId: 1,
+    number: "A1",
+    name: "Koło Naukowe Robotyki",
+    description: "Prezentacja robotów mobilnych i ramion robotycznych.",
+    floorId: 1,
+    floor: mockDasFloorGround,
+    dasOrganization: DasOrganization(
+      id: 1,
+      name: "KN Robocik",
+      description: "Koło Naukowe Automatyki i Robotyki",
+      studentOrganization: DasStudentOrganization(id: 1392, name: "Robocik"),
+    ),
+  ),
+  DasStand(
+    id: 2,
+    dasId: 1,
+    number: "C2",
+    name: "KN Solvro",
+    description: "Aplikacje mobilne, webowe i projekty open source.",
+    floorId: 2,
+    floor: mockDasFloorFirst,
+  ),
+  DasStand(id: 3, dasId: 1, number: "QA-0", name: "Stoisko bez piętra"),
+]);
+
+final mockActivityDaysTimetableEntries = IList([
+  ActivityDaysTimetableEntry(
+    id: 1,
+    name: "Otwarcie DAS",
+    startTime: DateTime.now().add(const Duration(hours: 1)),
+    endTime: DateTime.now().add(const Duration(hours: 2)),
+  ),
+  ActivityDaysTimetableEntry(
+    id: 2,
+    name: "Warsztaty bez godziny zakończenia",
+    startTime: DateTime.now().add(const Duration(days: 1, hours: 2)),
+  ),
+]);
 
 const mockRemoteConfig = RemoteConfig(
   cmsReferenceNumber: 0,

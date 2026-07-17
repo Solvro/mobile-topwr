@@ -4,7 +4,7 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../calendar/bussiness/models.dart";
 import "../data/models/activity_days_response.dart";
-import "../data/repository/activity_days_repository.dart";
+import "../data/repository/activity_days_timetable_repository.dart";
 
 part "activity_days_timetable_use_case.g.dart";
 
@@ -12,8 +12,7 @@ typedef TimetableDay = ({DateTime date, IList<SingleCalendarItem> events});
 
 @riverpod
 Future<IList<TimetableDay>> activityDaysTimetableUseCase(Ref ref) async {
-  final event = await ref.watch(activityDaysRepositoryProvider.future);
-  final entries = event?.timetable?.entries ?? const IListConst([]);
+  final entries = await ref.watch(activityDaysTimetableRepositoryProvider.future);
   if (entries.isEmpty) return const IListConst([]);
 
   final grouped = groupBy(

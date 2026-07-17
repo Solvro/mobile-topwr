@@ -63,6 +63,7 @@ abstract class HomeViewConfig {
   static const sksMenuKey = Key("sks_menu");
   static const calendarKey = Key("calendar");
   static const newsListKey = Key("news_list");
+  static const activityDaysKey = Key("activity_days");
 }
 
 abstract class CalendarConfig {

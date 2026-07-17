@@ -9,7 +9,10 @@ import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../widgets/my_error_widget.dart";
 import "../../../../widgets/wide_tile_card.dart";
+import "../../../navigator/utils/navigation_commands.dart";
+import "../../../splash_screen/widgets/flutter_splash_screen.dart";
 import "../../business/activity_days_stands_use_case.dart";
+import "../../data/models/activity_days_stands_response.dart";
 
 class ActivityDaysStands extends ConsumerWidget {
   const ActivityDaysStands({super.key});
@@ -34,17 +37,17 @@ class _StandsSection extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final selected = useState(floors.first.floorId ?? _noFloorKey);
+    final selected = useState(floors.first.floor?.id ?? _noFloorKey);
 
     if (floors.length == 1) {
       return _FloorStands(floor: floors.first);
     }
 
-    final hasSelected = floors.any((floor) => (floor.floorId ?? _noFloorKey) == selected.value);
-    final activeKey = hasSelected ? selected.value : (floors.first.floorId ?? _noFloorKey);
+    final hasSelected = floors.any((floor) => (floor.floor?.id ?? _noFloorKey) == selected.value);
+    final activeKey = hasSelected ? selected.value : (floors.first.floor?.id ?? _noFloorKey);
 
     final current = floors.firstWhere(
-      (floor) => (floor.floorId ?? _noFloorKey) == activeKey,
+      (floor) => (floor.floor?.id ?? _noFloorKey) == activeKey,
       orElse: () => floors.first,
     );
 
@@ -65,9 +68,9 @@ class _StandsSection extends HookWidget {
             },
             children: {
               for (final floor in floors)
-                (floor.floorId ?? _noFloorKey): _SegmentLabel(
-                  label: _floorLabel(context, floor.floorId),
-                  isSelected: activeKey == (floor.floorId ?? _noFloorKey),
+                (floor.floor?.id ?? _noFloorKey): _SegmentLabel(
+                  label: floor.floor?.name ?? context.localize.nav_others,
+                  isSelected: activeKey == (floor.floor?.id ?? _noFloorKey),
                 ),
             },
           ),
@@ -91,6 +94,8 @@ class _SegmentLabel extends StatelessWidget {
       child: Center(
         child: Text(
           label,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
           style: isSelected
               ? context.textTheme.bodyMedium?.copyWith(color: context.colorScheme.surface)
               : context.textTheme.bodyMedium,
@@ -100,13 +105,13 @@ class _SegmentLabel extends StatelessWidget {
   }
 }
 
-class _FloorStands extends StatelessWidget {
+class _FloorStands extends ConsumerWidget {
   const _FloorStands({required this.floor});
 
   final StandsFloor floor;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return ListView.builder(
       padding: const EdgeInsets.symmetric(
         horizontal: HomeViewConfig.paddingLarge,
@@ -121,8 +126,9 @@ class _FloorStands extends StatelessWidget {
             context,
             directusPhotoUrl: stand.logo,
             title: stand.number,
-            subtitle: stand.name,
-            onTap: () {},
+            subtitle: stand.effectiveName,
+            onTap: () => ref.navigateActivityDaysStand(stand.id),
+            customPlaceholder: const FlutterSplashScreen(size: WideTileCardConfig.imageSize),
           ),
         );
       },
@@ -134,6 +140,3 @@ class _FloorStands extends StatelessWidget {
 // segmented control reserves null for no selection, so
 // _noFloorKey is set to -1, which can't collide with positive floorIds
 const _noFloorKey = -1;
-
-String _floorLabel(BuildContext context, int? floorId) =>
-    floorId == null ? context.localize.nav_others : "${context.localize.level} $floorId";

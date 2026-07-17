@@ -1,11 +1,11 @@
 import "package:flutter/material.dart";
 
-import "../../../../config/ui_config.dart";
-import "../../../../widgets/loading_widgets/scrolable_loader_builder.dart";
-import "../../../../widgets/loading_widgets/shimmer_loading.dart";
+import "../../config/ui_config.dart";
+import "scrolable_loader_builder.dart";
+import "shimmer_loading.dart";
 
-class AboutUsSectionLoading extends StatelessWidget {
-  const AboutUsSectionLoading({super.key});
+class DescriptionSectionLoading extends StatelessWidget {
+  const DescriptionSectionLoading({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,16 +32,14 @@ class AboutUsSectionLoading extends StatelessWidget {
                 mainAxisItemSize: 16,
                 itemsSpacing: 4,
                 scrollDirection: Axis.vertical,
-                itemBuilder: (BuildContext context, int index) {
-                  return Container(
-                    height: 16,
-                    width: MediaQuery.sizeOf(context).width,
-                    decoration: BoxDecoration(
-                      color: ShimmerLoadingConfig.placeholderColor,
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                  );
-                },
+                itemBuilder: (context, index) => Container(
+                  height: 16,
+                  width: MediaQuery.sizeOf(context).width,
+                  decoration: BoxDecoration(
+                    color: ShimmerLoadingConfig.placeholderColor,
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                ),
               ),
             ),
           ),
