@@ -8,10 +8,25 @@ part "bottom_sheet_controller.g.dart";
 @Riverpod(dependencies: [])
 Raw<DraggableScrollableController> bottomSheetController(Ref ref) => DraggableScrollableController();
 
+typedef MapSheetPreservedPosition = ({double scrollOffset, double sheetSize});
+
+final _preservedPosition = Expando<MapSheetPreservedPosition>();
+
 extension SafeDraggableScrollableControllerWrapperX on DraggableScrollableController {
   void resetSafe() {
     if (isAttached) reset();
   }
+
+  void jumpToSafe(double size) {
+    if (isAttached) jumpTo(size.clamp(0, 1));
+  }
+
+  /// Pre-activation list offset + sheet expansion, scoped to this controller
+  /// instance (each map view overrides its own bottom-sheet controller).
+  MapSheetPreservedPosition? get preservedPosition => _preservedPosition[this];
+  set preservedPosition(MapSheetPreservedPosition? value) => _preservedPosition[this] = value;
+
+  void clearPreservedPosition() => _preservedPosition[this] = null;
 
   double get pixelsSafe => isAttached ? pixels : 0;
 }

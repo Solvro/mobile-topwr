@@ -25,7 +25,6 @@ Widget widgetbookMapConfigWrapper(Widget child) {
       mapTileBuilder: MultilayerItemTile.new,
       mapViewTexts: const (emptyList: "No map items", title: "Map"),
       mapSheetSize: MapViewBottomSheetConfig.buildingsMapSheetSize,
-      animateListTiles: false,
       initialActiveItemId: null,
       initialQuery: null,
       child: child,

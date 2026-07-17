@@ -1,6 +1,7 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
+import "bottom_sheet_controller.dart";
 import "controllers_set.dart";
 
 typedef MapDataControllerState<T extends GoogleNavigable> = ({IList<T> data, bool isFilterStrEmpty});
@@ -31,6 +32,8 @@ mixin MapDataController<T extends GoogleNavigable> on $AsyncNotifier<MapDataCont
 
   void onSearchQueryChanged(String newText) {
     _textFieldFilterText = newText;
+    // Searching changes list content — don't restore pre-activation scroll/sheet.
+    ref.read(bottomSheetControllerProvider).clearPreservedPosition();
     ref.read(mapControllers.activeMarker.notifier).unselect();
     ref.invalidateSelf();
   }

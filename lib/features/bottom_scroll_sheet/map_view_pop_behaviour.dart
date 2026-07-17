@@ -22,8 +22,12 @@ class MapViewPopBehaviour<T extends GoogleNavigable> extends HookConsumerWidget 
       ref: ref,
       blockDefaultPop: needsCustomPopAction,
       onCustomPopAction: () {
+        final wasActive = isAnyActive;
         ref.read(context.mapController<T>()).onMapBackgroundTap(null, null);
-        ref.read(bottomSheetControllerProvider).resetSafe();
+        // Active → inactive restores sheet size; only force-reset when collapsing an expansion.
+        if (!wasActive) {
+          ref.read(bottomSheetControllerProvider).resetSafe();
+        }
       },
       order: PopScopeOrder.first,
     );

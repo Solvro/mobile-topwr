@@ -22,6 +22,7 @@ import "../parkings/parkings_view/widgets/parking_info_button.dart";
 import "data_list.dart";
 import "drag_handle.dart";
 import "hooks/use_initial_active_id.dart";
+import "hooks/use_preserved_scroll_offset.dart";
 import "multilayer_map_single_entity_list.dart";
 import "navigate_button.dart";
 import "sliver_multi_tabber_builder.dart";
@@ -139,6 +140,8 @@ class MapDataSheetList<T extends GoogleNavigable> extends HookConsumerWidget {
       ref.watch(context.mapController<T>()).zoomOnMarker,
       ref.watch(context.mapDataController<T>()).value?.data,
     );
+
+    usePreservedSheetPosition<T>(context, ref, scrollController: scrollController);
 
     return CustomScrollView(
       key: MyAppConfig.verticalScrollableKey,

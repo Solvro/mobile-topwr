@@ -25,7 +25,6 @@ class MapView<T extends GoogleNavigable> extends ConsumerWidget {
     required this.mapTileBuilder,
     required this.mapSheetSize,
     required this.semanticsLabel,
-    this.animateListTiles = false,
     this.initialActiveItemId,
     this.initialQuery,
     this.initialSectionType,
@@ -37,7 +36,6 @@ class MapView<T extends GoogleNavigable> extends ConsumerWidget {
   final MapTileBuilder<T> mapTileBuilder;
   final MapViewTexts mapViewTexts;
   final MapSheetSize mapSheetSize;
-  final bool animateListTiles;
   final String? initialActiveItemId;
   final String semanticsLabel;
   final String? initialQuery;
@@ -62,7 +60,6 @@ class MapView<T extends GoogleNavigable> extends ConsumerWidget {
         mapTileBuilder: mapTileBuilder,
         mapViewTexts: mapViewTexts,
         mapSheetSize: mapSheetSize,
-        animateListTiles: animateListTiles,
         initialActiveItemId: initialActiveItemId,
         initialQuery: initialQuery,
         initialSectionType: initialSectionType,

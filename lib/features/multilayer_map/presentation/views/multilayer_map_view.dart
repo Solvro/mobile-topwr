@@ -32,7 +32,6 @@ class MultilayerMapView extends ConsumerWidget {
       initialActiveItemId: initialActiveItemId,
       initialQuery: initialQuery,
       initialSectionType: initialSectionType,
-      animateListTiles: true,
       mapSheetSize: MapViewBottomSheetConfig.buildingsMapSheetSize,
       mapControllers: multilayerMapControllers,
       mapTileBuilder: MultilayerItemTile.new,
