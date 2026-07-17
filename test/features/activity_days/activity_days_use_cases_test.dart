@@ -117,6 +117,9 @@ void main() {
     final organizationCard = tester.widget<WideTileCard>(find.byType(WideTileCard, skipOffstage: false));
     expect(organizationCard.title, "Robotics club");
     expect(organizationCard.subtitle, "Student robotics organization");
+    expect(organizationCard.crossAxisAlignment, CrossAxisAlignment.center);
+    expect(organizationCard.fixedTrailingHeight, isFalse);
+    expect(organizationCard.contentPadding, const EdgeInsets.all(16));
   });
 
   test("stand fields fall back to its DAS organization", () {

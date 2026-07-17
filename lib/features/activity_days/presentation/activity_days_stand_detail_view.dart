@@ -119,6 +119,9 @@ class _StandDetails extends ConsumerWidget {
                 child: WideTileCard(
                   title: organization.name,
                   subtitle: organization.description,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  fixedTrailingHeight: false,
+                  contentPadding: const EdgeInsets.all(HomeViewConfig.paddingMedium),
                   onTap: studentOrganization == null
                       ? null
                       : () => ref.navigateSciClubDetailById(studentOrganization.id),

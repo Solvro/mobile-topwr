@@ -45,6 +45,11 @@ class WideTileCard extends StatelessWidget {
     this.showBadge = false,
     this.showStrategicBadge = false,
     this.fixedTrailingHeight = true,
+    this.contentPadding = const EdgeInsets.only(
+      left: WideTileCardConfig.basePadding,
+      top: WideTileCardConfig.basePadding,
+      right: WideTileCardConfig.basePadding * 1.04,
+    ),
   });
 
   final String title;
@@ -61,6 +66,7 @@ class WideTileCard extends StatelessWidget {
   final bool showBadge;
   final bool showStrategicBadge;
   final bool fixedTrailingHeight;
+  final EdgeInsetsGeometry contentPadding;
 
   @override
   Widget build(BuildContext context) {
@@ -90,6 +96,7 @@ class WideTileCard extends StatelessWidget {
                       showBadge: showBadge,
                       showStrategicBadge: showStrategicBadge,
                       isActive: isActive,
+                      contentPadding: contentPadding,
                     ),
                   ),
                   const SizedBox(width: 16),
@@ -109,6 +116,7 @@ class _TitlesColumn extends StatelessWidget {
     this.title,
     this.subtitle, {
     required this.isActive,
+    required this.contentPadding,
     this.showBadge = false,
     this.showStrategicBadge = false,
   });
@@ -118,16 +126,16 @@ class _TitlesColumn extends StatelessWidget {
   final bool isActive;
   final bool showBadge;
   final bool showStrategicBadge;
+  final EdgeInsetsGeometry contentPadding;
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        const basePadding = WideTileCardConfig.basePadding;
         final textColor = isActive ? context.colorScheme.surface : null;
         final textTheme = context.textTheme;
 
         return Padding(
-          padding: const EdgeInsets.only(left: basePadding, top: basePadding, right: basePadding * 1.04),
+          padding: contentPadding,
           child: DualTextMaxLines(
             title: title,
             titleStyle: textTheme.titleLarge?.copyWith(color: textColor),
