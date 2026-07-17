@@ -3,7 +3,7 @@ import "package:topwr/widgets/loading_widgets/description_section_loading.dart";
 import "package:topwr/widgets/loading_widgets/shimmer_loading.dart";
 import "package:widgetbook/widgetbook.dart";
 
-part "about_us_section_loading.stories.g.dart";
+part "description_section_loading.stories.g.dart";
 
 const meta = Meta(DescriptionSectionLoading.new);
 

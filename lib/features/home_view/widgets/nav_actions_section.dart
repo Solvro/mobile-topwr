@@ -47,6 +47,7 @@ class NavActionsSection extends ConsumerWidget {
           if (isActivityDaysActive)
             Expanded(
               child: _NavActionButton(
+                key: HomeViewConfig.activityDaysKey,
                 context.localize.activity_days_title.replaceFirst(" ", "\n"),
                 Icon(Icons.celebration, semanticLabel: "", color: context.colorScheme.surface, size: 32),
                 ref.navigateActivityDays,
