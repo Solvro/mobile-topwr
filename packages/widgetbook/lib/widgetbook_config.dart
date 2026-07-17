@@ -62,7 +62,9 @@ final config = Config(
         activityDaysRepositoryProvider.overrideWith((ref) => mockActivityDays),
         activityDaysTimetableRepositoryProvider.overrideWith((ref) => mockActivityDaysTimetableEntries),
         dasStandsRepositoryProvider.overrideWith((ref) => mockDasStands),
-        dasStandRepositoryProvider.overrideWith((ref, id) => mockDasStands.firstWhere((stand) => stand.id == id)),
+        dasStandRepositoryProvider.overrideWith(
+          (ref, id) => mockDasStands.firstWhere((stand) => stand.id == id, orElse: () => mockDasStands.first),
+        ),
         aboutUsRepositoryProvider.overrideWith((ref) => mockAboutUs),
         departmentDetailsRepositoryProvider.overrideWith((ref, id) => mockDepartmentDetails),
         departmentsRepositoryProvider.overrideWith((ref) => mockDepartments),
