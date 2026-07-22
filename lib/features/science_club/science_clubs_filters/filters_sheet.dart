@@ -69,7 +69,7 @@ class FiltersSheet extends ConsumerWidget {
                                 icon: Icons.close,
                                 onPressed: ref.watch(areFiltersEnabledProvider)
                                     ? () {
-                                        ref.getClearAllFilters(ref);
+                                        ref.getClearAllFilters(ref)();
                                       }
                                     : () {},
                                 isSecondary: true,
