@@ -1,7 +1,8 @@
 import "package:auto_route/auto_route.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
-import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:flutter_hooks/flutter_hooks.dart";
+import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
@@ -18,6 +19,7 @@ import "../../../widgets/loading_widgets/header_section_loading.dart";
 import "../../../widgets/loading_widgets/shimmer_loading.dart";
 import "../../../widgets/my_error_widget.dart";
 import "../../departments/departments_view/data/utils/departments_extensions.dart";
+import "../science_clubs_filters/filters_controller.dart";
 import "../science_clubs_view/model/science_clubs.dart";
 import "../science_clubs_view/widgets/strategic_badge.dart";
 import "../science_clubs_view/widgets/verified_badge.dart";
@@ -35,7 +37,37 @@ class ScienceClubDetailView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return HorizontalSymmetricSafeAreaScaffold(appBar: DetailViewAppBar(), body: _SciClubDetailDataView(id));
+    return HorizontalSymmetricSafeAreaScaffold(appBar: DetailViewAppBar(), body: _SciClubDetailViewWrapper(id));
+  }
+}
+
+class _SciClubDetailViewWrapper extends HookConsumerWidget {
+  const _SciClubDetailViewWrapper(this.id);
+
+  final int id;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final clubList = ref.watch(clubsForDetailSwipeProvider);
+
+    useEffect(() {
+      return () => ref.read(clubsForDetailSwipeProvider.notifier).state = null;
+    }, []);
+
+    if (clubList == null || clubList.length <= 1) {
+      return _SciClubDetailDataView(id);
+    }
+
+    final initialIndex = clubList.indexWhere((c) => c.id == id);
+    if (initialIndex < 0) return _SciClubDetailDataView(id);
+
+    final pageController = useMemoized(() => PageController(initialPage: initialIndex));
+
+    return PageView.builder(
+      controller: pageController,
+      itemCount: clubList.length,
+      itemBuilder: (_, index) => _SciClubDetailDataView(clubList[index].id),
+    );
   }
 }
 

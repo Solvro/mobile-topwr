@@ -11,6 +11,7 @@ import "../../analytics/data/clarity_events.dart";
 import "../../branches/data/model/branch.dart";
 import "../../departments/departments_view/data/models/department.dart";
 import "../../departments/departments_view/data/repository/departments_repository.dart";
+import "../science_clubs_view/model/science_clubs.dart";
 import "filters_search_controller.dart";
 import "model/sci_club_type.dart";
 import "model/tags.dart";
@@ -18,6 +19,8 @@ import "model/tags.dart";
 part "filters_controller.g.dart";
 
 final focusFirstCardProvider = StateProvider<bool>((ref) => false);
+
+final clubsForDetailSwipeProvider = StateProvider<IList<ScienceClub>?>((ref) => null);
 
 mixin FilterController<T> on $Notifier<ISet<T>> {
   ISet<T> build() {
