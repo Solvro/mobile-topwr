@@ -90,7 +90,7 @@ class _LeftColumn extends StatelessWidget {
             style: isActive ? const ParkingTitleTextStyle().withoutShadows : const ParkingTitleTextStyle(),
           ),
           Padding(
-            padding: ParkingsConfig.extraIndentPadd,
+            padding: ParkingsConfig.extraIndentPadd.copyWith(right: 70),
             child: isActive
                 ? Text(
                     "${context.localize.street_abbreviation} ${parking.addressFormatted}",
