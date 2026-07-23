@@ -101,14 +101,13 @@ extension NavigationX on WidgetRef {
       // solvro science club
       await trackEvent(ClarityEvents.openSolvroScienceClubDetailPage, value: "Solvro: ${model.id}");
     }
-    if (clubList != null) {
-      read(clubsForDetailSwipeProvider.notifier).state = clubList;
-    }
+    read(clubsForDetailSwipeProvider.notifier).state = clubList;
     await _router.push(ScienceClubDetailRoute(id: model.id));
   }
 
   Future<void> navigateSciClubDetailById(int id) async {
     await trackEvent(ClarityEvents.openScienceClubDetail, value: id.toString());
+    read(clubsForDetailSwipeProvider.notifier).state = null;
     await _router.push(ScienceClubDetailRoute(id: id));
   }
 
