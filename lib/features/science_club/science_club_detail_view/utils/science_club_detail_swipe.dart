@@ -31,9 +31,11 @@ DetailSwipeController useDetailSwipe(IList<ScienceClub> clubList, int initialInd
     unawaited(
       pageController.animateTo(target, duration: const Duration(milliseconds: 100), curve: Curves.easeIn).then((_) {
         if (!pageController.hasClients) return;
-        isBouncing.value = false;
         unawaited(
-          pageController.animateTo(snapBack, duration: const Duration(milliseconds: 200), curve: Curves.easeOut),
+          pageController.animateTo(snapBack, duration: const Duration(milliseconds: 200), curve: Curves.easeOut).then((_) {
+            if (!pageController.hasClients) return;
+            isBouncing.value = false;
+          }),
         );
       }),
     );
