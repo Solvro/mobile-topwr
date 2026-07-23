@@ -5,19 +5,12 @@ import "package:flutter/material.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
 import "../../science_clubs_view/model/science_clubs.dart";
 
-class DetailSwipeController {
-  DetailSwipeController({
-    required this.controller,
-    required this.onPointerDown,
-    required this.onPointerUp,
-    required this.onPointerCancel,
-  });
-
-  final PageController controller;
-  final PointerDownEventListener onPointerDown;
-  final PointerUpEventListener onPointerUp;
-  final PointerCancelEventListener onPointerCancel;
-}
+typedef DetailSwipeController = ({
+  PageController controller,
+  PointerDownEventListener onPointerDown,
+  PointerUpEventListener onPointerUp,
+  PointerCancelEventListener onPointerCancel,
+});
 
 DetailSwipeController useDetailSwipe(IList<ScienceClub> clubList, int initialIndex) {
   final pageController = useMemoized(() => PageController(initialPage: initialIndex));
@@ -73,7 +66,7 @@ DetailSwipeController useDetailSwipe(IList<ScienceClub> clubList, int initialInd
     dragStart.value = null;
   }
 
-  return DetailSwipeController(
+  return (
     controller: pageController,
     onPointerDown: onPointerDown,
     onPointerUp: onPointerUp,
