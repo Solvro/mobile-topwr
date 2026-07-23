@@ -57,7 +57,7 @@ class _SciClubDetailViewWrapper extends HookConsumerWidget {
     final initialIndex = clubList.indexWhere((c) => c.id == id);
     if (initialIndex < 0) return _SciClubDetailDataView(id);
 
-    final swipe = useDetailSwipe(ref, clubList, initialIndex);
+    final swipe = useDetailSwipe(clubList, initialIndex);
 
     return Listener(
       onPointerDown: swipe.onPointerDown,

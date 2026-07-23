@@ -3,9 +3,6 @@ import "dart:async";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
-import "package:hooks_riverpod/hooks_riverpod.dart";
-
-import "../../science_clubs_filters/filters_controller.dart";
 import "../../science_clubs_view/model/science_clubs.dart";
 
 class DetailSwipeController {
@@ -22,11 +19,7 @@ class DetailSwipeController {
   final PointerCancelEventListener onPointerCancel;
 }
 
-DetailSwipeController useDetailSwipe(WidgetRef ref, IList<ScienceClub> clubList, int initialIndex) {
-  useEffect(() {
-    return () => ref.read(clubsForDetailSwipeProvider.notifier).state = null;
-  }, []);
-
+DetailSwipeController useDetailSwipe(IList<ScienceClub> clubList, int initialIndex) {
   final pageController = useMemoized(() => PageController(initialPage: initialIndex));
   final dragStart = useRef<Offset?>(null);
   final isBouncing = useRef(false);
