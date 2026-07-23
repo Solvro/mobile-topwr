@@ -1,6 +1,7 @@
 import "package:auto_route/auto_route.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
+import "package:flutter_hooks/flutter_hooks.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../../config/ui_config.dart";
@@ -41,7 +42,7 @@ class ScienceClubDetailView extends StatelessWidget {
   }
 }
 
-class _SciClubDetailViewWrapper extends HookConsumerWidget {
+class _SciClubDetailViewWrapper extends ConsumerWidget {
   const _SciClubDetailViewWrapper(this.id);
 
   final int id;
@@ -57,6 +58,18 @@ class _SciClubDetailViewWrapper extends HookConsumerWidget {
     final initialIndex = clubList.indexWhere((c) => c.id == id);
     if (initialIndex < 0) return _SciClubDetailDataView(id);
 
+    return _SciClubDetailSwipeView(clubList: clubList, initialIndex: initialIndex);
+  }
+}
+
+class _SciClubDetailSwipeView extends HookWidget {
+  const _SciClubDetailSwipeView({required this.clubList, required this.initialIndex});
+
+  final IList<ScienceClub> clubList;
+  final int initialIndex;
+
+  @override
+  Widget build(BuildContext context) {
     final swipe = useDetailSwipe(clubList, initialIndex);
 
     return Listener(
