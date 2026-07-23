@@ -1,7 +1,6 @@
 import "package:auto_route/auto_route.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
-import "package:flutter_hooks/flutter_hooks.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../../config/ui_config.dart";
@@ -25,6 +24,7 @@ import "../science_clubs_view/widgets/strategic_badge.dart";
 import "../science_clubs_view/widgets/verified_badge.dart";
 import "model/science_club_details.dart";
 import "repository/science_club_details_repository.dart";
+import "utils/science_club_detail_swipe.dart";
 import "utils/science_club_details_localization_extension.dart";
 import "widgets/about_us_section.dart";
 import "widgets/tags_section.dart";
@@ -50,10 +50,6 @@ class _SciClubDetailViewWrapper extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final clubList = ref.watch(clubsForDetailSwipeProvider);
 
-    useEffect(() {
-      return () => ref.read(clubsForDetailSwipeProvider.notifier).state = null;
-    }, []);
-
     if (clubList == null || clubList.length <= 1) {
       return _SciClubDetailDataView(id);
     }
@@ -61,12 +57,18 @@ class _SciClubDetailViewWrapper extends HookConsumerWidget {
     final initialIndex = clubList.indexWhere((c) => c.id == id);
     if (initialIndex < 0) return _SciClubDetailDataView(id);
 
-    final pageController = useMemoized(() => PageController(initialPage: initialIndex));
+    final swipe = useDetailSwipe(ref, clubList, initialIndex);
 
-    return PageView.builder(
-      controller: pageController,
-      itemCount: clubList.length,
-      itemBuilder: (_, index) => _SciClubDetailDataView(clubList[index].id),
+    return Listener(
+      onPointerDown: swipe.onPointerDown,
+      onPointerUp: swipe.onPointerUp,
+      onPointerCancel: swipe.onPointerCancel,
+      child: PageView.builder(
+        controller: swipe.controller,
+        physics: const NeverScrollableScrollPhysics(parent: BouncingScrollPhysics()),
+        itemCount: clubList.length,
+        itemBuilder: (_, index) => _SciClubDetailDataView(clubList[index].id),
+      ),
     );
   }
 }
