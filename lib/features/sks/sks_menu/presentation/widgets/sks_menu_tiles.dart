@@ -90,8 +90,8 @@ class SksMenuDishDetailsTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final hasIncreasedTextSize = context.isTextScaledUp;
     final baseTile = GestureDetector(
-      onTap: !kIsWeb ? AppHaptics.wrapperSelection(() => onTap?.call(dish.id)) : null,
-      onDoubleTap: !kIsWeb ? () => onDoubleTap?.call(dish.id) : null,
+      onTap: !kIsWeb && onTap != null ? AppHaptics.wrapperSelection(() => onTap!(dish.id)) : null,
+      onDoubleTap: !kIsWeb && onDoubleTap != null ? AppHaptics.wrapperSelection(() => onDoubleTap!(dish.id)) : null,
       child: Material(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(SksMenuConfig.borderRadius),
