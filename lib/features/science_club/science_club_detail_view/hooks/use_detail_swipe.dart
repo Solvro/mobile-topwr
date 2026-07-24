@@ -13,8 +13,7 @@ typedef DetailSwipeController = ({
 });
 
 DetailSwipeController useDetailSwipe(IList<ScienceClub> clubList, int initialIndex) {
-  final pageController = useMemoized(() => PageController(initialPage: initialIndex));
-  useEffect(() => pageController.dispose, []);
+  final pageController = usePageController(initialPage: initialIndex);
   final dragStart = useRef<Offset?>(null);
   final isBouncing = useRef(false);
 
