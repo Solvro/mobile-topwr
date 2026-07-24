@@ -34,7 +34,6 @@ import "../../multilayer_map/data/model/building.dart";
 import "../../multilayer_map/data/model/polinka_station.dart";
 import "../../parkings/parkings_view/models/parking.dart";
 
-import "../../science_club/science_clubs_filters/filters_controller.dart";
 import "../../science_club/science_clubs_view/model/science_clubs.dart" show ScienceClub;
 import "../../science_club/science_clubs_view/repository/science_clubs_repository.dart";
 import "../app_router.dart";
@@ -101,13 +100,11 @@ extension NavigationX on WidgetRef {
       // solvro science club
       await trackEvent(ClarityEvents.openSolvroScienceClubDetailPage, value: "Solvro: ${model.id}");
     }
-    read(clubsForDetailSwipeProvider.notifier).state = clubList;
-    await _router.push(ScienceClubDetailRoute(id: model.id));
+    await _router.push(ScienceClubDetailRoute(id: model.id, clubList: clubList));
   }
 
   Future<void> navigateSciClubDetailById(int id) async {
     await trackEvent(ClarityEvents.openScienceClubDetail, value: id.toString());
-    read(clubsForDetailSwipeProvider.notifier).state = null;
     await _router.push(ScienceClubDetailRoute(id: id));
   }
 

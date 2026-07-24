@@ -19,7 +19,6 @@ import "../../../widgets/loading_widgets/header_section_loading.dart";
 import "../../../widgets/loading_widgets/shimmer_loading.dart";
 import "../../../widgets/my_error_widget.dart";
 import "../../departments/departments_view/data/utils/departments_extensions.dart";
-import "../science_clubs_filters/filters_controller.dart";
 import "../science_clubs_view/model/science_clubs.dart";
 import "../science_clubs_view/widgets/strategic_badge.dart";
 import "../science_clubs_view/widgets/verified_badge.dart";
@@ -32,33 +31,37 @@ import "widgets/tags_section.dart";
 
 @RoutePage()
 class ScienceClubDetailView extends StatelessWidget {
-  const ScienceClubDetailView({@PathParam("id") required this.id, super.key});
+  const ScienceClubDetailView({@PathParam("id") required this.id, this.clubList, super.key});
 
   final int id;
+  final IList<ScienceClub>? clubList;
 
   @override
   Widget build(BuildContext context) {
-    return HorizontalSymmetricSafeAreaScaffold(appBar: DetailViewAppBar(), body: _SciClubDetailViewWrapper(id));
+    return HorizontalSymmetricSafeAreaScaffold(
+      appBar: DetailViewAppBar(),
+      body: _SciClubDetailViewWrapper(id: id, clubList: clubList),
+    );
   }
 }
 
-class _SciClubDetailViewWrapper extends ConsumerWidget {
-  const _SciClubDetailViewWrapper(this.id);
+class _SciClubDetailViewWrapper extends StatelessWidget {
+  const _SciClubDetailViewWrapper({required this.id, required this.clubList});
 
   final int id;
+  final IList<ScienceClub>? clubList;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final clubList = ref.watch(clubsForDetailSwipeProvider);
-
-    if (clubList == null || clubList.length <= 1) {
+  Widget build(BuildContext context) {
+    final list = clubList;
+    if (list == null || list.length <= 1) {
       return _SciClubDetailDataView(id);
     }
 
-    final initialIndex = clubList.indexWhere((c) => c.id == id);
+    final initialIndex = list.indexWhere((c) => c.id == id);
     if (initialIndex < 0) return _SciClubDetailDataView(id);
 
-    return _SciClubDetailSwipeView(clubList: clubList, initialIndex: initialIndex);
+    return _SciClubDetailSwipeView(clubList: list, initialIndex: initialIndex);
   }
 }
 
