@@ -70,7 +70,7 @@ Future<IList<ScienceClub>> scienceClubsListController(Ref ref) async {
 
   final filteredByTags = selectedTags.isEmpty
       ? filteredByDepartments
-      : filteredByDepartments.where((club) => club.tags.whereNonNull.any(selectedTags.contains));
+      : filteredByDepartments.where((club) => club.tags.whereNonNull.any((tag) => selectedTags.contains(tag.tag)));
 
   final filteredByBranches = selectedBranches.isEmpty
       ? filteredByTags
