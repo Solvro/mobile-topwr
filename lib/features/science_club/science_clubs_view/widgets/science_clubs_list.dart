@@ -68,7 +68,7 @@ class _ScienceClubsListView extends HookConsumerWidget {
                 focusNode: index == 0 ? focusNode : null,
                 child: ScienceClubCard(
                   filteredCircles[index],
-                  () => ref.navigateSciClubsDetail(filteredCircles[index]),
+                  () => ref.navigateSciClubsDetail(filteredCircles[index], clubList: filteredCircles),
                 ),
               );
             },

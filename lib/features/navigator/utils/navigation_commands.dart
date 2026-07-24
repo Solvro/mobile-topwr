@@ -1,5 +1,6 @@
 import "dart:async";
 
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:logger/logger.dart";
 
@@ -32,6 +33,7 @@ import "../../map_layer_picker/data/local_layers_repository.dart";
 import "../../multilayer_map/data/model/building.dart";
 import "../../multilayer_map/data/model/polinka_station.dart";
 import "../../parkings/parkings_view/models/parking.dart";
+
 import "../../science_club/science_clubs_view/model/science_clubs.dart" show ScienceClub;
 import "../../science_club/science_clubs_view/repository/science_clubs_repository.dart";
 import "../app_router.dart";
@@ -92,13 +94,13 @@ extension NavigationX on WidgetRef {
     await _router.push(ScienceClubsRoute(deptsIdsSequence: departmentFilterId, branchesSequence: branchFilter?.name));
   }
 
-  Future<void> navigateSciClubsDetail(ScienceClub model) async {
+  Future<void> navigateSciClubsDetail(ScienceClub model, {IList<ScienceClub>? clubList}) async {
     await trackEvent(ClarityEvents.openScienceClubDetail, value: model.id.toString());
     if (model.isSolvro) {
       // solvro science club
       await trackEvent(ClarityEvents.openSolvroScienceClubDetailPage, value: "Solvro: ${model.id}");
     }
-    await _router.push(ScienceClubDetailRoute(id: model.id));
+    await _router.push(ScienceClubDetailRoute(id: model.id, clubList: clubList));
   }
 
   Future<void> navigateSciClubDetailById(int id) async {

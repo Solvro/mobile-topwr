@@ -1,7 +1,8 @@
 import "package:auto_route/auto_route.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
-import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:flutter_hooks/flutter_hooks.dart";
+import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../../config/ui_config.dart";
 import "../../../theme/app_theme.dart";
@@ -21,6 +22,7 @@ import "../../departments/departments_view/data/utils/departments_extensions.dar
 import "../science_clubs_view/model/science_clubs.dart";
 import "../science_clubs_view/widgets/strategic_badge.dart";
 import "../science_clubs_view/widgets/verified_badge.dart";
+import "hooks/use_detail_swipe.dart";
 import "model/science_club_details.dart";
 import "repository/science_club_details_repository.dart";
 import "utils/science_club_details_localization_extension.dart";
@@ -29,13 +31,61 @@ import "widgets/tags_section.dart";
 
 @RoutePage()
 class ScienceClubDetailView extends StatelessWidget {
-  const ScienceClubDetailView({@PathParam("id") required this.id, super.key});
+  const ScienceClubDetailView({@PathParam("id") required this.id, this.clubList, super.key});
 
   final int id;
+  final IList<ScienceClub>? clubList;
 
   @override
   Widget build(BuildContext context) {
-    return HorizontalSymmetricSafeAreaScaffold(appBar: DetailViewAppBar(), body: _SciClubDetailDataView(id));
+    return HorizontalSymmetricSafeAreaScaffold(
+      appBar: DetailViewAppBar(),
+      body: _SciClubDetailViewWrapper(id: id, clubList: clubList),
+    );
+  }
+}
+
+class _SciClubDetailViewWrapper extends StatelessWidget {
+  const _SciClubDetailViewWrapper({required this.id, required this.clubList});
+
+  final int id;
+  final IList<ScienceClub>? clubList;
+
+  @override
+  Widget build(BuildContext context) {
+    final list = clubList;
+    if (list == null || list.length <= 1) {
+      return _SciClubDetailDataView(id);
+    }
+
+    final initialIndex = list.indexWhere((c) => c.id == id);
+    if (initialIndex < 0) return _SciClubDetailDataView(id);
+
+    return _SciClubDetailSwipeView(clubList: list, initialIndex: initialIndex);
+  }
+}
+
+class _SciClubDetailSwipeView extends HookWidget {
+  const _SciClubDetailSwipeView({required this.clubList, required this.initialIndex});
+
+  final IList<ScienceClub> clubList;
+  final int initialIndex;
+
+  @override
+  Widget build(BuildContext context) {
+    final swipe = useDetailSwipe(clubList, initialIndex);
+
+    return Listener(
+      onPointerDown: swipe.onPointerDown,
+      onPointerUp: swipe.onPointerUp,
+      onPointerCancel: swipe.onPointerCancel,
+      child: PageView.builder(
+        controller: swipe.controller,
+        physics: const NeverScrollableScrollPhysics(parent: BouncingScrollPhysics()),
+        itemCount: clubList.length,
+        itemBuilder: (_, index) => _SciClubDetailDataView(clubList[index].id),
+      ),
+    );
   }
 }
 
