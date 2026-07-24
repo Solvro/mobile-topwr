@@ -22,9 +22,9 @@ import "../../departments/departments_view/data/utils/departments_extensions.dar
 import "../science_clubs_view/model/science_clubs.dart";
 import "../science_clubs_view/widgets/strategic_badge.dart";
 import "../science_clubs_view/widgets/verified_badge.dart";
+import "hooks/use_detail_swipe.dart";
 import "model/science_club_details.dart";
 import "repository/science_club_details_repository.dart";
-import "utils/science_club_detail_swipe.dart";
 import "utils/science_club_details_localization_extension.dart";
 import "widgets/about_us_section.dart";
 import "widgets/tags_section.dart";
