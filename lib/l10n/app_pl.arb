@@ -3928,6 +3928,14 @@
   "@activity_days_segment_links": {
     "description": "Segmented control label for links subtab in Activity Days"
   },
+  "activity_days_maps_not_found": "Nie znaleziono map",
+  "@activity_days_maps_not_found": {
+    "description": "Empty state when Activity Days has no maps"
+  },
+  "activity_days_links_not_found": "Nie znaleziono linków",
+  "@activity_days_links_not_found": {
+    "description": "Empty state when Activity Days has no links"
+  },
   "activity_days_stand_number": "Stoisko {number}",
   "@activity_days_stand_number": {
     "description": "Label containing an Activity Days stand number",

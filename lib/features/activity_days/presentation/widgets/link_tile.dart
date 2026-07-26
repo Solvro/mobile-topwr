@@ -18,7 +18,7 @@ class LinkTile extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final title = link.title ?? _hostFromUrl(link.url);
     final subtitle = link.subtitle ?? link.url;
-    final iconPath = link.url.determineIcon();
+    final iconPath = (link.type ?? link.url).determineIcon();
 
     return Semantics(
       label: "$title, $subtitle",

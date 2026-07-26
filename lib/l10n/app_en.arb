@@ -695,6 +695,8 @@
   "activity_days_tab_info": "Information",
   "activity_days_segment_maps": "Map",
   "activity_days_segment_links": "Links",
+  "activity_days_maps_not_found": "No maps found",
+  "activity_days_links_not_found": "No links found",
   "activity_days_stand_number": "Stand {number}",
   "activity_days_stand_description": "About the stand",
   "activity_days_stand_organization": "Organization",

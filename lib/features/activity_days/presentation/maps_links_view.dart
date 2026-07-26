@@ -1,5 +1,4 @@
 import "package:auto_route/auto_route.dart";
-import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/cupertino.dart";
 import "package:flutter/material.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
@@ -8,6 +7,7 @@ import "package:hooks_riverpod/hooks_riverpod.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../widgets/general_offline_message.dart";
+import "../../../widgets/search_not_found.dart";
 import "../data/repository/activity_days_repository.dart";
 import "widgets/link_tile.dart";
 import "widgets/map_tile.dart";
@@ -90,9 +90,12 @@ class _MapsTab extends ConsumerWidget {
       loading: () => const Center(child: CircularProgressIndicator()),
       error: (_, _) => _OfflineView(onRefresh: () => ref.invalidate(activityDaysRepositoryProvider)),
       data: (event) {
-        final maps = event?.maps ?? const IListConst([]);
-        if (maps.isEmpty) {
+        if (event == null) {
           return _OfflineView(onRefresh: () => ref.invalidate(activityDaysRepositoryProvider));
+        }
+        final maps = event.maps;
+        if (maps.isEmpty) {
+          return SearchNotFound(message: context.localize.activity_days_maps_not_found);
         }
         return ListView.builder(
           itemCount: maps.length,
@@ -113,9 +116,12 @@ class _LinksTab extends ConsumerWidget {
       loading: () => const Center(child: CircularProgressIndicator()),
       error: (_, _) => _OfflineView(onRefresh: () => ref.invalidate(activityDaysRepositoryProvider)),
       data: (event) {
-        final links = event?.links ?? const IListConst([]);
-        if (links.isEmpty) {
+        if (event == null) {
           return _OfflineView(onRefresh: () => ref.invalidate(activityDaysRepositoryProvider));
+        }
+        final links = event.links;
+        if (links.isEmpty) {
+          return SearchNotFound(message: context.localize.activity_days_links_not_found);
         }
         return ListView.separated(
           itemCount: links.length,

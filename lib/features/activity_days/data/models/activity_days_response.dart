@@ -4,8 +4,6 @@ import "package:solvro_translator_core/solvro_translator_core.dart";
 
 import "../../../../api_base_rest/shared_models/image_data.dart";
 
-import "../../../../api_base_rest/shared_models/image_data.dart";
-
 part "activity_days_response.freezed.dart";
 part "activity_days_response.g.dart";
 
@@ -72,7 +70,8 @@ abstract class ActivityDaysMap with _$ActivityDaysMap {
 abstract class ActivityDaysLink with _$ActivityDaysLink {
   const factory ActivityDaysLink({
     required int id,
-    required String url,
+    @JsonKey(name: "link") required String url,
+    String? type,
     String? title,
     String? subtitle,
   }) = _ActivityDaysLink;
