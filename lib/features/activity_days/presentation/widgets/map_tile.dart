@@ -24,10 +24,7 @@ class MapTile extends StatelessWidget {
               borderRadius: BorderRadius.circular(DigitalGuideConfig.borderRadiusMedium),
               child: AspectRatio(
                 aspectRatio: 4 / 3,
-                child: ZoomableRestApiImage(
-                  map.image,
-                  semanticsLabel: map.name,
-                ),
+                child: ZoomableRestApiImage(map.image, semanticsLabel: map.name),
               ),
             ),
           ),

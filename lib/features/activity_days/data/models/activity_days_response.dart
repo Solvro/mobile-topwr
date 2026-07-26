@@ -57,11 +57,7 @@ abstract class ActivityDaysTimetableEntry with _$ActivityDaysTimetableEntry {
 
 @freezed
 abstract class ActivityDaysMap with _$ActivityDaysMap {
-  const factory ActivityDaysMap({
-    required int id,
-    required String name,
-    ImageData? image,
-  }) = _ActivityDaysMap;
+  const factory ActivityDaysMap({required int id, required String name, ImageData? image}) = _ActivityDaysMap;
 
   factory ActivityDaysMap.fromJson(Map<String, dynamic> json) => _$ActivityDaysMapFromJson(json);
 }

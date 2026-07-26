@@ -34,10 +34,7 @@ class MapsLinksView extends HookConsumerWidget {
               if (value != null) selected.value = value;
             },
             children: {
-              _Tab.maps: _SegmentTab(
-                label: l10n.activity_days_segment_maps,
-                isSelected: selected.value == _Tab.maps,
-              ),
+              _Tab.maps: _SegmentTab(label: l10n.activity_days_segment_maps, isSelected: selected.value == _Tab.maps),
               _Tab.links: _SegmentTab(
                 label: l10n.activity_days_segment_links,
                 isSelected: selected.value == _Tab.links,
