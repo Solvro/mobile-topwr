@@ -1,4 +1,5 @@
 import "package:auto_route/auto_route.dart";
+import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/foundation.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
@@ -60,6 +61,7 @@ import "../notifications/presentation/notifications_view.dart";
 import "../parkings/parkings_view/parkings_view.dart";
 import "../radio_luz/presentation/radio_luz_view.dart";
 import "../science_club/science_club_detail_view/science_club_detail_view.dart";
+import "../science_club/science_clubs_view/model/science_clubs.dart";
 import "../science_club/science_clubs_view/science_clubs_view.dart";
 import "../settings/settings_view.dart";
 import "../sks/sks_favourite_dishes/presentation/sks_favourite_dishes_view.dart";
