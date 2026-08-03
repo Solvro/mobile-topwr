@@ -572,7 +572,11 @@
   "@sks_favourite_dishes_no_dishes_yet": {
     "description": "Information that there are no subscribed dishes yet"
   },
-  "sks_favourite_dishes_how_it_works": "Kliknij na danie z sekcji poniżej, aby otrzymywać powiadomienia, gdy pojawi się ponownie w menu! Dania możesz dodawać także z widoku menu, poprzez dwukrotne kliknięcie na wybraną pozycję.",
+  "sks_favourite_dishes_how_it_works_question": "Jak działają Ulubione dania SKS?",
+  "@sks_favourite_dishes_how_it_works_question": {
+    "description": "Question shown for description on how subscribing to dishes works"
+  },
+  "sks_favourite_dishes_how_it_works": "Kliknij na danie z sekcji \"Pozostałe dania ostatnio w menu\", aby otrzymywać powiadomienia, gdy pojawi się ponownie w menu! Dania możesz dodawać także z widoku menu, poprzez dwukrotne kliknięcie na wybraną pozycję.",
   "@sks_favourite_dishes_how_it_works": {
     "description": "Description on how subscribing to dishes works"
   },
