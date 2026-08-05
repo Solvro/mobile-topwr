@@ -8,6 +8,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:sliver_tools/sliver_tools.dart";
 
 import "../../../../config/ui_config.dart";
+import "../../../../services/haptics/app_haptics.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../widgets/horizontal_symmetric_safe_area.dart";
@@ -21,6 +22,7 @@ import "../data/repository/sks_favourite_dishes_repository.dart";
 import "../utils/toast_on_dish_tap.dart";
 import "sks_favourite_dishes_controller.dart";
 import "widgets/empty_subscribed_dishes_placeholder.dart";
+import "widgets/sks_favourite_dishes_info_dialog.dart";
 import "widgets/sks_favourite_dishes_loading.dart";
 import "widgets/sliver_sticky_header.dart";
 
@@ -37,6 +39,23 @@ class SksFavouriteDishesView extends ConsumerWidget {
         addLeadingPopButton: true,
         title: context.localize.sks_favourite_dishes,
         onQueryChanged: ref.watch(sksFavouriteDishesControllerProvider.notifier).onTextChanged,
+        actions: (asyncData.asData?.value.values.any((entry) => entry.isSubscribed) ?? false)
+            ? [
+                IconButton(
+                  icon: Icon(
+                    Icons.info_outline,
+                    semanticLabel: context.localize.sks_favourite_dishes_how_it_works_question,
+                  ),
+                  tooltip: context.localize.sks_favourite_dishes_how_it_works_question,
+                  onPressed: AppHaptics.wrapperLight(() async {
+                    await showDialog<void>(
+                      context: context,
+                      builder: (context) => const SksFavouriteDishesInfoDialog(),
+                    );
+                  }),
+                ),
+              ]
+            : [],
         onSearchBoxTap: () {
           unawaited(ref.trackEvent(ClarityEvents.searchSksMenu));
         },
