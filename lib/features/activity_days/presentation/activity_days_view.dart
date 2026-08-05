@@ -7,6 +7,7 @@ import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../widgets/detail_views/detail_view_app_bar.dart";
 import "../../../widgets/horizontal_symmetric_safe_area.dart";
+import "maps_links_view.dart";
 import "widgets/activity_days_stands.dart";
 import "widgets/activity_days_timetable.dart";
 
@@ -42,24 +43,10 @@ class ActivityDaysView extends HookConsumerWidget {
           Expanded(
             child: TabBarView(
               controller: tabController,
-              children: const [ActivityDaysStands(), ActivityDaysTimetable(), _PlaceholderTab()],
+              children: const [ActivityDaysStands(), ActivityDaysTimetable(), MapsLinksView()],
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class _PlaceholderTab extends StatelessWidget {
-  const _PlaceholderTab();
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        "Coming soon",
-        style: context.textTheme.bodyLarge?.copyWith(color: context.colorScheme.onSurface.withValues(alpha: 0.5)),
       ),
     );
   }
