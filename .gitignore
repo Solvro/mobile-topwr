@@ -177,3 +177,6 @@ android/.kotlin/
 packages/widgetbook/assets/
 
 pubspec_overrides.yaml
+
+# Auto-generated widget config from .env
+ios/WidgetConfig/Config.generated.swift
