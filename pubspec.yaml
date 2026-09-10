@@ -128,7 +128,7 @@ dependencies:
 
   #Other
   in_app_update: ^5.0.0
-  upgrader: ^13.5.0
+  upgrader: ^13.6.0
   in_app_review: ^2.0.12
   protontime: ^2.0.0
   logger: ^2.7.0
