@@ -5,6 +5,7 @@ import "../../../api_base_rest/client/json.dart";
 import "../../../config/env.dart";
 import "../model/academic_calendar.dart";
 import "../model/day_swap_model.dart";
+import "../utils/select_academic_calendar.dart";
 
 part "academic_calendar_repo.g.dart";
 
@@ -26,24 +27,28 @@ Future<AcademicCalendarWithSwaps?> academicCalendarRepo(Ref ref) async {
     ref.getAndCacheData(
       apiUrl + academicCalendarEndpoint,
       AcademicCalendarResponse.fromJson,
-      extraValidityCheck: (_) => true,
+      extraValidityCheck: (response) => response.castAsObject.data.hasCurrentOrUpcoming(),
       onRetry: ref.invalidateSelf,
     ),
     ref.getAndCacheData(
       apiUrl + daySwapsEndpoint,
       DaySwapResponse.fromJson,
-      extraValidityCheck: (_) => true,
+      extraValidityCheck: (response) => response.castAsObject.data.hasUpcomingOrToday(),
       onRetry: ref.invalidateSelf,
     ),
   ]);
   final calendarData = responses[0].castAsObject as AcademicCalendarResponse;
   final daySwaps = responses[1].castAsObject as DaySwapResponse;
 
-  if (calendarData.data.isEmpty) {
+  final selectedCalendar = calendarData.data.selectCurrentOrUpcoming();
+  if (selectedCalendar == null) {
     return null;
   }
 
-  return AcademicCalendarWithSwaps(calendarData: calendarData.data.first, daySwaps: daySwaps.data.toIList());
+  return AcademicCalendarWithSwaps(
+    calendarData: selectedCalendar,
+    daySwaps: daySwaps.data.forAcademicCalendar(selectedCalendar.id).toIList(),
+  );
 }
 
 extension FixNestedTypesX on AcademicCalendarWithSwaps {
