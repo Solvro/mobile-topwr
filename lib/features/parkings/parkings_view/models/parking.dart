@@ -34,7 +34,7 @@ abstract class Parking with _$Parking implements GoogleNavigable {
     required String lp,
     required String address,
     required String trend,
-    required ParkingAccess access,
+    @JsonKey(defaultValue: ParkingAccess.all) required ParkingAccess access,
   }) = _ParkingPlace;
   const Parking._();
 
