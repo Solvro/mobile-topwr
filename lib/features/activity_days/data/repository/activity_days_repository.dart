@@ -11,7 +11,7 @@ part "activity_days_repository.g.dart";
 @riverpod
 Future<ActivityDaysResponse?> activityDaysRepository(Ref ref) async {
   final now = DateTime.now();
-  final url = "${Env.mainRestApiUrl}/das";
+  final url = "${Env.mainRestApiUrl}/das?maps=true&links=true&maps.image=true";
 
   final response = await ref.getAndCacheData(
     url,
