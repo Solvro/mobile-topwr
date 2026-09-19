@@ -60,6 +60,6 @@ jobs:
         run: |
           if [ -n "$COOLIFY_WEBHOOK_URL" ] && [ -n "$COOLIFY_TOKEN" ]; then
             curl --fail --show-error --silent \
-              --request GET "$COOLIFY_WEBHOOK_URL" \
+              --request POST "$COOLIFY_WEBHOOK_URL" \
               --header "Authorization: Bearer $COOLIFY_TOKEN"
           fi

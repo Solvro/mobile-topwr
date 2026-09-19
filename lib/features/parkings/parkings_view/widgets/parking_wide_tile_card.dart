@@ -27,7 +27,7 @@ class ParkingWideTileCard extends StatelessWidget {
         height: isActive ? scaler.clamp(maxScaleFactor: 1.5).scale(300) : scaler.scale(WideTileCardConfig.imageSize),
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(WideTileCardConfig.radius),
-          image: DecorationImage(fit: BoxFit.cover, image: NetworkImage(parking.iParkPhotoUrl)),
+          image: DecorationImage(fit: BoxFit.cover, image: NetworkImage(parking.iParkPhotoUrl), onError: (_, _) {}),
         ),
         clipBehavior: Clip.antiAlias,
         child: Stack(
