@@ -38,6 +38,8 @@ abstract class DasStand with _$DasStand {
 extension DasStandFallbacks on DasStand {
   String get effectiveName => name.trim().isNotEmpty ? name : (dasOrganization?.name ?? "");
 
+  ImageData? get effectiveLogo => logo ?? dasOrganization?.logo;
+
   String? get effectiveDescription {
     final standDescription = description?.trim();
     if (standDescription != null && standDescription.isNotEmpty) return description;
@@ -58,6 +60,8 @@ abstract class DasOrganization with _$DasOrganization {
     required int id,
     @translatableField required String name,
     @translatableField String? description,
+    ImageData? logo,
+    String? logoKey,
     DasStudentOrganization? studentOrganization,
   }) = _DasOrganization;
 

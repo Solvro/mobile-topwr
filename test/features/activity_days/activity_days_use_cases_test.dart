@@ -3,6 +3,7 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:flutter_test/flutter_test.dart";
 
+import "package:topwr/api_base_rest/shared_models/image_data.dart";
 import "package:topwr/features/activity_days/business/activity_days_stands_use_case.dart";
 import "package:topwr/features/activity_days/business/activity_days_timetable_use_case.dart";
 import "package:topwr/features/activity_days/data/models/activity_days_response.dart";
@@ -12,6 +13,7 @@ import "package:topwr/features/activity_days/data/repository/activity_days_stand
 import "package:topwr/features/activity_days/data/repository/activity_days_timetable_repository.dart";
 import "package:topwr/features/activity_days/presentation/activity_days_stand_detail_view.dart";
 import "package:topwr/l10n/app_localizations.dart";
+import "package:topwr/widgets/my_html_widget.dart";
 import "package:topwr/widgets/wide_tile_card.dart";
 
 void main() {
@@ -71,6 +73,7 @@ void main() {
         "dasOrganization": {
           "id": 7,
           "name": "Robotics club",
+          "logoKey": "organization-logo-key",
           "studentOrganization": {"id": 1392, "name": "Robocik"},
         },
         "logo": null,
@@ -78,7 +81,55 @@ void main() {
     });
 
     expect(response.data.floor?.name, "Ground floor");
+    expect(response.data.dasOrganization?.logoKey, "organization-logo-key");
     expect(response.data.dasOrganization?.studentOrganization?.id, 1392);
+  });
+
+  test("parses a map content key when the API does not populate its image", () {
+    final response = ActivityDaysListResponse.fromJson({
+      "data": [
+        {
+          "id": 1,
+          "name": "DAS",
+          "startsAt": "2026-09-19T10:00:00.000Z",
+          "endsAt": "2026-09-20T10:00:00.000Z",
+          "createdAt": "2026-09-01T10:00:00.000Z",
+          "updatedAt": "2026-09-01T10:00:00.000Z",
+          "maps": [
+            {"id": 1, "name": "Ground floor", "contentKey": "map-content-key"},
+          ],
+        },
+      ],
+    });
+
+    final map = response.data.single.maps.single;
+    expect(map.image, isNull);
+    expect(map.contentKey, "map-content-key");
+  });
+
+  test("uses stand logo before organization logo and falls back to organization logo", () {
+    const standLogo = ImageData(url: "stand-logo");
+    const organizationLogo = ImageData(url: "organization-logo");
+    const organization = DasOrganization(id: 7, name: "Robotics club", logo: organizationLogo, logoKey: "logo-key");
+
+    const standWithOwnLogo = DasStand(
+      id: 1,
+      dasId: 1,
+      number: "A1",
+      name: "Robotics",
+      logo: standLogo,
+      dasOrganization: organization,
+    );
+    const standWithoutOwnLogo = DasStand(
+      id: 2,
+      dasId: 1,
+      number: "A2",
+      name: "Robotics",
+      dasOrganization: organization,
+    );
+
+    expect(standWithOwnLogo.effectiveLogo, standLogo);
+    expect(standWithoutOwnLogo.effectiveLogo, organizationLogo);
   });
 
   testWidgets("stand details render optional content and organization action", (tester) async {
@@ -113,7 +164,7 @@ void main() {
     expect(find.text("Robotics"), findsOneWidget);
     expect(find.text("Stand A1"), findsOneWidget);
     expect(find.text("Ground floor"), findsOneWidget);
-    expect(find.text("Mobile robots"), findsOneWidget);
+    expect(find.byType(MyHtmlWidget), findsNWidgets(2));
     final organizationCard = tester.widget<WideTileCard>(find.byType(WideTileCard, skipOffstage: false));
     expect(organizationCard.title, "Robotics club");
     expect(organizationCard.subtitle, "Student robotics organization");

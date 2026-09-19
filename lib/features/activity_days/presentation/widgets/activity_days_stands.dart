@@ -124,10 +124,11 @@ class _FloorStands extends ConsumerWidget {
           padding: const EdgeInsets.only(bottom: HomeViewConfig.paddingSmall),
           child: PhotoTrailingWideTileCard(
             context,
-            directusPhotoUrl: stand.logo,
+            directusPhotoUrl: stand.effectiveLogo,
             title: stand.number,
             subtitle: stand.effectiveName,
             onTap: () => ref.navigateActivityDaysStand(stand.id),
+            boxFit: BoxFit.contain,
             customPlaceholder: const FlutterSplashScreen(size: WideTileCardConfig.imageSize),
           ),
         );
