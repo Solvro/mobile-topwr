@@ -37,6 +37,7 @@ plugins:
       - TileSplash
       - WideTileCard
       - _NavActionButton
+      - _KillSwitchBanner
       - _SksButton
 
 analyzer:

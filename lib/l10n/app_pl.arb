@@ -3704,6 +3704,13 @@
   "@calendar": {
     "description": "Description of calendar section"
   },
+  "kill_switch_banner": "ToPWR nie jest już utrzymywane. Informacje w aplikacji mogą być nieaktualne.",
+  "kill_switch_dialog_title": "ToPWR nie jest już utrzymywane",
+  "kill_switch_dialog_message": "Informacje w aplikacji mogą być nieaktualne. Chcesz pomóc w utrzymywaniu ToPWR? Napisz do Solvro na:",
+  "kill_switch_contact": "Napisz do Solvro",
+  "kill_switch_dismiss": "Rozumiem",
+  "kill_switch_schedule_title": "Harmonogram akademicki",
+  "kill_switch_schedule_subtitle": "Otwórz oficjalny, aktualny kalendarz akademicki.",
   "today": "Dziś",
   "@today": {
     "description": "A marker for today's date"

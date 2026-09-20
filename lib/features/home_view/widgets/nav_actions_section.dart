@@ -7,6 +7,7 @@ import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../activity_days/data/repository/activity_days_repository.dart";
 import "../../navigator/utils/navigation_commands.dart";
+import "../../remote_config/data/repository/remote_config_repository.dart";
 
 class NavActionsSection extends ConsumerWidget {
   const NavActionsSection({super.key});
@@ -14,6 +15,7 @@ class NavActionsSection extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isActivityDaysActive = ref.watch(isActivityDaysActiveProvider).value ?? false;
+    final killSwitchEnabled = ref.watch(remoteConfigRepositoryProvider).value?.killswitchOfDoomAndDespair ?? false;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -36,14 +38,15 @@ class NavActionsSection extends ConsumerWidget {
               ref.navigateParkings,
             ),
           ),
-          Expanded(
-            child: _NavActionButton(
-              key: HomeViewConfig.calendarKey,
-              context.localize.calendar,
-              Icon(Icons.calendar_today_outlined, semanticLabel: "", color: context.colorScheme.surface, size: 30),
-              ref.navigateCalendar,
+          if (!killSwitchEnabled)
+            Expanded(
+              child: _NavActionButton(
+                key: HomeViewConfig.calendarKey,
+                context.localize.calendar,
+                Icon(Icons.calendar_today_outlined, semanticLabel: "", color: context.colorScheme.surface, size: 30),
+                ref.navigateCalendar,
+              ),
             ),
-          ),
           if (isActivityDaysActive)
             Expanded(
               child: _NavActionButton(

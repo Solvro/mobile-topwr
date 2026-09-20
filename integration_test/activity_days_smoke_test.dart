@@ -19,9 +19,12 @@ import "package:topwr/features/activity_days/presentation/activity_days_view.dar
 import "package:topwr/features/app_changelog/data/repository/local_changelog_repository.dart";
 import "package:topwr/features/branches/data/model/branch.dart";
 import "package:topwr/features/branches/data/repository/branch_repository.dart";
+import "package:topwr/features/remote_config/data/models/remote_config.dart";
+import "package:topwr/features/remote_config/data/repository/remote_config_repository.dart";
 import "package:topwr/main.dart" as app;
 import "package:topwr/services/translations_service/data/preferred_lang_repository.dart";
 import "package:topwr/widgets/my_error_widget.dart";
+import "package:topwr/widgets/my_html_widget.dart";
 import "package:topwr/widgets/wide_tile_card.dart";
 
 class _MockPreferredLanguageRepository extends PreferredLanguageRepository {
@@ -47,6 +50,8 @@ final _activityDaysEvent = ActivityDaysResponse(
   createdAt: DateTime.now().subtract(const Duration(days: 30)),
   updatedAt: DateTime.now(),
 );
+
+const _remoteConfig = RemoteConfig(cmsReferenceNumber: 0, daySwapLookahead: 7, translatorReferenceNumber: 0);
 
 const _activityDaysStand = DasStand(
   id: 1,
@@ -87,6 +92,7 @@ void main() {
     branchRepositoryProvider.overrideWith(_MockBranchRepository.new),
     localChangelogRepositoryProvider.overrideWith2((_) => _MockLocalChangelogRepository()),
     isActivityDaysActiveProvider.overrideWith((ref) => true),
+    remoteConfigRepositoryProvider.overrideWith((ref) => Future.value(_remoteConfig)),
     activityDaysRepositoryProvider.overrideWith((ref) => _activityDaysEvent),
     activityDaysTimetableRepositoryProvider.overrideWith((ref) => _activityDaysEntries),
     dasStandsRepositoryProvider.overrideWith((ref) => const IListConst([_activityDaysStand])),
@@ -131,7 +137,10 @@ void main() {
     await pumpUntilFound(tester, find.byType(ActivityDaysStandDetailView));
     expect(find.byType(ActivityDaysStandDetailView), findsOneWidget);
     expect(find.text(_activityDaysStand.name), findsOneWidget);
-    expect(find.text(_activityDaysStand.description!), findsOneWidget);
+    expect(
+      find.byWidgetPredicate((widget) => widget is MyHtmlWidget && widget.html == _activityDaysStand.description),
+      findsOneWidget,
+    );
     expect(find.byType(MyErrorWidget), findsNothing);
   });
 }

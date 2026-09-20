@@ -25,6 +25,7 @@ import "features/parkings/parkings_view/repository/parkings_repository.dart";
 import "features/radio_luz/service/carplay_service.dart";
 import "features/radio_luz/service/radio_audio_handler.dart";
 import "features/radio_luz/service/radio_player_provider.dart";
+import "features/remote_config/presentation/kill_switch_overlay.dart";
 import "features/settings/data/haptic_feedback_repository.dart";
 import "features/splash_screen/splash_screen.dart";
 import "features/splash_screen/splash_screen_controller.dart";
@@ -132,7 +133,9 @@ class MyApp extends HookConsumerWidget {
             theme: context.wiredashTheme,
             child: MaterialApp.router(
               locale: Locale(currentLocale.value?.name ?? SolvroLocale.pl.name),
-              builder: (context, child) => InAppReviewWidget(child: UpdateDialogWrapper(child: child!)),
+              builder: (context, child) => KillSwitchOverlay(
+                child: InAppReviewWidget(child: UpdateDialogWrapper(child: child!)),
+              ),
               title: MyAppConfig.title,
               localizationsDelegates: AppLocalizations.localizationsDelegates,
               supportedLocales: AppLocalizations.supportedLocales,
