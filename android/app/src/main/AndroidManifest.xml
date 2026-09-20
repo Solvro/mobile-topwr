@@ -81,10 +81,6 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
-        <!-- Android Auto Definition -->
-        <meta-data
-            android:name="com.google.android.gms.car.application"
-            android:resource="@xml/automotive_app_desc"/>
     </application>
     <!-- Required to query activities that can process text, see:
          https://developer.android.com/training/package-visibility?hl=en and

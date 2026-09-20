@@ -14,7 +14,7 @@ import "../utils/just_audio_playback_errors.dart";
 //This whole class describes the audio player behavior, media items and metadata.
 //This class acts as a bridge between the audio player (just_audio) and the audio service (audio_service).
 //Thanks to that the audio player can talk to native APIs of audio services specific to the platform.
-//Specifically, it allows the app to be recognized as a media player, which allows integration with Android Auto, CarPlay, etc.
+//Specifically, it lets the app use the platform media APIs for background playback controls.
 
 const radioLuzArtwork = "https://api.topwr.solvro.pl/uploads/4143cab4-81d8-417b-ad0e-c1e3276249db.png";
 const refreshInterval = Duration(seconds: 15);
@@ -184,23 +184,6 @@ class RadioAudioHandlerBridge extends BaseAudioHandler with SeekHandler, Widgets
     WidgetsBinding.instance.removeObserver(this);
     await _player.stop();
     return super.stop();
-  }
-
-  //defines the media library visible in Android Auto and CarPlay
-  @override
-  Future<List<MediaItem>> getChildren(String parentMediaId, [Map<String, dynamic>? options]) async {
-    if (parentMediaId == AudioService.browsableRootId) {
-      return [_radioLuzMediaItem];
-    }
-    return [];
-  }
-
-  @override
-  Future<void> playFromMediaId(String mediaId, [Map<String, dynamic>? extras]) async {
-    if (mediaId == _radioLuzMediaItem.id) {
-      await _loadStream();
-      unawaited(_startPlayback());
-    }
   }
 
   Future<void> setVolume(double volume) => _player.setVolume(volume);
