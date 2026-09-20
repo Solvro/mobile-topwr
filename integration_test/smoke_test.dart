@@ -76,7 +76,7 @@ void main() {
     tester.view.devicePixelRatio = 3.0;
     addTearDown(tester.view.resetPhysicalSize);
     addTearDown(tester.view.resetDevicePixelRatio);
-    await app.main(overrides: overrides, skipCarPlay: true);
+    await app.main(overrides: overrides);
   }
 
   Future<void> tapChoiceButton(WidgetTester tester) async {

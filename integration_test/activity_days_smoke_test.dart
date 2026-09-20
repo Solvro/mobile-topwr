@@ -113,7 +113,7 @@ void main() {
     addTearDown(tester.view.resetPhysicalSize);
     addTearDown(tester.view.resetDevicePixelRatio);
 
-    await app.main(overrides: overrides(), skipCarPlay: true);
+    await app.main(overrides: overrides());
 
     final activityDaysButton = find.byKey(HomeViewConfig.activityDaysKey);
     await pumpUntilFound(tester, activityDaysButton);

@@ -22,7 +22,6 @@ import "features/navigator/app_router.dart";
 import "features/navigator/hooks/use_deeplinks.dart";
 import "features/navigator/navigation_stack.dart";
 import "features/parkings/parkings_view/repository/parkings_repository.dart";
-import "features/radio_luz/service/carplay_service.dart";
 import "features/radio_luz/service/radio_audio_handler.dart";
 import "features/radio_luz/service/radio_player_provider.dart";
 import "features/remote_config/presentation/kill_switch_overlay.dart";
@@ -39,8 +38,6 @@ import "services/translations_service/widgets/remove_old_translations.dart";
 import "theme/app_theme.dart";
 
 Future<RadioAudioHandlerBridge>? _audioHandlerFuture;
-late CarPlayService _carPlayService;
-
 Future<RadioAudioHandlerBridge> _initAudioHandler() {
   return _audioHandlerFuture ??= AudioService.init(
     builder: RadioAudioHandlerBridge.new,
@@ -52,7 +49,7 @@ Future<RadioAudioHandlerBridge> _initAudioHandler() {
   );
 }
 
-Future<void> main({List<Override>? overrides, bool skipCarPlay = false}) async {
+Future<void> main({List<Override>? overrides}) async {
   WidgetsFlutterBinding.ensureInitialized();
   if (!kDebugMode && !kIsWeb) {
     SplashScreenController.preserveNativeSplashScreen();
@@ -65,10 +62,6 @@ Future<void> main({List<Override>? overrides, bool skipCarPlay = false}) async {
 
   if (kDebugMode) {
     final audioHandler = await _initAudioHandler();
-    if (!skipCarPlay) {
-      _carPlayService = CarPlayService(audioHandler);
-      unawaited(_carPlayService.initialize());
-    }
     runApp(
       ProviderScope(
         retry: (retryCount, error) {
@@ -98,9 +91,6 @@ Future<void> main({List<Override>? overrides, bool skipCarPlay = false}) async {
 Future<void> runNormalApp() async {
   final audioHandler = await _initAudioHandler();
   await appAnalytics.initialize(projectId: Env.clarityConfigId);
-  _carPlayService = CarPlayService(audioHandler);
-  unawaited(_carPlayService.initialize());
-
   runApp(
     ProviderScope(
       retry: (retryCount, error) {
