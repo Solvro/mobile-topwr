@@ -3,6 +3,7 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../config/ui_config.dart";
+import "../../../services/haptics/app_haptics.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../widgets/detail_views/detail_view_app_bar.dart";
@@ -12,9 +13,11 @@ import "../../../widgets/loading_widgets/description_section_loading.dart";
 import "../../../widgets/loading_widgets/header_section_loading.dart";
 import "../../../widgets/loading_widgets/shimmer_loading.dart";
 import "../../../widgets/my_error_widget.dart";
+import "../../../widgets/my_html_widget.dart";
 import "../../../widgets/wide_tile_card.dart";
 import "../../navigator/utils/navigation_commands.dart";
 import "../data/models/activity_days_stands_response.dart";
+import "../data/repository/activity_days_media_repository.dart";
 import "../data/repository/activity_days_stands_repository.dart";
 
 @RoutePage()
@@ -47,10 +50,32 @@ class _StandDetails extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final organization = stand.dasOrganization;
     final studentOrganization = organization?.studentOrganization;
+    final logoKey = stand.logo == null && organization?.logo == null ? organization?.logoKey : null;
+    final logo = switch (logoKey) {
+      final key? when key.isNotEmpty =>
+        ref
+            .watch(activityDaysFileImageProvider(key))
+            .when(data: (image) => image, loading: () => null, error: (_, _) => null),
+      _ => stand.effectiveLogo,
+    };
+    final failedToLoad = switch (logoKey) {
+      final key? when key.isNotEmpty => ref.watch(activityDaysFileImageProvider(key)).hasError,
+      _ => false,
+    };
 
     return CustomScrollView(
       slivers: [
-        SliverPersistentHeader(delegate: LogoOnlySliverHeaderSection(logoImageData: stand.logo)),
+        SliverPersistentHeader(delegate: LogoOnlySliverHeaderSection(logoImageData: logo)),
+        if (failedToLoad)
+          SliverToBoxAdapter(
+            child: Align(
+              child: IconButton(
+                icon: Icon(Icons.refresh, semanticLabel: context.localize.refresh),
+                tooltip: context.localize.refresh,
+                onPressed: AppHaptics.wrapperSelection(() => ref.invalidate(activityDaysFileImageProvider(logoKey!))),
+              ),
+            ),
+          ),
         SliverList(
           delegate: SliverChildListDelegate([
             const SizedBox(height: HomeViewConfig.paddingSmall),
@@ -100,7 +125,7 @@ class _StandDetails extends ConsumerWidget {
                       children: [
                         Text(context.localize.activity_days_stand_description, style: context.textTheme.titleLarge),
                         const SizedBox(height: HomeViewConfig.paddingSmall),
-                        Text(description, style: context.textTheme.bodyLarge),
+                        MyHtmlWidget(description, textStyle: context.textTheme.bodyLarge),
                       ],
                     ),
                   ),
@@ -119,6 +144,9 @@ class _StandDetails extends ConsumerWidget {
                 child: WideTileCard(
                   title: organization.name,
                   subtitle: organization.description,
+                  subtitleWidget: organization.description == null
+                      ? null
+                      : MyHtmlWidget(organization.description!, textStyle: context.textTheme.bodyLarge),
                   crossAxisAlignment: CrossAxisAlignment.center,
                   fixedTrailingHeight: false,
                   contentPadding: const EdgeInsets.all(HomeViewConfig.paddingMedium),

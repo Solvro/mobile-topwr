@@ -2,8 +2,10 @@ import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter/services.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
+import "package:topwr/api_base_rest/shared_models/image_data.dart";
 import "package:topwr/features/about_us_view/data/repository/about_us_repository.dart";
 import "package:topwr/features/academic_calendar/repository/academic_calendar_repo.dart";
+import "package:topwr/features/activity_days/data/repository/activity_days_media_repository.dart";
 import "package:topwr/features/activity_days/data/repository/activity_days_repository.dart";
 import "package:topwr/features/activity_days/data/repository/activity_days_stands_repository.dart";
 import "package:topwr/features/activity_days/data/repository/activity_days_timetable_repository.dart";
@@ -59,6 +61,9 @@ final config = Config(
     return ProviderScope(
       overrides: [
         academicCalendarRepoProvider.overrideWith((ref) => mockAcademicCalendarWithSwaps),
+        activityDaysFileImageProvider.overrideWith(
+          (ref, contentKey) => const ImageData(url: widgetbookPlaceholderImageUrl),
+        ),
         activityDaysRepositoryProvider.overrideWith((ref) => mockActivityDays),
         activityDaysTimetableRepositoryProvider.overrideWith((ref) => mockActivityDaysTimetableEntries),
         dasStandsRepositoryProvider.overrideWith((ref) => mockDasStands),

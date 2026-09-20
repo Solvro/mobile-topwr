@@ -35,6 +35,7 @@ class WideTileCard extends StatelessWidget {
   const WideTileCard({
     required this.title,
     this.subtitle = "",
+    this.subtitleWidget,
     this.trailing,
     this.onTap,
     this.activeGradient,
@@ -54,6 +55,7 @@ class WideTileCard extends StatelessWidget {
 
   final String title;
   final String? subtitle;
+  final Widget? subtitleWidget;
   final Widget? trailing;
 
   final bool isActive;
@@ -93,6 +95,7 @@ class WideTileCard extends StatelessWidget {
                     child: _TitlesColumn(
                       title,
                       subtitle,
+                      subtitleWidget: subtitleWidget,
                       showBadge: showBadge,
                       showStrategicBadge: showStrategicBadge,
                       isActive: isActive,
@@ -115,6 +118,7 @@ class _TitlesColumn extends StatelessWidget {
   const _TitlesColumn(
     this.title,
     this.subtitle, {
+    this.subtitleWidget,
     required this.isActive,
     required this.contentPadding,
     this.showBadge = false,
@@ -123,6 +127,7 @@ class _TitlesColumn extends StatelessWidget {
 
   final String title;
   final String? subtitle;
+  final Widget? subtitleWidget;
   final bool isActive;
   final bool showBadge;
   final bool showStrategicBadge;
@@ -136,16 +141,25 @@ class _TitlesColumn extends StatelessWidget {
 
         return Padding(
           padding: contentPadding,
-          child: DualTextMaxLines(
-            title: title,
-            titleStyle: textTheme.titleLarge?.copyWith(color: textColor),
-            subtitle: subtitle,
-            subtitleStyle: textTheme.bodyLarge?.copyWith(color: textColor),
-            spacing: WideTileCardConfig.titlesSpacing,
-            maxTotalLines: context.textScaleFactor > 1.5 ? 5 : 4,
-            showVerifiedBadge: showBadge,
-            showStrategicBadge: showStrategicBadge,
-          ),
+          child: subtitleWidget == null
+              ? DualTextMaxLines(
+                  title: title,
+                  titleStyle: textTheme.titleLarge?.copyWith(color: textColor),
+                  subtitle: subtitle,
+                  subtitleStyle: textTheme.bodyLarge?.copyWith(color: textColor),
+                  spacing: WideTileCardConfig.titlesSpacing,
+                  maxTotalLines: context.textScaleFactor > 1.5 ? 5 : 4,
+                  showVerifiedBadge: showBadge,
+                  showStrategicBadge: showStrategicBadge,
+                )
+              : Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(title, style: textTheme.titleLarge?.copyWith(color: textColor)),
+                    const SizedBox(height: WideTileCardConfig.titlesSpacing),
+                    subtitleWidget!,
+                  ],
+                ),
         );
       },
     );

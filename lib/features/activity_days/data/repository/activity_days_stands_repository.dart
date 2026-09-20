@@ -16,7 +16,7 @@ Future<IList<DasStand>> dasStandsRepository(Ref ref) async {
   if (event == null) return const IListConst([]);
 
   final url =
-      "${Env.mainRestApiUrl}/das_stands?dasId=${event.id}&logo=true&floor=true&dasOrganization.studentOrganization=true";
+      "${Env.mainRestApiUrl}/das_stands?dasId=${event.id}&logo=true&floor=true&dasOrganization.logo=true&dasOrganization.studentOrganization=true";
 
   final response = await ref.getAndCacheDataWithTranslation(
     url,
@@ -29,7 +29,8 @@ Future<IList<DasStand>> dasStandsRepository(Ref ref) async {
 
 @riverpod
 Future<DasStand> dasStandRepository(Ref ref, int id) async {
-  final url = "${Env.mainRestApiUrl}/das_stands/$id?logo=true&floor=true&dasOrganization.studentOrganization=true";
+  final url =
+      "${Env.mainRestApiUrl}/das_stands/$id?logo=true&floor=true&dasOrganization.logo=true&dasOrganization.studentOrganization=true";
 
   final response = await ref.getAndCacheDataWithTranslation(
     url,
