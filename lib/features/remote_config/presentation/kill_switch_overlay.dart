@@ -44,7 +44,7 @@ class KillSwitchOverlay extends HookConsumerWidget {
           showDialog<void>(
             context: navigator.context,
             barrierDismissible: false,
-            builder: (_) => const _KillSwitchDialog(),
+            builder: (_) => const KillSwitchDialog(),
           ),
         );
       });
@@ -124,8 +124,8 @@ class _KillSwitchBanner extends StatelessWidget {
   }
 }
 
-class _KillSwitchDialog extends ConsumerWidget {
-  const _KillSwitchDialog();
+class KillSwitchDialog extends ConsumerWidget {
+  const KillSwitchDialog({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

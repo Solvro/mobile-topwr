@@ -28,7 +28,7 @@ class HomeView extends ConsumerWidget {
     final sections = [
       if (killSwitchEnabled) const AcademicScheduleLink() else const AcademicCalendarConsumer(),
       const NavActionsSection(),
-      const PlannerBannerVisibility(child: PlannerAdvertBanner()),
+      if (!killSwitchEnabled) const PlannerBannerVisibility(child: PlannerAdvertBanner()),
       const NewsSection(),
       const ScienceClubsSection(),
     ].lock;
@@ -36,7 +36,10 @@ class HomeView extends ConsumerWidget {
     return Scaffold(
       primary: false,
       backgroundColor: context.colorScheme.surface,
-      appBar: LogoAppBar(context, actions: const [PlannerBannerVisibility(reverseLogic: true, child: PlanerAdBadge())]),
+      appBar: LogoAppBar(
+        context,
+        actions: [if (!killSwitchEnabled) const PlannerBannerVisibility(reverseLogic: true, child: PlanerAdBadge())],
+      ),
       body: KeepAliveHomeViewProviders(
         academicCalendarEnabled: !killSwitchEnabled,
         child: ListView.separated(
