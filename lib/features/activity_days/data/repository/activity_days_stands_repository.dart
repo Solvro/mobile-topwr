@@ -1,9 +1,7 @@
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "../../../../api_base_rest/cache/cache.dart";
 import "../../../../api_base_rest/client/json.dart";
-import "../../../../api_base_rest/shared_models/image_data.dart";
 import "../../../../api_base_rest/translations/translate.dart";
 import "../../../../config/env.dart";
 import "../models/activity_days_stand_response.dart";
@@ -26,8 +24,7 @@ Future<IList<DasStand>> dasStandsRepository(Ref ref) async {
     extraValidityCheck: (_) => true,
     onRetry: ref.invalidateSelf,
   );
-  final stands = response.castAsObject.data;
-  return (await Future.wait(stands.map((stand) => _hydrateOrganizationLogo(ref, stand)))).toIList();
+  return response.castAsObject.data;
 }
 
 @riverpod
@@ -41,24 +38,5 @@ Future<DasStand> dasStandRepository(Ref ref, int id) async {
     extraValidityCheck: (_) => true,
     onRetry: ref.invalidateSelf,
   );
-  return _hydrateOrganizationLogo(ref, response.castAsObject.data);
-}
-
-Future<DasStand> _hydrateOrganizationLogo(Ref ref, DasStand stand) async {
-  final organization = stand.dasOrganization;
-  if (organization == null) return stand;
-
-  final logoKey = organization.logoKey;
-  if (stand.logo != null || organization.logo != null || logoKey == null || logoKey.isEmpty) return stand;
-
-  try {
-    final response = await ref.getAndCacheData(
-      "${Env.mainRestApiUrl}/files/$logoKey",
-      ImageData.fromJson,
-      extraValidityCheck: (_) => true,
-    );
-    return stand.copyWith(dasOrganization: organization.copyWith(logo: response.castAsObject));
-  } on Object {
-    return stand;
-  }
+  return response.castAsObject.data;
 }

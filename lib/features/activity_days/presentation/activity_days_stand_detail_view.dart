@@ -16,6 +16,7 @@ import "../../../widgets/my_html_widget.dart";
 import "../../../widgets/wide_tile_card.dart";
 import "../../navigator/utils/navigation_commands.dart";
 import "../data/models/activity_days_stands_response.dart";
+import "../data/repository/activity_days_media_repository.dart";
 import "../data/repository/activity_days_stands_repository.dart";
 
 @RoutePage()
@@ -48,10 +49,18 @@ class _StandDetails extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final organization = stand.dasOrganization;
     final studentOrganization = organization?.studentOrganization;
+    final logoKey = stand.logo == null && organization?.logo == null ? organization?.logoKey : null;
+    final logo = switch (logoKey) {
+      final key? when key.isNotEmpty =>
+        ref
+            .watch(activityDaysFileImageProvider(key))
+            .when(data: (image) => image, loading: () => null, error: (_, _) => null),
+      _ => stand.effectiveLogo,
+    };
 
     return CustomScrollView(
       slivers: [
-        SliverPersistentHeader(delegate: LogoOnlySliverHeaderSection(logoImageData: stand.effectiveLogo)),
+        SliverPersistentHeader(delegate: LogoOnlySliverHeaderSection(logoImageData: logo)),
         SliverList(
           delegate: SliverChildListDelegate([
             const SizedBox(height: HomeViewConfig.paddingSmall),

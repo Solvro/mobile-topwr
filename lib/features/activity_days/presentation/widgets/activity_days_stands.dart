@@ -13,6 +13,7 @@ import "../../../navigator/utils/navigation_commands.dart";
 import "../../../splash_screen/widgets/flutter_splash_screen.dart";
 import "../../business/activity_days_stands_use_case.dart";
 import "../../data/models/activity_days_stands_response.dart";
+import "../../data/repository/activity_days_media_repository.dart";
 
 class ActivityDaysStands extends ConsumerWidget {
   const ActivityDaysStands({super.key});
@@ -120,11 +121,21 @@ class _FloorStands extends ConsumerWidget {
       itemCount: floor.stands.length,
       itemBuilder: (context, index) {
         final stand = floor.stands[index];
+        final logoKey = stand.logo == null && stand.dasOrganization?.logo == null
+            ? stand.dasOrganization?.logoKey
+            : null;
+        final logo = switch (logoKey) {
+          final key? when key.isNotEmpty =>
+            ref
+                .watch(activityDaysFileImageProvider(key))
+                .when(data: (image) => image, loading: () => null, error: (_, _) => null),
+          _ => stand.effectiveLogo,
+        };
         return Padding(
           padding: const EdgeInsets.only(bottom: HomeViewConfig.paddingSmall),
           child: PhotoTrailingWideTileCard(
             context,
-            directusPhotoUrl: stand.effectiveLogo,
+            directusPhotoUrl: logo,
             title: stand.number,
             subtitle: stand.effectiveName,
             onTap: () => ref.navigateActivityDaysStand(stand.id),
