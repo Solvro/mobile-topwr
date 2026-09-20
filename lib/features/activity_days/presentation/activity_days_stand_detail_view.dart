@@ -3,6 +3,7 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../config/ui_config.dart";
+import "../../../services/haptics/app_haptics.dart";
 import "../../../theme/app_theme.dart";
 import "../../../utils/context_extensions.dart";
 import "../../../widgets/detail_views/detail_view_app_bar.dart";
@@ -57,10 +58,24 @@ class _StandDetails extends ConsumerWidget {
             .when(data: (image) => image, loading: () => null, error: (_, _) => null),
       _ => stand.effectiveLogo,
     };
+    final failedToLoad = switch (logoKey) {
+      final key? when key.isNotEmpty => ref.watch(activityDaysFileImageProvider(key)).hasError,
+      _ => false,
+    };
 
     return CustomScrollView(
       slivers: [
         SliverPersistentHeader(delegate: LogoOnlySliverHeaderSection(logoImageData: logo)),
+        if (failedToLoad)
+          SliverToBoxAdapter(
+            child: Align(
+              child: IconButton(
+                icon: Icon(Icons.refresh, semanticLabel: context.localize.refresh),
+                tooltip: context.localize.refresh,
+                onPressed: AppHaptics.wrapperSelection(() => ref.invalidate(activityDaysFileImageProvider(logoKey!))),
+              ),
+            ),
+          ),
         SliverList(
           delegate: SliverChildListDelegate([
             const SizedBox(height: HomeViewConfig.paddingSmall),

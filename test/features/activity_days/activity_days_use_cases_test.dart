@@ -9,9 +9,11 @@ import "package:topwr/features/activity_days/business/activity_days_timetable_us
 import "package:topwr/features/activity_days/data/models/activity_days_response.dart";
 import "package:topwr/features/activity_days/data/models/activity_days_stand_response.dart";
 import "package:topwr/features/activity_days/data/models/activity_days_stands_response.dart";
+import "package:topwr/features/activity_days/data/repository/activity_days_media_repository.dart";
 import "package:topwr/features/activity_days/data/repository/activity_days_stands_repository.dart";
 import "package:topwr/features/activity_days/data/repository/activity_days_timetable_repository.dart";
 import "package:topwr/features/activity_days/presentation/activity_days_stand_detail_view.dart";
+import "package:topwr/features/activity_days/presentation/widgets/map_tile.dart";
 import "package:topwr/l10n/app_localizations.dart";
 import "package:topwr/widgets/my_html_widget.dart";
 import "package:topwr/widgets/wide_tile_card.dart";
@@ -185,5 +187,41 @@ void main() {
 
     expect(stand.effectiveName, "Organization name");
     expect(stand.effectiveDescription, "Organization description");
+  });
+
+  testWidgets("map media failures can be retried", (tester) async {
+    var attempts = 0;
+    await tester.pumpWidget(
+      ProviderScope(
+        retry: (_, _) => null,
+        overrides: [
+          activityDaysFileImageProvider("missing-map").overrideWith((ref) {
+            attempts++;
+            throw StateError("missing map");
+          }),
+        ],
+        child: const MaterialApp(
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          home: Scaffold(
+            body: Center(
+              child: SizedBox(
+                width: 300,
+                child: MapTile(
+                  map: ActivityDaysMap(id: 1, name: "Ground floor", contentKey: "missing-map"),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+    await tester.pump();
+
+    expect(attempts, 1);
+    await tester.tap(find.byIcon(Icons.refresh));
+    await tester.pump();
+
+    expect(attempts, 2);
   });
 }

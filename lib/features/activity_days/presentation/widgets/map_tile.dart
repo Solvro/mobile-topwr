@@ -2,6 +2,8 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../config/ui_config.dart";
+import "../../../../services/haptics/app_haptics.dart";
+import "../../../../utils/context_extensions.dart";
 import "../../../../widgets/my_expansion_tile.dart";
 import "../../../../widgets/zoomable_images.dart";
 import "../../data/models/activity_days_response.dart";
@@ -14,13 +16,17 @@ class MapTile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final image = switch (map) {
-      ActivityDaysMap(:final image?) => image,
-      ActivityDaysMap(contentKey: final contentKey?) when contentKey.isNotEmpty =>
+    final contentKey = map.image == null ? map.contentKey : null;
+    final image = switch (contentKey) {
+      final key? when key.isNotEmpty =>
         ref
-            .watch(activityDaysFileImageProvider(contentKey))
+            .watch(activityDaysFileImageProvider(key))
             .when(data: (image) => image, loading: () => null, error: (_, _) => null),
-      _ => null,
+      _ => map.image,
+    };
+    final failedToLoad = switch (contentKey) {
+      final key? when key.isNotEmpty => ref.watch(activityDaysFileImageProvider(key)).hasError,
+      _ => false,
     };
 
     return Padding(
@@ -35,7 +41,17 @@ class MapTile extends ConsumerWidget {
               borderRadius: BorderRadius.circular(DigitalGuideConfig.borderRadiusMedium),
               child: AspectRatio(
                 aspectRatio: 4 / 3,
-                child: ZoomableRestApiImage(image, semanticsLabel: map.name),
+                child: failedToLoad
+                    ? Center(
+                        child: IconButton(
+                          icon: Icon(Icons.refresh, semanticLabel: context.localize.refresh),
+                          tooltip: context.localize.refresh,
+                          onPressed: AppHaptics.wrapperSelection(
+                            () => ref.invalidate(activityDaysFileImageProvider(contentKey!)),
+                          ),
+                        ),
+                      )
+                    : ZoomableRestApiImage(image, semanticsLabel: map.name),
               ),
             ),
           ),

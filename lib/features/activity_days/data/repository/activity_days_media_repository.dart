@@ -11,15 +11,11 @@ part "activity_days_media_repository.g.dart";
 Future<ImageData?> activityDaysFileImage(Ref ref, String contentKey) async {
   if (contentKey.isEmpty) return null;
 
-  try {
-    final response = await ref.getAndCacheData(
-      "${Env.mainRestApiUrl}/files/$contentKey",
-      ImageData.fromJson,
-      extraValidityCheck: (_) => true,
-      onRetry: ref.invalidateSelf,
-    );
-    return response.castAsObject;
-  } on Object {
-    return null;
-  }
+  final response = await ref.getAndCacheData(
+    "${Env.mainRestApiUrl}/files/$contentKey",
+    ImageData.fromJson,
+    extraValidityCheck: (_) => true,
+    onRetry: ref.invalidateSelf,
+  );
+  return response.castAsObject;
 }

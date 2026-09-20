@@ -5,6 +5,7 @@ import "package:flutter_hooks/flutter_hooks.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../config/ui_config.dart";
+import "../../../../services/haptics/app_haptics.dart";
 import "../../../../theme/app_theme.dart";
 import "../../../../utils/context_extensions.dart";
 import "../../../../widgets/my_error_widget.dart";
@@ -131,6 +132,10 @@ class _FloorStands extends ConsumerWidget {
                 .when(data: (image) => image, loading: () => null, error: (_, _) => null),
           _ => stand.effectiveLogo,
         };
+        final failedToLoad = switch (logoKey) {
+          final key? when key.isNotEmpty => ref.watch(activityDaysFileImageProvider(key)).hasError,
+          _ => false,
+        };
         return Padding(
           padding: const EdgeInsets.only(bottom: HomeViewConfig.paddingSmall),
           child: PhotoTrailingWideTileCard(
@@ -140,7 +145,15 @@ class _FloorStands extends ConsumerWidget {
             subtitle: stand.effectiveName,
             onTap: () => ref.navigateActivityDaysStand(stand.id),
             boxFit: BoxFit.contain,
-            customPlaceholder: const FlutterSplashScreen(size: WideTileCardConfig.imageSize),
+            customPlaceholder: failedToLoad
+                ? IconButton(
+                    icon: Icon(Icons.refresh, semanticLabel: context.localize.refresh),
+                    tooltip: context.localize.refresh,
+                    onPressed: AppHaptics.wrapperSelection(
+                      () => ref.invalidate(activityDaysFileImageProvider(logoKey!)),
+                    ),
+                  )
+                : const FlutterSplashScreen(size: WideTileCardConfig.imageSize),
           ),
         );
       },
