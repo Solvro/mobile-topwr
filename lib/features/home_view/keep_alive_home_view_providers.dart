@@ -12,18 +12,19 @@ part "keep_alive_home_view_providers.g.dart";
 
 /// A [Widget] that prevents the [HomeView] scrollable section to flicker when scrolling by keeping all states stable.
 class KeepAliveHomeViewProviders extends ConsumerWidget {
-  const KeepAliveHomeViewProviders({super.key, required this.child});
+  const KeepAliveHomeViewProviders({super.key, required this.child, required this.academicCalendarEnabled});
   final Widget child;
+  final bool academicCalendarEnabled;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.watch(keepAliveHomeViewProvidersProvider);
+    ref.watch(keepAliveHomeViewProvidersProvider(academicCalendarEnabled: academicCalendarEnabled));
     return child;
   }
 }
 
 @riverpod
-void keepAliveHomeViewProviders(Ref ref) {
-  ref.watch(academicCalendarRepoProvider);
+void keepAliveHomeViewProviders(Ref ref, {required bool academicCalendarEnabled}) {
+  if (academicCalendarEnabled) ref.watch(academicCalendarRepoProvider);
   ref.watch(scienceClubsRepositoryProvider);
   ref.watch(getUsageDaysUseCaseProvider);
   ref.watch(newsfeedRepositoryProvider);

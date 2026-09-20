@@ -12,9 +12,11 @@ import "../../../widgets/horizontal_symmetric_safe_area.dart";
 import "../../../widgets/my_error_widget.dart";
 import "../../../widgets/search_box_app_bar.dart";
 import "../../../widgets/search_not_found.dart";
+import "../../academic_calendar/widgets/academic_schedule_link.dart";
 import "../../analytics/data/clarity.dart";
 import "../../analytics/data/clarity_events.dart";
 import "../../departments/departments_view/widgets/departments_view_loading.dart";
+import "../../remote_config/data/repository/remote_config_repository.dart";
 import "../bussiness/calendar_search_controller.dart";
 import "../bussiness/get_events_per_days_use_case.dart";
 import "../bussiness/models.dart";
@@ -30,6 +32,7 @@ class CalendarView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final killSwitchEnabled = ref.watch(remoteConfigRepositoryProvider).value?.killswitchOfDoomAndDespair ?? false;
     if (query != null && query!.isNotEmpty) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         ref.read(searchCalendarControllerProvider.notifier).onTextChanged(query!);
@@ -48,7 +51,7 @@ class CalendarView extends ConsumerWidget {
           unawaited(ref.trackEvent(ClarityEvents.searchCalendar));
         },
       ),
-      body: const _CalendarViewConsumer(),
+      body: killSwitchEnabled ? const Center(child: AcademicScheduleLink()) : const _CalendarViewConsumer(),
     );
   }
 }

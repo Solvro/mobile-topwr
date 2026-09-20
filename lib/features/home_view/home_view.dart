@@ -2,29 +2,33 @@ import "package:auto_route/auto_route.dart";
 import "package:fast_immutable_collections/fast_immutable_collections.dart";
 import "package:flutter/material.dart";
 import "package:flutter/rendering.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../config/ui_config.dart";
 import "../../theme/app_theme.dart";
 import "../academic_calendar/widgets/academic_calendar_consumer.dart";
+import "../academic_calendar/widgets/academic_schedule_link.dart";
 import "../newsfeed/presentation/news_section.dart";
 import "../planner_advert/widgets/banner_visibility.dart";
 import "../planner_advert/widgets/planer_ad_badge.dart";
 import "../planner_advert/widgets/planner_advert_widget.dart";
+import "../remote_config/data/repository/remote_config_repository.dart";
 import "keep_alive_home_view_providers.dart";
 import "widgets/logo_app_bar.dart";
 import "widgets/nav_actions_section.dart";
 import "widgets/science_clubs_section.dart";
 
 @RoutePage()
-class HomeView extends StatelessWidget {
+class HomeView extends ConsumerWidget {
   const HomeView({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final killSwitchEnabled = ref.watch(remoteConfigRepositoryProvider).value?.killswitchOfDoomAndDespair ?? false;
     final sections = [
-      const AcademicCalendarConsumer(),
+      if (killSwitchEnabled) const AcademicScheduleLink() else const AcademicCalendarConsumer(),
       const NavActionsSection(),
-      const PlannerBannerVisibility(child: PlannerAdvertBanner()),
+      if (!killSwitchEnabled) const PlannerBannerVisibility(child: PlannerAdvertBanner()),
       const NewsSection(),
       const ScienceClubsSection(),
     ].lock;
@@ -32,8 +36,12 @@ class HomeView extends StatelessWidget {
     return Scaffold(
       primary: false,
       backgroundColor: context.colorScheme.surface,
-      appBar: LogoAppBar(context, actions: const [PlannerBannerVisibility(reverseLogic: true, child: PlanerAdBadge())]),
+      appBar: LogoAppBar(
+        context,
+        actions: [if (!killSwitchEnabled) const PlannerBannerVisibility(reverseLogic: true, child: PlanerAdBadge())],
+      ),
       body: KeepAliveHomeViewProviders(
+        academicCalendarEnabled: !killSwitchEnabled,
         child: ListView.separated(
           scrollCacheExtent: const ScrollCacheExtent.pixels(500),
           key: MyAppConfig.verticalScrollableKey,
