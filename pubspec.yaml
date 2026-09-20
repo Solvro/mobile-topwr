@@ -160,7 +160,7 @@ dev_dependencies:
   #CodeGen
   build_runner: ^2.15.0
   freezed: ^3.2.5
-  json_serializable: ^6.14.0
+  json_serializable: ^6.14.1
   riverpod_generator: ^4.0.4
   envied_generator: ^1.3.8
   flutter_gen_runner: ^5.14.1
