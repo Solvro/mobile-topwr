@@ -21,6 +21,7 @@ class KillSwitchOverlay extends HookConsumerWidget {
     final killSwitchEnabled = ref.watch(remoteConfigRepositoryProvider).value?.killswitchOfDoomAndDespair ?? false;
     final route = ref.watch(currentRouteProvider);
     final dialogWasShown = useRef(false);
+    final dialogVisible = useState(false);
     final bannerCollapsed = useState(false);
     void toggleBanner() => bannerCollapsed.value = !bannerCollapsed.value;
 
@@ -38,25 +39,28 @@ class KillSwitchOverlay extends HookConsumerWidget {
       final navigator = route?.navigator;
       if (navigator == null || dialogWasShown.value) return null;
       dialogWasShown.value = true;
+      dialogVisible.value = true;
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (!navigator.mounted) return;
+        if (!navigator.mounted) {
+          dialogVisible.value = false;
+          return;
+        }
         unawaited(
           showDialog<void>(
             context: navigator.context,
             barrierDismissible: false,
             builder: (_) => const KillSwitchDialog(),
-          ),
+          ).whenComplete(() => dialogVisible.value = false),
         );
       });
       return null;
     }, [killSwitchEnabled, route]);
 
-    final isScienceClubRoute = route?.settings.name?.startsWith("ScienceClub") ?? false;
     return Stack(
       fit: StackFit.expand,
       children: [
         child,
-        if (killSwitchEnabled && !isScienceClubRoute)
+        if (killSwitchEnabled && !dialogVisible.value)
           _KillSwitchBanner(collapsed: bannerCollapsed.value, onPressed: toggleBanner),
       ],
     );
@@ -72,8 +76,8 @@ class _KillSwitchBanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      left: collapsed ? null : 16,
-      right: 16,
+      left: 16,
+      right: collapsed ? null : 16,
       bottom: 88,
       child: SafeArea(
         top: false,
@@ -139,6 +143,7 @@ class KillSwitchDialog extends ConsumerWidget {
         ),
         title: Text(context.localize.kill_switch_dialog_title),
         content: Text.rich(
+          style: context.textTheme.bodyLarge,
           TextSpan(
             children: [
               TextSpan(text: "${context.localize.kill_switch_dialog_message} "),
