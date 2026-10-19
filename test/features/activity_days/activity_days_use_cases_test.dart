@@ -4,21 +4,156 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:flutter_test/flutter_test.dart";
 
 import "package:topwr/api_base_rest/shared_models/image_data.dart";
+import "package:topwr/config/env.dart";
 import "package:topwr/features/activity_days/business/activity_days_stands_use_case.dart";
 import "package:topwr/features/activity_days/business/activity_days_timetable_use_case.dart";
 import "package:topwr/features/activity_days/data/models/activity_days_response.dart";
 import "package:topwr/features/activity_days/data/models/activity_days_stand_response.dart";
 import "package:topwr/features/activity_days/data/models/activity_days_stands_response.dart";
 import "package:topwr/features/activity_days/data/repository/activity_days_media_repository.dart";
+import "package:topwr/features/activity_days/data/repository/activity_days_repository.dart";
 import "package:topwr/features/activity_days/data/repository/activity_days_stands_repository.dart";
 import "package:topwr/features/activity_days/data/repository/activity_days_timetable_repository.dart";
 import "package:topwr/features/activity_days/presentation/activity_days_stand_detail_view.dart";
 import "package:topwr/features/activity_days/presentation/widgets/map_tile.dart";
+import "package:topwr/features/feature_codes/data/feature_codes_repository.dart";
 import "package:topwr/l10n/app_localizations.dart";
 import "package:topwr/widgets/my_html_widget.dart";
 import "package:topwr/widgets/wide_tile_card.dart";
 
 void main() {
+  group("Activity Days visibility", () {
+    final now = DateTime(2026, 10, 17, 12);
+    final expired = ActivityDaysResponse(
+      id: 1,
+      name: "Expired DAS",
+      startsAt: now.subtract(const Duration(days: 4)),
+      endsAt: now.subtract(const Duration(days: 2)),
+      createdAt: now.subtract(const Duration(days: 5)),
+      updatedAt: now.subtract(const Duration(days: 3)),
+    );
+    final latestExpired = ActivityDaysResponse(
+      id: 2,
+      name: "Latest expired DAS",
+      startsAt: now.subtract(const Duration(days: 2)),
+      endsAt: now.subtract(const Duration(days: 1)),
+      createdAt: now.subtract(const Duration(days: 3)),
+      updatedAt: now.subtract(const Duration(days: 2)),
+    );
+
+    test("does not select expired DAS without preview access", () {
+      final event = selectActivityDaysEvent([expired, latestExpired], now: now, includeExpired: false);
+
+      expect(event, isNull);
+    });
+
+    test("selects the latest expired DAS with preview access", () {
+      final event = selectActivityDaysEvent([expired, latestExpired], now: now, includeExpired: true);
+
+      expect(event, latestExpired);
+    });
+
+    test("prefers a running DAS over expired DAS with preview access", () {
+      final running = ActivityDaysResponse(
+        id: 3,
+        name: "Running DAS",
+        startsAt: now.subtract(const Duration(hours: 1)),
+        endsAt: now.add(const Duration(hours: 1)),
+        createdAt: now.subtract(const Duration(days: 1)),
+        updatedAt: now,
+      );
+
+      final event = selectActivityDaysEvent([expired, running], now: now, includeExpired: true);
+
+      expect(event, running);
+    });
+  });
+
+  group("isActivityDaysActive", () {
+    final now = DateTime.now();
+    final running = ActivityDaysResponse(
+      id: 3,
+      name: "Running DAS",
+      startsAt: now.subtract(const Duration(hours: 1)),
+      endsAt: now.add(const Duration(hours: 1)),
+      createdAt: now.subtract(const Duration(days: 1)),
+      updatedAt: now,
+    );
+    final upcoming = ActivityDaysResponse(
+      id: 4,
+      name: "Upcoming DAS",
+      startsAt: now.add(const Duration(days: 1)),
+      endsAt: now.add(const Duration(days: 2)),
+      createdAt: now,
+      updatedAt: now,
+    );
+    final expired = ActivityDaysResponse(
+      id: 1,
+      name: "Expired DAS",
+      startsAt: now.subtract(const Duration(days: 4)),
+      endsAt: now.subtract(const Duration(days: 2)),
+      createdAt: now.subtract(const Duration(days: 5)),
+      updatedAt: now.subtract(const Duration(days: 3)),
+    );
+
+    ProviderContainer createContainer({
+      required ISet<String> featureCodes,
+      required ActivityDaysResponse? selectedEvent,
+    }) {
+      return ProviderContainer(
+        overrides: [
+          featureCodesRepositoryProvider.overrideWithValue(featureCodes),
+          activityDaysRepositoryProvider.overrideWith((ref) => Future.value(selectedEvent)),
+        ],
+      );
+    }
+
+    test("is active for a running event without preview access", () async {
+      final container = createContainer(featureCodes: const ISetConst({}), selectedEvent: running);
+      addTearDown(container.dispose);
+
+      expect(await container.read(isActivityDaysActiveProvider.future), isTrue);
+    });
+
+    test("is inactive for an upcoming event without preview access", () async {
+      final container = createContainer(featureCodes: const ISetConst({}), selectedEvent: upcoming);
+      addTearDown(container.dispose);
+
+      expect(await container.read(isActivityDaysActiveProvider.future), isFalse);
+    });
+
+    test("is active for an upcoming event with preview access", () async {
+      final container = createContainer(
+        featureCodes: ISetConst({Env.activityDaysFeatureCode}),
+        selectedEvent: upcoming,
+      );
+      addTearDown(container.dispose);
+
+      expect(await container.read(isActivityDaysActiveProvider.future), isTrue);
+    });
+
+    test("is active for an expired event with preview access", () async {
+      final container = createContainer(featureCodes: ISetConst({Env.activityDaysFeatureCode}), selectedEvent: expired);
+      addTearDown(container.dispose);
+
+      expect(await container.read(isActivityDaysActiveProvider.future), isTrue);
+    });
+
+    test("is inactive for an expired event without preview access", () async {
+      final container = createContainer(featureCodes: const ISetConst({}), selectedEvent: expired);
+      addTearDown(container.dispose);
+
+      expect(await container.read(isActivityDaysActiveProvider.future), isFalse);
+    });
+
+    test("is inactive when no event is selected", () async {
+      final container = createContainer(featureCodes: ISetConst({Env.activityDaysFeatureCode}), selectedEvent: null);
+      addTearDown(container.dispose);
+
+      expect(await container.read(isActivityDaysActiveProvider.future), isFalse);
+    });
+  });
+
   group("Activity Days stands", () {
     test("groups stands by floor, sorts stands, and puts missing floor last", () async {
       const groundFloor = DasFloor(id: 1, name: "Ground floor");
