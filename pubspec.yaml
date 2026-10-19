@@ -103,7 +103,7 @@ dependencies:
   flutter_compass: ^0.8.1
 
   #Firebase
-  firebase_core: ^4.11.0
+  firebase_core: ^4.15.0
   firebase_performance: ^0.11.4
   firebase_messaging: ^16.5.0
 
